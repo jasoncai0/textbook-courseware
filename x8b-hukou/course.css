@@ -1,0 +1,92 @@
+/* 壶口瀑布 · 本课配色：黄河土黄、赭石、青灰 */
+:root {
+  --red: #8a3b1a;
+  --red-d: #5a2a12;
+  --gold: #c8962e;
+  --gold-l: #f0d79a;
+  --paper: #f4ece0;
+  --stone: #fbf6ec;
+  --ink-2: #6b5a48;
+  --line: #dccaa9;
+  --huang: #a8742c;
+  --qing: #5f6b6e;
+}
+.frame { background-image: radial-gradient(circle at 10% 6%, #fbf6ec 0, transparent 40%), radial-gradient(circle at 92% 96%, #e8d8bb 0, transparent 46%); }
+.cover-line { font-family: var(--kai); font-size: 2em; margin: .2em 0 .4em; letter-spacing: .08em; }
+
+/* 读准字音：本课“写一写”是词语，卡片放宽 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+/* ---------- 两次观瀑对比 ---------- */
+.tw-grid { display: grid; grid-template-columns: 1fr 6em 1fr; gap: .35em .6em; align-items: stretch; }
+.tw-head { position: relative; height: 6.4em; border-radius: .5em; overflow: hidden; display: flex; align-items: flex-end; }
+.tw-pic { position: absolute; inset: 0; background: center / cover no-repeat #b9a58a; }
+.tw-head b { position: relative; width: 100%; padding: .3em .8em; color: #fff; font-family: var(--kai); font-size: 1.3em; background: linear-gradient(transparent, rgba(30, 20, 10, .75)); }
+.tw-cell { background: #fff; border-radius: .4em; padding: .35em .8em; font-family: var(--kai); font-size: 1.05em; line-height: 1.5; border-left: .3em solid var(--qing); }
+.tw-cell.tw-b { border-left-color: var(--huang); }
+.tw-cell.key { background: #fff8e6; }
+.tw-cell.key b { color: var(--red); }
+.tw-mid { align-self: center; text-align: center; color: var(--red-d); font-weight: bold; font-size: .9em; }
+
+/* ---------- 水的形态变化 ---------- */
+.s-flow .bd { grid-template-columns: 1fr 40%; }
+.hk-svg { flex: 1; min-height: 0; width: 100%; border-radius: .5em; }
+.hk-waves { animation: hkFlow 2.2s linear infinite; }
+@keyframes hkFlow { from { transform: translateY(0); } to { transform: translateY(40px); } }
+.hk-fall { animation: hkFall .8s linear infinite; }
+@keyframes hkFall { from { transform: translateY(0); } to { transform: translateY(24px); } }
+.hk-mist circle { fill: #fff; opacity: .55; animation: hkMist 3s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes hkMist { to { transform: scale(1.25); opacity: .3; } }
+.hk-ding { animation: pulse 1.6s ease-in-out infinite; }
+.hk-spin { transform-box: fill-box; transform-origin: center; animation: hkSpin 2s linear infinite; stroke-dasharray: 40 20; }
+@keyframes hkSpin { to { transform: rotate(360deg); } }
+.hk-side { justify-content: flex-start; gap: .45em; }
+.hk-side .tip { font-size: .88em; }
+.hk-q { font-family: var(--kai); font-size: .95em !important; }
+
+/* ---------- 感受批注 ---------- */
+.hk-notes { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.hk-note { font: inherit; text-align: left; cursor: pointer; display: grid; grid-template-columns: 2em 1fr; gap: .2em .5em; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .55em .8em; }
+.hk-note i { grid-row: span 2; font-style: normal; width: 1.7em; height: 1.7em; line-height: 1.7em; text-align: center; border-radius: 50%; background: var(--huang); color: #fff; font-weight: bold; }
+.hk-note .s { font-family: var(--kai); font-size: 1.12em; line-height: 1.6; }
+.hk-note .a { display: none; font-size: .86em; line-height: 1.55; color: var(--ink-2); border-top: 1px dashed var(--line); padding-top: .3em; }
+.hk-note .a b { color: #fff; background: var(--red); padding: 0 .45em; border-radius: .2em; margin-right: .5em; }
+.hk-note.open { background: #fff8e6; border-color: var(--gold); }
+.hk-note.open .a { display: block; }
+
+/* ---------- 性格提炼 ---------- */
+.ch-row { display: flex; align-items: stretch; gap: .5em; }
+.ch-card { flex: 1; background: #fff; border-radius: .5em; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 .15em .6em rgba(60, 40, 20, .12); }
+.ch-pic { height: 6.5em; background: center / cover no-repeat #c9b48f; }
+.ch-card b { font-family: var(--kai); font-size: 1.8em; color: var(--red-d); text-align: center; padding-top: .1em; letter-spacing: .1em; }
+.ch-card span { text-align: center; font-size: .88em; color: var(--ink-2); padding: 0 .6em .5em; line-height: 1.5; }
+.ch-arr { font-style: normal; align-self: center; font-size: 2em; color: var(--red); }
+.ch-traits { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5em; }
+.ch-traits span { font-family: var(--kai); font-size: 1.25em; text-align: center; background: var(--red-d); color: #f6e7c4; border-radius: .4em; padding: .35em .2em; }
+
+.s-lang .sort-row { grid-template-columns: 1fr auto 15em; }
+
+/* ---------- 回顾 ---------- */
+.sum-stage { justify-content: center; }
+.hk-sum { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; }
+.hk-sum div { background: #fff; border-radius: .6em; padding: .8em 1em; border-top: .35em solid var(--huang); display: flex; flex-direction: column; gap: .2em; }
+.hk-sum small { color: var(--ink-2); }
+.hk-sum b { font-family: var(--kai); font-size: 1.9em; color: var(--red-d); }
+.hk-sum span { line-height: 1.6; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cover-line { font-size: 1.3em; }
+  .tw-grid { grid-template-columns: 1fr 2.6em 1fr; gap: .3em; }
+  .tw-mid { font-size: .72em; }
+  .tw-head { height: 5em; }
+  .tw-head b { font-size: 1em; padding: .3em .5em; }
+  .tw-cell { font-size: .88em; padding: .3em .5em; }
+  .hk-notes { grid-template-columns: 1fr; }
+  .ch-row { flex-direction: column; }
+  .ch-arr { transform: rotate(90deg); }
+  .ch-traits { grid-template-columns: 1fr 1fr; }
+  .s-lang .sort-row { grid-template-columns: 1fr; }
+  .hk-sum { grid-template-columns: 1fr 1fr; }
+}

@@ -1,0 +1,120 @@
+/* 桃花源记 · 本课配色：绢本青绿 + 桃红 */
+:root {
+  --red: #a2493f;
+  --red-d: #4b3326;
+  --gold: #b49a5e;
+  --gold-l: #ecdfb8;
+  --paper: #f3efe2;
+  --stone: #fbf8ef;
+  --ink-2: #5d5a4c;
+  --line: #d7cdb2;
+  --qing: #3d7a6a;
+  --tao: #e59aa4;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbf9f1 0, transparent 40%), radial-gradient(circle at 90% 95%, #e3decb 0, transparent 45%); }
+.s-cover .cover-title { font-size: 7em; letter-spacing: .25em; }
+.poem-v.h .poem-text .pl { font-size: 1.5em; }
+.th-ask { font-family: var(--kai); font-size: 1.8em; margin: .2em 0 .7em; letter-spacing: .05em; }
+
+/* ---------- 行踪路线图 ---------- */
+.s-route .bd { grid-template-columns: 1.55fr 1fr; }
+.rt-map { border-radius: .6em; box-shadow: 0 .3em 1em rgba(40, 30, 20, .15); }
+.rt-stream { fill: none; stroke: #9cc7c6; stroke-width: 22; stroke-linecap: round; opacity: .7; }
+.rt-go, .rt-back, .rt-lost { fill: none; stroke-width: 5; stroke-linecap: round; }
+.rt-go { stroke: var(--qing); }
+.rt-back { stroke: #b07a3a; stroke-dasharray: 2 0; }
+.rt-lost { stroke: #9a948a; }
+.rt-tree circle { fill: var(--tao); opacity: .85; }
+.rt-hole { fill: #2e2a24; }
+.rt-glow { fill: #fff4c8; opacity: .45; animation: rtGlow 2.4s ease-in-out infinite; }
+@keyframes rtGlow { 50% { opacity: .1; } }
+.rt-sign path { fill: none; stroke: #b07a3a; stroke-width: 3; }
+.rt-q { font-size: 34px; fill: #6d675e; font-weight: bold; }
+.rt-node circle { fill: #fff; stroke: var(--qing); stroke-width: 3; transition: fill .4s; }
+.rt-node text { font-family: var(--kai); font-size: 15px; text-anchor: middle; fill: var(--red-d); font-weight: bold; }
+.rt-node.cur circle { fill: #ffe9a8; stroke: var(--red); stroke-width: 4; }
+.rt-lab { font-family: var(--kai); font-size: 17px; fill: #4b3326; }
+.rt-side { justify-content: center; }
+.rt-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .3em; }
+.rt-list li { font-family: var(--kai); font-size: 1.08em; line-height: 1.45; padding: .2em .6em; border-radius: .4em; background: #fff; border: 1px solid var(--line); }
+.rt-list li b { display: inline-block; width: 1.6em; height: 1.6em; line-height: 1.6em; margin-right: .5em; text-align: center; border-radius: 50%; background: var(--qing); color: #fff; font-family: var(--kai); }
+.rt-list li.cur { background: #fff6dc; border-color: var(--gold); }
+.rt-list li.cur b { background: var(--red); }
+
+/* ---------- 桃源长卷 ---------- */
+.s-scroll .stage { height: 100%; }
+.th-view { position: relative; flex: 1; min-height: 0; overflow: hidden; border-radius: .6em; background: #e7e3d0; box-shadow: inset 0 0 0 .35em #c7bd9a, 0 .3em 1em rgba(40, 30, 20, .18); }
+.th-strip { position: absolute; top: 0; bottom: 0; left: 0; width: 300%; display: flex; transition: transform 1.4s cubic-bezier(.5, 0, .3, 1); }
+.th-panel { position: relative; flex: 1; overflow: hidden; }
+.th-pic { position: absolute; inset: 0; background: center / cover no-repeat #d9d4bf; transition: transform 6s ease; }
+.th-panel.now .th-pic { transform: scale(1.06); }
+.th-cap { position: absolute; left: 4%; bottom: 6%; width: 50%; background: rgba(251, 248, 239, .92); border-radius: .5em; padding: .7em 1em; box-shadow: 0 .3em 1em rgba(0, 0, 0, .2); opacity: 0; transform: translateY(.8em); transition: opacity .8s .7s, transform .8s .7s; }
+.th-panel.now .th-cap { opacity: 1; transform: none; }
+.th-cap b { font-family: var(--kai); font-size: 1.5em; color: var(--qing); }
+.th-cap p { margin: .2em 0 .4em; font-family: var(--kai); font-size: 1.12em; line-height: 1.7; }
+.th-feat { display: flex; gap: .4em; }
+.th-feat em { font-style: normal; font-family: var(--kai); font-size: 1.5em; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; color: #fff; background: var(--red); border-radius: 50%; }
+.th-cap small { display: block; margin-top: .4em; color: var(--ink-2); font-size: .85em; line-height: 1.5; }
+.th-mood { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-around; align-items: center; padding: .4em 0; background: rgba(40, 36, 30, .75); color: #f3ead2; font-family: var(--kai); font-size: 1.2em; opacity: 0; transition: opacity .8s .6s; }
+.th-mood i { font-style: normal; opacity: .6; }
+.th-step { display: none; }
+.th-view.all .th-strip { width: 100%; gap: 3px; }
+.th-view.all .th-cap { opacity: 1; transform: none; left: 5%; right: 5%; width: auto; bottom: 3.4em; padding: .4em .5em; text-align: center; }
+.th-view.all .th-cap p, .th-view.all .th-cap small { display: none; }
+.th-view.all .th-feat { justify-content: center; }
+.th-view.all .th-feat em { font-size: 1.2em; }
+.th-view.all .th-mood { opacity: 1; }
+
+/* ---------- 翻卡 ---------- */
+.s-brief .clues { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 13em; }
+.s-brief .clue-face.front { font-family: var(--kai); font-size: 1.4em; }
+
+/* ---------- 字词卡 ---------- */
+.words { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: .6em; flex: 1; min-height: 0; }
+.wcard { font: inherit; text-align: left; cursor: pointer; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .5em .8em; display: flex; flex-direction: column; gap: .15em; min-height: 5.5em; }
+.wcard small { color: var(--qing); font-size: .78em; }
+.wcard b { font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.wa { display: none; font-size: .86em; line-height: 1.5; }
+.wa em { display: block; font-style: normal; font-family: var(--kai); color: var(--red); margin-top: .15em; }
+.wcard.open { background: #fff8e8; border-color: var(--gold); }
+.wcard.open .wa { display: block; }
+
+/* ---------- 桃花源诗 ---------- */
+.s-ideal .bd { grid-template-columns: 34% 1fr; }
+.s-ideal .pick { font-size: 1.25em; }
+.th-poem { background: var(--stone); border-left: .3em solid var(--qing); border-radius: .4em; padding: .8em 1.4em; font-family: var(--kai); }
+.th-poem h3 { margin: 0 0 .4em; color: var(--red-d); font-size: 1.2em; }
+.th-poem p { margin: 0; font-size: 1.4em; line-height: 1.9; letter-spacing: .08em; }
+
+/* ---------- 背诵 ---------- */
+.th-recite { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; height: 100%; }
+.th-recite .recite { overflow: auto; min-height: 0; }
+.th-recite .recite-lines { font-size: 1.2em; letter-spacing: .08em; }
+.th-recite .recite-lines p { display: inline; }
+
+/* ---------- 回顾 ---------- */
+.sum-stage { justify-content: center; }
+.th-sum { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; }
+.th-sum div { background: #fff; border-radius: .6em; padding: .9em .8em; text-align: center; border-top: .35em solid var(--qing); display: flex; flex-direction: column; gap: .4em; }
+.th-sum div:nth-child(3), .th-sum div:nth-child(4) { border-top-color: #9a948a; }
+.th-sum b { font-family: var(--kai); font-size: 1.8em; color: var(--red-d); }
+.th-sum span { font-family: var(--kai); font-size: 1.1em; }
+.th-sum em { font-style: normal; color: var(--red); font-family: var(--kai); font-size: 1.15em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4em; }
+  .th-ask { font-size: 1.25em; }
+  .rt-list li { font-size: .98em; }
+  .th-view { flex: none; height: 30em; }
+  .th-cap { width: auto; right: 4%; }
+  .th-cap p { font-size: 1em; }
+  .th-view.all .th-strip { flex-direction: column; }
+  .th-view.all .th-cap { bottom: .4em; }
+  .th-view.all .th-mood { display: none; }
+  .s-brief .clues { grid-template-columns: 1fr 1fr; grid-auto-rows: 11em; }
+  .poem-v.h .poem-text .pl { font-size: 1.2em; }
+  .words { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+  .th-poem p { font-size: 1.15em; }
+  .th-recite { grid-template-columns: 1fr; height: auto; }
+  .th-sum { grid-template-columns: 1fr 1fr; }
+}

@@ -1,0 +1,97 @@
+/* 在长江源头各拉丹冬 · 本课配色：冰蓝、雪白、高原深蓝 */
+:root {
+  --red: #2f5f86;
+  --red-d: #1d3c58;
+  --gold: #7fb0cf;
+  --gold-l: #d6e8f3;
+  --paper: #eef3f6;
+  --stone: #f8fbfc;
+  --ink-2: #4f6070;
+  --line: #c6d6e1;
+  --warm: #b5533c;
+}
+.frame { background-image: radial-gradient(circle at 10% 6%, #fbfdfe 0, transparent 40%), radial-gradient(circle at 92% 96%, #d9e5ed 0, transparent 46%); }
+.gl-title { font-size: 5.2em !important; line-height: 1.15; }
+.cover-line { font-family: var(--kai); font-size: 1.45em; margin: .4em 0 .7em; max-width: 30em; line-height: 1.6; }
+.gl-coord { display: flex; flex-wrap: wrap; gap: .5em; margin-top: .6em; }
+.gl-coord span { background: rgba(29, 60, 88, .82); padding: .2em .7em; border-radius: .3em; text-shadow: none; }
+
+/* 读准字音：本课“写一写”是词语，卡片放宽 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+/* ---------- 游记路线 ---------- */
+.s-route .bd { grid-template-columns: 1.25fr 1fr; }
+.gl-map { flex: 1; min-height: 0; width: 100%; border-radius: .6em; }
+.gl-seg { stroke: var(--warm); stroke-width: 3; stroke-dasharray: 6 6; }
+.gl-stop { cursor: pointer; }
+.gl-stop circle { fill: var(--red); stroke: #fff; stroke-width: 3; transition: fill .3s, r .3s; }
+.gl-stop.cur circle { fill: var(--warm); r: 19; }
+.gl-name { fill: var(--red-d); font-weight: bold; paint-order: stroke; stroke: #e9f0f4; stroke-width: 4px; }
+.gl-card { background: #fff; border-radius: .6em; padding: .8em 1.1em; border-top: .35em solid var(--red); min-height: 14em; }
+.gl-card h3 { margin: 0 0 .4em; color: var(--red-d); font-size: 1.35em; display: flex; align-items: center; gap: .4em; }
+.gl-card h3 i { font-style: normal; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: var(--warm); color: #fff; font-size: .8em; }
+.gl-card p { margin: .3em 0; line-height: 1.65; }
+.gl-card p b { display: inline-block; color: #fff; background: var(--red); padding: 0 .45em; border-radius: .2em; margin-right: .5em; font-size: .85em; }
+.gl-card p + p b { background: var(--warm); }
+.gl-card blockquote { margin: .6em 0 0; padding: .4em .8em; border-left: .25em solid var(--gold); background: var(--stone); font-family: var(--kai); font-size: 1.08em; line-height: 1.7; }
+.gl-empty { color: var(--ink-2); }
+
+/* ---------- 镜头由远及近 ---------- */
+.gl-bg2 { transform: none !important; transition: opacity 1.4s ease !important; }
+.gl-lens { position: absolute; top: 1.2em; right: 2.4em; z-index: 3; display: flex; gap: .3em; }
+.gl-lens span { padding: .15em .6em; border-radius: 1em; background: rgba(29, 60, 88, .8); color: #fff; font-size: .85em; }
+.gl-lens span.on { background: var(--warm); }
+.gl-mb { top: 3.6em; right: 2.4em; }
+
+/* ---------- 感官分层 ---------- */
+.gl-tools { display: flex; gap: .5em; flex-wrap: wrap; }
+.gl-t.sv { border-color: #2f6f9a; color: #2f6f9a; } .gl-t.sv.solid { background: #2f6f9a; color: #fff; }
+.gl-t.sh { border-color: #7a5aa6; color: #7a5aa6; } .gl-t.sh.solid { background: #7a5aa6; color: #fff; }
+.gl-t.st { border-color: var(--warm); color: var(--warm); } .gl-t.st.solid { background: var(--warm); color: #fff; }
+.gl-text { background: #fff; border-radius: .6em; padding: .7em 1.2em; font-family: var(--kai); font-size: 1.2em; line-height: 1.95; }
+.gl-text p { margin: 0 0 .3em; text-indent: 2em; }
+.gl-text span { transition: background .4s, color .4s; border-radius: .2em; }
+.on-sv .sv { background: #dcebf6; color: #1f5579; }
+.on-sh .sh { background: #ebe2f5; color: #5b3a88; }
+.on-st .st { background: #f7e1da; color: #8e3a26; }
+.gl-sum { opacity: 0; transition: opacity .6s; }
+.all-on .gl-sum { opacity: 1; }
+
+/* ---------- 双曲线 ---------- */
+.s-curve .bd { grid-template-columns: 1.2fr 1fr; }
+.gl-chart { flex: 1; min-height: 0; width: 100%; background: #fff; border-radius: .6em; }
+.gl-why { justify-content: center; }
+
+/* ---------- 品句子 ---------- */
+.gl-taste { display: flex; flex-direction: column; gap: .6em; }
+.gl-s { background: #fff; border-radius: .5em; padding: .5em 1em; display: grid; grid-template-columns: 1fr auto; gap: .3em .8em; align-items: center; }
+.gl-s > p:first-child { margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.75; }
+.gl-s em { font-style: normal; color: var(--warm); font-weight: bold; }
+.gl-del { background: radial-gradient(circle, var(--warm) 35%, transparent 40%) repeat-x 0 100% / .55em .3em; padding-bottom: .25em; transition: opacity .4s; }
+.gl-s.cut .gl-del { opacity: .18; text-decoration: line-through; }
+.gl-a { grid-column: 1 / -1; margin: 0; display: none; font-size: .9em; line-height: 1.6; background: var(--stone); border-left: .25em solid var(--gold); padding: .3em .7em; }
+.gl-s.show .gl-a { display: block; }
+
+/* ---------- 回顾 ---------- */
+.sum-stage { justify-content: center; }
+.gl-sumrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.gl-sumrow div { background: #fff; border-radius: .6em; padding: .8em 1em; border-top: .35em solid var(--red); }
+.gl-sumrow div:last-child { border-top-color: var(--warm); }
+.gl-sumrow small { display: block; color: var(--ink-2); }
+.gl-sumrow b { font-family: var(--kai); font-size: 1.45em; color: var(--red-d); line-height: 1.5; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .gl-title { font-size: 2.8em !important; }
+  .cover-line { font-size: 1.1em; }
+  .gl-map { flex: none; height: auto; }
+  .gl-card { min-height: 0; }
+  .gl-lens { right: .9em; top: 3em; flex-wrap: wrap; max-width: 60%; justify-content: flex-end; }
+  .gl-lens span { font-size: .72em; }
+  .gl-mb { position: absolute !important; top: 6.4em; right: .9em; }
+  .gl-text { font-size: 1.05em; padding: .6em .8em; }
+  .gl-chart { flex: none; height: auto; }
+  .gl-s { grid-template-columns: 1fr; }
+  .gl-sumrow { grid-template-columns: 1fr; }
+}

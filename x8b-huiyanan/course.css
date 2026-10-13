@@ -1,0 +1,78 @@
+/* 回延安 · 本课配色：黄土、窑洞墨色、窗花红 */
+:root {
+  --red: #b0412b;
+  --red-d: #6d2a1c;
+  --gold: #c99a3d;
+  --gold-l: #f0d9a2;
+  --paper: #f4ecdc;
+  --stone: #fcf8ef;
+  --ink-2: #6c5b47;
+  --line: #dccaa6;
+}
+.cover-xty { margin: .3em 0 1em; font-family: var(--kai); font-size: 2em; line-height: 1.5; color: #fbe7b8; }
+.cover-xty span { display: block; }
+.cover-xty span + span { padding-left: 2em; }
+.xty-subs p { font-size: 1.15em; }
+.example { white-space: pre-line; }
+.yw { font-family: var(--kai); color: var(--red-d); }
+
+/* 五部分 · 情感温度 */
+.parts { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1em; flex: 1; min-height: 0; }
+.part { font: inherit; display: flex; flex-direction: column; align-items: center; gap: .3em; padding: .7em .4em; border-radius: .6em; border: 1px solid var(--line); background: #fff; cursor: pointer; min-height: 0; }
+.part.sel { border-color: var(--red); box-shadow: 0 0 0 .15em var(--gold-l); }
+.part-n { font-size: .8em; color: #fff; background: var(--red); border-radius: 50%; width: 1.8em; height: 1.8em; line-height: 1.8em; }
+.part b { font-family: var(--kai); font-size: 1.3em; color: var(--red-d); }
+.therm { flex: 1; width: 1.6em; min-height: 4em; border-radius: 1em; background: #f1e6cf; position: relative; overflow: hidden; }
+.therm i { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(#e0613f, #f2b544); border-radius: 1em; transition: height 1s ease; }
+.part:not(.on) .therm i { height: 0 !important; }
+.part-f { font-family: var(--kai); font-size: 1.2em; color: var(--red); }
+.parts-info { min-height: 3.6em; }
+
+/* 信天游打拍子 */
+.s-beat .bd { grid-template-columns: 1fr 32%; }
+.xty-pick .btn { font-family: var(--kai); font-size: .85em; }
+.xty-card { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: .6em; padding: 1em 1.6em; border-radius: .6em; background: #fffaf0 repeating-linear-gradient(transparent 0 2.3em, #f0e2c4 2.3em 2.35em); border: 1px solid var(--line); }
+.xty-card p { margin: 0; font-family: var(--kai); font-size: 2.1em; letter-spacing: .06em; }
+.xty-down { padding-left: 2.5em; }
+.seg { transition: color .25s, background .25s; border-radius: .2em; padding: 0 .1em; }
+.seg.hit { background: #f6d58c; color: var(--red-d); }
+.bar { font-style: normal; color: #c9b38a; margin: 0 .2em; font-size: .8em; }
+.yun { font-style: normal; transition: color .4s; }
+.done .yun, .xty-card .yun { color: var(--red); text-decoration: underline wavy var(--gold); text-underline-offset: .25em; }
+.done .yun { animation: yunPop .6s ease; }
+@keyframes yunPop { 50% { font-size: 1.25em; } }
+.beat-info { line-height: 1.7; }
+
+/* 比兴拆解 */
+.bx-list { display: flex; flex-direction: column; gap: .5em; }
+.bx { font: inherit; display: grid; grid-template-columns: 1fr 1fr; gap: .3em 1em; text-align: left; padding: .5em 1em; border-radius: .5em; background: #fff; border: 1px solid var(--line); cursor: pointer; }
+.bx-up { font-family: var(--kai); font-size: 1.3em; color: var(--red-d); }
+.bx-up small { font-family: var(--serif); font-size: .6em; color: #fff; background: var(--gold); border-radius: .3em; padding: .05em .4em; margin-right: .5em; vertical-align: .2em; }
+.bx-down { font-family: var(--kai); font-size: 1.3em; color: transparent; background: #f3ead6; border-radius: .3em; transition: color .4s, background .4s; }
+.bx-why { grid-column: 1 / -1; font-size: .85em; color: var(--ink-2); display: none; }
+.bx.open .bx-down { color: var(--red); background: transparent; }
+.bx.open .bx-why { display: block; }
+
+/* 背诵 */
+.s-recite .recite-lines { columns: 2; column-gap: 2em; font-size: 1.35em; line-height: 1.7; }
+.s-recite .recite-lines p { break-inside: avoid; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cover-xty { font-size: 1.25em; }
+  .parts { grid-template-columns: repeat(5, 1fr); gap: .3em; }
+  .part { padding: .4em .1em; }
+  .part b { font-size: .95em; }
+  .therm { min-height: 6em; width: 1.2em; }
+  .xty-card { padding: .8em; }
+  .xty-card p { font-size: 1.3em; }
+  .xty-down { padding-left: 1em; }
+  .bx { grid-template-columns: 1fr; }
+  .bx-up, .bx-down { font-size: 1.1em; }
+  .s-recite .recite-lines { columns: 1; font-size: 1.15em; }
+}
+/* 分类题：解释较长，加宽结果列 */
+@media (min-width: 821px) and (min-height: 521px) {
+  .sort-row { grid-template-columns: minmax(0, 1.25fr) auto minmax(0, 1fr); padding: .3em .8em; }
+  .sort-row .s { font-size: .96em; line-height: 1.5; }
+  .sort-row .res { line-height: 1.45; }
+}

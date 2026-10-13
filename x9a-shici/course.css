@@ -1,0 +1,102 @@
+/* 诗词三首 · 本课配色：深蓝夜空与金色月光 */
+:root {
+  --red: #2c4a78;
+  --red-d: #1b2d4d;
+  --gold: #c9a14a;
+  --gold-l: #efdcaa;
+  --paper: #f1f0ea;
+  --stone: #fbfaf6;
+  --ink-2: #555c6b;
+  --line: #cfd2d6;
+  --low: #6d7f99;
+  --high: #d48a2c;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfaf4 0, transparent 40%), radial-gradient(circle at 90% 95%, #dde2ea 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .18em; }
+.sc-ask { font-family: var(--kai); font-size: 1.6em; margin: .2em 0 .6em; color: #f6e2ae; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .8em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.25em; background: rgba(44, 74, 120, .9); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+.poem-v.h .poem-text .pl { font-size: 1.5em; }
+
+/* ---------- 情感折线 ---------- */
+.s-wave .bd { grid-template-columns: 1fr 30%; }
+.wave-svg { flex: 1; min-height: 0; width: 100%; background: linear-gradient(180deg, #fbf3e2, #e6ebf3); border-radius: .6em; }
+.wv-mid { stroke: #b9bfca; stroke-dasharray: 6 6; }
+.wv-y { font-family: var(--kai); font-size: 20px; fill: var(--ink-2); }
+.wv-x { font-size: 16px; fill: var(--ink-2); text-anchor: middle; }
+.wv-seg { stroke: var(--gold); stroke-width: 6; stroke-linecap: round; }
+.wv-pt { cursor: pointer; }
+.wv-pt circle { fill: #fff; stroke: var(--low); stroke-width: 5; transition: fill .3s; }
+.wv-pt.up circle { stroke: var(--high); }
+.wv-pt.sel circle { fill: var(--gold); }
+.wv-pt text { font-family: var(--kai); font-size: 24px; font-weight: bold; text-anchor: middle; fill: var(--red-d); paint-order: stroke; stroke: #fff; stroke-width: 5px; }
+.wv-info { min-height: 7em; line-height: 1.7; }
+.wv-info .wv-line { display: block; font-family: var(--kai); font-size: 1.25em; color: var(--red-d); font-weight: normal; }
+
+/* ---------- 情感天平 ---------- */
+.s-scale .bd { grid-template-columns: 58% 1fr; }
+.sc-yi { display: flex; flex-wrap: wrap; gap: .3em .5em; align-items: center; }
+.sc-yi span { font-family: var(--kai); background: #eef0f4; border-radius: .3em; padding: .05em .5em; }
+.sc-box { position: relative; flex: 1; min-height: 0; background: linear-gradient(180deg, #f6f1e4, #e8ecf2); border-radius: .6em; }
+.sc-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sc-post { fill: #8a7a5c; stroke: #6d5f45; stroke-width: 8; stroke-linejoin: round; }
+.sc-beam { transform-origin: 300px 110px; transition: transform 1.2s cubic-bezier(.3, 1.4, .5, 1); }
+.sc-beam line { stroke: #6d5f45; stroke-width: 8; stroke-linecap: round; }
+.sc-beam circle { fill: var(--gold); }
+.sc-pan { transition: transform 1.2s cubic-bezier(.3, 1.4, .5, 1); }
+.sc-str { stroke: #8a7a5c; stroke-width: 2; fill: none; }
+.sc-dish { fill: #b9a67c; stroke: #8a7a5c; stroke-width: 2; }
+.sc-item.sad { fill: #8592a5; }
+.sc-item.joy { fill: #d9a043; }
+.sc-svg text { font-family: var(--kai); font-size: 18px; fill: #fff; text-anchor: middle; }
+.sc-svg .sc-lab { fill: var(--ink-2); font-size: 16px; }
+.sc-read { position: absolute; right: 1em; top: .6em; font-family: var(--kai); font-size: 1.4em; color: var(--red-d); }
+
+/* ---------- 问月 怨月 宽月 ---------- */
+.s-moon .bd { grid-template-columns: 1fr 40%; }
+.ym-poem { justify-content: center; background: #fff; border-radius: .6em; padding: 1em 1.4em; border: 1px solid var(--line); }
+.ym-poem p { margin: 0; font-family: var(--kai); font-size: 1.35em; line-height: 2; }
+.ym-poem .ym-pian { font-family: var(--serif); font-size: .85em; color: var(--ink-2); }
+.ym-poem .tip { font-family: var(--serif); font-size: .95em; line-height: 1.7; }
+.ym { border-radius: .3em; transition: background .6s, color .6s; color: #9aa0aa; }
+.s-moon[data-ph="1"] .ym.p1, .s-moon[data-ph="2"] .ym.p2, .s-moon[data-ph="3"] .ym.p3 { color: var(--red-d); background: #fbf0d4; }
+.s-moon[data-ph="0"] .ym, .s-moon:not([data-ph]) .ym { color: var(--red-d); }
+.ym-cards { justify-content: center; }
+.ym-card { font: inherit; display: flex; align-items: center; gap: .8em; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: .6em; padding: .6em .9em; cursor: pointer; }
+.ym-card svg { width: 4em; height: 4em; flex: none; background: #1f2f50; border-radius: .5em; }
+.ym-card span { display: flex; flex-direction: column; gap: .15em; font-family: var(--kai); }
+.ym-card b { font-size: 1.5em; color: var(--red-d); }
+.ym-card em { font-style: normal; font-family: var(--serif); font-size: .82em; color: var(--ink-2); }
+.ym-card.sel { border-color: var(--gold); background: #fff8e6; box-shadow: 0 .2em .7em rgba(40, 60, 100, .15); }
+.m-full { fill: #f3d88a; }
+.ym-card text { font-size: 22px; text-anchor: middle; fill: #1f2f50; font-weight: bold; }
+.m-cloud { fill: #6f7c94; }
+.m-house { fill: #e7e2d4; }
+.m-ray { fill: none; stroke: #f3d88a; stroke-width: 1.5; stroke-dasharray: 2 2; }
+
+/* ---------- 背诵 ---------- */
+.rc-boxes { flex: 1; min-height: 0; overflow: auto; }
+.sc-recite .recite-lines { font-size: 1.5em; letter-spacing: .08em; }
+
+/* ---------- 回顾 ---------- */
+.sum-stage { justify-content: center; }
+.sc-sum { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.1em; }
+.sc-sum th, .sc-sum td { background: #fff; border-radius: .4em; padding: .55em .8em; text-align: center; }
+.sc-sum tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.1em; }
+.sc-sum tr:first-child th:first-child { background: transparent; }
+.sc-sum td { font-family: var(--kai); }
+.sc-sum th:first-child { background: transparent; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .sc-ask { font-size: 1.15em; }
+  .cover-poems span { font-size: 1em; }
+  .poem-v.h .poem-text .pl { font-size: 1.15em; }
+  .wave-svg { flex: none; }
+  .wv-pt text { font-size: 30px; }
+  .sc-box { flex: none; aspect-ratio: 600 / 330; }
+  .ym-poem p { font-size: 1.1em; }
+  .sc-sum { font-size: .8em; border-spacing: .2em; }
+  .sc-sum th, .sc-sum td { padding: .4em .3em; }
+}

@@ -1,0 +1,61 @@
+/* 安塞腰鼓 · 本课配色：黄土、红绸 */
+:root {
+  --red: #c0392b;
+  --red-d: #7a2316;
+  --gold: #d99a2b;
+  --gold-l: #f5d79b;
+  --paper: #f5ead6;
+  --stone: #fdf7ea;
+  --ink-2: #6e5a44;
+  --line: #e0c9a0;
+}
+.cover-shout { margin: 0; font-family: var(--kai); font-size: 3em; color: #fbe0a8; letter-spacing: .3em; }
+.s-cover .cover-title { font-size: 6.4em; letter-spacing: .05em; }
+
+/* 击鼓朗读 */
+.s-drum .bd { grid-template-columns: 30% 1fr; }
+.drum-stage { align-items: center; justify-content: center; }
+.drum { width: 100%; max-height: 60%; overflow: visible; }
+.dr-side { fill: #b8322a; stroke: #6a1a12; stroke-width: 3; }
+.dr-band { fill: none; stroke: #f2c14e; stroke-width: 4; }
+.dr-head { fill: #f6e7c8; stroke: #6a1a12; stroke-width: 3; }
+.stick { stroke: #7a4a22; stroke-width: 7; stroke-linecap: round; transform-box: view-box; }
+.stick.l { transform-origin: 70px 20px; } .stick.r { transform-origin: 230px 20px; }
+.tassel { fill: none; stroke: #e0412c; stroke-width: 6; stroke-linecap: round; }
+.drum.beat .dr-head { animation: hit .18s ease-out; }
+.drum.beat .stick.l { animation: swingL .18s ease-out; }
+.drum.beat .stick.r { animation: swingR .18s ease-out; }
+.drum.beat .drum-body { animation: thud .18s ease-out; transform-box: fill-box; transform-origin: center; }
+@keyframes hit { 30% { fill: #ffd27a; } }
+@keyframes swingL { 30% { transform: rotate(-12deg); } }
+@keyframes swingR { 30% { transform: rotate(12deg); } }
+@keyframes thud { 30% { transform: scale(1.04); } }
+.tempo { width: 100%; display: grid; grid-template-columns: auto 1fr auto; gap: .6em; align-items: center; font-size: .9em; }
+.tempo .meter > i { background: linear-gradient(90deg, #f2b544, #c0392b); transition: width .5s; }
+.tempo b { color: var(--red); min-width: 5em; text-align: right; }
+.drum-side { justify-content: flex-start; overflow: auto; }
+.drum-list { display: flex; flex-direction: column; gap: .35em; }
+.dl { font: inherit; text-align: left; font-family: var(--kai); font-size: 1.06em; line-height: 1.5; padding: .3em .7em; border-radius: .4em; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+.dl small { font-family: var(--serif); font-size: .7em; color: #fff; background: var(--gold); border-radius: .3em; padding: 0 .4em; margin-right: .5em; }
+.dl.sel { border-color: var(--red); background: #fffaf0; }
+.bt { transition: color .15s, background .15s; border-radius: .2em; }
+.bt.hit { color: #fff; background: var(--red); }
+
+/* 四个“好一个” */
+.four { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; align-items: end; flex: 1; min-height: 0; }
+.fr { font: inherit; display: flex; flex-direction: column; gap: .4em; text-align: left; padding: .8em; border-radius: .6em; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+.fr:nth-child(1) { min-height: 50%; } .fr:nth-child(2) { min-height: 62%; } .fr:nth-child(3) { min-height: 76%; } .fr:nth-child(4) { min-height: 92%; background: #fff5e0; }
+.fr-n { width: 1.8em; height: 1.8em; line-height: 1.8em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; font-size: .85em; }
+.fr b { font-family: var(--kai); font-size: 1.35em; color: var(--red-d); line-height: 1.4; }
+.fr-what { color: var(--red); font-weight: bold; }
+.fr-s { font-family: var(--kai); color: var(--ink-2); line-height: 1.6; display: none; }
+.fr.open .fr-s { display: block; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cover-shout { font-size: 1.8em; }
+  .s-cover .cover-title { font-size: 3.2em; }
+  .drum { max-height: 30vh; }
+  .four { grid-template-columns: 1fr 1fr; }
+  .fr { min-height: 0 !important; }
+}
+@media (max-width: 820px), (max-height: 520px) { .drum-stage > svg.drum { width: 45%; max-height: none; } .drum-stage { flex-direction: row; flex-wrap: wrap; } .tempo { flex: 1; } }

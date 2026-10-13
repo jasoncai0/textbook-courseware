@@ -1,0 +1,51 @@
+/* 社戏 · 本课配色：月夜水乡的青灰与灯火的暖黄 */
+:root {
+  --red: #3f5d6b;
+  --red-d: #24394a;
+  --gold: #d29a3a;
+  --gold-l: #f1d9a6;
+  --paper: #f1efe8;
+  --stone: #fbfaf5;
+  --ink-2: #5a6168;
+  --line: #cfd2cc;
+}
+.cover-q { font-family: var(--kai); font-size: 1.7em; line-height: 1.6; color: #fbe7b8; margin: .2em 0 1em; }
+.s-cover .cover-title { letter-spacing: .2em; }
+
+/* 情节 + 心情曲线 */
+.s-mood .bd { grid-template-columns: 1fr 30%; }
+#moodSvg { width: 100%; height: 100%; }
+#moodSvg .band.b0 { fill: #e6ebe8; } #moodSvg .band.b1 { fill: #f3efe3; }
+#moodSvg .band-t { font-size: 20px; font-weight: bold; fill: var(--red-d); font-family: var(--kai); }
+#moodSvg .axis-t { font-size: 14px; fill: var(--ink-2); }
+#moodSvg .mood-line { fill: none; stroke: var(--gold); stroke-width: 5; stroke-linecap: round; }
+#moodSvg .ev { cursor: pointer; }
+#moodSvg .ev circle { fill: #fff; stroke: var(--red); stroke-width: 4; transition: fill .3s; }
+#moodSvg .ev.sel circle { fill: var(--gold); stroke: var(--red-d); }
+#moodSvg .ev-t { font-size: 17px; font-family: var(--kai); fill: var(--red-d); font-weight: bold; paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
+.mood-info { min-height: 9em; line-height: 1.7; }
+.yw { font-family: var(--kai); color: var(--red-d); }
+
+/* 好豆好戏对照 */
+.s-good .bd { grid-template-columns: 1fr 34%; }
+.good-cmp { gap: .6em; justify-content: center; }
+.gc-head, .gc-row { display: grid; grid-template-columns: 3em 1fr 1fr; gap: .6em; align-items: stretch; }
+.gc-head b { text-align: center; color: #fff; background: var(--red-d); border-radius: .3em; padding: .3em; font-weight: normal; }
+.gc-head b:last-child { background: #8a8f8f; }
+.gc-l { display: flex; align-items: center; justify-content: center; font-family: var(--kai); font-size: 1.6em; color: var(--red-d); }
+.gc-row p { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: .4em; padding: .5em .8em; line-height: 1.55; font-size: .95em; }
+.gc-row p:nth-child(2) { background: #fff8e1; border-color: var(--gold-l); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cover-q { font-size: 1.15em; }
+  .gc-head, .gc-row { grid-template-columns: 2em 1fr 1fr; gap: .4em; }
+  .gc-row p { font-size: .85em; padding: .4em .5em; }
+  #moodSvg .ev-t { font-size: 20px; }
+}
+/* 分类题：解释较长，加宽结果列 */
+@media (min-width: 821px) and (min-height: 521px) {
+  .sort-row { grid-template-columns: minmax(0, 1.25fr) auto minmax(0, 1fr); padding: .3em .8em; }
+  .sort-row .s { font-size: .96em; line-height: 1.5; }
+  .sort-row .res { line-height: 1.45; }
+}
+@media (max-width: 820px), (max-height: 520px) { .s-mood .stage { overflow-x: auto; } #moodSvg { min-width: 680px; } }

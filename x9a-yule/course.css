@@ -1,0 +1,87 @@
+/* 我的叔叔于勒 · 本课配色：海港灰蓝、油画暖褐、牡蛎银灰 */
+:root {
+  --red: #34586e;
+  --red-d: #1f3443;
+  --gold: #c08a3e;
+  --gold-l: #ecd5a8;
+  --paper: #eef0ee;
+  --stone: #fafbfa;
+  --ink-2: #566069;
+  --line: #ccd3d6;
+  --warm: #c9763a;
+  --cold: #5d7a8f;
+}
+/* 初中“读读写写”是整词：加宽格子，空的组词不显示 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 5.4em; letter-spacing: .12em; }
+.yl-q { font-family: var(--kai); font-size: 1.8em; line-height: 1.5; margin: .2em 0 .4em; color: #fbe5b5; }
+.yl-ask { font-size: 1.1em; margin: 0 0 .8em; max-width: 34em; line-height: 1.6; }
+
+/* ---------- 态度曲线 ---------- */
+.s-att .bd { grid-template-columns: 1fr 27%; }
+.att-svg { flex: 1; min-height: 0; width: 100%; background: linear-gradient(180deg, #fbf1e1, #e3e9ee); border-radius: .6em; }
+.at-y { font-family: var(--kai); font-size: 22px; fill: var(--ink-2); }
+.at-mid { stroke: #b9c1c7; stroke-dasharray: 6 6; }
+.at-seg { stroke: var(--gold); stroke-width: 6; stroke-linecap: round; }
+.at-pt { cursor: pointer; }
+.at-pt circle { fill: var(--cold); stroke: #fff; stroke-width: 4; transition: fill .3s, r .3s; }
+.at-pt.up circle { fill: var(--warm); }
+.at-pt.sel circle { stroke: var(--red-d); stroke-width: 5; }
+.at-w { font-family: var(--kai); font-size: 22px; fill: #fff; text-anchor: middle; font-weight: bold; pointer-events: none; }
+.at-n { font-family: var(--kai); font-size: 14px; fill: var(--red-d); text-anchor: middle; paint-order: stroke; stroke: #fbf6ec; stroke-width: 4px; }
+.at-tie { stroke: #c3c9cc; stroke-dasharray: 2 4; }
+.at-when { font-size: 14px; fill: var(--ink-2); text-anchor: middle; }
+.at-money { fill: none; stroke: #2e8b57; stroke-width: 3; stroke-dasharray: 9 7; opacity: 0; transition: opacity .8s; }
+.show-money .at-money { opacity: 1; }
+.at-info { min-height: 6em; line-height: 1.7; }
+.at-info b { display: block; font-family: var(--kai); font-size: 1.2em; }
+.at-info em { display: block; font-style: normal; font-family: var(--kai); color: var(--warm); }
+
+/* ---------- 四个角度 ---------- */
+.s-angle .stage { justify-content: center; gap: 1.2em; }
+.yl-chain { display: flex; align-items: stretch; gap: .5em; min-height: 8em; }
+.yl-chain div { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: .6em; padding: .8em; font-family: var(--kai); font-size: 1.25em; line-height: 1.6; animation: appear .5s ease both; }
+.yl-chain div b { display: block; font-family: Georgia, var(--serif); color: var(--warm); font-size: 1.1em; }
+.yl-chain i { font-style: normal; align-self: center; color: var(--gold); font-size: 1.4em; }
+@keyframes appear { from { opacity: 0; transform: translateY(.4em); } }
+
+/* ---------- 于勒的几面 ---------- */
+.s-who .bd { grid-template-columns: 1fr 36%; }
+.yl-faces { display: grid; grid-template-columns: 1fr 1fr; gap: .7em; }
+.yf { background: #fff; border-radius: .6em; border-top: .35em solid var(--cold); padding: .8em 1em; display: flex; flex-direction: column; gap: .4em; }
+.yf:nth-child(2) { border-top-color: var(--gold); }
+.yf:nth-child(4) { border-top-color: var(--warm); }
+.yf b { font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.yf span { font-family: var(--kai); font-size: 1.1em; line-height: 1.6; color: var(--ink-2); }
+.s-who .title-img { flex: 1; background-color: #d6dbdd; }
+
+/* ---------- 视角 ---------- */
+.s-view .stage { gap: .9em; }
+.yl-view { flex: 1; background: #fff; border-radius: .6em; border: 1px solid var(--line); border-left: .4em solid var(--cold); padding: .8em 1.2em; }
+.yl-view.orig { border-left-color: var(--warm); }
+.yl-view h3 { margin: 0 0 .3em; color: var(--red); font-size: 1em; }
+.yl-text { margin: 0; font-family: var(--kai); font-size: 1.35em; line-height: 1.9; }
+.yl-say { margin: .6em 0 0; color: var(--ink-2); line-height: 1.7; }
+
+/* ---------- 三句话 ---------- */
+.yl-sents { display: flex; flex-direction: column; gap: .8em; }
+.ys { background: #fff; border-radius: .6em; padding: .7em 1.1em; border-left: .35em solid var(--gold); }
+.ys p { margin: 0; font-family: var(--kai); font-size: 1.4em; color: var(--red-d); }
+.ys span { display: block; margin-top: .3em; line-height: 1.7; color: var(--ink-2); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.8em; }
+  .yl-q { font-size: 1.2em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7em, 1fr)); }
+  .att-svg { flex: none; }
+  .at-n, .at-tie { display: none; }
+  .yl-chain { flex-direction: column; }
+  .yl-chain i { transform: rotate(90deg); }
+  .yl-faces { grid-template-columns: 1fr; }
+  .s-who .title-img { flex: none; height: 12em; }
+  .yl-text { font-size: 1.1em; }
+  .ys p { font-size: 1.1em; }
+}

@@ -1,0 +1,86 @@
+/* 谈创造性思维 · 本课配色：明亮撞色（扁平插画） */
+:root {
+  --red: #e0573a;
+  --red-d: #1f4e79;
+  --gold: #f0b429;
+  --gold-l: #fde7a8;
+  --paper: #f4f2ec;
+  --stone: #fdfcf8;
+  --ink-2: #5a5c63;
+  --line: #d7d4c8;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 6.2em; }
+.big-line { margin: 0; font-family: var(--kai); font-size: 2.2em; color: #ffe39a; }
+
+/* ---------- 图形小实验 ---------- */
+.s-test .bd { grid-template-columns: 1.1fr 1fr; }
+.shapes .shp { cursor: pointer; }
+.shapes .shp rect { fill: #fff; stroke: var(--line); stroke-width: 1.5; transition: fill .3s, stroke .3s; }
+.shapes .shp :is(ellipse, polygon, path) { fill: #23211f; }
+.shapes .shp.seen rect { fill: #fff8e1; stroke: var(--gold); stroke-width: 3; }
+.shapes .shp:hover rect { stroke: var(--red); }
+.shapes .lab { font-size: 14px; fill: var(--ink-2); }
+.why { display: flex; flex-direction: column; gap: .45em; }
+.why p { margin: 0; background: #fff; border-radius: .4em; padding: .45em .8em; font-family: var(--kai); font-size: 1.08em; line-height: 1.6; border-left: .3em solid var(--line); animation: pop .4s ease both; }
+.why p.cur { border-left-color: var(--red); background: #fff4ef; }
+.why b { font-family: var(--serif); font-size: .8em; color: #fff; background: var(--red-d); border-radius: .25em; padding: .05em .45em; margin-right: .6em; }
+
+/* ---------- 问题链 ---------- */
+.qchain { display: flex; flex-direction: column; gap: .15em; }
+.qn-arr { font-style: normal; color: var(--red); text-align: center; line-height: 1; font-size: .9em; }
+.qn { display: grid; grid-template-columns: 24em 1fr; gap: 1em; align-items: center; }
+.qn:nth-of-type(even) { grid-template-columns: 1fr 24em; }
+.qn:nth-of-type(even) .qn-q { order: 2; }
+.qn-q { font: inherit; text-align: left; cursor: pointer; background: var(--red-d); color: #fff; border: none; border-radius: 1.4em; padding: .4em 1.1em; font-size: 1.05em; display: flex; align-items: center; gap: .5em; }
+.qn-q small { font-size: .7em; background: rgba(255, 255, 255, .2); border-radius: .3em; padding: .05em .4em; white-space: nowrap; }
+.qn-q b { color: var(--gold); font-size: 1.2em; }
+.qn-a { margin: 0; font-family: var(--kai); font-size: .98em; line-height: 1.55; background: #fff; border: 1px dashed var(--line); border-radius: .5em; padding: .35em .8em; color: transparent; text-shadow: 0 0 .5em rgba(0, 0, 0, .25); transition: color .4s, text-shadow .4s; }
+.qn-a::before { content: "点问题看课文怎么回答 · "; color: var(--ink-2); text-shadow: none; font-family: var(--serif); font-size: .8em; }
+.qn.open .qn-a { color: var(--ink); text-shadow: none; border-style: solid; border-color: var(--gold); }
+.qn.open .qn-a::before { content: ""; }
+
+/* ---------- 组合“＋” ---------- */
+.s-combo .bd { grid-template-rows: 1fr auto auto; gap: .7em; }
+.combos { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; min-height: 0; }
+.combo { display: flex; flex-direction: column; background: #fff; border-radius: .6em; overflow: hidden; box-shadow: 0 .2em .8em rgba(30, 40, 60, .1); }
+.cb-pic { flex: 1; min-height: 6em; background: #e8e5dc center / cover no-repeat; }
+.cb-row { display: flex; align-items: center; flex-wrap: wrap; gap: .5em; padding: .6em .8em .2em; }
+.cb-it { background: #eef3f8; border-radius: .4em; padding: .25em .6em; font-weight: bold; color: var(--red-d); }
+.cb-it small { display: block; font-weight: normal; font-size: .75em; color: var(--ink-2); }
+.cb-plus { font: inherit; font-size: 1.4em; width: 1.8em; height: 1.8em; border-radius: 50%; border: none; background: var(--red); color: #fff; cursor: pointer; animation: pulse 1.4s infinite; }
+.cb-eq { flex-basis: 100%; font-family: var(--kai); font-size: 1.3em; color: var(--red); opacity: 0; transform: translateX(-.6em); transition: opacity .5s, transform .5s; }
+.combo.done .cb-eq { opacity: 1; transform: none; }
+.combo.done .cb-plus { animation: none; background: var(--gold); }
+.cb-who { margin: 0; padding: 0 .8em .5em; color: var(--ink-2); font-size: .85em; }
+
+/* ---------- 自评与挑战 ---------- */
+.checks { display: grid; grid-template-columns: 1fr 1fr; gap: .45em; }
+.ck { display: flex; align-items: center; gap: .5em; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .45em .7em; cursor: pointer; font-size: 1.02em; }
+.ck input { width: 1.2em; height: 1.2em; accent-color: var(--red); }
+.ck:has(input:checked) { background: #fff4ef; border-color: var(--red); }
+#brick { flex: 1; min-height: 8em; resize: none; font: inherit; font-family: var(--kai); font-size: 1.15em; line-height: 1.7; padding: .6em .9em; border: 1px solid var(--line); border-radius: .5em; background: #fff; }
+.brick-n { margin: 0; color: var(--ink-2); }
+.brick-n b { color: var(--red); font-size: 1.6em; }
+
+/* ---------- 回顾 ---------- */
+.sum-stage { justify-content: center; gap: 1em; }
+.sum-flow { display: flex; justify-content: center; align-items: center; gap: .5em; font-family: var(--kai); font-size: 1.4em; flex-wrap: wrap; }
+.sum-flow span { background: #fff; padding: .25em .8em; border-radius: .4em; border-bottom: .2em solid var(--red-d); }
+.sum-flow i { font-style: normal; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .big-line { font-size: 1.4em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .qn, .qn:nth-of-type(even) { grid-template-columns: 1fr; gap: .3em; }
+  .qn:nth-of-type(even) .qn-q { order: 0; }
+  .combos { grid-template-columns: 1fr; }
+  .cb-pic { min-height: 9em; }
+  .checks { grid-template-columns: 1fr; }
+  .sum-flow { font-size: 1.05em; }
+}

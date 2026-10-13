@@ -1,0 +1,100 @@
+/* 小石潭记 · 本课配色：竹青、潭碧、冷灰 */
+:root {
+  --red: #8a4a3a;
+  --red-d: #2f3b38;
+  --gold: #8fa58c;
+  --gold-l: #d9e5d2;
+  --paper: #eef1ea;
+  --stone: #f8faf5;
+  --ink-2: #55605a;
+  --line: #c9d3c5;
+  --bi: #2f6f68;
+  --leng: #5d7f8c;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #f7faf4 0, transparent 40%), radial-gradient(circle at 90% 95%, #d9e2d6 0, transparent 45%); }
+.s-cover .cover-title { font-size: 7em; letter-spacing: .25em; }
+.xs-sound { font-family: var(--kai); font-size: 2em; margin: .2em 0 .2em; letter-spacing: .08em; }
+.xs-sound span { color: #d8f0e6; text-shadow: 0 0 .6em rgba(160, 230, 210, .9); }
+.xs-ask { font-size: 1.15em; margin: 0 0 .8em; opacity: .92; }
+.poem-v.h .poem-text .pl { font-size: 1.55em; }
+
+/* ---------- 移步换景 ---------- */
+.s-walk .bd { grid-template-columns: 34% 1fr; }
+.ys-route { gap: .45em; justify-content: center; }
+.ys-stop { display: grid; grid-template-columns: 1.8em 5.4em 1fr; align-items: center; gap: .3em; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .35em .7em; position: relative; }
+.ys-stop + .ys-stop::before { content: ""; position: absolute; left: 1.55em; top: -.5em; height: .5em; border-left: 2px dashed var(--gold); }
+.ys-stop i { font-style: normal; color: var(--bi); font-size: 1.2em; }
+.ys-stop b { font-family: var(--kai); font-size: 1.2em; white-space: nowrap; color: var(--red-d); }
+.ys-stop span { font-family: var(--kai); color: var(--ink-2); font-size: .95em; }
+.ys-stop.cur { background: #e8f3ef; border-color: var(--bi); box-shadow: 0 .2em .6em rgba(47, 111, 104, .2); }
+.ys-view { position: relative; flex: 1; min-height: 0; border-radius: .6em; overflow: hidden; background: #cfd9d2; box-shadow: 0 .3em 1em rgba(20, 40, 35, .18); }
+.ys-view::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(40, 60, 80, 0), rgba(40, 60, 80, .55)); opacity: 0; transition: opacity 1.5s; pointer-events: none; }
+.ys-view.cold::after { opacity: 1; }
+.ys-pic { position: absolute; inset: 0; background: center / cover no-repeat; opacity: 0; transform: scale(1.04); transition: opacity 1s, transform 6s ease; }
+.ys-pic.now { opacity: 1; transform: scale(1.1); }
+.ys-cap { position: absolute; z-index: 2; left: 4%; right: 4%; bottom: 5%; display: flex; align-items: center; gap: .8em; background: rgba(248, 250, 245, .92); border-radius: .5em; padding: .6em 1em; opacity: 0; transform: translateY(.6em); transition: opacity .7s .3s, transform .7s .3s; }
+.ys-cap.now { opacity: 1; transform: none; }
+.ys-cap p { flex: 1; margin: 0; font-family: var(--kai); font-size: 1.2em; line-height: 1.65; }
+.ys-cap em { font-style: normal; font-size: .85em; color: var(--bi); white-space: nowrap; }
+.ys-cap u { text-decoration: none; font-family: var(--kai); font-size: 1.9em; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: #e9b25a; color: #fff; flex: none; }
+.ys-cap[data-k="4"] u { background: #8fa58c; }
+.ys-cap[data-k="5"] u, .ys-cap[data-k="6"] u { background: var(--leng); }
+
+/* ---------- 景—情曲线 ---------- */
+.mood-svg { flex: 1; min-height: 0; background: linear-gradient(180deg, #fbf6e8, #e6edf0); border-radius: .6em; }
+.mood-axis { stroke: #b7c0bb; stroke-dasharray: 6 5; }
+.mood-y { font-family: var(--kai); font-size: 22px; fill: var(--ink-2); }
+.mood-line { fill: none; stroke: url(#moodFill); stroke: #c98b3c; stroke-width: 5; stroke-linecap: round; }
+.mood-pt circle { fill: #e9b25a; stroke: #fff; stroke-width: 3; }
+.mood-pt.low circle { fill: var(--leng); }
+.mood-pt text { font-family: var(--kai); font-size: 20px; text-anchor: middle; fill: var(--red-d); }
+.mood-pt .mood-s { font-family: var(--serif); font-size: 14px; fill: var(--ink-2); }
+.mood-why { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.mood-why .tip.gold { grid-column: 1 / -1; }
+
+/* ---------- 小鱼 ---------- */
+.s-fish .bd { grid-template-columns: 44% 1fr; }
+.fish-tank { position: relative; flex: 1; min-height: 12em; border-radius: .6em; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, #d7ecea, #a9c9c5) center / cover; box-shadow: inset 0 0 2em rgba(30, 70, 70, .3); }
+.fish { position: absolute; width: 2.6em; height: 1em; transition: left 1.6s cubic-bezier(.2, .8, .2, 1), top 1.6s cubic-bezier(.2, .8, .2, 1); }
+.fish::before { content: ""; position: absolute; inset: 0; border-radius: 50% 40% 40% 50%; background: #40514c; clip-path: polygon(0 50%, 18% 0, 18% 35%, 100% 0, 100% 100%, 18% 65%, 18% 100%); transform: scaleX(-1); }
+.fish::after { content: ""; position: absolute; left: .5em; top: 2.6em; width: 2.2em; height: .7em; border-radius: 50%; background: rgba(30, 40, 38, .28); filter: blur(2px); }
+.f1 { left: 20%; top: 30%; } .f2 { left: 45%; top: 45%; } .f3 { left: 62%; top: 25%; } .f4 { left: 30%; top: 62%; } .f5 { left: 70%; top: 58%; }
+.fish-tank.go .f1 { left: 85%; top: 8%; } .fish-tank.go .f2 { left: 90%; top: 70%; } .fish-tank.go .f3 { left: 95%; top: 35%; } .fish-tank.go .f4 { left: 80%; top: 85%; } .fish-tank.go .f5 { left: 100%; top: 50%; }
+.fish-tank.back .fish { animation: swim 1.2s ease-in-out infinite alternate; }
+.fish-tank.back .f2 { animation-delay: -.4s; } .fish-tank.back .f3 { animation-delay: -.8s; } .fish-tank.back .f4 { animation-delay: -.2s; } .fish-tank.back .f5 { animation-delay: -.6s; }
+@keyframes swim { from { transform: translateX(-2.5em); } to { transform: translateX(2.5em) scaleX(-1); } }
+.s-fish .pick { font-size: 1.2em; }
+
+/* ---------- 活用 ---------- */
+.s-usage .sort-row { grid-template-columns: 1fr auto 16em; }
+.s-usage .sort-row .s { font-family: var(--kai); font-size: 1.3em; }
+.s-usage .sort-row .s b { color: var(--red); text-emphasis: dot; text-emphasis-position: under; -webkit-text-emphasis: dot; -webkit-text-emphasis-position: under; }
+
+/* ---------- 背诵 ---------- */
+.xs-recite { flex: 1; min-height: 0; overflow: auto; }
+.xs-recite .recite-lines { font-size: 1.3em; letter-spacing: .08em; }
+.xs-recite .recite-lines p { display: inline; }
+
+/* ---------- 回顾 ---------- */
+.sum-stage { justify-content: center; }
+.xs-sum { display: flex; align-items: center; justify-content: center; gap: .5em; }
+.xs-sum div { background: #fff; border-radius: .6em; padding: .8em 1em; text-align: center; border-top: .35em solid #e9b25a; display: flex; flex-direction: column; gap: .3em; min-width: 7em; }
+.xs-sum div.cold { border-top-color: var(--leng); }
+.xs-sum b { font-family: var(--kai); font-size: 1.35em; color: var(--red-d); }
+.xs-sum em { font-style: normal; font-family: var(--kai); font-size: 2em; color: #c98b3c; }
+.xs-sum .cold em { color: var(--leng); }
+.xs-sum > i { font-style: normal; color: var(--gold); font-size: 1.4em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4em; }
+  .xs-sound { font-size: 1.35em; }
+  .poem-v.h .poem-text .pl { font-size: 1.2em; }
+  .ys-view { flex: none; height: 24em; }
+  .ys-cap p { font-size: 1em; }
+  .mood-svg { flex: none; }
+  .mood-why { grid-template-columns: 1fr; }
+  .fish-tank { flex: none; height: 14em; }
+  .s-usage .sort-row { grid-template-columns: 1fr; }
+  .xs-sum { flex-direction: column; }
+  .xs-sum > i { transform: rotate(90deg); }
+}

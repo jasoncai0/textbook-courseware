@@ -1,0 +1,88 @@
+/* 故乡 · 本课配色：木刻版画的土褐、苍黄、青黑；回忆里的金黄与碧绿 */
+:root {
+  --red: #8b3a2b;
+  --red-d: #4a2219;
+  --gold: #c39a4a;
+  --gold-l: #ecd9a8;
+  --paper: #efe9dc;
+  --stone: #faf6ee;
+  --ink-2: #625649;
+  --line: #d4c6ad;
+  --past: #2f7a5f;
+  --now: #7a6a58;
+}
+/* 初中“读读写写”是整词：加宽格子，空的组词不显示 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 8em; letter-spacing: .3em; }
+.gx-ask { font-family: var(--kai); font-size: 1.5em; line-height: 1.6; margin: .2em 0 .9em; color: #fbe9bf; }
+
+/* ---------- 回乡—在乡—离乡 ---------- */
+.s-map .stage { justify-content: center; gap: .9em; }
+.gx-map { display: grid; grid-template-columns: 1fr 2.2fr 1fr; gap: .8em; }
+.gx-col { position: relative; background: #fff; border: 1px solid var(--line); border-radius: .6em; padding: .8em 1em; display: flex; flex-direction: column; gap: .4em; }
+.gx-col + .gx-col::before { content: "→"; position: absolute; left: -.75em; top: 1em; color: var(--red); font-weight: bold; font-size: 1.2em; }
+.gx-col h3 { margin: 0; font-family: var(--kai); font-size: 1.7em; color: var(--red-d); letter-spacing: .2em; }
+.gx-col p { margin: 0; font-family: var(--kai); font-size: 1.12em; line-height: 1.6; }
+.gx-col em { font-style: normal; font-family: var(--serif); font-size: .72em; color: #fff; background: var(--now); border-radius: .3em; padding: .05em .45em; margin-right: .45em; vertical-align: .15em; }
+.gx-two { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; }
+.gx-two > div { border-radius: .4em; padding: .4em .6em; }
+.gx-two small { display: block; font-size: .78em; color: var(--ink-2); }
+.gx-two .past { background: #e7f2ec; border: 1px solid #a9cdb9; }
+.gx-two .nowc { background: #efe8dc; border: 1px solid #cdbda2; }
+.gx-arrow { display: flex; flex-wrap: wrap; align-items: center; gap: .5em .8em; background: var(--red-d); color: #f6ecd7; border-radius: .6em; padding: .6em 1em; }
+.gx-arrow span { font-family: var(--kai); font-size: 1.25em; color: var(--gold-l); }
+.gx-arrow b { font-weight: normal; font-family: var(--kai); font-size: 1.1em; background: rgba(255, 255, 255, .1); border-radius: .3em; padding: .1em .6em; }
+
+/* ---------- 今昔对比卡 ---------- */
+.s-then .bd { grid-template-columns: 30% 1fr; }
+.gx-pics { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; flex: 1; min-height: 0; }
+.gx-pic { position: relative; border-radius: .5em; background: #d9cdb5 center / cover no-repeat; min-height: 8em; }
+.gx-pic.empty { background: repeating-linear-gradient(45deg, #efe6d4, #efe6d4 .6em, #e7dcc5 .6em, #e7dcc5 1.2em); }
+.gx-pic.empty::after { content: "豆腐西施\A（只在“我”模糊的记忆里）"; white-space: pre; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--kai); color: var(--ink-2); }
+.gx-pic span { position: absolute; left: .4em; top: .4em; z-index: 1; font-size: .8em; color: #fff; background: rgba(40, 25, 15, .7); border-radius: .3em; padding: .05em .45em; }
+.gx-table { gap: .35em; overflow: auto; }
+.gx-rows { display: flex; flex-direction: column; gap: .35em; }
+.gx-row { display: grid; grid-template-columns: 4.2em 1fr 1fr; gap: .4em; align-items: stretch; }
+.gx-row b { display: flex; align-items: center; justify-content: center; font-family: var(--kai); font-size: 1.1em; color: var(--red-d); font-weight: normal; }
+.gx-row p { margin: 0; font-family: var(--kai); font-size: 1.02em; line-height: 1.55; border-radius: .4em; padding: .35em .7em; transition: opacity .6s, filter .6s; }
+.gx-row .then { background: #e7f2ec; border: 1px solid #a9cdb9; }
+.gx-row .now { background: #f1ebe0; border: 1px solid #cdbda2; }
+.gx-row.head p { font-family: var(--serif); text-align: center; color: #fff; font-size: .9em; padding: .25em; }
+.gx-row.head .then { background: var(--past); border-color: var(--past); }
+.gx-row.head .now { background: var(--now); border-color: var(--now); }
+.only-then .gx-row .now { opacity: .08; filter: blur(2px); }
+.only-then .gx-pic + .gx-pic { opacity: .15; }
+
+/* ---------- 厚障壁 ---------- */
+.s-wall .bd { grid-template-columns: 55% 1fr; }
+.gx-wall { flex: 1; min-height: 0; width: 100%; background: #f7f1e4; border-radius: .6em; }
+.gx-wall .w-name { font-family: var(--kai); font-size: 22px; text-anchor: middle; fill: var(--red-d); }
+.gx-wall .w-me { fill: #c9b38a; }
+.gx-wall .w-him { fill: #8e7a5e; }
+.gx-wall .w-old { font-family: var(--kai); font-size: 17px; text-anchor: middle; fill: var(--past); }
+.gx-wall .brick { fill: #b9876a; stroke: #f7f1e4; stroke-width: 3; rx: 4; }
+.gx-wall .brick.dark { fill: #6b3527; }
+.gx-wall g text { font-family: var(--kai); font-size: 16px; text-anchor: middle; fill: #fff; }
+.gx-wall .w-kid { fill: none; stroke: var(--past); stroke-width: 3; stroke-dasharray: 6 5; }
+.gx-wall g text.w-kids { fill: var(--past); font-size: 17px; }
+
+/* ---------- 环境 ---------- */
+.s-env .env-card p { font-size: 1.08em; }
+.gx-dusk { filter: sepia(.4) brightness(.75) hue-rotate(160deg); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4em; }
+  .gx-ask { font-size: 1.1em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7em, 1fr)); }
+  .gx-map, .gx-two { grid-template-columns: 1fr; }
+  .gx-col + .gx-col::before { content: "↓"; left: 50%; top: -1.1em; }
+  .gx-pics { flex: none; height: 11em; }
+  .gx-row { grid-template-columns: 2.8em 1fr 1fr; gap: .25em; }
+  .gx-row p { font-size: .88em; padding: .3em .4em; }
+  .gx-wall { flex: none; }
+  .env-cards { grid-template-columns: 1fr; }
+  .env-img { min-height: 9em; }
+}

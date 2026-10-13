@@ -1,0 +1,105 @@
+/* 我爱这土地 · 本课配色：木刻黑白、赭红 */
+:root {
+  --red: #9a3b22;
+  --red-d: #2b2522;
+  --gold: #b9874a;
+  --gold-l: #e6cfa6;
+  --paper: #efe9df;
+  --stone: #f8f4ec;
+  --ink-2: #5d554c;
+  --line: #d1c6b4;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 6.4em; letter-spacing: .1em; }
+.ask { margin: 0; font-family: var(--kai); font-size: 2.4em; color: #f1d9a8; }
+
+/* 初读 */
+.s-poem { background: #221d1a; color: #efe7d8; }
+.poster-bg { position: absolute; inset: 0; background: center / cover no-repeat; opacity: .22; }
+.s-poem .hd { position: relative; border-bottom-color: rgba(230, 207, 166, .5); }
+.s-poem .hd h2 { color: #f1d9a8; }
+.s-poem .hd .sub { color: #cdbfa6; }
+.s-poem .bd { position: relative; grid-template-columns: 1.4fr 1fr; align-items: center; }
+.poem-text { font-family: var(--kai); font-size: 1.55em; line-height: 1.8; padding-left: 1em; text-shadow: 0 2px 6px rgba(0, 0, 0, .6); }
+.poem-text p { margin: 0; }
+.poem-text .st + .st { margin-top: .8em; }
+.s-poem .tip { color: var(--ink); }
+@media (min-width: 821px) and (min-height: 521px) {
+  .frame:has(.s-poem.active) .ctrl .pageno { color: #e9e3d6; }
+  .frame:has(.s-poem.active) .progress i:not(.done):not(.cur) { background: rgba(255, 255, 255, .25); }
+}
+
+/* 鸟的意象链 */
+.bird-chain { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2em; min-height: 17em; align-items: stretch; }
+.bc { position: relative; font: inherit; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: .5em; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .9em; }
+.bc:not(:last-child)::after { content: "→"; position: absolute; right: -1.05em; top: 2.2em; color: var(--red); font-weight: bold; }
+.bc svg { width: 100%; height: 4.5em; fill: var(--red-d); }
+.bc .wave { fill: none; stroke: var(--red); stroke-width: 2.5; stroke-linecap: round; }
+.bc .feather { fill: none; stroke: var(--gold); stroke-width: 3; }
+.bc:nth-child(4) svg, .bc:nth-child(5) svg { fill: #6b5a47; }
+.bc b { font-family: var(--kai); font-size: 1.25em; color: var(--red-d); line-height: 1.4; }
+.bc small { font-size: .85em; line-height: 1.6; color: var(--ink-2); background: #f4efe6; border-radius: .3em; padding: .4em .6em; margin-top: auto; opacity: 0; transition: opacity .4s; }
+.bc.open small { opacity: 1; }
+
+/* 四意象卡 */
+.four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; flex: 1; min-height: 0; }
+.fc { position: relative; font: inherit; cursor: pointer; padding: 0; border: none; border-radius: .6em; overflow: hidden; background: #2b2522; color: #fff; min-height: 14em; display: flex; flex-direction: column; justify-content: flex-end; text-align: left; }
+.fc-pic { position: absolute; inset: 0; background: center / cover no-repeat; opacity: .8; }
+.fc-txt { position: relative; padding: 2.5em .9em .9em; background: linear-gradient(transparent, rgba(20, 16, 12, .85) 35%); display: flex; flex-direction: column; gap: .2em; }
+.fc-txt em { font-style: normal; font-family: var(--kai); font-size: 1.1em; color: #f1c27a; line-height: 1.5; }
+.fc-txt b { font-family: var(--kai); font-size: 2.2em; }
+.fc-back { position: absolute; inset: 0 0 auto; height: 62%; background: rgba(250, 245, 236, .96); color: var(--ink); padding: 1.2em; font-family: var(--kai); font-size: 1.3em; line-height: 1.9; opacity: 0; transition: opacity .4s; }
+.fc-back i { font-style: normal; color: var(--red); font-family: var(--serif); font-size: .8em; }
+.fc.open .fc-back { opacity: 1; }
+
+/* 标注台 */
+.stress { display: flex; flex-direction: column; gap: .25em; background: #fff; border-radius: .5em; padding: .6em .9em; }
+.stress p { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; }
+.sw { font: inherit; font-family: var(--kai); font-size: 1.36em; border: none; background: none; padding: .05em .05em; cursor: pointer; border-radius: .2em; }
+.sw:hover { background: #f4ecdd; }
+.sw.st { color: var(--red); background: radial-gradient(circle, var(--red) 40%, transparent 46%) repeat-x 0 100% / .45em .28em; padding-bottom: .25em; }
+.show-ps .sw.rps::after { content: "/"; color: var(--gold); font-family: var(--serif); font-weight: bold; margin: 0 .15em; }
+.demo-st { color: var(--red); font-family: var(--kai); background: radial-gradient(circle, var(--red) 40%, transparent 46%) repeat-x 0 100% / .45em .28em; padding-bottom: .2em; }
+.demo-ps { color: var(--gold); font-weight: bold; }
+
+/* 第二节 */
+.s-qa .bd { grid-template-rows: 1fr auto; gap: 1em; }
+.qa-row { display: grid; grid-template-columns: 1fr 3em 1.3fr; align-items: center; gap: .6em; }
+.qa-side { background: #fff; border-radius: .6em; padding: 1.2em 1.4em; display: flex; flex-direction: column; gap: .6em; border-top: .3em solid var(--gold); }
+.qa-side small { color: var(--ink-2); }
+.qa-side p { margin: 0; font-family: var(--kai); font-size: 1.5em; line-height: 1.7; }
+.qa-side span { font-size: .9em; color: var(--red); }
+.qa-side.dark { background: #2b2522; color: #f1e6d0; border-top-color: var(--red); }
+.qa-side.dark small { color: #cdbfa6; }
+.qa-side.dark .q { font-size: 1.9em; }
+.qa-side.dark .a { font-size: 1.9em; color: #f1c27a; }
+.qa-side.dark span { color: #f1c27a; }
+.qa-mid { font-size: 2.4em; color: var(--red); text-align: center; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; gap: 1em; }
+.sum-flow { display: flex; justify-content: center; align-items: center; gap: .6em; font-family: var(--kai); font-size: 1.6em; flex-wrap: wrap; }
+.sum-flow span { background: #fff; padding: .2em .8em; border-radius: .4em; border-bottom: .2em solid var(--red-d); }
+.sum-flow i { font-style: normal; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .ask { font-size: 1.4em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .poem-text { font-size: 1.12em; padding-left: 0; }
+  .bird-chain { grid-template-columns: 1fr; }
+  .bc::after { display: none; }
+  .bc svg { height: 3em; }
+  .four { grid-template-columns: 1fr 1fr; }
+  .fc { min-height: 11em; }
+  .fc-back { font-size: 1em; padding: .8em; }
+  .sw { font-size: 1.05em; }
+  .qa-row { grid-template-columns: 1fr; }
+  .qa-mid { display: none; }
+  .qa-side p, .qa-side.dark .q, .qa-side.dark .a { font-size: 1.2em; }
+  .sum-flow { font-size: 1.1em; }
+}

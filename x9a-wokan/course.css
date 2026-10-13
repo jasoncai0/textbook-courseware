@@ -1,0 +1,86 @@
+/* 我看 · 本课配色：黄昏草绿、暮色金 */
+:root {
+  --red: #b5532e;
+  --red-d: #3e4a32;
+  --gold: #d29a42;
+  --gold-l: #f0d9a6;
+  --paper: #f3f1e7;
+  --stone: #fbfaf3;
+  --ink-2: #5d5e4f;
+  --line: #d4d2bd;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 7em; letter-spacing: .15em; }
+.ask { margin: 0; font-family: var(--kai); font-size: 2.2em; color: #f6dfa8; }
+
+/* “看”的视角镜头 */
+.s-lens { padding: 0; display: block; background: #1d1f18; overflow: hidden; }
+.lens-bgs, .lb { position: absolute; inset: 0; }
+.lb { background-size: cover; background-repeat: no-repeat; opacity: 0; transform: scale(1.08); transition: opacity 1.2s ease, transform 4s ease; }
+.lb.cur { opacity: 1; transform: scale(1); }
+.lens-ui { position: absolute; inset: 1.4em 2em 7.6em; pointer-events: none; }
+.lens-ui .c { position: absolute; width: 2.6em; height: 2.6em; border: .18em solid rgba(255, 255, 255, .9); }
+.c1 { left: 0; top: 0; border-right: none !important; border-bottom: none !important; }
+.c2 { right: 0; top: 0; border-left: none !important; border-bottom: none !important; }
+.c3 { left: 0; bottom: 0; border-right: none !important; border-top: none !important; }
+.c4 { right: 0; bottom: 0; border-left: none !important; border-top: none !important; }
+.lens-top { position: absolute; left: 3.6em; right: 3.6em; top: .6em; display: flex; justify-content: space-between; color: #fff; font-size: .95em; text-shadow: 0 1px 4px rgba(0, 0, 0, .8); }
+.rec { color: #ff8a6a; animation: pulse 1.6s infinite; }
+.lens-text { position: absolute; left: 3.6em; bottom: 1em; background: rgba(20, 22, 16, .62); color: #f5f1e4; padding: .7em 1.2em; border-radius: .4em; font-family: var(--kai); font-size: 1.6em; line-height: 1.7; }
+.lens-text p { margin: 0; animation: lensIn .7s both; }
+.lens-text p:nth-child(2) { animation-delay: .4s; }
+.lens-text p:nth-child(3) { animation-delay: .8s; }
+@keyframes lensIn { from { opacity: 0; transform: translateY(.3em); } }
+.lens-text em { font-style: normal; color: #ffb27a; border-bottom: .1em solid #ffb27a; }
+.lens-tabs { position: absolute; left: 2em; right: 2em; bottom: 3.6em; display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em; z-index: 3; }
+.lt { font: inherit; cursor: pointer; border: 1px solid rgba(255, 255, 255, .4); background: rgba(20, 22, 16, .6); color: #eee; border-radius: .4em; padding: .35em; font-family: var(--kai); font-size: 1.1em; }
+.lt b { font-family: var(--serif); font-weight: normal; font-size: .7em; margin-right: .5em; opacity: .8; }
+.lt.cur { background: var(--gold); color: #1d1f18; border-color: var(--gold); }
+@media (min-width: 821px) and (min-height: 521px) {
+  .frame:has(.s-lens.active) .ctrl .pageno { color: #e9e3d6; }
+  .frame:has(.s-lens.active) .progress i:not(.done):not(.cur) { background: rgba(255, 255, 255, .25); }
+}
+
+/* “你” */
+.s-you .bd { grid-template-columns: 1.1fr 1fr; }
+.s-you .quote p { text-indent: 0; font-size: 1.2em; }
+
+/* 看—思—愿 阶梯 */
+.ladder { display: grid; grid-template-columns: 1fr 1fr 1.7fr; gap: 1em; align-items: end; }
+.lad { background: #fff; border-radius: .6em; padding: .9em 1.1em; display: flex; flex-direction: column; gap: .35em; border-top: .35em solid var(--gold); }
+.lad:nth-child(1) { min-height: 12em; }
+.lad:nth-child(2) { min-height: 16em; }
+.lad.top { min-height: 21em; background: #3e4a32; color: #f3efdf; border-top-color: var(--red); }
+.lad b { font-family: var(--kai); font-size: 2.6em; color: var(--red); line-height: 1; }
+.lad.top b { color: #ffb27a; }
+.lad small { color: var(--ink-2); }
+.lad.top small { color: #cfd3b8; }
+.lad p { margin: 0; font-family: var(--kai); font-size: 1.2em; line-height: 1.7; }
+.lad p em { font-style: normal; color: #ffb27a; }
+.lad span { margin-top: auto; font-size: .9em; color: var(--red-d); background: #f6f1df; border-radius: .3em; padding: .3em .6em; }
+.lad.top span { color: #3e4a32; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; gap: 1em; }
+.sum-flow { display: flex; justify-content: center; align-items: center; gap: .6em; font-family: var(--kai); font-size: 1.8em; flex-wrap: wrap; }
+.sum-flow span { background: #fff; padding: .2em .8em; border-radius: .4em; border-bottom: .2em solid var(--red-d); }
+.sum-flow i { font-style: normal; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.8em; }
+  .ask { font-size: 1.3em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .s-lens { overflow: hidden; }
+  .lens-ui { inset: .8em .8em 10.5em; }
+  .lens-top { left: 3em; right: 3em; font-size: .8em; }
+  .lens-text { left: .4em; right: .4em; font-size: 1.1em; }
+  .lens-tabs { left: .8em; right: .8em; bottom: 5em; grid-template-columns: 1fr 1fr; }
+  .ladder { grid-template-columns: 1fr; }
+  .lad, .lad:nth-child(1), .lad:nth-child(2), .lad.top { min-height: 0; }
+  .lad p { font-size: 1.05em; }
+  .sum-flow { font-size: 1.15em; }
+}

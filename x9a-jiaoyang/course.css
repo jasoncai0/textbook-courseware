@@ -1,0 +1,78 @@
+/* 论教养 · 本课配色：橄榄绿、珊瑚 */
+:root {
+  --red: #c4614a;
+  --red-d: #4b5a3a;
+  --gold: #d7a556;
+  --gold-l: #f2ddb0;
+  --paper: #f6f1e7;
+  --stone: #fcfaf4;
+  --ink-2: #5f5d50;
+  --line: #d9d2bf;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 7em; letter-spacing: .12em; }
+.ask { margin: 0; font-family: var(--kai); font-size: 1.9em; color: #f8deb6; max-width: 20em; }
+
+/* 归档 */
+.bins { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; flex: none; }
+.bin { position: relative; font: inherit; cursor: pointer; border: 2px dashed var(--red-d); border-radius: .6em; background: #fff; padding: 0; overflow: hidden; display: flex; flex-direction: column; min-height: 10.5em; text-align: left; }
+.bin-pic { height: 3.4em; background: #e7e2d3 center / cover no-repeat; flex: none; }
+.bin b { padding: .2em .7em; color: var(--red-d); font-family: var(--kai); font-size: 1.25em; }
+.bin-in { display: flex; flex-direction: column; gap: .2em; padding: 0 .6em .5em; }
+.bin-in i { font-style: normal; font-size: .82em; line-height: 1.4; background: #eef3e6; border-radius: .25em; padding: .1em .4em; animation: appear .4s; }
+.cards { display: flex; flex-wrap: wrap; gap: .45em; }
+.cd { font: inherit; font-family: var(--kai); font-size: 1.02em; cursor: pointer; border: 1px solid var(--line); background: #fff; border-radius: .4em; padding: .3em .7em; }
+.cd.cur { border-color: var(--red); background: #fdeee9; box-shadow: 0 0 0 .15em rgba(196, 97, 74, .3); }
+.cd.done { display: none; }
+.cd.no { animation: nope .35s; }
+#binMsg { flex: none; }
+
+/* 思路 */
+.s-flow .bd { grid-template-columns: 1fr 1fr; }
+.flow-col { display: flex; flex-direction: column; gap: .5em; }
+.fl { position: relative; background: #fff; border-radius: .5em; padding: .5em .9em; border-left: .3em solid var(--red-d); display: flex; flex-direction: column; gap: .15em; }
+.fl:not(:last-child)::after { content: "↓"; position: absolute; left: 50%; bottom: -1.05em; color: var(--red); font-size: .9em; }
+.fl b { color: var(--red-d); }
+.fl span { font-family: var(--kai); font-size: 1.05em; line-height: 1.5; }
+.fl.key { background: var(--red-d); color: #fff; border-left-color: var(--gold); }
+.fl.key b { color: var(--gold-l); }
+
+/* 自查 + 同心圆 */
+.s-self .bd { grid-template-columns: 1fr 1fr; }
+.checks { display: flex; flex-direction: column; gap: .4em; }
+.ck { display: flex; align-items: center; gap: .6em; background: #fff; border: 1px solid var(--line); border-radius: .4em; padding: .35em .8em; cursor: pointer; font-family: var(--kai); font-size: 1.08em; }
+.ck input { width: 1.1em; height: 1.1em; accent-color: var(--red-d); }
+.ck:has(input:checked) { background: #eef3e6; border-color: #a9bd8f; }
+.check-sum { margin: 0; color: var(--red-d); font-weight: bold; }
+.rings { flex: 1; min-height: 14em; display: grid; place-items: center; }
+.rg { border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: .6em; }
+.rg > span { font-size: .95em; color: var(--red-d); font-weight: bold; }
+.r1 { width: 19em; height: 19em; background: #eef1e4; border: 2px solid #b8c39e; }
+.r2 { width: 13.5em; height: 13.5em; background: #f8efd9; border: 2px solid var(--gold); margin-top: .5em; }
+.r3 { width: 8em; height: 8em; background: var(--red); margin-top: .5em; color: #fff; }
+.r3 > span { color: #fde3da; }
+.r3 b { font-family: var(--kai); font-size: 2em; margin-top: .2em; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; gap: 1em; }
+.sum-flow { display: flex; justify-content: center; align-items: center; gap: .6em; font-family: var(--kai); font-size: 1.6em; flex-wrap: wrap; }
+.sum-flow span { background: #fff; padding: .2em .8em; border-radius: .4em; border-bottom: .2em solid var(--red-d); }
+.sum-flow i { font-style: normal; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .ask { font-size: 1.2em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .bins { grid-template-columns: 1fr 1fr; }
+  .bin { min-height: 7em; }
+  .rings { font-size: .8em; }
+  .sum-flow { font-size: 1.1em; }
+}
+.cd { font-size: 1.15em; }
+.rings { font-size: 1.15em; }
+.bin:last-child .bin-pic { background: linear-gradient(120deg, #cfe0b8, #f2ddb0); }
+@media (max-width: 820px), (max-height: 520px) { .cd { font-size: 1em; } .rings { font-size: .8em; } }

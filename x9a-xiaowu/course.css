@@ -1,0 +1,60 @@
+/* 精神的三间小屋 · 本课配色：月夜青灰、竹青、暖灯 */
+:root {
+  --red: #b4573a;
+  --red-d: #2f4a4a;
+  --gold: #d3a24e;
+  --gold-l: #f0dcae;
+  --paper: #eff1ec;
+  --stone: #f8f9f5;
+  --ink-2: #566060;
+  --line: #c9d1cc;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 6em; letter-spacing: .06em; }
+.ask { margin: 0; font-family: var(--kai); font-size: 2.1em; color: #f3e1b6; line-height: 1.5; }
+
+/* 三屋 */
+.house { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.roof { position: relative; height: 3.6em; flex: none; clip-path: polygon(6% 100%, 50% 0, 94% 100%); background: var(--red-d); display: grid; place-items: end center; padding-bottom: .4em; }
+.roof span { color: #f3e1b6; font-family: var(--kai); font-size: 1.15em; }
+.rooms { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .5em; background: var(--red-d); padding: .5em; border-radius: 0 0 .5em .5em; margin: 0 4%; }
+.room { position: relative; background: #fff; border-radius: .3em; padding: .7em .9em; display: flex; flex-direction: column; gap: .5em; overflow: hidden; transition: background 1s, filter 1s, transform 1s; }
+.room-pic { height: 6.5em; flex: none; border-radius: .3em; background: #dfe4df center / cover no-repeat; transition: filter 1s, opacity 1s; }
+.room h3 { margin: 0; font-family: var(--kai); color: var(--red-d); font-size: 1.3em; }
+.room .slider-row input { accent-color: var(--gold); }
+.room-say { margin: 0; font-family: var(--kai); font-size: 1.08em; line-height: 1.65; }
+.room[data-mood="love"] { background: #fff4d8; }
+.room[data-mood="hate"] { background: #c9ced3; }
+.room[data-mood="hate"] .room-pic { filter: grayscale(1) brightness(.6); }
+.room[data-mood="halo"] { background: #e7e3dd; }
+.room[data-mood="halo"] .room-pic { filter: grayscale(.8); opacity: .5; }
+.room[data-mood="self"] { background: #eaf3ec; }
+.self-pic { background: linear-gradient(160deg, #f0dcae, #cfe0cf); }
+.room[data-mood="others"] { animation: collapse 2.4s ease forwards; }
+@keyframes collapse { 40% { transform: rotate(-1.5deg); } 100% { transform: rotate(2deg) translateY(.6em); filter: grayscale(1); background: #d6d6d0; } }
+.room[data-mood="others"] .room-pic { opacity: .15; }
+
+/* 比喻 */
+.s-meta .clues { grid-template-columns: repeat(3, 1fr); }
+
+/* 读写 */
+.para { font-family: var(--kai); font-size: 1.05em !important; line-height: 1.8 !important; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; gap: 1em; }
+.sum-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6em; font-family: var(--kai); font-size: 1.4em; }
+.sum-flow span { background: #fff; padding: .5em .8em; border-radius: .4em; border-top: .25em solid var(--red-d); text-align: center; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3em; }
+  .ask { font-size: 1.3em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .rooms { grid-template-columns: 1fr; margin: 0; }
+  .room-pic { height: 5em; }
+  .s-meta .clues { grid-template-columns: 1fr; }
+  .sum-flow { grid-template-columns: 1fr; font-size: 1.1em; }
+}

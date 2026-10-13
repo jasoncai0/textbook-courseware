@@ -1,0 +1,78 @@
+/* 三顾茅庐 · 本课配色：水墨青灰 + 朱印 */
+:root {
+  --red: #a8382a;
+  --red-d: #2d3b36;
+  --gold: #8f9a74;
+  --gold-l: #dfe3cf;
+  --paper: #f1efe8;
+  --stone: #fbfaf5;
+  --ink-2: #565a52;
+  --line: #cfd0c2;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 6.6em; letter-spacing: .14em; }
+.poem-v { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: .4em; margin-bottom: .4em; }
+.poem-v p { margin: 0; writing-mode: vertical-rl; font-family: var(--kai); font-size: 1.7em; color: #f1ead6; letter-spacing: .15em; }
+
+/* ---------- 铺垫阶梯 ---------- */
+.s-stair .bd { grid-template-columns: 1.7fr 1fr; }
+.stairs { display: flex; flex-direction: column-reverse; justify-content: flex-start; gap: .25em; min-height: 0; }
+.sp { margin-left: calc(var(--i) * 5.2%); width: 56%; background: #fff; border-left: .3em solid var(--gold); border-bottom: .2em solid var(--red-d); border-radius: .3em; padding: .25em .7em; font-family: var(--kai); font-size: .92em; line-height: 1.45; box-shadow: 0 .1em .4em rgba(30, 40, 30, .1); }
+.sp b { margin-right: .6em; font-family: var(--serif); font-size: 1.05em; color: var(--red-d); }
+.sp.top { width: 58%; background: #fdf5e8; border-left-color: var(--red); }
+.sp.top b { display: block; color: var(--red); font-size: 1.3em; }
+.stair-pic { flex: 1; min-height: 8em; border-radius: .5em; background: #dcdbd0 center / cover no-repeat; }
+.wait { display: flex; align-items: center; gap: .6em; }
+.wait span { font-size: .9em; color: var(--ink-2); }
+.wait .meter { flex: 1; height: .9em; }
+.wait .meter i { width: 0; background: linear-gradient(90deg, var(--gold), var(--red)); transition: width 1s ease; }
+
+/* ---------- 刘关张对比 ---------- */
+.s-three .bd { grid-template-rows: 1fr auto; gap: .7em; }
+.three { display: grid; grid-template-columns: 7em repeat(3, 1fr); grid-template-rows: auto repeat(3, 1fr); gap: .45em; min-height: 0; }
+.three .th { text-align: center; font-family: var(--kai); font-size: 1.6em; font-weight: normal; color: var(--red-d); }
+.three .tr { align-self: center; font-size: .95em; color: var(--ink-2); }
+.cell { font: inherit; cursor: pointer; text-align: left; background: #fff; border: 1px dashed var(--line); border-radius: .5em; padding: .4em .7em; font-family: var(--kai); font-size: 1em; line-height: 1.5; color: transparent; position: relative; }
+.cell::after { content: "点一点"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--ink-2); font-family: var(--serif); font-size: .85em; }
+.cell.open { color: var(--ink); border-style: solid; }
+.cell.open::after { content: none; }
+.cell.empty.open { color: #a4a59a; }
+.traits { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7em; }
+
+/* ---------- 隆中对 ---------- */
+.s-map .bd { grid-template-columns: 1.4fr 1fr; }
+.map .m-bg { fill: #f6f2e6; stroke: var(--line); }
+.map .m-n { fill: #e3e1d6; stroke: #a9a891; }
+.map .m-e { fill: #dfe7e2; stroke: #9db1a6; }
+.map .m-j { fill: #f2dcc9; stroke: var(--red); stroke-width: 2; }
+.map .m-y { fill: #e9e2c4; stroke: #a08a3c; stroke-width: 2; }
+.map .m-arrow { fill: none; stroke: var(--red); stroke-width: 3; stroke-dasharray: 8 6; }
+.map-pic { flex: 1; min-height: 7em; border-radius: .5em; background: #dcdbd0 center / cover no-repeat; }
+.s-map .tip { font-family: var(--kai); font-size: 1em; }
+
+/* ---------- 回顾 ---------- */
+.sum-stage { justify-content: center; gap: 1.2em; }
+.sum-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.sum-cards div { background: #fff; border-radius: .5em; padding: .7em 1em; text-align: center; font-size: 1.05em; border-top: .3em solid var(--red-d); }
+.sum-cards b { display: block; font-family: var(--kai); font-size: 1.7em; font-weight: normal; color: var(--red-d); }
+.sum-cards small { display: block; color: var(--red); font-size: .95em; margin-top: .3em; }
+.sum-poem { margin: 0; text-align: center; font-family: var(--kai); font-size: 1.5em; line-height: 1.8; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .poem-v p { font-size: 1.2em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .sp, .sp.top { width: auto; margin-left: calc(var(--i) * .5em); font-size: 1em; }
+  .stair-pic { min-height: 10em; }
+  .three { grid-template-columns: 1fr; grid-template-rows: none; }
+  .three > span, .three .th { display: none; }
+  .three .tr { margin-top: .4em; font-weight: bold; color: var(--red-d); }
+  .cell { min-height: 3em; }
+  .traits { grid-template-columns: 1fr; }
+  .sum-cards { grid-template-columns: 1fr; }
+  .sum-poem { font-size: 1.1em; }
+}

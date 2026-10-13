@@ -1,0 +1,102 @@
+/* 沁园春·雪 · 本课配色：雪原冷灰、墨、红日 */
+:root {
+  --red: #a3302a;
+  --red-d: #3b3f4a;
+  --gold: #c39a4a;
+  --gold-l: #ecd9a8;
+  --paper: #eef0f1;
+  --stone: #f8f9fa;
+  --ink-2: #565c66;
+  --line: #c9ced6;
+  --snow: #dfe6ee;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+/* 封面 */
+.s-cover .cover-title { font-size: 6.6em; letter-spacing: .12em; }
+.big-line { margin: .2em 0 0; font-family: var(--kai); font-size: 2.4em; letter-spacing: .12em; color: #f3f6fa; }
+
+/* “望”字镜头：后面的画面一张张叠上来 */
+.shot { position: absolute; inset: 0; background: center / cover no-repeat; transition: opacity 1.6s ease !important; transform: none !important; }
+.vf { position: absolute; inset: 14% 22% 34%; z-index: 1; pointer-events: none; transform: none !important; }
+.vf i { position: absolute; width: 2.4em; height: 2.4em; border: .2em solid rgba(255, 255, 255, .85); }
+.vf i:nth-child(1) { left: 0; top: 0; border-right: none; border-bottom: none; }
+.vf i:nth-child(2) { right: 0; top: 0; border-left: none; border-bottom: none; }
+.vf i:nth-child(3) { left: 0; bottom: 0; border-right: none; border-top: none; }
+.vf i:nth-child(4) { right: 0; bottom: 0; border-left: none; border-top: none; }
+.vf b { position: absolute; left: 50%; top: 50%; translate: -50% -50%; font-family: var(--kai); font-size: 5em; color: rgba(255, 255, 255, .28); }
+
+/* 旁批一：目力与想象 */
+.s-sortpage .bd { grid-template-columns: 1.15fr 1fr; }
+.sort-row { grid-template-columns: 1fr auto; }
+.sort-row .res { grid-column: 1 / -1; }
+.sort-row .res:empty { display: none; }
+.eye-map { position: relative; height: 12em; flex: none; display: grid; place-items: center; }
+.eye-map .ring { position: absolute; border-radius: 50%; display: flex; justify-content: center; font-size: .85em; color: var(--ink-2); }
+.eye-map .r2 { width: 25em; height: 12em; border: 2px dashed var(--gold); align-items: flex-start; padding-top: .6em; background: #fffaf0; }
+.eye-map .r1 { width: 17em; height: 7em; border: 2px solid var(--red-d); align-items: flex-end; padding-bottom: 1em; background: #fff; }
+.eye-map b { position: relative; top: -.6em; font-family: var(--kai); font-size: 2em; color: var(--red); }
+
+/* “惜”字链 */
+.xi-chain { display: grid; grid-template-columns: 6em repeat(3, 1fr) 1.15fr; gap: 1em; align-items: stretch; min-height: 15em; }
+.xi-head { display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--red); color: #fff; border-radius: .5em; }
+.xi-head b { font-family: var(--kai); font-size: 3.6em; line-height: 1.1; }
+.xi-head span { font-size: .85em; opacity: .85; }
+.xi-card { position: relative; font: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: .6em; background: #fff; border: 1px solid var(--line); border-top: .35em solid var(--red-d); border-radius: .5em; padding: 1em; }
+.xi-card::after { content: "→"; position: absolute; right: -.95em; top: 45%; color: var(--red); font-weight: bold; }
+.xi-name { font-family: var(--kai); font-size: 1.45em; color: var(--red-d); }
+.xi-word { font-family: var(--kai); font-size: 1.6em; line-height: 1.4; }
+.xi-word i { font-style: normal; color: var(--red); border-bottom: .12em solid var(--red); }
+.xi-card small { font-size: .85em; line-height: 1.6; color: var(--ink-2); background: #f3f5f8; border-radius: .3em; padding: .4em .6em; opacity: 0; transition: opacity .4s; margin-top: auto; }
+.xi-card.open small { opacity: 1; }
+.xi-card:not(.open) small::before { content: "点开看注释"; }
+.xi-end { display: flex; flex-direction: column; justify-content: center; gap: .4em; background: #3b3f4a; color: #f4f1ea; border-radius: .5em; padding: 1em; font-family: var(--kai); }
+.xi-end span { font-size: 1.3em; opacity: .8; }
+.xi-end b { font-size: 2em; line-height: 1.4; color: #f7d27a; }
+
+/* 旁批二 */
+.bridge-line { font-size: 1.8em; text-indent: 0 !important; line-height: 1.7; }
+.bridge-sub { font-family: var(--serif); font-size: .9em; color: var(--ink-2); text-indent: 0 !important; }
+
+/* 诵读 */
+.rc-tools { display: flex; gap: .4em; align-items: center; justify-content: center; font-size: .95em; color: var(--ink-2); }
+.ci { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; align-content: center; padding: 0 3em; }
+.ci-col { columns: 2; column-gap: 1.4em; background: #fff; border-radius: .6em; padding: .8em 1.4em; border-top: .3em solid var(--red-d); }
+.ci-col h4 { column-span: all; margin: 0 0 .3em; color: var(--red); }
+.ci-col p { margin: 0; font-family: var(--kai); font-size: 1.35em; line-height: 1.75; white-space: nowrap; }
+.ci .ps { font-style: normal; color: transparent; font-family: var(--serif); margin: 0 .05em; font-size: .8em; }
+.m-rhythm .ci .ps { color: var(--red); }
+.ci .lead { font-weight: normal; transition: background .4s; border-radius: .2em; }
+.m-lead .ci .lead { background: var(--red); color: #fff; padding: 0 .15em; margin-right: .3em; }
+.ci .rhyme { font-style: normal; transition: color .4s; }
+.m-rhyme .ci .rhyme { color: var(--red); font-weight: bold; background: radial-gradient(circle, #f3dfae 66%, transparent 68%); }
+
+/* 回顾 */
+.sum-stage { justify-content: center; gap: 1em; }
+.sum-flow { display: flex; justify-content: center; align-items: center; gap: .6em; font-family: var(--kai); font-size: 1.7em; flex-wrap: wrap; }
+.sum-flow span { background: #fff; padding: .2em .8em; border-radius: .4em; border-bottom: .2em solid var(--red-d); }
+.sum-flow i { font-style: normal; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .big-line { font-size: 1.4em; }
+  .vf { inset: 12% 8% 45%; }
+  .vf b { font-size: 3em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .eye-map { height: 9em; }
+  .eye-map .r2 { width: 100%; height: 9em; }
+  .eye-map .r1 { width: 15em; height: 6em; font-size: .75em; }
+  .xi-chain { grid-template-columns: 1fr; }
+  .xi-head { flex-direction: row; gap: .6em; padding: .3em; }
+  .xi-head b { font-size: 2em; }
+  .xi-card::after { display: none; }
+  .bridge-line { font-size: 1.3em; }
+  .rc-tools { margin-left: 0; }
+  .ci { grid-template-columns: 1fr; padding: 0; gap: 1em; }
+  .ci-col { padding: .6em .8em; }
+  .ci-col p { font-size: 1.05em; }
+  .sum-flow { font-size: 1.15em; }
+}

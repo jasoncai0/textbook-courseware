@@ -1,0 +1,78 @@
+/* 就英法联军远征中国致巴特勒上尉的信 · 本课配色：铜版暖金、暗褐 */
+:root {
+  --red: #8f3324;
+  --red-d: #3d2b20;
+  --gold: #b88a3e;
+  --gold-l: #e8d2a2;
+  --paper: #f1ebe0;
+  --stone: #faf6ee;
+  --ink-2: #5f5244;
+  --line: #d4c5ac;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 3.6em; line-height: 1.25; letter-spacing: .04em; margin-bottom: .4em; }
+.letter { font-family: var(--kai); background: rgba(250, 243, 228, .92); color: #3d2b20; text-shadow: none; padding: .7em 1.2em; border-radius: .3em; max-width: 28em; margin-bottom: 1em; box-shadow: 0 .3em 1em rgba(0, 0, 0, .3); }
+.letter p { margin: 0; font-size: 1.3em; line-height: 1.6; }
+.letter p + p { text-indent: 2em; }
+.letter small { display: block; text-align: right; color: #7a6650; margin-top: .3em; }
+
+/* 想象 → 消失 */
+.shot { position: absolute; inset: 0; background: center / cover no-repeat; transition: opacity 2.4s ease !important; transform: none !important; }
+
+/* 反语卡 */
+.irony { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.ir { font: inherit; text-align: left; cursor: pointer; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .55em .9em; display: grid; grid-template-columns: 1fr 1fr; gap: .3em .8em; }
+.ir-s { grid-column: 1 / -1; font-family: var(--kai); font-size: 1.12em; line-height: 1.55; }
+.ir-k { font-size: .85em; line-height: 1.5; background: #f4eee2; border-radius: .3em; padding: .25em .5em; opacity: 0; transition: opacity .4s; }
+.ir-k i { font-style: normal; font-weight: bold; margin-right: .4em; color: var(--ink-2); }
+.ir-k.real { background: #f8e3dc; }
+.ir-k.real i { color: var(--red); }
+.ir.open { border-color: var(--red); }
+.ir.open .ir-s { color: var(--red); }
+.ir.open .ir-k { opacity: 1; }
+
+/* 立场对照 */
+.s-stance .bd { grid-template-rows: 1fr auto; gap: .9em; }
+.stance { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 1em; min-height: 0; }
+.sc { background: #fff; border-radius: .6em; padding: .9em 1.1em; display: flex; flex-direction: column; gap: .45em; border-top: .35em solid var(--ink-2); }
+.sc h3 { margin: 0; font-family: var(--kai); font-size: 1.6em; color: var(--red-d); }
+.sc small { color: var(--ink-2); }
+.sc p { margin: 0; font-family: var(--kai); font-size: 1.1em; line-height: 1.55; padding-left: .8em; border-left: .2em solid var(--line); }
+.sc.rob { background: #efe6d8; border-top-color: #6f5a45; }
+.sc.but { border-top-color: var(--gold); }
+.sc.hugo { background: #3d2b20; color: #f4ead8; border-top-color: var(--red); }
+.sc.hugo h3 { color: var(--gold-l); }
+.sc.hugo small { color: #d8c6a8; }
+.sc.hugo p { border-left-color: var(--gold); }
+.gov { display: flex; align-items: center; justify-content: center; gap: .8em; flex-wrap: wrap; font-family: var(--kai); font-size: 1.25em; background: #fff8e1; border-radius: .5em; padding: .5em 1em; }
+.gov span { background: #fff; border: 1px solid var(--line); border-radius: .3em; padding: .1em .6em; }
+.gov b { color: var(--red); font-size: 1.4em; }
+.gov em { font-style: normal; color: var(--red-d); width: 100%; text-align: center; font-size: .95em; }
+
+/* 两个强盗 */
+.s-rob .bd { grid-template-columns: 1.1fr 1fr; }
+.s-rob .quote p { text-indent: 0; font-size: 1.15em; }
+.museum { display: grid; grid-template-columns: 8em 1fr; gap: .8em; align-items: center; background: #fff; border-radius: .5em; padding: .5em; }
+.mu-pic { height: 5.5em; border-radius: .3em; background: #e5dccb center / cover no-repeat; }
+.museum p { margin: 0; font-size: .9em; line-height: 1.6; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; gap: 1em; }
+.sum-flow { display: flex; justify-content: center; align-items: center; gap: .6em; font-family: var(--kai); font-size: 1.55em; flex-wrap: wrap; }
+.sum-flow span { background: #fff; padding: .2em .8em; border-radius: .4em; border-bottom: .2em solid var(--red-d); }
+.sum-flow i { font-style: normal; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2em; }
+  .letter p { font-size: 1em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .irony { grid-template-columns: 1fr; }
+  .ir { grid-template-columns: 1fr; }
+  .stance { grid-template-columns: 1fr; }
+  .gov { font-size: 1em; }
+  .sum-flow { font-size: 1.1em; }
+}
