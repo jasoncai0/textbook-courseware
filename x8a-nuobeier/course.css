@@ -1,0 +1,112 @@
+/* 首届诺贝尔奖颁发 · 本课配色：铜版画的棕褐、电报纸的米黄、奖章的金 */
+:root {
+  --red: #8a4a2a;
+  --red-d: #3e2a1e;
+  --gold: #b88a3a;
+  --gold-l: #ecd9ae;
+  --paper: #f1eadc;
+  --stone: #faf6ec;
+  --ink-2: #63584a;
+  --line: #d6c7a8;
+  --sepia: #5a4330;
+  --mono: "Courier New", "Songti SC", "STSong", monospace;
+}
+.s-cover .cover-title { font-size: 5.6em; letter-spacing: .08em; }
+.wire { margin: .2em 0; font-family: var(--mono); font-size: 1.35em; color: #f3e2bb; }
+.wire span { display: inline-block; overflow: hidden; white-space: nowrap; border-right: .12em solid #f3e2bb; width: 0; }
+.wire.on span { animation: typing 2.6s steps(30) forwards, caret .7s step-end infinite; }
+@keyframes typing { to { width: 21em; } }
+@keyframes caret { 50% { border-color: transparent; } }
+
+/* 读准字音：读读写写是词语 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+/* 电报稿 */
+.wire-stage { min-height: 0; overflow: auto; }
+.tg { background: #fbf4e2; border: 1px solid #cdb98f; border-radius: .3em; padding: .7em 1.4em 1em; box-shadow: 0 .2em .8em rgba(60, 40, 20, .15); background-image: repeating-linear-gradient(transparent 0 1.95em, rgba(140, 110, 60, .12) 1.95em 2em); }
+.tg-hd { display: flex; gap: 2em; font-size: .85em; color: var(--ink-2); border-bottom: 2px double #b49a66; padding-bottom: .3em; flex-wrap: wrap; }
+.tg-hd b { font-family: var(--mono); color: var(--red-d); }
+.tg h3 { margin: .3em 0; text-align: center; font-size: 1.4em; color: var(--red-d); letter-spacing: .1em; }
+.tg-row { display: grid; grid-template-columns: 1fr 13em; gap: 1.2em; align-items: start; margin-bottom: .4em; }
+.tg-row p { margin: 0; text-indent: 2em; line-height: 1.85; font-size: 1em; }
+.tg-row aside { font-family: var(--kai); font-size: .9em; color: #7b4b25; background: #fff8e3; border-left: .25em solid var(--gold); padding: .3em .6em; border-radius: .2em; line-height: 1.6; }
+
+/* 填电报稿纸 */
+.quote-s { margin: 0; background: #fff; border-radius: .6em; padding: .8em 1.2em; font-family: var(--kai); font-size: 1.12em; line-height: 1.9; text-indent: 2em; }
+.quote-s b { font-family: var(--serif); }
+.form { display: flex; flex-direction: column; gap: .35em; }
+.f-row { display: grid; grid-template-columns: 3em 5em 1fr; gap: .5em; align-items: center; }
+.f-g { font-size: .8em; color: #fff; text-align: center; border-radius: .2em; padding: .1em 0; }
+.f-g.g1 { background: var(--sepia); }
+.f-g.g2 { background: var(--red); }
+.f-k { color: var(--ink-2); }
+.f-v { font: inherit; text-align: left; background: #fff; border: none; border-bottom: 2px dashed var(--line); padding: .25em .6em; cursor: pointer; color: transparent; min-height: 1.9em; line-height: 1.5; font-family: var(--kai); font-size: 1.02em; }
+.f-v.open { color: var(--red-d); border-bottom: 2px solid var(--gold); background: #fff9ea; }
+
+/* 连一连 */
+.match { display: grid; grid-template-columns: 1fr 1.8fr; gap: 3em; flex: 1; min-height: 0; }
+.m-col { display: flex; flex-direction: column; gap: .45em; }
+.m-item { font: inherit; position: relative; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .45em .9em; cursor: pointer; flex: 1; font-family: var(--kai); font-size: 1.05em; }
+.m-l b { font-size: 1.15em; color: var(--red-d); }
+.m-l small { display: none; margin-left: .6em; font-family: var(--serif); color: var(--ink-2); font-size: .8em; }
+.m-l.ok small { display: inline; }
+.m-item.sel { border-color: var(--gold); box-shadow: 0 0 0 .2em var(--gold-l); }
+.m-item.ok { border-color: #8cb79f; background: #f1f8f3; cursor: default; }
+.m-item.ok::after { content: attr(data-n); position: absolute; top: 50%; translate: 0 -50%; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--sepia); color: #fff; display: grid; place-items: center; font-size: .8em; font-family: var(--serif); }
+.m-l.ok::after { right: -2.3em; }
+.m-r.ok::after { left: -2.3em; }
+.m-item.no { animation: nope .35s; }
+
+/* 资金流向 */
+.flow { display: flex; flex-direction: column; align-items: stretch; gap: .2em; }
+.flow i { font-style: normal; text-align: center; color: var(--gold); font-size: 1.2em; line-height: 1; }
+.fl { background: #fff; border-radius: .5em; padding: .45em .9em; border-left: .3em solid var(--sepia); }
+.fl b { color: var(--red); margin-right: .5em; }
+.fl.hot { background: #fff6dc; border-left-color: var(--gold); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
+.sp { background: #fff; border-radius: .5em; padding: .5em .9em; border-top: .3em solid var(--sepia); text-align: center; }
+.sp h3 { margin: 0 0 .2em; color: var(--red-d); font-family: var(--kai); }
+.sp p { margin: .1em 0; }
+.sp .no b { color: #9a2e22; }
+.sp .yes b { color: #2c6a4f; }
+
+/* 删词 */
+.cut-box { background: #fff; border-radius: .6em; padding: .8em 1.2em; font-family: var(--kai); font-size: 1.15em; line-height: 2; }
+.cut-box p { margin: 0; text-indent: 2em; }
+.cut-box b { font-family: var(--serif); }
+.sub { cursor: pointer; border-bottom: 1px dotted #b9a27a; transition: color .4s, background .4s; }
+.sub:hover { background: #fff3d9; }
+.sub.cut { text-decoration: line-through; text-decoration-color: #b03a2a; text-decoration-thickness: .12em; color: #b7ab97; border-bottom: none; }
+.cut-box p.nope { animation: nope .35s; }
+.cut-count { margin: 0; text-align: right; color: var(--ink-2); }
+.cut-count b { color: var(--red); font-size: 1.2em; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; }
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .35em; font-size: 1em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .4em .8em; text-align: center; font-family: var(--kai); }
+.sum-table th { background: var(--sepia); color: #f6ecd4; }
+.sum-table tr > td:first-child { background: var(--gold-l); width: 5em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.8em; }
+  .wire { font-size: 1em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .tg { padding: .6em .8em; }
+  .tg-row { grid-template-columns: 1fr; gap: .3em; }
+  .f-row { grid-template-columns: 2.6em 4.2em 1fr; font-size: .92em; }
+  .match { grid-template-columns: 1fr; gap: 1em; }
+  .m-l.ok::after, .m-r.ok::after { left: auto; right: .5em; }
+  .split { grid-template-columns: 1fr; }
+  .sum-table { font-size: .78em; border-spacing: .2em; }
+}
+/* 客观与评价：左栏放宽 */
+.s-obj .bd { grid-template-columns: 1.3fr 1fr; }
+.s-obj .sort-row { grid-template-columns: 1fr auto 7.5em; padding: .3em .7em; font-size: .95em; }
+@media (max-width: 820px), (max-height: 520px) { .s-obj .sort-row { grid-template-columns: 1fr; } }
+.pic { flex: 1; min-height: 5em; border-radius: .5em; background: #e6dcc8 center / cover no-repeat; position: relative; }
+.pic span { position: absolute; left: .5em; bottom: .4em; background: rgba(0, 0, 0, .55); color: #fff; font-size: .72em; padding: .1em .5em; border-radius: .2em; }
+@media (max-width: 820px), (max-height: 520px) { .pic { flex: none; height: 10em; } }

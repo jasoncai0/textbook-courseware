@@ -1,0 +1,104 @@
+/* 苏州园林 · 本课配色：粉墙、黛瓦、广漆、竹绿 */
+:root {
+  --red: #4b5d4a;
+  --red-d: #2f3a2e;
+  --gold: #9a7a4a;
+  --gold-l: #e8dcc2;
+  --paper: #f4f2ec;
+  --stone: #fcfbf7;
+  --ink-2: #5d5f58;
+  --line: #d3d1c6;
+}
+.cover-big { margin: .2em 0 .1em; font-family: var(--kai); font-size: 3.4em; color: #f4ecd5; }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .12em; }
+
+.s-key .picks { flex-direction: column; }
+.s-key .pick { font-size: 1.25em; }
+
+/* 画框结构图 */
+.s-frame .bd { grid-template-columns: 1fr 32%; }
+.fm { flex: 1; min-height: 0; display: grid; grid-template-columns: 4.2em 1fr 4.2em; grid-template-rows: 3.6em 1fr 3.6em;
+  grid-template-areas: ". top ." "left mid right" ". bottom ."; gap: .4em; background: #6b4a2e; padding: .5em; border-radius: .4em; box-shadow: inset 0 0 0 .3em #8a6a46; }
+.fm-side { font: inherit; font-family: var(--kai); font-size: 1.1em; border: 2px solid #c9a978; background: #f1e3c6; color: #3a2a18; border-radius: .3em; cursor: pointer; line-height: 1.3; }
+.fm-side i, .fm-sm i { display: block; font-style: normal; font-family: var(--serif); font-size: .62em; color: #7a5a36; }
+.fm-top { grid-area: top; } .fm-bottom { grid-area: bottom; }
+.fm-left { grid-area: left; writing-mode: vertical-rl; } .fm-right { grid-area: right; writing-mode: vertical-rl; }
+.fm-left i, .fm-right i { display: inline; margin-bottom: .4em; }
+.fm-in { grid-area: mid; background: var(--stone); border-radius: .2em; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1em; padding: .8em; }
+.fm-core { margin: 0; font-family: var(--kai); font-size: 1.5em; text-align: center; line-height: 1.6; color: var(--red-d); }
+.fm-core b { color: #9b3a22; }
+.fm-small { display: flex; gap: .7em; }
+.fm-sm { font: inherit; font-family: var(--kai); font-size: 1.15em; padding: .4em 1em; border: 1px dashed var(--gold); background: #fff; border-radius: .4em; cursor: pointer; }
+.fm .sel { background: #fff7e2; outline: 3px solid #9b3a22; }
+.fm-pic { flex: 1; min-height: 8em; border-radius: .5em; background: #e3e0d6 center / cover no-repeat; }
+.fm-detail { line-height: 1.7; min-height: 9em; }
+.fm-detail .lead { font-family: var(--kai); color: var(--red-d); }
+
+/* 图案画 vs 美术画 */
+#symSvg { flex: 1; min-height: 0; }
+.plan-bg { fill: #fbfaf5; stroke: #b9b5a6; stroke-width: 2; }
+.plan-t { font-weight: bold; fill: var(--red-d); }
+.axis { stroke: #b0402a; stroke-width: 2; stroke-dasharray: 6 5; }
+.hall { fill: #8a7c66; }
+.pond-sq, .pond { fill: #a8cfd9; stroke: #6f9fae; stroke-width: 2; }
+.path-st { fill: #ddd3bd; }
+.tree { fill: #6f9a62; }
+.pav { fill: #4f4a42; }
+.bridge-z, .bridge-a { fill: none; stroke: #6b4a2e; stroke-width: 5; }
+.lang { fill: none; stroke: #8a7c66; stroke-width: 6; stroke-dasharray: 2 4; }
+.rock { fill: #9a958a; }
+.lbl text { fill: #9b3a22; font-weight: bold; }
+.vs { font-size: 2em; color: var(--red); text-align: center; }
+
+/* 隔而不隔 */
+.s-ge .bd { grid-template-columns: 1fr 30%; }
+#geSvg { flex: 1; min-height: 0; }
+.g-sky { fill: #eaf0ef; }
+.g-hill { fill: #d4ddd5; }
+.g-pav-b { fill: #8a7c66; } .g-pav-r { fill: #4f4a42; }
+.g-pond { fill: #a8cfd9; }
+.g-bamboo path { stroke: #4f8a4a; stroke-width: 5; fill: none; }
+.g-leaf ellipse { fill: #6fae62; }
+.g-rock { fill: #9a958a; }
+.g-banana path { stroke: #5c9a4e; stroke-width: 7; } .g-banana ellipse { fill: #7cbf68; }
+.g-wall-body { fill: #f8f6f0; stroke: #c9c4b4; stroke-width: 2; }
+.g-lattice { stroke: #6b6457; stroke-width: 4; fill: none; }
+.g-cap { fill: #6e706c; }
+.g-solid { fill: #f8f6f0; }
+.g-col { fill: #5a3e2a; }
+#geSvg .g-wall, #geSvg .g-solid, #geSvg .g-lang { display: none; }
+#geSvg[data-mode="lou"] .g-wall { display: inline; }
+#geSvg[data-mode="wall"] .g-wall, #geSvg[data-mode="wall"] .g-solid { display: inline; }
+#geSvg[data-mode="wall"] .g-lattice { display: none; }
+#geSvg[data-mode="lang"] .g-lang { display: inline; }
+.ge-info { min-height: 7em; line-height: 1.7; }
+.s-ge .media-btn { position: static; align-self: flex-start; }
+
+.s-words .clues { grid-template-columns: 1fr 1fr; }
+.s-words .clue, .s-words .clue-in { min-height: 9em; }
+.s-words .clue-face { font-size: 1.05em; }
+
+.sum-stage { justify-content: center; }
+.board p { margin: .2em 0; }
+
+/* 读读写写多为词语：卡片按词宽排开，不折行 */
+.s-ziyin .zy-grid-write { display: flex; flex-wrap: wrap; }
+.s-ziyin .zy-write { font-size: 1.6em; white-space: nowrap; min-width: 3.4em; }
+.s-ziyin .zy-write small { white-space: normal; max-width: 7em; margin: 0 auto; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cover-big { font-size: 2.2em; }
+  .s-cover .cover-title { font-size: 3.4em; }
+  .s-key .pick { font-size: 1.05em; }
+  .fm { grid-template-columns: 2.6em 1fr 2.6em; grid-template-rows: auto 1fr auto; min-height: 24em; }
+  .fm-side { font-size: .95em; padding: .3em; }
+  .fm-core { font-size: 1.15em; }
+  .fm-small { flex-wrap: wrap; justify-content: center; }
+  .fm-pic { min-height: 12em; }
+  #symSvg, #geSvg { flex: none; height: auto; }
+  .s-words .clues { grid-template-columns: 1fr; }
+  .compare { grid-template-columns: 1fr; }
+}
+@media (max-width: 820px), (max-height: 520px) {
+  #symSvg .t-m { font-size: 15px; }
+}

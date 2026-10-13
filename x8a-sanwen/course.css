@@ -1,0 +1,78 @@
+/* 散文二篇 · 本课配色：水彩的嫩绿、金黄与星空蓝 */
+:root {
+  --red: #a24a2c;
+  --red-d: #2f3550;
+  --gold: #c09a3e;
+  --gold-l: #f1e1b0;
+  --paper: #f3efe4;
+  --stone: #fbf9f2;
+  --ink-2: #585a5e;
+  --line: #d6d0bf;
+  --cao: #5d9a52;
+  --xing: #3b4f7a;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcfbf4 0, transparent 40%), radial-gradient(circle at 90% 95%, #e2e3d4 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .12em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; }
+.cover-poems span { font-family: var(--kai); font-size: 1.3em; background: rgba(93, 154, 82, .92); padding: .15em .7em; border-radius: .3em; text-shadow: none; }
+.cover-poems span + span { background: rgba(59, 79, 122, .92); }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+.sw-q { font-family: var(--kai); font-size: 2em; margin: .5em 0 0; }
+
+/* 字音页 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.4em, 1fr)); }
+.zy-write { font-size: 1.4em; white-space: nowrap; }
+.zy-write small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 旁批阅读 */
+.s-pp .bd { grid-template-columns: 1.5fr 1fr; }
+.s-pp .quote { font-size: 1.12em; }
+.ps { transition: background .5s; border-radius: .2em; }
+.ps.lit { background: #fff0b8; box-shadow: 0 0 0 .15em #fff0b8; }
+.s-pp[data-essay="b"] .quote { border-left-color: var(--xing); }
+.pbs { display: flex; flex-direction: column; gap: .55em; }
+.pb { font: inherit; text-align: left; cursor: pointer; background: #fffdf6; border: 1px dashed var(--gold); border-left: .3em solid var(--gold); border-radius: .4em; padding: .5em .8em; display: flex; flex-direction: column; gap: .2em; }
+.pb b { font-size: .8em; color: var(--red); }
+.pb span { font-family: var(--kai); font-size: 1.08em; line-height: 1.55; }
+.pb em { display: none; font-style: normal; font-size: .9em; line-height: 1.6; color: var(--xing); border-top: 1px dotted var(--line); padding-top: .3em; }
+.pb.open { background: #fff8e1; border-style: solid; }
+.pb.open em { display: block; }
+
+/* 意象卡 */
+.s-clues .bd { grid-template-columns: 1.4fr 1fr; }
+.s-clues .clues { grid-template-columns: 1fr 1fr; }
+.s-clues .clue-face.front { display: flex; flex-direction: column; justify-content: center; font-size: 1.35em; color: var(--red-d); }
+.s-clues .clue-face.front small { font-size: .55em; }
+.s-clues .clue-face.back { font-size: 1.02em; }
+.flow-pic { flex: 1; min-height: 6em; border-radius: .6em; background: center / cover no-repeat #dfe3d3; }
+.flow { width: 100%; height: auto; }
+.flow .dots circle { fill: var(--gold); animation: blink 3s ease-in-out infinite; }
+.flow .dots circle:nth-child(2) { animation-delay: .5s; } .flow .dots circle:nth-child(3) { animation-delay: 1s; } .flow .dots circle:nth-child(4) { animation-delay: 1.5s; } .flow .dots circle:nth-child(5) { animation-delay: 2s; } .flow .dots circle:nth-child(6) { animation-delay: 2.5s; }
+@keyframes blink { 0%, 100% { opacity: .15; } 40%, 60% { opacity: 1; } }
+.flow .t-s { font-size: 12px; fill: var(--ink-2); }
+
+/* 三种激情 */
+.three-wrap { flex: 1; min-height: 0; display: flex; }
+#three { width: 100%; height: 100%; filter: drop-shadow(0 .3em .6em rgba(20, 30, 50, .25)); }
+#three .t-m { font-size: 16px; font-family: var(--kai); }
+#three .t-l { font-family: var(--kai); font-size: 22px; }
+#three .t-s { font-size: 13px; }
+
+.sum-stage { justify-content: center; }
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.05em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--cao); color: #fff; font-family: var(--kai); font-size: 1.15em; }
+.sum-table tr:first-child th:last-child { background: var(--xing); }
+.sum-table tr:first-child th:first-child { background: transparent; }
+.sum-table th { background: transparent; color: var(--red); }
+.sum-table td { font-family: var(--kai); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .sw-q { font-size: 1.4em; }
+  .s-clues .clues { grid-template-columns: 1fr; }
+  .flow-pic { min-height: 10em; }
+  .three-wrap { overflow-x: auto; }
+  #three { width: 820px; max-width: none; height: auto; flex: none; }
+  .sum-table { font-size: .78em; border-spacing: .2em; }
+}

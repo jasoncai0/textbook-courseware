@@ -1,0 +1,85 @@
+/* 一着惊海天 · 本课配色：海军灰蓝、甲板深灰、信号橙 */
+:root {
+  --red: #c0532a;
+  --red-d: #1d3346;
+  --gold: #e09a3a;
+  --gold-l: #f6dcb0;
+  --paper: #edf0f2;
+  --stone: #f7f9fa;
+  --ink-2: #4d5a66;
+  --line: #c9d1d8;
+  --navy: #2a465e;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #ffffff 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe5ea 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.6em; letter-spacing: .12em; }
+.big-q { font-family: var(--kai); font-size: 2.4em; margin: .2em 0; color: #f6dcb0; }
+
+/* 读准字音 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+/* 时间轴 */
+.s-axis .stage { gap: 1em; }
+.axis { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(9, 1fr); gap: .35em; position: relative; }
+.axis::before { content: ""; position: absolute; left: 0; right: 0; top: 1.1em; height: .25em; background: var(--line); border-radius: 1em; }
+.ax { font: inherit; position: relative; width: 100%; background: none; border: none; cursor: pointer; padding: 2.2em .1em 0; text-align: center; color: var(--ink); }
+.ax::before { content: ""; position: absolute; left: 50%; top: .55em; translate: -50% 0; width: 1.1em; height: 1.1em; border-radius: 50%; background: #fff; border: .22em solid var(--navy); transition: background .3s, scale .3s; }
+.ax b { display: block; font-family: Georgia, var(--serif); color: var(--navy); font-size: .95em; white-space: nowrap; }
+.ax span { font-size: .85em; color: var(--ink-2); }
+.ax.hot::before { border-color: var(--red); }
+.ax.hot b { color: var(--red); }
+.ax.cur::before { background: var(--gold); scale: 1.3; }
+.ax.cur span { color: var(--red-d); font-weight: bold; }
+.eye { flex: 1; min-height: 0; background: var(--red-d); color: #e9eef2; border-radius: .7em; padding: .8em 1.2em; display: flex; flex-direction: column; gap: .5em; }
+.eye h3 { margin: 0; font-family: var(--kai); color: var(--gold-l); font-size: 1.4em; }
+.eye-cols { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; min-height: 0; }
+.ec { background: rgba(255, 255, 255, .07); border-radius: .5em; padding: .5em .8em; overflow: auto; }
+.ec b { display: block; color: #9fc3dc; font-size: .9em; margin-bottom: .3em; }
+.ec p { margin: 0; font-family: var(--kai); font-size: 1.05em; line-height: 1.75; }
+
+/* V 字 */
+.deck-svg { flex: 1; min-height: 0; width: 100%; }
+.deck-bg { fill: #4c5964; }
+.mid { stroke: #e8e8e8; stroke-width: 2; stroke-dasharray: 10 8; }
+.cables line { stroke: #c9cdd1; stroke-width: 3; }
+.cables line.c2 { stroke: #f1d08f; }
+.cables text { fill: #dfe3e6; font-size: 12px; }
+.track { stroke: rgba(255, 255, 255, .45); stroke-width: 10; stroke-linecap: round; fill: none; }
+.hook { fill: var(--gold); stroke: #fff; stroke-width: 2; }
+.vline { fill: none; stroke: var(--gold); stroke-width: 4; stroke-linejoin: round; }
+.vtext { fill: #fff; font-size: 30px; font-family: Georgia, serif; text-anchor: middle; font-weight: bold; }
+.cap { margin: 0; font-size: .8em; color: var(--ink-2); text-align: center; }
+
+/* 背景卡 */
+.bgc { background: #fff; border-radius: .5em; padding: .45em .9em; border-left: .3em solid var(--navy); }
+.bgc h3 { margin: 0; font-size: 1em; color: var(--red); }
+.bgc p { margin: .15em 0 0; font-family: var(--kai); line-height: 1.7; }
+
+/* 三种镜头 */
+.lens { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.ln { background: #fff; border-radius: .7em; padding: .8em 1.1em; text-align: center; border-top: .35em solid var(--line); }
+.ln.hot { border-top-color: var(--red); background: #fff8f0; }
+.ln-ico { font-size: 2em; color: var(--navy); }
+.ln h3 { margin: 0; font-family: var(--kai); font-size: 1.6em; color: var(--red-d); }
+.ln-m { margin: .1em 0 .4em; color: var(--red); font-family: var(--kai); }
+.ln p { line-height: 1.6; }
+.ln small { color: var(--ink-2); }
+
+/* 回顾 */
+.sum-stage { justify-content: center; }
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.05em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .45em .8em; text-align: center; font-family: var(--kai); }
+.sum-table th { background: var(--navy); color: #eef3f6; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .big-q { font-size: 1.5em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  .axis { grid-template-columns: repeat(3, 1fr); row-gap: .6em; }
+  .axis::before { display: none; }
+  .eye-cols, .lens { grid-template-columns: 1fr; }
+  .deck-svg { max-height: 45vh; }
+  .sum-table { font-size: .8em; border-spacing: .2em; }
+}

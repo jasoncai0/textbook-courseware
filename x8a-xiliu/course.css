@@ -1,0 +1,62 @@
+/* 周亚夫军细柳 · 本课配色：汉画像砖的土黄、赭石、墨 */
+:root {
+  --red: #8f3b22;
+  --red-d: #4e2213;
+  --gold: #b9893f;
+  --gold-l: #ecd7a6;
+  --paper: #f2ebdc;
+  --stone: #fbf6ea;
+  --ink-2: #645745;
+  --line: #d8c7a6;
+}
+.s-cover .cover-title { font-size: 5em; letter-spacing: .08em; }
+.cover-big { margin: .2em 0 .1em; font-family: var(--kai); font-size: 3.2em; color: #f6e2b5; }
+.poem-v.h .poem-text .pl { display: block; font-size: 1.05em; line-height: 1.55; }
+.poem-v.h.show-yi .pl { font-size: 1em; }
+
+/* 三军对比 */
+.camps { display: grid; grid-template-columns: 4.5em 1fr 1fr; gap: .45em .7em; }
+.c-h { text-align: center; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.c-h small { display: block; font-family: var(--serif); font-size: .55em; color: var(--ink-2); }
+.c-h.loose { color: #6b6b6b; }
+.c-l { display: grid; place-items: center; background: var(--red-d); color: #fff; border-radius: .4em; }
+.camps .tip { font-family: var(--kai); font-size: 1.12em; line-height: 1.6; }
+.red-t { background: #f3eeee; border-color: #cfc0c0; color: #6b4b4b; }
+.pics { display: flex; gap: .6em; }
+.pics .media-btn { position: static; }
+
+/* 六道关 */
+.gates { display: grid; grid-template-columns: repeat(6, 1fr); gap: .5em; }
+.gate { position: relative; background: #fff; border: 1px solid var(--line); border-top: .5em solid #7a6a55; border-radius: .3em; padding: .5em .6em; display: flex; flex-direction: column; gap: .35em; min-height: 9.5em; }
+.gate b { width: 1.8em; height: 1.8em; border-radius: 50%; display: grid; place-items: center; background: var(--red); color: #fff; font-family: var(--kai); }
+.gate span { font-family: var(--kai); font-size: 1.15em; line-height: 1.45; }
+.gate em { font-style: normal; color: var(--red); font-weight: bold; }
+.gate small { color: var(--ink-2); line-height: 1.5; }
+.gate.last { border-top-color: var(--gold); background: #fff8e6; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: .7em; }
+.two-col .tip { line-height: 1.7; }
+
+/* 字词抽屉 */
+.wd-grid { flex: 1; min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); gap: .6em; align-content: start; }
+.wd-card { font: inherit; text-align: left; background: #fff; border: 1px solid var(--line); border-left: .35em solid var(--red); border-radius: .5em; padding: .6em .9em; cursor: pointer; display: flex; flex-direction: column; gap: .2em; }
+.wd-card b { font-family: var(--kai); font-size: 1.6em; color: var(--red-d); }
+.wd-e { font-family: var(--kai); font-size: 1.05em; }
+.wd-a { color: #2f6b5e; font-size: .92em; line-height: 1.5; opacity: 0; transition: opacity .3s; }
+.wd-a::before { content: "释义："; color: var(--ink-2); }
+.wd-card.open .wd-a { opacity: 1; }
+.wd-card:not(.open)::after { content: "点一点看释义"; font-size: .75em; color: var(--ink-2); }
+
+.sum-stage { justify-content: center; }
+.board p { margin: .2em 0; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.8em; }
+  .cover-big { font-size: 1.9em; }
+  .camps { grid-template-columns: 3em 1fr 1fr; gap: .3em; }
+  .camps .tip { font-size: .92em; padding: .4em .5em; }
+  .c-h { font-size: 1.1em; }
+  .gates { grid-template-columns: 1fr 1fr; }
+  .gate { min-height: 0; }
+  .two-col { grid-template-columns: 1fr; }
+  .wd-grid { grid-template-columns: 1fr; }
+}

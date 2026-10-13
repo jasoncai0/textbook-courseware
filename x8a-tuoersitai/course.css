@@ -1,0 +1,88 @@
+/* 列夫·托尔斯泰 · 本课配色：炭笔灰、旧纸白、冷银光 */
+:root {
+  --red: #8b3a2e;
+  --red-d: #262626;
+  --gold: #8f8f8f;
+  --gold-l: #e6e1d6;
+  --paper: #ecebe7;
+  --stone: #f7f6f3;
+  --ink-2: #565656;
+  --line: #cfccc4;
+  --char: #2d2d2f;
+  --silver: #b9cbd8;
+}
+.s-cover .cover-title { font-size: 5.6em; letter-spacing: .06em; }
+.big-q { font-family: var(--kai); font-size: 1.9em; line-height: 1.5; margin: .2em 0 .3em; color: #e9ecef; }
+
+/* 读准字音 */
+.zy-grid { grid-template-columns: repeat(auto-fill, minmax(6.5em, 1fr)); }
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9em, 1fr)); }
+.zy-write { font-size: 1.3em; }
+.zy-write small:empty { display: none; }
+
+/* 抑扬柱 */
+.yy { flex: 1; min-height: 16em; display: grid; grid-template-columns: repeat(9, 1fr); gap: .4em; background: linear-gradient(transparent calc(50% - 1px), var(--char) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)); }
+.yc { position: relative; }
+.yc .bar { position: absolute; left: 20%; right: 20%; border-radius: .3em; }
+.yc .bar.down { top: 50%; background: linear-gradient(#9a9a9a, #5d5d5d); }
+.yc .bar.up { bottom: 50%; background: linear-gradient(#e4f0f7, var(--silver)); box-shadow: 0 0 .8em rgba(160, 200, 230, .8); }
+.yc small { position: absolute; left: 0; right: 0; top: 50%; translate: 0 -50%; text-align: center; font-size: .7em; background: var(--paper); color: var(--ink-2); }
+.yc p { position: absolute; left: .1em; right: .1em; margin: 0; font-family: var(--kai); font-size: .88em; line-height: 1.45; text-align: center; }
+.yc p.down { top: .2em; color: #555; }
+.yc p.up { bottom: .2em; color: var(--red); }
+
+/* 比喻表 */
+.fig { width: 100%; border-collapse: separate; border-spacing: .3em; }
+.fig th { background: var(--char); color: #eee; font-weight: normal; padding: .3em; border-radius: .3em; font-family: var(--kai); }
+.fig td { background: #fff; padding: .35em .7em; border-radius: .3em; font-family: var(--kai); line-height: 1.5; }
+.fig td:first-child { width: 5.5em; text-align: center; color: var(--red); }
+.house { background: #fff; border-radius: .6em; padding: .8em 1.1em; border-top: .35em solid var(--char); }
+.h-q { margin: 0 0 .5em; font-family: var(--kai); font-size: 1.1em; line-height: 1.8; background: #f3f2ee; padding: .4em .7em; border-radius: .3em; }
+.h-a { margin: 0; line-height: 1.75; }
+.h-a b { color: var(--red); }
+
+/* 聚光灯 */
+.s-eye .bd { grid-template-columns: 62% 1fr; }
+.spot { position: relative; flex: 1; min-height: 0; overflow: auto; background: #f5f3ee; border-radius: .6em; --x: 50%; --y: 30%; }
+.spot-text { padding: .8em 1.2em; font-family: var(--kai); font-size: 1.08em; line-height: 1.9; }
+.spot-text p { margin: 0 0 .5em; text-indent: 2em; }
+.spot .k { cursor: pointer; border-bottom: 1px dotted #999; }
+.spot .k.hit { background: #fff1c2; color: var(--red); }
+.spot-mask { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at var(--x) var(--y), transparent 0, transparent 5.5em, rgba(18, 18, 22, .9) 9em); opacity: 0; transition: opacity .5s; min-height: 100%; }
+.spot.lit .spot-mask { opacity: 1; }
+.eye-btns .btn { border-color: var(--char); color: var(--char); }
+.eye-btns .btn.solid { background: var(--char); color: #fff; }
+
+/* 旁批三问 */
+.qbtns { flex-direction: column; }
+.qbtns .btn { text-align: left; font-size: 1.05em; padding: .6em 1em; }
+.qa { flex: 1; background: var(--char); color: #eee; border-radius: .6em; padding: 1em 1.3em; }
+.qa .hint { color: #bbb; }
+.qa h3 { margin: 0 0 .4em; font-family: var(--kai); color: var(--silver); font-size: 1.4em; }
+.qa p { line-height: 1.85; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; gap: 1.2em; }
+.sum-flow { display: flex; align-items: center; gap: .6em; }
+.sum-flow > div { flex: 1; background: #fff; border-radius: .6em; padding: .8em; text-align: center; border-top: .35em solid #8a8a8a; }
+.sum-flow > div.up { border-top-color: var(--silver); background: #f4f8fb; }
+.sum-flow b { display: block; font-family: var(--kai); font-size: 2.2em; color: var(--red-d); }
+.sum-flow i { font-style: normal; color: var(--red); font-family: var(--kai); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.6em; }
+  .big-q { font-size: 1.2em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7em, 1fr)); }
+  .yy { display: flex; flex-direction: column; gap: .35em; min-height: 0; background: none; }
+  .yc { display: flex; gap: .6em; align-items: center; background: #fff; border-radius: .4em; padding: .35em .6em; }
+  .yc .bar { display: none; }
+  .yc small, .yc p { position: static; translate: none; background: none; text-align: left; }
+  .yc small { flex: none; width: 3.5em; }
+  .yc p.down::before { content: "▼ 抑　"; color: #777; }
+  .yc p.up::before { content: "▲ 扬　"; color: var(--red); }
+  .spot { min-height: 60vh; flex: none; }
+  .sum-flow { flex-direction: column; }
+}
+.pic { flex: 1; min-height: 7em; border-radius: .6em; background: #ddd center / cover no-repeat; position: relative; }
+.pic span { position: absolute; left: .5em; bottom: .5em; background: rgba(0, 0, 0, .55); color: #fff; font-size: .75em; padding: .1em .5em; border-radius: .2em; }
+@media (max-width: 820px), (max-height: 520px) { .pic { flex: none; height: 11em; } }

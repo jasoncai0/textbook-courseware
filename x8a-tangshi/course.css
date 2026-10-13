@@ -1,0 +1,104 @@
+/* 唐诗五首 · 本课配色：重彩赭红、石青、金 */
+:root {
+  --red: #9a3a24;
+  --red-d: #4a261b;
+  --gold: #b08a3e;
+  --gold-l: #efdcae;
+  --paper: #f4ede0;
+  --stone: #fbf7ee;
+  --ink-2: #5f564a;
+  --line: #dacfb6;
+  --qing: #2f5d6e;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcf8ef 0, transparent 40%), radial-gradient(circle at 90% 95%, #eadcc0 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; }
+.cover-poems { display: flex; gap: .5em; flex-wrap: wrap; max-width: 46em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.25em; background: rgba(154, 58, 36, .9); padding: .2em .7em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(5.4em, 1fr)); }
+
+/* 通用：诗文小框 */
+.pbox { background: #fff; border-radius: .6em; padding: .6em 1.1em; border-left: .3em solid var(--red); font-family: var(--kai); font-size: 1.3em; line-height: 1.75; }
+.pbox p { margin: 0; }
+.pbox .hot { color: var(--red); }
+.pbox em { font-style: normal; }
+.s-yw .bd, .s-hh .bd, .s-ss .bd, .s-jm .bd, .s-qt .bd { grid-template-columns: 1.35fr 1fr; }
+.s-yw svg, .s-hh svg, .s-ss svg, .s-jm svg, .s-qt svg { width: 100%; flex: 1; min-height: 0; filter: drop-shadow(0 .3em .6em rgba(40, 30, 20, .2)); }
+svg .t-m { font-size: 15px; }
+svg .t-s { font-size: 12px; }
+
+/* 野望 */
+#ywSvg .yw-l { transition: opacity .9s; }
+#ywSvg .yw-l.pin { opacity: 1 !important; }
+#ywSvg .yw-l.unpin { opacity: 0 !important; }
+.yw-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4em; }
+.yw-chips button { font: inherit; font-family: var(--kai); font-size: 1.05em; padding: .4em .3em; border-radius: .5em; border: 1px dashed var(--gold); background: #fffaf0; cursor: pointer; }
+.yw-chips button.on { border-style: solid; background: var(--red); color: #fff; border-color: var(--red); }
+
+/* 黄鹤楼 */
+#hhSvg .hh-dusk, #hhSvg .hh-mist { opacity: 0; transition: opacity 1.2s; }
+.s-hh:has(.hl.hot.on) #hhSvg .hh-dusk { opacity: 1; }
+.s-hh:has(.hl.hot.on) #hhSvg .hh-mist { opacity: .8; }
+.hh-lines, .jm-lines { display: flex; flex-direction: column; gap: .5em; }
+.hl, .jl { background: #fff; border-radius: .5em; padding: .45em .9em; border-left: .3em solid var(--qing); }
+.hl b { font-size: .85em; color: var(--qing); }
+.hl p, .jl p { margin: .1em 0; font-family: var(--kai); font-size: 1.2em; line-height: 1.6; }
+.hl span, .jl span { font-size: .85em; color: var(--ink-2); line-height: 1.5; }
+.hl.hot, .jl.hot { border-left-color: var(--red); background: #fff6ec; }
+.jl em { font-style: normal; color: var(--red); font-weight: bold; }
+
+/* 使至塞上 */
+#ssSvg path, #ssSvg circle { transition: opacity .6s; }
+.ss-try { display: flex; align-items: center; gap: .6em; flex-wrap: wrap; font-size: .95em; }
+.ss-try .seg { display: inline-flex; gap: .2em; }
+#ssLine em { font-style: normal; color: #fff; background: var(--red); padding: 0 .15em; border-radius: .2em; }
+
+/* 渡荆门 */
+#jmSvg .jm-night, #jmSvg .jm-moon, #jmSvg .jm-back { opacity: 0; transition: opacity 1.2s; }
+#jmSvg.night .jm-night { opacity: .55; }
+#jmSvg.night .jm-moon { opacity: 1; }
+#jmSvg.back .jm-back { opacity: 1; }
+#jmBoat, #qtWalker { transition: transform 1.4s ease; }
+
+/* 钱塘湖 */
+.qt-poem.marked em { color: #fff; background: #4f8a4a; border-radius: .2em; padding: 0 .1em; }
+#qtMark { align-self: flex-start; }
+
+/* 春天阶段 */
+.s-spring .sort-row { grid-template-columns: 1fr auto 16em; }
+.s-spring .sort-row .s { font-size: 1.15em; }
+
+/* 律诗对齐表 */
+.s-lv .bd { grid-template-columns: 1.3fr 1fr; }
+.lv-grid { display: flex; flex-direction: column; gap: .25em; background: #fff; border-radius: .6em; padding: .6em .9em; }
+.lv-row { display: flex; align-items: center; gap: .15em; }
+.lv-row:nth-child(odd) { margin-top: .35em; }
+.lv-row b { width: 3.2em; font-size: .8em; color: var(--ink-2); font-weight: normal; }
+.lv-row i { font-style: normal; font-family: var(--kai); font-size: 1.7em; width: 1.35em; height: 1.35em; line-height: 1.35em; text-align: center; border-radius: .2em; transition: background .4s, color .4s; }
+.show-dui .lv-row i.sg0 { background: #f6dccf; }
+.show-dui .lv-row i.sg1 { background: #d7e8ee; }
+.show-dui .lv-row i.sg2 { background: #e3ecd2; }
+.show-dui .lv-row i.sg3 { background: #f1e3b6; }
+.show-dui .dui-line { outline: 1px dashed var(--gold); outline-offset: 2px; border-radius: .2em; }
+.show-yun .yun-line i:last-child { background: var(--red); color: #fff; }
+
+.rc-boxes .recite-lines { font-size: 1.8em; }
+.rc-boxes .recite-lines p { display: inline-block; width: 50%; }
+.sum-stage { justify-content: center; }
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .35em; font-size: 1.02em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .45em .8em; text-align: center; }
+.sum-table th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.1em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table td:first-child { color: var(--red); font-weight: bold; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .s-yw svg, .s-hh svg, .s-ss svg, .s-jm svg, .s-qt svg { flex: none; height: auto; }
+  .pbox { font-size: 1.1em; }
+  .s-spring .sort-row { grid-template-columns: 1fr; }
+  .lv-row i { font-size: 1.3em; }
+  .rc-boxes .recite-lines { font-size: 1.25em; }
+  .rc-boxes .recite-lines p { display: block; width: auto; }
+  .sum-table { font-size: .76em; border-spacing: .2em; }
+  .sum-table th, .sum-table td { padding: .4em .3em; }
+}
