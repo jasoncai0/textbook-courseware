@@ -1,0 +1,70 @@
+/* 无言之美 · 本课配色：炭笔灰 + 淡青绿 + 留白 */
+:root {
+  --red: #4f6f68;
+  --red-d: #2c3331;
+  --gold: #b49a62;
+  --gold-l: #e8dfc6;
+  --paper: #f2f1ec;
+  --stone: #fbfbf8;
+  --ink-2: #5d625f;
+  --line: #d3d4cc;
+  --yan: #8a6d5a;
+  --yi: #4f6f68;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+.frame { background-image: radial-gradient(circle at 12% 8%, #ffffff 0, transparent 40%), radial-gradient(circle at 90% 95%, #e0e1da 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .3em; }
+.wy-say { font-family: var(--kai); font-size: 2.6em; margin: .1em 0; color: #eef3ee; letter-spacing: .1em; }
+.wy-say.small { font-size: 1.5em; opacity: .9; }
+.wy-ask { font-size: 1.3em; margin: .4em 0 .8em; color: #f4e7c8; }
+
+/* ---------- 言与意 ---------- */
+.s-yan .bd { grid-template-columns: 40% 1fr; }
+.wy-vase { flex: 1; min-height: 0; width: 100%; }
+.wy-real { fill: #e6ece8; stroke: var(--red-d); stroke-width: 3; opacity: 0; transition: opacity .6s; }
+.wy-dash { fill: none; stroke: var(--yi); stroke-width: 4; stroke-dasharray: 14 12; stroke-linecap: round; transition: opacity .6s; }
+.s-yan.real .wy-real { opacity: 1; }
+.s-yan.real .wy-dash { opacity: .25; }
+.wy-cap { font-family: var(--kai); font-size: 15px; text-anchor: middle; fill: var(--ink-2); }
+.wy-tab { display: flex; flex-direction: column; gap: .3em; }
+.wt-h, .wt-r { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; }
+.wt-h b { text-align: center; color: #fff; font-family: var(--kai); font-size: 1.5em; border-radius: .3em; }
+.wt-h .y { background: var(--yan); } .wt-h .i { background: var(--yi); }
+.wt-r span { background: #fff; border-radius: .3em; padding: .35em .8em; text-align: center; font-family: var(--kai); font-size: 1.2em; }
+.s-yan .tip { font-size: .98em; }
+
+/* ---------- 例证卡 ---------- */
+.wy-cards { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: .6em; flex: 1; min-height: 0; }
+.wy-card { position: relative; display: flex; flex-direction: column; gap: .2em; background: #fff; border-radius: .5em; padding: .5em .7em; border-top: .3em solid var(--yi); overflow: hidden; transition: border-color .4s, background .4s; }
+.wy-card.jin { border-top-color: var(--yan); background: #faf5f0; }
+.wy-cpic { height: 3.6em; margin: -.5em -.7em .2em; background: #d9dbd4 center / cover no-repeat; }
+.wy-card small { color: var(--ink-2); font-size: .72em; }
+.wy-card b { font-size: .95em; color: var(--red-d); }
+.wy-v { margin: 0; font-family: var(--kai); font-size: 1.02em; line-height: 1.5; }
+.wy-v.jin { display: none; color: var(--yan); }
+.wy-card.jin .wy-v.yan { display: none; }
+.wy-card.jin .wy-v.jin { display: block; }
+.wy-card em { font-style: normal; font-size: .76em; color: var(--yi); line-height: 1.4; margin-top: auto; }
+.wy-card .btn { align-self: flex-start; font-size: .75em; padding: .15em .7em; }
+
+/* ---------- 删字器 ---------- */
+.s-less .bd { grid-template-columns: 1fr 1fr; }
+.wy-cut { margin: 0; min-height: 6.5em; display: flex; align-items: center; font-family: var(--kai); font-size: 1.45em; line-height: 1.7; background: var(--stone); border-left: .3em solid var(--yan); border-radius: .4em; padding: .6em 1em; transition: font-size .5s; }
+.wy-cut.short { font-size: 1.9em; justify-content: center; border-left-color: var(--yi); color: var(--yi); letter-spacing: .1em; }
+.wy-meter { display: grid; grid-template-columns: 6em 1fr; gap: .5em; align-items: center; font-size: .9em; }
+.wy-meter .meter > i { background: var(--yan); }
+.wy-meter .meter.gold > i { background: var(--yi); }
+.s-less .btn[disabled] { opacity: .4; cursor: default; }
+.s-less .stage + .stage { justify-content: center; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .wy-say { font-size: 1.8em; }
+  .wy-say.small { font-size: 1.1em; }
+  .wy-vase { flex: none; height: 16em; }
+  .wy-cards { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+  .wy-cut { font-size: 1.15em; }
+  .wy-cut.short { font-size: 1.6em; }
+}

@@ -1,0 +1,116 @@
+/* 祖国啊，我亲爱的祖国 · 本课配色：木刻暖褐 + 朝霞红 */
+:root {
+  --red: #b23a26;
+  --red-d: #3a2a20;
+  --gold: #c98a3c;
+  --gold-l: #ecd3a8;
+  --paper: #f1eadf;
+  --stone: #faf6ef;
+  --ink-2: #66584b;
+  --line: #d6c8b4;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 4.6em; letter-spacing: .08em; }
+.cry { margin: 0; font-family: var(--kai); font-size: 3em; color: #ffd9a0; letter-spacing: .1em; }
+
+/* 朗读页 */
+.s-read { background: #2a211b; color: #efe5d4; }
+.s-read.bright { background: #3b2016; }
+.poster-bg { position: absolute; inset: 0; background: center / cover no-repeat; opacity: .2; }
+.s-read .hd { position: relative; border-bottom-color: rgba(236, 211, 168, .5); }
+.s-read .hd h2 { color: #f6d9a6; }
+.st-btn { margin-left: auto; background: transparent; color: #f6d9a6; border-color: #f6d9a6; }
+.s-read .bd { position: relative; grid-template-columns: 1.75fr 1fr; align-items: center; }
+.poem-text { font-family: var(--kai); font-size: 1.3em; line-height: 1.62; padding-left: .5em; text-shadow: 0 2px 6px rgba(0, 0, 0, .6); display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; align-items: start; }
+.poem-text p { margin: 0; }
+.poem-text .ind { padding-left: 2em; }
+
+.ws { font-style: normal; color: #ffc47a; border-bottom: 2px solid rgba(255, 196, 122, .6); }
+.ws.s2 { border-bottom-style: dashed; }
+.cry-l { color: #ffb48a; }
+.poem-text b { font-weight: normal; transition: color .3s; }
+.show-st .poem-text b { color: #ff8f6b; background: radial-gradient(circle, #ff8f6b 38%, transparent 44%) repeat-x 0 100% / .42em .26em; padding-bottom: .18em; }
+.s-read .tip { color: var(--ink); }
+@media (min-width: 821px) and (min-height: 521px) {
+  .frame:has(.s-read.active) .ctrl .pageno { color: #e9e3d6; }
+  .frame:has(.s-read.active) .progress i:not(.done):not(.cur) { background: rgba(255, 255, 255, .25); }
+}
+
+/* 意象墙 */
+.s-wall .stage { justify-content: center; gap: 1em; }
+.wall { display: grid; grid-template-columns: repeat(6, 1fr); gap: .8em; height: 21em; }
+.wt { --lv: 0; position: relative; font: inherit; cursor: pointer; padding: 0; border: none; border-radius: .5em; overflow: hidden; color: #fff; text-align: left; display: flex; flex-direction: column; justify-content: flex-end;
+  background: linear-gradient(160deg, color-mix(in srgb, #3a2a20 calc(100% - var(--lv) * 100%), #e2683c), color-mix(in srgb, #1f1712 calc(100% - var(--lv) * 100%), #f2b04a)); }
+.wt-pic { position: absolute; inset: 0; background: center / cover no-repeat; filter: grayscale(calc(1 - var(--lv))) brightness(calc(.6 + var(--lv) * .45)); }
+.wt-icon { position: absolute; inset: 1.2em 1.2em 6em; display: flex; align-items: center; justify-content: center; }
+.wt-icon svg { width: 80%; height: 100%; fill: #b9a184; }
+.wt-icon .ray { fill: none; stroke: #b9a184; stroke-width: 2.5; stroke-linecap: round; }
+.wt-front { position: relative; padding: 2.4em .8em .8em; background: linear-gradient(transparent, rgba(20, 14, 10, .8) 40%); display: flex; flex-direction: column; }
+.wt-front em { font-style: normal; font-family: var(--kai); font-size: 1em; color: #ffd7a0; line-height: 1.4; }
+.wt-front b { font-family: var(--kai); font-size: 2em; }
+.wt-back { position: absolute; inset: 0; background: rgba(251, 246, 238, .96); color: var(--ink); padding: 1em .9em; display: flex; flex-direction: column; gap: .7em; opacity: 0; transition: opacity .35s; }
+.wt-back q { font-family: var(--kai); font-size: 1.1em; line-height: 1.7; quotes: none; }
+.wt-back i { font-style: normal; color: var(--red); font-size: .95em; border-top: 1px dashed var(--line); padding-top: .5em; }
+.wt.open .wt-back { opacity: 1; }
+.wall-bar { display: flex; justify-content: space-between; padding: .5em 1em; border-radius: 2em; color: #fff; font-family: var(--kai); font-size: 1.15em;
+  background: linear-gradient(90deg, #3a2a20, #8a5a3a 50%, #e2683c 80%, #f2b04a); }
+
+/* 情感台阶 */
+.s-steps .bd { grid-template-columns: 1.2fr 1fr; }
+.stairs { flex: 1; display: flex; align-items: flex-end; gap: .6em; padding: 1em; background: #fff; border-radius: .6em; border: 1px solid var(--line); min-height: 18em; }
+.stair { flex: 1; font: inherit; cursor: pointer; border: none; border-radius: .4em .4em 0 0; color: #fff; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: .7em .3em; gap: .2em; }
+.stair:nth-child(1) { background: #5a4636; } .stair:nth-child(2) { background: #8a5a3a; }
+.stair:nth-child(3) { background: #d0703c; } .stair:nth-child(4) { background: #b23a26; }
+.stair b { font-family: var(--kai); font-size: 1.35em; text-align: center; line-height: 1.3; }
+.stair small { opacity: .85; }
+.stair.sel { outline: .25em solid var(--gold); outline-offset: .15em; }
+.stair-info { min-height: 8em; line-height: 1.75; }
+.yw { font-family: var(--kai); color: var(--red-d); }
+
+/* 同心圆 */
+.s-ring .bd { grid-template-columns: 1.1fr 1fr; }
+#rings { width: 100%; height: 100%; }
+#rings .ring { cursor: pointer; }
+#rings .ring circle { stroke: #fff; stroke-width: 3; transition: filter .3s; }
+#rings .r3 circle { fill: #b23a26; } #rings .r2 circle { fill: #d0703c; }
+#rings .r1 circle { fill: #e9a764; } #rings .r0 circle { fill: #fbe4c0; }
+#rings .ring-t { font-size: 20px; font-family: var(--kai); font-weight: bold; fill: #fff; }
+#rings .r0 .ring-t { fill: var(--red-d); }
+#rings .ring.sel circle { filter: brightness(1.15) drop-shadow(0 0 6px rgba(0, 0, 0, .3)); }
+.ring-info { min-height: 6em; line-height: 1.75; }
+
+/* 接句 */
+.s-follow .bd { grid-template-columns: 1.5fr 1fr; }
+.follow { display: flex; flex-direction: column; gap: .8em; justify-content: center; flex: 1; }
+.fl-row { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .7em 1em; display: grid; grid-template-columns: 1fr auto; gap: .4em .8em; align-items: center; }
+.fl-row p { margin: 0; font-family: var(--kai); font-size: 1.25em; line-height: 1.9; }
+.fl-row input { font: inherit; font-size: .9em; border: none; border-bottom: 2px solid var(--gold); background: #fff8ec; width: 10em; padding: 0 .3em; margin: 0 .2em; }
+.fl-row small { grid-column: 1 / -1; color: var(--red); font-family: var(--kai); font-size: 1em; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; gap: 1em; }
+.sum-flow { display: flex; justify-content: center; align-items: center; gap: .5em; font-family: var(--kai); font-size: 1.35em; flex-wrap: wrap; }
+.sum-flow span { background: #fff; padding: .2em .7em; border-radius: .4em; border-bottom: .2em solid var(--red); }
+.sum-flow i { font-style: normal; color: var(--red); }
+.board p { margin: 0; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.2em; }
+  .cry { font-size: 1.8em; }
+  .poem-text { font-size: 1.05em; padding-left: 0; grid-template-columns: 1fr; }
+  .st-btn { margin-left: 0; }
+  .wall { grid-template-columns: 1fr 1fr; height: auto; }
+  .wt { min-height: 10em; }
+  .wt-icon { inset: .6em .6em 4.5em; }
+  .wt-back q { font-size: .95em; }
+  .wall-bar { font-size: .85em; }
+  .stairs { min-height: 15em; padding: .5em; gap: .3em; }
+  .stair b { font-size: 1em; }
+  .fl-row { grid-template-columns: 1fr; }
+  .fl-row p { font-size: 1.05em; }
+  .fl-row input { width: 8em; }
+  .sum-flow { font-size: 1em; }
+}

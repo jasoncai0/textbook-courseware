@@ -1,0 +1,84 @@
+/* 梅岭三章 · 本课配色：夜墨青灰 + 梅红 */
+:root {
+  --red: #a8303a;
+  --red-d: #22262b;
+  --gold: #b08b57;
+  --gold-l: #e4d3b5;
+  --paper: #eeece6;
+  --stone: #f8f7f3;
+  --ink-2: #5a5f63;
+  --line: #cfccc3;
+}
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+.s-cover .cover-title { font-size: 5.6em; letter-spacing: .3em; }
+.preface { font-family: var(--kai); font-size: 1.5em; line-height: 1.8; color: #f3e3c4; max-width: 24em; margin: .4em 0 1em; }
+
+/* 三章竖排 */
+.s-chant { background: #1c1f22; color: #ece6da; }
+.chant-bg { position: absolute; inset: 0; background: center / cover no-repeat; opacity: .28; }
+.s-chant .hd { position: relative; border-bottom-color: rgba(228, 211, 181, .4); }
+.s-chant .hd h2 { color: #f0dcb8; }
+.rh-btn { margin-left: auto; background: transparent; color: #f0dcb8; border-color: #f0dcb8; }
+.s-chant .bd { position: relative; grid-template-rows: 1fr auto; grid-template-columns: minmax(0, 1fr); gap: .8em; }
+.chant { display: flex; flex-direction: row-reverse; justify-content: center; gap: 2.2em; min-height: 0; min-width: 0; }
+.ch-poem { writing-mode: vertical-rl; font-family: var(--kai); font-size: 1.55em; line-height: 1.8; letter-spacing: .1em; text-shadow: 0 2px 8px rgba(0, 0, 0, .7); display: flex; flex-direction: column; flex-wrap: nowrap; }
+.ch-poem h3 { margin: 0 0 0 .4em; font-size: .75em; color: #e9a2a8; letter-spacing: .3em; }
+.ch-poem p { margin: 0; }
+.ch-poem .rhy { display: none; }
+.ch-poem .rhy i { font-style: normal; color: #e9a2a8; margin: .1em 0; }
+.show-rhy .ch-poem .plain { display: none; }
+.show-rhy .ch-poem .rhy { display: inline; }
+.ch-mood { writing-mode: horizontal-tb; margin-right: .7em; width: 6.4em; font-size: .62em; line-height: 1.55; letter-spacing: 0; background: rgba(250, 245, 236, .93); color: var(--ink); border-radius: .4em; padding: .6em .7em; display: flex; flex-direction: column; gap: .2em; align-self: flex-start; text-shadow: none; }
+.ch-mood b { color: var(--red); font-size: 1.3em; }
+.ch-mood em { font-style: normal; color: var(--red-d); font-weight: bold; }
+.ch-mood small { font-size: .82em; color: var(--ink-2); }
+.layers { display: flex; justify-content: center; align-items: center; gap: .6em; font-family: var(--kai); font-size: 1.2em; flex-wrap: wrap; }
+.layers span { background: rgba(250, 245, 236, .92); color: var(--red-d); padding: .2em .8em; border-radius: .3em; }
+.layers span:last-child { background: var(--red); color: #fff; }
+.layers i { font-style: normal; color: #e9a2a8; }
+@media (min-width: 821px) and (min-height: 521px) {
+  .frame:has(.s-chant.active) .ctrl .pageno { color: #e9e3d6; }
+  .frame:has(.s-chant.active) .progress i:not(.done):not(.cur) { background: rgba(255, 255, 255, .25); }
+}
+
+/* 意象卡 */
+.s-img .stage { justify-content: center; }
+.img-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; }
+.ic { position: relative; font: inherit; cursor: pointer; height: 8.6em; border: 1px solid var(--line); border-radius: .5em; background: #fff; padding: 0; overflow: hidden; }
+.ic-front { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2em; }
+.ic-front b { font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.ic-front small { font-size: .8em; color: #fff; background: var(--ink-2); padding: .05em .7em; border-radius: 1em; }
+.ic.g0 { background: #e9e7e2; border-color: #a9a59c; }
+.ic.g1 { background: #fbecec; border-color: #e0a7ad; }
+.ic.g1 .ic-front small { background: var(--red); }
+.ic-back { position: absolute; inset: 0; background: #2a2e33; color: #f1eadf; padding: .6em .8em; text-align: left; font-size: .88em; line-height: 1.55; display: flex; flex-direction: column; opacity: 0; transition: opacity .3s; }
+.ic-back i { font-style: normal; color: #e9a2a8; font-size: .85em; }
+.ic.open .ic-back { opacity: 1; }
+.img-btns { justify-content: center; }
+
+/* 背诵 */
+.s-recite .stage { justify-content: center; }
+.s-recite .recite-lines { font-size: 1.7em; }
+
+/* 回顾 */
+.s-sum { overflow: hidden; }
+.poster-sum { position: absolute; inset: 0; background: center / cover no-repeat; opacity: .16; }
+.s-sum .hd, .s-sum .bd { position: relative; }
+.sum-stage { justify-content: center; }
+.board p { margin: 0; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.8em; }
+  .preface { font-size: 1.05em; }
+  .rh-btn { margin-left: 0; }
+  .chant { flex-direction: column; gap: 1em; align-items: center; }
+  .ch-poem { writing-mode: horizontal-tb; font-size: 1.3em; line-height: 1.7; align-items: center; }
+  .ch-poem h3 { margin: 0; }
+  .ch-mood { width: auto; margin: .4em 0 0; font-size: .7em; align-self: stretch; }
+  .layers { font-size: .95em; }
+  .img-cards { grid-template-columns: 1fr 1fr; }
+  .s-recite .recite-lines { font-size: 1.25em; }
+}

@@ -1,0 +1,157 @@
+/* 屈原 · 本课配色：剧场的夜蓝、雷电的冷白、火光的橙红 */
+:root {
+  --red: #b3392a;
+  --red-d: #2a1d24;
+  --gold: #d6a344;
+  --gold-l: #f2d995;
+  --paper: #efeae2;
+  --stone: #faf7f1;
+  --ink-2: #5d5560;
+  --line: #d3cbc0;
+  --night: #1a1f2e;
+  --bolt: #cfe0ff;
+}
+.s-cover .cover-title { font-size: 6em; letter-spacing: .1em; }
+.s-cover .cover-title small { font-size: .3em; letter-spacing: 0; margin-left: .3em; }
+.cover-big { margin: .2em 0 0; font-family: var(--kai); font-size: 3.2em; color: var(--bolt); text-shadow: 0 0 18px rgba(160, 190, 255, .7); }
+
+/* 五幕 */
+.acts { display: grid; grid-template-columns: repeat(5, 1fr); gap: .6em; }
+.act { background: #fff; border-radius: .5em; padding: .7em .8em; border-top: .45em solid #8b8592; display: flex; flex-direction: column; gap: .35em; min-height: 11em; }
+.act b { font-family: var(--kai); font-size: 1.4em; color: var(--red-d); }
+.act span { font-family: var(--kai); font-size: 1.1em; line-height: 1.5; }
+.act small { margin-top: auto; color: var(--ink-2); line-height: 1.5; }
+.act.now { background: var(--night); color: #e6e9f2; border-top-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+.act.now b { color: var(--gold-l); }
+.act.now small { color: #aab3c8; }
+.conflict { background: var(--red-d); color: #f1e8e0; border-radius: .6em; padding: .7em 1.2em; font-family: var(--kai); font-size: 1.25em; }
+.conflict p { margin: .1em 0; }
+.conflict b { color: var(--gold-l); }
+.conflict em { font-style: normal; color: #ff8a6a; margin: 0 .4em; }
+.conflict .sub-c { font-size: .85em; color: #cfc4bb; }
+
+/* 幕启 */
+.plan-wrap { position: relative; display: flex; flex-direction: column; gap: .5em; min-height: 0; }
+.plan-img { flex: 1; min-height: 6em; border-radius: .5em; background: var(--night) center / cover no-repeat; }
+.plan { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: .3em; background: var(--night); padding: .4em; border-radius: .5em; }
+.room { background: #2a3146; color: #dfe3ee; border-radius: .3em; padding: .4em .5em; display: flex; flex-direction: column; gap: .2em; font-size: .85em; line-height: 1.45; }
+.room b { color: var(--gold-l); font-family: var(--kai); font-size: 1.2em; }
+.room i { font-style: normal; color: #9fb0d6; margin-top: auto; }
+.room.mid { background: #3a3350; }
+.plan-wrap .media-btn { top: .4em; right: .4em; }
+.dir-text { display: flex; flex-direction: column; gap: .5em; font-family: var(--kai); font-size: 1.25em; line-height: 1.8; }
+.dir-text p { margin: 0; }
+.sd { border-radius: .2em; padding: 0 .15em; }
+.sd[data-step] { opacity: 1; transform: none; }
+.sd.a.on { background: #f6e2b4; }
+.sd.b.on { background: #d6e2f7; }
+.sd.c.on { background: #f3d0c8; }
+.legend-sd { display: flex; gap: .6em; font-family: var(--serif); font-size: .7em; }
+.legend-sd span { padding: .1em .6em; border-radius: .3em; }
+.legend-sd .a { background: #f6e2b4; } .legend-sd .b { background: #d6e2f7; } .legend-sd .c { background: #f3d0c8; }
+.dir-text .tip { font-family: var(--serif); font-size: .8em; }
+
+/* 剧本版式 */
+.role-bar { align-items: center; }
+.rb-l { color: var(--ink-2); font-size: .9em; }
+.plot-wrap { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.6fr 1fr; gap: 1em; }
+.script { overflow: auto; background: var(--stone); border-radius: .5em; padding: .6em 1em; box-shadow: inset 0 0 0 1px var(--line); }
+.ln { position: relative; margin: 0 0 .35em; padding-left: 4.4em; font-family: var(--kai); font-size: 1.08em; line-height: 1.6; transition: opacity .3s, background .3s; border-radius: .3em; }
+.ln b { position: absolute; left: .2em; top: .1em; font-family: var(--serif); font-size: .9em; color: var(--red-d); }
+.ln i { font-style: normal; color: #4864a8; background: #e6ecf8; border-radius: .2em; padding: 0 .1em; }
+.ln.sd-only { padding: .2em .6em; color: #4864a8; background: #e6ecf8; font-size: 1em; }
+.script[data-role="js"] .ln:not(.js), .script[data-role="zzy"] .ln:not(.zzy) { opacity: .3; }
+.script[data-role="js"] .ln.js, .script[data-role="zzy"] .ln.zzy { background: #fff3d6; }
+.script[data-role="sd"] .ln:not(.sd-only) { color: #bdb6ad; }
+.script[data-role="sd"] .ln:not(.sd-only) i { color: #2b4a99; background: #cfdcf7; }
+.script[data-role="sd"] .ln b { color: #bdb6ad; }
+.plot-side { position: relative; display: flex; flex-direction: column; gap: .6em; padding-top: 2.2em; }
+.plot-side .tip { line-height: 1.7; font-size: 1em; }
+.plot-side em { font-style: normal; color: var(--red); font-weight: bold; }
+
+/* 雷电颂 */
+.s-ode { background: radial-gradient(circle at 80% 10%, #2e3a5c, var(--night) 60%); }
+.s-ode .hd h2 { color: #eef1fa; }
+.s-ode .note { color: var(--ink); }
+.ode { flex: 1; min-height: 0; display: grid; grid-template-rows: 1.2fr 1fr; gap: .6em; }
+.ode-svg { width: 100%; height: 100%; }
+.ode-axis { stroke: #3b4560; stroke-width: 2; }
+.ode-line { fill: none; stroke: url(#odeG); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.ode-n circle { fill: #2a3352; stroke: var(--bolt); stroke-width: 2; }
+.ode-n text { fill: #fff; font-family: var(--kai); font-size: 17px; text-anchor: middle; }
+.ode-n text.cap { fill: #aab6d6; font-size: 14px; }
+.ode-n.on circle { fill: #e2a63e; stroke: #fff3cf; }
+.ode-n.soft.on circle { fill: #6d8cb3; }
+.ode-n.top.on circle { fill: #e2432a; }
+.ode-read { position: relative; min-height: 0; }
+.ode-seg { position: absolute; inset: 0; margin: 0; display: none; flex-direction: column; justify-content: center; gap: .5em; }
+.ode-seg.cur { display: flex; }
+.ode-seg q { quotes: none; font-family: var(--kai); font-size: 1.75em; line-height: 1.55; color: #f5f0e6; text-shadow: 0 0 12px rgba(120, 150, 255, .35); }
+.ode-seg small { color: var(--gold-l); font-size: 1em; border-left: .25em solid var(--gold); padding-left: .6em; }
+
+/* 象征卡 */
+.syms { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7em; flex: 1; min-height: 0; align-content: start; margin-top: 1.4em; }
+.sym { font: inherit; text-align: left; cursor: pointer; background: var(--night); color: #e7eaf3; border: 1px solid #3b4560; border-radius: .6em; padding: .7em 1em; display: flex; flex-direction: column; gap: .35em; min-height: 8.5em; }
+.sym b { font-family: var(--kai); font-size: 2em; color: var(--bolt); }
+.sym q { quotes: none; font-family: var(--kai); font-size: 1.05em; color: #c9cfe0; }
+.sym em { font-style: normal; color: var(--gold-l); font-weight: bold; opacity: 0; transition: opacity .3s; margin-top: auto; }
+.sym.open em { opacity: 1; }
+.sym:not(.open)::after { content: "点一点看象征"; font-size: .75em; color: #8a93ad; margin-top: auto; }
+.s-sym .media-btn { top: -.4em; }
+
+/* 舞台说明归类 */
+.dir-list { display: flex; flex-wrap: wrap; gap: .45em; }
+.dir { font: inherit; font-family: var(--kai); font-size: 1.05em; text-align: left; padding: .35em .7em; border-radius: .4em; border: 1px solid #b9c6e4; background: #eef2fb; color: #2b4a99; cursor: pointer; line-height: 1.45; }
+.dir.sel { background: #2b4a99; color: #fff; }
+.dir.done { opacity: .4; cursor: default; text-decoration: line-through; }
+.bins { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em; }
+.bin { font: inherit; cursor: pointer; background: #fff; border: 2px dashed var(--line); border-radius: .6em; padding: .6em .8em; display: flex; flex-direction: column; gap: .25em; text-align: left; }
+.bin b { font-family: var(--kai); font-size: 1.3em; color: var(--red-d); }
+.bin small { color: var(--ink-2); line-height: 1.5; }
+.bin .cnt { color: #1d7a45; font-weight: bold; }
+.s-sort .feedback { font-family: var(--kai); font-size: 1.15em; color: var(--red-d); }
+
+/* 朗读 */
+.read-text { background: var(--stone); border-radius: .5em; padding: .8em 1.2em; font-family: var(--kai); font-size: 1.3em; line-height: 2.1; overflow: auto; box-shadow: inset 0 0 0 1px var(--line); }
+.read-text p { margin: 0 0 .5em; }
+.read-text em { font-style: normal; }
+.marks-show em { text-emphasis: dot var(--red); -webkit-text-emphasis: dot var(--red); text-emphasis-position: under; -webkit-text-emphasis-position: under; color: var(--red-d); font-weight: bold; }
+.read-text .ps { font-style: normal; color: var(--red); font-weight: bold; }
+.read-text:not(.marks-show) .ps { display: none; }
+.s-read .stage .tip { line-height: 1.7; }
+
+.sum-stage { justify-content: center; }
+.board p { margin: .2em 0; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .cover-big { font-size: 1.9em; }
+  .acts { grid-template-columns: 1fr 1fr; }
+  .act { min-height: 0; }
+  .act.now { grid-column: span 2; }
+  .conflict { font-size: 1em; }
+  .plan-img { min-height: 10em; }
+  .plan { grid-template-columns: 1fr; }
+  .dir-text { font-size: 1.05em; }
+  .plot-wrap { grid-template-columns: 1fr; }
+  .script { overflow: visible; }
+  .ln { padding-left: 3.8em; font-size: 1em; }
+  .plot-side { padding-top: 0; }
+  .ode { grid-template-rows: auto auto; }
+  .ode-read { min-height: 12em; }
+  .ode-n text.cap { display: none; }
+  .ode-n text { font-size: 22px; }
+  .ode-n circle { r: 20px; }
+  .ode-seg q { font-size: 1.25em; }
+  .syms { grid-template-columns: 1fr 1fr; margin-top: 0; }
+  .sym { min-height: 0; }
+  .bins { grid-template-columns: 1fr 1fr; }
+  .read-text { font-size: 1.1em; overflow: visible; }
+}
+
+/* 读读写写：初中是整词 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+/* 读读写写里的四字词占两格，不折行 */
+.zy-write.zy-long { grid-column: span 2; }

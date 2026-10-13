@@ -1,0 +1,66 @@
+/* 陈涉世家 · 本课配色：浓墨雨夜，一点篝火的朱红 */
+:root {
+  --red: #a8361f;
+  --red-d: #2c2420;
+  --gold: #b88a3a;
+  --gold-l: #ecd39b;
+  --paper: #ecebe6;
+  --stone: #f7f6f2;
+  --ink-2: #5d5a55;
+  --line: #cfccc4;
+}
+.s-cover .cover-title { font-size: 6em; letter-spacing: .12em; }
+.cover-big { margin: .1em 0 .5em; font-family: var(--kai); font-size: 2.8em; color: #f2c38a; }
+.poem-v.h .poem-text { overflow: auto; }
+.poem-v.h .poem-text .pl { display: block; font-size: .98em; line-height: 1.5; }
+.poem-v.h.show-yi .pl { font-size: .92em; }
+
+/* 情节链 */
+.bands { display: flex; gap: .4em; align-items: stretch; }
+.band { flex: 1; background: #fff; border-radius: .5em; padding: .5em .7em; border-top: .4em solid var(--red-d); display: flex; flex-direction: column; gap: .4em; box-shadow: 0 .1em .5em rgba(0, 0, 0, .08); }
+.band h3 { margin: 0; font-family: var(--kai); font-size: 1.4em; color: var(--red); }
+.b-arr { align-self: center; font-style: normal; font-size: 2em; color: var(--gold); }
+.lk { font: inherit; font-family: var(--kai); font-size: 1.2em; padding: .25em .5em; border-radius: .3em; border: 1px solid var(--line); background: var(--stone); cursor: pointer; text-align: left; }
+.lk.sel { background: var(--red-d); color: var(--gold-l); border-color: var(--red-d); }
+.chain-text { margin: 0; min-height: 3.2em; font-family: var(--kai); font-size: 1.2em; line-height: 1.6; background: var(--red-d); color: #f3ead8; border-radius: .5em; padding: .6em 1em; }
+.chain-text b { color: var(--gold-l); margin-right: .8em; }
+.causes { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6em; }
+.causes .tip { line-height: 1.6; }
+.s-chain .media-btn, .s-say .media-btn { top: -.4em; }
+
+/* 言行卡 */
+.says { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em; flex: 1; min-height: 0; align-content: start; }
+.say { font: inherit; text-align: left; cursor: pointer; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .55em .8em; display: flex; flex-direction: column; gap: .35em; position: relative; }
+.say small { align-self: flex-start; font-size: .8em; color: #fff; background: var(--red); padding: .05em .6em; border-radius: 1em; }
+.say.xing small { background: #4c6a8a; }
+.say.wu small { background: var(--gold); }
+.say span { font-family: var(--kai); font-size: 1.12em; line-height: 1.5; }
+.say em { font-style: normal; font-weight: bold; color: var(--red); opacity: 0; transition: opacity .3s; margin-top: auto; }
+.say.open em { opacity: 1; }
+.say:not(.open)::after { content: "点一点看品质"; font-size: .72em; color: var(--ink-2); }
+.s-say .tip { line-height: 1.7; }
+
+/* 字词抽屉 */
+.wd-grid { flex: 1; min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); gap: .6em; align-content: start; }
+.wd-card { font: inherit; text-align: left; background: #fff; border: 1px solid var(--line); border-left: .35em solid var(--red); border-radius: .5em; padding: .6em .9em; cursor: pointer; display: flex; flex-direction: column; gap: .2em; }
+.wd-card b { font-family: var(--kai); font-size: 1.6em; color: var(--red-d); }
+.wd-e { font-family: var(--kai); font-size: 1.05em; }
+.wd-a { color: #2f6b5e; font-size: .92em; line-height: 1.5; opacity: 0; transition: opacity .3s; }
+.wd-a::before { content: "释义："; color: var(--ink-2); }
+.wd-card.open .wd-a { opacity: 1; }
+.wd-card:not(.open)::after { content: "点一点看释义"; font-size: .75em; color: var(--ink-2); }
+
+.sum-stage { justify-content: center; }
+.board p { margin: .2em 0; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .cover-big { font-size: 1.6em; }
+  .bands { flex-direction: column; }
+  .band { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .band h3 { width: 100%; }
+  .b-arr { transform: rotate(90deg); font-size: 1.3em; }
+  .lk { font-size: 1em; }
+  .causes, .says { grid-template-columns: 1fr; }
+  .wd-grid { grid-template-columns: 1fr; }
+}

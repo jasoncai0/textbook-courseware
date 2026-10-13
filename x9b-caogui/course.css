@@ -1,0 +1,97 @@
+/* 曹刿论战 · 本课配色：青绿山水的石青、石绿、赭石 */
+:root {
+  --red: #8a3a24;
+  --red-d: #4d2416;
+  --gold: #b48a3c;
+  --gold-l: #e9d6a3;
+  --paper: #eef0e6;
+  --stone: #f8f8f0;
+  --ink-2: #56604f;
+  --line: #c9cfba;
+  --qi: #b3402a;
+  --lu: #2f6b5e;
+}
+.s-cover .cover-title { font-size: 6em; letter-spacing: .1em; }
+.cover-big { margin: .1em 0 .5em; font-family: var(--kai); font-size: 2.4em; color: #f4e3b5; }
+.poem-v.h .poem-text .pl { display: block; font-size: 1.02em; line-height: 1.5; }
+.poem-v.h.show-yi .pl { font-size: .95em; }
+
+/* 情节链 + 三段 */
+.chain { display: flex; align-items: stretch; gap: .4em; }
+.ch-node { flex: 1; background: #fff; border: 1px solid var(--line); border-top: .45em solid var(--lu); border-radius: .4em; padding: .5em .8em; display: flex; flex-direction: column; gap: .25em; }
+.ch-node b { font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.ch-node span { font-family: var(--kai); line-height: 1.5; }
+.ch-arr { align-self: center; font-style: normal; font-size: 2em; color: var(--gold); }
+.phases { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.ph { background: var(--stone); border-radius: .6em; padding: .8em 1em; box-shadow: 0 .15em .5em rgba(40, 60, 40, .1); display: flex; flex-direction: column; gap: .3em; }
+.ph h3 { margin: 0; font-family: var(--kai); font-size: 1.6em; color: var(--lu); }
+.ph p { margin: 0; line-height: 1.7; font-size: 1.05em; }
+.ph b { color: var(--red); }
+.ph small { margin-top: auto; color: var(--ink-2); border-top: 1px dashed var(--line); padding-top: .3em; }
+
+/* 对照表 */
+.vs { display: grid; grid-template-columns: 4em 1fr 1fr; gap: .5em .8em; }
+.vs-h { text-align: center; font-family: var(--kai); font-size: 1.6em; }
+.vs-h.lu { color: #6b6b6b; }
+.vs-h.cg { color: var(--red-d); }
+.vs-l { display: grid; place-items: center; background: var(--lu); color: #fff; border-radius: .4em; font-family: var(--kai); font-size: 1.15em; }
+.vs .tip { font-family: var(--kai); font-size: 1.1em; line-height: 1.6; }
+.verdict { display: flex; flex-wrap: wrap; gap: .6em; justify-content: center; }
+.verdict .chip { font-size: 1em; }
+
+/* 士气曲线 */
+.morale .axis { stroke: #9aa28c; stroke-width: 2; }
+.morale .qi { fill: none; stroke: var(--qi); stroke-width: 6; stroke-linecap: round; }
+.morale .lu { fill: none; stroke: var(--lu); stroke-width: 6; stroke-linecap: round; }
+.morale .qi-dot { fill: var(--qi); }
+.morale .lu-dot { fill: var(--lu); }
+.morale .qi-t { fill: var(--qi); font-weight: bold; }
+.morale .lu-t { fill: var(--lu); font-weight: bold; }
+.morale .gap { stroke: var(--gold); stroke-width: 3; stroke-dasharray: 8 6; }
+.morale .gap-t { fill: #8a6a22; font-weight: bold; }
+.s-morale .media-btn, .s-three .media-btn { top: -.2em; }
+
+/* 详略 */
+.dl { display: flex; flex-direction: column; gap: .8em; }
+.dl-row { display: grid; grid-template-columns: 8em 1fr 2.5em; gap: .8em; align-items: center; font-size: 1.15em; }
+.dl-row > span { font-family: var(--kai); }
+.dl-bar { position: relative; height: 1.8em; background: #e3e6d6; border-radius: .3em; overflow: hidden; }
+.dl-bar i { display: block; height: 100%; background: var(--lu); }
+.dl-row:nth-child(2) .dl-bar i { background: #a9ad9c; }
+.dl-bar b { position: absolute; left: .6em; top: 50%; translate: 0 -50%; color: #fff; font-size: .85em; text-shadow: 0 1px 2px rgba(0, 0, 0, .4); }
+.dl-row em { font-style: normal; font-family: var(--kai); font-size: 1.4em; color: var(--red); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: .7em; }
+.two-col .tip, .s-detail .tip { line-height: 1.7; font-size: 1em; }
+
+/* 字词抽屉 */
+.wd-grid { flex: 1; min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); gap: .6em; align-content: start; }
+.wd-card { font: inherit; text-align: left; background: #fff; border: 1px solid var(--line); border-left: .35em solid var(--lu); border-radius: .5em; padding: .6em .9em; cursor: pointer; display: flex; flex-direction: column; gap: .2em; }
+.wd-card b { font-family: var(--kai); font-size: 1.6em; color: var(--red-d); }
+.wd-e { font-family: var(--kai); font-size: 1.05em; }
+.wd-a { color: var(--lu); font-size: .92em; line-height: 1.5; opacity: 0; transition: opacity .3s; }
+.wd-a::before { content: "释义："; color: var(--ink-2); }
+.wd-card.open .wd-a { opacity: 1; }
+.wd-card:not(.open)::after { content: "点一点看释义"; font-size: .75em; color: var(--ink-2); }
+
+/* 背诵 */
+.cg-recite { flex: 1; min-height: 0; overflow: auto; }
+.cg-recite .recite-lines { font-size: 1.2em; letter-spacing: .06em; }
+.cg-recite .recite-lines p { margin-bottom: .4em; }
+
+.sum-stage { justify-content: center; }
+.board p { margin: .2em 0; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .cover-big { font-size: 1.5em; }
+  .chain { flex-direction: column; }
+  .ch-arr { transform: rotate(90deg); font-size: 1.4em; }
+  .phases { grid-template-columns: 1fr; }
+  .vs { grid-template-columns: 2.6em 1fr 1fr; gap: .3em; }
+  .vs .tip { font-size: .9em; padding: .4em .5em; }
+  .vs-h { font-size: 1.15em; }
+  .dl-row { grid-template-columns: 5.5em 1fr 2em; font-size: 1em; }
+  .two-col { grid-template-columns: 1fr; }
+  .wd-grid { grid-template-columns: 1fr; }
+  .cg-recite .recite-lines { font-size: 1.1em; }
+}
