@@ -63,7 +63,9 @@ function closeLightbox() {
 
 /* ================= 翻页引擎：页内分步 + 页间转场 ================= */
 const slides = [...document.querySelectorAll('.slide')];
-const maxSteps = slides.map((s) => Math.max(0, ...[...s.querySelectorAll('[data-step]')].map((e) => +e.dataset.step)));
+// 在课程 init 之后统计（init 里可能生成带 data-step 的元素）
+let maxSteps = [];
+const countSteps = () => slides.map((s) => Math.max(0, ...[...s.querySelectorAll('[data-step]')].map((e) => +e.dataset.step)));
 let cur = 0;
 let step = 0;
 
@@ -210,6 +212,7 @@ function loadMediaNear(i) {
 
 function init() {
   if (LESSON.init) LESSON.init();
+  maxSteps = countSteps();
   deferMedia(); // 放在课程 init 之后：课程脚本生成的卡片图片也一起按需加载
   initMedia();
   initNav();

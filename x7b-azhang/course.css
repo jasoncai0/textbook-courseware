@@ -1,0 +1,113 @@
+/* 阿长与《山海经》 · 本课配色：木刻版画的黑、米白、赭红 */
+:root {
+  --red: #9a3a22;
+  --red-d: #3b2a22;
+  --gold: #b9873c;
+  --gold-l: #ead7ae;
+  --paper: #f1ebdf;
+  --stone: #faf6ee;
+  --ink-2: #5d544a;
+  --line: #d6cbb6;
+}
+.s-cover .cover-title { font-size: 5.4em; letter-spacing: .04em; }
+.cover-quote { font-family: var(--kai); font-size: 1.9em; line-height: 1.5; margin: .2em 0 .8em; color: #f6e2c4; }
+
+/* 称呼卡 */
+.names { display: grid; grid-template-columns: repeat(4, 1fr); gap: .9em; }
+.name-card { display: flex; flex-direction: column; gap: .5em; background: #fff; border-radius: .6em; padding: .9em 1em; border-top: .35em solid var(--gold); box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); }
+.name-card b { font-family: var(--kai); font-size: 2em; color: var(--red-d); letter-spacing: .1em; }
+.name-card span { font-family: var(--kai); line-height: 1.7; flex: 1; }
+.name-card em { font-style: normal; align-self: flex-start; font-size: .85em; padding: .1em .7em; border-radius: 1em; background: var(--gold-l); }
+.name-card.hot { border-top-color: var(--red); }
+.name-card.hot em { background: var(--red); color: #fff; }
+.name-card.blank { border-top-color: #9a9186; background: #f6f3ee; }
+.name-card.blank b { color: #8a8278; }
+
+/* 心情徽章（故事页右上角） */
+.mood-badge { position: absolute; top: .8em; right: 1.4em; z-index: 9; display: flex; align-items: center; gap: .35em; padding: .35em .8em; border-radius: 2em; background: rgba(20, 16, 12, .6); color: #f4ede2; opacity: 0; transition: opacity .5s; pointer-events: none; }
+.mood-badge.show { opacity: 1; }
+.mood-badge small { font-size: .75em; opacity: .8; margin-right: .2em; }
+.mood-badge i { width: .55em; height: .55em; border-radius: 50%; background: rgba(255, 255, 255, .3); }
+.mood-badge i.done { background: #c9a36a; }
+.mood-badge i.cur { background: #e8664a; transform: scale(1.4); }
+.mood-badge b { font-family: var(--kai); font-size: 1.15em; margin-left: .3em; }
+
+/* 讲长毛：对话 */
+.talk { display: flex; flex-direction: column; gap: .55em; }
+.say { font-family: var(--kai); font-size: 1.08em; line-height: 1.7; background: #fff; border-radius: .6em; padding: .5em 1em; max-width: 80%; border: 1px solid var(--line); }
+.say b { font-family: var(--serif); font-size: .78em; color: #fff; background: var(--red); border-radius: .3em; padding: .05em .5em; margin-right: .6em; }
+.say small { display: block; font-size: .85em; color: var(--ink-2); }
+.say.me { align-self: flex-end; background: #f7f1e3; }
+.say.me b { background: var(--red-d); }
+.say.big { max-width: 92%; }
+.say em { font-style: normal; color: var(--red); font-weight: bold; }
+.say.cold { background: #ebe8e3; color: #4a4540; }
+.say.cold b { background: #777; }
+
+/* 情感曲线 */
+.curve-wrap { display: grid; grid-template-columns: 1fr 19em; gap: 1em; min-height: 0; }
+.mood-svg { width: 100%; height: 100%; min-height: 0; background: #fff; border-radius: .6em; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); }
+.mood-svg .axis { stroke: #cfc5b3; stroke-width: 2; stroke-dasharray: 6 6; }
+.mood-svg .ax-t { fill: #8a8074; }
+.mood-svg .seg { fill: none; stroke: var(--red-d); stroke-width: 4; stroke-linecap: round; }
+.mood-svg .seg.up { stroke: var(--red); stroke-width: 5; }
+.mood-svg .seg.adult { stroke: #2f6b5e; stroke-dasharray: .03 .02; }
+.mood-svg .pt { cursor: pointer; }
+.mood-svg .pt circle { fill: #fff; stroke: var(--red-d); stroke-width: 4; transition: fill .3s; }
+.mood-svg .pt.top circle { stroke: var(--red); }
+.mood-svg .pt.adult circle { stroke: #2f6b5e; }
+.mood-svg .pt.sel circle { fill: var(--gold); }
+.mood-svg .pt text { font-family: var(--kai); font-weight: bold; }
+.mood-svg .brace path { fill: none; stroke-width: 3; }
+.mood-svg .br-yi { stroke: #6b6158; }
+.mood-svg .br-yang { stroke: var(--red); }
+.mood-svg .br-t { fill: #6b6158; }
+.mood-svg .br-t2 { fill: var(--red); font-weight: bold; }
+.mood-side { display: flex; flex-direction: column; gap: .7em; }
+#moodQuote { font-family: var(--kai); font-size: 1.05em; line-height: 1.75; min-height: 8em; }
+
+/* 两种视角 */
+.view-key { display: flex; flex-direction: column; gap: .5em; }
+.s-view .picks { flex-direction: column; }
+.s-view .pick { font-size: 1em; }
+
+/* 伟大的神力 */
+.shenli { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1em; align-items: center; flex: 1; }
+.sl-col { background: #fff; border-radius: .6em; padding: .9em 1.2em; border-left: .35em solid #8a8074; line-height: 1.7; }
+.sl-col.warm { border-left-color: var(--red); background: #fff8ef; }
+.sl-col h3 { margin: 0 0 .3em; color: var(--red-d); }
+.sl-col p { margin: .2em 0; }
+.sl-col .q { font-family: var(--kai); font-size: 1.25em; }
+.sl-col .res b { color: var(--red); }
+.sl-mid { writing-mode: vertical-rl; font-family: var(--kai); font-size: 1.6em; color: #fff; background: var(--red-d); padding: .6em .3em; border-radius: .4em; letter-spacing: .2em; }
+
+.s-sum .board p { margin: .2em 0; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.5em; }
+  .cover-quote { font-size: 1.3em; }
+  .names { grid-template-columns: 1fr 1fr; gap: .6em; }
+  .name-card b { font-size: 1.5em; }
+  .mood-badge { top: .6em; right: .6em; font-size: .8em; }
+  .scrolled .mood-badge { opacity: 0; }
+  .say { max-width: 100%; }
+  .curve-wrap { grid-template-columns: 1fr; }
+  .mood-svg { height: auto; }
+  svg.mood-svg .t-m { font-size: 22px; }
+  .shenli { grid-template-columns: 1fr; }
+  .sl-mid { writing-mode: horizontal-tb; text-align: center; }
+}
+/* 手机上非画面页标题在右上角：心情徽章只在画面页显示 */
+@media (max-width: 820px), (max-height: 520px) {
+  .frame:has(.slide.active:not(.scene)) .mood-badge { opacity: 0; }
+}
+
+.s-changmao .hd { padding-right: 18em; }
+
+/* 读读写写是词语：卡片按词长自适应宽度 */
+.s-ziyin .zy-grid-write { display: flex; flex-wrap: wrap; }
+.s-ziyin .zy-write { font-size: 1.7em; white-space: nowrap; min-width: 3.4em; }
+.s-ziyin .zy-write small { white-space: normal; max-width: 7em; margin: 0 auto; }
+@media (max-width: 820px), (max-height: 520px) {
+  .s-changmao .hd { padding-right: 3.4em; }
+}

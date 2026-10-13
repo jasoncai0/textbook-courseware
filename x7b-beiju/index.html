@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>伟大的悲剧 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面：问题导入 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 55% 50%" data-bg="assets/heiqi.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第六单元 · 第 22 课 · 传记</p>
+    <h1 class="cover-title">伟大的悲剧</h1>
+    <p class="cover-sub">［奥地利］茨威格</p>
+    <p class="cover-q" data-step="1">“对人类来说，第一个到达者拥有一切，<br>第二个到达者什么也不是。”</p>
+    <p class="cover-q2" data-step="2">——真的什么也不是吗？</p>
+    <div class="chips" data-step="3"><span class="chip">浏览 · 提取主要信息</span><span class="chip">传记文学</span><span class="chip">体会精神力量</span></div>
+  </div>
+  <p class="note">1912 年，英国探险家斯科特一行五人到达南极点，却发现挪威人阿蒙森早到了一个月；返程中五人全部遇难。用课文里最“冷酷”的一句话开课，结课时再回答：第二个到达者，留下了什么？</p>
+</section>
+
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 浏览挑战 ================= -->
+<section class="slide s-skim">
+  <div class="hd"><span class="tag">预习 · 浏览</span><h2>4000 字，10 分钟读完</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <div class="timer" id="timer" data-noswipe>
+        <b id="timerText">10:00</b>
+        <div class="btns"><button type="button" class="btn solid" id="timerGo">开始浏览</button><button type="button" class="btn" id="timerDone">我读完了</button><button type="button" class="btn" id="timerReset">重来</button></div>
+        <p class="timer-say" id="timerSay">点“开始浏览”，同时打开课本第 130 页。</p>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="skim-tips">
+        <div class="sk" data-step="1"><b>一目数行</b><span>不逐字读，眼睛扫视文段，抓住名词、数字、动词。</span></div>
+        <div class="sk" data-step="2"><b>随手圈画</b><span>画出<em>时间</em>（1月16日、2月17日……）和<em>地点</em>（极点、贮藏点、帐篷……）。</span></div>
+        <div class="sk" data-step="3"><b>留意首句</b><span>很多段的第一句就是这一段的主要内容，比如“回来的路程危险增加了十倍”“现在只有四个人继续走路了”。</span></div>
+        <div class="sk gold" data-step="4"><b>读完说一说</b><span>用一两句话说出课文写了一件什么事：<br>斯科特一行到达南极点，发现阿蒙森已捷足先登；在返回途中遭遇严寒和暴风雪，五人全部遇难。</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">落实预习要求和本单元语文要素“浏览”。计时器只是激励，不比快慢。读完先让学生说主要内容，再出示第 4 条。浏览时画出的时间、地点，下一页直接用来搭时间轴。</p>
+</section>
+
+<!-- ================= 本课独有：南极行程时间轴 ================= -->
+<section class="slide s-route">
+  <div class="hd"><span class="tag">把握主要内容</span><h2>从极点回来的路：五个人，三个人，一顶帐篷</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 440 420" id="iceMap" data-noswipe>
+        <defs><clipPath id="mapClip"><rect width="440" height="420" rx="14"/></clipPath></defs>
+        <g clip-path="url(#mapClip)">
+          <rect width="440" height="420" fill="#e6edf2"/>
+          <g class="ice-lines" stroke="#cdd9e2" stroke-width="1.5" fill="none"><path d="M0 80 Q120 60 220 90 T440 70"/><path d="M0 180 Q140 160 240 190 T440 170"/><path d="M0 290 Q130 270 250 300 T440 280"/></g>
+          <path class="go" d="M90 390 C 110 300, 160 200, 230 60"/>
+          <path class="back" id="backPath" d="M230 60 C 300 120, 330 180, 300 230 S 250 300, 270 330 S 250 350, 240 352"/>
+          <path class="back-done" id="backDone" pathLength="1" d="M230 60 C 300 120, 330 180, 300 230 S 250 300, 270 330 S 250 350, 240 352"/>
+          <g class="pole"><circle cx="230" cy="60" r="10" fill="#fff" stroke="#3a5a78" stroke-width="3"/><text class="t-m t-c" x="230" y="34">南极点</text></g>
+          <g class="base"><rect x="72" y="380" width="36" height="22" fill="#8a6a4a"/><text class="t-s t-c" x="90" y="374">基地</text></g>
+          <text class="t-s" x="60" y="250" fill="#6b8296" transform="rotate(-62 60 250)">去时：顺着罗盘</text>
+          <g class="marks"></g>
+        </g>
+      </svg>
+    </div>
+    <div class="stage">
+      <div class="team" id="team"><span class="team-lab">队伍</span><i></i><i></i><i></i><i></i><i></i><b id="teamNum">5 人</b></div>
+      <div class="ev-card" id="evCard"><p class="tip">按 → 跟着日期往前走；也可以点地图上的点。</p></div>
+      <div class="ev-pic" data-bg="assets/xueyuan.jpg"></div>
+      <p class="tip gold" data-step="9"><b>主要内容：</b>斯科特一行虽然到达了南极点，却是第二个到达者；在返回途中，他们与严寒、暴风雪、饥饿和伤病搏斗，最终全部遇难。</p>
+    </div>
+  </div>
+  <p class="note">本课独有的呈现：把浏览时圈出的时间、地点串成一条往返路线。去时有罗盘，回时要沿着自己的脚印找贮藏点——每到一个贮藏点，迎接他们的却是“新的绝望”。人数从 5 到 4 到 3，一目了然。</p>
+</section>
+
+<!-- ================= 读课文：三个场景 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.05 55% 50%" data-bg="assets/heiqi.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">读课文 · 极点上的黑旗</span><span class="sub">第 2 段</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.3 50% 45%">没过多久，他们发现雪地上插着一根滑雪杆，上面绑着一面黑旗，周围是他人扎过营地的残迹——滑雪板的痕迹和许多狗的足迹。</p>
+    <p data-step="2">他们仅仅迟到了一个月。虽然昔日逝去的光阴数以几百万个月计，但现在迟到的这一个月，却显得太晚太晚了——</p>
+    <p data-step="3" class="reveal">对人类来说，第一个到达者拥有一切，第二个到达者什么也不是。</p>
+    <p data-step="4" data-focus="1.05 50% 50%">“历尽千辛万苦，无尽的痛苦烦恼，风餐露宿——这一切究竟为了什么？还不是为了这些梦想，可现在这些梦想全完了。”——斯科特在他的日记中这样写道。</p>
+    <p data-step="5">斯科特接受了这项任务，他要忠实地去履行这一最冷酷无情的职责：在世界面前为另一个人完成的业绩做证，而这一事业正是他自己所热烈追求的。</p>
+  </div>
+  <p class="note">黑旗是阿蒙森留下的路标。“迟到的这一个月，却显得太晚太晚了”——用几百万个月和一个月对比，写出失败的残酷。斯科特替对手送信给挪威国王：失败了，却失败得光明磊落。</p>
+</section>
+
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.05 50% 55%" data-bg="assets/xueyuan.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">读课文 · 走进暴风雪</span><span class="sub">第 9—10 段</span></div>
+  <div class="subs">
+    <p data-step="1">清早起来，他们朝外一看，外面是狂吼怒号的暴风雪。</p>
+    <p data-step="2" class="reveal">奥茨突然站起身来，对朋友们说：“我要到外边去走走，可能要多待一些时候。”</p>
+    <p data-step="3">其余的人不禁战栗起来。谁都知道，在这种天气下到外面去走一圈意味着什么。但是谁也不敢说一句阻拦他的话，也没有一个人敢伸出手去向他握别。</p>
+    <p data-step="4" data-focus="1.25 50% 55%">他们大家只是怀着敬畏的心情感觉到：劳伦斯·奥茨——这个英国皇家禁卫军的骑兵上尉正像一个英雄似的向死神走去。</p>
+  </div>
+  <p class="note">奥茨的话说得很平淡，“走走”“多待一些时候”——他知道自己再也回不来了。为了不拖累同伴，他主动走进暴风雪。画面只用风雪中的背影，不再往前推。</p>
+</section>
+
+<section class="slide scene">
+  <video class="scene-bg" data-focus="1.03 50% 50%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/3ded4395cab7e8c3c70ce298a92bbcadc7d6c065d24817ae50fdb8219e8a5f6c.mp4" data-poster="assets/zhangpeng.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">读课文 · 最后的帐篷</span><span class="sub">第 11—13 段</span></div>
+  <div class="subs">
+    <p data-step="1">3 月 29 日，他们知道再也不会有任何奇迹能拯救他们了，于是决定不再迈步向厄运走去，而是骄傲地在帐篷里等待死神的来临，不管还要忍受怎样的痛苦。</p>
+    <p data-step="2">他们爬进各自的睡袋，却始终没有向世界哀叹过一声自己最后遭遇到的种种苦难。</p>
+    <p data-step="3">斯科特海军上校在他行将死去的时刻，用冻僵的手指给他所爱的一切人写了书信。</p>
+    <p data-step="4" class="reveal">“请把这本日记送到我的妻子手中！”</p>
+    <p data-step="5">但他随后又悲伤地、坚决地画去了“我的妻子”这几个字，在它们上面补写了可怕的“我的遗孀”。</p>
+  </div>
+  <p class="note">“骄傲地”“始终没有哀叹过一声”——面对死亡的尊严。“妻子”改成“遗孀”，一笔之改，是清醒、是坚决，也是最深的悲痛。读到这里可以停一停，不必多讲。</p>
+</section>
+
+<!-- ================= 思考探究一：悲与伟大 ================= -->
+<section class="slide s-sortpage">
+  <div class="hd"><span class="tag">思考探究一</span><h2>“悲”在何处？“伟大”又指什么？</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <div class="scale" id="scale">
+        <div class="pan bei"><b>悲</b><span id="beiN">0</span></div>
+        <div class="pan wei"><b>伟大</b><span id="weiN">0</span></div>
+      </div>
+      <p class="tip gold" data-step="1"><b>悲：</b>失败——第二个到达；死亡——五人全部遇难，梦想破灭。<br><b>伟大：</b>勇敢、坚韧、团结、诚信、献身科学、为他人牺牲，在厄运中保持人的尊严。</p>
+      <p class="tip jade" data-step="2">“一个人虽然在同不可战胜的厄运的搏斗中毁灭了自己，但他的心灵却因此变得<b>无比高尚</b>。”</p>
+    </div>
+    <div class="stage">
+      <p class="tip">这些事，让你感到“悲”，还是看到了“伟大”？点按钮分一分。</p>
+      <div class="sort-list" id="sortList" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">思考探究一。悲剧的“悲”在结局，“伟大”在过程和精神。左边的两个盘子统计学生的归类：最后会发现，写“伟大”的地方比写“悲”的还多——这正是茨威格的用意。</p>
+</section>
+
+<!-- ================= 思考探究二：品句 ================= -->
+<section class="slide s-ju">
+  <div class="hd"><span class="tag">思考探究二</span><h2>联系上下文，体味三句话</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="ju-list" id="juList" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">思考探究二。第 1 句可以组织讨论“你同意吗”：从竞赛规则看，似乎如此；从精神价值看，第二个到达者同样留下了宝贵的东西——本课题目就是答案。</p>
+</section>
+
+<!-- ================= 思考探究三：史实与想象 ================= -->
+<section class="slide s-real">
+  <div class="hd"><span class="tag">思考探究三</span><h2>传记文学：哪些是作者加进去的理解和想象？</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">茨威格参考了斯科特的日记、书信等大量原始资料，又加上了自己的理解和想象。找出<b>作者的想象和评论</b>（有 4 处）。</p>
+      <div data-picks="real" data-noswipe></div>
+      <p class="tip gold" data-step="1"><b>传记文学的特点：</b>以<b>真实</b>为基础（时间、地点、人物、事件、日记原话都有据可查），又有作者合理的<b>想象和评论</b>（心理、环境、议论），所以既可信，又动人。</p>
+    </div>
+  </div>
+  <p class="note">思考探究三。日记原话和具体日期是史实；人物的心理活动、拟人化的环境描写、作者的议论是“理解和想象”。注意：想象不能违背史实。</p>
+</section>
+
+<!-- ================= 积累拓展四：阅读笔记 ================= -->
+<section class="slide s-write">
+  <div class="hd"><span class="tag">积累拓展四</span><h2>读斯科特的绝命书，写一篇阅读笔记</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="写下你的阅读笔记……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">绝命书节选见课本第 136 页。阅读笔记可以摘抄最打动自己的一句，再写感想：结合课文、结合自己。课外可读茨威格《人类的群星闪耀时》（积累拓展五）。</p>
+</section>
+
+<!-- ================= 回顾 ================= -->
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>第二个到达者，留下了什么？</h2></div>
+  <div class="bd">
+    <div class="portrait-card"><div class="portrait-img" data-bg="assets/shimu.jpg" style="background-position:center;background-size:cover"></div></div>
+    <div class="stage" style="justify-content:center">
+      <div class="sum-two">
+        <div class="sw bei" data-step="1"><b>悲</b><span>迟到一个月<br>梦想破灭<br>五人遇难</span></div>
+        <div class="sw wei" data-step="2"><b>伟大</b><span>坚韧勇敢 · 团结互助<br>诚信守诺 · 献身科学<br>直面死亡的尊严</span></div>
+      </div>
+      <p class="board" data-step="3">“所有这些在一切时代都是<b>最伟大的悲剧</b>。”<br>失败的是探险，不朽的是<b>人的精神</b>。</p>
+    </div>
+  </div>
+  <p class="note">回扣封面的问题：第一个到达者拥有荣誉，第二个到达者留下的是精神。国王跪下来悼念这几位英雄——人们记住了他们。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

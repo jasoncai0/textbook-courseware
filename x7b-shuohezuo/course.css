@@ -1,0 +1,71 @@
+/* 说和做 · 本课配色：木刻黑白 + 朱红 */
+:root {
+  --red: #b0472c;
+  --red-d: #2b2622;
+  --gold: #b89a5e;
+  --gold-l: #eadcb8;
+  --paper: #f1ede4;
+  --stone: #faf8f2;
+  --ink-2: #5a544b;
+  --line: #d5cbb8;
+  --navy: #2f3d52;
+}
+.s-cover .cover-title { font-size: 6.6em; letter-spacing: .3em; }
+.two-says p { margin: 0 0 .2em; font-family: var(--kai); font-size: 2em; color: #f6e6c4; }
+
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+/* 天平 */
+.s-scale .bd { grid-template-columns: 1fr 1.1fr; }
+.items { display: flex; flex-direction: column; gap: .4em; }
+.item { font: inherit; font-family: var(--kai); font-size: 1.02em; text-align: left; padding: .4em .8em; border-radius: .4em; border: 1px dashed var(--gold); background: #fff; cursor: pointer; line-height: 1.5; }
+.item small { margin-left: .6em; font-family: var(--serif); font-weight: bold; }
+.item.in { border-style: solid; }
+.item.k-say { background: #fbeee8; border-color: var(--red); }
+.item.k-say small { color: var(--red); }
+.item.k-do { background: #e9edf3; border-color: var(--navy); }
+.item.k-do small { color: var(--navy); }
+#scale { width: 100%; flex: 1; min-height: 0; background: #fff; border-radius: .6em; }
+#scale line, #scale path, #scale rect, #scale text { transition: all .6s ease; }
+.scale-cap { text-align: center; }
+
+/* 细节 */
+.spot-img { background-position: center; background-size: cover; min-height: 10em; position: relative; }
+.s-detail .clues { grid-template-columns: 1fr 1fr; }
+.s-detail .clue, .s-detail .clue-in { min-height: 6.6em; }
+
+/* 诗化语言 */
+.poetic { display: flex; flex-direction: column; gap: .6em; }
+.pz-row { display: grid; grid-template-columns: 1fr auto; gap: .3em 1em; align-items: center; background: #fff; border-radius: .5em; padding: .6em 1em; border-left: .3em solid var(--red); }
+.pz-s { margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.6; }
+.pz-row.plain { border-left-color: #aaa; background: #f4f2ee; }
+.pz-row.plain .pz-s { color: #777; font-family: var(--serif); font-size: 1.1em; }
+.pz-why { grid-column: 1 / -1; margin: 0; color: var(--navy); font-size: .92em; display: none; }
+.pz-row.seen .pz-why { display: block; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; }
+.sum-two { display: grid; grid-template-columns: 1fr 12em 1fr; gap: 1em; align-items: center; }
+.sum-two > div:not(.mid) { background: #fff; border-radius: .6em; padding: 1em 1.2em; text-align: center; border-top: .35em solid var(--navy); }
+.sum-two > div:last-child { border-top-color: var(--red); }
+.sum-two h3 { margin: 0; font-size: 1.3em; }
+.sum-two p { margin: .3em 0; font-family: var(--kai); font-size: 1.6em; color: var(--red-d); }
+.sum-two small { color: var(--ink-2); line-height: 1.7; }
+.sum-two .mid { text-align: center; background: var(--red-d); color: #f6e6c4; border-radius: 50%; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; }
+.sum-two .mid b { font-family: var(--kai); font-size: 1.6em; }
+.sum-two .mid span { font-size: .8em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; letter-spacing: .15em; }
+  .two-says p { font-size: 1.25em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr)); }
+  .zy-write { font-size: 1.2em; }
+  #scale { flex: none; height: auto; }
+  .s-detail .clues { grid-template-columns: 1fr; }
+  .pz-row { grid-template-columns: 1fr; }
+  .sum-two { grid-template-columns: 1fr; }
+  .sum-two .mid { aspect-ratio: auto; border-radius: .6em; padding: .6em; }
+}
+.subs .key { color: #f6e0a8; }

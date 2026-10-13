@@ -1,0 +1,76 @@
+/* 带上她的眼睛 · 本课配色：草原绿、地心橙、夜空蓝 */
+:root {
+  --red: #2f7a6a;
+  --red-d: #1d4a42;
+  --gold: #e08a3c;
+  --gold-l: #f7dcc0;
+  --paper: #f1f4ee;
+  --stone: #fafcf7;
+  --ink-2: #56645c;
+  --line: #cfdcd2;
+  --core: #e0742c;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfdf8 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe9dc 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.4em; }
+.cover-line { font-family: var(--kai); font-size: 1.8em; margin: .4em 0 .3em; }
+.cover-q { font-family: var(--kai); font-size: 1.5em; color: #ffd9b0; margin: 0; }
+
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.4em; }
+.zy-write small:empty { display: none; }
+
+/* 情节链 */
+.chain { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7em; }
+.cn { position: relative; display: flex; gap: .6em; align-items: center; background: #fff; border-radius: .6em; padding: .7em .9em; border: 1px solid var(--line); }
+.cn b { flex: none; width: 1.8em; height: 1.8em; line-height: 1.8em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; }
+.cn span { font-family: var(--kai); font-size: 1.15em; line-height: 1.5; }
+.cn.hot { background: #fff4e8; border-color: var(--gold); }
+.cn.hot b { background: var(--core); }
+
+/* 悬念卡 */
+.s-clues .bd { grid-template-columns: 30% 1fr; }
+.s-clues .clues { grid-template-columns: 1fr 1fr; gap: .55em; }
+.s-clues .clue, .s-clues .clue-in { min-height: 6.4em; }
+.s-clues .clue:last-child { grid-column: span 2; }
+
+/* 本课独有：地心深度 */
+.s-core .bd { grid-template-columns: 40% 1fr; }
+#earth { flex: 1; min-height: 0; width: 100%; }
+#earth .lay-lab text { font-size: 15px; fill: #fff; paint-order: stroke; stroke: rgba(30, 20, 10, .55); stroke-width: 3px; }
+#ship { transition: transform .9s ease; }
+.gauge { display: flex; align-items: baseline; gap: .5em; background: #1d2a3a; color: #fff; border-radius: .6em; padding: .5em 1em; flex-wrap: wrap; }
+.gauge b { font-family: Georgia, var(--serif); font-size: 2.6em; color: #ffc27a; }
+.gauge em { font-style: normal; margin-left: auto; color: #bfe6dc; }
+.facts { display: flex; flex-direction: column; gap: .5em; }
+.fact { display: grid; grid-template-columns: 9em 1fr; gap: .8em; align-items: center; background: #fff; border-radius: .5em; padding: .45em 1em; border-left: .3em solid var(--core); }
+.fact b { font-size: 1.15em; color: var(--core); }
+.fact span { line-height: 1.6; }
+.fact.hot { background: #fff4e8; }
+
+/* 她与我 */
+.her, .me { flex: 1; display: flex; flex-direction: column; gap: .6em; background: #fff; border-radius: .6em; padding: .8em 1.1em; }
+.her { border-top: .35em solid var(--core); }
+.me { border-top: .35em solid var(--red); }
+.her h3, .me h3 { margin: 0; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.her-q { margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.75; }
+.pp { margin: 0; font-size: .95em; line-height: 1.6; color: var(--ink-2); }
+.pp span { display: inline-block; margin-right: .5em; padding: 0 .5em; border-radius: .3em; background: var(--red); color: #fff; font-size: .85em; }
+.me-steps p { margin: 0 0 .4em; line-height: 1.65; font-family: var(--kai); font-size: 1.08em; }
+.me-steps b { display: inline-block; margin-right: .5em; padding: 0 .5em; border-radius: .3em; background: var(--gold-l); color: var(--red-d); font-family: var(--serif); font-size: .85em; }
+.s-two .bd { grid-template-columns: 1fr 1fr; }
+
+/* 回顾 */
+.sum-cards { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.sc { background: #fff; border-radius: .5em; padding: .6em 1em; border-left: .3em solid var(--red); }
+.sc b { display: block; font-family: var(--kai); font-size: 1.3em; color: var(--red-d); }
+.sc span { line-height: 1.6; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .cover-line { font-size: 1.25em; }
+  .chain, .sum-cards { grid-template-columns: 1fr 1fr; }
+  .s-clues .clues { grid-template-columns: 1fr; }
+  .s-clues .clue:last-child { grid-column: auto; }
+  #earth { flex: none; height: auto; }
+  .fact { grid-template-columns: 1fr; gap: .1em; }
+}

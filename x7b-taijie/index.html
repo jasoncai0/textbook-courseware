@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>台阶 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面：一句原文 + 实物（三级台阶） ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 45% 55%" data-bg="assets/laotai.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第三单元 · 第 12 课 · 小说 · 自读</p>
+    <h1 class="cover-title">台　阶</h1>
+    <p class="cover-sub">李森祥</p>
+    <p class="cover-quote" data-step="1">父亲总觉得我们家的台阶低。</p>
+    <div class="cover-steps" data-step="2"><i></i><i></i><i></i><span>三级青石板 → 九级水泥台阶</span></div>
+    <div class="chips" data-step="3"><span class="chip">自读：借助旁批</span><span class="chip">品味细节</span><span class="chip">理解主题</span></div>
+  </div>
+  <p class="note">自读课。开头一句就是全文的“心病”：为什么“总”觉得台阶低？三级台阶怎么变成了九级？九级台阶造好了，父亲高兴了吗？带着这三个问题默读全文，边读边看旁批。</p>
+</section>
+
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 主体：台阶时间线（核心） ================= -->
+<section class="slide s-tl">
+  <div class="hd"><span class="tag">读 · 阅读提示一</span><h2>父亲与台阶：攒钱 — 建成 — 失落</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <button class="media-btn" hidden data-img="assets/nihuang.jpg" data-video="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/a32d3d73e4c66af4d8a7eb8bbf28df7cddad41986f47186a6e2afae08b6d46f4.mp4" data-cap="AI 想象图：深秋的浓雾里，父亲踏黄泥，头发上挑着露珠。供想象参考。">看：雾里踏黄泥</button>
+      <svg viewBox="0 0 520 300" class="stairs" id="stairs">
+        <rect x="0" y="0" width="520" height="300" class="sky"/>
+        <path d="M0 230 Q 80 150 170 200 T 300 190 V 290 H 0 Z" class="hill"/>
+        <g class="tree"><rect x="226" y="190" width="10" height="100"/><circle cx="231" cy="175" r="38"/><circle cx="205" cy="195" r="24"/><circle cx="258" cy="195" r="24"/></g>
+        <rect x="300" y="40" width="220" height="200" class="wall"/>
+        <rect x="372" y="120" width="70" height="120" class="door"/>
+        <g id="stepsOld"></g>
+        <g id="stepsNew"></g>
+        <g id="dad"><circle r="13"/><text class="t-s t-c" y="-20">父亲</text></g>
+        <line x1="0" y1="290" x2="520" y2="290" class="ground"/>
+      </svg>
+      <div class="slider-row" data-noswipe>
+        <span>老台阶</span><input type="range" id="tlRange" min="0" max="6" step="1" value="0" aria-label="时间线"><span>“父亲老了”</span>
+      </div>
+      <div class="phase"><span data-p="0">攒　钱</span><span data-p="1">建　成</span><span data-p="2">失　落</span></div>
+    </div>
+    <div class="panel tl-panel">
+      <div class="tl-pic" id="tlPic"></div>
+      <h3 id="tlTitle"></h3>
+      <p class="tl-quote" id="tlQuote"></p>
+      <p class="tl-dad" id="tlDad"></p>
+    </div>
+    <i data-step="1" hidden></i><i data-step="2" hidden></i><i data-step="3" hidden></i><i data-step="4" hidden></i><i data-step="5" hidden></i><i data-step="6" hidden></i>
+  </div>
+  <p class="note">按 → 或拖动滑块，沿时间线走一遍：三级 → 九级，台阶越来越高，父亲却从“最高的一级”一级级挪到了门槛上。注意右边的“心气”条：造台阶时最旺，台阶建成后反而失落。</p>
+</section>
+
+<!-- ================= 数字里的准备 ================= -->
+<section class="slide s-year">
+  <div class="hd"><span class="tag">读 · 细节</span><h2>父亲的一年，父亲的大半辈子</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="q-line">“于是，一年中他七个月种田，四个月去山里砍柴，半个月在大溪滩上捡屋基卵石，剩下半个月用来过年、编草鞋。”</p>
+      <div class="year" data-step="1">
+        <span class="m tian" style="flex:7">种田　7 个月</span>
+        <span class="m chai" style="flex:4">砍柴　4 个月</span>
+        <span class="m shi" style="flex:.5">卵石</span>
+        <span class="m nian" style="flex:.5">过年</span>
+      </div>
+      <p class="year-note" data-step="1">一年 12 个月，没有一天闲着——连“过年”都要和“编草鞋”挤在半个月里。</p>
+      <div class="facts">
+        <div class="fact" data-step="2"><b>鸡叫三遍</b>出发，<b>黄昏</b>归来<small>一天砍一担半，得一元五角</small></div>
+        <div class="fact" data-step="3"><b>破草鞋</b>堆得超过了台阶<small>一个冬天下来</small></div>
+        <div class="fact" data-step="4"><b>瓦罐</b>满了几次，<b>卵石</b>堆得小山般高<small>父亲就是这样准备了大半辈子</small></div>
+        <div class="fact" data-step="5"><b>一块砖、一片瓦、一张角票</b><small>“虽然这些都很微不足道，但他做得很认真。”</small></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">用数字读细节：作者没有一句“父亲很辛苦”，却用一年的账、一堆破草鞋写尽了辛劳。旁批：“面对生活，执着而坚韧，这就是朴实的中国农民！”</p>
+</section>
+
+<!-- ================= 旁批 ================= -->
+<section class="slide s-clues">
+  <div class="hd"><span class="tag">自读 · 旁批</span><h2>跟着旁批读：想一想，再翻面</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="clues" id="clues" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">旁批是读书的“同伴”：有的提问，有的点评。先让学生回答旁批里的问题，再翻面看参考。翻卡后可追问：你会给这一段写什么旁批？</p>
+</section>
+
+<!-- ================= 细节点评（阅读提示二） ================= -->
+<section class="slide s-write">
+  <div class="hd"><span class="tag">阅读提示二</span><h2>选一处细节，写一两句点评</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">选一处细节，读原文，写点评。点评要说出“写了什么”和“写出了什么”。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="我的点评：……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例点评</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">阅读提示举了两例：“破草鞋堆得超过了台阶”“明明该高兴，却露出些尴尬的笑”。请学生再找两三处，用一两句话点评——这也是旁批的写法。</p>
+</section>
+
+<!-- ================= 形象与主题 + 回顾 ================= -->
+<section class="slide s-theme">
+  <div class="hd"><span class="tag">阅读提示一 · 回顾</span><h2>台阶是什么？“这人怎么了？”</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <div class="layer" data-step="1"><b>物质期待</b>九级台阶、一栋新屋——用汗水一块砖一片瓦攒出来的。</div>
+      <div class="layer up" data-step="2"><b>精神追求</b>台阶高，屋主人的地位就相应高——父亲要的是被人看得起，是做人的尊严。</div>
+      <div class="layer down" data-step="3"><b>建成之后</b>坐太高“不自在”，挪到门槛上；腰闪了，“若有所失”——目标实现了，人也老了，心里空了。</div>
+    </div>
+    <div class="stage">
+      <div class="board" data-step="4">
+        <p>父亲：<b>勤劳</b> · <b>坚韧</b> · <b>要强</b> · 谦卑 · 老实厚道</p>
+        <p>三级 → 九级：<b>攒钱</b>（大半辈子）→ <b>建成</b>（尴尬的笑）→ <b>失落</b>（父亲老了）</p>
+        <p>“这人怎么了？”　怎么了呢，父亲老了。</p>
+      </div>
+      <p class="tip gold" data-step="5"><b>主题可以怎么理解？</b>①赞美父亲勤劳坚韧、追求尊严的品质；②写出普通农民为一个目标耗尽一生的辛酸；③“我”对父亲的敬重、心疼与理解。说说你更认同哪一种，或有别的理解。</p>
+    </div>
+  </div>
+  <p class="note">小说主题可以多元理解，鼓励学生有理有据地说。和《老王》《阿长》相比：都是“小人物”，这一篇用第一人称“我”的眼睛看父亲，结尾一句“父亲老了”收住全篇。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

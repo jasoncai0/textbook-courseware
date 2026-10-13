@@ -1,0 +1,87 @@
+/* 谁是最可爱的人 · 本课配色：雪岭灰蓝、棉军装草绿、暖红 */
+:root {
+  --red: #a23a2c;
+  --red-d: #3a3a2c;
+  --gold: #c39a4a;
+  --gold-l: #efdcae;
+  --paper: #f1efe8;
+  --stone: #faf9f5;
+  --ink-2: #57564c;
+  --line: #d6d1c2;
+  --olive: #5b6a3e;
+  --snow: #3b4a5e;
+}
+.s-cover .cover-title { font-size: 5.4em; letter-spacing: .1em; }
+.ask { margin: 0; font-family: var(--kai); font-size: 2.2em; color: #f3dfb0; }
+
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9em, 1fr)); }
+.zy-write { font-size: 1.5em; }
+.zy-write small:empty { display: none; }
+
+/* 结构图 */
+.s-frame .bd { grid-template-columns: 1fr 1.15fr; }
+.flow { display: flex; flex-direction: column; gap: .3em; }
+.fl { font: inherit; position: relative; text-align: left; cursor: pointer; border: 1px solid var(--line); border-radius: .5em; padding: .35em .9em; background: #fff; display: flex; align-items: center; gap: .8em; }
+.fl:not(:last-child)::after { content: "↓"; position: absolute; left: 1.6em; bottom: -.95em; color: #aaa; font-size: .8em; z-index: 1; }
+.fl small { flex: none; width: 4.6em; text-align: center; font-size: .78em; color: #fff; border-radius: .3em; padding: .05em 0; }
+.fl b { font-family: var(--kai); font-size: 1.12em; font-weight: normal; }
+.fl-view small { background: var(--snow); }
+.fl-case small { background: var(--red); }
+.fl-lyric small { background: var(--gold); }
+.fl-case { margin-left: 1.5em; border-left: .3em solid var(--red); }
+.fl-lyric { margin-left: 3em; background: #fffaf0; }
+.fl.cur { box-shadow: 0 0 0 .2em var(--gold-l); border-color: var(--gold); }
+.quals { display: grid; grid-template-columns: 1fr 1fr; gap: .4em; }
+.q-head { grid-column: 1 / -1; margin: 0; color: var(--ink-2); font-size: .9em; }
+.qual { background: #fff; border: 1px solid var(--line); border-radius: .4em; padding: .35em .7em; font-family: var(--kai); transition: background .4s, color .4s; }
+.qual b { font-family: var(--serif); color: var(--snow); margin-right: .4em; }
+.qual.lit { background: var(--olive); color: #fff; border-color: var(--olive); }
+.qual.lit b { color: #f3dfb0; }
+.flow-say { flex: 1; background: var(--snow); color: #eef0f2; border-radius: .6em; padding: .9em 1.2em; display: flex; flex-direction: column; gap: .4em; }
+.flow-say .hint { color: #c9cfdb; }
+.flow-say blockquote { margin: 0; padding: .4em .8em; border-left: .3em solid var(--gold); background: rgba(255, 255, 255, .08); font-family: var(--kai); font-size: 1.25em; line-height: 1.7; }
+.flow-say p { margin: 0; line-height: 1.7; }
+
+/* 松骨峰 */
+.s-sgf .bd { grid-template-columns: 1fr 1fr; }
+.sgf-quote { font-size: 1.12em; line-height: 2; }
+.s-sgf .stage { gap: .45em; overflow: auto; }
+.s-sgf .tip { font-size: .86em; }
+
+/* 叙述与引用 */
+.voice { display: flex; flex-direction: column; gap: .5em; }
+.voice p { margin: 0; padding: .5em .8em; border-radius: .4em; font-family: var(--kai); font-size: 1.08em; line-height: 1.75; transition: opacity .4s; }
+.voice .nar { background: #e8eef5; border-left: .3em solid var(--snow); }
+.voice .say { background: #fdf0e0; border-left: .3em solid #d07a2c; }
+.voice.only-nar .say, .voice.only-say .nar { opacity: .15; }
+.voice-tools { justify-content: center; }
+
+/* 抒情工具 */
+.s-lyric .bd { grid-template-columns: 1.55fr 1fr; }
+.lyric { font-size: 1.04em; line-height: 1.95; }
+.lyric span { transition: background .3s, color .3s; border-radius: .2em; }
+.show-p2 .p2 { background: #d8e6f5; color: #1f4e79; font-weight: bold; }
+.show-pb .pb, .show-pb .pb2 { background: linear-gradient(transparent 55%, #f5d78a 55%); }
+.show-wen .wen { background: #e3f0e0; color: #2f6b2e; font-weight: bold; }
+.show-tan .tan { background: #fbe1dc; color: var(--red); font-weight: bold; }
+.heping { flex: 1; min-height: 8em; border-radius: .5em; background: center / cover no-repeat #ddd8c8; }
+.lyric-say { min-height: 5.5em; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; }
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.05em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table th { background: var(--snow); color: #f3dfb0; font-family: var(--kai); font-size: 1.1em; }
+.sum-table td { font-family: var(--kai); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.6em; }
+  .ask { font-size: 1.5em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(7em, 1fr)); }
+  .zy-write { font-size: 1.25em; }
+  .fl-case { margin-left: .8em; }
+  .fl-lyric { margin-left: 1.6em; }
+  .s-sgf .stage { overflow: visible; }
+  .heping { min-height: 10em; }
+  .sum-table { font-size: .8em; border-spacing: .2em; }
+}

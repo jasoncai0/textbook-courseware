@@ -1,0 +1,111 @@
+/* 紫藤萝瀑布 · 本课配色：紫色色阶（浅紫 → 深紫） */
+:root {
+  --red: #6b3fa0;
+  --red-d: #3f1f66;
+  --gold: #b48fd8;
+  --gold-l: #e7dbf5;
+  --paper: #f6f2f9;
+  --stone: #fcfaff;
+  --ink-2: #5e5470;
+  --line: #ddd0ec;
+  --v1: #e9def7; --v2: #c9aee8; --v3: #a77fd0; --v4: #7c4fb3; --v5: #4b2577;
+}
+.frame { background-image: radial-gradient(circle at 10% 6%, #fdfbff 0, transparent 40%), radial-gradient(circle at 92% 96%, #e6daf3 0, transparent 46%); }
+.cover-line { font-family: var(--kai); font-size: 2em; margin: .2em 0 .8em; letter-spacing: .08em; }
+.subs .hl { font-weight: normal; color: #e3cdfb; }
+
+/* 读准字音：本课“写一写”是词语，卡片放宽 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+/* 预习：题目拆解 */
+.frame-text { flex: 1; min-height: 6em; resize: none; font: inherit; font-family: var(--kai); font-size: 1.15em; line-height: 1.8; padding: .6em .9em; border: 1px solid var(--line); border-radius: .5em; background: #fff; }
+.title-split { display: grid; grid-template-columns: 1fr auto 1fr; gap: .8em; align-items: stretch; }
+.title-split > i { font-style: normal; align-self: center; font-size: 2em; color: var(--red); }
+.ts-box { background: #fff; border-radius: .6em; padding: .8em 1em; border-top: .35em solid var(--v3); display: flex; flex-direction: column; gap: .2em; }
+.ts-box.gold { border-top-color: #6fa8c9; }
+.ts-box small { color: var(--ink-2); }
+.ts-box b { font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.ts-box span { line-height: 1.6; font-size: .95em; }
+
+/* 今昔对照 + 脚步 */
+.then-now { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 9em 1fr; gap: 1em; }
+.tn-card { display: flex; flex-direction: column; background: #fff; border-radius: .6em; overflow: hidden; box-shadow: 0 .2em .8em rgba(60, 30, 90, .12); }
+.tn-card.old { filter: saturate(.5); }
+.tn-pic { flex: 1; min-height: 5em; background: center / cover no-repeat; }
+.tn-card h3 { margin: .4em .9em 0; color: var(--red-d); font-size: 1.1em; }
+.tn-card p { margin: .2em .9em .6em; font-family: var(--kai); line-height: 1.65; }
+.tn-card em { font-style: normal; color: var(--red); font-weight: bold; }
+.tn-card.old em { color: #6b6158; }
+.tn-mid { align-self: center; text-align: center; background: var(--gold-l); border-radius: .6em; padding: .8em .4em; line-height: 1.7; }
+.tn-mid b { display: block; color: var(--red-d); }
+.steps-line { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: .6em; align-items: center; }
+.steps-line > i { font-style: normal; color: var(--red); font-size: 1.5em; }
+.sl-item { background: var(--v1); border-radius: .5em; padding: .4em .8em; text-align: center; line-height: 1.5; }
+.sl-item b { display: block; font-family: var(--kai); font-size: 1.15em; color: var(--red-d); }
+.sl-item span { font-size: .85em; color: var(--ink-2); }
+.sl-item.hot { background: var(--v4); }
+.sl-item.hot b, .sl-item.hot span { color: #fff; }
+
+/* 本课独有：花穗色阶 */
+#spike { flex: 1; min-height: 0; width: 100%; cursor: pointer; }
+#spike .band .petals { opacity: .28; transition: opacity .8s; }
+#spike .band.lit .petals { opacity: 1; }
+#spike .band-t, #spike .band-s { opacity: .75; transition: opacity .8s; paint-order: stroke; stroke: rgba(255, 255, 255, .7); stroke-width: 3px; }
+#spike .b3 .band-t, #spike .b3 .band-s { stroke: rgba(40, 10, 70, .6); }
+#spike .band.lit .band-t, #spike .band.lit .band-s { opacity: 1; }
+.spike-tip { font-size: .85em; }
+.s-layers .bd { grid-template-columns: 30% 1fr; }
+.s-layers .sort-row { grid-template-columns: 1fr auto 11em; }
+.s-layers .sort-row .s { font-size: 1.02em; line-height: 1.55; }
+
+/* 改一改，比一比 */
+.taste-list { display: flex; flex-direction: column; gap: .8em; }
+.taste { background: #fff; border-radius: .6em; padding: .7em 1.1em; border-left: .35em solid var(--v3); box-shadow: 0 .15em .6em rgba(60, 30, 90, .08); }
+.taste-s { margin: 0 0 .4em; font-family: var(--kai); font-size: 1.25em; line-height: 1.7; }
+.taste .plain { display: none; color: #8a8494; }
+.taste.is-plain .orig { display: none; }
+.taste.is-plain .plain { display: inline; }
+.taste-ft { display: flex; gap: .6em; align-items: center; flex-wrap: wrap; }
+.taste-tag { margin-left: auto; padding: .15em .8em; border-radius: 1em; background: var(--v4); color: #fff; opacity: 0; transition: opacity .4s; }
+.taste.show-tag .taste-tag { opacity: 1; }
+.taste-why { margin: .5em 0 0; padding: .4em .8em; background: var(--v1); border-radius: .4em; line-height: 1.65; }
+
+/* 托物言志 */
+.tw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
+.tw-card { background: #fff; border-radius: .6em; padding: .6em 1em .8em; border: 1px solid var(--line); }
+.tw-card small { color: var(--ink-2); }
+.tw-card h3 { margin: .1em 0 .4em; font-family: var(--kai); color: var(--red-d); }
+.tw-card.me { background: var(--v1); border-color: var(--v3); }
+.tw-row { display: flex; align-items: center; gap: .6em; }
+.tw-row i { font-style: normal; color: var(--red); font-size: 1.3em; }
+.tw-wu { flex: none; padding: .3em .7em; border-radius: .4em; background: var(--v4); color: #fff; font-family: var(--kai); font-size: 1.15em; }
+.tw-zhi { line-height: 1.55; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; }
+.sum-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.sf { border-radius: .6em; padding: .8em 1em; text-align: center; line-height: 1.6; }
+.sf b { display: block; font-family: var(--kai); font-size: 1.4em; }
+.sf1 { background: var(--v1); color: var(--red-d); }
+.sf2 { background: var(--v3); color: #fff; }
+.sf3 { background: var(--v5); color: #fff; }
+.s-sum .board { background: #3b2a4f; box-shadow: inset 0 0 0 .4em #6b4f86; }
+.s-sum .board b { color: #e6d2ff; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .cover-line { font-size: 1.35em; }
+  .title-split { grid-template-columns: 1fr; }
+  .title-split > i { justify-self: center; }
+  .then-now { grid-template-columns: 1fr; }
+  .tn-pic { min-height: 9em; }
+  .steps-line { grid-template-columns: 1fr; }
+  .steps-line > i { transform: rotate(90deg); justify-self: center; }
+  #spike { max-height: 60vh; }
+  .s-layers .sort-row { grid-template-columns: 1fr; }
+  .taste-s { font-size: 1.1em; }
+  .tw-grid, .sum-flow { grid-template-columns: 1fr; }
+  .frame-text { min-height: 8em; }
+}

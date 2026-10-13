@@ -1,0 +1,90 @@
+/* 叶圣陶先生二三事 · 本课配色：钢笔墨蓝、暖灰、淡赭 */
+:root {
+  --red: #8b4b2e;
+  --red-d: #2f3b4a;
+  --gold: #b8945a;
+  --gold-l: #e8dcc0;
+  --paper: #f2eee6;
+  --stone: #faf8f3;
+  --ink-2: #5c5a55;
+  --line: #d6cfc1;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #faf8f3 0, transparent 40%), radial-gradient(circle at 90% 95%, #e3ddd0 0, transparent 45%); }
+.s-cover .cover-title { font-size: 5em; line-height: 1.1; letter-spacing: .06em; }
+.cover-quote { font-family: var(--kai); font-size: 1.45em; line-height: 1.6; margin: .2em 0 .8em; color: #f3e6cc; }
+
+.pic-box { min-height: 7em; flex: 1; border-radius: .5em; background: #e2ddd2 center / cover no-repeat; }
+.pic-box.small { flex: none; height: 7em; }
+.q-line { margin: 0; font-family: var(--kai); font-size: 1.1em; line-height: 1.75; background: var(--stone); border-left: .3em solid var(--red-d); padding: .5em 1em; border-radius: .3em; }
+
+/* 略读计时 */
+.timer { display: flex; align-items: center; gap: 1em; background: #fff; border-radius: .6em; padding: .6em 1em; }
+.clock { font-family: Georgia, var(--serif); font-size: 3em; color: var(--red-d); min-width: 2.6em; }
+.clock.done { color: var(--red); animation: pulse 1s infinite; }
+.s-skim .picks { flex-direction: column; }
+
+/* 品质卡片 */
+.virtue { display: grid; grid-template-columns: 5fr 3fr; gap: 1.2em; min-height: 0; }
+.v-group { display: flex; flex-direction: column; gap: .6em; min-height: 0; }
+.v-group h3 { margin: 0; display: flex; align-items: center; gap: .5em; color: var(--red-d); }
+.v-group h3 b { font-family: var(--kai); font-size: 1.8em; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; background: #5a7b6a; }
+.v-group.yan h3 b { background: var(--red); }
+.v-cards { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.v-group.yan .v-cards { grid-template-columns: 1fr; }
+.v-card, .v-card .clue-in { min-height: 6.6em; }
+.v-card .clue-face { font-size: .98em; }
+.kuan .v-card .clue-face.back { background: #eef5f0; border-color: #9fc4ae; }
+.kuan .v-card .clue-face.back small { color: #2f6b4f; }
+
+/* 评价与事件 */
+.judge { display: flex; flex-direction: column; gap: .6em; }
+.jg { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1em; align-items: center; background: #fff; border-radius: .5em; padding: .55em 1em; border-left: .3em solid var(--gold); }
+.jg.top { border-left-color: var(--red); background: #fff8ef; }
+.jq { margin: 0; font-family: var(--kai); font-size: 1.08em; line-height: 1.6; }
+.je { margin: 0; display: flex; flex-wrap: wrap; gap: .35em; }
+.je span { font-size: .85em; padding: .15em .6em; border-radius: 1em; background: #eef1f4; border: 1px solid #c9d2dc; }
+
+/* 双层的悲哀 */
+.layers { position: relative; display: flex; flex-direction: column; gap: .5em; }
+.ly { border-radius: .5em; padding: .5em .9em; line-height: 1.6; }
+.ly b { display: block; font-size: .85em; }
+.ly.l1 { background: rgba(47, 59, 74, .12); }
+.ly.l2 { background: rgba(47, 59, 74, .24); }
+.ly.l3 { background: rgba(47, 59, 74, .38); color: #1d2530; }
+
+/* 写话 */
+.rooms { width: 100%; height: auto; background: #fff; border-radius: .5em; }
+.rooms .room { fill: #f6f1e6; stroke: #9b8f7a; stroke-width: 3; }
+.rooms .door2 { fill: #fff; stroke: #9b8f7a; stroke-width: 2; }
+.rooms .who { fill: #6d7a88; }
+.rooms .paper { fill: #fff; stroke: #9b8f7a; }
+.rooms .wave { fill: none; stroke: var(--red); stroke-width: 3; stroke-dasharray: 6 6; }
+.rooms .wave-t { fill: var(--red); font-family: var(--kai); }
+.s-talk .picks { flex-direction: column; }
+
+/* 删废字 */
+.cut-list { display: grid; grid-template-columns: 1fr 1fr; gap: .5em 1.2em; }
+.cut { margin: 0; font-family: var(--kai); font-size: 1.55em; background: #fff; border-radius: .5em; padding: .3em .8em; }
+.cut .c { cursor: pointer; display: inline-block; border-radius: .15em; transition: opacity .5s, color .4s; }
+.cut .c:hover { background: #f3ede0; }
+.cut .c.del { color: var(--red); text-decoration: line-through; opacity: .35; }
+.cut .c.nope { animation: nope .35s; color: #999; }
+.cut-count { margin: 0; color: var(--ink-2); }
+
+.s-sum .board p { margin: .2em 0; }
+
+/* 读读写写是词语：卡片按词长自适应宽度 */
+.s-ziyin .zy-grid-write { display: flex; flex-wrap: wrap; }
+.s-ziyin .zy-write { font-size: 1.7em; white-space: nowrap; min-width: 3.4em; }
+.s-ziyin .zy-write small { white-space: normal; max-width: 7em; margin: 0 auto; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.6em; }
+  .cover-quote { font-size: 1.05em; }
+  .virtue { grid-template-columns: 1fr; }
+  .v-cards { grid-template-columns: 1fr; }
+  .v-card, .v-card .clue-in { min-height: 8em; }
+  .jg { grid-template-columns: 1fr; }
+  .cut-list { grid-template-columns: 1fr; }
+  .cut { font-size: 1.25em; }
+}

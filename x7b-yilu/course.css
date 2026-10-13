@@ -1,0 +1,79 @@
+/* 驿路梨花 · 本课配色：梨花白、山青、哈尼红 */
+:root {
+  --red: #a8402e;
+  --red-d: #2e4a3e;
+  --gold: #c9a24a;
+  --gold-l: #efe2b8;
+  --paper: #f3f2ec;
+  --stone: #fbfbf7;
+  --ink-2: #56605a;
+  --line: #d3d6cb;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfdf9 0, transparent 40%), radial-gradient(circle at 90% 95%, #e2e6da 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .08em; }
+.cover-big { font-family: var(--kai); font-size: 1.6em; line-height: 1.6; margin: .2em 0 .8em; }
+.cover-big b { color: #ffe7a3; font-size: 1.15em; }
+
+/* 主人猜测牌 */
+.guess { position: absolute; top: .8em; right: 1.4em; z-index: 9; min-width: 11em; padding: .4em .9em .5em; border-radius: .5em; background: rgba(255, 255, 255, .92); border-left: .35em solid var(--red); box-shadow: 0 .2em .8em rgba(0, 0, 0, .3); opacity: 0; transition: opacity .5s; pointer-events: none; }
+.guess.show { opacity: 1; }
+.guess small { display: block; font-size: .72em; color: var(--ink-2); }
+.guess b { font-family: var(--kai); font-size: 1.3em; color: var(--red); }
+.guess.flip { animation: flipIn .6s ease; }
+@keyframes flipIn { from { transform: rotateX(90deg); } to { transform: none; } }
+
+/* 悬念链 */
+.chain { display: grid; grid-template-columns: repeat(5, 1fr); gap: .8em; }
+.link { position: relative; background: #fff; border-radius: .6em; padding: .6em .8em; display: flex; flex-direction: column; gap: .4em; border-top: .3em solid var(--gold); }
+.link:not(:last-child)::after { content: "→"; position: absolute; right: -.75em; top: 40%; color: var(--red); font-weight: bold; }
+.who-g { font-size: .8em; color: var(--ink-2); }
+.link .g { margin: 0; font-family: var(--kai); font-size: 1.2em; color: var(--red-d); }
+.link .g::before { content: "猜 "; font-family: var(--serif); font-size: .65em; color: #fff; background: var(--gold); border-radius: .2em; padding: 0 .3em; vertical-align: .2em; }
+.link .r { margin: 0; padding-top: .4em; border-top: 1px dashed var(--line); line-height: 1.55; }
+.link .r::before { content: "✗ "; color: var(--red); font-weight: bold; }
+.link:nth-child(3) .r::before { content: "？"; color: var(--gold); }
+.truth { display: flex; flex-wrap: wrap; align-items: center; gap: .5em; background: #f0f5ef; border: 1px solid #b8cfbf; border-radius: .6em; padding: .6em 1em; }
+.truth span { font-family: var(--kai); font-size: 1.2em; background: #fff; padding: .15em .7em; border-radius: .4em; }
+.truth small { font-family: var(--serif); font-size: .65em; color: var(--ink-2); margin-left: .3em; }
+.truth i { font-style: normal; color: var(--red-d); font-weight: bold; }
+.truth b { font-family: var(--kai); font-size: 1.35em; color: #fff; background: var(--red); padding: .15em .8em; border-radius: .4em; }
+
+/* 讲述顺序 */
+.events { list-style: none; counter-reset: ev; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .4em; }
+.events li { counter-increment: ev; background: #fff; border-radius: .4em; padding: .4em .8em .4em 2.6em; position: relative; animation: appear .5s ease both; line-height: 1.5; }
+.events li::before { content: counter(ev); position: absolute; left: .6em; top: 50%; transform: translateY(-50%); width: 1.5em; height: 1.5em; border-radius: 50%; background: var(--red-d); color: #fff; font-size: .85em; display: flex; align-items: center; justify-content: center; }
+.events li.back { background: #fff8ea; }
+.events li em { font-style: normal; font-size: .75em; color: #fff; background: var(--gold); border-radius: .2em; padding: 0 .4em; margin-left: .5em; }
+
+/* 梨花花瓣 */
+.lihua-svg { flex: 1; min-height: 0; width: 100%; }
+.lihua-svg .petal { cursor: pointer; }
+.lihua-svg .petal ellipse { fill: #fff; stroke: #cfd8cc; stroke-width: 3; transition: fill .4s, stroke .4s; }
+.lihua-svg .petal:hover ellipse { fill: #f6faf3; }
+.lihua-svg .petal.seen ellipse { fill: #f1f7ee; stroke: #9fc0a3; }
+.lihua-svg .petal.sel ellipse { fill: #fff6dc; stroke: var(--gold); }
+.lihua-svg .petal text { font-family: var(--kai); font-weight: bold; fill: var(--red-d); }
+.lihua-svg .stamen { fill: var(--gold); }
+.lihua-svg .st-t { fill: #fff; font-family: var(--kai); }
+#flowerNote { font-size: 1.05em; line-height: 1.75; min-height: 6em; }
+#flowerNote b { color: var(--red); }
+
+.s-sum .board p { margin: .2em 0; }
+
+/* 读读写写是词语：卡片按词长自适应宽度 */
+.s-ziyin .zy-grid-write { display: flex; flex-wrap: wrap; }
+.s-ziyin .zy-write { font-size: 1.7em; white-space: nowrap; min-width: 3.4em; }
+.s-ziyin .zy-write small { white-space: normal; max-width: 7em; margin: 0 auto; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .cover-big { font-size: 1.15em; }
+  .guess { top: .6em; right: .6em; min-width: 0; font-size: .85em; }
+  .scrolled .guess { opacity: 0; }
+  .chain { grid-template-columns: 1fr; }
+  .link:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -1.1em; }
+  .lihua-svg { flex: none; height: auto; }
+}
+@media (max-width: 820px), (max-height: 520px) {
+  .frame:has(.slide.active:not(.scene)) .guess { opacity: 0; }
+}

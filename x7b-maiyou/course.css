@@ -1,0 +1,81 @@
+/* 卖油翁 · 本课配色：宋画绢色、赭石、油黄 */
+:root {
+  --red: #8a3b22;
+  --red-d: #4e3020;
+  --gold: #c39a3c;
+  --gold-l: #ecdcaa;
+  --paper: #f2ead8;
+  --stone: #fbf6ea;
+  --ink-2: #66594a;
+  --line: #dccdaa;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbf6ea 0, transparent 40%), radial-gradient(circle at 90% 95%, #e8dcc0 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.4em; letter-spacing: .12em; }
+.cover-vs { display: flex; align-items: center; gap: .8em; margin: .4em 0; }
+.cover-vs span { font-family: var(--kai); font-size: 1.5em; background: rgba(138, 59, 34, .9); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-vs small { display: block; font-size: .6em; opacity: .9; }
+.cover-vs b { font-size: 1.4em; color: #f3d77a; }
+
+/* 字词梳理 */
+.word-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7em; }
+.word { font: inherit; text-align: left; cursor: pointer; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .6em .9em; display: flex; flex-direction: column; gap: .25em; min-height: 6em; transition: background .3s; }
+.word b { font-family: var(--kai); font-size: 1.9em; color: var(--red-d); }
+.word .wa, .word .we { display: none; line-height: 1.55; }
+.word .wa { color: var(--red); font-weight: bold; }
+.word .we { font-family: var(--kai); font-size: 1.05em; }
+.word .we b { font-size: 1em; color: var(--red); }
+.word::after { content: "点一点"; font-size: .75em; color: var(--ink-2); }
+.word.open { background: #fff8e6; border-color: var(--gold); }
+.word.open .wa, .word.open .we { display: block; }
+.word.open::after { content: none; }
+
+/* 射箭 vs 酌油 */
+.s-vs .bd.full { display: flex; flex-direction: column; gap: .7em; }
+.vs { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr auto 1fr; gap: 1em; align-items: stretch; }
+.vs-side { background: #fff; border-radius: .6em; padding: .6em 1em; display: flex; flex-direction: column; gap: .4em; min-height: 0; border-top: .35em solid #6b5a44; }
+.vs-side.oil { border-top-color: var(--gold); }
+.vs-side h3 { margin: 0; color: var(--red-d); }
+.vs-row { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.vs-pic { border-radius: .4em; background: #efe6d2 center / cover no-repeat; min-height: 6em; }
+.vs-row svg { width: 100%; height: 100%; min-height: 0; }
+.vs-q { margin: 0; font-family: var(--kai); font-size: 1.12em; line-height: 1.6; }
+.vs-q b { color: var(--red); }
+.vs-mid { align-self: center; display: flex; flex-direction: column; align-items: center; gap: .3em; }
+.vs-mid b { font-family: var(--kai); font-size: 4em; color: #fff; background: var(--red); width: 1.4em; height: 1.4em; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.vs-mid span { font-family: var(--kai); color: var(--red-d); }
+.target .r1 { fill: #f4ecd8; stroke: #a08a62; } .target .r2 { fill: #fff; stroke: #a08a62; } .target .r3 { fill: #e9c46a; stroke: #a08a62; } .target .r4 { fill: #b5432b; }
+.target .arw line { stroke: #3d2c1e; stroke-width: 2.5; }
+.target .arw path { fill: #6b8f71; }
+.target .arrows.on .arw { animation: shoot .4s ease-out both; }
+@keyframes shoot { from { opacity: 0; transform: translate(40px, -30px); } to { opacity: 1; transform: none; } }
+.coin .oil { stroke: #e0a92a; stroke-width: 4; stroke-dasharray: 150; stroke-dashoffset: 150; transition: stroke-dashoffset 2s ease, opacity .6s; }
+.coin .oil.on { stroke-dashoffset: 0; }
+.coin .gourd-top { fill: #c8a464; }
+.coin .cash { fill: #b8925a; stroke: #7a5a2c; stroke-width: 3; }
+.coin .hole { fill: #fbf6ea; stroke: #7a5a2c; stroke-width: 2; }
+
+/* 质疑 */
+.debate { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.db-col { background: #fff; border-radius: .6em; padding: .7em 1em; }
+.db-col h3 { margin: 0 0 .4em; color: #fff; display: inline-block; padding: .1em .7em; border-radius: .3em; background: #6b8f71; }
+.db-col.no h3 { background: var(--red); }
+.db-col p { margin: .35em 0; line-height: 1.65; padding-left: 1em; position: relative; }
+.db-col p::before { content: "·"; position: absolute; left: .2em; color: var(--red); font-weight: bold; }
+
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.05em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.15em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .cover-vs span { font-size: 1.1em; }
+  .word-grid { grid-template-columns: 1fr 1fr; }
+  .vs { grid-template-columns: 1fr; }
+  .vs-row { grid-template-columns: 1fr; }
+  .vs-pic { min-height: 9em; }
+  .vs-row svg { height: auto; }
+  .debate { grid-template-columns: 1fr; }
+  .sum-table { font-size: .82em; }
+}

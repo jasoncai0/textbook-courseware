@@ -1,0 +1,101 @@
+/* 一棵小桃树 · 本课配色：黄土、桃红、雨灰 */
+:root {
+  --red: #b0525a;
+  --red-d: #6d2f33;
+  --gold: #d29a6a;
+  --gold-l: #f4dcc4;
+  --paper: #f5efe6;
+  --stone: #fcf8f2;
+  --ink-2: #6b5d50;
+  --line: #e0cfbb;
+  --tree: #d0697a;
+  --me: #4f7aa6;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdf9f2 0, transparent 40%), radial-gradient(circle at 90% 95%, #eadbc6 0, transparent 45%); }
+.cover-q { font-family: var(--kai); font-size: 1.6em; margin: .3em 0 .9em; }
+.cover-q b { color: #ffd6dc; font-weight: normal; }
+
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+/* 数一数 */
+.s-count .bd { grid-template-columns: 30% 1fr; }
+.count-side { justify-content: center; }
+.counter { display: flex; align-items: baseline; justify-content: center; gap: .3em; background: #fff; border-radius: 50%; width: 9em; height: 9em; margin: 0 auto; box-shadow: 0 .3em 1em rgba(110, 50, 50, .15); border: .35em solid var(--tree); align-items: center; }
+.counter b { font-size: 4.5em; color: var(--red); font-family: Georgia, var(--serif); }
+.counter span { font-size: 1.3em; color: var(--ink-2); }
+.count-list { margin: 0; padding-left: 1.8em; display: flex; flex-direction: column; gap: .45em; font-family: var(--kai); font-size: 1.12em; line-height: 1.6; }
+.count-list li::marker { color: var(--red); font-family: var(--serif); font-weight: bold; }
+.count-list em { font-style: normal; color: #fff; background: var(--tree); padding: 0 .25em; border-radius: .2em; }
+
+/* 本课独有：双线命运对照 */
+.twin { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.twin-chart { width: 100%; height: 6.5em; flex: none; background: linear-gradient(#fff 0, #fbf4ec 100%); border-radius: .5em .5em 0 0; }
+.twin-chart .tl { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.twin-chart .tree { stroke: var(--tree); }
+.twin-chart .me { stroke: var(--me); stroke-dasharray: 8 6; }
+.twin-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(8, 1fr); gap: 0; background: #fff; border-radius: 0 0 .5em .5em; }
+.tw-col { font: inherit; display: grid; grid-template-rows: 1fr auto 1fr; gap: .3em; padding: .4em .35em; border: none; border-left: 1px dashed var(--line); background: none; cursor: pointer; text-align: center; color: var(--ink); }
+.tw-col:first-child { border-left: none; }
+.tw-col.active { background: #fbefe6; }
+.tw-tree, .tw-me { font-family: var(--kai); font-size: .98em; line-height: 1.45; display: flex; align-items: center; justify-content: center; border-radius: .4em; padding: .3em; }
+.tw-tree { background: #fbe6ea; color: #7a2a38; }
+.tw-me { background: #e5eef7; color: #24486e; }
+.tw-stage { font-size: 1.05em; color: var(--red-d); padding: .15em 0; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); }
+.twin-legend { display: flex; gap: 1.2em; align-items: center; font-size: .88em; color: var(--ink-2); }
+.lg::before { content: ""; display: inline-block; width: 1.8em; height: .3em; margin-right: .4em; vertical-align: middle; border-radius: 1em; }
+.lg.tree::before { background: var(--tree); }
+.lg.me::before { background: repeating-linear-gradient(90deg, var(--me) 0 .45em, transparent .45em .75em); }
+.lg-tip { margin-left: auto; }
+.twin-quote { font-family: var(--kai); font-size: 1.08em; min-height: 3.6em; }
+
+/* 旁批 */
+.pp-list { display: flex; flex-direction: column; gap: .55em; }
+.pp { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; align-items: start; }
+.pp-text { background: #fff; border-radius: .5em; padding: .45em .9em; font-family: var(--kai); font-size: 1.05em; line-height: 1.6; border-left: .3em solid var(--gold); }
+.pp-text small { display: block; font-family: var(--serif); font-size: .72em; color: var(--ink-2); }
+.pp-note { position: relative; background: #fff8ef; border: 1px dashed var(--gold); border-radius: .5em; padding: .45em .9em; line-height: 1.6; font-size: .95em; }
+.pp-note > span { display: inline-block; margin-right: .5em; padding: 0 .5em; border-radius: .3em; background: var(--red); color: #fff; font-size: .82em; }
+.pp-note .btn { margin-left: .5em; padding: .1em .6em; font-size: .82em; }
+.pp-ans { margin: .4em 0 0; padding-top: .4em; border-top: 1px solid var(--line); color: #4a3a2e; }
+
+/* 比较表 */
+.cmp-table { width: 100%; border-collapse: separate; border-spacing: .35em; font-size: 1.02em; }
+.cmp-table th, .cmp-table td { background: #fff; border-radius: .4em; padding: .45em .8em; line-height: 1.5; }
+.cmp-table tr:first-child th { color: #fff; font-family: var(--kai); font-size: 1.2em; text-align: center; }
+.cmp-table th.zt { background: #7c4fb3; }
+.cmp-table th.ts { background: var(--tree); }
+.cmp-table tr:first-child th:first-child { background: transparent; }
+.cmp-table tr > th:first-child { color: var(--red); width: 5em; text-align: center; background: transparent; }
+.cmp-table td { font-family: var(--kai); }
+.cmp-table tr.same td { background: #fff4e3; }
+.cmp-table b { color: var(--red); }
+
+/* 回顾 */
+.sum-stage { justify-content: center; }
+.sum-tree { display: flex; flex-direction: column; gap: .4em; }
+.st-row { display: flex; gap: 1em; align-items: center; background: #fbe6ea; border-radius: .6em; padding: .7em 1.2em; }
+.st-row.me { background: #e5eef7; }
+.st-row b { flex: none; font-family: var(--kai); font-size: 1.6em; color: var(--red-d); width: 4em; }
+.st-row.me b { color: #24486e; }
+.st-row span { font-family: var(--kai); font-size: 1.15em; line-height: 1.6; }
+.st-row em { font-style: normal; color: var(--red); font-weight: bold; }
+.st-row.me em { color: var(--me); }
+.st-eq { text-align: center; font-size: 1.6em; color: var(--gold); line-height: 1; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .cover-q { font-size: 1.2em; }
+  .counter { width: 7em; height: 7em; }
+  .counter b { font-size: 3.4em; }
+  .twin-chart { display: none; }
+  .twin-grid { grid-template-columns: 1fr; gap: .4em; background: none; }
+  .tw-col { grid-template-columns: 4em 1fr 1fr; grid-template-rows: auto; border: 1px solid var(--line); border-radius: .5em; background: #fff; }
+  .tw-stage { border: none; align-self: center; }
+  .lg-tip { margin-left: 0; }
+  .twin-legend { flex-wrap: wrap; }
+  .pp { grid-template-columns: 1fr; gap: .3em; }
+  .cmp-table { font-size: .82em; }
+  .st-row { flex-direction: column; align-items: flex-start; gap: .3em; }
+}

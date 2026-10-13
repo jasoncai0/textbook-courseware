@@ -1,0 +1,81 @@
+/* 老王 · 本课配色：铅笔灰、旧蓝布、暗黄灯光 */
+:root {
+  --red: #8b4a2f;
+  --red-d: #3d3a36;
+  --gold: #b49a62;
+  --gold-l: #e7dcc2;
+  --paper: #efece6;
+  --stone: #f8f6f2;
+  --ink-2: #5f5b55;
+  --line: #d3cdc2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #f7f5f1 0, transparent 40%), radial-gradient(circle at 90% 95%, #e0dbd1 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.5em; letter-spacing: .1em; }
+.cover-q { font-family: var(--kai); font-size: 1.35em; margin: .2em 0 .6em; }
+.cover-ask { font-family: var(--kai); font-size: 1.3em; line-height: 1.7; margin: 0 0 .8em; padding-left: 1.4em; color: #f3e6cc; }
+
+/* 人物名片 */
+.pic-box { flex: 1; min-height: 9em; border-radius: .5em; background: #d9d4ca center / cover no-repeat; }
+.fate { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .55em; }
+.fate li { font-family: var(--kai); font-size: 1.08em; line-height: 1.65; background: #fff; border-radius: .5em; padding: .45em .9em; border-left: .3em solid #8d877e; }
+.fate b { font-family: var(--serif); font-size: .8em; color: #fff; background: #6c675f; padding: .05em .5em; border-radius: .25em; margin-right: .6em; }
+
+/* 交往与钱 */
+.deals { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; }
+.deal { background: #fff; border-radius: .6em; padding: .7em .9em; border-top: .3em solid #8d877e; display: flex; flex-direction: column; gap: .4em; }
+.deal.last { border-top-color: var(--red); background: #fffaf2; }
+.deal h3 { margin: 0; color: var(--red-d); }
+.deal p { margin: 0; font-family: var(--kai); line-height: 1.6; }
+.deal .money { margin-top: auto; padding-top: .4em; border-top: 1px dashed var(--line); }
+.deal .money::before { content: "钱 "; font-family: var(--serif); font-size: .8em; color: #fff; background: var(--gold); border-radius: .25em; padding: 0 .4em; }
+.deal .money b { color: var(--red); }
+.money-line { background: #fff8e8; border: 1px solid var(--gold-l); border-radius: .5em; padding: .5em 1em; line-height: 1.7; }
+.money-line p { margin: .1em 0; }
+.money-line b { color: var(--red); }
+
+/* 细节聚光灯 */
+.s-spot .bd { grid-template-columns: 1fr 17em; }
+.spot-text { background: #1f1d1b; border-radius: .6em; padding: 1em 1.4em; overflow: auto; box-shadow: inset 0 0 3em rgba(0, 0, 0, .6); }
+.spot-text p { margin: 0 0 .45em; text-indent: 2em; font-family: var(--kai); font-size: 1.12em; line-height: 1.9; color: #77706a; }
+.sp[data-step] { opacity: 1; transform: none; }
+.sp { cursor: pointer; border-radius: .2em; transition: color .5s, background .5s, text-shadow .5s; }
+.sp:hover { color: #b9b0a5; }
+.sp.lit { color: #fff6df; background: rgba(255, 220, 140, .14); text-shadow: 0 0 .6em rgba(255, 215, 130, .55); }
+.sp.me.lit { color: #e3f0ff; background: rgba(140, 190, 255, .16); text-shadow: 0 0 .6em rgba(140, 190, 255, .5); }
+.sp.cur { box-shadow: 0 .12em 0 #e8c06a; }
+.sp.me.cur { box-shadow: 0 .12em 0 #8cbcf0; }
+.spot-pic { height: 10em; border-radius: .5em; background: #2a2724 center / cover no-repeat; }
+.spot-note { flex: 1; background: #fff; border-left: .35em solid var(--gold); border-radius: .4em; padding: .7em 1em; line-height: 1.75; font-size: 1.02em; }
+.spot-note small { display: block; color: var(--red); font-weight: bold; margin-bottom: .2em; }
+
+/* 加点词 */
+.dot-rows { display: flex; flex-direction: column; gap: .8em; }
+.dot-row { display: grid; grid-template-columns: 1fr auto; gap: .3em 1em; align-items: center; background: #fff; border-radius: .6em; padding: .7em 1.1em; }
+.dot-row .s { margin: 0; font-family: var(--kai); font-size: 1.35em; }
+.dot-row .s i { font-style: normal; color: var(--red); background: radial-gradient(circle, var(--red) 40%, transparent 46%) repeat-x 0 100% / .5em .3em; padding-bottom: .25em; transition: opacity .4s; }
+.dot-row.no-dot .s i { display: none; }
+.dot-row .a { grid-column: 1 / -1; margin: 0; color: var(--ink-2); line-height: 1.7; border-top: 1px dashed var(--line); padding-top: .4em; }
+
+/* 愧怍 */
+.luck { width: 100%; border-collapse: separate; border-spacing: .3em; }
+.luck th { background: var(--red-d); color: #fff; padding: .4em; border-radius: .3em; font-family: var(--kai); }
+.luck th:last-child { background: #7a746b; }
+.luck td { background: #fff; padding: .4em .7em; border-radius: .3em; font-family: var(--kai); line-height: 1.5; }
+.s-kuizuo .picks { flex-direction: column; }
+
+.s-sum .board p { margin: .2em 0; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .cover-q, .cover-ask { font-size: 1.05em; }
+  .deals { grid-template-columns: 1fr 1fr; }
+  .spot-text { overflow: visible; }
+  .spot-text p { font-size: 1em; }
+  .dot-row { grid-template-columns: 1fr; }
+  .dot-row .s { font-size: 1.12em; }
+}
+
+/* 读读写写是词语：卡片按词长自适应宽度 */
+.s-ziyin .zy-grid-write { display: flex; flex-wrap: wrap; }
+.s-ziyin .zy-write { font-size: 1.7em; white-space: nowrap; min-width: 3.4em; }
+.s-ziyin .zy-write small { white-space: normal; max-width: 7em; margin: 0 auto; }
