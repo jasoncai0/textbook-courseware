@@ -2,8 +2,7 @@
 
 这是小学一年级至初中九年级统编版语文课件，每课一个网页，打开即用，不需要安装，也不需要构建。
 
-- 在线访问（国内服务器）：http://62.234.122.22/courseware/
-- 在线访问（GitHub Pages）：https://jasoncai0.github.io/textbook-courseware/
+- 在线访问：https://jasoncai0.github.io/textbook-courseware/
 
 ## 设计原则
 
