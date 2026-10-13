@@ -1,0 +1,111 @@
+/* 树和喜鹊 · 本课配色：树叶的绿、喜鹊的黑白。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3f8f4e;
+  --red-d: #24633a;
+  --gold: #e9b13a;
+  --gold-l: #fbe3a6;
+  --paper: #f4f9f1;
+  --stone: #fffffb;
+  --ink-2: #4f5d52;
+  --line: #d6e6d3;
+}
+
+/* ---------- 封面：谜语 ---------- */
+.xq-cover .scene-bg { filter: blur(14px) brightness(.85); transition: filter 1.2s; }
+.xq-cover:has(.xq-ans.on) .scene-bg { filter: none; }
+.xq-riddle { font-size: 1.3em; color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, .5); }
+.xq-riddle p { margin: 0; line-height: 2; }
+.xq-riddle rt { color: #ffe7a3; }
+.xq-guess { font-family: var(--kai); color: #ffe39a; }
+.xq-ans { margin: 0; font-size: 2.6em; color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
+.xq-ans rt { color: #ffe7a3; }
+.s-cover .cover-title { font-size: 4.6em; }
+
+/* ---------- 读课文 ---------- */
+.xq-row { flex: 1; display: grid; grid-template-columns: .9fr 1.1fr; gap: 1.2em; align-items: center; }
+.xq-pic { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: .8em; background: #e5eee0 center / cover no-repeat; overflow: hidden; box-shadow: 0 .3em 1em rgba(30, 60, 30, .18); }
+.xq-swap > div, .xq-swap > video { position: absolute; inset: 0; width: 100%; height: 100%; background: center / cover no-repeat; object-fit: cover; }
+.xq-swap > div[data-step] { transform: none; transition: opacity 1.4s ease; }
+.xq-clock { position: absolute; left: .6em; top: .5em; z-index: 2; padding: .1em .7em; border-radius: 1em; background: #ffe58a; color: #7a4a10; font-family: var(--kai); font-size: 1.3em; }
+.xq-clock.night { background: #3c3f78; color: #fff; }
+.xq-side { display: flex; flex-direction: column; gap: .7em; min-height: 0; }
+.xq-count { display: flex; gap: .5em; }
+.xq-count span { flex: 1; text-align: center; background: #fff; border: 2px solid var(--line); border-radius: .6em; padding: .2em; font-family: var(--kai); font-size: 1.3em; color: var(--ink-2); }
+.xq-count b { display: block; font-family: var(--py); font-size: 1.8em; color: var(--red-d); line-height: 1.2; }
+.xq-count.many b { font-family: var(--kai); color: #c46a12; }
+.xq-read .hz-text { font-size: 1.75em; line-height: 2.3; padding: .3em .8em; }
+.xq-read .hz-text p { text-align: left; }
+.xq-sad.on { background-image: linear-gradient(transparent 58%, rgba(130, 150, 170, .45) 58%); }
+
+/* ---------- 种树 ---------- */
+.xq-plant { flex: 1; display: grid; grid-template-columns: 1fr 15em; gap: 1em; min-height: 0; }
+.xq-field { border-radius: 1em; background: linear-gradient(#dff1fb, #f6fbef); overflow: hidden; display: flex; align-items: flex-end; }
+.xq-field svg { width: 100%; }
+.xq-tree .xq-grow { transform-box: fill-box; transform-origin: 50% 100%; transform: scale(0); transition: transform .8s cubic-bezier(.3, 1.4, .5, 1); }
+.xq-tree.on .xq-grow { transform: none; }
+.xq-tree[data-i="0"] .xq-grow { transform: none; }
+.xq-bird { animation: xqHop 1.4s ease-in-out infinite alternate; }
+@keyframes xqHop { to { transform: translate(18px, -136px); } }
+.xq-chirp { font: 30px var(--kai); fill: #c46a12; text-anchor: middle; opacity: 0; transition: opacity .6s; }
+.xq-plant.many .xq-chirp { opacity: 1; }
+.xq-panel { display: flex; flex-direction: column; justify-content: center; gap: .8em; }
+.xq-nums { margin: 0; display: flex; flex-direction: column; gap: .3em; font-family: var(--kai); font-size: 1.4em; }
+.xq-nums b { display: inline-block; min-width: 1.6em; font-family: var(--py); font-size: 1.4em; color: var(--red-d); }
+.xq-plant.many .xq-nums b { color: #c46a12; }
+.xq-say { margin: 0; min-height: 2.6em; font-family: var(--kai); font-size: 1.4em; color: var(--red-d); }
+.xq-mood { margin: 0; display: flex; gap: .5em; }
+.xq-mood span { flex: 1; text-align: center; padding: .2em; border-radius: .5em; font-family: var(--kai); font-size: 1.5em; transition: all .5s; }
+.xq-mood .sad { background: #dfe5ec; color: #4a5560; }
+.xq-mood .happy { background: #f2f2f2; color: #bbb; }
+.xq-plant.many .xq-mood .sad { background: #f2f2f2; color: #bbb; }
+.xq-plant.many .xq-mood .happy { background: #ffe58a; color: #8a4f0c; transform: scale(1.1); }
+.xq-btns { display: flex; gap: .5em; flex-wrap: wrap; }
+.xq-btns .btn { font-size: 1.2em; }
+
+/* ---------- 为什么快乐 ---------- */
+.xq-why { flex: 1; justify-content: center; }
+.xq-why .picks { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
+.xq-why .pick { font-size: 1.5em; line-height: 2.2; }
+.xq-why .pick rt { font-family: var(--py); font-size: .44em; color: var(--py-c); }
+.xq-why .tip { font-family: var(--kai); font-size: 1.4em; }
+
+/* ---------- 拍手读 ---------- */
+.xq-clap { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 1.2em; }
+.xq-words { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.xq-word { position: relative; background: #fff; border: 2px solid var(--line); border-radius: .8em; padding: .5em .3em .1em; text-align: center; transition: border-color .3s, background .3s; }
+.xq-word small { position: absolute; left: .5em; top: .2em; font-size: .9em; color: var(--ink-2); }
+.xq-word .py { font-size: 2.4em; }
+.xq-word i { font-style: normal; color: #b9c4b6; transition: color .2s; }
+.xq-word i.on { color: var(--ink); }
+.xq-word i.on rt { color: var(--py-c); }
+.xq-word.cur { border-color: var(--gold); background: #fffbe8; }
+.xq-word.done { border-color: var(--red); }
+.xq-clapbar { display: flex; justify-content: center; align-items: center; gap: 1em; }
+.xq-hand { display: flex; align-items: center; gap: .3em; font: inherit; font-family: var(--kai); font-size: 1.6em; padding: .2em 1em; border: 2px solid var(--gold); border-radius: 2em; background: #fff8e1; cursor: pointer; }
+.xq-hand svg { width: 2em; height: 2em; }
+.xq-hand.hit svg { animation: xqClap .25s; }
+@keyframes xqClap { 50% { transform: scale(1.3) rotate(-12deg); } }
+
+/* ---------- 背一背 ---------- */
+.xq-recite { font-size: 1.6em; line-height: 2.3; }
+.xq-recite p { text-align: left; }
+
+/* ---------- 回顾 ---------- */
+.xq-board { display: grid; grid-template-columns: auto auto auto; gap: 0 2em; }
+.xq-board .py { font-size: 2em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .xq-riddle { font-size: 1.1em; }
+  .xq-ans { font-size: 2.2em; }
+  .s-cover .cover-title { font-size: 3.4em; }
+  .xq-row, .xq-plant { grid-template-columns: 1fr; }
+  .xq-read .hz-text { font-size: 1.35em; }
+  .xq-why .picks { grid-template-columns: 1fr; }
+  .xq-why .pick { font-size: 1.15em; }
+  .xq-words { grid-template-columns: 1fr 1fr; }
+  .xq-word .py { font-size: 1.7em; }
+  .xq-word { padding-top: 1.3em; }
+  .xq-recite { font-size: 1.2em; }
+  .xq-board { gap: 0 .8em; }
+  .xq-board .py { font-size: 1.4em; }
+}

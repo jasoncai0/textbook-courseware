@@ -1,0 +1,59 @@
+/* 鸟的天堂（五上 23）· 本课配色：榕树绿、晨光金。故事页样式见 ../shared/narrative.css */
+:root {
+  --red: #3d7a46;
+  --red-d: #22502c;
+  --gold: #c9a23a;
+  --gold-l: #eedca0;
+  --paper: #eff3ea;
+  --stone: #fafcf6;
+  --ink-2: #4f5b4c;
+  --line: #cfdcc4;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfdf7 0, transparent 40%), radial-gradient(circle at 90% 95%, #dceacf 0, transparent 45%); }
+.s-cover .cover-title { font-size: 7em; letter-spacing: .15em; }
+.scene .hd .tag { background: rgba(34, 80, 44, .92); }
+.subs .hl { color: #c8f0b0; font-weight: normal; }
+
+/* ---------- 飞鸟（故事页与品读页共用） ---------- */
+.bird { animation: birdFly 3s ease-in-out infinite alternate; }
+@keyframes birdFly { from { transform: translate(0, 0); } to { transform: translate(var(--dx), var(--dy)); } }
+.bird.once { animation: birdOnce 2.6s ease-out forwards; }
+@keyframes birdOnce { from { transform: translate(0, 0); opacity: 1; } 80% { opacity: 1; } to { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+.wing { transform-box: fill-box; transform-origin: 50% 100%; animation: flap .28s ease-in-out infinite alternate; }
+@keyframes flap { to { transform: scaleY(-.5); } }
+.s-birds .fx-birds { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; transform: none !important; transition: opacity 1.5s ease; }
+
+/* ---------- 品 · 静 ---------- */
+.s-jing .bd, .s-dong .bd { grid-template-columns: 40% 1fr; }
+.s-jing .quote, .s-dong .quote { font-size: 1.12em; }
+#treeStill, #treeBirds { flex: 1; min-height: 0; width: 100%; }
+#treeStill .draw { transition-duration: 1.4s; }
+#treeStill .shimmer ellipse { animation: shimmer 1.6s ease-in-out infinite alternate; }
+@keyframes shimmer { from { opacity: 0; } to { opacity: .9; } }
+
+/* ---------- 品 · 动 ---------- */
+#treeBirds .chirp { animation: pulse 1s ease-in-out infinite; }
+#treeBirds .flap { transform-box: fill-box; transform-origin: 100% 100%; animation: flapPerch .3s ease-in-out infinite alternate; }
+@keyframes flapPerch { to { transform: rotate(35deg); } }
+.clap-tip { align-self: center; font-size: .85em; color: var(--ink-2); }
+
+/* ---------- 品 · 两次对照 ---------- */
+.cmp-grid { display: grid; grid-template-columns: 6em 1fr 1fr; gap: .45em; font-size: 1.02em; }
+.cmp-grid > * { background: #fff; border-radius: .4em; padding: .45em .8em; text-align: center; line-height: 1.6; }
+.cmp-grid > span:first-child { background: transparent; }
+.cmp-grid .cmp-h { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.12em; }
+.cmp-grid .cmp-l { background: transparent; color: var(--red); font-weight: bold; }
+.cmp-grid .jing { background: #eaf2f7; color: #2f5a78; font-weight: bold; }
+.cmp-grid .dong { background: #fdf0e0; color: #9a5a1a; font-weight: bold; }
+.s-compare .read-item p { font-size: 1.2em; }
+
+/* 课后第 1 题 */
+.s-tiantang .clue, .s-tiantang .clue-in { min-height: 6.5em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4.2em; }
+  .s-jing .quote, .s-dong .quote { font-size: 1em; }
+  #treeStill, #treeBirds { flex: none; height: auto; }
+  .cmp-grid { grid-template-columns: 4.2em 1fr 1fr; font-size: .85em; gap: .3em; }
+  .cmp-grid > * { padding: .35em .4em; }
+}

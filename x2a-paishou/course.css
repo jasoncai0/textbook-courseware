@@ -1,0 +1,83 @@
+/* 拍手歌 · 本课配色：活泼的橙红、天空蓝。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #e0663a;
+  --red-d: #a8441f;
+  --gold: #f2b22e;
+  --gold-l: #fde4a6;
+  --paper: #fdf7ee;
+  --stone: #fffdf8;
+  --ink-2: #6b5a4c;
+  --line: #ecd9bf;
+}
+
+.ps-cover-clap { margin: 0; font-family: var(--kai); font-size: 2em; line-height: 2.2; }
+.ps-cover-clap rt { color: var(--gold-l); font-size: .4em; }
+
+/* ---------- 拍手读 ---------- */
+.ps-clap { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .8em; }
+.ps-nums { display: flex; justify-content: center; gap: .4em; }
+.ps-num { font: inherit; font-family: var(--kai); font-size: 1.3em; width: 2.2em; height: 2.2em; border-radius: 50%; border: .1em solid var(--line); background: #fff; cursor: pointer; }
+.ps-num.on { background: var(--red); border-color: var(--red); color: #fff; }
+.ps-card { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--stone); border-radius: 1em; box-shadow: 0 .2em .8em rgba(80, 50, 20, .1); }
+.ps-card p { margin: 0; font-family: var(--kai); font-size: 2.8em; line-height: 2.1; }
+.ps-card rt { font-family: var(--py); font-size: .38em; color: var(--py-c); }
+.ps-b { display: inline-block; border-radius: .2em; transition: background .2s, color .2s, transform .2s; }
+.ps-b.lit { background: var(--gold-l); color: var(--red-d); }
+.ps-b.lit:last-of-type, .ps-b.lit { animation: psBeat .3s ease-out; }
+@keyframes psBeat { 40% { transform: scale(1.18); } }
+.ps-emo { position: absolute; right: 1em; top: .4em; font-size: 3.6em; opacity: .25; transition: opacity .4s, transform .4s; }
+.ps-card.done .ps-emo { opacity: 1; transform: scale(1.15) rotate(-8deg); }
+.ps-ctrl { display: flex; align-items: center; justify-content: center; gap: 2em; }
+.ps-pad { position: relative; width: 9em; height: 5.4em; border-radius: 2.7em; border: none; background: var(--red); color: #fff; font: inherit; cursor: pointer; box-shadow: 0 .3em 0 var(--red-d); }
+.ps-pad:active { translate: 0 .2em; box-shadow: 0 .1em 0 var(--red-d); }
+.ps-pad b { font-family: var(--kai); font-size: 2em; }
+.ps-pad .hand { position: absolute; top: -.6em; font-size: 2.4em; transition: transform .15s; }
+.ps-pad .hand.l { left: .2em; transform: scaleX(-1) rotate(-20deg); }
+.ps-pad .hand.r { right: .2em; transform: rotate(-20deg); }
+.ps-pad.hit .hand.l { animation: psL .25s ease-out; }
+.ps-pad.hit .hand.r { animation: psR .25s ease-out; }
+@keyframes psL { 50% { transform: scaleX(-1) translateX(-1.3em) rotate(0); } }
+@keyframes psR { 50% { transform: translateX(-1.3em) rotate(0); } }
+.ps-side { display: flex; flex-direction: column; gap: .4em; align-items: flex-start; }
+.ps-msg { margin: 0; font-family: var(--kai); font-size: 1.25em; color: var(--red-d); }
+
+/* ---------- 看图读：一次一节 ---------- */
+.ps-scene .subs p.on:not(.now) { display: none; }
+.ps-scene .subs .ps-big { color: #ffe08a; }
+
+/* ---------- 隹 / 鸟 分组 ---------- */
+.ps-groups { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.6em; align-items: center; }
+.ps-grp { position: relative; display: flex; justify-content: space-around; background: #fff; border-radius: 1em; padding: 2.2em 1em 1em; box-shadow: 0 .2em .8em rgba(80, 50, 20, .1); border-top: .4em solid #4f8fc9; }
+.ps-grp.b { border-top-color: var(--red); }
+.ps-part { position: absolute; left: 50%; top: -1em; translate: -50% 0; font-family: var(--kai); font-size: 2em; line-height: 1.6; padding: 0 .5em; border-radius: .4em; color: #fff; background: #4f8fc9; }
+.ps-grp.b .ps-part { background: var(--red); }
+.ps-grp p { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.ps-grp i { font-style: normal; font-size: 3.4em; line-height: 1.2; }
+.ps-grp .py { font-family: var(--kai); font-size: 2em; line-height: 2.1; }
+.ps-grp rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.ps-grp em { font-style: normal; text-emphasis: dot; text-emphasis-position: under; color: var(--red-d); }
+.ps-q { font-family: var(--kai); font-size: 1.3em; text-align: center; }
+
+/* ---------- 保护动物判一判 ---------- */
+.ps-judge { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.ps-judge .picks { justify-content: center; gap: .8em; }
+.ps-judge .pick { font-size: 1.6em; padding: .4em 1em; }
+.ps-judge .pick small { font-size: .62em; }
+.ps-judge .pick-count { text-align: center; font-size: 1.15em; }
+
+/* 读准字音：卡片略小，保证一屏放下 */
+.s-ziyin .zy-card { font-size: 1.9em; }
+.s-ziyin .zy-write { font-size: 1.9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .ps-cover-clap { font-size: 1.3em; }
+  .ps-nums { flex-wrap: wrap; }
+  .ps-card { flex: none; padding: 1em .5em; }
+  .ps-card p { font-size: 1.55em; }
+  .ps-emo { font-size: 2em; right: .3em; }
+  .ps-ctrl { flex-direction: column; gap: 1em; }
+  .ps-groups { grid-template-columns: 1fr; gap: 2em; }
+  .ps-grp .py { font-size: 1.4em; }
+  .ps-grp i { font-size: 2.4em; }
+  .ps-judge .pick { font-size: 1.15em; }
+}

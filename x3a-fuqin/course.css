@@ -1,0 +1,57 @@
+/* 父亲、树林和鸟 · 本课配色：晨雾灰蓝、树林青绿、晨光暖黄。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #4b6e78;
+  --red-d: #2f4a52;
+  --gold: #d0a24a;
+  --gold-l: #f0dcaa;
+  --paper: #f1f3f2;
+  --stone: #fbfcfc;
+  --ink-2: #5a6468;
+  --line: #ccd5d6;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfcfc 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe6e6 0, transparent 45%); }
+
+/* 中年级：字号比五六年级再大一点 */
+.subs { font-size: 1.6em; line-height: 1.7; }
+.subs .hl { color: #ffe08a; font-weight: normal; }
+.subs .who.main { background: #3f6670; }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.s-sort .sort-row { font-size: 1.2em; padding: .55em 1em; }
+.s-sort .sort-row .btn { padding: .25em .8em; }
+.s-sort .sort-row { grid-template-columns: 1fr auto 18em; }
+.read-item p { font-size: 1.5em; }
+.s-cover .cover-title { font-size: 6em; }
+.scene .hd .tag { background: rgba(47, 74, 82, .92); }
+
+/* 看 · 闻 · 听 */
+.sense-table { flex: 1; min-height: 0; display: grid; grid-template-columns: 4em 1.3fr 1fr; gap: .6em; align-content: center; }
+.sense-h { text-align: center; font-size: 1.3em; font-weight: bold; color: var(--red-d); }
+.sense-h.me { color: var(--ink-2); }
+.sense-row { display: contents; }
+.sense-row > * { transition: opacity .6s; }
+.sense-row:not(.on) > * { opacity: 0; }
+.sense-k { display: flex; align-items: center; justify-content: center; font-family: var(--kai); font-size: 2.4em; color: #fff; background: var(--red); border-radius: .3em; }
+.sense-row p { margin: 0; background: #fff; border-radius: .5em; padding: .6em 1em; font-family: var(--kai); font-size: 1.35em; line-height: 1.6; border-left: .3em solid var(--gold); }
+.sense-row p.me { background: #f4f5f5; border-left-color: var(--line); color: var(--ink-2); display: flex; align-items: center; }
+.sense-row em { font-style: normal; color: var(--red-d); font-weight: bold; }
+
+/* 为什么高兴 */
+.why-pic { border-radius: .6em; background: center / cover no-repeat; min-height: 10em; }
+.why-chain { justify-content: center; gap: .3em; }
+.why-chain .tip { font-size: 1.25em; }
+.why-chain .arrow { margin: 0; text-align: center; font-size: 1.6em; color: var(--red); line-height: 1; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs { font-size: 1.22em; }
+  .hd h2 { font-size: 1.35em; }
+  .s-cover .cover-title { font-size: 3.2em; }
+  .s-sort .sort-row { grid-template-columns: 1fr; }
+  .read-item p { font-size: 1.2em; }
+  .sense-table { grid-template-columns: 2.6em 1fr; }
+  .sense-h { display: none; }
+  .sense-k { grid-row: span 2; font-size: 1.6em; }
+  .sense-row p { font-size: 1.1em; }
+  .why-pic { min-height: 12em; }
+  .why-chain .tip { font-size: 1.05em; }
+}

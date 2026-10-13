@@ -1,0 +1,153 @@
+/* 画杨桃 · 本课配色：杨桃的黄绿、黑板的墨绿。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3d7a5a;
+  --red-d: #285640;
+  --gold: #d9b42a;
+  --gold-l: #f4e59a;
+  --paper: #f6f6ea;
+  --stone: #fdfdf6;
+  --ink-2: #5d6a55;
+  --line: #d6dcc0;
+  --kid: #d0662f;
+  --tch: #2f6fa8;
+}
+
+/* 字幕：比通用模板略窄的边距、略小的字，一句一行 */
+.subs { padding-left: 6%; padding-right: 6%; }
+.subs.py, .subs .py { font-size: 1.7em; }
+
+/* ---------- 封面 ---------- */
+.yt-ask { margin: .2em 0; font-family: var(--kai); font-size: 2em; line-height: 1.5; }
+.yt-ans { color: #fff3a8; }
+.yt-plate { position: absolute; right: 4%; top: 50%; translate: 0 -50%; z-index: 2; width: 34%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #fffef4 55%, #f1ecd4); box-shadow: 0 .5em 2em rgba(0, 0, 0, .35); display: grid; place-items: center; }
+.yt-plate svg { width: 92%; }
+
+/* ---------- 3D 杨桃 ---------- */
+.yt-ridge polyline { fill: none; stroke: rgba(150, 120, 20, .55); stroke-width: 2.2; stroke-linejoin: round; }
+.yt-face { fill: none; stroke: rgba(150, 120, 20, .45); stroke-width: 2; }
+.yt-stem { stroke: #7a5a2a; stroke-width: 5; stroke-linecap: round; fill: none; }
+
+/* ---------- 分角色读 ---------- */
+.yt-roles { display: flex; align-items: center; gap: .5em; font-size: 1.1em; color: var(--ink-2); }
+.yt-play { flex: 1; min-height: 0; overflow: auto; display: flex; flex-direction: column; gap: .35em; background: var(--stone); border-radius: .8em; padding: .5em 1em; box-shadow: 0 .2em .8em rgba(60, 70, 40, .08); }
+.yt-line { margin: 0; font-family: var(--kai); font-size: 1.32em; line-height: 1.95; padding-left: .8em; border-left: .3em solid transparent; transition: opacity .4s, background .4s; }
+.yt-line rt { font-size: .46em; }
+.yt-line.narr { color: var(--ink); }
+.yt-line.kid { color: var(--kid); border-left-color: var(--kid); }
+.yt-line.tch { color: var(--tch); border-left-color: var(--tch); }
+.yt-in.kid { color: var(--kid); }
+.yt-in.tch { color: var(--tch); }
+.yt-line.dim { opacity: .25 !important; }
+.yt-line.lit { background: #fff8d8; border-radius: .3em; }
+
+/* ---------- 换座位看杨桃 ---------- */
+.yt-viewbd { grid-template-columns: 34% 1fr; align-items: center; min-height: 0; }
+.yt-map { display: flex; flex-direction: column; align-items: center; gap: .3em; min-height: 0; height: 100%; }
+.yt-map svg { flex: 1; min-height: 0; max-width: 100%; }
+.yt-maptip { margin: 0; font-size: 1.1em; color: var(--ink-2); }
+.yt-seat { cursor: pointer; }
+.yt-seat rect { fill: #fff; stroke: #b9c39c; stroke-width: 3; transition: fill .3s; }
+.yt-seat text { font: 24px var(--kai); text-anchor: middle; fill: var(--ink-2); }
+.yt-seat.me rect { stroke: var(--kid); stroke-width: 4; }
+.yt-seat.me text { fill: var(--kid); }
+.yt-seat.sit rect { fill: #fff3a8; stroke: var(--gold); stroke-width: 5; }
+.yt-seat:hover rect { fill: #fbf8e2; }
+.yt-sight { stroke: var(--kid); stroke-width: 3; stroke-dasharray: 8 6; fill: none; }
+.yt-right { display: flex; flex-direction: column; align-items: center; gap: .5em; min-height: 0; height: 100%; justify-content: center; }
+.yt-right .yt-fruit { flex: 1; min-height: 0; width: 100%; max-height: 22em; background: radial-gradient(circle, #fffef6 50%, transparent 72%); }
+.yt-slider { display: flex; align-items: center; gap: .6em; font-size: 1.15em; color: var(--ink-2); width: min(34em, 100%); }
+.yt-slider input { flex: 1; accent-color: var(--gold); height: 2em; }
+.yt-say { margin: 0; font-family: var(--kai); font-size: 1.6em; color: var(--red-d); text-align: center; min-height: 1.6em; }
+.yt-mk { display: none; }
+
+/* ---------- 做法对比 ---------- */
+.yt-cmp { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; gap: 1em 1.6em; }
+.yt-col { background: #fff; border-radius: 1em; padding: .6em 1.2em; box-shadow: 0 .2em .8em rgba(60, 70, 40, .08); border-top: .4em solid var(--kid); }
+.yt-col.tch { border-top-color: var(--tch); }
+.yt-col h3 { margin: 0 0 .2em; font-family: var(--kai); font-size: 1.9em; color: var(--kid); }
+.yt-col.tch h3 { color: var(--tch); }
+.yt-col p { margin: .3em 0; font-family: var(--kai); font-size: 1.5em; line-height: 1.5; }
+.yt-col.kid b { color: var(--kid); }
+.yt-col.tch b { color: var(--tch); }
+.yt-lesson { grid-column: 1 / -1; font-size: 1.3em; text-align: center; }
+
+/* ---------- 读好语气 ---------- */
+.yt-tones { justify-content: center; gap: .55em; }
+.yt-tone { display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto; align-items: center; gap: .1em .8em; background: #fff; border-radius: .7em; padding: .35em .9em; border: 2px solid var(--line); }
+.yt-tone p { margin: 0; font-family: var(--kai); font-size: 1.55em; }
+.yt-who { font-size: 1em; color: #fff; padding: .1em .6em; border-radius: .4em; background: var(--kid); }
+.yt-who.tch { background: var(--tch); }
+.yt-tb { display: flex; gap: .5em; }
+.yt-tb .btn { font-family: var(--kai); font-size: 1.1em; }
+.yt-tone small { grid-column: 2 / -1; color: var(--ok); font-size: 1.1em; font-weight: bold; }
+.yt-tone small:empty { display: none; }
+.yt-tone.no { animation: nope .35s; }
+.yt-tone.ok { border-color: var(--gold); background: #fffbe6; }
+
+/* ---------- 开火车 ---------- */
+.yt-train { justify-content: center; align-items: center; gap: 1.4em; }
+.yt-cars { display: flex; align-items: flex-end; gap: .6em; padding-bottom: 1.2em; border-bottom: .4em solid #8a7a5a; }
+.yt-head { width: 5em; height: 6em; border-radius: 1em 2em .6em .6em; background: linear-gradient(#e0533b, #b8382a); position: relative; }
+.yt-head::before { content: ""; position: absolute; left: .8em; top: -1.6em; width: 1.2em; height: 1.8em; background: #555; border-radius: .2em .2em 0 0; }
+.yt-car { position: relative; font: inherit; width: 8.4em; min-height: 11em; border: 3px solid var(--red); border-radius: .8em; background: #fff; display: flex; flex-direction: column; align-items: center; gap: .2em; padding: .4em; cursor: pointer; }
+.yt-car::after { content: ""; position: absolute; left: 1em; right: 1em; bottom: -1.3em; height: 1.4em; background: radial-gradient(circle at 25% 50%, #555 .5em, transparent .55em), radial-gradient(circle at 75% 50%, #555 .5em, transparent .55em); }
+.yt-car b { font-family: var(--kai); font-weight: normal; font-size: 2.6em; color: #fff; background: var(--red); width: 1.3em; border-radius: .2em; }
+.yt-car span { font-family: var(--kai); font-size: 1.45em; opacity: .15; line-height: 1.9; white-space: nowrap; }
+.yt-car span rt { font-size: .45em; }
+.yt-car.go { animation: ytChug .5s ease-in-out 2; }
+.yt-car.go span { animation: ytWord .5s ease-out both; }
+.yt-car.go span:nth-of-type(2) { animation-delay: .6s; }
+.yt-car.go span:nth-of-type(3) { animation-delay: 1.2s; }
+@keyframes ytWord { from { opacity: .15; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes ytChug { 50% { transform: translateY(-.25em); } }
+.yt-trsay { font-size: 1.3em; text-align: center; }
+
+/* ---------- 点亮五角星 ---------- */
+.yt-stars { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: 1em; border-radius: 1em; padding: .8em; background: linear-gradient(#24364f, #3d5675); }
+.yt-sky { display: flex; justify-content: center; gap: 1em; }
+.yt-bigstar { width: 44%; }
+.yt-tip, .yt-core { fill: rgba(255, 255, 255, .12); stroke: rgba(255, 255, 255, .55); stroke-width: 1.5; stroke-linejoin: round; transition: fill .6s; }
+.yt-tip.lit { fill: #ffe066; stroke: #fff6b0; }
+.yt-bigstar.full .yt-core { fill: #fff3a8; }
+.yt-bigstar.full { filter: drop-shadow(0 0 10px #ffe066); animation: pop .6s cubic-bezier(.3, 1.6, .5, 1); }
+.yt-gask { display: flex; flex-direction: column; align-items: center; gap: .7em; }
+.yt-q { margin: 0; font-size: 2.6em; color: var(--py-c); background: #fff; border-radius: .4em; padding: 0 .5em; }
+.yt-q:not(.hz-latin) { font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.yt-opts { display: flex; gap: 1em; }
+.yt-opt { font: inherit; font-family: var(--kai); font-size: 2.8em; width: 1.6em; height: 1.6em; border-radius: .3em; border: 3px solid #fff3a8; background: #fffef4; cursor: pointer; }
+.yt-opt.wrong { animation: nope .35s; }
+.yt-opt.right { background: #ffe066; }
+.yt-msg { margin: 0; min-height: 1.5em; font-size: 1.3em; font-weight: bold; color: #fff3a8; }
+
+/* ---------- 回顾 ---------- */
+.yt-sum { justify-content: center; align-items: center; gap: 1.2em; }
+.yt-sumrow { display: flex; gap: 2em; }
+.yt-sumc { display: flex; flex-direction: column; align-items: center; background: #fff; border-radius: 1em; padding: .6em 1.4em; box-shadow: 0 .2em .8em rgba(60, 70, 40, .1); }
+.yt-mini { width: 14em; }
+.yt-sumc b { font-family: var(--kai); font-weight: normal; font-size: 2em; color: var(--red-d); }
+.yt-sumc small { font-size: 1.2em; color: var(--ink-2); }
+.yt-sum .tip { font-size: 1.3em; max-width: 46em; text-align: center; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .yt-ask { font-size: 1.3em; }
+  .yt-plate { position: relative; right: auto; top: auto; translate: none; width: 70%; margin: 18em auto 0; }
+  .yt-line { font-size: 1.2em; }
+  .yt-roles { flex-wrap: wrap; font-size: .95em; }
+  .yt-map svg { max-height: 50vh; }
+  .yt-say { font-size: 1.2em; }
+  .yt-cmp { display: flex; flex-direction: column; }
+  .yt-col p { font-size: 1.2em; }
+  .yt-tone { grid-template-columns: auto 1fr; }
+  .yt-tone p { font-size: 1.2em; }
+  .yt-tb { grid-column: 1 / -1; flex-wrap: wrap; }
+  .yt-tone small { grid-column: 1 / -1; }
+  .yt-cars { flex-wrap: wrap; justify-content: center; border-bottom: none; }
+  .yt-head { display: none; }
+  .yt-car { width: 46%; min-height: 9em; }
+  .yt-stars { display: flex; flex-direction: column; }
+  .yt-opt { font-size: 2em; }
+  .yt-sumrow { flex-direction: column; gap: .8em; }
+  .yt-mini { width: 11em; }
+  .yt-right .yt-fruit { flex: none; height: auto; }
+  .yt-map svg { flex: none; width: 100%; }
+}

@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>宇宙生命之谜 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 生命条件图标（各页用 <use> 引用） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ic-temp" viewBox="0 0 48 48"><rect x="19" y="4" width="10" height="30" rx="5" fill="#fff" stroke="#7a3b2e" stroke-width="2.5"/><rect x="22" y="14" width="4" height="22" fill="#e0533a"/><circle cx="24" cy="38" r="7.5" fill="#e0533a" stroke="#7a3b2e" stroke-width="2.5"/></symbol>
+  <symbol id="ic-water" viewBox="0 0 48 48"><path d="M24 4 C24 4 9 22 9 31 a15 15 0 0 0 30 0 C39 22 24 4 24 4Z" fill="#4a90d9"/><path d="M17 31 a7 7 0 0 0 7 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="ic-air" viewBox="0 0 48 48"><circle cx="16" cy="28" r="12" fill="#cfe6f7" stroke="#4a7fb0" stroke-width="2"/><circle cx="33" cy="17" r="11" fill="#e3eef8" stroke="#4a7fb0" stroke-width="2"/><text x="16" y="32" font-size="10" text-anchor="middle" fill="#24496e" font-weight="bold">O₂</text><text x="33" y="21" font-size="9" text-anchor="middle" fill="#24496e" font-weight="bold">CO₂</text></symbol>
+  <symbol id="ic-sun" viewBox="0 0 48 48"><g stroke="#e8a21c" stroke-width="3" stroke-linecap="round"><line x1="24" y1="2" x2="24" y2="9"/><line x1="24" y1="39" x2="24" y2="46"/><line x1="2" y1="24" x2="9" y2="24"/><line x1="39" y1="24" x2="46" y2="24"/><line x1="8" y1="8" x2="13" y2="13"/><line x1="35" y1="35" x2="40" y2="40"/><line x1="8" y1="40" x2="13" y2="35"/><line x1="35" y1="13" x2="40" y2="8"/></g><circle cx="24" cy="24" r="10" fill="#f6c23e"/></symbol>
+  <symbol id="ic-mag" viewBox="0 0 48 48"><path d="M10 8 V26 a14 14 0 0 0 28 0 V8 H30 V26 a6 6 0 0 1 -12 0 V8 Z" fill="#c0392b"/><rect x="10" y="8" width="8" height="7" fill="#d9dde3"/><rect x="30" y="8" width="8" height="7" fill="#d9dde3"/></symbol>
+</svg>
+
+<!-- ================= 封面 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 45%" data-bg="assets/yinhe.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第三单元 · 第 11 课　张申碚　赵晓梅</p>
+    <h1 class="cover-title">宇宙生命之谜</h1>
+    <p class="cover-sub">宇宙中，除了地球外，其他星球上是否也有生命存在？</p>
+    <div class="chips" data-step="1"><span class="chip">根据阅读目的，选用恰当的阅读方法</span><span class="chip">写生活体验，试着表达自己的看法</span></div>
+    <p class="cover-flow" data-step="2">带着问题读　→　找相关段落细读　→　提取关键信息　→　判断信息</p>
+  </div>
+  <p class="note">这是一篇科普说明文。阅读提示：“有位同学”带着“地球以外有没有生命”的问题找到这篇文章——我们跟着他的批注，学习带着问题读。</p>
+</section>
+
+<!-- ================= 字词：读准字音（数据见 ziyin.js） ================= -->
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 阅读提示：带着问题读 ================= -->
+<section class="slide s-ask">
+  <div class="hd"><span class="tag">阅读提示</span><h2>带着一个问题读全文</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip"><b>问题：</b>宇宙中，除了地球外，其他星球上是否也有生命存在？——为了解决这个疑惑，有位同学找到了这篇文章。看看他是怎么读的。</p>
+      <div class="pmap" data-modes="q0" data-noswipe></div>
+      <div class="notes-row">
+        <p class="bubble" data-step="1"><b>第 1 段</b>浏览了这一段后，发现它对了解地球之外是否有生命没有帮助。</p>
+        <p class="bubble" data-step="2"><b>第 2 段</b>每个自然段往往有提示主要意思的语句，阅读时我要注意找出来。</p>
+        <p class="bubble" data-step="3"><b>第 3 段</b>这一段对解决问题很重要，画出关键词帮我理清了生命存在的条件。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">气泡是课文旁那位同学的批注。和问题关系密切的段落（深色）细读，关系不大的（浅色）浏览，有的段落找出关键句就够了。后面我们就照这张图，一段段读。</p>
+</section>
+
+<!-- ================= 第 1—2 段 ================= -->
+<section class="slide s-scale">
+  <div class="hd"><span class="tag">第 1—2 段</span><h2>地球是唯一有生命的天体吗？</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <p class="skim-p"><span class="stamp">浏览</span>古时候，科学不发达，人们一直向往着“天上的世界”。于是，有了许许多多的故事：嫦娥奔月，仙女下凡，蟠桃盛会……现在，科学发达了，人们知道那都是古人编出来的。但是，地球之外的太空中是否有生命存在，仍然是一个吸引人的问题。</p>
+      <p>从理论上说，宇宙是无限的。<span class="mark" data-step="1">地球只是太阳系中的一颗行星</span>，而<span class="mark" data-step="2">太阳系只是银河系中一个极小的部分</span>，<span class="mark" data-step="3">银河系对宇宙来说又是沧海一粟</span>。整个银河系中有几千亿颗恒星，类似太阳系这样的天体系统为数不少，其中肯定有与地球类似的行星。<span class="mark" data-step="4">可以猜测，地球绝不是有生命存在的唯一天体。</span><span class="mark" data-step="5">但是，人类至今尚未找到另外一颗存在生命的星球。</span></p>
+    </div>
+    <div class="stage">
+      <svg viewBox="0 0 800 440" id="scaleSvg">
+        <defs>
+          <radialGradient id="sunG"><stop offset="0" stop-color="#fff6c8"/><stop offset=".6" stop-color="#f6b53a"/><stop offset="1" stop-color="#e07a1f"/></radialGradient>
+          <radialGradient id="bulgeG"><stop offset="0" stop-color="#fff8e0"/><stop offset=".5" stop-color="#f3d9a0" stop-opacity=".7"/><stop offset="1" stop-color="#f3d9a0" stop-opacity="0"/></radialGradient>
+          <radialGradient id="galG"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".35" stop-color="#c9b8f0" stop-opacity=".55"/><stop offset="1" stop-color="#8a7ad0" stop-opacity="0"/></radialGradient>
+          <clipPath id="scaleClip"><rect width="800" height="440" rx="8"/></clipPath>
+        </defs>
+        <g clip-path="url(#scaleClip)">
+          <rect width="800" height="440" fill="#0b1026"/>
+          <g class="far-stars"></g>
+          <g id="zoomer">
+            <g class="galaxy"><ellipse cx="400" cy="220" rx="70" ry="30" fill="url(#bulgeG)"/><g class="gal-dots"></g></g>
+            <g class="others"></g>
+            <g class="solar">
+              <g class="orbits" fill="none" stroke="#6d7aa8" stroke-width="1" vector-effect="non-scaling-stroke"></g>
+              <circle cx="520" cy="240" r=".55" fill="url(#sunG)"/>
+              <g class="pls"></g>
+            </g>
+            <circle class="here-ring" cx="520" cy="240" r="9" fill="none" stroke="#f3d77a" stroke-width="2" vector-effect="non-scaling-stroke"/>
+          </g>
+          <g class="lbl lbl-1"><text class="t-m" x="458" y="231" fill="#cfe3f8">← 地球</text><text class="t-m t-c" x="400" y="282" fill="#f3d77a">太阳</text></g>
+          <g class="lbl lbl-2"><text class="t-m" x="536" y="270" fill="#f3d77a">太阳系在这里</text><text class="t-m" x="300" y="390" fill="#e8e2f8">银河系：几千亿颗恒星</text></g>
+          <g class="lbl lbl-3"><text class="t-m t-c" x="400" y="270" fill="#f3d77a">银河系</text><text class="t-m t-c" x="400" y="40" fill="#e8e2f8">宇宙：无限</text></g>
+        </g>
+      </svg>
+      <p class="tip gold" id="scaleTip"></p>
+    </div>
+  </div>
+  <p class="note">第 1 段讲神话故事，和问题关系不大，浏览即可。第 2 段一步步“拉远镜头”：地球 → 太阳系 → 银河系 → 宇宙。“沧海一粟”：大海里的一粒小米。关键句是最后两句：猜测有，但还没找到。</p>
+</section>
+
+<!-- ================= 第 3 段：四个条件 ================= -->
+<section class="slide s-cond">
+  <div class="hd"><span class="tag">第 3 段 · 细读</span><h2>生命存在，至少要有四个条件</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <p>哪些天体上可能有生命存在呢？这个天体又必须具备什么样的条件呢？人们了解了生命起源的过程之后，认为至少应有这样几个条件：一是<span class="mark" data-step="1">适合生物生存的温度，一般应在 -50～150℃之间</span>；二是<span class="mark" data-step="2">必要的水分</span>，生命物质诸如蛋白质、核酸的活力都和水紧密相关，没有水，也就没有生命；三是<span class="mark" data-step="3">适当成分的大气</span>，虽然已发现少数厌氧菌能在没有氧气的条件下生存，但氧气和二氧化碳对于生命的存在是极为重要的；四是<span class="mark" data-step="4">要有足够的光和热</span>，为生命系统提供能源。</p>
+    </div>
+    <div class="stage">
+      <div class="conds">
+        <div class="cond" data-step="1"><svg><use href="#ic-temp"/></svg><small>一是</small><b>温度</b><span>适合生物生存<br><em>-50～150℃</em></span></div>
+        <div class="cond" data-step="2"><svg><use href="#ic-water"/></svg><small>二是</small><b>水分</b><span>没有水，<br>也就没有生命</span></div>
+        <div class="cond" data-step="3"><svg><use href="#ic-air"/></svg><small>三是</small><b>大气</b><span>氧气和二氧化碳<br>极为重要</span></div>
+        <div class="cond" data-step="4"><svg><use href="#ic-sun"/></svg><small>四是</small><b>光和热</b><span>为生命系统<br>提供能源</span></div>
+      </div>
+      <p class="tip jade" data-step="5"><b>画关键词：</b>温度、水分、大气、光和热。有了这把“尺子”，就能去量一量别的星球了。</p>
+      <p class="tip gold" data-step="5"><b>语文园地：</b>用“一是……二是……三是……四是……”分条说明，条理清楚，一看就明白。</p>
+    </div>
+  </div>
+  <p class="note">课文批注：“这一段对解决问题很重要，画出关键词帮我理清了生命存在的条件。”请学生先自己画关键词，再逐条出示。注意“至少”：四个条件是最起码的，用词准确。</p>
+</section>
+
+<!-- ================= 第 4 段：排除行星 ================= -->
+<section class="slide s-planets">
+  <div class="hd"><span class="tag">第 4 段 · 细读</span><h2>拿着条件，一颗一颗去排除</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <p>根据这些条件，科学家首先对太阳系除地球以外的其他行星进行了分析。<span class="mark" data-step="2">水星离太阳最近，朝向太阳的一面表面温度达到 300～400℃，不可能存在生命</span>。<span class="mark" data-step="3">金星是一颗缺氧、缺水，有着浓厚云层的行星</span>，太阳辐射和云层造成的“温室效应”，<span class="mark" data-step="3">使得金星表面温度极高，不可能有生命存在</span>。<span class="mark" data-step="4">木星、土星、天王星和海王星离太阳很远，它们的表面温度，一般都低于 -140℃</span>，因此，也不可能有生命存在。</p>
+      <p><span class="mark" data-step="5">太阳系中唯一还可能存在生命的行星是火星。</span></p>
+      <p class="aside" data-step="4">批注：这段的段首提到了地球外的其他行星。通过提取关键信息，我知道这些星球上是不存在生命的。</p>
+    </div>
+    <div class="stage">
+      <button class="media-btn" hidden data-img="assets/taiyangxi.jpg" data-cap="AI 示意图：太阳系八大行星。大小、距离仅为示意。">看看太阳系</button>
+      <svg viewBox="0 0 800 400" id="planetSvg">
+        <defs>
+          <radialGradient id="sunG2" cx=".7"><stop offset="0" stop-color="#fff2b8"/><stop offset=".7" stop-color="#f6b53a"/><stop offset="1" stop-color="#e07a1f"/></radialGradient>
+          <clipPath id="planetClip"><rect width="800" height="400" rx="8"/></clipPath>
+        </defs>
+        <g clip-path="url(#planetClip)">
+          <rect width="800" height="400" fill="#101633"/>
+          <rect y="180" width="800" height="220" fill="#f7f4ec"/>
+          <circle cx="-40" cy="72" r="78" fill="url(#sunG2)"/>
+          <!-- 八大行星（大小、距离示意） -->
+          <g class="t-s t-c" fill="#dfe6f5">
+            <circle cx="76" cy="72" r="6" fill="#a59d94"/><text x="76" y="122">水星</text>
+            <circle cx="122" cy="72" r="10" fill="#e3c48c"/><text x="122" y="122">金星</text>
+            <circle cx="172" cy="72" r="11" fill="#3f7fc1"/><path d="M165 66 q6 -4 10 2 q-2 6 -8 4Z" fill="#5aa05a"/><text x="172" y="122">地球</text>
+            <circle cx="222" cy="72" r="8" fill="#c9562f"/><text x="222" y="122">火星</text>
+            <circle cx="306" cy="72" r="30" fill="#d2a679"/><path d="M278 64 h56 M277 76 h58 M281 86 h50" stroke="#a87b4f" stroke-width="4"/><text x="306" y="122">木星</text>
+            <ellipse cx="410" cy="72" rx="42" ry="8" fill="none" stroke="#e8d3a2" stroke-width="3"/><circle cx="410" cy="72" r="22" fill="#e1c48a"/><path d="M368 72 a42 8 0 0 0 84 0" fill="none" stroke="#e8d3a2" stroke-width="3"/><text x="410" y="122">土星</text>
+            <circle cx="505" cy="72" r="15" fill="#9fd6dc"/><text x="505" y="122">天王星</text>
+            <circle cx="585" cy="72" r="15" fill="#4a6fd1"/><text x="585" y="122">海王星</text>
+          </g>
+          <path d="M70 150 H600" stroke="#6d7aa8" stroke-width="1.5"/><path d="M600 150 l-8 -4 v8Z" fill="#6d7aa8"/>
+          <text class="t-s" x="610" y="155" fill="#9aa6cf">离太阳越来越远</text>
+          <!-- 排除 -->
+          <g data-step="1"><circle cx="172" cy="72" r="17" fill="none" stroke="#5ec27a" stroke-width="3"/><text class="t-m t-c" x="172" y="42" fill="#5ec27a">✓</text></g>
+          <g data-step="2" class="x"><circle cx="76" cy="72" r="13" class="veil"/><path d="M66 62 l20 20 M86 62 l-20 20"/></g>
+          <g data-step="3" class="x"><circle cx="122" cy="72" r="15" class="veil"/><path d="M110 60 l24 24 M134 60 l-24 24"/></g>
+          <g data-step="4" class="x">
+            <rect x="268" y="34" width="342" height="76" rx="10" class="veil"/>
+            <path d="M290 56 l32 32 M322 56 l-32 32 M394 56 l32 32 M426 56 l-32 32 M493 60 l24 24 M517 60 l-24 24 M573 60 l24 24 M597 60 l-24 24"/>
+          </g>
+          <g data-step="5"><circle class="ask-ring" cx="222" cy="72" r="16" fill="none" stroke="#f3d77a" stroke-width="3"/><text class="t-l t-c" x="222" y="40" fill="#f3d77a">?</text></g>
+
+          <!-- 温度尺：1℃ = 0.9 单位，0℃ 在 x=260 -->
+          <g data-step="1">
+            <rect x="215" y="268" width="180" height="62" fill="#5ec27a" fill-opacity=".22"/>
+            <text class="t-m t-c" x="305" y="258" fill="#2f7a49">适合生命：-50～150℃</text>
+            <circle cx="273" cy="306" r="7" fill="#3f7fc1"/><text class="t-s" x="284" y="311" fill="#24496e">地球</text>
+          </g>
+          <g data-step="2"><rect x="530" y="298" width="90" height="16" rx="3" fill="#e0533a"/><text class="t-m t-c" x="575" y="290" fill="#b03a2e">水星 300～400℃</text></g>
+          <g data-step="3"><path d="M640 306 H738" stroke="#e0533a" stroke-width="16"/><path d="M736 294 l20 12 -20 12Z" fill="#e0533a"/><text class="t-m t-c" x="696" y="258" fill="#b03a2e">金星</text><text class="t-s t-c" x="696" y="282" fill="#b03a2e">温度极高</text></g>
+          <g data-step="4"><path d="M134 306 H84" stroke="#4a6fd1" stroke-width="16"/><path d="M86 294 l-20 12 20 12Z" fill="#4a6fd1"/><text class="t-m" x="40" y="388" fill="#2c4a9a">木星、土星、天王星、海王星：一般低于 -140℃</text></g>
+          <g class="axis" stroke="#6b5d4f" stroke-width="2">
+            <line x1="40" y1="330" x2="760" y2="330"/>
+            <g class="ticks"></g>
+          </g>
+        </g>
+      </svg>
+      <p class="tip gold" data-step="5"><b>排除法：</b>拿四个条件一颗一颗去“量”，不符合的就排除——太阳系里只剩下<b>火星</b>还有可能。</p>
+    </div>
+  </div>
+  <p class="note">批注：“通过提取关键信息，我知道这些星球上是不存在生命的。”关键信息就是每颗行星的温度（金星还缺氧、缺水）。温度尺上，绿色区域外的都不行。</p>
+</section>
+
+<!-- ================= 第 5 段：火星与地球相似 ================= -->
+<section class="slide s-twin">
+  <div class="hd"><span class="tag">第 5 段 · 细读</span><h2>火星和地球，有不少相似之处</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <p>太阳系中唯一还可能存在生命的行星是火星。火星与地球有不少相似之处：<span class="mark" data-step="1">地球自转一圈是 23 小时 56 分 4 秒，火星自转一圈是 24 小时 37 分</span>；<span class="mark" data-step="2">地球自转轴与公转轨道平面有 66 度 34 分的倾角，而火星的倾角约 66 度 1 分</span>，所以<span class="mark" data-step="3">火星和地球昼夜长短相近，而且也有四季更替</span>。更有趣的是，1877 年，意大利的一位天文学家观察到<span class="mark" data-step="4">火星表面有很多纵横的黑色线条，人们猜测这是火星人开挖的运河</span>。人们还观察到<span class="mark" data-step="5">火星表面的颜色随着季节而变化，有人认为这是火星表面植物随着季节的变化而改变了颜色</span>。</p>
+      <p class="aside" data-step="5">批注：前面排除了那些不具备生命存在条件的行星，这一段提示火星上有可能存在生命，关于火星的内容很重要。</p>
+    </div>
+    <div class="stage">
+      <svg viewBox="0 0 800 380" id="twinSvg">
+        <rect width="800" height="380" rx="8" fill="#101633"/>
+        <g class="far-stars"></g>
+        <g transform="translate(220 150)">
+          <circle r="82" fill="#3f7fc1"/>
+          <path d="M-50 -40 q30 -20 55 5 t45 25 q-15 35 -55 25 t-45 -55Z M10 30 q30 -8 50 15 q-25 30 -60 15Z" fill="#5aa05a"/>
+          <g data-step="2"><line x1="-46" y1="-106" x2="46" y2="106" stroke="#fff" stroke-width="3" transform="rotate(-0)"/><line x1="-120" y1="0" x2="120" y2="0" stroke="#9aa6cf" stroke-dasharray="6 5" stroke-width="2"/><path d="M100 0 A100 100 0 0 1 40 92" fill="none" stroke="#f3d77a" stroke-width="2"/><text class="t-s" x="84" y="66" fill="#f3d77a">66°34′</text></g>
+          <text class="t-m t-c" y="122" fill="#dfe6f5">地球</text>
+        </g>
+        <g transform="translate(580 150)">
+          <circle class="mars" r="46" fill="#c9562f"/>
+          <path d="M-20 -14 a8 6 0 1 0 1 0Z M14 12 a6 5 0 1 0 1 0Z" fill="#9e3f22"/>
+          <g data-step="4" class="canal" stroke="#3b1a10" stroke-width="2" fill="none"><path class="draw" pathLength="1" d="M-36 -10 L30 -26 M-30 14 L34 4 M-12 -40 L6 40 M-40 26 L20 34"/></g>
+          <g data-step="2"><line x1="-36" y1="-80" x2="36" y2="80" stroke="#fff" stroke-width="3"/><line x1="-90" y1="0" x2="90" y2="0" stroke="#9aa6cf" stroke-dasharray="6 5" stroke-width="2"/><path d="M76 0 A76 76 0 0 1 31 69" fill="none" stroke="#f3d77a" stroke-width="2"/><text class="t-s" x="62" y="52" fill="#f3d77a">约 66°1′</text></g>
+          <text class="t-m t-c" y="122" fill="#dfe6f5">火星</text>
+          <text class="t-s t-c" data-step="4" y="-62" fill="#f2b49a">“运河”？</text>
+        </g>
+        <!-- 自转一圈：按时间长短画条 -->
+        <g data-step="1">
+          <text class="t-s" x="40" y="318" fill="#dfe6f5">地球自转一圈</text>
+          <rect class="grow" x="150" y="306" width="431" height="14" rx="4" fill="#3f7fc1"/><text class="t-s" x="590" y="318" fill="#cfe3f8">23 小时 56 分 4 秒</text>
+          <text class="t-s" x="40" y="350" fill="#dfe6f5">火星自转一圈</text>
+          <rect class="grow" x="150" y="338" width="443" height="14" rx="4" fill="#c9562f"/><text class="t-s" x="602" y="350" fill="#f2b49a">24 小时 37 分</text>
+        </g>
+      </svg>
+      <div class="row" style="flex:0 0 auto">
+        <p class="tip gold" data-step="3" style="flex:1">一天差不多长，自转轴差不多斜 → <b>昼夜长短相近，也有四季更替</b>。</p>
+        <p class="tip" data-step="5" style="flex:1">“运河”“植物”只是<b>猜测</b>——是真的吗？往下读。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">作比较、列数字：用地球的数据来衬托火星的“像”。图中倾角只作示意。最后两句是“猜测”“有人认为”，要提醒学生：这还不是事实。</p>
+</section>
+
+<!-- ================= 第 6 段：水手 9 号 ================= -->
+<section class="slide scene s-mariner">
+  <video class="scene-bg" data-focus="1.04 50% 60%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/7b926ce51e4b0b3ede168a22af402bccdd783dfd359b75ea9fb0732f46333704.mp4" data-poster="assets/huoxing.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">第 6 段 · 细读</span><span class="sub">近距离看火星</span></div>
+  <button class="media-btn" hidden data-img="assets/shuishou.jpg" data-cap="AI 示意图：“水手 9 号”探测器环绕火星飞行。探测器外形仅为示意。">看看“水手 9 号”</button>
+  <div class="subs">
+    <p data-step="1">为了揭开火星神秘的面纱，科学家们决定利用探测器对火星作近距离的观测。</p>
+    <p data-step="2">1971 年，美国发射的“水手 9 号”探测器进入了环绕火星飞行的轨道，给火星拍摄了大量的照片。</p>
+    <p data-step="3" data-focus="1.3 25% 55%">这些照片表明，意大利天文学家观察到的所谓“运河”，原来是一连串的暗环形山和暗的斑点。</p>
+    <p data-step="4">通过近距离观测还发现，以前观察到的火星表面上所谓颜色的四季变化，并不是植物的生长和枯萎造成的，</p>
+    <p data-step="5" class="reveal" data-focus="1.15 55% 70%">而是风把火星表面上的尘土吹来吹去引起的颜色明暗变化。</p>
+  </div>
+  <p class="note">画面里风正吹着火星的尘土（AI 示意视频）。“所谓”两个字：说明“运河”“颜色的四季变化”是以前的说法，并不准确。</p>
+</section>
+
+<section class="slide s-clues">
+  <div class="hd"><span class="tag">第 5—8 段</span><h2>猜测，要用证据来检验</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">正面是人们原来的猜测，翻过来看看探测器发现了什么。</p>
+      <div class="clues" id="clues" data-noswipe></div>
+      <p class="tip gold" data-step="1"><b>科学的态度：</b>猜测要靠证据检验。读科普文章，要分清哪些是<b>猜测</b>，哪些是<b>证实了的事实</b>。</p>
+    </div>
+  </div>
+  <p class="note">这一页把第 5—8 段串起来：望远镜看到的“运河”“植物”被探测器推翻；火星着陆区没有生命，但“岩层之中”还有待研究。</p>
+</section>
+
+<!-- ================= 第 7 段：给火星“体检” ================= -->
+<section class="slide s-check">
+  <div class="hd"><span class="tag">第 7 段 · 细读</span><h2>用条件给火星做个“体检”</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <p>科学家们还发现：<span class="mark" data-step="1">火星是一个非常干燥的星球，在它的大气中虽然找到了水汽，但含量极少，只有地球上沙漠地区的 1%</span>；<span class="mark" data-step="2">火星的大气层非常稀薄，95% 是二氧化碳，氧气含量极少</span>；<span class="mark" data-step="3">火星表面温度很低</span>；<span class="mark" data-step="4">火星的磁场非常弱，太阳风和宇宙射线可以直接轰击火星表面</span>。<span class="mark" data-step="5">所有这些因素都说明，在火星上生命难以存在。</span></p>
+    </div>
+    <div class="stage">
+      <div class="checks">
+        <div class="check" data-step="1"><svg><use href="#ic-water"/></svg><b>水分</b>
+          <div class="ck-viz"><div class="pct"><span>地球沙漠</span><i style="--w:100%"></i></div><div class="pct mars"><span>火星</span><i style="--w:1%"></i><em>1%</em></div></div><s>✗</s></div>
+        <div class="check" data-step="2"><svg><use href="#ic-air"/></svg><b>大气</b>
+          <div class="ck-viz"><div class="pct"><span>二氧化碳</span><i class="co2" style="--w:95%"></i><em>95%</em></div><p>非常稀薄，氧气含量极少</p></div><s>✗</s></div>
+        <div class="check" data-step="3"><svg><use href="#ic-temp"/></svg><b>温度</b><div class="ck-viz"><p>表面温度很低</p></div><s>✗</s></div>
+        <div class="check" data-step="4"><svg><use href="#ic-mag"/></svg><b>磁场</b><div class="ck-viz"><p>非常弱：太阳风和宇宙射线直接轰击表面</p></div><s>✗</s></div>
+      </div>
+      <p class="tip gold" data-step="5"><b>结论：</b>所有这些因素都说明，在火星上<b>生命难以存在</b>。注意是“难以”，不是“不可能”。</p>
+    </div>
+  </div>
+  <p class="note">和第 3 段的四个条件对照：水、大气、温度都不合格，还多了一条“磁场弱”。“难以存在”和第 4 段的“不可能存在”比一比——用词有分寸，因为还没有完全查清。</p>
+</section>
+
+<!-- ================= 第 8—9 段：探测与新发现 ================= -->
+<section class="slide s-probe">
+  <div class="hd"><span class="tag">第 8—10 段</span><h2>一步步走近答案</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <p>为了对火星作进一步的考察，1975 年，美国发射了两个名叫“海盗号”的探测器。这两个探测器在火星着陆，进行了一系列的分析和测试，得到两个重要结果：<span class="mark" data-step="3">一是在火星的土壤中未检测到有机分子；二是在对火星表面取样的培养中，未发现微生物的存在</span>。这证明，在探测器着陆的地区，火星表面没有生命存在。科学家又提出，生命物质是否会存在于火星的岩层之中呢？这有待进一步研究。</p>
+      <p>人们至今尚未在地球以外的太空中找到生命存在的确凿证据，但仍然相信遥远的太空存在着生命。近年来，科学家对落在地球上的一些陨石进行分析，<span class="mark" data-step="4">发现陨石上存在有机分子，说明太空可能存在生命</span>。</p>
+      <p><span class="mark" data-step="5">地球之外是否有生命存在，是人类一直探索的宇宙之谜。</span></p>
+    </div>
+    <div class="stage">
+      <ol class="tline">
+        <li data-step="1"><b>1877 年</b><span>望远镜远远地看</span><em>猜测：“运河”“植物”</em></li>
+        <li data-step="2"><b>1971 年 · “水手 9 号”</b><span>环绕火星飞行，拍摄照片</span><em>“运河”是暗环形山和斑点；颜色变化是风吹尘土</em><button class="media-btn" hidden data-img="assets/shuishou.jpg" data-cap="AI 示意图：“水手 9 号”探测器环绕火星飞行。探测器外形仅为示意。">看看</button></li>
+        <li data-step="3"><b>1975 年 · “海盗号”</b><span>在火星着陆，取样分析、培养</span><em>着陆地区没有生命；岩层之中？有待研究</em><button class="media-btn" hidden data-img="assets/haidao.jpg" data-cap="AI 示意图：“海盗号”着陆器在火星上取土样。着陆器外形仅为示意。">看看</button></li>
+        <li data-step="4"><b>近年来 · 陨石</b><span>分析落在地球上的陨石</span><em>陨石上有有机分子：太空可能存在生命</em><button class="media-btn" hidden data-img="assets/yunshi.jpg" data-cap="AI 示意图：在实验室里分析陨石。供理解参考。">看看</button></li>
+      </ol>
+      <p class="bubble" data-step="5"><b>批注</b>近年来科学家在对火星的研究中可能有了新的发现。</p>
+      <p class="tip jade" data-step="5"><b>判断信息：</b>课文写到“海盗号”为止。有的信息可能已经过时，需要再查查相关资料加以判断。</p>
+    </div>
+  </div>
+  <p class="note">从“远看”到“绕着看”到“落下去取样”，探测越来越近。课文发表后又有新进展（如 2018 年“好奇号”在火星古老岩石中发现有机分子；2021 年我国“天问一号”着陆火星，“祝融号”开始巡视），可布置学生查资料，判断课文信息是否需要更新。</p>
+</section>
+
+<!-- ================= 课后第 1 题 ================= -->
+<section class="slide s-pick">
+  <div class="hd"><span class="tag">课后第 1 题</span><h2>为了解决问题，你是怎样读的？</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">问题是“地球以外有没有生命”。下面哪些信息<b>能帮你回答</b>？点一点。</p>
+      <div data-picks="useful" data-noswipe></div>
+      <div class="notes-row two">
+        <p class="bubble" data-step="1">与问题相关的内容我会仔细读，必要时会多读几遍。有的段落和我想要了解的问题关系不大，就不需要细读。</p>
+        <p class="bubble" data-step="2">有的信息可能是不准确的，需要再查查相关资料加以判断。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后第 1 题：为了了解其他星球是否存在生命，你在阅读时是怎么做的？这位同学的思考给了你哪些启发？先做“选一选”，再出示两位同学的话。</p>
+</section>
+
+<!-- ================= 课后第 2 题 ================= -->
+<section class="slide s-ask2">
+  <div class="hd"><span class="tag">课后第 2 题</span><h2>换一个问题，怎样读？</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">如果你想探究下面这些问题，会怎样阅读这篇文章？点一个问题试试。</p>
+      <div class="pmap" data-modes="q1,q2" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">先让学生自己说要细读哪几段，再点按钮对照。第二个问题课文没有现成答案，只能找到相关信息，还要查更多资料——这正是“根据目的选择材料”。</p>
+</section>
+
+<!-- ================= 读与写 ================= -->
+<section class="slide s-write">
+  <div class="hd"><span class="tag">读与写 · 语文园地</span><h2>“一是……二是……”：分条说理由</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">课文用“一是……二是……三是……四是……”说明生命存在的条件。选一个话题，也用这种方法说一说、写一写。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="一是……二是……三是……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">语文园地“词句段运用”第 2 题：可以用这种方法说明理由、表达观点。每一条先说关键词，再补充解释，和课文的写法一样。</p>
+</section>
+
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>这节课，我们……</h2></div>
+  <div class="bd full">
+    <div class="stage" style="justify-content:center">
+      <div class="board" data-step="1">
+        <div style="text-align:center;font-size:1.4em;margin-bottom:.2em"><b>宇宙生命之谜</b></div>
+        <div><b>条件</b>　温度 · 水分 · 大气 · 光和热</div>
+        <div><b>排除</b>　水星（太热）　金星（缺氧缺水、极热）　木土天海（太冷）　→　只剩火星</div>
+        <div><b>火星</b>　相似（昼夜、四季）→ 探测（干燥、稀薄、低温、磁场弱；着陆区无生命）→ 难以存在</div>
+        <div style="text-align:center;margin-top:.3em"><b>地球之外是否有生命存在 —— 仍是宇宙之谜</b></div>
+      </div>
+      <div class="tasks" data-step="2">
+        <p class="tip gold"><b>读法：</b>带着问题读，相关的段落细读、多读，关系不大的浏览；提取关键信息；有的信息要查资料判断。</p>
+        <p class="tip jade"><b>课后：</b>查一查近年来人类探测火星的新发现，和课文对照，说说你的看法。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">板书呈现科学家的推理过程：定条件 → 排除 → 聚焦火星 → 探测验证。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

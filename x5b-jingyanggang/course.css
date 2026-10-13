@@ -1,0 +1,89 @@
+/* 景阳冈 · 本课配色：黄昏山冈的赭石、酒旗的米白。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #9b4a1f;
+  --red-d: #5c2a10;
+  --gold: #c9913a;
+  --gold-l: #efd6a2;
+  --paper: #f3eee3;
+  --stone: #fbf8f1;
+  --ink-2: #5e574c;
+  --line: #d8cbb2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcf9f2 0, transparent 40%), radial-gradient(circle at 90% 95%, #e7dcc7 0, transparent 45%); }
+.kai { font-family: var(--kai); }
+.scene .hd .tag { background: rgba(92, 42, 16, .92); }
+
+/* 名著资料袋 */
+.info-cards { justify-content: center; }
+.info { background: #fff; border-left: .3em solid var(--red); border-radius: .4em; padding: .5em 1em; box-shadow: 0 .15em .5em rgba(60, 40, 20, .08); }
+.info.gold { background: #fff8e1; border-left-color: var(--gold); }
+.info b { color: var(--red-d); font-size: 1.05em; }
+.info p { margin: .15em 0 0; line-height: 1.65; }
+
+/* 翻卡 */
+.flipbox { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em; }
+.flipbox .clue, .flipbox .clue-in { min-height: 5.8em; }
+.flipbox .clue-face.front { font-size: 1.3em; text-align: center; }
+.flipbox .clue-face.front small { text-align: left; font-size: .55em; }
+.flipbox .clue-face.back { font-size: .92em; }
+.flipbox.five { grid-template-columns: repeat(5, 1fr); }
+.flipbox.five .clue-face.front { font-size: .98em; padding: .6em .5em; }
+.s-ziyin .zy-card { font-size: 1.35em; }
+.s-ziyin .zy-write { font-size: 1.6em; }
+.s-ziyin .zy-grid { grid-template-columns: repeat(auto-fill, minmax(7.4em, 1fr)); }
+.s-sort .bd { grid-template-columns: 24% 1fr; }
+.s-sort .sort-row { padding: .25em .8em; font-size: .9em; }
+.s-sort .sort-list { gap: .35em; }
+.how { display: flex; flex-wrap: wrap; gap: .5em; }
+.how span { font-size: .88em; padding: .25em .8em; border-radius: 1em; background: #fff; border: 1px solid var(--gold); }
+.how b { color: var(--red); margin-right: .2em; }
+
+/* 十八碗计数（故事页右侧） */
+.bowl-count { position: absolute; right: 2.4em; top: 7.5em; z-index: 3; color: #f4efe6; background: rgba(20, 14, 8, .6); border-radius: .6em; padding: .4em .9em; text-align: center; font-size: 1.05em; }
+.bowl-count .n { display: inline-block; min-width: 1.4em; font: bold 2em Georgia, var(--serif); color: #f2c66b; vertical-align: -.15em; }
+.bowl-count .n.bump { animation: bump .5s ease; }
+@keyframes bump { 40% { transform: scale(1.5); } }
+
+/* 十二时辰 */
+.sc-wrap { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+#shichen { width: 100%; height: 100%; min-height: 0; }
+#shichen .seg { stroke: #fff; stroke-width: 2; }
+#shichen .seg.ok { fill: #8fb67a; }
+#shichen .seg.no { fill: #d77a5e; }
+#shichen .seg.na { fill: #d9d2c3; }
+#shichen .zh { font-size: 24px; font-weight: bold; fill: #fff; text-anchor: middle; dominant-baseline: central; font-family: var(--kai); }
+#shichen .seg.na + .zh { fill: #6b6355; }
+#shichen .hr { font-size: 12px; fill: var(--ink-2); text-anchor: middle; dominant-baseline: central; }
+#shichen .hand { stroke: var(--red-d); stroke-width: 5; stroke-linecap: round; }
+#shichen .ptr { fill: var(--red-d); }
+#shichen .ptr-t { font-size: 13px; fill: var(--red-d); font-weight: bold; text-anchor: middle; }
+#shichen .center { font-size: 15px; text-anchor: middle; fill: var(--red-d); font-weight: bold; }
+.sc-side { display: flex; flex-direction: column; gap: .6em; justify-content: center; }
+.legend3 { display: flex; gap: 1em; font-size: .88em; flex-wrap: wrap; }
+.legend3 span::before { content: ""; display: inline-block; width: .9em; height: .9em; border-radius: .2em; margin-right: .3em; vertical-align: -.1em; background: #8fb67a; }
+.legend3 .no::before { background: #d77a5e; }
+.legend3 .na::before { background: #d9d2c3; }
+
+/* 动作分解 */
+.moves { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .55em; justify-content: center; }
+.mrow { display: flex; gap: .5em; align-items: stretch; }
+.mrow > b { flex: 0 0 5.2em; display: flex; align-items: center; justify-content: center; text-align: center; border-radius: .4em; color: #fff; background: #8a6a3a; font-size: .95em; line-height: 1.3; }
+.mrow.tiger > b { background: #b8862e; }
+.mrow.dodge > b { background: #4f7a8f; }
+.mrow.hit > b { background: var(--red); }
+.mv { flex: 1; background: #fff; border-radius: .45em; padding: .3em .5em .45em; text-align: center; box-shadow: 0 .15em .5em rgba(60, 40, 20, .1); border-top: .22em solid #b8862e; }
+.dodge .mv { border-top-color: #4f7a8f; }
+.hit .mv { border-top-color: var(--red); }
+.mv strong { display: block; font: bold 2.2em var(--kai); color: var(--red-d); line-height: 1.2; }
+.hit .mv.key strong { color: #fff; background: var(--red); border-radius: .2em; }
+.mv span { display: block; font-family: var(--kai); font-size: .86em; line-height: 1.45; color: #3e3328; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .flipbox, .flipbox.five { grid-template-columns: 1fr 1fr; }
+  .bowl-count { top: 3.2em; left: .9em; right: auto; font-size: .9em; }
+  .sc-wrap { grid-template-columns: 1fr; }
+  #shichen { height: auto; }
+  .mrow { flex-wrap: wrap; }
+  .mrow > b { flex: 1 0 100%; padding: .2em; }
+  .mv { flex: 1 0 28%; }
+}

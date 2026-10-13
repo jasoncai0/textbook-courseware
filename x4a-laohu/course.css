@@ -1,0 +1,31 @@
+/* 一只窝囊的大老虎 · 本课配色：老虎皮的橙黄、舞台幕布的红。页面样式见 ../shared/narrative.css，批注见 pizhu.css */
+:root {
+  --red: #b5532a;
+  --red-d: #6d2c12;
+  --gold: #e0a22a;
+  --gold-l: #f7dfa3;
+  --paper: #f6f0e4;
+  --stone: #fdfaf3;
+  --ink-2: #625646;
+  --line: #ddcdb0;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfaf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #f0dfc0 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 6em; line-height: 1.1; }
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.8em; }
+}
+
+/* ---------- 从老虎头的两个小窟窿往外看 ---------- */
+.peep { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: #1a120a; transform: none !important; transition: opacity 1.2s ease !important;
+  -webkit-mask-image: radial-gradient(ellipse 9% 13% at 38% 42%, transparent 70%, #000 100%), radial-gradient(ellipse 9% 13% at 62% 42%, transparent 70%, #000 100%);
+  mask-image: radial-gradient(ellipse 9% 13% at 38% 42%, transparent 70%, #000 100%), radial-gradient(ellipse 9% 13% at 62% 42%, transparent 70%, #000 100%);
+  -webkit-mask-composite: source-in; mask-composite: intersect; }
+.peep.on { opacity: .94; }
+.scene:has(.peep.on) .scene-bg { filter: blur(4px); }
+.scene:has(.subs p[data-step="4"].on) .peep { opacity: 0; }
+.scene:has(.subs p[data-step="4"].on) .scene-bg { filter: none; }
+.scene .scene-bg { transition: transform 4s ease, transform-origin 4s ease, background-position 4s ease, object-position 4s ease, filter 1.2s ease; }

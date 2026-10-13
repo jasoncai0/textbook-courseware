@@ -1,0 +1,83 @@
+/* 草船借箭 · 本课配色：江雾的青灰、战袍的朱红。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #9a3324;
+  --red-d: #5e1f16;
+  --gold: #c39443;
+  --gold-l: #ecd7a6;
+  --paper: #f1eee6;
+  --stone: #faf8f2;
+  --ink-2: #5b5750;
+  --line: #d4cbb8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfaf5 0, transparent 40%), radial-gradient(circle at 90% 95%, #e2dccd 0, transparent 45%); }
+.kai { font-family: var(--kai); }
+.scene .hd .tag { background: rgba(94, 31, 22, .92); }
+
+/* 名著资料袋 */
+.info-cards { justify-content: center; }
+.info { background: #fff; border-left: .3em solid var(--red); border-radius: .4em; padding: .5em 1em; box-shadow: 0 .15em .5em rgba(60, 40, 20, .08); }
+.info.gold { background: #fff8e1; border-left-color: var(--gold); }
+.info b { color: var(--red-d); font-size: 1.05em; }
+.info p { margin: .15em 0 0; line-height: 1.65; }
+.people { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5em; }
+.person { background: #fff; border-radius: .5em; padding: .45em .7em; border-top: .25em solid var(--red); font-size: .88em; line-height: 1.5; box-shadow: 0 .15em .5em rgba(60, 40, 20, .08); }
+.person b { display: block; color: var(--red-d); font-size: 1.15em; font-family: var(--kai); }
+.person.wu { border-top-color: #3f6f8f; }
+.person.cao { border-top-color: #555; }
+
+/* 三天时间线：上排阶段，下面每天一列 */
+.days { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: auto 1fr; gap: .45em .5em; }
+.phase { text-align: center; color: #fff; border-radius: .3em; padding: .15em 0; font-size: .9em; letter-spacing: .3em; }
+.phase.p1 { background: #8a7a62; }
+.phase.p2 { background: var(--red); grid-column: span 4; }
+.phase.p3 { background: #3f6f8f; }
+.dcol { display: flex; flex-direction: column; gap: .45em; min-height: 0; }
+.day { text-align: center; font-weight: bold; color: var(--red-d); border-bottom: 2px solid var(--gold); padding-bottom: .15em; }
+.day small { display: block; font-weight: normal; color: var(--ink-2); font-size: .72em; }
+.act { flex: 1; background: #fff; border-radius: .45em; padding: .5em .7em; font-size: .98em; line-height: 1.55; box-shadow: 0 .15em .5em rgba(60, 40, 20, .08); border-top: .22em solid var(--red); }
+.act.zy { border-top-color: #3f6f8f; background: #f5f8fa; }
+.act i { display: block; font-style: normal; font-size: .82em; color: var(--ink-2); }
+.days-legend { display: flex; gap: 1.2em; font-size: .85em; color: var(--ink-2); }
+.days-legend span::before { content: ""; display: inline-block; width: .8em; height: .8em; border-radius: .15em; margin-right: .3em; vertical-align: -.05em; background: var(--red); }
+.days-legend span.zy::before { background: #3f6f8f; }
+
+/* 神机妙算 */
+.smart { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.sm { background: #fff; border-radius: .6em; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 .15em .6em rgba(40, 30, 20, .12); }
+.sm .pic { height: 6.5em; background: center / cover no-repeat; flex: none; }
+.sm h3 { margin: .35em .8em .1em; color: var(--red-d); font-size: 1.25em; letter-spacing: .1em; }
+.sm h3 small { font-size: .62em; color: var(--ink-2); letter-spacing: 0; margin-left: .4em; font-weight: normal; }
+.sm p { margin: .2em .8em; line-height: 1.6; font-size: .92em; }
+.sm p.kai { font-size: 1.02em; color: #3d2a20; border-left: .2em solid var(--gold-l); padding-left: .5em; }
+
+/* 翻卡（加点字 / 推想词语 / 故事卡） */
+.flipbox { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6em; }
+.flipbox .clue, .flipbox .clue-in { min-height: 5.8em; }
+.flipbox .clue-face.front { font-size: 1.3em; text-align: center; }
+.flipbox .clue-face.front small { text-align: left; font-size: .55em; }
+.flipbox .clue-face.back { font-size: .92em; }
+.flipbox.four { grid-template-columns: repeat(4, 1fr); }
+.how { display: flex; flex-wrap: wrap; gap: .5em; }
+.how span { font-size: .88em; padding: .25em .8em; border-radius: 1em; background: #fff; border: 1px solid var(--gold); }
+.how b { color: var(--red); margin-right: .2em; }
+
+/* 阅读链接：原著 ↔ 课文 */
+.link2 { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.link2 .quote { font-size: 1em; line-height: 1.8; }
+.link2 .quote.yz { border-left-color: #3f6f8f; background: #f6f8fa; }
+.link2 .mark.m2.on { background-image: linear-gradient(transparent 58%, rgba(63, 111, 143, .35) 58%); }
+
+/* 军令状 · 翻卡 */
+.s-ling .clues { grid-template-columns: 1fr 1fr; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .people { grid-template-columns: 1fr 1fr; }
+  .days { display: flex; flex-direction: column; }
+  .phase { display: none; }
+  .act { flex: none; }
+  .smart { grid-template-columns: 1fr; }
+  .sm .pic { height: 9em; }
+  .flipbox, .flipbox.four { grid-template-columns: 1fr 1fr; }
+  .link2 { grid-template-columns: 1fr; }
+  .s-ling .clues { grid-template-columns: 1fr; }
+}

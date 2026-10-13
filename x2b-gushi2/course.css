@@ -1,0 +1,126 @@
+/* 古诗二首（晓出净慈寺送林子方 · 绝句）· 本课配色：莲叶的碧、荷花的红。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #2f8f6b;
+  --red-d: #1f644a;
+  --gold: #e8455a;
+  --gold-l: #f7c6cd;
+  --paper: #f3f7f1;
+  --stone: #fcfefb;
+  --ink-2: #566a5e;
+  --line: #cfe0d4;
+}
+
+/* 字幕：比通用模板略窄的边距、略小的字，一句一行 */
+.subs { padding-left: 6%; padding-right: 6%; }
+.subs.py, .subs .py { font-size: 1.7em; }
+
+/* ---------- 封面 ---------- */
+.gs-ask { margin: .2em 0 .5em; font-family: var(--kai); font-size: 1.8em; }
+.gs-colors { display: flex; gap: .4em; }
+.gs-colors span { width: 1.6em; height: 1.6em; display: grid; place-items: center; border-radius: 50%; font-family: var(--kai); font-size: 2.6em; background: var(--c); color: var(--t, #fff); text-shadow: none; box-shadow: 0 .1em .4em rgba(0, 0, 0, .35); }
+
+/* ---------- 诗 ---------- */
+.gs-bd { grid-template-columns: 31% 1fr; align-items: center; min-height: 0; }
+.gs-poem { text-align: center; font-family: var(--kai); }
+.gs-poem h3 { margin: 0; font-size: 1.6em; color: var(--red-d); line-height: 2.2; font-weight: normal; }
+.gs-poem h3 rt, .gs-au rt { font-size: .45em; }
+.gs-au { margin: 0 0 .2em; font-size: 1.2em; color: var(--ink-2); line-height: 2.2; }
+.gs-l { margin: 0; font-size: 2.1em; line-height: 2.15; letter-spacing: .06em; white-space: nowrap; }
+.gs-l rt { font-size: .42em; }
+.gs-l b { font-weight: normal; }
+.gs-l .c.y { color: #c99600; }
+.gs-l .c.g { color: #2f8f5b; }
+.gs-l .c.w { color: #7a8a8a; background: #eef2f2; border-radius: .15em; }
+.gs-l .c.b { color: #2f6fb8; }
+.gs-l .n { border-bottom: .12em dotted var(--gold); }
+
+/* ---------- 西湖长卷 ---------- */
+.gs-scroll { display: flex; flex-direction: column; gap: .5em; min-height: 0; height: 100%; justify-content: center; }
+.gs-view { position: relative; min-height: 0; }
+.gs-view svg { display: block; width: 100%; max-height: 100%; aspect-ratio: 800 / 520; border-radius: 1em; box-shadow: 0 .3em 1em rgba(30, 70, 50, .2); }
+.gs-pano { transition: transform 3.5s ease-in-out; }
+.k1 { stop-color: #f6e6d2; transition: stop-color 2s; }
+.k2 { stop-color: #e8f1ee; transition: stop-color 2s; }
+.sunrise .k1 { stop-color: #8cc3ea; }
+.sunrise .k2 { stop-color: #fff2d6; }
+.gs-sun { transform: translateY(70px); transition: transform 2.4s ease-out; }
+.sunrise .gs-sun { transform: translateY(-150px); }
+.gs-lotus path { fill: #f1cbd2; transition: fill 1.6s; }
+.sunrise .gs-lotus path { fill: #e8455a; }
+.sunrise .gs-lotus path + path { fill: #f06b7d; }
+.gs-seasons { position: absolute; left: 50%; top: .6em; translate: -50% 0; display: flex; gap: .4em; }
+.gs-seasons span { font-family: var(--kai); font-size: 1.3em; padding: .1em .6em; border-radius: .5em; background: rgba(255, 255, 255, .8); color: #8a9a92; text-decoration: line-through; }
+.gs-seasons .now { background: var(--red); color: #fff; text-decoration: none; }
+.slide:has(.gs-l[data-step="3"].on) .gs-seasons { opacity: 0; }
+.gs-drag { display: flex; align-items: center; gap: .6em; font-size: 1.1em; color: var(--ink-2); }
+.gs-drag input { flex: 1; accent-color: var(--red); height: 2em; }
+
+/* ---------- 绝句拼贴 ---------- */
+.gs-collage { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: .6em; align-self: center; justify-self: center; width: min(100%, 31em); padding: .6em; }
+.gs-tile { margin: 0; position: relative; border-radius: .6em; overflow: hidden; box-shadow: 0 .2em .6em rgba(30, 60, 40, .18); transition: border-radius .8s, opacity .6s, transform .6s; }
+.gs-tile svg { display: block; width: 100%; }
+.gs-tile figcaption { position: absolute; left: .4em; top: .3em; font-family: var(--kai); font-size: 1.1em; background: rgba(255, 255, 255, .85); padding: 0 .4em; border-radius: .3em; color: var(--red-d); }
+.gs-frame { position: absolute; inset: 0; border: 1.1em solid #7a5432; border-radius: .6em; pointer-events: none; box-shadow: inset 0 0 0 .3em #9a6a3c; }
+.gs-frame::before, .gs-frame::after { content: ""; position: absolute; background: #7a5432; }
+.gs-frame::before { left: 50%; top: 0; bottom: 0; width: .8em; translate: -50% 0; }
+.gs-frame::after { top: 50%; left: 0; right: 0; height: .8em; translate: 0 -50%; }
+.gs-collage:has(.gs-frame.on) { gap: 0; }
+.gs-collage:has(.gs-frame.on) .gs-tile { border-radius: 0; box-shadow: none; }
+.gs-strand { fill: none; stroke: #6fbf5a; stroke-width: 4; stroke-linecap: round; transform-box: fill-box; transform-origin: top; animation: gsSway 3s ease-in-out infinite alternate; }
+@keyframes gsSway { from { transform: rotate(-3deg); } to { transform: rotate(4deg); } }
+.gs-note { font-size: 34px; fill: #c99600; animation: gsNote 1.6s ease-in-out infinite alternate; }
+@keyframes gsNote { to { transform: translateY(-8px); } }
+.gs-egrets { animation: gsFly 4s ease-in-out infinite alternate; }
+@keyframes gsFly { to { transform: translate(14px, -16px); } }
+
+/* ---------- 背诵 ---------- */
+.gs-recite { justify-content: center; align-items: center; }
+.gs-rc { text-align: center; font-size: 2em; padding: .3em 2em; }
+.gs-rc p { text-indent: 0; }
+
+/* ---------- 白鹭上青天 ---------- */
+.gs-egret { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.4fr 1fr; gap: 1em; align-items: center; }
+.gs-sky { position: relative; height: 100%; min-height: 16em; border-radius: 1em; background: linear-gradient(#4f8fd6, #c9e4f6); overflow: hidden; }
+.gs-sky::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 18%; background: linear-gradient(#9fd07c, #6fbf5a); border-radius: 50% 50% 0 0 / 30% 30% 0 0; }
+.gs-slot { position: absolute; translate: -50% -50%; width: 2.6em; height: 2.6em; border-radius: 50%; border: .12em dashed rgba(255, 255, 255, .8); display: grid; place-items: center; font-family: var(--kai); font-size: 1.4em; color: #2f6fb8; }
+.gs-slot.done { border: none; background: #fff; box-shadow: 0 .1em .4em rgba(0, 0, 0, .2); animation: gsArrive .9s cubic-bezier(.3, 1.3, .5, 1); }
+.gs-slot.done::before { content: ""; position: absolute; left: -1.1em; top: 30%; width: 1.4em; height: .7em; background: #fff; border-radius: 100% 0 0 100%; transform: rotate(-20deg); }
+@keyframes gsArrive { from { transform: translate(-6em, 6em) scale(.4); opacity: 0; } }
+.gs-gask { display: flex; flex-direction: column; align-items: center; gap: .7em; }
+.gs-q { margin: 0; font-size: 2.6em; color: var(--py-c); background: #fff; border-radius: .4em; padding: 0 .5em; box-shadow: 0 .1em .4em rgba(0, 0, 0, .1); }
+.gs-q:not(.hz-latin) { font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.gs-opts { display: flex; gap: 1em; }
+.gs-opt { font: inherit; font-family: var(--kai); font-size: 2.8em; width: 1.6em; height: 1.6em; border-radius: .3em; border: 3px solid var(--line); background: #fff; cursor: pointer; }
+.gs-opt.wrong { animation: nope .35s; }
+.gs-opt.right { background: #e3f3e8; border-color: var(--red); }
+.gs-msg { margin: 0; min-height: 1.5em; font-size: 1.3em; font-weight: bold; color: var(--red-d); }
+
+/* ---------- 回顾 ---------- */
+.gs-sum { justify-content: center; align-items: center; gap: 1.2em; }
+.gs-sumc { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; gap: .2em 1.2em; align-items: center; width: min(48em, 100%); background: #fff; border-radius: 1em; padding: .8em 1.4em; border-left: .5em solid var(--red); box-shadow: 0 .2em .8em rgba(30, 60, 40, .1); }
+.gs-sumc span { grid-row: span 2; font-family: var(--kai); font-size: 2em; color: var(--red-d); line-height: 1.3; }
+.gs-sumc small { font-size: 1.3em; color: var(--ink-2); font-family: var(--kai); }
+.gs-sumc em { font-style: normal; font-size: 1.4em; color: var(--gold); font-weight: bold; }
+.gs-sumc.b { border-left-color: #e9b82c; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .gs-ask { font-size: 1.2em; }
+  .gs-colors span { font-size: 1.7em; }
+  .gs-l { font-size: 1.5em; }
+  .gs-scroll { height: auto; }
+  .gs-seasons span { font-size: .95em; }
+  .gs-tile figcaption { font-size: .85em; }
+  .gs-rc { font-size: 1.5em; padding: .3em .6em; }
+  .gs-egret { display: flex; flex-direction: column; }
+  .gs-sky { width: 100%; height: 14em; min-height: 0; }
+  .gs-opt { font-size: 2em; }
+  .gs-sumc span { font-size: 1.4em; }
+  .gs-sumc small, .gs-sumc em { font-size: 1.05em; }
+}
+.gs-collage:has(.gs-frame.on) figcaption { top: 1.3em; left: 1.4em; }
+.gs-collage:has(.gs-frame.on) .gs-tile:nth-of-type(2n) figcaption { left: .7em; }
+.gs-collage:has(.gs-frame.on) .gs-tile:nth-of-type(n+3) figcaption { top: .6em; }
+@media (max-width: 820px), (max-height: 520px) {
+  .gs-view svg { max-height: none; }
+}
+

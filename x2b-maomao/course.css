@@ -1,0 +1,116 @@
+/* 小毛虫 · 本课配色：嫩叶的绿、蝴蝶的紫。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #6a8f2e;
+  --red-d: #44611a;
+  --gold: #d99a3a;
+  --gold-l: #f4dfa4;
+  --paper: #f4f6ec;
+  --stone: #fdfef8;
+  --ink-2: #5e6150;
+  --line: #d8dcc4;
+  --wing: #f2a65a;
+}
+
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.36em; line-height: 2.25; }
+.py ruby { margin: 0 .03em; }
+/* 句子长：这一页字幕只留最近两句 */
+.subs.keep2 p.on:has(~ p.on ~ p.on) { display: none; }
+
+.mc-riddle { margin: .4em 0 .6em; font-family: var(--kai); font-size: 1.7em; color: #fff3c8; line-height: 1.6; }
+.mc-riddle p { margin: 0; }
+.mc-riddle .q { color: #fff; font-size: .85em; }
+
+/* ---------- 蜕变时间线 ---------- */
+.mc-life { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: 1fr auto auto; gap: .7em 1.4em; }
+.mc-art { grid-row: 1; grid-column: 1; width: 100%; height: 100%; min-height: 0; }
+.mc-branch { fill: none; stroke: #8a6a40; stroke-width: 10; stroke-linecap: round; }
+.mc-leaf { fill: #7cc152; }
+.mc-cat circle { fill: #9ad15a; stroke: #6c9c35; stroke-width: 2; }
+.mc-cat .hd { fill: #86c043; }
+.mc-cat .eye { fill: #222; stroke: none; }
+.mc-cat .ant { fill: none; stroke: #4a6a2a; stroke-width: 2.5; stroke-linecap: round; }
+.mc-crawl { animation: mcCrawl 2.4s ease-in-out infinite; }
+@keyframes mcCrawl { 50% { transform: translateX(10px); } }
+.mc-coc, .mc-fly, .mc-cat { transition: opacity 1s, transform 1.2s ease-in-out; transform-box: fill-box; transform-origin: center; }
+.mc-silk { stroke: #d9cbb0; stroke-width: 3; }
+.mc-shell { fill: #b8956a; stroke: #8a6a40; stroke-width: 3; }
+.mc-wrap { fill: none; stroke: #f2e6cc; stroke-width: 3; stroke-dasharray: 80; stroke-dashoffset: 80; transition: stroke-dashoffset 1.6s; }
+.mc-wings .w1, .mc-wings .w2 { fill: var(--wing); stroke: #b0632a; stroke-width: 3; transform-box: fill-box; }
+.mc-wings .w1 { transform-origin: right center; }
+.mc-wings .w2 { transform-origin: left center; }
+.mc-fly { opacity: 0; transform: scale(.3); }
+.mc-coc { opacity: 0; transform: scale(.4) translateY(80px); }
+/* stage 1：小毛虫；2：织茧（茧裹着毛虫）；3：茧屋；4：飞走 */
+.st2 .mc-cat { opacity: .4; transform: translate(-20px, -60px) rotate(90deg) scale(.7); }
+.st2 .mc-coc { opacity: .75; transform: none; }
+.st2 .mc-wrap, .st3 .mc-wrap { stroke-dashoffset: 0; }
+.st3 .mc-cat, .st4 .mc-cat { opacity: 0; transform: translate(-20px, -60px) rotate(90deg) scale(.5); }
+.st3 .mc-coc { opacity: 1; transform: none; animation: mcSway 3s ease-in-out infinite; transform-origin: 50% 0; }
+@keyframes mcSway { 50% { transform: rotate(4deg); } }
+.st4 .mc-coc { opacity: .35; transform: none; }
+.st4 .mc-fly { opacity: 1; transform: translate(60px, -40px); }
+.st4 .mc-wings .w1 { animation: mcFlapL .5s ease-in-out infinite alternate; }
+.st4 .mc-wings .w2 { animation: mcFlapR .5s ease-in-out infinite alternate; }
+@keyframes mcFlapL { to { transform: scaleX(.55); } }
+@keyframes mcFlapR { to { transform: scaleX(.55); } }
+.mc-line { grid-row: 2; grid-column: 1 / -1; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); --p: 0; }
+.mc-line::before, .mc-line::after { content: ""; position: absolute; left: 12.5%; top: 1.05em; height: .3em; border-radius: .2em; background: var(--line); width: 75%; }
+.mc-line::after { background: var(--red); width: calc(75% * var(--p)); transition: width .8s; }
+.mc-line button { font: inherit; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: .1em; border: none; background: none; cursor: pointer; font-family: var(--kai); font-size: 1.3em; color: var(--ink-2); }
+.mc-line i { width: 1.7em; height: 1.7em; border-radius: 50%; border: .15em solid var(--line); background: #fff; font: bold .8em/1.55em var(--py); font-style: normal; text-align: center; }
+.mc-line button.on { color: var(--red-d); }
+.mc-line button.on i { background: var(--red); border-color: var(--red); color: #fff; }
+.mc-words { grid-row: 1; grid-column: 2; display: flex; flex-wrap: wrap; align-content: center; gap: .5em; }
+.mc-words span { font-family: var(--kai); font-size: 1.6em; padding: .1em .6em; border-radius: .4em; background: #fff; border-bottom: .15em solid var(--gold); animation: pop .5s var(--d) cubic-bezier(.3, 1.4, .5, 1) both; }
+.mc-hint { grid-row: 3; margin: 0; font-family: var(--kai); font-size: 1.35em; color: var(--red-d); background: #fff8e1; border-radius: .5em; padding: .1em .7em; }
+.mc-hint.h1 { grid-column: 1; justify-self: start; }
+.mc-hint.h2 { grid-column: 2; justify-self: end; }
+
+.slide .picks { gap: .6em; }
+.slide .pick { font-size: 1.3em; }
+
+/* ---------- 词语翻卡 ---------- */
+.mc-clues { grid-template-columns: repeat(3, 1fr); }
+.mc-clues .clue-face.front { display: grid; place-items: center; font-family: var(--kai); font-size: 2em; }
+.mc-clues .clue-face.front small { font-family: var(--sans, inherit); font-size: .45em; }
+.mc-clues .clue-face.back { font-family: var(--kai); font-size: 1.3em; }
+
+/* ---------- 爬叶子 ---------- */
+.mc-game { flex: 1; min-height: 0; display: grid; place-items: center; }
+.mc-leaves { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.6em .7em; max-width: 52em; padding-top: 1.4em; }
+.mc-lf { font: inherit; font-family: var(--kai); font-size: 2em; line-height: 1.1; width: 2.6em; height: 2em; padding-top: .2em; border: none; border-radius: 0 70% 0 70%; background: #a8d870; color: #2c3a18; cursor: pointer; box-shadow: inset 0 -.15em 0 rgba(0, 0, 0, .12); }
+.mc-lf rt { font-family: var(--py); font-size: .42em; color: transparent; }
+.mc-lf.ok { background: #7cc152; }
+.mc-lf.ok rt { color: #23410f; }
+.mc-lf.wrong { animation: nope .35s; }
+.mc-bug { position: absolute; left: -1em; top: 0; font-size: 2.4em; line-height: 1; translate: -50% -70%; transition: left .7s ease-in-out, top .7s ease-in-out; pointer-events: none; }
+.mc-leaves.done .mc-bug { animation: mcUp 2s ease-out forwards; }
+@keyframes mcUp { to { translate: 2em -5em; } }
+.mc-gmsg { margin: 0; text-align: center; font-size: 1.3em; color: var(--red-d); min-height: 1.8em; }
+
+/* 写字 8 个：两列 */
+.x2-write { grid-template-columns: repeat(2, 1fr); gap: .4em 2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.3em; }
+.x2-write .hz-wpy { font-size: 1.2em; }
+
+.mc-sum { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .2em .5em; }
+.mc-sum p { margin: 0; font-family: var(--kai); font-size: 1.6em; }
+.mc-sum > b { font-size: 1.4em; color: var(--gold-l); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .mc-riddle { font-size: 1.2em; }
+  .mc-life { display: flex; flex-direction: column; }
+  .mc-art { height: auto; }
+  .mc-line button { font-size: 1em; }
+  .mc-words span { font-size: 1.15em; }
+  .mc-hint { font-size: 1.05em; }
+  .mc-clues { grid-template-columns: 1fr 1fr; }
+  .mc-clues .clue-face.front { font-size: 1.3em; }
+  .mc-clues .clue-face.back { font-size: 1em; }
+  .mc-lf { font-size: 1.6em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .mc-sum p { font-size: 1.15em; }
+}

@@ -1,0 +1,157 @@
+/* 古诗二首 · 本课配色：夜空的深蓝、草原的青绿。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #2d5c9a;
+  --red-d: #1d3c6a;
+  --gold: #e3a52c;
+  --gold-l: #fbe3a6;
+  --paper: #f2f5f8;
+  --stone: #fcfdff;
+  --ink-2: #4e5d70;
+  --line: #ccd8e6;
+}
+
+.ys-ask { font-size: 1.7em; margin: .2em 0 .8em; font-family: var(--kai); line-height: 1.6; }
+.s-cover .cover-title { font-size: 6.4em; }
+
+/* ---------- 夜宿山寺：诗 + 上升镜头 ---------- */
+.ys-bd { grid-template-columns: 1fr auto; align-items: stretch; overflow: hidden; }
+.ys-poem { align-self: center; text-align: center; font-family: var(--kai); }
+.ys-poem h3 { margin: 0; font-size: 2em; color: var(--red-d); }
+.ys-author { margin: 0 0 .3em; font-size: 1.3em; color: var(--ink-2); }
+.ys-l { margin: 0; font-size: 2.3em; line-height: 2.05; letter-spacing: .08em; }
+.ys-l rt, .ys-poem rt { font-size: .4em; }
+.ys-view { position: relative; height: 100%; aspect-ratio: 3 / 4; container-type: size; border-radius: 1em; overflow: hidden; box-shadow: 0 .3em 1.2em rgba(10, 20, 50, .35); background: #7b8fc0; }
+.ys-world { position: absolute; left: 0; top: calc(100cqh - 300cqw); width: 100%; height: auto; transition: top 5s cubic-bezier(.45, 0, .3, 1); }
+/* 第 1 步：镜头从山脚升到楼顶（世界高 = 3 倍宽，画框高 = 4/3 宽，可见 4/9） */
+.slide:has(.ys-l1.on) .ys-world { top: 0; }
+.ys-cloud ellipse { fill: #fff; opacity: .55; }
+.ys-ruler path { stroke: #ffe9a8; stroke-width: 4; fill: none; }
+.ys-ruler text { fill: #ffe9a8; font: bold 28px var(--kai); }
+.ys-win { opacity: .9; }
+.ys-star { cursor: pointer; transition: transform .8s, opacity .8s; }
+.ys-star path { animation: ysTwinkle 2.4s var(--d) ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.ys-star.got { opacity: 0; transform: translate(330px, 360px) scale(.2); }
+@keyframes ysTwinkle { 50% { transform: scale(.8); opacity: .75; } }
+.ys-arm { transform-box: fill-box; transform-origin: 0 0; transition: transform 1.2s 1s; }
+.slide:has(.ys-l2.on) .ys-arm { transform: rotate(-80deg) scaleX(1.5); }
+.ys-sleep { opacity: 0; transition: opacity 1s; }
+.ys-sleep path { stroke: #13214f; stroke-width: 4; fill: none; }
+.ys-sleep text { fill: #fff6c8; font: bold 34px var(--py); }
+.slide:has(.ys-l4.on) .ys-sleep { opacity: 1; }
+.slide:has(.ys-l4.on) .ys-star path { animation-duration: 6s; }
+.ys-shh { position: absolute; left: 50%; top: 32%; translate: -50% 0; margin: 0; padding: .2em .8em; border-radius: 1em; background: rgba(255, 255, 255, .9); font-family: var(--kai); font-size: 1.8em; color: var(--red-d); text-align: center; }
+.ys-shh small { display: block; font-size: .55em; color: var(--ink-2); }
+.slide:has(.ys-l4.on) .ys-shh { opacity: .0; }
+.ys-got { position: absolute; left: 0; right: 0; bottom: .6em; margin: 0; text-align: center; color: #fff6c8; font-family: var(--kai); font-size: 1.3em; opacity: 0; transition: opacity .6s 2s; text-shadow: 0 1px 4px #000; }
+.slide:has(.ys-l2.on) .ys-got { opacity: 1; }
+
+/* ---------- 说一说 ---------- */
+.ys-say { grid-template-columns: 1fr 1.1fr; align-items: center; }
+.ys-sayimg { position: relative; aspect-ratio: 16 / 9; border-radius: 1em; background: #2a3b6a center / cover no-repeat; box-shadow: 0 .2em .8em rgba(0, 0, 0, .2); }
+.ys-sayimg .media-btn { position: absolute; right: .6em; bottom: .6em; }
+.ys-sayr { display: flex; flex-direction: column; gap: .7em; }
+.ys-line { margin: 0; font-size: 1.8em; text-align: center; color: var(--red-d); }
+.ys-q { margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.6; background: #fff; border-radius: .6em; padding: .3em .8em; box-shadow: 0 .15em .5em rgba(30, 50, 90, .08); }
+.ys-q b { color: var(--red); }
+.ys-eg { background: #fff8e1; font-size: 1.12em; color: var(--ink-2); }
+
+/* ---------- 敕勒歌：草原长卷 ---------- */
+.cl-stage { flex: 1; }
+.cl-view { position: relative; flex: 1 1 0; min-height: 0; aspect-ratio: 16 / 9; align-self: center; max-width: 100%; border-radius: 1em; overflow: hidden; box-shadow: 0 .3em 1.2em rgba(20, 60, 30, .25); touch-action: none; }
+.cl-world { --seg: 0; position: absolute; top: 50%; left: 0; width: 400%; height: auto; translate: 0 -50%; transform: translateX(calc(var(--seg) * -25%)); transition: transform 3s cubic-bezier(.45, 0, .3, 1); cursor: grab; }
+.cl-mt { fill: #6f8aa6; opacity: .8; }
+.cl-mt2 { fill: #58779a; }
+.cl-river { fill: none; stroke: #8cc8e8; stroke-width: 26; stroke-linecap: round; opacity: .8; }
+.cl-yurt path { fill: #fbf8ef; stroke: #b9a98a; stroke-width: 4; }
+.cl-yurt .door { fill: #c0392b; stroke: none; }
+.cl-yurt .band { fill: none; stroke: #c0392b; stroke-width: 6; }
+.cl-dome { fill: none; stroke: #fff; stroke-width: 14; stroke-dasharray: 2600; stroke-dashoffset: 2600; stroke-linecap: round; opacity: .9; }
+.slide:has(.cl-l2.on) .cl-dome { stroke-dashoffset: 0; transition: stroke-dashoffset 3s 2s; }
+.cl-bird path { fill: none; stroke: #3d4d5c; stroke-width: 6; }
+.cl-far { fill: none; stroke: #c8e0a8; stroke-width: 8; }
+.cl-far2 { fill: #8fb7c9; opacity: .5; }
+.cl-clouds ellipse { fill: #fff; opacity: .85; }
+.cl-stripe path { fill: none; stroke: #b6dc7c; stroke-width: 10; opacity: .6; }
+.cl-tiny circle { fill: #fbfbf4; }
+.cl-blade { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .5s ease-out; }
+.cl-blade.bent { transform: rotate(52deg) scaleY(.5); transition-duration: .25s; }
+.cl-wind { position: absolute; right: .8em; bottom: .8em; opacity: 0; pointer-events: none; transition: opacity .6s; }
+.slide:has(.cl-l4.on) .cl-wind { opacity: 1; pointer-events: auto; }
+.cl-poem { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 0 1.2em; font-family: var(--kai); }
+.cl-ti { margin: 0; font-size: 1.5em; color: var(--red-d); }
+.cl-ti small { display: inline-block; margin-left: .4em; font-size: .7em; color: var(--ink-2); }
+.cl-l { margin: 0; font-size: 1.75em; line-height: 2.05; padding: 0 .3em; border-radius: .3em; }
+.cl-l.on { background: #fff8e1; }
+.cl-poem rt { font-size: .42em; }
+
+/* 天似穹庐 */
+.cl-dome-bd { grid-template-columns: 1.1fr 1fr; align-items: center; }
+.cl-domepic { position: relative; aspect-ratio: 16 / 9; border-radius: 1em; background: #8cc0e0 center / cover no-repeat; overflow: hidden; box-shadow: 0 .2em .8em rgba(0, 0, 0, .18); }
+.cl-domepic svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cl-arc { fill: none; stroke: #fff; stroke-width: 1.4; stroke-dasharray: 400; stroke-dashoffset: 400; vector-effect: non-scaling-stroke; }
+.cl-arc.on { stroke-dashoffset: 0; stroke-width: 6; transition: stroke-dashoffset 2.5s; }
+.cl-words { display: flex; flex-direction: column; gap: .5em; }
+.cl-w { margin: 0; background: #fff; border-radius: .8em; padding: .1em .9em .4em; box-shadow: 0 .15em .5em rgba(30, 60, 40, .08); }
+.cl-w b { display: inline-block; font-family: var(--kai); font-size: 1.6em; line-height: 2.1; color: var(--red-d); font-weight: normal; }
+.cl-w b rt { font-size: .42em; }
+.cl-w span { display: block; font-family: var(--kai); font-size: 1.15em; color: var(--ink-2); }
+.cl-w em { font-style: normal; font-family: var(--py); color: var(--py-c); }
+
+/* ---------- 背诵 ---------- */
+.ys-recite { justify-content: center; align-items: center; }
+.ys-rc { font-size: 2.1em; text-align: center; padding: .2em 2em; }
+.ys-rc .py { line-height: 2.15; }
+.ys-rc p { text-indent: 0; }
+.ys-rc rt { font-size: .4em; }
+
+/* ---------- 摘星星 ---------- */
+.ys-game { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .6em; }
+.sg-sky { position: relative; flex: 1; min-height: 0; border-radius: 1em; background: radial-gradient(circle at 80% 10%, #3a5aa0 0, transparent 40%), linear-gradient(#0b1640, #24407e); overflow: hidden; }
+.sg-star { position: absolute; translate: -50% -50%; width: 6.4em; height: 6.4em; border: 0; padding: 0; background: none; cursor: pointer; transition: transform .9s cubic-bezier(.5, -0.3, .6, 1), opacity .9s; }
+.sg-star svg { position: absolute; inset: 0; width: 100%; height: 100%; fill: #ffe680; filter: drop-shadow(0 0 .4em rgba(255, 230, 128, .8)); }
+.sg-star b { position: relative; font-family: var(--kai); font-size: 2em; color: #1d3c6a; }
+.sg-star:hover svg { fill: #fff3b0; }
+.sg-star.wrong { animation: nope .35s; }
+.sg-star.got { opacity: 0; transform: translate(40vw, 40vh) scale(.2); pointer-events: none; }
+.sg-jar { position: absolute; right: 1em; bottom: 1em; width: 9em; min-height: 6em; padding: .4em; border: .2em solid rgba(255, 255, 255, .7); border-top-width: .5em; border-radius: .6em .6em 1.4em 1.4em; background: rgba(255, 255, 255, .15); }
+.sg-jar b { position: absolute; right: .3em; top: -.1em; color: #ffe680; font-family: var(--py); font-size: 1.5em; }
+.sg-in { display: flex; flex-wrap: wrap; gap: .1em .3em; }
+.sg-in i { font-style: normal; font-family: var(--kai); font-size: 1.3em; line-height: 1.9; color: #fff6c8; }
+.sg-in rt { font-family: var(--py); font-size: .45em; color: #ffe680; }
+.sg-bar { display: flex; align-items: center; gap: 1em; }
+.sg-q { min-width: 3.2em; text-align: center; font-family: var(--py); font-size: 2.6em; color: var(--py-c); background: #fff; border-radius: .3em; padding: 0 .3em; box-shadow: 0 .1em .4em rgba(30, 50, 90, .12); }
+.sg-msg { flex: 1; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+
+/* ---------- 回顾 ---------- */
+.ys-sum { flex: 1; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2em; }
+.ys-sumc { width: 22em; background: #2f4a3f; color: #f6f1e4; border-radius: 1em; padding: .8em; text-align: center; box-shadow: inset 0 0 0 .3em #6b4b2a; }
+.ys-sumc i { display: block; font-style: normal; font-size: 3em; color: var(--gold-l); line-height: 1; }
+.ys-sumc .py { display: block; font-family: var(--kai); font-size: 2.2em; line-height: 2.1; }
+.ys-sumc rt { font-family: var(--py); font-size: .42em; color: var(--gold-l); }
+.ys-sumc small { font-family: var(--kai); font-size: 1.3em; color: var(--gold-l); }
+.ys-sum .tip { flex-basis: 100%; text-align: center; font-size: 1.3em; }
+
+/* 故事页字幕：二年级字号 */
+.subs.py, .subs .py { font-size: 1.6em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .subs.py, .subs .py { font-size: 1.2em; }
+  .ys-bd { display: flex; flex-direction: column; }
+  .ys-view { height: auto; width: 100%; flex: none; }
+  .ys-l { font-size: 1.6em; }
+  .ys-say, .cl-dome-bd { display: flex; flex-direction: column; }
+  .ys-sayimg, .cl-domepic { width: 100%; }
+  .ys-line { font-size: 1.5em; }
+  .ys-q { font-size: 1.15em; }
+  .cl-view { flex: none; width: 100%; aspect-ratio: 16 / 10; }
+  .sg-msg { flex-basis: 100%; order: 3; font-size: 1.2em; }
+  .cl-l { font-size: 1.45em; }
+  .ys-rc { font-size: 1.7em; padding: .3em .6em; }
+  .sg-sky { flex: none; aspect-ratio: 3 / 4; }
+  .sg-star { width: 4em; height: 4em; }
+  .sg-star b { font-size: 1.4em; }
+  .sg-jar { width: 6.5em; min-height: 4em; }
+  .sg-bar { flex-wrap: wrap; }
+  .ys-sumc { width: 100%; }
+}

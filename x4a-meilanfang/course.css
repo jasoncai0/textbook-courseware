@@ -1,0 +1,52 @@
+/* 梅兰芳蓄须 · 本课配色：戏台的胭脂红、旧绸的金。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #a23a3a;
+  --red-d: #5a1f22;
+  --gold: #c99a3e;
+  --gold-l: #f0dba8;
+  --paper: #f5efe8;
+  --stone: #fcf9f5;
+  --ink-2: #5d5350;
+  --line: #ddcfc4;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfaf6 0, transparent 40%), radial-gradient(circle at 90% 95%, #eadfd4 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 6.5em; }
+.hd h2 { font-size: 1.75em; }
+.tip { font-size: 1.02em; }
+.subs .beat { font-size: 1.15em; letter-spacing: .06em; color: #f6d48a; }
+.portrait-card { position: relative; }
+.portrait-img { background-position: 50% 50%; background-size: cover; }
+
+/* ---------- 连一连 ---------- */
+.match { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em 3em; }
+.match-col { display: flex; flex-direction: column; gap: .6em; }
+.m-item { position: relative; font: inherit; font-family: var(--kai); font-size: 1.25em; line-height: 1.45; text-align: left; padding: .55em .9em .55em 2.6em; border: 2px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; }
+#matchL .m-item { border-left: .35em solid var(--red); }
+#matchR .m-item { border-left: .35em solid var(--gold); }
+.m-n { position: absolute; left: .5em; top: 50%; translate: 0 -50%; width: 1.5em; height: 1.5em; line-height: 1.5em; border-radius: 50%; background: #eee5da; color: #fff; text-align: center; font-family: var(--serif); font-size: .85em; }
+.m-item.picked { background: #fff3d6; border-color: var(--gold); }
+.m-item.wrong { animation: nope .35s; border-color: #e3a998; }
+.m-item.done { cursor: default; }
+.m-item.c1 { background: #fdeee8; } .m-item.c1 .m-n { background: #c0533a; }
+.m-item.c2 { background: #eef5ea; } .m-item.c2 .m-n { background: #4f8a3c; }
+.m-item.c3 { background: #eaf1f8; } .m-item.c3 .m-n { background: #3d6ea8; }
+.m-item.c4 { background: #f5eef7; } .m-item.c4 .m-n { background: #8a4a8a; }
+
+/* ---------- 主要内容：事件链 ---------- */
+.s-main .bd { grid-template-columns: 34% 1fr; }
+.steps-row { display: flex; flex-wrap: wrap; align-items: center; gap: .3em; }
+.steps-row span { background: #fff; border: 2px solid var(--line); border-radius: .5em; padding: .4em .5em; font-family: var(--kai); font-size: 1.12em; text-align: center; line-height: 1.35; }
+.steps-row span.end { background: var(--red); color: #fff; border-color: var(--red); }
+.steps-row i { font-style: normal; color: var(--gold); font-size: 1.2em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3.4em; }
+  .hd h2 { font-size: 1.3em; }
+  .match { grid-template-columns: 1fr; gap: 1em; }
+  .m-item { font-size: 1.05em; }
+  .steps-row span { font-size: 1.05em; }
+}

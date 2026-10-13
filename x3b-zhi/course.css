@@ -1,0 +1,125 @@
+/* 纸的发明（三下 10）· 本课配色：纸白、竹黄、朱红。说明类课件：信息图为主 */
+:root {
+  --red: #b0452c;
+  --red-d: #6d2a1a;
+  --gold: #c9a24a;
+  --gold-l: #f1e2b3;
+  --paper: #f7f2e6;
+  --stone: #fdfaf2;
+  --ink-2: #5f564a;
+  --line: #ddd0b2;
+}
+/* 中年级：字再大一点 */
+.quote { font-size: 1.25em; line-height: 1.95; }
+.tip { font-size: 1.02em; }
+.hd h2 { font-size: 1.85em; }
+.s-cover .cover-title { font-size: 7em; letter-spacing: .08em; }
+
+/* 第 1 段 */
+.center-stage { justify-content: center; align-items: center; gap: 1.6em; }
+.big-sentence { margin: 0; font-family: var(--kai); font-size: 2.6em; text-align: center; color: var(--red-d); }
+.kw { border-bottom: .12em solid var(--gold); transition: background .6s; }
+.kw.on { background: var(--gold-l); }
+.kw[data-step] { opacity: 1; transform: none; }
+.four { display: flex; flex-wrap: wrap; gap: .6em; align-items: center; justify-content: center; font-size: 1.2em; }
+.four-h { color: var(--ink-2); width: 100%; text-align: center; font-size: .85em; }
+
+/* 材料卡 */
+.media-row { display: flex; gap: .6em; justify-content: flex-end; flex-wrap: wrap; }
+.media-row .media-btn { position: static; }
+.mats { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; flex: 1; min-height: 0; }
+.mat, .c3 { position: relative; background: #fff; border-radius: .7em; padding: .6em .8em; display: flex; flex-direction: column; align-items: center; box-shadow: 0 .15em .6em rgba(60, 40, 20, .1); }
+.mat-ic, .c3 svg { width: 100%; max-width: 9em; flex: 1; min-height: 3em; }
+.mat b, .c3 b { font-size: 1.35em; color: var(--red-d); }
+.mat span, .c3 span { color: var(--ink-2); }
+.stamp { position: absolute; right: .6em; top: .5em; font-style: normal; font-weight: bold; font-size: 1.15em; color: #c0392b; border: .15em solid #c0392b; border-radius: .3em; padding: 0 .3em; transform: rotate(12deg); opacity: .85; }
+.on .stamp { animation: stampIn .5s .4s both; }
+@keyframes stampIn { from { transform: rotate(12deg) scale(2.2); opacity: 0; } }
+
+/* 第 3 段 */
+.chain3 { display: flex; align-items: stretch; gap: .6em; flex: 1; min-height: 0; }
+.chain3 .c3 { flex: 1; }
+.arr { align-self: center; font-style: normal; font-size: 2em; color: var(--red); }
+
+/* 造纸工序 */
+.s-steps .stage { gap: .6em; }
+.quote.one { margin: 0; font-size: 1.22em; text-indent: 2em; }
+.proc-wrap { flex: 1; min-height: 0; display: flex; }
+#process { flex: 1; min-height: 0; width: 100%; height: 100%; }
+#process .st { opacity: .35; transition: opacity .6s; }
+#process .st.on { opacity: 1; }
+#process .blade-a, #process .blade-b { transform-box: view-box; transform-origin: 80px 100px; }
+#process .st.on .blade-a { animation: snipA .6s ease-in-out infinite alternate; }
+#process .st.on .blade-b { animation: snipB .6s ease-in-out infinite alternate; }
+@keyframes snipA { to { transform: rotate(18deg); } }
+@keyframes snipB { to { transform: rotate(-18deg); } }
+#process .st.on .pieces rect { animation: drop 1.2s ease-in infinite; }
+@keyframes drop { from { transform: translateY(-30px); opacity: 0; } 30% { opacity: 1; } }
+#process .st.on .float { animation: bob 1.4s ease-in-out infinite alternate; }
+@keyframes bob { to { transform: translateY(8px); } }
+#process .st.on .pestle { animation: pound .5s ease-in infinite alternate; }
+@keyframes pound { from { transform: translateY(-20px); } to { transform: translateY(22px); } }
+#process .st.on .screen { animation: lift 2s ease-in-out infinite; }
+@keyframes lift { 0%, 20% { transform: translateY(40px); } 60%, 100% { transform: translateY(-40px); } }
+#process .sun { transform-box: fill-box; transform-origin: center; }
+#process .st.on .sun { animation: spin 6s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#process .sheet { fill: #e8dfc8; transition: fill 2.5s ease .5s; }
+#process .st.on .sheet { fill: #fffdf6; }
+
+/* 为什么传承下来 */
+.cmp { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.2em; }
+.cmp th { padding: .4em .7em; border-radius: .4em; background: var(--red-d); color: #fff; font-family: var(--kai); }
+.cmp tr:first-child th { background: transparent; color: var(--ink-2); font-family: var(--serif); font-size: .85em; }
+.cmp td { background: #fff; border-radius: .4em; padding: .45em .7em; text-align: center; font-family: var(--kai); }
+.cmp td.ok::before { content: "✓ "; color: #1f6b4f; font-weight: bold; font-family: var(--serif); }
+.cmp td.no { color: #a33; background: #fdf0ec; }
+.cmp td.no::before { content: "✗ "; font-weight: bold; font-family: var(--serif); }
+.cmp tr.win th { background: #1f6b4f; }
+.cmp tr.win td { background: #eef7f1; font-weight: bold; }
+
+/* 传遍世界 */
+#route { flex: 1; min-height: 0; width: 100%; }
+#route .place[data-step] { transition: opacity .8s ease .9s; }
+#route .home { filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .2)); }
+
+/* 课后第 2 题图表 */
+.chart { display: flex; align-items: stretch; gap: .4em; flex: 1; min-height: 0; }
+.ch { flex: 1; display: flex; flex-direction: column; gap: .4em; background: #fff; border-radius: .6em; padding: .7em; border-top: .3em solid var(--red); }
+.ch b { font-size: 1.2em; color: var(--red-d); text-align: center; }
+.ch .given { margin: 0; flex: 1; font-family: var(--kai); font-size: 1.15em; line-height: 1.7; background: #fff8e1; border-radius: .4em; padding: .5em .7em; }
+.cell { flex: 1; width: 100%; min-height: 3em; font: inherit; font-family: var(--kai); font-size: 1.15em; line-height: 1.7; text-align: left; padding: .5em .7em; border: 1px dashed var(--line); border-radius: .4em; background: #fbf6ea; color: transparent; cursor: pointer; position: relative; }
+.cell::after { content: "说一说，再点一点"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #b9ad99; font-size: .8em; font-family: var(--serif); }
+.cell.open { color: var(--ink); background: #fff; border-style: solid; }
+.cell.open::after { content: none; }
+
+/* 流程图练说 */
+.s-flow .bd { grid-template-columns: 42% 1fr; }
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: .4em; background: #fff; border-radius: .6em; padding: 1em; }
+.flow i { font-style: normal; color: var(--red); font-weight: bold; font-size: 1.3em; }
+.fstep { font-family: var(--kai); font-size: 1.5em; background: var(--gold-l); border: 2px solid var(--gold); border-radius: .4em; padding: .1em .5em; }
+.s-flow textarea { flex: 1; min-height: 6em; resize: none; font: inherit; font-family: var(--kai); font-size: 1.2em; line-height: 1.8; padding: .6em .9em; border: 1px solid var(--line); border-radius: .5em; background: #fff; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .quote, .quote.one { font-size: 1.1em; }
+  .s-cover .cover-title { font-size: 3.6em; }
+  .big-sentence { font-size: 1.6em; }
+  .mats { grid-template-columns: 1fr 1fr; }
+  .mat-ic, .c3 svg { flex: none; height: 5em; }
+  .chain3 { flex-direction: column; }
+  .chain3 .arr { transform: rotate(90deg); }
+  #process, #route { flex: none; height: auto; }
+  .proc-wrap { flex: none; overflow-x: auto; }
+  #process { min-width: 820px; }
+  #route .t-m { font-size: 22px; }
+  #route .t-l { font-size: 28px; }
+  .cmp { font-size: .82em; border-spacing: .2em; }
+  .chart { flex-direction: column; }
+  .chart .arr { transform: rotate(90deg); align-self: center; }
+  .s-flow textarea { min-height: 9em; }
+}
+.s-before .bd { grid-template-columns: 50% 1fr; }
+.s-before .quote { font-size: 1.15em; line-height: 1.85; }
+@media (max-width: 820px), (max-height: 520px) { .s-before .quote { font-size: 1.1em; } }
+.s-steps .media-btn { top: auto; bottom: .6em; right: .6em; }
+.s-world .media-btn { left: .5em; right: auto; top: .5em; }

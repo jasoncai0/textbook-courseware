@@ -1,0 +1,78 @@
+/* 漏 · 本课样式：雨夜的青灰、老虎的橙黄。通用样式见 ../shared/*.css */
+:root {
+  --red: #c8642a;
+  --red-d: #36505e;
+  --gold: #e3a034;
+  --gold-l: #f4d897;
+  --paper: #f1f0eb;
+  --stone: #fbfaf7;
+  --ink-2: #555a5c;
+  --line: #d4d2c8;
+}
+.s-cover .cover-title { font-size: 11em; }
+
+/* ---------- 三种想法 ---------- */
+.thinks { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.think { background: #fff; border-radius: .8em; padding: .8em 1em; display: flex; flex-direction: column; align-items: center; gap: .4em; text-align: center; box-shadow: 0 .15em .6em rgba(40, 50, 60, .12); }
+.think i { font-style: normal; font-size: 3em; line-height: 1; }
+.think b { font-size: 1.25em; color: var(--red-d); }
+.think .bubble { position: relative; flex: 1; width: 100%; display: flex; align-items: center; justify-content: center; border-radius: 1em; padding: .6em; font-family: var(--kai); font-size: 1.3em; line-height: 1.6; background: #eef3f6; }
+.think .bubble::before { content: ""; position: absolute; top: -.6em; left: 50%; margin-left: -.6em; border: .6em solid transparent; border-top: 0; border-bottom-color: #eef3f6; }
+.think.real .bubble { background: #e3f1f8; }
+.think.real .bubble::before { border-bottom-color: #e3f1f8; }
+.think.tiger .bubble { background: #fff0dc; }
+.think.tiger .bubble::before { border-bottom-color: #fff0dc; }
+.think.thief .bubble { background: #ece9f3; }
+.think.thief .bubble::before { border-bottom-color: #ece9f3; }
+.think em { font-style: normal; color: var(--red); font-weight: bold; }
+.think small { color: var(--ink-2); font-size: .95em; }
+
+/* ---------- 分角色朗读 ---------- */
+.read-item.tg { border-left-color: #e3a034; }
+.read-item.th { border-left-color: #6a6f8a; }
+
+/* ================= 中年级通用（三下第七、八单元各课相同） ================= */
+/* 8–10 岁：字号比五六年级再大一点 */
+.frame { font-size: min(1.52vw, 2.7vh); }
+.tip { font-size: 1em; }
+.big-line { margin: 0; text-align: center; font-family: var(--kai); font-size: 2.4em; line-height: 1.5; color: var(--ink); }
+.big-line .kw[data-step] { opacity: 1; transform: none; transition: color .5s, background-size .8s; background: linear-gradient(transparent 62%, rgba(224, 160, 32, .45) 62%) no-repeat 0 0 / 0 100%; }
+.big-line .kw.on { color: var(--red); background-size: 100% 100%; }
+.pic-box { border-radius: .6em; background: #e9e2d2 center / cover no-repeat; min-height: 8em; box-shadow: 0 .2em .8em rgba(40, 30, 20, .15); }
+
+/* 读准字音：放大字号后卡片仍与原模板一样大，一屏放得下（会写字一行 12 个） */
+.s-ziyin .zy-card { font-size: 1.35em; padding: .25em .3em .2em; }
+.s-ziyin .zy-stage { gap: .45em; }
+.s-ziyin .zy-write { font-size: 1.6em; }
+.s-ziyin .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(4.1em, 1fr)); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .big-line { font-size: 1.5em; }
+  .pic-box { min-height: 12em; }
+}
+
+/* ---------- 排一排（复述工具）：点卡片按顺序排 ---------- */
+.order { display: flex; flex-direction: column; gap: .7em; min-height: 0; }
+.order-slots, .order-pool { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: .6em; }
+.o-slot { position: relative; min-height: 8.4em; border: 2px dashed var(--line); border-radius: .6em; background: rgba(255, 255, 255, .55); display: flex; flex-direction: column; overflow: hidden; }
+.o-slot::after { content: attr(data-n); position: absolute; left: .35em; top: .3em; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; font-size: .85em; }
+.o-slot.filled { border-style: solid; border-color: var(--gold); background: #fff; animation: appear .4s ease; }
+.o-card { font: inherit; padding: 0; border: 1px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; text-align: left; color: var(--ink); box-shadow: 0 .15em .5em rgba(40, 30, 20, .1); transition: opacity .3s; }
+.o-pic { height: 4.6em; flex: none; background: #efe6d4 center / cover no-repeat; display: flex; align-items: center; justify-content: center; }
+.o-pic i { font-style: normal; font-size: 2.4em; line-height: 1; }
+.o-card > span, .o-slot > span { padding: .35em .6em .5em; font-family: var(--kai); font-size: .95em; line-height: 1.45; }
+.o-card.used { opacity: .2; pointer-events: none; }
+.o-card.wrong { animation: nope .35s; border-color: #e3a998; background: #fdf0ec; }
+.order-bar { display: flex; align-items: center; gap: 1em; }
+.order-msg { flex: 1; color: var(--ink-2); }
+.order.done .order-msg { color: #1f6b4f; font-weight: bold; }
+@media (max-width: 820px), (max-height: 520px) {
+  .order-slots, .order-pool { grid-template-columns: 1fr 1fr; }
+  .o-slot { min-height: 7em; }
+}
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 6em; }
+  .thinks { grid-template-columns: 1fr; }
+  .order-slots, .order-pool { grid-template-columns: 1fr; }
+}

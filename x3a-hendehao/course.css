@@ -1,0 +1,54 @@
+/* 那一定会很好 · 本课配色：树木的青绿、木头的暖棕。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #7a5a2c;
+  --red-d: #4f3a1a;
+  --gold: #6f9a3e;
+  --gold-l: #dbeabd;
+  --paper: #f4f0e4;
+  --stone: #fcfaf3;
+  --ink-2: #5f584a;
+  --line: #d9cfb8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfbf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #e6e9d4 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 6em; }
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.6em; }
+}
+
+/* ---------- 排一排（点卡片排顺序） ---------- */
+.order { display: flex; flex-wrap: wrap; gap: .6em; }
+.order-card { font: inherit; font-family: var(--kai); font-size: 1.15em; padding: .5em 1em; border-radius: .6em; border: 2px solid var(--line); background: #fff; cursor: pointer; display: inline-flex; align-items: center; gap: .5em; }
+.order-card em { flex: none; width: 1.6em; height: 1.6em; border-radius: 50%; border: 1px dashed var(--line); font-style: normal; font-family: Georgia, var(--serif); display: grid; place-items: center; color: #fff; }
+.order-card.right { background: #f2f7ec; border-color: var(--gold); cursor: default; }
+.order-card.right em { background: var(--gold); border: none; }
+.order-card.wrong { background: #fdf0ec; border-color: #e3a998; animation: nope .35s; }
+.order-msg { margin: 0; color: var(--ink-2); font-size: .95em; }
+.order.all-done + .order-msg { color: #1f6b4f; font-weight: bold; }
+
+/* ---------- 故事页的插画（SVG 当背景） ---------- */
+.seed-bg .seed-body { transform-box: fill-box; transform-origin: center; animation: squeeze 2.4s ease-in-out infinite; }
+@keyframes squeeze { 50% { transform: scale(1.04, .96); } }
+.chair-bg .creak { transition: opacity .6s; }
+.chair-bg .creak.on { animation: creak 1.2s ease-in-out infinite; }
+@keyframes creak { 50% { opacity: .35; } }
+
+/* ---------- 历程 ---------- */
+.journey { display: flex; align-items: stretch; gap: .4em; }
+.journey .jy { flex: 1; background: #fff; border-radius: .6em; border-top: .3em solid var(--gold); padding: .5em .6em; box-shadow: 0 .15em .5em rgba(60, 50, 20, .1); }
+.journey .jy b { display: block; color: var(--red-d); font-size: 1.2em; }
+.journey .jy span { font-family: var(--kai); font-size: 1em; line-height: 1.5; }
+.journey i { align-self: center; font-style: normal; color: var(--gold); font-size: 1.4em; }
+
+/* ---------- 说一说 ---------- */
+.tell-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4em; }
+.tell-pic { height: 6em; border-radius: .4em; background: #ddd center / cover no-repeat; }
+.s-tell .tip { font-size: 1.05em; line-height: 1.8; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .journey { flex-direction: column; }
+  .journey i { transform: rotate(90deg); }
+}

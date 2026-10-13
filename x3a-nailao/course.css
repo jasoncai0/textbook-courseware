@@ -1,0 +1,43 @@
+/* 一块奶酪 · 本课配色：奶酪的金黄、蚂蚁的深棕、草丛的绿。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #9a4a1c;
+  --red-d: #5e2c10;
+  --gold: #e0a526;
+  --gold-l: #f7e1a0;
+  --paper: #f6f1e3;
+  --stone: #fdfaf1;
+  --ink-2: #605645;
+  --line: #ddd0b2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fffcf2 0, transparent 40%), radial-gradient(circle at 90% 95%, #eee3c4 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 6em; }
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.6em; }
+}
+
+/* ---------- 心七上八下 ---------- */
+.heart { position: absolute; right: 2.4em; top: 8em; z-index: 3; display: flex; flex-direction: column; align-items: center; color: #fff; text-shadow: 0 1px 4px rgba(0, 0, 0, .6); }
+.heart i { font-style: normal; font-size: 3.4em; color: #e2523a; line-height: 1; }
+.heart.on i { animation: updown 1s ease-in-out infinite; }
+.heart span { font-family: var(--kai); font-size: 1.2em; }
+@keyframes updown { 0%, 100% { transform: translateY(-.35em) rotate(-8deg); } 50% { transform: translateY(.35em) rotate(8deg); } }
+
+/* ---------- 两难 ---------- */
+.mind { flex: 1; display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.2em; align-items: center; }
+.mind-card { background: #fff; border-radius: .8em; padding: 1em 1.2em; text-align: center; box-shadow: 0 .2em .8em rgba(80, 50, 20, .12); border-top: .35em solid var(--gold); }
+.mind-card b { display: block; font-size: 1.6em; color: var(--red-d); }
+.mind-card span { font-family: var(--kai); font-size: 1.3em; }
+.mind-crumb { display: flex; flex-direction: column; align-items: center; gap: .3em; color: var(--ink-2); }
+.mind-crumb i { width: 4.5em; height: 3.2em; background: radial-gradient(circle at 30% 40%, #e9b23c .5em, transparent .55em), radial-gradient(circle at 70% 60%, #e9b23c .35em, transparent .4em), #f6cf55; clip-path: polygon(0 100%, 100% 100%, 85% 0); border-radius: .2em; animation: updown 1.6s ease-in-out infinite; }
+.mind-end { font-size: 1.2em; line-height: 1.7; background: #fff8e1; border: 1px solid var(--gold-l); border-radius: .6em; padding: .8em 1.2em; }
+.mind-end b { color: var(--red); }
+.mind-end em { font-style: normal; color: var(--red-d); font-weight: bold; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .heart { right: .8em; top: 7em; }
+  .mind { grid-template-columns: 1fr; }
+}

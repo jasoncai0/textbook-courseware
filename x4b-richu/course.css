@@ -1,0 +1,72 @@
+/* 海上日出 · 本课配色：朝霞红、海蓝、金光。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #c4462c;
+  --red-d: #6e2616;
+  --gold: #e0a23a;
+  --gold-l: #f6dfaa;
+  --paper: #f2f1ec;
+  --stone: #fbfaf6;
+  --ink-2: #4f5a64;
+  --line: #d3d8dc;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdf6ec 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe8ee 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 7em; }
+.cover-quote { font-family: var(--kai); font-size: 2em; margin: 0 0 .6em; color: #ffe4b0; }
+.subs { font-size: 1.55em; }
+
+/* ---------- 日出时间滑块 ---------- */
+.s-slider .bd { grid-template-columns: 58% 1fr; }
+#sunSvg { border-radius: 1em; }
+#sunSvg .cl { fill: #f3e1da; opacity: .9; transition: fill .6s; }
+#sunSvg .cl.near { fill: #f0b9a2; }
+#sunSvg #clouds.lit .cl { fill: #ffe7a6; stroke: #ffd36a; stroke-width: 3; }
+.sun-row input { flex: 1; accent-color: var(--red); height: 1.6em; }
+.sun-row { font-size: 1em; }
+.sun-steps { display: flex; flex-wrap: wrap; align-items: center; gap: .3em; }
+.sun-steps i { font-style: normal; color: var(--gold); }
+.sun-steps .btn { font-size: .85em; padding: .25em .5em; }
+.sun-steps i { font-size: .8em; }
+.sun-text { margin: 0; font-family: var(--kai); font-size: 1.45em; line-height: 1.75; background: #fff; border-radius: .6em; padding: .7em 1em; border-left: .3em solid var(--red); min-height: 6.6em; }
+.sun-tags { display: flex; flex-wrap: wrap; gap: .4em; }
+.sun-tags span { background: var(--gold-l); color: var(--red-d); border-radius: 1em; padding: .2em .8em; font-size: .95em; }
+
+/* ---------- 有云时 ---------- */
+.cloud-view { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.1fr 1fr; gap: 1em; }
+.cloud-pic { grid-column: 1; grid-row: 1; border-radius: .8em; background: #c9b39a center / cover no-repeat; min-height: 12em; transition: opacity .6s; }
+.cloud-text { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; justify-content: center; }
+.cloud-text p { margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.8; background: #fff; border-radius: .6em; padding: .8em 1em; }
+.cloud-text b { color: var(--red); }
+.cloud-view[data-c="0"] .cloud-pic:nth-child(2), .cloud-view[data-c="1"] .cloud-pic:nth-child(1) { opacity: 0; }
+.cloud-view[data-c="0"] .cloud-text p:nth-child(2), .cloud-view[data-c="1"] .cloud-text p:nth-child(1) { display: none; }
+.cloud-btns .btn { font-size: 1em; }
+
+/* ---------- 加点词 ---------- */
+.dot-sent { margin: 0; font-family: var(--kai); font-size: 1.9em; line-height: 1.9; background: #fff; border-radius: .6em; padding: .7em 1.1em; transition: background .4s; }
+.dot-sent em { font-style: normal; color: var(--red); background: radial-gradient(circle, var(--red) 40%, transparent 46%) repeat-x 0 100% / .5em .3em; padding-bottom: .3em; }
+.dot-sent.plain { background: #eceae4; color: var(--ink-2); }
+.dot-sent u { text-decoration: none; border-bottom: .12em dashed var(--ink-2); }
+.dot-cards { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: .8em; }
+.dot-card { background: #fff; border-radius: .6em; padding: .7em 1em; border-top: .3em solid var(--red); }
+.dot-card.gold { background: #fff8e1; border-top-color: var(--gold); }
+.dot-card > b { display: block; color: var(--red-d); font-size: 1.1em; margin-bottom: .3em; }
+.dot-card span { font-size: 1.05em; line-height: 1.6; }
+.dot-card span b { color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3.2em; }
+  .cover-quote { font-size: 1.3em; }
+  .subs { font-size: 1.15em; }
+  .sun-text { font-size: 1.15em; min-height: 0; }
+  .sun-row { flex-wrap: wrap; }
+  .sun-row span { white-space: nowrap; font-size: .9em; }
+  .sun-row input { min-width: 8em; }
+  .cloud-view { grid-template-columns: 1fr; }
+  .cloud-text { grid-column: 1; grid-row: 2; }
+  .cloud-text p { font-size: 1.1em; }
+  .dot-sent { font-size: 1.3em; }
+  .dot-cards { grid-template-columns: 1fr; }
+}

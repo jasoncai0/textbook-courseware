@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>记金华的双龙洞 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面：路线导入 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/lushang.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">四年级下册 · 第五单元 · 第 17 课 · 叶圣陶</p>
+    <h1 class="cover-title">记金华的双龙洞</h1>
+    <p class="cover-sub">4 月 14 日 · 浙江金华 · 北山</p>
+    <div class="cover-route" data-step="1"><span>路上</span><i>→</i><span>洞口</span><i>→</i><span>外洞</span><i>→</i><span>孔隙</span><i>→</i><span>内洞</span><i>→</i><span>出洞</span></div>
+    <div class="chips" data-step="2"><span class="chip">了解课文按一定顺序写景物的方法</span><span class="chip">按游览的顺序写</span></div>
+  </div>
+  <p class="note">这是一篇游记。第 1 步先亮出“路线”：今天我们跟着叶圣陶爷爷走一遍。上一课学了“按变化的顺序”，这一课学“按游览的顺序”，还要看看作者重点写了哪儿。</p>
+</section>
+
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 一 · 跟着走（本课独有：路线图上走一遍） ================= -->
+<section class="slide s-route">
+  <div class="hd"><span class="tag">一 · 跟着作者走一遍</span><h2>点一站，走一站</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 520 440" id="routeSvg" role="img" aria-label="游双龙洞的路线图">
+        <defs><clipPath id="rtClip"><rect width="520" height="440" rx="16"/></clipPath></defs>
+        <g clip-path="url(#rtClip)">
+          <rect width="520" height="440" fill="#eaf0e2"/>
+          <path d="M0 300 q90 -120 170 -210 q60 -70 140 -60 q120 10 210 60 v350 h-520 z" fill="#d9c7c0"/>
+          <path d="M0 340 q120 -80 200 -60 q100 20 320 -40 v200 h-520 z" fill="#d6e4c6"/>
+          <g fill="#e17a9a" opacity=".85"><circle cx="40" cy="300" r="7"/><circle cx="76" cy="352" r="6"/><circle cx="160" cy="300" r="7"/><circle cx="30" cy="380" r="6"/><circle cx="200" cy="350" r="6"/><circle cx="130" cy="400" r="7"/><circle cx="96" cy="260" r="6"/></g>
+          <path d="M20 430 q80 -40 70 -100 q-10 -50 90 -90 q30 -20 50 -60" fill="none" stroke="#7fb3d5" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+          <ellipse cx="250" cy="130" rx="62" ry="46" fill="#bdb2a3"/>
+          <rect x="300" y="138" width="80" height="22" rx="10" fill="#8d8273"/>
+          <ellipse cx="425" cy="118" rx="74" ry="58" fill="#4a423a"/>
+          <text class="t-s t-c" x="250" y="96" fill="#5d5346">外洞</text>
+          <text class="t-s t-c" x="425" y="74" fill="#e6dccb">内洞</text>
+          <path id="routePath" d="" fill="none" stroke="#b2462e" stroke-width="5" stroke-dasharray="10 8" stroke-linecap="round"/>
+        </g>
+        <g id="routeNodes"></g>
+        <circle id="walker" r="12" fill="#f2c14e" stroke="#fff" stroke-width="4" cx="40" cy="410"/>
+      </svg>
+    </div>
+    <div class="side route-side">
+      <div class="route-pic" id="routePic"></div>
+      <h3 class="route-name" id="routeName"></h3>
+      <p class="route-text" id="routeText"></p>
+      <div class="route-feat" id="routeFeat"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="routePrev">‹ 上一站</button><button class="btn solid" type="button" id="routeNext">下一站 ›</button></div>
+    </div>
+  </div>
+  <p class="note">本课独有设计：路线图上走一遍。点地图上的站点（或“下一站”），小黄点沿路线走过去，右边出现这一站的原文和景物特点。先整体走一遍，说说作者是按什么顺序游的（课后第 1 题）；原文中“……”是略去的部分，课后再完整读。</p>
+</section>
+
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/lushang.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读 · 第 2、3 自然段</span><span class="sub">路上</span></div>
+  <div class="subs">
+    <p data-step="1">山上开满了映山红，无论花朵还是叶子，都比盆栽的杜鹃显得有精神。油桐也正开花，这儿一丛，那儿一簇，很不少。</p>
+    <p data-step="2">山上沙土呈粉红色，在别处似乎没有见过。粉红色的山，各色的映山红，再加上或浓或淡的新绿，眼前一片明艳。</p>
+    <p data-step="3" data-focus="1.4 30% 75%">一路迎着溪流。随着山势，溪流时而宽，时而窄，时而缓，时而急，溪声也时时变换调子。</p>
+    <p data-step="4">入山大约五公里就来到双龙洞口，那溪流就是从洞里出来的。</p>
+  </div>
+  <p class="note">路上的颜色：粉红的山、各色的映山红、浓浓淡淡的新绿——“明艳”。溪流“时而宽，时而窄，时而缓，时而急”，读出变化的节奏。最后一句“溪流就是从洞里出来的”，溪流像一条线，把我们引到洞口。</p>
+</section>
+
+<section class="slide scene">
+  <video class="scene-bg" data-focus="1.04 50% 50%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/99834dcd6fb2a35e214936c004c687cc592960afa7dc481bfd39c0fc3a0275dc.mp4" data-poster="assets/kongxi.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读 · 第 5 自然段</span><span class="sub">孔隙</span></div>
+  <div class="subs">
+    <p data-step="1">在外洞找泉水的来路，原来从靠左边的石壁下方的孔隙流出。虽说是孔隙，可也容得下一只小船进出。</p>
+    <p data-step="2">怎样小的小船呢？两个人并排仰卧，刚合适，再没法容第三个人，是这样小的小船。</p>
+    <p data-step="3">船两头都系着绳子，管理处的工人先进内洞，在里边拉绳子，船就进去，在外洞的工人拉另一头的绳子，船就出来。</p>
+    <p data-step="4">我怀着好奇的心情独个儿仰卧在小船里，自以为从后脑到肩背，到臀部，到脚跟，没有一处不贴着船底了，才说一声“行了”，船就慢慢移动。</p>
+    <p data-step="5">眼前昏暗了，可是还能感觉左右和上方的山石似乎都在朝我挤压过来。我又感觉要是把头稍微抬起一点儿，准会撞破额角，擦伤鼻子。</p>
+    <p data-step="6">大约行了两三丈的水程吧，就登陆了。这就到了内洞。</p>
+  </div>
+  <p class="note">第 5 自然段是全文最长的一段——作者重点写的就是这里。先读，下一页亲自“躺进小船”体验一下。</p>
+</section>
+
+<section class="slide s-boat">
+  <div class="hd"><span class="tag">二 · 体验 · 课后第 2 题</span><h2>躺进小船，过一过孔隙</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 800 420" id="boatSvg" class="ks-empty" role="img" aria-label="孔隙剖面示意：小船载着仰卧的人穿过低矮的孔隙">
+        <defs>
+          <clipPath id="ksClip"><rect width="800" height="420" rx="16"/></clipPath>
+          <linearGradient id="ksDark" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1b1712" stop-opacity="0"/><stop offset=".3" stop-color="#1b1712" stop-opacity=".55"/><stop offset=".75" stop-color="#1b1712" stop-opacity=".55"/><stop offset="1" stop-color="#1b1712" stop-opacity=".85"/></linearGradient>
+        </defs>
+        <g clip-path="url(#ksClip)">
+          <rect width="800" height="420" fill="#8c8173"/>
+          <rect x="0" y="40" width="250" height="250" fill="#d9cfbf"/>
+          <rect x="560" y="60" width="240" height="230" fill="#3a332b"/>
+          <rect x="250" y="226" width="310" height="64" fill="#b9ad9b"/>
+          <rect y="290" width="800" height="130" fill="#5f8fa8"/>
+          <path d="M0 296 q40 -6 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0" stroke="#a9cfe0" stroke-width="3" fill="none"/>
+          <g id="ksBoat">
+            <line x1="-600" y1="282" x2="40" y2="282" stroke="#c9a46a" stroke-width="3"/>
+            <line x1="200" y1="282" x2="840" y2="282" stroke="#c9a46a" stroke-width="3"/>
+            <path d="M40 272 h160 l-16 22 h-128 z" fill="#8a5a32"/>
+            <g id="ksMan">
+              <rect x="62" y="258" width="104" height="16" rx="8" fill="#6f7f95"/>
+              <g class="ks-head"><circle cx="176" cy="262" r="12" fill="#e8c9a4"/></g>
+            </g>
+          </g>
+          <g id="ksStand"><circle cx="120" cy="186" r="12" fill="#e8c9a4"/><rect x="108" y="200" width="24" height="56" rx="6" fill="#6f7f95"/><rect x="110" y="254" width="8" height="18" fill="#4d5a6b"/><rect x="122" y="254" width="8" height="18" fill="#4d5a6b"/></g>
+          <path d="M250 0 h310 v226 q-30 8 -60 0 q-40 -10 -80 4 q-50 8 -90 -2 q-40 -10 -80 -2 z" fill="#6e6457"/>
+          <g class="ks-press"><path d="M250 226 q60 10 155 2 t155 -2" stroke="#4a4239" stroke-width="6" fill="none"/></g>
+          <rect class="ks-dark" x="250" y="0" width="550" height="420" fill="url(#ksDark)"/>
+          <g class="ks-bump"><circle cx="506" cy="230" r="22" fill="none" stroke="#ff6a4c" stroke-width="6"/><rect x="430" y="150" width="152" height="40" rx="20" fill="#ff6a4c"/><text class="t-l t-c" x="506" y="178" fill="#fff">撞破额角！</text></g>
+          <g id="ksWorkL"><circle cx="40" cy="214" r="9" fill="#5a4a3a"/><rect x="32" y="224" width="16" height="44" rx="4" fill="#7a6a58"/></g>
+          <g id="ksWorkR"><circle cx="776" cy="234" r="9" fill="#cdbfa8"/><rect x="768" y="244" width="16" height="44" rx="4" fill="#a99880"/><circle cx="760" cy="226" r="8" fill="#ffe08a"/></g>
+          <text class="t-m" x="24" y="72" fill="#5d5346">外洞</text>
+          <text class="t-m" x="372" y="40" fill="#e8dfd0">孔隙</text>
+          <text class="t-m" x="700" y="92" fill="#e8dfd0">内洞</text>
+        </g>
+      </svg>
+      <div class="btns ks-btns" id="ksBtns" data-noswipe>
+        <button class="btn" type="button" data-ks="lie">① 仰卧，贴紧船底</button>
+        <button class="btn" type="button" data-ks="go">② 拉绳子，进孔隙</button>
+        <button class="btn" type="button" data-ks="up">③ 抬一抬头？</button>
+        <button class="btn" type="button" data-ks="land">④ 登陆内洞</button>
+        <button class="btn" type="button" data-ks="reset">重来</button>
+      </div>
+    </div>
+    <div class="side">
+      <p class="ks-say" id="ksSay">小船停在外洞。按 ① 躺进小船试试。</p>
+      <p class="tip" data-step="1"><b>写孔隙的小：</b>先写<b>船小</b>——“两个人并排仰卧，刚合适，再没法容第三个人”。</p>
+      <p class="tip" data-step="2"><b>写自己的感受：</b>“<b>挤压</b>过来”“准会<b>撞破额角，擦伤鼻子</b>”——身体的感觉让我们也觉得窄。</p>
+      <p class="tip gold" data-step="3"><b>方法：</b>把景物的特点和自己的<b>真实感受</b>结合起来写，就能写清楚、写真切。</p>
+    </div>
+  </div>
+  <p class="note">课后第 2 题：读由外洞进内洞的部分，体会作者是怎样把孔隙的狭小和自己的感受写清楚的。本课独有设计：剖面图里“躺一躺、过一过、抬抬头”，让学生亲身感受狭小，再回到原文找写法：船小 + 姿势（仰卧、贴着船底）+ 感受（挤压、撞破额角）。</p>
+</section>
+
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/neidong.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读 · 第 6～8 自然段</span><span class="sub">内洞 · 出洞</span></div>
+  <div class="subs">
+    <p data-step="1">内洞一团漆黑，什么都看不见。工人提着汽油灯，也只能照见小小的一块地方，余外全是昏暗，不知道有多么宽广。</p>
+    <p data-step="2" data-focus="1.4 50% 22%">工人高高举起汽油灯，逐一指点洞内的景物。先看到的是蜿蜒在洞顶的双龙，一条黄龙，一条青龙。我顺着他的指点看，有点儿像。</p>
+    <p data-step="3">这些石钟乳和石笋，形状变化多端，再加上颜色各异，即使不比作什么，也很值得观赏。</p>
+    <p data-step="4">在洞里走了一转，觉得内洞比外洞大得多，大概有十来进房子那么大。泉水靠着右边缓缓地流，声音轻轻的。上源在深黑的石洞里。</p>
+    <p data-step="5">我排队等候，又仰卧在小船里，出了洞。</p>
+  </div>
+  <p class="note">内洞：黑、奇、大。“双龙洞”的名字就从“蜿蜒在洞顶的双龙”来。最后一句只有一句话就写完了出洞——这叫“略写”。</p>
+</section>
+
+<!-- ================= 二 · 理顺序 ================= -->
+<section class="slide s-fill">
+  <div class="hd"><span class="tag">二 · 理顺序 · 课后第 1 题</span><h2>把路线图补充完整</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">按作者游览的先后，依次点下面的词，填进路线图。</p>
+      <div class="fill-route" id="fillRoute"><span class="fixed">路上</span><i>→</i><span class="blank"></span><i>→</i><span class="blank"></span><i>→</i><span class="blank"></span><i>→</i><span class="blank"></span><i>→</i><span class="fixed">出洞</span></div>
+      <div class="fill-words" id="fillWords" data-noswipe></div>
+      <p class="fill-msg" id="fillMsg"></p>
+      <div class="bridge" data-step="1">
+        <p class="tip"><b>怎么看出顺序的？</b>找“连接”的句子：</p>
+        <p class="tip"><b>入山大约五公里就来到双龙洞口</b>，那溪流就是从洞里出来的。</p>
+        <p class="tip"><b>在外洞找泉水的来路</b>，原来从靠左边的石壁下方的孔隙流出。</p>
+        <p class="tip gold"><b>泉水</b>像一条线：路上迎着溪流 → 洞口溪流出来 → 外洞找泉水来路 → 孔隙泉水流出 → 内洞找到上源。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后第 1 题：默读课文，理清作者游双龙洞的顺序，补充路线图。答案：路上 → 洞口 → 外洞 → 孔隙 → 内洞 → 出洞。再引导发现：作者是跟着“溪流（泉水）”走的，溪流把各处景物连了起来，过渡自然。</p>
+</section>
+
+<section class="slide s-much">
+  <div class="hd"><span class="tag">二 · 交流平台</span><h2>哪儿写得多？哪儿写得少？</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="much" id="much"></div>
+      <p class="tip gold" data-step="1"><b>重点写：</b>特别吸引你的景物可以作为重点来写。《记金华的双龙洞》重点写了外洞和内洞之间的<b>孔隙</b>——最奇特、感受最深。</p>
+      <p class="tip jade" data-step="2"><b>略写：</b>出洞只用了一句话。有详有略，读起来才不啰唆。</p>
+    </div>
+  </div>
+  <p class="note">交流平台：写游览过的一个地方，可以按游览的顺序来写；可以把特别吸引你的景物作为重点来写。条形图按课文每一站的字数画出（数一数汉字），孔隙那一段最长。</p>
+</section>
+
+<!-- ================= 三 · 学着写 ================= -->
+<section class="slide s-write">
+  <div class="hd"><span class="tag">三 · 学着写 · 初试身手</span><h2>按游览顺序，说一处地方</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">先画路线，再按顺序说；挑一处最吸引你的多说几句。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="先到了……接着……走过……就来到了……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">初试身手：带同学参观植物园，画出路线，按顺序说一说。为单元习作“游____”做准备：路线清楚、重点突出、用上过渡句。</p>
+</section>
+
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>记金华的双龙洞</h2></div>
+  <div class="bd full">
+    <div class="stage" style="justify-content:center">
+      <div class="board" data-step="1">
+        <div style="text-align:center">路上 → 洞口 → 外洞 → <b>孔隙</b> → 内洞 → 出洞</div>
+        <div>明艳　　有气势　　大　　<b>窄小 · 感受真切</b>　　黑 · 奇 · 大　　一句话</div>
+        <div style="text-align:center;margin-top:.3em">线索：<b>溪流（泉水）</b></div>
+      </div>
+      <p class="tip gold" data-step="2"><b>写游记：</b>按<b>游览的顺序</b>写清路线；特别吸引你的景物作为<b>重点</b>来写，写出特点和自己的感受。</p>
+    </div>
+  </div>
+  <p class="note">与上一课对比：《海上日出》按变化的顺序，《记金华的双龙洞》按游览的顺序。单元习作“游____”就用这两种方法。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+/* 四个太阳 · 本课配色：蜡笔的橙、画纸的白。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #e0672a;
+  --red-d: #a8441a;
+  --gold: #f2b02a;
+  --gold-l: #fde2a0;
+  --paper: #fdf8ef;
+  --stone: #fffefa;
+  --ink-2: #6a5a48;
+  --line: #ecdcc4;
+}
+
+/* ---------- 蜡笔太阳 ---------- */
+.sg-sun { display: block; width: 100%; height: 100%; overflow: visible; }
+.sg-rays path { stroke-width: 6; stroke-linecap: round; }
+.sg-rays { transform-origin: 50px 50px; }
+
+/* ---------- 封面 ---------- */
+.sg-cover .stage { flex: 1; align-items: center; justify-content: center; gap: .6em; }
+.sg-unit { margin: 0; color: var(--ink-2); font-size: 1.1em; }
+.sg-suns { display: flex; gap: 2.2em; }
+.sg-suns span { width: 8em; height: 8em; animation: sgBob 2.4s ease-in-out infinite alternate; }
+.sg-suns span:nth-child(2) { animation-delay: .4s; } .sg-suns span:nth-child(3) { animation-delay: .8s; } .sg-suns span:nth-child(4) { animation-delay: 1.2s; }
+@keyframes sgBob { to { transform: translateY(-.5em) rotate(8deg); } }
+.sg-title { margin: 0; font-size: 6em; color: var(--red-d); letter-spacing: .1em; line-height: 1.6; }
+.sg-title rt { font-size: .3em; }
+
+/* ---------- 读课文：画板 ---------- */
+.sg-row { flex: 1; display: grid; grid-template-columns: 1.15fr 1fr; gap: 1.4em; align-items: center; }
+.sg-easel { position: relative; padding: .7em; background: #fff; border-radius: .3em; box-shadow: 0 .3em 1.2em rgba(80, 50, 20, .18), 0 0 0 .5em #c79a63; transform: rotate(-1deg); }
+.sg-paper { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; background: #fff center / cover no-repeat; object-fit: cover; overflow: hidden; }
+.sg-paint { position: absolute; left: 4%; top: 3%; width: 24%; aspect-ratio: 1; z-index: 2; }
+.sg-easel > .sg-paint { left: 6%; top: 5%; }
+.sg-paint[data-step] { opacity: 1; transform: none; }
+.sg-paint .sg-disc { transform-origin: 50px 50px; transform: scale(0); transition: transform 1s cubic-bezier(.3, 1.4, .5, 1) .2s; }
+.sg-paint .sg-rays path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .4s ease 1s; }
+.sg-paint .sg-sun > circle:not(.sg-disc), .sg-paint .sg-sun > path { opacity: 0; transition: opacity .4s 1.3s; }
+.sg-paint.on .sg-disc { transform: none; }
+.sg-paint.on .sg-rays path { stroke-dashoffset: 0; }
+.sg-paint.on .sg-sun > circle, .sg-paint.on .sg-sun > path { opacity: 1; }
+.sg-paint.on .sg-rays { animation: sgSpin 12s linear 2s infinite; }
+@keyframes sgSpin { to { transform: rotate(360deg); } }
+.sg-spring { background: linear-gradient(#dff1ff, #f4fbff 60%); }
+.sg-spring-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sg-read .hz-text { font-size: 1.9em; line-height: 2.4; padding: .4em .9em; }
+.sg-read .hz-text p { text-align: left; }
+
+/* ---------- 点季节换太阳 ---------- */
+.sg-studio { flex: 1; display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.6em; align-items: stretch; }
+.sg-sky { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6em; border-radius: 1em; transition: background .6s; padding: 1em; }
+.sg-sky .sg-sun { width: 14em; height: 14em; }
+.sg-sky .sg-rays { animation: sgSpin 14s linear infinite; }
+.sg-say { margin: 0; font-size: 1.7em; text-align: center; min-height: 2.4em; }
+.sg-tools { display: flex; flex-direction: column; justify-content: center; gap: .7em; }
+.sg-h { margin: 0; font-family: var(--kai); font-size: 1.3em; color: var(--red-d); }
+.sg-seasons { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5em; }
+.sg-season { font: inherit; font-family: var(--kai); font-size: 1.8em; line-height: 2; border: 2px solid var(--line); border-radius: .5em; background: #fff; cursor: pointer; }
+.sg-season rt, .sg-sticker rt, .sg-board-s rt, .sg-sumrow rt { font-family: var(--py); font-size: .44em; color: var(--py-c); }
+.sg-season.on { border-color: var(--red); background: #fff1e6; }
+.sg-palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5em; }
+.sg-color { font: inherit; font-size: 1.3em; padding: .5em 0; border: 3px solid transparent; border-radius: 2em; background: var(--c); color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .35); cursor: pointer; }
+.sg-color.rb { background: linear-gradient(90deg, #ff6b6b, #ffb347, #ffe66d, #6bcb77, #4d96ff); }
+.sg-color.on { border-color: var(--ink); }
+
+/* ---------- 贴纸 ---------- */
+.sg-stick { flex: 1; display: flex; flex-direction: column; gap: .8em; }
+.sg-tray { display: flex; flex-wrap: wrap; gap: .5em; justify-content: center; min-height: 3.6em; }
+.sg-sticker { font: inherit; font-family: var(--kai); font-size: 1.7em; line-height: 2; padding: 0 .55em; border: 2px dashed #e0b46a; border-radius: .6em; background: #fffbe8; transform: rotate(var(--r)); cursor: pointer; box-shadow: 0 .12em .3em rgba(80, 50, 20, .15); }
+.sg-sticker.sel { border-style: solid; border-color: var(--red); transform: rotate(0) scale(1.08); }
+.sg-boards { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.sg-board-s { display: flex; flex-direction: column; align-items: center; gap: .3em; border-radius: 1em; background: var(--bg); padding: .6em; cursor: pointer; border: 2px solid transparent; }
+.sg-board-s .sg-sun { width: 5em; height: 5em; }
+.sg-board-s b { font-family: var(--kai); font-size: 1.8em; font-weight: normal; }
+.sg-got { display: flex; flex-wrap: wrap; justify-content: center; gap: .4em; }
+.sg-got .sg-sticker { cursor: default; border-style: solid; font-size: 1.5em; animation: pop .4s; }
+.sg-board-s.wrong { animation: nope .35s; border-color: #e3a998; }
+.sg-stick-msg { margin: 0; text-align: center; font-size: 1.3em; color: var(--ink-2); }
+.sg-stick.done .sg-stick-msg { color: #1f6b4f; font-weight: bold; }
+
+/* ---------- 写字：7 个字，格子小一点 ---------- */
+.hz-write { gap: .3em 1.8em; }
+.hz-cells .hz-tzg { --tz: 3.9em; }
+
+/* ---------- 背一背 ---------- */
+.sg-recite { font-size: 1.5em; line-height: 2.3; }
+.sg-recite p { text-align: left; }
+
+/* ---------- 回顾 ---------- */
+.sg-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; }
+.sg-sumrow { display: flex; flex-direction: column; align-items: center; }
+.sg-sumrow .sg-sun { width: 6em; height: 6em; }
+.sg-sumrow .py { margin: 0; font-size: 2em; }
+.sg-sumrow rt { color: var(--gold-l); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .sg-suns { gap: .8em; }
+  .sg-suns span { width: 4em; height: 4em; }
+  .sg-title { font-size: 3.4em; }
+  .sg-row, .sg-studio { grid-template-columns: 1fr; }
+  .sg-read .hz-text { font-size: 1.4em; }
+  .sg-sky .sg-sun { width: 8em; height: 8em; }
+  .sg-say { font-size: 1.2em; }
+  .sg-season { font-size: 1.3em; }
+  .sg-boards { grid-template-columns: 1fr; }
+  .sg-board-s { flex-direction: row; flex-wrap: wrap; }
+  .sg-board-s .sg-sun { width: 3em; height: 3em; }
+  .sg-sticker { font-size: 1.3em; }
+  .sg-recite { font-size: 1.2em; }
+  .sg-board { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,60 @@
+/* 古诗词三首 · 本课配色：宣纸、黛青、朱砂。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #3e5f7a;
+  --red-d: #24394c;
+  --gold: #b8933a;
+  --gold-l: #ecdcae;
+  --paper: #f1f0ea;
+  --stone: #fbfaf6;
+  --ink-2: #57606a;
+  --line: #d3d3c8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcfbf7 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe2dc 0, transparent 45%); }
+.scene .hd .tag { background: rgba(36, 57, 76, .92); }
+.s-cover .cover-title { font-size: 5.6em; letter-spacing: .1em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .8em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.15em; background: rgba(36, 57, 76, .88); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 长题目、词的长句：字号收一点 */
+.poem-v[data-poem="whl"] .poem-text h3 { font-size: 1.35em; }
+.poem-v[data-poem="xjy"] .poem-text h3 { font-size: 1.4em; }
+.poem-v[data-poem="xjy"] .poem-text .pl { font-size: 1.85em; }
+.poem-v[data-poem="xjy"] .poem-text .pl[data-step="5"] { margin-right: 1.3em; } /* 上阕、下阕之间空开 */
+.s-xjy .subs { padding-right: 46%; font-size: 1.25em; }
+.recite[data-recite="xjy"] .recite-lines p:nth-child(5) { margin-top: .5em; }
+.s-recite .recite-lines { font-size: 1.35em; line-height: 1.7; }
+
+/* 野旷天低树 */
+#tiandi { flex: 1; min-height: 0; width: 100%; }
+.s-jde .bd { grid-template-columns: 1.15fr 1fr; }
+.s-jde .stage:last-child { justify-content: center; }
+#tiandi .moon-shadow { animation: shimmer 2.4s ease-in-out infinite alternate; }
+@keyframes shimmer { from { opacity: .5; } to { opacity: 1; } }
+
+/* 望湖楼：四幅画 */
+.env-cards.four { grid-template-columns: repeat(4, 1fr); }
+.s-whl .env-card h3 { font-family: var(--kai); font-size: 1.2em; }
+
+/* 西江月：两张图 */
+.s-xjy-sort .portrait-img { min-height: 6em; }
+
+/* 回顾表 */
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.02em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.1em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .poem-v[data-poem="whl"] .poem-text h3 { font-size: .95em; }
+  .poem-v[data-poem="whl"] .poem-text .pl { font-size: 1.2em; }
+  .poem-v[data-poem="xjy"] .poem-text h3 { font-size: 1em; }
+  .poem-v[data-poem="xjy"] .poem-text .pl { font-size: 1.2em; }
+  .s-xjy .subs { padding-right: 1.1em; font-size: 1em; }
+  #tiandi { flex: none; height: auto; }
+  .env-cards.four { grid-template-columns: 1fr 1fr; }
+  .s-recite .recite-lines { font-size: 1.2em; }
+  .sum-table { font-size: .78em; border-spacing: .2em; }
+}

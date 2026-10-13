@@ -1,0 +1,79 @@
+/* 古诗三首（四上 9）· 本课配色：宣纸、残阳红、江水青。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #b4462a;
+  --red-d: #6a2a18;
+  --gold: #d4932a;
+  --gold-l: #f1dca6;
+  --paper: #f5efe2;
+  --stone: #fcf8ef;
+  --ink-2: #5d5446;
+  --line: #dccfb5;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfaf2 0, transparent 40%), radial-gradient(circle at 90% 95%, #e6e2cf 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.5em; letter-spacing: .1em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .8em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.3em; background: rgba(180, 70, 42, .88); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 中年级：字号再大一点 */
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.poem-scene .subs { font-size: 1.5em; }
+.recite-lines { font-size: 1.75em; }
+.portrait-card { position: relative; }
+.portrait-img { background-position: 50% 50%; background-size: cover; }
+.quote-big { margin: 0; font-family: var(--kai); font-size: 2em; text-align: center; letter-spacing: .08em; line-height: 1.6; color: var(--ink); }
+
+/* 半江瑟瑟半江红 */
+.s-river .bd { grid-template-columns: 52% 1fr; }
+#river { border-radius: .8em; }
+#river .rv-ray[data-step].on { animation: rayGlow 2.4s ease-in-out infinite alternate; }
+@keyframes rayGlow { from { opacity: .7; } to { opacity: 1; } }
+#river .rv-red[data-step], #river .rv-green[data-step] { opacity: .25; }
+#river .rv-red.on, #river .rv-green.on { opacity: 1; }
+.rv-wave path { animation: wave 2.6s ease-in-out infinite alternate; }
+@keyframes wave { to { transform: translateX(14px); } }
+
+/* 露似真珠月似弓 */
+.s-moon .bd { grid-template-columns: 40% 1fr; }
+#likeSvg { flex: none; width: 100%; height: auto; max-height: 11em; background: #f1f4f6; border-radius: .6em; }
+
+/* 换个角度看庐山 */
+.s-view .bd { grid-template-columns: 55% 1fr; }
+.view-btns .btn { font-family: var(--kai); font-size: 1.2em; }
+#lushanView { border-radius: .8em; }
+#lushanView .mt { opacity: 0; transition: opacity .6s ease; }
+.v-heng .mt-heng, .v-ce .mt-ce, .v-yuan .mt-yuan, .v-jin .mt-jin, .v-zhong .mt-zhong { opacity: 1 !important; }
+
+/* 梅雪比赛 */
+.vs { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 1em; align-items: center; flex: 1; min-height: 0; }
+.vs-card { background: #fff; border-radius: 1em; padding: .8em; text-align: center; box-shadow: 0 .2em .8em rgba(40, 30, 20, .12); }
+.vs-card svg { width: 60%; max-height: 9em; }
+.vs-card b { display: block; font-family: var(--kai); font-size: 2.4em; color: var(--red-d); }
+.vs-card.xue b { color: #3a6f96; }
+.vs-mid { display: flex; flex-direction: column; gap: .4em; align-items: stretch; text-align: center; }
+.vs-btn { font-family: var(--kai); font-size: 1.3em; }
+.vs-res { margin: 0 0 .4em; font-family: var(--kai); font-size: 1.4em; color: #b9ad99; min-height: 1.6em; }
+.vs-res.show { animation: pop .5s ease both; }
+.vs-res.bai { color: #3a6f96; }
+.vs-res.xiang { color: var(--red); }
+
+/* 回顾表 */
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.15em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.15em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .hd h2 { font-size: 1.3em; }
+  .poem-scene .subs { font-size: 1.1em; }
+  .quote-big { font-size: 1.4em; }
+  .recite-lines { font-size: 1.3em; }
+  .vs { grid-template-columns: 1fr 1fr; }
+  .vs-mid { grid-column: 1 / -1; order: 3; }
+  .vs-card b { font-size: 1.8em; }
+  .sum-table { font-size: .82em; border-spacing: .2em; }
+  .sum-table th, .sum-table td { padding: .4em .3em; }
+}

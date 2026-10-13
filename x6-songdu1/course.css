@@ -1,0 +1,72 @@
+/* 古诗词诵读（一）· 本课配色：宣纸、石青、赭石。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #4a6b5d;
+  --red-d: #2c4339;
+  --gold: #b08a3e;
+  --gold-l: #eadbb0;
+  --paper: #f1efe6;
+  --stone: #fbfaf5;
+  --ink-2: #5d6159;
+  --line: #d4d2c4;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcfbf6 0, transparent 40%), radial-gradient(circle at 90% 95%, #dde2d8 0, transparent 45%); }
+.scene .hd .tag { background: rgba(44, 67, 57, .92); }
+.s-cover .cover-title { font-size: 5.6em; letter-spacing: .1em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .8em; max-width: 34em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.1em; background: rgba(44, 67, 57, .88); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 长题目、八句诗：字号收一点；律诗中间空一点 */
+.poem-v[data-poem="zc"] .poem-text h3 { font-size: 1.3em; }
+.poem-v[data-poem="cw"] .poem-text .pl, .poem-v[data-poem="cy"] .poem-text .pl { font-size: 1.9em; }
+.poem-v[data-poem="cw"] .poem-text .pl[data-step="5"], .poem-v[data-poem="cy"] .poem-text .pl[data-step="5"] { margin-right: .9em; }
+
+/* 八句诗的诗盒宽，字幕让开 */
+.s-cw .poem-v ~ .subs { padding-right: 56%; font-size: 1.25em; }
+.s-cy .poem-v.left ~ .subs { padding-left: 56%; padding-right: 6%; font-size: 1.25em; }
+
+/* 诗中有画：两幅对照 */
+.env-cards.two { grid-template-columns: 1fr 1fr; }
+.s-cw-pic .env-card h3 { font-family: var(--kai); font-size: 1.3em; }
+
+/* 名句品读：左右两栏 */
+.bd.half { grid-template-columns: 1fr 1fr; }
+.swap { background: #fff; border-radius: .6em; padding: .6em 1em; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); }
+.swap-line { margin: 0 0 .4em; font-family: var(--kai); font-size: 1.7em; letter-spacing: .1em; }
+.swap .slot { display: inline-block; min-width: 1.2em; text-align: center; color: var(--gold); border-bottom: 2px solid var(--gold); margin: 0 .1em; }
+.swap.best .slot { color: #b0471f; border-color: #b0471f; }
+.swap .btn { font-family: var(--kai); font-size: 1.15em; padding: .1em .8em; }
+.swap-why { margin: .4em 0 0; min-height: 1.6em; line-height: 1.6; color: var(--ink-2); }
+.swap.best .swap-why { color: #8a2a1e; }
+.mj-img { position: relative; flex: 1; min-height: 6em; border-radius: .5em; }
+.mj-img span { position: absolute; left: .6em; bottom: .5em; font-family: var(--kai); color: #fff; background: rgba(0, 0, 0, .45); padding: .1em .6em; border-radius: .3em; }
+#caose { flex: 1; min-height: 0; width: 100%; }
+
+/* 背诵：一次一首 */
+.recite-one .recite { flex: 1; min-height: 0; overflow: auto; }
+.s-recite .recite-lines { font-size: 1.8em; line-height: 1.7; }
+.recite[data-recite="cw"] .recite-lines, .recite[data-recite="cy"] .recite-lines { columns: 2; }
+
+/* 回顾表 */
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .35em; font-size: 1em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .4em .7em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.05em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th { color: var(--red-d); font-family: var(--kai); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .cover-poems span { font-size: .95em; }
+  .poem-v[data-poem="zc"] .poem-text h3 { font-size: .9em; }
+  .poem-v[data-poem="zc"] .poem-text .pl { font-size: 1.25em; }
+  .poem-v[data-poem="cw"] .poem-text .pl, .poem-v[data-poem="cy"] .poem-text .pl { font-size: 1.2em; }
+  .poem-v[data-poem="cw"] .poem-text .pl[data-step="5"], .poem-v[data-poem="cy"] .poem-text .pl[data-step="5"] { margin-right: .4em; }
+  .s-cw .poem-v ~ .subs, .s-cy .poem-v.left ~ .subs { padding-left: 1.1em; padding-right: 1.1em; font-size: 1em; }
+  .env-cards.two { grid-template-columns: 1fr; }
+  .swap-line { font-size: 1.3em; }
+  .mj-img { min-height: 10em; flex: none; }
+  #caose { flex: none; height: auto; }
+  .s-recite .recite-lines { font-size: 1.3em; }
+  .sum-table { font-size: .78em; border-spacing: .2em; }
+  .sum-table th, .sum-table td { padding: .3em .4em; }
+}

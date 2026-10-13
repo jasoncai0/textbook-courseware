@@ -1,0 +1,110 @@
+/* 宇宙生命之谜 · 本课配色：深空靛蓝、火星橙。说明文：信息图为主 */
+:root {
+  --red: #3b4a8f;
+  --red-d: #26306b;
+  --gold: #d08a2c;
+  --gold-l: #f5d9b0;
+  --jade: #2f6b5e;
+  --paper: #eef0f6;
+  --stone: #fafbfe;
+  --ink-2: #545a6e;
+  --line: #cdd2e2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfcff 0, transparent 40%), radial-gradient(circle at 90% 95%, #dde2f0 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.4em; }
+.quote .aside { text-indent: 0; font-size: .85em; color: var(--ink-2); border-top: 1px dashed var(--line); padding-top: .4em; }
+.skim-p { opacity: .55; font-size: .9em; }
+.stamp { display: inline-block; text-indent: 0; font-family: var(--serif); font-size: .75em; color: #fff; background: #8a90a6; border-radius: .3em; padding: 0 .4em; margin-right: .4em; vertical-align: .15em; }
+
+/* ---------- 段落地图 ---------- */
+.pmap { display: flex; flex-direction: column; gap: .6em; min-height: 0; }
+.pmap-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: .45em; }
+.pmap-grid li { display: flex; flex-direction: column; padding: .4em .6em; border-radius: .4em; background: #fff; border: 1px solid var(--line); font-size: .92em; line-height: 1.4; transition: background .4s, color .4s, opacity .4s; }
+.pmap-grid li b { font-family: Georgia, var(--serif); color: var(--red); font-size: 1.15em; }
+.pmap-grid li.deep { background: var(--red); border-color: var(--red); color: #fff; }
+.pmap-grid li.deep b { color: var(--gold-l); }
+.pmap-grid li.key { background: var(--gold-l); border-color: var(--gold); }
+.pmap-grid li.skim { opacity: .45; }
+.pmap-legend { margin: 0; display: flex; gap: 1.2em; font-size: .85em; color: var(--ink-2); }
+.pmap-legend i { display: inline-block; width: 1em; height: 1em; border-radius: .2em; vertical-align: -.15em; margin-right: .3em; border: 1px solid var(--line); background: #fff; }
+.pmap-legend .lv-deep { background: var(--red); border-color: var(--red); }
+.pmap-legend .lv-key { background: var(--gold-l); border-color: var(--gold); }
+.pmap-legend .lv-skim { opacity: .45; }
+.pmap-note { margin: 0; }
+
+/* ---------- 同学的批注（气泡） ---------- */
+.notes-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.notes-row.two { grid-template-columns: 1fr 1fr; }
+.bubble { position: relative; margin: 0; font-family: var(--kai); background: #fff8ec; border: 1px solid var(--gold); border-radius: .8em; padding: .5em .8em; line-height: 1.7; }
+.bubble b { display: block; font-family: var(--serif); font-size: .8em; color: var(--gold); }
+.bubble::before { content: ""; position: absolute; left: 1.4em; top: -.45em; width: .8em; height: .8em; background: #fff8ec; border-left: 1px solid var(--gold); border-top: 1px solid var(--gold); transform: rotate(45deg); }
+
+/* ---------- 拉远镜头 ---------- */
+#scaleSvg, #planetSvg, #twinSvg { flex: 1; min-height: 0; width: 100%; }
+#zoomer { transform-box: view-box; transform-origin: 0 0; transition: transform 2.4s ease-in-out; }
+/* 看不见的图层同时 visibility:hidden：放大 58 倍时不再渲染星系，翻页更流畅 */
+.s-scale :is(.galaxy, .others, .lbl, .here-ring, .solar) { opacity: 0; visibility: hidden; transition: opacity 1.2s ease, visibility 0s linear 1.2s; }
+.s-scale[data-zoom="solar"] :is(.solar, .lbl-1),
+.s-scale[data-zoom="galaxy"] :is(.galaxy, .here-ring, .lbl-2),
+.s-scale[data-zoom="far"] :is(.galaxy, .others, .lbl-3) { opacity: 1; visibility: visible; transition: opacity 1.2s ease; }
+.s-scale:has(.mark[data-step="4"].on):not(:has(.mark[data-step="5"].on)) .others { animation: twinkle 1.6s ease-in-out infinite; }
+@keyframes twinkle { 50% { opacity: .45; } }
+.s-scale .lbl-1 .t-m { font-size: 20px; }
+
+/* ---------- 四个条件 ---------- */
+.conds { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; flex: 1; min-height: 0; }
+.cond { background: #fff; border-radius: .6em; padding: .7em 1em; display: grid; grid-template-columns: 3.6em 1fr; grid-template-rows: auto auto 1fr; column-gap: .8em; align-items: start; border-left: .35em solid var(--red); box-shadow: 0 .15em .6em rgba(30, 40, 80, .08); }
+.cond svg { grid-row: 1 / 4; width: 3.6em; height: 3.6em; align-self: center; }
+.cond small { color: var(--ink-2); }
+.cond b { font-size: 1.6em; color: var(--red-d); line-height: 1.2; }
+.cond span { font-family: var(--kai); line-height: 1.6; color: var(--ink-2); }
+.cond em { font-style: normal; font-family: Georgia, var(--serif); font-weight: bold; color: #b03a2e; font-size: 1.2em; }
+
+/* ---------- 排除行星 ---------- */
+#planetSvg .x path { stroke: #e0533a; stroke-width: 4; stroke-linecap: round; }
+#planetSvg .veil { fill: #101633; fill-opacity: .6; }
+#planetSvg .ask-ring { transform-box: fill-box; transform-origin: center; }
+.on #planetSvg .ask-ring, #planetSvg .on .ask-ring { animation: pulse 1.4s ease-in-out infinite; }
+
+/* ---------- 火星和地球 ---------- */
+#twinSvg .grow { transform-box: fill-box; transform-origin: left center; transform: scaleX(0); transition: transform 1.6s ease; }
+#twinSvg .on .grow { transform: scaleX(1); }
+.s-twin:has(.mark[data-step="5"].on) .mars { animation: marsTint 2.4s ease-in-out infinite; }
+@keyframes marsTint { 50% { fill: #9a5a3a; } }
+.s-mariner .media-btn { top: 1.2em; right: 2.4em; z-index: 4; }
+
+/* ---------- 火星“体检” ---------- */
+.checks { display: flex; flex-direction: column; gap: .6em; }
+.check { position: relative; display: grid; grid-template-columns: 2.8em 4em 1fr 2.4em; align-items: center; gap: .7em; background: #fff; border-radius: .5em; padding: .5em .9em; border: 1px solid var(--line); }
+.check svg { width: 2.8em; height: 2.8em; }
+.check b { font-size: 1.15em; color: var(--red-d); }
+.check s { text-decoration: none; font-size: 1.8em; font-weight: bold; color: #e0533a; text-align: center; opacity: 0; transform: scale(2); transition: opacity .4s .7s, transform .4s .7s; }
+.check.on s { opacity: 1; transform: none; }
+.ck-viz p { margin: 0; font-family: var(--kai); line-height: 1.6; }
+.pct { display: grid; grid-template-columns: 4.6em 1fr 2.6em; align-items: center; gap: .5em; font-size: .85em; color: var(--ink-2); margin: .15em 0; }
+.pct i { height: .8em; border-radius: 1em; background: linear-gradient(90deg, #4a90d9 var(--w), #e8ecf4 var(--w)); }
+.pct.mars i { background: linear-gradient(90deg, #c9562f calc(var(--w) + 2px), #e8ecf4 0); }
+.pct i.co2 { background: linear-gradient(90deg, #8a90a6 var(--w), #cfe6f7 var(--w)); }
+.pct em { font-style: normal; font-weight: bold; color: #b03a2e; }
+
+/* ---------- 探测时间轴 ---------- */
+.tline { list-style: none; margin: 0; padding: 0 0 0 1.4em; border-left: .25em solid var(--line); display: flex; flex-direction: column; gap: .55em; }
+.tline li { position: relative; background: #fff; border-radius: .5em; padding: .45em .9em; padding-right: 4.6em; display: flex; flex-direction: column; box-shadow: 0 .1em .4em rgba(30, 40, 80, .07); }
+.tline li::before { content: ""; position: absolute; left: -2.05em; top: .8em; width: .9em; height: .9em; border-radius: 50%; background: var(--gold); border: .2em solid #fff; }
+.tline b { color: var(--red-d); }
+.tline span { font-size: .9em; color: var(--ink-2); }
+.tline em { font-style: normal; font-family: var(--kai); color: #8a3a1e; }
+.s-probe .quote { font-size: .95em; line-height: 1.75; }
+.tline .media-btn { top: 50%; right: .6em; transform: translateY(-50%); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .pmap-grid { grid-template-columns: 1fr 1fr; }
+  .pmap-btns .btn { flex: 1 1 100%; text-align: left; }
+  .notes-row, .notes-row.two { grid-template-columns: 1fr; }
+  .conds { grid-template-columns: 1fr; }
+  #scaleSvg, #planetSvg, #twinSvg { flex: none; }
+  .check { grid-template-columns: 2.4em 3.2em 1fr 1.8em; gap: .5em; padding: .5em .6em; }
+  .s-mariner .media-btn { position: absolute; top: 3.2em; right: .9em; }
+  .tline .media-btn { position: absolute; }
+}

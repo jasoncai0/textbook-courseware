@@ -1,0 +1,90 @@
+/* 记金华的双龙洞 · 本课配色：映山红、山石青灰、溶洞暖黄灯光。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #b2462e;
+  --red-d: #5e2a1c;
+  --gold: #d29b38;
+  --gold-l: #f3dcaa;
+  --paper: #f0f1ea;
+  --stone: #fafbf6;
+  --ink-2: #545a50;
+  --line: #d0d6c8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfcf6 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe6d6 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 5.6em; }
+.subs { font-size: 1.5em; }
+.cover-route { display: flex; flex-wrap: wrap; align-items: center; gap: .3em; margin-bottom: .9em; font-family: var(--kai); font-size: 1.35em; }
+.cover-route span { background: rgba(255, 255, 255, .9); color: var(--red-d); padding: .1em .6em; border-radius: .4em; text-shadow: none; }
+.cover-route i { font-style: normal; color: #ffe1a6; }
+
+/* ---------- 路线图 ---------- */
+.s-route .bd { grid-template-columns: 44% 1fr; }
+#routeSvg { border-radius: 1em; }
+.rt-node { cursor: pointer; }
+.rt-node circle { fill: #fff; stroke: var(--red); stroke-width: 4; transition: fill .4s; }
+.rt-node.on circle { fill: var(--red); }
+.rt-node text { fill: var(--red-d); paint-order: stroke; stroke: #fff; stroke-width: 5px; }
+.route-side { justify-content: flex-start; }
+.route-pic { height: 11em; border-radius: .7em; background: #c8c0b2 center / cover no-repeat; }
+.route-name { margin: 0; color: var(--red); font-size: 1.4em; }
+.route-text { margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.75; background: #fff; border-radius: .6em; padding: .6em .9em; }
+.route-feat { display: flex; flex-wrap: wrap; gap: .4em; }
+.route-feat span { background: var(--gold-l); color: var(--red-d); border-radius: 1em; padding: .15em .8em; }
+
+/* ---------- 孔隙体验 ---------- */
+.s-boat .bd { grid-template-columns: 60% 1fr; }
+#boatSvg { border-radius: 1em; }
+#ksBoat { transition: transform 3.2s ease-in-out; }
+.ks-go #ksBoat { transform: translateX(330px); }
+.ks-land #ksBoat { transform: translateX(540px); }
+#ksMan, #ksStand { transition: opacity .5s; }
+.ks-empty #ksMan { opacity: 0; }
+#boatSvg:not(.ks-empty) #ksStand { opacity: 0; }
+.ks-head { transition: transform .3s; }
+.ks-up .ks-head { transform: translateY(-20px); }
+.ks-bump { opacity: 0; transition: opacity .2s; }
+.ks-up .ks-bump { opacity: 1; animation: bump .4s 2; }
+@keyframes bump { 50% { opacity: .3; } }
+.ks-go .ks-press path { animation: press 1.4s ease-in-out infinite; }
+@keyframes press { 50% { transform: translateY(8px); } }
+.ks-btns .btn { font-size: .85em; padding: .3em .6em; }
+.ks-say { margin: 0; font-family: var(--kai); font-size: 1.35em; line-height: 1.75; background: #2f2a24; color: #f4ead6; border-radius: .6em; padding: .7em 1em; min-height: 5.5em; }
+
+/* ---------- 补充路线图 ---------- */
+.fill-route { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .5em; font-family: var(--kai); font-size: 1.8em; }
+.fill-route span { min-width: 3.2em; text-align: center; padding: .2em .5em; border-radius: .4em; background: #fff; border: 2px solid var(--line); }
+.fill-route .fixed { background: var(--red-d); color: #fff; border-color: var(--red-d); }
+.fill-route .blank { border-style: dashed; color: var(--red); min-height: 1.5em; }
+.fill-route .blank.ok { border-style: solid; border-color: #8cc0a6; background: #f1f8f4; }
+.fill-route i { font-style: normal; color: var(--gold); }
+.fill-words { display: flex; gap: .8em; justify-content: center; }
+.fill-words .pick { font-size: 1.5em; padding: .3em 1em; }
+.fill-words .pick:disabled { opacity: .35; }
+.fill-msg { margin: 0; text-align: center; color: var(--red); min-height: 1.4em; font-size: 1.1em; }
+.bridge { display: flex; flex-direction: column; gap: .4em; }
+
+/* ---------- 详略条形图 ---------- */
+.much { display: flex; flex-direction: column; gap: .7em; }
+.much-row { display: grid; grid-template-columns: 6.5em 1fr 5em; gap: .8em; align-items: center; font-size: 1.2em; }
+.much-row b { text-align: right; color: var(--red-d); font-family: var(--kai); }
+.much-bar { height: 1.4em; background: #fff; border-radius: .7em; overflow: hidden; border: 1px solid var(--line); }
+.much-bar i { display: block; height: 100%; background: #9fb59a; border-radius: .7em; }
+.slide.active .much-bar i { animation: grow 1.4s ease both; }
+@keyframes grow { from { width: 0; } }
+.much-row.key .much-bar i { background: var(--red); }
+.much-row.key b { color: var(--red); }
+.much-row em { font-style: normal; color: var(--ink-2); font-size: .85em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.6em; }
+  .cover-route { font-size: 1.05em; }
+  .subs { font-size: 1.12em; }
+  .route-pic { height: 9em; }
+  .route-text, .ks-say { font-size: 1.1em; }
+  .fill-route { font-size: 1.25em; }
+  .fill-words .pick { font-size: 1.15em; }
+  .much-row { grid-template-columns: 4.6em 1fr 4.2em; font-size: 1em; }
+}

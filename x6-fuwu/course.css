@@ -1,0 +1,72 @@
+/* 为人民服务 · 本课配色：黄土、窑洞的暖黄，旗帜的红。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #a13d2a;
+  --red-d: #5e2617;
+  --gold: #c08c3a;
+  --gold-l: #ecd3a0;
+  --paper: #f4eee2;
+  --stone: #fcf9f2;
+  --ink-2: #645a4b;
+  --line: #dccfb6;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfaf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #eadcc0 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .08em; }
+.subs .hl { color: #ffd98a; }
+.quote { font-size: 1.2em; }
+
+/* 第 1 段：中心论点 */
+.thesis { background: var(--red); color: #fff; border-radius: .6em; padding: 1em 1.4em; text-align: center; box-shadow: 0 .3em 1em rgba(120, 40, 20, .25); }
+.thesis small { display: block; opacity: .85; }
+.thesis b { display: block; font-family: var(--kai); font-size: 3em; letter-spacing: .2em; margin: .1em 0; }
+.thesis span { font-size: .9em; }
+.s-p1 .stage { justify-content: center; }
+
+/* 第 2 段：天平 */
+#scale { flex: 1; min-height: 0; width: 100%; }
+#scale .beam { transform-box: view-box; transform-origin: 240px 90px; transition: transform 1.6s cubic-bezier(.4, 1.4, .5, 1); }
+#scale .pan { transition: transform 1.6s cubic-bezier(.4, 1.4, .5, 1); }
+#scale:has(.tilt.on) .beam { transform: rotate(-11deg); }
+#scale:has(.tilt.on) .pan-l { transform: translateY(29px); }
+#scale:has(.tilt.on) .pan-r { transform: translateY(-29px); }
+#scale .feather { animation: float 3s ease-in-out infinite; transform-box: fill-box; transform-origin: 0 100%; }
+@keyframes float { 50% { transform: rotate(-6deg); } }
+
+/* 第 3 段：关联词链 */
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: .4em; }
+.chain span { font-family: var(--kai); font-size: 1.1em; background: #fff; border: 1px solid var(--line); border-radius: .4em; padding: .25em .6em; text-align: center; }
+.chain small { display: block; font-family: var(--serif); font-size: .65em; color: var(--ink-2); }
+.chain i { font-style: normal; color: var(--gold); }
+.s-p3 .picks .pick { padding: .25em .8em; }
+
+/* 论证结构树 */
+.tree { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.4em; font-size: 1.08em; }
+.tree .root { position: relative; background: var(--red); color: #fff; border-radius: .6em; padding: .6em 2em; text-align: center; font-size: 1.1em; }
+.tree .root b { font-family: var(--kai); font-size: 1.6em; letter-spacing: .1em; }
+.tree .root small { display: block; font-size: .78em; opacity: .9; }
+.tree .root::after { content: ""; position: absolute; left: 50%; top: 100%; height: .7em; border-left: 2px solid var(--gold); }
+.branches { position: relative; width: 100%; display: grid; grid-template-columns: repeat(5, 1fr); gap: .7em; }
+.branches::before { content: ""; position: absolute; left: 10%; right: 10%; top: -.7em; border-top: 2px solid var(--gold); }
+.br { position: relative; background: #fff; border-radius: .5em; padding: .6em .7em; border-top: .3em solid var(--gold); box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); display: flex; flex-direction: column; gap: .3em; }
+.br::before { content: ""; position: absolute; left: 50%; top: -1em; height: .7em; border-left: 2px solid var(--gold); }
+.br em { font-style: normal; font-size: .78em; color: var(--ink-2); }
+.br h4 { margin: 0; color: var(--red-d); font-size: 1.1em; }
+.br p { margin: 0; font-family: var(--kai); font-size: 1.05em; line-height: 1.55; }
+.br .ev { align-self: flex-start; font-size: .78em; background: #f4ecdc; border-radius: 1em; padding: .1em .6em; }
+.br .ev::before { content: "论据 · "; color: var(--ink-2); }
+.br .quote-ev { background: #fbe3dc; }
+
+/* 背诵：段落较长，字号缩小 */
+.s-p2 .quote, .s-p3 .quote { line-height: 2; }
+.s-recite .recite-tabs { grid-template-columns: 1fr 1fr; }
+.s-recite .recite-lines { font-size: 1.15em; letter-spacing: .05em; line-height: 1.9; }
+.s-recite .recite-lines p { margin-bottom: .2em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .thesis b { font-size: 2.2em; }
+  #scale { flex: none; height: auto; }
+  .branches { grid-template-columns: 1fr 1fr; }
+  .branches::before, .br::before { display: none; }
+  .s-recite .recite-tabs { grid-template-columns: 1fr; }
+  .s-recite .recite-lines { font-size: 1.05em; }
+}

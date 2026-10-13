@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>课本插件 · 目录</title>
+<style>
+  :root {
+    --red: #9e2b25; --red-d: #6e1d19; --gold: #c9971f; --gold-l: #f3d77a;
+    --paper: #f4efe4; --card: #fff; --ink: #2b2420; --ink-2: #6b5d4f; --line: #ddd0b6;
+    --g-shuoming: #2f6b5e; --g-xushi: #9e2b25; --g-shiwen: #a07214;
+    --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+    --kai: "Kaiti SC", "STKaiti", "KaiTi", var(--serif);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink); font-family: var(--serif); }
+  main { max-width: 1120px; margin: 0 auto; padding: 36px 16px 64px; }
+
+  header.top { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  h1 { margin: 0; color: var(--red-d); letter-spacing: .12em; font-size: 2.1em; }
+  .slogan { margin: 4px 0 0; color: var(--ink-2); }
+  .subjects { display: flex; gap: 6px; }
+  .subjects button { font: inherit; padding: 6px 16px; border-radius: 20px; border: 1px solid var(--line); background: #fff; color: var(--ink-2); cursor: pointer; }
+  .subjects button.on { background: var(--red); border-color: var(--red); color: #fff; }
+
+  .grades { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .grades button { font: inherit; font-size: 1.05em; padding: 6px 18px; border-radius: 20px; border: 1px solid var(--line); background: #fff; color: var(--ink-2); cursor: pointer; }
+  .grades button.on { background: var(--gold); border-color: var(--gold); color: #fff; font-weight: bold; }
+  .book-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+  .book-tabs button { font: inherit; font-size: 1.05em; padding: 8px 22px; border-radius: 10px 10px 0 0; border: 1px solid var(--line); border-bottom: none; background: #f1e8d6; color: var(--ink-2); cursor: pointer; }
+  .book-tabs button.on { background: #fffaf0; color: var(--red-d); font-weight: bold; }
+  .book { background: #fffaf0; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; margin-bottom: 18px; }
+  .book-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .book h2 { margin: 0; font-size: 1.4em; }
+  .book .ed { color: var(--ink-2); font-size: .85em; }
+  .progress { min-width: 220px; }
+  .progress .bar { height: 8px; background: #eadfc8; border-radius: 8px; overflow: hidden; margin-top: 4px; }
+  .progress .bar i { display: block; height: 100%; background: var(--gold); border-radius: 8px; }
+  .progress small { color: var(--ink-2); }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px 0 6px; }
+  .filters span { color: var(--ink-2); font-size: .9em; margin-right: 2px; }
+  .filters button { font: inherit; font-size: .9em; padding: 4px 12px; border-radius: 16px; border: 1px solid var(--line); background: #fff; cursor: pointer; color: var(--ink); }
+  .filters button.on { border-color: var(--ink); background: var(--ink); color: #fff; }
+  .legend { margin-left: auto; display: flex; gap: 12px; font-size: .82em; color: var(--ink-2); flex-wrap: wrap; }
+  .legend b { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
+
+  .unit { margin-top: 26px; }
+  .unit-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  .unit-head h3 { margin: 0; color: var(--red-d); font-size: 1.15em; white-space: nowrap; }
+  .unit-head .motto { font-family: var(--kai); color: var(--ink); }
+  .goals { margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--ink-2); font-size: .85em; }
+  .goals li::before { content: "◎ "; color: var(--gold); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin-top: 12px; align-items: start; }
+  .card { position: relative; display: flex; flex-direction: column; background: var(--card); border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; border-top: 4px solid var(--gc); box-shadow: 0 2px 8px rgba(80, 50, 20, .08); transition: transform .2s, box-shadow .2s; }
+  a.card:hover, a.card:focus-visible { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(80, 50, 20, .18); outline: none; }
+  .card .cover { aspect-ratio: 16 / 9; background: #e9e1cf center / cover no-repeat; }
+  .card .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .card .row1 { display: flex; align-items: center; gap: 4px 8px; flex-wrap: wrap; }
+  .card .title { word-break: keep-all; }
+  .card .num { font-size: .8em; color: #fff; background: var(--gc); border-radius: 5px; padding: 1px 7px; white-space: nowrap; }
+  .card .title { font-size: 1.15em; font-weight: bold; }
+  .card .skim { font-size: .72em; color: var(--ink-2); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+  .card .tags { display: flex; gap: 6px; flex-wrap: wrap; font-size: .78em; color: var(--ink-2); }
+  .card .desc { font-size: .85em; color: var(--ink-2); line-height: 1.5; }
+  .card .go { margin-top: auto; padding-top: 6px; font-size: .85em; color: var(--gc); font-weight: bold; }
+  .card.todo { background: #f8f4ea; box-shadow: none; border: 1px dashed var(--line); border-top: 4px solid #d8ccb4; }
+  .card.todo .cover { display: none; }
+  .card.todo .num { background: #c7baa0; }
+  .card.todo .title { color: var(--ink-2); font-weight: normal; }
+  .card.todo .go { color: #b3a68c; font-weight: normal; }
+  .empty { color: var(--ink-2); padding: 24px 0; text-align: center; }
+  footer { margin-top: 40px; color: var(--ink-2); font-size: .82em; text-align: center; line-height: 1.8; }
+
+  @media (max-width: 600px) {
+    main { padding-top: 20px; }
+    h1 { font-size: 1.7em; }
+    .book { padding: 14px 12px; }
+    .progress { min-width: 0; width: 100%; }
+    .legend { display: none; }
+    .slogan { font-size: .9em; }
+    .subjects button { padding: 4px 14px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .card .desc { display: none; }
+    .card .title { font-size: 1em; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <div>
+      <h1>课本插件</h1>
+      <p class="slogan">跟着课文的节奏，把文字里的画面动起来。</p>
+    </div>
+    <nav class="subjects" id="subjects" aria-label="学科"></nav>
+  </header>
+  <nav class="grades" id="grades" aria-label="年级"></nav>
+  <div id="books"></div>
+  <footer>说明类课文用「信息图」帮助抓特征、理顺序；叙事类课文用「画面 + 字幕」带着读故事。<br>AI 生成的图画仅供想象参考，真实景物以实景为准。</footer>
+</main>
+
+<script src="catalog.js"></script>
+<script>
+'use strict';
+const GENRES = {
+  说明: { color: 'var(--g-shuoming)', label: '说明类', tpl: '信息图' },
+  叙事: { color: 'var(--g-xushi)', label: '叙事类', tpl: '画面 + 字幕' },
+  诗文: { color: 'var(--g-shiwen)', label: '诗文类', tpl: '竖排诗 + 节奏 + 背诵' },
+  识字: { color: '#7a4f9e', label: '识字类', tpl: '字理 + 识字游戏' },
+  拼音: { color: '#2f6fa8', label: '拼音类', tpl: '四线三格 + 拼读' },
+};
+const FILTERS = [['all', '全部'], ['ready', '已上线'], ['说明', '说明类'], ['叙事', '叙事类'], ['诗文', '诗文类'], ['识字', '识字类'], ['拼音', '拼音类']];
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+let subjectIdx = 0;
+// 选中的册用书名记（如“五年级上册”），也写进地址栏 #五年级上册，课件里的“目录”按钮据此跳回原册
+let bookName = decodeURIComponent(location.hash.slice(1));
+if (!bookName) { try { bookName = localStorage.getItem('catalog-book-name') || ''; } catch (e) { /* 无痕模式下不可用，用默认值 */ } }
+const gradeOf = (name) => name.slice(0, name.indexOf('年级') + 2);
+const termOf = (name) => name.slice(name.indexOf('年级') + 2);
+let filter = 'all';
+try { filter = localStorage.getItem('catalog-filter') || 'all'; } catch (e) { /* 无痕模式下不可用，用默认值 */ }
+
+const isReady = (l) => Boolean(l.dir);
+const match = (l) => filter === 'all' || (filter === 'ready' ? isReady(l) : l.genre === filter);
+
+function lessonCard(l) {
+  const g = GENRES[l.genre];
+  const inner = `
+    <div class="cover" ${l.cover ? `style="background-image:url('thumbs/${esc(l.dir)}.jpg')"` : ''}></div>
+    <div class="body">
+      <div class="row1"><span class="num">${typeof l.no === 'number' ? `第 ${l.no} 课` : esc(l.no)}</span><span class="title">${esc(l.title)}</span>${l.skim ? '<span class="skim">略读</span>' : ''}</div>
+      <div class="tags"><span>${esc(l.kind)}</span><span>·</span><span>${g.label}</span>${l.pages ? `<span>·</span><span>${l.pages} 页</span>` : ''}</div>
+      ${l.desc ? `<div class="desc">${esc(l.desc)}</div>` : ''}
+      <div class="go">${isReady(l) ? '打开课件 →' : '待制作'}</div>
+    </div>`;
+  const style = `style="--gc:${g.color}"`;
+  return isReady(l)
+    ? `<a class="card" href="${esc(l.dir)}/" ${style}>${inner}</a>`
+    : `<div class="card todo" ${style} aria-disabled="true">${inner}</div>`;
+}
+
+function bookHtml(book) {
+  const all = book.units.flatMap((u) => u.lessons);
+  const ready = all.filter(isReady).length;
+  const units = book.units.map((u) => {
+    const ls = u.lessons.filter(match);
+    if (!ls.length) return '';
+    return `<section class="unit">
+      <div class="unit-head"><h3>${esc(u.no)}</h3><span class="motto">${esc(u.motto)}</span></div>
+      <ul class="goals">${u.goals.map((g) => `<li>${esc(g)}</li>`).join('')}</ul>
+      <div class="grid">${ls.map(lessonCard).join('')}</div>
+    </section>`;
+  }).join('');
+  return `<article class="book">
+    <div class="book-head">
+      <div><h2>${esc(book.name)}</h2><span class="ed">${esc(book.edition)}</span></div>
+      <div class="progress"><small>已上线 ${ready} / ${all.length} 课</small><div class="bar"><i style="width:${(ready / all.length * 100).toFixed(1)}%"></i></div></div>
+    </div>
+    <div class="filters" role="group" aria-label="筛选"><span>筛选</span>
+      ${FILTERS.map(([k, t]) => `<button type="button" data-f="${k}" class="${k === filter ? 'on' : ''}">${t}</button>`).join('')}
+      <div class="legend">${Object.values(GENRES).map((g) => `<span><b style="background:${g.color}"></b>${g.label}：${g.tpl}</span>`).join('')}</div>
+    </div>
+    ${units || '<p class="empty">这个筛选下还没有课件。</p>'}
+  </article>`;
+}
+
+function render() {
+  const subjects = window.CATALOG;
+  document.getElementById('subjects').innerHTML = subjects.length > 1
+    ? subjects.map((s, i) => `<button type="button" data-s="${i}" class="${i === subjectIdx ? 'on' : ''}">${esc(s.subject)}</button>`).join('')
+    : `<button type="button" class="on">${esc(subjects[0].subject)}</button>`;
+  const books = subjects[subjectIdx].books;
+  const book = books.find((b) => b.name === bookName) || books.find((b) => b.units.some((u) => u.lessons.some(isReady))) || books[0];
+  bookName = book.name;
+  const grades = [...new Set(books.map((b) => gradeOf(b.name)))];
+  const grade = gradeOf(book.name);
+  document.getElementById('grades').innerHTML = grades.length > 1
+    ? grades.map((g) => `<button type="button" data-g="${esc(g)}" class="${g === grade ? 'on' : ''}">${esc(g)}</button>`).join('')
+    : '';
+  const sameGrade = books.filter((b) => gradeOf(b.name) === grade);
+  const tabs = sameGrade.length > 1
+    ? `<nav class="book-tabs" aria-label="册">${sameGrade.map((b) => `<button type="button" data-b="${esc(b.name)}" class="${b === book ? 'on' : ''}">${esc(termOf(b.name))}</button>`).join('')}</nav>`
+    : '';
+  document.getElementById('books').innerHTML = tabs + bookHtml(book);
+  document.title = `课本插件 · ${book.name}`;
+}
+
+function selectBook(name) {
+  bookName = name;
+  try { localStorage.setItem('catalog-book-name', name); } catch (err) { /* 存不了就只在本次生效 */ }
+  history.replaceState(null, '', `#${encodeURIComponent(name)}`);
+  render();
+}
+
+document.addEventListener('click', (e) => {
+  const f = e.target.closest('[data-f]');
+  if (f) {
+    filter = f.dataset.f;
+    try { localStorage.setItem('catalog-filter', filter); } catch (err) { /* 存不了就只在本次生效 */ }
+    render();
+  }
+  const s = e.target.closest('[data-s]');
+  if (s) { subjectIdx = +s.dataset.s; bookName = ''; render(); }
+  const g = e.target.closest('[data-g]');
+  if (g) {
+    // 切年级时停在同一学期（上册→上册），没有就取该年级第一册
+    const books = window.CATALOG[subjectIdx].books.filter((b) => gradeOf(b.name) === g.dataset.g);
+    const same = books.find((b) => termOf(b.name) === termOf(bookName));
+    selectBook((same || books[0]).name);
+  }
+  const bk = e.target.closest('[data-b]');
+  if (bk) selectBook(bk.dataset.b);
+});
+
+window.addEventListener('hashchange', () => { bookName = decodeURIComponent(location.hash.slice(1)); render(); });
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+/* 影子 · 本课配色：阳光的橙、影子的深棕。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d77a1f;
+  --red-d: #93500f;
+  --gold: #e9a426;
+  --gold-l: #fbe0a0;
+  --paper: #fbf6ec;
+  --stone: #fffdf8;
+  --ink-2: #6e5c48;
+  --line: #e9d9bd;
+}
+
+/* 影子游戏 */
+.yz-game { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.4em; align-items: center; }
+#yard { width: 100%; max-height: 100%; }
+#yard .yz-dir { font-family: var(--kai); font-size: 26px; fill: #93500f; text-anchor: middle; }
+.yz-sun { transition: transform 1s ease-in-out; }
+.yz-rays line { stroke: #ffb52e; stroke-width: 5; stroke-linecap: round; }
+.yz-rays { animation: yzSpin 12s linear infinite; }
+@keyframes yzSpin { to { rotate: 360deg; } }
+.yz-shadow { transition: transform 1s ease-in-out, opacity .5s; }
+.yz-shadow.hide { opacity: 0; }
+.yz-side { display: flex; flex-direction: column; gap: .7em; align-items: flex-start; }
+.yz-h { margin: 0; font-size: 1.3em; color: var(--ink-2); }
+.yz-suns .btn, .yz-ans .btn { font-family: var(--kai); font-size: 1.5em; min-width: 2em; padding: .2em .5em; }
+.yz-ans[hidden] { display: none; }
+.yz-suns, .yz-ans { flex-wrap: nowrap; }
+.yz-ans .btn.wrong { animation: nope .35s; }
+.yz-say { margin: 0; min-height: 2.3em; font-size: 2.2em; color: var(--red-d); }
+.yz-msg { margin: 0; min-height: 1.6em; font-size: 1.3em; font-weight: bold; color: var(--red); }
+
+/* 前后左右都是谁 */
+.yz-class { align-items: center; justify-content: center; }
+.yz-board { width: 15em; text-align: center; background: #2f4a3f; color: #f6f1e4; border-radius: .3em; padding: .3em; font-family: var(--kai); font-size: 1.2em; }
+.yz-seats { display: grid; grid-template-columns: repeat(3, 5.2em); gap: .7em; }
+.yz-seat { font: inherit; height: 4.2em; border-radius: .6em; border: 3px solid var(--line); background: #fff; font-size: 1em; display: grid; place-items: center; }
+.yz-seat:not(.empty) { font-size: 2.2em; width: 2.36em; height: 1.9em; justify-self: center; cursor: pointer; }
+.yz-seat.empty { background: #f4ecdc; border-style: dashed; }
+.yz-seat.me { font-family: var(--kai); background: var(--gold-l); border-color: var(--gold); cursor: default; }
+.yz-seat.on { border-color: var(--red); background: #fff1df; animation: pop .45s cubic-bezier(.3, 1.6, .5, 1); }
+.yz-seat-say { margin: 0; min-height: 2.3em; font-size: 2.3em; color: var(--red-d); }
+
+/* 看影子猜生字 */
+.yz-guesses { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: .8em; align-content: center; }
+.yz-guess { font: inherit; position: relative; height: 6.6em; border: 3px solid var(--line); border-radius: .7em; background: linear-gradient(#fff 55%, #efe2c6 55%); cursor: pointer; overflow: hidden; }
+.yz-sh { position: absolute; left: 0; right: 0; bottom: .3em; font-family: var(--kai); font-size: 3.6em; line-height: 1; color: #3b3226; opacity: .75; filter: blur(1.5px); transform: skewX(-35deg) scaleY(.55); transform-origin: 50% 100%; transition: opacity .5s; }
+.yz-real { position: absolute; left: 0; right: 0; top: .1em; font-family: var(--kai); font-size: 2.6em; opacity: 0; transform: translateY(.5em); transition: opacity .5s, transform .5s; }
+.yz-guess.open { border-color: var(--red); }
+.yz-guess.open .yz-real { opacity: 1; transform: none; }
+.yz-guess.open .yz-sh { opacity: .35; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .yz-game { display: flex; flex-direction: column; align-items: stretch; }
+  .yz-suns .btn, .yz-ans .btn { font-size: 1.4em; }
+  .yz-say { font-size: 1.6em; }
+  .yz-seats { grid-template-columns: repeat(3, 4.4em); }
+  .yz-seat-say { font-size: 1.6em; }
+  .yz-guesses { grid-template-columns: repeat(3, 1fr); }
+  .yz-guess { height: 5.4em; }
+  .yz-real { font-size: 2em; }
+  .yz-sh { font-size: 2.8em; }
+}

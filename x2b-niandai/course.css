@@ -1,0 +1,164 @@
+/* 当世界年纪还小的时候 · 本课配色：初生世界的夜蓝与晨光的金。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3e5bb0;
+  --red-d: #263c7c;
+  --gold: #e3a634;
+  --gold-l: #f7e1a6;
+  --paper: #f2f3f8;
+  --stone: #fdfdff;
+  --ink-2: #555a70;
+  --line: #d4d8e6;
+}
+
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.36em; line-height: 2.25; }
+.py ruby { margin: 0 .03em; }
+.nd-title { font-size: 5.2em !important; line-height: 1.4; }
+.nd-ask { margin: .3em 0 0; font-family: var(--kai); font-size: 1.8em; color: #fff3c8; }
+.nd-ask.s { font-size: 1.4em; color: #fff; margin-bottom: .5em; }
+
+/* ---------- 世界学习课 ---------- */
+.nd-sl { background: #151a33; }
+.nd-sl .hd { position: relative; z-index: 2; }
+.nd-sl .hd .sub { color: #dfe4ff; }
+.nd-world { position: absolute; inset: 0; z-index: 0; }
+.nd-world svg { width: 100%; height: 100%; display: block; }
+.nd-skyr { fill: #151a33; transition: fill 2s; }
+.nd-star { fill: #fff; opacity: .7; transition: opacity 2s; }
+.nd-hill { fill: #2a3156; stroke: #59618f; stroke-width: 3; transition: fill 2s; }
+.nd-q text { font: bold 90px var(--kai); fill: #ffe38a; text-anchor: middle; }
+.nd-ghost circle, .nd-ghost path { fill: none; stroke: #59618f; stroke-width: 4; stroke-dasharray: 10 10; }
+.nd-sun .nd-disc { fill: none; stroke: #8f8a6a; stroke-width: 5; stroke-dasharray: 14 12; transition: fill 1s; }
+.nd-sun .nd-rays path { stroke: #f7c948; stroke-width: 10; stroke-linecap: round; opacity: 0; transition: opacity 1s; }
+.nd-sun .nd-eye { fill: #6a4a1a; opacity: 0; transition: opacity 1s; }
+.nd-sun .nd-mouth { fill: none; stroke: #6a4a1a; stroke-width: 6; stroke-linecap: round; opacity: 0; }
+.nd-sun .nd-sing { fill: #8a3a1a; opacity: 0; }
+.nd-sun.lit .nd-disc, .s2 .nd-sun .nd-disc { fill: #f7c948; stroke: #f0a830; stroke-dasharray: none; }
+.nd-sun.lit .nd-rays path, .s2 .nd-sun .nd-rays path, .nd-sun.lit .nd-eye, .s2 .nd-sun .nd-eye, .nd-sun.lit .nd-mouth, .s2 .nd-sun .nd-mouth { opacity: 1; }
+.nd-rays { animation: ndSpin 20s linear infinite; }
+@keyframes ndSpin { to { transform: rotate(360deg); } }
+.nd-name { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.nd-name rect { fill: #fff8e1; stroke: #e3a634; stroke-width: 4; }
+.nd-name text { font: 40px var(--kai); fill: #3a2a10; text-anchor: middle; }
+.s2 .nd-sun .nd-name, .nd-sun.lit .nd-name { opacity: 1; animation: ndName .8s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes ndName { from { transform: scale(.2); opacity: 0; } }
+.s2 .nd-sunbody { animation: ndRise 4s ease-in-out infinite alternate; }
+@keyframes ndRise { from { transform: translateY(240px); } to { transform: translateY(-40px); } }
+.s3 .nd-sunbody { animation: none; transform: translateY(-40px); }
+.s3 .nd-sun .nd-mouth { opacity: 0; }
+.s3 .nd-sun .nd-sing { opacity: 1; animation: ndSing .25s linear infinite alternate; }
+@keyframes ndSing { to { transform: scaleY(.6); } }
+.nd-waves path { fill: none; stroke: #ff8a5c; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.s3 .nd-waves path { opacity: 1; animation: ndWave .5s linear infinite alternate; }
+@keyframes ndWave { to { transform: translateY(-10px); } }
+.s3 .nd-shake { animation: ndShake .18s linear infinite; }
+@keyframes ndShake { 25% { transform: translate(-6px, 3px); } 75% { transform: translate(6px, -3px); } }
+.s2 .nd-q { opacity: 0; }
+
+/* 世界（二） */
+.nd-river { fill: none; stroke: #3d5f9a; stroke-width: 46; stroke-linecap: round; transition: stroke 2s; }
+.nd-flow { fill: none; stroke: #bfe3ff; stroke-width: 6; stroke-dasharray: 20 30; opacity: 0; }
+.s4 .nd-flow { opacity: 1; animation: ndFlow 1.2s linear infinite; }
+@keyframes ndFlow { to { stroke-dashoffset: -50; } }
+.nd-grow path { fill: #6fbf4a; transform-box: fill-box; transform-origin: bottom; transform: scaleY(0); transition: transform .8s var(--d) cubic-bezier(.3, 1.6, .5, 1); }
+.s1 .nd-grow path { transform: none; }
+.s1 .nd-grow .nd-name { opacity: 1; animation: ndName .8s .8s cubic-bezier(.3, 1.6, .5, 1) both; }
+.nd-cloud path { fill: #e8ecf8; }
+.nd-cloud, .nd-rain { opacity: 0; transition: opacity 1s; }
+.s2 .nd-cloud, .s2 .nd-rain, .s2 .nd-cloud .nd-name, .s2 .nd-rain .nd-name { opacity: 1; }
+.nd-rain line { stroke: #9fd0ff; stroke-width: 5; stroke-linecap: round; animation: ndDrop .8s var(--d) linear infinite; }
+@keyframes ndDrop { to { transform: translateY(260px); opacity: 0; } }
+.nd-man { opacity: 0; transition: opacity 1s; }
+.nd-head { fill: #f2c9a0; }
+.nd-body { fill: #e07a4a; }
+.nd-shut, .nd-smile { fill: none; stroke: #3a2a1a; stroke-width: 4; stroke-linecap: round; }
+.nd-open { fill: #3a2a1a; opacity: 0; transition: opacity .5s 1s; }
+.s3 .nd-man, .s3 .nd-man .nd-name { opacity: 1; }
+.s3 .nd-shut { opacity: 0; transition: opacity .3s 1s; }
+.s3 .nd-open { opacity: 1; }
+[data-world="2"].s3 .nd-skyr { fill: #9fd3f2; }
+[data-world="2"].s3 .nd-star { opacity: 0; }
+[data-world="2"].s3 .nd-hill { fill: #8cc463; stroke: #6aa548; }
+[data-world="2"].s3 .nd-river { stroke: #5fb0e6; }
+.nd-order { opacity: 0; transition: opacity 1s; }
+.nd-order rect { fill: #fff8e1; stroke: #e3a634; stroke-width: 5; }
+.nd-order text { font: 48px var(--kai); fill: #7a4a10; text-anchor: middle; }
+.s4 .nd-order { opacity: 1; }
+[data-world="2"].s4 .nd-sunbody { animation: ndRise 4s ease-in-out infinite alternate; }
+.nd-cap { position: absolute; left: 5%; right: 5%; bottom: 4.6em; z-index: 2; }
+.nd-cap p { margin: 0; font-family: var(--kai); font-size: 1.6em; line-height: 2.2; color: #fff; background: rgba(10, 14, 36, .82); border-radius: .5em; padding: .1em .8em; }
+.nd-cap rt { color: #ffe7a3; }
+.nd-cap p[data-step]:not(.on), .nd-cap p.on:has(~ p.on) { display: none; }
+
+/* ---------- 小月亮：变圆变缺 ---------- */
+.nd-moon { position: absolute; left: 4%; top: 5em; z-index: 3; width: 6em; display: flex; flex-direction: column; align-items: center; }
+.nd-moon svg { width: 100%; }
+.nd-moon b { font-family: var(--kai); font-size: 1.3em; color: #fff8e1; background: rgba(0, 0, 0, .35); border-radius: 1em; padding: 0 .6em; }
+.nd-shadow { animation: ndPhase 5s ease-in-out infinite alternate; }
+@keyframes ndPhase { from { transform: translateX(-12px); } to { transform: translateX(92px); } }
+
+/* ---------- 结尾：很多开头 ---------- */
+.nd-end { background: radial-gradient(circle at 50% 40%, #2b3566, #151a33); }
+.nd-end .hd .sub { color: #dfe4ff; }
+.nd-loop { font-size: 6em; line-height: 1; text-align: center; color: #f7c948; animation: ndSpin 6s linear infinite; }
+.nd-endp { margin: .2em 0; text-align: center; font-family: var(--kai); font-size: 1.8em; line-height: 2.1; color: #fff; }
+.nd-endp rt { color: #ffe7a3; }
+.nd-endp.big { font-size: 2.2em; color: #ffe7a3; }
+
+/* ---------- 最喜欢的部分 ---------- */
+.nd-fav { display: flex; flex-direction: column; gap: .8em; }
+.nd-favbtns { display: flex; flex-wrap: wrap; gap: .6em; }
+.nd-favbtns .btn { font-family: var(--kai); font-size: 1.35em; }
+.nd-favtext { background: #fff; border-radius: .8em; padding: .5em 1.3em; box-shadow: 0 .2em .7em rgba(30, 40, 80, .1); min-height: 8em; }
+.nd-favtext p { margin: .2em 0; font-size: 1.1em; color: var(--ink-2); }
+.nd-ft { font-family: var(--kai); font-size: 1.55em !important; line-height: 1.8; color: #222 !important; text-indent: 2em; }
+.nd-how { color: var(--red) !important; }
+
+/* ---------- 故事转盘 ---------- */
+.nd-spin { flex: 1; min-height: 0; display: grid; grid-template-columns: auto 1fr; gap: 2em; align-items: center; }
+.nd-wheelbox { position: relative; width: 17em; display: flex; flex-direction: column; align-items: center; gap: .8em; }
+.nd-wheel { position: relative; width: 17em; height: 17em; border-radius: 50%; background: conic-gradient(#ffe2a8 0 60deg, #cfe8ff 0 120deg, #ffd3d3 0 180deg, #d8f0c8 0 240deg, #e8dcff 0 300deg, #ffeccc 0); border: .3em solid #fff; box-shadow: 0 .3em 1em rgba(30, 40, 80, .2); transition: transform 2s cubic-bezier(.2, .8, .2, 1); }
+.nd-wheel span { position: absolute; left: 50%; top: 50%; width: 5em; margin: -1.4em 0 0 -2.5em; text-align: center; font-family: var(--kai); font-size: 1.1em; transform: rotate(var(--a)) translateY(-5.2em) rotate(calc(var(--a) * -1)); }
+.nd-wheel b { display: block; font-size: 1.7em; line-height: 1.2; }
+.nd-pin { position: absolute; top: -.6em; left: 50%; margin-left: -.7em; border: .7em solid transparent; border-top: 1.2em solid #d9453b; }
+.nd-go { font-size: 1.3em; }
+.nd-tell { display: flex; flex-direction: column; gap: .8em; }
+.nd-starts { display: flex; flex-direction: column; gap: .5em; align-items: flex-start; }
+.nd-starts .btn { font-family: var(--kai); font-size: 1.25em; }
+.nd-frame { margin: 0; font-family: var(--kai); font-size: 1.5em; line-height: 1.8; background: #fff; border-radius: .8em; padding: .5em 1em; box-shadow: 0 .2em .7em rgba(30, 40, 80, .1); min-height: 5.4em; }
+.nd-frame b { color: var(--red); font-size: .85em; }
+
+/* ---------- 点亮星星 ---------- */
+.nd-sky { position: relative; flex: 1; min-height: 14em; border-radius: 1em; background: linear-gradient(#0f1430, #283466); overflow: hidden; }
+.nd-st { font: inherit; position: absolute; translate: -50% -50%; font-family: var(--kai); font-size: 1.9em; line-height: 1.1; width: 2.4em; height: 2.4em; padding-top: .4em; border: none; cursor: pointer; color: #cfd6ff; background: none; clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: #3a4580; transition: background-color .5s, color .5s, transform .5s; }
+.nd-st rt { font-family: var(--py); font-size: .4em; color: transparent; }
+.nd-st.lit { background-color: #f7c948; color: #4a3200; transform: scale(1.15); }
+.nd-sky.all { box-shadow: inset 0 0 4em rgba(247, 201, 72, .35); }
+.nd-gmsg { margin: 0; text-align: center; font-size: 1.3em; color: var(--red-d); min-height: 1.8em; }
+
+/* 写字 8 个：两列 */
+.x2-write { grid-template-columns: repeat(2, 1fr); gap: .4em 2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.3em; }
+.x2-write .hz-wpy { font-size: 1.2em; }
+
+.nd-sum { display: flex; flex-wrap: wrap; justify-content: center; gap: .4em 1.6em; }
+.nd-sum p { margin: 0; font-family: var(--kai); font-size: 1.7em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .nd-title { font-size: 2.8em !important; }
+  .nd-ask { font-size: 1.2em; }
+  .nd-ask.s { font-size: 1em; }
+  .nd-cap { bottom: 4em; }
+  .nd-cap p { font-size: 1.12em; }
+  .nd-moon { width: 4.5em; top: 3.2em; }
+  .nd-endp { font-size: 1.2em; }
+  .nd-endp.big { font-size: 1.4em; }
+  .nd-ft { font-size: 1.15em !important; }
+  .nd-spin { display: flex; flex-direction: column; }
+  .nd-frame { font-size: 1.15em; }
+  .nd-st { font-size: 1.4em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .nd-sum p { font-size: 1.2em; }
+}

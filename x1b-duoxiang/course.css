@@ -1,0 +1,101 @@
+/* 我多想去看看 · 本课配色：雪山的蓝、红旗的红。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #c8412f;
+  --red-d: #8f2a1c;
+  --gold: #e5a52c;
+  --gold-l: #fbe2a4;
+  --paper: #f5f8fb;
+  --stone: #fffefb;
+  --ink-2: #4f5b66;
+  --line: #d6e0e8;
+}
+
+/* ---------- 封面 ---------- */
+.dx-shout { margin: 0 0 .2em; font-size: 2.4em; color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, .5); }
+.s-cover .cover-title { font-size: 6em; }
+
+/* ---------- 读课文：路线图 ---------- */
+.dx-read .stage { flex: 1; }
+.dx-map { position: relative; flex: 1 1 0; min-height: 9em; display: grid; grid-template-columns: 1fr 30%; gap: 1em; align-items: center; }
+.dx-svg { width: 100%; height: 100%; min-height: 0; }
+.dx-map[data-route="2"] { grid-template-columns: 30% 1fr; }
+.dx-map[data-route="2"] .dx-svg { grid-column: 2; grid-row: 1; }
+.dx-map[data-route="2"] .dx-photo { grid-column: 1; }
+.dx-road.small { fill: none; stroke: #e9dcc0; stroke-width: 12; stroke-linecap: round; }
+.dx-route { fill: none; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 2.6s ease-in-out; }
+.dx-route[data-step] { opacity: 1; }
+.dx-route.on { stroke-dashoffset: 0; }
+.dx-route.small { stroke: #b27a3e; stroke-width: 7; }
+.dx-road.wide { fill: none; stroke: #e2e2dc; stroke-width: 30; stroke-linecap: round; }
+.dx-route.wide { stroke: #7c8590; stroke-width: 26; }
+.dx-mid { fill: none; stroke: #fff; stroke-width: 3; stroke-dasharray: 16 14; }
+.dx-place { font: 34px var(--kai); fill: var(--red-d); text-anchor: middle; }
+.dx-place-py { font: 18px var(--py); fill: var(--py-c); text-anchor: middle; }
+.dx-photo { grid-column: 2; grid-row: 1; width: 100%; aspect-ratio: 16 / 9; border-radius: .6em; border: .25em solid #fff; background: center / cover no-repeat; object-fit: cover; box-shadow: 0 .3em 1em rgba(0, 0, 0, .25); }
+.dx-bubble { position: absolute; top: 46%; margin: 0; font-family: var(--kai); font-size: 1.5em; background: #fff; border: 2px solid var(--red); border-radius: 1em; padding: .2em .7em; color: var(--red-d); }
+.dx-bubble.dx-at-ts { left: 8%; top: 8%; }
+.dx-bubble.dx-at-bj { right: 4%; top: 8%; }
+.dx-read .hz-text { flex: none; font-size: 1.75em; line-height: 2.3; padding: .2em .9em; }
+.dx-read .hz-text p { text-align: left; }
+
+/* ---------- 读好感叹号 ---------- */
+.dx-loud { flex: 1; justify-content: center; gap: 1em; }
+.dx-line { display: flex; align-items: center; gap: 1.6em; justify-content: center; }
+.dx-line p { margin: 0; font-size: 2.6em; }
+.dx-line.big p { font-size: 3.6em; color: var(--red-d); }
+.dx-bang { color: var(--red); font-size: 1.3em; }
+.dx-vol { display: flex; align-items: flex-end; gap: .3em; height: 4em; }
+.dx-vol i { width: .8em; background: #dbe3ea; border-radius: .2em; }
+.dx-vol i:nth-child(1) { height: 20%; } .dx-vol i:nth-child(2) { height: 40%; } .dx-vol i:nth-child(3) { height: 60%; } .dx-vol i:nth-child(4) { height: 80%; } .dx-vol i:nth-child(5) { height: 100%; }
+.dx-line.on .dx-vol i:nth-child(-n+3) { background: var(--gold); }
+.dx-line.big.on .dx-vol i { background: var(--red); animation: dxPulse .8s ease-in-out infinite alternate; }
+@keyframes dxPulse { to { transform: scaleY(.85); } }
+.dx-vol i { transform-origin: bottom; }
+.dx-loud .tip { font-size: 1.4em; font-family: var(--kai); align-self: center; }
+
+/* ---------- 连一连 ---------- */
+.dx-link { position: relative; flex: 1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 8em; align-content: center; }
+.dx-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.dx-lines line { stroke: var(--gold); stroke-width: 4; stroke-linecap: round; }
+.dx-col { display: flex; flex-direction: column; gap: .35em; }
+.dx-col:first-of-type { align-items: flex-end; }
+.dx-l, .dx-r { font: inherit; font-family: var(--kai); font-size: 1.7em; line-height: 2; padding: 0 .6em; min-width: 5.5em; border: 2px solid var(--line); border-radius: .5em; background: #fff; color: var(--ink); cursor: pointer; }
+.dx-l rt, .dx-r rt, .dx-frame rt { font-family: var(--py); font-size: .44em; color: var(--py-c); }
+.dx-l.sel { border-color: var(--red); background: #fff1ec; }
+.dx-l.ok, .dx-r.ok { border-color: var(--gold); background: #fff8e1; cursor: default; }
+.dx-r.wrong { animation: nope .35s; border-color: #e3a998; }
+.dx-link-msg { grid-column: 1 / -1; text-align: center; margin: .6em 0 0; font-size: 1.3em; color: var(--ink-2); }
+.dx-link.done .dx-link-msg { color: #1f6b4f; font-weight: bold; }
+
+/* ---------- 我的愿望 ---------- */
+.dx-wish { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1.6em; }
+.dx-frame { margin: 0; font-size: 2.8em; background: #fff; border-radius: .5em; padding: .2em .8em; box-shadow: 0 .2em .8em rgba(30, 50, 70, .1); }
+.dx-frame.pop { animation: pop .45s cubic-bezier(.3, 1.4, .5, 1); }
+.dx-frame b { font-weight: normal; color: var(--red-d); }
+.dx-blank { display: inline-block; width: 3em; border-bottom: .08em solid var(--gold); }
+.dx-ideas { display: flex; gap: .8em; flex-wrap: wrap; justify-content: center; font-size: 1.4em; }
+.dx-ideas .btn.on { background: var(--red); color: #fff; }
+
+/* ---------- 回顾 ---------- */
+.dx-board { display: grid; grid-template-columns: auto auto auto auto; align-items: center; gap: 0 1em; }
+.dx-board .py { font-size: 2em; }
+.dx-arrow { margin: 0; font-size: 1.3em; color: var(--gold-l); }
+.dx-what { color: #ffe39a; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .dx-shout { font-size: 1.5em; }
+  .s-cover .cover-title { font-size: 3.4em; }
+  .dx-map, .dx-map[data-route="2"] { flex: none; grid-template-columns: 1fr; justify-items: center; }
+  .dx-map .dx-svg, .dx-map[data-route="2"] .dx-svg { grid-column: 1; grid-row: 1; height: auto; }
+  .dx-map .dx-photo, .dx-map[data-route="2"] .dx-photo { grid-column: 1; grid-row: 2; width: 70%; }
+  .dx-bubble { font-size: 1.1em; top: 0; }
+  .dx-read .hz-text { font-size: 1.3em; }
+  .dx-line p { font-size: 1.7em; }
+  .dx-line.big p { font-size: 1.9em; }
+  .dx-vol { height: 2.4em; }
+  .dx-link { column-gap: 2.5em; }
+  .dx-l, .dx-r { font-size: 1.4em; min-width: 0; }
+  .dx-frame { font-size: 1.7em; }
+  .dx-board { grid-template-columns: auto auto auto; }
+  .dx-what { grid-column: 1 / -1; }
+}

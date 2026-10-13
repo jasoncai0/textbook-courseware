@@ -1,0 +1,69 @@
+/* 白鹭 · 本课配色：水墨青灰、宣纸白、淡金。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #3f6e78;
+  --red-d: #2a4a52;
+  --gold: #b89b5e;
+  --gold-l: #ece0bf;
+  --paper: #f2f3ee;
+  --stone: #fbfbf7;
+  --ink-2: #5a5f5c;
+  --line: #d4d6cc;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcfdf9 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe5df 0, transparent 45%); }
+.scene .hd .tag { background: rgba(42, 74, 82, .92); }
+.s-cover .cover-title { letter-spacing: .2em; }
+
+/* 比一比 */
+.birds { display: grid; grid-template-columns: repeat(4, 1fr); gap: .9em; flex: 1; align-items: stretch; }
+.birds { align-items: center; }
+.bird-card { min-height: 80%; background: #fff; border-radius: .6em; padding: 1em; display: flex; flex-direction: column; gap: .5em; justify-content: center; text-align: center; border-top: .3em solid #b9c2c4; }
+.bird-pic { flex: 1; min-height: 5em; display: flex; }
+.bird-pic svg { width: 100%; height: 100%; }
+.bird-card b { font-size: 1.35em; color: var(--ink-2); }
+.bird-card span { font-family: var(--kai); font-size: 1.3em; }
+.bird-card em { font-style: normal; color: #9b3b2a; }
+.bird-card.me { border-top-color: var(--gold); background: #fffdf4; box-shadow: 0 .3em 1em rgba(60, 80, 80, .15); }
+.bird-card.me b { color: var(--red-d); font-size: 1.6em; }
+.bird-card.me em { color: var(--ink-2); font-size: .9em; }
+
+/* 增减 */
+.gloss { font-family: var(--serif); font-size: .85em; text-indent: 0 !important; color: var(--ink-2); }
+.gloss b { color: var(--red-d); }
+#egret { border-radius: .5em; }
+#egret .lbl { font-family: var(--kai); }
+.jing-ctrl { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.jing-ctrl label { display: flex; align-items: center; gap: .4em; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .3em .7em; }
+.jing-ctrl input { flex: 1; accent-color: var(--red); }
+.jing-ctrl span { font-family: var(--kai); color: var(--red-d); }
+
+/* 起名 */
+.pics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; flex: 1; min-height: 0; }
+.pic-card { background: #fff; border-radius: .6em; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 .15em .6em rgba(40, 50, 50, .12); }
+.pic-img { flex: 1; min-height: 6em; background: center / cover no-repeat; }
+.pic-card p { margin: .4em .8em 0; color: var(--ink-2); font-size: .9em; }
+.pic-card input { margin: .4em .8em; font: inherit; font-family: var(--kai); font-size: 1.1em; padding: .25em .5em; border: 1px dashed var(--gold); border-radius: .3em; }
+.pic-card em { font-style: normal; font-family: var(--kai); margin: 0 .8em .6em; color: var(--red-d); }
+
+/* 诗 → 歌？ → 诗 */
+.ladder { display: flex; align-items: center; gap: .4em; flex: 1; }
+.rung { flex: 1; min-height: 10em; align-self: center; background: #fff; border-radius: .5em; padding: .8em; display: flex; flex-direction: column; justify-content: center; gap: .3em; text-align: center; border-bottom: .3em solid var(--red); }
+.rung small { color: var(--ink-2); }
+.rung b { font-family: var(--kai); font-size: 1.3em; color: var(--red-d); }
+.rung span { font-family: var(--kai); color: var(--ink-2); font-size: .92em; }
+.rung.end { background: #fffbea; border-bottom-color: var(--gold); }
+.ladder > i { align-self: center; width: 1.2em; height: 2px; background: var(--gold); }
+
+/* 挖空背诵 */
+.cz { font-weight: normal; }
+.cloze-on .cz { color: transparent; border-bottom: 2px solid var(--red); cursor: pointer; transition: color .3s; }
+.cloze-on .cz.peek { color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .birds, .pics, .jing-ctrl { grid-template-columns: 1fr; }
+  .bird-card { padding: .6em; min-height: 0; }
+  .bird-pic { flex: none; height: 7em; }
+  .pic-img { min-height: 10em; }
+  .ladder { flex-direction: column; }
+  .ladder > i { width: 2px; height: .8em; }
+  #egret { flex: none; height: auto; }
+}

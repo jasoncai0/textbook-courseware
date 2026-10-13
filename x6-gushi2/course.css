@@ -1,0 +1,88 @@
+/* 古诗三首（马诗 / 石灰吟 / 竹石）· 本课配色：宣纸、朱砂、竹青。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #a63a2a;
+  --red-d: #5e2a1e;
+  --gold: #b8933a;
+  --gold-l: #ecdcae;
+  --paper: #f3f0e4;
+  --stone: #fbf9f1;
+  --ink-2: #5d5a4c;
+  --line: #d6d0b8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfaf2 0, transparent 40%), radial-gradient(circle at 90% 95%, #e3e5d2 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .1em; }
+.s-cover .chips { margin-top: .8em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; }
+.cover-poems span { font-family: var(--kai); font-size: 1.2em; background: rgba(166, 58, 42, .88); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 物 → 志 对照行 */
+.wz { display: flex; flex-direction: column; gap: .55em; }
+.wz-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: .6em; align-items: center; }
+.wz-row .w { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .45em .8em; font-size: .9em; color: var(--ink-2); line-height: 1.5; }
+.wz-row .w b { display: block; font-family: var(--kai); font-size: 1.25em; color: var(--ink); font-weight: normal; }
+.wz-row i { font-style: normal; color: var(--gold); font-size: 1.4em; }
+.wz-row .z { background: #f7ece0; border-left: .3em solid var(--red); border-radius: .4em; padding: .5em .8em; font-family: var(--kai); font-size: 1.12em; color: var(--red-d); }
+
+/* 石灰的一生 */
+.s-shihui .stage { justify-content: center; }
+.lime { flex: 0 1 auto; min-height: 0; display: flex; align-items: stretch; gap: .5em; }
+.lime-step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: .6em; background: #fff; border-radius: .6em; padding: .8em .6em; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); text-align: center; }
+.lime-step .ico { width: 3.2em; height: 3.2em; border-radius: 50%; display: grid; place-items: center; font-family: var(--kai); font-size: 1.8em; background: #8d8a80; color: #fff; }
+.lime-step.fire .ico { background: #c4502a; }
+.lime-step.white .ico { background: #fff; color: var(--ink); border: 2px solid var(--line); }
+.lime-step b { font-family: var(--kai); font-size: 1.2em; font-weight: normal; }
+.lime-step p { margin: 0; color: var(--ink-2); font-size: .88em; }
+.lime-step em { margin-top: .4em; font-style: normal; font-family: var(--kai); font-size: 1.1em; color: var(--red-d); background: #f7ece0; border-radius: .3em; padding: .15em .6em; }
+.lime-arr { align-self: center; font-style: normal; font-size: 1.6em; color: var(--gold); }
+.lime-step.on.fire { animation: glow 1.6s ease-in-out infinite alternate; }
+@keyframes glow { to { box-shadow: 0 0 1.2em rgba(214, 90, 40, .45); } }
+
+/* 竹石：竹子在风里摇，根扎在石缝里 */
+#bamboo { flex: 1; min-height: 0; width: 100%; }
+#bamboo .sway { transform-box: fill-box; transform-origin: 50% 100%; }
+#bamboo:has(.winds.on) .sway { animation: sway 1.4s ease-in-out infinite alternate; }
+@keyframes sway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+#bamboo .winds.on g { animation: blow 1.4s ease-in-out infinite; }
+#bamboo .winds.on .w-e { --dx: -14px; --dy: 0; }
+#bamboo .winds.on .w-w { --dx: 14px; --dy: 0; }
+#bamboo .winds.on .w-n { --dx: 0; --dy: 14px; }
+#bamboo .winds.on .w-s { --dx: 0; --dy: -14px; }
+@keyframes blow { 50% { transform: translate(var(--dx), var(--dy)); opacity: .5; } }
+#bamboo .crack { transition-duration: 1.2s; }
+
+/* 资料袋 */
+.ziliao { display: flex; flex-direction: column; gap: .6em; overflow: auto; min-height: 0; }
+.ziliao details { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .5em 1em; }
+.ziliao details[open] { border-color: var(--gold); background: #fffdf5; }
+.ziliao summary { cursor: pointer; font-family: var(--kai); font-size: 1.25em; line-height: 1.6; }
+.ziliao summary::marker { color: var(--red); }
+.ziliao p { margin: .3em 0 0; line-height: 1.7; }
+.ziliao p b { color: var(--red); }
+.ziliao p.get { background: #eef6f2; border-radius: .3em; padding: .2em .6em; }
+.ziliao p.get b { color: var(--jade); }
+
+/* 物与志 */
+.s-wuzhi .bd { grid-template-columns: 1fr 1fr; }
+.s-wuzhi .clues { grid-template-columns: 1fr; }
+.s-wuzhi .clue, .s-wuzhi .clue-in { min-height: 5.6em; }
+
+/* 回顾表 */
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.05em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.15em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  /* 七言诗竖排在手机上 15em 放不下 8 个字（含标点），加高 */
+  .poem-text { height: 17.5em; }
+  .wz-row { grid-template-columns: 1fr; gap: .2em; }
+  .wz-row i { display: none; }
+  .lime { flex-direction: column; }
+  .lime-arr { transform: rotate(90deg); }
+  #bamboo { flex: none; width: 100%; height: auto; }
+  .sum-table { font-size: .8em; border-spacing: .2em; }
+  .sum-table th, .sum-table td { padding: .4em .4em; }
+}

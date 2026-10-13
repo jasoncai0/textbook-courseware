@@ -1,0 +1,188 @@
+/* 雷雨 · 本课配色：雨云的灰蓝、雨后的清绿。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3e6f9e;
+  --red-d: #284d72;
+  --gold: #e3a634;
+  --gold-l: #f6dfa4;
+  --paper: #f1f4f6;
+  --stone: #fbfcfd;
+  --ink-2: #56616c;
+  --line: #ccd6df;
+}
+
+/* 字幕：比通用模板略窄的边距、略小的字，一句一行 */
+.subs { padding-left: 6%; padding-right: 6%; }
+.subs.py, .subs .py { font-size: 1.7em; }
+
+/* ---------- 封面 ---------- */
+.ly-listen { font: inherit; font-family: var(--kai); font-size: 1.8em; padding: .3em 1em; margin: .6em 0 .3em; border-radius: 1em; border: 3px solid #fff; background: rgba(255, 255, 255, .15); color: #fff; cursor: pointer; }
+.ly-listen:hover { background: rgba(255, 255, 255, .3); }
+.ly-ask { margin: .2em 0; font-family: var(--kai); font-size: 1.8em; }
+
+/* ---------- 天气时间滑块 ---------- */
+.ly-bd { grid-template-columns: 1.55fr 1fr; grid-template-rows: minmax(0, 1fr) auto; gap: .6em 1.2em; min-height: 0; }
+.ly-stage { position: relative; min-height: 0; border-radius: 1em; overflow: hidden; background: #6f7f8f; box-shadow: 0 .3em 1em rgba(30, 40, 60, .25); }
+.ly-img { position: absolute; inset: 0; background: #8a96a2 center / cover no-repeat; opacity: 0; transition: opacity 1.4s; }
+.ly-stage[data-p="0"] .a, .ly-stage[data-p="1"] .a { opacity: 1; }
+.ly-stage[data-p="2"] .b, .ly-stage[data-p="3"] .b, .ly-stage[data-p="4"] .b, .ly-stage[data-p="5"] .b { opacity: 1; }
+.ly-stage[data-p="6"] .c, .ly-stage[data-p="7"] .c { opacity: 1; }
+.ly-fx { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ly-fx * { transition: opacity 1s, transform 1.6s; }
+.fx-cloud { fill: #3c4556; opacity: 0; transform: translateY(-80px); }
+.ly-stage[data-p="0"] .fx-cloud { opacity: .75; transform: translateY(10px); }
+.ly-stage[data-p="1"] .fx-cloud, .ly-stage[data-p="2"] .fx-cloud, .ly-stage[data-p="3"] .fx-cloud { opacity: .6; transform: translateY(20px); }
+.fx-wind path { fill: none; stroke: rgba(255, 255, 255, .8); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 60 40; opacity: 0; }
+.ly-stage[data-p="1"] .fx-wind path { opacity: 1; animation: lyWind 1s linear infinite; }
+@keyframes lyWind { to { stroke-dashoffset: -100; } }
+.fx-spider { opacity: 0; }
+.fx-thread { stroke: #eee; stroke-width: 1.5; }
+.fx-sp circle { fill: #222; }
+.fx-sp path { stroke: #222; stroke-width: 2; }
+.ly-stage[data-p="1"] .fx-spider { opacity: 1; }
+.ly-stage[data-p="1"] .fx-sp { animation: lyDrop 2.4s ease-in forwards; }
+.ly-stage[data-p="1"] .fx-thread { animation: lyThread 2.4s ease-in forwards; }
+@keyframes lyDrop { to { transform: translateY(160px); } }
+@keyframes lyThread { to { d: path("M150 60V320"); } }
+.fx-bolt { fill: #fff6b0; opacity: 0; }
+.fx-flash { fill: #fff; opacity: 0; }
+.ly-stage[data-p="2"] .fx-bolt, .ly-stage[data-p="3"] .fx-bolt { animation: lyBolt 2.6s infinite; }
+.ly-stage[data-p="2"] .fx-flash, .ly-stage[data-p="3"] .fx-flash { animation: lyFlash 2.6s infinite; }
+@keyframes lyBolt { 0%, 8%, 16%, 100% { opacity: 0; } 4%, 12% { opacity: 1; } }
+@keyframes lyFlash { 0%, 8%, 16%, 100% { opacity: 0; } 4%, 12% { opacity: .35; } }
+.fx-rain path { stroke: rgba(225, 235, 245, .85); stroke-width: 2.5; animation: lyFall .6s linear infinite; }
+.fx-rain { opacity: 0; }
+@keyframes lyFall { from { transform: translate(0, -60px); } to { transform: translate(-16px, 60px); } }
+.ly-stage[data-p="3"] .fx-rain { opacity: .5; }
+.ly-stage[data-p="4"] .fx-rain { opacity: 1; }
+.ly-stage[data-p="4"] .fx-rain path { stroke-width: 4; animation-duration: .35s; }
+.ly-stage[data-p="5"] .fx-rain { opacity: .3; }
+.fx-fog { fill: #dfe6ec; opacity: 0; }
+.ly-stage[data-p="4"] .fx-fog { opacity: .45; }
+.fx-bow { opacity: 0; }
+.ly-stage[data-p="7"] .fx-bow { opacity: .75; }
+.fx-notes text { font-size: 40px; fill: #fff; opacity: 0; paint-order: stroke; stroke: #2e7d32; stroke-width: 3px; }
+.ly-stage[data-p="7"] .fx-notes text { animation: lyNote 1.6s ease-in-out infinite alternate; }
+@keyframes lyNote { from { opacity: .3; transform: translateY(6px); } to { opacity: 1; transform: translateY(-6px); } }
+.ly-sound { position: absolute; right: .6em; top: .6em; font: inherit; font-size: 1em; padding: .3em .8em; border-radius: .8em; border: 2px solid #fff; background: rgba(0, 0, 0, .35); color: #fff; cursor: pointer; }
+.ly-side { min-height: 0; display: flex; flex-direction: column; }
+.ly-paras { flex: 1; min-height: 0; overflow: auto; background: var(--stone); border-radius: .8em; padding: .4em .8em; box-shadow: 0 .2em .8em rgba(30, 40, 60, .08); scroll-behavior: smooth; }
+.ly-paras p { margin: 0 0 .2em; font-family: var(--kai); font-size: 1.3em; line-height: 1.8; text-indent: 2em; opacity: .35; cursor: pointer; transition: opacity .4s, background .4s; border-radius: .3em; }
+.ly-paras p.py { line-height: 2.05; }
+.ly-paras p rt { font-size: .45em; }
+.ly-paras p.now { opacity: 1; background: #fff6d6; }
+.ly-bar { grid-column: 1 / -1; display: flex; flex-direction: column; gap: .1em; }
+.ly-bar input { width: 100%; height: 2.2em; accent-color: var(--red); }
+.ly-marks { display: grid; grid-template-columns: 2fr 4fr 2fr; text-align: center; font-family: var(--kai); font-size: 1.3em; }
+.ly-marks span { border-top: .25em solid; padding-top: .1em; }
+.ly-marks .m0 { color: #4a5466; }
+.ly-marks .m1 { color: var(--red); }
+.ly-marks .m2 { color: #2e8b57; }
+.ly-mk { display: none; }
+
+/* ---------- 分一分 ---------- */
+.ly-sort { gap: .8em; }
+.ly-pool { display: flex; flex-wrap: wrap; gap: .4em; justify-content: center; min-height: 2.6em; }
+.ly-card { font: inherit; font-family: var(--kai); font-size: 1.25em; padding: .2em .6em; border-radius: .5em; border: 2px solid var(--line); background: #fff; cursor: pointer; }
+.ly-card.sel { border-color: var(--gold); background: #fff6d6; transform: translateY(-.15em); }
+.ly-cols { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.ly-col { border-radius: .8em; padding: .4em; border: 3px dashed var(--line); background: rgba(255, 255, 255, .6); display: flex; flex-direction: column; gap: .3em; cursor: pointer; }
+.ly-col b { text-align: center; font-family: var(--kai); font-size: 1.5em; font-weight: normal; color: #fff; border-radius: .4em; }
+.ly-col.c0 b { background: #4a5466; }
+.ly-col.c1 b { background: var(--red); }
+.ly-col.c2 b { background: #2e8b57; }
+.ly-in { display: flex; flex-direction: column; gap: .3em; align-items: center; }
+.ly-in .ly-card { cursor: default; border-style: solid; }
+.ly-col.no { animation: nope .35s; border-color: #e3a998; }
+.ly-sort.all .ly-col { border-style: solid; }
+
+/* ---------- 压 垂 挂 ---------- */
+.ly-words { flex-direction: row; justify-content: center; align-items: stretch; gap: 1.2em; height: 100%; }
+.ly-w { flex: 1; max-width: 22em; font: inherit; display: flex; flex-direction: column; align-items: center; gap: .3em; padding: .6em; border-radius: 1em; border: 3px solid var(--line); background: #fff; cursor: pointer; }
+.ly-w svg { width: 100%; max-height: 11em; background: #eef3f7; border-radius: .6em; }
+.ly-w p { margin: 0; font-family: var(--kai); font-size: 1.45em; line-height: 2; }
+.ly-w p rt { font-size: .45em; }
+.ly-w p b { font-weight: normal; color: var(--red); text-emphasis: filled dot; text-emphasis-position: under right; -webkit-text-emphasis: filled dot; -webkit-text-emphasis-position: under; }
+.ly-w small { font-size: 1.1em; color: var(--ink-2); }
+.ly-wcloud { transform: translateY(-40px); }
+.ly-w.play .ly-wcloud { animation: lyPress 2.2s ease-in both; }
+@keyframes lyPress { from { transform: translateY(-40px); } to { transform: translateY(40px); } }
+.ly-thread { stroke: #888; stroke-width: 1.5; }
+.ly-w.play .ly-sp { animation: lyDrop2 2s ease-in both; }
+.ly-w.play .ly-thread { animation: lyThread2 2s ease-in both; }
+@keyframes lyDrop2 { to { transform: translateY(70px); } }
+@keyframes lyThread2 { to { d: path("M120 70V140"); } }
+.ly-wbow path { stroke-dasharray: 330; stroke-dashoffset: 0; }
+.ly-w.play .ly-wbow path { animation: lyBowIn 1.6s ease-out both; }
+@keyframes lyBowIn { from { stroke-dashoffset: 330; } }
+
+/* ---------- 四种雨 ---------- */
+.ly-rains { flex-direction: row; justify-content: center; align-items: center; gap: 1em; height: 100%; }
+.ly-rain { flex: 1; max-width: 15em; font: inherit; display: flex; flex-direction: column; align-items: center; gap: .3em; padding: .6em; border-radius: 1em; border: 3px solid var(--line); background: #fff; cursor: pointer; }
+.ly-rain i { width: 100%; height: 11em; border-radius: .6em; background-color: #8fa3b5; background-image: repeating-linear-gradient(100deg, transparent 0 22px, rgba(255, 255, 255, .7) 22px 24px); background-size: 60px 60px; }
+.ly-rain.r1 i { background-color: #aebdca; background-image: repeating-linear-gradient(100deg, transparent 0 28px, rgba(255, 255, 255, .55) 28px 29px); }
+.ly-rain.r3 i { background-color: #5a6a7c; }
+.ly-rain.r4 i { background-color: #4a5868; background-image: repeating-linear-gradient(100deg, transparent 0 8px, rgba(255, 255, 255, .8) 8px 11px); }
+.ly-rain.play i { animation: lyRainMove .5s linear infinite; }
+.ly-rain.r1.play i { animation-duration: 1.4s; }
+.ly-rain.r2.play i { animation: lyRainMove .6s linear infinite, lyGust 3s steps(1) infinite; }
+.ly-rain.r3.play i { animation: lyRainMove .45s linear infinite, lyFlash2 2.4s infinite; }
+.ly-rain.r4.play i { animation-duration: .25s; }
+@keyframes lyRainMove { to { background-position: -12px 60px; } }
+@keyframes lyGust { 50% { background-image: none; } }
+@keyframes lyFlash2 { 0%, 10%, 100% { background-color: #5a6a7c; } 5% { background-color: #dfe6ff; } }
+.ly-rain b { font-family: var(--kai); font-weight: normal; font-size: 2em; color: var(--red-d); line-height: 1.9; }
+.ly-rain b rt { font-size: .45em; }
+.ly-rain small { font-size: 1.1em; color: var(--ink-2); }
+
+/* ---------- 背诵 ---------- */
+.ly-recite { flex-direction: row; gap: .8em; align-items: stretch; }
+.ly-rc { flex: 1; background: var(--stone); border-radius: .8em; padding: .4em .8em; border-top: .4em solid #4a5466; box-shadow: 0 .2em .8em rgba(30, 40, 60, .08); overflow: auto; }
+.ly-rc.b { border-top-color: var(--red); flex: 1.2; }
+.ly-rc.c { border-top-color: #2e8b57; }
+.ly-rc h3 { margin: 0; text-align: center; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.ly-rc p { margin: 0 0 .2em; font-family: var(--kai); font-size: 1.3em; line-height: 1.85; text-indent: 2em; }
+.ly-rc p.py { line-height: 2.1; }
+.ly-rc p rt { font-size: .45em; }
+
+/* ---------- 雨后彩虹 ---------- */
+.ly-bowgame { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.3fr 1fr; gap: 1em; align-items: center; border-radius: 1em; padding: 1em; background: linear-gradient(#cfe6f6, #f4f9fb 70%, #cfe7b4); }
+.ly-bowsvg { width: 100%; }
+.ly-band { fill: none; stroke: #e2e8ee; stroke-width: 16; stroke-dasharray: 10 8; transition: stroke 1s; }
+.ly-band.lit { stroke: var(--c); stroke-dasharray: none; animation: lyBowIn 1.2s ease-out both; }
+.ly-gask { display: flex; flex-direction: column; align-items: center; gap: .7em; }
+.ly-q { margin: 0; font-size: 2.6em; color: var(--py-c); background: #fff; border-radius: .4em; padding: 0 .5em; box-shadow: 0 .1em .4em rgba(0, 0, 0, .1); }
+.ly-q:not(.hz-latin) { font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.ly-opts { display: flex; gap: 1em; }
+.ly-opt { font: inherit; font-family: var(--kai); font-size: 2.8em; width: 1.6em; height: 1.6em; border-radius: .3em; border: 3px solid var(--line); background: #fff; cursor: pointer; }
+.ly-opt.wrong { animation: nope .35s; }
+.ly-opt.right { background: #e6f2fb; border-color: var(--red); }
+.ly-msg { margin: 0; min-height: 1.5em; font-size: 1.3em; font-weight: bold; color: var(--red-d); }
+
+/* ---------- 回顾 ---------- */
+.ly-sum { justify-content: center; align-items: center; gap: 1.2em; }
+.ly-sumrow { display: flex; gap: 1em; }
+.ly-sumc { width: 18em; background: #fff; border-radius: 1em; padding: .6em 1em; text-align: center; border-top: .5em solid #4a5466; box-shadow: 0 .2em .8em rgba(30, 40, 60, .1); }
+.ly-sumc.b { border-top-color: var(--red); }
+.ly-sumc.c { border-top-color: #2e8b57; }
+.ly-sumc b { display: block; font-family: var(--kai); font-weight: normal; font-size: 2em; color: var(--red-d); }
+.ly-sumc small { font-family: var(--kai); font-size: 1.3em; line-height: 1.7; color: var(--ink-2); }
+.ly-sum .tip { font-size: 1.25em; max-width: 44em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .ly-listen { font-size: 1.2em; }
+  .ly-ask { font-size: 1.2em; }
+  .ly-stage { height: 14em; }
+  .ly-paras { max-height: 12em; }
+  .ly-paras p { font-size: 1.1em; }
+  .ly-marks { font-size: 1em; }
+  .ly-cols { grid-template-columns: 1fr; }
+  .ly-words, .ly-rains { flex-direction: column; height: auto; }
+  .ly-w, .ly-rain { max-width: none; width: 100%; }
+  .ly-rain i { height: 6em; }
+  .ly-recite { flex-direction: column; }
+  .ly-rc p { font-size: 1.1em; }
+  .ly-bowgame { display: flex; flex-direction: column; }
+  .ly-opt { font-size: 2em; }
+  .ly-sumrow { flex-direction: column; }
+  .ly-sumc { width: auto; }
+}

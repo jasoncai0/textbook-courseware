@@ -1,0 +1,79 @@
+/* 在天晴了的时候 · 本课配色：雨后的青绿与天蓝。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #2f7f8a;
+  --red-d: #1d5058;
+  --gold: #e0a83a;
+  --gold-l: #f8e3b2;
+  --paper: #f0f5f4;
+  --stone: #fafcfc;
+  --ink-2: #4f6062;
+  --line: #c9d9d8;
+}
+.scene .hd .tag { background: rgba(47, 127, 138, .92); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.slide .tip { font-size: 1.05em; }
+.board { font-size: 1.3em; }
+.s-cover .cover-title { font-size: 5.5em; }
+.s-cover .cover-sub { font-family: var(--kai); font-size: 1.5em; }
+
+/* ---------- 阅读提示 ---------- */
+.guide-stage { justify-content: center; }
+.guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2em; }
+.guide-card { background: #fff; border-radius: .7em; padding: 1.2em 1.3em; border-top: .35em solid var(--red); box-shadow: 0 .2em .8em rgba(20, 60, 60, .1); }
+.guide-card b { display: inline-grid; place-items: center; width: 1.8em; height: 1.8em; border-radius: 50%; background: var(--red); color: #fff; font-family: Georgia, serif; }
+.guide-card h3 { margin: .4em 0 .2em; font-size: 1.45em; color: var(--red-d); }
+.guide-card p { margin: 0; font-size: 1.15em; color: var(--ink-2); }
+
+/* ---------- 诗画长卷 ---------- */
+.juan { flex: 1; min-height: 0; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: .8em; background: #e5efee; scrollbar-width: none; }
+.juan::-webkit-scrollbar { display: none; }
+.ju-panel { flex: 0 0 100%; scroll-snap-align: start; display: grid; grid-template-columns: 1.25fr 1fr; gap: 1.6em; padding: 1em; }
+.ju-pic { width: 100%; height: 100%; object-fit: cover; border-radius: .6em; background: #cfdedd center / cover no-repeat; }
+.ju-pic.zoom { background-size: 220%; }
+.ju-text { display: flex; flex-direction: column; justify-content: center; font-family: var(--kai); font-size: 1.7em; line-height: 1.7; color: var(--red-d); }
+.ju-text p { margin: 0; }
+.ju-dots { display: flex; justify-content: center; gap: .6em; }
+.ju-dots button { width: 1em; height: 1em; border-radius: 50%; border: 2px solid var(--red); background: #fff; cursor: pointer; padding: 0; }
+.ju-dots button.on { background: var(--red); }
+
+/* ---------- 连一连 ---------- */
+.match { display: grid; grid-template-columns: 1fr 1.6fr; gap: 1.6em; }
+.m-col { display: flex; flex-direction: column; gap: .5em; }
+.m-a, .m-b { font: inherit; font-family: var(--kai); font-size: 1.45em; text-align: left; padding: .4em .9em; border-radius: .5em; border: 2px solid var(--line); background: #fff; cursor: pointer; position: relative; }
+.m-a.sel { border-color: var(--red); background: #eaf5f4; }
+.m-a.right, .m-b.right { border-color: #8cc0a6; background: #eef7f1; cursor: default; padding-left: 2.2em; }
+.m-a.right::before, .m-b.right::before { content: attr(data-n); position: absolute; left: .5em; top: 50%; translate: 0 -50%; width: 1.3em; height: 1.3em; border-radius: 50%; background: #2f8a5f; color: #fff; font-family: Georgia, serif; font-size: .8em; display: grid; place-items: center; }
+.m-b.wrong { border-color: #e3a998; background: #fdf0ec; animation: nope .35s; }
+
+/* ---------- 回环 ---------- */
+.hui { background: #fff; border-radius: .7em; padding: .8em 1.2em; border: 1px solid var(--line); font-family: var(--kai); font-size: 1.5em; line-height: 1.7; }
+.hui p { margin: 0; }
+.hui-mid { text-align: center; color: var(--gold); font-family: var(--serif); font-size: .7em; }
+.s-read .read-item p { font-size: 1.3em; }
+
+/* ---------- 填词机 ---------- */
+.tc-slots { display: flex; flex-direction: column; gap: .7em; }
+.tc-slot { display: flex; flex-wrap: wrap; gap: .35em; align-items: center; }
+.tc-slot > span { width: 100%; font-size: .95em; color: var(--ink-2); }
+.s-tianci .pick { font-size: 1.05em; padding: .25em .6em; }
+.tc-poem { background: #fff; border-radius: .8em; padding: 1em 1.6em; border: 2px dashed var(--gold); font-family: var(--kai); font-size: 2em; line-height: 1.6; }
+.tc-poem p { margin: 0; }
+.tc-poem p:nth-child(2), .tc-poem p:nth-child(4) { padding-left: 1em; }
+.tc-poem b { color: var(--red); font-weight: normal; border-bottom: .12em solid var(--gold); }
+.s-tianci textarea { flex: 1; min-height: 4em; resize: none; font: inherit; font-family: var(--kai); font-size: 1.2em; padding: .5em .8em; border: 1px solid var(--line); border-radius: .5em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.4em; }
+  .s-cover .cover-sub { font-size: 1.1em; }
+  .guide-cards { grid-template-columns: 1fr; gap: .7em; }
+  .juan { height: 70vh; flex: none; }
+  .ju-panel { grid-template-columns: 1fr; grid-template-rows: 45% 1fr; gap: .6em; padding: .6em; }
+  .ju-text { font-size: 1.2em; justify-content: flex-start; }
+  .match { grid-template-columns: 1fr; gap: .6em; }
+  .m-a, .m-b { font-size: 1.15em; }
+  .hui { font-size: 1.15em; }
+  .tc-poem { font-size: 1.35em; }
+}

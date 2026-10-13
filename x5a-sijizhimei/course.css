@@ -1,0 +1,107 @@
+/* 四季之美（五上 22）· 本课配色：樱色、黛紫、和纸。故事页样式见 ../shared/narrative.css */
+:root {
+  --red: #a2465a;
+  --red-d: #55263a;
+  --gold: #c39a3c;
+  --gold-l: #efdcab;
+  --paper: #f5f0ea;
+  --stone: #fcfaf6;
+  --ink-2: #5f5560;
+  --line: #ddd0cf;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfbf8 0, transparent 40%), radial-gradient(circle at 90% 95%, #eadbd8 0, transparent 45%); }
+.scene .hd .tag { background: rgba(85, 38, 58, .92); }
+.s-cover .cover-title { font-size: 7em; letter-spacing: .15em; }
+.subs .hl { color: #ffd8e2; font-weight: normal; }
+
+/* ---------- 故事页动画层（不挡点击） ---------- */
+.fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.fx[data-step] { transform: none !important; transition: opacity 2s ease; }
+
+/* 春：天边慢慢泛红、彩云飘 */
+.fx-dawn { background: radial-gradient(ellipse 70% 45% at 50% 30%, rgba(255, 150, 140, .45), transparent 70%); mix-blend-mode: soft-light; }
+.fx-dawn.on { animation: dawn 6s ease-in-out infinite alternate; }
+@keyframes dawn { from { opacity: .6; } to { opacity: 1; } }
+.fx-clouds i { position: absolute; width: 22%; height: 6%; border-radius: 50%; background: rgba(214, 128, 170, .45); filter: blur(8px); }
+.fx-clouds i:nth-child(1) { left: 10%; top: 18%; }
+.fx-clouds i:nth-child(2) { left: 45%; top: 12%; width: 28%; }
+.fx-clouds i:nth-child(3) { left: 70%; top: 24%; width: 18%; }
+.fx-clouds.on i { animation: cloud 14s ease-in-out infinite alternate; }
+@keyframes cloud { to { translate: 8% 0; } }
+
+/* 夏：萤火虫 */
+.fx-flies i { position: absolute; width: .5em; height: .5em; border-radius: 50%; background: #e6ff8a; box-shadow: 0 0 .6em .25em rgba(210, 255, 110, .7); opacity: 0; }
+.fx-flies.on i { animation-name: drift, blink; animation-iteration-count: infinite; animation-direction: alternate; animation-timing-function: ease-in-out; }
+@keyframes drift { 0% { transform: translate(0, 0); } 50% { transform: translate(3em, -2em); } 100% { transform: translate(-2em, -4em); } }
+@keyframes blink { 0% { opacity: .1; } 100% { opacity: 1; } }
+.fx-flies.few i { box-shadow: 0 0 .5em .2em rgba(210, 255, 110, .45); filter: blur(1px); }
+.s-xia:has(.fx-flies.few.on) .fx-flies.many { opacity: 0; }
+
+/* 秋：归鸦、大雁、风声虫鸣 */
+.fx-birds path { fill: none; stroke: #1e1612; stroke-width: 4; stroke-linecap: round; }
+.fx-birds .crow { opacity: 0; }
+.fx-birds .on .crow { animation: crowFly 3.2s ease-in infinite; }
+@keyframes crowFly { 0% { opacity: 0; transform: translate(0, 0); } 10% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translate(-1100px, 380px); } }
+.fx-birds .geese path { stroke: #2a2420; stroke-width: 3.5; }
+.fx-birds .vee-big { transform: translate(1650px, 160px); }
+.fx-birds .on .vee-big { animation: geeseFly 22s linear infinite; }
+@keyframes geeseFly { from { transform: translate(1650px, 160px); } to { transform: translate(-500px, 110px); } }
+.fx-sound span { position: absolute; color: #fff4dc; font-family: var(--kai); font-size: 1.6em; text-shadow: 0 1px 6px rgba(0, 0, 0, .6); opacity: 0; }
+.fx-sound span:nth-child(1) { left: 12%; top: 46%; }
+.fx-sound span:nth-child(2) { left: 70%; top: 52%; }
+.fx-sound span:nth-child(3) { left: 40%; top: 30%; }
+.fx-sound.on span { animation: soundIn 3s ease-in-out infinite; }
+.fx-sound.on span:nth-child(2) { animation-delay: 1s; }
+.fx-sound.on span:nth-child(3) { animation-delay: 2s; }
+@keyframes soundIn { 0%, 100% { opacity: 0; translate: 0 .4em; } 40%, 60% { opacity: .95; translate: 0 0; } }
+
+/* 冬：炭火的暖光，中午变灰 */
+.fx-ember { background: radial-gradient(ellipse 30% 25% at 50% 62%, rgba(255, 140, 50, .5), transparent 70%); mix-blend-mode: screen; }
+.fx-ember.on { animation: ember 1.8s ease-in-out infinite alternate; }
+@keyframes ember { from { opacity: .55; } to { opacity: 1; } }
+.fx-ash { background: rgba(200, 200, 196, .35); mix-blend-mode: saturation; }
+.s-dong:has(.fx-ash.on) .fx-ember { animation: none; opacity: 0; }
+
+/* ---------- 品 · 四季卡片 ---------- */
+.env-cards.four { grid-template-columns: repeat(4, 1fr); }
+.s-four .env-card h3 { font-family: var(--kai); font-size: 1.25em; }
+.s-four .yun { align-self: flex-start; margin: 0 .8em .7em; font-size: .85em; background: var(--red); color: #fff; padding: .1em .7em; border-radius: 1em; }
+
+/* ---------- 品 · 动态描写三条 ---------- */
+.dyn-row { display: grid; grid-template-columns: 1fr 15em 7.5em; gap: 1em; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: .6em; padding: .5em .9em; }
+.dyn-s { margin: 0; font-family: var(--kai); font-size: 1.22em; line-height: 1.75; }
+.dyn-svg { width: 100%; height: auto; display: block; }
+.dyn-k { font-size: .85em; color: var(--red-d); line-height: 1.5; text-align: center; }
+.dyn-fly .ff { fill: #e6ff8a; filter: drop-shadow(0 0 4px #d2ff6e); }
+.dyn-fly .ff1 { offset-path: path('M20 70 C 80 20, 140 90, 200 40 S 280 60, 290 30'); }
+.dyn-fly .ff2 { offset-path: path('M280 80 C 220 30, 160 90, 100 50 S 30 40, 10 70'); }
+.on .dyn-fly .ff { animation: ffMove 7s ease-in-out infinite alternate, blink 1.4s ease-in-out infinite alternate; }
+@keyframes ffMove { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+.dyn-fly .drizzle line { stroke: #8fa6c0; stroke-width: 1; opacity: .6; }
+.on .dyn-fly .drizzle line { animation: drizzle 1.2s linear infinite; }
+@keyframes drizzle { from { transform: translateY(-20px); } to { transform: translateY(110px); } }
+.dyn-crow .crow { opacity: 0; }
+.on .dyn-crow .crow { animation: crowMini 1.6s ease-in infinite; }
+.on .dyn-crow .c2 { animation-delay: .5s; }
+.on .dyn-crow .c3 { animation-delay: 1s; }
+@keyframes crowMini { 0% { opacity: 1; transform: translate(10px, 20px); } 90% { opacity: 1; } 100% { opacity: 0; transform: translate(245px, 50px); } }
+.dyn-geese .vee path { fill: none; stroke: #2a2a2a; stroke-width: 2; }
+.dyn-geese .vee { transform: translateX(300px); }
+.on .dyn-geese .vee { animation: veeMini 9s linear infinite; }
+@keyframes veeMini { from { transform: translateX(300px); } to { transform: translateX(-90px); } }
+.compare-ji { display: grid; grid-template-columns: 1fr auto 1.6fr; gap: .8em; align-items: center; }
+.compare-ji .tip { font-family: var(--kai); font-size: 1.05em; }
+.compare-ji .arrow { color: var(--red); font-weight: bold; }
+
+/* 背诵：一段散文，单栏 */
+.recite-one .recite-lines { font-size: 1.12em; letter-spacing: .06em; line-height: 1.7; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4.2em; }
+  .env-cards.four { grid-template-columns: 1fr 1fr; }
+  .dyn-row { grid-template-columns: 1fr; gap: .4em; }
+  .dyn-s { font-size: 1.05em; }
+  .dyn-k { text-align: left; }
+  .compare-ji { grid-template-columns: 1fr; gap: .3em; }
+  .recite-one .recite-lines { font-size: 1em; }
+}

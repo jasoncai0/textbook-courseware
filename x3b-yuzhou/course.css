@@ -1,0 +1,62 @@
+/* 宇宙的另一边 · 本课配色：深空蓝、星光黄。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #3b4a8f;
+  --red-d: #26306b;
+  --gold: #e0a43a;
+  --gold-l: #f6dfa8;
+  --paper: #eef0f7;
+  --stone: #fafbfe;
+  --ink-2: #545a6e;
+  --line: #cdd2e2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfcff 0, transparent 40%), radial-gradient(circle at 90% 95%, #dde2f0 0, transparent 45%); }
+.scene .hd .tag { background: rgba(38, 48, 107, .92); }
+.s-cover .cover-title { font-size: 6.4em; }
+
+/* 中年级：字幕、提示、卡片字号再大一点 */
+.subs { font-size: 1.55em; line-height: 1.7; }
+.tip { font-size: 1em; }
+.clue-face.front { font-size: 1.12em; }
+.read-item p { font-size: 1.5em; }
+.subs .reveal { font-size: 1.22em; letter-spacing: .06em; color: #f6d58f; }
+
+/* 这一边 · 另一边：镜像翻转 */
+.stage > .mir-svg { flex: 0 0 auto; width: 100%; height: 9em; }
+.mir-flip { transform-box: view-box; transform-origin: 400px 0; }
+.mir-flip.on { animation: mirUnfold 1.6s ease both; }
+@keyframes mirUnfold { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.mir-rows { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: .5em; }
+.mir-row { display: grid; grid-template-columns: 1fr 1.6em 1fr; font-family: var(--kai); font-size: 1.1em; }
+.mir-l, .mir-r { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .35em .8em; line-height: 1.5; }
+.mir-l { text-align: right; }
+.mir-l b { color: var(--red); }
+.mir-line { justify-self: center; width: 3px; background: repeating-linear-gradient(var(--red) 0 6px, transparent 6px 12px); }
+.mir-r { position: relative; display: flex; align-items: center; background: #f3f5fb; perspective: 40em; min-height: 2.3em; }
+.mir-q { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1.4em; color: var(--red); transition: opacity .3s; }
+.mir-r:has(.mir-a.on) .mir-q { opacity: 0; }
+.mir-r:has(.mir-a.on) { background: #fff; }
+.mir-a { margin: 0; }
+.mir-a[data-step] { transform: rotateY(90deg); transform-origin: left center; transition: opacity .5s, transform .9s ease; }
+.mir-a.on { transform: none; }
+.mir-a b { color: #2f6b5e; }
+
+/* 另一边的乘法 */
+.eq { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .5em; font-family: var(--kai); font-size: 1.6em; }
+.eq-t { background: #fff; border: 2px solid var(--line); border-radius: .4em; padding: .15em .6em; }
+.eq-t.g { background: #eef7e9; border-color: #9cc98a; }
+.eq-t.r { background: #fff1e6; border-color: #f0b27a; }
+.eq i { font-style: normal; font-weight: bold; color: var(--red); font-size: 1.1em; }
+.s-math .stage { justify-content: center; gap: 1em; }
+
+.s-clues .clues { grid-template-columns: repeat(3, 1fr); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .subs { font-size: 1.2em; }
+  .read-item p { font-size: 1.2em; }
+  .stage > .mir-svg { height: auto; }
+  .mir-row { font-size: 1em; grid-template-columns: 1fr 1em 1fr; }
+  .mir-l, .mir-r { padding: .3em .5em; }
+  .eq { font-size: 1.2em; }
+  .s-clues .clues { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,49 @@
+/* 将相和 · 本课配色：宫殿的朱红、青铜的暗金。页面样式见 ../shared/narrative.css，提速小工具见 speed.css */
+:root {
+  --red: #9b3b2a;
+  --red-d: #6a2418;
+  --gold: #b08a3e;
+  --gold-l: #ecd9a8;
+  --paper: #f4eee2;
+  --stone: #fcf9f2;
+  --ink-2: #62584c;
+  --line: #d9ccb4;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfaf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #eadfca 0, transparent 45%); }
+.subs .hl { color: #f3cf86; font-weight: normal; }
+
+/* ---------- 连词成句 + 闪卡 ---------- */
+.s-chunk .bd { grid-template-columns: 1fr 36%; }
+.bubbles { flex: 0 0 auto; align-items: flex-start; }
+.bubbles .bubble { flex: 1; }
+
+/* ---------- 因果线 ---------- */
+.cause { flex: 1; min-height: 0; display: flex; align-items: stretch; gap: .4em; }
+.story { flex: 1.25; display: flex; flex-direction: column; background: #fff; border-radius: .6em; overflow: hidden; box-shadow: 0 .2em .7em rgba(60, 30, 20, .12); border-top: .3em solid var(--red); }
+.story .pic { flex: 1; min-height: 5em; background: center / cover no-repeat #e9dfcc; }
+.story h3 { margin: .4em .7em .1em; color: var(--red-d); font-size: 1.2em; letter-spacing: .1em; }
+.story p { margin: 0 .8em .7em; font-family: var(--kai); line-height: 1.65; font-size: .95em; }
+.story.end { flex: .9; justify-content: center; text-align: center; background: var(--red); border-top-color: var(--gold); }
+.story.end h3 { color: #fff; font-size: 1.8em; }
+.story.end p { color: #f6e8cf; }
+.arrow { flex: .62; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-size: .82em; line-height: 1.5; color: var(--ink-2); }
+.arrow::after { content: ""; width: 100%; height: 1.1em; margin-top: .3em; background: var(--gold); clip-path: polygon(0 35%, 72% 35%, 72% 0, 100% 50%, 72% 100%, 72% 65%, 0 65%); }
+.arrow b { color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-chunk .bd { display: flex; flex-direction: column; }
+  .bubbles { flex-direction: column; }
+  .cause { flex-direction: column; }
+  .story .pic { min-height: 8em; }
+  .arrow { flex-direction: row; gap: .6em; padding: .2em 0; }
+  .arrow::after { width: 1.2em; height: 1.6em; margin: 0; clip-path: polygon(35% 0, 65% 0, 65% 72%, 100% 72%, 50% 100%, 0 72%, 35% 72%); }
+}
+
+/* ---------- 品人物：七个事例，压紧一点 ---------- */
+@media (min-width: 821px) and (min-height: 521px) {
+  .s-sort .bd { grid-template-columns: 24% 1fr; }
+  .s-sort .sort-list { gap: .3em; }
+  .s-sort .sort-row { padding: .25em .7em; grid-template-columns: 1fr auto 9.5em; }
+  .s-sort .sort-row .s { font-size: .95em; line-height: 1.45; }
+  .s-sort .sort-row .btn { padding: .1em .45em; font-size: .85em; }
+}

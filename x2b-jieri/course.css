@@ -1,0 +1,128 @@
+/* 传统节日 · 本课配色：中国红、灯笼金。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #c8372d;
+  --red-d: #8c2018;
+  --gold: #e8a52a;
+  --gold-l: #fde2a0;
+  --paper: #fbf3ea;
+  --stone: #fffdf8;
+  --ink-2: #6b5546;
+  --line: #ecd5bf;
+}
+
+.jr-listen { display: flex; align-items: center; gap: .8em; margin: .4em 0; }
+.jr-listen .btn { font-size: 1.3em; }
+.jr-pop { font-family: var(--kai); font-size: 2.2em; color: #ffd78a; opacity: 0; }
+.jr-pop.go { animation: jrPop 2.2s ease-out; }
+@keyframes jrPop { 10% { opacity: 1; transform: scale(1.2) rotate(-4deg); } 30% { transform: scale(1) rotate(3deg); } 80% { opacity: 1; } to { opacity: 0; } }
+.jr-ask { font-family: var(--kai); font-size: 1.8em; margin: .2em 0 .5em; }
+
+/* ---------- 节日年轮 ---------- */
+.jr-bd { grid-template-columns: 1fr 1.15fr; align-items: center; }
+.jr-ring { position: relative; height: 100%; max-height: 30em; aspect-ratio: 1; justify-self: center; }
+.jr-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.jr-track { fill: #fff8ec; stroke: #ecd5bf; stroke-width: 2.4; }
+.jr-done { fill: none; stroke: var(--red); stroke-width: 2.4; stroke-dasharray: calc(var(--k, 0) * 1) 8; transform: rotate(-90deg); transform-origin: 50% 50%; transform-box: view-box; transition: stroke-dasharray .9s ease; }
+.jr-hand { transform-box: view-box; transform-origin: 50% 50%; transform: rotate(calc(var(--k, 0) * 45deg)); transition: transform .9s cubic-bezier(.4, 1.4, .5, 1); opacity: 0; }
+.started .jr-hand { opacity: 1; }
+.jr-hand line { stroke: var(--gold); stroke-width: 2.6; stroke-linecap: round; }
+.jr-hand circle { fill: var(--gold); }
+.jr-mid { position: absolute; left: 50%; top: 62%; translate: -50% -50%; font-family: var(--kai); font-size: 1.3em; color: var(--ink-2); }
+.jr-node { position: absolute; translate: -50% -50%; display: flex; flex-direction: column; align-items: center; font: inherit; font-family: var(--kai); font-size: 1.05em; line-height: 1.8; padding: .1em .3em; border-radius: .8em; border: 2px solid var(--line); background: #fff; cursor: pointer; white-space: nowrap; transition: transform .4s, background .4s; }
+.jr-node i { font-style: normal; font-size: 1.8em; line-height: 1.1; }
+.jr-node rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.jr-node.past { border-color: var(--gold); }
+.jr-node.now { background: var(--red); color: #fff; border-color: var(--red); transform: scale(1.18); z-index: 2; }
+.jr-node.now rt { color: #ffe7a3; }
+.jr-panel { position: relative; height: 100%; display: grid; }
+.jr-st { grid-area: 1 / 1; align-self: center; background: #fff; border-radius: 1em; padding: .4em 1.4em .8em; box-shadow: 0 .3em 1em rgba(120, 40, 20, .12); border-top: .35em solid var(--red); }
+.jr-st.on:has(~ .jr-st.on) { opacity: 0; }
+.jr-st p { margin: 0; font-family: var(--kai); font-size: 2.6em; line-height: 2.1; white-space: nowrap; }
+.jr-st .jr-date { font-family: var(--serif); font-size: 1.2em; line-height: 1.8; color: var(--red-d); }
+.jr-slide .jr-panel:not(:has(.jr-st.on))::before { content: "按一下，指针转到第一个节日"; grid-area: 1 / 1; align-self: center; justify-self: center; font-family: var(--kai); font-size: 1.6em; color: var(--ink-2); }
+
+/* ---------- 排一排 ---------- */
+.jr-order { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.2em; }
+.jr-cal { display: grid; grid-template-columns: repeat(6, 1fr); gap: .6em; width: 100%; }
+.jr-slot { display: flex; flex-direction: column; align-items: center; background: #fff; border: 2px dashed var(--line); border-radius: .6em; min-height: 6.2em; }
+.jr-slot b { width: 100%; text-align: center; background: var(--red); color: #fff; border-radius: .4em .4em 0 0; font-family: var(--py); }
+.jr-slot span { font-family: var(--kai); font-size: 1.9em; line-height: 2.1; }
+.jr-slot span:not(:empty) { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1); }
+.jr-slot rt, .jr-fest rt, .jr-cus rt, .jr-lamp rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.jr-pool { display: flex; gap: .8em; flex-wrap: wrap; justify-content: center; }
+.jr-fest { font: inherit; font-family: var(--kai); font-size: 2em; line-height: 2.1; padding: 0 .6em; border-radius: .5em; border: 3px solid var(--gold); background: #fffbef; cursor: pointer; }
+.jr-fest.used { visibility: hidden; }
+.jr-fest.wrong { animation: nope .35s; border-color: #e3a998; }
+.jr-omsg, .jr-lmsg, .jr-fmsg { margin: 0; font-family: var(--kai); font-size: 1.35em; color: var(--red-d); text-align: center; min-height: 1.5em; }
+.all-done .jr-omsg, .all-done .jr-lmsg { color: var(--ok); font-weight: bold; }
+
+/* ---------- 挂灯笼 ---------- */
+.jr-lan { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .8em; }
+.jr-rope { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: .5em; padding-top: .8em; background: linear-gradient(#8b5a2b, #8b5a2b) 0 .3em / 100% .25em no-repeat; }
+.jr-lantern { display: flex; flex-direction: column; align-items: center; gap: .3em; min-height: 0; border-radius: .6em; }
+.jr-lamp { position: relative; display: grid; place-items: center; width: 100%; max-width: 6em; aspect-ratio: 1 / 1.05; font-style: normal; font-family: var(--kai); font-size: 1.3em; line-height: 1.8; color: #fff; background: radial-gradient(circle at 50% 40%, #e66a5a, #a8261c 75%); border-radius: 45% 45% 40% 40%; box-shadow: inset 0 0 0 .15em #e8a52a; transition: background .6s, box-shadow .6s; }
+.jr-lamp::before, .jr-lamp::after { content: ""; position: absolute; left: 30%; right: 30%; height: .35em; background: #e8a52a; border-radius: .1em; }
+.jr-lamp::before { top: -.25em; }
+.jr-lamp::after { bottom: -.25em; }
+.jr-lamp rt { color: #ffe7a3; }
+.jr-lantern.lit .jr-lamp { background: radial-gradient(circle at 50% 40%, #ffe082, #f08a24 70%); color: var(--red-d); box-shadow: inset 0 0 0 .15em #fff3c4, 0 0 1.2em #ffcf5a; }
+.jr-lantern.lit .jr-lamp rt { color: var(--red-d); }
+.jr-lantern.wrong { animation: nope .35s; }
+.jr-hang { display: flex; flex-direction: column; align-items: center; gap: .2em; }
+.jr-hang span { font-family: var(--kai); font-size: 1.15em; line-height: 1.9; background: #fff; border: 2px solid var(--gold); border-radius: .4em; padding: 0 .3em; white-space: nowrap; animation: pop .45s cubic-bezier(.3, 1.6, .5, 1); }
+.jr-hang rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.jr-tray { display: flex; flex-wrap: wrap; gap: .5em; justify-content: center; }
+.jr-cus { font: inherit; font-family: var(--kai); font-size: 1.5em; line-height: 2; padding: 0 .5em; border-radius: .5em; border: 3px solid var(--red); background: #fff; cursor: grab; touch-action: none; user-select: none; }
+.jr-cus.sel { background: var(--gold-l); }
+.jr-cus.dragging { position: relative; z-index: 30; box-shadow: 0 .3em 1em rgba(0, 0, 0, .3); }
+.jr-cus.used { visibility: hidden; position: absolute; }
+.jr-cus.wrong { animation: nope .35s; }
+
+/* ---------- 背一背 ---------- */
+.jr-recite { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; align-content: center; gap: 0 2em; font-family: var(--kai); font-size: 1.62em; background: var(--stone); border-radius: .5em; padding: .3em .8em; box-shadow: 0 .2em .8em rgba(80, 50, 20, .08); }
+.jr-recite p { margin: 0; line-height: 2.7; white-space: nowrap; }
+
+/* ---------- 放烟花 ---------- */
+.jr-fire { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .7em; padding-bottom: 1em; border-radius: 1em; overflow: hidden; background: linear-gradient(#141d3d, #2a3463 60%, #49406d); }
+.jr-sky { position: absolute; inset: 0 0 40% 0; pointer-events: none; }
+.jr-burst { position: absolute; width: 0; height: 0; }
+.jr-burst i { position: absolute; left: -.25em; top: -.25em; width: .5em; height: .5em; border-radius: 50%; background: var(--c); box-shadow: 0 0 .6em var(--c); animation: jrBurst 1.4s ease-out forwards; }
+@keyframes jrBurst { from { transform: rotate(var(--a)) translateY(0); opacity: 1; } 70% { opacity: 1; } to { transform: rotate(var(--a)) translateY(-5em); opacity: .55; } }
+.jr-fq { margin: 0; font-family: var(--kai); font-size: 3em; line-height: 1.8; color: #fff; z-index: 1; }
+.jr-fopts { display: flex; gap: 1.2em; z-index: 1; }
+.jr-fo { font: inherit; font-family: var(--kai); font-size: 2.8em; width: 1.7em; height: 1.7em; border-radius: 50%; border: 3px solid #ffd166; background: #fff9e6; cursor: pointer; }
+.jr-fo.right { background: #ffd166; }
+.jr-fo.wrong { animation: nope .35s; border-color: #e3a998; }
+.jr-fire .jr-fmsg { color: #ffe7a3; z-index: 1; }
+.jr-fire .hz-dots { z-index: 1; }
+
+/* ---------- 回顾 ---------- */
+.jr-sum { justify-content: center; align-items: center; gap: 1.4em; }
+.jr-sumrow { display: flex; gap: .6em; flex-wrap: wrap; justify-content: center; }
+.jr-sumrow span { display: flex; flex-direction: column; align-items: center; font-size: 2.4em; background: #fff; border-radius: .4em; padding: .15em .3em; border-bottom: .12em solid var(--red); }
+.jr-sumrow b { font-family: var(--kai); font-weight: normal; font-size: .6em; }
+
+/* 读准字音：认读 + 会写字多，卡片略小 */
+.s-ziyin .zy-card { font-size: 1.9em; }
+.s-ziyin .zy-write { font-size: 1.9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .jr-ask { font-size: 1.2em; }
+  .jr-pop { font-size: 1.4em; }
+  .jr-bd { display: flex; flex-direction: column; }
+  .jr-ring { height: auto; width: 100%; max-width: 22em; }
+  .jr-node { font-size: .75em; }
+  .jr-panel { width: 100%; min-height: 9em; }
+  .jr-st p { font-size: 1.6em; }
+  .jr-cal { grid-template-columns: repeat(3, 1fr); }
+  .jr-fest { font-size: 1.4em; }
+  .jr-rope { grid-template-columns: repeat(4, 1fr); flex: none; row-gap: 1em; }
+  .jr-lamp { font-size: 1em; }
+  .jr-cus { font-size: 1.15em; }
+  .jr-recite { grid-template-columns: 1fr; font-size: 1.25em; }
+  .jr-recite p { white-space: normal; }
+  .jr-fire { min-height: 24em; }
+  .jr-fq { font-size: 2em; }
+  .jr-fo { font-size: 2em; }
+  .jr-sumrow span { font-size: 1.7em; }
+}

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>花钟 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/poem.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/huazhong.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">三年级下册 · 第四单元 · 第 13 课</p>
+    <h1 class="cover-title">花钟</h1>
+    <p class="cover-sub">看，花儿在悄悄绽放。听，蜜蜂在窃窃私语……</p>
+    <div class="chips" data-step="1"><span class="chip">借助关键语句概括一段话的大意</span></div>
+    <p class="cover-flow" data-step="2">拨一拨花钟　→　找关键句　→　为什么不同　→　写一种花</p>
+  </div>
+  <p class="note">第四单元的主题是观察。本课三个自然段：第 1 段写不同的花开放时间不同，第 2 段写原因，第 3 段写植物学家修建的“花钟”。重点是找到提示段落意思的关键语句。</p>
+</section>
+
+<!-- ================= 字词：读准字音（数据见 ziyin.js） ================= -->
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 第 1 段：拨花钟 ================= -->
+<section class="slide s-clock">
+  <div class="hd"><span class="tag">第 1 自然段</span><h2>拨一拨时针：几点开什么花？</h2></div>
+  <div class="bd">
+    <div class="stage clock-stage" data-noswipe>
+      <svg viewBox="0 0 440 440" id="clock"></svg>
+      <div class="clock-ctrl">
+        <button class="btn" type="button" id="hPrev" aria-label="往回拨一小时">◀ 往回拨</button>
+        <input type="range" id="hRange" min="0" max="23" step="1" value="4" aria-label="时间">
+        <button class="btn solid" type="button" id="hNext" aria-label="往后拨一小时">往后拨 ▶</button>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="now-card" id="nowCard"></div>
+      <div class="strip" id="strip"></div>
+      <p class="tip">内圈：凌晨到中午开的花；外圈：下午到晚上开的花。点一点钟面上的花或上面的时间，时针会自己转过去。</p>
+    </div>
+  </div>
+  <p class="note">时间以课文为准：凌晨四点牵牛花、五点左右蔷薇、七点睡莲、中午十二点左右午时花、下午三点万寿菊、下午五点紫茉莉、七点左右月光花、晚上八点夜来香、九点左右昙花。先让学生边读边拨，再合上书看钟面说一说。</p>
+</section>
+
+<!-- ================= 第 1 段：关键句 ================= -->
+<section class="slide s-key1">
+  <div class="hd"><span class="tag">课后第 2 题</span><h2>第 1 段：哪句话提示了主要意思？</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">读第 1 自然段，点出你认为最能说明这段意思的那一句。</p>
+      <div data-picks="key1" data-noswipe></div>
+      <p class="tip gold" data-step="1"><b>这段的大意：</b>一天之内，不同的花开放的时间是不同的。后面写的九种花，都在说明这句话。</p>
+    </div>
+  </div>
+  <p class="note">课文旁的泡泡：“这两个自然段中，各有哪句话提示了段落的主要意思呢？”关键语句不一定在第一句——第 1 段的第一句只是开头写花美，第二句才是主要意思。</p>
+</section>
+
+<!-- ================= 课后第 3 题：开放的说法 ================= -->
+<section class="slide s-open">
+  <div class="hd"><span class="tag">课后第 3 题</span><h2>同样是“开放”，说法各不同</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <div class="open-img" data-bg="assets/qianniu.jpg"></div>
+      <p class="tip gold" data-step="1"><b>三种写法：</b>把花<b>比作</b>别的东西；把花当作<b>人</b>来写；<b>直接说</b>开花。前两种让花儿活了起来。</p>
+    </div>
+    <div class="stage">
+      <p class="tip">这样写“开放”，用的是哪种写法？点一点。</p>
+      <div class="sort-list" id="sortList" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">课后第 3 题：课文用不同的说法表达鲜花的开放，填一填，体会一下。有的句子不止一种答案：“吹起了紫色的小喇叭”既把花比作喇叭，又像人在吹。</p>
+</section>
+
+<!-- ================= 第 2 段：为什么 ================= -->
+<section class="slide s-why">
+  <div class="hd"><span class="tag">第 2 自然段</span><h2>不同的植物为什么开花的时间不同？</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <p><span class="mark" data-step="1">不同的植物为什么开花的时间不同呢？有的植物开花的时间，与温度、湿度、光照有着密切的关系。</span>比如，昙花的花瓣又大又娇嫩，白天阳光强，气温高，空气干燥，要是在白天开花，就有被灼伤的危险。深夜气温过低，开花也不适宜。长期以来，它适应了晚上九点左右的温度和湿度，到了那时，便悄悄绽开淡雅的花蕾，向人们展示美丽的笑脸。<span class="mark" data-step="2">还有的花，需要昆虫传播花粉，才能结出种子，它们开花的时间往往跟昆虫活动的时间相吻合。</span></p>
+    </div>
+    <div class="stage">
+      <button class="media-btn" hidden data-img="assets/tanhua.jpg" data-video="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/63b59063bf06481d4ab34af9e944145f1fdb011006ecd76e8a1bdb97bb3fc4df.mp4" data-cap="AI 想象图：夜里九点左右，昙花悄悄绽开。供想象参考。">看看昙花开</button>
+      <p class="tip">帮昙花选一选：什么时候开花最好？</p>
+      <svg viewBox="0 0 520 250" id="tanSvg" class="tan-none" data-noswipe></svg>
+      <div class="btns tan-btns" data-noswipe>
+        <button class="btn" type="button" data-t="day">白天</button>
+        <button class="btn" type="button" data-t="nine">晚上九点左右</button>
+        <button class="btn" type="button" data-t="deep">深夜</button>
+      </div>
+      <p class="tip tan-say" id="tanSay">点上面的按钮试一试。</p>
+      <div class="bug-card" data-step="2"><div class="bug-img" data-bg="assets/kunchong.jpg"></div><p><b>原因二：</b>靠昆虫传粉的花，昆虫出来活动的时候开花，正好“吻合”。</p></div>
+    </div>
+  </div>
+  <p class="note">第 2 段先提问，再回答：原因一是温度、湿度、光照（举昙花的例子），原因二是昆虫传粉。“吻合”：完全符合，正好对上。</p>
+</section>
+
+<!-- ================= 第 3 段：植物学家的花钟 ================= -->
+<section class="slide s-garden">
+  <div class="hd"><span class="tag">第 3 自然段</span><h2>花的“时钟”</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <div class="quote">
+        <p>一位植物学家曾有意把不同时间开放的花种在一起，把花圃修建得像钟面一样，组成花的“时钟”。这些花在二十四小时内依次开放。你只要看看什么花刚刚开放，就知道大致是几点钟，这是不是很有趣？</p>
+      </div>
+      <div class="garden-img" data-bg="assets/huazhong.jpg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip">看花猜时间：什么花刚刚开放？大约是几点钟？</p>
+      <div class="quiz"><b>紫茉莉苏醒过来了</b><div data-picks="q1" data-noswipe></div></div>
+      <div class="quiz"><b>睡莲从梦中醒来了</b><div data-picks="q2" data-noswipe></div></div>
+      <div class="quiz"><b>昙花含笑一现</b><div data-picks="q3" data-noswipe></div></div>
+    </div>
+  </div>
+  <p class="note">“大致”说明花钟不像真正的钟那么准：天气、地方不同，花开的时间也会有变化。可以请学生回家观察一种花，看看它几点开。</p>
+</section>
+
+<!-- ================= 段落大意 ================= -->
+<section class="slide s-gist">
+  <div class="hd"><span class="tag">课后第 2 题</span><h2>借助关键语句，说说段落的大意</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">先找关键语句，再用自己的话说大意。说完点一点格子对一对。</p>
+      <table class="gist" data-noswipe>
+        <tr><th></th><th>关键语句</th><th>段落大意</th></tr>
+        <tr><th>第 1 段</th><td>一天之内，不同的花开放的时间是不同的。</td><td><button type="button" class="cell">一天之内，不同的花开放的时间不同。</button></td></tr>
+        <tr><th>第 2 段</th><td>不同的植物为什么开花的时间不同呢？</td><td><button type="button" class="cell">植物开花的时间不同，跟温度、湿度、光照有关，也跟昆虫活动的时间有关。</button></td></tr>
+      </table>
+      <p class="tip gold" data-step="1"><b>方法：</b>找到提示段落意思的关键语句，再结合后面的内容，用自己的话说清楚——这就是概括一段话的大意。</p>
+    </div>
+  </div>
+  <p class="note">第 2 段的关键语句是一个问句，概括大意时要把答案（两个原因）补进去。答案不唯一，意思对即可。</p>
+</section>
+
+<!-- ================= 背诵 ================= -->
+<section class="slide s-recite">
+  <div class="hd"><span class="tag">课后第 1 题</span><h2>背诵第 1 自然段</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">看着花钟的顺序背：凌晨四点 → 五点 → 七点 → 中午 → 下午三点 → 下午五点 → 七点 → 八点 → 九点。想不起来，点空格偷看一个字。</p>
+      <div class="recite" data-recite="p1" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">背诵时按时间顺序串起九种花。最后一句原文是“昙花却在九点左右含笑一现……”，挖空练习里省去了省略号。</p>
+</section>
+
+<!-- ================= 小练笔 ================= -->
+<section class="slide s-mywrite">
+  <div class="hd"><span class="tag">小练笔</span><h2>仿照课文，写一写你喜欢的花</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">选一种花，想一想：它开放的样子像什么？像人在做什么？</p>
+      <div class="btns" id="flBtns" data-noswipe></div>
+      <p class="tip gold" id="flPrompt"></p>
+    </div>
+    <div class="stage">
+      <textarea id="flText" data-noswipe placeholder="（时间），＿＿＿花……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="flExample">看看示例</button></div>
+      <p class="example" id="flExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">课后小练笔：仿照课文中表达鲜花开放的语句，写一写你喜欢的花（课本举了向日葵、蝴蝶兰、牡丹花）。提醒用上“时间 + 花 + 开放的说法”。</p>
+</section>
+
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>这节课，我们……</h2></div>
+  <div class="bd full">
+    <div class="stage" style="justify-content:center">
+      <div class="board" data-step="1">
+        <div style="text-align:center;font-size:1.4em;margin-bottom:.2em"><b>花钟</b></div>
+        <div>第 1 段　不同的花，开放的时间不同（九种花 · 不同的“开放”）</div>
+        <div>第 2 段　为什么不同：温度 · 湿度 · 光照　　昆虫传粉</div>
+        <div>第 3 段　植物学家把花种成“钟”：看花知时间</div>
+      </div>
+      <div class="tasks" data-step="2">
+        <p class="tip gold"><b>读法：</b>借助关键语句，概括一段话的大意。</p>
+        <p class="tip jade"><b>观察：</b>留心观察，会有新的发现。明天早上看看，你家附近什么花先开？</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">可布置观察作业：选一种植物，连续几天在不同时间观察它，记录开花的时间。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="../shared/poem.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>雷雨 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="../shared/hanzi.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面：声音导入 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/leizhong.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">二年级下册 · 第六单元 · 课文 16</p>
+    <button type="button" class="ly-listen" id="lyListen" data-noswipe>🔊 闭上眼睛，听一听</button>
+    <p class="ly-ask" data-step="1">轰隆隆……哗哗哗……这是什么天气？</p>
+    <h1 class="cover-title" data-step="2">雷雨</h1>
+    <div class="chips" data-step="3"><span class="chip">雷雨前 · 雷雨中 · 雷雨后</span><span class="chip">拖一拖天气滑块</span><span class="chip">压 · 垂 · 挂</span><span class="chip">背诵</span></div>
+  </div>
+  <p class="note">声音导入：先不出标题，点“听一听”，播放用电脑合成的雷声和雨声（第一次点击才会出声），请孩子闭上眼睛猜天气。再出示课题“雷雨”。问：雷雨来之前、雨下着的时候、雨停了以后，天空会有什么变化？</p>
+</section>
+
+<!-- ================= 读准字音 ================= -->
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 一 · 天气时间滑块（本课独有） ================= -->
+<section class="slide ly-time">
+  <div class="hd"><span class="tag">一 · 读课文</span><h2>拖动时间：雷雨前 → 雷雨中 → 雷雨后</h2></div>
+  <div class="bd ly-bd" data-noswipe>
+    <div class="ly-stage" id="lyStage" data-p="0">
+      <div class="ly-img a" data-bg="assets/leiqian.jpg"></div>
+      <div class="ly-img b" data-bg="assets/leizhong.jpg"></div>
+      <div class="ly-img c" data-bg="assets/leihou.jpg"></div>
+      <svg class="ly-fx" id="lyFx" viewBox="0 0 800 450" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <button type="button" class="ly-sound" id="lySound">🔇 打开声音</button>
+    </div>
+    <div class="ly-side">
+      <div class="ly-paras" id="lyParas">
+        <p data-pyk="压:yā 蝉:chán">满天的乌云，黑沉沉地压下来。树上的叶子一动不动，蝉一声也不出。</p>
+        <p data-pyk="垂:chuí">忽然一阵大风，吹得树枝乱摆。一只蜘蛛从网上垂下来，逃走了。</p>
+        <p data-pyk="">闪电越来越亮，雷声越来越响。</p>
+        <p data-pyk="哗:huā">哗，哗，哗，雨下起来了。</p>
+        <p data-pyk="">雨越下越大。往窗外望去，树啊，房子啊，都看不清了。</p>
+        <p data-pyk="">渐渐地，渐渐地，雷声小了，雨声也小了。</p>
+        <p data-pyk="户:hù 扑:pū">天亮起来了。打开窗户，清新的空气迎面扑来。</p>
+        <p data-pyk="">雨停了。太阳出来了。一条彩虹挂在天空。蝉叫了。蜘蛛又坐在网上。池塘里水满了，青蛙也叫起来了。</p>
+      </div>
+    </div>
+    <div class="ly-bar">
+      <input type="range" id="lyRange" min="0" max="7" step="1" value="0" aria-label="时间滑块">
+      <div class="ly-marks"><span class="m0">雷雨前</span><span class="m1">雷雨中</span><span class="m2">雷雨后</span></div>
+    </div>
+    <i class="ly-mk" data-step="1"></i><i class="ly-mk" data-step="2"></i><i class="ly-mk" data-step="3"></i><i class="ly-mk" data-step="4"></i><i class="ly-mk" data-step="5"></i><i class="ly-mk" data-step="6"></i><i class="ly-mk" data-step="7"></i>
+  </div>
+  <p class="note">本课独有：天气时间滑块。整篇课文 8 个自然段放在一条时间线上：按 → 或拖动下面的滑块，画面、声音、课文一起变——乌云压下来、大风吹、蜘蛛逃走（雷雨前）；闪电、雷声、哗哗的雨、看不清、渐渐小了（雷雨中）；天亮了、彩虹、蝉叫、青蛙叫（雷雨后）。先点右上角“打开声音”。读完请孩子拖着滑块，自己说一说雷雨前、中、后的变化。</p>
+</section>
+
+<section class="slide scene">
+  <video class="scene-bg" data-focus="1.04 50% 50%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/1505ca46f01ab3cd816ff4b12dcf9b24abbf01d52ecc8c4536ebc607ec03948b.mp4" data-poster="assets/leizhong.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读课文</span><span class="sub">第 4–6 自然段 · 雨越下越大</span></div>
+  <div class="subs">
+    <p data-step="1" data-pyk="哗:huā">哗，哗，哗，雨下起来了。</p>
+    <p data-step="2" data-pyk="">雨越下越大。</p>
+    <p data-step="3" data-pyk="">往窗外望去，树啊，房子啊，都看不清了。</p>
+    <p data-step="4" data-pyk="">渐渐地，渐渐地，雷声小了，雨声也小了。</p>
+  </div>
+  <p class="note">朗读指导：“哗，哗，哗”一声比一声响；“越下越大”读得快一点、重一点；“渐渐地，渐渐地”声音慢慢变轻、变慢，读出雨小下去的样子。</p>
+</section>
+
+<!-- ================= 二 · 课后题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">二 · 课后第 1 题</span><h2>分一分：雷雨前、雷雨中、雷雨后</h2></div>
+  <div class="bd full"><div class="stage ly-sort" id="lySort" data-noswipe></div></div>
+  <p class="note">课后第 1 题：说说雷雨前、雷雨中和雷雨后景色的变化。先点上面一张卡片，再点它该去的那一栏。分完以后，按三栏的顺序连起来说一说：雷雨前……雷雨中……雷雨后……</p>
+</section>
+
+<section class="slide">
+  <div class="hd"><span class="tag">二 · 课后第 2 题</span><h2>加点的词用得真好！点一点，看一看</h2></div>
+  <div class="bd full"><div class="stage ly-words" data-noswipe>
+    <button type="button" class="ly-w" data-w="ya"><svg viewBox="0 0 240 160" aria-hidden="true"><g class="ly-wcloud"><ellipse cx="120" cy="40" rx="100" ry="34" fill="#4a5466"/><ellipse cx="70" cy="52" rx="50" ry="26" fill="#3a4354"/><ellipse cx="170" cy="54" rx="56" ry="26" fill="#3a4354"/></g><path d="M0 150H240" stroke="#7a8a6a" stroke-width="10"/><path d="M60 150v-30M120 150v-40M180 150v-26" stroke="#5a7a4a" stroke-width="8"/></svg>
+      <p data-pyk="压:yā">满天的乌云，黑沉沉地<b>压</b>下来。</p><small>像有很重的东西从头顶慢慢往下沉，人都觉得闷。</small></button>
+    <button type="button" class="ly-w" data-w="chui"><svg viewBox="0 0 240 160" aria-hidden="true"><path d="M20 10L220 10M40 10L120 70L200 10M80 10L120 70L160 10" stroke="#aab" stroke-width="2" fill="none"/><g class="ly-wspider"><path d="M120 70V70" class="ly-thread"/><g class="ly-sp"><circle cx="120" cy="74" r="9" fill="#333"/><path d="M110 70l-10 -6M110 76l-12 2M130 70l10 -6M130 76l12 2" stroke="#333" stroke-width="2"/></g></g></svg>
+      <p data-pyk="垂:chuí">一只蜘蛛从网上<b>垂</b>下来，逃走了。</p><small>蜘蛛吐着丝，一点一点往下落。</small></button>
+    <button type="button" class="ly-w" data-w="gua"><svg viewBox="0 0 240 160" aria-hidden="true"><g class="ly-wbow" fill="none" stroke-width="9"><path d="M20 150A100 100 0 0 1 220 150" stroke="#e8455a"/><path d="M29 150A91 91 0 0 1 211 150" stroke="#f59a3a"/><path d="M38 150A82 82 0 0 1 202 150" stroke="#f2d23a"/><path d="M47 150A73 73 0 0 1 193 150" stroke="#5ab45a"/><path d="M56 150A64 64 0 0 1 184 150" stroke="#4a8fd6"/><path d="M65 150A55 55 0 0 1 175 150" stroke="#7a5ac6"/></g></svg>
+      <p data-pyk="">一条彩虹<b>挂</b>在天空。</p><small>彩虹弯弯的，好像谁把它挂在了天上。</small></button>
+  </div></div>
+  <p class="note">课后第 2 题：读句子，注意加点的词。点一张卡片，看动画：“压”——乌云又低又重，一点点往下沉；“垂”——蜘蛛顺着丝往下落；“挂”——彩虹像一座桥挂在天上。换成别的词试一试（飘下来、掉下来、出现在天空），哪个更好？再把句子抄写下来。</p>
+</section>
+
+<section class="slide">
+  <div class="hd"><span class="tag">二 · 课后第 3 题</span><h2>你见过什么样的雨？</h2></div>
+  <div class="bd full"><div class="stage ly-rains" data-noswipe>
+    <button type="button" class="ly-rain r1"><i></i><b>毛毛雨</b><small>细细的，像牛毛</small></button>
+    <button type="button" class="ly-rain r2"><i></i><b>阵雨</b><small>一阵一阵，下下停停</small></button>
+    <button type="button" class="ly-rain r3"><i></i><b>雷雨</b><small>打雷、闪电，雨很大</small></button>
+    <button type="button" class="ly-rain r4"><i></i><b data-pyk="暴:bào">暴雨</b><small>又急又猛，哗哗地倒下来</small></button>
+  </div></div>
+  <p class="note">课后第 3 题：读一读，点一张卡片看看这种雨的样子。再请孩子说说自己见过的雨：什么时候？在哪儿？雨是什么样子的？当时你在做什么？</p>
+</section>
+
+<!-- ================= 三 · 背诵 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">三 · 课后第 1 题</span><h2>背一背：按“前—中—后”的顺序</h2></div>
+  <div class="bd full"><div class="stage ly-recite">
+    <div class="ly-rc"><h3>雷雨前</h3>
+      <p data-pyk="压:yā 蝉:chán">满天的<span class="hz-blank" data-step="1">乌云</span>，黑沉沉地<span class="hz-blank" data-step="1">压</span>下来。树上的叶子<span class="hz-blank" data-step="1">一动不动</span>，蝉一声也不出。</p>
+      <p data-pyk="垂:chuí">忽然一阵<span class="hz-blank" data-step="2">大风</span>，吹得树枝乱摆。一只蜘蛛从网上<span class="hz-blank" data-step="2">垂</span>下来，逃走了。</p></div>
+    <div class="ly-rc b"><h3>雷雨中</h3>
+      <p data-pyk="">闪电<span class="hz-blank" data-step="3">越来越亮</span>，雷声<span class="hz-blank" data-step="3">越来越响</span>。</p>
+      <p data-pyk="哗:huā">哗，哗，哗，雨下起来了。</p>
+      <p data-pyk="">雨<span class="hz-blank" data-step="4">越下越大</span>。往窗外望去，树啊，房子啊，都<span class="hz-blank" data-step="4">看不清</span>了。</p>
+      <p data-pyk="">渐渐地，渐渐地，雷声<span class="hz-blank" data-step="5">小</span>了，雨声也<span class="hz-blank" data-step="5">小</span>了。</p></div>
+    <div class="ly-rc c"><h3>雷雨后</h3>
+      <p data-pyk="户:hù 扑:pū">天亮起来了。打开窗户，<span class="hz-blank" data-step="6">清新</span>的空气迎面扑来。</p>
+      <p data-pyk="">雨停了。太阳出来了。一条<span class="hz-blank" data-step="7">彩虹</span><span class="hz-blank" data-step="7">挂</span>在天空。蝉叫了。蜘蛛又坐在网上。池塘里水满了，青蛙也叫起来了。</p></div>
+  </div></div>
+  <p class="note">背诵：按雷雨前、中、后三栏背，先背出画面再背句子。空格里是写景物变化的关键词，背不出时想一想滑块上的画面，再按一下出字。</p>
+</section>
+
+<!-- ================= 四 · 识字写字 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">四 · 生字卡</span><h2>认一认：6 个生字</h2></div>
+  <div class="bd full"><div class="stage"><div data-hz="cards"></div></div></div>
+  <p class="note">点左边的字，读字、读词。“压”下面是“土”，右边有一点；“蝉”虫字旁，是一种会叫的昆虫；“扑”提手旁，“迎面扑来”就像空气一下子扑到脸上。</p>
+</section>
+
+<section class="slide">
+  <div class="hd"><span class="tag">四 · 识字游戏</span><h2>雨后彩虹：读对一个字，画上一道颜色</h2></div>
+  <div class="bd full"><div class="stage"><div class="ly-bowgame" id="lyBow" data-noswipe></div></div></div>
+  <p class="note">雨停了，天上要出彩虹。看拼音，从三个字里选对的，彩虹就多一道颜色；七道颜色都画上，彩虹就挂在天空了。</p>
+</section>
+
+<section class="slide">
+  <div class="hd"><span class="tag">四 · 写字</span><h2>写一写：雷 乌 黑 压 垂</h2></div>
+  <div class="bd full"><div class="stage"><div data-hz="write" data-key="a"></div></div></div>
+  <p class="note">“雷”雨字头，下面是“田”，雨字头的横钩写扁；“乌”比“鸟”少一点；“黑”下面四点底；“压”厂字旁，里面“土”的右上有一点；“垂”中间的横最长，竖从上往下穿过。</p>
+</section>
+
+<section class="slide">
+  <div class="hd"><span class="tag">四 · 写字</span><h2>写一写：户 新 迎 扑</h2></div>
+  <div class="bd full"><div class="stage"><div data-hz="write" data-key="b"></div></div></div>
+  <p class="note">“户”上面一点，下面是“尸”的样子；“新”左边“亲”的竖不带钩，右边是“斤”；“迎”走之最后写；“扑”提手旁，右边是“卜”。</p>
+</section>
+
+<!-- ================= 回顾 ================= -->
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>雷雨</h2></div>
+  <div class="bd full"><div class="stage ly-sum">
+    <div class="ly-sumrow" data-step="1">
+      <div class="ly-sumc a"><b>雷雨前</b><small>乌云压下来<br>叶子不动 · 蝉不出声<br>大风 · 蜘蛛逃走</small></div>
+      <div class="ly-sumc b"><b>雷雨中</b><small>闪电亮 · 雷声响<br>雨越下越大 · 看不清<br>渐渐小了</small></div>
+      <div class="ly-sumc c"><b>雷雨后</b><small>空气清新 · 彩虹<br>蝉叫 · 蜘蛛坐在网上<br>青蛙叫</small></div>
+    </div>
+    <p class="tip gold" data-step="2">下一次下雷雨，像课文一样仔细看一看、听一听：雨前、雨中、雨后，有什么不一样？</p>
+  </div></div>
+  <p class="note">板书：按时间顺序写景物的变化。课文一句一个画面，用“压、垂、挂”这些词写得特别准确。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="../shared/hanzi.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

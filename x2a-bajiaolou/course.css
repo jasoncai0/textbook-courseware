@@ -1,0 +1,110 @@
+/* 八角楼上 · 本课配色：深夜的蓝黑、油灯的暖黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #a8322a;
+  --red-d: #74201a;
+  --gold: #e0a73a;
+  --gold-l: #f7dc9c;
+  --paper: #f7f1e4;
+  --stone: #fffcf5;
+  --ink-2: #66594a;
+  --line: #e2d4ba;
+}
+@property --lr { syntax: '<length>'; inherits: true; initial-value: 4em; }
+
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.32em; line-height: 2.25; }
+.py ruby { margin: 0 .05em; }
+
+/* ---------- 小油灯 ---------- */
+.bl-halo { fill: rgba(255, 196, 80, .35); filter: blur(6px); animation: blGlow 2.6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.bl-flame { fill: #ffb43a; stroke: #ffe39a; stroke-width: 2; animation: blFlick .35s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes blFlick { to { transform: scaleY(1.12) skewX(3deg); } }
+@keyframes blGlow { to { transform: scale(1.12); opacity: .8; } }
+.bl-coverlamp { position: absolute; right: 12%; bottom: 16%; width: 11em; z-index: 1; filter: drop-shadow(0 0 2em rgba(255, 190, 80, .5)); }
+.bl-cover .scene-bg { filter: brightness(.7); }
+.bl-ask { margin: .3em 0 .6em; font-size: 1.8em; color: #fff3c8; }
+.s-cover .bl-ask rt { color: var(--gold-l); }
+
+/* ---------- 夜幕降临 → 灯亮了 ---------- */
+.bl-night { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(#060c22, #141c36 60%, #0c0f1c); opacity: 0; transition: opacity 3s ease; }
+.bl-dusk:has(.bl-fall.on) .bl-night { opacity: .72; }
+.bl-window { position: absolute; left: 44%; top: 53%; z-index: 1; width: 9em; height: 6em; translate: -50% -50%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 214, 120, .95), rgba(255, 170, 60, .5) 45%, transparent); mix-blend-mode: screen; }
+.bl-window.on { animation: blOn 1.6s ease both, blGlow 2.6s 1.6s ease-in-out infinite alternate; }
+@keyframes blOn { from { opacity: 0; transform: scale(.3); } to { opacity: 1; transform: none; } }
+
+/* ---------- 拨一拨灯芯：光圈由小变大（--lx / --ly 是油灯在图上的位置，图生成后核对） ---------- */
+.bl-dark { --lx: 37%; --ly: 47%; --lr: 3em; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(circle at var(--lx) var(--ly), transparent 0, transparent var(--lr), rgba(6, 4, 0, .92) calc(var(--lr) + 12em)); transition: --lr 1.8s ease; }
+.bl-lamp.bright:not(.manual) .bl-dark, .bl-lamp.manual:not(.bright) .bl-dark { --lr: 24em; }
+.bl-wick { position: absolute; right: 2em; top: 1em; z-index: 3; display: flex; align-items: center; gap: .4em; font: inherit; color: #ffe7a8; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 220, 140, .5); border-radius: 2em; padding: .2em 1em .2em .4em; cursor: pointer; }
+.bl-wick [data-lamp] { width: 2.4em; }
+.bl-wick .py { font-size: 1.1em; line-height: 2; }
+.bl-wick rt { color: #ffe7a8; }
+
+/* ---------- 照亮道路 ---------- */
+.bl-path { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; }
+.bl-path path { fill: none; stroke: #ffd36b; stroke-width: 7; stroke-linecap: round; filter: drop-shadow(0 0 8px rgba(255, 200, 80, .9)); }
+.bl-path .draw { transition: stroke-dashoffset 3s ease; }
+
+/* ---------- 细节聚光灯 ---------- */
+.bl-spot { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .8em; }
+.bl-tabs { display: flex; gap: .6em; flex-wrap: wrap; }
+.bl-tabs .btn { font-size: 1.1em; font-family: var(--kai); }
+.bl-spotbody { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.4em; align-items: center; }
+.bl-spotpic { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 100%; border-radius: .8em; overflow: hidden; box-shadow: 0 .2em .8em rgba(30, 20, 10, .25); background: #2b2520; }
+.bl-spotimg { position: absolute; inset: 0; background: center / cover no-repeat; }
+.bl-spotmask { position: absolute; inset: 0; background: radial-gradient(ellipse var(--r) calc(var(--r) * 16 / 9) at var(--x) var(--y), transparent 55%, rgba(8, 5, 0, .78) 100%); transition: background .6s; }
+.bl-spottext .py { margin: 0; font-size: 1.55em; line-height: 2.3; }
+.bl-spottext em { font-style: normal; color: var(--red-d); text-emphasis: filled dot var(--red); text-emphasis-position: under right; }
+.bl-tip { margin: .4em 0 0; font-size: 1.2em; line-height: 1.6; background: #fff8e1; border-left: .3em solid var(--gold); border-radius: .3em; padding: .4em .8em; }
+
+/* ---------- 点词卡填句子 ---------- */
+.bl-fill { display: flex; flex-direction: column; gap: .8em; }
+.bl-sent { margin: 0; font-family: var(--kai); font-size: 1.6em; line-height: 2.5; background: #fff; border-radius: .8em; padding: .2em 1em; box-shadow: 0 .2em .7em rgba(30, 20, 10, .1); }
+.bl-blank { display: inline-block; min-width: 4.2em; text-align: center; border-bottom: 2px solid var(--gold); margin: 0 .2em; line-height: 2.2; }
+.bl-blank.ok { color: var(--red-d); border-bottom-color: transparent; background: #fff4dc; border-radius: .3em; animation: pop .4s cubic-bezier(.3, 1.5, .5, 1); }
+.bl-chips { display: flex; flex-wrap: wrap; gap: .6em; }
+.bl-chip { font: inherit; font-family: var(--kai); font-size: 1.5em; padding: 0 .6em; border-radius: .5em; border: 2px solid var(--gold); background: #fff8e1; cursor: pointer; line-height: 2.2; }
+.bl-chip.used { opacity: .3; pointer-events: none; }
+.bl-chip.wrong { animation: nope .35s; border-color: #d99; }
+.bl-fillreset { align-self: flex-start; }
+.bl-fill + .tip { font-size: 1.3em; }
+
+/* ---------- 点亮星星 ---------- */
+.bl-sky { position: relative; flex: 1; min-height: 0; border-radius: 1em; overflow: hidden; background: radial-gradient(ellipse at 50% 120%, #2b3a6a, #10173a 55%, #070b1e); }
+.bl-star { position: absolute; translate: -50% -50%; width: 4.4em; height: 4.4em; display: grid; place-items: center; border: none; background: none; cursor: pointer; font: inherit; font-family: var(--kai); font-size: 1.15em; color: #b9c2de; }
+.bl-star::before { content: ""; position: absolute; inset: 0; background: #3a4670; clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); transition: background .5s; }
+.bl-star ruby { position: relative; font-size: 1.7em; top: .15em; }
+.bl-star rt { font-family: var(--py); font-size: .38em; color: transparent; }
+.bl-star.lit { color: #5a3a00; pointer-events: none; filter: drop-shadow(0 0 .6em rgba(255, 215, 94, .9)); }
+.bl-star.lit::before { background: #ffd75e; animation: pop .5s cubic-bezier(.3, 1.6, .5, 1); }
+.bl-star.lit rt { color: #fff3c8; }
+.bl-skymsg { position: absolute; left: 1.2em; bottom: .6em; margin: 0; font-size: 1.4em; font-weight: bold; color: #ffe7a8; }
+.bl-skyreset { position: absolute; right: 1em; bottom: .8em; }
+.bl-sky.done { background: radial-gradient(ellipse at 50% 120%, #6a5a3a, #2a2a4a 55%, #10142e); transition: background 1.5s; }
+
+/* 写字 6 个：三列 */
+.x2-write { grid-template-columns: repeat(3, 1fr); gap: .8em 1.2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.8em; }
+.x2-write .hz-wpy { font-size: 1.3em; }
+
+/* 回顾 */
+.bl-sum .py { font-size: 1.8em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .bl-ask { font-size: 1.2em; }
+  .bl-coverlamp { width: 6em; right: 6%; bottom: auto; top: 14%; }
+  .bl-wick { top: 3em; right: .6em; }
+  .bl-spotbody { display: flex; flex-direction: column; }
+  .bl-spottext .py { font-size: 1.15em; }
+  .bl-sent { font-size: 1.15em; }
+  .bl-chip { font-size: 1.15em; }
+  .bl-sky { flex: none; height: 26em; }
+  .bl-star { font-size: .9em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .bl-sum .py { font-size: 1.2em; }
+}
+
+/* 深色字幕里的原文高亮 */
+.subs .mark.on { color: #ffd98a; background-image: linear-gradient(transparent 62%, rgba(255, 200, 90, .35) 62%); }

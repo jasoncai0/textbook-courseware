@@ -1,0 +1,50 @@
+/* 小小的船 · 本课配色：夜空的蓝、月亮的黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3d5aa8;
+  --red-d: #24396f;
+  --gold: #e9b526;
+  --gold-l: #fbe7a8;
+  --paper: #f3f5fb;
+  --stone: #fdfdff;
+  --ink-2: #545c74;
+  --line: #d3d9ea;
+}
+
+.xc-text { align-self: center; font-size: 2em; padding: .4em 1.4em; }
+.xc-text p { text-indent: 0; }
+
+/* 月亮会变样 */
+.xc-moonbox { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.4em; align-items: center; }
+#moon { width: 100%; max-height: 100%; }
+#moon .xc-stars circle { animation: xcTwinkle 2.2s ease-in-out infinite alternate; }
+@keyframes xcTwinkle { to { opacity: .25; } }
+#moon .ph { opacity: 0; transition: opacity .8s; }
+#moon[data-phase="wan"] .ph-wan, #moon[data-phase="ban"] .ph-ban, #moon[data-phase="yuan"] .ph-yuan { opacity: 1; }
+#moon .xc-sail { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
+#moon[data-phase="wan"].liked .xc-sail { opacity: 1; transform: none; }
+.xc-moon-side { display: flex; flex-direction: column; gap: .8em; align-items: flex-start; }
+.xc-say { margin: 0; font-size: 2.4em; color: var(--red-d); }
+.xc-likes { display: flex; flex-wrap: wrap; gap: .2em .8em; font-family: var(--kai); font-size: 1.7em; }
+.xc-moonbox { position: relative; }
+.xc-photo { position: absolute; left: 1em; top: 1em; width: 24%; aspect-ratio: 16 / 9; border: 3px solid #fff; box-shadow: 0 .2em .6em rgba(0, 0, 0, .3); border-radius: .5em; background: #1d2b55 center / cover no-repeat; animation: pop .45s both; }
+.xc-likes span { background: #fff8e1; border-radius: .3em; padding: 0 .3em; animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+
+/* 照样子说一说 */
+.xc-eg { justify-content: center; gap: 0; }
+.xc-eg p { margin: 0; font-size: 2.3em; }
+.xc-eg b { color: var(--red); }
+
+/* 摘星星：苹果换成星星 */
+.xc-apples .hz-crown { background: radial-gradient(circle at 50% 40%, #3a4f8f, #1d2b55 75%); box-shadow: none; border-radius: 1em; }
+.xc-apples .hz-trunk { display: none; }
+.xc-apples .hz-apple { background: radial-gradient(circle at 40% 35%, #fff4b8, #f3c623 70%); color: #6b4b12; box-shadow: 0 0 .5em #ffe680; }
+.xc-apples .hz-apple::before { display: none; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .xc-text { font-size: 1.5em; padding: .3em .6em; }
+  .xc-moonbox { display: flex; flex-direction: column; align-items: stretch; }
+  .xc-say { font-size: 1.8em; }
+  .xc-likes { font-size: 1.5em; }
+  .xc-eg p { font-size: 1.6em; }
+  .xc-apples .hz-crown { height: 100%; }
+}

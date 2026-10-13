@@ -1,0 +1,48 @@
+/* 落花生 · 本课配色：泥土褐、花生壳黄、叶子绿。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #8a5a2b;
+  --red-d: #5e3b1b;
+  --gold: #c99a3e;
+  --gold-l: #f0dca8;
+  --paper: #f5efe3;
+  --stone: #fcf9f2;
+  --ink-2: #66584a;
+  --line: #ddcfb6;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfaf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #eadcc2 0, transparent 45%); }
+.scene .hd .tag { background: rgba(94, 59, 27, .92); }
+.subs .hl { color: #f6dc8a; font-weight: normal; }
+.subs .who.main { background: #8a5a2b; }
+
+/* 写了哪些内容 */
+.parts { display: grid; grid-template-columns: 1fr 1fr 1fr 1.6fr; gap: .8em; }
+.part { background: #fff; border-radius: .5em; padding: .8em 1em; border-top: .3em solid var(--gold); display: flex; flex-direction: column; gap: .3em; }
+.part b { font-size: 1.3em; color: var(--red-d); }
+.part span { font-family: var(--kai); color: var(--ink-2); }
+.part.big { border-top-color: var(--red); background: #fffaf0; }
+.len-bars { background: #fff; border-radius: .5em; padding: .8em 1.2em; display: flex; flex-direction: column; gap: .5em; }
+.len-title { margin: 0; color: var(--ink-2); font-size: .9em; }
+.len-row { display: grid; grid-template-columns: 8em 1fr 6em; align-items: center; gap: .8em; }
+.len-row em { font-style: normal; color: var(--ink-2); font-size: .9em; }
+.len-bar { height: 1.1em; background: #f1e8d6; border-radius: 1em; overflow: hidden; }
+.len-bar i { display: block; height: 100%; width: 0; background: var(--gold); border-radius: 1em; transition: width 1.4s ease; }
+.len-bar i.main { background: var(--red); }
+.len-bars.on .len-bar i { width: var(--w); }
+
+/* 挖花生 */
+#dig { border-radius: .5em; }
+#dig .soil-cover { transition: opacity 1.2s ease; }
+.s-dig:has(.dig.on) #dig .soil-cover { opacity: 0; }
+.s-dig:has(.dig.on) #dig .q-mark { opacity: 0; }
+#dig .q-mark { font-size: 48px; transition: opacity .5s; }
+
+/* 分角色朗读 */
+.read-item .role { font-family: var(--serif); font-weight: normal; font-size: .62em; vertical-align: .25em; padding: .05em .5em; margin-right: .4em; border-radius: .3em; background: var(--gold-l); color: var(--red-d); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .parts { grid-template-columns: 1fr 1fr; }
+  .len-row { grid-template-columns: 6.5em 1fr 4.5em; gap: .4em; font-size: .9em; }
+  #dig { flex: none; height: auto; }
+}
+.s-parts .stage { justify-content: center; gap: 1.2em; }
+.s-parts .part b { font-size: 1.5em; }

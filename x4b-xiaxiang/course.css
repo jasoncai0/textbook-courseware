@@ -1,0 +1,75 @@
+/* 乡下人家 · 本课配色：瓜藤的碧绿、南瓜的橙红。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #4e8a3e;
+  --red-d: #2e5a24;
+  --gold: #e08a2e;
+  --gold-l: #f7dcb5;
+  --paper: #f4f2e6;
+  --stone: #fcfbf3;
+  --ink-2: #5a5e48;
+  --line: #d6d7bd;
+}
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 7em; }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.subs .key-line { color: #ffe3a8; font-size: 1.15em; }
+
+.cover-quote { margin: 0 0 .8em; font-family: var(--kai); font-size: 1.45em; line-height: 1.6; color: #ffe9b8; }
+
+/* ---------- 横向长卷 ---------- */
+.s-juan .stage { gap: .8em; }
+.juan { position: relative; flex: 1; min-height: 0; overflow: hidden; border-radius: .6em; background: #e9e2c8; box-shadow: inset 0 0 0 .35em #b89a62, 0 .2em .8em rgba(60, 40, 10, .18); }
+.juan::before, .juan::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1.4em; z-index: 2; background: linear-gradient(90deg, #8a6a3a, #c9a86a 45%, #8a6a3a); }
+.juan::before { left: 0; } .juan::after { right: 0; }
+.juan-track { position: absolute; top: .9em; bottom: .9em; left: 1.4em; display: flex; gap: .5em; transform-origin: 0 50%; transition: transform 1.6s ease; }
+.juan-panel { position: relative; flex: none; width: 34em; height: 100%; border-radius: .3em; overflow: hidden; background: #d9d4bc center / cover no-repeat; filter: saturate(.55) brightness(.9); transition: filter 1s; cursor: pointer; }
+.juan-panel.cur, .juan.all .juan-panel { filter: none; }
+.juan-panel > b { position: absolute; left: .5em; bottom: .5em; z-index: 1; font-family: var(--kai); font-size: 1.2em; color: #fff; background: rgba(46, 90, 36, .85); padding: .1em .6em; border-radius: .3em; }
+.juan-panel video.scene-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: object-position 1.6s ease; }
+.juan.all .juan-track { right: 1.4em; }
+.juan.all .juan-panel { flex: 1; width: auto; }
+.juan.all .juan-panel > b { font-size: .95em; }
+.juan-txt { flex: none; min-height: 7.6em; background: #fff; border-radius: .6em; padding: .7em 1.1em; border-left: .35em solid var(--gold); font-family: var(--kai); font-size: 1.22em; line-height: 1.7; }
+.juan-txt p { margin: 0; text-indent: 2em; }
+.juan-txt p[data-step] { display: none; }
+.juan-txt p.now { display: block; animation: subIn .7s ease both; }
+.juan-txt .juan-hint { color: var(--ink-2); text-indent: 0; }
+.juan-txt .key-line { font-size: 1.3em; color: var(--red-d); text-indent: 0; text-align: center; }
+
+/* ---------- 给七幅画取名字 ---------- */
+.name-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: .8em; }
+.name-card { display: flex; flex-direction: column; gap: .3em; background: #fff; border-radius: .6em; padding: .5em; box-shadow: 0 .15em .6em rgba(40, 60, 20, .1); min-height: 0; }
+.name-pic { position: relative; flex: 1; min-height: 4em; border-radius: .4em; background: #e6e8d6 center / 260% no-repeat; }
+.name-pic em { position: absolute; left: .3em; top: .3em; width: 1.5em; height: 1.5em; border-radius: 50%; background: var(--red); color: #fff; font-style: normal; display: grid; place-items: center; font-family: Georgia, serif; }
+.name-card small { color: var(--ink-2); font-size: .85em; }
+.name-card input { width: 100%; font: inherit; font-family: var(--kai); font-size: 1.2em; padding: .2em .5em; border: 2px dashed var(--line); border-radius: .4em; text-align: center; min-width: 0; }
+.name-card input:focus { outline: none; border-color: var(--red); border-style: solid; }
+.name-ref { font: inherit; font-size: .9em; font-family: var(--kai); border: none; background: #fff3e0; color: #b2601a; border-radius: .4em; padding: .2em; cursor: pointer; }
+
+/* ---------- 关键句 ---------- */
+.s-key .bd { grid-template-columns: 46% 1fr; }
+.key-big { margin: 0; font-family: var(--kai); font-size: 1.7em; line-height: 1.7; background: #fff; border-radius: .6em; padding: .6em .9em; border-left: .3em solid var(--gold); }
+.key-pic { position: relative; flex: 1; min-height: 6em; border-radius: .6em; background: #e6e8d6 center / cover no-repeat; display: flex; align-items: flex-end; overflow: hidden; }
+.key-pic p { margin: 0; width: 100%; padding: .5em .8em; background: rgba(20, 30, 10, .7); color: #fff; font-family: var(--kai); font-size: 1.15em; line-height: 1.5; }
+.key-row { display: flex; align-items: center; gap: .8em; background: #fff; border-radius: .6em; padding: .6em .9em; }
+.key-row b { font-size: 1.3em; color: var(--red-d); font-family: var(--kai); }
+.key-row .btn { font-family: var(--kai); font-size: 1.3em; padding: .25em 1em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3.2em; }
+  .hd h2 { font-size: 1.3em; }
+  .name-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; }
+  .name-pic { min-height: 6em; }
+  .key-big { font-size: 1.3em; }
+  .key-pic { min-height: 12em; }
+  .key-row { flex-wrap: wrap; }
+  .key-row .btn { font-size: 1.1em; }
+  .juan { flex: none; height: 13em; }
+  .juan-panel { width: 17em; }
+  .juan-txt { font-size: 1.05em; }
+  .cover-quote { font-size: 1.1em; }
+}

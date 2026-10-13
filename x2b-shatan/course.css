@@ -1,0 +1,132 @@
+/* 沙滩上的童话 · 本课配色：沙黄、海蓝、晚霞橙。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d4693a;
+  --red-d: #8e3f17;
+  --gold: #e9b04a;
+  --gold-l: #fbe6b3;
+  --paper: #f8f3e8;
+  --stone: #fffdf7;
+  --ink-2: #66594a;
+  --line: #e6d6b8;
+  --sea: #3c8fc0;
+}
+
+.st-ask { margin: .2em 0; font-family: var(--kai); font-size: 2.2em; }
+.st-ask2 { margin: .2em 0 .5em; font-family: var(--kai); font-size: 1.5em; color: var(--gold-l); }
+
+/* ---------- 堆城堡 ---------- */
+.st-bd { grid-template-columns: 1.15fr 1fr; align-items: center; }
+.st-quote { font-size: 1.75em; }
+.st-quote p { line-height: 2.15; }
+.st-castle { aspect-ratio: 400 / 260; width: 100%; border-radius: .6em; overflow: hidden; box-shadow: 0 .3em 1em rgba(80, 60, 20, .18); }
+.st-castle svg { display: block; width: 100%; height: 100%; }
+.st-body.on { animation: stRise .9s cubic-bezier(.3, 1.3, .5, 1); transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes stRise { from { transform: scaleY(.1); } }
+.st-wall { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.st-wall.on { animation: stWall 1.4s ease forwards; }
+@keyframes stWall { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+/* ---------- 编童话 ---------- */
+.st-bd2 { grid-template-columns: 1.3fr 1fr; align-items: center; }
+.st-talk { display: flex; flex-direction: column; gap: .5em; }
+.st-b { display: flex; align-items: flex-start; gap: .4em; }
+.st-b i { font-style: normal; font-size: 2.4em; line-height: 1.3; }
+.st-b p { margin: 0; position: relative; background: #fff; border-radius: 1em; padding: .1em .8em .3em; box-shadow: 0 .15em .5em rgba(80, 60, 20, .12); }
+.st-b p::before { content: ""; position: absolute; left: -.5em; top: 1em; border: .3em solid transparent; border-right: .5em solid #fff; }
+.st-b small { display: block; font-family: var(--kai); font-size: 1.15em; color: var(--ink-2); line-height: 2; }
+.st-b span { font-family: var(--kai); font-size: 1.7em; line-height: 2.1; }
+.st-b.k1 p { border-left: .3em solid #7a5fa8; } .st-b.k2 p { border-left: .3em solid #e0739b; } .st-b.k3 p { border-left: .3em solid #3c8fc0; }
+.st-weave { margin: .2em 0 0; font-family: var(--kai); font-size: 1.9em; color: var(--red-d); text-align: center; }
+.st-tear.on { animation: stDrip 1.6s ease-in infinite; }
+@keyframes stDrip { 60% { opacity: 1; } to { transform: translateY(10px); opacity: 0; } }
+
+/* ---------- 攻城计划 ---------- */
+.st-plan { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 1em; }
+.st-intro { background: var(--stone); border-radius: .6em; padding: .2em 1em; box-shadow: 0 .15em .5em rgba(80, 60, 20, .08); }
+.st-intro p { margin: 0; font-family: var(--kai); font-size: 1.6em; line-height: 2.2; text-indent: 2em; }
+.st-cards { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.st-card { font: inherit; position: relative; display: flex; flex-direction: column; justify-content: flex-start; gap: .2em; text-align: left; padding: .6em .9em; border-radius: 1em; border: 3px solid var(--line); background: #fff; cursor: pointer; overflow: hidden; }
+.st-card::after { content: "👆 点一点，看看结果"; position: absolute; left: 0; right: 0; bottom: 0; padding: .5em; text-align: center; font-size: 1.1em; color: var(--ink-2); background: #fbf3e2; }
+.st-card.open::after { content: none; }
+.st-card small { font-family: var(--kai); font-size: 1.15em; color: var(--ink-2); line-height: 2; }
+.st-card > span { font-family: var(--kai); font-size: 1.7em; line-height: 2.1; }
+.st-res { display: block; font-style: normal; font-family: var(--kai); font-size: 1.45em; line-height: 2.1; margin-top: auto; padding: .2em .5em; border-radius: .6em; opacity: 0; transform: translateY(.6em); transition: opacity .5s, transform .5s; }
+.st-card.open .st-res { opacity: 1; transform: none; }
+.st-card[data-k="a"].open { border-color: #d47a7a; }
+.st-card[data-k="a"] .st-res { background: #fdeceb; color: #a33a3a; }
+.st-card[data-k="a"] .st-res::before { content: "✗ "; }
+.st-card[data-k="b"].open { border-color: var(--ok); }
+.st-card[data-k="b"] .st-res { background: #e7f6ec; color: var(--ok); }
+.st-card[data-k="b"] .st-res::before { content: "✓ "; }
+.st-card[data-k="c"] { border-style: dashed; }
+.st-card[data-k="c"] .st-res { background: #fff8e1; color: var(--red-d); }
+
+/* ---------- 读好对话 ---------- */
+.st-tones { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: .3em; }
+.st-tones p { margin: 0; display: grid; grid-template-columns: 7.5em 1fr; align-items: center; gap: .8em; background: #fff; border-radius: .6em; padding: .05em .8em; }
+.st-tones b { font-weight: normal; font-size: 1.3em; color: var(--red-d); white-space: nowrap; }
+.st-tones span { font-family: var(--kai); font-size: 1.65em; line-height: 1.8; }
+
+/* ---------- 编故事 ---------- */
+.st-story { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 1.2em; }
+.st-starts { display: flex; gap: 1em; justify-content: center; }
+.st-start { font: inherit; font-family: var(--kai); font-size: 1.8em; padding: .2em .8em; border-radius: .6em; border: 3px solid var(--line); background: #fff; cursor: pointer; }
+.st-start.on { border-color: var(--sea); background: #e8f4fb; }
+.st-pool { display: grid; grid-template-columns: repeat(6, 1fr); gap: .5em; }
+.st-w { font-family: var(--kai); font-size: 1.8em; line-height: 2.1; text-align: center; background: #fff; border-radius: .4em; border: 2px solid var(--line); transition: background .4s, transform .4s; }
+.st-w rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.st-w.got { background: var(--gold-l); border-color: var(--gold); transform: scale(1.08); }
+.st-drawbar { display: flex; align-items: center; justify-content: center; gap: 1em; }
+.st-drawbar .btn { font-size: 1.3em; }
+.st-got { font-family: var(--kai); font-size: 1.6em; color: var(--red-d); }
+.st-got b { font-weight: normal; }
+.st-got rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+
+/* ---------- 垒城堡 ---------- */
+.st-build { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.4em; align-items: center; }
+.st-tower { position: relative; height: 100%; max-height: 24em; display: flex; flex-direction: column-reverse; align-items: center; justify-content: flex-start; background: linear-gradient(#cbe8f7 70%, #f1d9a6 70%); border-radius: 1em; padding-bottom: 2.4em; overflow: hidden; }
+.st-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 2.4em; background: #f1d9a6; }
+.st-layer { width: calc(16em - var(--k) * 1.2em); height: 1.7em; margin-top: -.1em; background: repeating-linear-gradient(90deg, #e2bb76 0 1.4em, #d3a85c 1.4em 1.5em); border-radius: .3em .3em 0 0; opacity: 0; transform: translateY(-3em); transition: opacity .4s, transform .6s cubic-bezier(.3, 1.4, .5, 1); z-index: 1; }
+.st-layer.on { opacity: 1; transform: none; }
+.st-flag { order: 99; font-style: normal; font-size: 2.4em; opacity: 0; transition: opacity .6s; z-index: 1; }
+.done .st-flag { opacity: 1; }
+.st-qbox { display: flex; flex-direction: column; align-items: center; gap: .8em; }
+.st-q { margin: 0; font-family: var(--kai); font-size: 3em; background: #fff; border-radius: .3em; padding: 0 .5em; box-shadow: 0 .1em .4em rgba(0, 0, 0, .08); }
+.st-opts { display: flex; gap: .9em; }
+.st-o { font: inherit; font-family: var(--kai); font-size: 3em; width: 1.7em; height: 1.7em; border-radius: .3em; border: 3px solid var(--line); background: #fff; cursor: pointer; }
+.st-o.right { background: #e7f6ec; border-color: var(--ok); color: var(--ok); }
+.st-o.wrong { animation: nope .35s; border-color: #e3a998; }
+.st-bmsg { margin: 0; min-height: 1.5em; font-family: var(--kai); font-size: 1.35em; font-weight: bold; color: var(--red-d); }
+
+/* ---------- 回顾 ---------- */
+.st-sum { justify-content: center; align-items: center; gap: 1.4em; }
+.st-path { display: flex; align-items: center; gap: .4em; flex-wrap: wrap; justify-content: center; }
+.st-path span { font-family: var(--kai); font-size: 1.8em; background: #fff; border-radius: .5em; padding: .15em .5em; border-bottom: .15em solid var(--gold); }
+.st-path b { font-size: 1.6em; color: var(--gold); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .st-ask { font-size: 1.5em; }
+  .st-ask2 { font-size: 1.1em; }
+  .st-bd, .st-bd2 { display: flex; flex-direction: column; }
+  .st-quote { font-size: 1.3em; }
+  .st-b span { font-size: 1.25em; }
+  .st-cards { grid-template-columns: 1fr; }
+  .st-card::after { position: static; }
+  .st-intro p { font-size: 1.2em; }
+  .st-tones p { grid-template-columns: 1fr; gap: 0; }
+  .st-tones span { font-size: 1.2em; }
+  .st-starts { flex-direction: column; }
+  .st-start { font-size: 1.3em; }
+  .st-pool { grid-template-columns: repeat(3, 1fr); }
+  .st-w { font-size: 1.4em; }
+  .st-build { display: flex; flex-direction: column; }
+  .st-tower { height: 18em; width: 100%; }
+  .st-layer { width: calc(14em - var(--k) * 1em); height: 1.2em; }
+  .st-q { font-size: 2em; }
+  .st-o { font-size: 2.2em; }
+  .st-path span { font-size: 1.2em; }
+}
+
+/* 字幕句子较长：缩小一点 */
+.scene .subs .py { font-size: 1.6em; }
+@media (max-width: 820px), (max-height: 520px) { .scene .subs .py { font-size: 1.15em; } }

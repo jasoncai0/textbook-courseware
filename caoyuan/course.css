@@ -1,0 +1,44 @@
+/* 草原 · 本课配色：草原绿、天空蓝。故事页样式见 ../shared/narrative.css */
+:root {
+  --red: #3f7d4a;
+  --red-d: #24532e;
+  --gold: #c9a23a;
+  --gold-l: #eedca0;
+  --paper: #eff4ea;
+  --stone: #fafcf6;
+  --ink-2: #4f5b4c;
+  --line: #cfdcc4;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfdf7 0, transparent 40%), radial-gradient(circle at 90% 95%, #dceacf 0, transparent 45%); }
+.s-cover .cover-title { font-size: 7em; letter-spacing: .2em; }
+.scene .hd .tag { background: rgba(36, 83, 46, .92); }
+.subs .hl { color: #c8f0b0; font-weight: normal; }
+
+/* 第 1 段：勾勒与渲染 */
+.s-cuise .quote { font-size: 1.25em; }
+.s-cuise .quote .gloss { text-indent: 0; font-family: var(--serif); font-size: .72em; line-height: 1.7; margin-top: 1em; color: var(--ink-2); }
+.s-cuise .quote .gloss b { color: var(--red-d); }
+#cuise { flex: 1; min-height: 0; width: 100%; }
+#cuise .ink { transition: opacity 1.4s ease; }
+.s-cuise:has(.wash.on) #cuise .ink { opacity: 0; }
+#cuise .wash { transition: opacity 1.6s ease; }
+#cuise .flow { transform: translateY(40px); transition: transform 3s ease; }
+.s-cuise:has(.flow-label.on) #cuise .flow { transform: translateY(-50px); }
+
+/* 蒙汉情深：六张卡片三列 */
+.s-qing .clues { grid-template-columns: repeat(3, 1fr); }
+.s-qing .clue, .s-qing .clue-in { min-height: 8.2em; }
+
+/* 惜别 */
+.farewell-list { display: flex; flex-direction: column; gap: .6em; }
+
+/* 背诵：一段散文，单栏 */
+.recite-one .recite-lines { font-size: 1.22em; letter-spacing: .08em; line-height: 1.75; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4.2em; }
+  .s-cuise .quote { font-size: 1.05em; }
+  #cuise { flex: none; height: auto; }
+  .s-qing .clues { grid-template-columns: 1fr; }
+  .recite-one .recite-lines { font-size: 1.05em; }
+}

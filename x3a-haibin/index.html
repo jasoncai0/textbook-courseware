@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>海滨小城 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/haibin.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">三年级上册 · 第六单元 · 第 19 课 · 林遐</p>
+    <h1 class="cover-title">海滨小城</h1>
+    <p class="cover-sub">祖国，我爱你。我爱你每一寸土地，我爱你壮美的山河。</p>
+    <div class="chips" data-step="1"><span class="chip">借助关键语句理解一段话的意思</span></div>
+    <p class="cover-flow" data-step="2">海上　→　沙滩　→　庭院　→　公园　→　街道</p>
+  </div>
+  <p class="note">作者的家乡在广东的一座海边小城。课文先写海滨，再写小城。读后几段时，要像上一课一样，先找出“管着全段”的关键句。</p>
+</section>
+
+<!-- ================= 字词：读准字音（数据见 ziyin.js） ================= -->
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 游览路线图 ================= -->
+<section class="slide s-route">
+  <div class="hd"><span class="tag">课后第 1 题</span><h2>跟着作者逛一逛：从海滨到小城</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 800 440" id="route" data-noswipe>
+        <rect width="800" height="440" fill="#f3efe2"/>
+        <path d="M0 0 H330 Q300 120 340 220 Q300 330 330 440 H0 Z" fill="#7cc0dc"/>
+        <path d="M330 0 Q300 120 340 220 Q300 330 330 440 H390 Q360 330 400 220 Q360 120 390 0 Z" fill="#f1dca6"/>
+        <g fill="#fff" opacity=".7"><path d="M60 80 q14 -8 28 0 M150 160 q14 -8 28 0 M80 300 q14 -8 28 0 M210 380 q14 -8 28 0" stroke="#fff" stroke-width="3" fill="none"/></g>
+        <g><path d="M120 120 h50 l-8 10 h-34 z" fill="#8a5a2a"/><path d="M140 120 v-30 l18 26 z" fill="#fff6e0"/><path d="M200 230 h70 l-10 12 h-50 z" fill="#c9d3dd"/></g>
+        <g stroke="#555" stroke-width="2" fill="none"><path d="M90 40 q6 -6 12 0 q6 -6 12 0"/><path d="M240 70 q6 -6 12 0 q6 -6 12 0"/></g>
+        <g fill="#e9a07a"><circle cx="350" cy="330" r="5"/><circle cx="365" cy="300" r="4"/><circle cx="345" cy="380" r="5"/></g>
+        <rect x="430" y="30" width="350" height="390" rx="16" fill="#e8e2cf"/>
+        <g class="town">
+          <rect x="460" y="60" width="130" height="110" rx="8" fill="#fff"/><g fill="#d9483b"><circle cx="490" cy="90" r="18"/><circle cx="530" cy="84" r="20"/><circle cx="565" cy="96" r="16"/></g><g fill="#5f9a3e"><circle cx="500" cy="130" r="14"/><circle cx="550" cy="134" r="14"/></g>
+          <rect x="620" y="60" width="140" height="150" rx="8" fill="#d5ecc6"/><g fill="#3f8a3e"><ellipse cx="660" cy="110" rx="34" ry="22"/><ellipse cx="720" cy="140" rx="34" ry="22"/></g><g fill="#a5824e"><rect x="650" y="180" width="30" height="8" rx="3"/><rect x="705" y="186" width="30" height="8" rx="3"/></g>
+          <rect x="460" y="250" width="300" height="40" fill="#e5d3a4"/><rect x="460" y="320" width="300" height="40" fill="#555b60"/><path d="M460 340 h300" stroke="#fff" stroke-dasharray="14 10" stroke-width="2"/>
+        </g>
+        <path class="route-line" d="M180 60 C 240 160, 200 240, 360 340 C 420 380, 440 140, 520 120 C 600 110, 660 120, 690 130 C 700 200, 620 260, 600 270" fill="none" stroke="#d2553f" stroke-width="4" stroke-dasharray="10 8"/>
+        <g class="stop" data-s="0"><circle cx="180" cy="60" r="34" class="hit"/><circle cx="180" cy="60" r="20" class="pin"/><text x="180" y="67" class="pin-t">1</text><text x="180" y="112" class="lab">海上</text></g>
+        <g class="stop" data-s="1"><circle cx="360" cy="340" r="34" class="hit"/><circle cx="360" cy="340" r="20" class="pin"/><text x="360" y="347" class="pin-t">2</text><text x="360" y="392" class="lab">沙滩</text></g>
+        <g class="stop" data-s="2"><circle cx="520" cy="120" r="34" class="hit"/><circle cx="520" cy="120" r="20" class="pin"/><text x="520" y="127" class="pin-t">3</text><text x="525" y="190" class="lab">庭院</text></g>
+        <g class="stop" data-s="3"><circle cx="690" cy="130" r="34" class="hit"/><circle cx="690" cy="130" r="20" class="pin"/><text x="690" y="137" class="pin-t">4</text><text x="690" y="232" class="lab">公园</text></g>
+        <g class="stop" data-s="4"><circle cx="600" cy="270" r="34" class="hit"/><circle cx="600" cy="270" r="20" class="pin"/><text x="600" y="277" class="pin-t">5</text><text x="610" y="312" class="lab">街道</text></g>
+        <text class="t-l" x="160" y="430" text-anchor="middle" fill="#1d5b85">海　滨</text>
+        <text class="t-l" x="605" y="410" text-anchor="middle" fill="#7a5a2a">小　城</text>
+      </svg>
+    </div>
+    <div class="stage">
+      <div class="zone-card" id="stopCard"><p class="zc-hint">点一点地图上的 1—5，看看每个地方是什么样子。</p></div>
+      <p class="tip gold" data-step="1"><b>第 7 段：</b>这座海滨小城真是<b>又美丽又整洁</b>。</p>
+    </div>
+  </div>
+  <p class="note">课后第 1 题：课文写了海滨小城的哪些景象？先按地图说出顺序：海上、沙滩（海滨）→ 庭院、公园、街道（小城）。地图只是示意。</p>
+</section>
+
+<!-- ================= 第 1、2 段 ================= -->
+<section class="slide scene s-sea">
+  <video class="scene-bg" data-focus="1.03 50% 50%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/8fa2ead326cd529dd4bed9f33a700db6fa07ad86a9103554be24c071c507fbbc.mp4" data-poster="assets/haibin.jpg" muted loop playsinline preload="none"></video>
+  <div class="gold-wash" data-step="5"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">第 1、2 自然段</span><span class="sub">海上</span></div>
+  <div class="subs">
+    <p data-step="1">我的家乡在广东，是一座海滨小城。人们走到街道尽头，就可以看见浩瀚的大海。</p>
+    <p data-step="2"><b class="hl">天是蓝的，海也是蓝的。</b></p>
+    <p data-step="3" data-focus="1.18 50% 50%">海天交界的水平线上，有棕色的机帆船和银白色的军舰来来往往。</p>
+    <p data-step="4" data-focus="1.12 50% 25%">天空飞翔着白色的、灰色的海鸥，还飘着跟海鸥一样颜色的云朵。</p>
+    <p data-step="5">早晨，机帆船、军舰、海鸥、云朵，都被朝阳<b class="hl">镀上了一层金黄色</b>。</p>
+    <p data-step="6">帆船上的渔民，军舰上的战士，他们的脸和胳臂也镀上了一层金黄色。</p>
+  </div>
+  <p class="note">第 1、2 段写海上的颜色：蓝的天、蓝的海、棕色的船、银白色的舰、白色灰色的海鸥和云朵。第 2 段一个“镀”字，把朝阳的光写得像给万物刷上一层金子。</p>
+</section>
+
+<section class="slide s-colors">
+  <div class="hd"><span class="tag">第 1、2 自然段</span><h2>海上的颜色：朝阳一照，全变了</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 640 380" id="seaColor" data-noswipe></svg>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="sunBtn">早晨，朝阳升起</button></div>
+    </div>
+    <div class="stage">
+      <p class="tip">数一数，第 1 段写了几种颜色？</p>
+      <div class="color-chips">
+        <span data-step="1" style="--c:#4a90c8">天 · 蓝</span><span data-step="1" style="--c:#2f6fa8">海 · 蓝</span>
+        <span data-step="2" style="--c:#8a5a2a">机帆船 · 棕色</span><span data-step="2" style="--c:#aab4bf">军舰 · 银白色</span>
+        <span data-step="3" style="--c:#c9ccd0">海鸥 · 白色、灰色</span><span data-step="3" style="--c:#dfe3e6">云朵 · 跟海鸥一样</span>
+      </div>
+      <p class="tip gold" data-step="4"><b>镀：</b>本来是给东西表面加上一层金属。朝阳一照，船、舰、海鸥、云朵，连人的脸和胳臂都像被刷上了一层金子。</p>
+    </div>
+  </div>
+  <p class="note">先读第 1 段找颜色，再点“早晨，朝阳升起”读第 2 段。问：“镀上了一层金黄色”和“变成了金黄色”比，哪个好？（“镀”写出了薄薄一层、亮闪闪的样子。）</p>
+</section>
+
+<!-- ================= 第 3 段 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/shatan.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">第 3 自然段</span><span class="sub">沙滩</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.25 40% 80%">海边是一片沙滩，沙滩上遍地是各种颜色、各种花纹的贝壳。</p>
+    <p data-step="2">这里的孩子见得多了，都不去理睬这些贝壳，贝壳只好<b class="hl">寂寞地躺</b>在那里。</p>
+    <p data-step="3" data-focus="1.15 60% 40%">远处响起了汽笛声，那是出海捕鱼的船队回来了。船上满载着银光闪闪的鱼，还有青色的虾和蟹，金黄色的海螺。</p>
+    <p data-step="4" data-focus="1.04 50% 50%">船队一靠岸，海滩上就<b class="hl">喧闹</b>起来。</p>
+  </div>
+  <p class="note">沙滩上先是静的（贝壳寂寞地躺着），后是闹的（船队靠岸，喧闹起来）。“贝壳只好寂寞地躺在那里”把贝壳当作人来写，说明贝壳多得孩子们都不稀罕了。</p>
+</section>
+
+<!-- ================= 第 4 段 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/tingyuan.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">第 4 自然段</span><span class="sub">庭院</span></div>
+  <div class="subs">
+    <p data-step="1"><b class="hl">小城里每一个庭院都栽了很多树。</b></p>
+    <p data-step="2">有桉树、椰子树、橄榄树、凤凰树，还有别的许多亚热带树木。</p>
+    <p data-step="3">初夏，桉树叶子散发出来的香味，飘得满街满院都是。</p>
+    <p data-step="4" data-focus="1.2 50% 30%">凤凰树开了花，开得那么热闹，小城好像笼罩在一片片红云中。</p>
+  </div>
+  <p class="note">第一句就是关键句：树多。后面写了树的种类（多）、桉树的香味（满街满院）、凤凰树的花（一片片红云）。闭上眼睛闻一闻、看一看。</p>
+</section>
+
+<!-- ================= 第 5、6、7 段 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/gongyuan.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">第 5—7 自然段</span><span class="sub">公园和街道</span></div>
+  <div class="subs">
+    <p data-step="1"><b class="hl">小城的公园更美。</b>这里栽着许许多多榕树。一棵棵榕树就像一顶顶撑开的绿绒大伞，树叶密不透风，可以遮太阳，挡风雨。</p>
+    <p data-step="2" data-focus="1.2 50% 75%">树下摆着石凳，每逢休息的日子，石凳上总是坐满了人。</p>
+    <p data-step="3"><b class="hl">小城的街道也美。</b>除了沥青的大路，都是用细沙铺成的，踩上去咯吱咯吱地响，好像踩在沙滩上一样。</p>
+    <p data-step="4">人们把街道打扫得十分干净，甚至连一片落叶都没有。</p>
+    <p data-step="5" data-focus="1.04 50% 50%"><b class="hl">这座海滨小城真是又美丽又整洁。</b></p>
+  </div>
+  <p class="note">“更美”“也美”把这几段连了起来。第 7 段只有一句话，总结全文：美丽（海滨、庭院、公园）、整洁（街道）。</p>
+</section>
+
+<!-- ================= 找关键句 ================= -->
+<section class="slide s-key">
+  <div class="hd"><span class="tag">课后第 2 题</span><h2>找关键句：每段围绕哪一句写？</h2></div>
+  <div class="bd full">
+    <div class="stage" data-noswipe>
+      <div class="btns key-tabs" id="keyTabs"></div>
+      <p class="tip">读一读这段话，点出那句“管着全段”的关键句：</p>
+      <div class="key-sents" id="keySents"></div>
+      <div class="kt" id="keyTree" hidden>
+        <div class="kt-root" id="keyRoot"></div>
+        <div class="kt-kids" id="keyKids"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后第 2 题：有些句子很重要，可以帮助我们理解一段话的意思。第 4、5、6 段的关键句都在段首，后面的句子都围绕它来写（总—分）。</p>
+</section>
+
+<!-- ================= 读与写 · 好句子 ================= -->
+<section class="slide s-read">
+  <div class="hd"><span class="tag">课后第 3 题</span><h2>读一读，抄一抄：写得好的句子</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="btns"><button class="btn solid" type="button" id="markToggle">显示朗读符号</button><span class="legend">/ 停顿　<em>着重号</em> 重读</span></div>
+      <div class="read-list">
+        <div class="read-item"><p>早晨，<i>/</i> 机帆船、军舰、海鸥、云朵，<i>/</i> 都被朝阳<em>镀</em>上了一层<em>金黄色</em>。</p><span class="tone">用词准 · 镀</span></div>
+        <div class="read-item"><p>贝壳只好<em>寂寞地</em>躺在那里。</p><span class="tone">把贝壳当作人</span></div>
+        <div class="read-item"><p>凤凰树开了花，<i>/</i> 开得<em>那么热闹</em>，<i>/</i> 小城好像笼罩在 <i>/</i> 一片片<em>红云</em>中。</p><span class="tone">打比方</span></div>
+        <div class="read-item"><p>一棵棵榕树 <i>/</i> 就像一顶顶撑开的<em>绿绒大伞</em>。</p><span class="tone">打比方</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后第 3 题：在课文中画出你认为写得好的句子，抄写下来和同学交流。说说好在哪里：用词准、把物当人写、打比方。</p>
+</section>
+
+<!-- ================= 读与写 · 小练笔 ================= -->
+<section class="slide s-write">
+  <div class="hd"><span class="tag">读与写 · 小练笔</span><h2>围绕一句话，写一处美景</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">学课文：<b>先写一句关键句</b>（××真美），再围绕它写看到的、听到的、闻到的。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="在这里写下来……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">为单元习作“这儿真美”做准备：写之前仔细观察，写的时候试着围绕一个意思写。</p>
+</section>
+
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>这节课，我们……</h2></div>
+  <div class="bd full">
+    <div class="stage" style="justify-content:center">
+      <div class="board" data-step="1">
+        <div style="text-align:center;font-size:1.4em;margin-bottom:.2em"><b>海滨小城</b>　又美丽又整洁</div>
+        <div><b>海滨</b>　海上：蓝的天，蓝的海，镀上金黄色　　沙滩：贝壳多，船队归来喧闹</div>
+        <div><b>小城</b>　小城里每一个庭院都栽了很多树。</div>
+        <div>　　　小城的公园更美。</div>
+        <div>　　　小城的街道也美。</div>
+      </div>
+      <p class="tip jade" data-step="2"><b>关键句</b>常常在一段话的开头，抓住它，就知道这段话主要写什么。</p>
+    </div>
+  </div>
+  <p class="note">板书后三行就是三段的关键句。可以让学生借助关键句，用几句话介绍这座海滨小城。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

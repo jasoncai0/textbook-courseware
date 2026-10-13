@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>开国大典 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 45%" data-bg="assets/chenglou.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第二单元 · 第 7 课 · 记叙文</p>
+    <h1 class="cover-title">开国大典</h1>
+    <p class="cover-sub">1949 年 10 月 1 日 · 北京 · 天安门广场</p>
+    <div class="chips" data-step="1"><span class="chip">了解点面结合写场面</span><span class="chip">体会自豪、激动的心情</span><span class="chip">感受热烈、庄严的气氛</span></div>
+    <p class="cover-flow" data-step="2">一　跟着典礼程序读　→　二　品场面　→　三　读与写</p>
+  </div>
+  <p class="note">这一课按典礼的先后顺序写成。阅读时，右上角的“典礼程序”会跟着走：群众入场 → 典礼开始 → 宣布成立 → 升国旗 → 宣读公告 → 阅兵式 → 群众游行。</p>
+</section>
+
+<!-- ================= 字词：读准字音（数据见 ziyin.js） ================= -->
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 一 · 跟着典礼程序读 ================= -->
+<section class="slide scene" data-cer="-1">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/chenglou.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读典礼</span><span class="sub">典礼之前</span></div>
+  <div class="subs">
+    <p data-step="1">1949 年 10 月 1 日，中华人民共和国中央人民政府成立，在首都北京举行典礼。</p>
+    <p data-step="2">参加开国大典的，有中华人民共和国中央人民政府主席、副主席、各位委员，有中国人民政治协商会议全体代表，有工人、农民、学校师生、机关工作人员、城防部队，总数达三十万人。</p>
+    <p data-step="3">观礼台上还有外宾。</p>
+  </div>
+  <p class="note">第 1 自然段交代时间、地点、事件和参加的人。“三十万人”——记住这个数字，后面会反复出现。</p>
+</section>
+
+<section class="slide s-huichang">
+  <div class="hd"><span class="tag">一 · 读典礼</span><h2>会场：丁字形的天安门广场</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 800 460" id="squareMap" aria-label="1949 年天安门广场会场示意图">
+        <rect width="800" height="460" rx="12" fill="#f4ecdc"/>
+        <!-- 丁字形广场 -->
+        <path class="t-square" data-step="1" d="M60 150 H740 V215 H470 V430 H330 V215 H60 Z"/>
+        <text class="t-m t-c sq-t" data-step="1" x="400" y="190">丁字形广场</text>
+        <!-- 河与五座白石桥 -->
+        <g data-step="2">
+          <path class="water" d="M40 118 C 200 112, 600 124, 760 116"/>
+          <g class="bridges"><rect x="340" y="104" width="14" height="26" rx="3"/><rect x="366" y="104" width="14" height="26" rx="3"/><rect x="393" y="104" width="14" height="26" rx="3"/><rect x="420" y="104" width="14" height="26" rx="3"/><rect x="446" y="104" width="14" height="26" rx="3"/></g>
+          <text class="t-s" x="60" y="108" fill="#3f7898">河</text><text class="t-s" x="476" y="140" fill="#6b5d4f">五座白石桥</text>
+        </g>
+        <!-- 城墙与城楼 -->
+        <g data-step="3">
+          <rect class="wall" x="40" y="62" width="720" height="30"/>
+          <rect class="wall" x="320" y="44" width="160" height="48"/>
+          <rect class="hall" x="345" y="24" width="110" height="22"/>
+          <path class="roof" d="M330 28 L470 28 L452 12 L348 12 Z"/>
+          <text class="t-s t-w" x="60" y="82">城墙</text>
+          <text class="t-m t-c t-w" x="400" y="80">天安门</text>
+        </g>
+        <!-- 一竖向南到中华门 -->
+        <g data-step="4">
+          <path class="gate" d="M362 452 V430 H438 V452 Z M372 430 L400 418 L428 430 Z"/>
+          <text class="t-s t-c" x="400" y="412">中华门</text>
+          <path class="arrow" d="M400 250 V395" marker-end="url(#arrowS)"/>
+          <text class="t-s" x="410" y="330" fill="#6b5d4f">一竖向南直伸</text>
+        </g>
+        <!-- 电动旗杆 -->
+        <g data-step="5">
+          <line x1="400" y1="250" x2="400" y2="198" stroke="#5a4a3a" stroke-width="3"/>
+          <path d="M401 198 h26 v17 h-26 z" fill="#d62f22"/>
+          <circle cx="400" cy="250" r="4" fill="#5a4a3a"/>
+          <text class="t-s" x="300" y="246" fill="#6b5d4f">电动旗杆</text>
+        </g>
+        <!-- 宫灯与红旗 -->
+        <g data-step="6" class="lanterns"><circle cx="352" cy="54" r="5"/><circle cx="366" cy="54" r="5"/><circle cx="380" cy="54" r="5"/><circle cx="394" cy="54" r="5"/><circle cx="406" cy="54" r="5"/><circle cx="420" cy="54" r="5"/><circle cx="434" cy="54" r="5"/><circle cx="448" cy="54" r="5"/></g>
+        <g data-step="7" class="flags"></g>
+        <text class="t-s" x="20" y="450" fill="#9a8a70">示意图，不按比例</text>
+        <text class="t-s" x="740" y="40" fill="#9a8a70">北 ↑</text>
+        <defs><marker id="arrowS" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#b8873a"/></marker></defs>
+      </svg>
+    </div>
+    <div class="stage">
+      <div class="quote">
+        <p>会场在天安门广场。<span class="mark" data-step="1">广场呈丁字形。</span><span class="mark" data-step="2">丁字形一横的北面是一道河，河上并排架着五座白石桥；</span><span class="mark" data-step="3">再北面是城墙，城墙中央高高耸起天安门的城楼。</span><span class="mark" data-step="4">丁字形的一竖向南直伸到中华门。</span><span class="mark" data-step="5">在一横一竖的交点的南面，场中挺立着一根电动旗杆。</span></p>
+        <p><span class="mark" data-step="6">主席台设在天安门城楼上。城楼檐下，八盏大红宫灯分挂两边。</span><span class="mark" data-step="7">靠着城楼左右两边的石栏，八面红旗迎风招展。</span></p>
+      </div>
+      <p class="tip gold" data-step="7"><b>按方位写：</b>从北到南、从横到竖，会场的样子一清二楚。</p>
+    </div>
+  </div>
+  <p class="note">按一下画一处，对照课文读一句。让学生说说作者是按什么顺序介绍会场的（方位顺序）。示意图只表示 1949 年会场的大致布局。</p>
+</section>
+
+<section class="slide scene" data-cer="0">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/ruchang.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读典礼</span><span class="sub">群众入场</span></div>
+  <div class="subs">
+    <p data-step="1"><b class="who">面</b>丁字形的广场汇集了从四面八方来的群众队伍。早上六点钟起，就有群众的队伍入场了。</p>
+    <p data-step="2" data-focus="1.25 40% 60%">人们有的擎着红旗，有的提着红灯。进入会场后，按照预定的地点排列。</p>
+    <p data-step="3" data-focus="1.35 30% 65%"><b class="who main">点 · 铁路工人</b>工人队伍中，有从老远的长辛店、丰台、通县来的铁路工人，他们清早到了北京车站，一下火车就直奔会场。</p>
+    <p data-step="4" data-focus="1.35 70% 65%"><b class="who main">点 · 郊区农民</b>郊区的农民是五更天摸着黑起床，步行四五十里路赶来的。</p>
+    <p data-step="5" data-focus="1.05 50% 50%"><b class="who">面</b>到了正午，天安门广场已经成了人的海洋，红旗翻动，像海上的波浪。</p>
+  </div>
+  <p class="note">从早上六点到正午，人越来越多。“老远”“一下火车就直奔”“五更天摸着黑”“步行四五十里”——写出了人们急切、激动的心情。这里也是点面结合。</p>
+</section>
+
+<section class="slide scene" data-cer="1">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/chenglou.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读典礼</span><span class="sub">典礼开始 · 宣布成立</span></div>
+  <div class="subs">
+    <p data-step="1">下午三点整，会场上爆发出一阵排山倒海的掌声，中华人民共和国中央人民政府主席毛泽东出现在主席台上，跟群众见面了。</p>
+    <p data-step="2">三十万人的目光一齐投向主席台。</p>
+    <p data-step="3" data-cer="1" data-focus="1.25 50% 35%">中央人民政府秘书长林伯渠宣布典礼开始。中央人民政府主席、副主席、各位委员就位。接着，毛泽东主席宣布：</p>
+    <p data-step="4" data-cer="2" class="reveal">“中华人民共和国中央人民政府今天成立了！”</p>
+    <p data-step="5" data-focus="1.05 50% 50%">这庄严的宣告，这雄伟的声音，使全场三十万人一齐欢呼起来。</p>
+    <p data-step="6">这庄严的宣告，这雄伟的声音，经过无线电广播，传到长城内外，传到大江南北，使全中国人民的心一齐欢跃起来。</p>
+  </div>
+  <p class="note">“这庄严的宣告，这雄伟的声音”出现两次：一次在广场上，一次传遍全中国。从“三十万人”到“全中国人民”，范围越来越大。</p>
+</section>
+
+<section class="slide scene" data-cer="3">
+  <video class="scene-bg" data-focus="1.03 50% 45%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/0408c677b8904da6b6d293f70bc43b339dcd0b6a587aa7bbf2e059c347c5ef83.mp4" data-poster="assets/shengqi.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读典礼</span><span class="sub">升国旗</span></div>
+  <div class="subs">
+    <p data-step="1">接着，升国旗。毛主席亲自按动连通电动旗杆的电钮，新中国的国旗——五星红旗在雄壮的《义勇军进行曲》中徐徐上升。</p>
+    <p data-step="2">三十万人一齐脱帽肃立，一齐抬起头，瞻仰这鲜红的国旗。</p>
+    <p data-step="3" class="reveal">五星红旗升起来了，表明中国人民从此站起来了。</p>
+    <p data-step="4">升旗的时候，礼炮响起来。每一响都是五十四门大炮齐发，一共二十八响。</p>
+    <p data-step="5">起初是全场肃静，只听见炮声和乐曲声，只听见国旗和其他许多旗帜飘拂的声音，</p>
+    <p data-step="6">到后来，每一声炮响后，全场就响起一阵雷鸣般的掌声。</p>
+  </div>
+  <p class="note">三个“一齐”：三十万人的动作完全一样，庄严肃穆。二十八响礼炮，象征中国共产党领导人民奋斗的二十八年（1921—1949）。“只听见……只听见……”：越写声音，越显出全场的安静。</p>
+</section>
+
+<section class="slide scene" data-cer="4">
+  <div class="scene-bg" data-focus="1.15 50% 40%" data-bg="assets/ruchang.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读典礼</span><span class="sub">宣读公告</span></div>
+  <div class="subs">
+    <p data-step="1">接着，毛主席在群众一阵又一阵的掌声中宣读中央人民政府的公告。他用强有力的语调向全世界发出新中国的声音。</p>
+    <p data-step="2">他读到“选举了毛泽东为中央人民政府主席”这一句的时候，广场上的人们热爱领袖的心情融成一阵热烈的欢呼。</p>
+    <p data-step="3">观礼台上同时响起一阵掌声。</p>
+  </div>
+  <p class="note">“向全世界发出新中国的声音”——新中国站在了世界面前。</p>
+</section>
+
+<section class="slide scene" data-cer="5">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/yuebing.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读典礼</span><span class="sub">阅兵式 · 进场</span></div>
+  <div class="subs">
+    <p data-step="1">毛主席宣读公告完毕，阅兵式开始。中国人民解放军朱德总司令任检阅司令员，聂荣臻将军任阅兵总指挥。</p>
+    <p data-step="2">朱总司令和聂将军同乘汽车，先检阅部队，然后朱总司令回到主席台，宣读中国人民解放军总部的命令。</p>
+    <p data-step="3">受检阅的部队就由聂将军率领，在《中国人民解放军进行曲》的乐曲声中，由东往西，缓缓进场。</p>
+    <p data-step="4" data-focus="1.35 20% 60%">开头是海军两个排，雪白的帽子，跟海洋一个颜色的蓝制服。</p>
+    <p data-step="5" data-focus="1.3 38% 60%">接着是步兵一个师，以连为单位，列成方阵，齐步行进。</p>
+  </div>
+  <p class="note">阅兵的顺序：海军 → 步兵 → 炮兵 → 战车 → 骑兵，空军从天上飞过。一边读一边数一数有几种部队。</p>
+</section>
+
+<section class="slide scene" data-cer="5">
+  <div class="scene-bg" data-focus="1.1 55% 55%" data-bg="assets/yuebing.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读典礼</span><span class="sub">阅兵式 · 方阵</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.3 50% 60%">接着是炮兵一个师，野炮、榴弹炮等各式各样的炮，都排成一字形的横列前进。</p>
+    <p data-step="2" data-focus="1.3 65% 60%">接着是一个战车师，各种装甲车和坦克车两辆或三辆一排，整整齐齐地前进；战士们挺着胸膛站在战车上，像钢铁巨人一样。</p>
+    <p data-step="3" data-focus="1.3 82% 60%">接着是一个骑兵师，“红马连”一色红马，“白马连”一色白马，六马并行，马腿的动作完全一致。</p>
+    <p data-step="4" data-focus="1.05 50% 50%">以上这些部队，全都以相等的距离和相同的速度经过主席台前。</p>
+  </div>
+  <p class="note">每一种部队都抓住了最有特点的地方来写（点）；最后一句把它们合起来写（面）：相等的距离、相同的速度——整齐、威武。</p>
+</section>
+
+<section class="slide scene" data-cer="5">
+  <div class="scene-bg" data-focus="1.1 50% 30%" data-bg="assets/yuebing.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读典礼</span><span class="sub">阅兵式 · 欢呼</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.35 60% 20%">当战车部队经过的时候，人民空军的飞机也一队队排成人字形，飞过天空。毛主席首先向空中招手。</p>
+    <p data-step="2" data-focus="1.2 50% 75%">群众看见了，都把头上的帽子、手里的报纸和别的东西抛上天去，欢呼声盖过了飞机的隆隆声。</p>
+    <p data-step="3" data-focus="1.05 50% 50%">两个半钟头的检阅，广场上不断地欢呼，不断地鼓掌，一个高潮接着一个高潮。</p>
+    <p data-step="4">群众差不多把嗓子都喊哑了，把手掌都拍麻了，还觉得不能够表达自己心里的欢喜和激动。</p>
+  </div>
+  <p class="note">课后第 3 题的句子。“喊哑了”“拍麻了”“还觉得不能够表达”——用夸张的写法，写出群众无比激动的心情。</p>
+</section>
+
+<section class="slide scene" data-cer="6">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/youxing.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">一 · 读典礼</span><span class="sub">群众游行</span></div>
+  <div class="subs">
+    <p data-step="1">阅兵式完毕，已经是傍晚的时候。天安门广场上的灯笼火把全都点起来，一万支礼花陆续射入天空。</p>
+    <p data-step="2" data-focus="1.25 50% 25%">天上五颜六色的火花结成彩，地上千千万万的灯火一片红。</p>
+    <p data-step="3" data-focus="1.2 50% 70%">群众游行就在这时候开始。游行队伍分东西两个方向出发，他们擎着灯，舞着火把，高呼“中国共产党万岁！”“中华人民共和国万岁！”“中央人民政府万岁！”</p>
+    <p data-step="4">他们一队一队按照次序走，走到正对天安门的白石桥前，就举起灯笼火把，高声欢呼“毛主席万岁！”“毛主席万岁！”</p>
+    <p data-step="5" data-focus="1.2 50% 35%">毛主席在城楼上主席台前边，向前探着身子，不断地向群众挥手，不断地高呼“人民万岁！”“同志们万岁！”</p>
+    <p data-step="6" class="reveal" data-focus="1.04 50% 50%">晚上九点半，游行队伍才完全走出会场。两股“红流”分头向东城、西城的街道流去，光明充满了整个北京城。</p>
+  </div>
+  <p class="note">从早上六点到晚上九点半，开国大典持续了一整天。结尾“光明充满了整个北京城”——不只是灯光，更是新中国的光明。</p>
+</section>
+
+<!-- ================= 二 · 品场面 ================= -->
+<section class="slide s-cerline">
+  <div class="hd"><span class="tag">二 · 品读 · 课后第 1 题</span><h2>课文写了哪几个场面？连起来说说</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="cer-cards">
+        <div class="cer-card" data-step="1"><div class="pic" data-bg="assets/ruchang.jpg"></div><b>群众入场</b><span>早上六点起 · 人的海洋</span></div>
+        <div class="cer-card" data-step="2"><div class="pic" data-bg="assets/chenglou.jpg"></div><b>典礼开始</b><span>下午三点 · 目光投向主席台</span></div>
+        <div class="cer-card" data-step="3"><div class="pic" data-bg="assets/chenglou.jpg" style="background-position:50% 30%"></div><b>宣布成立</b><span>全场三十万人一齐欢呼</span></div>
+        <div class="cer-card" data-step="4"><div class="pic" data-bg="assets/shengqi.jpg"></div><b>升国旗</b><span>脱帽肃立 · 二十八响礼炮</span></div>
+        <div class="cer-card" data-step="5"><div class="pic" data-bg="assets/ruchang.jpg" style="background-position:50% 30%"></div><b>宣读公告</b><span>向全世界发出新中国的声音</span></div>
+        <div class="cer-card" data-step="6"><div class="pic" data-bg="assets/yuebing.jpg"></div><b>阅兵式</b><span>两个半钟头 · 一个高潮接着一个高潮</span></div>
+        <div class="cer-card" data-step="7"><div class="pic" data-bg="assets/youxing.jpg"></div><b>群众游行</b><span>两股“红流” · 光明充满北京城</span></div>
+      </div>
+      <p class="tip gold" data-step="8"><b>连起来说：</b>1949 年 10 月 1 日，群众早早入场；下午三点典礼开始，毛主席宣布中华人民共和国中央人民政府成立，亲自升起五星红旗，宣读公告；接着举行阅兵式；傍晚，群众举着灯笼火把游行。</p>
+      <p class="tip" data-step="8"><b>心情：</b>“排山倒海的掌声”“一齐欢呼”“欢跃”“喊哑了”“拍麻了”——处处是新中国诞生时人们的<b>自豪和激动</b>。</p>
+    </div>
+  </div>
+  <p class="note">课后第 1 题。先让学生默读，说出场面名称，再一张张出示；最后按时间顺序连起来简要说。</p>
+</section>
+
+<section class="slide s-parade">
+  <div class="hd"><span class="tag">二 · 品读 · 课后第 2 题 · 交流平台</span><h2>阅兵式：怎样写出这个大场面？</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <svg viewBox="0 0 800 350" id="parade" aria-label="阅兵式受阅部队示意图">
+        <rect width="800" height="350" rx="12" fill="#eef2f6"/>
+        <rect y="150" width="800" height="120" fill="#e3ddd0"/>
+        <!-- 城楼（北） -->
+        <g class="tam"><rect x="350" y="70" width="100" height="26" fill="#b5442c"/><rect x="368" y="54" width="64" height="16" fill="#b5442c"/><path d="M360 56 L440 56 L428 44 L372 44 Z" fill="#d9a520"/><text class="t-s t-c t-w" x="400" y="88">主席台</text></g>
+        <path d="M0 118 H800" stroke="#7fb2cf" stroke-width="6"/>
+        <text class="t-s" x="40" y="166" fill="#6b5d4f">← 由东往西</text>
+        <!-- 海军 -->
+        <g transform="translate(40 172)"><g class="unit" data-step="1">
+          <g class="sailors"></g>
+          <text class="t-s t-c" x="50" y="100">海军</text><text class="t-s t-c t-red" x="50" y="121">雪白帽子</text>
+        </g></g>
+        <!-- 步兵 -->
+        <g transform="translate(180 168)"><g class="unit" data-step="2">
+          <g class="infantry"></g>
+          <text class="t-s t-c" x="44" y="104">步兵</text><text class="t-s t-c t-red" x="44" y="125">列成方阵</text>
+        </g></g>
+        <!-- 炮兵 -->
+        <g transform="translate(320 166)"><g class="unit" data-step="3">
+          <g class="guns"></g>
+          <text class="t-s t-c" x="40" y="106">炮兵</text><text class="t-s t-c t-red" x="40" y="127">一字横列</text>
+        </g></g>
+        <!-- 战车 -->
+        <g transform="translate(450 166)"><g class="unit" data-step="4">
+          <g class="tanks"></g>
+          <text class="t-s t-c" x="56" y="106">战车</text><text class="t-s t-c t-red" x="56" y="127">钢铁巨人</text>
+        </g></g>
+        <!-- 骑兵 -->
+        <g transform="translate(610 164)"><g class="unit" data-step="5">
+          <g class="horses"></g>
+          <text class="t-s t-c" x="70" y="108">骑兵</text><text class="t-s t-c t-red" x="70" y="129">六马并行</text>
+        </g></g>
+        <!-- 空军 -->
+        <g transform="translate(560 20)"><g class="unit planes" data-step="4">
+          <g class="jets"></g>
+          <text class="t-s" x="130" y="40">空军 · 人字形</text>
+        </g></g>
+        <!-- 面 -->
+        <g data-step="6" class="mian-brace">
+          <path d="M30 298 V308 H780 V298" fill="none" stroke="#9e2b25" stroke-width="3"/>
+          <text class="t-m t-c t-red" x="405" y="334">面：相等的距离 · 相同的速度 · 整齐威武</text>
+        </g>
+      </svg>
+      <div class="row tips2">
+        <p class="tip" data-step="5"><b>点：</b>每种部队抓住最有特点的地方写——海军的颜色、步兵的方阵、炮兵的横列、战车的气势、骑兵的整齐，还有天上的飞机。</p>
+        <p class="tip gold" data-step="6"><b>面：</b>“以上这些部队，全都以相等的距离和相同的速度经过主席台前”；“两个半钟头的检阅，广场上不断地欢呼，不断地鼓掌”。</p>
+      </div>
+      <p class="tip jade" data-step="7"><b>点面结合：</b>既让我们感受到整个阅兵式的<b>庄严、隆重</b>，又让我们领略到各个队伍的<b>特色</b>。</p>
+    </div>
+  </div>
+  <p class="note">课后第 2 题，对照语文园地“交流平台”。按一下进场一支部队，队伍由东往西（画面从右向左）经过主席台。最后用括号把它们“框起来”，就是面。</p>
+</section>
+
+<section class="slide s-clues">
+  <div class="hd"><span class="tag">二 · 品读 · 课后第 3 题</span><h2>读句子，体会热烈、庄严的气氛</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">先读一读句子，自己在旁边写批注，再点卡片看看别人的批注。</p>
+      <div class="clues" id="clues" data-noswipe></div>
+      <p class="tip gold" data-step="1"><b>作批注：</b>可以写“我从哪个词感受到了什么”，也可以写“这样写有什么好处”。</p>
+    </div>
+  </div>
+  <p class="note">课后第 3 题。前三句是课本给的，第四句选自语文园地“词句段运用”。鼓励学生再从课文里找类似的句子，例如三个“一齐”。</p>
+</section>
+
+<!-- ================= 三 · 读与写 ================= -->
+<section class="slide s-read">
+  <div class="hd"><span class="tag">三 · 读与写 · 课后第 1 题</span><h2>朗读：读出自豪和激动</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="btns"><button class="btn solid" type="button" id="markToggle">显示朗读符号</button><span class="legend">/ 停顿　// 长停顿　<em>着重号</em> 重读</span></div>
+      <div class="read-list">
+        <div class="read-item"><p>这<em>庄严</em>的宣告，<i>/</i> 这<em>雄伟</em>的声音，<i>/</i> 使全场三十万人 <i>/</i> <em>一齐欢呼</em>起来。</p><span class="tone">激动 · 渐强</span></div>
+        <div class="read-item"><p>五星红旗 <i>/</i> 升起来了，<i>//</i> 表明中国人民 <i>/</i> 从此 <em>站起来</em>了。</p><span class="tone">庄严 · 自豪</span></div>
+        <div class="read-item"><p>起初是 <em>全场肃静</em>，<i>/</i> 只听见炮声和乐曲声，<i>/</i> 只听见国旗和其他许多旗帜 <i>/</i> 飘拂的声音……</p><span class="tone">轻 · 慢 · 静</span></div>
+        <div class="read-item"><p>群众差不多把嗓子都<em>喊哑</em>了，<i>/</i> 把手掌都<em>拍麻</em>了，<i>/</i> 还觉得 <i>/</i> 不能够表达自己心里的 <em>欢喜和激动</em>。</p><span class="tone">热烈 · 激昂</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">庄严的地方读得慢而稳，热烈的地方读得快而响。“全场肃静”一句要压低声音。</p>
+</section>
+
+<section class="slide s-write">
+  <div class="hd"><span class="tag">三 · 读与写 · 小练笔</span><h2>学写场面：点面结合</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">选一个题目写一写。先写<b>面</b>（整个场景），再写一两个<b>点</b>（某个人的动作、语言、神态）。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="在这里写下来……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">与本单元习作《多彩的活动》衔接。前两题在课文里练，第三题写自己学校的活动。</p>
+</section>
+
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>这节课，我们……</h2></div>
+  <div class="bd full">
+    <div class="stage" style="justify-content:center">
+      <div class="board" data-step="1">
+        <div style="text-align:center;font-size:1.4em;margin-bottom:.2em"><b>开国大典</b></div>
+        <div><b>顺序</b>　群众入场 → 典礼开始 → 宣布成立 → 升国旗 → 宣读公告 → 阅兵式 → 群众游行</div>
+        <div><b>写法</b>　点面结合：阅兵式 —— 各部队的特色（点）＋整齐威武的整体（面）</div>
+        <div><b>气氛</b>　庄严　隆重　热烈</div>
+        <div style="text-align:center;margin-top:.3em"><b>中国人民从此站起来了</b></div>
+      </div>
+      <p class="tip jade" data-step="2"><b>延伸：</b>课文插图是董希文的油画《开国大典》。课后可以找一找这幅画，看看画家是怎样画这个场面的。</p>
+    </div>
+  </div>
+  <p class="note">板书按典礼程序梳理，突出点面结合与庄严热烈的气氛。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

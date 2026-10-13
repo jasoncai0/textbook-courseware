@@ -1,0 +1,84 @@
+/* 天窗 · 本课配色：旧屋的木褐、夜空的靛蓝。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #5b4a8a;
+  --red-d: #3a2f5c;
+  --gold: #d9a520;
+  --gold-l: #f3e2a6;
+  --paper: #f3f0ea;
+  --stone: #fbfaf6;
+  --ink-2: #5c5566;
+  --line: #d6d0c6;
+}
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 7.5em; }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.subs .key-line { color: #ffe3a8; font-size: 1.12em; }
+
+/* 想象中的画面：盖在原画上，分步淡入 */
+.scene-bg.imagine { transition: opacity 1.6s ease; }
+.scene-bg.imagine[data-step] { transform: scale(1.04); }
+
+/* ---------- 换天气看房子 ---------- */
+.s-house .bd { grid-template-columns: 1fr 30%; }
+#house { border-radius: .8em; }
+#house .hs-sky { fill: #cfe8f7; transition: fill .8s; }
+#house.w-rain .hs-sky { fill: #7d8a96; }
+#house.w-snow .hs-sky { fill: #b9c4cf; }
+#house .hs-sun, #house .hs-rain, #house .hs-snow, #house .hs-beam-w, #house .hs-beam-s, #house .hs-glass, #house .hs-lab-s, #house .hs-shut, #house .hs-shut-open { opacity: 0; transition: opacity .8s; }
+#house.w-sun .hs-sun, #house.w-rain .hs-rain, #house.w-snow .hs-snow, #house.w-sun .hs-beam-w, #house.w-sun .hs-shut-open { opacity: 1; }
+#house:not(.w-sun) .hs-shut { opacity: 1; }
+#house .hs-dark { opacity: 0; transition: opacity .8s; }
+#house:not(.w-sun) .hs-dark { opacity: .85; }
+#house.sky-on:not(.w-sun) .hs-dark { opacity: .55; }
+#house.sky-on .hs-beam-s, #house.sky-on .hs-glass, #house.sky-on .hs-lab-s { opacity: 1; }
+#house.sky-on.w-sun .hs-beam-s { opacity: .4; }
+#house .hs-rain path { animation: hsRain .8s linear infinite; }
+@keyframes hsRain { to { transform: translate(-16px, 44px); } }
+#house .hs-msg { font-size: 22px; font-weight: bold; }
+.hs-btns { flex-direction: column; }
+.hs-btns .btn, .hs-sky-btn { font-size: 1.15em; font-family: var(--kai); }
+.hs-sky-btn { border-color: #1f4e79; color: #1f4e79; }
+.hs-sky-btn.solid { background: #1f4e79; color: #fff; }
+
+/* ---------- 唯一的慰藉 ---------- */
+.wei-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.wei-card { background: #fff; border-radius: .7em; overflow: hidden; box-shadow: 0 .15em .6em rgba(40, 30, 60, .12); display: flex; flex-direction: column; }
+.wei-pic { height: 7em; background: #ddd center / cover no-repeat; }
+.wei-card h3 { margin: .4em .9em 0; color: var(--red-d); }
+.wei-card p { margin: .3em .9em .7em; font-family: var(--kai); font-size: 1.15em; line-height: 1.7; }
+
+/* ---------- 看到 → 想象 ---------- */
+.s-zoom .bd { grid-template-columns: 1fr 34%; }
+.zoom-view { position: relative; flex: 1; min-height: 0; border-radius: .8em; overflow: hidden; background: #2a2a30; }
+.zoom-a, .zoom-b { position: absolute; inset: 0; background: center / cover no-repeat; }
+.zoom-a { background-position: 50% 15%; background-size: 220%; }
+.zoom-b { opacity: 0; }
+.zoom-x { position: absolute; right: .5em; top: .4em; font-family: Georgia, serif; font-size: 2.2em; font-weight: bold; color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, .6); }
+.zoom-row { font-size: 1.05em; }
+.zoom-row input { height: 1.6em; }
+.zoom-cap { margin: 0; min-height: 3.2em; font-family: var(--kai); font-size: 1.2em; line-height: 1.6; color: var(--red-d); }
+
+/* ---------- 从“无”中看出“有” ---------- */
+.s-wu .bd { grid-template-columns: 1fr 32%; }
+#wuSvg { border-radius: .8em; }
+#wuSvg .wu-small, #wuSvg .wu-big { opacity: 0; transition: opacity 1.2s ease; }
+#wuSvg.see-star .wu-small.wu-star, #wuSvg.see-cloud .wu-small.wu-cloud, #wuSvg.see-shadow .wu-small.wu-shadow { opacity: 1; }
+#wuSvg.imagine.see-star .wu-big.wu-star, #wuSvg.imagine.see-cloud .wu-big.wu-cloud, #wuSvg.imagine.see-shadow .wu-big.wu-shadow { opacity: 1; }
+#wuStars circle { animation: twinkle 1.8s ease-in-out infinite alternate; }
+@keyframes twinkle { to { opacity: .3; } }
+.wu-btns .btn, .wu-go { font-family: var(--kai); font-size: 1.2em; }
+.wu-res { margin: 0; min-height: 4em; font-family: var(--kai); font-size: 1.15em; line-height: 1.6; background: #fff; border-radius: .5em; padding: .4em .8em; }
+.wu-res b { color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3.4em; }
+  .hd h2 { font-size: 1.3em; }
+  .hs-btns { flex-direction: row; }
+  .wei-grid { grid-template-columns: 1fr; }
+  .zoom-view { flex: none; height: 14em; }
+  #house .hs-msg { font-size: 26px; }
+}

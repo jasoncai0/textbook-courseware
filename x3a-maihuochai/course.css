@@ -1,0 +1,100 @@
+/* 卖火柴的小女孩 · 本课配色：雪夜的冷蓝、火柴的暖金。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #b0502a;
+  --red-d: #6b2c17;
+  --gold: #d79a2c;
+  --gold-l: #f5dca0;
+  --paper: #f1eee9;
+  --stone: #fbfaf7;
+  --ink-2: #5a5650;
+  --line: #d6cfc3;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfaf7 0, transparent 40%), radial-gradient(circle at 90% 95%, #e0e4ea 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 6em; }
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.6em; }
+}
+
+/* ---------- 雪 ---------- */
+.snow { position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, .9) 0 1.5px, transparent 2.5px), radial-gradient(circle, rgba(255, 255, 255, .7) 0 1px, transparent 2px);
+  background-size: 120px 120px, 70px 70px; background-position: 0 0, 35px 20px; animation: snow 14s linear infinite; }
+@keyframes snow { to { background-position: -60px 720px, 5px 600px; } }
+
+/* ---------- 现实 / 幻象 ---------- */
+.glow { position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: screen;
+  background: radial-gradient(circle at var(--gx) var(--gy), rgba(255, 196, 92, .55), rgba(255, 170, 60, .18) 22%, transparent 42%); }
+.glow.big { background: radial-gradient(circle at var(--gx) var(--gy), rgba(255, 236, 180, .8), rgba(255, 196, 92, .35) 35%, transparent 70%); }
+.glow[data-step] { transform: none; transition: opacity 1.4s ease; }
+.snuff { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgba(14, 24, 46, .72); transition: opacity 1.6s ease !important; transform: none !important; }
+.snuff.half { background: linear-gradient(transparent 0, rgba(14, 24, 46, .2) 30%, rgba(14, 24, 46, .7) 70%); }
+.snuff.dim { background: rgba(14, 24, 46, .35); }
+.scene:has(.snuff.on) .glow { opacity: 0; }
+.scene:has(.snuff.on) .scene-bg { filter: saturate(.35) brightness(.85); }
+.scene .scene-bg { transition: transform 4s ease, transform-origin 4s ease, background-position 4s ease, object-position 4s ease, filter 1.6s ease; }
+
+.realm { position: absolute; left: 2.4em; top: 3.4em; z-index: 3; display: flex; gap: .5em; }
+.realm b { font-weight: normal; font-size: .9em; padding: .2em .8em; border-radius: 1em; transition: opacity .8s; }
+.realm .real { background: rgba(60, 90, 140, .88); color: #fff; }
+.realm .dream { background: rgba(232, 160, 50, .95); color: #3a2205; transform: none; }
+.scene:has(.realm .dream.on):not(:has(.snuff.on)) .realm .real { opacity: .25; }
+.scene:has(.snuff.on) .realm .dream { opacity: 0; }
+
+.match-count { position: absolute; right: 1.4em; top: 7.6em; z-index: 3; color: #fff3d6; font-family: var(--kai); font-size: 1.1em; background: rgba(20, 18, 15, .55); padding: .2em .8em .2em 1.6em; border-radius: 1em; }
+.match-count::before { content: ""; position: absolute; left: .7em; top: 50%; width: .5em; height: .75em; translate: 0 -55%; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: radial-gradient(circle at 50% 70%, #fff3c4, #ffb340 50%, #e0561c); box-shadow: 0 0 .6em #ffb340; animation: flicker .6s ease-in-out infinite alternate; }
+.scene:has(.snuff.on) .match-count::before { background: #5a4a3a; box-shadow: none; animation: none; }
+@keyframes flicker { to { transform: scale(.85, 1.08); opacity: .85; } }
+
+/* 流星：一道细长的红光 */
+.meteor { position: absolute; z-index: 1; left: 72%; top: 6%; width: 9em; height: 2px; rotate: 155deg; transform-origin: left center; background: linear-gradient(90deg, #ffd0b0, rgba(255, 90, 60, .9) 20%, transparent); opacity: 0; transform: none; }
+.meteor.on { animation: meteor 2.6s ease-in .3s infinite; }
+@keyframes meteor { 0% { opacity: 0; translate: 0 0; } 15% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; translate: -14em 7em; } }
+
+/* 一大把火柴：化成一片金光 */
+.goldout { position: absolute; inset: 0; z-index: 1; background: radial-gradient(circle at 50% 45%, #fffaf0, #fbe7bd 55%, #f2cf8a); transition: opacity 2.2s ease !important; transform: none !important; }
+.scene:has(.goldout.on) .subs { background: none; color: #6a4a22; top: 32%; bottom: auto; text-align: center; padding: 0 12%; }
+.scene:has(.goldout.on) .scene-shade, .scene:has(.goldout.on) .realm, .scene:has(.goldout.on) .match-count { opacity: 0; }
+
+/* 新年的清晨：远景 + 留白 */
+.s-dawn { background: #f3ede4; }
+.s-dawn .scene-shade { display: none; }
+.s-dawn .subs { background: none; color: #4f4a44; top: 24%; bottom: auto; text-align: center; padding: 0 16%; font-size: 1.5em; }
+.s-dawn .subs p.on:not(.now) { opacity: .45; }
+.s-dawn .hd .sub { color: #6d6760; text-shadow: none; }
+.s-dawn .sun { transform-box: fill-box; transform-origin: center; animation: sunrise 8s ease-out both; }
+@keyframes sunrise { from { translate: 0 120px; opacity: .3; } }
+
+/* ---------- 品读：五次火柴 ---------- */
+.matches { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: .7em; }
+.mcard { font: inherit; display: flex; flex-direction: column; align-items: stretch; gap: .45em; padding: .6em .6em .7em; border-radius: .6em; border: 1px solid var(--line); background: #fff; cursor: pointer; text-align: left; transition: background .5s, box-shadow .5s; }
+.mcard h3 { margin: 0; text-align: center; color: var(--red-d); font-size: 1.05em; }
+.mstick { position: relative; height: 4.6em; display: flex; justify-content: center; gap: .25em; }
+.mstick i { position: relative; width: .32em; height: 3em; margin-top: 1.6em; background: #d8b98a; border-radius: .1em; }
+.mstick i::before { content: ""; position: absolute; left: 50%; top: -.35em; width: .55em; height: .7em; translate: -50% 0; border-radius: 50%; background: #9a2c1c; }
+.mstick i::after { content: ""; position: absolute; left: 50%; top: -1.3em; width: .9em; height: 1.4em; translate: -50% 0; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: radial-gradient(circle at 50% 70%, #fff3c4, #ffb340 50%, #e0561c); box-shadow: 0 0 1em #ffb340; opacity: 0; transition: opacity .5s; }
+.mcard.lit .mstick i::after { opacity: 1; animation: flicker .6s ease-in-out infinite alternate; }
+.mcard .mtap { text-align: center; font-size: .85em; color: var(--ink-2); }
+.mcard.lit .mtap { display: none; }
+.mcard .mrow { margin: 0; font-family: var(--kai); font-size: .98em; line-height: 1.5; padding: .35em .55em; border-radius: .4em; opacity: 0; transition: opacity .6s; }
+.mcard .mrow small { display: block; font-family: var(--serif); font-size: .75em; font-weight: bold; }
+.mcard .see { background: #fff3d9; }
+.mcard .see small { color: #b06b10; }
+.mcard .real { background: #e8edf4; }
+.mcard .real small { color: #34507a; }
+.mcard .wish { background: var(--red); color: #fff; text-align: center; font-family: var(--serif); }
+.mcard.lit { background: #fffaf0; box-shadow: 0 0 1.2em rgba(255, 180, 70, .35); cursor: default; }
+.mcard.lit .mrow { opacity: 1; }
+.mcard.lit .real { transition-delay: .5s; }
+.mcard.lit .wish { transition-delay: 1s; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .realm { left: .9em; top: 3em; }
+  .match-count { top: 5.2em; right: .6em; font-size: .9em; }
+  .matches { grid-template-columns: 1fr 1fr; }
+  .s-dawn .subs { font-size: 1.15em; padding: 0 1.2em; top: 18%; }
+  .scene:has(.goldout.on) .subs { padding: 0 1.2em; }
+}

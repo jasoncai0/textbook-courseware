@@ -1,0 +1,68 @@
+/* 骑鹅旅行记 · 本课配色：瑞典春天的天蓝、麦黄 */
+:root {
+  --red: #3b6ea5;
+  --red-d: #24476f;
+  --gold: #d9a63a;
+  --gold-l: #f4e0a8;
+  --paper: #f2f1ea;
+  --stone: #fbfbf6;
+  --ink-2: #565c63;
+  --line: #d2d3c6;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfbf4 0, transparent 40%), radial-gradient(circle at 90% 95%, #e0e7e2 0, transparent 45%); }
+.scene .hd .tag { background: rgba(36, 71, 111, .92); }
+.subs .who.main { background: #3b6ea5; }
+
+/* 资料袋 */
+.info-cards { justify-content: center; }
+.info { background: #fff; border-left: .3em solid var(--red); border-radius: .4em; padding: .55em 1em; box-shadow: 0 .15em .5em rgba(40, 50, 60, .08); }
+.info.gold { background: #fff8e1; border-left-color: var(--gold); }
+.info b { color: var(--red-d); font-size: 1.05em; }
+.info p { margin: .15em 0 0; line-height: 1.65; }
+
+/* 梗概 */
+.s-gk .stage { justify-content: center; }
+.gk-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5em; }
+.gk-steps li { display: grid; grid-template-columns: 4em 1fr; gap: .8em; align-items: center; background: #fff; border-radius: .5em; padding: .5em .9em; line-height: 1.6; box-shadow: 0 .15em .5em rgba(40, 50, 60, .08); }
+.gk-steps b { text-align: center; color: #fff; background: var(--red); border-radius: .3em; padding: .2em 0; }
+.gk-steps em { font-style: normal; color: var(--red); font-weight: bold; }
+.gk-steps li:nth-child(2) { border: 2px solid var(--gold); background: #fff8e1; }
+
+/* 变化对照 */
+.s-change .stage { justify-content: center; }
+.chg { display: flex; flex-direction: column; gap: .35em; }
+.chg-h, .chg-row { display: grid; grid-template-columns: 7em 1fr 1.4fr; gap: .5em; }
+.chg-h span { text-align: center; font-weight: bold; color: var(--ink-2); }
+.chg-row > * { background: #fff; border-radius: .4em; padding: .45em .8em; line-height: 1.5; }
+.chg-row b { color: #fff; background: var(--red); text-align: center; }
+.chg-row span:nth-child(2) { color: var(--ink-2); }
+.chg-row span:nth-child(3) { background: #eef4fb; font-family: var(--kai); font-size: 1.05em; }
+.chg-row:nth-last-child(-n+2) b { background: var(--gold); color: var(--red-d); }
+
+/* 人物卡 */
+.person-card { display: flex; flex-direction: column; gap: .6em; min-height: 0; }
+.pc-info { margin: 0; display: grid; grid-template-columns: 3.6em 1fr; gap: .25em .6em; background: #fff; border-radius: .5em; padding: .6em .9em; font-size: .9em; line-height: 1.5; border-top: .3em solid var(--red); }
+.pc-info dt { color: var(--red); font-weight: bold; }
+.pc-info dd { margin: 0; }
+.s-person .stage { justify-content: center; }
+.trait { display: grid; grid-template-columns: 7.5em 1fr; gap: .8em; align-items: center; background: #fff; border-radius: .5em; padding: .5em .9em; border-left: .3em solid var(--gold); }
+.trait b { color: var(--red-d); font-size: 1.1em; }
+.trait span { font-family: var(--kai); line-height: 1.6; }
+
+.clues.one { grid-template-columns: 1fr; }
+.clues.one .clue, .clues.one .clue-in { min-height: 6.5em; }
+.clues.one .clue-face.front { font-size: 1.6em; display: flex; flex-direction: column; justify-content: center; }
+.clues.one .clue-face.front small { font-size: .45em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .gk-steps li { grid-template-columns: 1fr; gap: .3em; }
+  .gk-steps b { justify-self: start; padding: .1em .8em; }
+  .chg-h { display: none; }
+  .chg-row { grid-template-columns: 1fr 1fr; }
+  .chg-row b { grid-column: 1 / -1; }
+  .chg-row span:nth-child(2)::before { content: "以前："; font-weight: bold; }
+  .chg-row span:nth-child(3)::before { content: "以后："; font-weight: bold; font-family: var(--serif); }
+  .trait { grid-template-columns: 1fr; gap: .2em; }
+  .portrait-img { min-height: 14em; }
+  .clues.one .clue, .clues.one .clue-in { min-height: 8.5em; }
+}

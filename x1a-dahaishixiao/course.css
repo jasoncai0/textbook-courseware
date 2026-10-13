@@ -1,0 +1,58 @@
+/* 大还是小 · 本课配色：小男孩外套的绿、毛衣的黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3f8a4f;
+  --red-d: #24603a;
+  --gold: #e9b52a;
+  --gold-l: #fbe6a6;
+  --paper: #f5f8ee;
+  --stone: #fffefa;
+  --ink-2: #5b6250;
+  --line: #d9e3c8;
+}
+
+/* 第 3、4 自然段：听到雷声时闪电一亮 */
+.dx-flash { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: #fff; opacity: 0; }
+.dx-bolt { position: absolute; right: 8%; top: 10%; width: 9%; z-index: 2; opacity: 0; pointer-events: none; filter: drop-shadow(0 0 .6em #fff6b0); }
+.scene:has(.f-lei.on) .dx-flash { animation: dxFlash 2.2s ease-out; }
+.scene:has(.f-lei.on) .dx-bolt { animation: dxBolt 2.2s ease-out forwards; }
+@keyframes dxFlash { 0%, 20% { opacity: 0; } 8%, 26% { opacity: .75; } 40% { opacity: 0; } }
+@keyframes dxBolt { 0% { opacity: 0; } 8%, 60% { opacity: 1; } 100% { opacity: .35; } }
+
+/* 课后第 1 题：全文较长，字号小一点 */
+.dx-text { font-size: 1.45em; }
+
+/* 课后第 2 题：两列 */
+.dx-frame { font-size: 1.6em; margin: 0; padding: 0 .8em; }
+.ch.dx-two { display: grid; grid-template-columns: 1fr 1fr; gap: .5em .8em; align-content: start; }
+.ch.dx-two .ch-count { grid-column: 1 / -1; }
+.ch.dx-two .ch-row { padding: 0 .7em; }
+.ch.dx-two .ch-t { font-size: 1.35em; white-space: nowrap; }
+.ch.dx-two .ch-o { font-size: 1.15em; }
+.ch.dx-two .ch-say { min-width: 0; font-size: 1.05em; }
+
+/* ---------- 选一选（一上第七、八单元各课相同） ---------- */
+.ch { display: flex; flex-direction: column; gap: .45em; min-height: 0; }
+.ch-row { display: flex; align-items: center; gap: .8em; background: #fff; border: 2px solid var(--line); border-radius: .6em; padding: .1em .8em; transition: background .3s, border-color .3s; }
+.ch-ic { flex: none; display: grid; place-items: center; }
+.ch-t { flex: 1; font-family: var(--kai); font-size: 1.6em; line-height: 2.3; }
+.ch-btns { display: flex; flex-wrap: wrap; gap: .4em; }
+.ch-o { font: inherit; font-family: var(--kai); font-size: 1.35em; padding: 0 .5em; border: 2px solid var(--line); border-radius: .45em; background: #fff; color: var(--ink); cursor: pointer; white-space: nowrap; flex: none; }
+.ch-o .py { line-height: 2.3; }
+.ch-o.solid { background: var(--red); border-color: var(--red); color: #fff; }
+.ch-o.solid rt { color: #fff; }
+.ch-say { min-width: 5.5em; font-family: var(--kai); font-size: 1.25em; color: #1f6b4f; }
+.ch-row.ok { border-color: #8cc0a6; background: #f1f8f4; }
+.ch-row.no { animation: nope .35s; border-color: #e3a998; }
+.ch-count { margin: 0; text-align: right; color: var(--ink-2); }
+.ch.all-done .ch-count { color: #1f6b4f; font-weight: bold; }
+@media (max-width: 820px), (max-height: 520px) {
+  .ch-row { flex-wrap: wrap; gap: .3em .6em; }
+  .ch-t { font-size: 1.3em; }
+  .ch-o { font-size: 1.15em; }
+  .ch-say { min-width: 0; }
+}
+@media (max-width: 820px), (max-height: 520px) {
+  .dx-text { font-size: 1.2em; }
+  .ch.dx-two { grid-template-columns: 1fr; }
+  .dx-bolt { width: 16%; }
+}

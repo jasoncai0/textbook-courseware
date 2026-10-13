@@ -1,0 +1,52 @@
+/* 腊八粥 · 本课配色：枣红、粥褐、灶火暖黄。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #a63b24;
+  --red-d: #6b2314;
+  --gold: #cf8f2e;
+  --gold-l: #f2d39a;
+  --paper: #f6eee3;
+  --stone: #fcf8f2;
+  --ink-2: #5f5246;
+  --line: #e0cdb2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdf9f2 0, transparent 40%), radial-gradient(circle at 90% 95%, #eedcc3 0, transparent 45%); }
+.s-cover .cover-title { font-size: 7em; }
+.subs em { font-style: normal; color: #ffd27a; }
+.subs .lb-big { font-size: 1.2em; color: #ffe2a8; }
+
+/* 品读 · 详略篇幅条 */
+.lb-bars { display: flex; flex-direction: column; gap: .5em; background: #fff; border: 1px solid var(--line); border-radius: .6em; padding: .8em 1.2em; }
+.lb-row { display: grid; grid-template-columns: 3.5em 1fr; align-items: center; gap: .8em; }
+.lb-row b { font-size: 1.3em; color: var(--red-d); font-family: var(--kai); }
+.lb-bar { position: relative; height: 2.2em; background: #f3ebde; border-radius: .4em; overflow: hidden; }
+.lb-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--red); border-radius: .4em; transition: width 1.4s cubic-bezier(.3, 1.1, .5, 1) .2s; }
+.lb-row.he .lb-bar i { background: #b9ad99; }
+.lb-bars.on .lb-bar i { width: var(--w); }
+.lb-bar em { position: absolute; left: .8em; top: 50%; transform: translateY(-50%); font-style: normal; color: #fff; font-size: .9em; white-space: nowrap; text-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
+.lb-row.he .lb-bar em { left: calc(13% + .6em); color: var(--ink-2); text-shadow: none; }
+.lb-cap { margin: 0; font-size: .78em; color: var(--ink-2); text-align: right; }
+.lb-two { flex: 0 0 auto; }
+.lb-two .tip { flex: 1; }
+.lb-two ol { margin: .3em 0 0; padding-left: 1.4em; font-family: var(--kai); font-size: 1.1em; line-height: 1.7; }
+.lb-small { margin: .3em 0 0; color: var(--ink-2); }
+
+/* 品读 · 心情线：7 张卡片，窄一点 */
+.s-plot .plot-card { width: 12.6%; }
+.s-plot .plot-card .pic { height: 4.6em; }
+.s-plot .plot-card b { font-size: 1em; }
+
+/* 品读 · 细腻描写卡片：3 列 */
+.s-clues .clues { grid-template-columns: repeat(3, 1fr); }
+
+/* 小练笔准备：第 1 自然段拆解 */
+.s-para .quote { font-size: 1.22em; line-height: 1.95; }
+.lb-steps { justify-content: center; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4.4em; }
+  .lb-row { grid-template-columns: 2.8em 1fr; }
+  .lb-row.he .lb-bar em { left: calc(13% + .4em); }
+  .s-plot .plot-card { width: auto; }
+  .s-clues .clues { grid-template-columns: 1fr; }
+  .s-para .quote { font-size: 1.05em; }
+}

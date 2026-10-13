@@ -1,0 +1,96 @@
+/* 爬山虎的脚（四上 10）· 本课配色：叶绿、嫩红、砖灰 */
+:root {
+  --red: #b04a32;
+  --red-d: #5e2a1c;
+  --gold: #8fb04a;
+  --gold-l: #dbe8b8;
+  --paper: #f3f2e6;
+  --stone: #fbfbf2;
+  --ink-2: #57594a;
+  --line: #d3d4bd;
+}
+/* 中年级：字再大一点 */
+.subs { font-size: 1.6em; }
+.tip { font-size: 1.05em; }
+.hd h2 { font-size: 1.85em; }
+.s-cover .cover-title { font-size: 7.5em; letter-spacing: .12em; }
+
+/* 一墙叶子 */
+.s-leaf .bd { grid-template-columns: 52% 1fr; }
+.leaf-btns .btn, .verb b { font-family: var(--kai); }
+.leaf-btns .btn { font-size: 1.2em; }
+#leafWall { border-radius: .8em; }
+#leafWall .lf { fill: #4f9a45; stroke: #3a7a33; stroke-width: 1.5; transition: fill 1.2s ease; transform-box: fill-box; transform-origin: 50% 0; }
+#leafWall.lw-new .lf { fill: #d4614f; stroke: #a9473a; }
+#leafWall.lw-wind .lf { animation: leafWave 1.6s ease-in-out infinite alternate; }
+@keyframes leafWave { from { transform: rotate(-9deg) translateY(-2px); } to { transform: rotate(9deg) translateY(2px); } }
+
+/* 脚的放大图 */
+.s-foot .bd { grid-template-columns: 52% 1fr; }
+#footSvg { border-radius: .8em; }
+.ft-table { display: flex; flex-direction: column; gap: .6em; }
+.ft-row { display: grid; grid-template-columns: 3.6em 1fr; gap: .5em; align-items: stretch; }
+.ft-row b { display: flex; align-items: center; justify-content: center; background: var(--red-d); color: #fff; border-radius: .4em; font-family: var(--kai); font-size: 1.2em; }
+.cell { width: 100%; min-height: 2.8em; font: inherit; font-family: var(--kai); font-size: 1.2em; line-height: 1.5; text-align: left; padding: .4em .7em; border: 1px dashed var(--line); border-radius: .4em; background: #fbfaf0; color: transparent; cursor: pointer; position: relative; }
+.cell::after { content: "说一说，再点一点"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #aeb09a; font-size: .8em; font-family: var(--serif); }
+.cell.open { color: var(--ink); background: #fff; border-style: solid; }
+.cell.open::after { content: none; }
+.cell em { font-style: normal; color: var(--red); }
+
+/* 触—巴—拉—贴 */
+.s-climb .bd { grid-template-columns: 50% 1fr; }
+#climbSvg { border-radius: .8em; }
+#climbSvg .th { fill: none; stroke: #e0705e; stroke-width: 4; stroke-linecap: round; opacity: 0; transition: opacity .5s ease; }
+#climbSvg .discs { fill: #c8503e; opacity: 0; transition: opacity .5s ease; }
+#climbSvg .cl-stem { transition: transform 1s ease; }
+#climbSvg .up, #climbSvg .cl-up, #climbSvg .cl-tag, #climbSvg .cl-arrow { opacity: 0; transition: opacity .6s ease; }
+#climbSvg .cl-tag rect { fill: #fff; stroke: #d9a520; stroke-width: 2; }
+#climbSvg .cl-tag text { fill: var(--red-d); }
+#climbSvg.c0 .th-short, #climbSvg.c1 .th-long, #climbSvg.c2 .th-long, #climbSvg.c3 .th-bentA, #climbSvg.c4 .th-bentB, #climbSvg.c5 .th-bentB { opacity: 1; }
+#climbSvg.c2 .discs, #climbSvg.c3 .discs, #climbSvg.c4 .discs, #climbSvg.c5 .discs { opacity: 1; }
+#climbSvg.c3 .cl-stem { transform: translateX(40px); }
+#climbSvg.c4 .cl-stem, #climbSvg.c5 .cl-stem { transform: translateX(58px); }
+#climbSvg.c1 .tag1, #climbSvg.c2 .tag2, #climbSvg.c3 .tag3, #climbSvg.c4 .tag4, #climbSvg.c5 .tag5 { opacity: 1; }
+#climbSvg.c2 .discs ellipse { animation: discPop .6s ease both; transform-box: fill-box; transform-origin: center; }
+@keyframes discPop { from { transform: scale(0); } }
+#climbSvg.c5 .up, #climbSvg.c5 .up .th, #climbSvg.c5 .up .discs { opacity: 1; }
+#climbSvg.c5 .up { animation: upIn 1.2s ease both; }
+@keyframes upIn { from { opacity: 0; } }
+#climbSvg.c5 .discs:not(.up .discs) { fill: #8e8a80; transition: fill 1.6s ease 1s; }
+#climbSvg.c5 .cl-up { opacity: 1; animation: upArrow 1.4s ease-in-out infinite; }
+@keyframes upArrow { 50% { transform: translateY(-10px); } }
+.verbs { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.verb { display: flex; align-items: center; gap: .6em; font: inherit; text-align: left; padding: .5em .8em; border: 2px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; }
+.verb b { flex: none; width: 1.7em; height: 1.7em; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #ece9da; color: var(--red-d); font-size: 1.8em; }
+.verb span { font-family: var(--kai); font-size: 1.1em; line-height: 1.4; }
+.verb.on-verb { border-color: var(--red); }
+.verb.on-verb b { background: var(--red); color: #fff; }
+.climb-go { align-self: flex-start; font-family: var(--kai); font-size: 1.2em; }
+
+/* 触着墙 / 没触着墙 */
+.fate { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6em; }
+.fate-col { background: #fff; border-radius: .8em; padding: .8em 1em; display: flex; flex-direction: column; align-items: center; gap: .3em; box-shadow: 0 .2em .7em rgba(40, 40, 20, .1); }
+.fate-col h3 { margin: 0 0 .2em; font-family: var(--kai); font-size: 1.5em; }
+.fate-col.miss h3 { color: #8e8a80; }
+.fate-col.hit h3 { color: var(--red-d); }
+.fate-step { width: 100%; display: flex; align-items: center; gap: .6em; background: #f6f5ea; border-radius: .5em; padding: .4em .8em; font-family: var(--kai); font-size: 1.3em; }
+.fate-step i { font-style: normal; font-family: var(--serif); font-size: .7em; color: #fff; background: var(--gold); padding: .1em .5em; border-radius: .3em; }
+.miss .fate-step span { color: #8e8a80; }
+.fate-arr { font-size: 1.4em; color: var(--gold); }
+
+/* 换个说法 */
+.s-words .clues { grid-template-columns: repeat(3, 1fr); }
+.s-words .clue, .s-words .clue-in { min-height: 8.5em; }
+.s-words .clue-face { font-size: 1.12em; }
+.clue-face b { color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs { font-size: 1.15em; }
+  .s-cover .cover-title { font-size: 4em; }
+  #leafWall, #footSvg, #climbSvg { flex: none; }
+  .verbs { grid-template-columns: 1fr; }
+  .fate { grid-template-columns: 1fr; gap: .8em; }
+  .s-words .clues { grid-template-columns: 1fr; }
+  .fate-step { font-size: 1.1em; }
+}
+.cell:not(.open) em { color: transparent; }

@@ -1,0 +1,89 @@
+/* 古诗三首（三上 17）· 本课配色：宣纸、朱砂、江水青。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #a63a2a;
+  --red-d: #2f5a4a;
+  --gold: #b8933a;
+  --gold-l: #ecdcae;
+  --paper: #f4efe2;
+  --stone: #fbf8f0;
+  --ink-2: #5f584c;
+  --line: #d8ceb8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcf9f1 0, transparent 40%), radial-gradient(circle at 90% 95%, #e8dfcb 0, transparent 45%); }
+.s-cover .cover-title { font-size: 7em; letter-spacing: .1em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; }
+.cover-poems span { font-family: var(--kai); font-size: 1.3em; background: rgba(166, 58, 42, .88); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* ---------- 中年级：字更大 ---------- */
+.subs { font-size: 1.5em; }
+.tip { font-size: 1.05em; }
+.hd h2 { font-size: 1.9em; }
+.poem-text .pl { font-size: 2.4em; }
+.recite-lines { font-size: 1.8em; }
+
+/* 雨中的西湖：第二句时换成雨景 */
+.bg-yu { position: absolute; inset: 0; background: center / cover no-repeat; z-index: 0; }
+.bg-yu[data-step] { transform: none; transition: opacity 2s ease; }
+
+.poem-scene .subs { padding-right: 44%; }
+.poem-v.left ~ .subs { padding-left: 44%; padding-right: 6%; }
+.s-boat .bd, .s-weather .bd, .s-plate .bd { grid-template-columns: 50% 1fr; }
+.poem-big { margin: 0; font-family: var(--kai); font-size: 2.1em; line-height: 1.7; text-align: center; letter-spacing: .12em; }
+
+/* 望天门山 */
+#river { flex: 1; min-height: 0; width: 100%; border-radius: .5em; }
+
+/* 晴 / 雨 */
+#lake { flex: 1; min-height: 0; width: 100%; border-radius: .5em; }
+#lake .sky { fill: #a9d3ef; transition: fill 1s; }
+#lake .hills { fill: #4f8f5e; transition: fill 1s, opacity 1s; }
+#lake .water { fill: #5fa7c9; transition: fill 1s; }
+#lake .sun { transition: opacity 1s; }
+#lake .sp { fill: #fff; animation: twinkle 1.6s ease-in-out infinite; }
+@keyframes twinkle { 50% { opacity: .1; } }
+#lake .mist { fill: #dfe5e3; opacity: 0; transition: opacity 1.2s; }
+#lake .drops line { stroke: #eef3f4; stroke-width: 1.5; opacity: 0; }
+#lake.yu .sky { fill: #b8c2c4; }
+#lake.yu .hills { fill: #8aa49a; opacity: .45; }
+#lake.yu .water { fill: #8fa9ad; }
+#lake.yu .sun, #lake.yu .sparks { opacity: 0; }
+#lake.yu .mist { opacity: .45; }
+#lake.yu .drops line { opacity: .8; animation: fall .9s linear infinite; }
+.wx-card { background: #fff; border-radius: .6em; padding: .7em 1em; border-left: .35em solid var(--line); transition: border-color .6s, background .6s, opacity .6s; opacity: .45; }
+.wx-card > b { display: block; font-family: var(--kai); font-size: 1.7em; letter-spacing: .1em; color: var(--red-d); }
+.wx-card span { font-size: 1.1em; }
+.wx-card span b { color: var(--red); }
+.s-weather[data-wx="qing"] .wx-qing, .s-weather[data-wx="yu"] .wx-yu { opacity: 1; border-color: var(--gold); background: #fff8e1; }
+
+/* 望洞庭 */
+#plate { flex: 1; min-height: 0; width: 100%; border-radius: .5em; }
+#plate .lake { fill: #6c7f96; transition: fill 1.2s; }
+#plate .rim, #plate .luo, #plate .lab-plate, #plate .lab-luo { opacity: 0; transition: opacity 1.2s; }
+#plate .ripples { opacity: 0; transition: opacity .6s; }
+#plate.windy .ripples { opacity: 1; animation: ripplemove 1.2s linear infinite; }
+#plate.windy .moon-r { opacity: .3; }
+@keyframes ripplemove { 50% { translate: 8px 0; } }
+#plate.plate .lake { fill: #c9d3dd; }
+#plate.plate .rim, #plate.plate .luo, #plate.plate .lab-plate, #plate.plate .lab-luo { opacity: 1; }
+#plate.plate .junshan { opacity: .35; }
+#plate .junshan { transition: opacity 1.2s; }
+
+/* 回顾表 */
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.15em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.15em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.8em; }
+  .subs { font-size: 1.15em; }
+  .poem-text .pl { font-size: 1.45em; }
+  .recite-lines { font-size: 1.3em; }
+  #river, #lake, #plate { flex: none; height: auto; }
+  .poem-big { font-size: 1.5em; }
+  .poem-scene .subs, .poem-v.left ~ .subs { padding-left: 1.1em; padding-right: 1.1em; }
+  .wx-card > b { font-size: 1.3em; }
+  .sum-table { font-size: .85em; border-spacing: .2em; }
+}

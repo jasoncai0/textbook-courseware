@@ -1,0 +1,113 @@
+/* 玲玲的画 · 本课配色：水彩颜料的玫红和暖黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #c2527a;
+  --red-d: #8a2f55;
+  --gold: #f0a93b;
+  --gold-l: #fde3a7;
+  --paper: #fbf4ef;
+  --stone: #fffdfb;
+  --ink-2: #6e5560;
+  --line: #ead7d6;
+}
+
+/* 二年级课文句子长：注音字幕比一年级小一号 */
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.32em; line-height: 2.25; }
+.py ruby { margin: 0 .05em; }
+.s-cover .cover-title ruby { margin: 0; }
+.ll-big { font-size: 1.5em; text-align: center; }
+.subs .ll-key.now { color: #ffe08a; }
+
+.ll-quote { margin: .5em 0 .2em; font-size: 2em; color: #fff3c8; }
+.s-cover .ll-quote rt { color: var(--gold-l); }
+.ll-ask { margin: 0 0 .8em; font-size: 1.4em; }
+
+/* ---------- 心情牌 ---------- */
+.ll-mood { position: absolute; z-index: 4; right: 1.6em; top: 1.2em; display: flex; align-items: center; gap: .4em; padding: .3em .9em .3em .4em; border-radius: 3em; background: rgba(255, 252, 245, .94); box-shadow: 0 .2em .8em rgba(0, 0, 0, .3); opacity: 0; transform: scale(.8); transition: opacity .4s, transform .4s; }
+.ll-mood.show { opacity: 1; transform: none; }
+.ll-mood svg { width: 3.6em; height: 3.6em; animation: pop .5s cubic-bezier(.3, 1.6, .5, 1); }
+.ll-mood svg circle:not(.ll-face) { fill: #3b2a20; }
+.ll-face { fill: #ffd76a; stroke: #e0a43a; stroke-width: 3; }
+.ll-face.down { fill: #a9c8e8; stroke: #6f97c2; }
+.ll-face.mid { fill: #ffe9a8; }
+.ll-mouth { fill: none; stroke: #3b2a20; stroke-width: 5; stroke-linecap: round; }
+.ll-tear { fill: #5aa8e6; }
+.ll-mood .py { font-size: 1.6em; line-height: 1.9; color: var(--red-d); font-weight: bold; }
+
+/* ---------- 心情曲线 ---------- */
+.ll-curve { position: relative; flex: 1; min-height: 0; }
+.ll-curve svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ll-axis { stroke: var(--line); stroke-width: 3; stroke-dasharray: 8 8; fill: none; }
+.ll-line { fill: none; stroke: var(--red); stroke-width: 8; stroke-linecap: round; }
+.ll-line[data-step] { opacity: 1; }
+.ll-pt { position: absolute; margin: 0; width: 16em; translate: -50% 0; background: #fff; border-radius: .8em; overflow: hidden; box-shadow: 0 .3em 1em rgba(60, 30, 40, .18); border: .2em solid var(--gold); }
+.ll-pt.down { border-color: #8fb3dc; }
+.ll-ph { height: 7em; background: #f1e3e3 center / cover no-repeat; }
+.ll-pt figcaption { text-align: center; font-size: 2em; color: var(--red-d); font-weight: bold; }
+.ll-why { position: absolute; translate: -50% -50%; font-family: var(--kai); font-size: 1.4em; padding: .1em .7em; border-radius: 1em; background: #eef4fb; color: #3f6b9c; }
+.ll-why.up { background: #fff3d6; color: #a0661a; }
+
+/* ---------- 补画 ---------- */
+.ll-paint { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.4em; align-items: center; }
+.ll-canvas { position: relative; width: 100%; max-height: 100%; aspect-ratio: 3 / 2; justify-self: center; }
+.ll-canvas svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 .3em .6em rgba(60, 30, 20, .2)); }
+.ll-blot { transition: opacity .6s; }
+.ll-dog { opacity: 0; }
+.ll-dog path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.ll-spot { opacity: 0; transition: opacity .8s 2.6s; }
+.ll-zz { font: italic bold 22px var(--py); fill: #8a6a9a; opacity: 0; }
+.ll-canvas.dog .ll-dog { opacity: 1; }
+.ll-canvas.dog .ll-dog path { animation: llDraw 2.4s ease forwards; }
+.ll-canvas.dog .ll-spot { opacity: 1; }
+.ll-canvas.dog .ll-blot { opacity: 0; transition-delay: 2.4s; }
+.ll-canvas.dog .ll-zz { animation: llZz 2s 3s ease-in-out infinite; }
+@keyframes llDraw { to { stroke-dashoffset: 0; } }
+@keyframes llZz { 0% { opacity: 0; transform: translateY(6px); } 50% { opacity: 1; } 100% { opacity: 0; transform: translateY(-10px); } }
+.ll-padbox { position: absolute; left: 20%; top: 46%; width: 34%; height: 28%; border: .2em dashed var(--red); border-radius: .5em; background: rgba(255, 255, 255, .25); }
+.ll-canvas.dog .ll-padbox { display: none; }
+.ll-side { display: flex; flex-direction: column; gap: .7em; align-items: stretch; }
+.ll-bubble { margin: 0; padding: .3em .9em; background: #fff; border-radius: .8em; border: 2px solid var(--line); font-size: 1.35em; }
+.ll-side .btn { font-size: 1.25em; font-family: var(--kai); }
+.ll-tip { margin: 0; min-height: 4.5em; font-size: 1.15em; line-height: 1.6; color: var(--ink-2); }
+
+/* ---------- 讲故事 ---------- */
+.ll-tell { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2em; align-items: stretch; }
+.ll-tcard { display: flex; flex-direction: column; gap: .4em; background: #fff8e6; border-radius: .8em; padding: .6em 1.1em; border-top: .4em solid var(--gold); box-shadow: 0 .2em .7em rgba(60, 30, 40, .1); }
+.ll-tcard.sad { background: #eef4fb; border-color: #8fb3dc; }
+.ll-tcard b { font-size: 2.6em; color: var(--red-d); text-align: center; }
+.ll-tcard p { margin: 0; font-family: var(--kai); font-size: 1.45em; line-height: 1.8; }
+.ll-tcard u { text-decoration: none; color: var(--red); font-weight: bold; }
+
+/* 翻卡 */
+.ll-clues .clue, .ll-clues .clue-in { min-height: 6.5em; }
+.ll-clues .clue-face { font-size: 1.25em; }
+
+/* 写字 10 个：三列 */
+.x2-write { grid-template-columns: repeat(3, 1fr); gap: .5em 1.2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.4em; }
+.x2-write .hz-wpy { font-size: 1.25em; }
+
+/* 回顾 */
+.ll-sum { display: flex; align-items: center; justify-content: center; gap: .8em; }
+.ll-sum .py { font-size: 2.2em; }
+.ll-sum > b { font-size: 2em; color: var(--gold-l); }
+.ll-sum2 .py { font-size: 1.8em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .ll-quote { font-size: 1.35em; }
+  .ll-mood { right: .6em; top: 3em; }
+  .ll-mood svg { width: 2.6em; height: 2.6em; }
+  .ll-mood .py { font-size: 1.2em; }
+  .ll-curve { height: 30em; flex: none; }
+  .ll-pt { width: 9em; }
+  .ll-ph { height: 4.5em; }
+  .ll-pt figcaption { font-size: 1.3em; }
+  .ll-why { font-size: 1em; }
+  .ll-paint, .ll-tell { display: flex; flex-direction: column; }
+  .ll-tcard b { font-size: 1.8em; }
+  .ll-tcard p { font-size: 1.15em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .ll-sum .py { font-size: 1.4em; }
+}

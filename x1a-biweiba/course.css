@@ -1,0 +1,88 @@
+/* 比尾巴 · 本课配色：森林的棕绿。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #b0632a;
+  --red-d: #7a3f12;
+  --gold: #e9a426;
+  --gold-l: #fbe0a0;
+  --paper: #fbf6ec;
+  --stone: #fffdf8;
+  --ink-2: #6e5c48;
+  --line: #e6d5b8;
+}
+
+/* 连一连（本课与《比尾巴》各有一份，样式相同） */
+.sj-stage { gap: .4em; }
+.lx { position: relative; flex: 1; min-height: 0; display: grid; grid-template-columns: 1.4fr 1fr 1fr; align-items: stretch; }
+.lx-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.lx-lines line { stroke: var(--red); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 2000; stroke-dashoffset: 2000; animation: lxDraw .6s ease-out forwards; }
+@keyframes lxDraw { to { stroke-dashoffset: 0; } }
+.lx-col { display: flex; flex-direction: column; justify-content: space-around; gap: .5em; min-height: 0; }
+.lx-r { grid-column: 3; }
+.lx-item { font: inherit; display: flex; align-items: center; gap: .6em; padding: .2em .8em .2em .3em; border: 3px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; text-align: left; color: var(--ink); transition: background .3s, border-color .3s; }
+.lx-r .lx-item { justify-content: center; padding: .2em .8em; }
+.lx-item .py { font-size: 1.9em; line-height: 2; }
+.lx-pic { flex: none; width: 5.2em; aspect-ratio: 16 / 10; border-radius: .4em; background: #e7efd9 center / cover no-repeat; }
+.lx-item.sel { border-color: var(--gold); background: #fff8e1; }
+.lx-item.done { border-color: var(--red); background: #f0f8e8; cursor: default; }
+.lx-item.wrong { animation: nope .35s; }
+.lx-out { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.2em; min-height: 5.6em; }
+.lx-out p { margin: 0; font-size: 1.35em; opacity: 0; transition: opacity .5s; }
+.lx-out p.on { opacity: 1; }
+
+.bw-stage { gap: .6em; }
+.bw-stage .lx { grid-template-columns: 1.9fr .5fr 1fr; }
+.bw-stage .lx-item .py { font-size: 2.5em; }
+.bw-stage .lx-out { grid-template-columns: 1fr 1fr; min-height: 0; }
+.bw-stage .lx-out p { font-size: 1.5em; }
+.bw-emoji { font-style: normal; font-size: 2.6em; line-height: 1; }
+
+/* 对歌舞台：提问板 + 答句气泡 */
+.bw-qs { position: absolute; z-index: 2; background: rgba(255, 252, 244, .92); border-radius: .8em; padding: .3em 1.2em .6em; box-shadow: 0 .3em 1em rgba(0, 0, 0, .25); }
+.bw-qs p { margin: 0; font-family: var(--kai); font-size: 1.7em; line-height: 2.2; }
+.bw-qs .bw-mic { font-family: var(--serif); font-size: 1em; line-height: 1.8; color: var(--red-d); }
+.bw-bub { position: absolute; z-index: 2; margin: 0; font-family: var(--kai); font-size: 1.8em; line-height: 2.2; background: #fff; border: 3px solid var(--gold); border-radius: 1em; padding: 0 .6em; box-shadow: 0 .2em .8em rgba(0, 0, 0, .25); }
+.bw-bub::after { content: ""; position: absolute; left: 1.2em; bottom: -.7em; border: .4em solid transparent; border-top: .7em solid var(--gold); }
+.bw-bub[data-step]:not(.on) { transform: scale(.4); }
+.bw-bub.on { transition: opacity .4s, transform .5s cubic-bezier(.3, 1.6, .5, 1); }
+
+/* 找一找 */
+.bw-findq { margin: 0; text-align: center; font-size: 2.2em; min-height: 2.3em; color: var(--red-d); }
+.bw-spot { position: absolute; translate: -50% -50%; width: 11%; aspect-ratio: 1; border-radius: 50%; border: .2em dashed rgba(255, 255, 255, .9); background: rgba(255, 255, 255, .12); cursor: pointer; }
+.bw-spot.done { border-style: solid; border-color: #4caf50; }
+.bw-spot.wrong { animation: nope .35s; }
+.bw-ans { position: absolute; translate: -50% 0; margin: 0; white-space: nowrap; font-family: var(--kai); font-size: 1.5em; background: #fff; border: 3px solid var(--gold); border-radius: .8em; padding: 0 .5em; opacity: 0; transform: scale(.5); transition: opacity .4s, transform .5s cubic-bezier(.3, 1.6, .5, 1); pointer-events: none; }
+.bw-ans.on { opacity: 1; transform: none; }
+.bw-findmsg { margin: 0; text-align: center; min-height: 1.6em; font-size: 1.3em; font-weight: bold; color: var(--red); }
+
+/* 问答游戏：翻卡片 */
+.bw-qa { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.bw-card { font: inherit; position: relative; border: 3px solid var(--line); border-radius: .8em; background: #fff; cursor: pointer; display: grid; place-items: center; padding: .4em; color: var(--ink); }
+.bw-card .py { font-size: 1.9em; }
+.bw-a { display: none; align-items: center; gap: .4em; }
+.bw-card.open { background: #fff8e1; border-color: var(--gold); animation: pop .45s cubic-bezier(.3, 1.6, .5, 1); }
+.bw-card.open .bw-q { display: none; }
+.bw-card.open .bw-a { display: flex; }
+
+.bw-recite { align-self: center; font-size: 1.75em; padding: .3em 1.2em; }
+.bw-board .py { font-size: 2em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .lx { grid-template-columns: 1.3fr .3fr .8fr; }
+  .lx-item { flex-direction: column; gap: 0; padding: .2em; }
+  .lx-item .py, .bw-stage .lx-item .py { font-size: 1.15em; line-height: 1.9; }
+  .bw-stage .lx { grid-template-columns: 1.4fr .25fr .8fr; }
+  .lx-out p, .bw-stage .lx-out p { font-size: 1.05em; }
+  .lx-out p:not(.on) { display: none; }
+  .bw-emoji { font-size: 1.8em; }
+  .bw-qa { grid-template-columns: 1fr; }
+  .bw-card .py { font-size: 1.2em; }
+  .bw-recite { font-size: 1.3em; padding: .3em .6em; }
+  /* 手机竖屏画面被裁，提问板和气泡改成从上往下排，不再按画面位置摆 */
+  .slide.scene.bw-stagep { padding-top: 4.2em; }
+  .bw-stagep .bw-qs, .bw-stagep .bw-bub { position: relative; left: auto !important; right: auto !important; top: auto !important; margin: .4em .8em; display: block; width: fit-content; }
+  .bw-qs p { font-size: 1.1em; }
+  .bw-bub { font-size: 1.05em; }
+  .bw-findq { font-size: 1.4em; }
+  .bw-ans { font-size: .9em; }
+  .bw-board .py { font-size: 1.3em; }
+}

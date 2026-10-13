@@ -1,0 +1,73 @@
+/* 古诗三首（绝句 / 惠崇春江晚景 / 三衢道中）· 本课配色：宣纸、春草绿、桃花红。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #b2543c;
+  --red-d: #5d3a22;
+  --gold: #b8933a;
+  --gold-l: #ecdcae;
+  --paper: #f3f0e2;
+  --stone: #fbf9f0;
+  --ink-2: #5b574b;
+  --line: #d6cfb5;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfaf1 0, transparent 40%), radial-gradient(circle at 90% 95%, #e1e8cf 0, transparent 45%); }
+
+/* 中年级：字大一点 */
+.tip { font-size: 1em; }
+.subs { font-size: 1.5em; }
+
+.s-cover .cover-title { font-size: 6.4em; letter-spacing: .1em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .8em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.3em; background: rgba(93, 58, 34, .88); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 边读边想象：画面局部亮起来 */
+@property --sx { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
+@property --sy { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
+@property --sr { syntax: '<percentage>'; inherits: true; initial-value: 100%; }
+.spot-layer, .spot-img::after { pointer-events: none; transition: --sx 1.2s ease, --sy 1.2s ease, --sr 1.2s ease; background: radial-gradient(circle at var(--sx) var(--sy), transparent 0, transparent var(--sr), rgba(12, 10, 6, .5) calc(var(--sr) + 16%)); }
+.spot-layer { position: absolute; inset: 0; z-index: 1; }
+.spot-img { position: relative; border-radius: .6em; overflow: hidden; background: #d9d4bf center / cover no-repeat; box-shadow: 0 .2em .8em rgba(40, 30, 20, .15); transition: --sx 1.2s ease, --sy 1.2s ease, --sr 1.2s ease; }
+.spot-img::after { content: ""; position: absolute; inset: 0; }
+.s-spot .bd { grid-template-columns: 1.25fr 1fr; }
+.s-spot .stage { justify-content: center; }
+.gs3-line { background: #fff; border-radius: .5em; padding: .5em 1em; border-left: .35em solid var(--gold); }
+.gs3-line b { display: block; font-family: var(--kai); font-size: 1.8em; color: var(--red-d); letter-spacing: .15em; }
+.gs3-line span { font-size: .95em; color: var(--ink-2); }
+
+/* 惠崇春江晚景 */
+.s-hua .pick { font-size: 1.35em; }
+
+/* 三衢道中：行程图 */
+.gs3-pics { position: relative; display: grid; grid-template-rows: 1fr 1fr; gap: .7em; min-height: 0; }
+.gs3-pic { position: relative; border-radius: .5em; background: #d9d4bf center / cover no-repeat; min-height: 0; }
+.gs3-pics .gs3-pic b { position: absolute; left: .6em; bottom: .5em; font-family: var(--kai); font-size: 1.2em; color: #fff; background: rgba(93, 58, 34, .88); padding: .1em .7em; border-radius: .3em; }
+.gs3-map { flex: 1; min-height: 0; width: 100%; background: #fbfaf2; border-radius: .6em; }
+.gs3-map text { font-family: var(--kai); }
+.gs3-bird path { transform-box: fill-box; transform-origin: center; }
+.on .gs3-bird path { animation: gs3Hop 1s ease-in-out infinite alternate; }
+.on .gs3-note { animation: pulse 1.4s ease-in-out infinite; }
+@keyframes gs3Hop { to { transform: translateY(-4px); } }
+
+/* 回顾：三张画卡 */
+.gs3-sum { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.gs3-card { background: #fff; border-radius: .6em; overflow: hidden; box-shadow: 0 .15em .6em rgba(40, 30, 20, .12); text-align: center; padding-bottom: .6em; }
+.gs3-card .gs3-pic { height: 9em; border-radius: 0; }
+.gs3-card h3 { margin: .4em 0 .1em; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.gs3-card p { margin: .1em .6em; color: var(--ink-2); }
+.gs3-card .gs3-kw { font-family: var(--kai); font-size: 1.15em; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .subs { font-size: 1.15em; }
+  .spot-img { min-height: 13em; }
+  .gs3-line b { font-size: 1.5em; }
+  .gs3-pics { grid-template-rows: none; grid-template-columns: 1fr 1fr; }
+  .gs3-pic { min-height: 8em; }
+  .gs3-map { flex: none; }
+  .gs3-sum { grid-template-columns: 1fr; }
+  .gs3-card .gs3-pic { height: 8em; }
+  .poem-v[data-poem="chunjiang"] .poem-text h3 { font-size: 1em; letter-spacing: 0; }
+}
+@media (max-width: 820px), (max-height: 520px) {
+  .gs3-map .t-m { font-size: 22px; }
+}

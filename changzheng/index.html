@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>七律·长征 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/poem.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/minshan.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第二单元 · 第 5 课 · 诗词 · 毛泽东</p>
+    <h1 class="cover-title">七律·长征</h1>
+    <p class="cover-sub">重温革命岁月，把历史的声音留在心里。</p>
+    <div class="chips" data-step="1"><span class="chip">读出磅礴的气势</span><span class="chip">说说诗句的意思和情感</span><span class="chip">背诵课文</span></div>
+    <p class="cover-flow" data-step="2">看路线　→　吟全诗　→　品四联　→　读出气势　→　背下来</p>
+  </div>
+  <p class="note">“七律”是七言律诗：每句七个字，一共八句，两句一联，分首联、颔联、颈联、尾联。先看长征路线，把诗里的地名“放到地图上”，诗就看得见了。</p>
+</section>
+
+<!-- ================= 字词：读准字音（数据见 ziyin.js） ================= -->
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 看得见的诗：长征路线 ================= -->
+<section class="slide s-route">
+  <div class="hd"><span class="tag">背景 · 看得见的诗</span><h2>诗里的山和水，都在长征路上</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 800 460" id="routeMap" data-noswipe aria-label="中央红军长征路线示意图">
+        <rect width="800" height="460" rx="12" fill="#f3ead6"/>
+        <g class="grid" stroke="#e4d8bd" stroke-width="1">
+          <path d="M0 115 H800 M0 230 H800 M0 345 H800 M200 0 V460 M400 0 V460 M600 0 V460"/>
+        </g>
+        <!-- 江河（示意） -->
+        <path class="river" d="M60 250 C 120 320, 170 420, 240 405 S 360 335, 470 335 S 650 300, 790 305"/>
+        <path class="river" d="M100 170 C 150 220, 150 265, 185 300 S 225 360, 232 402"/>
+        <text class="t-s river-t" x="52" y="332">金沙江</text>
+        <text class="t-s river-t" x="96" y="200">大渡河</text>
+        <text class="t-s river-t" x="640" y="296">长江</text>
+        <!-- 山（示意） -->
+        <g class="mt"><path d="M570 412 l14 -26 l14 26 z M590 412 l16 -32 l16 32 z M612 412 l12 -22 l12 22 z"/></g>
+        <g class="mt"><path d="M292 378 l16 -34 l16 34 z M314 378 l18 -42 l18 42 z M338 378 l14 -28 l14 28 z"/></g>
+        <g class="mt snow"><path d="M176 214 l14 -28 l14 28 z M196 214 l12 -22 l12 22 z"/></g>
+        <g class="mt snow"><path d="M284 134 l16 -32 l16 32 z M306 134 l18 -40 l18 40 z M330 134 l14 -26 l14 26 z"/></g>
+        <text class="t-s grass-t" x="236" y="170">草地</text>
+        <text class="t-s" x="150" y="190" fill="#8a7a62">雪山</text>
+        <!-- 路线：一步画一段 -->
+        <path class="route draw" pathLength="1" data-step="2" d="M720 360 C 680 400, 640 410, 600 400"/>
+        <path class="route draw" pathLength="1" data-step="3" d="M600 400 C 540 380, 470 320, 420 300 C 380 290, 350 340, 320 360"/>
+        <path class="route draw" pathLength="1" data-step="4" d="M320 360 C 290 380, 250 400, 220 390"/>
+        <path class="route draw" pathLength="1" data-step="5" d="M220 390 C 180 370, 150 320, 170 270"/>
+        <path class="route draw" pathLength="1" data-step="6" d="M170 270 C 185 240, 180 215, 190 200 C 200 175, 210 160, 230 150 C 260 135, 285 120, 310 120"/>
+        <path class="route draw" pathLength="1" data-step="7" d="M310 120 C 380 115, 440 90, 500 60"/>
+        <!-- 地点 -->
+        <g class="place" data-step="1"><circle cx="720" cy="360" r="8"/><text class="t-m" x="732" y="352">瑞金</text><text class="t-s" x="785" y="392" text-anchor="end">1934 年 10 月出发</text></g>
+        <g class="place poem-pt" data-step="2"><circle cx="600" cy="400" r="8"/><text class="t-m" x="560" y="440">五岭</text></g>
+        <g class="place" data-step="3"><circle cx="420" cy="300" r="5"/><text class="t-s" x="430" y="296">遵义</text></g>
+        <g class="place poem-pt" data-step="3"><circle cx="320" cy="360" r="8"/><text class="t-m" x="300" y="402">乌蒙</text></g>
+        <g class="place poem-pt" data-step="4"><circle cx="220" cy="390" r="8"/><text class="t-m" x="160" y="430">金沙江</text></g>
+        <g class="place poem-pt" data-step="5"><circle cx="170" cy="270" r="8"/><text class="t-m" x="184" y="282">大渡河·泸定桥</text></g>
+        <g class="place poem-pt" data-step="6"><circle cx="310" cy="120" r="8"/><text class="t-m" x="300" y="90">岷山</text></g>
+        <g class="place" data-step="7"><circle cx="500" cy="60" r="9"/><text class="t-m" x="514" y="56">陕北</text><text class="t-s" x="514" y="76">1935 年 10 月到达</text></g>
+        <text class="t-m t-red" data-step="7" x="560" y="140">行程约二万五千里</text>
+        <text class="t-s" x="16" y="450" fill="#9a8a70">示意图，位置不按比例</text>
+      </svg>
+    </div>
+    <div class="stage">
+      <div class="route-lines">
+        <p data-step="1"><b>首联</b>红军不怕远征难，万水千山只等闲。</p>
+        <p data-step="2"><b>五岭</b>五岭逶迤腾细浪，</p>
+        <p data-step="3"><b>乌蒙</b>乌蒙磅礴走泥丸。</p>
+        <p data-step="4"><b>金沙</b>金沙水拍云崖暖，</p>
+        <p data-step="5"><b>大渡</b>大渡桥横铁索寒。</p>
+        <p data-step="6"><b>岷山</b>更喜岷山千里雪，</p>
+        <p data-step="7"><b>尾句</b>三军过后尽开颜。</p>
+      </div>
+      <p class="tip gold" data-step="7">1934 年 10 月，中央红军从江西瑞金等地出发，一路翻山渡河，1935 年 10 月到达陕北。这首诗写于长征即将胜利结束的时候。</p>
+    </div>
+  </div>
+  <p class="note">按一下，路线走一段，右边亮一句诗。诗里的五个地名都是长征路上真实的山和水：五岭、乌蒙山、金沙江、大渡河、岷山。示意图只表示先后顺序和大致方位。</p>
+</section>
+
+<!-- ================= 吟 · 全诗 ================= -->
+<section class="slide scene poem-scene">
+  <video class="scene-bg" data-focus="1.04 50% 50%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/ab47844275db3c1936528e1aa94f268bf2518fbfc4d7eccad7ce8c94cbd47514.mp4" data-poster="assets/dadu.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">吟 · 七律·长征</span></div>
+  <div class="poem-v" data-poem="cz"></div>
+  <div class="subs">
+    <p data-step="9"><b class="who">诗意</b>红军不怕万里远征的艰难，把千山万水都看得平平常常。连绵的五岭像翻腾的细浪，磅礴的乌蒙山像滚动的泥丸。金沙江浪拍云崖，大渡河铁索寒冷；更令人欢喜的是踏上千里雪原的岷山，红军翻过去后个个笑逐颜开。</p>
+  </div>
+  <p class="note">先听老师读，再打开“节奏”跟读（七言：二二三）。打开“注释”，点“五岭”“乌蒙”“三军”看课本注释。“七律”的格律：中间两联（颔联、颈联）要对仗。</p>
+</section>
+
+<!-- ================= 品 · 首联 ================= -->
+<section class="slide s-shou">
+  <div class="hd"><span class="tag">品 · 首联</span><h2>红军不怕远征难，万水千山只等闲</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <div class="big-line">红军<span class="mark" data-step="1">不怕</span>远征<span class="mark" data-step="1">难</span>，<br>万水千山<span class="mark" data-step="2">只等闲</span>。</div>
+      <p class="tip" data-step="1"><b>“难”</b>是全诗写的事实：路远、山高、水险。</p>
+      <p class="tip gold" data-step="2"><b>“只等闲”</b>：只当作平平常常的事——这是红军的态度。<br>“不怕”和“等闲”定下了全诗的基调：<b>豪迈、乐观</b>。</p>
+    </div>
+    <div class="stage">
+      <p class="tip">“万水千山”在诗里具体指哪些？点一点。小心，有几个诗里没写！</p>
+      <div data-picks="wanshui" data-noswipe></div>
+      <div class="thumbs" data-step="3">
+        <figure><div data-bg="assets/wuling.jpg"></div><figcaption>五岭</figcaption></figure>
+        <figure><div data-bg="assets/wumeng.jpg"></div><figcaption>乌蒙</figcaption></figure>
+        <figure><div data-bg="assets/jinsha.jpg"></div><figcaption>金沙</figcaption></figure>
+        <figure><div data-bg="assets/dadu.jpg"></div><figcaption>大渡</figcaption></figure>
+        <figure><div data-bg="assets/minshan.jpg"></div><figcaption>岷山</figcaption></figure>
+      </div>
+      <p class="tip jade" data-step="3"><b>首联总写，后三联分写：</b>万水千山，一联写山，一联写水，一联写雪山。</p>
+    </div>
+  </div>
+  <p class="note">首联总写，后面三联分写。诗里写到的“万水千山”：五岭、乌蒙（山），金沙江、大渡河（水），岷山（山）。</p>
+</section>
+
+<!-- ================= 品 · 颔联 ================= -->
+<section class="slide s-han">
+  <div class="hd"><span class="tag">品 · 颔联 · 课后第 2 题</span><h2>五岭逶迤腾细浪，乌蒙磅礴走泥丸</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="env-cards two">
+        <div class="env-card" data-step="1"><div class="env-img" data-bg="assets/wuling.jpg"></div><h3>五岭</h3><p>实际：连绵起伏，<em>逶迤</em>不断<br>在红军眼里：不过是<em>腾起的细浪</em></p></div>
+        <div class="env-card" data-step="2"><div class="env-img" data-bg="assets/wumeng.jpg"></div><h3>乌蒙</h3><p>实际：高大雄伟，气势<em>磅礴</em><br>在红军眼里：不过是<em>滚动的泥丸</em></p></div>
+      </div>
+      <p class="tip gold" data-step="3"><b>以大写小：</b>把巍巍大山比作“细浪”“泥丸”——山越大，越显出红军不把困难放在眼里，正是首联的“<b>只等闲</b>”。</p>
+    </div>
+  </div>
+  <p class="note">课后第 2 题。先说诗句意思：五岭山脉连绵起伏，在红军看来不过像翻腾着的细小波浪；乌蒙山高大雄伟，在红军脚下不过像滚动着的泥丸。再说情感：藐视困难、豪迈乐观。</p>
+</section>
+
+<!-- ================= 品 · 颈联 ================= -->
+<section class="slide s-jing">
+  <div class="hd"><span class="tag">品 · 颈联 · 课后第 2 题</span><h2>金沙水拍云崖暖，大渡桥横铁索寒</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <div class="duizhang">
+        <span class="lab" data-step="1">地名</span><span class="lab" data-step="1">景物</span><span class="lab" data-step="1">感受</span>
+        <span class="c1" data-step="1">金沙</span><span class="c2" data-step="1">水拍云崖</span><span class="c3 warm" data-step="2">暖</span>
+        <span class="c1" data-step="1">大渡</span><span class="c2" data-step="1">桥横铁索</span><span class="c3 cold" data-step="3">寒</span>
+      </div>
+      <p class="tip" data-step="4"><b>一暖一寒，对比鲜明：</b>巧渡金沙江，轻松愉快；飞夺泸定桥，惊险紧张。</p>
+    </div>
+    <div class="stage">
+      <p class="tip">点一点卡片：“暖”和“寒”，只是在说天气吗？</p>
+      <div class="clues" id="clues" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">课后第 2 题。1935 年 5 月，红军靠几只小船巧渡金沙江，甩开了敌军；同月，勇士们攀着铁索夺下泸定桥，渡过大渡河。“暖”“寒”既是景物的感觉，更是红军的心情。</p>
+</section>
+
+<!-- ================= 品 · 尾联 ================= -->
+<section class="slide s-wei">
+  <div class="hd"><span class="tag">品 · 尾联</span><h2>更喜岷山千里雪，三军过后尽开颜</h2></div>
+  <div class="bd">
+    <div class="portrait-card">
+      <div class="portrait-img" data-bg="assets/minshan.jpg" style="background-position:center;background-size:cover"></div>
+    </div>
+    <div class="stage">
+      <p class="tip"><b>“更喜”</b>：翻越了那么多险山恶水，又踏过千里雪山——胜利就在眼前，所以“更”喜。</p>
+      <p class="tip" data-step="1"><b>“尽开颜”</b>：全体红军都笑逐颜开。“尽”是“全、都”。</p>
+      <div class="mood" data-step="2">
+        <span>不怕</span><i>→</i><span>只等闲</span><i>→</i><span>暖 · 寒</span><i>→</i><span>更喜</span><i>→</i><span class="top">尽开颜</span>
+      </div>
+      <p class="tip gold" data-step="3"><b>全诗的情感：</b>不怕困难、藐视困难、战胜困难的英雄气概和<b>革命乐观主义</b>精神。</p>
+    </div>
+  </div>
+  <p class="note">尾联写胜利在望的喜悦，与首联“不怕”“等闲”首尾呼应。可以请学生说说：二万五千里，为什么到了这里才“尽开颜”？</p>
+</section>
+
+<!-- ================= 读 · 读出磅礴的气势 ================= -->
+<section class="slide s-read">
+  <div class="hd"><span class="tag">读 · 课后第 1 题</span><h2>读出磅礴的气势</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="btns"><button class="btn solid" type="button" id="markToggle">显示朗读符号</button><span class="legend">/ 停顿　<em>着重号</em> 重读</span></div>
+      <div class="read-list">
+        <div class="read-item"><p>红军 <i>/</i> <em>不怕</em> <i>/</i> 远征难，万水 <i>/</i> 千山 <i>/</i> <em>只等闲</em>。</p><span class="tone">首联 · 豪迈有力</span></div>
+        <div class="read-item"><p>五岭 <i>/</i> 逶迤 <i>/</i> 腾<em>细浪</em>，乌蒙 <i>/</i> 磅礴 <i>/</i> 走<em>泥丸</em>。</p><span class="tone">颔联 · 举重若轻</span></div>
+        <div class="read-item"><p>金沙 <i>/</i> 水拍 <i>/</i> 云崖<em>暖</em>，大渡 <i>/</i> 桥横 <i>/</i> 铁索<em>寒</em>。</p><span class="tone">颈联 · 暖轻快 · 寒凝重</span></div>
+        <div class="read-item"><p><em>更喜</em> <i>/</i> 岷山 <i>/</i> 千里雪，三军 <i>/</i> 过后 <i>/</i> <em>尽开颜</em>。</p><span class="tone">尾联 · 喜悦昂扬</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后第 1 题：朗读课文，试着读出磅礴的气势。七言诗按“二二三”停顿；“逶迤”“磅礴”要读得开阔，“细浪”“泥丸”轻巧；“暖”上扬，“寒”下沉；尾联声音放开。</p>
+</section>
+
+<!-- ================= 背诵 ================= -->
+<section class="slide s-recite">
+  <div class="hd"><span class="tag">课后第 1 题</span><h2>背一背：一级一级挖空</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">先选“全文”读熟，再“挖一半”“只留首字”，最后“全部背出”。想不起来，点一下空格偷看一个字。<b>提示：</b>按长征路线背——五岭 → 乌蒙 → 金沙 → 大渡 → 岷山。</p>
+      <div class="recite-one" data-noswipe>
+        <div class="recite" data-recite="cz"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">借路线图背诵：首联总写“不怕”，中间四句按路线依次是两座山、两条河，尾联写雪山和喜悦。</p>
+</section>
+
+<!-- ================= 回顾 ================= -->
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>一首诗，二万五千里</h2></div>
+  <div class="bd full">
+    <div class="stage" style="justify-content:center">
+      <div class="board" data-step="1">
+        <div style="text-align:center;font-size:1.4em;margin-bottom:.2em"><b>七律·长征</b></div>
+        <div><b>首联</b>　总写：不怕远征难　只等闲</div>
+        <div><b>颔联</b>　写山：五岭 — 细浪　乌蒙 — 泥丸（以大写小）</div>
+        <div><b>颈联</b>　写水：金沙 — 暖　大渡 — 寒（一暖一寒）</div>
+        <div><b>尾联</b>　写喜：岷山千里雪　三军尽开颜</div>
+        <div style="text-align:center;margin-top:.3em"><b>不怕困难　藐视困难　战胜困难　革命乐观主义</b></div>
+      </div>
+      <p class="tip jade" data-step="2"><b>阅读链接：</b>课本还选了毛泽东的《菩萨蛮·大柏地》，课后可以读一读，比较两首词的气势。</p>
+    </div>
+  </div>
+  <p class="note">板书按“总—分—总”梳理：首联总写，颔联、颈联分写山和水，尾联写胜利的喜悦。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="../shared/poem.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

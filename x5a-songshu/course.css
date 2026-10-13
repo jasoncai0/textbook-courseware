@@ -1,0 +1,54 @@
+/* 松鼠 · 本课配色：松鼠红褐、森林绿。说明类课件 */
+:root {
+  --red: #b5532a;
+  --red-d: #6a3418;
+  --gold: #7f9b4a;
+  --gold-l: #dbe6c2;
+  --paper: #f5f1e8;
+  --stone: #fcfaf5;
+  --ink-2: #5d564c;
+  --line: #ddd3c0;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfbf5 0, transparent 40%), radial-gradient(circle at 90% 95%, #e5e8d4 0, transparent 45%); }
+.scene .hd .tag { background: rgba(106, 52, 24, .92); }
+.s-cover .cover-title { letter-spacing: .2em; }
+.tip.gold { background: #f6f9ee; }
+
+/* 搭窝 */
+#nest { border-radius: .5em; }
+#nest .rain { animation: drip .8s linear infinite; }
+@keyframes drip { from { transform: translateY(-8px); } to { transform: translateY(10px); } }
+
+/* 归类：五个按钮放得下 */
+.s-info .sort-row { grid-template-columns: 1fr auto; }
+.s-info .sort-row .res { grid-column: 1 / 3; }
+.s-info .sort-row .res:empty { display: none; }
+.s-info .sort-list { gap: .35em; }
+.s-info .sort-row .s { font-size: .95em; }
+
+/* 百科 vs 课文 */
+.cmp-head, .cmp-row, .cmp-end { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.cmp-head span { font-weight: bold; color: var(--red-d); text-align: center; }
+.cmp-row p { margin: 0; padding: .6em .9em; border-radius: .5em; line-height: 1.7; }
+.cmp-row .ency { background: #eef2f5; border-left: .3em solid #6b8a9a; font-size: .95em; }
+.cmp-row .text { background: #fff; border-left: .3em solid var(--red); font-family: var(--kai); }
+.cmp-end p { margin: 0; padding: .5em .9em; background: #fff8e1; border-radius: .5em; border: 1px solid var(--gold-l); }
+.cmp-end b { color: var(--red-d); }
+
+/* 平实 vs 活泼 */
+.styles { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; flex: 1; min-height: 0; }
+.style-col { background: #fff; border-radius: .6em; padding: .9em 1.2em; border-top: .3em solid #6b8a9a; }
+.style-col.live { border-top-color: var(--red); }
+.style-col h3 { margin: 0 0 .5em; color: var(--red-d); }
+.style-col p { margin: 0 0 .6em; font-family: var(--kai); font-size: 1.1em; line-height: 1.8; }
+.style-col em { font-style: normal; color: var(--red); background: linear-gradient(transparent 60%, #f6dcc8 60%); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cmp-head { display: none; }
+  .cmp-row, .cmp-end, .styles { grid-template-columns: 1fr; gap: .4em; }
+  .cmp-row { margin-bottom: .6em; }
+  .cmp-row .ency::before { content: "百科："; font-weight: bold; }
+  .cmp-row .text::before { content: "课文："; font-weight: bold; font-family: var(--serif); }
+  #nest { flex: none; height: auto; }
+}
+@media (max-width: 820px), (max-height: 520px) { .s-info .sort-row { grid-template-columns: 1fr; } .s-info .sort-row .res { grid-column: auto; } }

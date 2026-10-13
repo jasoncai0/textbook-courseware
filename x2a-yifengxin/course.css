@@ -1,0 +1,122 @@
+/* 一封信 · 本课配色：邮票红、信纸米白、邮筒绿。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #c8553d;
+  --red-d: #8c3524;
+  --gold: #e8b04b;
+  --gold-l: #fbe3a6;
+  --paper: #f5f1ea;
+  --stone: #fffdf8;
+  --ink-2: #5f574e;
+  --line: #ddd2c2;
+  --post: #2f8a5f;
+}
+
+/* 二年级课文句子长：注音字幕比一年级小一号 */
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.32em; line-height: 2.25; }
+.py ruby { margin: 0 .05em; }
+.s-cover .cover-title ruby { margin: 0; }
+
+/* ---------- 封面信封 ---------- */
+.yf-env { position: absolute; z-index: 2; right: 8%; top: 50%; width: 22em; height: 14em; margin-top: -7em; background: #f4e3c3; border-radius: .4em; box-shadow: 0 .6em 1.6em rgba(0, 0, 0, .35); perspective: 40em; }
+.yf-env::before { content: ""; position: absolute; inset: 0; border-radius: .4em; background: linear-gradient(150deg, transparent 49.5%, #e6cfa6 50%) left / 50% 100% no-repeat, linear-gradient(210deg, transparent 49.5%, #e6cfa6 50%) right / 50% 100% no-repeat; z-index: 2; }
+.yf-flap { position: absolute; left: 0; right: 0; top: 0; height: 60%; z-index: 3; background: #ead5ae; clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top; transition: transform 1s .2s ease; }
+.yf-env.on .yf-flap { transform: rotateX(180deg); z-index: 0; }
+.yf-paper { position: absolute; left: 8%; right: 8%; top: 12%; height: 80%; z-index: 1; background: #fffdf6; border-radius: .3em; padding: .2em .6em; font-family: var(--kai); font-size: 1.6em; color: #3b2f26; transition: transform 1s 1s ease; }
+.yf-env.on .yf-paper { transform: translateY(-62%); }
+.yf-stamp { position: absolute; z-index: 4; right: .6em; bottom: .6em; width: 2.4em; height: 2.8em; display: grid; place-items: center; background: var(--red); color: #fff; font-size: 1.1em; outline: .2em dotted #fff; outline-offset: -.35em; }
+
+/* ---------- 信纸 ---------- */
+.yf-desk { flex-direction: row; gap: 1.4em; align-items: stretch; }
+.yf-letter { flex: 1.6; min-width: 0; overflow: auto; padding: .6em 1.8em; border-radius: .4em; font-size: 1.45em; background-image: repeating-linear-gradient(transparent 0 2.45em, rgba(120, 140, 170, .25) 2.45em calc(2.45em + 1px)); box-shadow: 0 .3em 1.2em rgba(40, 40, 60, .18); transition: transform 1.2s cubic-bezier(.5, -.3, .4, 1.3), border-radius 1.2s, filter 1.2s, opacity 1.2s; }
+.yf-letter p { margin: 0; line-height: 2.45; }
+.yf-letter .yf-in { text-indent: 2em; }
+.yf-letter.cold { background-color: #eef1f5; color: #4a5566; }
+.yf-letter.warm { background-color: #fff8ea; color: #3b2f26; position: relative; }
+.yf-letter.warm p[data-step] { transition: opacity .6s; }
+.yf-letter .mark.on { color: #3f5f8f; background-image: linear-gradient(transparent 58%, rgba(120, 150, 200, .45) 58%); }
+.yf-s1:has(.yf-subs.on) .yf-letter { transform: scale(.28) rotate(-25deg); border-radius: 45%; filter: blur(1.5px) grayscale(.6); opacity: .55; }
+.yf-side { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 1em; }
+.yf-face { margin: 0; font-size: 1.4em; color: #3f5f8f; background: #eaf0f8; border-radius: .6em; padding: .5em .9em; }
+.yf-subs { background: #fff; border-radius: .6em; padding: .3em .9em; font-size: 1.35em; }
+.yf-subs p { margin: 0; }
+.yf-flowers { position: absolute; right: 1em; bottom: .5em; width: 5em; height: 5em; }
+
+/* ---------- 两封信对比 ---------- */
+.yf-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4em; }
+.yf-mini { position: relative; border-radius: .6em; padding: .5em 1.2em 2.6em; box-shadow: 0 .2em .8em rgba(40, 40, 60, .12); font-family: var(--kai); }
+.yf-mini.cold { background: #eef1f5; color: #4a5566; }
+.yf-mini.warm { background: #fff8ea; }
+.yf-mini h3 { margin: 0 0 .2em; font-family: var(--serif); color: var(--red-d); }
+.yf-mini p { margin: .15em 0; font-size: 1.4em; }
+.yf-dad { position: absolute; left: 1.2em; bottom: .6em; font-size: 1.2em; font-weight: bold; color: var(--red-d); }
+.yf-mini.cold .yf-dad { color: #3f5f8f; }
+.slide .pick { font-size: 1.2em; }
+
+/* ---------- 改一句 ---------- */
+.yf-fix { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1.3fr; gap: 1.4em; align-items: start; }
+.yf-sad { display: flex; flex-direction: column; gap: .6em; }
+.yf-chip { font: inherit; font-family: var(--kai); font-size: 1.35em; text-align: left; padding: .1em .8em; border-radius: .5em; border: 2px solid #c9d3e2; background: #eef1f5; color: #4a5566; cursor: pointer; line-height: 2.2; }
+.yf-chip.on { border-color: #3f5f8f; background: #dfe8f5; }
+.yf-chip rt { font-family: var(--py); font-size: .44em; color: var(--py-c); }
+.yf-edit { display: flex; flex-direction: column; gap: .5em; background: #fff8ea; border-radius: .7em; padding: .6em 1.2em; }
+.yf-from { margin: 0; font-size: 1.6em; color: #4a5566; }
+.yf-arrow { margin: 0; color: var(--red); font-weight: bold; }
+.yf-edit textarea { resize: none; font: inherit; font-family: var(--kai); font-size: 1.5em; line-height: 1.7; padding: .4em .7em; border: 2px solid var(--line); border-radius: .5em; background: #fff; }
+.yf-ex { margin: 0; font-size: 1.4em; color: var(--red-d); }
+
+/* ---------- 说一说 ---------- */
+.yf-card { background: #fff8ea; border-radius: .6em; padding: .5em 1.6em; font-size: 1.6em; box-shadow: 0 .2em .8em rgba(40, 40, 60, .12); }
+.yf-card p { margin: 0; }
+.yf-card .yf-in { text-indent: 2em; }
+.yf-blank { display: inline-block; min-width: 4em; border-bottom: 2px solid var(--red); }
+.yf-eg { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.yf-eg .tip { font-family: var(--kai); font-size: 1.3em; }
+
+/* 生字卡 18 个：格子小一点 */
+.yf-cards .hz-card-list { grid-template-columns: repeat(auto-fill, minmax(4.4em, 1fr)); gap: .5em; }
+.yf-cards .hz-chip { font-size: 2.2em; }
+
+/* ---------- 寄信 ---------- */
+.yf-post { flex: 1; min-height: 0; display: grid; grid-template-columns: 2.4fr 1fr; gap: 1.4em; align-items: center; }
+.yf-envs { display: grid; grid-template-columns: repeat(6, 1fr); gap: .7em; }
+.yf-e { font: inherit; position: relative; aspect-ratio: 3 / 2; border: none; border-radius: .3em; background: #f4e3c3; cursor: pointer; box-shadow: 0 .15em .4em rgba(0, 0, 0, .18); transition: transform .8s cubic-bezier(.5, -.4, .6, 1), opacity .8s; }
+.yf-e::before { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, transparent 50%, rgba(160, 120, 70, .25) 51%) left / 50% 100% no-repeat, linear-gradient(200deg, transparent 50%, rgba(160, 120, 70, .25) 51%) right / 50% 100% no-repeat; }
+.yf-e span { position: relative; font-family: var(--kai); font-size: 2.1em; line-height: 1.4; }
+.yf-e rt { font-family: var(--py); font-size: .42em; color: transparent; }
+.yf-e.sent { transform: translate(18em, -2em) scale(.2) rotate(30deg); opacity: 0; pointer-events: none; }
+.yf-box { display: flex; flex-direction: column; align-items: center; gap: .8em; }
+.yf-mailbox { position: relative; width: 8em; height: 11em; border-radius: 4em 4em .6em .6em; background: var(--post); box-shadow: inset -.6em 0 0 rgba(0, 0, 0, .12); }
+.yf-mailbox i { position: absolute; left: 1.4em; right: 1.4em; top: 3em; height: .7em; border-radius: .4em; background: #1d4f36; }
+.yf-mailbox b { position: absolute; left: 0; right: 0; top: 2.1em; text-align: center; color: #fff; font: bold 2.4em var(--py); }
+.yf-done { margin: 0; font-size: 1.3em; color: var(--post); font-weight: bold; opacity: 0; transition: opacity .6s; }
+.yf-done.show { opacity: 1; }
+
+/* 写字 10 个：三列 */
+.x2-write { grid-template-columns: repeat(3, 1fr); gap: .5em 1.2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.4em; }
+.x2-write .hz-wpy { font-size: 1.25em; }
+
+/* 回顾 */
+.yf-sum { display: flex; align-items: center; justify-content: center; gap: 1.6em; }
+.yf-sum div { text-align: center; }
+.yf-sum .py { font-size: 1.9em; }
+.yf-sum > b { font-size: 2.4em; color: var(--gold-l); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .yf-env { position: relative; right: auto; top: auto; margin: 0 auto; width: 15em; height: 9.5em; display: none; }
+  .yf-desk { flex-direction: column; }
+  .yf-letter { font-size: 1.1em; padding: .4em .9em; flex: none; }
+  .yf-vs, .yf-fix, .yf-eg, .yf-post { display: flex; flex-direction: column; align-items: stretch; }
+  .yf-chip { font-size: 1.1em; }
+  .yf-from { font-size: 1.2em; }
+  .yf-card { font-size: 1.15em; padding: .4em .8em; }
+  .yf-envs { grid-template-columns: repeat(3, 1fr); }
+  .yf-e span { font-size: 1.6em; }
+  .yf-mailbox { width: 6em; height: 8em; }
+  .yf-mailbox b { top: 2em; font-size: 1.8em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .yf-sum .py { font-size: 1.3em; }
+}

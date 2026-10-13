@@ -1,0 +1,89 @@
+/* 刘胡兰 · 本课配色：庄重的深红、松柏的墨绿、灰冷的天。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #8e2a22;
+  --red-d: #651a14;
+  --gold: #c9a24a;
+  --gold-l: #ead9a8;
+  --paper: #f3f0ea;
+  --stone: #fdfcf9;
+  --ink-2: #5a564e;
+  --line: #d8d2c4;
+}
+
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.32em; line-height: 2.25; }
+.py ruby { margin: 0 .05em; }
+
+/* 不配画面的两段：深色素底，刘胡兰的话亮起来 */
+.lh-plain { background: radial-gradient(ellipse at 50% 30%, #3b3530, #1a1714 70%); }
+.lh-plain .subs { top: 4em; bottom: 0; display: flex; flex-direction: column; justify-content: center; background: none; }
+.subs .lh-her.on { color: #ffe3b0; }
+
+/* ---------- 挽词（竖排，逐字出现） ---------- */
+.lh-words { display: flex; flex-direction: row-reverse; gap: .5em; font-family: var(--kai); color: #c62b1f; text-shadow: 0 0 .3em rgba(255, 240, 220, .6); }
+.lh-words p { margin: 0; display: flex; flex-direction: column; align-items: center; font-size: 4.2em; line-height: 1.2; font-weight: bold; }
+.lh-words span { opacity: 0; }
+.lh-words.on span { animation: lhInk .8s calc(var(--i) * .45s + .2s) ease-out both; }
+@keyframes lhInk { from { opacity: 0; filter: blur(.12em); } to { opacity: 1; filter: none; } }
+.lh-words rt { font-size: .3em; color: #fff3d6; font-weight: normal; text-shadow: none; }
+.lh-words[data-step] { transform: none; }
+.lh-cover-words { position: absolute; right: 9%; top: 50%; z-index: 2; translate: 0 -50%; background: rgba(250, 244, 230, .82); padding: .8em .6em; border-radius: .4em; text-shadow: none; }
+.lh-cover-words p { font-size: 3.6em; }
+.lh-elegy .lh-words { position: absolute; left: 50%; top: 46%; z-index: 2; translate: -50% -50%; background: rgba(250, 244, 230, .85); padding: .6em 1em; border-radius: .4em; text-shadow: none; }
+.lh-elegy .lh-words rt { color: #2f6fa8; }
+.lh-sign { position: absolute; left: 50%; bottom: 5em; z-index: 2; translate: -50% 0; margin: 0; font-family: var(--kai); font-size: 1.4em; color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, .8); }
+
+/* ---------- 三次回答台阶 ---------- */
+.lh-stairs { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; align-items: end; }
+.lh-step { display: flex; flex-direction: column; justify-content: flex-start; gap: .3em; min-height: calc(6em + var(--h) * 3.4em); padding: .6em 1em; border-radius: .6em .6em 0 0; background: linear-gradient(#fff, #f3ebe0); border-top: calc(.2em * var(--h) + .1em) solid var(--red); box-shadow: 0 .2em .8em rgba(40, 20, 10, .12); }
+.lh-step small { font-size: 1.05em; color: var(--ink-2); }
+.lh-step .py { margin: 0; font-size: calc(1.2em + var(--h) * .12em); color: var(--red-d); font-weight: bold; line-height: 2.2; }
+.lh-stairs + .tip { font-size: 1.25em; }
+
+/* ---------- 猜词义 ---------- */
+.lh-wordq { gap: .5em; }
+.lh-q { display: grid; grid-template-columns: 1fr 1.1fr; gap: 1em; align-items: center; background: #fff; border-radius: .7em; padding: .1em 1em .4em; box-shadow: 0 .15em .5em rgba(40, 20, 10, .08); }
+.lh-q .py { margin: 0; font-size: 1.5em; }
+.lh-q em { font-style: normal; color: var(--red-d); text-emphasis: filled dot var(--red); text-emphasis-position: under right; }
+.slide .picks { gap: .5em; }
+.slide .pick { font-size: 1.15em; }
+.lh-q .pick-count { display: none; }
+
+/* ---------- 说一说 ---------- */
+.lh-talk { flex-direction: row; align-items: center; gap: 2em; }
+.lh-mini { display: block; writing-mode: vertical-rl; flex: none; background: #faf4e6; padding: .5em .4em; border-radius: .4em; }
+.lh-mini p { display: block; font-size: 2.6em; line-height: 1.3; }
+.lh-frames { display: flex; flex-direction: column; gap: .8em; }
+.lh-frame { margin: 0; font-family: var(--kai); font-size: 1.7em; line-height: 1.8; background: #fff; border-left: .3em solid var(--red); border-radius: .4em; padding: .3em 1em; }
+
+/* 写字 8 个：三列 */
+.x2-write { grid-template-columns: repeat(3, 1fr); gap: .5em 1.2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.4em; }
+.x2-write .hz-wpy { font-size: 1.25em; }
+
+/* 回顾 */
+.lh-sum { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .2em .6em; }
+.lh-sum .py { font-size: 1.8em; }
+.lh-sum > b { font-size: 1.6em; color: var(--gold-l); }
+.lh-sum .lh-sum-end { flex-basis: 100%; font-size: 2.1em; color: #ffcdbf; letter-spacing: .15em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .lh-cover-words { right: 4%; top: 22%; translate: 0 0; }
+  .lh-cover-words p, .lh-words p { font-size: 2.2em; }
+  .lh-cover-words p { font-size: 1.8em; }
+  .lh-stairs { display: flex; flex-direction: column; align-items: stretch; }
+  .lh-step { min-height: 0; }
+  .lh-step .py { font-size: 1.15em; }
+  .lh-q { grid-template-columns: 1fr; }
+  .lh-q .py { font-size: 1.15em; }
+  .lh-talk { flex-direction: column; }
+  .lh-frame { font-size: 1.15em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .lh-sum .py { font-size: 1.25em; }
+  .lh-sum .lh-sum-end { font-size: 1.4em; }
+}
+.lh-elegy .lh-words { top: 42%; }
+.lh-elegy .lh-words p { font-size: 3.4em; }
+.lh-elegy .lh-sign { bottom: 4.2em; }

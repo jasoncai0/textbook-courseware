@@ -1,0 +1,66 @@
+/* 牛郎织女（二） · 本课配色：夜空的靛蓝、织女的粉。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #8a3b5a;
+  --red-d: #4f2140;
+  --gold: #c99a3e;
+  --gold-l: #f2dcae;
+  --paper: #f3eff0;
+  --stone: #fdfafb;
+  --ink-2: #5c5563;
+  --line: #d9ccd3;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfafc 0, transparent 40%), radial-gradient(circle at 90% 95%, #dcd9ea 0, transparent 45%); }
+.scene .hd .tag { background: rgba(79, 33, 64, .92); }
+.s-cover .cover-title { font-size: 6em; }
+
+/* 阅读提示 · 计时 */
+.s-tip .stage { justify-content: center; }
+.s-tip .quote { font-size: 1.2em; }
+.timer { background: #fff; border-radius: .6em; padding: 1em 1.3em; border-top: .3em solid var(--red); box-shadow: 0 .15em .6em rgba(40, 30, 40, .1); display: flex; flex-direction: column; align-items: center; gap: .6em; }
+.timer-face { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.timer-face b { font-family: Georgia, var(--serif); font-size: 3.4em; color: var(--red-d); line-height: 1.1; }
+.timer-face span { color: var(--ink-2); font-size: .85em; }
+.timer-res { margin: 0; text-align: center; line-height: 1.7; }
+.timer-res b { color: var(--red); font-size: 1.15em; }
+
+/* 连环画 */
+.comic { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 1fr; gap: .6em; }
+.panel-card { position: relative; font: inherit; padding: 0; border: 2px solid #3d3340; border-radius: .3em; background: #fff; cursor: pointer; display: flex; flex-direction: column; overflow: hidden; text-align: left; }
+.panel-pic { flex: 1; min-height: 4em; background: center / cover no-repeat #e9e3ea; }
+.panel-pic.empty { display: flex; align-items: center; justify-content: center; color: var(--ink-2); font-family: var(--kai); background: repeating-linear-gradient(45deg, #f6f1f4 0 8px, #ece4ea 8px 16px); }
+.panel-no { position: absolute; top: .2em; left: .2em; background: var(--red); color: #fff; font-size: .8em; border-radius: 50%; width: 1.6em; height: 1.6em; display: flex; align-items: center; justify-content: center; }
+.panel-cap { font-family: var(--kai); font-size: .92em; line-height: 1.45; padding: .3em .5em; min-height: 3.2em; color: transparent; background: repeating-linear-gradient(transparent 0 1.3em, #d9ccd3 1.3em calc(1.3em + 1px)); transition: color .4s; }
+.panel-card.show .panel-cap { color: var(--ink); background: #fff8e1; }
+
+/* 资料袋 · 乞巧 */
+.s-info .stage { justify-content: center; }
+.sky { width: 100%; height: auto; max-height: 62%; flex: 0 1 auto; }
+.poem-card { background: #fff; border-radius: .6em; padding: 1em 1.4em; text-align: center; font-family: var(--kai); font-size: 1.35em; line-height: 1.9; border-top: .25em solid var(--gold); box-shadow: 0 .15em .6em rgba(40, 30, 40, .1); }
+.poem-card h3 { margin: 0; color: var(--red-d); letter-spacing: .3em; }
+.poem-card p { margin: 0; }
+.poem-card .poem-au { font-size: .7em; color: var(--ink-2); margin-bottom: .3em; }
+
+/* 创造性复述 */
+.s-retell .stage { justify-content: center; }
+.rt { display: grid; grid-template-columns: 17em 1fr; gap: 1.2em; min-height: 0; }
+.rt-side { display: flex; flex-direction: column; gap: .8em; }
+.rt-modes { display: flex; flex-direction: column; gap: .4em; }
+.rt-modes .btn { font-size: 1em; text-align: left; }
+.rt-items { display: flex; flex-direction: column; gap: .35em; padding-left: .8em; border-left: .2em solid var(--gold-l); }
+.rt-item { font: inherit; font-family: var(--kai); font-size: 1.05em; text-align: left; padding: .35em .8em; border-radius: .4em; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+.rt-item.on { background: var(--gold-l); border-color: var(--gold); color: var(--red-d); font-weight: bold; }
+.rt-card { background: #fff; border-radius: .6em; padding: 1em 1.4em; border-top: .3em solid var(--red); box-shadow: 0 .2em .8em rgba(60, 40, 20, .1); display: flex; flex-direction: column; gap: .6em; align-items: flex-start; }
+.rt-prompt { margin: 0; font-size: 1.15em; font-weight: bold; color: var(--red-d); line-height: 1.6; }
+.rt-points { margin: 0; padding-left: 1.3em; line-height: 1.85; }
+.rt-points li::marker { color: var(--gold); }
+.rt-start { margin: 0; font-family: var(--kai); font-size: 1.12em; line-height: 1.85; background: #fff8e1; border-left: .25em solid var(--gold); padding: .5em .9em; border-radius: .3em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .comic { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+  .panel-pic { min-height: 7em; }
+  .sky { max-height: none; }
+  .rt { grid-template-columns: 1fr; }
+  .rt-modes { flex-direction: row; flex-wrap: wrap; }
+  .rt-items { flex-direction: row; flex-wrap: wrap; padding-left: 0; border-left: none; }
+}

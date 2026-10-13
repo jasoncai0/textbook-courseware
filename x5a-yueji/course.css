@@ -1,0 +1,60 @@
+/* 月迹（五上 24）· 本课配色：中秋夜的靛蓝、月光银、桂花黄。故事页样式见 ../shared/narrative.css */
+:root {
+  --red: #3b5a8c;
+  --red-d: #1f3356;
+  --gold: #c9a23a;
+  --gold-l: #efdca2;
+  --paper: #eef0f4;
+  --stone: #fafbfd;
+  --ink-2: #4f5666;
+  --line: #ccd3df;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfcfe 0, transparent 40%), radial-gradient(circle at 90% 95%, #dbe1ec 0, transparent 45%); }
+.s-cover .cover-title { font-size: 9em; letter-spacing: .2em; }
+.scene .hd .tag { background: rgba(31, 51, 86, .92); }
+.subs .hl { color: #fff1b8; font-weight: normal; }
+
+/* 阅读提示 */
+.tip-big { font-family: var(--kai); font-size: 1.3em; line-height: 1.9; border-left: .3em solid var(--gold); }
+.tasks.three { grid-template-columns: repeat(3, 1fr); }
+.tasks.three p { margin: 0; line-height: 1.7; }
+
+/* 阅读提示 ①：月亮的足迹 */
+#moonTrack { flex: 1; min-height: 0; width: 100%; }
+#moonTrack .zone { fill: #c8d2e6; opacity: .8; }
+#moonTrack .st circle { fill: #f3e2b5; }
+#moonTrack .st text { fill: #fdf6d2; }
+#moonTrack .moon-runner { transform: translate(-60px, 300px); transition: transform 1.4s ease; }
+.s-track:has(.st[data-step="1"].on) .moon-runner { transform: translate(70px, 300px); }
+.s-track:has(.st[data-step="2"].on) .moon-runner { transform: translate(160px, 220px); }
+.s-track:has(.st[data-step="3"].on) .moon-runner { transform: translate(290px, 150px); }
+.s-track:has(.st[data-step="4"].on) .moon-runner { transform: translate(400px, 220px); }
+.s-track:has(.st[data-step="5"].on) .moon-runner { transform: translate(540px, 270px); }
+.s-track:has(.st[data-step="6"].on) .moon-runner { transform: translate(650px, 200px); }
+.s-track:has(.st[data-step="7"].on) .moon-runner { transform: translate(740px, 70px); }
+
+/* 阅读提示 ②：月亮爬上穿衣镜 */
+.s-mirror .bd { grid-template-columns: 1fr 1.1fr; }
+.s-mirror .stage:last-child { justify-content: center; }
+#mirror { flex: 1; min-height: 0; width: 100%; }
+.mm { font-family: var(--kai); font-size: 1.05em; }
+#mirror .mirror-moon { transform: translateY(240px); transition: transform 1.6s ease; }
+.s-mirror:has(.mm[data-step="2"].on) .mirror-moon { transform: translateY(165px); }
+.s-mirror:has(.mm[data-step="3"].on) .mirror-moon { transform: translateY(0); }
+.s-mirror:has(.mm[data-step="4"].on) .mirror-moon { transform: translateY(-90px); }
+.s-mirror:has(.mm[data-step="5"].on) .mirror-moon { transform: translateY(-240px); }
+.s-mirror:has(.mm[data-step="1"].on) .blind rect { animation: shine 2s ease-in-out infinite alternate; }
+@keyframes shine { to { fill: #f6e7b8; } }
+
+/* 有趣的地方：六张卡片三列 */
+.s-fun .clues { grid-template-columns: repeat(3, 1fr); }
+.s-fun .clue, .s-fun .clue-in { min-height: 8.5em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 5em; }
+  .tip-big { font-size: 1.05em; }
+  .tasks.three { grid-template-columns: 1fr; }
+  #moonTrack, #mirror { flex: none; height: auto; }
+  svg#moonTrack .t-m { font-size: 22px; }
+  .s-fun .clues { grid-template-columns: 1fr; }
+}

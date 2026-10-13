@@ -1,0 +1,97 @@
+/* 少年中国说（节选）· 本课配色：朝阳红、金色、宣纸。页面样式见 ../shared/narrative.css、poem.css */
+:root {
+  --red: #b33a22;
+  --red-d: #6f2414;
+  --gold: #d49a2a;
+  --gold-l: #f3d48a;
+  --paper: #f6efe1;
+  --stone: #fdf9f0;
+  --ink-2: #61574b;
+  --line: #dccdb2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fffaf0 0, transparent 40%), radial-gradient(circle at 90% 95%, #f0dfc2 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.4em; letter-spacing: .08em; }
+
+/* 资料袋 */
+.ziliao { display: flex; flex-direction: column; gap: .6em; overflow: auto; min-height: 0; }
+.ziliao details { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .5em 1em; }
+.ziliao details[open] { border-color: var(--gold); background: #fffdf5; }
+.ziliao summary { cursor: pointer; font-family: var(--kai); font-size: 1.2em; line-height: 1.6; }
+.ziliao summary::marker { color: var(--red); }
+.ziliao p { margin: .3em 0 0; line-height: 1.7; }
+.ziliao p b { color: var(--red); }
+.s-bg .bd { grid-template-columns: 1fr 1fr; }
+.s-bg .stage:last-child { justify-content: center; }
+.vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: .8em; align-items: center; }
+.vs-card { border-radius: .6em; padding: 1em; text-align: center; display: flex; flex-direction: column; gap: .3em; }
+.vs-card b { font-family: var(--kai); font-size: 2em; }
+.vs-card em { font-style: normal; font-size: .85em; }
+.vs-card.old { background: #e6e2da; color: #6d665c; }
+.vs-card.young { background: linear-gradient(160deg, #c8432a, #e59a3a); color: #fff; }
+.vs-mid { font-family: var(--kai); font-size: 2em; color: var(--red); }
+
+/* 第一段 · 链条 */
+.chain { display: flex; flex-direction: column; gap: .7em; }
+.ch-group { position: relative; display: flex; flex-wrap: wrap; gap: .4em 1.4em; background: #fff; border-radius: .5em; padding: .5em .8em .5em 3.6em; border-left: .3em solid var(--gold); }
+.ch-tag { position: absolute; left: .6em; top: 50%; translate: 0 -50%; font-family: var(--kai); color: var(--red); writing-mode: vertical-rl; letter-spacing: .2em; }
+.ch-row { display: flex; align-items: center; gap: .4em; font-family: var(--kai); font-size: 1.3em; padding: .3em 0; }
+.ch-row i { font-style: normal; color: var(--gold); }
+.ch-gj { color: var(--red-d); font-weight: bold; }
+.s-duty .quote { font-size: 1.25em; }
+
+/* 故事页：四字句大字 + 小字释义 */
+.sn-scene .subs { font-size: 1.3em; }
+.sn-big { font-size: 1.45em; letter-spacing: .12em; }
+.subs .sy { display: block; font-family: var(--serif); font-size: .68em; opacity: .85; }
+.subs .sn-end { font-size: 1.55em; color: #ffd98a; letter-spacing: .08em; line-height: 1.6; }
+.scene .sn-bg2[data-step] { transform: scale(1.04); transition: opacity 1.4s ease; }
+
+/* 意象卡片 */
+.clues.sn-cards { grid-template-columns: repeat(4, 1fr); flex: 1; min-height: 0; }
+.sn-cards .clue, .sn-cards .clue-in { min-height: 7.6em; }
+.sn-cards .clue-face.front { display: flex; flex-direction: column; justify-content: flex-end; padding: 0; overflow: hidden; font-size: 1.35em; text-align: center; }
+.sn-cards .clue-face.front small { position: absolute; top: .4em; left: .6em; z-index: 1; font-size: .5em; background: rgba(255, 255, 255, .85); padding: 0 .4em; border-radius: .3em; }
+.sn-pic { flex: 1; min-height: 3em; background: #e8dcc4 center / cover no-repeat; }
+.sn-cards .clue-face.back { display: flex; flex-direction: column; justify-content: center; font-size: 1.02em; }
+.sn-cards .clue-face.back b { color: var(--red); }
+
+/* 少年中国 ↔ 中国少年 */
+.swap { text-align: center; font-family: var(--kai); font-size: 1.9em; line-height: 1.7; }
+.swap p { margin: 0; }
+.swap b { padding: 0 .2em; border-radius: .2em; }
+.swap .sw-a { background: #fde3c9; color: var(--red-d); }
+.swap .sw-b { background: #d9ecf7; color: #1f4e79; }
+.link-row { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: .8em; align-items: center; }
+.link-card { background: #fff; border-radius: .6em; padding: .7em 1em; text-align: center; border-top: .3em solid var(--red); display: flex; flex-direction: column; gap: .2em; }
+.link-card b { font-family: var(--kai); font-size: 1.6em; color: var(--red-d); }
+.link-card span { color: var(--ink-2); font-size: .9em; }
+.link-arrows { display: flex; flex-direction: column; gap: .4em; text-align: center; font-family: var(--kai); font-size: 1.05em; color: var(--red); }
+.link-arrows span { background: #fff8e1; border-radius: 1em; padding: .2em .6em; }
+
+/* 背诵 */
+.sn-recite .recite-tabs { grid-template-columns: 1fr 1fr; }
+.sn-recite .recite-lines { font-size: 1.2em; letter-spacing: .08em; line-height: 1.75; }
+.sn-recite [data-recite="p2"] .recite-lines { columns: 2; }
+
+/* 杰出人物 */
+.people { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6em; }
+.people details { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .5em .9em; }
+.people details[open] { border-color: var(--gold); background: #fffdf5; }
+.people summary { cursor: pointer; font-family: var(--kai); font-size: 1.2em; color: var(--red-d); }
+.people summary small { font-family: var(--serif); font-size: .7em; color: var(--ink-2); margin-left: .3em; }
+.people p { margin: .3em 0 0; line-height: 1.6; font-size: .92em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .vs { grid-template-columns: 1fr; }
+  .clues.sn-cards { grid-template-columns: 1fr 1fr; }
+  .sn-cards .clue, .sn-cards .clue-in { min-height: 8em; }
+  .sn-scene .subs { font-size: 1.05em; }
+  .sn-big { font-size: 1.25em; }
+  .ch-group { flex-direction: column; }
+  .swap { font-size: 1.3em; }
+  .link-row { grid-template-columns: 1fr; }
+  .sn-recite .recite-tabs { grid-template-columns: 1fr; }
+  .sn-recite [data-recite="p2"] .recite-lines { columns: 1; }
+  .people { grid-template-columns: 1fr; }
+}

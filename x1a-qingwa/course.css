@@ -1,0 +1,80 @@
+/* 青蛙写诗 · 本课配色：池塘的蓝绿。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #2f8a8a;
+  --red-d: #1d5e5e;
+  --gold: #e9a426;
+  --gold-l: #fbe0a0;
+  --paper: #f1f8f8;
+  --stone: #fdffff;
+  --ink-2: #4f6b6b;
+  --line: #cde3e3;
+}
+
+/* 第 5 自然段：青蛙的诗，叠在画面上 */
+.qw-poem { position: absolute; z-index: 2; left: 8%; top: 50%; transform: translateY(-50%); background: rgba(250, 252, 246, .9); border-radius: .8em; padding: .4em 1.6em .8em; box-shadow: 0 .3em 1.2em rgba(0, 0, 0, .25); font-size: 2.1em; }
+.qw-poem p { margin: 0; line-height: 2.2; }
+.qw-poem .qw-lead { font-size: .8em; color: var(--red-d); }
+
+/* 小伙伴变标点 */
+.qw-helpers { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2em; }
+.qw-helper { font: inherit; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4em; border: 3px solid var(--line); border-radius: 1em; background: #fff; cursor: pointer; color: var(--ink); padding: .6em; }
+.qw-pic { position: relative; width: 70%; max-width: 12em; aspect-ratio: 1; }
+.qw-pic svg { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .6s, transform .6s cubic-bezier(.3, 1.4, .5, 1); }
+.qw-zhu circle { fill: #bfe6f5; stroke: #5aa9c9; stroke-width: 2; }
+.qw-pic .qw-mark { fill: var(--red); stroke: var(--red); opacity: 0; transform: scale(.4); }
+.qw-helper.on { border-color: var(--red); background: #effaf8; }
+.qw-helper.on .qw-pic svg { opacity: .12; transform: scale(.7); }
+.qw-helper.on .qw-pic .qw-mark { opacity: 1; transform: none; }
+.qw-name { font-size: 1.6em; }
+
+/* 帮青蛙把诗写完整 */
+.qw-game { flex: 1; min-height: 0; display: grid; grid-template-columns: auto 1fr; gap: 2em; align-items: center; }
+.qw-tools { display: flex; flex-direction: column; gap: .8em; }
+.qw-tool { font: inherit; display: flex; align-items: center; gap: .5em; padding: .3em .9em; border: 3px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; }
+.qw-tool b { font-family: var(--kai); font-size: 2.4em; color: var(--red); min-width: 1.4em; line-height: 1.2; }
+.qw-tool small { font-size: 1.2em; color: var(--ink-2); }
+.qw-tool.on { border-color: var(--gold); background: #fff8e1; }
+.qw-lines { font-family: var(--kai); font-size: 2.5em; }
+.qw-lines p { margin: 0; line-height: 2.1; }
+.qw-w { display: inline-block; }
+.qw-slot { font: inherit; width: 1.15em; height: 1.15em; vertical-align: -.1em; margin: 0 .1em; padding: 0; border: 2px dashed var(--red); border-radius: .2em; background: #f2fbfa; color: var(--red); cursor: pointer; line-height: 1; }
+.qw-slot[data-p="……"] { width: 2.2em; }
+.qw-slot.done { border-style: solid; background: #fff; animation: pop .45s cubic-bezier(.3, 1.6, .5, 1); }
+.qw-slot.wrong { animation: nope .35s; }
+.qw-count { margin: 0; font-size: 1.4em; color: var(--red-d); font-weight: bold; }
+.qw-count b { color: var(--red); font-size: 1.3em; }
+
+/* 小青蛙跳荷叶 */
+.qw-pond { position: relative; flex: 1; min-height: 0; border-radius: 1.2em; background: linear-gradient(#cdeef0, #9fd8d6); overflow: hidden; }
+.qw-pad { font: inherit; position: absolute; translate: -50% -50%; width: 4.4em; height: 3em; border: none; border-radius: 50%; background: radial-gradient(circle at 50% 45%, #9fd47f, #5aa54a 75%); font-family: var(--kai); font-size: 1.9em; color: #1f3f14; cursor: pointer; box-shadow: 0 .3em 0 rgba(30, 90, 80, .25); line-height: 1.4; }
+.qw-pad rt { font-family: var(--py); font-size: .5em; color: transparent; }
+.qw-pad.done { background: radial-gradient(circle at 50% 45%, #c9ec9f, #7fbf5a 75%); }
+.qw-pad.done rt { color: #1d5e5e; }
+.qw-pad.wrong { animation: nope .35s; }
+.qw-frog { position: absolute; z-index: 2; translate: -50% -50%; font-style: normal; font-size: 3em; transition: left .5s ease-out, top .5s ease-out; pointer-events: none; }
+.qw-frog.hop { animation: qwHop .5s ease-out; }
+@keyframes qwHop { 40% { transform: translateY(-.8em) scale(1.1); } }
+.qw-jumpmsg { margin: 0; font-size: 1.3em; color: var(--red-d); font-weight: bold; }
+
+/* 读一读 */
+.qw-words { display: grid; grid-template-columns: 1fr 1fr; align-content: center; gap: .6em 2em; }
+.qw-words p { margin: 0; font-size: 2.6em; display: flex; gap: 1em; }
+.qw-board .py { font-size: 2em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .qw-poem { left: 5%; right: 5%; font-size: 1.4em; padding: .3em 1em .5em; }
+  .qw-helpers { grid-template-columns: 1fr; }
+  .qw-helper { flex-direction: row; }
+  .qw-pic { width: 5em; }
+  .qw-name { font-size: 1.2em; }
+  .qw-game { display: flex; flex-direction: column; }
+  .qw-tools { flex-direction: row; flex-wrap: wrap; }
+  .qw-tool b { font-size: 1.8em; }
+  .qw-lines { font-size: 1.8em; }
+  .qw-words { grid-template-columns: 1fr; }
+  .qw-words p { font-size: 1.8em; }
+  .qw-board .py { font-size: 1.4em; }
+  .qw-pond { height: 22em; flex: none; }
+  .qw-pad { font-size: 1em; width: 4em; height: 3em; }
+  .qw-frog { font-size: 2em; }
+}

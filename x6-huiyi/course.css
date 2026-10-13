@@ -1,0 +1,65 @@
+/* 十六年前的回忆 · 本课配色：旧棉袍的灰蓝、庄重的暗红。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #a23a2a;
+  --red-d: #5a2219;
+  --gold: #b0894a;
+  --gold-l: #e6d3ab;
+  --paper: #f0eee8;
+  --stone: #fafaf6;
+  --ink-2: #565a5e;
+  --line: #d3d0c6;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfaf6 0, transparent 40%), radial-gradient(circle at 90% 95%, #e0dfd7 0, transparent 45%); }
+.s-cover .cover-title { font-size: 5.4em; letter-spacing: .06em; }
+.subs .hl { color: #ffd98a; }
+
+/* 故事页时间线 */
+.tl { position: absolute; top: 1em; right: 1.4em; z-index: 9; display: flex; align-items: center; gap: .3em; padding: .35em .7em; border-radius: .5em; background: rgba(20, 18, 15, .55); color: #cfc9bd; font-size: .85em; opacity: 0; transition: opacity .5s; pointer-events: none; }
+.tl.show { opacity: 1; }
+.tl span { padding: .1em .5em; border-radius: .3em; transition: background .4s, color .4s; }
+.tl span.done { color: #e7c78a; }
+.tl span.cur { background: #a23a2a; color: #fff; }
+.tl i { width: 1.2em; height: 2px; background: rgba(255, 255, 255, .35); }
+
+/* 资料袋：人物卡 */
+.s-who .stage { justify-content: center; }
+.who-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.who-card { background: #fff; border-radius: .6em; padding: 1em 1.2em; border-top: .3em solid var(--red); box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); }
+.who-card .who-k { font-size: .8em; color: #fff; background: var(--ink-2); padding: .1em .6em; border-radius: .3em; }
+.who-card h3 { margin: .4em 0 .3em; color: var(--red-d); font-family: var(--kai); font-size: 1.4em; }
+.who-card p { margin: 0; line-height: 1.75; }
+
+/* 时间顺序情节板 */
+.s-plot .plot-card { width: 19%; }
+
+/* 首尾照应 */
+.echo { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 8em 1fr; gap: .8em; align-items: center; }
+.echo-col { background: #fff; border-radius: .6em; padding: 1em 1.3em; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); border-left: .35em solid var(--ink-2); }
+.echo-col h3 { margin: 0 0 .5em; color: var(--ink-2); font-size: .9em; font-weight: normal; }
+.echo-col p { margin: 0 0 .4em; font-family: var(--kai); font-size: 1.35em; line-height: 1.8; }
+.echo-link { width: 100%; height: auto; }
+
+/* 借助资料 */
+.ziliao { display: flex; flex-direction: column; gap: .5em; overflow: auto; min-height: 0; }
+.ziliao details { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .45em 1em; }
+.ziliao details[open] { border-color: var(--gold); background: #fffdf5; }
+.ziliao summary { cursor: pointer; font-family: var(--kai); font-size: 1.12em; line-height: 1.6; }
+.ziliao summary::marker { color: var(--red); }
+.ziliao p { margin: .3em 0 0; line-height: 1.65; font-size: .95em; }
+.ziliao p b { color: var(--red); }
+.ziliao p.get { background: #eef6f2; border-radius: .3em; padding: .2em .6em; }
+.ziliao p.get b { color: var(--jade); }
+
+.s-sort .sort-row { grid-template-columns: 1fr auto 9em; padding: .3em .7em; }
+.s-sort .sort-row .s { font-size: .95em; line-height: 1.5; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.8em; }
+  .tl { top: auto; bottom: 4.6em; right: .6em; left: .6em; justify-content: center; font-size: .72em; }
+  .scrolled .tl { opacity: 0; }
+  .who-cards { grid-template-columns: 1fr; }
+  .s-plot .plot-card { width: auto; }
+  .echo { grid-template-columns: 1fr; }
+  .echo-link { width: 5em; margin: 0 auto; transform: rotate(90deg); }
+  .s-sort .sort-row { grid-template-columns: 1fr; }
+}

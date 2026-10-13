@@ -1,0 +1,135 @@
+/* 神州谣 · 本课配色：中国红、山河青。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #c8402f;
+  --red-d: #8f2518;
+  --gold: #e6a530;
+  --gold-l: #fbe2a6;
+  --paper: #f7f4ec;
+  --stone: #fffdf8;
+  --ink-2: #5f5a50;
+  --line: #e2d6c0;
+  --jade: #3f8a74;
+}
+
+.sz-ask { margin: .2em 0; font-family: var(--kai); font-size: 1.9em; }
+.sz-names { margin: .1em 0 .3em; font-family: var(--kai); font-size: 3em; color: #fff; display: flex; gap: .4em; align-items: center; }
+.sz-names i { font-style: normal; color: var(--gold-l); }
+.sz-names rt { color: var(--gold-l); }
+
+/* ---------- 拍手读 ---------- */
+.sz-clap { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .6em; }
+.sz-lines { flex: 1; min-height: 0; display: grid; grid-template-columns: auto auto; justify-content: center; align-content: center; gap: 0 2.4em; font-family: var(--kai); font-size: 2.2em; background: var(--stone); border-radius: .5em; padding: .2em 1em; box-shadow: 0 .2em .8em rgba(80, 50, 20, .08); }
+.sz-lines p { margin: 0; line-height: 2.1; white-space: nowrap; }
+.sz-lines p:nth-child(4n+3), .sz-lines p:nth-child(4n+4) { margin-bottom: .3em; }
+.sz-beat { border-radius: .3em; padding: 0 .1em; transition: background .3s, color .3s; }
+.sz-beat.lit { color: var(--red-d); }
+.sz-beat.now { background: var(--gold-l); box-shadow: 0 0 0 .08em var(--gold); }
+.sz-bar { display: flex; align-items: center; justify-content: center; gap: 1em; }
+.sz-hand { font-size: 2.2em; line-height: 1; }
+.sz-hand.hit { animation: szClap .35s ease-out; }
+@keyframes szClap { 40% { transform: scale(1.35) rotate(-10deg); } }
+.sz-msg { font-family: var(--kai); font-size: 1.3em; color: var(--red-d); min-width: 12em; }
+
+/* ---------- 山河意象卡 ---------- */
+.sz-cards { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; align-items: center; }
+.sz-card { font: inherit; display: flex; flex-direction: column; align-items: center; gap: .1em; padding: .6em .6em .8em; border: 3px solid var(--line); border-radius: 1em; background: #fff; cursor: pointer; }
+.sz-card svg { width: 100%; height: auto; border-radius: .6em; overflow: hidden; }
+.sz-card p { margin: 0; font-family: var(--kai); font-size: 2.2em; line-height: 2.1; }
+.sz-card p b { color: var(--red); font-size: 1.25em; }
+.sz-card small { font-size: 1.1em; color: var(--ink-2); }
+.sz-card.on { border-color: var(--gold); }
+.hh-band { animation: szRun 1.2s linear infinite; }
+.hh-band.b2 { animation-duration: .8s; }
+@keyframes szRun { to { transform: translateX(120px); } }
+.hh-arrow { animation: szArrow 1s ease-in infinite; }
+@keyframes szArrow { from { transform: translateX(-50px); opacity: 0; } 40% { opacity: 1; } to { transform: translateX(70px); opacity: 0; } }
+.sz-wave { transform-box: fill-box; transform-origin: 50% 100%; animation: szSurge 1.4s ease-in-out infinite; }
+.sz-wave.w2 { animation-delay: .7s; }
+@keyframes szSurge { 50% { transform: scaleY(1.5) translateY(-6px); } }
+.cc-wall { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.sz-card.on .cc-wall, .sz-card.play .cc-wall { animation: szWall 2.4s ease-in-out forwards; }
+@keyframes szWall { to { stroke-dashoffset: 0; } }
+.cc-tower { opacity: 0; transition: opacity .6s 2s; }
+.sz-card.on .cc-tower { opacity: 1; }
+.zf-peak { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(.3); }
+.sz-card.on .zf-peak, .sz-card.play .zf-peak { animation: szRise 1.8s cubic-bezier(.3, 1.3, .5, 1) forwards; }
+@keyframes szRise { from { transform: scaleY(.3); } to { transform: scaleY(1); } }
+.sz-card.play .cc-wall { animation-name: szWall2; }
+@keyframes szWall2 { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.sz-card.play .zf-peak { animation-name: szRise2; }
+@keyframes szRise2 { from { transform: scaleY(.3); } to { transform: scaleY(1); } }
+.sz-feel { font-family: var(--kai); font-size: 1.5em; text-align: center; }
+
+/* ---------- 神州拼图 ---------- */
+.sz-puzzle { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .6em; }
+.sz-board { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr 1fr; gap: .35em; transition: gap .8s; }
+.all-done .sz-board { gap: 0; }
+.sz-cell { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: .5em; background: #e9e2d2 no-repeat; background-size: 400% 200%; box-shadow: inset 0 0 0 1000px #f4ecdb; border: 2px dashed #d3c19c; font-family: var(--kai); transition: box-shadow .8s, border-radius .8s; }
+.sz-cell.done { box-shadow: inset 0 0 0 0 transparent; border: 2px solid transparent; }
+.all-done .sz-cell { border-radius: 0; }
+.sz-top, .sz-slot { font-size: 1.6em; line-height: 2; padding: 0 .3em; border-radius: .3em; }
+.sz-slot { color: #c5b28a; }
+.sz-cell.done .sz-top, .sz-cell.done .sz-slot { background: rgba(255, 255, 255, .88); color: var(--ink); }
+.sz-cell.done .sz-slot { color: var(--red-d); margin-top: .2em; animation: pop .45s cubic-bezier(.3, 1.6, .5, 1); }
+.sz-cell.wrong { animation: nope .35s; }
+.sz-tray { display: flex; flex-wrap: wrap; justify-content: center; gap: .5em; }
+.sz-piece { font: inherit; font-family: var(--kai); font-size: 1.6em; line-height: 2; padding: 0 .5em; border-radius: .4em; border: 3px solid var(--red); background: #fff; color: var(--red-d); cursor: grab; touch-action: none; user-select: none; }
+.sz-piece.sel { background: var(--gold-l); }
+.sz-piece.dragging { position: relative; z-index: 30; box-shadow: 0 .3em 1em rgba(0, 0, 0, .3); }
+.sz-piece.used { visibility: hidden; }
+.sz-piece.wrong { animation: nope .35s; }
+.sz-pmsg { margin: 0; text-align: center; font-family: var(--kai); font-size: 1.25em; color: var(--red-d); }
+.all-done .sz-pmsg { color: var(--ok); font-weight: bold; }
+.sz-puzzle rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+
+/* ---------- 读一读，记一记 ---------- */
+.sz-words { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: .6em; }
+.sz-words p { margin: 0; display: grid; grid-template-columns: 1fr 1fr 1.3fr; align-items: center; gap: 1em; background: #fff; border-radius: .7em; padding: 0 1em; box-shadow: 0 .15em .5em rgba(80, 50, 20, .08); }
+.sz-words span { font-family: var(--kai); font-size: 2.2em; line-height: 2.1; text-align: center; }
+.sz-words small { font-size: 1.2em; color: var(--ink-2); }
+
+/* ---------- 登山峰 ---------- */
+.sz-climb { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1.1fr; gap: 1.6em; align-items: center; }
+.sz-mtn { position: relative; height: 100%; max-height: 24em; aspect-ratio: 300 / 220; justify-self: center; }
+.sz-mtn svg { width: 100%; height: 100%; }
+.sz-climber { position: absolute; translate: -50% -80%; font-size: 2.4em; line-height: 1; transition: left .8s ease, top .8s ease; }
+.sz-top-flag { position: absolute; left: 50%; top: 2%; translate: -10% -90%; font-size: 2em; opacity: 0; transition: opacity .6s; }
+.top .sz-top-flag { opacity: 1; }
+.sz-qbox { display: flex; flex-direction: column; align-items: center; gap: .8em; }
+.sz-q { margin: 0; font-family: var(--kai); font-size: 3em; line-height: 1.9; background: #fff; border-radius: .3em; padding: 0 .5em; box-shadow: 0 .1em .4em rgba(80, 50, 20, .12); }
+.sz-q rt { font-family: var(--py); font-size: .4em; color: var(--py-c); }
+.sz-opts { display: flex; gap: .8em; }
+.sz-opt { font: inherit; font-family: var(--kai); font-size: 3em; width: 1.7em; height: 1.7em; border-radius: .3em; border: 3px solid var(--line); background: #fff; cursor: pointer; }
+.sz-opt.right { background: #e7f6ec; border-color: var(--ok); color: var(--ok); }
+.sz-opt.wrong { animation: nope .35s; border-color: #e3a998; }
+.sz-cmsg { margin: 0; min-height: 1.5em; font-size: 1.3em; font-weight: bold; color: var(--ok); font-family: var(--kai); }
+
+.sz-sum { justify-content: center; gap: 1.2em; }
+
+/* 读准字音：认读 + 会写字多，卡片略小 */
+.s-ziyin .zy-card { font-size: 1.9em; }
+.s-ziyin .zy-write { font-size: 1.9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .sz-ask { font-size: 1.2em; }
+  .sz-names { font-size: 1.9em; }
+  .sz-lines { grid-template-columns: 1fr; font-size: 1.4em; justify-content: start; }
+  .sz-lines p:nth-child(2n) { margin-bottom: .3em; }
+  .sz-cards { grid-template-columns: 1fr 1fr; }
+  .sz-card p { font-size: 1.5em; }
+  .sz-card small { font-size: .9em; }
+  .sz-feel { font-size: 1.1em; }
+  .sz-board { flex: none; gap: .2em; }
+  .sz-cell { min-height: 6.4em; }
+  .sz-top, .sz-slot { font-size: .95em; padding: 0 .1em; }
+  .sz-piece { font-size: 1.2em; }
+  .sz-words p { grid-template-columns: 1fr 1fr; padding: .2em .6em; }
+  .sz-words small { grid-column: 1 / -1; font-size: 1em; }
+  .sz-words span { font-size: 1.5em; }
+  .sz-climb { display: flex; flex-direction: column; }
+  .sz-mtn { height: 14em; }
+  .sz-q { font-size: 2em; }
+  .sz-opt { font-size: 2.2em; }
+  .sz-bar { flex-wrap: wrap; gap: .5em; }
+  .sz-msg { min-width: 0; font-size: 1em; }
+}

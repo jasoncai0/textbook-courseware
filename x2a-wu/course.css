@@ -1,0 +1,154 @@
+/* 雾在哪里 · 本课配色：海的蓝、雾的白。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #2f7fb0;
+  --red-d: #1d5578;
+  --gold: #e8a33a;
+  --gold-l: #fbe3a6;
+  --paper: #f1f6f9;
+  --stone: #fcfeff;
+  --ink-2: #4f6270;
+  --line: #cddde8;
+  --fog: #f4f7fa;
+}
+
+/* 封面谜语 */
+.wu-riddle { margin: .4em 0 .6em; padding: .4em 1em; border-radius: .8em; background: rgba(255, 255, 255, .16); }
+.wu-riddle p { margin: 0; font-size: 1.9em; line-height: 2.1; }
+.wu-riddle small { font-size: 1.2em; color: var(--gold-l); font-family: var(--kai); }
+.s-cover .cover-title { font-size: 6em; }
+
+/* ---------- 雾的遮罩场景 ---------- */
+.wu-bd { grid-template-columns: 1.15fr 1fr; align-items: center; }
+.wu-scene { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 1em; overflow: hidden; box-shadow: 0 .3em 1.2em rgba(20, 60, 90, .25); background: #d8eefa; }
+.wu-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.wu-scene .f { opacity: 0; transition: opacity 1.8s ease; }
+.wu-scene .f ellipse { fill: var(--fog); }
+.wu-scene .f-darkr { fill: #233447; opacity: 0; transition: opacity 1.5s; pointer-events: none; }
+.fog-sea .f-sea, .fog-sky .f-sky, .fog-beach .f-beach, .fog-city .f-city, .fog-house .f-house, .fog-street .f-street,
+.fog-tree .f-tree, .fog-bridge .f-bridge, .fog-people .f-people, .fog-cat .f-cat { opacity: 1; }
+.fog-dark .f-darkr { opacity: .32; }
+/* 一样一样地藏 / 露 */
+.wu-scene .f-street { transition-delay: .6s; }
+.wu-scene .f-tree { transition-delay: 1.2s; }
+.wu-scene .f-bridge { transition-delay: 1.8s; }
+.wu-scene .f-people { transition-delay: 2.4s; }
+.wu-scene .f-cat { transition-delay: 3s; }
+.wu-scene .f-sky { transition-delay: .2s; }
+.w-kid { transition: transform 2.2s ease-in-out, opacity 1.5s; }
+.w-kid use { animation: wuBob 3s ease-in-out infinite; }
+@keyframes wuBob { 50% { transform: translateY(-14px); } }
+.wu-scene[data-kid="hide"] .w-kid { opacity: 0; transition-delay: 0s, .8s; }
+.wu-scene[data-kid="gone"] .w-kid { opacity: 0; }
+/* 小黑猫散步、摇尾巴 */
+.w-tail { transform-box: fill-box; transform-origin: 0 100%; }
+.fog-walk .w-catb { animation: wuWalk 6s ease-in-out infinite alternate; }
+.fog-walk .w-tail { animation: wuTail .8s ease-in-out infinite alternate; }
+@keyframes wuWalk { from { translate: 0 0; } to { translate: -120px 0; } }
+@keyframes wuTail { from { rotate: -14deg; } to { rotate: 16deg; } }
+
+.wu-text { display: flex; flex-direction: column; gap: .2em; font-family: var(--kai); }
+.wu-text p { margin: 0; font-size: 1.55em; line-height: 2.15; }
+.wu-text rt { font-size: .42em; }
+.wu-say { color: #1d6fa8; }
+.wu-text .media-btn { align-self: flex-start; margin-top: .4em; }
+
+/* ---------- 擦一擦 ---------- */
+.wu-wipe-bd { grid-template-columns: minmax(0, 1fr) 15em; align-items: center; }
+.wu-wipe { position: relative; aspect-ratio: 16 / 9; width: 100%; border-radius: 1em; overflow: hidden; touch-action: none; cursor: grab; }
+.wu-wipe .wu-scene { position: absolute; inset: 0; border-radius: 0; box-shadow: none; }
+.wu-wipe canvas { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity 2s; }
+.wu-wipe.clear canvas { opacity: 0; }
+.wu-list { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; align-content: center; }
+.wu-find .py { line-height: 2; }
+.wu-find { margin: 0; position: relative; padding: 0 .3em 0 1.6em; border-radius: .6em; background: #fff; font-family: var(--kai); font-size: 1.3em; line-height: 1.9; box-shadow: 0 .1em .4em rgba(20, 60, 90, .08); }
+.wu-find::before { content: ""; position: absolute; left: .3em; top: 50%; translate: 0 -40%; width: 1em; height: 1em; border: .12em solid var(--line); border-radius: .2em; }
+.wu-find.ok { background: #e8f6ec; }
+.wu-find.ok::before { content: "✓"; border-color: var(--ok); color: var(--ok); font: bold .9em/1 var(--py); text-align: center; }
+.wu-find rt { font-size: .42em; }
+.wu-list .btns { grid-column: 1 / -1; display: flex; flex-direction: column; gap: .4em; margin-top: .2em; }
+.wu-list .btns .btn { font-size: .95em; padding: .3em .8em; }
+
+/* ---------- 雾的语气 ---------- */
+.wu-talk { flex: 1; flex-direction: row; align-items: center; gap: 1.5em; }
+.wu-kidbig { width: 16em; flex: none; animation: wuBob2 3s ease-in-out infinite; }
+@keyframes wuBob2 { 50% { transform: translateY(-.6em); } }
+.wu-kidbig svg { width: 100%; display: block; filter: drop-shadow(0 .3em .6em rgba(20, 60, 90, .2)); }
+.wu-bubbles { flex: 1; display: flex; flex-direction: column; gap: .5em; }
+.wu-bub { position: relative; margin: 0; display: flex; align-items: center; gap: 1em; background: #fff; border-radius: 1em; padding: 0 1em; box-shadow: 0 .15em .5em rgba(20, 60, 90, .1); }
+.wu-bub .py { font-family: var(--kai); font-size: 1.6em; line-height: 2.2; color: #1d6fa8; }
+.wu-bub rt { font-size: .42em; }
+.wu-bub em { margin-left: auto; flex: none; font-style: normal; font-size: 1.05em; color: #fff; background: var(--gold); border-radius: .4em; padding: .1em .6em; }
+
+/* ---------- 照样子说一说 ---------- */
+.wu-say-stage { flex: 1; gap: 1em; }
+.wu-model { margin: 0; font-size: 1.7em; background: #fff8e1; border-radius: .8em; padding: 0 1em; }
+.wu-model rt { font-size: .42em; }
+.wu-tabs { display: flex; gap: .8em; justify-content: center; }
+.wu-tabs .btn { font-size: 1.4em; font-family: var(--kai); }
+.wu-say-row { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1.6fr; gap: 1.2em; align-items: center; }
+.wu-pic { aspect-ratio: 16 / 9; border-radius: 1em; background: #dfeaf2 center / cover no-repeat; display: grid; place-items: center; font-size: 5em; box-shadow: 0 .2em .8em rgba(0, 0, 0, .12); }
+.wu-pic.foggy { animation: wuFogPic 2.4s ease forwards; }
+@keyframes wuFogPic { from { filter: none; } to { filter: blur(6px) brightness(1.25) saturate(.4); } }
+.wu-out { margin: 0; font-family: var(--kai); font-size: 1.3em; color: var(--ink-2); }
+.wu-out .py { display: block; font-size: 1.35em; color: var(--ink); line-height: 2.2; }
+.wu-out rt { font-size: .42em; }
+.wu-out small { color: var(--red); }
+
+/* ---------- 在你眼里，雾是什么 ---------- */
+.wu-like { flex: 1; justify-content: center; gap: 1em; }
+.wu-l0 { margin: 0; text-align: center; font-family: var(--kai); font-size: 1.8em; color: var(--red-d); }
+.wu-l0 rt { font-size: .42em; }
+.wu-likes { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.wu-likes p { margin: 0; background: #fff; border-radius: 1em; padding: .2em 1em .6em; box-shadow: 0 .15em .5em rgba(20, 60, 90, .1); font-family: var(--kai); }
+.wu-likes .py { display: block; font-size: 1.6em; line-height: 2.2; }
+.wu-likes rt { font-size: .42em; }
+.wu-likes small { font-size: 1.15em; color: var(--ink-2); }
+.wu-likes .wu-me { background: #fff8e1; display: flex; align-items: center; }
+
+/* ---------- 拨开云雾 ---------- */
+.wu-game { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .8em; }
+.wg-bar { display: flex; align-items: center; gap: 1em; }
+.wg-q { min-width: 3.2em; text-align: center; font-family: var(--py); font-size: 2.6em; color: var(--py-c); background: #fff; border-radius: .3em; padding: 0 .3em; box-shadow: 0 .1em .4em rgba(30, 50, 90, .12); }
+.wg-msg { flex: 1; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.wg-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(2, 1fr); gap: .8em; padding: .8em; border-radius: 1em; background: linear-gradient(#bfe0f3, #e2f1f8); }
+.wg-cell { position: relative; border: 0; border-radius: 1em; background: #fff; cursor: pointer; overflow: hidden; font: inherit; }
+.wg-cell b { font-family: var(--kai); font-size: 3.4em; font-weight: normal; line-height: 1.6; }
+.wg-cell rt { font-family: var(--py); font-size: .32em; color: var(--py-c); }
+.wg-fog { position: absolute; inset: -10%; background: radial-gradient(circle at 30% 40%, #fff 0 30%, transparent 60%), radial-gradient(circle at 70% 60%, #fff 0 30%, transparent 62%), #eef3f7; transition: opacity .6s, transform .6s; }
+.wg-cell.open .wg-fog { opacity: 0; transform: scale(1.4); }
+.wg-cell.ok { background: #e8f6ec; box-shadow: inset 0 0 0 .2em var(--ok); }
+
+/* ---------- 回顾 ---------- */
+.wu-sum { flex: 1; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5em; }
+.wu-sum > i { font-style: normal; font-size: 3em; color: var(--gold); }
+.wu-sumc { width: 24em; background: #2f4a3f; color: #f6f1e4; border-radius: 1em; padding: .8em 1em; text-align: center; box-shadow: inset 0 0 0 .3em #6b4b2a; font-family: var(--kai); }
+.wu-sumc b { display: block; font-size: 2.4em; font-weight: normal; line-height: 2.1; }
+.wu-sumc rt { font-family: var(--py); font-size: .4em; color: var(--gold-l); }
+.wu-sumc span { font-size: 1.3em; color: var(--gold-l); }
+.wu-sum .tip { flex-basis: 100%; text-align: center; font-size: 1.25em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .wu-riddle p { font-size: 1.3em; }
+  .wu-bd, .wu-wipe-bd { display: flex; flex-direction: column; }
+  .wu-wipe { height: auto; width: 100%; }
+  .wu-text p { font-size: 1.2em; }
+  .wu-list { flex-direction: row; flex-wrap: wrap; }
+  .wu-find { font-size: 1.2em; }
+  .wu-talk { flex-direction: column; }
+  .wu-kidbig { width: 9em; }
+  .wu-bub { flex-wrap: wrap; }
+  .wu-bub .py { font-size: 1.2em; }
+  .wu-model { font-size: 1.2em; }
+  .wu-tabs { flex-wrap: wrap; }
+  .wu-say-row { display: flex; flex-direction: column; }
+  .wu-pic { width: 100%; }
+  .wu-likes { grid-template-columns: 1fr; }
+  .wu-likes .py { font-size: 1.25em; }
+  .wg-grid { flex: none; grid-template-columns: repeat(3, 1fr); grid-template-rows: none; }
+  .wg-cell { aspect-ratio: 1; }
+  .wg-cell b { font-size: 2.4em; }
+  .wg-bar { flex-wrap: wrap; }
+  .wg-msg { flex-basis: 100%; order: 3; font-size: 1.2em; }
+  .wu-sumc { width: 100%; }
+}

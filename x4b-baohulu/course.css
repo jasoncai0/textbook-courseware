@@ -1,0 +1,89 @@
+/* 宝葫芦的秘密（四下 26）· 本课配色：葫芦金、向日葵黄、少先队红。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #c4532b;
+  --red-d: #6b2c14;
+  --gold: #d9a520;
+  --gold-l: #f6e2a0;
+  --paper: #f8f2e2;
+  --stone: #fffbf1;
+  --ink-2: #6a5a45;
+  --line: #e2d4b2;
+}
+.frame { font-size: min(1.5vw, 2.66vh); }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.subs { font-size: 1.5em; }
+
+/* ---------- 封面 ---------- */
+.s-cover .cover-title { font-size: 6em; }
+.cover-ask { font-family: var(--kai); font-size: 2.2em; margin: 0 0 .7em; color: #ffe39a; }
+
+/* ---------- 名片 ---------- */
+.s-me .bd { grid-template-columns: 34% 1fr; }
+.s-me .stage { justify-content: center; }
+.namecard { background: #fff; border-radius: 1em; overflow: hidden; box-shadow: 0 .3em 1em rgba(80, 50, 10, .15); }
+.nc-top { background: linear-gradient(120deg, var(--red), #e07b3a); color: #fff; padding: .8em 1.2em; display: flex; align-items: baseline; gap: .8em; }
+.nc-top b { font-family: var(--kai); font-size: 2.8em; letter-spacing: .1em; }
+.namecard ul { margin: 0; padding: .8em 1.2em 1em 2.2em; font-family: var(--kai); font-size: 1.3em; line-height: 1.9; }
+.s-me .quote { font-size: 1.12em; line-height: 1.7; }
+
+/* ---------- 对话气泡 ---------- */
+
+.s-bubble .tip.gold { padding: .3em .9em; }
+.s-bubble .bd { grid-template-columns: 30% 1fr; }
+.portrait-card { position: relative; }
+.portrait-img { background-position: 50% 50%; background-size: cover; }
+.chat { display: flex; flex-direction: column; gap: .28em; }
+.chat p { margin: 0; max-width: 86%; padding: .22em .85em; border-radius: 1em; font-family: var(--kai); font-size: 1.2em; line-height: 1.4; position: relative; }
+.chat small { margin-left: .5em; font-family: var(--serif); font-size: .66em; color: var(--ink-2); }
+.chat .nai { align-self: flex-start; background: #fff; border: 1px solid var(--line); border-bottom-left-radius: .2em; }
+.chat .nai::before { content: "奶奶"; font-family: var(--serif); font-size: .62em; color: #fff; background: #6a7fa8; padding: .05em .45em; border-radius: .3em; margin-right: .5em; vertical-align: .15em; }
+.chat .bao { align-self: flex-end; background: #fff3d6; border: 1px solid var(--gold-l); border-bottom-right-radius: .2em; }
+.chat .bao::before { content: "小葆"; font-family: var(--serif); font-size: .62em; color: #fff; background: var(--red); padding: .05em .45em; border-radius: .3em; margin-right: .5em; vertical-align: .15em; }
+.chat .deal { align-self: center; background: var(--red-d); color: #fff; }
+.chat .deal b { font-family: var(--serif); font-size: .62em; background: var(--gold); padding: .05em .45em; border-radius: .3em; margin-right: .5em; vertical-align: .15em; }
+
+/* ---------- 连一连 ---------- */
+.s-four .bd { grid-template-columns: 1fr 32%; }
+.match { position: relative; display: grid; grid-template-columns: .6fr 1.4fr; gap: 1em 5em; align-items: center; }
+.mt-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.mt-lines line { stroke: var(--gold); stroke-width: 4; stroke-linecap: round; }
+.mt-col { display: flex; flex-direction: column; gap: .8em; }
+.mt-item { font: inherit; font-family: var(--kai); font-size: 1.35em; padding: .5em .9em; border-radius: .6em; border: 2px solid var(--line); background: #fff; cursor: pointer; line-height: 1.45; text-align: left; }
+.mt-l { text-align: center; font-size: 1.6em; color: var(--red-d); }
+.mt-item.sel { border-color: var(--gold); box-shadow: 0 0 0 .2em var(--gold-l); }
+.mt-item.ok { border-color: #8cc0a6; background: #f1f8f4; cursor: default; }
+.mt-item.no { animation: nope .35s; border-color: #e3a998; }
+
+/* ---------- 想象转盘 ---------- */
+.s-wheel .bd { grid-template-columns: 42% 1fr; }
+.wheel-stage { justify-content: center; align-items: center; }
+.wheel-box { position: relative; width: min(100%, 26em); aspect-ratio: 1; }
+.wheel-box .wheel { width: 100%; height: 100%; display: block; }
+#wheelRot { transition: transform 3s cubic-bezier(.2, .8, .2, 1); }
+.wk { font-size: 20px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; fill: #3a2a12; }
+.wheel-pin { position: absolute; left: 50%; top: -.4em; width: 0; height: 0; margin-left: -.9em; border: .9em solid transparent; border-top: 1.6em solid var(--red-d); filter: drop-shadow(0 .1em .2em rgba(0, 0, 0, .3)); }
+.wheel-go { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: inherit; font-family: var(--kai); font-size: 1.25em; width: 4.4em; height: 4.4em; border-radius: 50%; border: none; background: var(--red); color: #fff; cursor: pointer; box-shadow: 0 .2em .6em rgba(0, 0, 0, .25); }
+.wish { background: #fff; border-radius: .8em; padding: .8em 1.1em; box-shadow: 0 .2em .8em rgba(80, 50, 10, .12); min-height: 9em; }
+.wish.show { animation: subIn .7s ease both; }
+.wish p { margin: 0 0 .4em; }
+.wish-k { font-weight: bold; color: var(--red-d); border-left: .35em solid var(--gold); padding-left: .5em; }
+.wish-t { font-family: var(--kai); font-size: 1.25em; line-height: 1.7; }
+.wish-a { color: var(--red); font-size: 1.1em; }
+.wish-img { float: right; width: 9em; height: 6em; margin: 0 0 .4em .8em; border-radius: .5em; background: center / cover no-repeat #f3ead2; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.8em; }
+  .cover-ask { font-size: 1.4em; }
+  .subs { font-size: 1.12em; }
+  .hd h2 { font-size: 1.25em; }
+  .nc-top b { font-size: 2em; }
+  .namecard ul { font-size: 1.1em; }
+  .chat p { font-size: 1.1em; max-width: 92%; }
+  .match { gap: .7em 2em; }
+  .mt-item { font-size: 1.05em; padding: .4em .6em; }
+  .mt-l { font-size: 1.2em; }
+  .wheel-box { width: 80%; margin: 0 auto; }
+  .wish-img { width: 7em; height: 5em; }
+}

@@ -1,0 +1,93 @@
+/* 只有一个地球 · 本课配色：地球蓝、草木绿。说明类课件：信息图为主 */
+:root {
+  --red: #1f6fa8;
+  --red-d: #164a72;
+  --gold: #4f9a5a;
+  --gold-l: #cfe8d2;
+  --jade: #2f6b5e;
+  --paper: #eef3f7;
+  --stone: #f9fbfd;
+  --ink-2: #4f5b66;
+  --line: #c9d6e2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfdff 0, transparent 40%), radial-gradient(circle at 90% 95%, #dbe6ef 0, transparent 45%); }
+.s-cover .cover-title { font-size: 5.6em; }
+.subs .hl { color: #bfe3ff; font-weight: normal; }
+
+/* 关键句 */
+.keys { display: grid; grid-template-columns: repeat(5, 1fr); gap: .7em; }
+.key { background: #fff; border-radius: .5em; padding: .7em .8em; border-top: .3em solid var(--red); display: flex; flex-direction: column; gap: .3em; }
+.key b { color: var(--red-d); font-size: 1.15em; }
+.key span { font-family: var(--kai); line-height: 1.7; flex: 1; }
+.key small { color: var(--ink-2); }
+.key-end { margin-top: 1em; border-top-color: var(--gold); background: #f1f8f2; flex-direction: row; align-items: baseline; gap: 1em; font-size: 1.15em; }
+.key-end b { color: #2f6b2e; }
+
+/* 渺小：地球 → 太阳 → 宇宙 */
+#small, #move { flex: 1; min-height: 0; width: 100%; border-radius: .5em; }
+#small .earth-g { transform-box: view-box; transform-origin: 400px 220px; transition: transform 2s ease; }
+#small .sun, #small .sun-label { opacity: 0; transition: opacity 1.4s ease, transform 2s ease; transform-box: view-box; }
+/* 第 2 步（和太阳比）与第 3 步（放进宇宙）互斥，避免两条规则抢优先级 */
+.s-small:has(.mark[data-step="2"].on):not(:has(.here.on)) #small .earth-g { transform: translate(-150px, 0) scale(.12); }
+.s-small:has(.mark[data-step="2"].on):not(:has(.here.on)) #small .sun,
+.s-small:has(.mark[data-step="2"].on):not(:has(.here.on)) #small .sun-label { opacity: 1; }
+.s-small:has(.mark[data-step="2"].on) #small .radius { opacity: 0; }
+.s-small:has(.here.on) #small .earth-g { transform: translate(-280px, 80px) scale(.02); }
+#small, #move { overflow: hidden; }
+#small .ring, #move .range { transform-box: fill-box; transform-origin: center; }
+.on #small .ring, #small .here.on .ring { animation: ripple 1.6s ease-out infinite; }
+
+/* 资源 */
+.res-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; flex: 1; }
+.res-col { position: relative; background: #fff; border-radius: .6em; padding: .8em 1.1em; display: flex; flex-direction: column; gap: .6em; }
+.res-col h3 { margin: 0; color: var(--red-d); }
+.res-col h3 small { font-size: .65em; color: #fff; background: var(--red); padding: .1em .5em; border-radius: .3em; margin-left: .4em; vertical-align: .2em; }
+.res-col:nth-child(2) h3 small { background: var(--gold); }
+.quote-line { margin: 0; font-family: var(--kai); color: var(--ink-2); }
+.bars { display: flex; flex-direction: column; gap: .6em; }
+.bar-row { display: grid; grid-template-columns: 2.6em 1fr 8.5em; align-items: center; gap: .6em; }
+.bar-row em { font-style: normal; font-size: .88em; color: var(--ink-2); }
+.bar { height: 1.1em; background: #e8eef3; border-radius: 1em; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; border-radius: 1em; }
+.bar .slow { background: #8a6d3a; transition: width 6s linear; }
+.bar .fast { background: #c0392b; transition: width .8s ease-out; }
+.bar-row.on .slow, .bar-row.on .fast { width: 100%; }
+.cycle { width: 70%; align-self: center; }
+.cycle[data-step] { transform: none; }
+.cycle .loop { stroke-dasharray: 8 6; animation: spin 1.6s linear infinite; }
+@keyframes spin { to { stroke-dashoffset: -28; } }
+.s-res:has(.crack.on) .cycle .loop { animation: none; stroke: #b9c2b9; }
+.media-btn.second { position: static; align-self: flex-start; }
+
+/* 移居 */
+#move .range { transform: scale(.05); transition: transform 2.4s ease; }
+#move .on .range { transform: scale(1); }
+
+/* 推理链 */
+.chain { display: flex; align-items: stretch; gap: .5em; flex: 1; }
+.chain .link { flex: 1; background: #fff; border-radius: .5em; padding: .8em; display: flex; flex-direction: column; justify-content: center; gap: .4em; text-align: center; border-bottom: .3em solid var(--red); }
+.chain .link b { font-size: 1.2em; color: var(--red-d); }
+.chain .link span { font-family: var(--kai); color: var(--ink-2); }
+.chain .link.end { background: #f1f8f2; border-bottom-color: var(--gold); }
+.chain .link.end b { color: #2f6b2e; }
+.chain > i { align-self: center; font-style: normal; color: var(--red); font-weight: bold; writing-mode: vertical-rl; }
+.chain > i::after { content: " →"; }
+
+/* 倡议书 */
+.letter { background: #fffdf6; border-radius: .4em; padding: 1em 1.6em; font-family: var(--kai); line-height: 1.85; box-shadow: 0 .2em .8em rgba(30, 40, 60, .12); overflow: auto; }
+.letter p { margin: 0 0 .3em; text-indent: 2em; border-radius: .3em; transition: background .4s; }
+.letter .l-title { text-align: center; text-indent: 0; font-size: 1.35em; font-weight: bold; }
+.letter .l-to, .letter .l-pts { text-indent: 0; }
+.letter .l-sign { text-align: right; text-indent: 0; }
+.letter .lit { background: #fff1b8; box-shadow: 0 0 0 .2em #fff1b8; }
+.pn { color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .keys, .res-cols { grid-template-columns: 1fr; }
+  #small, #move { flex: none; height: auto; }
+  .chain { flex-direction: column; }
+  .chain > i { writing-mode: horizontal-tb; }
+  .chain > i::after { content: " ↓"; }
+  .s-letter .bd { display: flex; flex-direction: column; }
+}

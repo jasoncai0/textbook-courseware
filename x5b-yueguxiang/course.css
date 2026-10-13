@@ -1,0 +1,45 @@
+/* 月是故乡明 · 本课配色：月夜蓝、月光银、苇坑青。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #3f5f86;
+  --red-d: #243b5a;
+  --gold: #c8a24b;
+  --gold-l: #efdfb2;
+  --paper: #eef0ef;
+  --stone: #fafbf9;
+  --ink-2: #545c66;
+  --line: #cfd4d6;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfcfb 0, transparent 40%), radial-gradient(circle at 90% 95%, #dde3ea 0, transparent 45%); }
+.scene .hd .tag { background: rgba(36, 59, 90, .92); }
+.subs .yg-big { font-size: 1.15em; color: #f6e8bc; }
+.subs .reveal { font-size: 1.35em; letter-spacing: .06em; color: #f6e8bc; }
+
+/* 三段人生里的月亮 */
+.yg-life { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; flex: 1; min-height: 0; }
+.yg-col { display: flex; flex-direction: column; background: #fff; border-radius: .6em; overflow: hidden; box-shadow: 0 .15em .6em rgba(30, 40, 60, .12); min-height: 0; }
+.yg-pic { flex: 1; min-height: 5em; background: center / cover no-repeat #c9d2dc; }
+.yg-col h3 { margin: .35em .8em 0; color: var(--red-d); font-family: var(--kai); font-size: 1.25em; }
+.yg-moon { margin: .1em .8em; color: var(--gold); font-weight: bold; font-size: .92em; }
+.yg-col ul { margin: .1em 0 .4em; padding-left: 2em; line-height: 1.6; font-size: .92em; }
+.yg-feel { margin: 0; padding: .4em .8em; background: var(--red-d); color: #f6e8bc; font-family: var(--kai); font-size: 1.05em; }
+
+/* 大月亮 · 小月亮 */
+.yg-big-moons { justify-content: center; gap: .5em; }
+.yg-big-moons span { font-family: var(--kai); font-size: 1.2em; background: #fff; border-left: .3em solid var(--red); border-radius: .3em; padding: .35em .9em; }
+.yg-big-moons b { font-family: var(--kai); font-size: 1.3em; color: var(--red-d); padding-left: .4em; }
+.s-compare .stage:last-child { justify-content: center; }
+.yg-scale { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; align-items: end; padding: .4em 0; }
+.yg-pan { display: flex; flex-direction: column; align-items: center; gap: .3em; text-align: center; font-family: var(--kai); }
+.yg-pan i { display: block; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fffbe8, #e9d79c); box-shadow: 0 0 1.2em rgba(233, 215, 156, .8); }
+.yg-pan.big i { width: 5em; height: 5em; opacity: .6; }
+.yg-pan.small i { width: 3em; height: 3em; box-shadow: 0 0 1.6em 0.4em rgba(240, 200, 90, .9); }
+.yg-pan small { color: var(--ink-2); font-family: var(--serif); }
+.yg-pan.small span { color: var(--red-d); font-weight: bold; }
+.yg-scale.on .yg-pan.small i { animation: ygGlow 2s ease-in-out infinite alternate; }
+@keyframes ygGlow { to { box-shadow: 0 0 2.4em .8em rgba(240, 200, 90, 1); } }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .yg-life { grid-template-columns: 1fr; }
+  .yg-pic { flex: none; height: 7em; }
+  .subs .reveal { font-size: 1.15em; }
+}

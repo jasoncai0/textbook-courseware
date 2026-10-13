@@ -1,0 +1,104 @@
+/* 吃水不忘挖井人 · 本课配色：红土地的赭红、井石的青灰。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #b8462f;
+  --red-d: #84301d;
+  --gold: #d9a43a;
+  --gold-l: #f6dfa8;
+  --paper: #f8f4ec;
+  --stone: #fffdf8;
+  --ink-2: #5f564c;
+  --line: #e2d6c3;
+}
+
+/* ---------- 封面 ---------- */
+.s-cover .cover-title { font-size: 5.6em; }
+.wj-ask { margin: 0 0 .8em; font-family: var(--kai); font-size: 2em; color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, .5); }
+
+/* ---------- 读课文：时间轴 + 图 + 原文 ---------- */
+.wj-axis { list-style: none; margin: 0; padding: 0; display: flex; gap: 0; flex: none; }
+.wj-axis li { flex: 1; position: relative; text-align: center; padding-top: 1.4em; font-family: var(--kai); font-size: 1.2em; color: #b3a898; }
+.wj-axis li::before { content: ''; position: absolute; left: 0; right: 0; top: .45em; height: .25em; background: var(--line); }
+.wj-axis li::after { content: ''; position: absolute; left: 50%; top: 0; width: 1.1em; height: 1.1em; margin-left: -.55em; border-radius: 50%; background: #fff; border: .2em solid var(--line); box-sizing: border-box; }
+.wj-axis li.done { color: var(--ink-2); }
+.wj-axis li.done::before, .wj-axis li.done::after { background: var(--gold); border-color: var(--gold); }
+.wj-axis li.cur { color: var(--red-d); font-weight: bold; }
+.wj-axis li.cur::after { background: var(--red); border-color: var(--red); transform: scale(1.3); }
+.wj-axis li.cur::before { background: linear-gradient(90deg, var(--gold) 50%, var(--line) 50%); }
+.wj-row { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 1.2em; align-items: center; }
+.wj-pic { width: 100%; aspect-ratio: 16 / 9; border-radius: .8em; background: #e9e2d4 center / cover no-repeat; box-shadow: 0 .3em 1em rgba(60, 40, 20, .18); object-fit: cover; display: block; }
+.wj-two { position: relative; overflow: hidden; }
+.wj-two > div { position: absolute; inset: 0; background: center / cover no-repeat; }
+.wj-two > div[data-step] { transform: none; transition: opacity 1.2s ease; }
+.wj-read .hz-text { font-size: 1.85em; line-height: 2.4; padding: .4em .9em; max-height: 100%; }
+.wj-read .hz-text p { text-align: left; }
+.wj-read .hz-text .mark { background-size: 0 100%; }
+
+/* ---------- 刻碑文 ---------- */
+.wj-stele-stage { flex: 1; flex-direction: row; align-items: center; gap: 2em; }
+.wj-stele { flex: none; height: 100%; max-height: 25em; aspect-ratio: .62; display: flex; flex-direction: row-reverse; justify-content: center; gap: 1.6em; padding: 1.4em 1em; border-radius: .6em .6em .2em .2em; background: linear-gradient(135deg, #d7d3c9, #b9b4a8); box-shadow: inset 0 0 0 .35em #a39e91, 0 .6em 0 -.1em #8f8a7e, 0 .8em 1.4em rgba(0, 0, 0, .2); }
+.wj-col { display: flex; flex-direction: column; justify-content: space-between; }
+.wj-col[data-step] { transform: none; opacity: 1; }
+.wj-ch { position: relative; font-family: var(--kai); font-size: 2.5em; line-height: 1; color: #5b5448; text-shadow: 1px 1px 0 rgba(255, 255, 255, .5), -1px -1px 0 rgba(0, 0, 0, .25); opacity: 0; }
+.wj-ch i { position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: .2em; font: normal .32em var(--py); color: var(--py-c); white-space: nowrap; }
+.wj-col.on .wj-ch { animation: wjCarve .6s var(--d) ease forwards; }
+@keyframes wjCarve { 0% { opacity: 0; transform: scale(1.4); filter: blur(3px); } 100% { opacity: 1; transform: none; filter: none; } }
+.wj-explain { flex: 1; display: flex; flex-direction: column; gap: .8em; font-size: 1.35em; }
+.wj-explain .tip { margin: 0; font-family: var(--kai); line-height: 1.7; }
+
+/* ---------- 读一读，记一记 ---------- */
+.wj-words { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: .6em 2.4em; align-content: center; }
+.wj-pair { display: flex; gap: 1.2em; justify-content: center; background: #fff; border-radius: .7em; padding: .1em .8em; box-shadow: 0 .15em .5em rgba(60, 40, 20, .08); }
+.wj-pair b { font-weight: normal; font-size: 2.3em; line-height: 2.2; }
+
+/* ---------- 开火车 ---------- */
+.wj-train { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 1.2em; }
+.wj-track { display: flex; flex-wrap: wrap; gap: 1.6em .5em; align-items: flex-end; padding-bottom: .4em; }
+.wj-engine { width: 7em; flex: none; transition: transform 1s ease; }
+.wj-car { position: relative; font: inherit; font-family: var(--kai); font-size: 2.6em; width: 2.1em; height: 2.4em; padding: .7em 0 0; border: none; border-radius: .25em .25em .1em .1em; background: #ded5c3; color: #8a7f70; cursor: pointer; transition: background .4s, color .4s, transform .3s; }
+.wj-car::before, .wj-car::after { content: ''; position: absolute; bottom: -.32em; width: .42em; height: .42em; border-radius: 50%; background: #4a4640; }
+.wj-car::before { left: .25em; }
+.wj-car::after { right: .25em; }
+.wj-car i { position: absolute; top: .12em; left: 0; right: 0; font: normal .34em var(--py); color: transparent; }
+.wj-car.on { background: #f3c64d; color: var(--red-d); transform: translateY(-.08em); }
+.wj-car.on i { color: var(--py-c); }
+.wj-train.arrive .wj-engine { transform: translateX(.6em) rotate(-3deg); }
+.wj-train-bar { display: flex; align-items: center; gap: 1em; }
+.wj-train-msg { flex: 1; font-family: var(--kai); font-size: 1.5em; }
+.wj-train.arrive .wj-train-msg { color: #1f6b4f; font-weight: bold; }
+.wj-train-n { font-size: 1.3em; color: var(--red-d); }
+
+/* ---------- 写字：7 个字，格子小一点 ---------- */
+.hz-write { gap: .3em 1.8em; }
+.hz-cells .hz-tzg { --tz: 3.9em; }
+
+/* ---------- 排一排（讲故事） ---------- */
+.order { flex: 1; display: flex; flex-direction: column; gap: .6em; min-height: 0; }
+.order-slots, .order-pool { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: .6em; }
+.o-slot { position: relative; min-height: 9.6em; border: 2px dashed var(--line); border-radius: .6em; background: rgba(255, 255, 255, .55); display: flex; flex-direction: column; overflow: hidden; }
+.o-slot::after { content: attr(data-n); position: absolute; left: .35em; top: .3em; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; font-size: .85em; }
+.o-slot.filled { border-style: solid; border-color: var(--gold); background: #fff; animation: appear .4s ease; }
+.o-card { font: inherit; padding: 0; border: 1px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; text-align: left; color: var(--ink); box-shadow: 0 .15em .5em rgba(40, 30, 20, .1); transition: opacity .3s; }
+.o-pic { height: 5em; flex: none; background: #efe6d4 center / cover no-repeat; display: flex; align-items: center; justify-content: center; }
+.o-pic svg { height: 80%; }
+.o-card > span, .o-slot > span { padding: 0 .4em .3em; font-size: 1em; line-height: 2; }
+.o-card.used { opacity: .2; pointer-events: none; }
+.o-card.wrong { animation: nope .35s; border-color: #e3a998; background: #fdf0ec; }
+.order-bar { display: flex; align-items: center; gap: 1em; }
+.order-msg { flex: 1; color: var(--ink-2); font-size: 1.2em; }
+.order.done .order-msg { color: #1f6b4f; font-weight: bold; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3em; }
+  .wj-ask { font-size: 1.3em; }
+  .wj-row { grid-template-columns: 1fr; align-content: start; }
+  .wj-read .hz-text { font-size: 1.5em; }
+  .wj-stele-stage { flex-direction: column; }
+  .wj-stele { height: auto; width: 60%; max-height: none; }
+  .wj-ch { font-size: 1.8em; }
+  .wj-words { grid-template-columns: 1fr; }
+  .wj-pair b { font-size: 1.7em; }
+  .wj-car { font-size: 1.8em; }
+  .wj-engine { width: 4.5em; }
+  .order-slots, .order-pool { grid-template-columns: 1fr 1fr; }
+  .o-slot { min-height: 8em; }
+}

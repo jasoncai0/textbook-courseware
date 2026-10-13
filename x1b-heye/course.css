@@ -1,0 +1,133 @@
+/* 荷叶圆圆 · 本课配色：荷叶的绿、荷花的粉。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3f8a4d;
+  --red-d: #255c31;
+  --gold: #ec7fa0;
+  --gold-l: #fbd5e1;
+  --paper: #f1f8ef;
+  --stone: #fdfffc;
+  --ink-2: #4f6650;
+  --line: #d3e6cf;
+}
+
+.hy-cover-shade { background: linear-gradient(90deg, rgba(20, 50, 30, .55), rgba(20, 50, 30, .1) 55%, transparent); }
+.hy-ask { margin: .2em 0 .4em; font-size: 1.5em; }
+.s-cover .hy-ask rt { color: var(--gold-l); }
+.subs.hy-ls .py { font-size: 1.6em; }
+
+/* ---------- 荷叶小舞台 ---------- */
+.hy-theatre { flex: 1; min-height: 0; display: grid; grid-template-columns: 2fr 1fr; gap: 1.2em; align-items: center; }
+.hy-stagewrap { position: relative; border-radius: 1em; overflow: hidden; box-shadow: 0 .3em 1em rgba(0, 0, 0, .2); border-top: 1.2em solid #b8323a; }
+.hy-stagewrap::before, .hy-stagewrap::after { content: ""; position: absolute; top: 0; bottom: 0; width: 7%; background: repeating-linear-gradient(90deg, #c63a43 0 .6em, #a52a33 .6em 1.2em); z-index: 2; }
+.hy-stagewrap::before { left: 0; border-radius: 0 0 60% 0; }
+.hy-stagewrap::after { right: 0; border-radius: 0 0 0 60%; }
+.hy-stage { display: block; width: 100%; }
+.hy-r { opacity: 0; transition: opacity .6s; }
+.hy-theatre.on-drop .hy-r-drop, .hy-theatre.on-fly .hy-r-fly, .hy-theatre.on-frog .hy-r-frog, .hy-theatre.on-fish .hy-r-fish { opacity: 1; }
+.hy-leaf { transform-origin: 400px 300px; }
+.hy-theatre[data-cur="drop"] .hy-leaf { animation: hyRock 1.8s ease-in-out infinite alternate; }
+@keyframes hyRock { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
+.hy-theatre[data-cur="drop"] .hy-r-drop { animation: hyRock 1.8s ease-in-out infinite alternate; transform-origin: 400px 300px; }
+.hy-wings { transform-origin: 600px 230px; }
+.hy-theatre[data-cur="fly"] .hy-wings { animation: hyFlap .25s ease-in-out infinite alternate; }
+@keyframes hyFlap { to { transform: scaleY(.6); } }
+.hy-notes text { font-size: 26px; opacity: 0; }
+.hy-theatre[data-cur="frog"] .hy-notes text, .hy-theatre[data-cur="all"] .hy-notes text { animation: hyNote 1.6s ease-out infinite; }
+.hy-notes text:nth-child(2) { animation-delay: .5s !important; }
+.hy-notes text:nth-child(3) { animation-delay: 1s !important; }
+@keyframes hyNote { 0% { opacity: 0; transform: translateY(10px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-20px); } }
+.hy-fishbody { transition: transform 1s; }
+.hy-theatre[data-cur="fish"] .hy-fishbody, .hy-theatre[data-cur="all"] .hy-fishbody { animation: hySwim 3s ease-in-out infinite alternate; }
+@keyframes hySwim { from { transform: translateX(-120px); } to { transform: translateX(80px); } }
+.hy-splash circle { opacity: 0; }
+.hy-theatre[data-cur="fish"] .hy-splash circle { animation: hyNote 1.2s ease-out infinite; }
+.hy-bubble { position: absolute; z-index: 3; transform: translate(-50%, -100%); max-width: 70%; padding: 0 .8em; border-radius: 1em; background: #fff; box-shadow: 0 .2em .6em rgba(0, 0, 0, .25); font-size: 1.6em; line-height: 2.1; color: var(--red-d); white-space: nowrap; }
+.hy-bubble:empty { display: none; }
+.hy-bubble::after { content: ""; position: absolute; left: 50%; bottom: -.5em; margin-left: -.4em; border: .4em solid transparent; border-top-color: #fff; border-bottom: 0; }
+.hy-bubble.pop, .hy-narr.pop { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+.hy-bubble.pop { animation-name: hyPop; }
+@keyframes hyPop { from { transform: translate(-50%, -100%) scale(.3); } to { transform: translate(-50%, -100%); } }
+.hy-side { display: flex; flex-direction: column; gap: .8em; }
+.hy-roles { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; }
+.hy-role { font: inherit; padding: .1em .4em; border-radius: .7em; border: 2px solid var(--line); background: #fff; cursor: pointer; }
+.hy-role .py { font-size: 1.6em; line-height: 2.1; }
+.hy-role.cur { background: var(--red); border-color: var(--red); color: #fff; }
+.hy-role.cur rt { color: #e8ffe0; }
+.hy-narr { min-height: 4.4em; margin: 0; font-size: 1.45em; line-height: 2.2; color: #2b2420; }
+
+/* ---------- 连一连 ---------- */
+.hy-link { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 5em; }
+.hy-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hy-lines line { stroke: #e0533a; stroke-width: 4; stroke-linecap: round; }
+.hy-row { display: flex; justify-content: space-around; position: relative; z-index: 1; }
+.hy-node { font: inherit; white-space: nowrap; min-width: 6em; padding: 0 .8em; border-radius: .8em; border: 2px solid var(--line); background: #fff; cursor: pointer; }
+.hy-node .py { font-size: 1.9em; line-height: 2.1; }
+.hy-top .hy-node { background: #effae9; }
+.hy-node.sel { border-color: var(--gold); box-shadow: 0 0 0 .2em var(--gold-l); }
+.hy-node.ok { border-color: var(--red); background: #e1f3dc; cursor: default; }
+.hy-node.wrong { animation: nope .35s; }
+.hy-link-say { position: relative; z-index: 1; margin: 0; min-height: 2.3em; text-align: center; font-size: 1.8em; color: var(--red-d); }
+
+/* ---------- 句子拼一拼 ---------- */
+.hy-make { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .45em; }
+.hy-model { margin: 0; font-size: 1.35em; color: var(--ink-2); }
+.hy-things { display: flex; gap: .8em; }
+.hy-thing { font: inherit; display: flex; flex-direction: column; align-items: center; padding: .1em .8em 0; border-radius: .8em; border: 2px solid var(--line); background: #fff; cursor: pointer; font-family: var(--kai); font-size: 1.5em; line-height: 2; }
+.hy-thing svg { width: 2.2em; height: 2.2em; }
+.hy-thing rt, .hy-adj rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.hy-thing.on { border-color: var(--red); background: #e9f6e4; }
+.hy-adjs { display: flex; flex-wrap: wrap; justify-content: center; gap: .5em; max-width: 46em; }
+.hy-adj { font: inherit; font-family: var(--kai); font-size: 1.55em; line-height: 2; padding: 0 .5em; border-radius: 1em; border: 2px solid #f3c6d4; background: #fff6f9; cursor: pointer; }
+.hy-adj.on { background: var(--gold); border-color: var(--gold); color: #fff; }
+.hy-adj.on rt { color: #fff; }
+.hy-out { margin: 0; min-height: 2.2em; font-size: 2.1em; color: #2b2420; padding: 0 .6em; border-bottom: .08em dashed var(--line); }
+.hy-out.full { color: var(--red-d); border-bottom-color: var(--red); }
+
+/* ---------- 水珠滚一滚 ---------- */
+.hy-drops { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.7fr 1fr; gap: 1.2em; align-items: center; }
+.hy-bigleaf { position: relative; aspect-ratio: 1.45; max-height: 100%; width: 100%; margin: auto; border-radius: 50%; background: radial-gradient(ellipse at 50% 50%, #7cc46a 0 18%, #5fae6a 19% 100%); box-shadow: inset 0 0 0 .3em #3f8a4d, 0 .3em 1em rgba(0, 0, 0, .15); }
+.hy-bigleaf::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: repeating-conic-gradient(from 0deg, transparent 0 28deg, rgba(40, 110, 50, .45) 28deg 29deg); }
+.hy-pearl { --k: 0; position: absolute; left: 50%; top: 50%; width: calc(1.6em + var(--k) * .55em); height: calc(1.6em + var(--k) * .55em); transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #c9ecff 40%, #8ccbe8); box-shadow: 0 .2em .5em rgba(0, 60, 100, .25); transition: width .6s cubic-bezier(.3, 1.6, .5, 1), height .6s cubic-bezier(.3, 1.6, .5, 1); }
+.hy-pearl.full { animation: hyShine 1.4s ease-in-out infinite alternate; }
+@keyframes hyShine { to { box-shadow: 0 0 1.4em .4em rgba(255, 255, 255, .9); } }
+.hy-drop { font: inherit; position: absolute; left: var(--x); top: var(--y); width: 2.6em; height: 2.6em; transform: translate(-50%, -50%); border: none; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #d4f0ff 45%, #9ad3ee); box-shadow: 0 .15em .3em rgba(0, 60, 100, .25); font-family: var(--kai); font-size: 1.6em; color: #1d4e6b; cursor: pointer; transition: left .8s ease-in, top .8s ease-in, opacity .4s .7s, transform .8s; }
+.hy-drop.in { left: 50%; top: 50%; opacity: 0; transform: translate(-50%, -50%) scale(.4); pointer-events: none; }
+.hy-drops-side { display: flex; flex-direction: column; gap: .6em; }
+.hy-dn { margin: 0; font-size: 1.3em; }
+.hy-dn b { color: var(--red); font-size: 1.5em; font-family: var(--py); }
+.hy-dlist { min-height: 8em; display: flex; flex-wrap: wrap; align-content: flex-start; gap: .2em .5em; font-family: var(--kai); font-size: 2em; line-height: 2; background: #fff; border-radius: .5em; padding: .2em .5em; }
+.hy-dlist rt { font-family: var(--py); font-size: .44em; color: var(--py-c); }
+.hy-dlist span { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+
+/* 写字 7 个 */
+.hy-write .hz-cells .hz-tzg { --tz: 3.8em; }
+.hy-write { gap: .6em 1.6em; }
+
+/* 背诵 */
+.hy-recite { font-size: 1.4em; padding: .2em 1em; }
+.hy-recite p { line-height: 2.15; }
+
+/* 回顾 */
+.hy-board .py { font-size: 1.9em; line-height: 2; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .hy-ask { font-size: 1.1em; }
+  .subs.hy-ls .py { font-size: 1.1em; }
+  .hy-theatre, .hy-drops { display: flex; flex-direction: column; align-items: stretch; }
+  .hy-bubble { font-size: 1.05em; }
+  .hy-role .py { font-size: 1.2em; }
+  .hy-narr { font-size: 1.1em; min-height: 3.6em; }
+  .hy-link { gap: 3em; }
+  .hy-row { flex-wrap: wrap; gap: .4em; }
+  .hy-node { min-width: 0; }
+  .hy-node .py { font-size: 1.3em; }
+  .hy-link-say { font-size: 1.2em; }
+  .hy-things { flex-wrap: wrap; justify-content: center; }
+  .hy-thing { font-size: 1.15em; }
+  .hy-adj { font-size: 1.2em; }
+  .hy-out { font-size: 1.6em; }
+  .hy-drop { font-size: 1.2em; }
+  .hy-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .hy-recite { font-size: 1.1em; padding: .2em .5em; }
+  .hy-board .py { font-size: 1.4em; }
+}

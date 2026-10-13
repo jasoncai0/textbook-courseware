@@ -1,0 +1,118 @@
+/* 场景歌 · 本课配色：海蓝、稻黄、红领巾红。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d2553d;
+  --red-d: #9a3522;
+  --gold: #f0a830;
+  --gold-l: #fde3a7;
+  --paper: #f5f8fb;
+  --stone: #fffefb;
+  --ink-2: #5d6470;
+  --line: #d8dfe8;
+}
+
+.cj-big-line { margin: 0; font-family: var(--kai); font-size: 2.6em; line-height: 2.2; color: #fff; }
+.cj-big-line rt { color: var(--gold-l); font-size: .36em; }
+
+/* ---------- 读儿歌 ---------- */
+.cj-poem { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.4em; align-content: center; justify-content: center; font-family: var(--kai); font-size: 2em; background: var(--stone); border-radius: .5em; padding: .2em 1.2em; box-shadow: 0 .2em .8em rgba(40, 50, 70, .08); }
+.cj-poem p { margin: 0; line-height: 2.2; white-space: nowrap; }
+.cj-poem rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.cj-where { display: flex; justify-content: center; gap: 1.6em; font-size: 1.4em; font-family: var(--kai); }
+.cj-where span { background: #fff; border-radius: 1em; padding: .1em .9em; box-shadow: 0 .1em .4em rgba(0, 0, 0, .08); }
+
+/* 看图读：四字标签比默认小一点 */
+.cj-pic .hz-label { font-size: 1.7em; line-height: 2; white-space: nowrap; }
+
+/* ---------- 贴纸拼场景 ---------- */
+.cj-game { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .6em; }
+.cj-scene { position: relative; flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-radius: 1em; overflow: hidden; box-shadow: 0 .2em .8em rgba(0, 0, 0, .12); }
+.cj-zone { position: relative; border-right: .15em dashed rgba(255, 255, 255, .8); }
+.cj-zone b { position: absolute; left: .5em; top: .3em; font-family: var(--kai); font-size: 1.4em; line-height: 2; background: rgba(255, 255, 255, .85); border-radius: .4em; padding: 0 .4em; }
+.cj-zone rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.cj-zone.sea { background: linear-gradient(#cdeaff 0 42%, #5fb2e6 42% 100%); }
+.cj-zone.field { background: linear-gradient(#d9f0ff 0 30%, #a5d98a 30% 100%); }
+.cj-zone.school { background: linear-gradient(#e2f2ff 0 40%, #f1d9b0 40% 100%); border-right: none; }
+.cj-placed { position: absolute; inset: 0; pointer-events: none; }
+.cj-put { position: absolute; translate: -50% -50%; display: flex; flex-direction: column; align-items: center; font-family: var(--kai); font-size: 1.1em; line-height: 1.9; animation: pop .5s cubic-bezier(.3, 1.6, .5, 1); }
+.cj-put i { font-style: normal; font-size: 2.2em; line-height: 1; }
+.cj-put .lbl { background: rgba(255, 255, 255, .92); border-radius: .3em; padding: 0 .25em; white-space: nowrap; }
+.cj-put rt { font-family: var(--py); font-size: .45em; color: var(--py-c); }
+.cj-ask { position: absolute; z-index: 5; translate: -50% -50%; background: #fff; border: .15em solid var(--gold); border-radius: .8em; padding: .2em .8em .5em; box-shadow: 0 .3em 1em rgba(0, 0, 0, .25); text-align: center; animation: pop .4s cubic-bezier(.3, 1.6, .5, 1); }
+.cj-ask[hidden] { display: none; }
+.cj-ask p { margin: 0; font-family: var(--kai); font-size: 1.5em; line-height: 2.1; white-space: nowrap; }
+.cj-ask rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.cj-opts { display: flex; gap: .5em; justify-content: center; }
+.cj-opt { font: inherit; font-family: var(--kai); font-size: 1.8em; line-height: 1.9; min-width: 1.8em; border-radius: .3em; border: .1em solid var(--line); background: #fff; cursor: pointer; }
+.cj-opt rt { font-family: var(--py); font-size: .4em; color: var(--py-c); }
+.cj-opt.wrong { animation: nope .35s; border-color: #e3a998; }
+.cj-tray { display: flex; flex-wrap: wrap; justify-content: center; gap: .4em; }
+.cj-sticker { font: inherit; font-family: var(--kai); font-size: 1.15em; line-height: 1.9; display: flex; align-items: center; gap: .1em; padding: 0 .5em; border-radius: .6em; border: .12em solid var(--line); background: #fff; cursor: grab; touch-action: none; user-select: none; }
+.cj-sticker span { font-size: 1.5em; line-height: 1; }
+.cj-sticker rt { font-family: var(--py); font-size: .45em; color: var(--py-c); }
+.cj-sticker.sel { background: var(--gold-l); border-color: var(--gold); }
+.cj-sticker.dragging { position: relative; z-index: 30; box-shadow: 0 .3em 1em rgba(0, 0, 0, .3); }
+.cj-sticker.used { visibility: hidden; }
+.cj-sticker.wrong { animation: nope .35s; border-color: #e3a998; }
+.cj-bar { display: flex; align-items: center; justify-content: center; gap: 1em; }
+.cj-msg { font-family: var(--kai); font-size: 1.25em; color: var(--red-d); }
+.all-done .cj-msg { color: #2e8b57; font-weight: bold; }
+
+/* ---------- 课后第 2 题 ---------- */
+.cj-q2 { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.6em; align-items: center; }
+.cj-pickbox { display: flex; }
+.cj-pickbox .hz-pick-q { font-size: 2.8em; }
+.cj-more { background: #fff; border-radius: 1em; padding: .6em 1.2em; box-shadow: 0 .2em .6em rgba(0, 0, 0, .08); }
+.cj-more p { margin: 0; font-family: var(--kai); font-size: 1.7em; line-height: 2.3; }
+.cj-more .cj-more-h { font-size: 1.3em; color: var(--red-d); line-height: 1.6; }
+.cj-more rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+
+/* ---------- 课后第 3 题：选一张图 ---------- */
+.cj-choose { flex: 1; min-height: 0; display: grid; grid-template-columns: 9em 1fr; grid-template-rows: 1fr auto; gap: .8em 1.2em; }
+.cj-thumbs { display: flex; flex-direction: column; gap: .6em; }
+.cj-thumb { aspect-ratio: 16 / 9; border-radius: .6em; border: .2em solid transparent; background: #dde7ee center / cover no-repeat; cursor: pointer; }
+.cj-thumb.on { border-color: var(--red); }
+.cj-big { border-radius: 1em; background: #dde7ee center / cover no-repeat; box-shadow: 0 .2em .8em rgba(0, 0, 0, .15); min-height: 0; }
+.cj-frame { grid-column: 1 / -1; font-family: var(--kai); font-size: 1.35em; text-align: center; }
+
+/* ---------- 开火车 ---------- */
+.cj-traingame { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 1.4em; }
+.cj-track { overflow: hidden; padding: 1em 0 .6em; border-bottom: .4em solid #8b6a4a; background: repeating-linear-gradient(90deg, transparent 0 2.2em, #b89a74 2.2em 2.6em) bottom / 100% .5em no-repeat; }
+.cj-train { display: flex; align-items: flex-end; gap: .35em; width: max-content; margin: 0 auto; }
+.run .cj-train { animation: cjRun 1s ease-out both; }
+@keyframes cjRun { from { transform: translateX(110%); } to { transform: none; } }
+.cj-engine { font-size: 4.4em; line-height: 1; transform: scaleX(-1); }
+.cj-car { position: relative; width: 4.6em; height: 4.4em; border: none; border-radius: .5em .5em .2em .2em; background: #4f8fc9; cursor: pointer; font: inherit; display: grid; place-items: center; }
+.cj-car::before, .cj-car::after { content: ""; position: absolute; bottom: -.55em; width: 1em; height: 1em; border-radius: 50%; background: #333; border: .2em solid #999; }
+.cj-car::before { left: .6em; }
+.cj-car::after { right: .6em; }
+.cj-car b { display: block; background: #fff; border-radius: .3em; padding: 0 .25em; font-family: var(--kai); font-weight: normal; font-size: 2em; line-height: 1.6; }
+.cj-car rt { font-family: var(--py); font-size: .4em; color: var(--py-c); }
+.cj-car.lit { background: #f0a830; }
+.cj-car.lit b { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1); }
+.nopy .cj-car rt { visibility: hidden; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cj-big-line { font-size: 1.6em; }
+  .cj-poem { grid-template-columns: 1fr; font-size: 1.4em; padding: .2em .8em; }
+  .cj-where { font-size: 1em; gap: .6em; }
+  .cj-pic .hz-label { font-size: .95em; }
+  .cj-scene { flex: none; aspect-ratio: 4 / 3; }
+  .cj-put { font-size: .85em; }
+  .cj-zone b { font-size: .95em; }
+  .cj-sticker { font-size: 1em; }
+  .cj-q2 { display: flex; flex-direction: column; }
+  .cj-more p { font-size: 1.3em; }
+  .cj-choose { display: flex; flex-direction: column; }
+  .cj-thumbs { flex-direction: row; }
+  .cj-thumb { flex: 1; }
+  .cj-big { aspect-ratio: 16 / 9; }
+  .cj-track { overflow-x: auto; }
+  .cj-train { margin: 0; }
+  .cj-engine { font-size: 3em; }
+  .cj-car { width: 3.4em; height: 3.4em; }
+  .cj-car b { font-size: 1.5em; }
+}
+
+/* 读准字音：二年级认读 + 会写字多，卡片略小，保证一屏放下 */
+.s-ziyin .zy-card { font-size: 1.9em; }
+.s-ziyin .zy-write { font-size: 1.9em; }

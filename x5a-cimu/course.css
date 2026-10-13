@@ -1,0 +1,57 @@
+/* 慈母情深 · 本课配色：厂房的灰褐、灯泡的昏黄。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #7d4630;
+  --red-d: #4f2a1b;
+  --gold: #d29a3a;
+  --gold-l: #f1d79c;
+  --paper: #f2eee7;
+  --stone: #fbf9f4;
+  --ink-2: #5c564e;
+  --line: #d6ccbc;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbf9f4 0, transparent 40%), radial-gradient(circle at 90% 95%, #e2dccf 0, transparent 45%); }
+.scene .hd .tag { background: rgba(79, 42, 27, .92); }
+.s-cover .cover-title { letter-spacing: .15em; }
+
+/* 慢镜头：先是背影，转身后换成正面；上下黑边 + 帧号 */
+.slow-back { position: absolute; inset: 0; background: center / cover no-repeat; transform-origin: 50% 40%; transition: opacity 1.6s ease, transform 4s ease; }
+.s-slow:has(.f-up.on) .slow-back { transform: scale(1.25); }
+.s-slow:has(.f-turn.on) .slow-back { opacity: 0; }
+.letterbox { position: absolute; left: 0; right: 0; height: 9%; background: #000; z-index: 1; }
+.letterbox.top { top: 0; }
+.letterbox.bottom { bottom: 0; }
+.frame-no { position: absolute; left: 2.4em; top: 4.6em; z-index: 3; margin: 0; color: #f1d79c; font-size: .9em; letter-spacing: .15em; font-family: Georgia, var(--serif); }
+.s-slow .subs { text-align: center; font-size: 1.7em; letter-spacing: .08em; }
+.s-slow .subs p.on { animation-duration: 1.8s; }
+.s-slow .subs em { font-style: normal; color: #ffd98a; }
+.subs .fast { color: #ffd98a; }
+
+/* 场景：七八十只灯泡 */
+.s-place .bd { grid-template-columns: 52% 1fr; }
+.s-place .quote { font-size: 1.15em; }
+.lamps { display: grid; grid-template-columns: repeat(16, 1fr); gap: .35em; padding: .7em; border-radius: .5em; background: #3a332c; }
+.lamps i { aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #ffe7a6 20%, #d29a3a 55%, transparent 70%); }
+.lamps.on i { animation: flicker 2.4s ease-in-out infinite; }
+.lamps i:nth-child(3n) { animation-delay: .6s; }
+.lamps i:nth-child(5n) { animation-delay: 1.2s; }
+@keyframes flicker { 50% { opacity: .55; } }
+.senses { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; }
+.sense { margin: 0; background: #fff; border-radius: .4em; padding: .45em .8em; line-height: 1.55; border-left: .25em solid var(--gold); }
+.sense b { color: var(--red); margin-right: .4em; }
+
+/* 反复：原文 ↔ 普通说法 */
+.s-rep .stage { justify-content: center; }
+.reps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+.rep { display: flex; flex-direction: column; gap: .6em; align-items: flex-start; }
+.rep .quote { font-size: 1.2em; align-self: stretch; }
+.rep .alt { display: none; color: var(--ink-2); }
+.rep.plain .orig { display: none; }
+.rep.plain .alt { display: block; }
+.rep.plain .quote { border-left-color: #b9ad99; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-slow .subs { font-size: 1.3em; }
+  .frame-no { left: .9em; top: 3.6em; }
+  .lamps { gap: .2em; padding: .5em; }
+  .senses, .reps { grid-template-columns: 1fr; }
+}

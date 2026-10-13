@@ -1,0 +1,103 @@
+/* 黄山奇石 · 本课配色：松树的青绿、花岗岩的灰、朝阳的金。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3f7a64;
+  --red-d: #24523f;
+  --gold: #d8a33a;
+  --gold-l: #f4dc9c;
+  --paper: #f3f4ee;
+  --stone: #fdfdf9;
+  --ink-2: #56605a;
+  --line: #d6dccf;
+}
+
+/* 二年级课文句子长：注音字幕比一年级小一号 */
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.32em; line-height: 2.25; }
+.py ruby { margin: 0 .05em; }
+.s-cover .cover-title ruby { margin: 0; }
+.hs-dot { background: radial-gradient(circle, #ffd76a 45%, transparent 50%) repeat-x 50% 100% / 1em .3em; padding-bottom: .25em; }
+
+/* ---------- 封面谜语 ---------- */
+.hs-riddle { font-family: var(--kai); font-size: 1.6em; line-height: 1.6; margin: .3em 0 .4em; }
+.hs-riddle p { margin: 0; }
+.hs-riddle .hs-q { color: #ffe08a; margin-top: .2em; }
+
+/* ---------- 猜奇石 ---------- */
+.hs-guess { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .7em; }
+.hs-tabs { display: flex; gap: .5em; }
+.hs-tabs .btn.done::after { content: " ✓"; }
+.hs-stage { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.4em; align-items: center; }
+.hs-rock { width: 100%; max-height: 100%; background: linear-gradient(#dfeef6, #f6f3e8); border-radius: .8em; box-shadow: 0 .2em .8em rgba(30, 50, 40, .15); }
+.hs-peak { fill: #8a8f86; }
+.hs-cloud ellipse { fill: #fff; opacity: .9; }
+.hs-shape { fill: #5f6460; stroke: #5f6460; transition: fill .8s, stroke .8s; }
+.hs-sun { fill: #f2c14e; opacity: .5; }
+.hs-rock.ok .hs-shape { fill: #e0a43c; stroke: #e0a43c; }
+.hs-rock.ok .hs-shape { animation: pop .6s cubic-bezier(.3, 1.6, .5, 1); transform-box: fill-box; transform-origin: center bottom; }
+.hs-side { display: flex; flex-direction: column; gap: .7em; }
+.hs-ask { margin: 0; font-size: 1.4em; color: var(--red-d); font-weight: bold; }
+.hs-opts { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; }
+.hs-opt { font-family: var(--kai); font-size: 1.45em; }
+.hs-opt.right { background: var(--ok); border-color: var(--ok); color: #fff; }
+.hs-opt.wrong { animation: nope .35s; }
+.hs-say { margin: 0; min-height: 5em; font-size: 1.4em; line-height: 2.2; }
+.hs-say b { color: var(--red-d); font-size: 1.2em; }
+
+/* ---------- 起名字 ---------- */
+.hs-name { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: minmax(0, 1fr); gap: 1.2em; }
+.hs-nc { min-height: 0; display: flex; flex-direction: column; gap: .5em; background: #fff; border-radius: .8em; padding: .7em; box-shadow: 0 .2em .8em rgba(30, 50, 40, .12); }
+.hs-nc .hs-rock { box-shadow: none; flex: 1; min-height: 0; }
+.hs-nc input { font: inherit; font-family: var(--kai); font-size: 1.6em; text-align: center; padding: .2em .4em; border: 2px dashed var(--gold); border-radius: .4em; }
+.hs-nc .btn { align-self: center; }
+.hs-egt { margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.6; color: var(--ink-2); background: #fff8e1; border-radius: .4em; padding: .3em .6em; }
+
+/* ---------- 选词说景物 ---------- */
+.hs-words { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
+.hs-wg { display: flex; flex-wrap: wrap; gap: .4em 1em; align-items: center; background: #fff; border-radius: .7em; padding: .2em 1em; border-left: .35em solid var(--gold); }
+.hs-wg span { font-size: 1.6em; }
+.hs-eg { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.hs-eg .tip { font-family: var(--kai); font-size: 1.3em; }
+
+/* 生字卡 16 个 */
+.hs-cards .hz-card-list { grid-template-columns: repeat(auto-fill, minmax(4.6em, 1fr)); gap: .5em; }
+.hs-cards .hz-chip { font-size: 2.2em; }
+
+/* ---------- 连一连 ---------- */
+.hs-link { position: relative; flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1.4fr 1fr; align-items: stretch; }
+.hs-col { display: flex; flex-direction: column; justify-content: space-between; gap: .3em; position: relative; z-index: 1; }
+.hs-col:first-child { grid-column: 1; align-items: flex-end; }
+.hs-col:last-child { grid-column: 3; align-items: flex-start; }
+.hs-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hs-lines line { stroke: var(--ok); stroke-width: 4; stroke-linecap: round; }
+.hs-lk { font: inherit; min-width: 3.4em; padding: .05em .6em; border-radius: .5em; border: 2px solid var(--line); background: #fff; cursor: pointer; }
+.hs-lk.hz { font-family: var(--kai); font-size: 1.9em; }
+.hs-lk.pyk { font-family: var(--py); font-size: 1.5em; color: var(--py-c); }
+.hs-lk.sel { border-color: var(--gold); background: var(--gold-l); }
+.hs-lk.ok { border-color: var(--ok); background: #eaf6ee; }
+.hs-lk.wrong { animation: nope .35s; }
+.hs-lbtns { align-items: center; justify-content: center; }
+.hs-lmsg { font-size: 1.2em; color: var(--red-d); font-weight: bold; }
+
+/* 写字 10 个：三列 */
+.x2-write { grid-template-columns: repeat(3, 1fr); gap: .5em 1.2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.4em; }
+.x2-write .hz-wpy { font-size: 1.25em; }
+
+/* 回顾 */
+.hs-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2em; text-align: center; }
+.hs-sum .py { font-size: 1.9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .hs-riddle { font-size: 1.15em; }
+  .hs-stage, .hs-name, .hs-words, .hs-eg { display: flex; flex-direction: column; }
+  .hs-say { font-size: 1.1em; }
+  .hs-opt { font-size: 1.15em; }
+  .hs-wg span { font-size: 1.2em; }
+  .hs-link { min-height: 30em; }
+  .hs-lk.hz { font-size: 1.4em; }
+  .hs-lk.pyk { font-size: 1.1em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .hs-sum .py { font-size: 1.3em; }
+}

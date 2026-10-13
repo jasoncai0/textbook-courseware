@@ -1,0 +1,179 @@
+/* 课本插件 · 记叙文模板（小说 / 叙事散文）
+ * 侧重：体验情节、看见画面、读出人物。故事页 = 整幅画面 + 字幕式原文 + 镜头推近；右上角情节曲线贯穿全课。
+ * 与说明文模板的区别：画面是主角，图解退后；先完整读故事，再回头品读。
+ */
+
+/* ---------- 故事页：整幅画面 ---------- */
+.slide.scene { padding: 0; display: block; background: #15130f; overflow: hidden; }
+.scene-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: center / cover no-repeat; transition: transform 4s ease, transform-origin 4s ease, background-position 4s ease, object-position 4s ease; }
+.scene-shade { position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, .35), transparent 22%, transparent 55%, rgba(0, 0, 0, .25)); pointer-events: none; }
+.scene .hd { position: absolute; top: 1.2em; left: 2.4em; border: none; padding: 0; z-index: 3; }
+.scene .hd .tag { background: rgba(155, 44, 34, .92); }
+.scene .hd .sub { color: #efe9dc; text-shadow: 0 1px 3px rgba(0, 0, 0, .7); }
+.rain-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.rain-layer .rain line { stroke: #dfe6ea; }
+
+/* 字幕：原文一句句出现，最新一句最亮，较早的淡出 */
+.subs { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 4em 9% 4.4em; background: linear-gradient(transparent, rgba(12, 10, 8, .78) 32%); color: #f4efe6; font-family: var(--kai); font-size: 1.4em; line-height: 1.75; }
+.subs p { margin: 0; }
+.subs p[data-step] { display: none; }
+.subs p.on { display: block; animation: subIn .7s ease both; }
+.subs p.on:not(.now) { opacity: .5; }
+.subs p.gone { display: none !important; }
+@keyframes subIn { from { opacity: 0; transform: translateY(.4em); } }
+.subs .who { display: inline-block; font-family: var(--serif); font-weight: normal; font-size: .62em; vertical-align: .25em; padding: .05em .5em; margin-right: .5em; border-radius: .3em; background: rgba(255, 255, 255, .18); }
+.subs .who.main { background: #9b2c22; }
+.subs .beat { font-size: 1.5em; letter-spacing: .3em; }
+.subs .reveal { font-size: 1.6em; color: #f2c3b3; letter-spacing: .2em; }
+
+/* 白茫茫：用留白代替画面 */
+.whiteout { position: absolute; inset: 0; z-index: 1; background: #f3f2ee; transition: opacity 1.8s ease !important; transform: none !important; }
+.scene:has(.whiteout.on) .subs { background: none; color: #77746d; top: 30%; bottom: auto; text-align: center; }
+.scene:has(.whiteout.on) .scene-shade, .scene:has(.whiteout.on) .rain-layer { opacity: 0; }
+
+/* 镜头晃动（桥在发抖） */
+.scene:has(.shake.on) .scene-bg { animation: camShake .14s linear infinite; }
+@keyframes camShake { 25% { translate: 2px 1px; } 75% { translate: -2px -1px; } }
+.shake { display: none; }
+
+/* ---------- 情节曲线：贯穿全课的线索 ---------- */
+.plotline { position: absolute; top: .8em; right: 1.4em; width: 13em; z-index: 9; padding: .3em .5em .4em; border-radius: .5em; background: rgba(20, 18, 15, .55); color: #f4efe6; opacity: 0; transition: opacity .5s; pointer-events: none; }
+.plotline.show { opacity: 1; }
+.plotline svg { display: block; width: 100%; height: auto; }
+.plotline .curve { fill: none; stroke: rgba(255, 255, 255, .55); stroke-width: 2; }
+.plotline .done { fill: none; stroke: #e7b65a; stroke-width: 3; transition: stroke-dashoffset 1.2s ease; }
+.plotline .stage { font-size: 11px; fill: #e9e3d6; text-anchor: middle; }
+.plotline .dot { fill: #e7b65a; stroke: #fff; stroke-width: 1.5; transition: cx 1.2s ease, cy 1.2s ease; }
+.plotline span { display: block; font-size: .78em; text-align: center; margin-top: .1em; }
+/* 故事页底色深，导航改浅色（手机上导航栏自带浅底，不需要） */
+@media (min-width: 821px) and (min-height: 521px) {
+  .frame:has(.scene.active) .ctrl .pageno { color: #e9e3d6; }
+  .frame:has(.scene.active) .progress i:not(.done):not(.cur) { background: rgba(255, 255, 255, .25); }
+  .frame:has(.scene.active) .help { color: #e9e3d6; }
+}
+
+@media (max-width: 820px), (max-height: 520px) {
+  .slide.scene { padding: 0; overflow: hidden; }
+  .scene .hd { left: .9em; top: .9em; padding-right: 0; }
+  .subs .reveal { font-size: 1.25em; letter-spacing: .08em; }
+  .subs .beat { font-size: 1.25em; letter-spacing: .15em; }
+  .subs { font-size: 1.12em; padding: 3em 1.1em 5.6em; max-height: 62%; overflow-y: auto; }
+  .plotline { width: 8.5em; right: .6em; top: .6em; }
+  .plotline span { font-size: .62em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .scene .hd .sub { display: none; }
+  .scrolled .plotline { opacity: 0; }
+}
+
+/* ================= 记叙文通用页面：封面、品读（情节/人物/环境/伏笔）、读与写（朗读/小练笔）、题目 ================= */
+/* ---------- 封面 ---------- */
+.cover-box { position: absolute; left: 6%; top: 50%; transform: translateY(-50%); z-index: 2; color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, .55); }
+.cover-unit { margin: 0; letter-spacing: .1em; opacity: .9; }
+.s-cover .cover-title { font-size: 8em; color: #fff; margin: .05em 0; letter-spacing: 0; }
+.s-cover .cover-sub { color: #f1ece2; margin: 0 0 1em; }
+.s-cover .chip { background: color-mix(in srgb, var(--red) 90%, transparent); color: #fff; border: none; text-shadow: none; }
+.cover-flow { font-family: var(--kai); font-size: 1.3em; margin: 1em 0 0; letter-spacing: .05em; }
+.s-cover .scene-shade { background: linear-gradient(90deg, rgba(0, 0, 0, .6), rgba(0, 0, 0, .1) 60%); }
+
+/* ---------- 品读 · 情节 ---------- */
+.plot-board { position: relative; flex: 1; min-height: 0; }
+.plot-board svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.plot-board .curve { fill: none; stroke: #c9c2b2; stroke-width: 4; stroke-dasharray: 8 8; }
+.plot-board .curve-done { fill: none; stroke: var(--red); stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset 1.4s ease; }
+.plot-card { position: absolute; width: 15%; translate: -50% -100%; background: #fff; border-radius: .5em; overflow: hidden; box-shadow: 0 .2em .8em rgba(40, 30, 20, .18); }
+.plot-card .pic { height: 5.2em; background: center / cover no-repeat; }
+.plot-card b { display: block; padding: .3em .6em 0; color: var(--red); font-size: .85em; }
+.plot-card span { display: block; padding: 0 .6em .45em; font-size: .85em; line-height: 1.45; }
+
+/* ---------- 品读 · 人物 ---------- */
+.portrait-card { display: flex; flex-direction: column; gap: .8em; min-height: 0; }
+.portrait-img { flex: 1; min-height: 8em; border-radius: .5em; background: 36% 30% / 260% no-repeat; box-shadow: 0 .2em .8em rgba(40, 30, 20, .15); }
+.sort-list { display: flex; flex-direction: column; gap: .45em; }
+.sort-row { display: grid; grid-template-columns: 1fr auto 8.5em; gap: .7em; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .4em .8em; }
+.sort-row .s { font-family: var(--kai); }
+.sort-row .btn { padding: .15em .6em; }
+.sort-row .res { font-size: .88em; color: var(--ink-2); }
+.sort-row.ok { border-color: #8cc0a6; background: #f1f8f4; }
+.sort-row.ok .res { color: #1f6b4f; font-weight: bold; }
+.sort-row.no { animation: nope .35s; }
+@keyframes nope { 25% { transform: translateX(-.3em); } 75% { transform: translateX(.3em); } }
+
+/* ---------- 品读 · 环境 ---------- */
+.env-cards { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: .9em; }
+.env-card { display: flex; flex-direction: column; background: #fff; border-radius: .5em; overflow: hidden; box-shadow: 0 .15em .6em rgba(40, 30, 20, .12); }
+.env-img { flex: 1; min-height: 6em; background: center / cover no-repeat; }
+.env-card h3 { margin: .4em .8em 0; color: var(--red-d); }
+.env-card p { margin: .2em .8em .7em; font-family: var(--kai); line-height: 1.7; }
+.env-card em { font-style: normal; color: var(--red); font-weight: bold; }
+
+/* ---------- 品读 · 伏笔卡片 ---------- */
+.clues { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
+.clue { perspective: 60em; cursor: pointer; min-height: 7.5em; border: none; background: none; padding: 0; font: inherit; text-align: left; }
+.clue-in { position: relative; width: 100%; height: 100%; min-height: 7.5em; transition: transform .7s ease; transform-style: preserve-3d; }
+.clue.flipped .clue-in { transform: rotateY(180deg); }
+.clue-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: .5em; padding: .7em 1em; line-height: 1.6; border: 1px solid var(--line); }
+.clue-face small { display: block; font-size: .75em; margin-bottom: .2em; }
+.clue-face.front { background: #fff; font-family: var(--kai); font-size: 1.02em; }
+.clue-face.front small { color: var(--ink-2); font-family: var(--serif); }
+.clue-face.back { background: #fff6e0; border-color: var(--gold); transform: rotateY(180deg); }
+.clue-face.back small { color: var(--red); font-weight: bold; }
+
+/* ---------- 读与写 · 朗读 ---------- */
+.legend { font-size: .85em; color: var(--ink-2); align-self: center; opacity: 0; transition: opacity .4s; }
+.read-list { display: flex; flex-direction: column; gap: .7em; }
+.read-item { display: flex; align-items: center; gap: 1em; background: #fff; border-radius: .5em; padding: .6em 1.1em; border-left: .3em solid var(--gold); }
+.read-item p { flex: 1; margin: 0; font-family: var(--kai); font-size: 1.35em; line-height: 1.9; }
+.read-item p i { font-style: normal; color: transparent; font-family: var(--serif); font-weight: bold; transition: color .4s; }
+.read-item p em, .legend em { font-style: normal; background: radial-gradient(circle, var(--red) 40%, transparent 46%) repeat-x 0 100% / .5em 0; padding-bottom: .25em; transition: background-size .4s; }
+.read-item .tone { font-size: .85em; color: var(--ink-2); white-space: nowrap; opacity: 0; transition: opacity .4s; }
+.marks-on .legend, .marks-on .read-item .tone { opacity: 1; }
+.marks-on .read-item p i { color: var(--red); }
+.marks-on .read-item p em, .legend em { background-size: .5em .3em; }
+
+/* ---------- 读与写 · 小练笔 ---------- */
+.s-write .bd { grid-template-columns: 34% 1fr; }
+.moment-img { flex: 1; min-height: 8em; border-radius: .5em; background: center / cover no-repeat; }
+.hint { margin: 0; color: var(--ink-2); font-size: .9em; line-height: 1.7; }
+.s-write textarea { flex: 1; min-height: 6em; resize: none; font: inherit; font-family: var(--kai); font-size: 1.15em; line-height: 1.8; padding: .6em .9em; border: 1px solid var(--line); border-radius: .5em; background: #fff; }
+.s-write textarea:focus { outline: 2px solid var(--gold-l); }
+.example { white-space: pre-line; margin: 0; font-family: var(--kai); background: #fff8e1; border-left: .25em solid var(--gold); padding: .5em .9em; border-radius: .3em; line-height: 1.8; }
+
+/* ---------- 题目 ---------- */
+.title-img { border-radius: .5em; background: center / cover no-repeat; min-height: 10em; }
+
+/* ---------- 选一选 ---------- */
+.picks { display: flex; flex-wrap: wrap; gap: .5em; }
+.pick { font: inherit; font-family: var(--kai); font-size: 1.05em; padding: .35em .9em; border-radius: .5em; border: 1px solid var(--line); background: #fff; cursor: pointer; text-align: left; transition: background .3s, border-color .3s; }
+.pick small { display: block; font-family: var(--serif); font-size: .72em; color: var(--ink-2); }
+.pick small:empty { display: none; }
+.pick.right { background: #eef7f1; border-color: #8cc0a6; }
+.pick.right small { color: #1f6b4f; }
+.pick.wrong { background: #fdf0ec; border-color: #e3a998; animation: nope .35s; }
+.pick.wrong small { color: var(--red); }
+.pick-count { margin: .5em 0 0; color: var(--ink-2); font-size: .9em; }
+.pick-count b { color: var(--red); }
+.all-found .pick-count::after { content: "　全部找到了！"; color: #1f6b4f; font-weight: bold; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 5em; }
+  .cover-box { left: 1.1em; right: 1.1em; }
+  .plot-board { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+  .plot-board svg { display: none; }
+  .plot-card { position: static; width: auto; translate: none; }
+  .plot-card .pic { height: 6em; }
+  .env-cards { grid-template-columns: 1fr; }
+  .env-img { min-height: 9em; }
+  .clues { grid-template-columns: 1fr; }
+  .clue, .clue-in { min-height: 8.5em; }
+  .sort-row { grid-template-columns: 1fr; gap: .35em; }
+  .portrait-img { min-height: 12em; }
+  .read-item { flex-direction: column; align-items: flex-start; gap: .2em; }
+  .read-item p { font-size: 1.15em; }
+  .moment-img { min-height: 10em; }
+  .s-write textarea { min-height: 10em; }
+  .title-img { min-height: 12em; }
+}
+
+/* 手机上非画面页的标题在右上角，情节小图会挡住它：只在画面页显示 */
+@media (max-width: 820px), (max-height: 520px) {
+  .frame:has(.slide.active:not(.scene)) .plotline { opacity: 0; }
+}

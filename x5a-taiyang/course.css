@@ -1,0 +1,99 @@
+/* 太阳 · 本课配色：太阳橙、天空蓝。说明类课件：信息图为主 */
+:root {
+  --red: #d8661c;
+  --red-d: #8a3a10;
+  --gold: #f2b134;
+  --gold-l: #fbe1a4;
+  --paper: #f8f3ea;
+  --stone: #fdfbf6;
+  --ink-2: #5f5448;
+  --line: #e4d6bd;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fffcf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #f3e2c3 0, transparent 45%); }
+.scene .hd .tag { background: rgba(138, 58, 16, .92); }
+.subs .hl { color: #ffd27a; font-weight: normal; }
+.s-cover .cover-title { letter-spacing: .2em; }
+.quote .chips { margin-top: .6em; }
+
+/* 结构 */
+.tree2 { display: grid; grid-template-columns: 1fr 1.6fr; gap: 1.2em; flex: 1; }
+.tree2 .col { background: #fff; border-radius: .6em; padding: .9em 1.1em; border-top: .3em solid var(--red); display: flex; flex-direction: column; gap: .7em; }
+.tree2 .col:nth-child(2) { border-top-color: #3d8f5a; }
+.tree2 h3 { margin: 0; color: var(--red-d); }
+.tree2 h3 small { font-size: .65em; color: var(--ink-2); font-weight: normal; margin-left: .4em; }
+.leafs { display: grid; grid-template-columns: 1fr; gap: .5em; flex: 1; align-content: center; }
+.tree2 .col:nth-child(2) .leafs { grid-template-columns: 1fr 1fr; }
+.leafs span { background: var(--stone); border: 1px solid var(--line); border-radius: .4em; padding: .5em .8em; font-family: var(--kai); }
+.leafs b { font-family: var(--serif); color: var(--red); margin-right: .6em; font-size: 1.15em; }
+.key-end { background: #fff8e1; border: 1px solid var(--gold-l); border-radius: .5em; padding: .6em 1em; display: flex; gap: 1em; align-items: baseline; font-size: 1.1em; }
+.key-end b { color: var(--red-d); white-space: nowrap; }
+.key-end span { font-family: var(--kai); }
+
+/* 远 */
+.big-num { text-align: center; }
+.big-num b { font-size: 4.4em; color: var(--red); font-family: Georgia, var(--serif); }
+.big-num i { font-style: normal; font-size: 1.6em; color: var(--red-d); margin-left: .2em; }
+.big-num span { display: block; color: var(--ink-2); }
+.trips { display: flex; flex-direction: column; gap: 1em; }
+.trip { display: grid; grid-template-columns: 4em 1fr 7em; grid-template-rows: auto auto; gap: .3em .8em; align-items: center; background: #fff; border-radius: .5em; padding: .7em 1em; }
+.trip small { grid-column: 2 / 4; color: var(--ink-2); }
+.who-ic { font-weight: bold; color: var(--red-d); }
+.trip em { font-style: normal; font-size: 1.2em; color: var(--red); font-weight: bold; }
+.trip-bar { height: 1.2em; background: #f1e6d3; border-radius: 1em; overflow: hidden; }
+.trip-bar i { display: block; height: 100%; width: 0; border-radius: 1em; }
+.trip-bar .walk { background: #8a6a45; transition: width 4s linear; }
+.trip-bar .fly { background: #3d7fbf; transition: width 1s ease; }
+.trip.on .walk { width: 100%; }
+.trip.on .fly { width: 0.6%; min-width: .5em; }
+
+/* 大 */
+#big { border-radius: .5em; }
+#earthDots circle { opacity: 0; }
+#earthDots.on circle { animation: appear .3s ease both; }
+#big .ring { transform-box: fill-box; transform-origin: center; animation: ripple 1.6s ease-out infinite; }
+
+/* 热 */
+.thermo-wrap { flex: 1; min-height: 0; display: grid; grid-template-columns: 3em 1fr; gap: 1em; padding: .6em 0 .8em; }
+.thermo { position: relative; background: #f1e6d3; border-radius: 2em; border: 2px solid #d8c6a8; overflow: hidden; }
+.thermo i { position: absolute; left: 0; right: 0; bottom: 0; height: 4%; background: linear-gradient(0deg, #d9483b, #f5a623); transition: height 3s ease; }
+.s-hot:has(.lv.sun.on) #mercury { height: 100%; }
+.levels { position: relative; }
+.lv { position: absolute; left: 0; bottom: var(--y); translate: 0 50%; background: #fff; border-radius: .4em; padding: .3em .8em; border-left: .3em solid var(--gold); white-space: nowrap; }
+.lv b { color: var(--red-d); margin-right: .6em; }
+.lv.sun { border-left-color: var(--red); background: #fff1e0; font-size: 1.15em; }
+.lv.sun b { color: var(--red); }
+
+/* 关系 */
+.rels { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7em; flex: 1; min-height: 0; }
+.rel { display: grid; grid-template-columns: 34% 1fr; grid-template-rows: auto 1fr; gap: .2em .8em; background: #fff; border-radius: .5em; overflow: hidden; box-shadow: 0 .15em .5em rgba(80, 50, 20, .1); transition: filter 1.2s, opacity 1.2s; }
+.rel-img { grid-row: 1 / 3; background: center / cover no-repeat #f1e6d3; min-height: 5em; }
+.rel-img.ic { display: flex; align-items: center; justify-content: center; font-family: var(--kai); font-size: 1.6em; color: var(--red-d); background: #fbe1a4; }
+.rel b { color: var(--red-d); padding-top: .5em; }
+.rel span { font-family: var(--kai); font-size: .9em; line-height: 1.55; padding-bottom: .5em; padding-right: .6em; }
+.rel-hint { align-self: center; font-size: .85em; color: var(--ink-2); }
+.dark-msg { display: none; }
+.sun-off .rel { filter: grayscale(1) brightness(.45); }
+.sun-off .dark-msg { display: block; }
+.sun-off .stage { background: radial-gradient(circle, rgba(20, 20, 30, .08), transparent 70%); }
+
+/* 水循环与风 */
+#cycle { border-radius: .5em; }
+#cycle .vapor path { animation: rise 1.6s linear infinite; }
+@keyframes rise { to { stroke-dashoffset: 24; } }
+#cycle .drops { animation: fall2 .8s linear infinite; }
+@keyframes fall2 { from { transform: translateY(-6px); } to { transform: translateY(8px); } }
+#cycle .flow { stroke-dasharray: 10 6; animation: rise 1s linear infinite reverse; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .tree2, .tree2 .col:nth-child(2) .leafs, .rels { grid-template-columns: 1fr; }
+  .key-end { flex-direction: column; gap: .2em; }
+  .big-num b { font-size: 3em; }
+  .trip { grid-template-columns: 3em 1fr 5.5em; }
+  .thermo-wrap { min-height: 22em; }
+  #big, #cycle { flex: none; height: auto; }
+}
+#cycle .t-s { font-size: 14px; }
+.s-sort .sort-row { grid-template-columns: 1fr auto; }
+.s-sort .sort-row .res { grid-column: 1 / 3; }
+.s-sort .sort-row .res:empty { display: none; }
+@media (max-width: 820px), (max-height: 520px) { .s-sort .sort-row { grid-template-columns: 1fr; } .s-sort .sort-row .res { grid-column: auto; } }

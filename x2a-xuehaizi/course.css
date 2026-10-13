@@ -1,0 +1,156 @@
+/* 雪孩子 · 本课配色：雪的白蓝、围巾的红。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #c9443c;
+  --red-d: #8e2a24;
+  --gold: #e6a23c;
+  --gold-l: #fbe3a6;
+  --paper: #f3f7fa;
+  --stone: #fdfeff;
+  --ink-2: #536270;
+  --line: #d3dee7;
+}
+
+.s-cover .cover-title { font-size: 6.4em; }
+.xh-hook { margin: .2em 0; font-size: 2em; color: #fff; }
+.xh-hook rt { color: var(--gold-l); }
+.xh-ask { margin: .4em 0 0; font-family: var(--kai); font-size: 1.6em; color: var(--gold-l); }
+
+/* ---------- 连环画 ---------- */
+.xh-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6em; align-items: start; min-height: 0; }
+.xh-panel { position: relative; margin: 0; background: #fff; border: .25em solid #333; border-radius: .4em; padding: .5em .5em .2em; box-shadow: .4em .4em 0 rgba(40, 50, 60, .18); }
+.xh-panel[data-step] { transform: translateY(1em) rotate(-1deg); }
+.xh-panel[data-step].on { transform: none; transition: opacity .6s, transform .6s; }
+.xh-no { position: absolute; left: -.6em; top: -.6em; z-index: 2; width: 2em; height: 2em; border-radius: 50%; background: var(--red); color: #fff; font: bold 1.1em/2em var(--py); text-align: center; font-style: normal; box-shadow: 0 .1em .3em rgba(0, 0, 0, .3); }
+.xh-pic { position: relative; aspect-ratio: 2.1 / 1; border-radius: .2em; background-color: #dce9f2; background-repeat: no-repeat; overflow: hidden; }
+.xh-stk { position: absolute; font-size: 3em; line-height: 1; filter: drop-shadow(0 .1em .2em rgba(0, 0, 0, .3)); animation: xhBob 2s ease-in-out infinite; }
+.xh-stk.hot { animation: xhFlick .5s ease-in-out infinite alternate; }
+.xh-stk.drip { animation: xhDrip 1.4s ease-in infinite; }
+@keyframes xhBob { 50% { transform: translateY(-.15em); } }
+@keyframes xhFlick { to { transform: scale(1.15) rotate(6deg); } }
+@keyframes xhDrip { from { transform: translateY(-.3em); opacity: 0; } 30% { opacity: 1; } to { transform: translateY(.8em); opacity: 0; } }
+.xh-pic.snowing::after { content: ""; position: absolute; inset: -100% 0 0; background-image: radial-gradient(circle, #fff 0 .14em, transparent .16em), radial-gradient(circle, #fff 0 .1em, transparent .12em); background-size: 3.4em 3.4em, 2.2em 2.2em; background-position: 0 0, 1.1em 1.3em; animation: xhSnow 6s linear infinite; opacity: .9; }
+@keyframes xhSnow { to { transform: translateY(50%); } }
+.xh-panel figcaption p { margin: .1em 0 0; font-family: var(--kai); font-size: 1.32em; line-height: 2.05; text-indent: 2em; }
+.xh-panel rt { font-size: .44em; }
+.xh-oh { color: var(--red); font-weight: normal; }
+
+/* ---------- 变化动画 ---------- */
+.xh-change { flex: 1; gap: .4em; }
+.xh-scene { position: relative; flex: 1; min-height: 0; border-radius: 1em; overflow: hidden; box-shadow: 0 .3em 1.2em rgba(40, 80, 110, .2); }
+.xh-scene svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.xh-snowman { transform-box: view-box; transform-origin: 800px 670px; transition: transform 2.6s ease-in, opacity 2.6s; }
+.xh-wear { transform-box: view-box; transition: transform 2.4s ease-in; }
+.xh-puddle { transform-box: fill-box; transform-origin: center; transform: scale(0); transition: transform 2.4s, opacity 2s; }
+.xh-steam path { stroke-dasharray: 60 30; opacity: 0; transition: opacity 1.2s; }
+.xh-cloud { transform-box: fill-box; transform-origin: center; transform: translate(0, 180px) scale(.2); opacity: 0; transition: transform 3s ease-out, opacity 2s; }
+.xh-rays { transform-box: fill-box; transform-origin: center; }
+.xh-bunny { transition: transform 1.5s; }
+/* 1 化成水 */
+.xh-scene:not([data-s="0"]) .xh-snowman { transform: scale(1.5, .02); opacity: 0; }
+.xh-scene:not([data-s="0"]) .xh-wear { transform: translate(-40px, 300px) rotate(-8deg); }
+.xh-scene:not([data-s="0"]) .xh-puddle { transform: scale(1); }
+/* 2 水汽 */
+.xh-scene[data-s="2"] .xh-steam path, .xh-scene[data-s="3"] .xh-steam path { opacity: .9; animation: xhSteam 1.6s linear infinite; }
+.xh-scene[data-s="2"] .xh-rays, .xh-scene[data-s="3"] .xh-rays { animation: xhRays 3s linear infinite; }
+.xh-scene[data-s="3"] .xh-puddle { transform: scale(.25); opacity: .4; }
+@keyframes xhSteam { to { stroke-dashoffset: 90; } }
+@keyframes xhRays { to { transform: rotate(45deg); } }
+/* 3 白云 */
+.xh-scene[data-s="3"] .xh-cloud { transform: none; opacity: 1; }
+.xh-scene[data-s="3"] .xh-steam { opacity: .5; }
+.xh-scene[data-s="3"] .xh-bunny { transform: translateY(-20px); }
+.xh-chain { position: absolute; right: .8em; top: .8em; display: flex; align-items: center; gap: .3em; padding: .2em .6em; border-radius: .8em; background: rgba(255, 255, 255, .88); font-family: var(--kai); }
+.xh-chain b { display: flex; align-items: center; gap: .1em; font-size: 1.4em; font-weight: normal; opacity: .3; transition: opacity .8s; }
+.xh-chain i { font-style: normal; color: var(--ink-2); }
+.xh-chain rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.xh-chain .c1, .xh-scene:not([data-s="0"]) .c2, .xh-scene[data-s="2"] .c3, .xh-scene[data-s="3"] .c3, .xh-scene[data-s="3"] .c4 { opacity: 1; }
+.xh-cap { min-height: 4.6em; display: grid; }
+.xh-cap p { grid-area: 1 / 1; margin: 0; align-self: center; text-align: center; font-size: 1.9em; line-height: 2.1; }
+.xh-cap p:not(.cur) { opacity: 0 !important; }
+.xh-cap rt { font-size: .42em; }
+
+/* ---------- 句子长出来 ---------- */
+.xh-grow { flex: 1; justify-content: center; gap: 1em; }
+.xh-s { margin: 0; font-size: 2.3em; background: #fff; border-radius: .5em; padding: 0 .6em; box-shadow: 0 .15em .5em rgba(40, 60, 80, .08); }
+.xh-s rt { font-size: .42em; }
+.xh-add { display: inline-block; vertical-align: bottom; max-width: 0; overflow: hidden; white-space: nowrap; color: var(--red); transition: max-width 1.6s ease, opacity .6s; }
+.xh-add.on { max-width: 12em; }
+.xh-try { margin: 0; font-family: var(--kai); font-size: 1.7em; }
+.xh-try rt { font-size: .42em; }
+.xh-blank { color: var(--red); }
+.xh-eg { margin: 0; display: flex; gap: 1em; flex-wrap: wrap; font-size: 1.5em; font-family: var(--kai); }
+.xh-eg span { background: #fff8e1; border-radius: .5em; padding: 0 .6em; }
+.xh-eg rt { font-size: .42em; }
+
+/* ---------- 排连环画 ---------- */
+.xh-order { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: .8em; }
+.xo-slots { display: grid; grid-template-columns: repeat(6, 1fr); gap: .6em; }
+.xo-slot { position: relative; aspect-ratio: 1.25 / 1; border: .18em dashed var(--line); border-radius: .4em; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.xo-slot > b { position: absolute; left: .3em; top: .1em; font-family: var(--py); color: var(--line); font-size: 1.5em; }
+.xo-slot.done { border: .22em solid #333; box-shadow: .25em .25em 0 rgba(40, 50, 60, .18); animation: pop .5s cubic-bezier(.3, 1.6, .5, 1); }
+.xo-slot.done > b { color: var(--red); }
+.xo-e { font-size: 2.6em; line-height: 1.15; }
+.xo-t { font-family: var(--kai); font-size: 1.4em; line-height: 2; }
+.xo-t rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.xo-pool { display: flex; justify-content: center; gap: .8em; flex-wrap: wrap; }
+.xo-card { width: 8em; padding: .3em; border: .15em solid var(--line); border-radius: .6em; background: var(--stone); cursor: pointer; display: flex; flex-direction: column; align-items: center; font: inherit; }
+.xo-card:hover { border-color: var(--red); }
+.xo-card.used { visibility: hidden; }
+.xo-card.wrong { animation: nope .35s; border-color: #e3a998; }
+.xo-msg { margin: 0; text-align: center; font-size: 1.4em; color: var(--red-d); font-family: var(--kai); }
+.xh-order .btns { justify-content: center; }
+
+/* ---------- 接雪花 ---------- */
+.xh-game { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .6em; }
+.xs-bar { display: flex; align-items: center; gap: 1em; }
+.xs-q { min-width: 3.2em; text-align: center; font-family: var(--py); font-size: 2.6em; color: var(--py-c); background: #fff; border-radius: .3em; padding: 0 .3em; box-shadow: 0 .1em .4em rgba(30, 50, 90, .12); }
+.xs-msg { flex: 1; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.xs-sky { position: relative; flex: 1; min-height: 0; border-radius: 1em; overflow: hidden; background: linear-gradient(#9fc6e4, #e6f2fa 75%, #fff); }
+.xs-flake { position: absolute; top: 0; width: 6em; height: 6em; margin-left: -3em; border: 0; padding: 0; background: none; cursor: pointer; animation: xsFall 11s linear infinite; }
+.slide:not(.active) .xs-flake { animation-play-state: paused; }
+.xs-flake svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: xsSpin 9s linear infinite; }
+.xs-flake svg path { stroke: #fff; stroke-width: 5; stroke-linecap: round; fill: none; }
+.xs-flake svg circle { fill: rgba(255, 255, 255, .92); }
+.xs-flake b { position: relative; font-family: var(--kai); font-size: 2em; font-weight: normal; color: #24506e; }
+.xs-flake.wrong b { animation: nope .35s; }
+.xs-flake.got { opacity: 0; transition: opacity .8s; pointer-events: none; }
+@keyframes xsFall { from { transform: translateY(-110%); } to { transform: translateY(var(--fall, 34em)); } }
+@keyframes xsSpin { to { transform: rotate(360deg); } }
+.xs-cup { position: absolute; right: 1em; bottom: 1em; width: 9em; min-height: 5em; padding: .4em; border: .2em solid #6aa7d0; border-top: 0; border-radius: 0 0 1.4em 1.4em; background: rgba(140, 200, 238, .35); }
+.xs-cup b { position: absolute; right: .3em; top: -1.4em; color: #2a6fa0; font-family: var(--py); font-size: 1.4em; }
+.xs-in { display: flex; flex-wrap: wrap; gap: 0 .3em; }
+.xs-in i { font-style: normal; font-family: var(--kai); font-size: 1.25em; line-height: 1.9; color: #1d4e72; }
+.xs-in rt { font-family: var(--py); font-size: .45em; color: var(--py-c); }
+
+/* ---------- 回顾 ---------- */
+.xh-sum { flex: 1; justify-content: center; align-items: center; gap: 1.2em; }
+.xh-sumrow { display: flex; align-items: center; gap: .5em; flex-wrap: wrap; justify-content: center; }
+.xh-sumrow b { background: #2f4a3f; color: #f6f1e4; border-radius: .6em; padding: 0 .6em; font-family: var(--kai); font-weight: normal; font-size: 1.7em; line-height: 2.2; box-shadow: inset 0 0 0 .2em #6b4b2a; }
+.xh-sumrow rt { font-family: var(--py); font-size: .42em; color: var(--gold-l); }
+.xh-sumrow i { font-style: normal; font-size: 1.8em; color: var(--gold); }
+.xh-sumq { margin: 0; font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.xh-sumq rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.xh-sum .tip { text-align: center; font-size: 1.25em; }
+
+.subs.py, .subs .py { font-size: 1.6em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .xh-hook { font-size: 1.3em; }
+  .subs.py, .subs .py { font-size: 1.2em; }
+  .xh-strip { grid-template-columns: 1fr; }
+  .xh-panel figcaption p { font-size: 1.15em; }
+  .xh-scene { flex: none; aspect-ratio: 16 / 8; }
+  .xh-chain { font-size: .7em; }
+  .xh-cap p { font-size: 1.3em; }
+  .xh-s { font-size: 1.4em; }
+  .xh-add.on { max-width: 100%; white-space: normal; }
+  .xh-try { font-size: 1.2em; }
+  .xo-slots { grid-template-columns: repeat(3, 1fr); }
+  .xo-card { width: 30%; }
+  .xs-sky { flex: none; height: 60vh; }
+  .xs-flake { width: 4.2em; height: 4.2em; margin-left: -2.1em; }
+  .xs-bar { flex-wrap: wrap; }
+  .xs-msg { flex-basis: 100%; order: 3; font-size: 1.2em; }
+  .xh-sumrow b { font-size: 1.2em; }
+}

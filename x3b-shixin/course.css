@@ -1,0 +1,66 @@
+/* 我不能失信 · 本课配色：晨光的暖杏、钢琴的深棕。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #a0522d;
+  --red-d: #6b3219;
+  --gold: #d9a441;
+  --gold-l: #f3dfb0;
+  --paper: #f6f1e8;
+  --stone: #fdfbf6;
+  --ink-2: #5f5549;
+  --line: #ddd0bb;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fffcf6 0, transparent 40%), radial-gradient(circle at 90% 95%, #ece2cf 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.6em; letter-spacing: .1em; }
+
+/* 中年级：字幕、提示、卡片字号再大一点 */
+.subs { font-size: 1.55em; line-height: 1.7; }
+.subs .reveal { font-size: 1.15em; letter-spacing: .04em; color: #f6d58f; }
+.tip { font-size: 1.05em; }
+.clue-face.front { font-size: 1.15em; }
+
+/* 阅读提示 */
+.s-tishi .stage { justify-content: center; gap: 1em; }
+.kongzi { font-family: var(--kai); font-size: 2em; text-align: center; color: var(--red-d); background: #fff; border-radius: .5em; padding: .6em 1em; box-shadow: 0 .2em .8em rgba(80, 50, 20, .1); }
+.kongzi b { font-size: .7em; color: var(--ink-2); }
+.kongzi small { display: block; font-family: var(--serif); font-size: .5em; color: var(--ink-2); margin-top: .3em; }
+.key-line { display: block; font-family: var(--kai); font-size: 1.35em; margin-top: .3em; color: var(--red-d); }
+
+/* 心里的天平 */
+.scale { position: relative; flex: 1; min-height: 18em; }
+.beam { position: absolute; left: 20%; right: 20%; top: 3em; height: .7em; border-radius: .4em; background: #8b5e3c; transition: transform 1.2s cubic-bezier(.3, 1.5, .5, 1); }
+.post { position: absolute; left: 50%; top: 2.6em; bottom: 0; width: .9em; margin-left: -.45em; background: linear-gradient(#8b5e3c, #6b4520); border-radius: .4em .4em 0 0; }
+.post::before { content: ""; position: absolute; left: 50%; top: -.6em; width: 1.6em; height: 1.6em; margin-left: -.8em; border-radius: 50%; background: var(--gold); }
+.pan { position: absolute; top: 4.6em; width: 34%; display: flex; flex-direction: column; align-items: center; gap: .35em; padding: .6em .8em 1em; background: #fff; border: 3px solid #8b5e3c; border-radius: .4em .4em 2em 2em; transition: transform 1.2s cubic-bezier(.3, 1.5, .5, 1); }
+.pan.left { left: 3%; }
+.pan.right { right: 3%; }
+.pan::before { content: ""; position: absolute; left: 50%; top: -1.6em; width: 3px; height: 1.6em; background: #8b5e3c; }
+.pan h3 { margin: 0 0 .2em; font-family: var(--kai); font-size: 1.4em; color: var(--red-d); }
+.w { font-family: var(--kai); font-size: 1.15em; padding: .15em .8em; border-radius: 1em; background: #fdf3e1; border: 1px solid var(--gold-l); }
+.pan.right .w { background: #eef6f2; border-color: #b7d6c8; }
+.w.big { font-size: 1.4em; font-weight: bold; color: #1f6b4f; border-width: 2px; border-color: #1f6b4f; }
+.s-scale:has(.w-left.on) .beam { transform: rotate(-5deg); }
+.s-scale:has(.w-left.on) .pan.left { transform: translateY(1.7em); }
+.s-scale:has(.w-left.on) .pan.right { transform: translateY(-1.7em); }
+.s-scale:has(.w-right.big.on) .beam { transform: rotate(5deg); }
+.s-scale:has(.w-right.big.on) .pan.left { transform: translateY(-1.7em); }
+.s-scale:has(.w-right.big.on) .pan.right { transform: translateY(1.7em); }
+
+/* 理解关键句 */
+.key-big { margin: 0; text-align: center; font-family: var(--kai); font-size: 1.9em; line-height: 1.7; color: var(--ink); }
+.s-clues .clues { grid-template-columns: repeat(3, 1fr); }
+.s-clues .clue, .s-clues .clue-in { min-height: 10em; }
+.s-clues .stage { justify-content: center; gap: 1.2em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .subs { font-size: 1.2em; }
+  .kongzi { font-size: 1.4em; }
+  .scale { min-height: 26em; }
+  .pan { width: 46%; padding: .4em .3em .8em; }
+  .pan.left { left: 1%; }
+  .pan.right { right: 1%; }
+  .w { font-size: .95em; padding: .15em .5em; text-align: center; }
+  .w.big { font-size: 1.1em; }
+  .key-big { font-size: 1.35em; }
+  .s-clues .clues { grid-template-columns: 1fr; }
+}

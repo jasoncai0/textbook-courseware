@@ -1,0 +1,60 @@
+/* 古人谈读书 · 本课配色：宣纸、墨、朱砂 */
+:root {
+  --red: #8f3a2a;
+  --red-d: #4f2a1e;
+  --gold: #a88a4a;
+  --gold-l: #e6d8b0;
+  --paper: #f3eee1;
+  --stone: #fbf8ef;
+  --ink-2: #5f584c;
+  --line: #d8ceb8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcf9f0 0, transparent 40%), radial-gradient(circle at 90% 95%, #e6dcc6 0, transparent 45%); }
+.s-cover .cover-title { font-size: 5.6em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .7em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.25em; background: rgba(143, 58, 42, .9); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 关键字卡片：u 是加点字 */
+.clue-face u { text-decoration: none; position: relative; color: var(--red); }
+.clue-face u::after { content: ""; position: absolute; left: 50%; bottom: -.35em; width: .3em; height: .3em; margin-left: -.15em; border-radius: 50%; background: var(--red); }
+.s-clues .clues { grid-template-columns: repeat(3, 1fr); }
+.s-clues .clue-face.front { font-size: 1.5em; }
+.s-clues .clue-face.front small { font-size: .5em; }
+.s-clues .clue, .s-clues .clue-in { min-height: 9.5em; }
+.s-sort .sort-row { grid-template-columns: 1fr auto 11em; }
+
+/* 三到图解 */
+.s-sandao .quote { flex: none; font-size: 1.15em; }
+.s-sandao .quote p { text-indent: 0; }
+.sd-chain { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .3em; }
+.sd-chain li { background: #fff; border: 1px solid var(--line); border-radius: .4em; padding: .25em .8em; font-family: var(--kai); font-size: 1.05em; opacity: 0; }
+.sd-chain li + li::before { content: "↓ "; color: var(--red); font-family: var(--serif); }
+.sd-chain.on li { animation: appear .5s ease forwards; }
+.sd-chain.on li:nth-child(2) { animation-delay: .4s; } .sd-chain.on li:nth-child(3) { animation-delay: .8s; }
+.sd-chain.on li:nth-child(4) { animation-delay: 1.2s; } .sd-chain.on li:nth-child(5) { animation-delay: 1.6s; color: var(--red); font-weight: bold; }
+#sdSvg { flex: 1; min-height: 0; }
+#sdSvg .sd-node { transition: filter .6s; }
+/* 心不在此：三个圈都变灰；讲到“心到最急”恢复 */
+.s-sandao:has(.sd-cross.on):not(:has(.sd-badge.on)) .sd-node { filter: grayscale(1) opacity(.45); }
+.s-sandao:has(.sd-badge.on) .sd-cross { display: none; }
+.sd-heart { transform-box: fill-box; transform-origin: center; }
+.s-sandao:has(.sd-badge.on) .sd-heart { animation: sdBeat 1.6s ease-in-out infinite; }
+@keyframes sdBeat { 50% { transform: scale(1.07); } }
+
+.recite.wide .recite-lines { font-size: 1.45em; }
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.05em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; line-height: 1.7; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.15em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); white-space: nowrap; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .s-clues .clues { grid-template-columns: 1fr; }
+  .s-sort .sort-row { grid-template-columns: 1fr; }
+  #sdSvg { flex: none; }
+  #sdSvg .t-s { font-size: 15px; }
+  .sum-table { font-size: .82em; }
+  .recite.wide .recite-lines { font-size: 1.2em; }
+}

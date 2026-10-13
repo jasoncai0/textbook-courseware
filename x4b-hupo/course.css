@@ -1,0 +1,67 @@
+/* 琥珀 · 本课配色：琥珀金、松林绿。页面样式见 ../shared/narrative.css，提问—解决卡样式见 wenjie.css */
+:root {
+  --red: #b36b12;
+  --red-d: #6e3f08;
+  --gold: #3f7a3a;
+  --gold-l: #cfe6c6;
+  --paper: #f6f0e3;
+  --stone: #fdfaf2;
+  --ink-2: #645640;
+  --line: #e0d2b4;
+}
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 7em; }
+.cover-ask { margin: .4em 0; font-family: var(--kai); font-size: 1.9em; line-height: 1.5; }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.subs .key-line { color: #ffd98a; font-size: 1.1em; }
+
+/* ---------- 时间滑块 ---------- */
+#timeSvg { border-radius: .8em; }
+#timeSvg .tm-sky { fill: #bfe0f2; }
+#timeSvg .tm { opacity: 0; transition: opacity .8s ease; }
+#timeSvg.t0 .s0, #timeSvg.t1 .s1, #timeSvg.t2 .s2, #timeSvg.t3 .s3, #timeSvg.t4 .s4, #timeSvg.t5 .s5 { opacity: 1; }
+#timeSvg .tm-era { font-size: 30px; fill: #fff; paint-order: stroke; stroke: rgba(0, 0, 0, .45); stroke-width: 5px; }
+.tm-row { font-size: 1.15em; font-family: var(--kai); }
+.tm-row input { height: 2em; }
+.tm-cap { margin: 0; min-height: 2.4em; font-family: var(--kai); font-size: 1.35em; line-height: 1.6; }
+.tm-cap b { display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; margin-right: .4em; border-radius: 50%; background: var(--red); color: #fff; font-family: Georgia, serif; font-size: .8em; }
+
+/* ---------- 排一排 ---------- */
+.order { display: flex; flex-wrap: wrap; gap: .7em; }
+.order-card { font: inherit; font-family: var(--kai); font-size: 1.3em; padding: .55em 1em; border-radius: .6em; border: 2px solid var(--line); background: #fff; cursor: pointer; display: inline-flex; align-items: center; gap: .5em; }
+.order-card em { flex: none; width: 1.6em; height: 1.6em; border-radius: 50%; border: 1px dashed var(--line); font-style: normal; font-family: Georgia, var(--serif); display: grid; place-items: center; color: #fff; }
+.order-card.right { background: #fdf4e3; border-color: var(--red); cursor: default; }
+.order-card.right em { background: var(--red); border: none; }
+.order-card.wrong { background: #fdf0ec; border-color: #e3a998; animation: nope .35s; }
+.order-msg { margin: 0; color: var(--ink-2); }
+.order.all-done + .order-msg { color: var(--gold); font-weight: bold; }
+.s-tell .stage { justify-content: center; gap: 1.1em; }
+
+/* ---------- 推测 ---------- */
+.s-guess .bd { grid-template-columns: 32% 1fr; }
+.s-guess .clue, .s-guess .clue-in { min-height: 8.5em; }
+.s-guess .clue-face { font-size: 1.08em; }
+
+/* ---------- 课文与阅读链接 ---------- */
+.link-btns .btn { font-family: var(--kai); font-size: 1.2em; }
+.link-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; flex: 1; min-height: 0; }
+.link-card { background: #fff; border-radius: .7em; padding: .8em 1.1em; border-top: .35em solid var(--red); box-shadow: 0 .15em .6em rgba(60, 40, 10, .1); }
+.link-card.b { border-top-color: #4f7aa0; }
+.link-card h3 { margin: 0 0 .4em; color: var(--red-d); }
+.link-card.b h3 { color: #2c4f70; }
+.link-card p { margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.8; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3.4em; }
+  .cover-ask { font-size: 1.3em; }
+  .hd h2 { font-size: 1.3em; }
+  #timeSvg .tm-era { font-size: 40px; }
+  .tm-cap { font-size: 1.1em; }
+  .order-card { font-size: 1.05em; }
+  .link-vs { grid-template-columns: 1fr; }
+  .link-card p { font-size: 1.1em; }
+}

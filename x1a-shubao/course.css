@@ -1,0 +1,60 @@
+/* 小书包 · 本课配色：书包的橙、清晨的暖黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d8662c;
+  --red-d: #9c4512;
+  --gold: #eaa833;
+  --gold-l: #fde3a5;
+  --paper: #fbf6eb;
+  --stone: #fffdf7;
+  --ink-2: #67594a;
+  --line: #e3d4b6;
+}
+
+/* 图上的词语标签（带注音） */
+.hz-label.sb-word { font-size: 2em; line-height: 2.3; }
+.hz-label.sb-word rt { font-size: .42em; color: var(--py-c); }
+
+/* 儿歌 */
+.sb-poem { font-size: 2.2em; padding: .3em 1.6em; }
+.sb-poem p { text-indent: 0; text-align: center; }
+
+/* 拖词语：卡片和圆圈按词语变宽 */
+.sb-match .hz-mcard { width: auto; padding: 0 .3em; font-size: 1.9em; }
+.sb-match .hz-target { width: auto; min-width: 2.4em; padding: 0 .3em; border-radius: 1.2em; font-size: 1.4em; }
+.sb-match .hz-target small { font-size: .6em; }
+
+/* 整理书包 */
+.sb-pack { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.4em; align-items: center; }
+.sb-items { display: flex; flex-wrap: wrap; gap: .7em; align-content: center; }
+.sb-item { font: inherit; font-family: var(--kai); font-size: 1.9em; padding: .1em .45em 0; border: 3px solid var(--line); border-radius: .4em; background: #fff; color: var(--ink); cursor: pointer; transition: opacity .4s, transform .4s; }
+.sb-item .py { line-height: 2.2; }
+.sb-item.in { opacity: .25; transform: scale(.85); pointer-events: none; }
+.sb-item.no { border-color: #e3a998; background: #fdeee9; animation: nope .35s; }
+.sb-bag { display: flex; flex-direction: column; gap: .5em; min-height: 70%; padding: 2.2em 1em 1em; border-radius: 2.4em 2.4em 1.2em 1.2em; background: linear-gradient(#f0a35c, #d9772f); box-shadow: inset 0 -.5em 0 rgba(0, 0, 0, .12), 0 .3em 1em rgba(120, 60, 10, .25); position: relative; }
+.sb-bag::before { content: ""; position: absolute; left: 30%; right: 30%; top: -1.4em; height: 2em; border: .35em solid #b9611f; border-bottom: none; border-radius: 1.2em 1.2em 0 0; }
+.sb-bag p { margin: 0; color: #fff; font-size: 1.2em; }
+.sb-bag b { font-size: 1.4em; }
+.sb-in { flex: 1; display: flex; flex-wrap: wrap; align-content: flex-start; gap: .3em .5em; background: rgba(255, 255, 255, .85); border-radius: .8em; padding: .4em .6em; font-family: var(--kai); font-size: 1.5em; }
+.sb-in span { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+.sb-in .py { line-height: 2.1; }
+.sb-pack.full .sb-bag p::after { content: "  整理好啦！"; }
+
+/* 写字五个字：格子小一点 */
+.hz-write { gap: .6em 1.8em; }
+.hz-cells .hz-tzg { --tz: 4.6em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .hz-label.sb-word { font-size: 1em; }
+  .sb-poem { font-size: 1.5em; padding: .3em .4em; }
+  .sb-pack { display: flex; flex-direction: column; align-items: stretch; }
+  .sb-item { font-size: 1.4em; }
+  .sb-bag { min-height: 12em; }
+  .sb-match .hz-mcard { font-size: 1.4em; }
+  .sb-match .hz-target { font-size: .95em; }
+  .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+}
+
+/* 手机：板书一行字多，缩小一点不出框 */
+@media (max-width: 820px), (max-height: 520px) {
+  .hz-board .py { font-size: 1.45em; letter-spacing: 0; }
+}

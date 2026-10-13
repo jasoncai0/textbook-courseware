@@ -1,0 +1,141 @@
+/* 咕咚 · 本课配色：湖水的蓝、木瓜的橙。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #2f7fb0;
+  --red-d: #1c557c;
+  --gold: #f0a03a;
+  --gold-l: #fde0a6;
+  --paper: #f5f7f3;
+  --stone: #fffefa;
+  --ink-2: #545c5c;
+  --line: #d6dcd6;
+  --papaya: #f2a23a;
+}
+
+/* ---------- 封面：咕咚！ ---------- */
+.gd-boom { position: relative; display: inline-block; margin: 0 0 .2em; font-family: var(--kai); font-size: 3.4em; color: #ffe08a; letter-spacing: .1em; }
+.gd-boom.on { animation: gdBoom .6s cubic-bezier(.3, 1.8, .5, 1); }
+.gd-boom i { position: absolute; left: 50%; top: 60%; width: 2em; height: .7em; margin: -.35em 0 0 -1em; border: .06em solid rgba(255, 255, 255, .8); border-radius: 50%; opacity: 0; }
+.gd-boom.on i { animation: gdRing 1.6s ease-out infinite; }
+.gd-boom.on i:nth-child(2) { animation-delay: .5s; }
+.gd-boom.on i:nth-child(3) { animation-delay: 1s; }
+@keyframes gdBoom { from { transform: scale(.2); } to { transform: none; } }
+@keyframes gdRing { from { transform: scale(.4); opacity: 1; } to { transform: scale(2.6); opacity: 0; } }
+.gd-ask { margin: 0 0 .8em; font-family: var(--kai); font-size: 1.8em; color: #fff; }
+
+/* ---------- 传话的队伍 ---------- */
+.gd-read .stage { gap: .6em; }
+.gd-strip { position: relative; flex: none; height: 8.8em; border-radius: .8em; overflow: hidden; background: linear-gradient(#e3f2fb 0 45%, #b9dd97 45%, #9fcd78); box-shadow: 0 .2em .7em rgba(30, 60, 40, .15); }
+.gd-line { position: absolute; left: 13%; bottom: .2em; display: flex; align-items: flex-end; gap: .4em; transition: left 1.6s ease-in-out; }
+.gd-run { position: relative; display: none; flex-direction: column; align-items: center; }
+.gd-run.in { display: flex; animation: gdIn .6s ease both; }
+.gd-run em { font-style: normal; font-size: 3em; line-height: 1.1; }
+.gd-run small, .gd-bull small { font-family: var(--kai); font-size: 1.05em; line-height: 1.8; background: rgba(255, 255, 255, .8); border-radius: .3em; padding: 0 .3em; white-space: nowrap; }
+.gd-run rt, .gd-bull rt { font-family: var(--py); font-size: .45em; color: var(--py-c); }
+.gd-strip:not(.bull):not(.lake) .gd-run.in em { animation: gdHop .35s ease-in-out infinite alternate; }
+.gd-run:nth-child(2n) em { animation-delay: .15s !important; }
+@keyframes gdHop { to { transform: translateY(-.25em) rotate(-6deg); } }
+@keyframes gdIn { from { opacity: 0; transform: translateX(3em); } to { opacity: 1; transform: none; } }
+.gd-q { position: absolute; top: -.6em; right: -.2em; font-family: var(--py); font-weight: bold; font-size: 1.4em; color: #e0473c; opacity: 0; }
+.gd-strip.ask .gd-run.in .gd-q { opacity: 1; animation: pop .4s cubic-bezier(.3, 1.6, .5, 1); }
+.gd-strip.laugh .gd-q { opacity: 0 !important; }
+.gd-strip.laugh .gd-run.in::before { content: '😄'; position: absolute; top: -.8em; right: -.4em; font-size: 1.6em; animation: pop .5s cubic-bezier(.3, 1.6, .5, 1); }
+.gd-strip.point .gd-run[data-k="rabbit"] small { background: var(--gold-l); box-shadow: 0 0 0 .15em var(--gold); }
+.gd-shout { position: absolute; left: -1em; bottom: 100%; margin: 0 0 .2em; width: max-content; padding: 0 .6em; border-radius: 1em; background: #fff; border: .12em solid #e0473c; color: #c0352a; font-family: var(--kai); font-weight: bold; line-height: 1.7; transition: font-size .6s cubic-bezier(.3, 1.6, .5, 1); }
+.gd-shout:empty { display: none; }
+.gd-strip[data-shout="1"] .gd-shout { font-size: 1.1em; }
+.gd-strip[data-shout="2"] .gd-shout { font-size: 1.35em; }
+.gd-strip[data-shout="3"] .gd-shout { font-size: 1.6em; }
+.gd-bull { position: absolute; left: 1.5%; bottom: .2em; display: flex; flex-direction: column; align-items: center; opacity: 0; transform: translateX(-3em); transition: opacity .6s, transform .8s; }
+.gd-bull em { font-style: normal; font-size: 3.6em; line-height: 1.1; }
+.gd-bull b { position: absolute; top: -.3em; right: -.6em; font-family: var(--py); font-size: 1.6em; color: var(--red-d); }
+.gd-strip.bull .gd-bull { opacity: 1; transform: none; }
+.gd-strip.lake .gd-bull { opacity: 0; }
+.gd-strip.lake .gd-line { left: 40%; }
+.gd-lake { position: absolute; right: 0; bottom: 0; width: 22%; height: 100%; }
+.gd-lake::before { content: ''; position: absolute; left: 6%; right: -10%; bottom: -10%; height: 50%; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, #7cc4ea, #3d8fc4); }
+.gd-tree { position: absolute; left: 0; top: 0; font-style: normal; font-size: 4.2em; line-height: 1; }
+.gd-fruit { position: absolute; left: 22%; top: 20%; width: 1.1em; height: 1.4em; border-radius: 50% 50% 45% 45%; background: radial-gradient(circle at 35% 30%, #ffd27a, var(--papaya)); }
+.gd-ring { position: absolute; left: 44%; top: 70%; width: 3em; height: 1em; margin: -.5em 0 0 -1.5em; border: .15em solid #fff; border-radius: 50%; opacity: 0; }
+.gd-lake b { position: absolute; left: 50%; top: 22%; translate: -50% 0; font-family: var(--kai); font-size: 1.8em; color: #c0352a; opacity: 0; white-space: nowrap; }
+.gd-strip.splash.replay .gd-fruit { animation: gdFall .9s ease-in forwards; }
+.gd-strip.splash.replay .gd-ring { animation: gdRing 1.4s .9s ease-out 2; }
+.gd-strip.splash.replay .gd-ring + .gd-ring { animation-delay: 1.3s; }
+.gd-strip.splash.replay .gd-lake b { animation: gdWord 1.6s .85s ease both; }
+@keyframes gdFall { 80% { transform: translate(1.2em, 3.4em); opacity: 1; } 100% { transform: translate(1.2em, 4em); opacity: 0; } }
+@keyframes gdWord { 0% { opacity: 0; transform: scale(.3); } 30% { opacity: 1; transform: scale(1.2); } 100% { opacity: 1; transform: none; } }
+.gd-row { flex: 1; min-height: 0; display: grid; grid-template-columns: 12em 1fr; gap: 1em; align-items: start; }
+.gd-pic { width: 100%; aspect-ratio: 16 / 9; border-radius: .6em; background: #dfe7e2 center / cover no-repeat; object-fit: cover; box-shadow: 0 .2em .6em rgba(30, 60, 40, .15); }
+.gd-read .hz-text { font-size: 1.42em; line-height: 2.3; padding: .2em .9em; max-height: 100%; }
+.gd-read .hz-text p { text-align: left; }
+
+/* ---------- 野牛来问一问 ---------- */
+.gd-ask-game { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .7em; }
+.gd-ask-top { display: flex; align-items: center; gap: .6em; }
+.gd-ask-top em { font-style: normal; font-size: 3.6em; }
+.gd-ask-top p { margin: 0; font-size: 1.7em; line-height: 2.2; background: #fff; border-radius: 1em; padding: 0 .8em; border: .12em solid var(--red); }
+.gd-ask-row { flex: 1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .6em; align-items: end; }
+.gd-ani { font: inherit; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .2em; height: 100%; padding: .3em; border: 3px solid var(--line); border-radius: .8em; background: #fff; cursor: pointer; }
+.gd-ani.now { border-color: var(--gold); }
+.gd-ani em { font-style: normal; font-size: 3.2em; line-height: 1.1; }
+.gd-ani small { font-family: var(--kai); font-size: 1.2em; line-height: 1.8; }
+.gd-ani rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.gd-say { flex: 1; display: flex; align-items: center; font-size: 1.15em; line-height: 2.1; text-align: center; opacity: 0; transform: scale(.6); transition: opacity .4s, transform .4s cubic-bezier(.3, 1.6, .5, 1); }
+.gd-ani.said .gd-say { opacity: 1; transform: none; }
+.gd-ani[data-k="rabbit"].said { border-color: var(--ok); background: #eef8f0; }
+.gd-ask-bar { display: flex; align-items: center; gap: .8em; }
+.gd-ask-msg { flex: 1; font-size: 1.3em; color: var(--ink-2); }
+.gd-truth { display: none; align-items: center; gap: .6em; font-size: 1.7em; line-height: 2.2; color: var(--ok); font-weight: bold; }
+.gd-ask-game.truth .gd-truth { display: flex; animation: appear .6s ease; }
+.gd-ask-game.truth .gd-ask-row { flex: 0 1 auto; }
+.gd-splash-i { position: relative; font-size: 1.4em; }
+.gd-splash-i i { position: absolute; left: 30%; top: 30%; width: .4em; height: .5em; border-radius: 50%; background: var(--papaya); animation: gdFall 1s ease-in infinite; }
+
+/* ---------- 猜读音：翻卡片 ---------- */
+.gd-clues { grid-template-columns: repeat(3, 1fr); flex: 1; align-content: center; }
+.gd-clues .clue, .gd-clues .clue-in { min-height: 8.6em; }
+.gd-clues .clue-face { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2em; text-align: center; }
+.gd-clues .clue-face small { align-self: stretch; text-align: left; }
+.gd-cz { font-family: var(--kai); font-weight: normal; font-size: 3.4em; line-height: 1.1; color: var(--red-d); }
+.gd-ch { font-size: 1.1em; color: var(--ink-2); }
+.gd-ca { font-family: var(--py); font-size: 1.5em; }
+.gd-ca b { font-family: var(--kai); font-size: 1.5em; font-weight: normal; color: var(--red-d); }
+
+/* ---------- 传话接力 ---------- */
+.gd-relay { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 1em; }
+.gd-stones { display: flex; flex-wrap: wrap; align-items: center; gap: .7em; }
+.gd-stone { font: inherit; position: relative; width: 3.4em; height: 3.4em; border: none; border-radius: 50% 50% 46% 46%; background: #d9d3c4; font-family: var(--kai); font-size: 1.7em; line-height: 1.3; color: #8b8373; cursor: default; transition: background .4s, color .4s, transform .3s; }
+.gd-stone rt { font-family: var(--py); font-size: .42em; color: transparent; }
+.gd-stone.cur { background: #fff; color: var(--ink); cursor: pointer; box-shadow: 0 0 0 .15em var(--gold), 0 .2em .6em rgba(0, 0, 0, .15); transform: scale(1.08); }
+.gd-stone.cur::after { content: '💬'; position: absolute; top: -1.1em; right: -.5em; font-size: .9em; }
+.gd-stone.done { background: #cfe8f7; color: var(--red-d); }
+.gd-stone.done rt { color: var(--py-c); }
+.gd-end { display: flex; flex-direction: column; align-items: center; font-size: 2.2em; line-height: 1.1; }
+.gd-end b { font-family: var(--kai); font-weight: normal; font-size: .55em; line-height: 1.9; }
+.gd-end rt { font-family: var(--py); font-size: .45em; color: var(--py-c); }
+.gd-relay.arrived .gd-end { animation: gdBoom .6s cubic-bezier(.3, 1.8, .5, 1); }
+.gd-relay-bar { display: flex; align-items: center; gap: 1em; }
+.gd-relay-msg { flex: 1; font-size: 1.3em; color: var(--ink-2); }
+.gd-relay.arrived .gd-relay-msg { color: var(--ok); font-weight: bold; }
+
+/* ---------- 写字：7 个字 ---------- */
+.hz-write { gap: .3em 1.8em; }
+.hz-cells .hz-tzg { --tz: 3.9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .gd-boom { font-size: 2.4em; }
+  .gd-ask { font-size: 1.2em; }
+  .gd-strip { height: 9em; font-size: .7em; }
+  .gd-line { left: 14%; }
+  .gd-row { display: flex; flex-direction: column; }
+  .gd-pic { width: 60%; }
+  .gd-read .hz-text { font-size: 1.3em; }
+  .gd-ask-top p { font-size: 1.2em; }
+  .gd-ask-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gd-ani em { font-size: 2.4em; }
+  .gd-say { font-size: .95em; }
+  .gd-truth { font-size: 1.2em; }
+  .gd-clues { grid-template-columns: 1fr 1fr; }
+  .gd-stone { font-size: 1.3em; }
+  .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .s-sum .board .py { font-size: 1.4em; }
+}

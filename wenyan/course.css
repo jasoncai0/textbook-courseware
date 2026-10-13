@@ -1,0 +1,55 @@
+/* 文言文二则 · 本课配色：宣纸、墨、朱砂 */
+:root {
+  --red: #8f3a2a;
+  --red-d: #4f2a1e;
+  --gold: #a88a4a;
+  --gold-l: #e6d8b0;
+  --paper: #f3eee1;
+  --stone: #fbf8ef;
+  --ink-2: #5f584c;
+  --line: #d8ceb8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcf9f0 0, transparent 40%), radial-gradient(circle at 90% 95%, #e6dcc6 0, transparent 45%); }
+.s-cover .cover-title { font-size: 5.6em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; }
+.cover-poems span { font-family: var(--kai); font-size: 1.25em; background: rgba(143, 58, 42, .9); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 知音 */
+.zhiyin { display: flex; flex-direction: column; gap: .7em; flex: 1; }
+.zy-row { display: grid; grid-template-columns: 9em 1fr auto 1fr; gap: .8em; align-items: center; background: #fff; border-radius: .6em; padding: .5em; }
+.zy-row.end { grid-template-columns: 9em 1fr; background: #f6efe6; }
+.zy-row > i { font-style: normal; font-size: 1.6em; color: var(--red); }
+.zy-pic { height: 5.4em; border-radius: .4em; background: center / cover no-repeat; }
+.zy-say b { display: block; color: var(--red-d); }
+.zy-say span { font-family: var(--kai); font-size: 1.25em; line-height: 1.6; }
+.zy-say em { font-style: normal; color: var(--red); font-weight: bold; }
+.clue-face.front small { font-size: .7em; }
+
+/* 牧童 */
+.cmp-pics { display: flex; flex-direction: column; gap: .8em; flex: 1; }
+.cmp-pics figure { margin: 0; flex: 1; display: flex; flex-direction: column; background: #fff; border-radius: .5em; overflow: hidden; }
+.cmp-pics .pic { flex: 1; min-height: 7em; background: center / cover no-repeat; }
+.cmp-pics figcaption { padding: .4em .8em; font-family: var(--kai); }
+.cmp-pics b { color: var(--red); }
+#tail { width: 100%; height: auto; background: #fff; border-radius: .5em; }
+#tail[data-step] { opacity: 1; transform: none; }
+#tail .tail-tuck { opacity: 0; transition: opacity .8s; }
+#tail.on .tail-tuck { opacity: 1; }
+#tail .tail-wag { transform-box: fill-box; transform-origin: 100% 100%; animation: wag 1s ease-in-out infinite alternate; }
+#tail.on .tail-wag { opacity: .3; }
+@keyframes wag { to { transform: rotate(18deg); } }
+.recite.wide .recite-lines { font-size: 1.5em; }
+
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.05em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.15em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .zy-row, .zy-row.end { grid-template-columns: 1fr; }
+  .zy-row > i { transform: rotate(90deg); justify-self: center; }
+  .sum-table { font-size: .82em; }
+}

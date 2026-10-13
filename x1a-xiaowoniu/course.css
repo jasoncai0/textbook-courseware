@@ -1,0 +1,58 @@
+/* 小蜗牛 · 本课配色：嫩绿的树林、草莓的红。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #4a9a46;
+  --red-d: #2f6c2c;
+  --gold: #e7a83a;
+  --gold-l: #f9dfa4;
+  --paper: #f6f8ef;
+  --stone: #fffef9;
+  --ink-2: #5c614f;
+  --line: #dbe4c8;
+}
+
+/* 故事页：季节小牌子（妈妈说“已经是……了”时出现） */
+.wn-season { position: absolute; right: 3%; top: 12%; z-index: 3; font-family: var(--kai); font-size: 2.6em; padding: .1em .6em; border-radius: .4em; color: #fff; background: var(--sc, #4a9a46); box-shadow: 0 .2em .6em rgba(0, 0, 0, .3); }
+/* 冬天：下雪 */
+.wn-snow { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image: radial-gradient(3px 3px at 20px 30px, #fff 60%, transparent), radial-gradient(4px 4px at 120px 80px, #fff 60%, transparent), radial-gradient(2px 2px at 70px 150px, #fff 60%, transparent), radial-gradient(3px 3px at 170px 120px, #fff 60%, transparent), radial-gradient(2px 2px at 150px 20px, #fff 60%, transparent);
+  background-size: 200px 200px; animation: wnSnow 9s linear infinite; }
+@keyframes wnSnow { from { background-position: 0 0; } to { background-position: 40px 200px; } }
+
+/* 课后第 1 题：排一排 */
+.order { flex: 1; display: flex; flex-direction: column; gap: .6em; min-height: 0; }
+.order-slots, .order-pool { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: .6em; }
+.o-slot { position: relative; min-height: 7.6em; border: 2px dashed var(--line); border-radius: .6em; background: rgba(255, 255, 255, .55); display: flex; flex-direction: column; overflow: hidden; }
+.o-slot::after { content: attr(data-n); position: absolute; left: .35em; top: .3em; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; font-size: .85em; }
+.o-slot.filled { border-style: solid; border-color: var(--gold); background: #fff; animation: appear .4s ease; }
+.o-card { font: inherit; padding: 0; border: 1px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; text-align: left; color: var(--ink); box-shadow: 0 .15em .5em rgba(40, 30, 20, .1); transition: opacity .3s; }
+.o-pic { height: 4.4em; flex: none; background: #f1f4e6 center / cover no-repeat; display: flex; align-items: center; justify-content: center; }
+.o-pic svg { height: 85%; }
+.o-card > span, .o-slot > span { padding: 0 .5em .3em; font-size: 1.15em; line-height: 2.1; }
+.o-card.used { opacity: .2; pointer-events: none; }
+.o-card.wrong { animation: nope .35s; border-color: #e3a998; background: #fdf0ec; }
+.order-bar { display: flex; align-items: center; gap: 1em; }
+.order-msg { flex: 1; color: var(--ink-2); font-size: 1.25em; }
+.order.done .order-msg { color: #1f6b4f; font-weight: bold; }
+/* 排好后，格子下面出现季节 */
+.wn-seasons { display: grid; grid-template-columns: repeat(5, 1fr); gap: .6em; text-align: center; font-family: var(--kai); font-size: 1.6em; opacity: 0; transition: opacity .6s; }
+.wn-seasons span { border-radius: .4em; color: #fff; }
+.stage:has(.order.done) .wn-seasons { opacity: 1; }
+
+/* 课后第 2 题：猜字 */
+.wn-guess { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; align-items: stretch; }
+.wn-g { font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6em; background: #fff; border: 2px solid var(--line); border-radius: .8em; cursor: pointer; box-shadow: 0 .2em .8em rgba(40, 60, 20, .08); }
+.wn-ic svg { width: 9em; height: 5.4em; }
+.wn-w { font-family: var(--kai); font-size: 3em; line-height: 2; color: var(--ink); }
+.wn-w ruby.dot { text-emphasis: filled dot var(--red); -webkit-text-emphasis: filled dot var(--red); text-emphasis-position: under; -webkit-text-emphasis-position: under; }
+.wn-w rt { visibility: hidden; text-emphasis: none; -webkit-text-emphasis: none; }
+.wn-g.open { border-color: var(--gold); background: #fffaf0; }
+.wn-g.open rt { visibility: visible; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .wn-season { font-size: 1.6em; }
+  .order-slots, .order-pool, .wn-seasons { grid-template-columns: 1fr 1fr; }
+  .o-slot { min-height: 7em; }
+  .wn-guess { grid-template-columns: 1fr 1fr; }
+  .wn-ic svg { width: 6em; height: 3.6em; }
+  .wn-w { font-size: 2.2em; }
+}

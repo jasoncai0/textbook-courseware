@@ -1,0 +1,84 @@
+/* 古诗词三首（四下 1）· 本课配色：宣纸、初夏的嫩绿、菜花黄。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #4f7a3a;
+  --red-d: #2f4f22;
+  --gold: #d9a520;
+  --gold-l: #f3e2a6;
+  --paper: #f5f1e2;
+  --stone: #fcfaf0;
+  --ink-2: #5a5a45;
+  --line: #d9d2b5;
+}
+.frame { font-size: min(1.5vw, 2.66vh); background-image: radial-gradient(circle at 12% 8%, #fdfbf2 0, transparent 40%), radial-gradient(circle at 90% 95%, #e5e8cf 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.2em; letter-spacing: .1em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .8em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.25em; background: rgba(79, 122, 58, .9); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 中年级：字号再大一点 */
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.poem-scene .subs { font-size: 1.45em; }
+.recite-lines { font-size: 1.45em; }
+.portrait-img { background-position: 50% 50%; background-size: cover; }
+.quote-big { margin: 0; font-family: var(--kai); font-size: 2em; text-align: center; letter-spacing: .08em; line-height: 1.6; }
+
+/* 清平乐：词句长短不齐，上阕、下阕之间空一点 */
+.s-qp .poem-text .pl { font-size: 1.6em; }
+.s-qp .poem-text .pl[data-step="4"] { margin-left: 1.4em; }
+.s-qp.poem-scene .subs { padding-right: 50%; font-size: 1.3em; }
+.recite[data-recite="qp"] .recite-lines { font-size: 1.2em; line-height: 1.55; }
+
+/* 四时田园杂兴：翻卡片 */
+.s-tj .bd { grid-template-columns: 38% 1fr; }
+.s-tj .clues { grid-template-columns: 1fr 1fr; gap: .5em; }
+.s-tj .clue, .s-tj .clue-in { min-height: 4.4em; }
+.s-tj .clue-face { padding: .45em .9em; }
+.s-tj .clue-face { font-size: 1.15em; }
+
+/* 宿新市徐公店：找黄蝶 */
+.s-xs .bd { grid-template-columns: 56% 1fr; }
+#xsSvg { border-radius: .8em; cursor: pointer; }
+#xsSvg .bfly path { fill: #f1c40f; stroke: #c99a06; stroke-width: 1; }
+#xsSvg .bfly { transform-box: fill-box; transform-origin: center; animation: flap .35s ease-in-out infinite alternate; }
+@keyframes flap { to { transform: scaleX(.45); } }
+#xsSvg .fly { transform: translate(560px, 330px); }
+#xsSvg .on .fly { animation: flyIn 3.2s ease-in-out both; }
+@keyframes flyIn { 0% { transform: translate(120px, 110px); } 35% { transform: translate(300px, 150px); } 65% { transform: translate(430px, 230px); } 100% { transform: translate(560px, 330px); } }
+#xsSvg .xs-found { opacity: 0; transition: opacity .5s; pointer-events: none; }
+#xsSvg.found .xs-found { opacity: 1; }
+#xsSvg.hint:not(.found) .bfly path { stroke: #c0392b; stroke-width: 3; }
+.xs-msg { align-self: center; font-family: var(--kai); font-size: 1.15em; color: var(--red-d); }
+
+/* 清平乐：一家五口 */
+.s-family .bd { grid-template-columns: 44% 1fr; }
+#famPic { background-size: 180%; transition: background-position .8s ease; }
+.fam-btns .btn { font-family: var(--kai); font-size: 1.35em; padding: .3em 1.1em; }
+.fam-card { background: #fff; border-radius: .7em; padding: .8em 1.1em; border-left: .35em solid var(--gold); box-shadow: 0 .15em .6em rgba(40, 60, 20, .1); }
+.fam-line { margin: 0 0 .3em; font-family: var(--kai); font-size: 1.6em; color: var(--red-d); letter-spacing: .05em; }
+.fam-do { margin: 0; font-size: 1.1em; line-height: 1.7; }
+
+/* 回顾表 */
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.2em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.1em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3.2em; }
+  .hd h2 { font-size: 1.3em; }
+  .poem-scene .subs, .s-qp.poem-scene .subs { font-size: 1.1em; padding-left: 1.1em; padding-right: 1.1em; }
+  .s-qp .poem-text .pl { font-size: 1.25em; }
+  .s-qp .poem-text .pl[data-step="4"] { margin-left: 1em; }
+  .quote-big { font-size: 1.45em; }
+  .recite-lines { font-size: 1.25em; }
+  .s-tj .clues { grid-template-columns: 1fr 1fr; }
+  .s-tj .clue, .s-tj .clue-in { min-height: 5.4em; }
+  #famPic { min-height: 12em; }
+  .fam-line { font-size: 1.3em; }
+  .sum-table { font-size: .82em; border-spacing: .2em; }
+  .sum-table th, .sum-table td { padding: .4em .3em; }
+}
+.portrait-card { position: relative; }

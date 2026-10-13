@@ -1,0 +1,33 @@
+/* 提问—解决卡样式（四下第二单元通用，第 5～8 课各放一份相同的文件；脚本见 wenjie.js） */
+.wj { display: flex; flex-direction: column; gap: .6em; flex: 1; min-height: 0; }
+.wj-add { display: flex; gap: .5em; align-items: center; }
+.wj-add input { flex: 1; font: inherit; font-family: var(--kai); font-size: 1.1em; padding: .35em .8em; border: 2px solid var(--line); border-radius: .5em; background: #fff; }
+.wj-add input:focus { outline: none; border-color: var(--red); }
+.wj-count { white-space: nowrap; color: var(--ink-2); }
+.wj-count b { color: var(--red); font-size: 1.2em; }
+.wj-cards { flex: 1; min-height: 0; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; gap: .7em; align-content: start; padding: .2em; }
+.wj-card { background: #fff; border: 2px solid var(--line); border-radius: .7em; padding: .6em .9em; display: flex; flex-direction: column; gap: .4em; box-shadow: 0 .15em .5em rgba(0, 0, 0, .05); }
+.wj-card[data-mine] { border-color: #e2b65c; background: #fffaf0; }
+.wj-card.wrong { animation: nope .35s; border-color: #e3a998; }
+.wj-card.solved { border-color: var(--gold); }
+.wj-q { margin: 0; font-family: var(--kai); font-size: 1.2em; line-height: 1.5; }
+.wj-q::before { content: "？"; color: #9b6bb5; font-weight: bold; margin-right: .2em; }
+.wj-row { display: flex; flex-wrap: wrap; gap: .35em; align-items: center; font-size: .9em; }
+.wj-row > span { color: var(--ink-2); margin-right: .2em; }
+.wj-b { font: inherit; padding: .2em .7em; border-radius: 1em; border: 1px solid var(--red); background: #fff; color: var(--red); cursor: pointer; }
+.wj-b.solid { background: var(--red); color: #fff; }
+.wj-how { display: none; }
+.wj-card.kinded .wj-how { display: flex; }
+.wj-card.kinded .wj-kind .wj-b:not(.solid) { opacity: .35; }
+.wj-card.solved .wj-how .wj-b:not(.solid) { opacity: .35; }
+.wj-how .wj-b { border-color: #3f8f6e; color: #2c6e52; }
+.wj-how .wj-b.solid { background: #3f8f6e; color: #fff; }
+.wj-a { display: none; margin: 0; font-family: var(--kai); font-size: 1.05em; line-height: 1.6; background: #fff8e1; border-left: .25em solid var(--gold); border-radius: .3em; padding: .35em .7em; }
+.wj-card.solved .wj-a { display: block; animation: subIn .5s ease both; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .wj-add { flex-wrap: wrap; }
+  .wj-add input { min-width: 0; }
+  .wj-cards { grid-template-columns: 1fr; overflow: visible; }
+  .wj-q { font-size: 1.05em; }
+}

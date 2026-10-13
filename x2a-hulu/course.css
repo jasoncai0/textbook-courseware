@@ -1,0 +1,118 @@
+/* 我要的是葫芦 · 本课配色：葫芦藤的绿、葫芦的黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #4f8a2b;
+  --red-d: #2f5a17;
+  --gold: #e0a83a;
+  --gold-l: #f6dfa2;
+  --paper: #f5f7ec;
+  --stone: #fffef8;
+  --ink-2: #5c614a;
+  --line: #d6dcc0;
+}
+
+.py ruby { margin: 0 .05em; }
+.hl-ask { margin: .3em 0 .6em; font-size: 1.8em; color: #fff3c8; }
+.s-cover .hl-ask rt { color: var(--gold-l); }
+
+/* ---------- 四格连环画 ---------- */
+.hl-comic { min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+.hl-panel { position: relative; margin: 0; min-height: 0; display: flex; flex-direction: column; background: #fff; border: .22em solid #2b2a24; border-radius: .3em; box-shadow: .35em .35em 0 rgba(43, 42, 36, .25); overflow: hidden; }
+.hl-panel > i { position: absolute; left: .4em; top: .4em; z-index: 1; width: 1.7em; height: 1.7em; border-radius: 50%; background: var(--gold); color: #fff; font: bold 1.2em/1.7em var(--py); font-style: normal; text-align: center; border: 2px solid #fff; }
+.hl-pic { flex: 1; min-height: 6em; background: #e7efd9 center / cover no-repeat; border-bottom: .22em solid #2b2a24; }
+.hl-panel figcaption { flex: none; padding: 0 .7em .1em; font-size: 1.3em; line-height: 2.15; text-indent: 2em; }
+
+/* ---------- 葫芦藤 ---------- */
+.hl-vine { min-height: 0; flex: 1; display: flex; justify-content: center; }
+.hl-vine svg { height: 100%; max-width: 100%; }
+.hl-leaf { fill: #5fae3e; stroke: #3f7a24; stroke-width: 2; transition: fill 1.4s; }
+.hl-vine.yellow .hl-leaf { fill: #c9b14a; }
+.hl-vine.cured .hl-leaf { fill: #4fb83a; }
+.hl-aph circle { fill: #a6d860; stroke: #557a20; stroke-width: 1; opacity: 0; transition: opacity .8s; }
+.hl-vine.aph1 .hl-aph .a1, .hl-vine.aph2 .hl-aph .a2 { opacity: 1; }
+.hl-vine.cured .hl-aph circle { opacity: 0; }
+.hl-gbody { fill: #8cc152; transition: fill 1.4s, transform 1.4s; transform-box: fill-box; transform-origin: 50% 0; }
+.hl-vine.gyellow .hl-gbody { fill: #e3c45a; }
+.hl-vine.big .hl-gbody { transform: scale(1.45); fill: #7fb846; }
+.hl-gourd { transition: transform 1.2s cubic-bezier(.5, 0, .9, .5) var(--d), opacity 1s var(--d); transform-box: view-box; }
+.hl-vine.fall .hl-gourd { transform: translateY(58px) rotate(4deg); }
+.hl-vine.fall .hl-gourd line { opacity: 0; }
+
+.hl-chain { display: flex; align-items: center; justify-content: center; gap: .3em .5em; flex-wrap: wrap; }
+.hl-chain p { margin: 0; font-size: 1.45em; background: #fff; border-radius: .5em; padding: 0 .6em; box-shadow: 0 .15em .5em rgba(40, 60, 20, .12); }
+.hl-chain b { font-size: 1.8em; color: var(--gold); }
+
+/* ---------- 如果分支 ---------- */
+.hl-branch { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.4em; align-items: center; }
+.hl-branch .hl-vine { height: 100%; }
+.hl-choose { display: flex; flex-direction: column; gap: .7em; }
+.hl-q { margin: 0; font-size: 1.6em; color: var(--red-d); }
+.hl-choose .btn { font-size: 1.3em; text-align: left; padding: 0 .9em; }
+.hl-choose .btn .py { line-height: 2.2; }
+.hl-yes { border-color: #3f9a4b; color: #2e7a38; }
+.hl-yes.solid { background: #3f9a4b; color: #fff; }
+.hl-no { border-color: #c27b2c; color: #9a5a16; }
+.hl-no.solid { background: #c27b2c; color: #fff; }
+.hl-choose .btn.solid rt { color: #fff3c8; }
+.hl-result { margin: 0; min-height: 4.4em; font-size: 1.4em; line-height: 2.2; color: var(--red-d); }
+.hl-reset { align-self: flex-start; font-size: 1em !important; }
+
+/* ---------- 语气 ---------- */
+.hl-tones { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+.hl-pair { background: #fff; border-radius: .8em; padding: .3em 1.2em .7em; box-shadow: 0 .2em .7em rgba(40, 60, 20, .1); }
+.hl-pair .py { margin: 0; font-size: 1.9em; }
+.hl-pair .py.strong { color: var(--red-d); }
+.hl-meter { font-size: 1.15em; color: var(--ink-2); display: flex; flex-wrap: wrap; align-items: center; gap: .2em; }
+.hl-meter i { display: inline-block; width: 6em; height: .8em; border-radius: 1em; background: linear-gradient(90deg, #f6dfa2, #e07b3a) no-repeat 0 0 / 0 100%, #eee; transition: background-size 1.2s .3s; vertical-align: middle; }
+.hl-meter.on i { background-size: 100% 100%, auto; }
+.hl-tones + .tip { font-size: 1.3em; }
+
+/* ---------- 说一说 ---------- */
+.hl-talk { position: absolute; left: 4%; right: 4%; bottom: 4.4em; z-index: 2; background: rgba(255, 253, 245, .93); border-radius: 1em; padding: .3em 1.4em .8em; box-shadow: 0 .3em 1.2em rgba(0, 0, 0, .3); }
+.hl-talk > .py { margin: 0; font-size: 1.6em; color: var(--red-d); }
+.hl-frame { margin: .3em 0 0; font-family: var(--kai); font-size: 1.45em; line-height: 1.7; }
+
+/* ---------- 识字游戏：捉蚜虫 ---------- */
+.hl-bugs { --g: .4; flex: 1; min-height: 0; display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.6em; align-items: center; }
+.hl-leaves { display: flex; flex-wrap: wrap; gap: .8em 1em; justify-content: center; }
+.hl-bleaf { font: inherit; width: 5.2em; height: 5.2em; border: none; border-radius: 0 75% 0 75%; background: #b8c66a; transform: rotate(var(--r)); cursor: pointer; display: grid; place-items: center; box-shadow: inset 0 0 0 .2em rgba(60, 90, 30, .3); transition: background .6s; }
+.hl-bug { display: inline-block; font-family: var(--kai); font-size: 2em; line-height: 1.2; padding: .25em .3em 0; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #e4f7b0, #a6d860); color: #2b3a12; transform: rotate(calc(var(--r) * -1)); box-shadow: 0 0 0 .08em #557a20; }
+.hl-bug rt { font-family: var(--py); font-size: .4em; color: transparent; }
+.hl-bleaf.clean { background: #4fb83a; pointer-events: none; }
+.hl-bleaf.clean .hl-bug { background: rgba(255, 255, 255, .9); box-shadow: none; }
+.hl-bleaf.clean rt { color: var(--py-c); }
+.hl-grow { display: flex; flex-direction: column; align-items: center; gap: .5em; }
+.hl-grow svg { width: 9em; overflow: visible; }
+.hl-ggrow { transform: scale(var(--g)); transform-origin: 60px 30px; transition: transform .6s cubic-bezier(.3, 1.5, .5, 1); }
+.hl-grow p { margin: 0; font-size: 1.4em; font-weight: bold; color: var(--red); min-height: 1.5em; text-align: center; }
+
+/* 写字 8 个：三列 */
+.x2-write { grid-template-columns: repeat(3, 1fr); gap: .5em 1.2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.4em; }
+.x2-write .hz-wpy { font-size: 1.25em; }
+
+/* 回顾 */
+.hl-sum { display: flex; align-items: center; justify-content: center; gap: .6em; }
+.hl-sum .py { font-size: 2.4em; }
+.hl-sum > b { font-size: 2em; color: var(--gold-l); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .hl-ask { font-size: 1.2em; }
+  .hl-comic { display: flex; flex-direction: column; }
+  .hl-pic { min-height: 12em; }
+  .hl-panel figcaption { font-size: 1.05em; }
+  .hl-vine { flex: none; }
+  .hl-vine svg { height: auto; width: 100%; }
+  .hl-chain p { font-size: 1.1em; }
+  .hl-branch { display: flex; flex-direction: column; }
+  .hl-choose .btn, .hl-q, .hl-result { font-size: 1.05em; }
+  .hl-tones { grid-template-columns: 1fr; }
+  .hl-pair .py { font-size: 1.3em; }
+  .hl-talk > .py { font-size: 1.1em; }
+  .hl-frame { font-size: 1.05em; }
+  .hl-bugs { display: flex; flex-direction: column; }
+  .hl-bleaf { width: 4.2em; height: 4.2em; }
+  .hl-bug { font-size: 1.5em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .hl-sum .py { font-size: 1.5em; }
+}

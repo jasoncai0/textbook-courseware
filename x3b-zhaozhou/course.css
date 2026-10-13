@@ -1,0 +1,79 @@
+/* 赵州桥（三下 11）· 本课配色：石灰白、青石、河水蓝。说明类课件：信息图为主 */
+:root {
+  --red: #3f6e8c;
+  --red-d: #24445a;
+  --gold: #c9a24a;
+  --gold-l: #f1e2b3;
+  --paper: #f1f3ef;
+  --stone: #fbfcfa;
+  --ink-2: #4f5a5e;
+  --line: #ccd5d3;
+}
+/* 中年级：字再大一点 */
+.quote { font-size: 1.25em; line-height: 1.95; }
+.tip { font-size: 1.02em; }
+.hd h2 { font-size: 1.85em; }
+.s-cover .cover-title { font-size: 8em; letter-spacing: .1em; }
+.lead { color: var(--red-d); }
+.quote em { font-style: normal; color: #b0452c; font-weight: bold; }
+
+/* 第 1 段 */
+.panel { position: relative; }
+.info-img { flex: 1; min-height: 6em; border-radius: .6em; background: center / cover no-repeat #dfe6e3; }
+.s-info .clue, .s-info .clue-in { min-height: 6.5em; }
+.s-info .clue-face { font-size: 1.15em; }
+
+/* 桥的示意图 */
+.bridge-box { flex: 1; min-height: 0; display: flex; }
+.bridge { width: 100%; height: 100%; border-radius: .6em; }
+.bridge .waterg { transition: transform 1.6s ease; }
+.bridge.calm .waterg { transform: translateY(292px); }
+.bridge.flood .waterg, .bridge.solid .waterg { transform: translateY(206px); }
+.bridge .waves { animation: wavy 1.4s ease-in-out infinite alternate; }
+@keyframes wavy { to { transform: translate(14px, 4px); } }
+.bridge .ghost[data-step] { transition-delay: .2s; }
+.bridge .no-holes, .bridge .splash, .bridge .say-flood { display: none; }
+.bridge.solid .no-holes, .bridge.solid .splash { display: inline; }
+.bridge.solid .with-holes, .bridge.solid .rings, .bridge.solid .say-calm { display: none; }
+.bridge.flood .say-flood { display: inline; }
+.bridge.flood .say-calm { display: none; }
+.bridge.solid .no-holes { animation: camShake .14s linear infinite; }
+.bridge .rings.on path { animation: pulse 1.4s ease-in-out infinite; }
+.flood-btns { justify-content: center; }
+.flood-btns .btn { font-size: 1.05em; }
+.good2 { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+
+/* 第 3 段 */
+.dragon-img { flex: 1; min-height: 6em; border-radius: .6em; background: center / cover no-repeat #e2e0d8; }
+.dragons { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5em; }
+.dg { background: #fff; border-radius: .5em; padding: .5em .7em; border-top: .3em solid var(--gold); font-family: var(--kai); font-size: 1.1em; text-align: center; }
+.dg b { display: block; color: var(--red-d); font-family: var(--serif); }
+
+/* 排一排 */
+.order { display: flex; flex-direction: column; gap: .5em; }
+.ord { display: flex; align-items: center; gap: .7em; font: inherit; font-family: var(--kai); font-size: 1.2em; line-height: 1.6; text-align: left; padding: .45em .9em; border-radius: .5em; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+.ord i { flex: none; width: 1.8em; height: 1.8em; border-radius: 50%; border: 2px dashed var(--line); font-style: normal; font-family: var(--serif); display: flex; align-items: center; justify-content: center; color: #fff; }
+.ord.done { background: #eef5f8; border-color: #9fbfd1; }
+.ord.done i { background: var(--red); border: none; }
+.ord.nope { animation: nope .35s; }
+.ord-done { display: none; margin: 0; color: #1f6b4f; font-weight: bold; }
+.order.all .ord-done { display: block; }
+.ladder { display: flex; flex-wrap: wrap; align-items: center; gap: .4em; font-size: 1.1em; }
+.ladder i { font-style: normal; color: var(--red); font-weight: bold; }
+.lad { background: #fff; border: 1px solid var(--line); border-radius: .4em; padding: .2em .7em; font-family: var(--kai); }
+.lad.top { background: var(--red); color: #fff; border-color: var(--red); font-weight: bold; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .quote { font-size: 1.1em; }
+  .s-cover .cover-title { font-size: 4em; }
+  .info-img, .dragon-img { min-height: 11em; }
+  .bridge-box { flex: none; }
+  .bridge { height: auto; }
+  svg.bridge .t-m { font-size: 24px; }
+  svg.bridge .t-s { font-size: 18px; }
+  .good2, .dragons { grid-template-columns: 1fr; }
+  .ord { font-size: 1.05em; }
+}
+.s-info .media-btn { position: static; align-self: flex-end; }
+@media (min-width: 821px) and (min-height: 521px) { .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(4.5em, 1fr)); } }
+@media (min-width: 821px) and (min-height: 521px) { .s-ziyin .zy-grid:not(.zy-grid-write) { grid-template-columns: repeat(auto-fill, minmax(7.4em, 1fr)); } }

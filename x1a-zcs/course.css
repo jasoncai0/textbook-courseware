@@ -1,0 +1,69 @@
+/* z c s · 本课配色：森林的绿、教室的木色。拼音样式见 ../shared/hanyu.css；下面「拼音课通用」一段与其他拼音课相同 */
+:root {
+  --red: #c8573a;
+  --red-d: #8f3920;
+  --gold: #e3a23a;
+  --gold-l: #f9e1b0;
+  --paper: #f5f6ef;
+  --stone: #fdfdf9;
+  --ink-2: #5f6352;
+  --line: #dcdfcb;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #ffffff 0, transparent 40%), radial-gradient(circle at 90% 95%, #e7ecd5 0, transparent 45%); }
+
+/* ---------- 拼音课通用：规则演示行（x + y → 音节）、四声行 ---------- */
+.py-rule { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .7em; }
+.py-row { display: flex; align-items: center; gap: .7em; background: #fff; border-radius: .8em; padding: .2em 1.2em; box-shadow: 0 .2em .7em rgba(80, 50, 20, .1); }
+.py-row .hy-strip { height: 5.4em; }
+.py-row > b { font-size: 2em; color: var(--ink-2); }
+.py-row > em { font-style: normal; font-family: var(--kai); font-size: 1.45em; color: var(--red-d); margin-left: .4em; }
+.py-row .res { background: #fff8e1; border-radius: .6em; padding: 0 .3em; }
+.py-rule .tip { max-width: 40em; text-align: center; }
+.py-rule > .py-row { width: min(100%, 46em); }
+/* ü 去两点：第 n 步出现后，结果里 ü 的两点飘走（ü 的点在 cy=31，i / j 的点在 cy=27，不受影响） */
+.slide.active .on .dotfly circle[cy="31"] { animation: dotFly .9s 1s ease-in both; }
+@keyframes dotFly { to { opacity: 0; transform: translateY(-14px); } }
+/* 四声 / 音节一行一行出现 */
+.py-lines { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6em; }
+.py-lines .py-row .hy-strip { height: 5em; }
+.py-row .lbl { font-family: var(--kai); font-size: 1.5em; color: var(--red-d); min-width: 2.6em; }
+
+/* 拼读列表：按钮里是四线三格音节（和课本音节表一样），选中时白字 */
+.hy-spell-list .btn { padding: .05em .35em; }
+.hy-spell-list .hy-strip { height: 3em; }
+.hy-spell-list .btn.solid .hy-ink { stroke: #fff; }
+.hy-spell-list .btn.solid .hy-ink circle { fill: #fff; }
+.hy-spell-list .btn.solid .hy-ink .hy-tone { stroke: var(--gold-l); }
+.hy-spell-list .btn.solid .hy-line { stroke: rgba(255, 255, 255, .5); }
+/* 儿歌页：左图右文 */
+.song { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1.2em; align-items: center; }
+.song .hz-picwrap { height: 100%; }
+.song .hz-text { font-size: 1.4em; max-height: 100%; padding: .2em 1em .4em; }
+.song .hz-text .py { line-height: 2.15; }
+.song .hz-text.long { font-size: 1.25em; }
+.song .hz-text p { text-indent: 0; text-align: center; }
+.song .hz-text h3 { font-size: 1.15em; letter-spacing: .35em; text-indent: .35em; }
+.song .src { margin: .2em 0 0; font-size: .55em; color: var(--ink-2); text-align: right; text-indent: 0; }
+/* 练习形式：拍手读（一拍亮一字）/ 找一找（孩子圈的字、答案）/ 开火车按钮 */
+.song .hz-text .py-act { display: block; margin: .3em auto 0; font-size: .6em; }
+.hy-spell-go .py-act { font-size: 1.2em; }
+.hz-text ruby { border-radius: .2em; transition: background .2s; }
+.hz-text ruby.beat { background: var(--gold-l); color: var(--red-d); }
+.hz-text ruby.picked { background: #dcefff; }
+.hz-text ruby.found { color: var(--red); box-shadow: inset 0 -.12em 0 var(--red); }
+/* 封面标题书写快一点（字母多的课一笔一笔写太久） */
+.s-cover .hy-draw .hy-ink :is(path, circle) { animation-delay: calc(var(--d) * .2s); }
+/* 回顾板书：字母小一点，放得下三行 */
+.s-sum .hy-board-row .hy-strip { height: 3.6em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .song { display: flex; flex-direction: column; align-items: stretch; flex: none; }
+  .song .hz-picwrap { height: auto; flex: none; }
+  .song .hz-text, .song .hz-text.long { font-size: 1.2em; max-height: none; overflow: visible; }
+  .s-sum .hy-board-row { font-size: 1.1em; }
+  .s-sum .hy-board-row .hy-strip { height: 3em; }
+  .py-row { gap: .3em; padding: .1em .6em; flex-wrap: wrap; justify-content: center; }
+  .py-row .hy-strip, .py-lines .py-row .hy-strip { height: 3.4em; }
+  .py-row > b { font-size: 1.4em; }
+  .py-row > em { font-size: 1.1em; }
+}

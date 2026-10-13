@@ -1,0 +1,118 @@
+/* 静夜思 · 本课配色：夜空的蓝、月光的银白和暖黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #34508a;
+  --red-d: #1f3463;
+  --gold: #e3b54a;
+  --gold-l: #fbe7ae;
+  --paper: #f1f3f9;
+  --stone: #fdfdff;
+  --ink-2: #56607a;
+  --line: #d3d9ea;
+}
+
+.jy-ask { margin: .6em 0 0; font-size: 1.5em; color: #fff7dc; }
+.s-cover .jy-ask rt { color: var(--gold-l); }
+
+/* ---------- 竖排注音诗板：一列一句，从右往左；拼音横写在字上方 ---------- */
+.jy-shade { background: linear-gradient(270deg, rgba(10, 16, 40, .5), transparent 55%); }
+.jy-board { position: absolute; z-index: 2; right: 5%; top: 4.4em; bottom: 5.4em; display: flex; flex-direction: row-reverse; gap: .5em; padding: .6em 1em; background: rgba(250, 248, 240, .9); border-radius: .5em; box-shadow: 0 .3em 1.4em rgba(0, 0, 0, .3); font-family: var(--kai); color: #2b2420; }
+.jy-col { display: flex; flex-direction: column; align-items: center; }
+.jy-c { display: flex; flex-direction: column; align-items: center; font-size: 2.5em; line-height: 1.05; }
+.jy-c i { font-style: normal; font-family: var(--py); font-size: .36em; line-height: 1.5; color: var(--py-c); white-space: nowrap; }
+.jy-p { font-size: 2em; line-height: .9; height: .9em; color: #6b5d4f; }
+.jy-title .jy-c { font-size: 2.1em; color: var(--red-d); font-weight: bold; }
+.jy-author { justify-content: flex-start; padding-top: 1em; }
+.jy-author .jy-c { font-size: 1.3em; color: #6b5d4f; }
+.jy-author .jy-p { font-size: 1.1em; height: auto; line-height: 1.2; writing-mode: vertical-rl; }
+.jy-line { margin-left: .2em; }
+.jy-line[data-step] { transition: opacity .6s; }
+.jy-line[data-step]:not(.on) { opacity: .12; }
+.jy-pz { display: none; font-style: normal; font-family: var(--serif); font-weight: bold; color: #b0471f; font-size: 1.6em; line-height: .6; transform: rotate(90deg); }
+.rhythm .jy-pz { display: block; }
+.jy-rhythm { position: absolute; z-index: 3; right: 5%; bottom: 4em; background: #fff; }
+.jy-rhythm.on { background: var(--red); color: #fff; }
+.jy-c.hz-blank { background: none; box-shadow: none; }
+.jy-c.hz-blank:not(.on) { color: transparent; background: #fff3d0; border-radius: .15em; }
+.jy-c.hz-blank:not(.on) i { color: transparent; }
+
+/* 背诵页：诗板居中 */
+.jy-recite-wrap { align-items: center; justify-content: center; }
+.jy-board.jy-recite { position: relative; inset: auto; height: 100%; max-height: 100%; }
+
+/* ---------- 动作演示 ---------- */
+.jy-act { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.45fr 1fr; gap: 1.4em; align-items: center; }
+.jy-room { width: 100%; max-height: 100%; }
+.jy-head { transform-origin: 136px 140px; transition: transform .9s cubic-bezier(.4, 1.4, .5, 1); }
+.jy-room.up .jy-head { transform: rotate(-24deg); }
+.jy-room.down .jy-head { transform: rotate(26deg); }
+.jy-room.look .jy-head { transform: rotate(14deg); }
+.jy-moon { transition: opacity .8s; opacity: .55; }
+.jy-room.up .jy-moon { opacity: 1; animation: jyGlow 1.6s ease-in-out infinite alternate; }
+@keyframes jyGlow { to { filter: brightness(1.25); } }
+.jy-beam, .jy-floor { transition: opacity .8s; opacity: .25; }
+.jy-room.look .jy-beam, .jy-room.look .jy-floor { opacity: 1; }
+.jy-frost circle { fill: #fff; opacity: 0; }
+.jy-room.look .jy-frost circle { animation: jyTwinkle 1.2s ease-in-out infinite alternate; }
+.jy-frost circle:nth-child(2n) { animation-delay: .5s !important; }
+@keyframes jyTwinkle { from { opacity: .1; } to { opacity: 1; } }
+.jy-home { opacity: 0; transform: scale(.6); transform-origin: 200px 90px; transition: opacity .8s, transform .8s; }
+.jy-room.down .jy-home { opacity: 1; transform: none; }
+.jy-side { display: flex; flex-direction: column; gap: .9em; align-items: stretch; }
+.jy-acts { display: flex; flex-direction: column; gap: .5em; }
+.jy-do { font-size: 1.5em; font-family: var(--kai); }
+.jy-do.on { background: var(--red); color: #fff; border-color: var(--red); }
+.jy-say { min-height: 5.2em; font-size: 2.1em; color: var(--red-d); text-align: center; line-height: 2.2; }
+.jy-say p { margin: 0; animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+.jy-hint { margin: 0; font-size: 1.15em; color: var(--ink-2); min-height: 2.6em; }
+
+/* 想一想：说明句小一号 */
+.subs .jy-small.py { font-size: 1.45em; }
+
+/* ---------- 点亮星星 ---------- */
+.jy-sky { flex: 1; min-height: 0; display: grid; grid-template-columns: 2.4fr 1fr; gap: 1.2em; }
+.jy-stars { position: relative; border-radius: 1em; background: radial-gradient(circle at 85% 18%, #3d4f86 0, #1b2650 45%, #121a3a 100%); overflow: hidden; }
+.jy-star { font: inherit; position: absolute; width: 6.4em; height: 6.4em; margin: -1.6em 0 0 -1.6em; border: none; padding: 0; cursor: pointer; background: none; transition: transform .5s; animation: jyBlink 2.8s ease-in-out infinite alternate; }
+.jy-star::before { content: ""; position: absolute; inset: 0; background: #6b7598; clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); transition: background .5s; }
+.jy-star span { position: absolute; left: 0; right: 0; top: 30%; text-align: center; font-family: var(--kai); font-size: 2em; color: #e8ecff; line-height: 1.1; }
+.jy-star rt { font-family: var(--py); font-size: .4em; color: transparent; }
+.jy-star.lit { transform: scale(1.12); animation: none; }
+.jy-star.lit::before { background: #ffd65a; }
+.jy-star.lit span { color: #6b3d00; }
+.jy-star.lit rt { color: #7a4b00; }
+@keyframes jyBlink { to { filter: brightness(1.35); } }
+.jy-skymoon { position: absolute; right: 4%; top: 6%; width: 4em; height: 4em; border-radius: 50%; background: #e9e4c8; opacity: .45; transition: opacity .8s, box-shadow .8s; }
+.jy-stars.all .jy-skymoon { opacity: 1; box-shadow: 0 0 2.5em 1em rgba(255, 240, 180, .55); }
+.jy-skymoon i { position: absolute; left: 30%; right: 30%; top: 58%; height: 18%; border-bottom: .2em solid #8a6a2a; border-radius: 0 0 50% 50%; opacity: 0; transition: opacity .8s; }
+.jy-stars.all .jy-skymoon i { opacity: 1; }
+.jy-skyside { align-self: center; display: flex; flex-direction: column; gap: .8em; align-items: flex-start; }
+.jy-lit { margin: 0; font-size: 1.4em; }
+.jy-lit b { color: var(--red); font-size: 1.5em; font-family: var(--py); }
+.jy-done { margin: 0; font-size: 1.3em; color: #b07a00; font-weight: bold; opacity: 0; transition: opacity .6s; }
+.jy-done.show { opacity: 1; }
+
+/* 写字 7 个：格子小一点 */
+.jy-write .hz-cells .hz-tzg { --tz: 3.8em; }
+.jy-write { gap: .6em 1.6em; }
+
+/* 回顾 */
+.jy-sum .py { font-size: 2em; line-height: 1.9; }
+.jy-sum .jy-arrow { font-size: 1.3em; line-height: 1; color: var(--gold-l); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .jy-board { right: .6em; left: .6em; top: 3.4em; bottom: 7em; justify-content: center; padding: .4em .5em; gap: .25em; }
+  .jy-c { font-size: 1.75em; }
+  .jy-title .jy-c { font-size: 1.5em; }
+  .jy-author .jy-c { font-size: 1em; }
+  .jy-rhythm { bottom: 5.4em; }
+  .jy-board.jy-recite { height: auto; }
+  .jy-act { display: flex; flex-direction: column; align-items: stretch; }
+  .jy-acts { flex-direction: row; }
+  .jy-do { font-size: 1.1em; flex: 1; padding: .4em .2em; }
+  .jy-say { font-size: 1.5em; min-height: 4.6em; }
+  .jy-sky { display: flex; flex-direction: column; }
+  .jy-stars { height: 24em; flex: none; }
+  .jy-star { width: 5em; height: 5em; margin: -1.2em 0 0 -1.2em; }
+  .jy-star span { font-size: 1.5em; }
+  .jy-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .subs .jy-small.py { font-size: 1.05em; }
+}

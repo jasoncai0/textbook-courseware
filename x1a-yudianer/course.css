@@ -1,0 +1,90 @@
+/* 雨点儿 · 本课配色：雨水的蓝。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3a86c0;
+  --red-d: #1f5a87;
+  --gold: #e9a426;
+  --gold-l: #fbe0a0;
+  --paper: #f1f6fb;
+  --stone: #fdfeff;
+  --ink-2: #4f6276;
+  --line: #cfe0ee;
+}
+
+/* 雨点儿落到哪里 */
+.yd-game { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.4em; align-items: center; }
+#rainy { width: 100%; max-height: 100%; }
+#rainy .yd-place { font-family: var(--kai); font-size: 18px; fill: #4a3b22; text-anchor: middle; }
+.yd-drop { cursor: pointer; }
+.yd-fall { transition: transform 1.4s cubic-bezier(.5, 0, .9, .6), opacity .4s 1.3s; animation: ydBob 1.6s ease-in-out infinite alternate; }
+@keyframes ydBob { to { translate: 0 -6px; } }
+#rainy.fell-small .yd-small .yd-fall { transform: translate(-90px, 150px); opacity: 0; animation: none; }
+#rainy.fell-big .yd-big .yd-fall { transform: translate(70px, 140px); opacity: 0; animation: none; }
+.yd-grass { fill: #b9d99a; transition: fill 1s 1.3s; }
+.yd-flower circle:not([fill]) { fill: #f4c9c9; transition: fill 1s 1.3s; }
+#rainy.fell-small .yd-old .yd-grass { fill: #3f9a3f; }
+#rainy.fell-small .yd-old .yd-flower circle:not([fill]) { fill: #e5322b; }
+.yd-new > * { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0); transition: transform 1.2s 1.3s cubic-bezier(.3, 1.4, .5, 1); }
+.yd-new .yd-grass { fill: #3f9a3f; }
+.yd-new .yd-flower circle:not([fill]) { fill: #e5322b; }
+#rainy.fell-big .yd-new > * { transform: none; }
+.yd-side { display: flex; flex-direction: column; gap: .8em; align-items: flex-start; }
+.yd-say { margin: 0; min-height: 4.6em; font-size: 1.9em; color: var(--red-d); }
+
+/* 分角色朗读 */
+.yd-roles .btn { font-family: var(--kai); font-size: 1.3em; }
+.yd-roletext { font-size: 1.45em; }
+.yd-roletext p { line-height: 2.2; }
+.yd-roletext span { border-radius: .2em; transition: opacity .4s, background .4s; }
+.yd-roletext[data-role="pang"] span:not(.r-pang), .yd-roletext[data-role="da"] span:not(.r-da), .yd-roletext[data-role="xiao"] span:not(.r-xiao) { opacity: .3; }
+.yd-roletext[data-role="pang"] .r-pang { background: #fdf3d6; }
+.yd-roletext[data-role="da"] .r-da { background: #dcecfa; color: var(--red-d); }
+.yd-roletext[data-role="xiao"] .r-xiao { background: #e5f5e0; color: #2f6b22; }
+
+/* 读好停顿 */
+.yd-pause { font-size: 1.75em; padding: .4em 1.2em; }
+.yd-pause p { line-height: 2.3; }
+.yd-pz { font-style: normal; font-family: var(--serif); font-weight: bold; color: #c9442f; margin: 0 .1em; }
+.yd-pz.short { color: var(--red); }
+
+/* 浇一浇，开出花来 */
+.yd-garden { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: .4em 1em; align-content: center; background: linear-gradient(transparent 46%, #c9a46a 46% 50%, transparent 50%, transparent 96%, #c9a46a 96%); padding: 0 1em; }
+.yd-bud { font: inherit; position: relative; height: 8em; border: none; background: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.yd-stem { width: .3em; height: 2.4em; background: #4f9a3a; border-radius: .2em; }
+.yd-head { display: grid; place-items: center; width: 3.3em; height: 3.3em; border-radius: 50% 50% 45% 45%; background: radial-gradient(circle at 40% 35%, #c7e8a8, #6fae4f 70%); font-family: var(--kai); font-size: 1.5em; color: #24481a; line-height: 1.5; transition: background .6s, transform .6s cubic-bezier(.3, 1.6, .5, 1), border-radius .6s; }
+.yd-head rt { font-family: var(--py); font-size: .42em; color: transparent; transition: color .6s; }
+.yd-bud.bloom .yd-head { background: radial-gradient(circle, #fff6cf 0 50%, #e8322a 52% 78%, #f26b6b 80%); border-radius: 50%; color: #8a1a12; transform: scale(1.18); }
+.yd-bud.bloom .yd-head rt { color: #b0471f; }
+.yd-drip { position: absolute; top: -1em; width: .7em; height: 1em; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: #6ab8e6; opacity: 0; }
+.yd-bud.bloom .yd-drip { animation: ydDrip .6s ease-in; }
+@keyframes ydDrip { from { opacity: 1; transform: translateY(-1em); } to { opacity: 0; transform: translateY(3em); } }
+.yd-bloomn { margin: 0; font-size: 1.2em; }
+.yd-bloomn b { color: #e8322a; font-size: 1.5em; }
+
+/* 连环画 */
+.yd-comic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; align-content: center; }
+.yd-panel { margin: 0; background: #fff; border: 3px solid #2b3a4a; border-radius: .4em; padding: .4em; box-shadow: .3em .3em 0 rgba(43, 58, 74, .25); display: flex; flex-direction: column; gap: .3em; }
+.yd-frame { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: .2em; background: #dceefa; }
+.yd-pimg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: center / cover no-repeat; }
+.yd-no { position: absolute; left: .3em; top: .2em; font-style: normal; font-size: 1.4em; color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
+.yd-bub { position: absolute; z-index: 2; left: 3%; right: 3%; top: 5%; margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 2; text-align: center; background: rgba(255, 255, 255, .94); border: 3px solid var(--red); border-radius: 1em; padding: 0 .3em; }
+.yd-bub.small { border-color: #4f9a3a; top: auto; bottom: 8%; }
+.yd-bub[data-step]:not(.on) { transform: scale(.5); }
+.yd-panel figcaption { font-family: var(--kai); font-size: 1.35em; line-height: 2.1; }
+
+/* 写字：5 个字，格子小一点 */
+.yd-write .hz-cells .hz-tzg { --tz: 4.6em; }
+.yd-board .py { font-size: 1.9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .yd-game { display: flex; flex-direction: column; align-items: stretch; }
+  .yd-say { font-size: 1.4em; min-height: 0; }
+  .yd-roletext { font-size: 1.2em; }
+  .yd-pause { font-size: 1.3em; padding: .3em .6em; }
+  .yd-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .yd-comic { grid-template-columns: 1fr; }
+  .yd-bub { font-size: 1.05em; }
+  .yd-panel figcaption { font-size: 1.15em; }
+  .yd-garden { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .4em .3em; padding: 0; background: none; }
+  .yd-head { font-size: 1.1em; }
+  .yd-board .py { font-size: 1.3em; }
+}

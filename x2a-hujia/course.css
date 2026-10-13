@@ -1,0 +1,178 @@
+/* 狐假虎威 · 本课配色：森林的绿、狐狸的橙。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d06a1e;
+  --red-d: #8a4210;
+  --gold: #e3a52c;
+  --gold-l: #fbe3a6;
+  --paper: #f5f7ef;
+  --stone: #fdfef9;
+  --ink-2: #56614a;
+  --line: #d8e0c8;
+}
+
+.s-cover .cover-title { font-size: 6.4em; letter-spacing: .1em; }
+.hj-ask { margin: .2em 0 .8em; font-family: var(--kai); font-size: 1.6em; line-height: 1.6; }
+
+/* ---------- 舞台 ---------- */
+.hj-play { flex: 1; gap: .4em; }
+.hj-stage { position: relative; flex: 1 1 0; min-height: 0; aspect-ratio: 2.5; align-self: center; max-width: 100%; border-radius: .8em; overflow: hidden; box-shadow: 0 .3em 1.2em rgba(40, 60, 20, .25); }
+.hj-stage > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hj-in { transition: transform 1.2s ease, opacity .8s; }
+.hj-act .fx-head, .hj-act .tg-head { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .8s; }
+.hj-act .fx-arm { transform-box: fill-box; transform-origin: 0 50%; transition: transform .8s; }
+.hj-act .fx-tail { transform-box: fill-box; transform-origin: 100% 80%; }
+.hj-act .tg-paw { transition: transform .6s cubic-bezier(.3, 1.4, .5, 1); }
+.hj-act .tg-q, .hj-act .tg-dizzy { opacity: 0; transition: opacity .5s; }
+.hj-act .tg-q { font: bold 64px var(--py); fill: #c0392b; }
+/* 第一幕：登场 */
+.hj-stage[data-scene="1"] .hj-tiger .hj-in { opacity: 0; transform: translateX(-320px); }
+.hj-stage[data-scene="1"] .hj-fox .hj-in { opacity: 0; transform: translateX(-700px); }
+.hj-stage.s-tiger .hj-tiger .hj-in, .hj-stage.s-fox .hj-fox .hj-in { opacity: 1; transform: none; }
+.hj-stage.s-caught .hj-tiger .hj-in { transform: translateX(-120px); }
+.hj-act .tg-reach { opacity: 0; transition: opacity .4s; }
+.hj-stage.s-caught .tg-reach { opacity: 1; }
+.hj-stage.s-caught .tg-paw { opacity: 0; }
+.hj-stage.s-release .hj-tiger .hj-in { transform: translateX(-60px); }
+.hj-act.s-roll .fx-pupil { animation: hjRoll .8s linear 2; }
+@keyframes hjRoll { 25% { transform: translate(4px, -4px); } 50% { transform: translate(0, -7px); } 75% { transform: translate(-4px, -3px); } }
+.hj-act.s-proud .fx-head { transform: rotate(-12deg); }
+.hj-act.s-up .fx-arm { transform: rotate(-80deg); }
+.hj-act.s-leng .tg-q, .hj-act.s-dizzy .tg-dizzy { opacity: 1; }
+.hj-act.s-leng .tg-eyes { transform-box: fill-box; transform-origin: center; transform: scale(1.25); }
+.hj-act.s-dizzy .tg-dizzy { animation: hjDizzy 1.4s linear infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes hjDizzy { 50% { transform: translateX(14px); } }
+/* 第二幕：走 */
+.hj-act.s-wag .fx-tail, .hj-act.s-sway .fx-tail { animation: hjWag .5s ease-in-out infinite alternate; }
+@keyframes hjWag { from { transform: rotate(-8deg); } to { transform: rotate(10deg); } }
+.hj-act.s-sway .fx-head { animation: hjSway .7s ease-in-out infinite alternate; }
+@keyframes hjSway { from { transform: rotate(-16deg); } to { transform: rotate(4deg); } }
+.hj-act.s-look .tg-head { animation: hjLook 1.6s ease-in-out infinite; }
+@keyframes hjLook { 25% { transform: rotate(-10deg) translateX(-10px); } 75% { transform: rotate(10deg) translateX(10px); } }
+.hj-stage.s-walk .hj-trees { animation: hjTrees 14s linear infinite; }
+@keyframes hjTrees { to { transform: translateX(-1980px); } }
+.hj-act.s-walk .hj-in { animation: hjStep .5s ease-in-out infinite alternate; }
+@keyframes hjStep { to { transform: translateY(-10px); } }
+.hj-an { font-size: 90px; opacity: 0; transition: opacity .8s var(--d), transform 1.6s ease-in var(--d); transform-box: fill-box; transform-origin: center; }
+.hj-anq { font: bold 50px var(--py); fill: #3a5a9a; opacity: 0; transition: opacity .5s; }
+.s-animals .hj-an { opacity: 1; }
+.s-ask .hj-anq { opacity: 1; }
+.s-run .hj-an { transform: translateX(700px) scaleX(-1); }
+.hj-truth text { font: bold 52px var(--kai); fill: #c0392b; text-anchor: middle; paint-order: stroke; stroke: #fff; stroke-width: 10px; opacity: 0; transition: opacity 1s; }
+.hj-truth .small { font-size: 40px; fill: #8a4210; }
+.s-truth .hj-truth text { opacity: 1; }
+/* 谁在说话 */
+.hj-bub { position: absolute; font-size: 3em; opacity: 0; transition: opacity .4s; pointer-events: none; }
+.hj-stage[data-scene="1"] .hj-bub.fox { left: 36%; top: 6%; }
+.hj-stage[data-scene="1"] .hj-bub.tiger { left: 54%; top: 4%; }
+.hj-stage[data-scene="2"] .hj-bub.fox { left: 70%; top: 6%; }
+.hj-stage[data-who="fox"] .hj-bub.fox, .hj-stage[data-who="tiger"] .hj-bub.tiger { opacity: 1; animation: xhb 1s ease-in-out infinite alternate; }
+@keyframes xhb { to { transform: translateY(-.15em); } }
+/* 台词：只显示当前一句 */
+.hj-lines { display: grid; min-height: 5.2em; }
+.hj-l { grid-area: 1 / 1; margin: 0; display: flex; align-items: center; gap: .8em; padding: 0 1em; border-radius: .8em; background: #fff; box-shadow: 0 .15em .5em rgba(40, 60, 20, .1); }
+.hj-l:not(.cur) { opacity: 0 !important; pointer-events: none; }
+.hj-l i { flex: none; font-style: normal; font-size: 1.05em; color: #fff; background: #7a8a6a; border-radius: .4em; padding: .1em .6em; }
+.hj-l.fox i { background: var(--red); }
+.hj-l.tiger i { background: #b8860b; }
+.hj-l .py { font-family: var(--kai); font-size: 1.65em; line-height: 2.1; }
+.hj-l rt { font-size: .42em; }
+.hj-w { font-weight: normal; color: var(--red-d); background: linear-gradient(transparent 60%, #fbe3a6 60%); }
+.hj-w.tg { color: #8a6a00; }
+.hj-mb { position: absolute; right: .6em; top: .6em; }
+
+/* ---------- 想一想 ---------- */
+.hj-think { grid-template-columns: 1.1fr 1fr; align-items: center; }
+.hj-pic { position: relative; aspect-ratio: 16 / 9; border-radius: 1em; background: #cfe9c4 center / cover no-repeat; box-shadow: 0 .2em .8em rgba(0, 0, 0, .18); }
+.hj-thought { position: absolute; left: 30%; top: 4%; font-size: 4em; }
+.hj-thinkr { display: flex; flex-direction: column; gap: .6em; }
+.hj-q { margin: 0; font-size: 2em; color: var(--red-d); }
+.hj-q rt { font-size: .42em; }
+.hj-say { margin: 0; font-family: var(--kai); font-size: 1.35em; line-height: 1.6; background: #fff; border-radius: .6em; padding: .3em .8em; }
+.hj-say.eg { background: #fff8e1; color: var(--ink-2); font-size: 1.2em; }
+.hj-say b { color: var(--red); }
+
+/* ---------- 成语 ---------- */
+.hj-idiom { flex: 1; justify-content: center; align-items: center; gap: 1.2em; }
+.hj-four { display: flex; gap: 1.4em; }
+.hj-four p { margin: 0; text-align: center; }
+.hj-four b { display: block; width: 2.2em; font-family: var(--kai); font-weight: normal; font-size: 3.6em; line-height: 1.7; background: #fff; border: .06em solid var(--line); border-radius: .2em; }
+.hj-four rt { font-family: var(--py); font-size: .3em; color: var(--py-c); }
+.hj-four span { display: block; margin-top: .3em; font-family: var(--kai); font-size: 1.6em; color: var(--red); }
+.hj-mean { margin: 0; font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.hj-mean rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.hj-mean2 { margin: 0; font-family: var(--kai); font-size: 1.4em; color: var(--ink-2); }
+
+/* ---------- 神态词分类 ---------- */
+.hj-sort { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1.1fr 1fr; gap: 1.2em; align-items: stretch; }
+.hs-zone { display: flex; flex-direction: column; align-items: center; gap: .3em; padding: .6em; border-radius: 1em; background: #fff; border: .15em dashed var(--line); cursor: pointer; }
+.hs-zone:hover { border-color: var(--red); }
+.hs-zone > b { font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.hs-actor { width: 100%; flex: 1; min-height: 0; display: grid; place-items: center; }
+.hs-actor svg { width: 90%; max-height: 100%; }
+.hs-got { display: flex; flex-wrap: wrap; justify-content: center; gap: .3em .6em; min-height: 2.4em; }
+.hs-got span { font-family: var(--kai); font-size: 1.4em; line-height: 2; background: #fff8e1; border-radius: .4em; padding: 0 .4em; }
+.hs-got rt, .hs-w rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.hs-mid { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .8em; }
+.hs-words { display: flex; flex-direction: column; gap: .5em; }
+.hs-w { font: inherit; font-family: var(--kai); font-size: 1.8em; line-height: 2; padding: 0 .6em; border-radius: .5em; border: .1em solid var(--line); background: #fff; cursor: pointer; }
+.hs-w.sel { border-color: var(--red); background: #fff3e6; }
+.hs-w.used { visibility: hidden; }
+.hs-w.wrong { animation: nope .35s; }
+.hs-msg { margin: 0; text-align: center; font-family: var(--kai); font-size: 1.25em; color: var(--red-d); }
+.hs-actor.s-walk .hj-in { animation: hjStep .4s ease-in-out infinite alternate; }
+
+/* ---------- 演一演 ---------- */
+.hj-roles { flex: 1; flex-direction: row; justify-content: center; align-items: stretch; gap: 1.4em; }
+.hj-role { flex: 1; max-width: 18em; background: #fff; border-radius: 1em; padding: .6em 1em; text-align: center; box-shadow: 0 .2em .6em rgba(40, 60, 20, .1); border-top: .5em solid #7a8a6a; }
+.hj-role.fx { border-color: var(--red); }
+.hj-role.tg { border-color: #b8860b; }
+.hj-role h3 { margin: .2em 0 .4em; font-size: 1.8em; }
+.hj-role p { margin: .3em 0; font-family: var(--kai); font-size: 1.6em; }
+.hj-role small { display: block; margin-top: .6em; color: var(--ink-2); font-size: 1.05em; }
+
+/* ---------- 草丛游戏 ---------- */
+.hj-game { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .6em; }
+.hg-bar { display: flex; align-items: center; gap: 1em; }
+.hg-q { min-width: 3.2em; text-align: center; font-family: var(--py); font-size: 2.6em; color: var(--py-c); background: #fff; border-radius: .3em; padding: 0 .3em; box-shadow: 0 .1em .4em rgba(30, 50, 20, .12); }
+.hg-msg { flex: 1; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.hg-field { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: .4em .8em; padding: .8em; border-radius: 1em; background: linear-gradient(#d8efc8, #9ccc72); }
+.hg-bush { position: relative; border: 0; background: none; cursor: pointer; font: inherit; display: grid; place-items: end center; padding: 0; overflow: visible; }
+.hg-bush b { position: relative; z-index: 3; margin-bottom: .9em; font-family: var(--kai); font-weight: normal; font-size: 2.6em; line-height: 1; background: #fff; border-radius: .15em; padding: .05em .12em; transition: transform .4s; }
+.hg-leaf { position: absolute; left: 4%; right: 4%; bottom: 0; height: 50%; border-radius: 50% 50% 30% 30%; background: radial-gradient(circle at 30% 30%, #7cc35a, #3f8a2e); z-index: 2; box-shadow: inset 0 -.3em .5em rgba(0, 0, 0, .15); }
+.hg-run { position: absolute; z-index: 3; bottom: 10%; left: 50%; font-size: 2.2em; opacity: 0; pointer-events: none; }
+.hg-bush.wrong .hg-leaf { animation: nope .35s; }
+.hg-bush.ok b { transform: translateY(-.5em); color: var(--ok); }
+.hg-bush.ok .hg-run { animation: hgRun 1.4s ease-in forwards; }
+@keyframes hgRun { 0% { opacity: 1; transform: translate(-50%, 0) scaleX(-1); } 100% { opacity: 0; transform: translate(260%, -20%) scaleX(-1); } }
+
+/* ---------- 回顾 ---------- */
+.hj-sum { flex: 1; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5em; }
+.hj-sum > i { font-style: normal; font-size: 3em; color: var(--gold); }
+.hj-sumc { width: 20em; background: #2f4a3f; color: #f6f1e4; border-radius: 1em; padding: .8em 1em; text-align: center; box-shadow: inset 0 0 0 .3em #6b4b2a; font-family: var(--kai); }
+.hj-sumc b { display: block; font-size: 1.8em; font-weight: normal; }
+.hj-sumc .py { display: block; font-size: 2.4em; line-height: 2.1; }
+.hj-sumc rt { font-family: var(--py); font-size: .4em; color: var(--gold-l); }
+.hj-sumc small { font-size: 1.2em; color: var(--gold-l); }
+.hj-sum .tip { flex-basis: 100%; text-align: center; font-size: 1.25em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .hj-stage { flex: none; width: 100%; }
+  .hj-l .py { font-size: 1.15em; }
+  .hj-l { padding: 0 .5em; }
+  .hj-think { display: flex; flex-direction: column; }
+  .hj-pic { width: 100%; }
+  .hj-four b { font-size: 2em; }
+  .hj-sort { display: flex; flex-direction: column; }
+  .hs-actor { height: 7em; flex: none; }
+  .hs-words { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .hs-w { font-size: 1.3em; }
+  .hj-roles { flex-direction: column; }
+  .hj-role { max-width: none; }
+  .hg-field { flex: none; grid-template-columns: repeat(4, 1fr); }
+  .hg-bush { height: 5em; }
+  .hg-bar { flex-wrap: wrap; }
+  .hg-msg { flex-basis: 100%; order: 3; font-size: 1.2em; }
+  .hj-four { gap: .6em; }
+  .hj-sumc { width: 100%; }
+}

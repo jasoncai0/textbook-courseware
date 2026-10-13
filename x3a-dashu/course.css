@@ -1,0 +1,55 @@
+/* 读不完的大书 · 本课配色：天空蓝、稻田绿、果子橙。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #2f6f9a;
+  --red-d: #1e4a68;
+  --gold: #e09a2c;
+  --gold-l: #f6d9a0;
+  --paper: #f2f6f4;
+  --stone: #fbfdfc;
+  --ink-2: #546270;
+  --line: #c8d6dc;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfdfd 0, transparent 40%), radial-gradient(circle at 90% 95%, #dce9e6 0, transparent 45%); }
+
+/* 中年级：字号比五六年级再大一点 */
+.subs { font-size: 1.6em; line-height: 1.7; }
+.subs .hl { color: #ffe08a; font-weight: normal; }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.02em; }
+.pick { font-size: 1.25em; }
+.clue-face.front { font-size: 1.15em; }
+.clue-face.back { font-size: 1.02em; }
+.clue-face em { font-style: normal; color: var(--red); font-weight: bold; }
+.s-cover .cover-title { font-size: 6.4em; }
+.scene .hd .tag { background: rgba(30, 74, 104, .92); }
+
+/* 大书 */
+.s-book .stage { align-items: center; gap: 1em; }
+.big-line { margin: 0; font-family: var(--kai); font-size: 1.75em; line-height: 1.7; text-align: center; }
+.book { position: relative; flex: 1; min-height: 0; width: min(100%, 52em); display: grid; grid-template-columns: 1fr 1fr; background: #8a5a32; padding: .6em; border-radius: .6em; box-shadow: 0 .4em 1.2em rgba(40, 30, 20, .25); }
+.book-page { background: #fffdf6; min-height: 0; display: flex; flex-direction: column; }
+.book-page.left { border-radius: .4em 0 0 .4em; padding: .7em; box-shadow: inset -1em 0 1.2em -1em rgba(0, 0, 0, .35); }
+.book-page.right { border-radius: 0 .4em .4em 0; padding: 1em 1.4em; box-shadow: inset 1em 0 1.2em -1em rgba(0, 0, 0, .35); justify-content: center; gap: .4em; position: relative; }
+.book-pic { flex: 1; border-radius: .3em; background: center / cover no-repeat #eef3f1; transition: opacity .4s; }
+.book-page b { font-family: var(--kai); font-size: 1.9em; color: var(--red-d); }
+.book-page p { margin: 0; font-family: var(--kai); font-size: 1.35em; line-height: 1.75; }
+.book-no { position: absolute; bottom: .5em; right: 1em; color: var(--ink-2); font-size: .85em; }
+.book-turn { position: absolute; bottom: -1.3em; font: inherit; font-size: 1em; padding: .3em 1em; border-radius: 1em; border: 1px solid var(--red); background: #fff; color: var(--red); cursor: pointer; }
+.book-turn.prev { left: 1em; }
+.book-turn.next { right: 1em; background: var(--red); color: #fff; }
+.book.blank-page .book-pic { background-image: none !important; display: flex; align-items: center; justify-content: center; }
+.book.blank-page .book-pic::after { content: "？"; font-size: 5em; color: var(--line); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs { font-size: 1.22em; }
+  .hd h2 { font-size: 1.4em; }
+  .s-cover .cover-title { font-size: 3.6em; }
+  .big-line { font-size: 1.2em; }
+  .book { grid-template-columns: 1fr; flex: none; margin-bottom: 1.6em; }
+  .book-page.left { border-radius: .4em .4em 0 0; }
+  .book-pic { min-height: 11em; }
+  .book-page.right { border-radius: 0 0 .4em .4em; min-height: 9em; }
+  .book-page b { font-size: 1.4em; }
+  .book-page p { font-size: 1.1em; }
+  .pick { font-size: 1.05em; }
+}

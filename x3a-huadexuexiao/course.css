@@ -1,0 +1,69 @@
+/* 花的学校 · 本课配色：花瓣的紫、粉，雨后的青绿。故事页样式见 ../shared/narrative.css */
+:root {
+  --red: #a2448a;
+  --red-d: #5a2f7a;
+  --gold: #e3a43a;
+  --gold-l: #f6dc9a;
+  --paper: #f6f2f7;
+  --stone: #fcfafd;
+  --ink-2: #5f5668;
+  --line: #ddd2e2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fefcff 0, transparent 40%), radial-gradient(circle at 90% 95%, #e9dfee 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.5em; }
+
+/* 中年级：字号再大一点 */
+.hd h2 { font-size: 1.9em; }
+.tip { font-size: 1.02em; }
+.read-item p { font-size: 1.5em; }
+/* 诗节字幕：一节一段，行距稍大 */
+.stanza .subs { font-size: 1.6em; line-height: 1.7; }
+.stanza .subs p { margin-bottom: .3em; }
+.subs .hl { color: #f6dc9a; font-weight: normal; }
+
+/* ---------- 新鲜感收集卡 ---------- */
+.fresh { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(21em, 1fr)); align-content: start; gap: .7em; overflow: auto; }
+.fresh-card { position: relative; display: flex; flex-direction: column; justify-content: flex-start; font: inherit; text-align: left; cursor: pointer; background: #fff; border: 2px dashed var(--line); border-radius: .7em; padding: .6em 1em .6em 2.4em; transition: background .4s, border-color .4s, box-shadow .4s; }
+.fc-star { position: absolute; left: .6em; top: .45em; font-size: 1.3em; color: #d8d2c2; transition: color .4s, transform .4s; }
+.fc-s { display: block; font-family: var(--kai); font-size: 1.22em; line-height: 1.7; }
+.fc-s em { font-style: normal; transition: background-size .6s, color .4s; background: linear-gradient(transparent 60%, rgba(224, 165, 42, .45) 60%) no-repeat 0 0 / 0 100%; }
+.fc-feel { display: none; margin-top: .3em; font-size: .95em; color: var(--ink-2); line-height: 1.6; }
+.fc-feel b { color: var(--red); }
+.fresh-card.lit { background: #fffaea; border: 2px solid var(--gold); box-shadow: 0 0 1em rgba(224, 165, 42, .4); }
+.fresh-card.lit .fc-star { color: var(--gold); transform: scale(1.25) rotate(18deg); }
+.fresh-card.lit .fc-s em { background-size: 100% 100%; color: var(--red-d); }
+.fresh-card.lit .fc-feel { display: block; animation: appear .5s ease; }
+.fresh-count { margin: 0; color: var(--ink-2); }
+.fresh-count b { color: var(--red); font-size: 1.3em; }
+/* 加点的部分：着重号 */
+.fresh-card .fc-s em { text-emphasis: filled dot var(--red); -webkit-text-emphasis: filled dot var(--red); text-emphasis-position: under right; -webkit-text-emphasis-position: under; }
+.fc-plain { display: none; margin-top: .3em; font-size: .95em; color: #8a8290; text-decoration: line-through rgba(138, 130, 144, .4); }
+.fc-plain b { color: #8a8290; }
+.fresh-card.lit .fc-plain { display: block; animation: appear .5s ease; }
+.s-fresh .fresh { grid-template-columns: 1fr 1fr; }
+
+/* ---------- 连一连 ---------- */
+.match { display: grid; grid-template-columns: 1fr 1.25fr; gap: 2.4em; }
+.m-col { display: flex; flex-direction: column; gap: .55em; }
+.m-item { position: relative; font: inherit; font-family: var(--kai); font-size: 1.15em; text-align: left; line-height: 1.5; padding: .45em .9em .45em 2.4em; border-radius: .6em; border: 2px solid var(--line); background: #fff; cursor: pointer; transition: background .3s, border-color .3s; }
+.m-item::before { content: attr(data-n); position: absolute; left: .55em; top: 50%; translate: 0 -50%; width: 1.4em; height: 1.4em; line-height: 1.4em; text-align: center; border-radius: 50%; background: #eee6f0; color: #fff; font-family: var(--serif); font-size: .85em; }
+.m-l::after { content: "→"; position: absolute; right: -1.6em; top: 50%; translate: 0 -50%; color: var(--line); }
+.m-item.sel { border-color: var(--red); background: #fbeff8; }
+.m-item.ok { border-color: #8cc0a6; background: #f1f8f4; cursor: default; }
+.m-item.no { animation: nope .35s; border-color: #e3a998; }
+.m-item[data-n="1"]::before { background: #c0532a; } .m-item[data-n="2"]::before { background: #2f6b5e; }
+.m-item[data-n="3"]::before { background: #5a2f7a; } .m-item[data-n="4"]::before { background: #d9a520; }
+.m-item[data-n="5"]::before { background: #1f4e79; } .m-item[data-n="6"]::before { background: #a2448a; }
+.match-done { margin: 0; color: #1f6b4f; font-weight: bold; font-size: 1.05em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .hd h2 { font-size: 1.35em; }
+  .stanza .subs { font-size: 1.15em; }
+  .fresh, .s-fresh .fresh { grid-template-columns: 1fr; overflow: visible; }
+  .fc-s { font-size: 1.12em; }
+  .match { gap: 1.2em; }
+  .m-item { font-size: 1em; padding-left: 2.1em; }
+  .m-l::after { right: -1.1em; }
+  .read-item p { font-size: 1.2em; }
+}

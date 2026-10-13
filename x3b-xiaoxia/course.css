@@ -1,0 +1,68 @@
+/* 小虾（三下 15*）· 本课配色：溪水青、葡萄叶绿 */
+:root {
+  --red: #2f7f8a;
+  --red-d: #1d4f57;
+  --gold: #d8a63a;
+  --gold-l: #f4e2ae;
+  --paper: #eff5f2;
+  --stone: #fafdfb;
+  --ink-2: #4f5d5a;
+  --line: #c6d8d3;
+}
+/* 中年级：字再大一点 */
+.subs { font-size: 1.6em; }
+.tip { font-size: 1.02em; }
+.hd h2 { font-size: 1.85em; }
+.s-cover .cover-title { font-size: 9em; letter-spacing: .2em; }
+.subs .hl { color: #bff0f5; font-weight: normal; }
+
+/* 关键句 */
+.s-key .pick { display: block; width: 100%; font-size: 1.2em; }
+.kids { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7em; }
+.kid { background: #fff; border-radius: .6em; padding: .6em .9em; border-top: .3em solid var(--gold); }
+.kid b { display: block; color: var(--red-d); font-size: 1.25em; }
+.kid span { font-family: var(--kai); font-size: 1.15em; }
+
+/* 小虾动起来 */
+.s-shrimp .bd { grid-template-columns: 55% 1fr; }
+#shrimp { flex: 1; min-height: 0; width: 100%; }
+.ph { margin: 0; font-family: var(--kai); font-size: 1.55em; line-height: 1.6; background: #fff; border-radius: .5em; padding: .3em .8em; border-left: .3em solid var(--red); }
+.ph em { font-style: normal; color: #b0452c; font-weight: bold; }
+#shrimp .legs { transform-box: view-box; transform-origin: 176px 172px; }
+#shrimp .claw-a, #shrimp .claw-b { transform-box: view-box; transform-origin: 84px 228px; }
+#shrimp .whisker { transform-box: view-box; transform-origin: 134px 130px; }
+#shrimp .eye { transform-box: fill-box; transform-origin: center; }
+.s-shrimp:has(.ph[data-step="1"].on) #shrimp .legs { animation: legs .5s ease-in-out infinite alternate; }
+.s-shrimp:has(.ph[data-step="2"].on) #shrimp .claw-a { animation: clawA .35s ease-in-out infinite alternate; }
+.s-shrimp:has(.ph[data-step="2"].on) #shrimp .claw-b { animation: clawB .35s ease-in-out infinite alternate; }
+.s-shrimp:has(.ph[data-step="3"].on) #shrimp .whisker { animation: whisk .45s ease-in-out infinite alternate; }
+.s-shrimp:has(.ph[data-step="4"].on) #shrimp .eye { animation: eyePop .4s ease-in-out infinite alternate; }
+@keyframes legs { from { transform: rotate(-10deg); } to { transform: rotate(10deg); } }
+@keyframes clawA { to { transform: rotate(-22deg); } }
+@keyframes clawB { to { transform: rotate(18deg); } }
+@keyframes whisk { from { transform: rotate(-6deg); } to { transform: rotate(8deg); } }
+@keyframes eyePop { to { transform: scale(1.45); } }
+#shrimp .bub { animation: rise 3s ease-in infinite; }
+@keyframes rise { to { transform: translateY(-40px); opacity: 0; } }
+
+/* 观察记录卡 */
+.rec { background: #fff; border-radius: .7em; padding: .8em 1em; display: flex; flex-direction: column; gap: .5em; border-top: .4em solid var(--red); min-height: 0; overflow: auto; }
+.rec.mine { border-top-color: var(--gold); background: #fffdf6; }
+.rec h3 { margin: 0; color: var(--red-d); }
+.rec-row { display: grid; grid-template-columns: 5em 1fr; gap: .6em; align-items: center; }
+.rec-row b { color: var(--red-d); }
+.s-card .bd { grid-template-columns: 1fr 1fr; }
+.rec input, .rec textarea { font: inherit; font-family: var(--kai); font-size: 1.1em; padding: .35em .6em; border: 1px solid var(--line); border-radius: .4em; background: #fff; resize: none; width: 100%; }
+.cell { width: 100%; min-height: 2.8em; font: inherit; font-family: var(--kai); font-size: 1.1em; line-height: 1.6; text-align: left; padding: .4em .7em; border: 1px dashed var(--line); border-radius: .4em; background: #f6faf8; color: transparent; cursor: pointer; position: relative; }
+.cell::after { content: "说一说，再点一点"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #a9b9b4; font-size: .8em; font-family: var(--serif); }
+.cell.open { color: var(--ink); background: #fff; border-style: solid; }
+.cell.open::after { content: none; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs { font-size: 1.15em; }
+  .s-cover .cover-title { font-size: 4.6em; }
+  .kids { grid-template-columns: 1fr; }
+  #shrimp { flex: none; height: auto; }
+  .ph { font-size: 1.2em; }
+  .rec-row { grid-template-columns: 1fr; gap: .2em; }
+}

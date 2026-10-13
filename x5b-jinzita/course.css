@@ -1,0 +1,57 @@
+/* 金字塔 · 本课配色：沙漠的金黄、尼罗河的蓝 */
+:root {
+  --red: #b06a1c;
+  --red-d: #6a3a0c;
+  --gold: #d9a43a;
+  --gold-l: #f4dc9e;
+  --paper: #f7f0e1;
+  --stone: #fdf9ef;
+  --ink-2: #635744;
+  --line: #e0d0ae;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fffaf0 0, transparent 40%), radial-gradient(circle at 90% 95%, #eedcb8 0, transparent 45%); }
+.s-cover .cover-title { font-size: 7em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .7em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.25em; background: rgba(176, 106, 28, .9); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 满眼是金 */
+.jin-words { display: flex; flex-wrap: wrap; gap: .4em; }
+.jin-words span { font-family: var(--kai); font-size: 1.2em; padding: .2em .7em; border-radius: .3em; background: linear-gradient(135deg, #f7d77a, #e0a53a); color: #5a3208; }
+.s-jin .quote { flex: none; font-size: 1.12em; }
+.s-jin .quote p { text-indent: 0; }
+#jinSvg, #khufuSvg { flex: 1; min-height: 0; width: 100%; }
+#jinSvg .jin-char { font-family: var(--kai); font-size: 230px; fill: rgba(255, 246, 214, .78); }
+
+/* 数据 */
+.s-data .stats { grid-template-columns: 1fr 1fr; }
+.s-data .stat b { font-size: 1.9em; }
+
+/* 资料与问题 */
+.s-clues .clues { grid-template-columns: repeat(3, 1fr); }
+.s-clues .clue, .s-clues .clue-in { min-height: 8.5em; }
+.s-clues .clue-face.back { font-family: var(--kai); font-size: 1.15em; }
+
+/* 大胆推测 */
+.g-pics { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .6em; }
+.g-pic { flex: 1; min-height: 7em; position: relative; border-radius: .5em; background: center / cover no-repeat #ead8b4; }
+.g-pic span { position: absolute; left: .5em; bottom: .4em; font-size: .75em; color: #fff; background: rgba(0, 0, 0, .45); padding: .1em .5em; border-radius: .3em; }
+.g-clues { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .5em; }
+.g-clues li { background: #fff; border: 1px solid var(--line); border-left: .3em solid var(--gold); border-radius: .4em; padding: .45em .9em; line-height: 1.65; font-family: var(--kai); font-size: 1.05em; }
+.g-clues b { display: block; font-family: var(--serif); color: var(--red); font-size: .9em; }
+
+/* 两篇对比 */
+.cmp { width: 100%; border-collapse: separate; border-spacing: .35em; }
+.cmp th, .cmp td { background: #fff; border-radius: .4em; padding: .45em .7em; line-height: 1.55; }
+.cmp tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); }
+.cmp th:first-child { background: transparent; color: var(--red); white-space: nowrap; }
+.s-sort .sort-row { grid-template-columns: 1fr auto 7.5em; padding: .3em .7em; }
+.s-sort .sort-row .btn { font-size: .8em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4em; }
+  #jinSvg, #khufuSvg { flex: none; }
+  .s-clues .clues { grid-template-columns: 1fr; }
+  .g-pic { min-height: 9em; }
+  .cmp { font-size: .85em; }
+}

@@ -1,0 +1,83 @@
+/* 好的故事 · 本课配色：澄碧的河水、一丈红、昏黄的灯 */
+:root {
+  --red: #b0473d;
+  --red-d: #6d2c2a;
+  --gold: #c99a3c;
+  --gold-l: #f0d9a6;
+  --paper: #eef1ec;
+  --stone: #fafbf8;
+  --ink-2: #4f5b58;
+  --line: #cfd6cf;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #f8fbf7 0, transparent 40%), radial-gradient(circle at 90% 95%, #dbe6e0 0, transparent 45%); }
+
+/* 资料袋 */
+.info-cards { justify-content: center; }
+.info { background: #fff; border-left: .3em solid var(--red); border-radius: .4em; padding: .55em 1em; box-shadow: 0 .15em .5em rgba(40, 50, 60, .08); }
+.info.gold { background: #fff8e1; border-left-color: var(--gold); }
+.info b { color: var(--red-d); font-size: 1.05em; }
+.info p { margin: .15em 0 0; line-height: 1.65; }
+
+/* 难懂的词语 */
+.ziliao { display: flex; flex-direction: column; gap: .5em; overflow: auto; min-height: 0; }
+.ziliao.two { display: grid; grid-template-columns: 1fr 1fr; align-content: start; }
+.ziliao details { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .45em 1em; }
+.ziliao details[open] { border-color: var(--gold); background: #fffdf5; }
+.ziliao summary { cursor: pointer; font-family: var(--kai); font-size: 1.2em; line-height: 1.6; color: var(--red-d); }
+.ziliao summary::marker { color: var(--red); }
+.ziliao p { margin: .3em 0 0; line-height: 1.65; font-size: .95em; }
+.ziliao p b { color: var(--red); }
+.ziliao p.get { background: #eef6f2; border-radius: .3em; padding: .2em .6em; }
+.ziliao p.get b { color: var(--jade); }
+
+/* 景物拼贴：岸上 + 水中倒影 */
+.bank-words { display: flex; flex-wrap: wrap; gap: .4em; }
+.bw { font: inherit; font-family: var(--kai); font-size: 1.05em; padding: .2em .7em; border-radius: 1em; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+.bw.used { background: #e5efe9; color: #8a9a92; border-color: #c6d6cc; }
+.river { position: relative; flex: 1; min-height: 14em; border-radius: .6em; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); transition: filter 1.2s; }
+.sky { position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(#cfe6f3, #eef5ec 85%, #b8c99a); }
+.water { position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(#5e9c96, #2f6b6a); }
+.water::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(transparent 0 .9em, rgba(255, 255, 255, .08) .9em 1em); animation: ripples 3s linear infinite; }
+@keyframes ripples { to { background-position: 0 2em; } }
+.sky span, .water span { position: absolute; translate: -50% 0; font-family: var(--kai); font-size: 1.5em; white-space: nowrap; }
+.sky span { bottom: .2em; color: #2b3a33; animation: appear .6s ease; }
+.sky span.row1 { bottom: 1.6em; } .sky span.row2 { bottom: 3em; }
+.water span { top: .2em; color: rgba(240, 250, 246, .75); transform: scaleY(-1); filter: blur(.4px); animation: sway 2.4s ease-in-out infinite alternate; }
+.water span.row1 { top: 1.6em; } .water span.row2 { top: 3em; }
+@keyframes sway { from { transform: scaleY(-1) skewX(-4deg); } to { transform: scaleY(-1) skewX(4deg); } }
+/* 打一桨：解散、摇动、扩大、融和……复近于原形 */
+.river.stir .water span { animation: stir 2.6s ease-in-out; }
+@keyframes stir {
+  0% { transform: scaleY(-1); filter: blur(.4px); }
+  30% { transform: scaleY(-1.4) scaleX(1.9) skewX(14deg); filter: blur(4px); color: rgba(255, 236, 200, .9); }
+  55% { transform: scaleY(-1.6) scaleX(2.4) skewX(-10deg); filter: blur(6px); }
+  100% { transform: scaleY(-1); filter: blur(.4px); }
+}
+/* 掷一块石头：撕成片片 */
+.river.shatter .water span { animation: shatter 1.8s ease-in forwards; }
+@keyframes shatter {
+  20% { transform: scaleY(-2.2) rotate(12deg); filter: blur(2px) hue-rotate(90deg); color: #ffd1e8; }
+  60% { transform: scaleY(-.6) rotate(-25deg) translateY(1em); filter: blur(4px) hue-rotate(220deg); color: #c9f0ff; }
+  100% { transform: scaleY(-.2) rotate(40deg) translateY(2em); opacity: 0; filter: blur(8px); }
+}
+.river.shatter .sky span { animation: blink .3s 3; }
+@keyframes blink { 50% { opacity: .2; } }
+.river.dark { filter: brightness(.35) sepia(.6); }
+.river-tools { align-items: center; }
+.river-say { flex: 1; min-width: 12em; font-family: var(--kai); font-size: 1.05em; color: var(--red-d); }
+
+/* 梦与现实 */
+.dream-vs { flex: 1; display: flex; flex-direction: column; gap: .5em; justify-content: center; }
+.dv { border-radius: .6em; padding: .8em 1em; display: flex; flex-direction: column; gap: .2em; }
+.dv b { font-size: 1.15em; }
+.dv span { font-family: var(--kai); font-size: 1.1em; }
+.dv small { opacity: .8; }
+.dv.dream { background: linear-gradient(135deg, #d8ecef, #f6e3d8); color: #24423f; }
+.dv.night { background: linear-gradient(135deg, #3a3128, #1c1814); color: #e8d9b8; }
+.dream-vs > i { font-style: normal; text-align: center; font-size: 1.6em; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .ziliao.two { grid-template-columns: 1fr; }
+  .river { min-height: 16em; }
+  .sky span, .water span { font-size: 1.15em; }
+}

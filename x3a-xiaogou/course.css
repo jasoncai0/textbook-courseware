@@ -1,0 +1,95 @@
+/* 小狗学叫 · 本课配色：树林的绿、小狗的棕斑、公鸡的红冠。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #b4462e;
+  --red-d: #6d2a1a;
+  --gold: #4f8f5b;
+  --gold-l: #d3ead5;
+  --paper: #f3f2e8;
+  --stone: #fcfcf6;
+  --ink-2: #57594d;
+  --line: #d3d3c0;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfdf6 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe8d6 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 6em; }
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.6em; }
+}
+
+/* ---------- 预测（第四单元通用） ---------- */
+.s-predict .bd { grid-template-columns: 40% 1fr; }
+.pd-left { display: flex; flex-direction: column; gap: .6em; min-height: 0; }
+.pd-img { flex: 1; min-height: 7em; border-radius: .6em; background: #d9d2c4 center / cover no-repeat; box-shadow: 0 .2em .8em rgba(40, 30, 20, .15); }
+.pd-pause { margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.7; background: var(--stone); border-left: .3em solid var(--red); border-radius: .3em; padding: .5em .9em; }
+.pd-pause::before { content: "读到这里，停一停："; display: block; font-family: var(--serif); font-size: .72em; color: var(--red); font-weight: bold; }
+.predict { display: flex; flex-direction: column; gap: .5em; min-height: 0; overflow: auto; }
+.pd-h { margin: 0; font-weight: bold; color: var(--red-d); font-size: 1.05em; }
+.pd-h small { font-weight: normal; color: var(--ink-2); font-size: .8em; margin-left: .5em; }
+.pd-opts, .pd-basis { display: flex; flex-wrap: wrap; gap: .5em; }
+.pd-opt { font-family: var(--kai); font-size: 1.1em; }
+.pd-basis .btn { border-radius: 1.2em; }
+.pd-text { min-height: 2.8em; resize: none; font: inherit; font-family: var(--kai); font-size: 1.05em; padding: .4em .8em; border: 1px solid var(--line); border-radius: .5em; background: #fff; }
+.pd-answer { background: #fff8e1; border: 1px solid var(--gold-l); border-left: .3em solid var(--gold); border-radius: .4em; padding: .5em .9em; font-family: var(--kai); font-size: 1.12em; line-height: 1.7; animation: appear .6s ease; }
+.pd-answer > small { display: block; font-family: var(--serif); font-size: .72em; color: var(--red); font-weight: bold; }
+.pd-answer p { margin: 0; }
+.pd-same { display: flex; flex-wrap: wrap; align-items: center; gap: .4em; margin-top: .4em; font-family: var(--serif); font-size: .85em; }
+.predict.revealed .pd-go { display: none; }
+/* 旁批（课本页边的批注） */
+.pz { font-family: var(--kai); color: #6a4a12; background: #fff4c8; border: 1px solid #e8cf7a; border-radius: .3em .3em .3em 0; padding: .35em .7em; box-shadow: .15em .2em .5em rgba(80, 60, 10, .18); line-height: 1.5; }
+.pz::before { content: "旁批"; display: inline-block; margin-right: .5em; font-family: var(--serif); font-size: .72em; color: #fff; background: #c98a1a; padding: 0 .4em; border-radius: .2em; vertical-align: .1em; }
+.scene .pz { position: absolute; right: 2.4em; top: 8em; z-index: 3; max-width: 17em; font-size: 1.1em; rotate: 1.5deg; }
+.scene .pz.lower { top: 13em; rotate: -1deg; }
+/* 我的预测记录 */
+.pd-log { width: 100%; border-collapse: collapse; background: #fff; border-radius: .5em; overflow: hidden; font-size: .95em; }
+.pd-log th { background: var(--red); color: #fff; font-weight: normal; padding: .35em .6em; text-align: left; }
+.pd-log td { padding: .35em .6em; border-top: 1px solid var(--line); font-family: var(--kai); vertical-align: top; }
+.pd-log td i { color: var(--ink-2); }
+.bubbles { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.bubble { margin: 0; position: relative; background: #fff; border: 1px solid var(--line); border-radius: 1em; padding: .5em .9em; font-family: var(--kai); line-height: 1.6; }
+.bubble::before { content: attr(data-who); display: block; font-family: var(--serif); font-size: .72em; color: var(--red); font-weight: bold; }
+.bases { display: flex; gap: .6em; flex-wrap: wrap; }
+.bases span { flex: 1; min-width: 6em; text-align: center; padding: .4em .5em; border-radius: .5em; background: var(--red); color: #fff; font-size: 1.05em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .predict { overflow: visible; }
+  .pd-img { min-height: 11em; }
+  .scene .pz { right: .8em; left: .8em; top: 6.4em; max-width: none; font-size: .95em; rotate: 0deg; }
+  .scene .pz.lower { top: 10.4em; rotate: 0deg; }
+  .bubbles { grid-template-columns: 1fr; }
+  .pd-log { font-size: .85em; }
+}
+
+/* ---------- 三种结局：分支 ---------- */
+.branch-side { justify-content: flex-start; gap: 0; }
+.branch-map { width: 100%; height: auto; max-height: 14em; }
+.branch-map .br { fill: none; stroke: #cfc8b4; stroke-width: 10; stroke-linecap: round; stroke-dasharray: 2 16; transition: stroke .5s; }
+.branch-map .root { fill: var(--red); }
+.branch-map .root-t { fill: #fff; font-size: 22px; font-family: var(--kai); }
+.s-branch[data-cur="1"] .br1, .s-branch[data-cur="2"] .br2, .s-branch[data-cur="3"] .br3 { stroke: var(--red); stroke-dasharray: none; }
+.branch-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5em; margin-top: -.4em; }
+.branch-btn { font: inherit; font-family: var(--kai); font-size: 1.15em; padding: .5em .3em; border-radius: .6em; border: 2px solid var(--line); background: #fff; cursor: pointer; text-align: center; }
+.branch-btn b { display: block; font-family: var(--serif); font-size: .72em; color: var(--red); }
+.branch-btn.solid { background: var(--red); border-color: var(--red); color: #fff; }
+.branch-btn.solid b { color: var(--gold-l); }
+.branch-stage { overflow: auto; }
+.branch { display: flex; flex-direction: column; gap: .6em; animation: appear .5s ease; }
+.branch .quote { overflow: visible; font-size: 1.1em; }
+.branch .quote p { margin: 0; }
+.branch .predict { overflow: visible; }
+.s-branch:not([data-cur]) .branch-hint { font-size: 1.2em; padding: 1em; text-align: center; }
+.s-branch[data-cur] .branch-hint { display: none; }
+
+/* ---------- 喜欢的内容 ---------- */
+.like { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.like-card { background: #fff; border-radius: .6em; overflow: hidden; box-shadow: 0 .15em .6em rgba(40, 40, 20, .12); }
+.like-pic { height: 6.5em; background: #ddd center / cover no-repeat; }
+.like-card span { display: block; padding: .4em .7em .5em; font-family: var(--kai); font-size: 1.05em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .branch-map { max-height: 10em; }
+  .branch-stage { overflow: visible; }
+  .like { grid-template-columns: 1fr; }
+}

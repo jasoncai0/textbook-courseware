@@ -1,0 +1,89 @@
+/* 美丽的小兴安岭（三上 20）· 本课配色：森林绿、白桦金。故事页样式见 ../shared/narrative.css */
+:root {
+  --red: #c4622a;
+  --red-d: #2f6b3e;
+  --gold: #e0a020;
+  --gold-l: #f4dc90;
+  --paper: #f2f5ec;
+  --stone: #fbfcf8;
+  --ink-2: #536150;
+  --line: #d0dac4;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcfdf9 0, transparent 40%), radial-gradient(circle at 90% 95%, #e1e9d6 0, transparent 45%); }
+.scene .hd .tag { background: rgba(47, 107, 62, .92); }
+
+/* ---------- 中年级：字更大 ---------- */
+.subs { font-size: 1.5em; }
+.tip { font-size: 1.05em; }
+.hd h2 { font-size: 1.9em; }
+.subs .hl { color: #ffe08a; font-weight: normal; }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .06em; }
+.read-item p { font-size: 1.4em; }
+.subs .season { display: inline-block; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: #2f6b3e; color: #fff; font-size: .8em; margin-right: .5em; vertical-align: .1em; font-family: var(--serif); }
+
+/* 故事页动效：雾、落叶、雪（不挡点击） */
+.fog, .leaves, .snow { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.fog[data-step], .leaves[data-step], .snow[data-step] { transform: none; transition: opacity 2.4s ease; }
+.fog { background: linear-gradient(transparent 10%, rgba(250, 250, 245, .75) 45%, rgba(250, 250, 245, .55) 75%, transparent); }
+.fog.on { animation: fogup 8s ease-in-out infinite alternate; }
+@keyframes fogup { from { translate: 0 6%; } to { translate: 0 -4%; } }
+.leaves i, .snow i { position: absolute; top: -5%; }
+.leaves i { width: 1.1em; height: .7em; border-radius: 0 100% 0 100%; background: #e8a62a; }
+.leaves i:nth-child(even) { background: #d27a1e; }
+.snow i { width: .55em; height: .55em; border-radius: 50%; background: #fff; box-shadow: 0 0 4px rgba(255, 255, 255, .8); }
+.leaves.on i { animation: leaf 7s linear infinite; }
+.snow.on i { animation: flake 9s linear infinite; }
+.leaves i:nth-child(1), .snow i:nth-child(1) { left: 6%; animation-delay: 0s; } .leaves i:nth-child(2), .snow i:nth-child(2) { left: 16%; animation-delay: 1.4s; }
+.leaves i:nth-child(3), .snow i:nth-child(3) { left: 27%; animation-delay: 2.8s; } .leaves i:nth-child(4), .snow i:nth-child(4) { left: 38%; animation-delay: .7s; }
+.leaves i:nth-child(5), .snow i:nth-child(5) { left: 49%; animation-delay: 3.5s; } .leaves i:nth-child(6), .snow i:nth-child(6) { left: 60%; animation-delay: 2.1s; }
+.leaves i:nth-child(7), .snow i:nth-child(7) { left: 71%; animation-delay: 4.2s; } .leaves i:nth-child(8), .snow i:nth-child(8) { left: 81%; animation-delay: 5s; }
+.leaves i:nth-child(9), .snow i:nth-child(9) { left: 90%; animation-delay: 1s; } .leaves i:nth-child(10), .snow i:nth-child(10) { left: 96%; animation-delay: 5.8s; }
+.snow i:nth-child(11) { left: 33%; animation-delay: 6.4s; } .snow i:nth-child(12) { left: 66%; animation-delay: 7.2s; }
+@keyframes leaf { 0% { transform: translate(0, 0) rotate(0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(-6em, 115vh) rotate(540deg); opacity: .8; } }
+@keyframes flake { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(3em, 115vh); opacity: .9; } }
+
+/* ---------- 四季轮盘 ---------- */
+.s-wheel .bd { grid-template-columns: 44% 1fr; }
+#wheel { flex: 1; min-height: 0; width: 100%; }
+#wheel .wheel-rot { transform-origin: 210px 210px; transition: transform 1.4s cubic-bezier(.3, .1, .2, 1); }
+#wheel .sector { cursor: pointer; }
+#wheel .upright { transform-box: view-box; transition: transform 1.4s cubic-bezier(.3, .1, .2, 1); }
+#wheel .sector path { transition: filter .3s; }
+#wheel .sector.sel path { filter: brightness(1.12) drop-shadow(0 0 6px rgba(0, 0, 0, .3)); }
+#wheel .w-name { font-size: 44px; font-weight: bold; fill: #fff; text-anchor: middle; font-family: var(--kai); paint-order: stroke; stroke: rgba(0, 0, 0, .25); stroke-width: 3px; }
+.wheel-btns { justify-content: center; }
+.wheel-btns .btn { font-size: 1.2em; padding: .4em 1.6em; }
+.season-card { --c: var(--line); flex: 1; background: #fff; border-radius: .7em; padding: .8em 1.2em; border-top: .45em solid var(--c); }
+.season-card h3 { margin: 0 0 .3em; font-family: var(--kai); font-size: 2.4em; color: var(--c); filter: brightness(.8); }
+.sc-tree { font-family: var(--kai); font-size: 1.35em; line-height: 1.7; margin: 0 0 .5em; }
+.sc-tree b, .sc-why b { display: inline-block; font-family: var(--serif); font-size: .7em; background: var(--red-d); color: #fff; padding: .05em .5em; border-radius: .3em; margin-right: .5em; vertical-align: .15em; }
+.sc-things { display: flex; flex-wrap: wrap; gap: .5em; margin-bottom: .6em; }
+.sc-things span { font-family: var(--kai); font-size: 1.3em; padding: .2em .8em; border-radius: 2em; background: color-mix(in srgb, var(--c) 22%, #fff); }
+.sc-why { font-family: var(--kai); font-size: 1.2em; margin: 0; color: var(--ink-2); }
+.sc-why b { background: var(--red); }
+.zc-hint { color: var(--ink-2); font-size: 1.15em; }
+
+/* ---------- 抽出 / 浸 ---------- */
+.word-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; flex: 1; min-height: 0; }
+.word-card { display: flex; flex-direction: column; gap: .5em; background: #fff; border-radius: .7em; padding: .8em 1em; min-height: 0; }
+.word-card svg { flex: 1; min-height: 0; width: 100%; }
+.ws { margin: 0; font-family: var(--kai); font-size: 1.4em; line-height: 1.7; }
+.ws em { font-style: normal; color: var(--red); font-weight: bold; text-emphasis: filled dot var(--red); -webkit-text-emphasis: filled dot var(--red); text-emphasis-position: under right; -webkit-text-emphasis-position: under; }
+#sprout .twig { transform-box: view-box; }
+#soak .fog-thin ellipse { fill: #fff; opacity: .7; }
+#soak .fog-thin, #soak .fog-thick { opacity: 0; transition: opacity 1.4s ease; }
+#soak .fog-thick { fill: #fbfaf2; }
+#soak.thin .fog-thin { opacity: 1; }
+#soak.thick .fog-thick { opacity: .82; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .subs { font-size: 1.12em; }
+  #wheel { flex: none; height: auto; max-height: 60vh; }
+  .season-card h3 { font-size: 1.8em; }
+  .sc-tree { font-size: 1.15em; }
+  .word-pair { grid-template-columns: 1fr; }
+  .word-card svg { flex: none; height: auto; }
+  .ws { font-size: 1.15em; }
+  .read-item p { font-size: 1.15em; }
+}

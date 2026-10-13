@@ -1,0 +1,67 @@
+/* 我们家的男子汉 · 本课配色：背带裤蓝、橘子水橙、相册米白。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #c4612a;
+  --red-d: #5e3218;
+  --gold: #e0a23a;
+  --gold-l: #f7e2b0;
+  --paper: #f4f1ea;
+  --stone: #fcfaf5;
+  --ink-2: #565a62;
+  --line: #d9d4c8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfbf5 0, transparent 40%), radial-gradient(circle at 90% 95%, #e3e6ea 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 6em; }
+.s-cover .cover-sub { font-family: var(--kai); font-size: 1.4em; }
+.cover-ask { font-family: var(--kai); font-size: 1.7em; margin: 0 0 .8em; color: #ffe0a8; }
+.subs { font-size: 1.5em; }
+
+/* ---------- 成长相册 ---------- */
+.s-album .bd { grid-template-columns: 46% 1fr; }
+.album-tabs { display: flex; flex-wrap: wrap; gap: .4em; }
+.album-tabs .btn { font-size: 1em; }
+.polaroid { flex: 1; min-height: 0; display: flex; flex-direction: column; background: #fff; padding: .8em .8em .4em; border-radius: .3em; box-shadow: 0 .3em 1.2em rgba(60, 40, 20, .18); rotate: -1.5deg; }
+.polaroid .photo { flex: 1; min-height: 10em; background: #d7cfc2 center / cover no-repeat; }
+.polaroid p { margin: .4em 0 0; text-align: center; font-family: var(--kai); font-size: 1.15em; color: var(--ink-2); }
+.album-lines { display: flex; flex-direction: column; gap: .5em; }
+.album-lines p { margin: 0; font-family: var(--kai); font-size: 1.25em; line-height: 1.7; background: #fff; border-radius: .5em; padding: .5em .9em; border-left: .3em solid var(--gold); animation: subIn .6s ease both; }
+.album-lines p:nth-child(2) { animation-delay: .15s; }
+.album-lines p:nth-child(3) { animation-delay: .3s; }
+.album-tag { margin: 0; font-size: 1.15em; font-weight: bold; color: var(--red); background: var(--gold-l); border-radius: .5em; padding: .5em .9em; }
+
+/* ---------- 选一选 ---------- */
+.s-why .pick { font-size: 1.3em; }
+
+/* ---------- 作者的情感 ---------- */
+.s-feel .bd { grid-template-columns: 42% 1fr; }
+.s-feel .stage { justify-content: center; }
+.me-lines { display: flex; flex-direction: column; gap: .7em; }
+.me-lines p { margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.7; background: #fff; border-radius: .5em; padding: .6em 1em; }
+.me-lines b { color: var(--red); }
+.grow { font-family: var(--kai); line-height: 1.5; background: #fff; border-radius: .6em; padding: .8em 1em; }
+.grow span { display: inline; opacity: 0; transition: opacity .5s; }
+.grow.on span { opacity: 1; }
+.grow .lead { font-size: 1em; color: var(--ink-2); }
+.grow span:nth-child(2) { font-size: 1em; transition-delay: .3s; }
+.grow span:nth-child(3) { font-size: 1.05em; transition-delay: .6s; }
+.grow span:nth-child(4) { font-size: 1.1em; transition-delay: .9s; }
+.grow span:nth-child(5) { font-size: 1.2em; transition-delay: 1.2s; }
+.grow span:nth-child(6) { font-size: 1.3em; transition-delay: 1.5s; }
+.grow span:nth-child(7) { font-size: 1.4em; transition-delay: 1.8s; }
+.grow span:nth-child(8) { font-size: 1.5em; transition-delay: 2.1s; }
+.grow span:nth-child(9) { transition-delay: 2.4s; }
+.grow .big { display: block; margin-top: .2em; font-size: 1.9em; color: var(--red); transition-delay: 2.7s; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.6em; }
+  .s-cover .cover-sub { font-size: 1.05em; }
+  .cover-ask { font-size: 1.15em; }
+  .subs { font-size: 1.12em; }
+  .polaroid .photo { min-height: 12em; }
+  .album-lines p, .me-lines p { font-size: 1.08em; }
+  .s-why .pick { font-size: 1.05em; }
+  .grow .big { font-size: 1.4em; }
+}

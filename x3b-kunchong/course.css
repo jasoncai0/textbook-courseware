@@ -1,0 +1,80 @@
+/* 昆虫备忘录 · 本课配色：草地绿、瓢虫红。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #c0442f;
+  --red-d: #4d4a1e;
+  --gold: #c9a33a;
+  --gold-l: #efdea6;
+  --paper: #f3f2e4;
+  --stone: #fdfcf5;
+  --ink-2: #57553f;
+  --line: #d6d3b4;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfcf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #e2e7c6 0, transparent 45%); }
+
+/* 中年级：字大一点 */
+.tip { font-size: 1em; }
+.quote { font-size: 1.2em; }
+.s-cover .cover-title { font-size: 6.4em; letter-spacing: .08em; }
+
+/* 阅读提示：四张翻卡 */
+.kc-cards { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; }
+.kc-card { perspective: 60em; border: none; background: none; padding: 0; font: inherit; cursor: pointer; text-align: center; min-height: 0; }
+.kc-in { position: relative; width: 100%; height: 100%; min-height: 14em; transition: transform .7s ease; transform-style: preserve-3d; }
+.kc-card.flipped .kc-in { transform: rotateY(180deg); }
+.kc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: .7em; padding: .7em; display: flex; flex-direction: column; gap: .4em; border: 1px solid var(--line); background: #fff; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); }
+.kc-face b { font-family: var(--kai); font-size: 1.7em; color: var(--red); }
+.kc-face span { font-size: 1.05em; line-height: 1.6; }
+.kc-face.back { background: #fff8e1; border-color: var(--gold); transform: rotateY(180deg); justify-content: center; }
+.kc-face.back span { font-family: var(--kai); font-size: 1.2em; text-align: left; }
+.kc-pic { flex: 1; min-height: 5em; width: 100%; border-radius: .5em; background: #e6e3cf center / cover no-repeat; }
+.kc-svg { background: #eef3dc; }
+
+/* 复眼 */
+.s-eye .bd { grid-template-columns: 1fr 1fr; }
+.s-eye .stage { align-items: center; }
+.s-eye .btns .btn { font-size: .95em; }
+.kc-eye { flex: 1; min-height: 0; width: 100%; }
+.kc-hex { fill: rgba(60, 80, 50, var(--o)); stroke: #6e7d58; stroke-width: 1.4; transition: fill .6s; }
+.kc-mini { opacity: 0; transition: opacity .6s; }
+.kc-big { transition: opacity .6s; }
+.kc-eye.eye-a .kc-big { opacity: 0; }
+.kc-eye.eye-a .kc-mini { opacity: 1; }
+.kc-eye.eye-a .kc-hex { fill: #fdf8ec; }
+.kc-eye:not(.eye-a):not(.eye-b) .kc-hex { fill: #9aa985; }
+.kc-eye:not(.eye-a):not(.eye-b) .kc-big { opacity: 0; }
+.s-eye .tip.gold { align-self: stretch; }
+
+/* 花大姐 */
+.kc-media { position: relative; border-radius: .6em; overflow: hidden; background: #e6e3cf; min-height: 0; }
+.kc-media .media-btn { top: .5em; right: .5em; }
+.s-dajie .sort-row { grid-template-columns: 1fr auto 13em; }
+.s-dajie .sort-row .s { font-size: 1.15em; }
+
+/* 独角仙 */
+.kc-facts { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.kc-facts span { background: #fff; border-radius: .5em; padding: .5em .8em; border-left: .3em solid var(--red); font-size: 1.05em; }
+.kc-facts b { display: block; font-family: var(--kai); font-size: 1.4em; color: var(--red); }
+
+/* 蚂蚱 */
+.kc-cmp { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+.kc-col { background: #fff; border-radius: .7em; padding: .8em 1.2em; display: flex; flex-direction: column; gap: .4em; border-top: .35em solid #7cbf4a; }
+.kc-col.tu { border-top-color: #5a4a3a; }
+.kc-col svg { height: 6.5em; width: 100%; }
+.kc-col h3 { margin: 0; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.kc-col p { margin: 0; font-family: var(--kai); font-size: 1.2em; line-height: 1.6; padding-left: 1em; position: relative; }
+.kc-col p::before { content: "·"; position: absolute; left: .2em; color: var(--red); }
+.kc-tu { filter: brightness(.35) sepia(.6); transform: scale(.9, 1.08); transform-origin: 50% 50%; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .quote { font-size: 1.05em; }
+  .kc-cards { grid-template-columns: 1fr 1fr; gap: .6em; }
+  .kc-in { min-height: 15em; }
+  .kc-face b { font-size: 1.3em; }
+  .kc-face span, .kc-face.back span { font-size: .95em; }
+  .kc-eye { flex: none; }
+  .kc-media { min-height: 12em; }
+  .s-dajie .sort-row { grid-template-columns: 1fr; }
+  .kc-facts { grid-template-columns: 1fr; }
+  .kc-cmp { grid-template-columns: 1fr; }
+}

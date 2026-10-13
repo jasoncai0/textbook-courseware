@@ -1,0 +1,111 @@
+/* 蟋蟀的住宅（四上 11）· 本课配色：泥土棕、草绿、秋阳黄 */
+:root {
+  --red: #9a5a24;
+  --red-d: #5a3412;
+  --gold: #d9a520;
+  --gold-l: #f3dfa0;
+  --paper: #f5f0e2;
+  --stone: #fcf9f0;
+  --ink-2: #5d5446;
+  --line: #ddd0b2;
+}
+/* 中年级：字再大一点 */
+.subs { font-size: 1.55em; }
+.tip { font-size: 1.05em; }
+.hd h2 { font-size: 1.85em; }
+.s-cover .cover-title { font-size: 7.5em; letter-spacing: .12em; }
+.portrait-card { position: relative; }
+.portrait-img { background-position: 50% 50%; background-size: cover; }
+
+/* 别的昆虫 vs 蟋蟀 */
+.s-choose .bd { grid-template-columns: 58% 1fr; }
+.sort-row .s { font-family: var(--kai); font-size: 1.15em; }
+.two-home { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.home-card { display: flex; flex-direction: column; align-items: center; gap: .2em; background: #fff; border-radius: .7em; padding: .6em; font-family: var(--kai); font-size: 1.1em; }
+.home-card b { font-size: 1.3em; }
+.home-card.other { border: 2px dashed #b9ad99; color: #7b7363; }
+.home-card.me { border: 2px solid var(--red); color: var(--red-d); }
+
+/* 住宅剖面 */
+.s-house .bd { grid-template-columns: 58% 1fr; }
+#houseSvg { border-radius: .8em; }
+#houseSvg .hs { opacity: 0; transition: opacity .5s ease; }
+.h-xuanzhi .hs-xuanzhi, .h-suidao .hs-suidao, .h-men .hs-men, .h-pingtai .hs-pingtai, .h-neibu .hs-neibu { opacity: 1 !important; }
+.house-btns .btn { font-family: var(--kai); font-size: 1.2em; }
+.house-card { background: #fff; border-left: .35em solid var(--gold); border-radius: .5em; padding: .6em 1em; min-height: 7em; }
+.house-card b { font-family: var(--kai); font-size: 1.4em; color: var(--red-d); }
+.house-card p { margin: .3em 0 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.6; }
+.house-card .why { font-family: var(--serif); font-size: 1em; color: #2f6b5e; }
+
+/* 蟋蟀的工具 */
+.s-tools .bd { grid-template-columns: 52% 1fr; }
+#cricketSvg { border-radius: .8em; }
+#cricketSvg .cr-lab { opacity: 0; transition: opacity .4s; }
+#cricketSvg .cr-part { transition: filter .4s, opacity .4s; }
+.t-qianzu .lb-qianzu, .t-dae .lb-dae, .t-houzu .lb-houzu, .t-ju .lb-ju { opacity: 1 !important; }
+.t-qianzu .cr-qianzu, .t-dae .cr-dae, .t-houzu .cr-houzu, .t-ju .cr-ju { filter: drop-shadow(0 0 6px #f2c14e) drop-shadow(0 0 3px #f2c14e); }
+.t-ju .cr-ju { fill: #e0702c; }
+.tool-list { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.tool { display: flex; flex-direction: column; gap: .2em; font: inherit; text-align: left; padding: .6em .8em; border: 2px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; }
+.tool b { font-family: var(--kai); font-size: 1.25em; color: var(--red-d); }
+.tool span { font-family: var(--kai); font-size: 1.1em; color: transparent; background: #f3efe2; border-radius: .3em; padding: 0 .3em; }
+.tool.seen span { color: var(--ink); background: none; }
+.tool.cur { border-color: var(--gold); box-shadow: 0 0 0 .2em var(--gold-l); }
+
+/* 排一排 */
+.build { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7em; flex: 1; min-height: 0; align-content: start; }
+.bcard { position: relative; display: flex; align-items: center; gap: .6em; min-height: 4.4em; font: inherit; text-align: left; padding: .6em .8em; border: 2px solid var(--line); border-radius: .7em; background: #fff; cursor: pointer; box-shadow: 0 .15em .5em rgba(60, 40, 20, .1); }
+.bcard span { font-family: var(--kai); font-size: 1.2em; line-height: 1.5; }
+.bcard i { flex: none; width: 1.8em; height: 1.8em; border-radius: 50%; border: 2px dashed var(--line); display: flex; align-items: center; justify-content: center; font-style: normal; font-weight: bold; font-size: 1.1em; color: #fff; }
+.bcard.done { border-color: var(--gold); background: #fffaea; }
+.bcard.done i { background: var(--red); border: none; }
+.bcard.nope { animation: nope .35s; }
+@keyframes nope { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.build.all { box-shadow: 0 0 0 .3em #cfe8d2; border-radius: .8em; }
+
+/* 法布尔怎样观察 */
+.s-observe .bd { grid-template-columns: 36% 1fr; }
+.obs-line { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5em; position: relative; }
+.obs { background: #fff; border-radius: .6em; padding: .5em .6em; border-top: .3em solid var(--gold); }
+.obs b { display: block; color: var(--red-d); font-size: 1.1em; }
+.obs span { font-family: var(--kai); font-size: 1.1em; line-height: 1.5; }
+.bag { background: #fffaf0; border: 2px dashed var(--gold); border-radius: .7em; padding: .7em 1em; line-height: 1.8; }
+.bag b { color: var(--red-d); margin-right: .6em; }
+
+/* 把蟋蟀当成人写 */
+.s-person .bd { grid-template-columns: 1fr 1fr; }
+.s-person .pick { font-size: 1.2em; }
+.sci { background: #eef3f6; border-radius: .7em; padding: .7em 1em; border-left: .35em solid #6f8ea6; }
+.sci h3 { margin: 0 0 .3em; color: #3c5a72; font-size: 1.05em; }
+.sci p { margin: 0; line-height: 1.7; }
+.sci small { color: var(--ink-2); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs { font-size: 1.15em; }
+  .s-cover .cover-title { font-size: 4em; }
+  #houseSvg, #cricketSvg { flex: none; }
+  .tool-list, .build { grid-template-columns: 1fr; }
+  .obs-line { grid-template-columns: 1fr 1fr; }
+  .two-home { grid-template-columns: 1fr 1fr; }
+}
+
+/* 剖面图读原文 */
+.s-house .stage { position: relative; }
+.house-card p { font-size: 1.25em; }
+
+/* 观察记录本 */
+.s-notes .bd { grid-template-columns: 40% 1fr; }
+.nb-frame { flex: 1; min-height: 8em; border-radius: .6em; overflow: hidden; background: #3e2c1c; border: .3em solid #fff; box-shadow: 0 .2em .8em rgba(60, 40, 20, .2); transform: rotate(-1.5deg); }
+.nb-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.notebook { min-height: 0; overflow: auto; display: flex; flex-direction: column; gap: .5em; padding: .8em 1em .8em 2.4em; border-radius: .6em; background: repeating-linear-gradient(#fffdf6 0 1.9em, #e6dcc6 1.9em calc(1.9em + 1px)); box-shadow: inset 1.6em 0 0 -1.5em #d98a7a, 0 .2em .8em rgba(60, 40, 20, .15); }
+.nb-entry time { display: inline-block; font-size: .85em; color: #fff; background: var(--red); border-radius: .3em; padding: .05em .5em; margin-bottom: .2em; }
+.nb-entry p { margin: 0; font-family: var(--kai); font-size: 1.25em; line-height: 1.6; }
+.nb-entry.fold { display: flex; align-items: center; gap: .6em; opacity: .7; }
+.nb-entry.fold time { margin: 0; background: #b9ad99; }
+.nb-entry.fold p { display: none; }
+.nb-entry.fold::after { content: attr(data-sum); font-family: var(--kai); font-size: 1.05em; }
+@media (max-width: 820px), (max-height: 520px) {
+  .nb-frame { flex: none; height: 12em; }
+  .nb-entry p { font-size: 1.05em; }
+}
+.s-house .media-btn { position: static; align-self: flex-end; }

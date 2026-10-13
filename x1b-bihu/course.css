@@ -1,0 +1,132 @@
+/* 小壁虎借尾巴 · 本课配色：墙砖的赭、河水的蓝。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #b5683a;
+  --red-d: #7c4320;
+  --gold: #e9a83a;
+  --gold-l: #fbe0a4;
+  --paper: #f7f4ee;
+  --stone: #fffdf8;
+  --ink-2: #5d564d;
+  --line: #e0d6c6;
+  --no: #d9453a;
+}
+
+.bh-riddle { margin: 0 0 .2em; max-width: 24em; font-size: 1.8em; color: #fff; }
+.bh-riddle rt { color: var(--gold-l); }
+
+/* ---------- 借尾巴路线 ---------- */
+.bh-read .stage { gap: .6em; }
+.bh-route { position: relative; flex: none; padding-top: 2.2em; }
+.bh-route ol { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), 1fr); }
+.bh-route ol::before { content: ''; position: absolute; left: 10%; right: 10%; top: 1.15em; border-top: .25em dotted #c9a873; }
+.bh-route li { position: relative; display: flex; flex-direction: column; align-items: center; opacity: .45; transition: opacity .5s; }
+.bh-route li.done, .bh-route li.cur { opacity: 1; }
+.bh-route li em { display: grid; place-items: center; width: 2.3em; height: 2.3em; border-radius: 50%; background: #fff; border: .12em solid var(--line); font-style: normal; font-size: 1.1em; }
+.bh-route li.cur em { border-color: var(--red); box-shadow: 0 0 0 .2em rgba(181, 104, 58, .2); }
+.bh-route li small { font-family: var(--kai); font-size: 1.2em; line-height: 2; }
+.bh-route li small rt { font-family: var(--py); font-size: .45em; color: var(--py-c); }
+.bh-gecko { position: absolute; top: 0; left: calc((var(--at, 0) + .5) / 5 * 100%); translate: -50% 0; font-style: normal; font-size: 2em; line-height: 1; transition: left 1.6s ease-in-out; }
+.bh-route.grow .bh-gecko { animation: bhJoy .4s ease-in-out 4 alternate; }
+.bh-route.grow .bh-gecko::after { content: '✨'; position: absolute; left: -.6em; top: -.2em; font-size: .6em; }
+@keyframes bhJoy { to { translate: -50% -.4em; } }
+
+/* ---------- 读课文：尾巴卡 / 图 + 原文 ---------- */
+.bh-row { flex: 1; min-height: 0; display: grid; grid-template-columns: 17em 1fr; gap: 1.2em; align-items: center; }
+.bh-pic { width: 100%; aspect-ratio: 16 / 9; border-radius: .7em; background: #e6e1d6 center / cover no-repeat; object-fit: cover; box-shadow: 0 .2em .7em rgba(60, 40, 20, .18); }
+.bh-read .hz-text { font-size: 1.5em; line-height: 2.35; padding: .3em .9em; max-height: 100%; }
+.bh-read .hz-text p { text-align: left; }
+.bh-card { position: relative; background: #fff; border-radius: .8em; padding: .2em .7em .5em; box-shadow: 0 .2em .7em rgba(60, 40, 20, .15); }
+.bh-card-h, .bh-use { margin: 0; text-align: center; font-size: 1.3em; line-height: 2.1; }
+.bh-use b { font-weight: normal; color: var(--red-d); font-size: 1.2em; margin-left: .2em; }
+.bh-anim { display: block; width: 100%; height: auto; }
+.bh-no { position: absolute; right: .2em; top: 42%; padding: 0 .4em; border: .15em solid var(--no); border-radius: .3em; color: var(--no); background: rgba(255, 255, 255, .9); font-family: var(--kai); font-size: 1.6em; line-height: 1.9; transform: rotate(-14deg) scale(0); opacity: 0; transition: transform .5s cubic-bezier(.3, 1.6, .5, 1), opacity .3s; }
+.bh-no rt { font-family: var(--py); font-size: .4em; color: var(--no); }
+.bh-card.no .bh-no { transform: rotate(-14deg); opacity: 1; }
+/* 小鱼：尾巴摆，水波一圈圈 */
+.bh-ftail { transform-origin: 84px 70px; animation: bhWag .35s ease-in-out infinite alternate; }
+@keyframes bhWag { from { transform: rotate(-16deg); } to { transform: rotate(16deg); } }
+.bh-wave path { fill: none; stroke: #fff; stroke-width: 4; stroke-linecap: round; animation: bhWave 1.2s ease-out infinite; }
+.bh-wave path + path { animation-delay: .4s; }
+@keyframes bhWave { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-16px); } }
+/* 老牛：尾巴甩，蝇子飞走 */
+.bh-ctail { transform-origin: 86px 62px; animation: bhSwish .7s ease-in-out infinite alternate; }
+@keyframes bhSwish { from { transform: rotate(-22deg); } to { transform: rotate(30deg); } }
+.bh-fly { animation: bhFly 1.4s ease-in-out infinite; }
+.bh-fly2 { animation-delay: .7s; }
+@keyframes bhFly { 0% { transform: translate(70px, 90px); opacity: 1; } 45% { transform: translate(60px, 76px); } 100% { transform: translate(18px, 20px); opacity: 0; } }
+/* 燕子：尾巴一摆就转弯 */
+.bh-path { fill: none; stroke: #9cc3df; stroke-width: 3; stroke-dasharray: 6 8; }
+.bh-bird { offset-path: path('M20 110C70 20 120 130 170 40S230 70 236 30'); offset-rotate: auto; animation: bhGlide 4s linear infinite; }
+@keyframes bhGlide { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+
+/* ---------- 连一连 ---------- */
+.bh-link { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 10em 1fr; grid-template-rows: 1fr auto auto; gap: .6em 0; }
+.bh-lk-col { display: flex; flex-direction: column; justify-content: space-around; gap: .6em; }
+.bh-lk { font: inherit; display: flex; align-items: center; justify-content: center; gap: .5em; font-family: var(--kai); font-size: 2em; line-height: 2.1; padding: .1em .7em; border: 3px solid var(--line); border-radius: .6em; background: #fff; color: var(--ink); cursor: pointer; }
+.bh-lk rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.bh-lk i { display: inline-flex; width: 1.6em; height: 1.3em; align-items: center; justify-content: center; font-style: normal; }
+.bh-lk i svg { width: 100%; height: 100%; }
+.bh-lk.sel { border-color: var(--gold); background: #fff8e6; }
+.bh-lk.done { border-color: var(--ok); background: #eef8f0; }
+.bh-lk.wrong { animation: nope .35s; border-color: #e3a998; }
+.bh-lk-svg { width: 100%; height: 100%; }
+.bh-lk-svg line { stroke: var(--ok); stroke-width: 4; stroke-linecap: round; }
+.bh-lk-bar { grid-column: 1 / -1; display: flex; align-items: center; gap: 1em; }
+.bh-lk-msg { flex: 1; font-size: 1.3em; color: var(--ink-2); }
+.bh-lk-sum { grid-column: 1 / -1; margin: 0; text-align: center; font-size: 1.6em; color: var(--ok); visibility: hidden; }
+.bh-link.all .bh-lk-sum { visibility: visible; animation: appear .6s ease; }
+
+/* ---------- 科学小卡片 ---------- */
+.bh-sci { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2em; }
+.bh-sci-card { position: relative; background: #fff; border-radius: .9em; padding: .6em 1em .4em; text-align: center; box-shadow: 0 .2em .7em rgba(60, 40, 20, .12); }
+.bh-sci-card > b { position: absolute; left: .5em; top: .4em; width: 1.6em; height: 1.6em; line-height: 1.6em; border-radius: 50%; background: var(--red); color: #fff; font-family: var(--py); }
+.bh-sci-pic svg { width: 100%; height: 9em; }
+.bh-sci-card p { margin: 0; font-size: 1.5em; line-height: 2.2; }
+.bh-wiggle { animation: bhWig .3s ease-in-out infinite alternate; transform-origin: 14px 70px; }
+@keyframes bhWig { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+.bh-sci-card.on .bh-sci-run { animation: bhRun 2s ease-out both; }
+@keyframes bhRun { to { transform: translateX(14px); } }
+.bh-sci-tip { margin: 0; font-family: var(--kai); font-size: 1.5em; text-align: center; }
+.stage:has(.bh-sci) { justify-content: center; gap: 1.2em; }
+
+/* ---------- 看偏旁，送字宝宝回家 ---------- */
+.bh-sort { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 1em; }
+.bh-pool { min-height: 4.8em; display: flex; flex-wrap: wrap; justify-content: center; gap: .6em; }
+.bh-z { font: inherit; font-family: var(--kai); font-size: 2.6em; line-height: 1.5; width: 1.8em; border: 3px solid var(--line); border-radius: .3em; background: #fff; color: var(--ink); cursor: pointer; }
+.bh-z rt { font-family: var(--py); font-size: .32em; color: transparent; }
+.bh-z.sel { border-color: var(--gold); background: #fff8e6; }
+.bh-z.placed { cursor: default; border-color: var(--ok); animation: pop .4s cubic-bezier(.3, 1.6, .5, 1); }
+.bh-z.placed rt { color: var(--py-c); }
+.bh-z.wrong, .bh-basket.wrong { animation: nope .35s; }
+.bh-baskets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.bh-basket { min-height: 9em; border: 3px dashed #d2b48c; border-radius: .9em; background: #fbf3e6; padding: .3em .8em .6em; cursor: pointer; }
+.bh-basket p { margin: 0; display: flex; align-items: baseline; gap: .4em; font-family: var(--kai); font-size: 1.4em; line-height: 2.1; }
+.bh-basket p b { font-size: 1.6em; color: var(--red-d); }
+.bh-basket p rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.bh-basket small { font-family: var(--serif); font-size: .65em; color: var(--ink-2); }
+.bh-in { display: flex; flex-wrap: wrap; gap: .4em; }
+.bh-in .bh-z { font-size: 2em; }
+.bh-sort-bar { display: flex; align-items: center; gap: 1em; }
+.bh-sort-msg { flex: 1; font-size: 1.3em; color: var(--ink-2); }
+.bh-sort.all .bh-sort-msg { color: var(--ok); font-weight: bold; }
+
+/* ---------- 写字：7 个字 ---------- */
+.hz-write { gap: .3em 1.8em; }
+.hz-cells .hz-tzg { --tz: 3.9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .bh-riddle { font-size: 1.15em; }
+  .bh-route li small { font-size: .85em; }
+  .bh-row { display: flex; flex-direction: column; align-items: stretch; }
+  .bh-read .hz-text { font-size: 1.3em; }
+  .bh-link { grid-template-columns: 1fr 3em 1fr; }
+  .bh-lk { font-size: 1.2em; padding: .1em .3em; }
+  .bh-sci { grid-template-columns: 1fr; gap: .6em; }
+  .bh-sci-pic svg { height: 6em; }
+  .bh-sci-card p { font-size: 1.15em; }
+  .bh-z { font-size: 1.9em; }
+  .bh-baskets { grid-template-columns: 1fr; }
+  .bh-basket { min-height: 5em; }
+  .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .s-sum .board .py { font-size: 1.4em; }
+}

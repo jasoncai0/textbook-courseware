@@ -1,0 +1,124 @@
+/* 一分钟 · 本课配色：闹钟的红、早晨的青。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d2473c;
+  --red-d: #96281f;
+  --gold: #f0a83a;
+  --gold-l: #fde2a8;
+  --paper: #f8f5ee;
+  --stone: #fffdf8;
+  --ink-2: #5d5650;
+  --line: #e2d8c8;
+}
+
+/* ---------- 封面：响铃的闹钟 ---------- */
+.yf-ring { margin: 0 0 .6em; font-size: 2.6em; color: #fff; }
+.yf-ring rt { color: var(--gold-l); }
+.yf-alarm { position: absolute; right: 6%; top: 14%; width: 15em; z-index: 2; filter: drop-shadow(0 .4em .8em rgba(0, 0, 0, .3)); }
+.yf-shake { transform-origin: 100px 110px; }
+.s-cover.active .yf-shake { animation: yfRing .12s linear 14 alternate; }
+.s-cover.active:has(.yf-ring.on) .yf-shake { animation: yfRing .12s linear 24 alternate; }
+@keyframes yfRing { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
+
+/* ---------- 读课文：时间线 ---------- */
+.yf-read .stage { gap: .6em; }
+.yf-track { flex: none; display: flex; align-items: stretch; gap: 1em; }
+.yf-pic { flex: none; width: 11em; aspect-ratio: 16 / 9; border-radius: .6em; background: #e7e1d6 center / cover no-repeat; object-fit: cover; box-shadow: 0 .2em .7em rgba(60, 40, 20, .18); }
+.yf-nodes { position: relative; flex: 1; list-style: none; margin: 0; padding: 3.2em 0 0; display: grid; grid-template-columns: repeat(var(--n), 1fr); }
+.yf-nodes::before { content: ''; position: absolute; left: calc(50% / var(--n)); right: calc(50% / var(--n)); top: 4.9em; height: .3em; border-radius: .2em; background: var(--line); }
+.yf-nodes li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; opacity: .38; transition: opacity .5s; }
+.yf-nodes li.done, .yf-nodes li.cur { opacity: 1; }
+.yf-nodes em { position: relative; z-index: 1; display: grid; place-items: center; width: 1.9em; height: 1.9em; border-radius: 50%; background: #fff; border: .12em solid var(--line); font-style: normal; font-size: 1.8em; line-height: 1; transition: border-color .5s, transform .5s; }
+.yf-nodes li.done em { border-color: var(--gold); }
+.yf-nodes li.cur em { border-color: var(--red); transform: scale(1.18); box-shadow: 0 0 0 .2em rgba(210, 71, 60, .2); }
+.yf-nodes small { font-family: var(--kai); font-size: 1.2em; white-space: nowrap; line-height: 2.1; }
+.yf-nodes small rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.yf-nodes li[data-i="6"] small { color: var(--red-d); font-weight: bold; }
+.yf-sigh { position: absolute; bottom: 100%; z-index: 2; left: 50%; translate: -50% 0; width: max-content; padding: 0 .5em; border-radius: .8em; background: #fff4d6; border: 1px solid var(--gold); font-family: var(--kai); font-size: 1.3em; line-height: 1.9; opacity: 0; transform: scale(.5); transition: opacity .5s, transform .5s cubic-bezier(.3, 1.6, .5, 1); }
+.yf-sigh rt { font-family: var(--py); font-size: .45em; color: var(--py-c); }
+.yf-nodes li.sighed .yf-sigh { opacity: 1; transform: none; }
+.yf-read .hz-text { font-size: 1.55em; line-height: 2.4; padding: .3em 1em; flex: 1; min-height: 0; }
+.yf-read .hz-text p { text-align: left; }
+
+/* 多睡 1 分钟 / 迟到 20 分钟 */
+.yf-compare { display: flex; align-items: center; gap: 2.4em; font-size: 1em; }
+.yf-compare div { display: flex; align-items: center; gap: .8em; }
+.yf-compare b { width: 3em; font-family: var(--kai); font-size: 1.3em; line-height: 2; font-weight: normal; }
+.yf-compare em { font-style: normal; font-weight: bold; color: var(--red-d); font-size: 1.2em; }
+.yf-bar { display: flex; gap: .25em; }
+.yf-bar i { width: 1em; height: 1.1em; border-radius: .2em; background: var(--red); }
+.yf-compare.on .yf-bar i { animation: pop .3s cubic-bezier(.3, 1.6, .5, 1) both; }
+.yf-compare .yf-bar i:nth-child(n) { animation-delay: calc(var(--k, 0) * 1s); }
+.yf-compare div:first-child .yf-bar i { background: var(--gold); }
+
+/* ---------- 骨牌因果链 ---------- */
+.yf-domino { flex: 1; min-height: 0; display: grid; grid-template-columns: 15em 1fr; gap: 1.6em; align-items: center; }
+.yf-tiles { position: relative; height: 12em; display: flex; align-items: flex-end; gap: 1.6em; padding-left: .6em; border-bottom: .3em solid #b9a88f; }
+.yf-tile { width: 1.9em; height: 9em; border-radius: .3em; background: linear-gradient(#fff, #f3e9da); border: .15em solid #6b5a46; display: flex; align-items: flex-start; justify-content: center; padding-top: .3em; transform-origin: 100% 100%; transition: transform .6s ease-in, opacity .4s !important; }
+.yf-tile b { font-family: var(--py); color: var(--red-d); }
+.yf-tile[data-step] { opacity: 1; transform: none; }
+.yf-tile.on { background: linear-gradient(#ffe2d8, #f7b6a6); border-color: var(--red-d); }
+.yf-tile.on:has(+ .yf-tile.on) { transform: rotate(48deg); }
+.yf-lines { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .4em; counter-reset: d; }
+.yf-lines li { position: relative; font-size: 1.85em; line-height: 2.3; background: #fff; border-radius: .5em; padding: 0 .6em 0 2em; box-shadow: 0 .1em .4em rgba(60, 40, 20, .08); }
+.yf-lines li::before { counter-increment: d; content: counter(d); position: absolute; left: .5em; top: 50%; translate: 0 -50%; width: 1.2em; height: 1.2em; border-radius: 50%; background: var(--red); color: #fff; font: .6em/1.2em var(--py); text-align: center; }
+.yf-ask { font: inherit; font-family: var(--py); padding: 0 .5em; margin-left: .2em; border: 2px dashed var(--gold); border-radius: .4em; background: #fff8e6; color: var(--red-d); cursor: pointer; line-height: 1.4; }
+.yf-ans { display: none; color: var(--ok); }
+.yf-lines li.open .yf-ask { display: none; }
+.yf-lines li.open .yf-ans { display: inline; animation: appear .5s ease; }
+
+/* ---------- 计时一分钟 / 读字挑战 ---------- */
+.yf-timer, .yf-flash { flex: 1; min-height: 0; display: grid; grid-template-columns: 16em 1fr; gap: 2em; align-items: center; }
+.yf-timer-l { display: flex; flex-direction: column; align-items: center; gap: .6em; }
+.yf-timer-l .btns { display: flex; gap: .6em; }
+.yf-clock { width: 13em; height: 13em; }
+.yf-ring-bg { fill: #fff; stroke: #eadfcd; stroke-width: 10; }
+.yf-ring-fg { fill: none; stroke: var(--red); stroke-width: 10; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 60px 60px; transition: stroke-dashoffset 1s linear; }
+.yf-sec { font-family: var(--py); font-size: 40px; text-anchor: middle; fill: var(--red-d); }
+.yf-unit { font-size: 14px; text-anchor: middle; fill: var(--ink-2); }
+.over .yf-clock { animation: yfRing .12s linear 10 alternate; }
+.yf-timer-msg { margin: 0; min-height: 1.6em; font-family: var(--kai); font-size: 1.4em; color: var(--red-d); text-align: center; }
+.yf-tasks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5em; }
+.yf-tasks li { display: flex; align-items: center; gap: .3em; font-size: 1.8em; line-height: 2.2; background: #fff; border: 2px solid transparent; border-radius: .5em; padding: 0 .6em; cursor: pointer; box-shadow: 0 .1em .4em rgba(60, 40, 20, .08); }
+.yf-tasks li.on { border-color: var(--gold); background: #fff8e6; }
+.yf-tasks input { width: 3em; font: inherit; font-family: var(--py); font-size: .9em; text-align: center; border: none; border-bottom: 2px solid var(--red); background: transparent; color: var(--red-d); }
+.yf-more { color: var(--ink-2); }
+.yf-flash-r { display: flex; flex-direction: column; align-items: center; gap: .8em; }
+.yf-card { display: grid; place-items: center; width: 5.6em; height: 5.6em; border-radius: .6em; background: #fff; box-shadow: 0 .3em 1em rgba(60, 40, 20, .15); font-family: var(--kai); font-size: 3.2em; line-height: 1.4; }
+.yf-card rt { font-family: var(--py); font-size: .35em; color: transparent; }
+.yf-card.hint rt { color: var(--py-c); }
+.yf-card.pop { animation: pop .35s cubic-bezier(.3, 1.6, .5, 1); }
+.yf-end { font-size: .38em; color: var(--ok); font-weight: bold; text-align: center; }
+.yf-flash-r .btns { display: flex; gap: .6em; }
+.yf-flash-r .btn[disabled] { opacity: .4; cursor: default; }
+.yf-score { margin: 0; font-size: 1.4em; }
+.yf-score b { font-family: var(--py); font-size: 1.5em; color: var(--red); }
+
+/* ---------- 写字：7 个字，格子小一点 ---------- */
+.hz-write { gap: .3em 1.8em; }
+.hz-cells .hz-tzg { --tz: 3.9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .yf-alarm { width: 7em; top: auto; bottom: 22%; right: 4%; }
+  .yf-ring { font-size: 1.6em; }
+  .yf-track { flex-direction: column; }
+  .yf-pic { width: 100%; }
+  .yf-nodes { padding-top: 2.4em; }
+  .yf-nodes em { font-size: 1.2em; }
+  .yf-nodes small { font-size: .8em; }
+  .yf-nodes::before { top: 3.5em; }
+  .yf-sigh { font-size: .8em; }
+  .yf-read .hz-text { font-size: 1.4em; }
+  .yf-compare { flex-direction: column; align-items: flex-start; gap: .2em; }
+  .yf-bar { flex-wrap: wrap; }
+  .yf-bar i { width: .7em; height: .9em; }
+  .yf-domino { display: flex; flex-direction: column; align-items: stretch; }
+  .yf-tiles { height: 8em; gap: 1.2em; }
+  .yf-tile { height: 6em; width: 1.6em; }
+  .yf-lines li { font-size: 1.3em; }
+  .yf-timer, .yf-flash { display: flex; flex-direction: column; align-items: stretch; }
+  .yf-clock { width: 9em; height: 9em; }
+  .yf-tasks li { font-size: 1.2em; flex-wrap: wrap; }
+  .yf-card { font-size: 2.4em; }
+  .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .s-sum .board .py { font-size: 1.4em; }
+}

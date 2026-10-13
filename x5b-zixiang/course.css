@@ -1,0 +1,52 @@
+/* 自相矛盾 · 本课配色：宣纸、墨、朱砂。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #8f3a2a;
+  --red-d: #4f2a1e;
+  --gold: #a88a4a;
+  --gold-l: #e6d8b0;
+  --paper: #f3eee1;
+  --stone: #fbf8ef;
+  --ink-2: #5f584c;
+  --line: #d8ceb8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcf9f0 0, transparent 40%), radial-gradient(circle at 90% 95%, #e6dcc6 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .8em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.25em; background: rgba(143, 58, 42, .9); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 猜字义卡 */
+.s-clues .clues { grid-template-columns: repeat(4, 1fr); }
+.s-clues .clue, .s-clues .clue-in { min-height: 9em; }
+.s-clues .clue-face.front { font-size: 1.15em; }
+.clue-face u { text-decoration: none; border-bottom: .15em dotted var(--red); color: var(--red); font-weight: bold; }
+
+/* 矛与盾图解 */
+#zxSvg { flex: 1; min-height: 0; width: 100%; }
+#zxSvg .fly { transition: transform 1.2s cubic-bezier(.5, 0, .6, 1); }
+#zxSvg:has(.st3.on) .fly { transform: translateX(168px); }
+#zxSvg[data-res="pierce"]:has(.st3.on) .fly { transform: translateX(200px); }
+#zxSvg .zx-crack, #zxSvg .zx-bent, #zxSvg .zx-x { opacity: 0; transition: opacity .5s; }
+#zxSvg[data-res="pierce"] .zx-crack, #zxSvg[data-res="pierce"] .zx-x-dun { opacity: 1; }
+#zxSvg[data-res="block"] .zx-bent, #zxSvg[data-res="block"] .zx-x-mao { opacity: 1; }
+#zxSvg[data-res="block"] .zx-tip { opacity: 0; }
+.zx-try { display: flex; align-items: center; gap: .6em; flex-wrap: wrap; }
+.zx-try .zx-res { flex: 1; min-width: 14em; }
+
+/* 思维过程 */
+.think { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .5em; }
+.think li { background: #fff; border-radius: .4em; padding: .45em .9em; font-family: var(--kai); font-size: 1.1em; line-height: 1.6; border-left: .3em solid var(--gold); }
+.think li b { display: inline-block; width: 1.8em; height: 1.8em; line-height: 1.8em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; margin-right: .6em; font-family: var(--serif); font-size: .85em; }
+.think li.end { background: #fbeee8; border-left-color: var(--red); }
+.s-think .stage { justify-content: center; }
+.s-think .pick { font-size: .95em; }
+
+.recite.wide .recite-lines { font-size: 1.5em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .s-clues .clues { grid-template-columns: 1fr 1fr; }
+  #zxSvg { flex: none; height: auto; }
+  #zxSvg .t-m { font-size: 22px; }
+  .recite.wide .recite-lines { font-size: 1.2em; }
+}

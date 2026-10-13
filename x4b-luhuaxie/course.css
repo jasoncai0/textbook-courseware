@@ -1,0 +1,63 @@
+/* 芦花鞋 · 本课配色：芦花银白、稻草金黄、雪天青灰。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #c4612a;
+  --red-d: #5a3418;
+  --gold: #d4a24a;
+  --gold-l: #f4e2b4;
+  --paper: #f2f3f2;
+  --stone: #fbfcfb;
+  --ink-2: #566069;
+  --line: #d4dade;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfdfb 0, transparent 40%), radial-gradient(circle at 90% 95%, #e1e7ea 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.subs { font-size: 1.5em; }
+
+/* ---------- 封面：一只芦花鞋 ---------- */
+.s-shoe { background: linear-gradient(160deg, #f6f3ea, #dfe6ea); }
+.shoe-cover { height: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 2em; align-items: center; }
+.shoe-box { text-align: center; }
+.shoe-svg { width: 100%; max-height: 52vh; }
+.shoe-svg .fluff circle { animation: fluff 3s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.shoe-svg .fluff circle:nth-child(odd) { animation-delay: -1.5s; }
+@keyframes fluff { to { transform: translate(3px, -2px) scale(1.05); } }
+.riddle { margin: .4em 0 0; font-family: var(--kai); font-size: 1.8em; line-height: 1.6; color: var(--red-d); }
+.s-shoe .cover-unit { color: var(--ink-2); }
+.s-shoe .cover-title { color: var(--red-d); font-size: 7em; letter-spacing: .1em; }
+.s-shoe .cover-sub { color: var(--ink-2); font-size: 1.3em; }
+
+/* ---------- 卖鞋路线 + 心情曲线 ---------- */
+#sellSvg { border-radius: 1em; flex: 1; min-height: 0; }
+#moodLine { transition: d .8s ease; }
+.md { opacity: 0; transition: opacity .5s; }
+.md.on { opacity: 1; }
+.md circle { fill: var(--red); stroke: #fff; stroke-width: 3; }
+.md-feel { fill: var(--red-d); font-weight: bold; }
+.md-at { fill: var(--ink-2); }
+.sell-say { min-height: 3.6em; }
+.sell-say p { margin: 0; display: none; font-family: var(--kai); font-size: 1.45em; line-height: 1.7; background: #fff; border-left: .3em solid var(--red); border-radius: .5em; padding: .5em 1em; }
+.sell-say p.now { display: block; animation: subIn .6s ease both; }
+
+/* ---------- 自己列小标题 ---------- */
+.my-titles { display: flex; flex-direction: column; gap: .6em; }
+.my-row { display: grid; grid-template-columns: 5em 1fr 11em auto 9em; gap: .7em; align-items: center; background: #fff; border-radius: .6em; padding: .5em .9em; border: 1px solid var(--line); }
+.my-row b { color: var(--red-d); }
+.my-row .gist { color: var(--ink-2); }
+.my-row input { font: inherit; font-family: var(--kai); font-size: 1.2em; padding: .25em .6em; border: 1px solid var(--line); border-radius: .4em; min-width: 0; }
+.my-row .ref { font-style: normal; font-family: var(--kai); font-size: 1.1em; color: #1f6b4f; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .subs { font-size: 1.12em; }
+  .shoe-cover { grid-template-columns: 1fr; gap: .6em; align-content: center; }
+  .shoe-svg { max-height: 30vh; }
+  .riddle { font-size: 1.2em; }
+  .s-shoe .cover-title { font-size: 3em; }
+  .sell-say p { font-size: 1.1em; }
+  #sellSvg { flex: none; }
+  .my-row { grid-template-columns: 1fr auto; }
+  .my-row .gist, .my-row input, .my-row .ref { grid-column: 1 / -1; }
+  .my-row b { grid-row: 1; }
+}

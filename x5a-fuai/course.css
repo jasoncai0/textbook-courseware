@@ -1,0 +1,50 @@
+/* 父爱之舟 · 本课配色：江南水墨的青灰、乌篷的褐、灯火的暖黄。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #5d6b5a;
+  --red-d: #3a4638;
+  --gold: #c39a4e;
+  --gold-l: #eddcb4;
+  --paper: #f1efe8;
+  --stone: #fbfaf6;
+  --ink-2: #5a5a52;
+  --line: #d3d0c2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfaf6 0, transparent 40%), radial-gradient(circle at 90% 95%, #dde2d8 0, transparent 45%); }
+.scene .hd .tag { background: rgba(58, 70, 56, .92); }
+.s-cover .cover-title { letter-spacing: .2em; }
+
+/* 梦：画面四周罩一层薄雾 */
+.mist { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, transparent 45%, rgba(236, 232, 222, .38) 100%); }
+.s-dream .scene-bg { filter: saturate(.85); }
+.scene:has(.whiteout.on) .subs p.now { color: #3d3730; }
+.scene:has(.whiteout.on) .subs .reveal { color: var(--red-d); }
+.scene:has(.whiteout.on) .hd .sub { color: #77746d; text-shadow: none; }
+
+/* 小船驶过的场景 */
+.s-boat .stage { justify-content: center; }
+.river { flex: 1; min-height: 0; width: 100%; }
+.river .water { fill: none; stroke: #c9d8d4; stroke-width: 34; stroke-linecap: round; }
+.river .water-line { fill: none; stroke: #9fb8b2; stroke-width: 2; stroke-dasharray: 10 8; }
+.river .stop { fill: var(--gold); stroke: #fff; stroke-width: 3; }
+.river .stop-name { font-weight: bold; fill: var(--red-d); }
+.river .stop-sub { fill: var(--ink-2); font-family: var(--kai); }
+#boat { transition: transform 1.4s ease; }
+
+/* 两句对读 */
+.two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+.two-cols > div { display: flex; flex-direction: column; gap: .6em; }
+.two-cols .quote { font-size: 1.15em; }
+
+/* 题目 */
+.reasons { justify-content: center; }
+.reason { background: #fff; border-left: .3em solid var(--red); border-radius: .4em; padding: .55em 1em; box-shadow: 0 .15em .5em rgba(40, 50, 40, .08); }
+.reason b { color: var(--red-d); font-size: 1.1em; }
+.reason p { margin: .15em 0 0; line-height: 1.65; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .river { overflow: visible; }
+  .s-boat .stage { overflow-x: auto; }
+  .s-boat .river { width: 720px; max-height: none; flex: none; align-self: flex-start; }
+  .s-boat .stage::before { content: "← 左右滑动，看完整的河道 →"; font-size: .8em; color: var(--ink-2); text-align: center; }
+  .two-cols { grid-template-columns: 1fr; }
+}

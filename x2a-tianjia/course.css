@@ -1,0 +1,96 @@
+/* 田家四季歌 · 本课配色：麦苗绿、稻谷金。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #c7792a;
+  --red-d: #8f5014;
+  --gold: #e9b22a;
+  --gold-l: #fbe6a2;
+  --paper: #fbf7ec;
+  --stone: #fffdf6;
+  --ink-2: #66594a;
+  --line: #eadcbf;
+}
+
+.tj-ask { font-family: var(--kai); font-size: 1.6em; line-height: 1.6; margin: .3em 0 .8em; }
+
+/* ---------- 四季农事轮盘 ---------- */
+.tj-box { flex: 1; min-height: 0; display: grid; grid-template-columns: 36% 1fr; gap: 1.4em; }
+.tj-left { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4em; min-height: 0; }
+.tj-wheel { width: 100%; max-height: 100%; aspect-ratio: 224 / 236; min-height: 0; flex: 0 1 auto; }
+.tj-svg { width: 100%; height: 100%; }
+.tj-rot { transition: transform 1.2s cubic-bezier(.4, 1.3, .5, 1); }
+.tj-w { cursor: pointer; }
+.tj-w path { stroke: #fff; stroke-width: 3; }
+.tj-w:hover path { filter: brightness(1.06); }
+.tj-svg .ic { font-size: 26px; text-anchor: middle; }
+.tj-svg .zi { font-family: var(--kai); font-size: 30px; font-weight: bold; text-anchor: middle; fill: #fff; paint-order: stroke; stroke: rgba(0, 0, 0, .25); stroke-width: 3px; }
+.tj-svg .hub { fill: #fff; stroke: var(--line); stroke-width: 3; }
+.tj-svg .ptr { fill: var(--red); }
+.tj-hint { margin: 0; color: var(--ink-2); font-size: .95em; }
+.tj-panels { position: relative; min-height: 0; }
+.tj-panel { position: absolute; inset: 0; border-radius: 1em; overflow: hidden; opacity: 0; transform: scale(.97); transition: opacity .7s .3s, transform .7s .3s; box-shadow: 0 .3em 1em rgba(60, 40, 10, .18); }
+.tj-panel.cur { opacity: 1; transform: none; }
+.tj-img { position: absolute; inset: 0; background: #e8dcc0 center / cover no-repeat; }
+.tj-verse { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.4em 1.4em .6em; background: linear-gradient(transparent, rgba(30, 20, 8, .78) 30%); color: #fff; font-family: var(--kai); font-size: 1.75em; }
+.tj-verse p { margin: 0; line-height: 2.15; }
+.tj-verse rt { font-family: var(--py); font-size: .42em; color: #ffe7a3; }
+.tj-mark { display: none; }
+/* 冬天：示意画（没有配图） */
+.tj-winter { background: linear-gradient(#cfe3f5, #f4f9ff 55%, #fff); }
+.tj-winter span { position: absolute; }
+.tj-winter .flakes { left: 5%; right: 5%; top: 2%; text-align: center; color: #fff; font-size: 2.2em; letter-spacing: .4em; text-shadow: 0 0 .3em #7fa9d0; }
+.slide.active .tj-winter .flakes { animation: tjSnow 4s ease-in-out infinite alternate; }
+@keyframes tjSnow { to { transform: translateY(1.2em); } }
+.tj-winter .home { left: 10%; top: 12%; font-size: 4.2em; }
+.tj-winter .coat { left: 44%; top: 14%; font-size: 3.4em; }
+.tj-winter .smile { left: 64%; top: 18%; font-size: 2.4em; }
+.tj-say { font-family: var(--kai); font-size: 1.25em; }
+
+/* ---------- 读出心情 ---------- */
+.tj-feel { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: .7em; }
+.tj-fl { display: grid; grid-template-columns: 2.4em 1fr 7em; align-items: center; gap: 1em; background: #fff; border-radius: 1em; padding: 0 1.2em; box-shadow: 0 .15em .5em rgba(60, 40, 10, .08); }
+.tj-fl b { width: 2em; height: 2em; border-radius: 50%; display: grid; place-items: center; font-family: var(--kai); font-size: 1.4em; color: #fff; background: var(--red); }
+.tj-fl:nth-child(1) b { background: #7cbd55; }
+.tj-fl:nth-child(2) b { background: #3f9a5c; }
+.tj-fl:nth-child(3) b { background: #e0a22c; }
+.tj-fl:nth-child(4) b { background: #7aa7d2; }
+.tj-fl .py { font-family: var(--kai); font-size: 1.85em; line-height: 2.2; }
+.tj-fl rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.tj-fl em { font-style: normal; color: var(--red-d); background: linear-gradient(transparent 60%, var(--gold-l) 60%); }
+.tj-fl i { font-style: normal; font-size: 1.3em; font-family: var(--kai); }
+
+/* ---------- 农事分季节 ---------- */
+.tj-sort { display: grid; grid-template-columns: 1fr 1fr; gap: .6em 1em; align-content: center; flex: 1; }
+.tj-sort .sort-row { grid-template-columns: 5em auto 1fr; padding: .1em .8em; }
+.tj-sort .s { font-size: 1.9em; line-height: 2.1; }
+.tj-sort rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.tj-sort .btn { font-size: 1.15em; font-family: var(--kai); padding: .1em .55em; }
+.tj-sort .res { font-size: .95em; }
+
+/* ---------- 背诵 ---------- */
+.tj-recite { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .8em 1.4em; align-content: center; }
+.tj-recite > div { background: var(--stone); border-radius: .6em; padding: .2em 1em; font-family: var(--kai); font-size: 1.6em; box-shadow: 0 .15em .5em rgba(60, 40, 10, .07); }
+.tj-recite p { margin: 0; line-height: 2.15; white-space: nowrap; }
+.tj-recite rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.tj-board { display: grid; grid-template-columns: 1fr 1fr; }
+
+/* 读准字音：卡片略小，保证一屏放下 */
+.s-ziyin .zy-card { font-size: 1.85em; }
+.s-ziyin .zy-write { font-size: 1.85em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .tj-ask { font-size: 1.15em; }
+  .tj-box { display: flex; flex-direction: column; }
+  .tj-wheel { width: 70%; }
+  .tj-panels { height: 26em; }
+  .tj-verse { font-size: 1.2em; padding: 2em .8em .4em; }
+  .tj-fl { grid-template-columns: 2.2em 1fr; padding: .3em .6em; }
+  .tj-fl i { grid-column: 2; }
+  .tj-fl .py { font-size: 1.25em; }
+  .tj-sort { grid-template-columns: 1fr; }
+  .tj-sort .sort-row { grid-template-columns: 1fr; }
+  .tj-sort .s { font-size: 1.4em; }
+  .tj-recite { grid-template-columns: 1fr; }
+  .tj-recite > div { font-size: 1.2em; }
+  .tj-recite p { white-space: normal; }
+  .tj-board { grid-template-columns: 1fr; }
+}

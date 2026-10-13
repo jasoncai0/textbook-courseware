@@ -1,0 +1,80 @@
+/* 画 · 本课配色：卷轴的灰青、花枝的粉。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #b5524a;
+  --red-d: #7f3029;
+  --gold: #d9a24a;
+  --gold-l: #f6e0b4;
+  --paper: #f7f4ee;
+  --stone: #fffdf8;
+  --ink-2: #5f5a52;
+  --line: #ddd5c6;
+}
+
+/* 猜谜语：左边诗，右边谜底 */
+.hu-riddle { flex-direction: row; align-items: center; justify-content: center; gap: 2.4em; }
+.hu-poem { padding: .4em 1.6em; font-size: 2.4em; }
+.hu-poem p { text-indent: 0; text-align: center; letter-spacing: .12em; }
+.hu-answer { position: relative; width: 13em; height: 18em; display: grid; place-items: center; }
+.hu-q { font: bold 8em/1 var(--py); color: var(--gold); opacity: .6; }
+.hu-a { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; gap: .3em; background: var(--paper); }
+.hu-scroll { flex: 1; width: 100%; border-radius: .4em; background: #f4f2ee center / cover no-repeat; }
+.hu-a b { font-family: var(--kai); font-size: 3em; line-height: 1.6; color: var(--red-d); }
+.hu-a b rt { font-size: .35em; }
+
+/* 真的山水 vs 画 */
+.hu-cmp { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+.hu-cmp figure { margin: 0; min-height: 0; display: flex; flex-direction: column; gap: .3em; }
+.hu-cmp video, .hu-still { flex: 1; min-height: 0; width: 100%; object-fit: cover; border-radius: .6em; background: #e6ece0 center / cover no-repeat; }
+.hu-still { background-color: #f4f2ee; }
+.hu-cmp figcaption { text-align: center; font-size: 1.2em; color: var(--ink-2); }
+.hu-rows { display: flex; flex-direction: column; gap: .3em; }
+.hu-rows p { margin: 0; display: flex; align-items: center; gap: 1em; background: #fff; border-radius: .5em; padding: 0 1em; }
+.hu-rows b { font-family: var(--kai); font-size: 1.6em; color: var(--red-d); white-space: nowrap; }
+.hu-rows span { font-size: 1.2em; }
+
+/* 上一句对下一句 */
+.hu-pairs { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: .6em; font-family: var(--kai); font-size: 2.6em; }
+.hu-pairs p { margin: 0; display: flex; justify-content: center; align-items: center; gap: .8em; }
+.hu-pairs i { font-style: normal; color: var(--gold); }
+.hu-pairs span { background: #fff; border-radius: .3em; padding: 0 .4em; }
+.hu-pairs span b { color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .hu-riddle { flex-direction: column; gap: 1em; }
+  .hu-poem { font-size: 1.6em; padding: .3em .6em; }
+  .hu-answer { width: 10em; height: 12em; }
+  .hu-cmp { grid-template-columns: 1fr; }
+  .hu-cmp video, .hu-still { flex: none; aspect-ratio: 16 / 9; }
+  .hu-rows p { flex-direction: column; align-items: flex-start; gap: 0; padding: .3em .8em; }
+  .hu-pairs { font-size: 1.4em; }
+  .hu-pairs p { flex-direction: column; gap: .2em; }
+}
+
+/* 手机：板书一行字多，缩小一点不出框 */
+@media (max-width: 820px), (max-height: 520px) {
+  .hz-board .py { font-size: 1.45em; letter-spacing: 0; }
+}
+
+/* 钓鱼 */
+.fi-box { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.8fr 1fr; gap: 1.4em; }
+.fi-pond { position: relative; overflow: hidden; border-radius: 50% / 30%; background: radial-gradient(ellipse at 50% 40%, #9fd3ec, #4e9fc8 75%); box-shadow: inset 0 0 2em rgba(0, 40, 80, .35); }
+.fi-fish { font: inherit; position: absolute; left: 0; top: calc(14% + var(--row) * 19%); width: 4.2em; height: 2.6em; padding: 0 .9em 0 0; border: none; border-radius: 50% 45% 45% 50%; background: radial-gradient(circle at 30% 35%, #ffb26b, #f07a2e 70%); color: #fff; cursor: pointer; animation: fiSwim var(--t) var(--d) ease-in-out infinite alternate both; }
+.fi-fish::after { content: ""; position: absolute; right: -.9em; top: 50%; translate: 0 -50%; border: .9em solid transparent; border-right: 1.1em solid #f07a2e; rotate: 180deg; }
+.fi-fish b { font-family: var(--kai); font-size: 1.7em; font-weight: normal; }
+.fi-fish.caught { animation: fiUp .7s ease-in forwards; pointer-events: none; }
+@keyframes fiSwim { from { translate: 6% 0; } to { translate: calc(var(--pw, 30em) - 6em) 0; } }
+@keyframes fiUp { to { translate: 50% -12em; opacity: 0; } }
+.fi-pond { --pw: 34em; }
+.fi-bucket { align-self: end; display: flex; flex-direction: column; gap: .6em; min-height: 60%; padding: .8em 1em 1.2em; border: .2em solid #6f8ea3; border-radius: .6em .6em 2em 2em; background: linear-gradient(#e9f2f7, #c9dde8); }
+.fi-bucket p { margin: 0; font-size: 1.15em; }
+.fi-bucket > p b { color: var(--red); font-size: 1.4em; }
+.fi-in { flex: 1; display: flex; flex-wrap: wrap; align-content: flex-start; gap: .2em .5em; font-family: var(--kai); font-size: 1.9em; line-height: 2; }
+.fi-in span { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+.fi-in rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+@media (max-width: 820px), (max-height: 520px) {
+  .fi-box { display: flex; flex-direction: column; }
+  .fi-pond { height: 18em; flex: none; --pw: 20em; }
+  .fi-fish { width: 3.4em; height: 2.2em; }
+  .fi-fish b { font-size: 1.3em; }
+  .fi-bucket { min-height: 8em; }
+}

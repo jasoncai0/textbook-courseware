@@ -1,0 +1,107 @@
+/* 富饶的西沙群岛（三上 18）· 本课配色：海蓝、珊瑚红、沙滩黄。故事页样式见 ../shared/narrative.css */
+:root {
+  --red: #d2553f;
+  --red-d: #1d5b85;
+  --gold: #e3a92b;
+  --gold-l: #f6dc94;
+  --paper: #eef6f8;
+  --stone: #fafdfe;
+  --ink-2: #4c5f6a;
+  --line: #c6dbe3;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfeff 0, transparent 40%), radial-gradient(circle at 90% 95%, #d9ebf1 0, transparent 45%); }
+.scene .hd .tag { background: rgba(29, 91, 133, .92); }
+
+/* ---------- 中年级：字更大 ---------- */
+.subs { font-size: 1.55em; }
+.tip { font-size: 1.05em; }
+.hd h2 { font-size: 1.9em; }
+.quote { font-size: 1.3em; }
+.subs .hl { color: #ffe08a; font-weight: normal; }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .06em; }
+.pick { font-size: 1.3em; }
+.sort-row .s { font-size: 1.2em; }
+
+/* ---------- 分区域地图 ---------- */
+.s-zones .bd { grid-template-columns: 58% 1fr; }
+#zones { flex: 1; min-height: 0; width: 100%; border-radius: .6em; }
+#zones .hit { fill: transparent; cursor: pointer; }
+#zones .zone.sel .hit { fill: rgba(255, 236, 140, .35); stroke: #ffe27a; stroke-width: 4; }
+#zones .badge { fill: #d2553f; stroke: #fff; stroke-width: 3; }
+#zones .badge-t { fill: #fff; font-size: 22px; font-weight: bold; text-anchor: middle; }
+#zones [data-step] { pointer-events: none; }
+.zone-total { font-family: var(--kai); font-size: 1.2em; }
+.zone-total b { font-family: var(--serif); font-size: .8em; }
+.zone-card { flex: 1; background: #fff; border-radius: .6em; padding: .8em 1.1em; border-top: .3em solid var(--red-d); }
+.zone-card h3 { margin: 0 0 .3em; font-size: 1.8em; color: var(--red-d); }
+.zone-card h3 small { font-size: .5em; color: var(--ink-2); margin-left: .6em; font-weight: normal; }
+.zc-hint { color: var(--ink-2); font-size: 1.1em; }
+.zc-key { font-family: var(--kai); font-size: 1.4em; color: var(--red); margin: .2em 0; }
+.zc-key.none { color: var(--ink-2); font-size: 1.1em; }
+.zc-more { font-family: var(--kai); font-size: 1.25em; margin: .3em 0 0; }
+
+/* ---------- 第 2 段：海水颜色 ---------- */
+.s-color .bd { grid-template-columns: 38% 1fr; }
+.mark.key.on { color: var(--red); font-weight: bold; }
+.key-note { font-family: var(--serif); font-size: .8em; text-indent: 0 !important; color: var(--ink-2); }
+.key-note b { color: var(--red); }
+#seabed { flex: 1; min-height: 0; width: 100%; border-radius: .5em; }
+#seabed .strip { cursor: pointer; stroke: #fff; stroke-width: 2; }
+#seabed .strip.sel { stroke: #d2553f; stroke-width: 4; }
+#seabed .strip-t { pointer-events: none; fill: #fff; font-size: 15px; font-weight: bold; paint-order: stroke; stroke: rgba(0, 0, 0, .35); stroke-width: 3px; }
+#depthSay { font-size: 1.2em; }
+
+/* ---------- 第 3 段：海底小图 ---------- */
+.s-sort .bd, .s-rich .bd { grid-template-columns: 34% 1fr; }
+.sea-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: .3em .6em; text-align: center; }
+.sea-mini svg { width: 100%; height: 3.6em; background: #e3f2f7; border-radius: .4em; }
+.sea-mini b { grid-row: 2; color: var(--red-d); font-size: 1.1em; }
+.sea-mini .worm { animation: worm 2.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes worm { 50% { transform: scaleX(.85); } }
+.sea-mini .lob { animation: lob 3s ease-in-out infinite; }
+@keyframes lob { 50% { translate: -10px 0; } }
+
+/* ---------- 第 4 段：鱼 ---------- */
+.fish-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; }
+.fish { font: inherit; background: #e3f2f7; border: 2px solid transparent; border-radius: .7em; padding: .4em; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+.fish svg { width: 100%; height: 7em; overflow: visible; }
+.fish span { font-family: var(--kai); font-size: 1.2em; color: var(--red-d); }
+.fish.sel { border-color: var(--gold); background: #fff8e1; }
+.fish .fan { transform-origin: 50% 50%; transform-box: fill-box; animation: fan 1.8s ease-in-out infinite; }
+@keyframes fan { 50% { transform: rotate(6deg) scale(1.05); } }
+.fish .puffer { transform-origin: 60px 42px; transition: transform .6s cubic-bezier(.3, 1.6, .5, 1); }
+.fish.puffed .puffer { transform: scale(1.5); }
+.fish-say { margin: 0; min-height: 2.2em; font-family: var(--kai); font-size: 1.6em; text-align: center; color: var(--red-d); }
+
+/* ---------- 关键句结构图 ---------- */
+.kt { display: flex; flex-direction: column; align-items: center; gap: 1.2em; margin-top: .4em; }
+.kt-root { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.6em; padding: .4em 1.4em; border-radius: .5em; text-align: center; }
+.kt-root small { display: block; font-family: var(--serif); font-size: .5em; opacity: .85; }
+.kt-kids { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; width: 100%; position: relative; }
+.kt-kids::before { content: ""; position: absolute; left: 16.6%; right: 16.6%; top: -.7em; border-top: 2px solid var(--line); }
+.kt-kid { position: relative; background: #fff; border-radius: .5em; padding: .5em .8em; border-top: .3em solid var(--gold); font-family: var(--kai); font-size: 1.2em; text-align: center; }
+.kt-kid::before { content: ""; position: absolute; left: 50%; top: -1em; height: .7em; border-left: 2px solid var(--line); }
+.kt-kid b { display: block; font-family: var(--serif); color: var(--red); font-size: .9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .subs { font-size: 1.15em; }
+  .quote { font-size: 1.1em; }
+  #zones, #seabed { flex: none; height: auto; }
+  .fish-grid { grid-template-columns: 1fr 1fr; }
+  .fish-say { font-size: 1.25em; }
+  .kt-kids { grid-template-columns: 1fr; }
+  .kt-kids::before, .kt-kid::before { display: none; }
+  .kt-root { font-size: 1.25em; }
+}
+
+/* 第二个分类表（类名和 #sortList 区分开，结构同 narrative.css 的 .sort-row） */
+.sort-row2 { display: grid; grid-template-columns: 1fr auto 6em; gap: .7em; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .4em .8em; }
+.sort-row2 .s { font-family: var(--kai); font-size: 1.2em; }
+.sort-row2 .btn { padding: .15em .6em; }
+.sort-row2 .res { font-size: .88em; color: var(--ink-2); }
+.sort-row2.ok { border-color: #8cc0a6; background: #f1f8f4; }
+.sort-row2.ok .res { color: #1f6b4f; font-weight: bold; }
+.sort-row2.no { animation: nope .35s; }
+@media (max-width: 820px), (max-height: 520px) { .sort-row2 { grid-template-columns: 1fr; gap: .35em; } }
+.sort-row .btn, .sort-row2 .btn { font-size: 1.05em; }

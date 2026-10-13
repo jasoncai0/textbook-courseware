@@ -1,0 +1,117 @@
+/* 青蛙卖泥塘 · 本课配色：泥塘的土黄、青蛙的绿。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #4e9a3a;
+  --red-d: #2f6522;
+  --gold: #e0a43a;
+  --gold-l: #f6e0a6;
+  --paper: #f5f3e9;
+  --stone: #fffef8;
+  --ink-2: #5f5a48;
+  --line: #ddd6bf;
+}
+
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.36em; line-height: 2.25; }
+.py ruby { margin: 0 .03em; }
+.nt-shout { margin: .2em 0; font-size: 2.6em; color: #fff3c8; line-height: 1.9; }
+.s-cover .nt-shout rt { color: var(--gold-l); }
+.nt-ask { margin: 0 0 .5em; font-family: var(--kai); font-size: 1.7em; color: #fff; }
+
+/* ---------- 泥塘建设图 ---------- */
+.nt-build { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.2em; align-items: center; }
+.nt-scene { position: relative; width: 100%; }
+.nt-pond svg { display: block; width: 100%; border-radius: .8em; box-shadow: 0 .2em .8em rgba(60, 50, 20, .15); }
+.nt-l { transition: opacity 1s ease; }
+.nt-seed { fill: #6b4a2a; animation: ntFall .8s var(--d) ease-in both; }
+@keyframes ntFall { from { transform: translateY(-40px); opacity: 0; } }
+.nt-seeds:not(.on) .nt-seed { animation: none; }
+.nt-bamboo { fill: none; stroke: #7cb342; stroke-width: 12; stroke-linecap: round; }
+.nt-node { fill: none; stroke: #4c7a26; stroke-width: 3; }
+.nt-flow { fill: none; stroke: #bfe8fb; stroke-width: 4; stroke-dasharray: 8 14; animation: ntFlow 1s linear infinite; }
+@keyframes ntFlow { to { stroke-dashoffset: -22; } }
+.nt-signt { font: 22px var(--kai); fill: #5a3a1a; text-anchor: middle; }
+.nt-pop { opacity: 0; transition: opacity .8s var(--d); }
+.nt-l.on .nt-pop, .nt-l:not([data-step]) .nt-pop { opacity: 1; }
+.nt-bfly { animation: ntFly 4s ease-in-out infinite alternate; }
+@keyframes ntFly { from { transform: translate(140px, 360px); } to { transform: translate(470px, 380px); } }
+.nt-bub { position: absolute; margin: 0; max-width: 60%; font-family: var(--kai); font-size: 1.4em; line-height: 1.6; background: #fff; border-radius: .8em; padding: .2em .8em; box-shadow: 0 .15em .5em rgba(40, 50, 20, .2); }
+.nt-bub.on:has(~ .nt-bub.on), .nt-scene:has(.nt-bub.on) .nt-cow { display: none; }
+.nt-text { background: var(--stone); border-radius: .7em; padding: .4em 1em; box-shadow: 0 .2em .7em rgba(60, 50, 20, .08); max-height: 100%; overflow: auto; }
+.nt-text p { margin: 0; font-family: var(--kai); font-size: 1.36em; line-height: 2.15; text-indent: 2em; }
+.nt-text p[data-step]:not(.on) { display: none; }
+.nt-text p.on:has(~ p.on) { display: none; }
+.nt-acc span[data-step] { transform: none; }
+.nt-acc p { font-size: 1.22em; line-height: 2.05; }
+.nt-acc span[data-step]:not(.on) { display: none; }
+
+/* ---------- 角色卡 ---------- */
+.nt-roles { display: flex; flex-wrap: wrap; justify-content: center; gap: .6em; }
+.nt-role { font: inherit; display: flex; flex-direction: column; align-items: center; padding: .3em .7em; border: 2px solid var(--line); border-radius: .8em; background: #fff; cursor: pointer; font-family: var(--kai); font-size: 1.25em; }
+.nt-role span { font-size: 2.2em; line-height: 1.2; }
+.nt-role.on { border-color: var(--red); background: #eef7e8; }
+.nt-say { display: flex; align-items: center; gap: .6em; background: #fff; border-radius: 1em; padding: .4em 1.2em; box-shadow: 0 .2em .7em rgba(40, 50, 20, .12); }
+.nt-say > span { font-size: 3em; }
+.nt-say p { margin: 0; font-family: var(--kai); font-size: 1.7em; line-height: 1.6; }
+.nt-say small { display: block; font-size: .6em; color: var(--ink-2); }
+.nt-say.pop { animation: pop .45s cubic-bezier(.3, 1.4, .5, 1); }
+
+/* ---------- 连一连 ---------- */
+.nt-link { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0 22%; }
+.nt-lcol { display: flex; flex-direction: column; gap: .45em; position: relative; z-index: 1; }
+.nt-lk { font: inherit; font-family: var(--kai); font-size: 1.45em; padding: .15em .8em; border: 2px solid var(--line); border-radius: 2em; background: #fff; cursor: pointer; }
+.nt-lk.sel { border-color: var(--gold); background: #fff6dc; }
+.nt-lk.ok { border-color: var(--ok); background: #f0f8f2; }
+.nt-lk.wrong { animation: nope .35s; }
+.nt-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.nt-lines line { stroke: var(--ok); stroke-width: 3; stroke-linecap: round; }
+
+/* ---------- 吆喝推荐 ---------- */
+.nt-cry { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; align-items: start; }
+.nt-frog-say, .nt-me { background: #fff; border-radius: .8em; padding: .3em 1.1em .7em; box-shadow: 0 .2em .7em rgba(40, 50, 20, .1); }
+.nt-cry h3 { margin: .3em 0; color: var(--red-d); font-size: 1.3em; }
+.nt-frog-say p { margin: .25em 0; font-family: var(--kai); font-size: 1.35em; line-height: 1.6; }
+.nt-frog-say b, .nt-frame b { color: var(--red); font-family: var(--sans, inherit); font-size: .8em; }
+.nt-things { display: flex; flex-wrap: wrap; gap: .5em; }
+.nt-things .btn { font-family: var(--kai); font-size: 1.2em; }
+.nt-frame { margin: .6em 0 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.75; min-height: 7em; }
+
+/* ---------- 播撒草籽 ---------- */
+.nt-field { flex: 1; min-height: 0; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: .7em 1em; padding: 1em; border-radius: 1em; background: #c79b69; transition: background 1.2s; }
+.nt-field.green { background: #9fd06f; }
+.nt-sd { font: inherit; position: relative; width: 4.4em; height: 4.4em; border: none; border-radius: 50%; background: radial-gradient(circle, #a27748 55%, #b98d5e 70%); cursor: pointer; }
+.nt-z { font-family: var(--kai); font-size: 2em; line-height: 1.1; color: #fff8e6; }
+.nt-z rt { font-family: var(--py); font-size: .42em; color: transparent; }
+.nt-tuft { position: absolute; left: 50%; bottom: 52%; width: 3em; height: 2.4em; translate: -50% 0; background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 48'%3E%3Cpath d='M4 48C10 30 14 20 12 6C20 20 22 32 24 48M20 48C24 26 30 14 30 0C34 16 36 30 34 48M30 48C34 32 40 22 48 12C46 26 44 38 44 48M40 48C44 38 50 32 58 28C54 38 52 44 52 48Z' fill='%235aa63b'/%3E%3C/svg%3E"); transform: scaleY(0); transform-origin: bottom; transition: transform .6s cubic-bezier(.3, 1.6, .5, 1); }
+.nt-sd.grown { background: radial-gradient(circle, #8cc45f 55%, transparent 72%); cursor: default; }
+.nt-sd.grown .nt-tuft { transform: none; }
+.nt-sd.grown rt { color: #1f4f14; }
+.nt-sd.grown .nt-z { color: #1f3a12; }
+.nt-gmsg { margin: 0; text-align: center; font-size: 1.3em; color: var(--red-d); min-height: 1.8em; }
+
+/* 写字 8 个：两列 */
+.x2-write { grid-template-columns: repeat(2, 1fr); gap: .4em 2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.3em; }
+.x2-write .hz-wpy { font-size: 1.2em; }
+
+.nt-sum { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .2em .5em; }
+.nt-sum p { margin: 0; font-family: var(--kai); font-size: 1.6em; }
+.nt-sum > b { font-size: 1.4em; color: var(--gold-l); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .nt-shout { font-size: 1.6em; }
+  .nt-ask { font-size: 1.2em; }
+  .nt-build, .nt-cry { display: flex; flex-direction: column; }
+  .nt-bub { font-size: 1em; max-width: 80%; }
+  .nt-text { max-height: none; }
+  .nt-text p { font-size: 1.12em; }
+  .nt-say p { font-size: 1.2em; }
+  .nt-link { gap: 0 12%; }
+  .nt-lk { font-size: 1.1em; }
+  .nt-sd { width: 3.6em; height: 3.6em; }
+  .nt-z { font-size: 1.6em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .nt-sum p { font-size: 1.15em; }
+}
+.nt-mb { position: absolute; right: .6em; bottom: .6em; top: auto; z-index: 2; }

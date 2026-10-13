@@ -1,0 +1,126 @@
+/* 葡萄沟 · 本课配色：葡萄紫、叶子绿、晾房的土黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #7a3f8f;
+  --red-d: #522760;
+  --gold: #d9a441;
+  --gold-l: #f5dfa9;
+  --paper: #f6f2ea;
+  --stone: #fffdf8;
+  --ink-2: #5f5560;
+  --line: #e2d6d8;
+}
+
+/* 二年级课文句子长：注音字幕比一年级小一号 */
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.32em; line-height: 2.25; }
+.py ruby { margin: 0 .05em; }
+.s-cover .cover-title ruby { margin: 0; }
+.pt-ask { margin: .3em 0 .8em; max-width: 22em; font-size: 1.4em; font-family: var(--kai); }
+.pt-bunch { position: absolute; z-index: 2; right: 9%; top: 50%; width: 14em; margin-top: -9em; filter: drop-shadow(0 .4em .8em rgba(0, 0, 0, .35)); }
+.pt-big { font-size: 1.5em; text-align: center; }
+
+/* ---------- 水果月历 ---------- */
+.pt-p { margin: 0; font-size: 1.6em; }
+.pt-cal { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 1em; }
+.pt-mon { display: flex; flex-direction: column; align-items: center; gap: .2em; background: #fff; border-radius: .8em; padding: .5em .8em; border-top: 2.2em solid var(--gold); position: relative; box-shadow: 0 .2em .8em rgba(60, 40, 60, .12); }
+.pt-mon b { position: absolute; top: -1.75em; color: #fff; font-size: 1.3em; }
+.pt-mon.big { border-top-color: var(--red); }
+.pt-mon svg { flex: 1; min-height: 0; width: 100%; max-height: 9em; }
+.pt-mon .py { margin: 0; font-size: 1.45em; text-align: center; }
+
+/* ---------- 色板 ---------- */
+.pt-paint { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.4em; align-items: center; }
+.pt-vine { width: 100%; max-height: 100%; border-radius: .8em; box-shadow: 0 .2em .8em rgba(60, 40, 60, .12); }
+.pt-gr { fill: #fff; stroke: #b9b2a2; stroke-width: 2; stroke-dasharray: 4 3; transition: fill .6s; }
+.pt-bun.on .pt-gr { stroke: rgba(0, 0, 0, .15); stroke-dasharray: none; }
+.pt-bun[data-c="red"].on .pt-gr { fill: #b2324f; }
+.pt-bun[data-c="white"].on .pt-gr { fill: #efe9cc; }
+.pt-bun[data-c="purple"].on .pt-gr { fill: #6a3a8a; }
+.pt-bun[data-c="green"].on .pt-gr { fill: #a8d06a; }
+.pt-bun.on { animation: pop .5s cubic-bezier(.3, 1.6, .5, 1); transform-box: fill-box; transform-origin: top; }
+.pt-pal { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.pt-c { font: inherit; font-family: var(--kai); font-size: 1.5em; padding: .3em .4em; border-radius: 2em; border: .2em solid var(--c); background: #fff; cursor: pointer; display: flex; align-items: center; gap: .4em; justify-content: center; }
+.pt-c::before { content: ""; width: 1.1em; height: 1.1em; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15); }
+.pt-c.used { background: color-mix(in srgb, var(--c) 18%, #fff); }
+.pt-wu { grid-column: 1 / -1; margin: .2em 0; text-align: center; font-size: 1.8em; color: var(--red-d); opacity: 0; transform: scale(.8); transition: opacity .6s, transform .6s; }
+.pt-wu.show { opacity: 1; transform: none; }
+#ptClear { grid-column: 1 / -1; justify-self: center; }
+
+/* ---------- 晾房 ---------- */
+.pt-bd { grid-template-columns: 1fr 1.05fr; align-items: center; }
+.pt-house svg { width: 100%; display: block; border-radius: .8em; box-shadow: 0 .2em .8em rgba(60, 40, 20, .15); }
+.pt-steps { display: flex; flex-direction: column; gap: .3em; font-size: 1.35em; }
+.pt-steps p { margin: 0; }
+.pt-steps p.on { color: var(--red-d); }
+.pt-steps p[data-step] { opacity: .25; transform: none; }
+.pt-steps p.on { opacity: 1; }
+.pt-gr2 { fill: #8a4a9e; transition: fill 2s 1.6s; }
+.pt-cl { opacity: 0; transform-box: fill-box; transform-origin: top; transition: opacity .8s, transform 2s 1.6s; }
+.pt-holes rect, .pt-rack path { transition: fill .6s, stroke .6s; }
+.pt-wind path { fill: none; stroke: #e46a3a; stroke-width: 4; stroke-dasharray: 10 10; opacity: 0; transition: opacity .6s; }
+.pt-steam path { fill: none; stroke: #9ccbe6; stroke-width: 4; stroke-linecap: round; opacity: 0; }
+.pt-dry:has(.pt-s2.on) .pt-holes rect { fill: #e46a3a; }
+.pt-dry:has(.pt-s2.on) .pt-rack path { stroke: #c0612a; }
+.pt-dry:has(.pt-s3.on) .pt-cl { opacity: 1; transform: scale(.72); }
+.pt-dry:has(.pt-s3.on) .pt-gr2 { fill: #7a4a2a; }
+.pt-dry:has(.pt-s3.on) .pt-wind path { opacity: 1; animation: ptWind 1s linear infinite; }
+.pt-dry:has(.pt-s3.on) .pt-steam path { animation: ptSteam 2s ease-in-out infinite; }
+.pt-dry:has(.pt-s4.on) .pt-gr2 { fill: #b5683a; }
+@keyframes ptWind { to { stroke-dashoffset: -20; } }
+@keyframes ptSteam { 0% { opacity: 0; transform: translateY(10px); } 50% { opacity: .9; } 100% { opacity: 0; transform: translateY(-14px); } }
+
+/* ---------- 说理由 ---------- */
+.pt-why { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.pt-why figure { margin: 0; display: flex; flex-direction: column; background: #fff; border-radius: .8em; overflow: hidden; box-shadow: 0 .2em .8em rgba(60, 40, 60, .12); }
+.pt-wp { flex: 1; min-height: 5em; background: #ece3d3 center / cover no-repeat; }
+.pt-why figcaption { padding: .3em .7em; font-family: var(--kai); font-size: 1.35em; color: var(--red-d); text-align: center; }
+
+/* ---------- 照样子写 ---------- */
+.pt-copy { display: flex; flex-direction: column; gap: .8em; }
+.pt-model { margin: 0; background: #fff8e1; border-radius: .6em; padding: .2em 1em; font-size: 1.45em; }
+.pt-model u { text-decoration: none; background: linear-gradient(transparent 60%, rgba(217, 164, 65, .45) 60%); }
+.pt-try { margin: 0; font-family: var(--kai); font-size: 1.5em; line-height: 1.9; background: #fff; border-radius: .6em; padding: .4em 1em; }
+.pt-fill { color: var(--red); border-bottom: 2px solid var(--red); }
+
+/* 生字卡 17 个 */
+.pt-cards .hz-card-list { grid-template-columns: repeat(auto-fill, minmax(4.4em, 1fr)); gap: .5em; }
+.pt-cards .hz-chip { font-size: 2.2em; }
+
+/* ---------- 晾葡萄干 ---------- */
+.pt-game { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; gap: .8em 1.4em; }
+.pt-basket, .pt-rack2 { display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: center; gap: .4em; padding: .8em; border-radius: .8em; }
+.pt-basket { background: #f3e2bd; border: .25em solid #c99a52; border-radius: .8em .8em 2.4em 2.4em; }
+.pt-rack2 { position: relative; background: repeating-linear-gradient(#e8c993 0 3.6em, #8a5a2b 3.6em calc(3.6em + 6px)); border: .3em solid #8a6234; padding-top: 2.2em; }
+.pt-rmsg { position: absolute; left: 0; right: 0; top: .2em; margin: 0; text-align: center; font-weight: bold; color: #5a3a14; }
+.pt-gc { font: inherit; width: 3.4em; height: 3.4em; border: none; border-radius: 45% 45% 50% 50% / 35% 35% 65% 65%; background: radial-gradient(circle at 35% 30%, #b98ad0, #6a3a8a 70%); color: #fff; cursor: pointer; transition: background 1.5s, transform 1.5s; }
+.pt-gc span { font-family: var(--kai); font-size: 1.5em; line-height: 1.1; }
+.pt-gc rt { font-family: var(--py); font-size: .42em; color: #f1e3ff; }
+.pt-rack2 .pt-gc { cursor: default; }
+.pt-rack2.dry .pt-gc { background: radial-gradient(circle at 35% 30%, #c98a5a, #7a4a2a 70%); transform: scale(.85); }
+.pt-gb { grid-column: 1 / -1; justify-content: center; }
+
+/* 写字 10 个：三列 */
+.x2-write { grid-template-columns: repeat(3, 1fr); gap: .5em 1.2em; }
+.x2-write .hz-cells .hz-tzg { --tz: 3.4em; }
+.x2-write .hz-wpy { font-size: 1.25em; }
+
+/* 回顾 */
+.pt-sum { display: flex; justify-content: center; gap: 2.4em; text-align: center; }
+.pt-sum .py { font-size: 1.7em; }
+.pt-sum2 { text-align: center; }
+.pt-sum2 .py { font-size: 2.2em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .pt-bunch { display: none; }
+  .pt-p { font-size: 1.2em; }
+  .pt-cal, .pt-paint, .pt-why, .pt-game { display: flex; flex-direction: column; }
+  .pt-mon .py { font-size: 1.15em; }
+  .pt-steps { font-size: 1.05em; }
+  .pt-model, .pt-try { font-size: 1.1em; }
+  .pt-wp { min-height: 10em; }
+  .x2-write { grid-template-columns: 1fr; }
+  .x2-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .pt-sum { flex-direction: column; gap: .4em; }
+  .pt-sum .py { font-size: 1.2em; }
+}

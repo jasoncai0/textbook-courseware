@@ -1,0 +1,66 @@
+/* 青山处处埋忠骨 · 本课配色：沉静的灰、暗红、青山绿。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #8a2f2a;
+  --red-d: #4a1f1c;
+  --gold: #9c8350;
+  --gold-l: #e6dbbd;
+  --paper: #f1efe9;
+  --stone: #faf9f5;
+  --ink-2: #585550;
+  --line: #d4cfc2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfaf6 0, transparent 40%), radial-gradient(circle at 90% 95%, #e2ded3 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .06em; }
+.subs .hl { color: #f2d9a8; font-weight: normal; }
+
+/* 电报：像一张旧电报纸，叠在画面上 */
+.telegram { position: absolute; z-index: 2; left: 16%; right: 16%; top: 14%; background: #f4ecd8; color: #2b2420; border: 1px solid #c9b88f; border-radius: .2em; padding: .8em 1.6em 1em; box-shadow: 0 .4em 1.6em rgba(0, 0, 0, .45); font-family: "Courier New", var(--serif); background-image: repeating-linear-gradient(transparent 0 2.05em, rgba(150, 120, 70, .18) 2.05em 2.1em); }
+.telegram h4 { margin: 0 0 .3em; text-align: center; letter-spacing: 1em; color: var(--red-d); font-size: 1.2em; }
+.telegram p { margin: 0; font-size: 1.2em; line-height: 1.75; text-indent: 2em; }
+.scene:has(.telegram.on) .subs { opacity: .35; }
+
+/* 资料袋 */
+.bag-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; flex: 1; min-height: 0; align-content: center; }
+.bag-card { background: #fff; border-radius: .6em; padding: .9em 1.2em; border-top: .35em solid var(--red); box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); }
+.bag-card h3 { margin: 0 0 .4em; color: var(--red-d); font-family: var(--kai); font-size: 1.5em; }
+.bag-card p { margin: 0; line-height: 1.8; }
+.bag-card b { color: var(--red); }
+
+/* 两个部分 */
+.parts { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.part { display: flex; flex-direction: column; background: #fff; border-radius: .6em; overflow: hidden; box-shadow: 0 .15em .6em rgba(40, 30, 20, .12); }
+.part-img { flex: 1; min-height: 6em; background: center / cover no-repeat #ddd8cc; }
+.part-txt { padding: .6em 1em .8em; }
+.part-txt > b { display: inline-block; font-size: .8em; color: #fff; background: var(--red); padding: .1em .6em; border-radius: .3em; }
+.part-txt h3 { margin: 0; color: var(--red-d); }
+.part-txt p { margin: .2em 0 0; line-height: 1.7; }
+.part-txt em { font-style: normal; color: var(--red); font-weight: bold; }
+
+/* 父亲与主席 */
+.heart-cols { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr auto 1fr; gap: 1em; align-items: center; }
+.heart-col { display: flex; flex-direction: column; gap: .5em; }
+.heart-col h3 { margin: 0; text-align: center; font-family: var(--kai); font-size: 1.4em; padding: .2em; border-radius: .3em; color: #fff; }
+.heart-col.father h3 { background: #6d5a8a; }
+.heart-col.leader h3 { background: var(--red); }
+.heart-col p { margin: 0; background: #fff; border-radius: .4em; padding: .45em .9em; font-family: var(--kai); font-size: 1.08em; line-height: 1.6; border-left: .3em solid var(--line); }
+.heart-col.father p { border-left-color: #a796c2; }
+.heart-col.leader p { border-left-color: var(--red); }
+.heart-mid { text-align: center; background: var(--gold-l); border-radius: 50%; width: 6em; height: 6em; display: grid; place-content: center; box-shadow: 0 0 0 .4em rgba(156, 131, 80, .25); }
+.heart-mid b { font-family: var(--kai); font-size: 1.8em; color: var(--red-d); }
+.heart-mid small { font-size: .75em; color: var(--ink-2); }
+
+.s-clues .clues { grid-template-columns: repeat(4, 1fr); }
+.s-clues .clue-face.front { display: grid; place-items: center; font-size: 1.5em; text-align: center; }
+.s-clues .clue-face.front small { position: absolute; top: .5em; left: .8em; font-size: .5em; }
+.s-sort .portrait-img { background-color: #ddd8cc; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3em; }
+  .telegram { left: .8em; right: .8em; top: 3.5em; padding: .6em .9em; }
+  .telegram p { font-size: .95em; }
+  .bag-cards, .parts { grid-template-columns: 1fr; }
+  .part-img { min-height: 9em; }
+  .heart-cols { grid-template-columns: 1fr; }
+  .heart-mid { justify-self: center; }
+  .s-clues .clues { grid-template-columns: 1fr 1fr; }
+}

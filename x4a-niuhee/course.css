@@ -1,0 +1,47 @@
+/* 牛和鹅 · 本课配色：水乡的青绿、白鹅的橙黄。页面样式见 ../shared/narrative.css，批注见 pizhu.css */
+:root {
+  --red: #2f7263;
+  --red-d: #1d4a40;
+  --gold: #d99a2b;
+  --gold-l: #f6dca2;
+  --paper: #f1f2ec;
+  --stone: #fbfcf8;
+  --ink-2: #545b52;
+  --line: #cfd5c8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbfcf8 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe8dc 0, transparent 45%); }
+.scene .hd .tag { background: rgba(47, 114, 99, .92); }
+.subs .who.main { background: #2f7263; }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 7em; }
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3em; }
+}
+
+.subs .beat { font-size: 1.15em; letter-spacing: .05em; color: #f6d48a; }
+
+/* ---------- 看法转变：以前 → 后来 ---------- */
+.vs-grid { display: grid; grid-template-columns: 3.2em 1fr 7em 1fr; gap: .8em 1em; align-items: stretch; }
+.vs-h { text-align: center; color: var(--ink-2); font-weight: normal; }
+.vs-who { display: flex; align-items: center; justify-content: center; font-size: 2em; color: #fff; background: var(--red); border-radius: .4em; font-family: var(--kai); }
+.vs-cell { margin: 0; background: #fff; border-radius: .5em; padding: .6em .9em; font-family: var(--kai); font-size: 1.12em; line-height: 1.6; border: 1px solid var(--line); }
+.vs-cell em { display: block; font-style: normal; font-family: var(--serif); font-weight: bold; font-size: 1.15em; margin-bottom: .1em; }
+.vs-cell.before em { color: #a0522d; }
+.vs-cell.after { background: #eef6f1; border-color: #9fcab4; }
+.vs-cell.after em { color: var(--red-d); }
+.vs-mid { display: flex; align-items: center; justify-content: center; position: relative; }
+.vs-mid span { position: relative; z-index: 1; background: var(--gold); color: #fff; padding: .3em .5em; border-radius: .4em; font-size: .9em; text-align: center; }
+.vs-mid::before { content: ""; position: absolute; left: 0; right: .4em; top: 50%; border-top: .2em solid var(--gold); }
+.vs-mid::after { content: ""; position: absolute; right: 0; top: 50%; translate: 0 -50%; border: .45em solid transparent; border-left: .6em solid var(--gold); border-right: none; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .vs-grid { grid-template-columns: 2.4em 1fr; }
+  .vs-h, .vs-grid > span { display: none; }
+  .vs-who { grid-row: span 3; font-size: 1.4em; }
+  .vs-mid { justify-content: flex-start; }
+  .vs-mid::before, .vs-mid::after { display: none; }
+  .vs-mid span::after { content: " ↓"; }
+}

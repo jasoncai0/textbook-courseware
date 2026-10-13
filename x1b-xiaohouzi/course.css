@@ -1,0 +1,112 @@
+/* 小猴子下山 · 本课配色：山野的绿、桃子的粉。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d0603e;
+  --red-d: #93391f;
+  --gold: #e9a83a;
+  --gold-l: #fbe0a4;
+  --paper: #f7f5ea;
+  --stone: #fffdf6;
+  --ink-2: #5d5a48;
+  --line: #ddd6bd;
+}
+
+/* ---------- 封面：地图 ---------- */
+.xh-cover { grid-template-rows: 1fr; grid-template-columns: 1.25fr 1fr; gap: 2em; align-items: center; }
+.xh-cover-map .xh-svg { width: 100%; height: auto; display: block; }
+.xh-cover-box .cover-unit { color: var(--ink-2); }
+.xh-title { margin: 0; font-size: 4.6em; color: var(--red-d); line-height: 1.6; }
+.xh-title rt { font-size: .3em; }
+.xh-ask { margin: .2em 0 .8em; font-family: var(--kai); font-size: 1.7em; }
+
+/* ---------- 地图 ---------- */
+.xh-svg text { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", var(--kai); font-size: 30px; text-anchor: middle; dominant-baseline: middle; }
+.xh-svg .xh-big { font-size: 46px; }
+.xh-road { fill: none; stroke: #c9a873; stroke-width: 14; stroke-linecap: round; stroke-dasharray: 2 22; }
+.xh-place .xh-name { font-family: var(--kai); font-size: 24px; fill: var(--red-d); font-weight: bold; paint-order: stroke; stroke: #fff; stroke-width: 5px; }
+.xh-place .xh-py { font-family: var(--py); font-size: 14px; fill: var(--py-c); paint-order: stroke; stroke: #fff; stroke-width: 4px; }
+.xh-drop { opacity: 0; transition: opacity .8s .6s; }
+.xh-drop.on { opacity: .85; }
+.xh-drop .xh-throw { font-family: var(--kai); font-size: 18px; fill: #fff; paint-order: stroke; stroke: var(--red); stroke-width: 6px; }
+.xh-mk { transition: transform 1.4s ease-in-out; }
+.xh-mk-i { font-size: 58px; }
+.xh-hand { font-size: 28px; }
+.xh-here { fill: rgba(255, 255, 255, .55); stroke: var(--red); stroke-width: 4; stroke-dasharray: 6 6; }
+.xh-handbg { fill: #fff; stroke: var(--gold); stroke-width: 3; }
+.xh-mk:has(.xh-hand:empty) .xh-handbg { display: none; }
+.xh-rb { opacity: 0; transform: translate(640px, 256px); transition: transform 1.6s ease-in, opacity .6s; }
+.xh-rb.run { opacity: 1; animation: xhHop .5s ease-in-out infinite alternate; }
+.xh-rb.gone { opacity: 0; transform: translate(750px, 150px); transition: transform 1.6s ease-in, opacity 1s 1.2s; }
+@keyframes xhHop { to { translate: 0 -14px; } }
+
+/* ---------- 读课文：地图 + 图 + 原文 ---------- */
+.xh-read .stage { gap: .7em; }
+.xh-top { flex: none; display: grid; grid-template-columns: 1.2fr 1fr; gap: 1em; height: 13em; }
+.xh-map { min-width: 0; min-height: 0; display: flex; justify-content: center; }
+.xh-map .xh-svg { height: 100%; width: auto; max-width: 100%; }
+.xh-pic { width: 100%; height: 100%; border-radius: .7em; background: #e5e8d6 center / cover no-repeat; object-fit: cover; box-shadow: 0 .2em .7em rgba(40, 50, 20, .18); }
+.xh-read .hz-text { flex: 1; min-height: 0; font-size: 1.5em; line-height: 2.4; padding: .3em 1em; }
+.xh-read .hz-text p { text-align: left; }
+.xh-v { color: var(--red); font-weight: normal; }
+
+/* ---------- 课后第 2 题：四格 ---------- */
+.xh-film { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 1em; }
+.xh-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; }
+.xh-col { position: relative; background: #fff; border-radius: .8em; padding: .2em .8em .6em; box-shadow: 0 .2em .6em rgba(40, 50, 20, .12); }
+.xh-col + .xh-col::before { content: '→'; position: absolute; left: -.85em; top: 1em; color: var(--gold); font-size: 1.4em; font-weight: bold; }
+.xh-col h3 { margin: 0; text-align: center; font-size: 1.6em; color: var(--red-d); line-height: 2; }
+.xh-col p { margin: 0; font-size: 1.35em; line-height: 2.2; }
+.xh-col small { display: inline-block; margin-right: .4em; padding: 0 .3em; border-radius: .3em; background: var(--gold-l); font-family: var(--serif); font-size: .62em; line-height: 1.6; vertical-align: .3em; }
+.xh-handbox { display: flex; align-items: center; gap: .3em; }
+.xh-handbox em { font-style: normal; font-size: 1.6em; }
+.xh-handbox s { font-size: 1.1em; opacity: .4; text-decoration-thickness: .12em; text-decoration-color: var(--red); }
+.xh-why { margin: 0; text-align: center; font-size: 1.6em; }
+
+/* ---------- 课后第 3 题：动作卡 ---------- */
+.xh-verbs { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 1em; }
+.xh-verb { font: inherit; display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr auto; align-items: center; gap: 0 .6em; padding: .4em .8em; border: 3px solid var(--line); border-radius: .8em; background: #fff; color: var(--ink); cursor: pointer; text-align: left; }
+.xh-verb.on { border-color: var(--red); background: #fff6ef; }
+.xh-vz { font-family: var(--kai); font-size: 3.4em; line-height: 1.6; color: var(--red-d); }
+.xh-vz rt { font-family: var(--py); font-size: .32em; color: var(--py-c); }
+.xh-act { position: relative; height: 4.6em; }
+.xh-act em { position: absolute; font-style: normal; line-height: 1; }
+.xh-mk2 { left: 30%; bottom: 0; font-size: 3em; }
+.xh-obj { left: 58%; top: .2em; font-size: 2.2em; }
+.xh-tip { grid-column: 1 / -1; font-size: 1.15em; line-height: 2.1; color: var(--ink-2); }
+.xh-verb.play[data-v="bāi"] .xh-obj { animation: xhBai 1.2s ease both; }
+.xh-verb.play[data-v="káng"] .xh-obj { animation: xhKang 1.2s ease both; }
+.xh-verb.play[data-v="rēng"] .xh-obj { animation: xhReng 1.2s ease-out both; }
+.xh-verb.play[data-v="zhāi"] .xh-obj { animation: xhZhai 1.2s ease both; }
+.xh-verb.play[data-v="pěng"] .xh-obj { animation: xhPeng 1.2s ease-in-out 2 alternate both; }
+.xh-verb.play[data-v="bào"] .xh-obj { animation: xhBao 1.2s ease both; }
+@keyframes xhBai { 0% { transform: rotate(0); } 40% { transform: rotate(-35deg); } 100% { transform: translate(-1.2em, 1em) rotate(-80deg); } }
+@keyframes xhKang { to { transform: translate(-1.1em, .4em) rotate(70deg); } }
+@keyframes xhReng { 0% { transform: translate(-1em, 1em); } 60% { transform: translate(2em, -1em) rotate(200deg); opacity: 1; } 100% { transform: translate(3em, 1.5em) rotate(300deg); opacity: 0; } }
+@keyframes xhZhai { 0% { transform: translate(.4em, -.8em); } 100% { transform: translate(-.6em, 1.2em); } }
+@keyframes xhPeng { from { transform: translate(-.9em, 1.4em); } to { transform: translate(-.9em, .9em) scale(1.1); } }
+@keyframes xhBao { from { transform: translate(-.4em, .6em); } to { transform: translate(-.9em, 1.3em) scale(1.35); } }
+
+/* ---------- 写字：7 个字 ---------- */
+.hz-write { gap: .3em 1.8em; }
+.hz-cells .hz-tzg { --tz: 3.9em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .xh-cover { display: flex; flex-direction: column-reverse; align-items: stretch; gap: .6em; }
+  .xh-title { font-size: 2.6em; }
+  .xh-ask { font-size: 1.2em; }
+  .xh-top { display: flex; flex-direction: column; height: auto; }
+  .xh-map .xh-svg { width: 100%; height: auto; }
+  .xh-pic { aspect-ratio: 16 / 9; height: auto; }
+  .xh-read .hz-text { font-size: 1.35em; }
+  .xh-cols { grid-template-columns: 1fr 1fr; }
+  .xh-col p { font-size: 1.05em; }
+  .xh-col h3 { font-size: 1.2em; }
+  .xh-why { font-size: 1.15em; }
+  .xh-verbs { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
+  .xh-vz { font-size: 2.4em; }
+  .xh-act { height: 3.4em; }
+  .xh-mk2 { font-size: 2.2em; }
+  .xh-obj { font-size: 1.6em; }
+  .xh-tip { font-size: .95em; }
+  .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .s-sum .board .py { font-size: 1.4em; }
+}

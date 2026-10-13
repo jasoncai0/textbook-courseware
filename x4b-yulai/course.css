@@ -1,0 +1,64 @@
+/* 小英雄雨来 · 本课配色：芦花白、河水青、红布书皮。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #b23a2e;
+  --red-d: #5c2219;
+  --gold: #c99a3c;
+  --gold-l: #f2dca8;
+  --paper: #f1f0e8;
+  --stone: #fbfaf4;
+  --ink-2: #555a55;
+  --line: #d4d6cb;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcfbf4 0, transparent 40%), radial-gradient(circle at 90% 95%, #e0e4da 0, transparent 45%); }
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 7em; }
+.subs { font-size: 1.5em; }
+.cover-ask { font-family: var(--kai); font-size: 2em; margin: 0 0 .7em; }
+.cover-ask b { color: #ffd88a; }
+
+/* ---------- 第四部分：敌人 vs 雨来 ---------- */
+.s-book .bd { grid-template-columns: 40% 1fr; }
+.s-book .stage { justify-content: center; }
+.redbook { align-self: center; width: 80%; aspect-ratio: 3 / 4; max-height: 60%; background: #a8322a; border-radius: .4em .8em .8em .4em; box-shadow: inset .6em 0 0 #7d231d, 0 .4em 1.2em rgba(60, 20, 10, .3); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .3em; padding: 1em; }
+.redbook p { margin: 0; background: #f4ecd6; padding: .2em .8em; font-family: var(--kai); font-size: 1.5em; color: #3a2a1a; }
+.duel { display: grid; grid-template-columns: 5.5em 1fr 1.6em 3.6em 1.4fr; gap: .5em; align-items: center; background: #fff; border-radius: .6em; padding: .55em .8em; }
+.duel b { text-align: center; border-radius: .4em; padding: .2em .3em; font-size: .9em; color: #fff; }
+.duel .foe { background: #6e6a62; }
+.duel .me { background: var(--red); }
+.duel span { font-family: var(--kai); font-size: 1.15em; line-height: 1.5; }
+.duel i { font-style: normal; color: var(--gold); text-align: center; }
+.s-book .side { gap: .6em; }
+
+/* ---------- 小标题拼图 ---------- */
+.parts { display: grid; grid-template-columns: repeat(6, 1fr); gap: .6em; }
+.part { font: inherit; display: flex; flex-direction: column; gap: .4em; text-align: left; background: #fff; border: 2px solid var(--line); border-radius: .7em; padding: .6em .7em; cursor: pointer; min-height: 11em; }
+.part b { color: var(--red-d); }
+.part .gist { flex: 1; font-size: .95em; color: var(--ink-2); line-height: 1.5; }
+.part .slot { font-family: var(--kai); font-size: 1.3em; text-align: center; padding: .25em; border-radius: .4em; border: 2px dashed var(--line); color: var(--ink-2); }
+.part.sel { border-color: var(--gold); box-shadow: 0 0 0 .2em var(--gold-l); }
+.part.done { background: #f1f8f4; border-color: #8cc0a6; cursor: default; }
+.part.done .slot { border-style: solid; border-color: #8cc0a6; color: #1f6b4f; font-weight: bold; background: #fff; }
+.title-pool { display: flex; flex-wrap: wrap; gap: .6em; justify-content: center; }
+.title-pool .pick { font-size: 1.3em; }
+.title-pool .pick:disabled { opacity: .3; }
+
+/* ---------- 情节曲线 ---------- */
+.s-curve .plot-card { width: 16%; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3em; }
+  .cover-ask { font-size: 1.3em; }
+  .subs { font-size: 1.12em; }
+  .redbook { width: 80%; max-height: none; aspect-ratio: auto; padding: 1.6em 1em; }
+  .frame:has(.s-book.active) .plotline { display: none; }
+  .redbook p { font-size: 1.1em; }
+  .duel { grid-template-columns: 4.6em 1fr; }
+  .duel i { display: none; }
+  .parts { grid-template-columns: 1fr 1fr; }
+  .part { min-height: 0; }
+  .title-pool .pick { font-size: 1.05em; }
+  .s-curve .plot-card { width: auto; }
+}

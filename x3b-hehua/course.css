@@ -1,0 +1,71 @@
+/* 荷花 · 本课配色：荷叶绿、荷花白、莲蓬黄。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #3f8a5a;
+  --red-d: #24553a;
+  --gold: #d2a83a;
+  --gold-l: #f0dfa6;
+  --paper: #eef5ee;
+  --stone: #fbfdfa;
+  --ink-2: #4e5a52;
+  --line: #c6dacb;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #f9fdf8 0, transparent 40%), radial-gradient(circle at 90% 95%, #d5e9d8 0, transparent 45%); }
+
+/* 中年级：字大一点 */
+.tip { font-size: 1em; }
+.subs { font-size: 1.55em; }
+.quote { font-size: 1.25em; }
+.s-cover .cover-title { font-size: 9em; letter-spacing: .2em; }
+
+/* 边读边想象：画面局部亮起来 */
+@property --sx { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
+@property --sy { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
+@property --sr { syntax: '<percentage>'; inherits: true; initial-value: 100%; }
+.spot-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; transition: --sx 1.2s ease, --sy 1.2s ease, --sr 1.2s ease; background: radial-gradient(circle at var(--sx) var(--sy), transparent 0, transparent var(--sr), rgba(12, 10, 6, .5) calc(var(--sr) + 16%)); }
+.subs .hh-em { color: #ffe2a6; font-weight: normal; }
+.subs .hh-back { color: #ffe2a6; }
+
+/* 挨挨挤挤 · 冒 */
+.s-mao .bd { grid-template-columns: 38% 1fr; }
+.s-mao .quote p { text-indent: 0; }
+.hh-verbs .btn { font-family: var(--kai); font-size: 1.3em; }
+.hh-pond { flex: 1; min-height: 0; width: 100%; }
+.hh-lf { transform-box: fill-box; transform-origin: 50% 50%; transform: scale(0); transition: transform .7s cubic-bezier(.3, 1.5, .5, 1) calc(var(--i) * .12s); }
+.hh-leaves.on .hh-lf { transform: none; }
+.hh-flw { transform-box: fill-box; transform-origin: 50% 100%; transform: translateY(150px) scale(.4); opacity: 0; }
+.hh-pond.up .hh-flw { transform: none; opacity: 1; }
+.hh-pond.m-zhang .hh-flw { transition: transform 4s ease-in-out var(--d), opacity 2s var(--d); }
+.hh-pond.m-lu .hh-flw { transition: transform 2s ease var(--d), opacity 2s var(--d); }
+.hh-pond.m-lu.up .hh-flw { transform: translateY(70px) scale(.75); opacity: .85; }
+.hh-pond.m-mao .hh-flw { transition: transform .55s cubic-bezier(.3, 1.8, .5, 1) var(--d), opacity .3s var(--d); }
+
+/* 三种样子 */
+.hh-three { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2em; }
+.hh-three figure { margin: 0; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .6em; background: linear-gradient(#f4faf6, #dcefe6); border-radius: .8em; padding: 1em; }
+.hh-three svg { flex: 1 1 0; height: 0; min-height: 0; width: 70%; }
+.hh-three figcaption { font-family: var(--kai); font-size: 1.35em; line-height: 1.5; text-align: center; }
+.hh-three b { color: var(--red); }
+
+/* 课后第 2 题卡片 */
+.s-clues .clue-face b { color: var(--red); }
+
+/* 朗读：词语 */
+.hh-words { display: flex; gap: 1em; flex-wrap: wrap; }
+.hh-words span { font-family: var(--kai); font-size: 1.7em; background: #fff; border: 1px solid var(--line); border-radius: .4em; padding: .1em .6em; }
+.hh-words small { font-family: "Times New Roman", serif; font-size: .5em; color: #3d6ea8; margin-left: .3em; }
+.read-item p { font-size: 1.5em; }
+.recite.wide .recite-lines { font-size: 1.3em; letter-spacing: .06em; line-height: 1.7; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 5em; }
+  .subs { font-size: 1.2em; }
+  .quote { font-size: 1.1em; }
+  .hh-pond { flex: none; }
+  .hh-three { grid-template-columns: 1fr; }
+  .hh-three svg { flex: none; height: 8em; }
+  .hh-three figure { min-height: 0; }
+  .hh-three figcaption { font-size: 1.15em; }
+  .hh-words span { font-size: 1.3em; }
+  .read-item p { font-size: 1.2em; }
+  .recite.wide .recite-lines { font-size: 1.1em; }
+}

@@ -1,0 +1,53 @@
+/* 搭石 · 本课配色：溪水的青绿、秋天的暖黄、石头的灰。页面样式见 ../shared/narrative.css，提速小工具见 speed.css */
+:root {
+  --red: #3d6b5a;
+  --red-d: #24493c;
+  --gold: #c9963a;
+  --gold-l: #f0dcae;
+  --paper: #f1efe6;
+  --stone: #fbfaf5;
+  --ink-2: #5a5a4e;
+  --line: #d3cfbf;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcfbf6 0, transparent 40%), radial-gradient(circle at 90% 95%, #e3e2d2 0, transparent 45%); }
+.subs .hl { color: #f6dc9a; font-weight: normal; }
+
+/* ---------- 走搭石 ---------- */
+#walk { border-radius: .5em; }
+#walk .wave { fill: none; stroke: #fff; stroke-opacity: .55; stroke-width: 2.5; stroke-dasharray: 40 30; animation: flow 3s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -140; } }
+#walk .wk { animation: cross 3.6s linear infinite; }
+#walk .w0 { animation-delay: -1.8s; }
+#walk .w1 { animation-delay: -1.2s; }
+#walk .w2 { animation-delay: -.6s; }
+#walk .w3 { animation-delay: 0s; }
+/* 一步一块搭石：6 跳，每跳 120 */
+@keyframes cross {
+  0% { transform: translate(0, 0); opacity: 0; }
+  4% { opacity: 1; }
+  8.33% { transform: translate(60px, -30px); }
+  16.67% { transform: translate(120px, 0); }
+  25% { transform: translate(180px, -30px); }
+  33.33% { transform: translate(240px, 0); }
+  41.67% { transform: translate(300px, -30px); }
+  50% { transform: translate(360px, 0); }
+  58.33% { transform: translate(420px, -30px); }
+  66.67% { transform: translate(480px, 0); }
+  75% { transform: translate(540px, -30px); }
+  83.33% { transform: translate(600px, 0); }
+  91.67% { transform: translate(660px, -30px); }
+  96% { opacity: 1; }
+  100% { transform: translate(720px, 0); opacity: 0; }
+}
+#walk .da { animation: da .6s ease-in-out infinite; }
+@keyframes da { 50% { opacity: .25; } }
+#walk .oops { opacity: 0; transition: opacity .4s; }
+#walk.halt .wk { animation-play-state: paused; }
+#walk.halt .da { animation: none; opacity: 0; }
+#walk.halt .oops { opacity: 1; }
+#walk.halt .w1 .fig, #walk.halt .w2 .fig { animation: wobble .3s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes wobble { 25% { transform: rotate(-9deg); } 75% { transform: rotate(9deg); } }
+
+@media (max-width: 820px), (max-height: 520px) {
+  #walk .t-l { font-size: 30px; }
+}

@@ -1,0 +1,147 @@
+/* 找春天 · 本课配色：桃花粉、嫩草绿。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #c0567a;
+  --red-d: #8e3556;
+  --gold: #e9a93a;
+  --gold-l: #fbe3a8;
+  --paper: #fbf5ef;
+  --stone: #fffdf9;
+  --ink-2: #6f5a5f;
+  --line: #ead3d6;
+  --leaf: #5ea544;
+}
+
+.zc-ask { font-size: 2em; margin: .2em 0 .8em; font-family: var(--kai); line-height: 1.5; }
+
+/* ---------- 田野寻宝 ---------- */
+.xb-bd { grid-template-columns: 2.1fr 1fr; align-items: stretch; min-height: 0; }
+.xb-pic { cursor: crosshair; }
+.xb-spot { position: absolute; translate: -50% -50%; width: 4.2em; height: 4.2em; border-radius: 50%; border: .2em dashed #fff; background: rgba(255, 255, 255, .25); cursor: pointer; animation: xbPulse 1.6s ease-in-out infinite; }
+@keyframes xbPulse { 50% { transform: scale(1.18); background: rgba(255, 240, 180, .55); } }
+.xb-spot.found { animation: none; border: .25em solid var(--gold); background: rgba(255, 255, 255, .1); box-shadow: 0 0 0 .3em rgba(255, 255, 255, .6); }
+.xb-list { display: flex; flex-direction: column; gap: .45em; min-height: 0; justify-content: center; }
+.xb-count { margin: 0; font-size: 1.3em; color: var(--red-d); font-weight: bold; }
+.xb-count b { font-size: 1.5em; color: var(--red); }
+.xb-card { display: grid; grid-template-columns: 3em 1fr; align-items: center; gap: .5em; background: #fff; border-radius: .7em; padding: .1em .6em; border: 2px dashed var(--line); min-height: 4.2em; }
+.xb-card > * { visibility: hidden; }
+.xb-card::before { content: "？"; grid-column: 1 / -1; grid-row: 1; justify-self: center; font-size: 1.6em; color: var(--line); }
+.xb-card.found::before { content: none; }
+.xb-card.found { border: 2px solid var(--gold-l); animation: pop .5s cubic-bezier(.3, 1.5, .5, 1); }
+.xb-card.found > * { visibility: visible; }
+.xb-card.now { border-color: var(--red); background: #fff4f6; }
+.xb-card p { margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 2.1; }
+.xb-card p b { color: var(--red); }
+.xb-ico { display: grid; place-items: center; font-style: normal; }
+.xb-ico svg { width: 2.8em; height: 1.4em; fill: none; stroke: var(--red-d); stroke-width: 4; stroke-linecap: round; }
+.xb-ico circle { fill: var(--red-d); }
+.xb-note { font-size: 1.6em; color: var(--red-d); }
+
+/* ---------- 连一连 ---------- */
+.lx-box { position: relative; flex: 1; min-height: 0; display: flex; justify-content: space-between; padding: 0 12%; }
+.lx-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.lx-lines line { stroke: var(--red); stroke-width: 5; stroke-linecap: round; animation: appear .5s; }
+.lx-col { display: flex; flex-direction: column; justify-content: space-around; gap: .6em; }
+.lx-it { font: inherit; font-family: var(--kai); font-size: 2.4em; padding: .1em .8em; border-radius: .4em; border: 3px solid var(--line); background: #fff; cursor: pointer; position: relative; z-index: 1; }
+.lx-col.l .lx-it { border-color: #a8d18f; background: #f2fbea; }
+.lx-it.sel { background: var(--gold-l); border-color: var(--gold); }
+.lx-it.done { border-color: var(--red); color: var(--red-d); }
+.lx-it.wrong { animation: nope .35s; }
+.lx-say { font-size: 1.3em; text-align: center; font-family: var(--kai); }
+
+/* ---------- 感官 + 动作卡 ---------- */
+.sg-senses { display: flex; justify-content: center; gap: 1em; flex-wrap: wrap; }
+.sg-senses span { font-family: var(--kai); font-size: 1.5em; background: #fff; border-radius: 2em; padding: .1em .8em; border: 2px solid var(--line); }
+.sg-senses i { font-style: normal; margin-right: .2em; }
+.sg-acts { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; align-items: stretch; }
+.sg-act { font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3em; background: #fff; border: 3px solid var(--line); border-radius: 1em; cursor: pointer; padding: .6em .4em; }
+.sg-act span { font-family: var(--kai); font-size: 1.3em; line-height: 2.1; white-space: nowrap; }
+.sg-act b { color: var(--red); }
+.sg-act small { color: var(--ink-2); font-size: 1em; }
+.sg-pic { position: relative; font-style: normal; font-size: 4.4em; line-height: 1.2; display: inline-block; }
+.sg-pic em { position: absolute; right: -.3em; top: -.2em; font-size: .45em; font-style: normal; color: var(--red); opacity: 0; }
+.sg-act.play .sg-pic { animation: var(--anim) 2.4s ease-in-out; }
+.a1 { --anim: sgSwing; } .a1 .sg-pic { transform-origin: 50% -30%; }
+.a2 { --anim: sgWag; }
+.a3 { --anim: sgHop; } .a3.play em { animation: sgNote 2.4s ease-out; }
+.a4 { --anim: sgBloom; }
+@keyframes sgSwing { 20% { transform: rotate(22deg); } 45% { transform: rotate(-22deg); } 70% { transform: rotate(14deg); } 90% { transform: rotate(-6deg); } }
+@keyframes sgWag { 15%, 55% { transform: rotate(-14deg) translateX(-.1em); } 35%, 75% { transform: rotate(14deg) translateX(.1em); } }
+@keyframes sgHop { 20%, 60% { transform: translateY(-.15em); } 40%, 80% { transform: none; } }
+@keyframes sgNote { 10% { opacity: 1; } to { opacity: 0; transform: translate(.6em, -1.4em); } }
+@keyframes sgBloom { 30% { transform: scale(1.3) rotate(12deg); } 60% { transform: scale(.9); } }
+
+/* ---------- 读一读 ---------- */
+.rd-stage { justify-content: center; gap: 1.2em; }
+.rd-card { background: #fff; border-radius: 1em; padding: .4em 1.4em .7em; box-shadow: 0 .2em .8em rgba(120, 60, 80, .1); }
+.rd-s { margin: 0; font-family: var(--kai); font-size: 2em; line-height: 2.2; }
+.rd-soft { color: #7c9a6a; }
+.rd-up { color: var(--red); position: relative; }
+.rd-up::after { content: "↗"; position: absolute; right: -.9em; top: -.4em; font-size: .8em; color: var(--red); opacity: 0; transition: opacity .5s; }
+.slide:has(.rd-cue.on) .rd-up::after { opacity: 1; }
+.rd-up2 { color: var(--red-d); font-weight: bold; }
+.rd-grow .g1 { font-size: .9em; } .rd-grow .g2 { font-size: .97em; } .rd-grow .g3 { font-size: 1.04em; } .rd-grow .g4 { font-size: 1.12em; font-weight: bold; }
+.rd-cue { margin: .2em 0 0; font-size: 1.15em; color: var(--ink-2); }
+.rd-cue b { color: var(--red); }
+
+/* ---------- 句子机 ---------- */
+.jq-box { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 1em; }
+.jq-row { display: flex; align-items: center; gap: .8em; flex-wrap: wrap; }
+.jq-lb { font-family: var(--kai); font-size: 1.5em; width: 6em; color: var(--ink-2); }
+.jq-opts { display: flex; gap: .6em; flex-wrap: wrap; }
+.jq-o { font: inherit; font-family: var(--kai); font-size: 1.5em; padding: .15em .7em; border-radius: 2em; border: 2px solid var(--line); background: #fff; cursor: pointer; }
+.jq-o.on { background: var(--red); color: #fff; border-color: var(--red); }
+.jq-out { margin: .3em 0 0; text-align: center; font-family: var(--kai); font-size: 2.6em; color: var(--red-d); background: #fff8e1; border-radius: .5em; padding: .2em .6em; }
+.jq-out b { color: var(--red); }
+.jq-out.pop { animation: pop .45s cubic-bezier(.3, 1.4, .5, 1); }
+
+/* ---------- 花苞开花 ---------- */
+.hb-game { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1em; border-radius: 1em; background: linear-gradient(#e6f4fb, #f4faea 65%, #d9ecc2); }
+.hb-q { margin: 0; font-family: var(--kai); font-size: 3em; background: #fff; border-radius: .4em; padding: .1em .6em; box-shadow: 0 .1em .4em rgba(0, 0, 0, .08); }
+.hb-row { display: flex; gap: 3em; }
+.hb-bud { position: relative; font: inherit; width: 6em; height: 8em; border: none; background: none; cursor: pointer; }
+.hb-bud span { position: absolute; left: 50%; top: 1.2em; translate: -50% 0; width: 1.6em; height: 1.9em; display: grid; place-items: center; z-index: 2; font-family: var(--kai); font-size: 2.6em; color: #fff; background: radial-gradient(circle at 40% 30%, #8fd07c, #4e9b46); border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%; transition: background .6s, color .6s; }
+.hb-stem { position: absolute; left: 50%; top: 5.6em; bottom: 0; width: .3em; translate: -50% 0; background: var(--leaf); }
+.hb-petals { position: absolute; left: 50%; top: 2.9em; width: 0; height: 0; z-index: 1; }
+.hb-petals::before { content: ""; position: absolute; left: -3em; top: -3em; width: 6em; height: 6em; border-radius: 50%; background: radial-gradient(circle, #ffd6e2 0 30%, transparent 31%), conic-gradient(#f59ab8 0 10%, transparent 10% 12.5%, #f59ab8 12.5% 22.5%, transparent 22.5% 25%, #f59ab8 25% 35%, transparent 35% 37.5%, #f59ab8 37.5% 47.5%, transparent 47.5% 50%, #f59ab8 50% 60%, transparent 60% 62.5%, #f59ab8 62.5% 72.5%, transparent 72.5% 75%, #f59ab8 75% 85%, transparent 85% 87.5%, #f59ab8 87.5% 97.5%, transparent 97.5%); transform: scale(0); transition: transform .7s cubic-bezier(.3, 1.6, .5, 1); }
+.hb-bud.open .hb-petals::before { transform: scale(1); }
+.hb-bud.open span { background: #fff4b0; color: var(--red-d); border-radius: 50%; }
+.hb-bud.wrong { animation: nope .35s; }
+.hb-msg { margin: 0; min-height: 1.5em; font-size: 1.4em; font-weight: bold; color: var(--red-d); font-family: var(--kai); }
+
+/* ---------- 回顾 ---------- */
+.zc-sum { justify-content: center; align-items: center; gap: 1.2em; }
+.zc-sumg { display: grid; grid-template-columns: repeat(4, auto); gap: .8em; }
+.zc-sumg span { font-family: var(--kai); font-size: 1.8em; background: #fff; border-radius: .5em; padding: .2em .7em; border-bottom: .2em solid var(--red); }
+.zc-sumg.s2 span { border-color: var(--gold); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .zc-ask { font-size: 1.3em; }
+  .xb-spot { width: 2.6em; height: 2.6em; }
+  .xb-card p { font-size: 1.1em; }
+  .lx-box { padding: 0 2%; min-height: 22em; }
+  .lx-it { font-size: 1.7em; }
+  .sg-acts { grid-template-columns: 1fr 1fr; }
+  .sg-act span { font-size: 1.15em; }
+  .sg-pic { font-size: 3em; }
+  .rd-s { font-size: 1.4em; }
+  .jq-lb { width: auto; font-size: 1.2em; }
+  .jq-o { font-size: 1.2em; }
+  .jq-out { font-size: 1.6em; }
+  .hb-game { padding: 1.4em .4em; }
+  .hb-q { font-size: 2em; }
+  .hb-row { gap: .4em; }
+  .hb-bud { width: 5em; height: 7em; font-size: .9em; }
+  .zc-sumg { grid-template-columns: 1fr 1fr; }
+  .zc-sumg span { font-size: 1.3em; }
+}
+
+/* 本课课文句子较长：字幕只留最近两句，避免顶到标题 */
+.subs p.on:has(~ p.on ~ p.on) { display: none; }
+
+/* 手机：图框按宽度铺满（单栏布局里没有高度可参照） */
+@media (max-width: 820px), (max-height: 520px) {
+  .xb-bd .hz-pic { width: 100%; height: auto; max-height: none; }
+}
+@media (max-width: 820px), (max-height: 520px) {
+  .sg-act span { white-space: normal; }
+}

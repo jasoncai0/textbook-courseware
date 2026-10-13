@@ -1,0 +1,47 @@
+/* 京剧趣谈 · 本课配色：戏台朱红、金黄 */
+:root {
+  --red: #a8231f;
+  --red-d: #6b1412;
+  --gold: #d4a017;
+  --gold-l: #f3dc8e;
+  --paper: #f6efe4;
+  --stone: #fcf8f1;
+  --ink-2: #5e5246;
+  --line: #e0cfb5;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdf9f2 0, transparent 40%), radial-gradient(circle at 90% 95%, #ecdcc4 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.4em; }
+
+#stage, #fight { flex: 1; min-height: 0; width: 100%; border-radius: .5em; }
+/* 马鞭 */
+#stage .real-horse { transition: opacity .6s; }
+.s-whip:has(.actor.on) #stage .real-horse { opacity: 0; }
+#stage .cross { stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1s ease .8s; }
+#stage .real-horse.on .cross { stroke-dashoffset: 0; }
+#stage .actor.on { animation: ride 1.2s ease-in-out infinite alternate; }
+@keyframes ride { from { transform: translate(-40px, 0); } to { transform: translate(40px, -6px); } }
+#stage .whip { transform-box: fill-box; transform-origin: 0 100%; }
+#stage .actor.on .whip { animation: whip .6s ease-in-out infinite alternate; }
+@keyframes whip { from { transform: rotate(-20deg); } to { transform: rotate(25deg); } }
+
+/* 亮相：锣鼓响时两人对打，一停就定格 */
+#fight .fighter { transform-box: fill-box; transform-origin: 50% 100%; }
+.s-pose:has(.bang.on):not(:has(.freeze-text.on)) .f-left { animation: atkL .35s ease-in-out infinite alternate; }
+.s-pose:has(.bang.on):not(:has(.freeze-text.on)) .f-right { animation: atkR .35s ease-in-out infinite alternate; }
+@keyframes atkL { from { transform: translate(-30px, 0) rotate(-6deg); } to { transform: translate(20px, -10px) rotate(6deg); } }
+@keyframes atkR { from { transform: translate(30px, 0) rotate(6deg); } to { transform: translate(-20px, -10px) rotate(-6deg); } }
+.s-pose:has(.bang.on):not(:has(.freeze-text.on)) .bang text { animation: pulse .35s infinite; }
+.s-pose:has(.freeze-text.on) .bang { opacity: 0; }
+.s-pose:has(.freeze-text.on) #fight .spot { fill-opacity: .45; }
+#fight .freeze-text { font-size: 34px; letter-spacing: .3em; }
+
+/* 戏曲词语：8 张卡片，4 列 */
+.clues.ops { grid-template-columns: repeat(4, 1fr); }
+.clues.ops .clue-face.front { display: grid; place-items: center; font-size: 1.6em; }
+.clues.ops .clue-face.front small { position: absolute; top: .5em; left: .8em; font-size: .45em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4em; }
+  #stage, #fight { flex: none; height: auto; }
+  .clues.ops { grid-template-columns: 1fr 1fr; }
+}

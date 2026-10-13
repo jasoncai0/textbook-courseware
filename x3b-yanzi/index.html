@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>燕子 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/poem.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 共用图形：飞翔的燕子、停着的燕子 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="yzBird" viewBox="40 0 310 220">
+      <path d="M270 104 C 240 60, 200 30, 130 10 C 170 40, 200 70, 225 108 Z" fill="#1c2433"/>
+      <path d="M170 128 L 60 100 L 140 132 L 50 160 L 168 136 Z" fill="#1c2433"/>
+      <path d="M320 100 C 330 112, 318 128, 300 132 C 260 142, 200 140, 160 132 C 200 120, 250 98, 290 92 C 305 90, 315 94, 320 100 Z" fill="#1c2433"/>
+      <path d="M300 128 C 260 138, 210 136, 175 131 C 215 126, 260 120, 300 118 Z" fill="#f4f1ea"/>
+      <path d="M326 104 L 342 108 L 324 112 Z" fill="#1c2433"/>
+      <path d="M260 120 C 230 150, 190 180, 120 205 C 165 170, 200 140, 220 126 Z" fill="#2b3446"/>
+    </symbol>
+    <symbol id="yzPerch" viewBox="0 0 30 44">
+      <path d="M15 2 C 22 2, 24 10, 22 16 C 22 24, 20 30, 17 32 L 22 44 L 15 35 L 8 44 L 13 32 C 10 30, 8 24, 8 16 C 6 10, 8 2, 15 2 Z" fill="#1c2433"/>
+      <path d="M12 16 C 12 24, 13 28, 15 30 C 17 28, 18 24, 18 16 Z" fill="#f4f1ea"/>
+      <circle cx="17.5" cy="7" r="1.3" fill="#fff"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= 封面 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/chunri.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">三年级下册 · 第一单元 · 第 2 课</p>
+    <h1 class="cover-title">燕子</h1>
+    <p class="cover-sub">郑振铎</p>
+    <div class="chips" data-step="1"><span class="chip">试着一边读一边想象画面</span><span class="chip">体会优美生动的语句</span></div>
+    <p class="cover-flow" data-step="2">拼一拼燕子　→　看春天的图画　→　看燕子飞</p>
+  </div>
+  <p class="note">课文共 5 个自然段：外形—春景—飞行（两段）—休憩。读的时候边读边想象画面，读出对燕子的喜爱。</p>
+</section>
+
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 第 1 段：外形拼图 ================= -->
+<section class="slide s-puzzle">
+  <div class="hd"><span class="tag">读 · 第 1 自然段</span><h2>拼一拼：小燕子长什么样？</h2></div>
+  <div class="bd">
+    <div class="stage yz-cards" data-noswipe>
+      <p class="tip">先点一张词语卡，再点燕子身上的“？”，把小燕子拼出来。</p>
+      <div class="yz-words" id="yzWords"></div>
+      <p class="tip gold yz-done" id="yzDone">一身乌黑的羽毛，一对轻快有力的翅膀，加上剪刀似的尾巴，凑成了那样<b>可爱</b>的<b>活泼</b>的小燕子。</p>
+      <div class="btns"><button class="btn" type="button" id="yzReset">再拼一次</button></div>
+    </div>
+    <div class="stage">
+      <svg viewBox="30 0 340 230" class="yz-swallow" id="yzSwallow" data-noswipe role="img" aria-label="燕子拼图">
+        <g class="yz-part" data-part="wing">
+          <path d="M270 104 C 240 60, 200 30, 130 10 C 170 40, 200 70, 225 108 Z"/>
+          <path d="M260 120 C 230 150, 190 180, 120 205 C 165 170, 200 140, 220 126 Z"/>
+        </g>
+        <g class="yz-part" data-part="tail"><path d="M170 128 L 60 100 L 140 132 L 50 160 L 168 136 Z"/></g>
+        <g class="yz-part" data-part="body">
+          <path d="M320 100 C 330 112, 318 128, 300 132 C 260 142, 200 140, 160 132 C 200 120, 250 98, 290 92 C 305 90, 315 94, 320 100 Z"/>
+          <path d="M326 104 L 342 108 L 324 112 Z"/>
+          <path class="belly" d="M300 128 C 260 138, 210 136, 175 131 C 215 126, 260 120, 300 118 Z"/>
+          <circle class="eye" cx="310" cy="104" r="3"/>
+        </g>
+        <g class="yz-q" data-part="wing"><circle cx="190" cy="56" r="17"/><text x="190" y="63">?</text></g>
+        <g class="yz-q" data-part="tail"><circle cx="78" cy="132" r="17"/><text x="78" y="139">?</text></g>
+        <g class="yz-q" data-part="body"><circle cx="262" cy="118" r="17"/><text x="262" y="125">?</text></g>
+        <text class="yz-lab" data-part="wing" x="300" y="36">轻快有力的翅膀</text>
+        <text class="yz-lab" data-part="tail" x="112" y="196">剪刀似的尾巴</text>
+        <text class="yz-lab" data-part="body" x="300" y="166">乌黑的羽毛</text>
+      </svg>
+    </div>
+  </div>
+  <p class="note">第 1 自然段写外形：羽毛（颜色）、翅膀（样子、本领）、尾巴（像剪刀）。拼完齐读这一句，问：作者用了哪两个词表达喜爱？（可爱、活泼）</p>
+</section>
+
+<!-- ================= 第 2—5 段：读课文 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.04 50% 50%" data-bg="assets/chunri.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="spot-layer"></div>
+  <div class="hd"><span class="tag">读 · 第 2 自然段</span><span class="sub">春天的图画</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.15 40% 20%">二三月的春日里，轻风微微地吹拂着，如毛的细雨由天上洒落着，</p>
+    <p data-step="2" data-focus="1.3 60% 60%">千条万条的柔柳，红的白的黄的花，青的草，绿的叶，</p>
+    <p data-step="3" data-focus="1.06 50% 55%">都像赶集似的聚拢来，形成了烂漫无比的春天。</p>
+    <p data-step="4" data-focus="1.4 30% 45%">这时候，那些小燕子，那么伶俐可爱的小燕子，也由南方飞来，</p>
+    <p data-step="5" data-focus="1.1 45% 50%">加入这光彩夺目的图画中，为春光平添了许多生趣。</p>
+  </div>
+  <p class="note">读到哪里，画面哪里亮起来。“赶集似的聚拢来”——春天的景物都赶来了，热闹极了；小燕子一来，春天更有生气。</p>
+</section>
+
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.04 50% 50%" data-bg="assets/xiefei.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="spot-layer"></div>
+  <div class="hd"><span class="tag">读 · 第 3 自然段</span><span class="sub">斜飞</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.35 30% 52%">小燕子带了它的剪刀似的尾巴，在阳光满地时，斜飞于旷亮无比的天空，</p>
+    <p data-step="2" data-focus="1.25 75% 45%"><span class="yz-big">叽</span>的一声，已由这里的稻田上，飞到那边的高柳下了。</p>
+  </div>
+  <p class="note">“叽的一声”，“已”飞到——一眨眼就从稻田飞到高柳，飞得多快！读得轻快一点。</p>
+</section>
+
+<section class="slide scene">
+  <video class="scene-bg" data-focus="1.03 50% 50%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/bbf771d9fb4412f6038c82c265a15dbe2c2069f16ec38a9311b982fdcda8edf8.mp4" data-poster="assets/hengluo.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="spot-layer"></div>
+  <div class="hd"><span class="tag">读 · 第 4 自然段</span><span class="sub">横掠</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.1 50% 55%">另有几只却在波光粼粼的湖面上横掠着，</p>
+    <p data-step="2" data-focus="1.35 50% 58%">小燕子的翼尖或剪尾，偶尔沾了一下水面，</p>
+    <p data-step="3" data-focus="1.35 53% 72%">那小圆晕便一圈一圈地荡漾开去。</p>
+  </div>
+  <p class="note">“沾了一下”：轻轻碰一下就离开，写出燕子飞得轻盈。水面上一圈一圈的小圆晕，正是燕子留下的。</p>
+</section>
+
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.04 50% 50%" data-bg="assets/dianxian.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="spot-layer"></div>
+  <div class="hd"><span class="tag">读 · 第 5 自然段</span><span class="sub">休憩</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.3 50% 55%">那边还有飞倦了的几对，闲散地在纤细的电线上休憩——</p>
+    <p data-step="2" data-focus="1.1 50% 45%">嫩蓝的春天，几支木杆，几痕细线连于杆与杆之间，线上停着几个小黑点，那便是燕子。</p>
+    <p data-step="3" data-focus="1.04 50% 50%" class="yz-wow">多么有趣的一幅图画呀！</p>
+  </div>
+  <p class="note">飞累了，停下来歇歇脚。远远看去，电线上的燕子只是“几个小黑点”——像什么？下一个环节让学生动手“停”燕子。</p>
+</section>
+
+<!-- ================= 品读 ================= -->
+<section class="slide s-gather">
+  <div class="hd"><span class="tag">品 · 想象画面</span><h2>春天的景物“赶集似的聚拢来”</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <h4>第 2 自然段</h4>
+      <p><span class="mark" data-step="1">轻风微微地吹拂着</span>，<span class="mark" data-step="2">如毛的细雨由天上洒落着</span>，<span class="mark" data-step="3">千条万条的柔柳</span>，<span class="mark" data-step="4">红的白的黄的花</span>，<span class="mark" data-step="5">青的草，绿的叶</span>，都像<b>赶集</b>似的聚拢来，形成了烂漫无比的春天。<span class="mark" data-step="6">那么伶俐可爱的小燕子，也由南方飞来</span>，加入这光彩夺目的图画中，为春光平添了许多生趣。</p>
+    </div>
+    <div class="stage">
+      <svg viewBox="0 0 600 360" class="yz-spring" role="img" aria-label="春天的图画">
+        <rect width="600" height="360" fill="#eaf3f6"/>
+        <rect y="260" width="600" height="100" fill="#dcebc4"/>
+        <g data-step="1" class="yz-in yz-from-l"><g fill="none" stroke="#a9c7d6" stroke-width="3" stroke-linecap="round"><path d="M40 60 q40 -20 80 0 t80 0"/><path d="M300 40 q40 -20 80 0 t80 0"/></g></g>
+        <g data-step="2" class="yz-in yz-from-t"><g stroke="#8fb3c8" stroke-width="1.6" stroke-linecap="round">
+          <path d="M80 20 l-4 14"/><path d="M150 40 l-4 14"/><path d="M220 10 l-4 14"/><path d="M290 60 l-4 14"/><path d="M360 24 l-4 14"/><path d="M430 50 l-4 14"/><path d="M500 16 l-4 14"/><path d="M560 60 l-4 14"/><path d="M120 90 l-4 14"/><path d="M400 100 l-4 14"/></g></g>
+        <g data-step="3" class="yz-in yz-from-l"><g fill="none" stroke="#7aa84a" stroke-width="3" stroke-linecap="round">
+          <path d="M0 0 C 30 40, 40 100, 36 170"/><path d="M20 0 C 50 50, 64 110, 60 200"/><path d="M50 0 C 74 40, 92 100, 90 160"/><path d="M80 0 C 104 50, 120 120, 112 190"/></g>
+          <g fill="#9cc65c"><ellipse cx="36" cy="120" rx="3" ry="8"/><ellipse cx="62" cy="150" rx="3" ry="8"/><ellipse cx="90" cy="110" rx="3" ry="8"/><ellipse cx="112" cy="160" rx="3" ry="8"/></g></g>
+        <g data-step="4" class="yz-in yz-from-b">
+          <g fill="#e2574c"><circle cx="160" cy="276" r="11"/><circle cx="330" cy="290" r="11"/><circle cx="510" cy="272" r="11"/></g>
+          <g fill="#ffffff" stroke="#e3ddd0"><circle cx="220" cy="292" r="11"/><circle cx="420" cy="278" r="11"/></g>
+          <g fill="#f2c14e"><circle cx="270" cy="270" r="11"/><circle cx="460" cy="300" r="11"/><circle cx="560" cy="290" r="11"/></g></g>
+        <g data-step="5" class="yz-in yz-from-r"><g stroke="#4f9a3a" stroke-width="3" stroke-linecap="round"><path d="M140 340 l-6 -26"/><path d="M190 344 l4 -24"/><path d="M250 340 l-4 -22"/><path d="M380 344 l6 -26"/><path d="M440 340 l-2 -22"/><path d="M540 344 l4 -24"/></g>
+          <g fill="#5fae4a"><ellipse cx="600" cy="120" rx="60" ry="40"/><ellipse cx="560" cy="160" rx="40" ry="26"/></g></g>
+        <g transform="translate(400 120)"><g data-step="6" class="yz-arrive"><use href="#yzBird" x="-60" y="-36" width="120" height="72"/></g></g>
+      </svg>
+      <p class="tip gold" data-step="6"><b>赶集：</b>大家从四面八方赶来，热热闹闹聚在一起。春天的景物这么多、这么热闹，小燕子一来，春天更有生气了！</p>
+    </div>
+  </div>
+  <p class="note">一步一步，景物“聚拢”到画面里：风、雨、柳、花、草叶，最后小燕子飞进来。问：“赶集”让你想到了什么？为什么说小燕子“平添了许多生趣”？</p>
+</section>
+
+<section class="slide s-fly">
+  <div class="hd"><span class="tag">品 · 课后第 3 题</span><h2>“沾了一下”：燕子飞得多轻盈</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 600 300" class="yz-lake" data-step="1" role="img" aria-label="燕子掠过水面">
+        <defs><linearGradient id="yzSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6f2f8"/><stop offset="1" stop-color="#f7fbfd"/></linearGradient></defs>
+        <rect width="600" height="300" fill="url(#yzSky)"/>
+        <rect y="210" width="600" height="90" fill="#8ec3dd"/>
+        <g stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity=".7"><path d="M60 236 h30"/><path d="M180 262 h24"/><path d="M420 244 h36"/><path d="M520 274 h22"/></g>
+        <g class="yz-rip" fill="none" stroke="#ffffff" stroke-width="2.4"><ellipse cx="300" cy="216" rx="30" ry="7"/><ellipse cx="300" cy="216" rx="30" ry="7"/><ellipse cx="300" cy="216" rx="30" ry="7"/></g>
+        <g class="yz-fly"><use href="#yzBird" x="-50" y="-30" width="100" height="60"/></g>
+      </svg>
+      <div data-picks="dangyang" data-noswipe data-step="2"></div>
+    </div>
+    <div class="stage">
+      <div class="quote">
+        <p>另有几只却在波光粼粼的湖面上<span class="mark" data-step="1">横掠</span>着，小燕子的翼尖或剪尾，<span class="mark" data-step="1">偶尔沾了一下</span>水面，那小圆晕便<span class="mark" data-step="2">一圈一圈地荡漾开去</span>。</p>
+      </div>
+      <p class="tip" data-step="1"><b>沾了一下：</b>轻轻一碰就飞走了——读到这句话，能体会到小燕子飞行的<b>轻盈</b>。</p>
+      <p class="tip gold" data-step="3"><b>选“荡漾”：</b>因为是<b>水面</b>，水波一圈一圈地动。“飘荡”多用在空中。</p>
+    </div>
+  </div>
+  <p class="note">课后第 3 题：找出优美生动的语句，读一读，抄下来。这句也是语文园地“交流平台”的例句。换词练习来自语文园地“词句段运用”第 1 题。</p>
+</section>
+
+<section class="slide s-wire">
+  <div class="hd"><span class="tag">品 · 第 5 自然段</span><h2>点一点：让燕子停在电线上</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <svg viewBox="0 0 800 330" class="yz-wires" id="yzWires" data-noswipe role="img" aria-label="电线上的燕子，点一点添加">
+        <rect width="800" height="330" fill="#e7f1fb" rx="10"/>
+        <g fill="#8a6a44"><rect x="52" y="40" width="14" height="290"/><rect x="734" y="40" width="14" height="290"/></g>
+        <g id="yzLines" fill="none" stroke="#3b3b3b" stroke-width="2"></g>
+        <g id="yzPerched"></g>
+      </svg>
+      <div class="row" style="flex:0 0 auto">
+        <p class="tip" style="flex:1">点电线，停一只燕子。停好几只，远远看去像什么？</p>
+        <button class="btn" type="button" id="yzClear">清空</button>
+      </div>
+      <p class="tip gold" data-step="1"><b>像五线谱上的音符！</b>几痕细线，几个小黑点——“多么有趣的一幅图画呀！”燕子停在电线上，好像在唱春天的歌。</p>
+    </div>
+  </div>
+  <p class="note">先让学生自由“停”燕子，再问：像什么？（五线谱、音符）作者把燕子写成“小黑点”，是远远看到的样子。</p>
+</section>
+
+<section class="slide s-match">
+  <div class="hd"><span class="tag">品 · 课后第 2 题</span><h2>连一连：什么样的……</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">先点左边，再点右边，连成课文里的词语。</p>
+      <div class="yz-match" id="yzMatch" data-noswipe></div>
+      <p class="tip gold" data-step="1"><b>再说几个：</b>乌黑的羽毛　轻快有力的翅膀　嫩蓝的春天　纤细的电线　波光粼粼的湖面　烂漫无比的春天……</p>
+    </div>
+  </div>
+  <p class="note">课后第 2 题：读一读，记一记，再说几个这样的词语。“什么样的 + 什么”，把事物的样子说具体。可以让学生说说身边的事物。</p>
+</section>
+
+<!-- ================= 读与写 ================= -->
+<section class="slide s-read">
+  <div class="hd"><span class="tag">读与写 · 课后第 1 题</span><h2>读出对燕子的喜爱</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="btns"><button class="btn solid" type="button" id="markToggle">显示朗读符号</button><span class="legend">/ 停顿　// 长停顿　<em>着重号</em> 重读</span></div>
+      <div class="read-list">
+        <div class="read-item"><p>一身<em>乌黑</em>的羽毛，<i>/</i> 一对<em>轻快有力</em>的翅膀，<i>/</i> 加上<em>剪刀似的</em>尾巴，<i>//</i> 凑成了那样<em>可爱</em>的<em>活泼</em>的小燕子。</p><span class="tone">喜爱 · 亲切</span></div>
+        <div class="read-item"><p>那么<em>伶俐可爱</em>的小燕子，<i>/</i> 也由南方飞来，<i>/</i> 加入这<em>光彩夺目</em>的图画中。</p><span class="tone">欢快</span></div>
+        <div class="read-item"><p><em>叽</em>的一声，<i>/</i> 已由这里的稻田上，<i>/</i> 飞到那边的高柳下了。</p><span class="tone">轻快 · 稍快</span></div>
+        <div class="read-item"><p><em>多么有趣</em>的一幅图画呀！</p><span class="tone">赞叹</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后第 1 题：朗读课文，边读边想象画面，读出对燕子的喜爱之情。先请学生试读，再显示符号对照。</p>
+</section>
+
+<section class="slide s-recite">
+  <div class="hd"><span class="tag">读与写 · 课后第 1 题</span><h2>背诵第 1～3 自然段</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">按“外形—春景—飞行”的顺序背。想不起来，点一下空格偷看一个字。</p>
+      <div class="recite wide" data-recite="beisong" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">背诵提示：第 1 段按“羽毛—翅膀—尾巴”；第 2 段先写春景（风、雨、柳、花、草、叶），再写燕子飞来；第 3 段抓住“斜飞”“叽的一声”。</p>
+</section>
+
+<section class="slide s-write">
+  <div class="hd"><span class="tag">读与写 · 写话</span><h2>我想象中的小燕子</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">选一幅画面，想象小燕子在做什么，写几句话。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="小燕子……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">也可以结合语文园地“词句段运用”：照第 1 自然段的样子，写一种小动物的外形特点（颜色、样子、像什么）。</p>
+</section>
+
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>可爱的小燕子</h2></div>
+  <div class="bd full">
+    <div class="stage" style="justify-content:center">
+      <div class="board" data-step="1">
+        <div style="text-align:center;font-size:1.4em;margin-bottom:.2em"><b>燕　子</b></div>
+        <div><b>外形</b>　乌黑的羽毛　轻快有力的翅膀　剪刀似的尾巴　→　可爱　活泼</div>
+        <div><b>春景</b>　风　雨　柳　花　草　叶　赶集似的聚拢来　→　燕子平添生趣</div>
+        <div><b>飞行</b>　斜飞　横掠　沾水　→　轻快　轻盈</div>
+        <div><b>休憩</b>　电线上几个小黑点　→　有趣的图画</div>
+      </div>
+      <p class="tip gold" data-step="2"><b>边读边想象：</b>读到“剪刀似的尾巴”，眼前就有一把小剪刀；读到“一圈一圈地荡漾开去”，水面就动了起来。</p>
+    </div>
+  </div>
+  <p class="note">板书突出喜爱之情：外形可爱，飞行轻快，停歇有趣。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="../shared/poem.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

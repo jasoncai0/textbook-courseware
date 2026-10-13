@@ -1,0 +1,75 @@
+/* 古诗三首（四时田园杂兴 / 稚子弄冰 / 村晚）· 本课配色：宣纸、田园绿、夕阳橙。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #a2532a;
+  --red-d: #5b3a1e;
+  --gold: #b8933a;
+  --gold-l: #ecdcae;
+  --paper: #f3efe0;
+  --stone: #fbf8ef;
+  --ink-2: #5f584c;
+  --line: #d8ceb6;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fbf9f0 0, transparent 40%), radial-gradient(circle at 90% 95%, #e3e6cf 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .1em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .8em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.2em; background: rgba(91, 58, 30, .88); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 四时田园杂兴：昼与夜 */
+.gs-dn { position: relative; display: grid; grid-template-rows: 1fr 1fr; gap: .7em; min-height: 0; }
+.gs-dn-card { position: relative; border-radius: .5em; overflow: hidden; box-shadow: 0 .2em .8em rgba(40, 30, 20, .15); min-height: 0; }
+.gs-dn-img { position: absolute; inset: 0; background: center / cover no-repeat #d9d2bd; }
+.gs-dn-card b { position: absolute; left: .6em; bottom: .5em; font-family: var(--kai); font-size: 1.2em; color: #fff; background: rgba(162, 83, 42, .9); padding: .1em .7em; border-radius: .3em; }
+.gs-dn-card.night b { background: rgba(31, 46, 79, .9); }
+.s-daynight .stage { justify-content: center; }
+.gs-act { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .5em .9em; font-size: .9em; line-height: 1.6; }
+.gs-act b { color: var(--red); }
+.gs-act span { display: inline-block; margin: .3em .3em 0 0; padding: .1em .7em; border-radius: 1em; background: #eef3e2; border: 1px solid #c5d3a6; font-family: var(--kai); }
+
+/* 稚子弄冰：四步 */
+.gs-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: .9em; flex: 1; min-height: 0; }
+.gs-step { position: relative; background: #fff; border-radius: .6em; padding: .6em .8em .7em; text-align: center; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.gs-step:not(:last-child)::after { content: "→"; position: absolute; right: -.85em; top: 40%; color: var(--gold); font-size: 1.2em; }
+.gs-step svg { width: 80%; max-height: 7em; }
+.gs-step > b { font-family: var(--kai); font-size: 2.4em; color: var(--red); line-height: 1.1; }
+.gs-step p { margin: .1em 0; font-family: var(--kai); font-size: 1.15em; }
+.gs-step em { font-style: normal; color: var(--red); font-weight: bold; }
+.gs-step small { color: var(--ink-2); font-size: .82em; }
+.gs-lift { transition: transform 1s ease .3s; }
+.gs-step.on .gs-lift { transform: translateY(-10px); }
+.gs-step.on .gs-wave path { animation: gsWave 1.2s ease-out infinite; }
+.gs-step.on .gs-wave path:nth-child(2) { animation-delay: .2s; }
+.gs-step.on .gs-wave path:nth-child(3) { animation-delay: .4s; }
+@keyframes gsWave { from { opacity: 0; } 40% { opacity: 1; } to { opacity: 0; } }
+.gs-shards path { transform-box: fill-box; transform-origin: 50% 100%; }
+.gs-step.on .gs-shards path { animation: gsShard .6s cubic-bezier(.3, 1.6, .5, 1) both; }
+.gs-step.on .gs-shards path:nth-child(2n) { animation-delay: .1s; }
+@keyframes gsShard { from { transform: translateY(-30px) scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* 村晚：四张卡片 */
+.s-clues .clues { grid-template-columns: 1fr 1fr; }
+.s-clues .clue-face.front { font-size: 1.35em; display: grid; place-items: center; text-align: center; }
+.s-clues .clue-face.front small { position: absolute; top: .5em; left: .8em; font-size: .55em; }
+.s-clues .clue-face b { color: var(--red); }
+
+/* 回顾表 */
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.05em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.15em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); }
+.sum-table tr:first-child th:first-child { background: transparent; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .gs-dn { grid-template-rows: none; grid-template-columns: 1fr 1fr; }
+  .gs-dn-card { min-height: 9em; }
+  .gs-flow { grid-template-columns: 1fr 1fr; }
+  .gs-step:not(:last-child)::after { display: none; }
+  .sum-table { font-size: .8em; border-spacing: .2em; }
+  .sum-table th, .sum-table td { padding: .4em .3em; }
+}
+/* 手机上竖排题目太长，收小一点 */
+@media (max-width: 820px), (max-height: 520px) {
+  .poem-v[data-poem="tianyuan"] .poem-text h3 { font-size: .95em; letter-spacing: 0; }
+}

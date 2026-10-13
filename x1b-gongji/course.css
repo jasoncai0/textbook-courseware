@@ -1,0 +1,153 @@
+/* 小公鸡和小鸭子 · 本课配色：草地的绿、小鸭的嫩黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d9772b;
+  --red-d: #9a4d12;
+  --gold: #f2bf2f;
+  --gold-l: #fde6a2;
+  --paper: #f6faef;
+  --stone: #fffffa;
+  --ink-2: #566048;
+  --line: #dfe8cf;
+  --duck: #e9a400;
+  --chick: #c8452e;
+  --nar: #7d8a96;
+}
+
+/* ---------- 角色头像（从 caodi.jpg 裁出来） ---------- */
+.gj-av { display: inline-block; width: 3.6em; height: 3.6em; border-radius: 50%; background-color: #eee; background-repeat: no-repeat; border: .2em solid #fff; box-shadow: 0 .15em .5em rgba(0, 0, 0, .2); flex: none; }
+.gj-av.chick { background-size: 360%; background-position: 16% 30%; }
+.gj-av.duck { background-size: 360%; background-position: 78% 30%; }
+.gj-av.nar { background: #eef1f4 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M8 12H19V30H8ZM21 12H32V30H21Z' fill='%23fff' stroke='%237d8a96' stroke-width='2'/%3E%3C/svg%3E") center / 70% no-repeat; }
+.gj-av.big { width: 11em; height: 11em; }
+
+/* ---------- 封面 ---------- */
+.gj-cover .stage { flex: 1; align-items: center; justify-content: center; gap: .4em; background: radial-gradient(ellipse at 50% 90%, #d6edb8, transparent 60%); }
+.gj-unit { margin: 0; color: var(--ink-2); }
+.gj-guests { display: flex; gap: 5em; }
+.gj-guest { display: flex; flex-direction: column; align-items: center; }
+.gj-guest b { font-family: var(--kai); font-weight: normal; font-size: 2em; }
+.gj-title { margin: 0; font-size: 5em; color: var(--red-d); line-height: 1.6; }
+.gj-title rt { font-size: .3em; }
+
+/* ---------- 连环画 ---------- */
+.gj-comic { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; align-items: start; align-content: center; }
+.gj-comic figure { margin: 0; background: #fff; border: .2em solid #3d3d3d; border-radius: .3em; padding: .4em; box-shadow: .3em .3em 0 rgba(0, 0, 0, .12); }
+.gj-cell { aspect-ratio: 1; background: #eee center / cover no-repeat; border-radius: .2em; }
+.gj-comic figcaption { margin-top: .2em; font-size: 1.5em; line-height: 2.1; }
+.gj-cell { aspect-ratio: 4 / 3; }
+
+/* ---------- 小剧场：谁说话谁亮 ---------- */
+.gj-cast { position: absolute; right: 3%; top: 12%; z-index: 3; display: flex; flex-direction: column; gap: .6em; }
+.gj-cast .gj-av { width: 4.4em; height: 4.4em; opacity: .7; filter: grayscale(.5); transition: transform .3s, opacity .3s, filter .3s; }
+.gj-stage:has(.subs p.now.r-nar) .gj-av.nar,
+.gj-stage:has(.subs p.now.r-duck) .gj-av.duck,
+.gj-stage:has(.subs p.now.r-chick) .gj-av.chick { opacity: 1; filter: none; transform: scale(1.25); }
+.gj-stage:has(.subs p.now.r-duck) .gj-av.duck { box-shadow: 0 0 0 .25em var(--duck); }
+.gj-stage:has(.subs p.now.r-chick) .gj-av.chick { box-shadow: 0 0 0 .25em var(--chick); }
+.gj-stage .subs p.r-duck { color: #ffe08a; }
+.gj-stage .subs p.r-chick { color: #ffc2b4; }
+.gj-stage .subs p.r-nar { color: #eef2f5; }
+
+/* ---------- 分角色朗读 ---------- */
+.gj-roles { flex: 1; display: grid; grid-template-columns: 11em 1fr; gap: 1.4em; min-height: 0; }
+.gj-rolebtns { display: flex; flex-direction: column; gap: .8em; justify-content: center; }
+.gj-rolebtn { display: flex; align-items: center; gap: .5em; font: inherit; font-family: var(--kai); font-size: 1.5em; padding: .3em .5em; border: 2px solid var(--line); border-radius: 2em; background: #fff; cursor: pointer; }
+.gj-rolebtn .gj-av { width: 2.2em; height: 2.2em; }
+.gj-rolebtn.on { border-color: var(--red); background: #fff3e2; }
+.gj-script { display: flex; flex-direction: column; gap: 0; justify-content: safe center; overflow: auto; }
+.gj-sl { margin: 0; padding: 0 .6em; border-left: .3em solid; border-radius: .3em; font-size: 1.35em; line-height: 1.95; transition: opacity .3s, background .3s; }
+.gj-sl.r-nar { border-color: var(--nar); color: #4d5966; }
+.gj-sl.r-duck { border-color: var(--duck); }
+.gj-sl.r-chick { border-color: var(--chick); }
+.gj-roles[data-role="duck"] .gj-sl:not(.r-duck), .gj-roles[data-role="chick"] .gj-sl:not(.r-chick), .gj-roles[data-role="nar"] .gj-sl:not(.r-nar) { opacity: .28; }
+.gj-roles[data-role="duck"] .gj-sl.r-duck { background: #fff4cc; }
+.gj-roles[data-role="chick"] .gj-sl.r-chick { background: #ffe6df; }
+.gj-roles[data-role="nar"] .gj-sl.r-nar { background: #eef1f4; }
+
+/* ---------- 动作词配图 ---------- */
+.gj-acts { flex: 1; display: flex; flex-direction: column; gap: .7em; }
+.gj-acttray { display: flex; flex-wrap: wrap; gap: .5em; justify-content: center; min-height: 3.4em; }
+.gj-act { font: inherit; font-family: var(--kai); font-size: 1.6em; line-height: 2; padding: 0 .6em; border: 2px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; }
+.gj-act.sel { border-color: var(--red); background: #fff3e2; }
+.gj-actpics { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.gj-actpic { display: flex; flex-direction: column; gap: .3em; background: #fff; border-radius: .8em; padding: .5em; border: 2px solid transparent; cursor: pointer; }
+.gj-actimg { aspect-ratio: 16 / 9; border-radius: .5em; background: #eee center / cover no-repeat; }
+.gj-actpic b { text-align: center; font-family: var(--kai); font-size: 1.3em; color: var(--ink-2); }
+.gj-actgot { display: flex; flex-wrap: wrap; gap: .3em; justify-content: center; }
+.gj-actgot .gj-act { font-size: 1.4em; cursor: default; border-color: var(--gold); background: #fff8e1; animation: pop .4s; }
+.gj-actpic.wrong { animation: nope .35s; border-color: #e3a998; }
+.gj-actmsg { margin: 0; text-align: center; font-size: 1.3em; color: var(--ink-2); }
+.gj-acts.done .gj-actmsg { color: #1f6b4f; font-weight: bold; }
+
+/* ---------- 读一读，比一比 ---------- */
+.gj-compare { flex: 1; justify-content: center; gap: 1em; }
+.gj-pair { background: #fff; border-radius: .8em; padding: .3em 1.2em; box-shadow: 0 .2em .8em rgba(40, 60, 20, .08); }
+.gj-pair p { margin: 0; font-size: 2em; }
+.gj-compare .tip { font-family: var(--kai); font-size: 1.3em; }
+
+/* ---------- 钓鱼 ---------- */
+.gj-pond { flex: 1; display: grid; grid-template-columns: 1fr 14em; gap: 1em; min-height: 0; }
+.gj-water { position: relative; border-radius: 1em; background: linear-gradient(#bfe6f7, #7ec8ea); overflow: hidden; }
+.gj-fish { position: absolute; font: inherit; width: 8em; height: 4em; padding: 0; border: none; background: none; cursor: pointer; animation: gjSwim 3.2s ease-in-out var(--d) infinite alternate; transition: opacity .5s, transform .5s; }
+.gj-fish svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: scaleX(var(--dir)); }
+.gj-fish b { position: relative; font-family: var(--kai); font-size: 2.2em; font-weight: normal; color: #3a2a12; }
+@keyframes gjSwim { from { transform: translateX(-.8em); } to { transform: translateX(.8em) translateY(.3em); } }
+.gj-fish.caught { animation: gjJump .6s ease-in forwards; pointer-events: none; }
+@keyframes gjJump { 50% { transform: translateY(-2em) scale(1.1); } 100% { transform: translate(6em, -1em) scale(.3); opacity: 0; } }
+.gj-bucket { display: flex; flex-direction: column; gap: .5em; background: #fff8e1; border-radius: 1em; padding: .8em; border: 2px solid var(--gold-l); }
+.gj-bucket p { margin: 0; font-size: 1.2em; }
+.gj-n { font-size: 1.5em; color: var(--red); }
+.gj-caught { flex: 1; display: flex; flex-wrap: wrap; align-content: flex-start; gap: .3em; }
+.gj-caught span { font-family: var(--kai); font-size: 1.8em; line-height: 2; padding: 0 .2em; background: #fff; border-radius: .3em; }
+.gj-caught rt, .gj-act rt, .gj-sl rt { font-family: var(--py); font-size: .44em; color: var(--py-c); }
+
+/* ---------- 写字：7 个字，格子小一点 ---------- */
+.hz-write { gap: .3em 1.8em; }
+.hz-cells .hz-tzg { --tz: 3.9em; }
+
+/* ---------- 排一排（讲故事） ---------- */
+.order { flex: 1; display: flex; flex-direction: column; gap: .6em; min-height: 0; }
+.order-slots, .order-pool { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: .6em; }
+.o-slot { position: relative; min-height: 9.6em; border: 2px dashed var(--line); border-radius: .6em; background: rgba(255, 255, 255, .55); display: flex; flex-direction: column; overflow: hidden; }
+.o-slot::after { content: attr(data-n); position: absolute; left: .35em; top: .3em; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; font-size: .85em; }
+.o-slot.filled { border-style: solid; border-color: var(--gold); background: #fff; animation: appear .4s ease; }
+.o-card { font: inherit; padding: 0; border: 1px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; text-align: left; color: var(--ink); box-shadow: 0 .15em .5em rgba(40, 30, 20, .1); transition: opacity .3s; }
+.o-pic { height: 5em; flex: none; background: #efe6d4 center / cover no-repeat; display: flex; align-items: center; justify-content: center; }
+.o-pic svg { height: 80%; }
+.o-card > span, .o-slot > span { padding: 0 .4em .3em; font-size: 1em; line-height: 2; }
+.o-card.used { opacity: .2; pointer-events: none; }
+.o-card.wrong { animation: nope .35s; border-color: #e3a998; background: #fdf0ec; }
+.order-bar { display: flex; align-items: center; gap: 1em; }
+.order-msg { flex: 1; color: var(--ink-2); font-size: 1.2em; }
+.order.done .order-msg { color: #1f6b4f; font-weight: bold; }
+
+/* ---------- 回顾 ---------- */
+.gj-board { display: grid; grid-template-columns: auto auto auto; align-items: center; gap: 0 1.2em; }
+.gj-board .py { font-size: 2em; }
+.gj-arrow { margin: 0; color: var(--gold-l); font-size: 1.3em; }
+.gj-arrow .py { font-size: 1.3em; color: #ffe39a; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .gj-guests { gap: 1.5em; }
+  .gj-av.big { width: 6em; height: 6em; }
+  .gj-title { font-size: 2.6em; }
+  .gj-comic { grid-template-columns: 1fr 1fr; }
+  .gj-comic figcaption { font-size: 1.1em; }
+  .gj-cast { top: 9%; }
+  .gj-cast .gj-av { width: 2.8em; height: 2.8em; }
+  .gj-roles { grid-template-columns: 1fr; }
+  .gj-rolebtns { flex-direction: row; flex-wrap: wrap; }
+  .gj-rolebtn { font-size: 1.1em; }
+  .gj-sl { font-size: 1.15em; }
+  .gj-actpics { grid-template-columns: 1fr; }
+  .gj-act { font-size: 1.2em; }
+  .gj-pair p { font-size: 1.3em; }
+  .gj-pond { grid-template-columns: 1fr; }
+  .gj-water { min-height: 18em; }
+  .gj-fish { width: 5em; height: 2.6em; }
+  .gj-fish b { font-size: 1.5em; }
+  .order-slots, .order-pool { grid-template-columns: 1fr 1fr; }
+  .o-slot { min-height: 8em; }
+  .gj-board .py { font-size: 1.3em; white-space: nowrap; }
+  .gj-arrow, .gj-arrow .py { font-size: 1em; }
+}

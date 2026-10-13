@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>竹节人 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.08 58% 45%" data-bg="assets/kezhuo.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第三单元 · 第 10 课　范锡林</p>
+    <h1 class="cover-title">竹节人</h1>
+    <p class="cover-sub">我们小时候的玩具，都是自己做的，也只能自己做。</p>
+    <div class="chips" data-step="1"><span class="chip">根据阅读目的，选用恰当的阅读方法</span><span class="chip">写生活体验，试着表达自己的看法</span></div>
+    <p class="cover-flow" data-step="2">带着任务读　→　任务一 做和玩　→　任务二 乐趣　→　任务三 老师的故事</p>
+  </div>
+  <p class="note">本单元是阅读策略单元：同一篇文章，阅读目的不同，关注的内容和读法也不同。本课按课文前的三个任务组织，每个任务读不同的段落、用不同的读法。</p>
+</section>
+
+<!-- ================= 字词：读准字音（数据见 ziyin.js） ================= -->
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 阅读提示：三个任务 + 段落地图 ================= -->
+<section class="slide s-tasks">
+  <div class="hd"><span class="tag">阅读提示</span><h2>带着不同的任务读同一篇文章</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">同一篇文章，<b>阅读的目的不同，关注的内容、采用的阅读方法也会有所不同</b>。点一个任务，看看要重点读哪些段落。</p>
+      <div class="pmap" data-modes="t1,t2,t3" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">先让学生自己说：如果是任务一，你会读哪几段？再点按钮揭示。全文 29 个自然段：深色“细读”，浅色“浏览”。课件后面就按这三个任务一个一个完成。</p>
+</section>
+
+<!-- ================= 任务一 · 做竹节人 ================= -->
+<section class="slide s-make">
+  <div class="hd"><span class="tag">任务一 · 写制作指南</span><h2>怎样做一个竹节人？</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <h4>课文第 3 自然段（细读）</h4>
+      <p>把毛笔杆锯成<span class="mark" data-step="1">寸把长的一截，这就是竹节人的脑袋连同身躯</span>了，在上面<span class="mark" data-step="2">钻一对小眼，供装手臂用</span>。<span class="mark" data-step="3">再锯八截短的，分别当四肢</span>。<span class="mark" data-step="4">用一根纳鞋底的线把它们穿在一起</span>，就成了。<span class="mark" data-step="5">锯的时候要小心，弄不好一个个崩裂，前功尽弃。</span></p>
+      <p class="aside" data-step="5">“那一段时间，妈妈怪我总是把毛笔弄丢……”——做竹节人要用毛笔杆。</p>
+    </div>
+    <div class="stage">
+      <button class="media-btn" hidden data-img="assets/zhizuo.jpg" data-cap="AI 想象图：锯毛笔杆做竹节人。供想象参考。">看看怎么做</button>
+      <svg viewBox="0 0 800 460" id="makeSvg">
+        <defs>
+          <linearGradient id="bambooG" x1="0" x2="1"><stop offset="0" stop-color="#b58f3e"/><stop offset=".45" stop-color="#e6cf86"/><stop offset="1" stop-color="#a7822f"/></linearGradient>
+        </defs>
+        <rect width="800" height="460" rx="10" fill="#fbf6ea"/>
+        <!-- 材料与工具 -->
+        <g class="tools">
+          <text class="t-m" x="24" y="34" fill="#5c2f12" font-weight="bold">材料和工具</text>
+          <g transform="translate(24 62)">
+            <rect x="0" y="0" width="150" height="12" rx="5" fill="url(#bambooG)"/>
+            <path d="M150 0 Q170 6 186 6 Q170 6 150 12 Z" fill="#3a2a1c"/>
+            <text class="t-s" x="0" y="32" fill="#66594a">毛笔杆（竹管）</text>
+          </g>
+          <g transform="translate(24 116)">
+            <rect x="0" y="0" width="36" height="16" rx="4" fill="#8a4b22"/>
+            <path d="M36 2 H150 V14 L36 16 Z" fill="#c7ccd1" stroke="#7d858c"/>
+            <path d="M40 14 l5 5 5 -5 5 5 5 -5 5 5 5 -5 5 5 5 -5 5 5 5 -5 5 5 5 -5 5 5 5 -5 5 5 5 -5 5 5 5 -5 5 5 5 -5 5 5 5 -5" fill="none" stroke="#7d858c" stroke-width="1.5"/>
+            <text class="t-s" x="0" y="40" fill="#66594a">小锯</text>
+          </g>
+          <g transform="translate(24 176)">
+            <rect x="0" y="0" width="34" height="14" rx="6" fill="#8a4b22"/>
+            <path d="M34 5 H96 L104 7 L96 9 H34 Z" fill="#9aa1a8"/>
+            <text class="t-s" x="0" y="34" fill="#66594a">锥子（钻小眼）</text>
+          </g>
+          <g transform="translate(60 254)">
+            <ellipse cx="0" cy="0" rx="26" ry="20" fill="#f4f1ea" stroke="#c9bfae"/>
+            <path d="M-22 -8 Q0 -14 22 -8 M-25 0 Q0 -6 25 0 M-22 8 Q0 2 22 8" fill="none" stroke="#d8d0c0"/>
+            <path d="M24 4 Q60 20 80 -4" fill="none" stroke="#f4f1ea" stroke-width="2"/>
+            <text class="t-s" x="-36" y="40" fill="#66594a">纳鞋底的线</text>
+          </g>
+        </g>
+        <line x1="236" y1="24" x2="236" y2="436" stroke="#e2d6bc" stroke-dasharray="5 5"/>
+
+        <!-- ① 锯一截寸把长 -->
+        <g data-step="1">
+          <g transform="translate(300 60)">
+            <rect x="0" y="0" width="170" height="12" rx="5" fill="url(#bambooG)" opacity=".45"/>
+            <line x1="38" y1="-10" x2="38" y2="22" stroke="#b03a2e" stroke-width="2" stroke-dasharray="4 3"/>
+            <text class="t-s" x="46" y="-6" fill="#b03a2e">锯这里</text>
+          </g>
+          <g transform="translate(300 110)">
+            <rect class="pop" x="0" y="0" width="30" height="78" rx="4" fill="url(#bambooG)" stroke="#8c6a2a"/>
+            <ellipse cx="15" cy="2" rx="13" ry="3.5" fill="#6d5022"/>
+            <path d="M42 0 V78 M37 0 H47 M37 78 H47" stroke="#5c2f12" stroke-width="1.5"/>
+            <text class="t-s" x="52" y="34" fill="#5c2f12">寸把长</text>
+            <text class="t-s" x="52" y="50" fill="#66594a">约 3 厘米</text>
+            <text class="t-m" x="-6" y="104" fill="#5c2f12">脑袋连同身躯</text>
+          </g>
+        </g>
+        <!-- ② 钻一对小眼 -->
+        <g data-step="2">
+          <circle class="pop" cx="303" cy="128" r="4" fill="#3a2a1c"/>
+          <circle class="pop" cx="327" cy="128" r="4" fill="#3a2a1c"/>
+          <path d="M276 128 h22 M354 128 h-22" stroke="#b03a2e" stroke-width="1.5"/>
+          <text class="t-s" x="380" y="96" fill="#b03a2e">钻一对小眼</text>
+          <text class="t-s" x="380" y="112" fill="#66594a">（装手臂用）</text>
+        </g>
+        <!-- ③ 再锯八截短的 -->
+        <g data-step="3">
+          <g transform="translate(274 270)">
+            <g class="loose">
+              <rect class="pop" x="0" y="0" width="12" height="24" rx="3" fill="url(#bambooG)" stroke="#8c6a2a"/>
+              <rect class="pop" x="20" y="0" width="12" height="24" rx="3" fill="url(#bambooG)" stroke="#8c6a2a" style="animation-delay:.08s"/>
+              <rect class="pop" x="40" y="0" width="12" height="24" rx="3" fill="url(#bambooG)" stroke="#8c6a2a" style="animation-delay:.16s"/>
+              <rect class="pop" x="60" y="0" width="12" height="24" rx="3" fill="url(#bambooG)" stroke="#8c6a2a" style="animation-delay:.24s"/>
+              <rect class="pop" x="88" y="0" width="13" height="30" rx="3" fill="url(#bambooG)" stroke="#8c6a2a" style="animation-delay:.32s"/>
+              <rect class="pop" x="109" y="0" width="13" height="30" rx="3" fill="url(#bambooG)" stroke="#8c6a2a" style="animation-delay:.4s"/>
+              <rect class="pop" x="130" y="0" width="13" height="30" rx="3" fill="url(#bambooG)" stroke="#8c6a2a" style="animation-delay:.48s"/>
+              <rect class="pop" x="151" y="0" width="13" height="30" rx="3" fill="url(#bambooG)" stroke="#8c6a2a" style="animation-delay:.56s"/>
+            </g>
+            <text class="t-s" x="14" y="52" fill="#66594a">胳膊 4 截</text>
+            <text class="t-s" x="100" y="52" fill="#66594a">腿 4 截</text>
+            <text class="t-m" x="0" y="82" fill="#5c2f12">八截短的 → 四肢</text>
+          </g>
+        </g>
+        <!-- ④ 穿在一起 -->
+        <g data-step="4">
+          <path class="draw" pathLength="1" d="M466 200 C 500 180, 530 180, 560 196" fill="none" stroke="#8a4b22" stroke-width="2.5" stroke-dasharray="1"/>
+          <path d="M556 188 l10 9 -13 4 Z" fill="#8a4b22"/>
+          <g transform="translate(660 250)"><g class="zjr" id="makeFig"></g></g>
+          <text class="t-m" x="590" y="356" fill="#5c2f12">用线穿在一起，就成了！</text>
+          <text class="t-s" x="604" y="378" fill="#66594a">一共九个竹节：身躯 1 + 四肢 8</text>
+        </g>
+        <!-- ⑤ 小心崩裂 -->
+        <g data-step="5">
+          <rect x="260" y="384" width="300" height="56" rx="8" fill="#fdecea" stroke="#d88c80"/>
+          <path d="M284 396 L298 422 H270 Z" fill="#e2a91f" stroke="#8a5a10" stroke-width="1.5"/>
+          <text class="t-s" x="282" y="418" fill="#5a3a08" font-weight="bold">!</text>
+          <text class="t-m" x="308" y="410" fill="#9b2c22">锯的时候要小心</text>
+          <text class="t-s" x="308" y="430" fill="#9b2c22">弄不好一个个崩裂，前功尽弃</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <p class="note">“写制作指南”需要的内容就在这一段：材料（毛笔杆、纳鞋底的线）、步骤（锯—钻—锯—穿）、注意事项（小心崩裂）。请学生圈出表示步骤的动词：锯、钻、锯、穿。</p>
+</section>
+
+<!-- ================= 任务一 · 怎样玩 ================= -->
+<section class="slide s-play">
+  <div class="hd"><span class="tag">任务一 · 教别人玩</span><h2>拉一拉线，竹节人就活了</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <h4>课文第 8—10 自然段（细读）</h4>
+      <p>把穿着九个竹节的鞋线<span class="mark" data-step="1">嵌入课桌裂缝里，在下面一拉紧</span>，那立在裂缝上的竹节们就站成一个壮士模样，<span class="mark" data-step="2">叉腿张胳膊，威风凛凛</span>，跟现今健美比赛中那脖子老粗、浑身疙瘩肉的小伙子差不多。</p>
+      <p><span class="mark" data-step="3">将鞋线一松一紧，那竹节人就手舞之、身摆之地动起来</span>。<span class="mark" data-step="4">两个竹节人放在一起，那就是搏斗了</span>，没头没脑地对打着，不知疲倦，也永不会倒下。</p>
+      <p>有时其中一个的<span class="mark" data-step="5">线卡住了，那“斗士”便显出一副呆头呆脑的傻样子，挺着肚子净挨揍</span>。</p>
+    </div>
+    <div class="stage">
+      <svg viewBox="0 0 800 400" id="playSvg" data-noswipe>
+        <rect width="800" height="400" fill="#f3ead6"/>
+        <!-- 桌面（俯斜视）与裂缝 -->
+        <path d="M0 236 L800 236 L800 300 L0 300 Z" fill="#9a6a3a"/>
+        <path d="M0 236 L800 236" stroke="#6e4522" stroke-width="3"/>
+        <path d="M60 266 L180 262 L260 268 L400 264 L520 269 L640 263 L760 267" fill="none" stroke="#3b2412" stroke-width="5" stroke-linecap="round"/>
+        <path d="M120 290 l40 -6 30 4 M520 250 l50 4 40 -3" fill="none" stroke="#7b5129" stroke-width="2"/>
+        <rect x="0" y="300" width="800" height="100" fill="#e8dcc2"/>
+        <text class="t-s" x="16" y="320" fill="#66594a">课桌下面</text>
+        <text class="t-s" x="640" y="258" fill="#f3e2c4">课桌的裂缝</text>
+        <!-- 两个竹节人 + 课桌下的线 -->
+        <line class="thr thrA" x1="300" y1="266" x2="300" y2="356" stroke="#f8f6f0" stroke-width="2.5"/>
+        <line class="thr thrB" x1="500" y1="266" x2="500" y2="356" stroke="#f8f6f0" stroke-width="2.5"/>
+        <g class="hand" transform="translate(300 366)"><ellipse rx="22" ry="12" fill="#e9b98f"/><text class="t-s t-c" y="34" fill="#66594a">扯线的手</text></g>
+        <g class="hand" transform="translate(500 366)"><ellipse rx="22" ry="12" fill="#e9b98f"/></g>
+        <g transform="translate(300 262) scale(1.45)"><g class="lunge" id="lungeA"><g class="zjr" id="figA"></g></g></g>
+        <g transform="translate(500 262) scale(-1.45 1.45)"><g class="lunge" id="lungeB"><g class="zjr" id="figB"></g></g></g>
+        <text class="t-m t-c bang" id="bang" x="400" y="46" fill="#9b2c22"></text>
+      </svg>
+      <div class="play-ctrl" data-noswipe>
+        <label class="slider-row"><span>线：松</span><input type="range" id="tension" min="0" max="100" value="0"><span>紧</span></label>
+        <div class="btns">
+          <button class="btn" type="button" data-play="dance">一松一紧：动起来</button>
+          <button class="btn" type="button" data-play="fight">两个竹节人对打</button>
+          <button class="btn" type="button" data-play="stuck">右边的线卡住了</button>
+          <button class="btn" type="button" data-play="stop">停</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">先拖动“松—紧”滑块：线松，竹节人瘫成一堆；一拉紧，就“叉腿张胳膊”站起来。再点“动起来”“对打”“卡住了”，对照课文第 8—10 段。这三段就是“教别人玩”要讲清楚的玩法。</p>
+</section>
+
+<!-- ================= 任务一 · 写制作指南 ================= -->
+<section class="slide s-guide">
+  <div class="hd"><span class="tag">任务一 · 课后题</span><h2>写一份“竹节人制作指南”</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">先排一排：做竹节人，<b>先做什么，再做什么</b>？按顺序点一点。</p>
+      <div class="order" id="order" data-noswipe></div>
+      <p class="tip gold order-done" id="orderDone" hidden>排对了！写指南时用上<b>“先……再……然后……最后……”</b>，别人一看就会做。</p>
+      <p class="tip jade" data-step="6"><b>语文园地 · 交流平台：</b>带着这个任务读《竹节人》，有关玩竹节人的有趣经历这部分内容，<b>浏览一下</b>就可以了。</p>
+    </div>
+    <div class="stage">
+      <div class="guide">
+        <h3>竹节人制作指南</h3>
+        <p data-step="1"><b>材料</b>一支旧毛笔杆、一根纳鞋底的线</p>
+        <p data-step="2"><b>工具</b>小锯、锥子</p>
+        <p data-step="3"><b>做法</b>先把毛笔杆锯成寸把长的一截，当脑袋连同身躯；再在上面钻一对小眼，用来装手臂；然后锯八截短的当四肢；最后用线把九个竹节穿在一起。</p>
+        <p data-step="4"><b>玩法</b>把鞋线嵌入课桌裂缝，在下面拉紧，竹节人就站起来了；把线一松一紧，它就会手舞足蹈。两个竹节人放在一起，就能对打。</p>
+        <p data-step="5"><b>注意</b>锯的时候要小心，别让竹管崩裂；可以给竹节人装上“兵器”，再起个响亮的名号。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后题“为完成三个不同的任务，你是怎样读的”：任务一先快速读全文，找到相关内容（第 3、8—10 段），再仔细读。指南的内容要从课文里提取，用自己的话写清楚顺序。</p>
+</section>
+
+<!-- ================= 任务二 · 读故事 ================= -->
+<section class="slide scene">
+  <video class="scene-bg" data-focus="1.04 50% 40%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/1ad551a29bf4a69d79c05bd75a1f8d36157e78a1cb5f7af12dd73e55f2e98206.mp4" data-poster="assets/kezhuo.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">任务二 · 体会乐趣</span><span class="sub">破课桌，古战场</span></div>
+  <div class="subs">
+    <p data-step="1">竹节人手上系上一根冰棍棒，就成了手握金箍棒的孙悟空，号称“齐天小圣”，四个字歪歪斜斜刻在竹节人背上，<b class="hl">神气！</b></p>
+    <p data-step="2">找到两根针织机上废弃的钩针，装在竹节人手上，就成了窦尔敦的虎头双钩。把“金钩大王”刻在竹节人的胸口，<b class="hl">神气！</b></p>
+    <p data-step="3">用铅皮剪一把偃月刀，用铁丝系一绺红丝线做一柄蛇矛，给那竹节人装上，再挖空心思取一个更威风、更吓人、叫得更响的名号。</p>
+    <p data-step="4" class="beat">破课桌，俨然一个剑拔弩张的古战场。</p>
+  </div>
+  <p class="note">任务二要“特别注意文章中写‘我们’投入地做玩具、玩玩具的部分”。两个“神气！”读出得意；“挖空心思”“叫得更响”——为了一个名号也费尽心思，这就是乐趣。</p>
+</section>
+
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/guanzhan.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">任务二 · 体会乐趣</span><span class="sub">一圈黑脑袋</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.35 50% 55%">还有同学别出心裁，想技高一筹，给竹节人粘上一个橡皮雕成的脑袋，做一套纸盔甲。一有机会，便得意扬扬招呼大伙来观摩。</p>
+    <p data-step="2">谁知弄巧成拙，中看不中用，没打几个回合，那粘上的脑袋连盔甲被它自己手里的大刀磕飞了，于是对方大呼胜利。</p>
+    <p data-step="3">其实，竹节人的动作压根不由扯线人做主，那不过是在竹节间的线一紧一松间的胡乱耸动而已，可看上去，却挺像是那么回事。</p>
+    <p data-step="4" class="beat">黑虎掏心！泰山压顶！双龙抢珠！</p>
+    <p data-step="5" class="beat">咚锵咚锵咚咚锵！咚咚锵！</p>
+    <p data-step="6" data-focus="1.04 50% 45%">下课时，教室里摆开场子，吸引了一圈黑脑袋，攒着观战，还跺脚拍手，咋咋呼呼，好不热闹。常要等老师进来，才知道已经上课，便一哄作鸟兽散。</p>
+  </div>
+  <p class="note">第 4、5 步请全班一起喊出来——招式名和锣鼓声，把课桌变成了武戏台。“常要等老师进来，才知道已经上课”：玩得多入迷！</p>
+</section>
+
+<!-- ================= 任务二 · 品读 ================= -->
+<section class="slide s-sort">
+  <div class="hd"><span class="tag">任务二 · 课后题</span><h2>传统玩具的乐趣在哪里？</h2></div>
+  <div class="bd">
+    <div class="portrait-card">
+      <div class="portrait-img" data-bg="assets/guanzhan.jpg" style="background-position:50% 50%;background-size:cover"></div>
+      <div class="chips" data-step="1"><span class="chip red">自己做：动手、创造的乐趣</span><span class="chip red">一起斗：比拼、热闹的乐趣</span><span class="chip red">大家看：入迷、忘我的乐趣</span></div>
+    </div>
+    <div class="stage">
+      <p class="tip">这些句子写的是<b>做</b>竹节人、<b>斗</b>竹节人，还是<b>看</b>斗竹节人？点一点，说说乐趣在哪里。</p>
+      <div class="sort-list" id="sortList" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">任务二读法：关注“我们”投入地做、玩竹节人的部分（第 1—20 段），边读边体会心情。乐趣不只在玩：自己动手做、和伙伴比拼、围观喝彩，都是乐趣。</p>
+</section>
+
+<!-- ================= 任务三 · 读故事 ================= -->
+<section class="slide scene" data-plot="0.08" data-plot-text="起因 · 上课偷玩">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/pingfeng.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">任务三 · 老师的故事</span><span class="sub">上课了</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.3 32% 62%">上课了，意兴依然不减，手痒痒的，将课本竖在面前当屏风，跟同桌在课桌上又搏将起来，这会儿，嘴里不便咚锵。</p>
+    <p data-step="2" data-focus="1.45 34% 48%">偏偏后面的同学不知趣，看得入了迷，伸长脖子，恨不能从我们肩膀上探过来，</p>
+    <p data-step="3" data-focus="1.45 84% 30%" data-plot="0.22" data-plot-text="起因 · 被老师发现">被那虎视眈眈的老师看出了破绽。</p>
+  </div>
+  <p class="note">任务三只关注老师没收玩具、玩玩具的内容（第 20—29 段），梳理起因、经过、结果。“虎视眈眈”——这时的老师在我们眼里很凶。</p>
+</section>
+
+<section class="slide scene" data-plot="0.42" data-plot-text="经过 · 没收">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/moshou.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">任务三 · 老师的故事</span><span class="sub">没收</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.3 25% 45%">老师大步流星走过来，怒气冲冲伸手一拂，“屏风”颓然倒了，一切秘密暴露无遗。</p>
+    <p data-step="2" data-focus="1.4 55% 70%">不消说，费了许多功夫做出来的，建立了赫赫伟绩，鏖战犹酣的两个竹节人被一把抓去。</p>
+  </div>
+  <p class="note">“大步流星”“怒气冲冲”“一把抓去”：老师的动作又快又狠。“赫赫伟绩”“鏖战犹酣”用大词写小玩具，读出“我”的心疼和不舍。</p>
+</section>
+
+<section class="slide scene" data-plot="0.55" data-plot-text="经过 · 窗下">
+  <div class="scene-bg" data-focus="1.05 60% 50%" data-bg="assets/toukan.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">任务三 · 老师的故事</span><span class="sub">办公室窗外</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.35 70% 30%">下课后，眼巴巴看别的同学重新开战，玩得欢，不禁沮丧得要命，便一起悄悄溜到办公室窗户下的冬青丛里转悠，</p>
+    <p data-step="2">希望老师能像往常一样，把没收的东西扯散了，随手扔出窗外。</p>
+    <p data-step="3" data-focus="1.5 70% 25%">蹲着身子，瞪大眼，可一无所获。正悻悻然准备离去，却见同桌趴在窗玻璃旁看得津津有味。</p>
+    <p data-step="4" class="beat" data-plot="0.72" data-plot-text="高潮 · 看见了什么？">我也凑过去，一探头，咦，看见了什么？</p>
+    <p data-step="5" data-focus="1.3 45% 50%" data-plot="0.84" data-plot-text="结果 · 老师在玩">只见老师在他自己的办公桌上，玩着刚才收去的那竹节人。双手在抽屉里扯着线，嘴里念念有词，全神贯注，忘乎所以，一点儿也没注意到我们在偷看。</p>
+    <p data-step="6" class="reveal" data-focus="1.6 36% 32%">他脸上的神情，跟我们玩得入迷时一模一样。</p>
+    <p data-step="7" data-focus="1.05 50% 50%" data-plot="0.96" data-plot-text="结果 · 相视一笑">于是，我跟同桌相视一笑，虽两手空空，但心满意足，轻手轻脚地溜了。</p>
+    <p data-step="8">方才的那份小小的怨恨和沮丧化为乌有。</p>
+  </div>
+  <p class="note">在“咦，看见了什么？”停一停，让学生猜。揭晓后追问：竹节人没拿回来，为什么“心满意足”？</p>
+</section>
+
+<!-- ================= 任务三 · 品读 ================= -->
+<section class="slide s-plot">
+  <div class="hd"><span class="tag">任务三 · 课后题</span><h2>理清起因、经过、结果，讲老师的故事</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="plot-board" id="plotBoard"></div>
+      <p class="tip gold" data-step="4"><b>讲故事提示：</b>按起因、经过、结果讲；抓住老师前后的变化——没收时“虎视眈眈”“怒气冲冲”，自己玩时“全神贯注，忘乎所以”。</p>
+    </div>
+  </div>
+  <p class="note">课文旁的提示：为完成这个任务，“主要关注了老师没收玩具、玩玩具的内容，重点梳理了故事的起因、经过、结果”。可以请学生用老师的口吻讲一讲。</p>
+</section>
+
+<section class="slide s-clues">
+  <div class="hd"><span class="tag">任务三 · 讨论</span><h2>前后两个“老师”，前后两个“我们”</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">正面是没收竹节人时，背面是窗外看见的。点一点卡片，比一比。</p>
+      <div class="clues" id="clues" data-noswipe></div>
+      <p class="tip gold" data-step="1">老师也是从孩子长大的。看见他“玩得入迷时一模一样”，我们懂了老师，也更爱竹节人——<b>小小的怨恨和沮丧，就这样化为乌有</b>。</p>
+    </div>
+  </div>
+  <p class="note">讨论：老师为什么没把竹节人扔出窗外？这个结尾让你对老师有什么新的认识？（老师也有童心；传统玩具的魅力连大人也抵挡不住——这又回到了任务二。）</p>
+</section>
+
+<!-- ================= 课后题：回顾三种读法 ================= -->
+<section class="slide s-ways">
+  <div class="hd"><span class="tag">课后题</span><h2>为完成三个不同的任务，你是怎样读的？</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="ways">
+        <div class="way" data-step="1"><h3>任务一 · 写制作指南、教别人玩</h3><p class="bubble">可以先快速读全文，找到相关内容，再仔细读。</p><p class="how"><b>读哪里：</b>第 3 段（做法）、第 8—10 段（玩法）<br><b>怎么读：</b>先找后细读，提取步骤</p></div>
+        <div class="way" data-step="2"><h3>任务二 · 体会传统玩具的乐趣</h3><p class="bubble">读的时候要特别注意文章中写“我们”投入地做玩具、玩玩具的部分……</p><p class="how"><b>读哪里：</b>第 1—20 段，还有老师玩得入迷的部分<br><b>怎么读：</b>边读边想象画面，体会心情</p></div>
+        <div class="way" data-step="3"><h3>任务三 · 讲一个有关老师的故事</h3><p class="bubble">我主要关注了老师没收玩具、玩玩具的内容，重点梳理了故事的起因、经过、结果。</p><p class="how"><b>读哪里：</b>第 20—29 段<br><b>怎么读：</b>梳理起因、经过、结果</p></div>
+      </div>
+      <p class="tip gold" data-step="4"><b>交流平台：</b>与阅读目的关联性不强的内容，不需要逐字逐句地读，这样可以提高阅读速度。读书时<b>先想想阅读的目的，再有针对性地选择适合的阅读方法</b>。</p>
+    </div>
+  </div>
+  <p class="note">气泡里是课文旁三位同学的读书方法。请学生对照自己刚才的读法补充：还有什么好办法？</p>
+</section>
+
+<!-- ================= 读与写 ================= -->
+<section class="slide s-read">
+  <div class="hd"><span class="tag">读与写 · 朗读</span><h2>读出威风、热闹和入迷</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="btns"><button class="btn solid" type="button" id="markToggle">显示朗读符号</button><span class="legend">/ 停顿　// 长停顿　<em>着重号</em> 重读</span></div>
+      <div class="read-list">
+        <div class="read-item"><p>破课桌，<i>/</i> 俨然一个<em>剑拔弩张</em>的<i>/</i>古战场。</p><span class="tone">威风 · 有气势</span></div>
+        <div class="read-item"><p><em>黑虎掏心</em>！<i>/</i> <em>泰山压顶</em>！<i>/</i> <em>双龙抢珠</em>！</p><span class="tone">一声比一声响</span></div>
+        <div class="read-item"><p>咚锵<i>/</i>咚锵<i>/</i>咚咚锵！<i>//</i> 咚咚锵！</p><span class="tone">节奏明快 · 像锣鼓</span></div>
+        <div class="read-item"><p>他脸上的神情，<i>/</i> 跟我们玩得<em>入迷</em>时<i>/</i><em>一模一样</em>。</p><span class="tone">慢一点 · 带着笑</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">先请学生试读，再显示符号对照。招式名可以分组接力读，最后一句放慢，读出“我们”发现秘密时的惊喜。</p>
+</section>
+
+<section class="slide s-write">
+  <div class="hd"><span class="tag">读与写 · 语文园地</span><h2>写一写人入迷的样子</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">“吸引了一圈黑脑袋，攒着观战，还跺脚拍手，咋咋呼呼，好不热闹。”课文写出了人入迷的样子。选一个情景，试着写一写。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="写几句话，写出入迷的样子……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">语文园地“词句段运用”第 1 题。写入迷：写动作、神情、声音，再写“忘了时间、忘了周围”的结果。也可以写自己玩传统玩具的体验，呼应单元习作。</p>
+</section>
+
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>这节课，我们……</h2></div>
+  <div class="bd full">
+    <div class="stage" style="justify-content:center">
+      <div class="board" data-step="1">
+        <div style="text-align:center;font-size:1.4em;margin-bottom:.2em"><b>竹 节 人</b></div>
+        <div><b>任务一</b>　做：锯 → 钻 → 锯 → 穿　　玩：嵌入裂缝 → 拉紧 → 一松一紧　　<small>（找到相关段落，细读提取）</small></div>
+        <div><b>任务二</b>　做竹节人 · 斗竹节人 · 看斗竹节人 —— 自己动手、伙伴同乐　　<small>（想象画面，体会心情）</small></div>
+        <div><b>任务三</b>　上课偷玩被发现 → 竹节人被没收 → 窗外看见老师在玩　　<small>（梳理起因、经过、结果）</small></div>
+        <div style="text-align:center;margin-top:.3em"><b>阅读目的不同　关注内容不同　阅读方法不同</b></div>
+      </div>
+      <div class="tasks" data-step="2">
+        <p class="tip gold"><b>阅读方法：</b>和目的关系密切的内容仔细读，关系不大的浏览一下。</p>
+        <p class="tip jade"><b>课后试一试：</b>照着你写的指南做一个竹节人，教家人玩一玩。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">板书三行对应三个任务，括号里是读法。回扣单元要素：根据阅读目的，选用恰当的阅读方法。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

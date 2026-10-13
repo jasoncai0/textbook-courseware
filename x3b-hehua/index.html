@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>荷花 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/poem.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 共用图形：荷叶、三种样子的白荷花 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="hhLeaf" viewBox="0 0 140 50">
+      <ellipse cx="70" cy="25" rx="68" ry="23" fill="#4f9a45"/>
+      <ellipse cx="70" cy="22" rx="62" ry="18" fill="#6cb85a"/>
+      <g stroke="#4f9a45" stroke-width="1.4"><path d="M70 22 L 10 18"/><path d="M70 22 L 130 18"/><path d="M70 22 L 40 38"/><path d="M70 22 L 100 38"/><path d="M70 22 L 70 6"/></g>
+    </symbol>
+    <symbol id="hhBud" viewBox="0 0 60 110">
+      <path d="M30 108 V 60" stroke="#3f7f3a" stroke-width="4"/>
+      <path d="M30 8 C 48 28, 50 56, 30 66 C 10 56, 12 28, 30 8 Z" fill="#fdfcf7" stroke="#e4b9c4" stroke-width="2"/>
+      <path d="M30 8 C 36 18, 37 26, 30 30 C 23 26, 24 18, 30 8 Z" fill="#f2c6d2"/>
+    </symbol>
+    <symbol id="hhHalf" viewBox="0 0 100 110">
+      <path d="M50 108 V 66" stroke="#3f7f3a" stroke-width="4"/>
+      <path d="M50 70 C 30 66, 14 48, 12 30 C 30 36, 44 50, 50 70 Z" fill="#fdfcf7" stroke="#e4b9c4" stroke-width="2"/>
+      <path d="M50 70 C 70 66, 86 48, 88 30 C 70 36, 56 50, 50 70 Z" fill="#fdfcf7" stroke="#e4b9c4" stroke-width="2"/>
+      <path d="M50 16 C 64 32, 66 58, 50 70 C 34 58, 36 32, 50 16 Z" fill="#fdfcf7" stroke="#e4b9c4" stroke-width="2"/>
+    </symbol>
+    <symbol id="hhFull" viewBox="0 0 140 110">
+      <path d="M70 108 V 70" stroke="#3f7f3a" stroke-width="4"/>
+      <g fill="#fdfcf7" stroke="#e4b9c4" stroke-width="2">
+        <path d="M70 72 C 40 76, 14 64, 4 46 C 30 44, 54 54, 70 72 Z"/>
+        <path d="M70 72 C 100 76, 126 64, 136 46 C 110 44, 86 54, 70 72 Z"/>
+        <path d="M70 72 C 46 64, 30 40, 30 16 C 50 30, 64 50, 70 72 Z"/>
+        <path d="M70 72 C 94 64, 110 40, 110 16 C 90 30, 76 50, 70 72 Z"/>
+        <path d="M70 70 C 58 54, 58 30, 70 10 C 82 30, 82 54, 70 70 Z"/>
+      </g>
+      <ellipse cx="70" cy="58" rx="16" ry="7" fill="#f2cf4a" stroke="#d9a520"/>
+      <g fill="#c99a1a"><circle cx="64" cy="57" r="1.6"/><circle cx="70" cy="56" r="1.6"/><circle cx="76" cy="57" r="1.6"/><circle cx="70" cy="60" r="1.6"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= 封面 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/chizhong.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">三年级下册 · 第一单元 · 第 3 课</p>
+    <h1 class="cover-title">荷花</h1>
+    <p class="cover-sub">叶圣陶</p>
+    <div class="chips" data-step="1"><span class="chip">试着一边读一边想象画面</span><span class="chip">体会优美生动的语句</span></div>
+    <p class="cover-flow" data-step="2">看荷花　→　变成荷花　→　“我是在看荷花呢”</p>
+  </div>
+  <p class="note">课文顺序：闻到清香—看荷花（样子、姿势）—想象自己变成荷花—回过神来。重点体会“一大幅活的画”。</p>
+</section>
+
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 读课文 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.04 50% 50%" data-bg="assets/kanhua.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="spot-layer"></div>
+  <div class="hd"><span class="tag">读 · 第 1 自然段</span><span class="sub">闻到清香</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.1 50% 45%">清早，我到公园去玩，一进门就闻到一阵清香。</p>
+    <p data-step="2" data-focus="1.25 30% 45%">我<b class="hh-em">赶紧</b>往荷花池边跑去。</p>
+  </div>
+  <p class="note">先“闻”到，再“看”到。“赶紧”写出了“我”急着去看荷花的心情。</p>
+</section>
+
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.04 50% 50%" data-bg="assets/santai.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="spot-layer"></div>
+  <div class="hd"><span class="tag">读 · 第 2 自然段</span><span class="sub">荷叶和荷花</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.06 50% 75%">荷花已经开了不少了。荷叶挨挨挤挤的，像一个个碧绿的大圆盘。</p>
+    <p data-step="2" data-focus="1.15 50% 45%">白荷花在这些大圆盘之间冒出来。</p>
+    <p data-step="3" data-focus="1.45 20% 40%">有的才展开两三片花瓣儿。</p>
+    <p data-step="4" data-focus="1.45 50% 40%">有的花瓣儿全展开了，露出嫩黄色的小莲蓬。</p>
+    <p data-step="5" data-focus="1.45 80% 32%">有的还是花骨朵儿，看起来饱胀得马上要破裂似的。</p>
+  </div>
+  <p class="note">三个“有的”，写出荷花三种样子：才展开两三片花瓣儿、全展开露出莲蓬、还是花骨朵儿。这一段是课后小练笔的范例。</p>
+</section>
+
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.04 50% 50%" data-bg="assets/chizhong.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="spot-layer"></div>
+  <div class="hd"><span class="tag">读 · 第 3 自然段</span><span class="sub">一大幅活的画</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.2 40% 50%">这么多的白荷花，一朵有一朵的姿势。</p>
+    <p data-step="2" data-focus="1.35 30% 45%">看看这一朵，很美；</p>
+    <p data-step="3" data-focus="1.35 70% 45%">看看那一朵，也很美。</p>
+    <p data-step="4" data-focus="1.03 50% 50%">如果把眼前的一池荷花看作一大幅活的画，那画家的本领可真了不起。</p>
+  </div>
+  <p class="note">“画家”是谁？（大自然）镜头从这一朵移到那一朵，再拉远看整池——一池荷花就是一幅画。</p>
+</section>
+
+<section class="slide scene">
+  <video class="scene-bg" data-focus="1.03 50% 50%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/0ee83411d9ae57317d319191c863b973cbcc9852ba5a8fa358b8c1032a71ced3.mp4" data-poster="assets/wudao.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="spot-layer"></div>
+  <div class="hd"><span class="tag">读 · 第 4、5 自然段</span><span class="sub">我变成了一朵荷花</span></div>
+  <div class="subs">
+    <p data-step="1">我忽然觉得自己仿佛就是一朵荷花，穿着雪白的衣裳，站在阳光里。</p>
+    <p data-step="2" data-focus="1.1 50% 50%">一阵微风吹过来，我就翩翩起舞，雪白的衣裳随风飘动。不光是我一朵，一池的荷花都在舞蹈。</p>
+    <p data-step="3" data-focus="1.2 50% 45%">风过了，我停止了舞蹈，静静地站在那儿。</p>
+    <p data-step="4" data-focus="1.4 60% 28%">蜻蜓飞过来，告诉我清早飞行的快乐。</p>
+    <p data-step="5" data-focus="1.4 50% 85%">小鱼在脚下游过，告诉我昨夜做的好梦……</p>
+    <p data-step="6" data-focus="1.03 50% 50%" class="hh-back">过了好一会儿，我才记起我不是荷花，我是在看荷花呢。</p>
+  </div>
+  <p class="note">“我”看得入了迷，觉得自己也变成了荷花——这就是边读边想象。读到最后一句，问：“我”为什么会忘了自己不是荷花？</p>
+</section>
+
+<!-- ================= 品读 ================= -->
+<section class="slide s-mao">
+  <div class="hd"><span class="tag">品 · 体会用词</span><h2>“挨挨挤挤”“冒”用得真好！</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <div class="quote">
+        <p>荷叶<span class="mark" data-step="1">挨挨挤挤</span>的，像一个个碧绿的大圆盘。白荷花在这些大圆盘之间<span class="mark" data-step="2">冒</span>出来。</p>
+      </div>
+      <p class="tip" data-step="1"><b>挨挨挤挤：</b>荷叶又多又密，一片挨着一片，挤得满满的。</p>
+      <p class="tip">换一个字，看看荷花怎么出来：</p>
+      <div class="btns hh-verbs" data-noswipe>
+        <button class="btn" type="button" data-mode="zhang">长出来</button>
+        <button class="btn" type="button" data-mode="lu">露出来</button>
+        <button class="btn" type="button" data-mode="mao">冒出来</button>
+      </div>
+      <p class="tip gold" data-step="2"><b>冒：</b>使劲往上钻、一下子出来——荷花好像急着要看看外面的世界，充满了生命力！</p>
+    </div>
+    <div class="stage">
+      <svg viewBox="0 0 600 380" class="hh-pond" id="hhPond" role="img" aria-label="荷叶挨挨挤挤，荷花冒出来">
+        <rect width="600" height="380" fill="#e3f0f2" rx="10"/>
+        <rect y="200" width="600" height="180" fill="#b9dbe2"/>
+        <g class="hh-flw" style="--d:.0s"><use href="#hhFull" x="70" y="80" width="140" height="120"/></g>
+        <g class="hh-flw" style="--d:.25s"><use href="#hhBud" x="290" y="60" width="60" height="120"/></g>
+        <g class="hh-flw" style="--d:.5s"><use href="#hhHalf" x="410" y="90" width="110" height="120"/></g>
+        <g data-step="1" class="hh-leaves">
+          <use class="hh-lf" style="--i:0" href="#hhLeaf" x="10" y="180" width="170" height="60"/>
+          <use class="hh-lf" style="--i:1" href="#hhLeaf" x="150" y="196" width="160" height="56"/>
+          <use class="hh-lf" style="--i:2" href="#hhLeaf" x="280" y="176" width="170" height="60"/>
+          <use class="hh-lf" style="--i:3" href="#hhLeaf" x="420" y="194" width="170" height="60"/>
+          <use class="hh-lf" style="--i:4" href="#hhLeaf" x="-30" y="236" width="180" height="64"/>
+          <use class="hh-lf" style="--i:5" href="#hhLeaf" x="110" y="250" width="180" height="64"/>
+          <use class="hh-lf" style="--i:6" href="#hhLeaf" x="260" y="232" width="180" height="64"/>
+          <use class="hh-lf" style="--i:7" href="#hhLeaf" x="400" y="250" width="190" height="66"/>
+          <use class="hh-lf" style="--i:8" href="#hhLeaf" x="40" y="300" width="190" height="66"/>
+          <use class="hh-lf" style="--i:9" href="#hhLeaf" x="210" y="296" width="190" height="66"/>
+          <use class="hh-lf" style="--i:10" href="#hhLeaf" x="380" y="304" width="200" height="68"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <p class="note">课文旁的泡泡：“‘挨挨挤挤’‘冒’用得真好！”先看荷叶一片片挤满池塘；再点三个按钮比一比：“长出来”慢慢的，“露出来”只露一点，“冒出来”是使劲一下子钻出来。</p>
+</section>
+
+<section class="slide s-shapes">
+  <div class="hd"><span class="tag">品 · 想象画面</span><h2>有的……有的……有的……</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="hh-three">
+        <figure data-step="1"><svg viewBox="0 0 100 110"><use href="#hhHalf" width="100" height="110"/></svg><figcaption>有的<b>才展开两三片花瓣儿</b></figcaption></figure>
+        <figure data-step="2"><svg viewBox="0 0 140 110"><use href="#hhFull" width="140" height="110"/></svg><figcaption>有的花瓣儿<b>全展开了</b>，露出嫩黄色的小莲蓬</figcaption></figure>
+        <figure data-step="3"><svg viewBox="0 0 60 110"><use href="#hhBud" width="60" height="110"/></svg><figcaption>有的还是<b>花骨朵儿</b>，看起来饱胀得马上要破裂似的</figcaption></figure>
+      </div>
+      <p class="tip gold" data-step="4"><b>写法：</b>用“有的……有的……有的……”，把荷花不同的样子一一写清楚。“饱胀得马上要破裂似的”——作者的感受真独特，把花骨朵儿写活了。</p>
+    </div>
+  </div>
+  <p class="note">小练笔的准备：第 2 自然段写出了荷花不同的样子。语文园地“交流平台”也引用了“花骨朵儿”这一句。</p>
+</section>
+
+<section class="slide s-clues">
+  <div class="hd"><span class="tag">品 · 课后第 2 题</span><h2>为什么说是“一大幅活的画”？</h2></div>
+  <div class="bd">
+    <div class="portrait-card">
+      <div class="portrait-img" data-bg="assets/chizhong.jpg" style="background-position:50% 50%;background-size:cover"></div>
+      <button class="media-btn" hidden data-img="assets/chizhong.jpg" data-cap="AI 想象图：一池白荷花，荷叶挨挨挤挤。供想象参考。">看大图</button>
+    </div>
+    <div class="stage">
+      <p class="tip">默读课文，找一找：荷花“活”在哪里？点卡片翻面。</p>
+      <div class="clues" id="clues" data-noswipe></div>
+      <p class="tip gold" data-step="1"><b>“画家”是谁？</b>是大自然。这么美、这么有生气的画，只有大自然才画得出来！</p>
+    </div>
+  </div>
+  <p class="note">课后第 2 题：默读课文，说说你从哪些地方体会到这一池荷花是“一大幅活的画”。可以从“冒”“姿势多”“风中舞蹈”“蜻蜓小鱼来做伴”几方面说。</p>
+</section>
+
+<!-- ================= 读与写 ================= -->
+<section class="slide s-read">
+  <div class="hd"><span class="tag">读与写 · 课后第 1 题</span><h2>读好词语，读出荷花的美</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="hh-words"><span>花瓣儿<small>bànr</small></span><span>花骨朵儿<small>gū duor</small></span><span>莲蓬<small>lián peng</small></span><span>衣裳<small>yī shang</small></span></div>
+      <div class="btns"><button class="btn solid" type="button" id="markToggle">显示朗读符号</button><span class="legend">/ 停顿　// 长停顿　<em>着重号</em> 重读</span></div>
+      <div class="read-list">
+        <div class="read-item"><p>荷叶<em>挨挨挤挤</em>的，<i>/</i> 像一个个碧绿的大圆盘。<i>//</i> 白荷花在这些大圆盘之间<em>冒</em>出来。</p><span class="tone">惊喜</span></div>
+        <div class="read-item"><p>看看这一朵，<i>/</i> 很美；<i>/</i> 看看那一朵，<i>/</i> 也<em>很美</em>。</p><span class="tone">赞美 · 放慢</span></div>
+        <div class="read-item"><p>一阵微风吹过来，<i>/</i> 我就<em>翩翩起舞</em>，<i>/</i> 雪白的衣裳随风飘动。</p><span class="tone">轻柔 · 陶醉</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后第 1 题：注意读好“花瓣儿、花骨朵儿”（儿化）和“莲蓬、衣裳”（第二个字读轻声）。</p>
+</section>
+
+<section class="slide s-recite">
+  <div class="hd"><span class="tag">读与写 · 课后第 1 题</span><h2>背诵第 2～4 自然段</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">按“荷叶—荷花的样子—一大幅活的画—我变成荷花”的顺序背。想不起来，点一下空格偷看一个字。</p>
+      <div class="recite wide" data-recite="beisong" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">第 2 段抓住三个“有的”；第 3 段抓住“这一朵……那一朵……”；第 4 段按“站—舞—停—蜻蜓—小鱼”的顺序。</p>
+</section>
+
+<section class="slide s-write">
+  <div class="hd"><span class="tag">读与写 · 小练笔</span><h2>仿照第 2 自然段写一种植物</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">选一个练习：仿写一种植物，或者接着课文往下想。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="……有的……有的……有的……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">课后小练笔：第 2 自然段写出了荷花不同的样子，仿照着写一种你喜欢的植物。蜻蜓、小鱼两题来自课文的省略号，可作口头练习。</p>
+</section>
+
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>一大幅活的画</h2></div>
+  <div class="bd full">
+    <div class="stage" style="justify-content:center">
+      <div class="board" data-step="1">
+        <div style="text-align:center;font-size:1.4em;margin-bottom:.2em"><b>荷　花</b></div>
+        <div><b>闻</b>　一阵清香　→　赶紧跑去</div>
+        <div><b>看</b>　荷叶挨挨挤挤　荷花冒出来　有的……有的……有的……</div>
+        <div><b>想</b>　我仿佛就是一朵荷花：翩翩起舞　蜻蜓、小鱼来说话</div>
+        <div style="text-align:center;margin-top:.3em"><b>一池荷花　=　一大幅活的画</b></div>
+      </div>
+      <p class="tip gold" data-step="2"><b>边读边想象：</b>作者看得入了迷，想象自己变成了荷花——我们读的时候，也能“看见”这一池荷花。</p>
+    </div>
+  </div>
+  <p class="note">回扣单元要素：一边读一边想象画面。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="../shared/poem.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+/* 三月桃花水（略读）· 本课配色：桃花粉、春水青。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #c4527a;
+  --red-d: #7d2a4a;
+  --gold: #3fa5a0;
+  --gold-l: #c9ece8;
+  --paper: #f7f1f2;
+  --stone: #fdfafa;
+  --ink-2: #6a5560;
+  --line: #e2cfd6;
+}
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 6.4em; }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+
+/* 封面：声音导入 */
+.cover-bell { font: inherit; font-size: 1.2em; padding: .35em 1.2em; margin: .8em 0 .4em; border-radius: 2em; border: 2px solid #fff; background: rgba(196, 82, 122, .85); color: #fff; cursor: pointer; }
+.cover-ask { margin: 0 0 .4em; font-family: var(--kai); font-size: 2em; line-height: 1.5; }
+
+/* 阅读提示 */
+.guide-pic { flex: 1; min-height: 10em; border-radius: .8em; background: #eadde2 center / cover no-repeat; }
+.guide-stage { justify-content: center; gap: 1em; }
+.g-tasks { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.g-task { background: #fff; border-radius: .8em; padding: .9em; text-align: center; box-shadow: 0 .2em .8em rgba(60, 30, 40, .1); }
+.g-task span { display: inline-grid; place-items: center; width: 2em; height: 2em; border-radius: 50%; background: var(--red); color: #fff; font-family: var(--kai); font-size: 1.6em; }
+.g-task p { margin: .4em 0 0; font-size: 1.15em; line-height: 1.5; }
+
+/* 竖琴 */
+.s-harp .bd { grid-template-columns: 34% 1fr; }
+#harp { cursor: pointer; }
+#harp .strings line { stroke-width: 6; stroke-linecap: round; transform-box: fill-box; transform-origin: center; }
+#harp .strings line.pluck { animation: pluck .9s ease-out; }
+@keyframes pluck { 10% { transform: translateX(5px); } 25% { transform: translateX(-4px); } 40% { transform: translateX(3px); } 60% { transform: translateX(-2px); } 80% { transform: translateX(1px); } }
+.harp-pic { flex: 1; min-height: 6em; border-radius: .7em; background: #eadde2 center / cover no-repeat; }
+.harp-lines { display: flex; flex-direction: column; gap: .4em; }
+.harp-lines p { margin: 0; font-family: var(--kai); font-size: 1.2em; line-height: 1.6; background: #fff; border-radius: .5em; padding: .35em .8em; border-left: .3em solid var(--line); opacity: .55; transition: opacity .4s, border-color .4s; }
+.harp-lines p b { display: block; font-family: var(--serif); font-size: .7em; color: var(--ink-2); }
+.harp-lines p.on { opacity: 1; border-color: var(--red); }
+.harp-lines p[data-s="0"].on { border-color: #e98fa6; }
+.harp-lines p[data-s="1"].on { border-color: #7cc2a0; }
+.harp-lines p[data-s="2"].on { border-color: #6fb1d6; }
+
+/* 明镜：上下倒影 */
+.s-mirror .bd { grid-template-columns: 1fr 34%; }
+.mirror { position: relative; flex: 1; min-height: 0; display: grid; grid-template-rows: 1fr 1fr; border-radius: .8em; overflow: hidden; background: #cfe3ea; }
+.m-up, .m-down { background: #cfe3ea 50% 50% / cover no-repeat; transition: background-position 1.2s ease, background-size 1.2s ease; }
+.m-down { transform: scaleY(-1); opacity: .6; filter: blur(1.5px) saturate(.8); -webkit-mask-image: linear-gradient(transparent, #000); mask-image: linear-gradient(transparent, #000); animation: ripple2 4s ease-in-out infinite alternate; }
+@keyframes ripple2 { to { transform: scaleY(-1) skewX(1.5deg); } }
+.m-line { position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: rgba(255, 255, 255, .7); }
+.m-btns .btn { font-family: var(--kai); font-size: 1.3em; padding: .3em 1.2em; }
+.m-text { margin: 0; min-height: 5em; font-family: var(--kai); font-size: 1.3em; line-height: 1.7; color: var(--red-d); }
+
+.subs .end-line { font-size: 1.5em; text-align: center; letter-spacing: .1em; }
+.s-sortpg .sort-row .s { font-size: 1.15em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3em; }
+  .cover-ask { font-size: 1.3em; }
+  .hd h2 { font-size: 1.3em; }
+  .g-tasks { grid-template-columns: 1fr; }
+  #harp { max-height: 18em; }
+  .harp-pic { min-height: 9em; }
+  .mirror { flex: none; height: 18em; }
+  .guide-pic { min-height: 9em; }
+}
+@media (min-width: 821px) and (min-height: 521px) {
+  .s-sortpg .sort-list { display: grid; grid-template-columns: 1fr 1fr; gap: .5em .8em; }
+  .s-sortpg .sort-row { grid-template-columns: 1fr auto; }
+  .s-sortpg .sort-row .res { grid-column: 1 / -1; }
+}

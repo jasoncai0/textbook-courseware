@@ -1,0 +1,36 @@
+/* 桂花雨 · 本课配色：桂花金黄、老宅黛瓦、秋天的暖褐。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #b0661f;
+  --red-d: #6b3d14;
+  --gold: #e0a830;
+  --gold-l: #f6e1a2;
+  --paper: #f8f1e1;
+  --stone: #fdfaf2;
+  --ink-2: #6a5a45;
+  --line: #e2d2ae;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fffbf0 0, transparent 40%), radial-gradient(circle at 90% 95%, #f0dfb8 0, transparent 45%); }
+.scene .hd .tag { background: rgba(107, 61, 20, .92); }
+.subs .hl { color: #f6dc8a; font-weight: normal; }
+.subs .reveal { color: #f8d98a; }
+
+/* 回忆 */
+.mems { display: grid; grid-template-columns: 1fr 1fr 1.3fr 1fr; gap: .8em; flex: 1; min-height: 0; }
+.mem { background: #fff; border-radius: .6em; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 .15em .6em rgba(80, 50, 20, .12); }
+.mem-img { flex: 1; min-height: 6em; background: center / cover no-repeat; }
+.mem b { margin: .4em .8em 0; color: var(--red-d); font-size: 1.15em; }
+.mem span { margin: .2em .8em .7em; font-family: var(--kai); line-height: 1.6; }
+.mem.big { box-shadow: 0 0 0 .2em var(--gold), 0 .3em 1em rgba(80, 50, 20, .2); }
+
+/* 天平 */
+#scale { border-radius: .5em; }
+#scale #beam, #scale #panL, #scale #panR { transition: transform 1.2s ease; }
+#scale #beam { transform-origin: 400px 128px; }
+.gloss { font-family: var(--serif); font-size: .85em; text-indent: 0 !important; color: var(--ink-2); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .mems { grid-template-columns: 1fr 1fr; }
+  .mem-img { min-height: 8em; }
+  #scale { flex: none; height: auto; }
+}
+#scale .w text { font-size: 14px; }

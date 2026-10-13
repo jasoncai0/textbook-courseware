@@ -1,0 +1,82 @@
+/* 蜜蜂（三下 14）· 本课配色：蜂蜜黄、草绿、木棕 */
+:root {
+  --red: #b5651d;
+  --red-d: #6b3a10;
+  --gold: #e0a92e;
+  --gold-l: #f7e2a6;
+  --paper: #f7f2e3;
+  --stone: #fdfaf0;
+  --ink-2: #5d5546;
+  --line: #ddcfa8;
+}
+/* 中年级：字再大一点 */
+.subs { font-size: 1.6em; }
+.tip { font-size: 1.02em; }
+.hd h2 { font-size: 1.85em; }
+.s-cover .cover-title { font-size: 9em; letter-spacing: .2em; }
+.subs .hl { color: #ffe08a; font-weight: normal; border-bottom: .1em dotted #ffe08a; }
+.subs .reveal { color: #ffe08a; }
+
+/* 数一数 */
+#bees { flex: 1; min-height: 0; width: 100%; }
+#bees .bee { transition: transform 1.6s ease-in-out, opacity .8s; }
+#bees .bee-in { animation: buzz .5s ease-in-out infinite alternate; }
+#bees .bee:nth-child(odd) .bee-in { animation-delay: .25s; }
+@keyframes buzz { to { transform: translateY(-4px) rotate(4deg); } }
+#bees .bee.home .bee-in { animation: none; }
+#bees .bee.lost { opacity: .25; }
+#bees .count { font-size: 24px; font-weight: bold; }
+.times { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em; }
+.tm { background: #fff; border-radius: .5em; padding: .4em .8em; border-left: .3em solid var(--gold); }
+.tm b { display: block; color: var(--red-d); font-size: 1.15em; }
+.tm span { font-family: var(--kai); font-size: 1.05em; }
+
+/* 流程图 */
+.exp { display: flex; align-items: stretch; gap: .5em; flex: 1; min-height: 0; }
+.exp-col { display: flex; flex-direction: column; gap: .45em; background: #fff; border-radius: .7em; padding: .7em .8em; border-top: .4em solid var(--gold); }
+.exp-col h3 { margin: 0; text-align: center; color: var(--red-d); font-size: 1.3em; }
+.goal, .end { flex: 1; }
+.proc { flex: 2; }
+.exp .given { margin: 0; flex: 1; display: flex; align-items: center; font-family: var(--kai); font-size: 1.25em; line-height: 1.7; background: #fff8e1; border-radius: .4em; padding: .5em .7em; }
+.arr { align-self: center; font-style: normal; font-size: 2em; color: var(--red); }
+.cell { flex: 1; width: 100%; min-height: 2.6em; font: inherit; font-family: var(--kai); font-size: 1.15em; line-height: 1.6; text-align: left; padding: .4em .7em; border: 1px dashed var(--line); border-radius: .4em; background: #fbf6ea; color: transparent; cursor: pointer; position: relative; }
+.cell::after { content: "说一说，再点一点"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #b9ad99; font-size: .8em; font-family: var(--serif); }
+.cell.open { color: var(--ink); background: #fff; border-style: solid; }
+.cell.open::after { content: none; }
+
+/* 加点词 */
+.s-words .clue, .s-words .clue-in { min-height: 8em; }
+.s-words .clue-face { font-size: 1.15em; }
+
+/* 资料袋 */
+.s-more .bd { grid-template-columns: 58% 1fr; }
+.s-more .picks { gap: .4em; }
+.s-more .pick { display: block; width: 100%; font-size: 1.08em; padding: .25em .8em; }
+.bag { background: #fffaf0; border: 2px dashed var(--gold); border-radius: .7em; padding: .8em 1.2em; line-height: 1.8; }
+.bag h3 { margin: 0 0 .3em; color: var(--red-d); }
+.bag p { margin: 0 0 .4em; }
+.bag .motto { font-family: var(--kai); font-size: 1.2em; color: var(--red-d); background: #fff1c9; border-radius: .4em; padding: .4em .7em; }
+
+/* 排一排 */
+.pics { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; flex: 1; min-height: 0; }
+.pic-card { position: relative; display: flex; flex-direction: column; font: inherit; padding: 0; border: 2px solid transparent; border-radius: .7em; overflow: hidden; background: #fff; cursor: pointer; box-shadow: 0 .2em .7em rgba(60, 40, 20, .12); }
+.pic-card .pic { flex: 1; min-height: 6em; background: center / cover no-repeat #e9e1cf; }
+.pic-card .cap { padding: .5em .6em; font-family: var(--kai); font-size: 1.15em; }
+.pic-card i { position: absolute; left: .4em; top: .4em; width: 2em; height: 2em; border-radius: 50%; background: rgba(255, 255, 255, .85); border: 2px dashed var(--line); font-style: normal; font-weight: bold; font-size: 1.2em; display: flex; align-items: center; justify-content: center; color: #fff; }
+.pic-card.done { border-color: var(--gold); }
+.pic-card.done i { background: var(--red); border: none; }
+.pic-card.nope { animation: nope .35s; }
+.pics.all + .tip { box-shadow: 0 0 0 .2em #cfe8d2; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs { font-size: 1.15em; }
+  .s-cover .cover-title { font-size: 4.6em; }
+  #bees { flex: none; height: auto; }
+  #bees .t-m { font-size: 28px; }
+  #bees .count { font-size: 34px; }
+  .times { grid-template-columns: 1fr 1fr; }
+  .exp { flex-direction: column; }
+  .exp .arr { transform: rotate(90deg); }
+  .pics { grid-template-columns: 1fr 1fr; }
+  .pic-card .pic { min-height: 8em; }
+}

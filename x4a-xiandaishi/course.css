@@ -1,0 +1,61 @@
+/* 现代诗二首 · 本课配色：黄昏的橙红、草地的嫩绿。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #b4532a;
+  --red-d: #7a3216;
+  --gold: #7fa548;
+  --gold-l: #dcebc0;
+  --paper: #f6f1e7;
+  --stone: #fdfbf6;
+  --ink-2: #6a5a4a;
+  --line: #ddd0b8;
+}
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 6em; }
+
+/* ---------- 诗节字幕 ---------- */
+.stanza .subs { font-size: 1.55em; line-height: 1.65; }
+.stanza .subs p { margin-bottom: .5em; }
+
+/* ---------- 阅读提示 ---------- */
+.guide-stage { justify-content: center; }
+.guide-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4em; }
+.guide-card { background: #fff; border-radius: .7em; padding: 1.2em 1.4em; border-top: .35em solid var(--red); box-shadow: 0 .2em .8em rgba(80, 50, 20, .1); }
+.guide-card b { display: inline-grid; place-items: center; width: 1.8em; height: 1.8em; border-radius: 50%; background: var(--red); color: #fff; font-family: Georgia, serif; }
+.guide-card h3 { margin: .4em 0 .2em; font-size: 1.5em; color: var(--red-d); }
+.guide-card p { margin: 0; font-size: 1.1em; color: var(--ink-2); }
+.s-guide .tip { font-size: 1.1em; }
+
+/* ---------- 斜阳掉在江上 ---------- */
+.poem-lines p { margin: 0 0 .4em; font-family: var(--kai); font-size: 1.4em; line-height: 1.6; }
+.qw .qw-t { font-size: 26px; font-weight: bold; fill: #fff; paint-order: stroke; stroke: rgba(90, 40, 20, .6); stroke-width: 5px; }
+.qw .sun, .qw .bird, .qw .glow { transition: transform 1.6s ease, opacity 1.2s ease; transform-box: fill-box; transform-origin: center; }
+.qw .glow { opacity: 0; }
+.qw .reed-top { fill: #f4f1ea; stroke: #cfc6b4; stroke-width: 1; transition: fill 1.4s ease, stroke 1.4s ease; }
+.s-qiuwan:has(.mark.on[data-step="2"]) .sun { transform: translateY(150px) scale(1.15, .9); }
+.s-qiuwan:has(.mark.on[data-step="2"]) .glow { opacity: .85; }
+.s-qiuwan:has(.mark.on[data-step="2"]) .bird { transform: translate(220px, -120px) rotate(-30deg) scale(.7); }
+.s-qiuwan:has(.mark.on[data-step="3"]) .reed-top { fill: #e4673b; stroke: #c4471f; }
+.qw .lab.on:has(~ .lab.on) { opacity: 0; }
+.scene-chips .chip { font-size: 1.1em; }
+
+/* ---------- 连一连 ---------- */
+.match { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6em; }
+.m-col { display: flex; flex-direction: column; gap: .6em; }
+.m-a, .m-b { font: inherit; font-family: var(--kai); font-size: 1.45em; text-align: left; padding: .45em .9em; border-radius: .5em; border: 2px solid var(--line); background: #fff; cursor: pointer; position: relative; }
+.m-a.sel { border-color: var(--red); background: #fdf3ec; }
+.m-a.right, .m-b.right { border-color: #8cc0a6; background: #eef7f1; cursor: default; padding-left: 2.2em; }
+.m-a.right::before, .m-b.right::before { content: attr(data-n); position: absolute; left: .5em; top: 50%; translate: 0 -50%; width: 1.3em; height: 1.3em; border-radius: 50%; background: #2f8a5f; color: #fff; font-family: Georgia, serif; font-size: .8em; display: grid; place-items: center; }
+.m-b.wrong { border-color: #e3a998; background: #fdf0ec; animation: nope .35s; }
+.s-niu .tip { font-size: 1.05em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.6em; }
+  .stanza .subs { font-size: 1.2em; }
+  .guide-cards { grid-template-columns: 1fr; gap: .8em; }
+  .poem-lines p { font-size: 1.15em; }
+  .match { grid-template-columns: 1fr; gap: .6em; }
+  .m-a, .m-b { font-size: 1.15em; }
+}

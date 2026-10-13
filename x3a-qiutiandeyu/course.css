@@ -1,0 +1,79 @@
+/* 秋天的雨 · 本课配色：银杏黄、枫叶红、秋雨的灰蓝。故事页样式见 ../shared/narrative.css */
+:root {
+  --red: #c0452a;
+  --red-d: #7a3418;
+  --gold: #e3a52a;
+  --gold-l: #f6dc94;
+  --paper: #f7f1e4;
+  --stone: #fdfaf2;
+  --ink-2: #635744;
+  --line: #e0d0b2;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fefbf4 0, transparent 40%), radial-gradient(circle at 90% 95%, #f0dfbc 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.5em; }
+
+/* 中年级：字号再大一点 */
+.hd h2 { font-size: 1.9em; }
+.subs { font-size: 1.6em; line-height: 1.7; }
+.subs .lead { color: #f6dc94; }
+.subs .hl { color: #f6dc94; font-weight: normal; }
+.tip { font-size: 1.02em; }
+.sort-row .s { font-size: 1.15em; }
+.sort-row .s b { color: var(--red); }
+
+/* ---------- 帮秋雨分颜料 ---------- */
+.pal-wrap { flex: 1; min-height: 0; display: flex; gap: 1.2em; }
+#autumnSvg { flex: 1.7; min-width: 0; height: 100%; border-radius: .6em; }
+.pal-side { flex: 1; display: flex; flex-direction: column; gap: .7em; justify-content: center; }
+.pal-btns { display: flex; flex-direction: column; gap: .45em; }
+.pal-btn { display: flex; align-items: center; gap: .6em; font: inherit; font-size: 1.1em; padding: .35em .8em; border-radius: .6em; border: 2px solid var(--line); background: #fff; cursor: pointer; text-align: left; }
+.pal-btn i { width: 1.6em; height: 1.6em; border-radius: 50%; border: 1px solid #c9b9a0; flex: none; }
+.pal-btn.used { border-color: var(--gold); background: #fff8e1; }
+.pal-text { font-family: var(--kai); font-size: 1.15em; min-height: 5.2em; }
+#autumnSvg .obj :is(path, rect, circle, ellipse) { transition: fill 1.2s ease, stroke 1.2s ease; }
+#autumnSvg .obj:not(.painted) :is(path, rect, circle, ellipse) { fill: #dedad2 !important; stroke: #bdb6a8 !important; }
+#autumnSvg .obj.painted { animation: paintIn .9s ease; }
+@keyframes paintIn { 40% { filter: brightness(1.35); } }
+#autumnSvg .mum { transform-box: fill-box; transform-origin: 50% 100%; }
+#autumnSvg .painted .mum { animation: nod 1.4s ease-in-out infinite alternate; }
+#autumnSvg .painted .mum:nth-child(2) { animation-delay: -.5s; }
+#autumnSvg .painted .mum:nth-child(3) { animation-delay: -1s; }
+@keyframes nod { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
+#autumnSvg .rain-drops line { animation: drop 1.4s linear infinite; }
+#autumnSvg .rain-drops line:nth-child(2n) { animation-delay: -.7s; }
+@keyframes drop { from { transform: translateY(-20px); opacity: 0; } 30% { opacity: .9; } to { transform: translateY(60px); opacity: 0; } }
+
+/* ---------- 总分结构 ---------- */
+.tree { display: flex; flex-direction: column; align-items: center; gap: 1.3em; flex: 1; justify-content: center; }
+.root { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.7em; padding: .4em 1.4em; border-radius: .5em; text-align: center; }
+.root.end { background: var(--gold); color: var(--red-d); font-size: 1.4em; }
+.root small, .branch small { display: block; font-family: var(--serif); font-size: .55em; opacity: .85; }
+.branches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; width: 100%; }
+.branch { background: #fff; border-radius: .5em; padding: .7em .9em; border-top: .3em solid var(--gold); text-align: center; }
+.branch b { display: block; color: var(--red-d); font-family: var(--kai); font-size: 1.25em; }
+.branch span { display: block; font-family: var(--kai); font-size: 1.1em; line-height: 1.6; margin: .3em 0; }
+.branch small { font-size: .82em; color: var(--ink-2); }
+.branch .colors { display: flex; justify-content: center; gap: .25em; }
+.branch .colors i { width: 1.2em; height: 1.2em; border-radius: 50%; border: 1px solid #c9b9a0; }
+
+/* ---------- 课本旁批 ---------- */
+.bubble { position: relative; background: #fff; border: 2px solid #f0a35a; border-radius: 1.2em; padding: .6em 1em; font-family: var(--kai); font-size: 1.2em; line-height: 1.6; color: #8a4a1a; }
+.bubble small { display: block; font-family: var(--serif); font-size: .7em; color: var(--ink-2); text-align: right; }
+
+/* ---------- 背诵第 2 段：句子长，字小一点 ---------- */
+.s-recite .recite-lines { font-size: 1.32em; letter-spacing: .06em; line-height: 1.75; }
+.s-recite .recite { flex: 1; min-height: 0; overflow: auto; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .hd h2 { font-size: 1.35em; }
+  .subs { font-size: 1.15em; }
+  .pal-wrap { flex-direction: column; }
+  #autumnSvg { flex: none; width: 100%; height: auto; }
+  .pal-btns { flex-direction: row; flex-wrap: wrap; }
+  .pal-btn { font-size: 1em; }
+  .branches { grid-template-columns: 1fr 1fr; }
+  .root { font-size: 1.3em; }
+  .s-recite .recite-lines { font-size: 1.12em; }
+  .s-recite .recite { overflow: visible; }
+}

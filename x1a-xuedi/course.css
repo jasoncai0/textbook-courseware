@@ -1,0 +1,71 @@
+/* 雪地里的小画家 · 本课配色：雪地的蓝白、小鸡小鸭的黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3a78b5;
+  --red-d: #23547f;
+  --gold: #f0b429;
+  --gold-l: #fde3a0;
+  --paper: #f1f6fb;
+  --stone: #fffffe;
+  --ink-2: #4e5d6b;
+  --line: #d3e1ee;
+}
+
+/* 课后第 2 题：脚印配对，四张卡片 */
+.ch.xd-foot { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; align-content: stretch; }
+.ch.xd-foot .ch-count { grid-column: 1 / -1; }
+.ch.xd-foot .ch-row { position: relative; overflow: hidden; flex-direction: column; justify-content: flex-start; gap: .4em; padding: .6em .5em 4em; background: linear-gradient(#fff, #eef4fa); }
+.ch.xd-foot .ch-t { flex: none; font-size: 1.5em; }
+.ch.xd-foot .ch-btns { justify-content: center; }
+.ch.xd-foot .ch-o { font-size: 1.2em; }
+.ch.xd-foot .ch-say { min-width: 0; font-size: 1.5em; font-weight: bold; }
+.xd-fp { width: 5.5em; height: 5.5em; fill: #6d8fb3; }
+.ch-row.ok .ch-ic .xd-fp { fill: #2f5f8f; }
+/* 走出来的一串脚印 */
+.xd-track { position: absolute; left: 0; right: 0; bottom: .3em; height: 3.2em; }
+.xd-track i { position: absolute; left: calc(4% + var(--j) * 15.5%); width: 2em; opacity: 0; animation: xdStep .3s calc(var(--j) * .25s) forwards; }
+.xd-track i:nth-child(odd) { top: 0; }
+.xd-track i:nth-child(even) { top: 1.2em; }
+.xd-track .xd-fp { width: 2em; height: 2em; fill: #8aa7c6; transform: rotate(90deg); }
+@keyframes xdStep { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
+
+/* 冬眠：图 + 翻卡片 */
+.xd-sleep { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.2em; }
+.xd-pic { border-radius: .8em; background: #dfe8f0 center / cover no-repeat; min-height: 12em; }
+.xd-sleep .clues { grid-template-columns: 1fr; align-content: center; }
+.xd-sleep .clue, .xd-sleep .clue-in { min-height: 11em; }
+.xd-sleep .clue-face { font-size: 1.3em; }
+.xd-sleep .clue-face.front { display: grid; align-content: center; font-size: 2em; }
+.xd-sleep .clue-face small { font-size: .55em; }
+
+/* 背诵：诗行不缩进 */
+.xd-poem { font-size: 1.75em; columns: 2; column-gap: 2em; }
+.xd-poem p { text-indent: 0; margin: 0; break-inside: avoid; }
+
+/* ---------- 选一选（一上第七、八单元各课相同） ---------- */
+.ch { display: flex; flex-direction: column; gap: .45em; min-height: 0; }
+.ch-row { display: flex; align-items: center; gap: .8em; background: #fff; border: 2px solid var(--line); border-radius: .6em; padding: .1em .8em; transition: background .3s, border-color .3s; }
+.ch-ic { flex: none; display: grid; place-items: center; }
+.ch-t { flex: 1; font-family: var(--kai); font-size: 1.6em; line-height: 2.3; }
+.ch-btns { display: flex; flex-wrap: wrap; gap: .4em; }
+.ch-o { font: inherit; font-family: var(--kai); font-size: 1.35em; padding: 0 .5em; border: 2px solid var(--line); border-radius: .45em; background: #fff; color: var(--ink); cursor: pointer; white-space: nowrap; flex: none; }
+.ch-o .py { line-height: 2.3; }
+.ch-o.solid { background: var(--red); border-color: var(--red); color: #fff; }
+.ch-o.solid rt { color: #fff; }
+.ch-say { min-width: 5.5em; font-family: var(--kai); font-size: 1.25em; color: #1f6b4f; }
+.ch-row.ok { border-color: #8cc0a6; background: #f1f8f4; }
+.ch-row.no { animation: nope .35s; border-color: #e3a998; }
+.ch-count { margin: 0; text-align: right; color: var(--ink-2); }
+.ch.all-done .ch-count { color: #1f6b4f; font-weight: bold; }
+@media (max-width: 820px), (max-height: 520px) {
+  .ch-row { flex-wrap: wrap; gap: .3em .6em; }
+  .ch-t { font-size: 1.3em; }
+  .ch-o { font-size: 1.15em; }
+  .ch-say { min-width: 0; }
+}
+@media (max-width: 820px), (max-height: 520px) {
+  .ch.xd-foot { grid-template-columns: 1fr 1fr; }
+  .xd-fp { width: 4em; height: 4em; }
+  .xd-sleep { grid-template-columns: 1fr; }
+  .xd-pic { min-height: 10em; }
+  .xd-poem { columns: 1; font-size: 1.3em; }
+}

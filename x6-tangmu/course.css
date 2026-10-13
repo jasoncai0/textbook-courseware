@@ -1,0 +1,65 @@
+/* 汤姆·索亚历险记 · 本课配色：密西西比河的河绿、烛光的橙黄 */
+:root {
+  --red: #a4532a;
+  --red-d: #6e3518;
+  --gold: #d8a03c;
+  --gold-l: #f3dca3;
+  --paper: #f4efe4;
+  --stone: #fcfaf4;
+  --ink-2: #625a50;
+  --line: #d8cdb8;
+}
+.scene .hd .tag { background: rgba(110, 53, 24, .92); }
+.subs .who.main { background: #a4532a; }
+
+/* 资料袋 */
+.info-cards { justify-content: center; }
+.info { background: #fff; border-left: .3em solid var(--red); border-radius: .4em; padding: .55em 1em; box-shadow: 0 .15em .5em rgba(60, 40, 20, .08); }
+.info.gold { background: #fff8e1; border-left-color: var(--gold); }
+.info b { color: var(--red-d); font-size: 1.05em; }
+.info p { margin: .15em 0 0; line-height: 1.65; }
+
+/* 梗概 */
+.s-gk .stage { justify-content: center; }
+.gk-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .55em; }
+.gk-steps li { display: grid; grid-template-columns: 4.6em 1fr; gap: .7em; align-items: center; background: #fff; border-radius: .5em; padding: .5em .9em; line-height: 1.6; box-shadow: 0 .15em .5em rgba(60, 40, 20, .08); }
+.gk-steps b { text-align: center; color: #fff; background: var(--red); border-radius: .3em; padding: .2em 0; }
+.gk-steps em { font-style: normal; color: var(--red); font-weight: bold; }
+.gk-steps li:nth-child(5) { border: 2px solid var(--gold); background: #fff8e1; }
+
+/* 情节投票 */
+.votes { display: grid; grid-template-columns: repeat(5, 1fr); gap: .7em; }
+.vote { font: inherit; text-align: left; display: flex; flex-direction: column; gap: .15em; padding: 0 0 .6em; border: 2px solid var(--line); border-radius: .5em; background: #fff; overflow: hidden; cursor: pointer; position: relative; }
+.vote .pic { height: 7em; background: #e6ddcc center / cover no-repeat; margin-bottom: .3em; }
+.vote b { margin: 0 .7em; color: var(--red-d); font-size: 1.1em; }
+.vote small { margin: 0 .7em; color: var(--ink-2); }
+.vote i { position: absolute; top: .4em; right: .4em; font-style: normal; min-width: 1.8em; text-align: center; padding: .1em .4em; border-radius: 1em; background: rgba(0, 0, 0, .5); color: #fff; font-weight: bold; }
+.vote.picked { border-color: var(--gold); background: #fff8e1; }
+.vote.picked i { background: var(--red); }
+
+/* 人物卡 */
+.person-card { display: flex; flex-direction: column; gap: .6em; min-height: 0; }
+.pc-info { margin: 0; display: grid; grid-template-columns: 3.6em 1fr; gap: .25em .6em; background: #fff; border-radius: .5em; padding: .6em .9em; font-size: .9em; line-height: 1.5; border-top: .3em solid var(--red); }
+.pc-info dt { color: var(--red); font-weight: bold; }
+.pc-info dd { margin: 0; }
+.s-person .stage { justify-content: center; }
+.trait { display: grid; grid-template-columns: 7.5em 1fr; gap: .8em; align-items: center; background: #fff; border-radius: .5em; padding: .5em .9em; border-left: .3em solid var(--gold); }
+.trait b { color: var(--red-d); font-size: 1.1em; }
+.trait span { font-family: var(--kai); line-height: 1.6; }
+
+/* 译本比较 */
+.s-yi .stage { justify-content: center; }
+.yi-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.yi { font: inherit; text-align: left; background: #fff; border: 2px solid var(--line); border-radius: .5em; padding: .7em 1em; cursor: pointer; }
+.yi small { display: block; color: var(--red); font-weight: bold; margin-bottom: .3em; }
+.yi p { margin: 0 0 .5em; font-family: var(--kai); font-size: 1.12em; line-height: 1.7; }
+.yi.picked { border-color: var(--gold); background: #fff8e1; box-shadow: 0 0 0 .2em var(--gold-l); }
+.yi.picked small::after { content: "　✓ 我喜欢"; color: var(--jade); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .gk-steps { grid-template-columns: 1fr; }
+  .votes { grid-template-columns: 1fr 1fr; }
+  .yi-cards { grid-template-columns: 1fr; }
+  .trait { grid-template-columns: 1fr; gap: .2em; }
+  .portrait-img { min-height: 14em; }
+}

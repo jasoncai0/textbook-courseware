@@ -1,0 +1,84 @@
+/* 古诗词三首（五上 21）· 本课配色：秋夜的黛蓝、枫叶的赭红。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #9a4b2c;
+  --red-d: #4a2a1e;
+  --gold: #b8933a;
+  --gold-l: #ecdcae;
+  --paper: #f3efe6;
+  --stone: #fbf9f3;
+  --ink-2: #5e574c;
+  --line: #d8cfbd;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcfaf5 0, transparent 40%), radial-gradient(circle at 90% 95%, #e6dccb 0, transparent 45%); }
+.scene .hd .tag { background: rgba(74, 42, 30, .92); }
+.s-cover .cover-title { font-size: 6em; letter-spacing: .1em; }
+.cover-poems { display: flex; gap: .6em; flex-wrap: wrap; margin-bottom: .8em; }
+.cover-poems span { font-family: var(--kai); font-size: 1.2em; background: rgba(154, 75, 44, .88); padding: .2em .8em; border-radius: .3em; text-shadow: none; }
+.cover-poems small { font-family: var(--serif); font-size: .65em; margin-left: .4em; opacity: .85; }
+
+/* 八句的诗词：诗幅较宽，字幕让开 */
+.poem-v[data-poem="sjqm"] .poem-text .pl { font-size: 2em; }
+.s-wide .subs { padding-right: 50%; font-size: 1.25em; }
+/* 长相思：上下阕之间空开 */
+.poem-v[data-poem="cxs"] .poem-text .pl { font-size: 2em; }
+.poem-v[data-poem="cxs"] .poem-text .pl[data-step="5"] { margin-right: 1.3em; }
+.recite[data-recite="cxs"] .recite-lines p:nth-child(5) { margin-top: .5em; }
+.s-recite .recite-lines { font-size: 1.35em; line-height: 1.7; }
+.s-dongjing .hd h2 { font-size: 1.35em; }
+
+/* 山居秋暝：一静一动 */
+.s-dongjing .bd { grid-template-columns: 1.2fr 1fr; }
+.s-dongjing .stage:last-child { justify-content: center; }
+#sjScene { flex: 1; min-height: 0; width: 100%; }
+#sjScene .spring { stroke-dasharray: 14 10; }
+#sjScene .on .spring { animation: flow 1.2s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -24; } }
+#sjScene .bamboo { transform-box: fill-box; transform-origin: 50% 100%; }
+.s-dongjing:has([data-step="3"].on) #sjScene .bamboo { animation: sway 1.6s ease-in-out infinite alternate; }
+@keyframes sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+#sjScene .on .noise { animation: pulse 1.2s ease-in-out infinite; }
+#sjScene .girls { transform: translateX(40px); opacity: 0; transition: transform 2s ease .8s, opacity 1s ease .8s; }
+#sjScene .on .girls { transform: none; opacity: 1; }
+#sjScene .lotus-l, #sjScene .lotus-r { transition: transform 1.4s ease; }
+#sjScene .on .lotus-l { transform: translateX(-26px); }
+#sjScene .on .lotus-r { transform: translateX(26px); }
+#sjScene .boat { transform: translate(-60px, -40px); opacity: 0; transition: transform 2.4s ease .8s, opacity 1s ease .8s; }
+#sjScene .on .boat { transform: none; opacity: 1; }
+
+/* 枫桥夜泊 */
+.s-fq .portrait-img { min-height: 10em; }
+
+/* 长相思：身与心 */
+.s-cxs-pin .bd { grid-template-columns: 1fr 1fr; }
+#cxsMap { flex: 1; min-height: 0; width: 100%; }
+#cxsMap .road { transition-duration: 2.6s; }
+#cxsMap .traveler { transform: translate(-295px, 45px); transition: transform 2.6s ease; }
+#cxsMap .on .traveler { transform: none; }
+#cxsMap .flake { animation: snowfall 3s linear infinite; }
+@keyframes snowfall { from { transform: translate(0, 0); } to { transform: translate(-60px, 440px); } }
+#cxsMap .heart-line { animation: dash 1s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -16; } }
+.s-cxs-pin .clues { grid-template-columns: 1fr 1fr; gap: .5em; }
+.s-cxs-pin .clue, .s-cxs-pin .clue-in { min-height: 6em; }
+.s-cxs-pin .clue-face { padding: .5em .8em; font-size: .92em; }
+
+/* 回顾表 */
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.02em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.sum-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.1em; }
+.sum-table td { font-family: var(--kai); }
+.sum-table th:first-child { background: transparent; color: var(--red); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.4em; }
+  .poem-v[data-poem="cxs"] .poem-text .pl { font-size: 1.12em; margin-left: .3em; }
+  .poem-v[data-poem="cxs"] .poem-text .pl[data-step="5"] { margin-right: .6em; }
+  .poem-v[data-poem="cxs"] .poem-text { height: 13.5em; padding: .8em .6em; }
+  .s-dongjing .hd h2 { font-size: 1.05em; }
+  .poem-v[data-poem="sjqm"] .poem-text .pl { font-size: 1.3em; }
+  .s-wide .subs { padding-right: 1.1em; font-size: 1em; }
+  #sjScene, #cxsMap { flex: none; height: auto; }
+  .s-cxs-pin .clues { grid-template-columns: 1fr; }
+  .s-recite .recite-lines { font-size: 1.2em; }
+  .sum-table { font-size: .78em; border-spacing: .2em; }
+}

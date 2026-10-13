@@ -1,0 +1,53 @@
+/* 我的“长生果” · 本课配色：果实的橙红、书页的暖黄 */
+:root {
+  --red: #b0502a;
+  --red-d: #6b2f17;
+  --gold: #d29a35;
+  --gold-l: #f2d99c;
+  --paper: #f6f0e4;
+  --stone: #fdfaf3;
+  --ink-2: #62584c;
+  --line: #ddd0b8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fffbf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #ecdfc6 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.2em; }
+
+/* 题目：比喻卡片 */
+.meta { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .9em; }
+.meta-card { background: #fff; border-radius: .6em; padding: .8em 1em; border-top: .3em solid var(--gold); box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); display: flex; flex-direction: column; gap: .4em; }
+.meta-card.m1 { border-top-color: var(--red); }
+.meta-card small { color: var(--ink-2); }
+.meta-card p { margin: 0; font-family: var(--kai); font-size: 1.55em; line-height: 1.6; }
+.meta-card b { color: var(--red); }
+.meta-card span { margin-top: auto; font-size: .92em; color: var(--ink-2); line-height: 1.6; background: var(--stone); padding: .4em .6em; border-radius: .3em; }
+
+/* 读书台阶 */
+.stairs { list-style: none; margin: 0; padding: 0; flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(5, 1fr); align-items: end; gap: .5em; }
+.stairs li { display: flex; flex-direction: column; gap: .3em; background: #fff; border-radius: .5em .5em 0 0; padding: .7em .8em; border-top: .35em solid var(--gold); box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); }
+.stairs li:nth-child(1) { min-height: 40%; } .stairs li:nth-child(2) { min-height: 55%; } .stairs li:nth-child(3) { min-height: 70%; }
+.stairs li:nth-child(4) { min-height: 85%; } .stairs li:nth-child(5) { min-height: 100%; border-top-color: var(--red); }
+.stairs b { font-family: var(--kai); font-size: 1.3em; color: var(--red-d); }
+.stairs span { font-size: .92em; line-height: 1.55; color: var(--ink-2); }
+.stairs em { margin-top: auto; font-style: normal; font-family: var(--kai); font-size: 1.1em; color: var(--red); background: #fff6e0; border-radius: .3em; padding: .2em .5em; }
+
+/* 两次作文 */
+.two { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.two-card { display: flex; background: #fff; border-radius: .6em; overflow: hidden; box-shadow: 0 .15em .6em rgba(40, 30, 20, .12); }
+.two-card .pic { width: 34%; flex: none; background: center / cover no-repeat #e8dcc4; }
+.two-txt { padding: .7em 1em; display: flex; flex-direction: column; gap: .45em; }
+.two-txt h3 { margin: 0; color: var(--red-d); font-family: var(--kai); font-size: 1.25em; }
+.two-txt p { margin: 0; line-height: 1.7; font-size: 1.12em; }
+.two-txt b { color: var(--red); }
+.two-txt .dao { font-family: var(--kai); font-size: 1.12em; background: #fff8e1; border-left: .25em solid var(--gold); padding: .4em .7em; border-radius: .3em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.2em; }
+  .meta { grid-template-columns: 1fr; }
+  .stairs { grid-template-columns: 1fr; gap: .4em; }
+  .stairs li { min-height: 0 !important; border-radius: .5em; }
+  .stairs li:nth-child(2) { margin-left: 1em; } .stairs li:nth-child(3) { margin-left: 2em; }
+  .stairs li:nth-child(4) { margin-left: 3em; } .stairs li:nth-child(5) { margin-left: 4em; }
+  .two { grid-template-columns: 1fr; }
+  .two-card { flex-direction: column; }
+  .two-card .pic { width: auto; height: 9em; }
+}

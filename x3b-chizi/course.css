@@ -1,0 +1,67 @@
+/* 池子与河流 · 本课配色：河水蓝、池塘青苔绿。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #2f6f8f;
+  --red-d: #1f3d55;
+  --gold: #c99a3a;
+  --gold-l: #efdca5;
+  --paper: #eef2ee;
+  --stone: #fbfcfa;
+  --ink-2: #4f5a57;
+  --line: #c9d6d0;
+  --cz: #6b7a3a;
+  --hl: #2f6f8f;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #f9fcfa 0, transparent 40%), radial-gradient(circle at 90% 95%, #d6e3dc 0, transparent 45%); }
+
+/* 中年级：字大一点 */
+.tip { font-size: 1em; }
+.s-cover .cover-title { font-size: 6.4em; letter-spacing: .06em; }
+
+/* 诗节字幕：一节一段，只留当前一节 */
+.stanza .subs { font-size: 1.4em; line-height: 1.6; padding-top: 3em; }
+.stanza .subs p.on:not(.now) { display: none; }
+.subs .who.cz { background: rgba(107, 122, 58, .95); }
+.subs .who.hl { background: rgba(47, 111, 143, .95); }
+.subs .cz-moral { color: #ffe2a6; font-size: 1.15em; }
+
+/* 观点对照 */
+.cz-table { display: grid; grid-template-columns: 7em 1fr 1fr; gap: .5em; }
+.cz-h { font-family: var(--kai); font-size: 1.7em; text-align: center; color: #fff; border-radius: .4em; }
+.cz-h:first-child { background: none; }
+.cz-h.cz { background: var(--cz); }
+.cz-h.hl { background: var(--hl); }
+.cz-k { display: grid; place-items: center; font-weight: bold; color: var(--red-d); background: #fff8e1; border-radius: .4em; }
+.cz-c { background: #fff; border-radius: .4em; padding: .5em .9em; font-family: var(--kai); font-size: 1.3em; line-height: 1.6; }
+.cz-c b { color: #b0452a; }
+.cz-vote { display: flex; align-items: center; gap: .8em; flex-wrap: wrap; font-size: 1.1em; }
+.cz-vote .btn { font-family: var(--kai); font-size: 1.15em; }
+.cz-why { color: var(--red-d); font-family: var(--kai); }
+
+/* 朗读 */
+.read-item p { font-size: 1.45em; }
+.read-item.cz { border-left-color: var(--cz); }
+.read-item.hl { border-left-color: var(--hl); }
+
+/* 寓言卡 */
+.fable-card { perspective: 70em; border: none; background: none; padding: 0; font: inherit; cursor: pointer; flex: 1; min-height: 12em; text-align: left; }
+.fable-in { position: relative; width: 100%; height: 100%; min-height: 12em; transition: transform .7s ease; transform-style: preserve-3d; }
+.fable-card.flipped .fable-in { transform: rotateY(180deg); }
+.fable-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: .8em; padding: 1.2em 1.4em; font-family: var(--kai); font-size: 1.45em; line-height: 1.7; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 .2em .8em rgba(40, 30, 20, .15); }
+.fable-face small { font-family: var(--serif); font-size: .6em; margin-bottom: .4em; }
+.fable-face.front { background: #fff; border: 2px solid var(--line); }
+.fable-face.front small { color: var(--ink-2); }
+.fable-face.back { background: #fff6dc; border: 2px solid var(--gold); transform: rotateY(180deg); }
+.fable-face.back small { color: #b0452a; font-weight: bold; }
+.fable-face b { color: #b0452a; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.6em; }
+  .stanza .subs { font-size: 1.1em; max-height: 70%; }
+  .cz-table { grid-template-columns: 3.2em 1fr 1fr; gap: .3em; }
+  .cz-h { font-size: 1.2em; }
+  .cz-k { font-size: .8em; padding: .2em; text-align: center; }
+  .cz-c { font-size: .95em; padding: .4em .5em; }
+  .read-item p { font-size: 1.15em; }
+  .fable-face { font-size: 1.15em; }
+  .fable-card, .fable-in { min-height: 13em; }
+}

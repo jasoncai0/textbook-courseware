@@ -1,0 +1,40 @@
+/* 动物儿歌 · 本课配色：夏日花园的草绿、花橙。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d5672b;
+  --red-d: #9b4314;
+  --gold: #e8a62a;
+  --gold-l: #fce3a4;
+  --paper: #f7f8ec;
+  --stone: #fffef9;
+  --ink-2: #5d5f4c;
+  --line: #dcdcbf;
+}
+
+/* 动一动：动物卡片，点了名字做动作 */
+.dw-acts { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .8em; }
+.dw-grid { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.dw-card { font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2em; background: #fff; border: 3px solid var(--line); border-radius: 1em; cursor: pointer; overflow: hidden; }
+.dw-card.go { border-color: var(--gold); background: #fffaf0; }
+.dw-a { display: inline-block; font-family: var(--kai); font-size: 3em; line-height: 1.8; color: var(--red-d); }
+.dw-v { font-family: var(--kai); font-size: 2em; line-height: 1.8; color: var(--ink-2); }
+.dw-card rt { font-family: var(--py); font-size: .38em; color: var(--py-c); }
+.dw-tip { margin: 0; text-align: center; font-size: 1.5em; min-height: 1.5em; color: var(--red-d); font-family: var(--kai); }
+.go.k-flap .dw-a { animation: dwFlap .25s ease-in-out infinite alternate; }
+.go.k-dance .dw-a { animation: dwDance 2s ease-in-out infinite; }
+.go.k-dig .dw-a { animation: dwDig .8s ease-in-out infinite; }
+.go.k-march .dw-a { animation: dwMarch 2.4s steps(12) infinite; }
+.go.k-swim .dw-a { animation: dwSwim 1.6s ease-in-out infinite; }
+.go.k-web .dw-a { animation: dwWeb 1.6s ease-in-out infinite; }
+@keyframes dwFlap { from { transform: scaleY(1) translateY(0); } to { transform: scaleY(.75) translateY(-.15em); } }
+@keyframes dwDance { 0%, 100% { transform: translate(0, 0) rotate(0); } 25% { transform: translate(.8em, -.4em) rotate(8deg); } 50% { transform: translate(0, -.7em) rotate(0); } 75% { transform: translate(-.8em, -.4em) rotate(-8deg); } }
+@keyframes dwDig { 0%, 100% { transform: skewX(0) translateY(0); } 25% { transform: skewX(14deg) translateY(.15em); } 75% { transform: skewX(-14deg) translateY(.3em); } }
+@keyframes dwMarch { 0% { transform: translateX(-1.2em); } 50% { transform: translateX(1.2em); } 100% { transform: translateX(-1.2em); } }
+@keyframes dwSwim { 0%, 100% { transform: translateX(-.8em) rotate(-6deg); } 50% { transform: translateX(.8em) rotate(6deg); } }
+@keyframes dwWeb { 0%, 100% { transform: translateY(-.5em); } 50% { transform: translateY(.4em); } }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .dw-grid { grid-template-columns: 1fr 1fr; }
+  .dw-a { font-size: 2.1em; }
+  .dw-v { font-size: 1.5em; }
+  .dw-tip { font-size: 1.15em; }
+}

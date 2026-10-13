@@ -1,0 +1,63 @@
+/* 开国大典 · 本课配色：国旗红、宫灯金。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #b2261d;
+  --red-d: #7a1712;
+  --gold: #c9962a;
+  --gold-l: #f1d796;
+  --paper: #f6f0e4;
+  --stone: #fcf9f2;
+  --ink-2: #625649;
+  --line: #ddcfb4;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfaf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #ecdfc6 0, transparent 45%); }
+.s-cover .cover-title { font-size: 7em; letter-spacing: .1em; }
+
+/* 典礼程序条 */
+.cer { position: absolute; top: 2.6em; right: 1.4em; z-index: 9; display: flex; align-items: center; gap: .6em; padding: .35em .7em; border-radius: .5em; background: rgba(20, 16, 12, .6); color: #f4efe6; opacity: 0; transition: opacity .5s; pointer-events: none; }
+.cer.show { opacity: 1; }
+.cer small { font-size: .7em; opacity: .8; }
+.cer ol { display: flex; gap: .25em; margin: 0; padding: 0; list-style: none; }
+.cer li { font-size: .72em; padding: .15em .45em; border-radius: .3em; background: rgba(255, 255, 255, .12); color: rgba(255, 255, 255, .6); transition: background .5s, color .5s; }
+.cer li.done { color: #f1d796; }
+.cer li.cur { background: var(--red); color: #fff; }
+
+/* 会场示意图 */
+.s-huichang .bd { grid-template-columns: 1.3fr 1fr; }
+.s-huichang .quote { overflow: visible; }
+#squareMap .t-square { fill: #e6dcc6; stroke: #b8a17a; stroke-width: 2; }
+#squareMap .sq-t { fill: #8a7350; }
+#squareMap .water { fill: none; stroke: #7fb2cf; stroke-width: 10; stroke-linecap: round; }
+#squareMap .bridges rect { fill: #fff; stroke: #b9ad99; }
+#squareMap .wall { fill: #b5442c; }
+#squareMap .hall { fill: #c24a30; }
+#squareMap .roof { fill: #d9a520; }
+#squareMap .gate { fill: #b5442c; }
+#squareMap .arrow { stroke: #b8873a; stroke-width: 2; stroke-dasharray: 6 5; fill: none; }
+#squareMap .lanterns circle { fill: #e2382a; stroke: #f3d77a; stroke-width: 1.5; }
+
+/* 场面串联 */
+.cer-cards { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: .6em; }
+.cer-card { display: flex; flex-direction: column; background: #fff; border-radius: .5em; overflow: hidden; box-shadow: 0 .15em .6em rgba(40, 30, 20, .12); }
+.cer-card .pic { flex: 1; min-height: 5em; background: #e8dfcd center / cover no-repeat; }
+.cer-card b { padding: .35em .6em 0; color: var(--red); }
+.cer-card span { padding: .1em .6em .5em; font-size: .82em; line-height: 1.5; color: var(--ink-2); }
+
+/* 阅兵式 */
+#parade { flex: 1; min-height: 0; }
+#parade .unit[data-step] { transform: translateX(60px); transition: opacity .8s ease, transform 1.4s ease; }
+#parade .unit.on { transform: none; }
+.tips2 { flex: 0 0 auto; }
+.tips2 .tip { flex: 1; }
+.s-clues .clue-face.front { font-size: .95em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4em; }
+  .cer { top: auto; bottom: 4.4em; right: .6em; left: .6em; justify-content: center; position: fixed; }
+  .cer small { display: none; }
+  .cer li:not(.cur) { font-size: 0; width: 8px; height: 8px; padding: 0; border-radius: 50%; align-self: center; background: rgba(255, 255, 255, .3); }
+  .cer li.done { background: #f1d796; }
+  .scrolled .cer { opacity: 0; }
+  .cer-cards { grid-template-columns: 1fr 1fr; }
+  .cer-card .pic { min-height: 6em; }
+  #parade { flex: none; }
+}

@@ -1,0 +1,117 @@
+/* 识字课小组件样式（换偏旁、归类、合字）。见 zuzi.js；x1b 识字课各放一份，内容相同 */
+
+/* ---------- 换偏旁变新字 ---------- */
+.zz-swap { flex: 1; min-height: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 1.4em; align-items: center; }
+.zz-bs-list { display: flex; flex-direction: column; gap: .6em; }
+.zz-bs { font: inherit; font-family: var(--kai); font-size: 2.4em; width: 1.7em; height: 1.7em; border-radius: .3em; border: 3px solid var(--gold); background: #fff; color: var(--red-d); cursor: pointer; transition: background .3s; }
+.zz-bs.done { background: var(--gold-l); }
+.zz-bs.on { border-color: var(--red); background: #fff4ec; }
+.zz-swap-main { display: flex; flex-direction: column; align-items: center; gap: .5em; min-width: 0; }
+.zz-swap-stage { position: relative; width: 9em; height: 9em; display: grid; place-items: center; background: #fff; border-radius: 1em; box-shadow: 0 .3em 1em rgba(80, 50, 20, .12); }
+.zz-pair, .zz-new { grid-area: 1 / 1; font-family: var(--kai); line-height: 1; }
+.zz-pair { display: flex; align-items: center; font-size: 5.6em; }
+.zz-slot { display: inline-block; width: 0; overflow: hidden; color: var(--red); font-weight: normal; transform-origin: right center; }
+.zz-base { font-weight: normal; color: var(--ink); }
+.zz-new { font-size: 5.2em; color: var(--red-d); opacity: 0; }
+.zz-new rt { font-family: var(--py); font-size: .26em; color: var(--py-c); }
+.zz-swap-stage.go .zz-slot { animation: zzIn .5s ease-out forwards; }
+.zz-swap-stage.go .zz-base { animation: zzSquash .5s ease-out forwards; }
+.zz-swap-stage.go .zz-pair { animation: zzOut .35s .55s ease-in forwards; }
+.zz-swap-stage.go .zz-new { animation: zzPop .5s .8s cubic-bezier(.3, 1.5, .5, 1) both; }
+@keyframes zzPop { from { opacity: 0; transform: scale(.3); } to { opacity: 1; transform: none; } }
+@keyframes zzIn { from { width: 0; transform: translateX(-2.5em); opacity: 0; } to { width: .5em; transform: scaleX(.55); opacity: 1; } }
+@keyframes zzSquash { to { transform: scaleX(.6); } }
+@keyframes zzOut { to { opacity: 0; transform: scale(.85); } }
+.zz-word { margin: 0; min-height: 1.9em; font-family: var(--kai); font-size: 2.2em; line-height: 2.1; }
+.zz-word rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.zz-tip { margin: 0; min-height: 1.6em; font-size: 1.3em; color: var(--ink-2); text-align: center; }
+.zz-tip rt { font-family: var(--py); font-size: .5em; color: var(--py-c); }
+.zz-word.late, .zz-tip.late { animation: zzLate .9s both; }
+@keyframes zzLate { 0%, 70% { opacity: 0; } to { opacity: 1; } }
+.zz-family { align-self: stretch; display: flex; flex-direction: column; gap: .4em; width: 8.5em; background: #f4f9ec; border: 2px dashed #9cc47a; border-radius: .8em; padding: .6em; }
+.zz-family p { margin: 0; text-align: center; font-weight: bold; color: #4d7a2e; }
+.zz-fam-list { display: flex; flex-wrap: wrap; gap: .2em .5em; justify-content: center; font-family: var(--kai); font-size: 2.2em; line-height: 2; }
+.zz-fam-list span { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+.zz-fam-list rt { font-family: var(--py); font-size: .4em; color: var(--py-c); }
+
+/* ---------- 归类 ---------- */
+.zz-sort { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 1em; }
+.zz-buckets { display: flex; gap: 1em; justify-content: center; flex-wrap: wrap; }
+.zz-bk { flex: 1 1 0; max-width: 22em; min-height: 9em; display: flex; flex-direction: column; background: #fff; border: 3px dashed var(--line); border-radius: .9em; padding: .5em .8em; transition: border-color .3s, background .3s; }
+.zz-bk.full { border-style: solid; border-color: var(--ok); background: #f1faf3; }
+.zz-bk.wrong { animation: nope .35s; }
+.zz-bk-t { margin: 0; text-align: center; font-family: var(--kai); font-size: 2.4em; color: var(--red-d); }
+.zz-bk-t small { display: block; font-family: var(--serif); font-size: .45em; color: var(--ink-2); }
+.zz-bk-in { flex: 1; display: flex; flex-wrap: wrap; gap: .4em; justify-content: center; align-content: center; }
+/* 填空 / 对对子：一个个小框排成几行 */
+.zz-buckets.fill .zz-bk { flex: 0 0 auto; min-height: 0; max-width: none; padding: .3em .7em; }
+.zz-buckets.fill .zz-bk-in { display: none; }
+.zz-hole { display: inline-grid; place-items: center; min-width: 1.15em; min-height: 1.15em; margin: 0 .1em; vertical-align: middle; border-bottom: .08em solid var(--gold); background: #fff8e1; border-radius: .15em; }
+.zz-cards { display: flex; gap: .7em; justify-content: center; flex-wrap: wrap; }
+.zz-card, .zz-got { font: inherit; font-family: var(--kai); font-size: 2.4em; min-width: 1.6em; height: 1.6em; padding: 0 .25em; border-radius: .25em; border: 3px solid var(--red); background: #fff; color: var(--red-d); line-height: 1; white-space: nowrap; }
+.zz-card { cursor: grab; touch-action: none; user-select: none; }
+.zz-card.py, .zz-got.py { height: 2em; padding-top: .3em; line-height: 1.2; }
+.zz-card rt, .zz-got rt { font-family: var(--py); font-size: .38em; color: var(--py-c); }
+.zz-card.sel { background: var(--gold-l); }
+.zz-card.dragging { position: relative; z-index: 30; cursor: grabbing; box-shadow: 0 .3em 1em rgba(0, 0, 0, .3); }
+.zz-card.done { opacity: .2; pointer-events: none; }
+.zz-card.wrong { animation: nope .35s; }
+.zz-got { border-color: var(--ok); color: var(--ok); animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+.zz-hole .zz-got { font-size: 1em; border: none; background: none; padding: 0; height: auto; min-width: 0; }
+.zz-sort.all-done .zz-cards::after { content: "全部放对了！"; font-size: 1.3em; color: var(--ok); font-weight: bold; align-self: center; }
+
+/* ---------- 合字 ---------- */
+.zz-combine { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: .6em; }
+.zz-cb { display: grid; grid-template-columns: 7em 2em 4em 1fr; align-items: center; gap: .6em; background: #fff; border-radius: .8em; padding: .2em 1.2em; box-shadow: 0 .2em .7em rgba(80, 50, 20, .1); }
+.zz-parts { display: flex; align-items: center; justify-content: center; gap: .3em; font-family: var(--kai); font-size: 2.4em; transition: gap .6s; }
+.zz-parts b { font-weight: normal; color: var(--ink); transition: transform .6s; }
+.zz-parts i { font-style: normal; font-size: .6em; color: var(--ink-2); transition: opacity .4s; }
+.zz-cb:has(.zz-whole.on) .zz-parts { gap: 0; }
+.zz-cb:has(.zz-whole.on) .zz-parts i { opacity: 0; }
+.zz-eq { font-size: 1.8em; color: var(--gold); text-align: center; }
+.zz-whole { font-family: var(--kai); font-size: 3.2em; line-height: 1.6; color: var(--red-d); text-align: center; }
+.zz-whole rt, .zz-say rt { font-family: var(--py); font-size: .36em; color: var(--py-c); }
+.zz-whole.on { animation: pop .5s .3s cubic-bezier(.3, 1.6, .5, 1) both; }
+.zz-say { font-family: var(--kai); font-size: 2em; line-height: 2; }
+
+/* ---------- 和 hanzi.js 配合 ---------- */
+/* 儿歌、韵文：每行居中，不空两格 */
+.hz-text.verse p { text-indent: 0; text-align: center; word-break: keep-all; }
+.subs p { word-break: keep-all; } /* 词语之间用全角空格隔开：只在空格处换行 */
+.hz-text.verse p + p { margin-top: .1em; }
+/* 拖词配图：卡片和圆圈放得下两三个字（容器加 class="zz-wide"） */
+.zz-wide .hz-mcard { width: auto; min-width: 1.6em; padding: 0 .25em; white-space: nowrap; }
+.zz-wide .hz-target { width: auto; min-width: 2.4em; padding: 0 .4em; border-radius: 1.2em; white-space: nowrap; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .zz-swap { display: flex; flex-direction: column; align-items: stretch; }
+  .zz-bs-list { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .zz-bs { font-size: 2em; }
+  .zz-swap-stage { align-self: center; width: 7em; height: 7em; }
+  .zz-pair { font-size: 4.4em; }
+  .zz-new { font-size: 4em; }
+  .zz-word { font-size: 1.7em; }
+  .zz-family { width: auto; }
+  .zz-buckets { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+  .zz-buckets.fill { display: flex; }
+  .zz-bk { max-width: none; min-height: 5em; padding: .4em; }
+  .zz-bk-t { font-size: 1.9em; }
+  .zz-card, .zz-got { font-size: 1.8em; }
+  .zz-cb { grid-template-columns: 5em 1.4em 3em 1fr; padding: .2em .6em; }
+  .zz-parts { font-size: 1.8em; }
+  .zz-whole { font-size: 2.4em; }
+  .zz-say { font-size: 1.4em; }
+}
+
+/* 合字：整行出现（row）、两栏排（容器加 class="two"） */
+.zz-cb.row .zz-whole, .zz-cb.row .zz-say { opacity: 0; }
+.zz-cb.row.on .zz-parts { gap: 0; transition-delay: .5s; }
+.zz-cb.row.on .zz-parts i { opacity: 0; transition-delay: .5s; }
+.zz-cb.row.on .zz-whole { animation: pop .5s .9s cubic-bezier(.3, 1.6, .5, 1) both; opacity: 1; }
+.zz-cb.row.on .zz-say { opacity: 1; transition: opacity .5s 1.2s; }
+.zz-combine.two { display: grid; grid-template-columns: 1fr 1fr; align-content: center; gap: .8em 1em; }
+.zz-combine.two .zz-cb { grid-template-columns: 5.6em 1.4em 3.4em 1fr; }
+@media (max-width: 820px), (max-height: 520px) {
+  .zz-combine.two { grid-template-columns: 1fr; }
+  .zz-combine.two .zz-cb { grid-template-columns: 5em 1.4em 3em 1fr; }
+}

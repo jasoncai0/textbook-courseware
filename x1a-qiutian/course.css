@@ -1,0 +1,23 @@
+/* 秋天 · 本课配色：秋叶的橙黄、天空的蓝。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d0602a;
+  --red-d: #9c3f12;
+  --gold: #e9a426;
+  --gold-l: #fbe0a0;
+  --paper: #fbf5ea;
+  --stone: #fffdf8;
+  --ink-2: #6e5c48;
+  --line: #e6d5b8;
+}
+
+/* 第 2 自然段：大雁队形（散飞 → “人”字 → “一”字） */
+.qt-geese { position: absolute; left: 22%; top: 6%; width: 56%; z-index: 1; overflow: visible; pointer-events: none; }
+.goose { transform: translate(var(--sx), var(--sy)); transition: transform 2.4s ease-in-out; }
+.scene:has(.f-ren.on) .goose { transform: translate(var(--rx), var(--ry)); }
+.scene:has(.f-yi.on) .goose { transform: translate(var(--yx), var(--yy)); }
+.goose path { fill: none; stroke: #3b3a3a; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; transform-box: fill-box; transform-origin: center; animation: qtFlap .5s var(--fl) ease-in-out infinite alternate; }
+@keyframes qtFlap { to { transform: scaleY(.35); } }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .qt-geese { left: 4%; width: 92%; top: 12%; }
+}

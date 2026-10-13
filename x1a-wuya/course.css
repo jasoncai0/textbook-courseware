@@ -1,0 +1,72 @@
+/* 乌鸦喝水 · 本课配色：陶瓶的褐、天空的蓝。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #b0612e;
+  --red-d: #7a3f17;
+  --gold: #e6a93a;
+  --gold-l: #f8dfa6;
+  --paper: #faf5ec;
+  --stone: #fffdf8;
+  --ink-2: #66574a;
+  --line: #e5d6bf;
+}
+
+/* ---------- 课后第 2 题：五步故事条 ---------- */
+.wy-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: .5em; }
+.wy-stage { position: relative; text-align: center; background: #fff; border: 2px solid var(--line); border-radius: .6em; padding: .1em .3em .3em; opacity: .55; transition: opacity .4s, border-color .4s, background .4s; }
+.wy-stage b { display: block; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.wy-stage small { display: block; font-size: .85em; color: var(--ink-2); }
+.wy-stage small:not([data-step]) { opacity: 0; transition: opacity .4s; }
+.wy-stage:has(.on) { opacity: 1; border-color: var(--gold); background: #fff8e8; }
+.wy-stage:has(.on) small { opacity: 1; }
+.wy-stage + .wy-stage::before { content: '→'; position: absolute; left: -.62em; top: 1.2em; color: var(--gold); font-weight: bold; }
+
+/* ---------- 放石子 ---------- */
+.wy-box { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .4em; }
+.wy-svg { flex: 1; min-height: 0; width: 100%; background: linear-gradient(#e9f4fb, #fdf8ee 80%); border-radius: .8em; }
+.wy-ground { stroke: #c9b48e; stroke-width: 6; }
+.wy-water { fill: #6fb6e3; fill-opacity: .75; transition: y .9s ease, height .9s ease; }
+.wy-bottle { fill: rgba(176, 118, 70, .18); stroke: #8a5a32; stroke-width: 6; }
+.wy-rim { stroke: #8a5a32; stroke-width: 10; stroke-linecap: round; }
+.wy-reach { stroke: #2f7fb8; stroke-width: 2; stroke-dasharray: 8 6; }
+.wy-reach-t { font-size: 15px; fill: #2f7fb8; }
+.wy-pebble { fill: #9a9184; stroke: #6f675c; stroke-width: 2; cursor: pointer; }
+.wy-pebble:hover { fill: #b5ab9c; }
+.wy-pebble.in { pointer-events: none; animation: wyDrop .7s ease-in forwards; }
+@keyframes wyDrop { 45% { transform: translate(var(--mx), var(--my)); } 100% { transform: translate(var(--dx), var(--dy)); } }
+.wy-black { fill: #26262e; }
+.wy-beak { fill: #3a3a40; }
+.wy-wing { fill: #3b3b46; transform-box: fill-box; transform-origin: 80% 70%; animation: wyFlap .5s ease-in-out infinite alternate; }
+@keyframes wyFlap { to { transform: rotate(-18deg); } }
+.wy-head { transform-box: view-box; transform-origin: 236px 44px; transition: transform .8s ease; }
+.wy-svg.drink .wy-head { transform: rotate(30deg); }
+.wy-svg.drink .wy-wing { animation-duration: .25s; }
+.wy-bar { display: flex; align-items: center; gap: 1em; }
+.wy-msg { flex: 1; font-family: var(--kai); font-size: 1.5em; color: var(--ink); }
+.wy-svg.drink ~ .wy-bar .wy-msg, .wy-box:has(.drink) .wy-msg { color: #1f6b4f; font-weight: bold; }
+.wy-n { font-size: 1.3em; color: var(--red-d); }
+
+/* ---------- 排一排（讲故事） ---------- */
+.order { flex: 1; display: flex; flex-direction: column; gap: .6em; min-height: 0; }
+.order-slots, .order-pool { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: .6em; }
+.o-slot { position: relative; min-height: 9.6em; border: 2px dashed var(--line); border-radius: .6em; background: rgba(255, 255, 255, .55); display: flex; flex-direction: column; overflow: hidden; }
+.o-slot::after { content: attr(data-n); position: absolute; left: .35em; top: .3em; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; font-size: .85em; }
+.o-slot.filled { border-style: solid; border-color: var(--gold); background: #fff; animation: appear .4s ease; }
+.o-card { font: inherit; padding: 0; border: 1px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; text-align: left; color: var(--ink); box-shadow: 0 .15em .5em rgba(40, 30, 20, .1); transition: opacity .3s; }
+.o-pic { height: 5em; flex: none; background: #efe6d4 center / cover no-repeat; display: flex; align-items: center; justify-content: center; }
+.o-pic svg { height: 80%; }
+.o-card > span, .o-slot > span { padding: 0 .4em .3em; font-size: 1em; line-height: 2; }
+.o-card.used { opacity: .2; pointer-events: none; }
+.o-card.wrong { animation: nope .35s; border-color: #e3a998; background: #fdf0ec; }
+.order-bar { display: flex; align-items: center; gap: 1em; }
+.order-msg { flex: 1; color: var(--ink-2); font-size: 1.2em; }
+.order.done .order-msg { color: #1f6b4f; font-weight: bold; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .wy-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .3em; }
+  .wy-stage b { font-size: 1.1em; }
+  .wy-stage small { display: none; }
+  .wy-svg { min-height: 14em; }
+  .wy-msg { font-size: 1.1em; }
+  .order-slots, .order-pool { grid-template-columns: 1fr 1fr; }
+  .o-slot { min-height: 8em; }
+}

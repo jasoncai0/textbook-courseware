@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>静夜思 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="../shared/hanzi.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面：问题导入 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 40% 40%" data-bg="assets/jutou.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">一年级下册 · 第四单元 · 课文 8</p>
+    <h1 class="cover-title py" data-py="jìng yè sī">静夜思</h1>
+    <p class="cover-sub py" data-py="táng lǐ bái">［唐］李白</p>
+    <p class="jy-ask py" data-step="1" data-py="yè shēn le shī rén shuì bù zháo tā kàn jiàn le shén me">夜深了，诗人睡不着，他看见了什么？</p>
+    <div class="chips" data-step="2"><span class="chip">朗读古诗</span><span class="chip">做一做：举头、低头</span><span class="chip">背诵古诗</span></div>
+  </div>
+  <p class="note">问题导入：先不讲题目，请孩子看画面——夜很深、很安静，诗人抬头在看什么？再揭题：“静夜思”就是在安静的夜里想事情。李白是唐朝的大诗人，这首诗一千多年来人人会背。</p>
+</section>
+
+<!-- ================= 字词：读准字音（数据见 ziyin.js） ================= -->
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 一 · 读古诗：竖排注音诗板 ================= -->
+<section class="slide scene">
+  <video class="scene-bg" data-focus="1.04 35% 55%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/059b95f67d8aef1ce9c2b763d9d16fcd965e2ea78977ab10b38e2f0318aec406.mp4" data-poster="assets/chuangqian.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade jy-shade"></div>
+  <div class="hd"><span class="tag">一 · 读古诗</span><span class="sub">竖着读，从右往左</span></div>
+  <div class="jy-board" id="poemBoard"></div>
+  <button type="button" class="btn jy-rhythm" data-noswipe>节奏</button>
+  <p class="note">古诗是竖着写的，从右边一行读起。每按一下出现一句，老师范读、孩子跟读。打开“节奏”：五个字读成“二三”——床前 / 明月光。“床前明月光”读得轻、慢，像月光静静地洒下来。</p>
+</section>
+
+<!-- ================= 二 · 做一做：月光 → 举头 → 低头 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">二 · 做一做</span><h2>诗人在做什么？跟着做一做</h2></div>
+  <div class="bd full"><div class="stage">
+    <div class="jy-act" data-noswipe>
+      <svg class="jy-room" id="room" viewBox="0 0 600 360" aria-label="诗人看月光、举头、低头">
+        <defs>
+          <radialGradient id="jyMoonGlow"><stop offset="0" stop-color="#fff8d6" stop-opacity=".9"/><stop offset="1" stop-color="#fff8d6" stop-opacity="0"/></radialGradient>
+          <linearGradient id="jyBeam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef3ff" stop-opacity=".5"/><stop offset="1" stop-color="#eef3ff" stop-opacity=".05"/></linearGradient>
+        </defs>
+        <rect width="600" height="360" rx="18" fill="#22305a"/>
+        <rect x="0" y="262" width="600" height="98" fill="#2c3a63"/>
+        <!-- 窗 -->
+        <rect x="360" y="34" width="190" height="150" rx="6" fill="#132044" stroke="#8a6a44" stroke-width="8"/>
+        <path d="M455 34V184M360 109H550" stroke="#8a6a44" stroke-width="5"/>
+        <g class="jy-moon"><circle cx="490" cy="80" r="56" fill="url(#jyMoonGlow)"/><circle cx="490" cy="80" r="24" fill="#fff6cf"/></g>
+        <!-- 月光洒到床前 -->
+        <path class="jy-beam" d="M362 184L548 184L300 330L60 330Z" fill="url(#jyBeam)"/>
+        <ellipse class="jy-floor" cx="190" cy="306" rx="140" ry="26" fill="#f4f7ff"/>
+        <g class="jy-frost"><circle cx="120" cy="300" r="3"/><circle cx="170" cy="312" r="2.5"/><circle cx="215" cy="296" r="3"/><circle cx="262" cy="310" r="2.5"/><circle cx="150" cy="292" r="2"/><circle cx="240" cy="318" r="2"/></g>
+        <!-- 床 -->
+        <rect x="40" y="214" width="150" height="16" rx="4" fill="#8a6a44"/>
+        <path d="M48 230V268M182 230V268" stroke="#6e5232" stroke-width="8"/>
+        <!-- 诗人：身子 + 头（头可以抬起、低下） -->
+        <path d="M96 214C92 170 106 140 132 138C158 140 170 170 166 214Z" fill="#efe4cc" stroke="#b9a37c" stroke-width="3"/>
+        <path d="M164 176C184 186 196 196 204 212" stroke="#efe4cc" stroke-width="16" stroke-linecap="round" fill="none"/>
+        <g class="jy-head"><circle cx="138" cy="116" r="24" fill="#f6dcc0"/><path d="M114 108Q138 82 162 108L162 98Q138 70 114 98Z" fill="#2b2420"/><circle cx="152" cy="118" r="2.6" fill="#2b2420"/></g>
+        <!-- 家乡（想象泡泡） -->
+        <g class="jy-home">
+          <circle cx="196" cy="86" r="6" fill="#fff" opacity=".8"/><circle cx="214" cy="66" r="9" fill="#fff" opacity=".85"/>
+          <ellipse cx="290" cy="58" rx="74" ry="48" fill="#fffaf0"/>
+          <path d="M226 86Q290 74 354 86" stroke="#7cb7d6" stroke-width="7" fill="none"/>
+          <path d="M268 84Q290 62 312 84" stroke="#9a8a74" stroke-width="5" fill="none"/>
+          <path d="M240 66L256 52L272 66V80H240Z" fill="#fff" stroke="#6e6e6e" stroke-width="2"/><path d="M236 66L256 48L276 66" fill="#5a5a5a"/>
+          <path d="M318 62L334 48L350 62V76H318Z" fill="#fff" stroke="#6e6e6e" stroke-width="2"/><path d="M314 62L334 44L354 62" fill="#5a5a5a"/>
+          <path d="M343 40Q348 30 342 22" stroke="#bbb" stroke-width="3" fill="none"/>
+        </g>
+      </svg>
+      <div class="jy-side">
+        <div class="jy-acts">
+          <button type="button" class="btn jy-do" data-act="look">① 看地上</button>
+          <button type="button" class="btn jy-do" data-act="up">② 举头</button>
+          <button type="button" class="btn jy-do" data-act="down">③ 低头</button>
+        </div>
+        <div class="jy-say py" id="actLine"></div>
+        <p class="jy-hint" id="actHint">点一点按钮，看诗人在做什么。</p>
+      </div>
+    </div>
+  </div></div>
+  <p class="note">本课独有的“动作演示”：古诗的四句正好是诗人的三个动作——看见床前的月光（还以为是霜）、抬头望月、低头想家。每点一个按钮，画面里的诗人做动作、出现诗句。请全班站起来跟着做：“举头”把头抬起来，“低头”把头低下去，边做边读，“举、低”两个字就记住了。</p>
+</section>
+
+<!-- ================= 三 · 想一想：思故乡 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.04 50% 50%" data-bg="assets/guxiang.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">三 · 想一想</span><span class="sub">低头思故乡</span></div>
+  <div class="subs">
+    <p data-step="1" data-focus="1.2 30% 55%" data-py="dī tóu sī gù xiāng">低头思故乡。</p>
+    <p data-step="2" class="jy-small" data-focus="1.25 70% 45%" data-py="shī rén xiǎng qǐ le yuǎn yuǎn de jiā xiāng">诗人想起了远远的家乡。</p>
+  </div>
+  <p class="note">“故乡”就是自己从小生活的家乡。诗人离家很远，看见又圆又亮的月亮，就想家了。问孩子：诗人的家乡有什么？（看图说：小河、小桥、房子……）如果你离家很远，看到月亮会想起谁？读“思故乡”要读得慢一点、轻一点。</p>
+</section>
+
+<!-- ================= 四 · 识字写字 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">四 · 生字卡</span><h2>认一认：9 个生字</h2></div>
+  <div class="bd full"><div class="stage"><div data-hz="cards"></div></div></div>
+  <p class="note">点左边的字，读字、读词。“举”和“低”可以做动作记；“床、光”是翘舌音、后鼻音；“故乡”的“故”是反文旁。</p>
+</section>
+
+<section class="slide">
+  <div class="hd"><span class="tag">四 · 字的故事</span><h2>光、望</h2></div>
+  <div class="bd full"><div class="stage"><div data-hz="evolve"></div></div></div>
+  <p class="note">古字形是示意简笔，帮助记字形。“光”上面是火，下面是人——人举着火把，四周就亮了；“望”像一个人站在高处，睁大眼睛看远处的月亮，和“举头望明月”连起来记。</p>
+</section>
+
+<section class="slide">
+  <div class="hd"><span class="tag">四 · 识字游戏</span><h2>点亮星星：读对一个，亮一颗</h2></div>
+  <div class="bd full"><div class="stage">
+    <div class="jy-sky" data-noswipe>
+      <div class="jy-stars" id="stars"></div>
+      <div class="jy-skyside">
+        <p class="jy-lit">亮了 <b id="litN">0</b> / <span id="litAll">0</span> 颗</p>
+        <p class="jy-done" id="litDone">满天星星都亮了，月亮也笑了！</p>
+        <button type="button" class="btn" id="starsReset">再玩一次</button>
+      </div>
+    </div>
+  </div></div>
+  <p class="note">静静的夜空里，星星背着生字。老师指一颗，孩子读对了就点亮它（亮起来会出现拼音，可以再领读一遍）。全部点亮，月亮就笑了。可以分组接力：每组点亮三颗。</p>
+</section>
+
+<section class="slide">
+  <div class="hd"><span class="tag">四 · 写字</span><h2>写一写：思 床 前 光 低 故 乡</h2></div>
+  <div class="bd full"><div class="stage"><div data-hz="write" class="jy-write"></div></div></div>
+  <p class="note">“思”上田下心，“心”的卧钩托住上面；“床”是广字旁，里面是“木”；“前”下面右边是立刀；“光”上面的点和撇先写；“低”最后一笔是点，别漏掉；“故”右边是反文；“乡”三笔：撇折、撇折、撇。</p>
+</section>
+
+<!-- ================= 五 · 背诵（竖排挖空） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">五 · 课后题</span><h2>背一背</h2></div>
+  <div class="bd full"><div class="stage jy-recite-wrap">
+    <div class="jy-board jy-recite" id="reciteBoard"></div>
+  </div></div>
+  <p class="note">课后要求：朗读课文，背诵课文。竖排诗板上挖掉后半句，先请孩子做着动作背（看地上、举头、低头），背出来再按一下显示。</p>
+</section>
+
+<!-- ================= 回顾 ================= -->
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>静夜思</h2></div>
+  <div class="bd full"><div class="stage" style="justify-content:center">
+    <div class="board jy-sum" data-step="1">
+      <p class="py" data-py="chuáng qián yuè guāng">床前月光</p>
+      <p class="py jy-arrow">↓</p>
+      <p class="py" data-py="jǔ tóu wàng yuè">举头望月</p>
+      <p class="py jy-arrow">↓</p>
+      <p class="py" data-py="dī tóu sī xiāng">低头思乡</p>
+    </div>
+    <p class="tip gold" data-step="2">今晚看看月亮，把《静夜思》背给爸爸妈妈听。</p>
+  </div></div>
+  <p class="note">板书顺着诗人的动作串起四句诗：看见月光 → 抬头望月 → 低头想家。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="../shared/hanzi.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

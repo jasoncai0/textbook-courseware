@@ -1,0 +1,80 @@
+/* 冀中的地道战 · 本课配色：黄土的土黄、庄重的深红。页面样式见 ../shared/narrative.css，提速小工具见 speed.css */
+:root {
+  --red: #8e3b26;
+  --red-d: #5e2516;
+  --gold: #b8873a;
+  --gold-l: #ecd6a6;
+  --paper: #f3ece0;
+  --stone: #fcf8f1;
+  --ink-2: #60564a;
+  --line: #d8c9ae;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdf9f2 0, transparent 40%), radial-gradient(circle at 90% 95%, #e7dbc4 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.4em; }
+.subs .hl { color: #f4d28c; font-weight: normal; }
+.s-speed .panel .pick { font-size: .95em; }
+
+/* ---------- 地道示意图 ---------- */
+.tn-box { flex: 1; min-height: 0; display: flex; }
+.tn { width: 100%; height: 100%; border-radius: .5em; }
+.tn .house rect { fill: #e8d3a8; stroke: #8a6a3a; stroke-width: 2; }
+.tn .house polygon { fill: #9b6b3a; }
+.tn .crop { stroke: #6e8a3a; stroke-width: 2; fill: none; }
+.tn .hay { fill: #d9b45a; stroke: #a8843a; stroke-width: 2; }
+.tn .thorn { fill: none; stroke: #6b5a2a; stroke-width: 2; }
+.tn .hole { fill: #3b2c1e; }
+.tn .well { fill: #34373a; }
+.tn .rim { fill: #9a8f80; }
+.tn .ladder { stroke: #a07a45; stroke-width: 2.5; }
+.tn .board { stroke: #9b7a4a; stroke-width: 5; }
+.tn .grass { stroke: #6e8a3a; stroke-width: 2; fill: none; }
+.tn .timber { stroke: #a07a45; stroke-width: 6; fill: none; }
+.tn .beam { fill: #fff3b0; opacity: .22; }
+.tn .lamp { fill: #ffd86a; filter: drop-shadow(0 0 5px #ffd86a); }
+.tn .mine { fill: #6a6a6a; stroke: #2a2a2a; stroke-width: 2; }
+.tn .plank { fill: #b8925a; stroke: #6e5530; stroke-width: 1.5; transition: transform 1s ease; }
+.tn .person { fill: #f0e2c4; stroke: #f0e2c4; }
+.tn .lb { font-size: 17px; fill: #4a2c10; paint-order: stroke; stroke: #fff8e8; stroke-width: 4px; stroke-linejoin: round; }
+.tn .tg { font-size: 15px; fill: #fff3d0; paint-order: stroke; stroke: #3b2c1e; stroke-width: 3px; }
+.tn .lw { font-size: 16px; fill: #f6e8c8; }
+.tn .leader { stroke: #8e3b26; stroke-width: 1.5; stroke-dasharray: 4 3; }
+.tn .dim { stroke: #8e3b26; stroke-width: 2; fill: none; }
+.tn .hi { fill: none; stroke: #ffcf3a; stroke-width: 4; stroke-dasharray: 8 5; animation: pulse 1.6s ease-in-out infinite; }
+.s-tunnel[data-part="a"]:has(g[data-step="5"].on) .tn .beam { opacity: .55; }
+.s-tunnel .cap { flex: none; font-family: var(--kai); font-size: 1.02em; min-height: 2.2em; }
+.s-tunnel .stage > .btns { flex: none; }
+
+/* 防破坏：按模式显示 */
+.tn .fx { display: none; }
+.tn[data-mode="fire"] .fx-fire, .tn[data-mode="water"] .fx-water, .tn[data-mode="gas"] .fx-gas, .tn[data-mode="move"] .fx-move { display: inline; }
+.tn .flame { fill: #e8742a; transform-box: fill-box; transform-origin: 50% 100%; animation: flicker .25s ease-in-out infinite alternate, fireOut 3s ease forwards; }
+@keyframes flicker { to { transform: scaleY(.75); } }
+@keyframes fireOut { 0%, 55% { opacity: 1; } 100% { opacity: 0; } }
+.tn .sand { fill: #d8b878; opacity: 0; animation: appear 1s ease 1.2s forwards; }
+.tn .fx-water rect, .tn .fx-water polygon { fill: #5f9fd0; opacity: 0; }
+.tn[data-mode="water"] .w1 { animation: appear .8s ease forwards; }
+.tn[data-mode="water"] .w2 { animation: appear .8s ease .9s forwards; }
+.tn[data-mode="water"] .w3 { transform-box: fill-box; transform-origin: 50% 100%; animation: fillUp 1.6s ease 1.6s forwards; }
+@keyframes fillUp { from { opacity: 1; transform: scaleY(0); } to { opacity: 1; transform: scaleY(1); } }
+.tn .cloud circle { fill: #9ac46a; opacity: .7; }
+.tn[data-mode="gas"] .cloud { animation: drift 3s ease-out forwards; }
+@keyframes drift { to { transform: translateX(530px); } }
+.tn[data-mode="gas"] .plank { transform: translateY(18px); transition-delay: 2.2s; }
+.tn .walkers circle { fill: #f0e2c4; }
+.tn[data-mode="move"] .walkers { animation: walkOn 4s linear infinite; }
+@keyframes walkOn { from { transform: translateX(300px); } to { transform: translateX(1000px); } }
+/* 联络：吆喝一个接一个，铃铛摇 */
+.tn .call { fill: none; stroke: #8e3b26; stroke-width: 2.5; animation: pulse 1.8s ease-in-out infinite; }
+.tn .wire { stroke: #d8d0c0; stroke-width: 1.5; stroke-dasharray: 3 2; fill: none; }
+.tn .bell path { fill: #d9a520; stroke: #d9a520; stroke-width: 2; }
+.tn .bell circle { fill: #d9a520; }
+.tn .bell { transform-box: fill-box; transform-origin: 50% 0; animation: ring .4s ease-in-out infinite alternate; }
+@keyframes ring { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3em; }
+  /* 手机上示意图保持可读的大小，左右滑动查看 */
+  .tn-box { flex: none; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tn { height: auto; min-width: 860px; }
+}
+.tn .person.dark { fill: #7a5232; stroke: #7a5232; }

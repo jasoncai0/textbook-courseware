@@ -1,0 +1,83 @@
+/* 江南 · 本课配色：荷叶的绿、荷花的粉。低年级通用样式见 ../shared/hanzi.css，诗文见 ../shared/poem.css */
+:root {
+  --red: #2f8a6a;
+  --red-d: #1d5e47;
+  --gold: #e48aa3;
+  --gold-l: #f8d6e0;
+  --paper: #f2f8f4;
+  --stone: #fdfffd;
+  --ink-2: #4f6b5f;
+  --line: #cfe3d8;
+}
+
+/* 古诗页：横排、一句一行、注音，放在画面左边 */
+.poem-v.h.jn-poem { left: 4%; right: auto; top: 4.5em; bottom: auto; max-height: calc(100% - 9.5em); }
+.jn-poem .poem-tools { justify-content: flex-start; }
+.jn-poem .poem-text { padding: .3em 1.6em .6em; background: rgba(252, 251, 244, .9); columns: 2; column-gap: 2em; }
+.jn-poem .poem-text h3, .jn-poem .poem-text .author { column-span: all; }
+.poem-v.h.jn-poem .poem-text .pl { break-inside: avoid; }
+.jn-poem .poem-text h3 { font-size: 1.7em; line-height: 2.2; }
+.jn-poem .poem-text .author { font-size: 1em; margin: 0 0 .2em; }
+.poem-v.h.jn-poem .poem-text .pl { display: block; font-size: 1.5em; line-height: 2.2; letter-spacing: .1em; text-align: center; }
+.jn-poem .pl rt { letter-spacing: 0; }
+.jn-poem .pz { font-size: .8em; }
+.jn-shade { background: linear-gradient(90deg, rgba(0, 0, 0, .35), transparent 50%); }
+.jn-poem .note-pop { right: auto; left: 100%; top: 2.6em; margin-left: .8em; }
+
+/* 莲叶何田田：说明句小一号 */
+.subs .jn-say.py { font-size: 1.4em; }
+
+/* 鱼戏莲叶 */
+.jn-game { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.4em; align-items: center; }
+#pond { width: 100%; max-height: 100%; }
+#pond text { font-family: var(--kai); font-size: 20px; fill: #8a2a1e; }
+.jn-fish { transition: transform 1.4s ease-in-out; }
+.jn-fish-body { transition: transform .4s; animation: jnWiggle .6s ease-in-out infinite alternate; }
+@keyframes jnWiggle { from { translate: 0 -2px; } to { translate: 0 2px; } }
+.jn-ripples ellipse { transform-box: fill-box; transform-origin: center; animation: jnRipple 2.4s ease-out infinite; }
+@keyframes jnRipple { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.4); opacity: 0; } }
+.jn-side { display: flex; flex-direction: column; align-items: center; gap: .8em; }
+.jn-dirs { display: grid; grid-template-columns: repeat(3, 2.4em); grid-template-areas: ". b ." "x j d" ". n ."; gap: .3em; font-size: 1.6em; }
+.jn-dir { font-family: var(--kai); font-size: 1.1em; padding: .2em 0; }
+.jn-dir[data-dir="bei"] { grid-area: b; } .jn-dir[data-dir="xi"] { grid-area: x; } .jn-dir[data-dir="jian"] { grid-area: j; }
+.jn-dir[data-dir="dong"] { grid-area: d; } .jn-dir[data-dir="nan"] { grid-area: n; }
+.jn-dir.wrong { animation: nope .35s; }
+.jn-line { margin: 0; min-height: 2.4em; font-size: 2.2em; color: var(--red-d); }
+.jn-msg { margin: 0; min-height: 1.6em; font-size: 1.2em; color: var(--red); font-weight: bold; }
+
+/* 钓鱼 */
+.jn-fishing { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.8fr 1fr; gap: 1.4em; }
+.jn-pool { position: relative; border-radius: 1.2em; background: radial-gradient(circle at 20% 80%, #7cbf7c 0 2.4em, transparent 2.5em), radial-gradient(circle at 85% 20%, #7cbf7c 0 2em, transparent 2.1em), linear-gradient(#bfe6e0, #8fcfc6); overflow: hidden; }
+.jn-zfish { font: inherit; font-size: 1.3em; position: absolute; width: 5.4em; height: 3em; border: none; padding: 0 1em 0 0; background: none; cursor: pointer; animation: jnSwim 4s ease-in-out infinite alternate; transition: transform .8s, opacity .8s; }
+.jn-zfish::before { content: ""; position: absolute; inset: 0 1em 0 0; border-radius: 50%; background: radial-gradient(circle at 30% 35%, #ffb08a, #f26b3a 70%); }
+.jn-zfish::after { content: ""; position: absolute; right: 0; top: .5em; border-left: 1.2em solid #e0532a; border-top: 1em solid transparent; border-bottom: 1em solid transparent; }
+.jn-zfish span { position: relative; font-family: var(--kai); font-size: 1.8em; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .35); }
+@keyframes jnSwim { from { translate: -1em 0; } to { translate: 1.2em .3em; } }
+.jn-zfish.caught { animation: none; transform: translateY(-14em) rotate(-30deg); opacity: 0; pointer-events: none; }
+.jn-bucket { align-self: end; display: flex; flex-direction: column; gap: .6em; background: #d9c4a0; border: .2em solid #a5835a; border-radius: .6em .6em 2.4em 2.4em; padding: .8em 1em 1.4em; min-height: 60%; }
+.jn-bucket p { margin: 0; font-size: 1.15em; }
+.jn-bucket b { color: var(--red); font-size: 1.4em; }
+.jn-caught { flex: 1; display: flex; flex-wrap: wrap; align-content: flex-start; gap: .3em .5em; font-family: var(--kai); font-size: 2em; line-height: 2; }
+.jn-caught span { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+.jn-caught rt { font-family: var(--py); font-size: .44em; color: var(--py-c); }
+
+/* 背诵：诗句居中 */
+.jn-recite { align-self: center; font-size: 1.6em; padding: .2em 2em; }
+.jn-recite p { text-indent: 0; text-align: center; line-height: 2.05; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .poem-v.h.jn-poem { left: .8em; right: .8em; top: 3.4em; max-height: calc(100% - 8em); }
+  .jn-poem .poem-text { height: auto; overflow: auto; columns: 1; }
+  .poem-v.h.jn-poem .poem-text .pl { font-size: 1.3em; }
+  .jn-poem .note-pop { left: 0; top: 100%; }
+  .jn-game { display: flex; flex-direction: column; align-items: stretch; }
+  .jn-dirs { font-size: 1.3em; justify-content: center; }
+  .jn-line { font-size: 1.6em; text-align: center; }
+  .subs .jn-say.py { font-size: 1.05em; }
+  .jn-recite { font-size: 1.3em; padding: .2em .8em; }
+  .jn-fishing { display: flex; flex-direction: column; }
+  .jn-pool { height: 20em; }
+  .jn-zfish { font-size: .9em; }
+  .jn-bucket { min-height: 8em; }
+  .jn-recite p { line-height: 1.9; }
+}

@@ -1,0 +1,51 @@
+/* 忆读书 · 本课配色：旧书页的米黄、墨蓝 */
+:root {
+  --red: #8a3b2e;
+  --red-d: #3f3a5c;
+  --gold: #c39a4a;
+  --gold-l: #ecd9a8;
+  --paper: #f4efe4;
+  --stone: #fcfaf4;
+  --ink-2: #5f5a52;
+  --line: #d9cfbd;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdfbf5 0, transparent 40%), radial-gradient(circle at 90% 95%, #e8dfcd 0, transparent 45%); }
+
+/* 读书时间线 */
+.tl { list-style: none; margin: 0; padding: 0; flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: .7em; position: relative; align-items: stretch; max-height: 24em; }
+.tl::before { content: ""; position: absolute; left: 2%; right: 2%; top: 1.15em; height: .25em; background: var(--line); border-radius: 1em; }
+.tl li { position: relative; display: flex; flex-direction: column; gap: .35em; }
+.tl-age { align-self: center; background: var(--red-d); color: #fff; border-radius: 1em; padding: .2em .8em; font-size: .9em; white-space: nowrap; position: relative; z-index: 1; }
+.tl li b { margin-top: .4em; font-family: var(--kai); font-size: 1.3em; color: var(--red); text-align: center; }
+.tl li > span:last-child { background: #fff; border: 1px solid var(--line); border-top: .25em solid var(--gold); border-radius: .5em; padding: .5em .7em; line-height: 1.75; font-size: 1.3em; flex: 1; font-family: var(--kai); }
+.tl .tl-end .tl-age { background: var(--red); }
+.tl .tl-end > span:last-child { font-family: var(--kai); font-size: 1.15em; color: var(--red); font-weight: bold; border-top-color: var(--red); }
+
+/* 好书 */
+.s-good .quote { flex: none; }
+.s-good .quote p { text-indent: 0; }
+.s-good .pick { font-size: 1.15em; }
+.good-pic { flex: 1; min-height: 8em; border-radius: .6em; background: center / cover no-repeat #e6dccb; }
+
+/* 九个字 */
+.nine { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+.nine-col { background: #fff; border-radius: .6em; padding: .9em 1.1em; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); display: flex; flex-direction: column; gap: .5em; }
+.nine-col b { font-family: var(--kai); font-size: 2.4em; color: var(--red); text-align: center; letter-spacing: .1em; }
+.nine-col p { margin: 0; padding: .4em .7em; background: var(--stone); border-left: .25em solid var(--gold); border-radius: .3em; line-height: 1.6; font-family: var(--kai); font-size: 1.1em; }
+
+.s-clues .quote { flex: none; }
+.s-clues .quote p { text-indent: 0; }
+.s-clues .clues { grid-template-columns: 1fr 1fr; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .tl { grid-template-columns: 1fr; gap: .5em; }
+  .tl::before { left: 2.6em; right: auto; top: 0; bottom: 0; width: .25em; height: auto; }
+  .tl li { display: grid; grid-template-columns: 5.6em 1fr; gap: .2em .6em; }
+  .tl-age { align-self: start; text-align: center; font-size: .8em; }
+  .tl li b { margin: 0; text-align: left; font-size: 1.15em; }
+  .tl li > span:last-child { grid-column: 2; min-height: 0; font-size: 1em; }
+  .tl { max-height: none; }
+  .nine { grid-template-columns: 1fr; }
+  .nine-col b { font-size: 1.8em; }
+  .s-clues .clues { grid-template-columns: 1fr; }
+}

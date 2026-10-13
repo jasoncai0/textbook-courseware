@@ -1,0 +1,65 @@
+/* 海的女儿（四下 28）· 本课配色：矢车菊蓝、珊瑚粉、珍珠白。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #2e63a8;
+  --red-d: #1b3766;
+  --gold: #d29a6a;
+  --gold-l: #f6dccb;
+  --paper: #eef3f7;
+  --stone: #fafcfd;
+  --ink-2: #4f5a66;
+  --line: #ccd8e2;
+}
+.frame { font-size: min(1.5vw, 2.66vh); }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.subs { font-size: 1.5em; }
+
+/* ---------- 封面 ---------- */
+.s-cover .cover-title { font-size: 7em; letter-spacing: .1em; }
+.task-row { display: flex; flex-direction: column; gap: .5em; font-size: 1.25em; }
+.task-row span { background: rgba(14, 34, 70, .72); padding: .3em .9em; border-radius: .4em; text-shadow: none; }
+.task-row b { color: #ffd9b8; margin-right: .5em; }
+.task-row em { font-style: normal; color: #ffd9b8; font-weight: bold; }
+
+/* ---------- 下潜深度尺 ---------- */
+.s-dive .bd { grid-template-columns: 34% 1fr; }
+.dive-stage { flex-direction: row !important; position: relative; }
+#diveSvg { height: 100%; width: auto; max-width: 85%; border-radius: .8em; flex: none; }
+.dl { fill: #fff; font-size: 16px; font-family: var(--kai); }
+.gauge { position: relative; width: .5em; margin: 1em 0; border-radius: .3em; background: linear-gradient(#8fc8ea, #0d2a58); }
+.gauge i { position: absolute; left: 50%; top: 0; width: 1.1em; height: 1.1em; margin: -.55em 0 0 -.55em; border-radius: 50%; background: var(--gold); border: .15em solid #fff; transition: top 1.4s ease; }
+.dive-stage .media-btn { top: auto; bottom: 0; }
+.anchor { transform: translateY(-230px); }
+.d2.on .anchor { animation: drop 2s ease-out forwards; }
+@keyframes drop { to { transform: translateY(0); } }
+.spire { opacity: 0; }
+.d3.on .spire { animation: stackUp .5s ease forwards; }
+@keyframes stackUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+.weed { fill: none; stroke: #4fa38a; stroke-width: 8; stroke-linecap: round; transform-box: fill-box; transform-origin: bottom; animation: sway 3s ease-in-out infinite alternate; }
+.weed.w2 { stroke: #c45b7d; animation-duration: 2.4s; }
+@keyframes sway { from { transform: skewX(-6deg); } to { transform: skewX(6deg); } }
+.fishes path { fill: #ffcf6e; }
+.dive-text p { display: none; margin: 0; font-family: var(--kai); font-size: 1.55em; line-height: 1.8; background: #fff; border-left: .35em solid var(--red); border-radius: .5em; padding: .7em 1em; }
+.dive-text p.now { display: block; animation: subIn .7s ease both; }
+.wonder { display: flex; flex-wrap: wrap; gap: .45em; align-items: center; background: #fff8f1; border: 1px dashed var(--gold); border-radius: .6em; padding: .6em .8em; }
+.wonder b { width: 100%; color: var(--red-d); }
+.wonder span { font-family: var(--kai); font-size: 1.15em; padding: .15em .7em; border-radius: 1em; background: var(--red); color: #fff; }
+
+/* ---------- 人物形象卡 ---------- */
+.s-cards .clues { grid-template-columns: repeat(3, 1fr); }
+.s-cards .clue, .s-cards .clue-in { min-height: 7.6em; }
+.s-cards .clue-face.front { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(160deg, #e6f0fa, #fff); }
+.s-cards .clue-face.front b { font-size: 1.35em; color: var(--red-d); margin-bottom: .2em; }
+.s-cards .clue-face.back { font-size: 1.02em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3.4em; }
+  .task-row { font-size: 1em; }
+  .subs { font-size: 1.12em; }
+  .hd h2 { font-size: 1.3em; }
+  .dive-stage { justify-content: center; }
+  #diveSvg { height: 26em; }
+  .dive-text p { font-size: 1.15em; }
+  .s-cards .clues { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,111 @@
+/* 飞向蓝天的恐龙 · 本课配色：远古的橄榄绿、天空蓝。页面样式见 ../shared/narrative.css，提问—解决卡样式见 wenjie.css */
+:root {
+  --red: #4a7a8c;
+  --red-d: #2a4a58;
+  --gold: #c48a2a;
+  --gold-l: #f2dcb0;
+  --paper: #f1f2ea;
+  --stone: #fbfbf6;
+  --ink-2: #56604f;
+  --line: #d2d6c4;
+}
+
+/* ---------- 中年级：字号再大一点 ---------- */
+.frame { font-size: min(1.5vw, 2.66vh); }
+.s-cover .cover-title { font-size: 5.6em; }
+.cover-ask { margin: .4em 0; font-family: var(--kai); font-size: 1.9em; line-height: 1.5; }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.quote { font-size: 1.3em; }
+
+/* ---------- 似乎毫不相干 ---------- */
+.s-two .bd { grid-template-columns: 42% 1fr; }
+.two-cards { display: grid; grid-template-columns: 1fr auto 1fr; gap: .8em; align-items: center; flex: 1; min-height: 0; }
+.two-card { background: #fff; border-radius: .8em; overflow: hidden; text-align: center; box-shadow: 0 .2em .8em rgba(30, 50, 40, .12); padding-bottom: .6em; }
+.two-pic { height: 9em; background: #dfe3d4 center / cover no-repeat; display: grid; place-items: center; }
+.two-pic.bird { background: #dfeaf3; }
+.two-pic svg { width: 70%; }
+.two-card b { display: block; font-family: var(--kai); font-size: 1.8em; color: var(--red-d); margin-top: .2em; }
+.two-card span { color: var(--ink-2); }
+.two-mid { font-family: var(--kai); font-size: 1.5em; color: var(--gold); text-align: center; line-height: 1.2; }
+
+/* ---------- 证据链 ---------- */
+.s-proof .bd { grid-template-columns: 30% 1fr; }
+.proof-pic { flex: 1; min-height: 8em; border-radius: .8em; background: #ddd center / cover no-repeat; }
+.proof { display: flex; flex-direction: column; gap: .45em; }
+.pf { display: flex; gap: .7em; align-items: center; background: #fff; border-radius: .6em; padding: .45em .8em; border-left: .3em solid var(--line); }
+.pf em { flex: none; font-style: normal; font-family: var(--kai); font-size: 1.2em; color: #fff; background: var(--red); border-radius: .4em; padding: .15em .5em; }
+.pf p { margin: 0; font-family: var(--kai); font-size: 1.12em; line-height: 1.55; }
+.pf p b { color: var(--red-d); }
+.pf.hot { border-left-color: var(--gold); background: #fff8ea; }
+.pf.hot em { background: var(--gold); }
+.pf:not(:last-child)::after { content: none; }
+
+/* ---------- 演化变形器 ---------- */
+.s-evo .stage { gap: .5em; }
+.evo-top { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 13em; gap: .8em; }
+#evoSvg { width: 100%; height: 100%; border-radius: .8em; }
+#evoSvg .ev-sky { fill: #d6ebf2; }
+#evoSvg .ev { opacity: 0; transition: opacity .7s ease; }
+#evoSvg.e0 .s0, #evoSvg.e1 .s1, #evoSvg.e2 .s2, #evoSvg.e3 .s3, #evoSvg.e4 .s4 { opacity: 1; }
+#evoSvg .ev-lab { fill: #2a4a58; font-weight: bold; }
+#evoSvg .ev-era { font-size: 28px; fill: #2a4a58; }
+#evoSvg .ft-bone, #evoSvg .ft-head, #evoSvg .ft-arm, #evoSvg .ft-feather { opacity: 0; transition: opacity .6s ease; }
+#evoSvg.f-bone .ft-bone, #evoSvg.f-head .ft-head, #evoSvg.f-arm .ft-arm, #evoSvg.f-feather .ft-feather { opacity: 1; }
+#evoSvg:not(.f-arm) .ft-arm .ft-feather { opacity: 0; }
+#evoSvg .v-tree, #evoSvg .v-run { opacity: 0; transition: opacity .6s; }
+#evoSvg.v-tree-on .v-tree, #evoSvg.v-run-on .v-run { opacity: 1; }
+#evoSvg.e3.v-tree-on .glide { animation: glide 3.2s ease-in-out infinite; }
+#evoSvg.e3.v-run-on .runner { animation: runFly 3.2s ease-in infinite; }
+@keyframes glide { 0% { transform: translate(190px, 90px); } 100% { transform: translate(520px, 190px); } }
+@keyframes runFly { 0% { transform: translate(80px, 255px); } 55% { transform: translate(420px, 245px); } 100% { transform: translate(720px, 130px); } }
+#evoSvg.e4 .s4 path { animation: flap2 .8s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes flap2 { to { transform: scaleY(.6); } }
+.evo-ctrl > div { display: none; flex-direction: column; gap: .45em; }
+.evo-ctrl > div.show { display: flex; }
+.evo-ctrl p { margin: 0; color: var(--ink-2); }
+.evo-ctrl .btn { font-family: var(--kai); font-size: 1.2em; }
+.ev-row { font-family: var(--kai); font-size: 1.1em; }
+.ev-row input { height: 2em; }
+.ev-txt { margin: 0; min-height: 4.6em; font-family: var(--kai); font-size: 1.12em; line-height: 1.6; background: #fff; border-radius: .5em; padding: .4em .9em; border-left: .3em solid var(--gold); }
+
+/* ---------- 讲解员提词卡 ---------- */
+.prompter { flex: 1; display: flex; flex-direction: column; gap: .8em; justify-content: center; }
+.pr-dots { display: flex; gap: .4em; justify-content: center; }
+.pr-dots i { width: 2.2em; height: .4em; border-radius: 1em; background: var(--line); }
+.pr-dots i.done { background: var(--gold); }
+.pr-dots i.cur { background: var(--red); }
+.pr-card { background: #22343c; color: #f5f2e8; border-radius: 1em; padding: 1.2em 2em; min-height: 10em; display: flex; flex-direction: column; justify-content: center; text-align: center; box-shadow: inset 0 0 0 .35em #4a7a8c; }
+.pr-card b { font-family: var(--kai); font-size: 3em; color: var(--gold-l); }
+.pr-card p { margin: .4em 0 0; font-family: var(--kai); font-size: 1.5em; line-height: 1.6; }
+.pr-btns { justify-content: center; align-items: center; }
+.pr-btns .btn { font-size: 1.1em; }
+.pr-time { font-family: Georgia, serif; font-size: 1.3em; color: var(--red-d); min-width: 4em; }
+
+/* ---------- 去掉试试 ---------- */
+.exact { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.ex-row { display: grid; grid-template-columns: 1fr auto; gap: .3em .6em; align-items: center; background: #fff; border-radius: .6em; padding: .5em .8em; border: 1px solid var(--line); }
+.ex-s { margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.6; }
+.ex-k { color: var(--red); font-weight: bold; text-decoration: underline dotted; text-underline-offset: .2em; transition: opacity .4s; }
+.ex-row.off .ex-k { opacity: .2; text-decoration: line-through; }
+.ex-why { grid-column: 1 / -1; margin: 0; display: none; font-size: .95em; color: #6a4a10; background: #fff8e6; border-radius: .4em; padding: .3em .6em; }
+.ex-row.off .ex-why { display: block; animation: subIn .5s ease both; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 2.6em; }
+  .cover-ask { font-size: 1.3em; }
+  .hd h2 { font-size: 1.3em; }
+  .quote { font-size: 1.05em; }
+  .two-cards { grid-template-columns: 1fr; }
+  .two-pic { height: 8em; }
+  .evo-top { grid-template-columns: 1fr; }
+  #evoSvg { height: auto; }
+  .evo-ctrl > div.show { flex-direction: row; flex-wrap: wrap; }
+  .pr-card b { font-size: 2em; }
+  .pr-card p { font-size: 1.15em; }
+  .exact { grid-template-columns: 1fr; }
+}
+.s-proof .side { position: relative; }
+.s-ziyin .zy-card { font-size: 1.35em; }
+.s-ziyin .zy-write { font-size: 1.7em; }

@@ -1,0 +1,69 @@
+/* 精卫填海（四上 13）· 本课配色：宣纸、海青、山绿。诗文样式见 ../shared/poem.css */
+:root {
+  --red: #9a3f2c;
+  --red-d: #4a2a20;
+  --gold: #4f86a6;
+  --gold-l: #cfe2ec;
+  --paper: #f2f0e6;
+  --stone: #fbfaf3;
+  --ink-2: #555a52;
+  --line: #d4d2bf;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcfbf3 0, transparent 40%), radial-gradient(circle at 90% 95%, #dfe6e0 0, transparent 45%); }
+
+/* 中年级：字大一点 */
+.tip { font-size: 1.05em; }
+.subs { font-size: 1.6em; }
+.hd h2 { font-size: 1.85em; }
+.s-cover .cover-title { font-size: 7.5em; letter-spacing: .12em; }
+.poem-v.h .poem-text .pl { font-size: 2.3em; }
+.poem-v.h.show-yi .pl { font-size: 1.7em; }
+.read-item p { font-size: 1.8em; }
+.portrait-card { position: relative; }
+.portrait-img { background-position: 50% 50%; background-size: cover; }
+.plot-card { width: 19%; }
+.plot-card span, .plot-card b { font-size: 1em; }
+
+/* 小小的鸟，茫茫的海 */
+.s-bird .bd { grid-template-columns: 56% 1fr; }
+#seaSvg { flex: 1; min-height: 0; width: 100%; border-radius: .8em; }
+#seaBird { transition: transform 1.3s ease-in-out; }
+#seaSvg .sw { animation: sw 2.4s ease-in-out infinite alternate; }
+@keyframes sw { to { transform: translateX(16px); } }
+.sea-row { flex: 0 0 auto; align-items: center; }
+.sea-row .btn { font-family: var(--kai); font-size: 1.15em; white-space: nowrap; }
+.sea-row .btn:disabled { opacity: .5; }
+#seaSay { flex: 1; margin: 0; font-family: var(--kai); font-size: 1.15em; }
+.bird-card { display: flex; align-items: center; gap: 1em; background: #fff; border-radius: .8em; padding: .6em 1em; }
+.bird-card svg { width: 45%; flex: none; }
+.bird-notes { margin: 0; padding: 0; list-style: none; font-family: var(--kai); font-size: 1.35em; line-height: 1.9; }
+.bird-notes b { color: var(--red); }
+
+/* 精卫的印象 */
+.s-impress .bd { grid-template-columns: 38% 1fr; }
+.s-impress .pick { font-size: 1.3em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 4.2em; }
+  .subs { font-size: 1.2em; }
+  .poem-v.h .poem-text .pl { font-size: 1.45em; }
+  .poem-v.h.show-yi .pl { font-size: 1.15em; }
+  .read-item p { font-size: 1.3em; }
+  #seaSvg { flex: none; height: auto; }
+  .sea-row { flex-direction: row; }
+  .bird-notes { font-size: 1.1em; }
+}
+
+/* 连环画四格 */
+.comic { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; flex: 1; min-height: 0; }
+.panel-c { display: flex; flex-direction: column; background: #fff; border: 3px solid #2b2a30; border-radius: .3em; overflow: hidden; box-shadow: .3em .3em 0 rgba(43, 42, 48, .25); }
+.pc-img { flex: none; height: 12em; background: center / cover no-repeat #dfe6e0; }
+.panel-c i { font-style: normal; align-self: flex-start; margin: -.2em 0 0; background: #2b2a30; color: #fff; padding: .1em .6em; font-size: .85em; }
+.panel-c .yw { margin: .4em .6em 0; font-family: var(--kai); font-size: 1.4em; line-height: 1.5; color: var(--red-d); }
+.panel-c .bh { margin: .2em .6em .6em; font-size: .98em; line-height: 1.55; color: #2f6b5e; }
+@media (max-width: 820px), (max-height: 520px) {
+  .comic { grid-template-columns: 1fr 1fr; }
+  .pc-img { height: 8em; }
+  .panel-c .yw { font-size: 1.1em; }
+  .panel-c .bh { font-size: .85em; }
+}

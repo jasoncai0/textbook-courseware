@@ -1,0 +1,76 @@
+/* 操场上 · 本课配色：跑道红、草地绿。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #d24e34;
+  --red-d: #983520;
+  --gold: #e9a62c;
+  --gold-l: #fde2a5;
+  --paper: #f8f7ee;
+  --stone: #fffefa;
+  --ink-2: #5f5b4c;
+  --line: #e0d9c2;
+}
+.cc-lb { font-size: 2em; white-space: nowrap; }
+
+/* 做动作认字：左字、中小人、右偏旁 */
+.cc-act { flex: 1; min-height: 0; display: grid; grid-template-columns: auto 1fr 1fr; gap: 1.4em; align-items: center; }
+.cc-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.cc-btn { font: inherit; font-family: var(--kai); font-size: 2.4em; line-height: 1.15; width: 1.9em; padding: .35em 0 .1em; border-radius: .3em; border: 3px solid #4f8fc4; background: #fff; color: var(--ink); cursor: pointer; }
+.cc-btn.hand { border-color: var(--gold); }
+.cc-btn.on { background: var(--gold-l); }
+.cc-btn rt { font-family: var(--py); font-size: .4em; color: var(--py-c); }
+.cc-stage { align-self: stretch; display: grid; place-items: center; background: #fff; border-radius: 1em; box-shadow: 0 .3em 1em rgba(80, 50, 20, .1); min-height: 0; }
+.cc-man { width: 100%; max-height: 100%; aspect-ratio: 240 / 260; stroke: #3a3530; stroke-width: 9; stroke-linecap: round; fill: none; }
+.cc-head { fill: #ffe2c6; }
+.cc-ground { stroke: #9fc788; stroke-width: 4; }
+.cc-ball { fill: #f08a3c; stroke-width: 3; opacity: 0; }
+.cc-rope { stroke: #c79a52; stroke-width: 6; opacity: 0; }
+.cc-man g { transform-box: view-box; transition: transform .4s; }
+.cc-arm { transform-origin: 110px 84px; }
+.cc-leg { transform-origin: 110px 150px; }
+.cc-body { transform-origin: 110px 214px; }
+.use-hand .cc-arm line, .use-foot .cc-leg line { stroke: var(--red); }
+/* 0 打：右手举过头往下挥 */
+.act-0 .cc-arm.r { animation: ccHit .8s ease-in infinite; }
+.act-0 .cc-ball { opacity: 1; animation: ccBallHit .8s ease-in infinite; }
+@keyframes ccHit { 0% { transform: rotate(-150deg); } 60% { transform: rotate(-40deg); } 100% { transform: rotate(-150deg); } }
+@keyframes ccBallHit { 0%, 50% { transform: translate(-10px, -150px); } 100% { transform: translate(40px, -120px); } }
+/* 1 拔：双手向前拉绳，身体往后仰 */
+.act-1 .cc-arm { transform: rotate(-50deg); }
+.act-1 .cc-arm.l { transform: rotate(-95deg); }
+.act-1 .cc-body { animation: ccPull 1s ease-in-out infinite; }
+.act-1 .cc-rope { opacity: 1; animation: ccPull 1s ease-in-out infinite; transform-origin: 110px 214px; transform-box: view-box; }
+@keyframes ccPull { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(-18deg); } }
+/* 2 拍：右手上下拍，球一弹一弹 */
+.act-2 .cc-arm.r { animation: ccPat .5s ease-in-out infinite alternate; }
+.act-2 .cc-ball { opacity: 1; animation: ccBounce .5s ease-in-out infinite alternate; }
+@keyframes ccPat { from { transform: rotate(-30deg); } to { transform: rotate(10deg); } }
+@keyframes ccBounce { from { transform: translate(-6px, -40px); } to { transform: translate(-6px, 0); } }
+/* 3 跑：两腿、两手前后交替 */
+.act-3 .cc-leg.l, .act-3 .cc-arm.r { animation: ccSwing .4s ease-in-out infinite alternate; }
+.act-3 .cc-leg.r, .act-3 .cc-arm.l { animation: ccSwing .4s ease-in-out infinite alternate-reverse; }
+@keyframes ccSwing { from { transform: rotate(-35deg); } to { transform: rotate(35deg); } }
+/* 4 踢：右脚往前踢，球飞出去 */
+.act-4 .cc-leg.r { animation: ccKick 1s ease-in infinite; }
+.act-4 .cc-ball { opacity: 1; animation: ccFly 1s ease-out infinite; }
+@keyframes ccKick { 0%, 30% { transform: rotate(25deg); } 55% { transform: rotate(-70deg); } 100% { transform: rotate(25deg); } }
+@keyframes ccFly { 0%, 50% { transform: translate(-20px, 0); } 100% { transform: translate(60px, -120px); opacity: 0; } }
+/* 5 跳：整个人往上跳，手举起来 */
+.act-5 .cc-body { animation: ccJump .7s ease-in-out infinite; }
+.act-5 .cc-arm.l { transform: rotate(95deg); }
+.act-5 .cc-arm.r { transform: rotate(-95deg); }
+@keyframes ccJump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-45px); } }
+.cc-info { display: flex; flex-direction: column; gap: .8em; align-items: center; text-align: center; }
+.cc-word { margin: 0; min-height: 1.9em; font-family: var(--kai); font-size: 2.8em; line-height: 2; }
+.cc-word rt { font-family: var(--py); font-size: .38em; color: var(--py-c); }
+.cc-bs { margin: 0; min-height: 2em; font-size: 1.4em; }
+.cc-bs b { font-family: var(--kai); color: var(--red-d); }
+.cc-r { font-size: 1.8em; vertical-align: middle; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cc-lb { font-size: 1.2em; }
+  .cc-act { display: flex; flex-direction: column; align-items: stretch; }
+  .cc-btns { grid-template-columns: repeat(6, 1fr); }
+  .cc-btn { font-size: 1.6em; width: auto; }
+  .cc-stage { height: 13em; flex: none; }
+  .cc-word { font-size: 2em; }
+}

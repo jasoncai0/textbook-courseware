@@ -1,0 +1,124 @@
+/* 日月潭 · 本课配色：碧绿的湖水、晨雾的淡紫、阳光的金。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #2f7f8a;
+  --red-d: #1d5560;
+  --gold: #e0a83e;
+  --gold-l: #f6dfa8;
+  --paper: #eef5f4;
+  --stone: #fbfefd;
+  --ink-2: #4f6466;
+  --line: #cfe0de;
+}
+
+/* 二年级课文句子长：注音字幕比一年级小一号 */
+.subs { padding: 2.4em 7% 4.2em; }
+.subs .py { font-size: 1.32em; line-height: 2.25; }
+.py ruby { margin: 0 .05em; }
+.s-cover .cover-title ruby { margin: 0; }
+.ry-ask { margin: .3em 0 .8em; font-size: 1.6em; font-family: var(--kai); }
+.ry-big { font-size: 1.5em; text-align: center; }
+
+/* ---------- 日潭月潭 ---------- */
+.ry-bd { grid-template-columns: 1fr 1.05fr; align-items: center; }
+.ry-lake { display: flex; flex-direction: column; gap: .4em; min-height: 0; }
+.ry-lake svg { width: 100%; max-height: 24em; }
+.ry-water { fill: #4fa9a6; stroke: #2f7f8a; stroke-width: 3; transition: fill .6s; }
+[data-part] { cursor: pointer; }
+.ry-sun { fill: #ffd25a; stroke: #f0a72e; stroke-width: 6; stroke-linecap: round; opacity: 0; transition: opacity .6s; }
+.ry-ri.lit .ry-water { fill: #f6c75e; }
+.ry-ri.lit .ry-sun { opacity: 1; }
+.ry-yue.lit .ry-water { fill: #dfe6f2; }
+.ry-tag { font: bold 26px var(--kai); fill: #fff; text-anchor: middle; paint-order: stroke; stroke: rgba(0, 0, 0, .25); stroke-width: 3px; }
+.ry-is { font: 18px var(--kai); fill: #3d5f2e; }
+.ry-n { font: bold 20px var(--serif); fill: #fff; text-anchor: middle; }
+.ry-hint { margin: 0; text-align: center; color: var(--ink-2); }
+.ry-text { font-size: 1.7em; }
+.ry-text p { margin: 0; }
+
+/* ---------- 时间天气滑块 ---------- */
+.ry-view { position: relative; flex: 1; min-height: 0; border-radius: .8em; overflow: hidden; box-shadow: 0 .3em 1em rgba(20, 50, 55, .2); }
+.ry-layer { position: absolute; inset: 0; background: center / cover no-repeat; opacity: 0; transition: opacity 1.2s ease; }
+.ry-layer.l0 { background-color: #8d93b8; }
+.ry-layer.l1 { background-color: #6fb7c4; }
+.ry-layer.l2 { background-color: #9aa8a6; }
+.ry-layer video.scene-bg { transform: none !important; }
+.ry-view[data-t="0"] .l0, .ry-view[data-t="1"] .l1, .ry-view[data-t="2"] .l2 { opacity: 1; }
+.ry-fx { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s; pointer-events: none; }
+.ry-view[data-t="0"] .fx0, .ry-view[data-t="1"] .fx1, .ry-view[data-t="2"] .fx2 { opacity: 1; }
+.ry-mist { position: absolute; left: -20%; right: -20%; top: 46%; height: 20%; background: radial-gradient(ellipse at center, rgba(255, 255, 255, .65), transparent 70%); filter: blur(6px); animation: ryMist 9s ease-in-out infinite alternate; }
+.ry-mist.m2 { top: 58%; animation-duration: 12s; animation-direction: alternate-reverse; }
+@keyframes ryMist { to { transform: translateX(12%); } }
+.ry-star, .ry-light { position: absolute; width: .45em; height: .45em; border-radius: 50%; background: #fffbe0; box-shadow: 0 0 .6em .2em rgba(255, 245, 190, .8); animation: ryTwinkle 1.6s ease-in-out infinite alternate; }
+.ry-light { background: #ffd27a; }
+.ry-light::after { content: ""; position: absolute; left: 0; top: 4em; width: .45em; height: 1.4em; border-radius: 50%; background: rgba(255, 210, 122, .45); filter: blur(2px); }
+@keyframes ryTwinkle { from { opacity: .35; } to { opacity: 1; } }
+.ry-sunray { position: absolute; right: -10%; top: -30%; width: 60%; aspect-ratio: 1; background: radial-gradient(circle, rgba(255, 244, 200, .7), transparent 60%); }
+.ry-rain { position: absolute; inset: 0; background: repeating-linear-gradient(105deg, transparent 0 14px, rgba(255, 255, 255, .35) 14px 15px); animation: ryRain .6s linear infinite; }
+@keyframes ryRain { to { background-position: -20px 60px; } }
+.ry-veil { position: absolute; inset: 0; background: rgba(235, 240, 240, .35); backdrop-filter: blur(1.5px); }
+.ry-say { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 1.6em 6% .6em; background: linear-gradient(transparent, rgba(10, 30, 35, .75) 35%); color: #f3faf9; font-size: 1.45em; }
+.ry-say p { margin: 0; animation: subIn .7s ease both; }
+.ry-say rt { color: #ffe7a3; }
+.ry-ctl { display: flex; align-items: center; gap: .8em; font-size: 1.15em; }
+.ry-ctl input { flex: 1; accent-color: var(--red); height: 1.4em; }
+.ry-ctl .btns { margin-left: 1em; }
+
+/* 背诵 */
+.ry-recite { font-size: 1.4em; }
+
+/* 读一读记一记 */
+.ry-words { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.ry-words span { text-align: center; font-size: 2em; background: #fff; border-radius: .6em; padding: .1em .4em; box-shadow: 0 .15em .5em rgba(20, 50, 55, .1); }
+.ry-words .py rt, .ry-words rt { font-size: .4em; }
+
+/* ---------- 小导游 ---------- */
+.ry-guide { flex: 1; min-height: 0; display: grid; grid-template-columns: auto 1fr; gap: 1.4em; align-items: start; }
+.ry-flag { width: 5em; height: 3.4em; margin-top: .4em; display: grid; place-items: center; background: var(--gold); color: #fff; font-size: 1.4em; font-weight: bold; clip-path: polygon(0 0, 100% 0, 85% 50%, 100% 100%, 0 100%); box-shadow: inset .3em 0 0 #9b6a1a; }
+.ry-cards { margin: 0; padding-left: 1.6em; display: flex; flex-direction: column; gap: .5em; }
+.ry-cards li { font-family: var(--kai); font-size: 1.55em; background: #fff; border-radius: .5em; padding: .3em .8em; border-left: .3em solid var(--red); }
+
+/* ---------- 点灯光 ---------- */
+.ry-night { flex: 1; min-height: 0; display: grid; grid-template-columns: 2.4fr 1fr; gap: 1.2em; }
+.ry-shore { display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: .6em .8em; padding: 1em; border-radius: 1em; background: linear-gradient(#1c2a4a 0 48%, #2c4a5e 48% 52%, #183344 52%); }
+.ry-lamp { font: inherit; position: relative; width: 3.8em; height: 7.6em; border: none; background: none; cursor: pointer; padding: 0; }
+.ry-lamp span { position: absolute; left: 0; right: 0; top: 0; height: 3.8em; display: grid; place-items: center; border-radius: 1em 1em .4em .4em; background: #4a5470; color: #c9d0e6; font-family: var(--kai); font-size: 1em; transition: background .5s, box-shadow .5s; }
+.ry-lamp span ruby { font-size: 2em; }
+.ry-lamp rt { font-family: var(--py); font-size: .4em; color: transparent; }
+.ry-lamp i { position: absolute; left: 0; right: 0; top: 4em; height: 3.4em; display: grid; place-items: center; font-style: normal; font-family: var(--kai); font-size: 2em; line-height: 1; transform: scaleY(-1); opacity: 0; color: #ffd27a; filter: blur(1px); transition: opacity .6s; }
+.ry-lamp.lit span { background: #ffd27a; color: #5a3a00; box-shadow: 0 0 1.2em .3em rgba(255, 210, 122, .7); }
+.ry-lamp.lit rt { color: #7a4b00; }
+.ry-lamp.lit i { opacity: .35; }
+.ry-nside { align-self: center; display: flex; flex-direction: column; gap: .8em; align-items: flex-start; }
+.ry-ln { margin: 0; font-size: 1.4em; }
+.ry-ln b { color: var(--red); font: bold 1.5em var(--py); }
+.ry-ldone { margin: 0; font-size: 1.2em; color: var(--red-d); font-weight: bold; opacity: 0; transition: opacity .6s; }
+.ry-ldone.show { opacity: 1; }
+
+/* 写字 8 个 */
+.ry-write { gap: .4em 1.8em; }
+.ry-write .hz-cells .hz-tzg { --tz: 4.1em; }
+
+/* 回顾 */
+.ry-sum { text-align: center; }
+.ry-sum .py { font-size: 1.7em; }
+.ry-sum div { display: flex; justify-content: center; gap: 1.6em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs .py { font-size: 1.12em; }
+  .ry-text { font-size: 1.2em; }
+  .ry-view { height: 26em; flex: none; }
+  .ry-say { font-size: 1.05em; padding: 1em 4% .4em; }
+  .ry-ctl { flex-wrap: wrap; }
+  .ry-recite { font-size: 1.1em; }
+  .ry-words { grid-template-columns: 1fr 1fr; }
+  .ry-words span { font-size: 1.4em; }
+  .ry-guide { grid-template-columns: 1fr; }
+  .ry-cards li { font-size: 1.15em; }
+  .ry-night { display: flex; flex-direction: column; }
+  .ry-lamp { width: 3em; height: 6em; }
+  .ry-lamp span { height: 3em; }
+  .ry-lamp span ruby { font-size: 1.5em; }
+  .ry-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .ry-sum .py { font-size: 1.2em; }
+  .ry-sum div { flex-direction: column; gap: 0; }
+}

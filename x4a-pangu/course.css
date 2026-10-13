@@ -1,0 +1,58 @@
+/* 盘古开天地（四上 12）· 本课配色：赭石、青天、大地黄 */
+:root {
+  --red: #a8432a;
+  --red-d: #5c2416;
+  --gold: #d49a2a;
+  --gold-l: #f2dca6;
+  --paper: #f5eee0;
+  --stone: #fcf8ef;
+  --ink-2: #5d5244;
+  --line: #dccdb0;
+}
+/* 中年级：字再大一点 */
+.subs { font-size: 1.6em; }
+.tip { font-size: 1.05em; }
+.hd h2 { font-size: 1.85em; }
+.s-cover .cover-title { font-size: 7.5em; letter-spacing: .12em; }
+.portrait-card { position: relative; }
+.portrait-img { background-position: 50% 40%; background-size: cover; }
+.subs .up-word { color: #bfe3ff; font-weight: normal; }
+.subs .down-word { color: #f2d29a; font-weight: normal; }
+.subs .beat { font-size: 1.3em; color: #f2c3b3; }
+
+/* 天每天升高一丈 */
+.s-grow .bd { grid-template-columns: 55% 1fr; }
+#growSvg { border-radius: .8em; }
+#growSvg rect, #growSvg g { transition: none; }
+.grow-num { display: flex; align-items: baseline; gap: .3em; color: var(--red-d); }
+.grow-num b { font-size: 3.4em; font-family: Georgia, var(--serif); }
+.grow-num span { font-size: 1.4em; }
+#growSay { font-family: var(--kai); font-size: 1.25em; min-height: 3.6em; }
+
+/* 连一连 */
+.match { position: relative; display: grid; grid-template-columns: 1fr 1fr; column-gap: 26%; flex: 1; min-height: 0; }
+.match-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.match-lines line { stroke: var(--gold); stroke-width: 3; stroke-linecap: round; }
+.match-col { display: flex; flex-direction: column; justify-content: space-between; gap: .4em; }
+.mt-item { font: inherit; font-family: var(--kai); font-size: 1.25em; padding: .3em .8em; border: 2px solid var(--line); border-radius: .5em; background: #fff; cursor: pointer; text-align: center; }
+.mt-item.sel { border-color: var(--red); box-shadow: 0 0 0 .2em #f3d1c6; }
+.mt-item.done { border-color: var(--gold); background: #fff8e1; color: var(--red-d); cursor: default; }
+.mt-item.nope { animation: nope .35s; }
+@keyframes nope { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+/* 心目中的盘古 */
+.s-hero .bd { grid-template-columns: 36% 1fr; }
+.s-hero .pick { font-size: 1.25em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .subs { font-size: 1.15em; }
+  .s-cover .cover-title { font-size: 4em; }
+  #growSvg { flex: none; }
+  .grow-num b { font-size: 2.4em; }
+  .match { column-gap: 12%; }
+  .mt-item { font-size: 1em; padding: .35em .4em; }
+}
+/* 情节图卡片：中年级字大一点 */
+.plot-card { width: 19%; }
+.plot-card span { font-size: 1em; }
+.plot-card b { font-size: 1em; }

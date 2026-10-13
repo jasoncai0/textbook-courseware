@@ -1,0 +1,81 @@
+/* 黄继光（四下 24）· 本课配色：夜色深蓝、黎明橙红，庄重克制。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #9b3027;
+  --red-d: #5e1d17;
+  --gold: #c9973a;
+  --gold-l: #f2dcaa;
+  --paper: #f1eee8;
+  --stone: #fbfaf6;
+  --ink-2: #565049;
+  --line: #d6cfc2;
+}
+.frame { font-size: min(1.5vw, 2.66vh); }
+.hd h2 { font-size: 1.85em; }
+.tip { font-size: 1.05em; }
+.subs { font-size: 1.5em; }
+.subs .hl, .cine .hl { color: #ffd88a; }
+.say { font-weight: normal; color: #ffd88a; }
+
+/* ---------- 封面 ---------- */
+.s-cover .cover-title { font-size: 7em; letter-spacing: .15em; }
+.task-row { display: flex; flex-direction: column; gap: .5em; font-size: 1.25em; }
+.task-row span { background: rgba(20, 24, 36, .72); padding: .3em .9em; border-radius: .4em; text-shadow: none; }
+.task-row b { color: #ffd88a; margin-right: .5em; }
+.task-row em { font-style: normal; color: #ffd88a; font-weight: bold; }
+
+/* ---------- 动作慢镜头 ---------- */
+.s-slope .bd { grid-template-columns: 58% 1fr; }
+.s-slope .stage { gap: .5em; }
+#slopeSvg { border-radius: .8em; flex: 1; min-height: 0; }
+.sky-bar { position: relative; display: flex; justify-content: space-between; padding: .3em .6em; border-radius: .5em; background: linear-gradient(90deg, #0c1426, #2a3550 45%, #c27a58 80%, #f3c37a); color: #f4eee2; font-size: .9em; }
+.sky-bar i { position: absolute; bottom: -.35em; left: 6%; width: .7em; height: .7em; margin-left: -.35em; border-radius: 50%; background: #ffd36a; box-shadow: 0 0 .5em #ffd36a; transition: left 1.6s ease; }
+.dawn { opacity: 0; transition: opacity 2.4s ease; }
+.venus { filter: drop-shadow(0 0 4px #fff6c9); }
+.flare { opacity: 0; transition: opacity 1s; }
+.flare-on .flare { opacity: 1; animation: flareDrift 6s ease-in-out infinite alternate; }
+@keyframes flareDrift { from { transform: translate(0, 0); } to { transform: translate(40px, 50px); } }
+.fire { fill: #e8553a; opacity: .7; transform-box: fill-box; transform-origin: center; animation: firePulse .9s ease-in-out infinite; transition: opacity 1s; }
+@keyframes firePulse { 50% { opacity: .25; transform: scale(.7); } }
+.half .fire { animation-duration: .6s; }
+.fire-out .fire { opacity: 0; animation: none; }
+.ruler { opacity: 0; transition: opacity .6s; }
+.ruler-on .ruler { opacity: 1; }
+.rl { fill: #f4eee2; font-size: 15px; opacity: 0; }
+.ruler-on .rl { animation: appear .5s ease forwards; }
+.ruler-on .r2 { animation-delay: .8s; } .ruler-on .r3 { animation-delay: 1.6s; } .ruler-on .r4 { animation-delay: 2.4s; }
+.hero, .mate { transition: transform 1.6s ease, opacity 1s; }
+.hero.faint { opacity: .35; }
+.mate { fill: #bfb6a3; }
+.mate.stopped { opacity: .3; }
+.wv { fill: #e9d9b4; opacity: 0; }
+.wave-on .wv { animation: surge 2.4s ease-out forwards; }
+@keyframes surge { from { opacity: 0; transform: translate(0, 0); } 30% { opacity: 1; } to { opacity: 1; transform: translate(var(--dx), var(--dy)); } }
+.flag { opacity: 0; transition: opacity 1.2s 1.8s; }
+.wave-on .flag { opacity: 1; }
+.took path { opacity: .85; }
+
+.cine-side { justify-content: flex-start; }
+.verbs { display: flex; flex-wrap: wrap; gap: .4em; }
+.verbs span { font-family: var(--kai); font-size: 1.2em; padding: .15em .7em; border-radius: 1em; background: var(--red-d); color: #fff; }
+.cine { flex: 1; min-height: 0; position: relative; }
+.cine p { display: none; margin: 0; font-family: var(--kai); font-size: 1.45em; line-height: 1.8; background: #1c2233; color: #eee8dc; padding: .8em 1em; border-radius: .6em; }
+.cine p.now { display: block; animation: subIn .7s ease both; }
+
+/* ---------- 找语言、动作 ---------- */
+.portrait-card { position: relative; }
+.portrait-img { background-position: 50% 50%; background-size: cover; }
+.s-find .picks { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; }
+.s-find .pick { font-size: 1.15em; padding: .45em .9em; line-height: 1.5; }
+.s-find .stage { position: relative; }
+.s-find .media-btn { top: -3.2em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .frame { font-size: 16px; }
+  .s-cover .cover-title { font-size: 3.6em; }
+  .task-row { font-size: 1em; }
+  .subs { font-size: 1.12em; }
+  .hd h2 { font-size: 1.3em; }
+  .sky-bar { font-size: .75em; }
+  .cine p { font-size: 1.15em; }
+  .s-find .picks { grid-template-columns: 1fr; }
+}

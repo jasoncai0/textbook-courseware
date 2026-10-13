@@ -1,0 +1,121 @@
+/* 夜色 · 本课配色：夜晚的深蓝、月光的暖黄。低年级通用样式见 ../shared/hanzi.css */
+:root {
+  --red: #3e5a9a;
+  --red-d: #24396b;
+  --gold: #e8b33c;
+  --gold-l: #fbe3a2;
+  --paper: #f2f4fa;
+  --stone: #fdfdff;
+  --ink-2: #58627c;
+  --line: #d4daea;
+}
+
+.ys-ask { margin: .6em 0 0; font-size: 1.5em; color: #fff7dc; }
+.s-cover .ys-ask rt { color: var(--gold-l); }
+
+/* ---------- 关灯 / 月光：画面明暗 ---------- */
+.ys-night .scene-bg { filter: brightness(.42) saturate(.6); transition: transform 1.2s ease, filter 1.8s ease; }
+.ys-night:has(.ys-lit.on) .scene-bg { filter: none; }
+.ys-mood { position: absolute; z-index: 3; right: 3%; top: 4.2em; width: 6.4em; text-align: center; }
+.ys-mood svg, .ys-face svg { width: 100%; }
+.ys-mood circle:first-child, .ys-face circle:first-child { fill: #ffe1a8; stroke: #c98a2a; stroke-width: 3; }
+.ys-eye { fill: #3a2a1a; }
+.ys-mouth { fill: none; stroke: #8a3b1a; stroke-width: 5; stroke-linecap: round; transition: d .8s; }
+.ys-brow { fill: none; stroke: #5a3a1a; stroke-width: 4; stroke-linecap: round; transition: opacity .8s; }
+.ys-mood p { margin: .2em 0 0; font-size: 1.15em; color: #fff; font-weight: bold; text-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
+.ys-mood .a, .ys-when .a { display: none; }
+.ys-night:has(.ys-lit.on) .ys-mood .a { display: inline; }
+.ys-night:has(.ys-lit.on) .ys-mood .b { display: none; }
+.ys-night:has(.ys-lit.on) .ys-mouth { d: path("M30 62Q50 82 70 62"); }
+.ys-night:has(.ys-lit.on) .ys-brow { opacity: 0; }
+.subs .ys-small.py { font-size: 1.45em; }
+
+/* ---------- 以前 / 后来 开关对比 ---------- */
+.ys-cmp { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.6fr auto 1fr; gap: 1.4em; align-items: center; }
+.ys-view { position: relative; aspect-ratio: 16 / 9; border-radius: .8em; overflow: hidden; box-shadow: 0 .3em 1em rgba(0, 0, 0, .25); background: #1c2440; }
+.ys-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: opacity 1.2s; }
+.ys-before { filter: brightness(.45) saturate(.6); }
+.ys-after { opacity: 0; }
+.ys-cmp.after .ys-after { opacity: 1; }
+.ys-mid { display: flex; flex-direction: column; align-items: center; gap: .5em; }
+.ys-switch { font: inherit; width: 3.4em; height: 6em; border-radius: 1.7em; border: .25em solid #8a94b4; background: #2b3557; cursor: pointer; position: relative; transition: background .6s; }
+.ys-switch i { position: absolute; left: .35em; right: .35em; bottom: .35em; height: 2.4em; border-radius: 50%; background: #c9cfe2; transition: transform .6s, background .6s; }
+.ys-cmp.after .ys-switch { background: #ffe9a8; border-color: #e8b33c; }
+.ys-cmp.after .ys-switch i { transform: translateY(-2.7em); background: #f2a90a; box-shadow: 0 0 1em #ffd35a; }
+.ys-when { margin: 0; font-size: 1.4em; font-weight: bold; color: var(--red-d); }
+.ys-cmp.after .ys-when .b { display: none; }
+.ys-cmp.after .ys-when .a { display: inline; }
+.ys-meter { width: 1.2em; height: 8em; border-radius: .6em; background: #e2e6f2; position: relative; overflow: hidden; }
+.ys-meter i { position: absolute; left: 0; right: 0; bottom: 0; height: 15%; background: linear-gradient(#f2a90a, #e86a3a); transition: height 1.2s; }
+.ys-cmp.after .ys-meter i { height: 95%; }
+.ys-meter-l { margin: 0; color: var(--ink-2); }
+.ys-words { display: flex; flex-direction: column; align-items: center; gap: .4em; }
+.ys-face { width: 6.4em; }
+.ys-cmp.after .ys-mouth { d: path("M30 62Q50 82 70 62"); }
+.ys-cmp.after .ys-brow { opacity: 0; }
+.ys-list p { margin: 0; font-size: 1.9em; line-height: 2.1; color: var(--red-d); text-align: center; }
+.ys-list.a, .ys-cmp.after .ys-list.b { display: none; }
+.ys-cmp.after .ys-list.a { display: block; animation: pop .5s cubic-bezier(.3, 1.6, .5, 1) both; }
+
+/* ---------- 词语串串 ---------- */
+.ys-beads { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2em; align-items: start; padding-top: .4em; }
+.ys-bead { display: flex; flex-direction: column; align-items: center; }
+.ys-bead-z { font: inherit; font-family: var(--kai); font-size: 2.8em; width: 2.1em; height: 2.1em; border-radius: 50%; border: .08em solid #c0392b; background: radial-gradient(circle at 35% 30%, #ff8a7a, #d9402c 70%); color: #fff; cursor: pointer; line-height: 1.1; padding-top: .15em; box-shadow: 0 .1em .3em rgba(0, 0, 0, .25); }
+.ys-bead-z rt { font-family: var(--py); font-size: .32em; color: #ffe7a3; }
+.ys-stick { position: relative; display: flex; flex-direction: column; align-items: center; gap: .5em; padding-top: .6em; }
+.ys-stick::before { content: ""; position: absolute; top: 0; bottom: -.6em; left: 50%; width: .25em; margin-left: -.125em; background: #b98a54; border-radius: .2em; transform: scaleY(0); transform-origin: top; transition: transform .6s; }
+.ys-bead.open .ys-stick::before { transform: none; }
+.ys-w { position: relative; font-family: var(--kai); font-size: 2em; padding: 0 .5em; border-radius: 1em; background: #fff3d6; border: 2px solid #e8b33c; line-height: 2; opacity: 0; transform: scale(.4); transition: opacity .4s var(--d), transform .4s var(--d); }
+.ys-w rt { font-family: var(--py); font-size: .42em; color: var(--py-c); }
+.ys-bead.open .ys-w { opacity: 1; transform: none; }
+
+/* ---------- 手电筒 ---------- */
+.ys-torch-wrap { flex: 1; min-height: 0; display: grid; grid-template-columns: 2.4fr 1fr; gap: 1.2em; }
+.ys-torch { --x: -20em; --y: -20em; position: relative; border-radius: 1em; overflow: hidden; touch-action: none; cursor: crosshair; }
+.ys-garden { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ys-torch::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(circle 6em at var(--x) var(--y), rgba(255, 245, 200, .08) 0, rgba(255, 245, 200, .02) 80%, rgba(6, 9, 24, .95) 100%); }
+.ys-hid { font: inherit; position: absolute; z-index: 1; transform: translate(-50%, -50%); font-family: var(--kai); font-size: 2.6em; color: #fff; background: rgba(255, 255, 255, .15); border: 2px dashed rgba(255, 255, 255, .6); border-radius: .3em; width: 1.5em; height: 1.5em; line-height: 1.4; cursor: pointer; }
+.ys-hid.found { z-index: 3; background: #ffd65a; color: #6b3d00; border: 2px solid #fff; box-shadow: 0 0 .6em #ffe58a; animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+.ys-torch-side { display: flex; flex-direction: column; gap: .7em; }
+.ys-found { margin: 0; font-size: 1.3em; }
+.ys-found b { color: var(--red); font-size: 1.5em; font-family: var(--py); }
+.ys-found-list { flex: 1; display: flex; flex-wrap: wrap; align-content: flex-start; gap: .2em .5em; font-family: var(--kai); font-size: 2em; line-height: 2; background: #fff; border-radius: .5em; padding: .2em .5em; }
+.ys-found-list rt { font-family: var(--py); font-size: .44em; color: var(--py-c); }
+.ys-found-list span { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+
+/* 写字 7 个 */
+.ys-write .hz-cells .hz-tzg { --tz: 3.8em; }
+.ys-write { gap: .6em 1.6em; }
+
+/* 回顾 */
+.ys-board { display: flex; align-items: center; justify-content: center; gap: 1.6em; }
+.ys-board .py { font-size: 2em; line-height: 1.9; }
+.ys-bt { margin: 0; text-align: center; color: var(--gold-l); font-size: 1.1em; }
+.ys-arrow { margin: 0; font-size: 2.4em; color: var(--gold-l); display: flex; flex-direction: column; align-items: center; }
+.ys-arrow .py { font-size: .6em; line-height: 1.8; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .ys-mood { width: 4.2em; top: 3.4em; }
+  .ys-mood p { font-size: .9em; }
+  .subs .ys-small.py { font-size: 1.05em; }
+  .ys-cmp { display: flex; flex-direction: column; align-items: stretch; }
+  .ys-mid { flex-direction: row; justify-content: center; }
+  .ys-switch { width: 5.6em; height: 3em; }
+  .ys-switch i { top: .3em; bottom: .3em; left: .3em; right: auto; width: 2em; height: auto; }
+  .ys-cmp.after .ys-switch i { transform: translateX(2.5em); }
+  .ys-meter { width: 6em; height: 1em; }
+  .ys-meter i { top: 0; height: auto; width: 15%; transition: width 1.2s; }
+  .ys-cmp.after .ys-meter i { height: auto; width: 95%; }
+  .ys-face { width: 4.4em; }
+  .ys-list p { font-size: 1.5em; }
+  .ys-beads { grid-template-columns: 1fr 1fr; }
+  .ys-bead-z { font-size: 2.2em; }
+  .ys-w { font-size: 1.5em; }
+  .ys-torch-wrap { display: flex; flex-direction: column; }
+  .ys-torch { height: 22em; flex: none; }
+  .ys-hid { font-size: 1.8em; }
+  .ys-found-list { min-height: 4em; }
+  .ys-write .hz-cells .hz-tzg { --tz: calc((100vw - 2.6em) / 5); }
+  .ys-board { gap: .6em; }
+  .ys-board .py { font-size: 1.4em; }
+}

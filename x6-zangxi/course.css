@@ -1,0 +1,66 @@
+/* 藏戏 · 本课配色：藏红、经幡蓝、酥油黄。页面样式见 ../shared/narrative.css */
+:root {
+  --red: #a3291f;
+  --red-d: #6b1a14;
+  --gold: #d29b22;
+  --gold-l: #f3d88c;
+  --paper: #f5efe4;
+  --stone: #fcf8f1;
+  --ink-2: #5d5246;
+  --line: #e0cdb0;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fdf9f2 0, transparent 40%), radial-gradient(circle at 90% 95%, #e9dcc6 0, transparent 45%); }
+.s-cover .cover-title { font-size: 8em; letter-spacing: .1em; }
+.subs .zx-big { font-size: 1.2em; color: #ffe2a8; }
+
+/* 开头三问 */
+.s-ask .stage, .s-stage .stage, .s-map .stage { justify-content: center; }
+.zx-asks { min-height: 14em; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; align-items: stretch; }
+.zx-ask { display: flex; flex-direction: column; justify-content: space-between; background: #fff; border-radius: .6em; border-top: .35em solid var(--red); padding: 1em 1.2em; box-shadow: 0 .2em .8em rgba(40, 30, 20, .1); }
+.zx-ask p { margin: 0; font-family: var(--kai); font-size: 1.5em; line-height: 1.7; }
+.zx-ask em { font-style: normal; color: var(--red); font-weight: bold; }
+.zx-ask b { align-self: flex-end; font-size: 1.1em; color: #fff; background: var(--gold); padding: .2em .9em; border-radius: 1em; }
+
+/* 面具连一连 */
+.zx-roles { display: flex; flex-wrap: wrap; gap: .5em; justify-content: center; }
+.zx-role { font: inherit; font-family: var(--kai); font-size: 1.25em; padding: .3em 1em; border-radius: 2em; border: 2px solid var(--red); background: #fff; color: var(--red); cursor: pointer; }
+.zx-role.sel { background: var(--red); color: #fff; }
+.zx-role.done { opacity: .35; border-style: dashed; cursor: default; }
+.zx-masks { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: .7em; }
+.zx-mask { font: inherit; display: flex; flex-direction: column; align-items: center; gap: .3em; padding: .5em .5em .6em; border-radius: .6em; border: 1px solid var(--line); background: #fff; cursor: pointer; min-height: 0; }
+.zx-mask svg { width: 100%; flex: 1; min-height: 0; max-height: 9em; }
+.zx-who { font-family: var(--kai); font-size: 1.2em; color: var(--ink-2); }
+.zx-say { font-family: var(--kai); font-size: .9em; line-height: 1.5; color: var(--red-d); text-align: left; display: none; }
+.zx-mask.right { border-color: #8cc0a6; background: #f1f8f4; cursor: default; }
+.zx-mask.right .zx-who { color: #1f6b4f; font-weight: bold; }
+.zx-mask.right .zx-say { display: block; }
+.zx-mask.wrong { animation: nope .35s; border-color: #e3a998; }
+
+/* 不要 / 只要 */
+.zx-need { min-height: 16em; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1em; }
+.zx-col { display: flex; flex-direction: column; gap: .6em; align-items: center; background: #fff; border-radius: .6em; padding: 1em; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); }
+.zx-col h3 { margin: 0 0 .2em; font-size: 1.4em; color: var(--red-d); }
+.zx-col span { font-family: var(--kai); font-size: 1.5em; padding: .15em .8em; border-radius: .3em; }
+.zx-col.no span { color: #8a7f70; text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: .12em; background: #f3efe8; }
+.zx-col.yes span { color: #fff; background: var(--red); }
+.zx-col.bg span { color: #234e6b; background: #e3eef5; }
+
+/* 梳理：开头 → 四个方面 → 结尾 */
+.zx-map { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em 1em; }
+.zx-node { background: #fff; border-radius: .5em; padding: .6em .9em; border-left: .3em solid var(--gold); font-family: var(--kai); font-size: 1.3em; line-height: 1.6; }
+.zx-node small { display: block; font-family: var(--serif); font-size: .7em; color: var(--red); font-weight: bold; }
+.zx-node.q, .zx-node.end { grid-column: 1 / -1; text-align: center; border-left: none; border-top: .3em solid var(--red); }
+.zx-node.end { border-top-color: var(--jade); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 5em; }
+  .zx-asks, .zx-need { grid-template-columns: 1fr; min-height: 0; }
+  .zx-node { font-size: 1.05em; }
+  .zx-ask p { font-size: 1.15em; }
+  .zx-masks { grid-template-columns: repeat(2, 1fr); }
+  .zx-mask svg { flex: none; height: 6.5em; }
+  .zx-role { font-size: 1.05em; padding: .25em .8em; }
+  .zx-roles { position: sticky; top: -.9em; z-index: 3; background: var(--paper); padding: .4em 0; }
+  .zx-col span { font-size: 1.15em; }
+  .zx-map { grid-template-columns: 1fr; }
+}
