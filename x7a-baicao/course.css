@@ -1,0 +1,122 @@
+/* 从百草园到三味书屋 · 本课配色：园子的绿、泥墙的赭、书屋的墨 */
+:root {
+  --red: #3f7a4a;
+  --red-d: #24502d;
+  --gold: #c9973a;
+  --gold-l: #f0dca0;
+  --paper: #f4f1e6;
+  --stone: #fbf9f1;
+  --ink-2: #5e5a4c;
+  --line: #d6cfb6;
+}
+/* 初中“读读写写”是词语：放宽卡片 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.45em; }
+.zy-write small:empty { display: none; }
+
+/* 封面：路线 */
+.s-cover .cover-title { font-size: 5.4em; letter-spacing: .04em; }
+.route { display: flex; align-items: center; gap: .6em; margin: 0 0 1em; font-family: var(--kai); font-size: 1.3em; }
+.route b { background: rgba(36, 80, 45, .88); padding: .15em .7em; border-radius: .3em; text-shadow: none; }
+.route i { font-style: normal; font-size: .75em; border-bottom: 2px dashed #f0dca0; padding: 0 .4em .2em; }
+
+/* 默读计时 */
+.rules { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.rules p { margin: 0; background: #fff; border-radius: .5em; padding: .6em .8em; border-top: .25em solid var(--red); line-height: 1.5; }
+.rules b { display: block; font-size: 1.25em; color: var(--red-d); font-family: var(--kai); }
+.timer { background: #24502d; color: #f4f1e6; border-radius: .8em; padding: 1.2em 1.4em; display: flex; flex-direction: column; align-items: center; gap: .6em; }
+.timer-face { margin: 0; font-family: Georgia, var(--serif); font-size: 4.2em; letter-spacing: .08em; }
+.timer .btn { border-color: #f0dca0; }
+.timer .btn:not(.solid) { background: transparent; color: #f0dca0; }
+.timer .btn.solid { background: #f0dca0; color: #24502d; }
+.timer-rate { margin: 0; text-align: center; line-height: 1.6; }
+
+/* 地图 */
+.map-row { min-height: 0; }
+.map-wrap { flex: 1.9; min-width: 0; display: flex; }
+.map-wrap > svg { width: 100%; height: 100%; }
+#mapSvg .map-title { font-family: var(--kai); fill: #24502d; }
+#mapSvg .spot { cursor: pointer; outline: none; }
+#mapSvg .spot:hover > :first-child, #mapSvg .spot:focus > :first-child { filter: brightness(1.08) drop-shadow(0 0 4px #c9973a); }
+#mapSvg .spot.picked text { fill: #b0471f; font-weight: bold; }
+#mapSvg .spot.picked > :first-child { filter: drop-shadow(0 0 5px #b0471f); }
+.map-side { flex: 1; }
+.map-pop { min-height: 7em; font-family: var(--kai); font-size: 1.05em; }
+.map-pop .kind { display: inline-block; font-family: var(--serif); font-size: .8em; color: #fff; background: var(--red); border-radius: .3em; padding: 0 .5em; margin-right: .5em; }
+.map-pop .k-学 { background: #6b5d4f; }
+.map-pop .k-想 { background: #8a4f8f; }
+.map-pop .k-过渡 { background: #b0471f; }
+
+/* 不必说……单是…… */
+.s-layer .bd { grid-template-columns: 38% 1fr; }
+.layer-quote { font-size: .98em; line-height: 1.75; }
+.layer-quote p { text-indent: 2em; }
+#layerSvg { width: 100%; height: auto; flex: 1; min-height: 0; border-radius: .6em; }
+#layerSvg .lab { font-size: 15px; font-family: var(--kai); fill: #2b2420; paint-order: stroke; stroke: rgba(255, 255, 255, .85); stroke-width: 4px; }
+#layerSvg .note-sym { font-size: 26px; fill: #b0471f; }
+#layerSvg .lv-cap { font-size: 22px; font-family: var(--kai); fill: #8f3a2a; font-weight: bold; paint-order: stroke; stroke: #fff; stroke-width: 5px; }
+#layerSvg .ly { transition: opacity .8s ease; opacity: 0; }
+#layerSvg.lv1 .ly1, #layerSvg.lv2 .ly2 { opacity: 1; }
+#layerSvg.lv2 .ly1 { opacity: .28; }
+#layerSvg.lv3 .ly3 { opacity: 1; }
+#layerSvg.lv3 .ly1, #layerSvg.lv3 .ly2 { opacity: 0; }
+#layerSvg .ly3 { transform-box: view-box; transform-origin: 30% 90%; transform: scale(.25); transition: opacity .8s ease, transform 1s ease; }
+#layerSvg.lv3 .ly3 { transform: scale(1); }
+#layerSvg .fly { stroke-dashoffset: 200; }
+#layerSvg.lv2 .fly { animation: flyUp 2s ease forwards; }
+@keyframes flyUp { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
+#layerSvg .it { transition: opacity .4s; }
+#layerSvg.sense-on .it:not(.lit) { opacity: .18; }
+#layerSvg.sense-on .it.lit .lab { fill: #b0471f; font-weight: bold; }
+.sense-btns { align-items: center; }
+.sense-lab { font-size: .9em; color: var(--ink-2); }
+.s-layer .media-btn { top: -.2em; }
+
+/* 美女蛇 */
+.vote { display: flex; gap: .6em; flex-wrap: wrap; }
+.vote .btn { font-size: 1em; }
+.vote-res { min-height: 3.4em; }
+.reasons { display: flex; flex-direction: column; gap: .5em; }
+
+/* 捕鸟动词 */
+.subs em { font-style: normal; color: #f0dca0; border-bottom: 2px solid #f0dca0; }
+
+/* 三味书屋的生活 */
+.life-pic { flex: 1; min-height: 8em; border-radius: .5em; background: center / cover no-repeat; }
+.quote-s { margin: 0; font-family: var(--kai); font-size: 1.2em; line-height: 1.7; color: var(--red-d); }
+
+/* 两个“我” */
+.twoview { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.twoview div { background: #fff; border-radius: .6em; padding: .8em; border-top: .3em solid var(--red); }
+.twoview div + div { border-top-color: #6b5d4f; }
+.twoview b { display: block; font-family: var(--kai); font-size: 1.5em; color: var(--red-d); }
+.twoview span { font-size: .9em; color: var(--ink-2); line-height: 1.6; }
+.sort-row { grid-template-columns: 1fr auto 9em; }
+
+/* 回顾 */
+.sum-stage { justify-content: center; gap: 1.4em; }
+.sum-map { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.2em; align-items: center; }
+.sum-col { background: #fff; border-radius: .8em; padding: 1em 1.4em; text-align: center; box-shadow: 0 .2em .8em rgba(40, 50, 30, .12); }
+.sum-col h3 { margin: 0 0 .3em; font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.sum-col p { margin: 0 0 .5em; color: var(--ink-2); }
+.sum-col b { font-family: var(--kai); font-size: 1.25em; color: #b0471f; }
+.sum-mid { display: flex; flex-direction: column; align-items: center; color: #b0471f; font-family: var(--kai); }
+.sum-mid i { font-style: normal; font-size: 2.6em; line-height: 1; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.1em; }
+  .route { font-size: 1em; flex-wrap: wrap; }
+  .rules { grid-template-columns: 1fr; }
+  .timer-face { font-size: 3em; }
+  .map-wrap { flex: none; overflow-x: auto; }
+  .map-wrap > svg { min-width: 680px; height: auto; }
+  .map-wrap::after { content: ""; }
+  #layerSvg .lab { font-size: 20px; }
+  .twoview { grid-template-columns: 1fr; }
+  .sort-row { grid-template-columns: 1fr; }
+  .sum-map { grid-template-columns: 1fr; }
+  .sum-mid i { transform: rotate(90deg); }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(8em, 1fr)); }
+}
+#mapSvg .t-s { font-size: 14px; }
+#mapSvg .spot[data-k="bridge"] .t-s { font-size: 12.5px; }

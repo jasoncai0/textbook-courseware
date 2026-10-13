@@ -1,0 +1,111 @@
+/* 猫 · 本课配色：民国水彩，暖米色与旧砖红 */
+:root {
+  --red: #a04a32;
+  --red-d: #5e2e22;
+  --gold: #c99a52;
+  --gold-l: #f0dcb2;
+  --paper: #f6f0e4;
+  --stone: #fdf9f1;
+  --ink-2: #6a5a4b;
+  --line: #dccdb2;
+}
+.s-cover .cover-title { letter-spacing: .2em; }
+.cover-q { font-family: var(--kai); font-size: 1.7em; line-height: 1.5; margin: 0 0 .8em; }
+.cover-q b { color: #ffd9a8; }
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(8.6em, 1fr)); }
+.zy-write { font-size: 1.55em; }
+
+/* 默读勾画页 */
+.s-read .bd { grid-template-columns: 34% 1fr; }
+.read-pic { flex: 1; min-height: 9em; border-radius: .5em; background: center / cover no-repeat #e8dfcf; box-shadow: 0 .2em .8em rgba(60, 40, 20, .15); }
+.s-read .quote { font-size: 1.12em; }
+.s-read .quote h4 { color: var(--red); }
+.sign { color: var(--red-d); font-size: 1.05em; }
+
+/* 冤案复盘 */
+.s-case .bd { grid-template-columns: 1.15fr 1fr; }
+.case-file { position: relative; display: flex; flex-direction: column; gap: .5em; background: #fbf6ea; border: 1px solid var(--line); border-top: .4em solid var(--red-d); border-radius: .4em; padding: .8em 1em; overflow: auto; }
+.case-head { margin: 0; font-weight: bold; color: var(--red-d); font-size: 1.1em; }
+.case-head small { font-weight: normal; color: var(--ink-2); font-size: .75em; margin-left: .8em; }
+.evi { font: inherit; text-align: left; cursor: pointer; background: #fff; border: 1px dashed var(--gold); border-radius: .4em; padding: .5em .8em; display: flex; flex-direction: column; gap: .3em; }
+.evi-q { font-family: var(--kai); font-size: 1.08em; }
+.evi-a { display: none; color: #1f5f48; font-size: .92em; border-top: 1px dotted var(--line); padding-top: .3em; }
+.evi.open { border-style: solid; border-color: #8cc0a6; }
+.evi.open .evi-a { display: block; }
+.stamp { position: absolute; right: 1em; bottom: 1em; font-family: var(--kai); font-weight: bold; font-size: 2.2em; color: #c0392b; border: .12em solid #c0392b; border-radius: .2em; padding: 0 .3em; rotate: -12deg; background: rgba(255, 255, 255, .7); pointer-events: none; }
+.stamp.on { animation: stampIn .5s cubic-bezier(.3, 1.6, .5, 1) both; }
+@keyframes stampIn { from { scale: 2.2; opacity: 0; } }
+.truth { gap: .6em; }
+.truth .read-pic { min-height: 8em; }
+.truth-q { font-size: 1.05em; }
+
+/* 三只猫表格 */
+.cat-table { overflow: auto; }
+.cat-table table { width: 100%; border-collapse: separate; border-spacing: .3em; }
+.cat-table th, .cat-table td { background: #fff; border-radius: .35em; padding: .35em .6em; font-size: .98em; }
+.cat-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.1em; }
+.cat-table tr th:first-child { background: transparent; color: var(--red); white-space: nowrap; text-align: right; }
+.cat-table td { font-family: var(--kai); width: 30%; }
+.cat-table td.given { background: #ece6da; color: #4a4038; }
+.cat-table button { font: inherit; width: 100%; min-height: 2.2em; border: none; cursor: pointer; background: repeating-linear-gradient(135deg, #f7efe0 0 .5em, #f1e6d1 .5em 1em); color: transparent; border-radius: .3em; text-align: left; transition: color .4s, background .4s; }
+.cat-table button.shown { background: #fff; color: var(--ink); }
+.cat-table button:not(.shown)::after { content: "点一点"; color: #b9a585; font-family: var(--serif); font-size: .8em; }
+.cat-table button.shown::after { content: none; }
+
+/* 骨架与详略：色块宽度按字数比例 */
+.frame-row { display: flex; align-items: stretch; gap: .4em; }
+.seg { display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; border-radius: .4em; min-height: 6em; font-family: var(--kai); }
+.seg b { font-size: 1.3em; }
+.seg small { font-family: var(--serif); opacity: .9; }
+.s1 { flex: 400; background: #c9a77a; }
+.s2 { flex: 770; background: #b67f4d; }
+.s3 { flex: 1130; background: #7d3b2c; }
+.sign-post { flex: 0 0 8.2em; align-self: center; font-family: var(--kai); font-size: .98em; background: #fff; border: 2px solid var(--gold); border-radius: .4em; padding: .4em .5em; text-align: center; line-height: 1.45; }
+.sign-post small { display: block; font-family: var(--serif); color: var(--red); font-size: .78em; margin-top: .2em; }
+.sign-post.end { border-color: var(--red-d); background: #fbeee8; }
+.frame-notes { display: flex; flex-direction: column; gap: .7em; margin-top: .6em; }
+
+/* 情感曲线 */
+.mood-svg { width: 100%; flex: 1; min-height: 0; }
+.mood-svg .axis { stroke: #c9bba3; stroke-dasharray: 6 6; }
+.mood-svg .lab { fill: var(--ink-2); }
+.mood-svg .cat { fill: var(--red-d); font-weight: bold; }
+.mood-line { fill: none; stroke: var(--red); stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+.mood-svg circle { fill: var(--red-d); stroke: #fff; stroke-width: 2; }
+.mood-svg circle.hot { fill: #d0392b; }
+.mood-svg .hot-t { fill: #c0392b; font-weight: bold; }
+
+/* 反思 */
+.theme-box { background: #fff; border: 2px solid var(--red-d); border-radius: .5em; padding: .6em 1em; }
+.theme-box small { color: var(--red); font-weight: bold; }
+.theme-box p { margin: .3em 0 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.75; }
+.theme-box b { color: var(--red-d); }
+.s-why .pick { font-size: 1em; }
+
+/* 品味语句 */
+.taste-list { gap: .7em; justify-content: center; }
+.taste { font: inherit; text-align: left; cursor: pointer; background: #fff; border: 1px solid var(--line); border-left: .35em solid var(--gold); border-radius: .4em; padding: .6em 1em; display: flex; flex-direction: column; gap: .3em; }
+.taste-s { font-family: var(--kai); font-size: 1.25em; line-height: 1.6; }
+.taste-s::after { content: "　▸ 点开赏析"; font-family: var(--serif); font-size: .62em; color: var(--ink-2); }
+.taste.open .taste-s::after { content: none; }
+.taste-a { display: none; line-height: 1.7; color: #2f4a3f; }
+.taste-a b { color: var(--red); }
+.taste.open { border-left-color: var(--red); }
+.taste.open .taste-a { display: block; animation: appear .4s; }
+
+.board p { margin: 0 0 .35em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cover-q { font-size: 1.2em; }
+  .read-pic { min-height: 11em; }
+  .frame-row { flex-direction: column; }
+  .seg { min-height: 3.2em; flex: none; }
+  .s1 { width: 35%; } .s2 { width: 68%; } .s3 { width: 100%; }
+  .sign-post { flex: none; }
+  .mood-svg { height: auto; }
+  .mood-svg .t-s { font-size: 22px; }
+  .mood-svg .t-m { font-size: 26px; }
+  .board { overflow-wrap: anywhere; }
+  .stamp { font-size: 1.6em; }
+  .cat-table th, .cat-table td { font-size: .85em; padding: .3em .35em; }
+}

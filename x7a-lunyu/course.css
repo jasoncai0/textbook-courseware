@@ -1,0 +1,74 @@
+/* 《论语》十二章 · 本课配色：竹简、墨、朱砂 */
+:root {
+  --red: #8a3324;
+  --red-d: #4f2218;
+  --gold: #a88a4a;
+  --gold-l: #e6d8b0;
+  --paper: #f3eee1;
+  --stone: #fbf8ef;
+  --ink-2: #5f584c;
+  --line: #d8ceb8;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fcf9f0 0, transparent 40%), radial-gradient(circle at 90% 95%, #e6dcc6 0, transparent 45%); }
+.s-cover .cover-title { font-size: 4.2em; letter-spacing: .1em; }
+.cover-big { margin: .2em 0 .1em; font-family: var(--kai); font-size: 3.4em; line-height: 1.3; color: #f6e7c2; }
+.poem-v.h .poem-text .pl { display: block; font-size: 1.45em; line-height: 1.75; }
+.poem-v.h.show-yi .pl { font-size: 1.2em; }
+
+/* 语录卡归档 */
+.yl-board { gap: .6em; }
+.yl-bins { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7em; flex: 1; min-height: 0; }
+.yl-bin { background: #fff; border: 2px dashed var(--line); border-radius: .6em; padding: .4em .6em; cursor: pointer; display: flex; flex-direction: column; gap: .3em; overflow: auto; }
+.yl-bin h3 { margin: 0; text-align: center; font-family: var(--kai); font-size: 1.4em; color: var(--red-d); }
+.yl-bin:hover { border-color: var(--red); }
+.yl-in { display: flex; flex-wrap: wrap; gap: .3em; align-content: flex-start; }
+.yl-res { min-height: 2.6em; font-size: .9em; }
+.yl-res small { color: var(--ink-2); }
+.yl-deck { display: flex; flex-wrap: wrap; gap: .4em; }
+.yl-card { font: inherit; font-family: var(--kai); font-size: 1em; padding: .3em .7em; border-radius: .4em; border: 1px solid #c9b48a; background: #f6eedb; cursor: pointer; text-align: left; }
+.yl-card i { font-style: normal; font-family: var(--serif); font-size: .7em; color: #fff; background: var(--red); border-radius: 50%; display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; margin-right: .35em; vertical-align: .15em; }
+.yl-card.sel { outline: 3px solid var(--red); background: #fff; }
+.yl-card.right { background: #eef7f1; border-color: #8cc0a6; font-size: .9em; cursor: default; }
+.yl-card.no { animation: nope .35s; border-color: #e3a998; }
+
+/* 人生阶梯 */
+#ladderSvg { flex: 1 1 0; min-width: 0; }
+.s-ladder .row { display: grid; grid-template-columns: minmax(0, 1fr) 30%; }
+.s-ladder .row > svg { width: 100%; height: 100%; }
+#ladderSvg rect { fill: #e9dcc0; stroke: #a88a4a; stroke-width: 2; }
+#ladderSvg .stp:last-child rect { fill: #8a3324; }
+#ladderSvg .age { font-size: 20px; fill: #8a3324; font-weight: bold; font-family: var(--kai); }
+#ladderSvg .w { font-size: 22px; font-family: var(--kai); }
+#ladderSvg .stp:last-child .w { fill: #fff; }
+
+/* 字词抽屉 */
+.wd-grid { flex: 1; min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); gap: .6em; align-content: start; }
+.wd-card { font: inherit; text-align: left; background: #fff; border: 1px solid var(--line); border-left: .35em solid var(--red); border-radius: .5em; padding: .6em .9em; cursor: pointer; display: flex; flex-direction: column; gap: .2em; }
+.wd-card b { font-family: var(--kai); font-size: 1.8em; color: var(--red-d); }
+.wd-e { font-family: var(--kai); font-size: 1.05em; }
+.wd-a { color: #2f6b5e; font-size: .92em; line-height: 1.5; opacity: 0; transition: opacity .3s; }
+.wd-a::before { content: "释义："; color: var(--ink-2); }
+.wd-card.open .wd-a { opacity: 1; }
+.wd-card:not(.open)::after { content: "点一点看释义"; font-size: .75em; color: var(--ink-2); }
+
+/* 背诵：十二章较长 */
+.s-recite .stage { min-height: 0; }
+.recite.wide { overflow: auto; flex: 1; min-height: 0; }
+.recite.wide .recite-lines { font-size: 1.12em; letter-spacing: .08em; line-height: 1.75; }
+
+.sum-stage { justify-content: center; gap: 1.2em; }
+.sum-table { width: 100%; border-collapse: separate; border-spacing: .5em; font-size: 1.05em; }
+.sum-table th, .sum-table td { background: #fff; border-radius: .4em; padding: .7em .9em; text-align: center; font-family: var(--kai); line-height: 1.7; }
+.sum-table th { background: var(--red-d); color: #fff; font-size: 1.3em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 2.6em; }
+  .cover-big { font-size: 2em; }
+  .yl-bins { grid-template-columns: 1fr; }
+  .yl-bin { min-height: 5em; }
+  #ladderSvg .w { font-size: 26px; }
+  .s-ladder .row { display: flex; }
+  #ladderSvg { flex: none; width: 100%; height: auto; }
+  .wd-grid { grid-template-columns: 1fr; }
+  .sum-table, .sum-table tbody, .sum-table tr, .sum-table th, .sum-table td { display: block; }
+}

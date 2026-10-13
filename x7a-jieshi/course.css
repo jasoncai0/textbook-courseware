@@ -1,0 +1,76 @@
+/* 天上的街市 · 本课配色：深蓝夜空、暖黄灯光 */
+:root {
+  --red: #3b4a8f;
+  --red-d: #222c5e;
+  --gold: #e0a83a;
+  --gold-l: #f6e1a8;
+  --paper: #f3f1ea;
+  --stone: #fbfaf6;
+  --ink-2: #565a6e;
+  --line: #d3d4dd;
+}
+.cover-q { font-family: var(--kai); font-size: 1.7em; line-height: 1.5; margin: 0 0 .8em; }
+.s-cover .cover-title { font-size: 6.4em; }
+
+/* 一节一屏：四种版式 */
+.s-stanza .hd { display: flex; gap: .8em; }
+.stanza-box { position: absolute; z-index: 2; font-family: var(--kai); color: #fdf6e3; text-shadow: 0 2px 10px rgba(0, 0, 0, .75); }
+.stanza-box p { margin: 0; line-height: 1.7; }
+.stanza-box p[data-step] { transform: none; }
+.stanza-box p:not(.on) { opacity: .08; }
+.stanza-box em { font-style: normal; transition: color .4s; }
+.stress-on .stanza-box em { color: #ffd166; border-bottom: .12em solid #ffd166; }
+.stress-btn { margin-left: .4em; font: inherit; font-size: .85em; padding: .25em .8em; border-radius: 1em; border: 1px solid rgba(255, 255, 255, .7); background: rgba(0, 0, 0, .35); color: #fff; cursor: pointer; }
+.stress-btn.on { background: #f3e2b5; color: #222c5e; border-color: #f3e2b5; }
+.stanza-box.mirror { left: 0; right: 0; bottom: 14%; display: grid; grid-template-columns: 1fr 1fr; gap: .2em 3em; padding: 0 8%; font-size: 2.3em; }
+.stanza-box.mirror p:nth-child(odd) { text-align: right; }
+.stanza-box.mirror p:nth-child(even) { text-align: left; }
+.stanza-box.top { left: 0; right: 0; top: 14%; text-align: center; font-size: 2.4em; }
+.stanza-box.left { left: 6%; top: 18%; font-size: 2.3em; background: rgba(20, 25, 60, .35); padding: .5em .9em; border-radius: .4em; }
+.stanza-box.right { right: 5%; top: 12%; bottom: 16%; writing-mode: vertical-rl; font-size: 2.3em; letter-spacing: .12em; }
+.stanza-box.right p { margin-left: .4em; }
+
+/* 地上 ↔ 天上 */
+.map-svg { width: 100%; flex: 1; min-height: 0; border-radius: .5em; }
+.map-svg .sky { fill: #3b4a8f; stroke: #ffd166; stroke-width: 3; }
+.map-svg .land { fill: #fff; stroke: #e0a83a; stroke-width: 3; }
+.map-svg .link { stroke: #e0a83a; stroke-width: 3; stroke-dasharray: 6 5; fill: none; marker-end: none; }
+.map-svg .lk { fill: #b07a12; font-weight: bold; }
+.map-svg .sky-t { fill: #ffd166; }
+.map-svg .land-t { fill: #8a6a2a; }
+.map-svg .fly { fill: none; stroke: #ffd166; stroke-width: 2.5; stroke-dasharray: 4 6; }
+.map-notes { display: grid; grid-template-columns: 1fr 1fr; gap: .7em; }
+
+/* 传说与诗 */
+.legend-table { width: 100%; border-collapse: separate; border-spacing: .4em; font-size: 1.12em; }
+.legend-table th, .legend-table td { background: #fff; border-radius: .4em; padding: .5em .8em; text-align: center; }
+.legend-table tr:first-child th { background: var(--red-d); color: #fff; font-family: var(--kai); font-size: 1.1em; }
+.legend-table tr:first-child th:first-child { background: transparent; }
+.legend-table th:first-child { background: transparent; color: var(--red); }
+.legend-table td { font-family: var(--kai); }
+.legend-table td:nth-child(2) { background: #eceaf0; color: #555; }
+.legend-table td:nth-child(3) { background: #fff6dc; }
+
+.clues { grid-template-columns: repeat(3, 1fr); }
+.clue, .clue-in { min-height: 12em; }
+.clue-face.front { font-size: 1.05em; }
+.clue-face b { color: var(--red-d); }
+.recite.wide .recite-lines { font-size: 1.25em; columns: 2; column-gap: 2em; }
+.board p { margin: 0 0 .35em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cover-q { font-size: 1.2em; }
+  .s-cover .cover-title { font-size: 3.4em; }
+  .stanza-box.mirror, .stanza-box.top, .stanza-box.left { font-size: 1.45em; left: .8em; right: .8em; }
+  .stanza-box.mirror { grid-template-columns: 1fr; bottom: 12%; padding: 0; }
+  .stanza-box.mirror p:nth-child(n) { text-align: left; }
+  .stanza-box.right { font-size: 1.45em; top: 4.5em; bottom: 8em; }
+  .map-svg { height: auto; flex: none; }
+  .map-svg .t-m { font-size: 28px; }
+  .map-svg .t-s { font-size: 21px; }
+  .map-notes { grid-template-columns: 1fr; }
+  .clues { grid-template-columns: 1fr; }
+  .clue, .clue-in { min-height: 11em; }
+  .recite.wide .recite-lines { columns: 1; }
+  .legend-table { font-size: .9em; }
+}

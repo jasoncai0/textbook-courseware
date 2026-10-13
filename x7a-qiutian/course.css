@@ -1,0 +1,110 @@
+/* 秋天的怀念 · 本课配色：秋菊金、暗赭、灰蓝 */
+:root {
+  --red: #a0522d;
+  --red-d: #5e3320;
+  --gold: #d4a03a;
+  --gold-l: #f1dca4;
+  --paper: #f5f0e6;
+  --stone: #fcf9f2;
+  --ink-2: #6a5d50;
+  --line: #ddd0ba;
+}
+.frame { background-image: radial-gradient(circle at 12% 8%, #fffaf0 0, transparent 40%), radial-gradient(circle at 90% 95%, #eadcc2 0, transparent 45%); }
+.s-cover .cover-title { font-size: 6.4em; }
+.cover-sub { font-size: 1.3em; }
+.cover-ask { font-family: var(--kai); font-size: 1.5em; line-height: 1.6; margin: 0 0 .8em; }
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(8.5em, 1fr)); }
+.zy-write { font-size: 1.5em; }
+.zy-write small { font-size: .5em; }
+
+/* 故事页 */
+.subs .key-line { color: #f6d9a0; }
+.scene-shade.memory { background: linear-gradient(rgba(255, 240, 210, .15), transparent 40%, rgba(0, 0, 0, .3)); }
+.s-blank .subs .beat { color: #5e3320; }
+
+/* 情感线 */
+#feel { width: 100%; height: 100%; }
+#feel .node { cursor: pointer; }
+#feel .node circle { fill: #fff; stroke: #c0623a; stroke-width: 3; transition: r .3s, fill .3s; }
+#feel .node.me circle, #feel .node[data-k="4"] circle { stroke: #5a6f8a; }
+#feel .node text { fill: #5e3320; pointer-events: none; }
+#feel .node.cur circle { fill: #f6d9a0; }
+#feel .node:hover circle { fill: #fdf1dc; }
+.feel-card { flex: 1; min-height: 9em; background: #fff; border-radius: .6em; padding: .8em 1.1em; border-left: .35em solid var(--gold); box-shadow: 0 .15em .6em rgba(60, 40, 20, .1); }
+.feel-card small { color: var(--red); font-weight: bold; }
+.feel-hint { color: var(--ink-2); margin: 0; }
+.feel-q { font-family: var(--kai); font-size: 1.3em; line-height: 1.7; margin: .3em 0; }
+.feel-q em { font-style: normal; color: var(--red); border-bottom: 2px solid var(--gold); }
+.feel-m { margin: 0; line-height: 1.7; }
+.feel-m b { color: var(--red-d); }
+
+/* 前后变化 + 聚光灯 */
+.change { display: grid; grid-template-columns: 1fr auto 1fr; gap: .6em; align-items: stretch; }
+.change > i { align-self: center; font-style: normal; font-size: 2em; color: var(--gold); }
+.ch-col { border-radius: .6em; padding: .7em .9em; display: flex; flex-direction: column; gap: .35em; }
+.ch-col b { font-size: 1.1em; }
+.ch-col span { font-family: var(--kai); font-size: 1.05em; border-radius: .3em; padding: .15em .5em; }
+.ch-col.before { background: #4a4f5a; color: #e8e6e2; }
+.ch-col.before span { background: rgba(255, 255, 255, .1); }
+.ch-col.after { background: #fff4dc; color: var(--red-d); }
+.ch-col.after span { background: #fff; }
+.spot-list { display: flex; flex-wrap: wrap; gap: .45em; }
+.spot { font: inherit; font-family: var(--kai); font-size: 1em; padding: .35em .8em; border-radius: 2em; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+.spot.on { background: var(--red-d); color: #fff; border-color: var(--red-d); }
+.spot-out { flex: 1; min-height: 8em; border-radius: .6em; padding: .8em 1.1em; background: radial-gradient(ellipse at 50% 30%, #fff8e6 0, #fff 45%, #f3ece0 100%); box-shadow: inset 0 0 0 1px var(--line); }
+.spot-out.lit { animation: lit .8s ease; }
+@keyframes lit { from { box-shadow: inset 0 0 0 1px var(--line), 0 0 0 0 rgba(212, 160, 58, .6); } 50% { box-shadow: inset 0 0 0 1px var(--gold), 0 0 1.6em .3em rgba(212, 160, 58, .45); } }
+.spot-s { font-family: var(--kai); font-size: 1.2em; line-height: 1.7; margin: 0 0 .4em; }
+.spot-a { margin: 0; line-height: 1.7; color: #4a3a2a; }
+
+/* 加点词 */
+.dot-list { display: flex; flex-direction: column; gap: .8em; }
+.dot-row { background: #fff; border-radius: .6em; padding: .7em 1.1em; border-left: .35em solid var(--gold); }
+.dot-s { margin: 0; font-family: var(--kai); font-size: 1.45em; line-height: 1.8; }
+.dot-s em { font-style: normal; color: var(--red-d); background: radial-gradient(circle, var(--red) 40%, transparent 46%) repeat-x 0 100% / .5em .3em; padding-bottom: .2em; }
+.dot-s .bare { display: none; color: #8a8076; }
+.dot-row.bare-on .full { display: none; }
+.dot-row.bare-on .bare { display: inline; }
+.dot-foot { display: flex; gap: 1em; align-items: center; margin-top: .3em; }
+.dot-why { color: var(--ink-2); opacity: 0; transition: opacity .5s; }
+.dot-row.seen .dot-why { opacity: 1; }
+
+/* 分角色朗读 */
+.s-role .hd #roleMarks { margin-left: auto; }
+.s-role .bd { grid-template-columns: 1fr 1fr; }
+.role-h { margin: 0; color: var(--red-d); font-size: 1em; }
+.role-list { display: flex; flex-direction: column; gap: .45em; }
+.role { display: grid; grid-template-columns: 2.8em 1fr; gap: .5em; align-items: start; }
+.role b { text-align: center; color: #fff; border-radius: .3em; padding: .2em 0; font-weight: normal; font-size: .9em; }
+.role.mom b { background: #c0623a; }
+.role.me b { background: #5a6f8a; }
+.role p { margin: 0; background: #fff; border-radius: .5em; padding: .3em .8em; font-family: var(--kai); font-size: 1.15em; line-height: 1.6; }
+.role.me p { background: #eef1f5; }
+.role small { display: block; font-family: var(--serif); font-size: .7em; color: var(--ink-2); }
+.role .rh { display: none; }
+.rh-on .role .plain { display: none; }
+.rh-on .role .rh { display: inline; }
+.role .pz, .role .pz2 { font-style: normal; color: var(--red); font-weight: bold; font-family: var(--serif); margin: 0 .08em; }
+
+/* 回顾 */
+.sum-why { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.sw { background: #fff; border-radius: .6em; padding: .8em 1em; border-top: .3em solid var(--gold); }
+.sw b { display: block; font-family: var(--kai); font-size: 1.8em; color: var(--red-d); }
+.sw span { line-height: 1.7; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .s-cover .cover-title { font-size: 3.8em; }
+  .cover-ask { font-size: 1.1em; }
+  #feel { height: auto; }
+  .change { grid-template-columns: 1fr; }
+  .change > i { transform: rotate(90deg); justify-self: center; }
+  .dot-s { font-size: 1.15em; }
+  .dot-foot { flex-direction: column; align-items: flex-start; gap: .3em; }
+  .s-role .hd #roleMarks { margin-left: 0; }
+  .sum-why { grid-template-columns: 1fr; }
+}
+
+.s-line .bd { grid-template-columns: 1.35fr 1fr; }
+.s-line .feel-card { flex: none; }
+.s-change .bd { grid-template-columns: 1fr 1fr; }
+@media (max-width: 820px), (max-height: 520px) { .s-line .bd, .s-change .bd { display: flex; } }

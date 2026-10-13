@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>走一步，再走一步 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面：问题导入 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.05 50% 50%" data-bg="assets/xuanya.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第四单元 · 第 14 课 · 自读课文</p>
+    <h1 class="cover-title">走一步，再走一步</h1>
+    <p class="cover-sub">［美］莫顿·亨特　田文慧 译</p>
+    <p class="cover-ask" data-step="1">你有没有过一步也不敢迈的时候？</p>
+    <div class="chips" data-step="2"><span class="chip">默读</span><span class="chip">勾画事件发展和心理活动的语句</span><span class="chip">复述故事</span></div>
+  </div>
+  <p class="note">自读课，围绕“阅读提示”：按时间顺序，冒险—遇险—脱险；也是“我”从胆怯、恐惧到收获自信的心路历程。原题为《悬崖上的一课》。</p>
+</section>
+
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 心理变化曲线 ================= -->
+<section class="slide s-mood">
+  <div class="hd"><span class="tag">阅读提示 · 心路历程</span><h2>冒险—遇险—脱险：“我”的心情曲线</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 800 400" id="moodSvg" data-noswipe></svg>
+    </div>
+    <div class="panel">
+      <p class="tip mood-pop" id="moodPop" aria-live="polite"><b>点曲线上的圆点</b>，看看那一刻课文是怎么写的。</p>
+      <p class="tip gold" data-step="6"><b>两条线索：</b>事件（冒险→遇险→脱险）是明线，心理（胆怯→恐惧→麻木→自信→成就感）是暗线。复述时两条线一起讲。</p>
+    </div>
+  </div>
+  <p class="note">阅读提示：勾画标志事件发展和描写“我”不同阶段心理活动的语句。每按一步，曲线往前走一段。最低点在哪里？转折点在哪里？（爸爸说“迈一小步”之后）</p>
+</section>
+
+<!-- ================= 孤立无援 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.08 50% 45%" data-bg="assets/yanji.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">遇险</span><span class="sub">进退两难，孤立无援</span></div>
+  <div class="subs">
+    <p data-step="1">我往下看，感到阵阵晕眩；一股无名的力量好像正在逼迫我掉下去。</p>
+    <p data-step="2">我想掉头回去，但知道我绝对回不去了。</p>
+    <p data-step="3">我听见有人在哭泣、呻吟；我想知道那是谁，最后才意识到那就是我。</p>
+    <p data-step="4" data-focus="1.2 50% 40%">时间在慢慢地过去。影子在慢慢拉长，太阳已经没在西边低矮的树梢下，夜幕开始降临。</p>
+    <p data-step="5" data-focus="1.35 55% 25%">暮色中，第一颗星星出现在天空中，悬崖下面的地面开始变得模糊。</p>
+  </div>
+  <p class="note">“最后才意识到那就是我”——恐惧到连自己的哭声都认不出来。环境描写（影子拉长、夜幕降临）烘托孤独和绝望。旁批：如果你是五个男孩之一，会怎么做？</p>
+</section>
+
+<!-- ================= 主呈现：悬崖“一小步”分解 ================= -->
+<section class="slide s-cliff">
+  <div class="hd"><span class="tag">脱险 · 一小步分解</span><h2>跟着手电光：一次只走一步</h2><span class="step-count" id="stepCount"></span></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 800 420" id="cliffSvg">
+        <defs>
+          <linearGradient id="gNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2340"/><stop offset="1" stop-color="#3b3a55"/></linearGradient>
+          <linearGradient id="gBeam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#fff3b0" stop-opacity=".75"/><stop offset="1" stop-color="#fff3b0" stop-opacity=".15"/></linearGradient>
+          <clipPath id="cCliff"><rect width="800" height="420" rx="12"/></clipPath>
+        </defs>
+        <g clip-path="url(#cCliff)">
+          <rect width="800" height="420" fill="url(#gNight)"/>
+          <circle cx="700" cy="50" r="3" fill="#fff"/><circle cx="560" cy="80" r="2" fill="#fff" opacity=".7"/>
+          <path d="M150 420 L180 40 L470 40 L520 120 L500 200 L540 300 L520 420 Z" fill="#5a5048" stroke="#3a322c" stroke-width="3"/>
+          <path d="M300 150 h170 v14 h-170 z" fill="#6f655b"/>
+          <text class="cl-lab" x="520" y="168">← 岩脊（约三分之二高）</text>
+          <rect x="0" y="384" width="800" height="36" fill="#2b2a2a"/>
+          <text class="cl-lab" x="90" y="406">底部凌乱的岩石</text>
+          <polygon id="beam" points="640,330 650,330 360,196 380,196" fill="url(#gBeam)"/>
+          <g id="holds">
+            <ellipse class="hold" data-h="1" cx="370" cy="200" rx="16" ry="7"/>
+            <ellipse class="hold" data-h="2" cx="410" cy="240" rx="14" ry="6"/>
+            <g class="hold" data-h="3"><rect x="452" y="222" width="5" height="40" fill="#6b4e33"/><circle cx="455" cy="216" r="10" fill="#4f6b3a"/></g>
+            <ellipse class="hold" data-h="4" cx="400" cy="290" rx="15" ry="6"/>
+            <ellipse class="hold" data-h="5" cx="440" cy="340" rx="15" ry="6"/>
+          </g>
+          <g id="boy" transform="translate(334 86) scale(1.5)">
+            <circle cx="12" cy="6" r="8" fill="#e8d2b5"/>
+            <rect x="5" y="14" width="14" height="20" rx="4" fill="#c9d9e6"/>
+            <path d="M8 34 l-4 14 M16 34 l4 14" stroke="#4a5a7a" stroke-width="4" stroke-linecap="round"/>
+            <path d="M5 18 l-8 -8 M19 18 l8 -8" stroke="#e8d2b5" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <g id="dad"><circle cx="660" cy="318" r="12" fill="#121212"/><rect x="646" y="330" width="28" height="54" rx="8" fill="#121212"/><path d="M646 340 l-10 -8" stroke="#121212" stroke-width="7" stroke-linecap="round"/><rect x="630" y="326" width="12" height="7" fill="#ccc"/></g>
+          <text class="cl-lab" x="660" y="300" text-anchor="middle">爸爸</text>
+        </g>
+      </svg>
+    </div>
+    <div class="panel cl-lines">
+      <p class="tip dad yw" data-step="1">“看着手电光指的地方，看到那块石头没有？”</p>
+      <p class="tip dad yw" data-step="2">“好的，现在转过身去，然后用左脚踩住那块石头。这就是你要做的。它就在你下面一点儿。你能做到。不要担心接下来的事情，也不要往下看，先走好第一步。相信我。”</p>
+      <p class="tip dad yw" data-step="3">“现在，往右边下面一点儿，那儿有另外一个落脚点，就几英寸远。移动你的右脚，慢慢地往下。这就是你要做的。只想着接下来的这步，不要想别的。”</p>
+      <p class="tip dad yw" data-step="4">“好了，现在松开左手，然后抓住后面的小树干，就在边上，看我手电照的地方，这就是你要做的。”</p>
+      <p class="tip yw" data-step="5">就这样，一次一步，一次换一个地方落脚，按照他说的往下爬</p>
+      <p class="tip gold yw" data-step="6">突然，我向下迈出了最后一步，然后踩到了底部凌乱的岩石，扑进了爸爸强壮的臂弯里</p>
+      <p class="tip key" id="cliffKey">“不要想有多远，有多困难，你需要想的是迈一小步，这个你能做到。”</p>
+      <button class="media-btn" hidden data-img="assets/shoudian.jpg" data-video="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/a2f770e6f571fc38a3772da2cb9bb3b339d92bf5f469b0e9ea6aabfabedf25b3.mp4" data-cap="AI 想象图：手电光照着岩壁上的落脚点。供想象参考。">看看那一夜</button>
+    </div>
+  </div>
+  <p class="note">每按一步，手电光照向下一个落脚点，“我”下移一格。注意爸爸每次只说一个简单动作，而且反复说“这就是你要做的”“你能做到”。旁批：为什么爸爸不让“我”有机会停下来思考“下面的路还很长”？</p>
+</section>
+
+<!-- ================= 爸爸的方法 ================= -->
+<section class="slide s-dad">
+  <div class="hd"><span class="tag">旁批 · 爸爸为什么让我先“迈一小步”</span><h2>爸爸的办法好在哪里？</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip yw">他是个粗壮的中年人，他爬不上来。即使他爬上来了，又能怎样？</p>
+      <p class="tip">爸爸没有爬上去，也没有责备“我”。他站在悬崖脚下，只做了一件事：照亮下一步。</p>
+    </div>
+    <div class="stage">
+      <p class="tip">哪些说法说出了爸爸的高明之处？点一点。</p>
+      <div data-picks="dad" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">课文旁批：爸爸为什么让“我”先“迈一小步”？引导学生体会：困难被分解成一个个“能做到”的小动作；每成功一次，信心就多一分。</p>
+</section>
+
+<!-- ================= 两个“一小步” ================= -->
+<section class="slide s-two">
+  <div class="hd"><span class="tag">旁批 · 两个“一小步”</span><h2>悬崖上的一小步，人生中的一小步</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="two-steps">
+        <div class="ts" data-step="1"><h3>悬崖上</h3><p>左脚踩石头 → 右脚往下 → 左手抓树干……</p><b>具体的动作</b></div>
+        <div class="ts-arrow" data-step="2">→</div>
+        <div class="ts life" data-step="2"><h3>人生中</h3><p class="yw">我提醒自己不要看下面遥远的岩石，而是注意相对轻松、容易的第一小步，迈出一小步，再一小步，就这样体会每一步带来的成就感，直到达成了自己的目标。</p><b>面对困难的方法</b></div>
+      </div>
+      <p class="tip gold" data-step="3"><b>标题的意思：</b>“走一步，再走一步”——把遥不可及的目标分解成一个个小目标，一步步完成。这是“悬崖上的一课”，也是作者受用一生的一课。</p>
+    </div>
+  </div>
+  <p class="note">课文旁批：这里的“一小步”与脱险时的“一小步”有什么不同？前者是具体的落脚点，后者是一种人生方法、一种心态。</p>
+</section>
+
+<!-- ================= 读写 ================= -->
+<section class="slide s-write">
+  <div class="hd"><span class="tag">阅读提示</span><h2>复述故事 · 说说我的“一小步”</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">选一个任务：</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="先列提纲，再说给同桌听……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">复述要抓住“事件”和“心理”两条线；讲自己的经历时，学课文写出害怕时的身体反应和心里话。</p>
+</section>
+
+<!-- ================= 回顾 ================= -->
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>走一步，再走一步</h2></div>
+  <div class="bd full">
+    <div class="stage sum-stage">
+      <div class="sum-3">
+        <div data-step="1"><b>冒险</b><span>犹豫 · 跟着爬</span></div>
+        <div data-step="2"><b>遇险</b><span>恐惧 · 绝望 · 麻木</span></div>
+        <div data-step="3"><b>脱险</b><span>一小步 · 再一小步 · 成就感</span></div>
+      </div>
+      <p class="tip gold" data-step="4">面对一个遥不可及的目标时：<b>不要看下面遥远的岩石，注意相对轻松、容易的第一小步。</b></p>
+    </div>
+  </div>
+  <p class="note">课下可以读全文《悬崖上的一课》，看看这一课对作者的人生有怎样的影响。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

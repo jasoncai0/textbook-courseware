@@ -1,0 +1,131 @@
+/* 春 · 本课配色：嫩绿、桃红、暖黄 */
+:root {
+  --red: #b5475f;
+  --red-d: #7a2e41;
+  --gold: #d9a520;
+  --gold-l: #f4dd8c;
+  --paper: #f6f8ee;
+  --stone: #fcfdf7;
+  --ink-2: #5e6650;
+  --line: #d5dcc0;
+}
+.frame { background-image: radial-gradient(circle at 10% 6%, #ffffff 0, transparent 40%), radial-gradient(circle at 92% 96%, #e2efcf 0, transparent 45%); }
+
+/* 封面：一句原文大字 */
+.cover-quote { font-family: var(--kai); font-size: 2em; line-height: 1.6; margin: .8em 0 .2em; letter-spacing: .08em; }
+.s-cover .cover-title { font-size: 6em; }
+.cover-title small { font-size: .22em; margin-left: .6em; letter-spacing: .2em; vertical-align: .4em; font-weight: normal; }
+
+/* 读准字音：初中“读读写写”是词语，卡片放宽 */
+.zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr)); }
+.zy-write { font-size: 1.5em; }
+.zy-write small { font-size: .5em; }
+
+/* ---------- 长卷 ---------- */
+.s-juan .hd .juan-marks { margin-left: auto; }
+.juan-map { display: flex; gap: .3em; justify-content: center; font-family: var(--kai); }
+.juan-map span { padding: .15em .9em; border-radius: 1em; background: #e9efd9; color: var(--ink-2); transition: background .4s, color .4s; }
+.juan-map span.end { background: #f3e6c4; }
+.juan-map span.cur { background: var(--red); color: #fff; }
+.s-juan .bd { grid-template-columns: minmax(0, 1fr); }
+.s-juan .stage { min-width: 0; }
+.juan { flex: 1; min-height: 0; min-width: 0; overflow: hidden; position: relative; border-radius: .6em; background: linear-gradient(#f1ead4, #e8dfc2); box-shadow: inset 0 0 0 .3em #c9b98c, inset 0 0 1.4em rgba(80, 60, 20, .25); }
+.juan-track { display: flex; gap: 1.2em; height: 100%; padding: .9em 1.2em; transition: transform 1.1s cubic-bezier(.4, 0, .2, 1); width: max-content; }
+.jp { width: 33em; flex: none; display: flex; flex-direction: column; background: #fffdf6; border-radius: .4em; box-shadow: 0 .2em .8em rgba(80, 60, 20, .15); overflow: hidden; }
+.jp[data-step] { transform: none; opacity: .25; }
+.jp[data-step].on { opacity: 1; }
+.jp-pic { position: relative; height: 11em; flex: none; background: #dfe8cf center / cover no-repeat; overflow: hidden; }
+.jp-pic.svg { background: #f3f8ea; display: flex; align-items: center; justify-content: center; }
+.jp-pic .ying-svg { width: 100%; height: 100%; }
+.pan-pic span { font-family: var(--kai); font-size: 4.6em; color: #7fa85a; opacity: .75; letter-spacing: .2em; }
+.pan-pic span + span { color: #b5475f; font-size: 5.4em; }
+.jp h3 { margin: .35em .9em 0; color: var(--red-d); font-size: 1.15em; }
+.jp h3 small { font-size: .65em; color: #fff; background: #8aa86a; border-radius: .3em; padding: .05em .45em; margin-right: .5em; vertical-align: .2em; font-weight: normal; }
+.jp.pan h3 small, .jp.zan h3 small { background: var(--gold); }
+.jp-text { flex: 1; min-height: 0; overflow: auto; padding: .2em .9em .6em; font-family: var(--kai); font-size: 1.05em; line-height: 1.85; }
+.jp-text p { margin: 0 0 .3em; text-indent: 2em; }
+.jp-text em { font-style: normal; }
+.jp-text .pz, .jp-text .lk { display: none; font-style: normal; color: var(--red); font-family: var(--serif); font-weight: bold; margin: 0 .05em; }
+.marks-on .jp-text .pz, .marks-on .jp-text .lk { display: inline; }
+.marks-on .jp-text em { background: radial-gradient(circle, var(--red) 40%, transparent 46%) repeat-x 0 100% / .5em .3em; padding-bottom: .2em; color: var(--red-d); }
+.juan-legend { margin: 0; text-align: center; }
+.juan-legend b { color: var(--red); }
+.marks-on .juan-legend { opacity: 1; }
+.kite { animation: kite 3s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+.kite.k2 { animation-delay: -1s; } .kite.k3 { animation-delay: -2s; }
+@keyframes kite { to { transform: rotate(8deg) translateY(-6px); } }
+
+/* ---------- 五幅图 ---------- */
+.tu-tabs .btn { font-family: var(--kai); font-size: 1em; }
+.tu-pic { flex: 1; min-height: 9em; border-radius: .5em; background: #dfe8cf center / cover no-repeat; overflow: hidden; display: flex; }
+.tu-pic .ying-svg { width: 100%; height: 100%; }
+.tu-info { justify-content: center; }
+.tu-info .chip { font-size: .85em; padding: .1em .6em; margin: .1em 0; display: inline-block; }
+.tu-love { background: #fff8e1; border: 1px solid var(--gold-l); border-radius: .5em; padding: .5em .9em; font-size: .9em; }
+.tu-love summary { cursor: pointer; color: var(--red-d); font-weight: bold; }
+.tu-love p { margin: .4em 0 0; font-family: var(--kai); font-size: 1.1em; line-height: 1.7; }
+
+/* ---------- 赞春 ---------- */
+#grow { background: #fff; border-radius: .6em; }
+#grow g[data-step] { transition: opacity .8s; }
+.zan-list { display: flex; flex-direction: column; gap: .5em; }
+.zan-list .tip { font-family: var(--kai); font-size: 1.05em; }
+.zan-k { display: block; font-family: var(--serif); font-size: .85em; color: #3d6b1f; }
+.fang { background: #fff; border: 1px dashed var(--red); border-radius: .5em; padding: .5em .9em; }
+.fang-q { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .4em; font-family: var(--kai); font-size: 1.05em; }
+.fang-a { margin: .4em 0 0; font-family: var(--kai); color: var(--red-d); line-height: 1.7; }
+
+/* ---------- 批注 ---------- */
+.pi-list { display: flex; flex-direction: column; gap: .7em; }
+.pi-row { background: #fff; border-radius: .5em; padding: .6em 1em; border-left: .3em solid #8aa86a; }
+.pi-s { margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.8; }
+.pi-dot { font: inherit; border: none; background: none; padding: 0; cursor: pointer; color: var(--red-d); background-image: radial-gradient(circle, var(--red) 40%, transparent 46%); background-repeat: repeat-x; background-position: 0 100%; background-size: .5em .3em; padding-bottom: .2em; }
+.pi-dot.open { background-color: #fdeef1; }
+.pi-note { margin: .3em 0 0 1.4em; font-size: .92em; line-height: 1.7; color: #3e4a2e; background: #f4f8ea; border-radius: .4em; padding: .35em .8em; position: relative; }
+.pi-note::before { content: "批注"; color: #fff; background: #8aa86a; font-size: .8em; padding: 0 .4em; border-radius: .2em; margin-right: .5em; }
+
+/* ---------- 标重音停连 ---------- */
+.lab-text { flex: 1; min-height: 0; background: #fff; border-radius: .6em; padding: 1em 1.2em; font-family: var(--kai); font-size: 1.7em; line-height: 2.3; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); align-content: flex-start; }
+.lab-w { font: inherit; border: none; background: none; padding: 0 .02em; margin: 0; cursor: pointer; color: var(--ink); border-radius: .15em; position: relative; }
+.lab-w:hover { background: #f4f8ea; }
+.lab-w[data-st="1"], .lab-w[data-st="2"] { color: var(--red-d); background-image: radial-gradient(circle, var(--red) 40%, transparent 46%); background-repeat: repeat-x; background-position: 0 92%; background-size: .45em .28em; }
+.lab-w[data-st="2"]::after, .ref .lab-w.ans-p::after { content: "/"; color: var(--red); font-family: var(--serif); font-weight: bold; margin-left: .1em; }
+.ref .lab-w.ans-s { outline: 2px dashed #8aa86a; outline-offset: .05em; }
+.ref .lab-w.ans-p::after { color: #3d8a5a; }
+.lab-why:empty { display: none; }
+
+/* ---------- 回顾 ---------- */
+.sum-stage { justify-content: center; }
+.sum-flow { display: flex; align-items: stretch; gap: .8em; justify-content: center; }
+.sum-flow > i { align-self: center; font-style: normal; color: var(--red); font-size: 2em; }
+.sum-box { background: #fff; border-radius: .6em; padding: .8em 1.4em; text-align: center; box-shadow: 0 .15em .6em rgba(40, 30, 20, .1); border-top: .3em solid #8aa86a; }
+.sum-box.big { border-top-color: var(--red); flex: 1.4; }
+.sum-box b { display: block; font-family: var(--kai); font-size: 2em; color: var(--red-d); }
+.sum-box span { font-family: var(--kai); line-height: 1.7; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cover-quote { font-size: 1.3em; }
+  .s-cover .cover-title { font-size: 4em; }
+  .zy-grid-write { grid-template-columns: repeat(auto-fill, minmax(8em, 1fr)); }
+  .s-juan .hd .juan-marks { margin-left: 0; }
+  .juan-map { flex-wrap: wrap; font-size: .85em; }
+  .juan { overflow: visible; background: none; box-shadow: none; }
+  .juan-track { flex-direction: column; width: auto; transform: none !important; padding: 0; }
+  .jp { width: auto; }
+  .jp[data-step] { opacity: 1; }
+  .jp-pic { height: 12em; }
+  .jp-text { overflow: visible; }
+  .tu-pic { min-height: 12em; }
+  .lab-text { font-size: 1.3em; }
+  .sum-flow { flex-direction: column; }
+  .sum-flow > i { transform: rotate(90deg); }
+}
+
+/* 版面微调 */
+.s-tu .bd { grid-template-columns: 44% 1fr; }
+.tu-info .tip { font-size: 1em; }
+.s-zan .bd { grid-template-columns: 1fr 1.15fr; }
+.lab-text { flex: 0 0 auto; min-height: 7em; }
+@media (max-width: 820px), (max-height: 520px) {
+  .s-tu .bd, .s-zan .bd { display: flex; }
+}

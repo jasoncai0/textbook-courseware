@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>从百草园到三味书屋 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面：路线导入 ================= -->
+<section class="slide scene s-cover">
+  <video class="scene-bg" data-focus="1.04 50% 50%" data-src="https://libtv-res.liblib.art/sd-gen-save-img/genius_playground/video/123f2f4e6edd47ce8fe800170f7a6403/1749bbb5f9889a46b90e466fb23255a90bccacc07168bba7490ebb59eb5dd42f.mp4" data-poster="assets/baicao.jpg" muted loop playsinline preload="none"></video>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第三单元 · 第 9 课 · 散文</p>
+    <h1 class="cover-title">从百草园到三味书屋</h1>
+    <p class="cover-sub">鲁迅　选自《朝花夕拾》</p>
+    <div class="route" data-step="1"><b>百草园</b><i>出门向东 · 不上半里 · 走过一道石桥</i><b>三味书屋</b></div>
+    <div class="chips" data-step="2"><span class="chip">默读：不出声 · 不指读 · 不回看</span><span class="chip">把握基本内容</span><span class="chip">关注关键语句</span></div>
+  </div>
+  <p class="note">标题就是一条路线：从“园”到“屋”。先问：小时候的鲁迅在这两个地方玩些什么，学些什么，想些什么？（预习提示）带着问题默读全文。</p>
+</section>
+
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 默读计时 ================= -->
+<section class="slide s-task">
+  <div class="hd"><span class="tag">默读 · 单元方法</span><h2>一气读完全文，看看自己读得多快</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <div class="rules">
+        <p data-step="1"><b>不出声</b>嘴唇不动，只用眼睛读</p>
+        <p data-step="1"><b>不指读</b>不用手指着一行行移动</p>
+        <p data-step="1"><b>不回看</b>遇到生字生词，猜一猜或先跳过</p>
+        <p data-step="1"><b>一气读完</b>保证对全文有完整的印象</p>
+      </div>
+      <p class="tip gold" data-step="2"><b>带着三个问题读：</b>小时候的他玩些什么？学些什么？想些什么？</p>
+    </div>
+    <div class="stage">
+      <div class="timer" data-noswipe>
+        <p class="timer-face" id="rdTime">00:00</p>
+        <div class="btns"><button class="btn solid" type="button" id="rdStart">开始默读</button><button class="btn" type="button" id="rdStop">读完了</button></div>
+        <p class="timer-rate" id="rdRate">课文正文约 2600 字。读完点“读完了”，算一算每分钟读多少字。</p>
+      </div>
+      <p class="tip" data-step="3"><b>参考：</b>初中阶段默读一般现代文，每分钟不少于 500 字。读得快，还要读得懂——读完能说出“园”和“屋”各写了什么。</p>
+    </div>
+  </div>
+  <p class="note">计时器可以全班一起用：老师点“开始”，学生读完举手，老师按“读完了”估算。速度只作参考，重要的是读完能回答三个问题。</p>
+</section>
+
+<!-- ================= 主呈现：两处空间对比地图 ================= -->
+<section class="slide s-map">
+  <div class="hd"><span class="tag">思考探究一 · 1</span><h2>一张地图：两处地方，一段过渡</h2></div>
+  <div class="bd full">
+    <div class="row map-row">
+      <div class="map-wrap" data-noswipe><svg viewBox="0 0 800 400" id="mapSvg">
+        <defs>
+          <pattern id="pGrass" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M2 12 l2 -6 M7 12 l1 -5" stroke="#8fbf7a" stroke-width="1.2"/></pattern>
+          <clipPath id="cMap"><rect x="0" y="0" width="800" height="400" rx="14"/></clipPath>
+        </defs>
+        <g clip-path="url(#cMap)">
+          <rect width="800" height="400" fill="#f3efe2"/>
+          <!-- 百草园 -->
+          <g data-step="1">
+            <rect x="18" y="40" width="300" height="330" rx="18" fill="#e3efd5" stroke="#7aa765" stroke-width="3"/>
+            <rect x="18" y="40" width="300" height="330" rx="18" fill="url(#pGrass)" opacity=".6"/>
+            <text class="t-l map-title" x="168" y="72" text-anchor="middle">百草园 · 乐园</text>
+            <g class="spot" data-k="caiqi" tabindex="0"><rect x="40" y="96" width="110" height="64" rx="6" fill="#bfe0a6"/><path d="M48 110 h94 M48 124 h94 M48 138 h94 M48 152 h94" stroke="#6ea255" stroke-width="3"/><text class="t-s" x="95" y="176" text-anchor="middle">菜畦 · 石井栏</text></g>
+            <g class="spot" data-k="tree" tabindex="0"><rect x="220" y="160" width="14" height="50" fill="#8a6a45"/><circle cx="227" cy="140" r="38" fill="#7fb36a"/><circle cx="214" cy="130" r="5" fill="#8b2f6b"/><circle cx="240" cy="148" r="5" fill="#8b2f6b"/><text class="t-s" x="227" y="226" text-anchor="middle">皂荚树 · 桑椹</text></g>
+            <g class="spot" data-k="grass" tabindex="0"><path d="M140 262 l6 -26 l4 26 l6 -30 l4 30 l6 -24 l4 24 z" fill="#5f9a4d"/><text class="t-s" x="160" y="280" text-anchor="middle">长草</text></g>
+            <g class="spot" data-k="wall" tabindex="0"><rect x="34" y="300" width="268" height="22" rx="4" fill="#c9a27a"/><path d="M40 300 v22 M80 300 v22 M120 300 v22 M160 300 v22 M200 300 v22 M240 300 v22 M280 300 v22" stroke="#a9825b"/><text class="t-s" x="168" y="342" text-anchor="middle">泥墙根 · 无限趣味</text></g>
+            <g class="spot" data-k="snow" tabindex="0"><circle cx="80" cy="240" r="30" fill="#fff" stroke="#9cb8cf" stroke-width="2"/><path d="M60 250 l20 -24 l20 24" fill="none" stroke="#8a6a45" stroke-width="3"/><text class="t-s" x="80" y="288" text-anchor="middle">雪地捕鸟</text></g>
+            <g class="spot" data-k="story" tabindex="0"><rect x="250" y="236" width="56" height="40" rx="6" fill="#efe1c5" stroke="#b9925c"/><text class="t-s" x="278" y="261" text-anchor="middle">美女蛇</text></g>
+          </g>
+          <!-- 过渡：路线 -->
+          <g data-step="2">
+            <path class="draw" pathLength="1" d="M318 205 C 360 205, 380 170, 420 172 S 470 205, 482 205" fill="none" stroke="#b0471f" stroke-width="4" stroke-dasharray="1" stroke-linecap="round"/>
+            <path d="M380 180 q20 -22 40 0" fill="none" stroke="#7d7466" stroke-width="5"/>
+            <text class="t-s" x="400" y="150" text-anchor="middle">石桥</text>
+            <g class="spot" data-k="bridge" tabindex="0"><rect x="334" y="222" width="132" height="96" rx="10" fill="#fff8e1" stroke="#c9973a" stroke-width="2"/>
+              <text class="t-s" x="400" y="244" text-anchor="middle" fill="#8f3a2a">过渡段（第 9 段）</text>
+              <text class="t-s" x="400" y="266" text-anchor="middle">“Ade，我的蟋蟀们！</text>
+              <text class="t-s" x="400" y="284" text-anchor="middle">Ade，我的覆盆子们</text>
+              <text class="t-s" x="400" y="302" text-anchor="middle">和木莲们！……”</text></g>
+          </g>
+          <!-- 三味书屋 -->
+          <g data-step="3">
+            <rect x="482" y="40" width="300" height="330" rx="18" fill="#ece4d4" stroke="#8a7656" stroke-width="3"/>
+            <text class="t-l map-title" x="632" y="72" text-anchor="middle">三味书屋 · 书塾</text>
+            <g class="spot" data-k="room" tabindex="0"><path d="M520 150 l60 -40 l60 40 z" fill="#7d6a52"/><rect x="530" y="150" width="100" height="70" fill="#d8c8a8"/><rect x="556" y="160" width="48" height="14" fill="#2f2a24"/><text class="t-s" x="580" y="238" text-anchor="middle">书房 · 匾和鹿</text></g>
+            <g class="spot" data-k="teacher" tabindex="0"><circle cx="705" cy="130" r="16" fill="#6b5d4f"/><rect x="690" y="148" width="30" height="56" rx="10" fill="#6b5d4f"/><text class="t-s" x="705" y="222" text-anchor="middle">先生</text></g>
+            <g class="spot" data-k="read" tabindex="0"><rect x="520" y="260" width="110" height="46" rx="8" fill="#f6eedb" stroke="#b9a37f"/><text class="t-s" x="575" y="288" text-anchor="middle">读书 · 习字 · 对课</text></g>
+            <g class="spot" data-k="yard" tabindex="0"><circle cx="700" cy="282" r="26" fill="#d8e6c5"/><circle cx="692" cy="276" r="4" fill="#e3b33c"/><circle cx="706" cy="286" r="4" fill="#e3b33c"/><text class="t-s" x="700" y="326" text-anchor="middle">后园</text></g>
+            <g class="spot" data-k="draw" tabindex="0"><rect x="640" y="340" width="120" height="22" rx="5" fill="#fff" stroke="#b9a37f"/><text class="t-s" x="700" y="356" text-anchor="middle">描绣像 · 画画儿</text></g>
+          </g>
+        </g>
+      </svg></div>
+      <div class="side map-side">
+        <p class="tip map-pop" id="mapPop" aria-live="polite"><b>点地图上的地方</b>，看看他在那里玩些什么，学些什么，想些什么。</p>
+        <p class="tip" data-step="2"><b>起止：</b>百草园部分从“我家的后面有一个很大的园”到“你太性急，来不及等它走到中间去”；三味书屋部分从“出门向东，不上半里”到结尾。</p>
+        <p class="tip gold" data-step="4"><b>怎样连接：</b>第 9 段是过渡段——“我将不能常到百草园了”收束上文，“Ade”告别百草园，自然引出下文的三味书屋。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">思考探究一第 1 题。先分步出现两块地方和中间的路，再请学生上台点地图，说出每处“玩什么、学什么、想什么”。重点落在第 9 段：它一手牵着园，一手牵着屋。</p>
+</section>
+
+<!-- ================= 主呈现：不必说……也不必说……单是…… ================= -->
+<section class="slide s-layer">
+  <div class="hd"><span class="tag">积累拓展四 · 2</span><h2>不必说……也不必说……单是……</h2></div>
+  <div class="bd">
+    <div class="quote layer-quote">
+      <h4>第 2 段（要背诵）</h4>
+      <p><span class="mark yw" data-step="1">不必说碧绿的菜畦，光滑的石井栏，高大的皂荚树，紫红的桑椹；</span><span class="mark yw" data-step="2">也不必说鸣蝉在树叶里长吟，肥胖的黄蜂伏在菜花上，轻捷的叫天子（云雀）忽然从草间直窜向云霄里去了。</span><span class="mark yw" data-step="3">单是周围的短短的泥墙根一带，就有无限趣味。</span>油蛉在这里低唱，蟋蟀们在这里弹琴。翻开断砖来，有时会遇见蜈蚣；还有斑蝥，倘若用手指按住它的脊梁，便会拍的一声，从后窍喷出一阵烟雾。何首乌藤和木莲藤缠络着，木莲有莲房一般的果实，何首乌有拥肿的根。有人说，何首乌根是有像人形的，吃了便可以成仙，我于是常常拔它起来，牵连不断地拔起来，也曾因此弄坏了泥墙，却从来没有见过有一块根像人样。如果不怕刺，还可以摘到覆盆子，像小珊瑚珠攒成的小球，又酸又甜，色味都比桑椹要好得远。</p>
+    </div>
+    <div class="stage">
+      <button class="media-btn" hidden data-img="assets/qiangen.jpg" data-cap="AI 想象图：短短的泥墙根一带，供想象参考。">看看泥墙根</button>
+      <svg viewBox="0 0 800 440" id="layerSvg" class="lv0">
+        <defs><clipPath id="cLayer"><rect width="800" height="440" rx="12"/></clipPath>
+          <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe6f2"/><stop offset="1" stop-color="#f2f6e8"/></linearGradient></defs>
+        <g clip-path="url(#cLayer)">
+          <rect width="800" height="440" fill="url(#gSky)"/>
+          <rect y="300" width="800" height="140" fill="#cfe4b2"/>
+          <!-- 第一层：静物（不必说） -->
+          <g class="ly ly1">
+            <g class="it s-v" data-tag="视觉 · 静"><rect x="40" y="330" width="230" height="80" rx="6" fill="#7fbf5f"/><path d="M50 348 h210 M50 366 h210 M50 384 h210" stroke="#5a9a41" stroke-width="4"/><text class="lab" x="155" y="430" text-anchor="middle">碧绿的菜畦</text></g>
+            <g class="it s-v s-t" data-tag="视觉 · 静"><ellipse cx="350" cy="350" rx="48" ry="16" fill="#9aa3a6"/><rect x="302" y="350" width="96" height="40" fill="#b6bec1"/><ellipse cx="350" cy="350" rx="34" ry="9" fill="#5d686b"/><text class="lab" x="350" y="420" text-anchor="middle">光滑的石井栏</text></g>
+            <g class="it s-v" data-tag="视觉 · 静"><rect x="610" y="170" width="26" height="160" fill="#7a5a3a"/><circle cx="623" cy="140" r="86" fill="#6aa457"/><circle cx="560" cy="170" r="50" fill="#79b264"/><circle cx="690" cy="176" r="50" fill="#79b264"/><text class="lab" x="623" y="356" text-anchor="middle">高大的皂荚树</text></g>
+            <g class="it s-v s-w" data-tag="视觉 · 静"><g fill="#7b2559"><circle cx="575" cy="190" r="7"/><circle cx="590" cy="200" r="7"/><circle cx="660" cy="200" r="7"/><circle cx="676" cy="186" r="7"/></g><text class="lab" x="500" y="214" text-anchor="end">紫红的桑椹</text></g>
+          </g>
+          <!-- 第二层：动物（也不必说） -->
+          <g class="ly ly2">
+            <g class="it s-a" data-tag="听觉 · 动"><ellipse cx="640" cy="120" rx="9" ry="14" fill="#4a3b2a"/><path class="wave" d="M660 108 q10 12 0 24 M672 100 q16 20 0 40" fill="none" stroke="#b0471f" stroke-width="3"/><text class="lab" x="700" y="90">鸣蝉长吟</text></g>
+            <g class="it s-v" data-tag="视觉 · 动"><g fill="#f2d14b"><circle cx="110" cy="318" r="9"/><circle cx="130" cy="322" r="9"/><circle cx="150" cy="316" r="9"/></g><ellipse cx="130" cy="306" rx="12" ry="8" fill="#e0a520" stroke="#3a2a18" stroke-width="2"/><text class="lab" x="130" y="290" text-anchor="middle">肥胖的黄蜂伏在菜花上</text></g>
+            <g class="it s-v" data-tag="视觉 · 动"><path class="fly" d="M300 280 C 320 200, 360 120, 420 40" fill="none" stroke="#b0471f" stroke-width="3" stroke-dasharray="6 6"/><path d="M414 38 l-14 6 l10 10 z" fill="#5a4a3a"/><text class="lab" x="330" y="160" text-anchor="end">轻捷的叫天子</text><text class="lab" x="330" y="182" text-anchor="end">直窜向云霄</text></g>
+          </g>
+          <!-- 第三层：泥墙根放大（单是） -->
+          <g class="ly ly3">
+            <rect x="20" y="50" width="760" height="370" rx="16" fill="#f6ead2" stroke="#b9925c" stroke-width="3"/>
+            <rect x="20" y="300" width="760" height="120" fill="#c9a27a"/>
+            <path d="M20 300 h760" stroke="#9c7650" stroke-width="3"/>
+            <text class="t-m" x="40" y="84" fill="#8f3a2a">放大：短短的泥墙根一带 —— 无限趣味</text>
+            <g class="it s-a" data-tag="听觉"><path d="M80 250 q10 -10 20 0" stroke="#3a2a18" stroke-width="5" fill="none"/><text class="note-sym" x="110" y="226">♪</text><text class="lab" x="90" y="282" text-anchor="middle">油蛉低唱</text></g>
+            <g class="it s-a" data-tag="听觉"><ellipse cx="200" cy="254" rx="20" ry="8" fill="#5a4026"/><path d="M182 250 l-16 -24 M218 250 l16 -24" stroke="#5a4026" stroke-width="2"/><text class="note-sym" x="230" y="222">♫</text><text class="lab" x="200" y="282" text-anchor="middle">蟋蟀弹琴</text></g>
+            <g class="it s-v s-t" data-tag="视觉 · 触觉"><rect x="290" y="306" width="70" height="26" fill="#9a5b3a" transform="rotate(-12 325 319)"/><path d="M300 350 q20 -8 40 0 q20 8 40 0" stroke="#7a2a1a" stroke-width="5" fill="none"/><text class="lab" x="340" y="378" text-anchor="middle">断砖下的蜈蚣</text></g>
+            <g class="it s-t s-a" data-tag="触觉 · 听觉"><ellipse cx="460" cy="250" rx="16" ry="10" fill="#2f2a24"/><path d="M440 246 q-20 -6 -36 -20" stroke="#bbb" stroke-width="7" stroke-linecap="round" fill="none" opacity=".8"/><text class="lab" x="470" y="282" text-anchor="middle">按斑蝥“拍”的一声</text></g>
+            <g class="it s-v s-t" data-tag="视觉 · 触觉"><path d="M560 300 C 540 220, 600 160, 580 90" stroke="#4f7a3a" stroke-width="4" fill="none"/><path d="M600 300 C 630 230, 570 160, 610 90" stroke="#4f7a3a" stroke-width="4" fill="none"/><ellipse cx="590" cy="350" rx="30" ry="18" fill="#8a5a36"/><circle cx="612" cy="140" r="12" fill="#7d9c4a"/><text class="lab" x="585" y="398" text-anchor="middle">何首乌的根 · 木莲的果</text></g>
+            <g class="it s-v s-w s-t" data-tag="视觉 · 味觉 · 触觉"><g fill="#d7354a"><circle cx="700" cy="230" r="9"/><circle cx="714" cy="236" r="9"/><circle cx="706" cy="246" r="9"/><circle cx="692" cy="242" r="9"/></g><path d="M690 260 l-6 30 M712 258 l8 30" stroke="#4f7a3a" stroke-width="3"/><text class="lab" x="703" y="210" text-anchor="middle">覆盆子 · 又酸又甜</text></g>
+          </g>
+          <text class="lv-cap" x="400" y="34" text-anchor="middle" id="lvCap"></text>
+        </g>
+      </svg>
+      <div class="btns sense-btns" data-step="4" data-noswipe>
+        <span class="sense-lab">按感官看：</span>
+        <button class="btn" type="button" data-sense="s-v">视觉</button>
+        <button class="btn" type="button" data-sense="s-a">听觉</button>
+        <button class="btn" type="button" data-sense="s-w">味觉</button>
+        <button class="btn" type="button" data-sense="s-t">触觉</button>
+      </div>
+      <p class="tip gold" data-step="4"><b>重点是“单是……”：</b>前两个“不必说”一笔带过，是铺垫和衬托；连“短短的泥墙根”都有无限趣味，整个百草园的乐趣就可想而知了。</p>
+    </div>
+  </div>
+  <p class="note">积累拓展四第 1、2 题。第 1 步：静的景物（颜色+形状）；第 2 步：动的小动物（由低到高、由近到远）；第 3 步：镜头推到泥墙根（听觉、触觉、味觉）。最后用感官按钮回看：同一段文字调动了多种感官，写景才“活”。</p>
+</section>
+
+<!-- ================= 美女蛇：赘笔吗 ================= -->
+<section class="slide s-debate">
+  <div class="hd"><span class="tag">思考探究二</span><h2>美女蛇的故事，是“赘笔”吗？</h2></div>
+  <div class="bd">
+    <div class="quote">
+      <h4>长妈妈讲的故事（节选）</h4>
+      <p class="yw">结末的教训是：所以倘有陌生的声音叫你的名字，你万不可答应他。</p>
+      <p class="yw">这故事很使我觉得做人之险，夏夜乘凉，往往有些担心，不敢去看墙上，而且极想得到一盒老和尚那样的飞蜈蚣。</p>
+      <p class="yw">叫我名字的陌生声音自然是常有的，然而都不是美女蛇。</p>
+    </div>
+    <div class="stage">
+      <div class="vote" data-noswipe>
+        <button class="btn" type="button" data-vote="yes">同意：是赘笔，可以删</button>
+        <button class="btn" type="button" data-vote="no">不同意：不能删</button>
+      </div>
+      <p class="tip vote-res" id="voteRes">先表态，再说理由。</p>
+      <div class="reasons">
+        <p class="tip" data-step="1"><b>理由一 · 写“乐”：</b>百草园的乐，不只是玩，还有听故事、想象的乐——“长的草里是不去的”，园子因此更神秘、更有吸引力。</p>
+        <p class="tip" data-step="2"><b>理由二 · 写“我”：</b>“极想得到一盒飞蜈蚣”“走到草丛旁边时，也常常这样想”，写出孩子的天真、好奇和一点点害怕。</p>
+        <p class="tip" data-step="3"><b>理由三 · 写“大鲁迅”：</b>“然而都不是美女蛇”——成年后的作者回望童年，语带幽默，也暗含对世事人心的感慨。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">思考探究二。先让学生举手表态，两边各说理由，再分步出示参考。答案不唯一，能结合文中语句说清理由即可。</p>
+</section>
+
+<!-- ================= 冬天捕鸟：慢镜头 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.05 50% 55%" data-bg="assets/buniao.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">乐园之乐 · 冬天</span><span class="sub">慢镜头：一连串动词</span></div>
+  <div class="subs">
+    <p data-step="1">冬天的百草园比较的无味；雪一下，可就两样了。</p>
+    <p data-step="2">薄薄的雪，是不行的；总须积雪盖了地面一两天，鸟雀们久已无处觅食的时候才好。</p>
+    <p data-step="3" data-focus="1.35 50% 62%"><em>扫开</em>一块雪，<em>露出</em>地面，用一枝短棒<em>支起</em>一面大的竹筛来，下面<em>撒</em>些秕谷，</p>
+    <p data-step="4" data-focus="1.25 70% 55%">棒上<em>系</em>一条长绳，人远远地<em>牵</em>着，<em>看</em>鸟雀下来啄食，走到竹筛底下的时候，将绳子一<em>拉</em>，便<em>罩</em>住了。</p>
+    <p data-step="5" data-focus="1.1 50% 50%">我曾经问他得失的缘由，他只静静地笑道：“你太性急，来不及等它走到中间去。”</p>
+  </div>
+  <p class="note">“乐园之乐”的第三个方面：冬天捕鸟。请学生默读后用“扫、露、支、撒、系、牵、看、拉、罩”复述捕鸟过程——动词用得准，过程就清楚。闰土父亲“静静地笑”，“我”却太性急，孩子气跃然纸上。</p>
+</section>
+
+<!-- ================= 三味书屋 ================= -->
+<section class="slide scene">
+  <div class="scene-bg" data-focus="1.05 50% 45%" data-bg="assets/shuwu.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="hd"><span class="tag">走进三味书屋</span><span class="sub">从“园”到“屋”</span></div>
+  <div class="subs">
+    <p data-step="1">出门向东，不上半里，走过一道石桥，便是我的先生的家了。</p>
+    <p data-step="2" data-focus="1.3 50% 30%">中间挂着一块扁道：三味书屋；扁下面是一幅画，画着一只很肥大的梅花鹿伏在古树下。</p>
+    <p data-step="3">没有孔子牌位，我们便对着那扁和鹿行礼。第一次算是拜孔子，第二次算是拜先生。</p>
+    <p data-step="4">“先生，‘怪哉’这虫，是怎么一回事？……”我上了生书，将要退下来的时候，赶忙问。</p>
+    <p data-step="5" class="beat">“不知道！”</p>
+    <p data-step="6">我就只读书，正午习字，晚上对课。</p>
+  </div>
+  <p class="note">读到“不知道！”停一停：孩子的好奇心碰了壁。注意“只”字——三味书屋的生活从这里开始单调起来。</p>
+</section>
+
+<!-- ================= 先生：看似矛盾 ================= -->
+<section class="slide s-teacher">
+  <div class="hd"><span class="tag">思考探究三</span><h2>先生：看似矛盾，怎样评价？</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">每张卡片正面是一组“看似矛盾”的表现，点一点翻面，看看矛盾背后的先生。</p>
+      <div class="clues" id="clues" data-noswipe></div>
+      <p class="tip gold" data-step="1"><b>评价：</b>先生方正、质朴、博学，严而不厉；他守着旧式书塾的规矩，不讲书本以外的事，却也爱读书、读得入神。“我”对他是恭敬的，笔下带着善意的幽默。</p>
+    </div>
+  </div>
+  <p class="note">思考探究三。除课后提到的两处，引导学生再找：“最严厉的书塾”却“和蔼地答礼”；“很严厉”后来“却好起来”；大叫“读书！”自己也读得摇头晃脑。</p>
+</section>
+
+<!-- ================= 三味书屋的生活 ================= -->
+<section class="slide s-life">
+  <div class="hd"><span class="tag">思考探究一 · 3</span><h2>用一两个词语概括三味书屋的生活</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <div class="life-pic" data-bg="assets/shuwu.jpg"></div>
+      <p class="tip">先生读书入神时：</p>
+      <p class="quote-s yw">“铁如意，指挥倜傥，一座皆惊呢……；金叵罗，颠倒淋漓噫，千杯未醉嗬……。”</p>
+      <p class="hint">他读到这里，总是微笑起来，而且将头仰起，摇着，向后面拗过去，拗过去。</p>
+    </div>
+    <div class="stage">
+      <p class="tip">哪些词语能概括三味书屋的生活？点一点，看依据。（不止一个）</p>
+      <div data-picks="life" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">思考探究一第 3 题。三味书屋既有“只读书”的枯燥、严格，也有后园寻乐、读书入神时偷偷画画的乐趣。“枯燥”与“乐趣”都要结合原句说依据。</p>
+</section>
+
+<!-- ================= 小鲁迅和大鲁迅 ================= -->
+<section class="slide s-twoview">
+  <div class="hd"><span class="tag">积累拓展五</span><h2>两个“我”：小鲁迅在玩，大鲁迅在写</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <div class="twoview">
+        <div><b>小鲁迅</b><span>玩耍时的眼光：好奇、天真、快乐</span></div>
+        <div><b>大鲁迅</b><span>写作时的眼光：回望、温情、幽默，还有一点怅惘</span></div>
+      </div>
+      <p class="tip gold" data-step="1"><b>《朝花夕拾》：</b>早上的花，傍晚来拾——作者在中年回忆童年和青年时代的人和事，“小”与“大”两种眼光交织在一起。</p>
+    </div>
+    <div class="stage">
+      <p class="tip">这些句子，更多是“小鲁迅”的眼光，还是“大鲁迅”的回望？</p>
+      <div class="sort-list" id="sortList" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">积累拓展五。不是简单二分：同一句话里常常两种眼光都有。追问：“这东西早已没有了罢。”读出了什么情感？（对童年的眷恋、对时光流逝的怅惘）</p>
+</section>
+
+<!-- ================= 读写迁移 ================= -->
+<section class="slide s-write">
+  <div class="hd"><span class="tag">积累拓展四 · 3</span><h2>仿写：不必说……也不必说……单是……</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">选一处你熟悉的地方，200 字左右。注意描写顺序，调动多种感官。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="不必说……，也不必说……。单是……，就……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">写之前先定好“单是”写什么——那是重点，要写细；两个“不必说”各写三四样，一笔带过。写完同桌互评：有几种感官？顺序清楚吗？</p>
+</section>
+
+<!-- ================= 回顾 ================= -->
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>从百草园到三味书屋</h2></div>
+  <div class="bd full">
+    <div class="stage sum-stage">
+      <div class="sum-map">
+        <div class="sum-col" data-step="1"><h3>百草园</h3><p>景物 · 故事 · 捕鸟</p><b>乐园：自由 · 趣味</b></div>
+        <div class="sum-mid" data-step="2"><span>过渡段</span><i>→</i><small>Ade！</small></div>
+        <div class="sum-col" data-step="3"><h3>三味书屋</h3><p>读书 · 习字 · 对课 · 后园 · 画画儿</p><b>书屋：枯燥中也有乐趣</b></div>
+      </div>
+      <p class="tip gold" data-step="4"><b>贯穿全文的情感：</b>对童年生活的怀念与眷恋。<b>学法：</b>默读一气读完 → 找起止语句和过渡段 → 抓关键语句概括内容。</p>
+    </div>
+  </div>
+  <p class="note">课后请学生背诵第 2 段，并读《朝花夕拾》中的《阿长与〈山海经〉》《藤野先生》，为本单元名著导读做准备。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>春 · 课本插件</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/narrative.css">
+<link rel="stylesheet" href="../shared/pinyin.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- ================= 封面：一句原文大字导入 ================= -->
+<section class="slide scene s-cover">
+  <div class="scene-bg" data-focus="1.06 50% 50%" data-bg="assets/chunhua.jpg"></div>
+  <div class="scene-shade"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第一单元 · 第 1 课</p>
+    <p class="cover-quote">盼望着，盼望着，<br>东风来了，春天的脚步近了。</p>
+    <h1 class="cover-title">春<small>朱自清</small></h1>
+    <div class="chips" data-step="1"><span class="chip">重视朗读</span><span class="chip">把握重音和停连</span><span class="chip">体会比喻、拟人</span></div>
+    <p class="cover-flow" data-step="2">盼春　→　绘春（五幅图）　→　赞春</p>
+  </div>
+  <p class="note">开课先请学生齐读第一句，问：两个“盼望着”要读得一样吗？（第二个更急切，可以稍慢、稍重。）本课的单元任务是“重视朗读、把握重音和停连”，所以全课都围绕“读”来设计。预习题：你读过哪些描写春天的诗文？</p>
+</section>
+
+<section class="slide s-ziyin" data-ziyin></section>
+
+<!-- ================= 课文主体：盼春—绘春—赞春 长卷 ================= -->
+<section class="slide s-juan">
+  <div class="hd"><span class="tag">读 · 全文长卷</span><h2>一幅春的长卷</h2>
+    <button type="button" class="btn juan-marks" data-noswipe>显示重音停连</button></div>
+  <div class="bd full">
+    <div class="stage">
+      <div class="juan-map" id="juanMap"></div>
+      <div class="juan" data-noswipe><div class="juan-track" id="juanTrack"></div></div>
+      <p class="legend juan-legend"><em>春</em> 重音（字下红点）　<b>/</b> 停顿　<b>‿</b> 连读不停</p>
+    </div>
+  </div>
+  <p class="note">按“下一步”，长卷向左展开，读到哪一段，画就展到哪一段。先整体读一遍，再点“显示重音停连”跟读。长卷顶部是全文结构：盼春（1—2段）、绘春（3—7段，五幅图）、赞春（8—10段）。标注只是参考，重音、停连要服从感情，可以有不同处理。</p>
+</section>
+
+<!-- ================= 品读 · 五幅图 ================= -->
+<section class="slide s-tu">
+  <div class="hd"><span class="tag">思考探究 一 · 二</span><h2>你最喜欢哪一幅画面？</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <div class="btns tu-tabs" id="tuTabs" data-noswipe></div>
+      <div class="tu-pic" id="tuPic"></div>
+    </div>
+    <div class="stage tu-info" id="tuInfo"></div>
+  </div>
+  <p class="note">思考探究一、二。先请学生给五幅图起名字（春草图、春花图、春风图、春雨图、迎春图），再选最喜欢的一幅说理由。理由要落到语言上：抓了哪些景物、调动了哪些感官、用了哪些修辞，读起来有什么“童趣”和“诗味”。</p>
+</section>
+
+<!-- ================= 品读 · 赞春 ================= -->
+<section class="slide s-zan">
+  <div class="hd"><span class="tag">思考探究 三</span><h2>娃娃 → 小姑娘 → 青年：春天在长大</h2></div>
+  <div class="bd">
+    <div class="stage">
+      <svg viewBox="0 0 520 420" id="grow">
+        <path d="M20 400 H500" stroke="#b8c99a" stroke-width="3"/>
+        <g data-step="1">
+          <rect x="30" y="300" width="140" height="100" rx="8" fill="#eaf4d8"/>
+          <path d="M100 400 v-40" stroke="#6a9a3a" stroke-width="4"/>
+          <path d="M100 368 q-22 -14 -30 -2 q14 10 30 2 M100 362 q20 -16 30 -4 q-14 12 -30 4" fill="#8cc152"/>
+          <text class="t-m t-c" x="100" y="330" fill="#3d6b1f">娃娃 · 新</text>
+        </g>
+        <g data-step="2">
+          <rect x="190" y="200" width="140" height="200" rx="8" fill="#fde9ee"/>
+          <path d="M260 400 v-120" stroke="#7a5a3a" stroke-width="5"/>
+          <path d="M260 330 l-34 -30 M260 305 l30 -28" stroke="#7a5a3a" stroke-width="3"/>
+          <g fill="#f29bb2"><circle cx="226" cy="298" r="9"/><circle cx="290" cy="276" r="9"/><circle cx="262" cy="282" r="8"/><circle cx="240" cy="286" r="6"/><circle cx="280" cy="296" r="6"/></g>
+          <text class="t-m t-c" x="260" y="230" fill="#a33a5a">小姑娘 · 美</text>
+        </g>
+        <g data-step="3">
+          <rect x="350" y="80" width="150" height="320" rx="8" fill="#e3efe0"/>
+          <path d="M425 400 v-200" stroke="#5a3e24" stroke-width="12"/>
+          <path d="M425 260 l-45 -45 M425 240 l42 -50" stroke="#5a3e24" stroke-width="6"/>
+          <circle cx="425" cy="170" r="58" fill="#3f8a3a"/><circle cx="380" cy="205" r="30" fill="#4f9a45"/><circle cx="468" cy="190" r="32" fill="#4f9a45"/>
+          <text class="t-m t-c" x="425" y="105" fill="#245a20">青年 · 力</text>
+        </g>
+        <path class="draw" data-step="4" pathLength="1" d="M100 290 Q 180 180 260 190 T 425 70" fill="none" stroke="#d9a520" stroke-width="4" stroke-dasharray="1"/>
+        <text class="t-s" data-step="4" x="150" y="168" fill="#8a6a10">春天一天天长大</text>
+      </svg>
+    </div>
+    <div class="stage">
+      <div class="zan-list">
+        <p class="tip" data-step="1"><b>春天像刚落地的娃娃，</b>从头到脚都是新的，他生长着。<span class="zan-k">→ 新：万物新生，充满生机</span></p>
+        <p class="tip" data-step="2"><b>春天像小姑娘，</b>花枝招展的，笑着，走着。<span class="zan-k">→ 美：姿态优美，活泼可爱</span></p>
+        <p class="tip" data-step="3"><b>春天像健壮的青年，</b>有铁一般的胳膊和腰脚，他领着我们上前去。<span class="zan-k">→ 力：健壮有力，催人奋进</span></p>
+      </div>
+      <p class="tip gold" data-step="4"><b>顺序能换吗？</b>不能。从“新”到“美”到“力”，是春天生长的过程，也越写越有力量——最后一句“领着我们上前去”，把全文推向高潮。</p>
+      <div class="fang" data-step="5" data-noswipe>
+        <p class="fang-q">轮到你：春天像 <span class="btns" id="fangBtns"></span></p>
+        <p class="fang-a" id="fangOut">先选一个喻体，再接着往下写。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">思考探究三。三个比喻写出了春天的三个特点：新、美、力，顺序是春天成长的顺序。第 5 步请学生选一个喻体（或自己想一个）续写比喻句，要求像课文一样，后面跟着写出“像在哪里”。</p>
+</section>
+
+<!-- ================= 积累拓展四：加点语句 ================= -->
+<section class="slide s-pi">
+  <div class="hd"><span class="tag">积累拓展 四</span><h2>点一点加点的词：好在哪里？</h2></div>
+  <div class="bd full">
+    <div class="stage">
+      <p class="tip">像读书时写批注一样：点红色的加点语句，看看旁边的批注。先自己说，再点开对照。</p>
+      <div class="pi-list" id="piList" data-noswipe></div>
+    </div>
+  </div>
+  <p class="note">积累拓展四。重点在“想象情景”：叠用“盼望着”写出急切；“偷偷地”“钻”把小草写成顽皮的孩子；“像眼睛，像星星，还眨呀眨的”比喻兼拟人；“像牛毛，像花针，像细丝”三个比喻写出春雨细、密、亮、柔。</p>
+</section>
+
+<!-- ================= 积累拓展五：标重音和停连 ================= -->
+<section class="slide s-lab">
+  <div class="hd"><span class="tag">积累拓展 五</span><h2>我来标重音和停连</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip"><b>点一下</b>词语：变成重音（下面出红点）；<b>再点一下</b>：在它后面停顿（/）；<b>第三下</b>：取消。</p>
+      <div class="btns" id="labTabs" data-noswipe></div>
+      <p class="tip gold lab-why" id="labWhy"></p>
+    </div>
+    <div class="stage">
+      <div class="lab-text" id="labText" data-noswipe></div>
+      <div class="btns"><button type="button" class="btn" id="labRef">看参考标注</button><button type="button" class="btn" id="labClear">清空重来</button></div>
+      <p class="tip jade lab-tip"><b>小提示：</b>重音不是读得越响越好，可以“重音轻读”——比如“轻悄悄”“软绵绵”，放慢、放轻，反而更突出。</p>
+    </div>
+  </div>
+  <p class="note">积累拓展五：找出你喜欢的段落，标出重音和停连，小组朗读互评。先让学生自己标，再与“参考标注”对照讨论：为什么在这里停？停下来是为了让后面的词更突出，还是为了留出想象的空间？参考答案不唯一。</p>
+</section>
+
+<!-- ================= 读写迁移 ================= -->
+<section class="slide s-write">
+  <div class="hd"><span class="tag">读写迁移</span><h2>学《春》，画一幅“九月图”</h2></div>
+  <div class="bd">
+    <div class="panel">
+      <p class="tip">选一种写法，写一段由夏入秋的景物（写作实践一）。</p>
+      <div class="btns" id="momentBtns" data-noswipe></div>
+      <div class="moment-img" id="momentImg"></div>
+    </div>
+    <div class="stage">
+      <p class="tip gold" id="momentPrompt"></p>
+      <p class="hint" id="momentHint"></p>
+      <textarea id="momentText" data-noswipe placeholder="先写下你看到、听到、闻到的，再挑最有特点的写……"></textarea>
+      <div class="btns"><button class="btn" type="button" id="momentExample">看看示例</button></div>
+      <p class="example" id="momentExampleText" hidden></p>
+    </div>
+  </div>
+  <p class="note">本单元写作“热爱生活，热爱写作”，写作实践一要求写九月由夏入秋的变化。可以仿《春》的三种写法之一：抓住一处景物多感官写；连用比喻；用短句写人的活动。写完给片段起个别致的题目。</p>
+</section>
+
+<!-- ================= 回顾 ================= -->
+<section class="slide s-sum">
+  <div class="hd"><span class="tag">回顾</span><h2>盼春 · 绘春 · 赞春</h2></div>
+  <div class="bd full">
+    <div class="stage sum-stage">
+      <div class="sum-flow">
+        <div class="sum-box" data-step="1"><b>盼春</b><span>盼望着，盼望着<br>（1—2 段）</span></div>
+        <i data-step="1">→</i>
+        <div class="sum-box big" data-step="2"><b>绘春</b><span>春草图 · 春花图 · 春风图<br>春雨图 · 迎春图（3—7 段）</span></div>
+        <i data-step="3">→</i>
+        <div class="sum-box" data-step="3"><b>赞春</b><span>新 · 美 · 力<br>（8—10 段）</span></div>
+      </div>
+      <p class="tip gold" data-step="4"><b>读法：</b>重音突出感情，停连跟着感情走；读出“盼”的急切、“绘”的欣喜、“赞”的昂扬。</p>
+      <p class="tip" data-step="5"><b>写法：</b>多感官（看、听、闻、触）＋比喻拟人＋短句叠词，写出“诗的味道”。课后背诵全文。</p>
+    </div>
+  </div>
+  <p class="note">课后：朗读并背诵全文（积累拓展五）。背诵可以借助结构：一盼、五绘、三赞。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/narrative.js"></script>
+<script src="ziyin.js"></script>
+<script src="../shared/pinyin.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
