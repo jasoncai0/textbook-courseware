@@ -87,3 +87,15 @@
   .kt-root { font-size: 1.2em; }
   .read-item p { font-size: 1.2em; }
 }
+
+/* ---------- 第 3—7 段：镜头移动长卷 ---------- */
+.scroll-strip { position: absolute; top: 0; bottom: 0; left: 0; width: 400%; display: flex; transition: transform 2.6s ease-in-out; }
+.scroll-strip .sp { flex: 1; background: #3d5a66 center / cover no-repeat; }
+.scroll-map { position: absolute; top: 1.2em; right: 2.4em; z-index: 3; display: flex; gap: 0; margin: 0; padding: .3em .5em; list-style: none; background: rgba(0, 0, 0, .38); border-radius: 2em; }
+.scroll-map li { color: rgba(255, 255, 255, .6); font-size: 1.05em; padding: .15em .8em; border-radius: 1.5em; transition: background .6s, color .6s; }
+.scroll-map li + li::before { content: "→"; margin: 0 .5em 0 -.6em; color: rgba(255, 255, 255, .45); }
+.scroll-map li.past { color: #ffe08a; }
+.scroll-map li.now { background: var(--red); color: #fff; }
+@media (max-width: 820px), (max-height: 520px) {
+  .scroll-map { top: auto; bottom: 62%; right: .6em; left: .6em; justify-content: center; font-size: .85em; }
+}

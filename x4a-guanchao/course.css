@@ -54,14 +54,16 @@
 .poem-card h3 { margin: 0; color: var(--red-d); font-size: 1.4em; }
 .poem-card .author { margin: .1em 0 .4em; color: var(--ink-2); font-size: .9em; }
 .poem-card p { margin: 0; font-size: 1.45em; line-height: 1.7; }
-.match { display: grid; grid-template-columns: 1fr 1.6fr; gap: 1.2em; }
-.m-col { display: flex; flex-direction: column; gap: .5em; }
-.m-a, .m-b { font: inherit; font-family: var(--kai); font-size: 1.1em; text-align: left; padding: .45em .8em; border-radius: .5em; border: 2px solid var(--line); background: #fff; cursor: pointer; position: relative; }
-.m-a { font-size: 1.25em; }
-.m-a.sel { border-color: var(--red); background: #eef5f7; }
-.m-a.right, .m-b.right { border-color: #8cc0a6; background: #eef7f1; cursor: default; padding-left: 2.2em; }
-.m-a.right::before, .m-b.right::before { content: attr(data-n); position: absolute; left: .5em; top: 50%; translate: 0 -50%; width: 1.3em; height: 1.3em; border-radius: 50%; background: #2f8a5f; color: #fff; font-family: Georgia, serif; font-size: .85em; display: grid; place-items: center; }
-.m-b.wrong { border-color: #e3a998; background: #fdf0ec; animation: nope .35s; }
+.duidu { display: flex; flex-direction: column; gap: .55em; }
+.dd-row { font: inherit; display: grid; grid-template-columns: max-content 3.2em 1fr; align-items: center; gap: .6em; text-align: left; padding: .45em .8em; border-radius: .6em; border: 2px solid var(--line); background: #fff; cursor: pointer; }
+.dd-gu { white-space: nowrap; font-family: var(--kai); font-size: 1.35em; color: var(--red-d); }
+.dd-k { font-style: normal; text-align: center; font-size: .9em; color: #fff; background: var(--red); border-radius: 1em; padding: .1em 0; }
+.dd-jin { position: relative; font-family: var(--kai); font-size: 1.15em; line-height: 1.5; }
+.dd-jin em { font-style: normal; font-family: var(--serif); font-size: .8em; color: var(--ink-2); border-bottom: 2px dashed var(--line); }
+.dd-jin span { display: none; }
+.dd-row.open { border-color: #8cc0a6; background: #eef7f1; cursor: default; }
+.dd-row.open em { display: none; }
+.dd-row.open .dd-jin span { display: inline; animation: subIn .6s ease both; }
 
 /* ---------- 资料袋：喇叭口 ---------- */
 .bay-svg .t-m { font-size: 20px; }
@@ -75,7 +77,8 @@
   .tide-time { top: .8em; right: .8em; font-size: 1em; }
   .pic-order { grid-template-columns: 1fr; }
   .po-pic { min-height: 7em; }
-  .match { grid-template-columns: 1fr; }
+  .dd-row { grid-template-columns: 1fr auto; }
+  .dd-jin { grid-column: 1 / -1; }
   .recite.wide .recite-lines { font-size: 1.1em; }
   .poem-card p { font-size: 1.2em; }
 }

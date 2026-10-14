@@ -11,9 +11,23 @@ const SORT_ITEMS = [
   { s: '父亲曾经是个猎人。', ok: ['同意', '不同意'], q: '可以讨论：他懂猎人的门道，可他爱鸟、不打鸟。' },
 ];
 
+/* 林边对话：雾的浓淡跟着读到的句子走（data-fog），对话区自动滚到最新一句 */
+function updateTalk(slide, step) {
+  const talk = slide.querySelector('.talk');
+  if (!talk) return;
+  const shown = [...talk.querySelectorAll('.tk')].filter((el) => +el.dataset.step <= step);
+  const fogSrc = shown.filter((el) => el.dataset.fog !== undefined).pop();
+  slide.querySelector('.fog').style.opacity = fogSrc ? fogSrc.dataset.fog : slide.dataset.fog;
+  const last = shown[shown.length - 1];
+  if (last && talk.scrollHeight > talk.clientHeight) talk.scrollTo({ top: last.offsetTop + last.offsetHeight - talk.clientHeight + 8, behavior: 'smooth' });
+}
+
 window.LESSON = {
   init() {
     Narrative.init({ kinds: KINDS, sort: SORT_ITEMS });
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateTalk(slide, step);
+  },
 };

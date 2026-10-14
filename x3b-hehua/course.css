@@ -47,7 +47,6 @@
 .hh-three b { color: var(--red); }
 
 /* 课后第 2 题卡片 */
-.s-clues .clue-face b { color: var(--red); }
 
 /* 朗读：词语 */
 .hh-words { display: flex; gap: 1em; flex-wrap: wrap; }
@@ -68,4 +67,50 @@
   .hh-words span { font-size: 1.3em; }
   .read-item p { font-size: 1.2em; }
   .recite.wide .recite-lines { font-size: 1.1em; }
+}
+
+/* 读 · 第 1—3 段：读一句，添一笔 */
+.s-paint .bd { grid-template-columns: 56% 1fr; }
+.hh-easel { justify-content: center; }
+.hh-paint { flex: 1; min-height: 0; width: 100%; filter: drop-shadow(0 .3em .6em rgba(40, 70, 50, .18)); }
+.hh-canvas { fill: #fbfaf4; stroke: #b48a52; stroke-width: 10; }
+.hh-word { font-family: var(--kai); font-size: 30px; fill: #b48a1e; }
+.hh-lab { font-family: var(--kai); font-size: 20px; fill: #24553a; paint-order: stroke; stroke: #fbfaf4; stroke-width: 5px; }
+.hh-sign { font-family: var(--kai); font-size: 24px; fill: #8a6414; }
+.hh-pop .hh-fl { transform-box: fill-box; transform-origin: 50% 100%; transform: translateY(40px) scale(.3); transition: transform .6s cubic-bezier(.3, 1.8, .5, 1); }
+.hh-pop.on .hh-fl { transform: none; }
+.hh-paint:has(.hh-alive.on) .hh-fl { animation: hhSway 2.6s ease-in-out infinite alternate; }
+.hh-paint:has(.hh-alive.on) .hh-xiang { opacity: .25; }
+@keyframes hhSway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+.hh-lines { justify-content: flex-start; gap: .2em; overflow: auto; }
+.hh-lines p { margin: 0; font-family: var(--kai); font-size: 1.2em; line-height: 1.5; padding: .15em .6em; border-left: .25em solid transparent; border-radius: .3em; transition: background .4s, color .4s, opacity .6s, transform .6s; color: var(--ink-2); }
+.hh-lines p b { color: var(--red); }
+.hh-lines p.on:not(:has(~ p.on)) { background: #fff; border-left-color: var(--gold); color: var(--ink); }
+
+/* 课后第 2 题：点句子，画活起来 */
+.s-live .bd { grid-template-columns: 42% 1fr; }
+.hh-acts { display: flex; flex-direction: column; gap: .6em; }
+.hh-act { font: inherit; font-family: var(--kai); font-size: 1.2em; line-height: 1.5; text-align: left; padding: .5em .9em; background: #fff; border: 2px dashed var(--line); border-radius: .6em; cursor: pointer; color: var(--ink); }
+.hh-act b { color: var(--red); }
+.hh-act small { display: none; font-family: var(--serif); font-size: .72em; color: var(--red-d); margin-top: .2em; }
+.hh-act.on-live { border-style: solid; border-color: var(--gold); background: #fff8e1; }
+.hh-act.on-live small { display: block; }
+.hh-live { flex: 1; min-height: 0; width: 100%; }
+.hh-f { transform-box: fill-box; transform-origin: 50% 100%; }
+.hh-live.live-mao .hh-f { animation: hhRise 1.6s cubic-bezier(.3, 1.6, .5, 1) var(--d) both; }
+.hh-live.live-zi .hh-f { transform: rotate(var(--r)); transition: transform .8s ease; }
+.hh-live.live-wu .hh-f { animation: hhSway 1.4s ease-in-out var(--d) infinite alternate; }
+.hh-live.live-mao.live-wu .hh-f { animation: hhRise 1.6s cubic-bezier(.3, 1.6, .5, 1) var(--d) both, hhSway 1.4s ease-in-out calc(var(--d) + 1.6s) infinite alternate; }
+@keyframes hhRise { from { transform: translateY(110px) scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+.hh-fly, .hh-fish { opacity: 0; transition: opacity .6s; }
+.hh-fly { offset-path: path("M640 60 C 500 10, 420 120, 330 80 S 160 40, 120 90"); offset-rotate: 0deg; offset-distance: 0%; }
+.hh-fish { offset-path: path("M-60 330 C 120 300, 260 360, 420 320 S 580 300, 680 330"); offset-rotate: auto; offset-distance: 0%; }
+.hh-live.live-ban .hh-fly { opacity: 1; animation: hhGo 6s ease-in-out infinite alternate; }
+.hh-live.live-ban .hh-fish { opacity: 1; animation: hhGo 8s linear infinite; }
+@keyframes hhGo { to { offset-distance: 100%; } }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .hh-paint, .hh-live { flex: none; }
+  .hh-lines p { font-size: 1.15em; }
+  .hh-act { font-size: 1.05em; }
 }

@@ -13,14 +13,37 @@ const SWATCHES = [
   { w: '说也说不出来的颜色', bg: 'linear-gradient(120deg, #f2552c, #f2c230, #7d3fb0, #3fa0d0, #e85a9a)', magic: true },
 ];
 
-/* 课后第 2 题：颜色词的三种样子 */
-const CLUE_LABELS = ['课文里的颜色词', '再说几个'];
-const CLUES = [
-  { q: '红<b>彤彤</b>　金<b>灿灿</b><br><small>颜色＋两个一样的字</small>', a: '绿油油　白茫茫　黄澄澄　黑乎乎　蓝莹莹　灰蒙蒙' },
-  { q: '<b>半</b>紫<b>半</b>黄　<b>半</b>灰<b>半</b>百合色<br><small>半……半……</small>', a: '半红半绿　半青半白　半蓝半紫　半黑半白' },
-  { q: '<b>葡萄</b>灰　<b>梨</b>黄　<b>茄子</b>紫<br><small>东西的名字＋颜色</small>', a: '天蓝　橘黄　草绿　苹果绿　玫瑰红　雪白' },
+/* 课后第 2 题：颜色词工坊。parts 是原料：[按钮字, 造出的词, 颜色1, 颜色2?] */
+const KILNS = [
+  { name: '颜色＋两个一样的字', eg: '红<b>彤彤</b>　金<b>灿灿</b>', parts: [
+    ['绿', '绿油油', '#4f9a3a'], ['白', '白茫茫', '#eef0f2'], ['黄', '黄澄澄', '#e9b52c'],
+    ['黑', '黑乎乎', '#3a3a3a'], ['蓝', '蓝莹莹', '#3f8fd6'], ['灰', '灰蒙蒙', '#9a9a9a']] },
+  { name: '半……半……', eg: '<b>半</b>紫<b>半</b>黄　<b>半</b>灰<b>半</b>百合色', parts: [
+    ['红＋绿', '半红半绿', '#d9443a', '#4f9a3a'], ['青＋白', '半青半白', '#3f8f8a', '#eef0f2'],
+    ['蓝＋紫', '半蓝半紫', '#3f6fd6', '#8a4fc0'], ['黑＋白', '半黑半白', '#3a3a3a', '#eef0f2']] },
+  { name: '东西的名字＋颜色', eg: '<b>葡萄</b>灰　<b>梨</b>黄　<b>茄子</b>紫', parts: [
+    ['天', '天蓝', '#7cc0ef'], ['橘子', '橘黄', '#f2a33a'], ['草', '草绿', '#6cb04a'],
+    ['苹果', '苹果绿', '#9cc84a'], ['玫瑰', '玫瑰红', '#d23a5a'], ['雪', '雪白', '#fbfbfb']] },
 ];
 
+function initKilns(box) {
+  box.innerHTML = KILNS.map((k, i) => `<div class="kl" data-i="${i}">
+    <p class="kl-name">${k.name}<small>${k.eg}</small></p>
+    <div class="kl-out"><i></i><b>？</b></div>
+    <div class="kl-parts">${k.parts.map((p, j) => `<button class="kl-p" type="button" data-j="${j}">${p[0]}</button>`).join('')}</div></div>`).join('');
+  box.addEventListener('click', (e) => {
+    const btn = e.target.closest('.kl-p');
+    if (!btn) return;
+    const kl = btn.closest('.kl');
+    const [, word, c1, c2] = KILNS[+kl.dataset.i].parts[+btn.dataset.j];
+    kl.querySelectorAll('.kl-p').forEach((b) => b.classList.toggle('solid', b === btn));
+    btn.classList.add('used');
+    const out = kl.querySelector('.kl-out');
+    out.querySelector('i').style.background = c2 ? `linear-gradient(90deg, ${c1} 50%, ${c2} 50%)` : c1;
+    out.querySelector('b').textContent = word;
+    out.classList.remove('made'); void out.offsetWidth; out.classList.add('made');
+  });
+}
 /* 课后第 3 题：颜色还是形状 */
 const KINDS = ['颜色', '形状'];
 const SORT_ITEMS = [
@@ -85,7 +108,8 @@ function initRecite() {
 
 window.LESSON = {
   init() {
-    Narrative.init({ kinds: KINDS, sort: SORT_ITEMS, clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
+    Narrative.init({ kinds: KINDS, sort: SORT_ITEMS, moments: MOMENTS });
+    initKilns(document.getElementById('kilnBox'));
     initPalette();
     initRecite();
   },

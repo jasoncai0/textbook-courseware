@@ -14,7 +14,6 @@
 .frame { font-size: min(1.5vw, 2.66vh); }
 .s-cover .cover-title { font-size: 7em; letter-spacing: .2em; }
 
-.star-badge { position: absolute; top: 1.1em; right: 1.4em; z-index: 3; font-family: var(--kai); font-size: 1.3em; color: #fff; background: rgba(46, 74, 125, .9); padding: .15em .8em; border-radius: 1em; }
 
 /* ---------- 阅读提示 ---------- */
 .guide-stage { justify-content: center; }
@@ -34,13 +33,53 @@
 /* ---------- 分一分 ---------- */
 .s-sort .sort-row .s { font-size: 1.2em; }
 
+/* ---------- 三次看星：时间轴 + 会变的星空 ---------- */
+.sky { min-height: 0; display: grid; grid-template-columns: 1.45fr 1fr; grid-template-rows: auto 1fr; gap: .7em 1.2em; }
+.sky-axis { grid-column: 1 / -1; position: relative; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; font-family: var(--kai); font-size: 1.1em; color: var(--ink-2); }
+.sky-axis::before { content: ""; position: absolute; left: 16.7%; right: 16.7%; top: 1.05em; border-top: 3px solid var(--line); }
+.sky-axis span { position: relative; display: flex; flex-direction: column; align-items: center; gap: .1em; transition: color .6s; }
+.sky-axis b { display: grid; place-items: center; min-width: 4.4em; padding: .1em .6em; border-radius: 1em; background: #fff; border: 2px solid var(--line); font-family: var(--serif); font-size: .95em; color: var(--ink-2); transition: all .6s; }
+.sky-axis span.done b { border-color: var(--gold); color: var(--red-d); }
+.sky-axis span.cur { color: var(--red-d); font-weight: bold; }
+.sky-axis span.cur b { background: var(--red); border-color: var(--red); color: #fff; }
+.sky-win { position: relative; min-height: 0; border-radius: .7em; overflow: hidden; background: #0f1830; }
+.sk-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: center / cover no-repeat; opacity: 0; transition: opacity 1.4s ease; }
+.sk-bg.cur { opacity: .9; }
+.sk-stars { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sk-g { transform-box: view-box; transform-origin: 50% 120%; }
+.sk-stars .st { fill: #fff8dc; opacity: .9; filter: drop-shadow(0 0 3px #fff3c4); transition: opacity 1s; }
+.sk-stars .st.more { opacity: 0; }
+.sky-win.dense .st.more { opacity: .9; }
+.sky-win.fx-glow .st { filter: drop-shadow(0 0 4px #ffe9a8); }
+.sky-win.fx-twinkle .st { animation: skTw 2.2s ease-in-out var(--d) infinite alternate; }
+.sky-win.fx-sway .sk-g { animation: skSway 3.2s ease-in-out infinite; }
+.sky-win.fx-sway .sk-bg.cur { animation: skRock 3.2s ease-in-out infinite; }
+.sky-win.fx-fly .st { fill: #e8ff8a; filter: drop-shadow(0 0 5px #d8f56a); animation: skFly 3.6s ease-in-out var(--d) infinite alternate; }
+.sky-win.fx-blink .st:nth-child(4n) { animation: skBlink 1.4s ease-in-out var(--d) infinite; }
+.sk-warm { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 85%, rgba(255, 196, 120, .55), transparent 65%); opacity: 0; transition: opacity 2s; pointer-events: none; }
+.sky-win.fx-warm .sk-warm { opacity: 1; }
+.sk-fx { position: absolute; left: .8em; bottom: .7em; font-family: var(--kai); font-size: 1.25em; color: #fff; background: rgba(29, 47, 85, .85); border: 1px solid var(--gold); padding: .1em .8em; border-radius: 1em; opacity: 0; transition: opacity .6s; }
+.sk-fx.show { opacity: 1; }
+@keyframes skRock { 0%, 100% { transform: scale(1.08) rotate(-1.2deg); } 50% { transform: scale(1.08) rotate(1.2deg) translateY(6px); } }
+@keyframes skTw { from { opacity: .25; } to { opacity: 1; } }
+@keyframes skSway { 0%, 100% { transform: rotate(-2.5deg) translateY(0); } 50% { transform: rotate(2.5deg) translateY(10px); } }
+@keyframes skFly { from { translate: 0 0; } to { translate: var(--dx) var(--dy); } }
+@keyframes skBlink { 0%, 60%, 100% { opacity: .9; r: 2px; } 30% { opacity: .1; } }
+.sky-txt { min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: .3em; font-family: var(--kai); font-size: 1.35em; line-height: 1.6; }
+.sky-txt p { display: none; margin: 0; padding: .2em .6em; border-left: .2em solid transparent; }
+.sky-txt p.on.here { display: block; color: #8d93a3; }
+.sky-txt p.on.here.now { color: var(--ink); border-left-color: var(--gold); background: #fff; border-radius: .3em; }
+
 @media (max-width: 820px), (max-height: 520px) {
   .frame { font-size: 16px; }
   .s-cover .cover-title { font-size: 3em; }
-  .star-badge { top: .8em; right: .8em; font-size: 1em; }
   .guide-cards { grid-template-columns: 1fr; gap: .7em; }
   .star-table { grid-template-columns: 1fr 1fr; }
   .st-h { display: none; }
   .st-c { font-size: 1.05em; }
   .sort-row { grid-template-columns: 1fr; }
+  .sky { display: flex; flex-direction: column; }
+  .sky-axis { font-size: .85em; }
+  .sky-win { flex: none; height: 34vh; }
+  .sky-txt { font-size: 1.12em; justify-content: flex-start; }
 }

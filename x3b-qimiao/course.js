@@ -12,15 +12,24 @@ const SORT_ITEMS = [
   { s: '房檐上垂下的冰柱，好像一把把锋利的刀剑。', ok: ['大地'], q: '冬天的冰柱' },
 ];
 
-/* 课后第 2 题：哪里像是“活”的 */
-const CLUE_LABELS = ['课文里的句子', '像“活”的一样'];
-const CLUES = [
-  { q: '太阳升起，带来新的一天。', a: '太阳像一位朋友，每天早上给我们<b>送来</b>新的一天。' },
-  { q: '云彩在蓝色的天空中飞行……告诉我们许多奇妙的故事……', a: '云彩会<b>飞</b>，还会<b>讲故事</b>，像一个会变魔术的小伙伴。' },
-  { q: '好像有谁在天空涂上了金色、红色和紫色。', a: '天空像一块大画布，好像有一位<b>画家</b>在上面涂颜色。' },
-  { q: '秋天带着金黄色的光辉神奇地到来了。', a: '秋天像一个人，<b>带着</b>礼物、<b>神奇地</b>走来了。' },
+/* 课后第 2 题：平常说法 → 课文原句（{} 里是让它“活”起来的词），like 是像谁 */
+const ALIVE = [
+  { plain: '太阳升起来了，天亮了。', text: '太阳升起，{带来}新的一天。', like: '像朋友' },
+  { plain: '天上有各种形状的云彩。', text: '云彩在蓝色的天空中{飞行}……{告诉我们}许多奇妙的故事……', like: '像会讲故事的小伙伴' },
+  { plain: '傍晚，天空变成了金色、红色和紫色。', text: '好像有谁在天空{涂上}了金色、红色和紫色。', like: '像画家' },
+  { plain: '秋天到了，树叶黄了。', text: '秋天{带着}金黄色的光辉{神奇地到来}了。', like: '像一位客人' },
 ];
 
+function initAlive(box) {
+  box.innerHTML = ALIVE.map((it, i) => `<div class="al-row">
+    <p class="al-plain">${it.plain}</p>
+    <button class="btn al-go" type="button" data-i="${i}">让它活起来 →</button>
+    <p class="al-text">${it.text.replace(/\{(.+?)\}/g, '<b>$1</b>')}<small>${it.like}</small></p></div>`).join('');
+  box.addEventListener('click', (e) => {
+    const b = e.target.closest('.al-go');
+    if (b) b.closest('.al-row').classList.add('on');
+  });
+}
 /* 小练笔：普通而美的事物（前三项是课后例句） */
 const MOMENTS = [
   {
@@ -67,7 +76,8 @@ function setSky(slide, n) {
 
 window.LESSON = {
   init() {
-    Narrative.init({ kinds: KINDS, sort: SORT_ITEMS, clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
+    Narrative.init({ kinds: KINDS, sort: SORT_ITEMS, moments: MOMENTS });
+    initAlive(document.getElementById('aliveBox'));
     const sky = document.querySelector('.s-sky');
     sky.querySelector('.sky-times').addEventListener('click', (e) => {
       const b = e.target.closest('button[data-sky]');

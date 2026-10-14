@@ -3,37 +3,36 @@
  * 本课专属：斜阳“掉”在江上的动画、花牛的动作与景物连一连。
  */
 
-/* ================= 连一连：先点左边，再点右边（pairs[i].a 对 pairs[i].b；右边按 rightOrder 打乱） ================= */
-function initMatch(box, pairs, rightOrder) {
-  box.innerHTML = `<div class="m-col">${pairs.map((p, i) => `<button class="m-a" type="button" data-i="${i}">${p.a}</button>`).join('')}</div>
-    <div class="m-col">${rightOrder.map((i) => `<button class="m-b" type="button" data-i="${i}">${pairs[i].b}</button>`).join('')}</div>`;
-  let picked = null;
-  let found = 0;
-  box.addEventListener('click', (e) => {
-    const a = e.target.closest('.m-a');
-    const b = e.target.closest('.m-b');
-    if (a && !a.classList.contains('right')) {
-      box.querySelectorAll('.m-a').forEach((x) => x.classList.toggle('sel', x === a));
-      picked = a;
-      return;
-    }
-    if (!b || b.classList.contains('right') || !picked) return;
-    b.classList.remove('wrong');
-    void b.offsetWidth; // 重新触发抖动动画
-    if (b.dataset.i !== picked.dataset.i) { b.classList.add('wrong'); return; }
-    found += 1;
-    [picked, b].forEach((x) => { x.classList.remove('sel'); x.classList.add('right'); x.dataset.n = found; });
-    picked = null;
-    box.classList.toggle('all-found', found === pairs.length);
-  });
-}
-
+/* ================= 花牛的一天：一节诗一个动作（k 是景物“调皮”的词，pic/pos 取本课配图） ================= */
 const NIU = [
-  { a: '花牛在草地里坐', b: '压扁了一穗剪秋罗' },
-  { a: '花牛在草地里眠', b: '白云霸占了半个天' },
-  { a: '花牛在草地里走', b: '小尾巴甩得滴溜溜' },
-  { a: '花牛在草地里做梦', b: '太阳偷渡了西山的青峰' },
+  { v: '坐', a: '花牛在草地里坐，', b: '压扁了一穗剪秋罗。', k: '压扁', why: '一屁股坐下去，小花被压扁了——真调皮！', pic: 'huaniu1', pos: '45% 75%' },
+  { v: '眠', a: '花牛在草地里眠，', b: '白云霸占了半个天。', k: '霸占', why: '花牛躺下了，白云趁机占了半个天。', pic: 'huaniu1', pos: '50% 20%' },
+  { v: '走', a: '花牛在草地里走，', b: '小尾巴甩得滴溜溜。', k: '滴溜溜', why: '边走边甩尾巴，多快活。', pic: 'huaniu2', pos: '40% 60%' },
+  { v: '做梦', a: '花牛在草地里做梦，', b: '太阳偷渡了西山的青峰。', k: '偷渡', why: '花牛做着梦，太阳悄悄溜过了西山，一天过去了。', pic: 'huaniu2', pos: '72% 30%' },
 ];
+/* 动作按钮排在太阳走过的弧线上（left/top 为百分比） */
+const ARC = [[8, 78], [34, 17], [66, 17], [92, 78]];
+function initNiuDay() {
+  const box = document.getElementById('niuDay');
+  box.insertAdjacentHTML('beforeend', NIU.map((n, i) => `<button type="button" class="niu-v" data-i="${i}" style="left:${ARC[i][0]}%;top:${ARC[i][1]}%">${n.v}</button>`).join(''));
+  const $ = (id) => document.getElementById(id);
+  const show = (i) => {
+    const n = NIU[i];
+    box.querySelectorAll('.niu-v').forEach((b, k) => { b.classList.toggle('cur', k === i); if (k === i) b.classList.add('seen'); });
+    $('niuSun').style.left = `${ARC[i][0]}%`;
+    $('niuSun').style.top = `${ARC[i][1] - 26}%`;
+    $('niuPic').style.backgroundImage = `url(assets/${n.pic}.jpg)`;
+    $('niuPic').style.backgroundPosition = n.pos;
+    $('niuA').textContent = n.a;
+    $('niuB').innerHTML = n.b.replace(n.k, `<b>${n.k}</b>`);
+    $('niuWhy').textContent = n.why;
+  };
+  box.addEventListener('click', (e) => {
+    const b = e.target.closest('.niu-v');
+    if (b) show(+b.dataset.i);
+  });
+  show(0);
+}
 
 /* 江边的芦苇：一排细茎 + 白头（读到“红颜”时变红） */
 const REEDS = 22;
@@ -60,7 +59,7 @@ const MOMENTS = [
 window.LESSON = {
   init() {
     Narrative.init({ moments: MOMENTS });
-    initMatch(document.getElementById('niuMatch'), NIU, [2, 0, 3, 1]);
+    initNiuDay();
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

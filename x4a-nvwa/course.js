@@ -1,43 +1,7 @@
 'use strict';
-/* 女娲补天（四上 15，略读）· 本课数据与互动。情节图、读写练习见 ../shared/narrative.js，翻页引擎见 ../shared/deck.js */
-
-/* ================= 任务一 · 灾难和办法配对 ================= */
-const FIXES = [
-  ['天上露出一个大窟窿', '炼五色石，补好窟窿'],
-  ['补好的天可能再塌下来', '斩下大乌龟的四条腿，撑起天空'],
-  ['黑龙作恶，野兽残害人类', '杀死黑龙，野兽逃回山林'],
-  ['洪水从地缝里喷涌而出', '芦苇烧成灰，堵住地缝'],
-];
-const FIX_RIGHT = [2, 0, 3, 1];
-const ORDER_WORDS = ['先', '又', '接着', '最后'];
-function initFix() {
-  const L = document.getElementById('fixL');
-  const R = document.getElementById('fixR');
-  L.innerHTML = FIXES.map(([a], i) => `<button type="button" class="fx" data-i="${i}"><i></i>${a}</button>`).join('');
-  R.innerHTML = FIX_RIGHT.map((i) => `<button type="button" class="fx" data-i="${i}"><i></i>${FIXES[i][1]}</button>`).join('');
-  let picked = null;
-  document.getElementById('fix').addEventListener('click', (e) => {
-    const it = e.target.closest('.fx');
-    if (!it || it.classList.contains('done')) return;
-    if (it.parentElement === L) {
-      L.querySelectorAll('.fx').forEach((x) => x.classList.toggle('sel', x === it));
-      picked = it;
-      return;
-    }
-    if (!picked) return;
-    if (picked.dataset.i === it.dataset.i) {
-      const k = +it.dataset.i;
-      [picked, it].forEach((x) => { x.classList.remove('sel'); x.classList.add('done', `p${k}`); });
-      it.querySelector('i').textContent = ORDER_WORDS[k];
-      picked.querySelector('i').textContent = k + 1;
-      picked = null;
-    } else {
-      it.classList.remove('nope');
-      void it.offsetWidth; // 重新触发抖动
-      it.classList.add('nope');
-    }
-  });
-}
+/* 女娲补天（四上 15，略读）· 本课数据与互动。情节图、读写练习见 ../shared/narrative.js，翻页引擎见 ../shared/deck.js
+ * 本课专属：修补天地（读一句，画面修好一处，顺序词逐个亮起）、五彩石从哪里拣来。
+ */
 
 /* ================= 任务一 · 情节图 ================= */
 const PLOT = [
@@ -110,7 +74,6 @@ const MOMENTS = [
 window.LESSON = {
   init() {
     Narrative.init({ plot: PLOT, moments: MOMENTS });
-    initFix();
     buildStones();
     initStones();
   },

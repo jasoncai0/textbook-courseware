@@ -1,73 +1,71 @@
 'use strict';
 /* 方帽子店 · 本课数据与本课互动。通用逻辑见 ../shared/narrative.js，翻页引擎见 ../shared/deck.js */
 
-/* 了解主要内容：排一排 */
-const ORDER = {
-  story: [
-    { pic: 'jieshang', t: '方帽子店只做方帽子，大家都戴，真不舒服' },
-    { pic: 'zhimao', t: '孩子们用纸、用布做出了舒服的圆帽子' },
-    { icon: '😲', t: '店主人的儿子也戴上圆帽子，一溜烟跑了' },
-    { pic: 'liangjia', t: '对面开了新帽子店，顾客都进了新店' },
-    { icon: '🏺', t: '世界在改变，方帽子慢慢成为古董' },
-  ],
-};
+/* 了解主要内容：选词填空（{正确词|干扰词|干扰词}） */
+const FILL = '方帽子店只做{方帽子|圆帽子|草帽}，大家戴着{不舒服|很暖和|正合适}；孩子们用纸、用布做出了舒服的{圆帽子|方帽子|古董}；后来对面开了一家{新帽子店|方帽子店|裁缝店}，顾客都进了新店；世界一天天在改变，方帽子慢慢成了{古董|宝贝|新式样}。';
 
-/* 阅读提示：最意想不到的部分（背面是复述提示） */
-const CLUE_LABELS = ['意想不到的部分', '用自己的话讲一讲'];
-const CLUES = [
-  { q: '“方帽子才是好帽子，不能改的。”——戴着不舒服，大家却都戴方帽子。', a: '先说方帽子戴着怎么不舒服（紧、宽、冬天不暖、夏天热），再说大人们为什么还要戴。' },
-  { q: '方帽子店主人自己的儿子，也戴了一顶圆帽子！', a: '按顺序讲：店主人看见 → 抓起圆帽子丢在地上 → 儿子嚷嚷“我要” → 儿子戴上帽子跑了。加上他们说话的语气。' },
-  { q: '顾客们看了好久，最后还是进了新帽子店。', a: '讲清两张广告写了什么，顾客怎样犹豫，最后为什么选了新帽子店。' },
-  { q: '那些不舒服的方帽子，慢慢地成为古董。', a: '从满街都是方帽子讲起，讲到行人都换了舒服的帽子，最后方帽子成了没人戴的古董。' },
+function initFill(box, text) {
+  let n = 0;
+  box.innerHTML = `<p class="fill-text">${text.replace(/\{(.+?)\}/g, (_, opts) => {
+    const list = opts.split('|');
+    const order = list.map((_, i) => (i + n) % list.length); // 每个空的正确项位置轮换
+    n += 1;
+    return `<span class="fill-gap"><b>　　　</b><span class="fill-opts">${order.map((i) => `<button class="fill-o" type="button" data-ok="${i === 0 ? 1 : 0}">${list[i]}</button>`).join('')}</span></span>`;
+  })}</p><p class="fill-msg"></p>`;
+  const total = n;
+  box.addEventListener('click', (e) => {
+    const o = e.target.closest('.fill-o');
+    if (!o) return;
+    const gap = o.closest('.fill-gap');
+    if (o.dataset.ok !== '1') { o.classList.remove('no'); void o.offsetWidth; o.classList.add('no'); return; }
+    gap.querySelector('b').textContent = o.textContent;
+    gap.classList.add('done');
+    const done = box.querySelectorAll('.fill-gap.done').length;
+    box.querySelector('.fill-msg').textContent = done === total ? '补好了！连起来读一读，这就是故事的主要内容。' : `还差 ${total - done} 个空。`;
+  });
+}
+
+/* 阅读提示：猜一猜，再看看（ok 是课文里真实发生的选项；tell 是复述这部分的提示） */
+const GUESS = [
+  { q: '大家都说“方帽子才是好帽子，不能改的”。可方帽子戴着舒服吗？', opts: ['很舒服，所以大家都戴', '真不舒服，大家却还是戴'], ok: 1,
+    tell: '先说方帽子怎么不舒服（紧、宽、冬天不暖、夏天热），再说大人们为什么还要戴。' },
+  { q: '店主人看见自己的儿子也戴了一顶圆帽子，你猜他会怎么做？', opts: ['抓起圆帽子，丢在地上', '夸儿子的帽子做得好'], ok: 0,
+    tell: '按顺序讲：店主人看见 → 抓起圆帽子丢在地上 → 儿子嚷嚷“我要” → 儿子戴上帽子一溜烟跑了。加上语气。' },
+  { q: '两张广告贴出来了，顾客们会进哪一家？', opts: ['“专卖从不改变的方的好帽子”', '“专卖各式各样的舒服的好帽子”'], ok: 1,
+    tell: '讲清两张广告写了什么，顾客怎样犹豫，最后为什么进了新帽子店。' },
+  { q: '日子一天天过去，那些方帽子最后怎么样了？', opts: ['慢慢地成为古董', '又流行起来'], ok: 0,
+    tell: '从满街都是方帽子讲起，讲到行人都换了舒服的帽子，最后方帽子成了没人戴的古董。' },
 ];
 
-/* ================= 排一排（复述工具，三下第八单元各课相同） =================
- * 容器 <div class="order" data-order="key" data-noswipe>；数据 ORDER[key] = [{ t, pic | icon }]，按正确顺序写。
- * 学生按先后顺序点卡片，点对了卡片落进格子，点错了抖一下；排完后照着格子讲故事。 */
-function initOrder(box, items) {
-  const face = (it) => (it.pic ? `<div class="o-pic" data-bg="assets/${it.pic}.jpg"></div>` : `<div class="o-pic"><i>${it.icon || ''}</i></div>`);
-  const shuffled = () => {
-    const idx = items.map((_, i) => i).sort(() => Math.random() - 0.5);
-    return idx.every((v, i) => v === i) ? [...idx.slice(1), idx[0]] : idx;
-  };
-  let next = 0;
-  const build = () => {
-    next = 0;
-    box.classList.remove('done');
-    box.style.setProperty('--n', items.length);
-    box.innerHTML = `<div class="order-slots">${items.map((_, i) => `<div class="o-slot" data-n="${i + 1}"></div>`).join('')}</div>
-      <div class="order-pool">${shuffled().map((i) => `<button type="button" class="o-card" data-i="${i}">${face(items[i])}<span>${items[i].t}</span></button>`).join('')}</div>
-      <div class="order-bar"><span class="order-msg">点一点：先发生的先点。</span><button type="button" class="btn" data-reset>重新排</button></div>`;
-  };
+function initGuess(box) {
+  box.innerHTML = GUESS.map((g, i) => `<div class="gs" data-i="${i}"><p class="gs-q"><b>${i + 1}</b>${g.q}</p>
+    <div class="gs-opts">${g.opts.map((o, j) => `<button class="gs-o" type="button" data-j="${j}">我猜：${o}</button>`).join('')}</div>
+    <p class="gs-res"></p></div>`).join('');
   box.addEventListener('click', (e) => {
-    if (e.target.closest('[data-reset]')) { build(); box.querySelectorAll('[data-bg]').forEach(showBg); return; }
-    const card = e.target.closest('.o-card');
-    if (!card || card.classList.contains('used')) return;
-    card.classList.remove('wrong');
-    if (+card.dataset.i !== next) {
-      void card.offsetWidth; // 重新触发抖动动画
-      card.classList.add('wrong');
-      box.querySelector('.order-msg').textContent = '再想想：这件事是先发生的吗？';
-      return;
-    }
-    const slot = box.querySelectorAll('.o-slot')[next];
-    slot.innerHTML = card.innerHTML;
-    slot.classList.add('filled');
-    card.classList.add('used');
-    next += 1;
-    const done = next === items.length;
-    box.classList.toggle('done', done);
-    box.querySelector('.order-msg').textContent = done ? '排好了！看着格子，按顺序讲一讲。' : `对了！接着找第 ${next + 1} 件事。`;
+    const o = e.target.closest('.gs-o');
+    if (!o) return;
+    const row = o.closest('.gs');
+    if (row.classList.contains('shown')) return;
+    const g = GUESS[+row.dataset.i];
+    const hit = +o.dataset.j === g.ok;
+    row.classList.add('shown', hit ? 'hit' : 'miss');
+    o.classList.add('mine');
+    row.querySelectorAll('.gs-o')[g.ok].classList.add('real');
+    row.querySelector('.gs-res').innerHTML = `${hit ? '猜中了！' : '<b>意想不到！</b>课文里是这样的。'}　<small>讲一讲：${g.tell}</small>`;
   });
-  build();
 }
-// 重新排时卡片是新生成的，图片直接显示（这时已经在当前页，不需要再按需加载）
-function showBg(el) { el.style.backgroundImage = `url('${el.dataset.bg}')`; el.removeAttribute('data-bg'); }
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS });
-    document.querySelectorAll('[data-order]').forEach((box) => initOrder(box, ORDER[box.dataset.order]));
+    Narrative.init({});
+    initFill(document.getElementById('fillBox'), FILL);
+    initGuess(document.getElementById('guessBox'));
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    // 连环画：最新出现的一格标 cur（手机上只显示这一格）
+    const panels = [...slide.querySelectorAll('.cm-panel')];
+    const shown = panels.filter((p) => +p.dataset.step <= step);
+    panels.forEach((p) => p.classList.toggle('cur', p === shown[shown.length - 1]));
+  },
 };

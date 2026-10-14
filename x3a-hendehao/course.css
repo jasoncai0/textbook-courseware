@@ -48,7 +48,43 @@
 .tell-pic { height: 6em; border-radius: .4em; background: #ddd center / cover no-repeat; }
 .s-tell .tip { font-size: 1.05em; line-height: 1.8; }
 
+/* ---------- 本课独有：变身圆环（故事画面在圆心，心愿推着它绕一圈） ---------- */
+.slide.scene.wheel { background: var(--paper); }
+.wheel .hd .sub { color: var(--ink-2); text-shadow: none; }
+.wheel-box { position: absolute; left: 1.5em; top: 3.4em; bottom: 3.6em; aspect-ratio: 700 / 640; max-width: 52%; }
+.wheel-box .ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hub { position: absolute; left: 32.86%; top: 32.81%; width: 34.29%; height: 37.5%; border-radius: 50%; overflow: hidden; background: #d8d0bd; box-shadow: 0 0 0 .35em #fff, 0 .4em 1.2em rgba(60, 50, 20, .3); }
+.hub .scene-bg { position: absolute; inset: 0; }
+.ring .track { fill: none; stroke: var(--line); stroke-width: 3; stroke-dasharray: 6 8; }
+.ring .arc { fill: none; stroke: #cfc6b0; stroke-width: 7; stroke-linecap: round; transition: stroke .6s; }
+.ring .arc.done { stroke: var(--gold); }
+.ring .arc.pending { stroke: #e0a526; stroke-dasharray: 14 10; animation: march 1s linear infinite; }
+@keyframes march { to { stroke-dashoffset: -24; } }
+.ring .wl { font-family: var(--kai); font-size: 22px; fill: #b3a98f; transition: fill .6s; }
+.ring .wl.done, .ring .wl.pending { fill: var(--red-d); font-weight: bold; }
+.ring .wn circle { fill: #fff; stroke: #cfc6b0; stroke-width: 4; transition: fill .6s, stroke .6s; }
+.ring .wn text { font-size: 26px; fill: #9a907a; font-weight: bold; }
+.ring .wn text.long { font-size: 20px; }
+.ring .wn.done circle { fill: #eef4e3; stroke: var(--gold); }
+.ring .wn.done text { fill: var(--red-d); }
+.ring .wn.cur circle { fill: var(--gold); stroke: #4f6b2a; }
+.ring .wn.cur text { fill: #fff; }
+.ring .wn.cur { animation: pop .6s cubic-bezier(.3, 1.6, .5, 1) both; transform-box: fill-box; transform-origin: center; }
+.wheel .subs { left: 54%; right: 2.4em; top: 4.6em; bottom: 4.4em; padding: 1.2em 1.4em; display: flex; flex-direction: column; justify-content: center; gap: .3em; background: var(--stone); color: var(--ink); border-radius: .8em; border: 1px solid var(--line); box-shadow: 0 .3em 1em rgba(60, 50, 20, .1); font-size: 1.4em; }
+.wheel .subs p.on:not(.now) { opacity: .45; }
+.wheel .subs .wish { color: #b5541c; background: linear-gradient(transparent 60%, rgba(224, 165, 38, .35) 60%); font-weight: normal; }
+/* 圆环页是浅底：导航恢复深色（共享样式给深色故事页改成了浅色） */
+@media (min-width: 821px) and (min-height: 521px) {
+  .frame:has(.wheel.active) .ctrl .pageno { color: var(--ink-2); }
+  .frame:has(.wheel.active) .progress i:not(.done):not(.cur) { background: var(--line); }
+  .frame:has(.wheel.active) .help { color: var(--ink-2); }
+}
+.wheel .subs .reveal { color: var(--red-d); font-size: 1.3em; letter-spacing: .1em; }
+
 @media (max-width: 820px), (max-height: 520px) {
+  .wheel-box { left: 50%; translate: -50% 0; top: 3.2em; bottom: auto; width: min(92%, 25em); max-width: none; }
+  .wheel .subs { left: .8em; right: .8em; top: auto; bottom: 5.4em; padding: .8em 1em; font-size: 1.12em; justify-content: flex-start; max-height: 45%; overflow: hidden; }
+  .ring .wl { font-size: 24px; }
   .journey { flex-direction: column; }
   .journey i { transform: rotate(90deg); }
 }

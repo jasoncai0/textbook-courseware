@@ -92,9 +92,6 @@ function initRoad() {
 }
 
 /* 寓言卡：正面故事，背面道理 */
-function initFable() {
-  document.querySelectorAll('.fable-card').forEach((c) => c.addEventListener('click', () => c.classList.toggle('flipped')));
-}
 
 window.LESSON = {
   init() {
@@ -102,7 +99,6 @@ window.LESSON = {
     Poem.init();
     initWait();
     initRoad();
-    initFable();
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

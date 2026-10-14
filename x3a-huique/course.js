@@ -1,16 +1,50 @@
 'use strict';
 /* 灰雀 · 本课数据。页面逻辑见记叙文模板 ../shared/narrative.js，翻页引擎见 ../shared/deck.js */
 
-/* 课后第 2 题：对话时各自心里想什么（背面只是一种推断） */
-const CLUE_LABELS = ['他说', '他心里可能在想'];
-const CLUES = [
-  { q: '<b>列宁：</b>“孩子，你看见过一只深红色胸脯的灰雀吗？”', a: '那只最好看的灰雀去哪儿了？会不会是这个孩子知道？' },
-  { q: '<b>男孩：</b>“没……我没看见。”', a: '糟了！灰雀在我家里……我不敢说，怕他批评我。' },
-  { q: '<b>列宁：</b>“一定是飞走了或者是冻死了。天气严寒，它怕冷。”', a: '（列宁看出男孩很紧张）我这样说，看看他会怎么做。' },
-  { q: '<b>列宁：</b>“多好的灰雀呀，可惜再也飞不回来了。”', a: '真舍不得它呀！孩子，你听见了吗？' },
-  { q: '<b>男孩：</b>“会飞回来的，一定会飞回来的。它还活着。”', a: '他这么喜欢那只灰雀，我不能让他伤心。我要把灰雀放回来！' },
-  { q: '<b>列宁：</b>“你好！灰雀，昨天你到哪儿去了？”', a: '我知道是你把它放回来的。你是个诚实的孩子，我就不再问了。' },
+/* 小舞台：对话台本（原文逐字：pre 是叙述，say 是台词，post 是台词后的叙述）。think 是课后第 2 题的一种推断 */
+const WHO = { l: '列宁', b: '男孩', n: '旁白' };
+const LINES = [
+  { who: 'l', pre: '这时，列宁看见一个小男孩，就问：', say: '“孩子，你看见过一只深红色胸脯的灰雀吗？”', think: '那只最好看的灰雀去哪儿了？会不会是这个孩子知道？' },
+  { who: 'b', pre: '男孩说：', say: '“没……我没看见。”', think: '糟了！灰雀在我家里……我不敢说，怕他批评我。' },
+  { who: 'l', pre: '列宁说：', say: '“一定是飞走了或者是冻死了。天气严寒，它怕冷。”', think: '（他看出男孩很紧张）我这样说，看看他会怎么做。' },
+  { who: 'n', focus: 'b', pre: '那个男孩本来想告诉列宁灰雀没有死，但又不敢讲。', think: '要不要说实话呢？说了，他会不会生气？' },
+  { who: 'l', pre: '列宁自言自语地说：', say: '“多好的灰雀呀，可惜再也飞不回来了。”', think: '真舍不得它呀！孩子，你听见了吗？' },
+  { who: 'b', pre: '男孩看看列宁，说：', say: '“会飞回来的，一定会飞回来的。它还活着。”', think: '他这么喜欢那只灰雀，我不能让他伤心。我要把灰雀放回来！' },
+  { who: 'l', pre: '列宁问：', say: '“会飞回来？”', think: '这孩子好像知道灰雀在哪儿……' },
+  { who: 'b', pre: '', say: '“一定会飞回来！”', post: '男孩肯定地说。', think: '明天一早，我就把它放回来！' },
 ];
+
+function initStage() {
+  const script = document.getElementById('script');
+  if (!script) return () => {};
+  script.innerHTML = LINES.map((ln, i) => `<p class="sc sc-${ln.who}" data-step="${i + 1}"><b>${WHO[ln.who === 'n' ? 'n' : ln.who]}</b>${ln.pre}${ln.say ? `<span>${ln.say}</span>` : ''}${ln.post || ''}</p>`).join('');
+  const think = document.getElementById('sayThink');
+  let cur = -1;
+  document.getElementById('thinkBtn').addEventListener('click', () => {
+    if (cur < 0) return;
+    think.hidden = !think.hidden;
+  });
+  return (slide, step) => {
+    if (!slide.classList.contains('s-stage')) return;
+    cur = step - 1;
+    const ln = LINES[cur];
+    const say = document.getElementById('saySay');
+    const box = slide.querySelector('.stage-box');
+    const side = ln ? (ln.focus || ln.who) : '';
+    box.dataset.who = side;
+    say.className = `st-say ${side}`;
+    say.textContent = ln && ln.say ? ln.say : '';
+    say.hidden = !(ln && ln.say);
+    document.getElementById('sayNar').textContent = ln ? [ln.pre, ln.post].filter(Boolean).join(' ') : '点“下一步”，台词一句一句亮起来。';
+    think.className = `st-think ${side}`;
+    think.textContent = ln ? ln.think : '';
+    think.hidden = true;
+    document.getElementById('thinkBtn').disabled = !ln;
+    slide.querySelectorAll('.sc').forEach((p, i) => p.classList.toggle('now', i === cur));
+    const now = script.querySelector('.sc.now');
+    if (now && script.scrollHeight > script.clientHeight) script.scrollTo({ top: now.offsetTop + now.offsetHeight - script.clientHeight + 8, behavior: 'smooth' });
+  };
+}
 
 /* 排一排：男孩的心情变化（按正确顺序写，页面上会打乱） */
 const ORDER = [
@@ -85,11 +119,16 @@ function initOrder(box, items) {
   render();
 }
 
+let updateStage = () => {};
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, kinds: KINDS, sort: SORT_ITEMS, moments: MOMENTS });
+    Narrative.init({ kinds: KINDS, sort: SORT_ITEMS, moments: MOMENTS });
+    updateStage = initStage();
     const box = document.getElementById('order');
     if (box) initOrder(box, ORDER);
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateStage(slide, step);
+  },
 };

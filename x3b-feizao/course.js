@@ -1,53 +1,75 @@
 'use strict';
 /* 肥皂泡 · 本课数据与“排一排”。页面逻辑见记叙文模板 ../shared/narrative.js，翻页引擎见 ../shared/deck.js */
 
-/* 品读 · 课后第 1 题：按顺序点卡片（ORDER 是正确顺序，SHUFFLE 是卡片摆放顺序） */
-const ORDER = [
-  '把用剩的碎肥皂<b>放</b>在小木碗里',
-  '<b>加</b>上点儿水，<b>和弄</b>和弄，使它溶化',
-  '用竹笔套管<b>蘸</b>上黏稠的肥皂水',
-  '慢慢地<b>吹</b>起，吹成网球大小的泡儿',
-  '轻轻地一<b>提</b>，球儿落下来，在空中飘游',
-  '用扇子在下面轻轻地<b>扇送</b>，飞得很高',
+/* 品读 · 课后第 1 题：小讲解员提词卡（v 动词，cue 提词：用自己的话说） */
+const GUIDE = [
+  { link: '先', v: '放', cue: '把用剩的碎肥皂放进小木碗里' },
+  { link: '再', v: '和', cue: '加一点儿水，搅一搅，让肥皂化开' },
+  { link: '然后', v: '蘸', cue: '用竹管蘸上黏黏的肥皂水' },
+  { link: '接着', v: '吹', cue: '慢慢地吹，吹成网球那么大的泡泡' },
+  { link: '然后', v: '提', cue: '轻轻一提，泡泡就离开竹管飘起来' },
+  { link: '最后', v: '扇', cue: '用扇子在下面轻轻扇，它能飞得很高' },
 ];
-const SHUFFLE = [3, 0, 5, 2, 4, 1];
 
-function initOrder() {
-  const pool = document.getElementById('orderPool');
-  const slots = document.getElementById('orderSlots');
-  let next = 0;
-  const reset = () => {
-    next = 0;
-    slots.innerHTML = ORDER.map(() => '<li></li>').join('');
-    pool.innerHTML = SHUFFLE.map((i) => `<button class="order-card" type="button" data-i="${i}">${ORDER[i]}</button>`).join('');
+function initGuide() {
+  const $ = (id) => document.getElementById(id);
+  const box = $('guideBox');
+  const bub = $('guideBub');
+  const render = () => {
+    box.innerHTML = GUIDE.map((g, i) => `<button class="g-card" type="button" data-i="${i}"><small>${g.link}</small><b>${g.v}</b><span>${g.cue}</span></button>`).join('');
+    bub.style.setProperty('--n', 0);
+    bub.className = '';
+    $('guideNow').textContent = '点右边的动词，泡泡就一步步吹起来。';
   };
-  pool.addEventListener('click', (e) => {
-    const card = e.target.closest('.order-card');
-    if (!card || card.classList.contains('used')) return;
-    if (+card.dataset.i !== next) {
-      card.classList.remove('no');
-      void card.offsetWidth; // 重新触发抖动动画
-      card.classList.add('no');
-      return;
-    }
-    const slot = slots.children[next];
-    slot.innerHTML = ORDER[next];
-    slot.classList.add('filled');
-    card.classList.add('used');
-    next += 1;
+  box.addEventListener('click', (e) => {
+    const card = e.target.closest('.g-card');
+    if (!card) return;
+    card.classList.add('said');
+    const n = box.querySelectorAll('.g-card.said').length;
+    const g = GUIDE[+card.dataset.i];
+    bub.style.setProperty('--n', n);
+    bub.classList.toggle('fly', n === GUIDE.length);
+    $('guideNow').innerHTML = `<b>${g.link}${g.v}：</b>${g.cue}。`;
   });
-  document.getElementById('orderReset').addEventListener('click', reset);
-  reset();
+  $('guideHide').addEventListener('click', () => {
+    const on = box.classList.toggle('hide-cue');
+    $('guideHide').textContent = on ? '显示提词' : '藏起提词，只看动词讲';
+  });
+  $('guideReset').addEventListener('click', render);
+  render();
 }
 
-/* 品读 · 课后第 2 题：不容易读懂的句子 */
-const CLUE_LABELS = ['这句话是什么意思？', '我读懂了'];
-const CLUES = [
-  { q: '这脆薄的球，会扯成长圆的形式，颤巍巍的，光影零乱。', a: '泡泡吹得太大、扇得太急，被拉成了长圆形，一抖一抖的，上面的彩光乱成一片——快要破了。（想象画面）' },
-  { q: '这时大家都悬着心，仰着头，屏住呼吸。', a: '大家都抬头盯着泡泡，紧张得不敢喘气，怕它破了。（做做动作，体会心情）' },
-  { q: '那一个个轻清脆丽的小球，像一串美丽的梦。', a: '泡泡又轻又亮、又美又容易破，就像美丽的梦一样。（联系生活：梦也是美丽又短暂的）' },
-  { q: '目送着她们，我心里充满了快乐、骄傲与希望。', a: '泡泡是“我”亲手吹起来的，飞得又高又远，“我”很高兴、很自豪，也盼着它们飞到更远的地方。（联系上文）' },
+/* 品读 · 课后第 2 题：放大镜（句子里画线的词 → 意思与读懂的方法） */
+const LENS = [
+  { s: '这脆薄的球，会扯成长圆的形式，{颤巍巍}的，{光影零乱}。', w: [
+    { m: '一抖一抖、快要破了的样子。', how: '想象画面' },
+    { m: '泡泡上的彩光乱成一片——它被扯变形了。', how: '想象画面' }] },
+  { s: '这时大家都{悬着心}，仰着头，{屏住呼吸}。', w: [
+    { m: '心像被提起来挂着，很紧张，怕泡泡破。', how: '做做动作，体会心情' },
+    { m: '憋住气，不敢喘——一喘气泡泡就破了。', how: '做做动作，体会心情' }] },
+  { s: '那一个个轻清脆丽的小球，{像一串美丽的梦}。', w: [
+    { m: '泡泡又美又容易破，就像美丽又短暂的梦。', how: '联系生活' }] },
+  { s: '目送着她们，我心里充满了{快乐、骄傲与希望}。', w: [
+    { m: '泡泡是“我”亲手吹的，飞得高高的：高兴、自豪，还盼着它飞得更远。', how: '联系上文' }] },
 ];
+
+function initLens() {
+  const list = document.getElementById('lensList');
+  const out = document.getElementById('lensOut');
+  list.innerHTML = LENS.map((it, i) => {
+    let k = 0;
+    return `<p>${it.s.replace(/\{(.+?)\}/g, (_, w) => `<button class="lw" type="button" data-i="${i}" data-k="${k++}">${w}</button>`)}</p>`;
+  }).join('');
+  list.addEventListener('click', (e) => {
+    const w = e.target.closest('.lw');
+    if (!w) return;
+    list.querySelectorAll('.lw').forEach((b) => b.classList.toggle('sel', b === w));
+    w.classList.add('seen');
+    const d = LENS[+w.dataset.i].w[+w.dataset.k];
+    out.innerHTML = `<b>${w.textContent}</b><span>${d.m}<small>方法：${d.how}</small></span>`;
+    out.classList.remove('zoom'); void out.offsetWidth; out.classList.add('zoom');
+  });
+}
 
 /* 品读 · 课后第 3 题：小球还有哪些美丽的去处 */
 const MOMENTS = [
@@ -79,8 +101,9 @@ const MOMENTS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
-    initOrder();
+    Narrative.init({ moments: MOMENTS });
+    initGuide();
+    initLens();
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

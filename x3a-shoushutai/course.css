@@ -46,6 +46,26 @@
 .hours .stat i { font-size: 1.4em; }
 .hours .stat span { font-size: 1.1em; }
 
+/* ---------- 危险温度计 ---------- */
+.s-danger .bd { grid-template-columns: 30% 1fr; }
+.danger-left { justify-content: center; gap: 1em; }
+.gauge-row { display: flex; align-items: center; gap: .8em; flex: 1; min-height: 0; }
+.gauge { height: 100%; max-height: 22em; width: auto; flex: none; }
+#gaugeFill { transition: y .8s ease, height .8s ease; }
+.gauge-say { font-size: 1.1em; color: var(--ink-2); }
+.gauge-say b { display: block; color: #b23a2a; font-size: 1.2em; }
+.gauge-say span { font-size: 2.6em; color: #b23a2a; font-family: Georgia, var(--serif); }
+.bethune { background: #eef3f6; border: 1px solid #b8c8d4; border-radius: .6em; padding: .6em .9em; }
+.bethune b { color: #2f5470; }
+.bethune ul { margin: .3em 0 0; padding-left: 1.2em; font-family: var(--kai); font-size: 1.1em; line-height: 1.6; }
+.bethune li { animation: appear .5s; }
+.danger-pool { display: flex; flex-wrap: wrap; gap: .7em; }
+.dg { font: inherit; font-family: var(--kai); font-size: 1.3em; padding: .45em .9em; border-radius: .6em; border: 1px solid var(--line); background: #fff; cursor: pointer; text-align: left; box-shadow: 0 .15em .4em rgba(60, 40, 30, .08); }
+.dg small { display: block; font-family: var(--serif); font-size: .7em; }
+.dg.hot { background: #fbe9e4; border-color: #d98a7a; color: #8a2a1e; animation: nope .35s; }
+.dg.calm { background: #eef3f6; border-color: #b8c8d4; color: #2f5470; }
+.dg:disabled { cursor: default; }
+
 @media (max-width: 820px), (max-height: 520px) {
   .subs { font-size: 1.2em; }
   .hd h2 { font-size: 1.35em; }
@@ -58,4 +78,7 @@
   .zd-eq { text-align: center; font-size: 2em; }
   .clues.three { grid-template-columns: 1fr; }
   .hours .stat b { font-size: 3.4em; }
+  .gauge-row { flex: none; justify-content: center; }
+  .gauge { height: 12em; }
+  .dg { font-size: 1.05em; }
 }

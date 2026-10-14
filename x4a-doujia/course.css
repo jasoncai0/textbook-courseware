@@ -61,13 +61,6 @@
 .s-qlist .stage { min-height: 0; }
 
 /* ---------- 连一连 ---------- */
-.match { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4em; }
-.m-col { display: flex; flex-direction: column; gap: .6em; }
-.m-a, .m-b { font: inherit; font-family: var(--kai); font-size: 1.25em; text-align: left; padding: .45em .9em; border-radius: .5em; border: 2px solid var(--line); background: #fff; cursor: pointer; position: relative; }
-.m-a.sel { border-color: var(--red); background: #f0f6ec; }
-.m-a.right, .m-b.right { border-color: #8cc0a6; background: #eef7f1; cursor: default; padding-left: 2.2em; }
-.m-a.right::before, .m-b.right::before { content: attr(data-n); position: absolute; left: .5em; top: 50%; translate: 0 -50%; width: 1.3em; height: 1.3em; border-radius: 50%; background: #2f8a5f; color: #fff; font-family: Georgia, serif; font-size: .8em; display: grid; place-items: center; }
-.m-b.wrong { border-color: #e3a998; background: #fdf0ec; animation: nope .35s; }
 
 /* ---------- 一起长大 ---------- */
 .grow { display: flex; flex-direction: column; gap: 1em; }
@@ -80,6 +73,30 @@
 .grow-row:last-child span { border-top: .25em solid var(--gold); }
 .s-grow .tip { font-size: 1.1em; }
 
+/* ---------- 豌豆飞行图 ---------- */
+.s-ending .bd { grid-template-columns: 34% 1fr; }
+.s-ending .side { justify-content: flex-start; }
+.pea-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; }
+.pea-btn { white-space: nowrap; font: inherit; font-family: var(--kai); font-size: 1.15em; display: flex; align-items: center; gap: .4em; padding: .35em .7em; border-radius: 2em; border: 2px solid var(--line); background: #fff; cursor: pointer; }
+.pea-btn i { width: .9em; height: .9em; border-radius: 50%; background: #7cbf4f; box-shadow: inset -2px -2px 0 rgba(0, 0, 0, .15); }
+.pea-btn.seen { border-color: var(--red); }
+.pea-btn.cur { background: var(--red); color: #fff; }
+.pea-card { background: #fff; border-radius: .6em; padding: .6em 1em; border-left: .3em solid var(--gold); min-height: 9em; }
+.pea-card b { color: var(--red-d); }
+.pea-card p { margin: .1em 0 .3em; font-family: var(--kai); font-size: 1.08em; line-height: 1.5; }
+.pea-card .pea-q { margin-top: .5em; color: #6a3d86; font-weight: bold; }
+.pea-map .pm-lab { fill: #4a4030; paint-order: stroke; stroke: #fff; stroke-width: 4px; }
+.pea-map .traj { fill: none; stroke: #6aa84f; stroke-width: 3; stroke-dasharray: .015 .015; stroke-dashoffset: 0; opacity: 0; }
+.pea-map .pea { fill: #7cbf4f; stroke: #3d6b2a; stroke-width: 1.5; }
+.pea-map .dest, .pea-map .bird, .pea-map .sprout { opacity: 0; transition: opacity .6s ease 1.3s; }
+.pea-map .go .traj { opacity: 1; animation: pmFly 1.4s ease both; }
+.pea-map .go .dest { opacity: 1; }
+.pea-map .go .bird { opacity: 1; transition-delay: 2s; }
+.pea-map .go .sprout { opacity: 1; transition-delay: 2.2s; }
+.pea-map .pea.fat { transform-box: fill-box; transform-origin: center; transition: transform 1s ease 2s; }
+.pea-map .go .pea.fat { transform: scale(2.1); }
+@keyframes pmFly { from { stroke-dasharray: 0 1; } to { stroke-dasharray: 1 0; } }
+
 @media (max-width: 820px), (max-height: 520px) {
   .frame { font-size: 16px; }
   .s-cover .cover-title { font-size: 2.2em; }
@@ -90,8 +107,6 @@
   .pp { grid-template-columns: 1fr; }
   .qboard { grid-template-columns: 1fr; }
   .qcards { overflow: visible; }
-  .match { grid-template-columns: 1fr; gap: .6em; }
-  .m-a, .m-b { font-size: 1.05em; }
   .grow-row { grid-template-columns: 1fr 1fr; }
   .grow-who { grid-column: 1 / -1; padding: .2em; }
 }

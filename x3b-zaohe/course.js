@@ -1,25 +1,89 @@
 'use strict';
 /* 枣核 · 本课数据与本课互动。通用逻辑见 ../shared/narrative.js，翻页引擎见 ../shared/deck.js */
 
-/* 品读：小枣核的本领（背面是本领用在哪儿） */
-const CLUE_LABELS = ['枣核的本领', '用在哪儿了'];
-const CLUES = [
-  { q: '🌾 <b>勤快</b>：能扶犁，能赶驴，柴比别人打得多', a: '天天干活，学了很多本领，邻居们都夸他，爹娘非常高兴。' },
-  { q: '🦘 <b>会蹦</b>：一蹦就能蹦到屋脊那么高', a: '一蹦蹦进县衙门的院子；在大堂上打这面蹦到那面，怎么也打不着。' },
-  { q: '🤏 <b>人小</b>：只有枣核那么大', a: '藏在驴耳朵里吆喝，衙役们搜不着；从铁链缝里蹦了出来。' },
-  { q: '💡 <b>聪明勇敢</b>：“大家都不用愁，我有办法！”', a: '半夜牵回牲口；敢站出来说“牲口是我牵的”；蹦到县官胡子上荡秋千，让县官吃了亏。' },
-];
+/* ================= 读故事 · 右上角小地图：字幕行 data-place 标地点，圆点跟着走 ================= */
+const MINI_PLACES = { home: [36, 66, '家'], field: [86, 26, '山坡'], yamen: [166, 46, '县衙门'] };
 
-/* 复述：排一排 */
-const ORDER = {
-  story: [
-    { icon: '👶', t: '夫妻俩生了个枣核那么大的孩子，叫“枣核”' },
-    { pic: 'benling', t: '枣核很勤快，学了很多本领，一蹦能蹦到屋脊高' },
-    { icon: '🐂', t: '大旱年，衙役把庄稼人的牛、驴都牵走了' },
-    { pic: 'lvduo', t: '枣核藏在驴耳朵里吆喝，把牲口赶回了村子' },
-    { pic: 'huzi', t: '大堂上枣核蹦来蹦去，县官吃了亏，枣核大摇大摆地走了' },
-  ],
-};
+function buildMiniMap() {
+  const box = document.createElement('div');
+  box.className = 'minimap';
+  box.innerHTML = `<svg viewBox="0 0 200 92">
+    <path d="M36 66 Q60 30 86 26 Q130 20 166 46 Q100 90 36 66" class="mm-road"/>
+    <path d="M0 40 L22 12 L40 34 L58 8 L78 36 Z" class="mm-hill"/>
+    ${Object.values(MINI_PLACES).map(([x, y, t]) => `<circle cx="${x}" cy="${y}" r="5" class="mm-pt"/><text x="${x}" y="${y + 17}" class="mm-t">${t}</text>`).join('')}
+    <circle id="mmDot" r="7" cx="36" cy="66" class="mm-dot"/></svg>`;
+  document.getElementById('frame').appendChild(box);
+}
+
+function updateMiniMap(slide, step) {
+  const box = document.querySelector('.minimap');
+  const on = slide.hasAttribute('data-map');
+  box.classList.toggle('show', on);
+  if (!on) return;
+  let place = 'home';
+  slide.querySelectorAll('[data-place]').forEach((p) => { if (+p.dataset.step <= step) place = p.dataset.place; });
+  const [x, y] = MINI_PLACES[place];
+  const dot = document.getElementById('mmDot');
+  dot.setAttribute('cx', x);
+  dot.setAttribute('cy', y);
+}
+
+/* ================= 品读 · 故事地图：五站路线，每站一件事 + 用上的本领 ================= */
+const SKILLS = ['勤快', '会蹦', '人小', '聪明', '勇敢'];
+const STOPS = [
+  { x: 95, y: 215, name: '村里的家', stage: '起因', pic: 'benling',
+    t: '夫妻俩盼孩子，生了个枣核那么大的孩子，起名“枣核”。枣核说：“别看我人小，一样能做事情。”', skills: ['人小'] },
+  { x: 215, y: 95, name: '山坡田地', stage: '起因', pic: 'benling',
+    t: '枣核天天干活，能扶犁，能赶驴，柴比别人打得多，一蹦就能蹦到屋脊那么高。', skills: ['勤快', '会蹦'] },
+  { x: 470, y: 95, name: '县衙门院子', stage: '经过', pic: 'lvduo',
+    t: '大旱年，衙役牵走了牛、驴。枣核一蹦蹦进院子，藏在驴耳朵里“哦喝！哦喝！”地吆喝，折腾得衙役们不管了，把牲口赶回了村子。', skills: ['会蹦', '聪明'] },
+  { x: 165, y: 255, name: '村里', stage: '经过', pic: '',
+    t: '天一亮，县官带衙役来捉人。枣核蹦出来说：“牲口是我牵的！”铁链一绑，他噗的一声从链缝里蹦了出来。', skills: ['勇敢', '人小'] },
+  { x: 515, y: 220, name: '县衙大堂', stage: '结果', pic: 'huzi',
+    t: '衙役们打这面，枣核蹦到那面。他蹦到县官胡子上荡秋千，一棍子打着了县官的下巴，枣核大摇大摆地走了。', skills: ['会蹦', '聪明'] },
+];
+const ROUTE = 'M95 215 Q140 120 215 95 Q350 40 470 95 Q330 290 165 255 Q350 320 515 220';
+
+function initTrek() {
+  const svg = document.getElementById('trekMap');
+  const card = document.getElementById('trekCard');
+  const badges = document.getElementById('trekBadges');
+  const got = new Set();
+  svg.innerHTML = `<rect width="600" height="320" rx="14" class="tk-land"/>
+    <path d="M0 70 L50 18 L90 60 L140 6 L190 64 L0 64 Z" class="tk-hill"/>
+    <path d="M330 300 Q380 250 360 200 Q340 160 380 120" class="tk-river"/>
+    <g class="tk-house"><rect x="70" y="190" width="50" height="34"/><polygon points="62,192 95,166 128,192"/></g>
+    <g class="tk-yamen"><rect x="430" y="60" width="130" height="40"/><polygon points="420,62 495,30 570,62"/><rect x="485" y="200" width="70" height="38"/><polygon points="478,202 520,178 562,202"/></g>
+    <path d="${ROUTE}" class="tk-road"/>
+    <path d="${ROUTE}" class="tk-walk" id="trekWalk"/>
+    ${STOPS.map((s, i) => `<g class="tk-stop" data-i="${i}" tabindex="0" role="button"><circle cx="${s.x}" cy="${s.y}" r="20"/><text x="${s.x}" y="${s.y + 7}" class="tk-n">${i + 1}</text><text x="${s.x}" y="${s.y + 42}" class="tk-name">${s.name}</text></g>`).join('')}`;
+  const walk = svg.querySelector('#trekWalk');
+  const len = walk.getTotalLength();
+  walk.style.strokeDasharray = len;
+  walk.style.strokeDashoffset = len;
+  const renderBadges = () => {
+    badges.innerHTML = `<b>本领收集 ${got.size}/${SKILLS.length}</b>${SKILLS.map((k) => `<span class="bdg${got.has(k) ? ' got' : ''}">${k}</span>`).join('')}`;
+  };
+  svg.addEventListener('click', (e) => {
+    const g = e.target.closest('.tk-stop');
+    if (!g) return;
+    const i = +g.dataset.i;
+    const s = STOPS[i];
+    svg.querySelectorAll('.tk-stop').forEach((el, k) => {
+      el.classList.toggle('cur', k === i);
+      if (k === i) el.classList.add('seen');
+    });
+    walk.style.strokeDashoffset = len * (1 - [0, .2, .45, .72, 1][i]);
+    s.skills.forEach((k) => got.add(k));
+    card.innerHTML = `${s.pic ? `<div class="tc-pic" style="background-image:url('assets/${s.pic}.jpg')"></div>` : ''}
+      <p class="tc-hd"><b>${i + 1}</b>${s.name}<small>${s.stage}</small></p>
+      <p class="tc-t">${s.t}</p>
+      <p class="tc-sk">用上的本领：${s.skills.map((k) => `<span class="bdg got">${k}</span>`).join('')}</p>
+      ${got.size === SKILLS.length && !svg.querySelector('.tk-stop:not(.seen)') ? '<p class="tip gold"><b>本领收齐了！</b>枣核人小本领大——勤快、聪明、勇敢，还会把“小”变成本领。</p>' : ''}`;
+    renderBadges();
+  });
+  renderBadges();
+}
 
 /* 续编故事 */
 const MOMENTS = [
@@ -43,53 +107,14 @@ const MOMENTS = [
   },
 ];
 
-/* ================= 排一排（复述工具，三下第八单元各课相同） =================
- * 容器 <div class="order" data-order="key" data-noswipe>；数据 ORDER[key] = [{ t, pic | icon }]，按正确顺序写。
- * 学生按先后顺序点卡片，点对了卡片落进格子，点错了抖一下；排完后照着格子讲故事。 */
-function initOrder(box, items) {
-  const face = (it) => (it.pic ? `<div class="o-pic" data-bg="assets/${it.pic}.jpg"></div>` : `<div class="o-pic"><i>${it.icon || ''}</i></div>`);
-  const shuffled = () => {
-    const idx = items.map((_, i) => i).sort(() => Math.random() - 0.5);
-    return idx.every((v, i) => v === i) ? [...idx.slice(1), idx[0]] : idx;
-  };
-  let next = 0;
-  const build = () => {
-    next = 0;
-    box.classList.remove('done');
-    box.style.setProperty('--n', items.length);
-    box.innerHTML = `<div class="order-slots">${items.map((_, i) => `<div class="o-slot" data-n="${i + 1}"></div>`).join('')}</div>
-      <div class="order-pool">${shuffled().map((i) => `<button type="button" class="o-card" data-i="${i}">${face(items[i])}<span>${items[i].t}</span></button>`).join('')}</div>
-      <div class="order-bar"><span class="order-msg">点一点：先发生的先点。</span><button type="button" class="btn" data-reset>重新排</button></div>`;
-  };
-  box.addEventListener('click', (e) => {
-    if (e.target.closest('[data-reset]')) { build(); box.querySelectorAll('[data-bg]').forEach(showBg); return; }
-    const card = e.target.closest('.o-card');
-    if (!card || card.classList.contains('used')) return;
-    card.classList.remove('wrong');
-    if (+card.dataset.i !== next) {
-      void card.offsetWidth; // 重新触发抖动动画
-      card.classList.add('wrong');
-      box.querySelector('.order-msg').textContent = '再想想：这件事是先发生的吗？';
-      return;
-    }
-    const slot = box.querySelectorAll('.o-slot')[next];
-    slot.innerHTML = card.innerHTML;
-    slot.classList.add('filled');
-    card.classList.add('used');
-    next += 1;
-    const done = next === items.length;
-    box.classList.toggle('done', done);
-    box.querySelector('.order-msg').textContent = done ? '排好了！看着格子，按顺序讲一讲。' : `对了！接着找第 ${next + 1} 件事。`;
-  });
-  build();
-}
-// 重新排时卡片是新生成的，图片直接显示（这时已经在当前页，不需要再按需加载）
-function showBg(el) { el.style.backgroundImage = `url('${el.dataset.bg}')`; el.removeAttribute('data-bg'); }
-
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
-    document.querySelectorAll('[data-order]').forEach((box) => initOrder(box, ORDER[box.dataset.order]));
+    Narrative.init({ moments: MOMENTS });
+    buildMiniMap();
+    initTrek();
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateMiniMap(slide, step);
+  },
 };

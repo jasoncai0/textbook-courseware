@@ -13,13 +13,27 @@ const SORT_ITEMS = [
   { s: '它们的色彩多种多样，有褐色的，有紫色的，还有红色的。', ok: ['植物'], q: '植物的色彩' },
 ];
 
-/* 课后第 3 题：加点的部分（正面原句，背面换一种说法比一比） */
-const CLUE_LABELS = ['课文原句（加点的部分）', '换一种说法比一比'];
-const CLUES = [
-  { q: '海底的动物常常在<em class="dot">窃窃私语</em>。', a: '换成“海底的动物常常发出声音”，意思差不多，却没有了趣味。<br>“窃窃私语”像小伙伴在<b>说悄悄话</b>，写出了声音<b>小</b>，又让海底动物像人一样<b>可爱</b>。' },
-  { q: '还有些贝类自己不动，却能巴在轮船底下作<em class="dot">免费的长途旅行</em>。', a: '换成“贝类附着在轮船底下跟着船走”，读起来就平淡了。<br>“免费的长途旅行”把贝类写得像<b>搭便车的旅客</b>，不花钱就能去很远的地方，真有趣！' },
+/* 课后第 3 题：换词开关（pre + 原词/平常说法 + post） */
+const SWAPS = [
+  { pre: '海底的动物常常在', word: '窃窃私语', plain: '发出声音', post: '。',
+    why: '“窃窃私语”像小伙伴在<b>说悄悄话</b>：写出了声音<b>小</b>，又让海底动物像人一样<b>可爱</b>。' },
+  { pre: '还有些贝类自己不动，却能巴在轮船底下作', word: '免费的长途旅行', plain: '移动', post: '。',
+    why: '“免费的长途旅行”把贝类写成<b>搭便车的旅客</b>：不花钱、不费力，就能去很远的地方，真有趣！' },
 ];
 
+function initSwap(box) {
+  box.innerHTML = SWAPS.map((it, i) => `<div class="sw-row" data-i="${i}">
+    <p class="sw-s">${it.pre}<span class="sw-w"><em class="dot">${it.word}</em><i>${it.plain}</i></span>${it.post}</p>
+    <button class="sw-tg" type="button" aria-label="换一种说法"><b>原句</b><span></span><b>换说法</b></button>
+    <p class="sw-why">${it.why}</p></div>`).join('');
+  box.addEventListener('click', (e) => {
+    const t = e.target.closest('.sw-tg');
+    if (!t) return;
+    const row = t.closest('.sw-row');
+    row.classList.toggle('plain');
+    row.classList.add('tried');
+  });
+}
 /* 词句段运用：用“你可知道……”介绍一种事物 */
 const MOMENTS = [
   {
@@ -44,7 +58,8 @@ const MOMENTS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ kinds: KINDS, sort: SORT_ITEMS, clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
+    Narrative.init({ kinds: KINDS, sort: SORT_ITEMS, moments: MOMENTS });
+    initSwap(document.getElementById('swapBox'));
     // 水中听音器：点一下，声音卡片“响”起来
     document.querySelector('.sounds').addEventListener('click', (e) => {
       const card = e.target.closest('.snd');

@@ -115,13 +115,20 @@ function initRetell(data) {
 }
 
 /* 明白的道理 */
-const CLUE_LABELS = ['想一想', '我的理解'];
-const CLUES = [
-  { q: '蔡桓侯为什么会病死？', a: '有病不肯承认，不听扁鹊的劝告，小病一拖再拖，拖成了治不好的大病。' },
-  { q: '从《扁鹊治病》中，我明白了……', a: '有了病要及早医治，有了缺点、错误要及早改正；别人说得对，要虚心听取。' },
-  { q: '纪昌为什么能成为射箭能手？', a: '他听老师的话，先下苦功练好眼力这个基本功，一练就是好几年，从不放弃。' },
-  { q: '从《纪昌学射》中，我明白了……', a: '学本领要先打好基础，一步一步来，还要持之以恒。' },
-];
+const PICKS = {
+  bianque: [
+    { t: '有了病要及早医治，小病拖成大病就晚了。', ok: true, why: '对：病从皮肤一步步到了骨髓。' },
+    { t: '别人说得对，要虚心听取。', ok: true, why: '对：扁鹊劝了三次，蔡桓侯都不听。' },
+    { t: '有了缺点、错误，也要及早改正。', ok: true, why: '对：道理不只用在看病上。' },
+    { t: '蔡桓侯病死，是因为扁鹊医术不高明。', ok: false, why: '不对：扁鹊早就看出了病，是蔡桓侯不肯治。' },
+  ],
+  jichang: [
+    { t: '学本领要先打好基础。', ok: true, why: '对：先练眼力，再学开弓放箭。' },
+    { t: '要持之以恒，不怕吃苦。', ok: true, why: '对：盯着踏板一练就是两年。' },
+    { t: '要听老师的话，一步一步来。', ok: true, why: '对：飞卫怎么说，纪昌就怎么练。' },
+    { t: '射箭只要眼力好就行，不用学开弓。', ok: false, why: '不对：眼力练好后，飞卫才教他开弓放箭。' },
+  ],
+};
 
 /* 讲故事 */
 const MOMENTS = [
@@ -147,7 +154,7 @@ const MOMENTS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
+    Narrative.init({ picks: PICKS, moments: MOMENTS });
     initBing(BING);
     initOrder(document.getElementById('order'), ORDER);
     initRetell(RETELL);

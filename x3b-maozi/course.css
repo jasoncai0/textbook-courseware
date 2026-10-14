@@ -51,26 +51,54 @@
   .pic-box { min-height: 12em; }
 }
 
-/* ---------- 排一排（复述工具）：点卡片按顺序排 ---------- */
-.order { display: flex; flex-direction: column; gap: .7em; min-height: 0; }
-.order-slots, .order-pool { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: .6em; }
-.o-slot { position: relative; min-height: 8.4em; border: 2px dashed var(--line); border-radius: .6em; background: rgba(255, 255, 255, .55); display: flex; flex-direction: column; overflow: hidden; }
-.o-slot::after { content: attr(data-n); position: absolute; left: .35em; top: .3em; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; font-size: .85em; }
-.o-slot.filled { border-style: solid; border-color: var(--gold); background: #fff; animation: appear .4s ease; }
-.o-card { font: inherit; padding: 0; border: 1px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; text-align: left; color: var(--ink); box-shadow: 0 .15em .5em rgba(40, 30, 20, .1); transition: opacity .3s; }
-.o-pic { height: 4.6em; flex: none; background: #efe6d4 center / cover no-repeat; display: flex; align-items: center; justify-content: center; }
-.o-pic i { font-style: normal; font-size: 2.4em; line-height: 1; }
-.o-card > span, .o-slot > span { padding: .35em .6em .5em; font-family: var(--kai); font-size: .95em; line-height: 1.45; }
-.o-card.used { opacity: .2; pointer-events: none; }
-.o-card.wrong { animation: nope .35s; border-color: #e3a998; background: #fdf0ec; }
-.order-bar { display: flex; align-items: center; gap: 1em; }
-.order-msg { flex: 1; color: var(--ink-2); }
-.order.done .order-msg { color: #1f6b4f; font-weight: bold; }
+/* ---------- 读故事 · 连环画分格 ---------- */
+.comic-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: .7em; }
+.cm-panel { position: relative; overflow: hidden; border: 3px solid #3a2a20; border-radius: .3em; background: #efe6d4; box-shadow: .25em .25em 0 rgba(58, 42, 32, .25); }
+.cm-panel .cm-pic { transform: scale(1.15); }
+.cm-no { position: absolute; left: .4em; top: .4em; z-index: 1; width: 1.7em; height: 1.7em; display: grid; place-items: center; border-radius: 50%; background: var(--red); color: #fff; font-weight: bold; }
+.cm-cap { position: absolute; left: .5em; right: .5em; bottom: .5em; z-index: 1; max-height: 70%; overflow-y: auto; background: rgba(255, 252, 244, .94); border: 2px solid #3a2a20; border-radius: .3em; padding: .3em .7em; font-family: var(--kai); font-size: .98em; line-height: 1.5; }
+.cm-cap p { margin: 0; }
+.cm-cap .who { display: inline-block; font-family: var(--serif); font-size: .72em; padding: 0 .45em; margin-right: .3em; border-radius: .3em; background: #7a5a3a; color: #fff; vertical-align: .15em; }
+.cm-cap .who.main { background: var(--red); }
+.cm-panel.cur { border-color: var(--red); }
+
+/* ---------- 了解主要内容 · 选词填空 ---------- */
+.fill { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+.fill-text { margin: 0; font-family: var(--kai); font-size: 1.45em; line-height: 3.3; }
+.fill-gap { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; line-height: 1.5; margin: 0 .15em; }
+.fill-gap > b { min-width: 3.6em; text-align: center; border-bottom: 3px solid var(--gold); color: var(--red); }
+.fill-opts { display: flex; gap: .25em; font-size: .72em; }
+.fill-o { font: inherit; font-family: var(--serif); padding: .05em .5em; border-radius: 1em; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+.fill-o.no { animation: nope .35s; border-color: #e3a998; background: #fdf0ec; }
+.fill-gap.done .fill-opts { visibility: hidden; }
+.fill-msg { margin: .4em 0 0; min-height: 1.5em; color: #1f6b4f; font-weight: bold; }
+
+/* ---------- 阅读提示 · 猜一猜，再看看 ---------- */
+.guess-box { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .7em; align-content: center; }
+.gs { background: #fff; border: 1px solid var(--line); border-radius: .7em; padding: .6em .9em; display: flex; flex-direction: column; gap: .45em; }
+.gs-q { margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.5; }
+.gs-q b { display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; margin-right: .3em; border-radius: 50%; background: var(--gold); color: #fff; font-family: var(--serif); font-size: .85em; }
+.gs-opts { display: flex; flex-direction: column; gap: .3em; }
+.gs-o { font: inherit; text-align: left; padding: .25em .7em; border-radius: .5em; border: 1px solid var(--line); background: #fbf7ef; cursor: pointer; }
+.gs.shown .gs-o { cursor: default; opacity: .55; }
+.gs.shown .gs-o.real { opacity: 1; background: #eef7f1; border-color: #8cc0a6; }
+.gs.shown .gs-o.real::after { content: '　← 课文里'; color: #1f6b4f; font-size: .85em; }
+.gs.shown .gs-o.mine:not(.real) { text-decoration: line-through; }
+.gs-res { margin: 0; font-size: .95em; color: var(--ink-2); }
+.gs-res:empty { display: none; }
+.gs-res b { color: var(--red); }
+.gs-res small { display: block; font-size: .95em; }
+.gs.miss { border-color: var(--red); }
+
 @media (max-width: 820px), (max-height: 520px) {
-  .order-slots, .order-pool { grid-template-columns: 1fr 1fr; }
-  .o-slot { min-height: 7em; }
+  .comic-grid { display: block; flex: none; }
+  .cm-panel { display: none; height: 34em; }
+  .cm-panel.cur { display: block; }
+  .cm-cap { font-size: 1.02em; max-height: 62%; }
+  .fill-text { font-size: 1.3em; line-height: 3.2; }
+  .fill { justify-content: flex-start; }
+  .guess-box { grid-template-columns: 1fr; align-content: start; flex: none; }
 }
 @media (max-width: 820px), (max-height: 520px) {
   .task-cards, .shops { grid-template-columns: 1fr; }
-  .order-slots, .order-pool { grid-template-columns: 1fr 1fr 1fr; }
 }

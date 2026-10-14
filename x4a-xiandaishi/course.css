@@ -40,14 +40,20 @@
 .qw .lab.on:has(~ .lab.on) { opacity: 0; }
 .scene-chips .chip { font-size: 1.1em; }
 
-/* ---------- 连一连 ---------- */
-.match { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6em; }
-.m-col { display: flex; flex-direction: column; gap: .6em; }
-.m-a, .m-b { font: inherit; font-family: var(--kai); font-size: 1.45em; text-align: left; padding: .45em .9em; border-radius: .5em; border: 2px solid var(--line); background: #fff; cursor: pointer; position: relative; }
-.m-a.sel { border-color: var(--red); background: #fdf3ec; }
-.m-a.right, .m-b.right { border-color: #8cc0a6; background: #eef7f1; cursor: default; padding-left: 2.2em; }
-.m-a.right::before, .m-b.right::before { content: attr(data-n); position: absolute; left: .5em; top: 50%; translate: 0 -50%; width: 1.3em; height: 1.3em; border-radius: 50%; background: #2f8a5f; color: #fff; font-family: Georgia, serif; font-size: .8em; display: grid; place-items: center; }
-.m-b.wrong { border-color: #e3a998; background: #fdf0ec; animation: nope .35s; }
+/* ---------- 花牛的一天 ---------- */
+.niu-day { position: relative; aspect-ratio: 400 / 170; margin-top: 2.4em; }
+.niu-day::before { content: ""; position: absolute; left: 8%; right: 8%; top: 12%; height: 66%; border: 3px dashed #e7c27a; border-bottom: none; border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+.niu-sun { position: absolute; width: 2.2em; height: 2.2em; border-radius: 50%; background: radial-gradient(#ffd36a, #f08a2c); box-shadow: 0 0 1em #f6b24a; translate: -50% -50%; transition: left 1s ease, top 1s ease; }
+.niu-v { position: absolute; translate: -50% -50%; font: inherit; font-family: var(--kai); font-size: 1.5em; padding: .25em .8em; border-radius: 2em; border: 2px solid var(--line); background: #fff; cursor: pointer; white-space: nowrap; }
+.niu-v.seen { border-color: var(--gold); }
+.niu-v.cur { background: var(--red); border-color: var(--red); color: #fff; }
+.s-niu .stage { justify-content: center; }
+.niu-card { flex: 1; min-height: 0; display: grid; grid-template-rows: 1fr auto; border-radius: .7em; overflow: hidden; background: #fff; box-shadow: 0 .2em .8em rgba(80, 50, 20, .15); }
+.niu-pic { min-height: 10em; background: #c9d8a8 center / cover no-repeat; transition: background-position 1s; }
+.niu-txt { padding: .6em 1.2em .8em; }
+.niu-txt p { margin: 0; font-family: var(--kai); font-size: 1.7em; line-height: 1.5; }
+.niu-txt p b { color: var(--red); border-bottom: 3px solid var(--gold); }
+.niu-txt small { display: block; margin-top: .3em; color: var(--ink-2); font-size: 1em; }
 .s-niu .tip { font-size: 1.05em; }
 
 @media (max-width: 820px), (max-height: 520px) {
@@ -56,6 +62,6 @@
   .stanza .subs { font-size: 1.2em; }
   .guide-cards { grid-template-columns: 1fr; gap: .8em; }
   .poem-lines p { font-size: 1.15em; }
-  .match { grid-template-columns: 1fr; gap: .6em; }
-  .m-a, .m-b { font-size: 1.15em; }
+  .niu-v { font-size: 1.15em; }
+  .niu-txt p { font-size: 1.25em; }
 }

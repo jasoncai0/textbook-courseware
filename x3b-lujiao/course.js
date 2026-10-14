@@ -76,16 +76,12 @@ function initVote() {
 }
 
 /* 寓言卡：正面故事，背面道理 */
-function initFable() {
-  document.querySelectorAll('.fable-card').forEach((c) => c.addEventListener('click', () => c.classList.toggle('flipped')));
-}
 
 window.LESSON = {
   init() {
     Narrative.init({ plot: PLOT, picks: PICKS, moments: MOMENTS });
     initScale();
     initVote();
-    initFable();
   },
   onRender(slide, step) {
     Narrative.onRender(slide, step);

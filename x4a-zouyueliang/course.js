@@ -1,6 +1,6 @@
 'use strict';
 /* 走月亮 · 本课数据与互动。记叙文模板见 ../shared/narrative.js，背诵挖空见 ../shared/poem.js，翻页引擎见 ../shared/deck.js
- * 本课专属：跟着月光走一走（一站一幅画面，标出看到、听到、闻到）。
+ * 本课专属：月光长卷（读一句，画卷向前展开一段）、跟着月光走一走（一站一幅画面，标出看到、听到、闻到）。
  */
 
 /* 背诵第 4 自然段（一句一行） */
@@ -79,11 +79,36 @@ const MOMENTS = [
     example: '雨停了，路边的小水洼里也有一个月亮。我蹲下来看，它圆圆的、亮亮的。一阵风吹过，月亮碎成了好多片银光，一会儿又合在了一起，好像在跟我玩捉迷藏。' },
 ];
 
+/* 月光长卷：最近出现的那句话在哪一段（data-pan），画卷就移到哪一段 */
+function updateScroll(slide, step) {
+  const track = slide.querySelector('#lsTrack');
+  if (!track) return;
+  const lines = [...slide.querySelectorAll('#lsTxt p')];
+  const shown = lines.filter((p) => +p.dataset.step <= step);
+  const pan = shown.length ? +shown[shown.length - 1].dataset.pan : 0;
+  const pans = track.children.length;
+  track.style.transform = `translateX(calc(3.125% - ${pan * 25}%))`;
+  [...track.children].forEach((el, i) => el.classList.toggle('cur', i === pan));
+  slide.querySelectorAll('#lsRoad span').forEach((el, i) => el.classList.toggle('cur', i === pan));
+  slide.querySelector('.ls-moon').style.left = `${(pan + 0.5) * (100 / pans)}%`;
+  lines.forEach((p) => {
+    p.classList.toggle('here', +p.dataset.pan === pan);
+    p.classList.toggle('now', p === shown[shown.length - 1]);
+  });
+  // 句子多时文字框自己滚到最新一句（不用 scrollIntoView，免得把整页带着滚）
+  const box = slide.querySelector('#lsTxt');
+  const now = shown[shown.length - 1];
+  box.scrollTop = now ? Math.max(0, now.offsetTop + now.offsetHeight - box.clientHeight) : 0;
+}
+
 window.LESSON = {
   init() {
     Narrative.init({ picks: PICKS, moments: MOMENTS });
     Poem.init();
     initWalk();
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateScroll(slide, step);
+  },
 };

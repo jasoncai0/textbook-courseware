@@ -12,15 +12,35 @@ const ORDER = {
   ],
 };
 
-/* 课后第 1 题：最有意思的内容 */
-const CLUE_LABELS = ['有意思的地方', '有意思在哪里'];
-const CLUES = [
+/* 课后第 1 题：笑声计（q 课文内容，a 有意思在哪里） */
+const LAUGHS = [
   { q: '老虎驮着贼，贼骑着老虎，跑哇，跑哇……', a: '一个想甩掉“漏”，一个不敢松手——两个“坏蛋”都被吓坏了，还以为是对方在欺负自己。' },
   { q: '老虎一边往前跑一边想：“终于甩掉‘漏’了！”贼一边往上爬一边想：“终于甩掉‘漏’了！”', a: '两个想的一模一样，都松了一口气，其实谁也没被“漏”抓住。' },
   { q: '他俩对看了一眼，同时惊恐地大喊：“‘漏’哇——”', a: '面对面看见了，还是以为对方是“漏”，一起吓昏过去，真好笑！' },
   { q: '唉，说怕漏，偏就又漏雨了！', a: '老虎和贼闹了一夜，小胖驴安安稳稳，老公公老婆婆只是担心屋顶漏雨——结尾一下子揭开了谜底。' },
 ];
+const LAUGH_MAX = 20; // 笑声条满格的票数
 
+function initLaugh(box) {
+  const votes = LAUGHS.map(() => 0);
+  box.innerHTML = LAUGHS.map((it, i) => `<div class="lg" data-i="${i}">
+    <p class="lg-q">${it.q}</p>
+    <button class="lg-btn" type="button">哈！<b>0</b></button>
+    <div class="lg-bar"><i></i></div>
+    <p class="lg-a">${it.a}</p></div>`).join('');
+  box.addEventListener('click', (e) => {
+    const btn = e.target.closest('.lg-btn');
+    if (!btn) return;
+    const row = btn.closest('.lg');
+    const i = +row.dataset.i;
+    votes[i] += 1;
+    btn.querySelector('b').textContent = votes[i];
+    row.querySelector('.lg-bar i').style.width = `${Math.min(100, votes[i] / LAUGH_MAX * 100)}%`;
+    row.classList.add('voted');
+    const top = Math.max(...votes);
+    box.querySelectorAll('.lg').forEach((r, k) => r.classList.toggle('top', votes[k] === top));
+  });
+}
 /* ================= 排一排（复述工具，三下第八单元各课相同） =================
  * 容器 <div class="order" data-order="key" data-noswipe>；数据 ORDER[key] = [{ t, pic | icon }]，按正确顺序写。
  * 学生按先后顺序点卡片，点对了卡片落进格子，点错了抖一下；排完后照着格子讲故事。 */
@@ -66,7 +86,8 @@ function showBg(el) { el.style.backgroundImage = `url('${el.dataset.bg}')`; el.r
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS });
+    Narrative.init({});
+    initLaugh(document.getElementById('laughBox'));
     document.querySelectorAll('[data-order]').forEach((box) => initOrder(box, ORDER[box.dataset.order]));
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),

@@ -17,14 +17,16 @@ Poem.render({
   },
 });
 
-/* 课后第 2 题 · 荷花“活”在哪里 */
-const CLUE_LABELS = ['课文里的句子', '“活”在哪里'];
-const CLUES = [
-  { q: '白荷花在这些大圆盘之间<b>冒</b>出来。', a: '荷花在使劲往上长，像有生命一样——是“活”的。' },
-  { q: '这么多的白荷花，<b>一朵有一朵的姿势</b>。', a: '每一朵样子都不一样，画也画不尽。' },
-  { q: '一阵微风吹过来，一池的荷花都在<b>舞蹈</b>。', a: '画里的花不会动，这一池荷花会跳舞！' },
-  { q: '<b>蜻蜓</b>飞过来……<b>小鱼</b>在脚下游过……', a: '还有蜻蜓、小鱼来做伴，画面里一切都是活的。' },
-];
+/* 课后第 2 题 · 点句子，让画“活”起来：每个按钮给 #hhLive 加一个动画类，可叠加 */
+function initLive() {
+  const svg = document.getElementById('hhLive');
+  document.querySelector('.hh-acts').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-live]');
+    if (!b) return;
+    const on = b.classList.toggle('on-live');
+    svg.classList.toggle(`live-${b.dataset.live}`, on);
+  });
+}
 
 /* 读与写 · 小练笔 */
 const MOMENTS = [
@@ -88,7 +90,8 @@ function updateSpot(slide, step) {
 let updateVerbs = () => {};
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
+    Narrative.init({ moments: MOMENTS });
+    initLive();
     Poem.init();
     updateVerbs = initVerbs();
   },

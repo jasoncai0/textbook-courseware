@@ -1,14 +1,29 @@
 'use strict';
-/* 延安，我把你追寻 · 本课数据与互动。诗节页、翻卡片、分类、仿写见 ../shared/narrative.js */
+/* 延安，我把你追寻 · 本课数据与互动。诗节页、分类、仿写见 ../shared/narrative.js */
 
-/* 资料袋：诗中的地方 */
-const CLUE_LABELS = ['诗句', '资料'];
-const CLUES = [
+/* 资料袋 · 地图上找一找：k 对应地图上 .pin 的 data-k */
+const PLACES = [
   { q: '延河叮咚的流水', a: '延河从延安城边流过，河边就是宝塔山。' },
   { q: '枣园梨花的清香', a: '枣园在延安城西北，那里有窑洞，春天梨花开得雪白。' },
   { q: '南泥湾开荒的镢头', a: '当年，人们抡起镢头在荒凉的南泥湾开荒种地，自己动手，丰衣足食，把荒地变成了“陕北的好江南”。' },
   { q: '杨家岭讲话的会场', a: '杨家岭在延安城西北，当年在这里召开过重要的会议，会上的讲话影响很深远。' },
+  { q: '宝塔山顶天立地的脊梁', a: '宝塔山在延安城东南、延河边，山上的宝塔是延安的标志。诗人用它比喻延安精神，像脊梁一样撑起了我们。' },
 ];
+
+function initMap(svg, info, count, places) {
+  if (!svg) return;
+  const seen = new Set();
+  const show = (pin) => {
+    const k = +pin.dataset.k;
+    svg.querySelectorAll('.pin').forEach((p) => p.classList.toggle('cur', p === pin));
+    pin.classList.add('seen');
+    seen.add(k);
+    count.textContent = seen.size;
+    info.innerHTML = `<p class="mi-q">${places[k].q}</p><p class="mi-a">${places[k].a}</p>`;
+  };
+  svg.addEventListener('click', (e) => { const pin = e.target.closest('.pin'); if (pin) show(pin); });
+  svg.addEventListener('keydown', (e) => { const pin = e.target.closest('.pin'); if (pin && e.key === 'Enter') show(pin); });
+}
 
 /* 品一品：可以告别的，不能丢的 */
 const KINDS = ['可以告别', '不能丢掉'];
@@ -37,7 +52,8 @@ const MOMENTS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, sort: SORT, kinds: KINDS, moments: MOMENTS });
+    Narrative.init({ sort: SORT, kinds: KINDS, moments: MOMENTS });
+    initMap(document.querySelector('.ya-map'), document.getElementById('mapInfo'), document.getElementById('mapCount'), PLACES);
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

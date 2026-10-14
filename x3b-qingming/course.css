@@ -22,8 +22,6 @@
 .ai-cap { margin: 0; color: var(--ink-2); font-size: .85em; text-align: right; }
 .scene .hd .sub { background: rgba(0, 0, 0, .45); padding: .1em .6em; border-radius: 1em; }
 
-.s-info .clue, .s-info .clue-in { min-height: 7em; }
-.s-info .clue-face { font-size: 1.15em; }
 .s-people .pick { font-size: 1.25em; }
 
 /* 第 3 段结构 */
@@ -54,3 +52,25 @@
 .kid, .rs { min-height: 9em; }
 @media (max-width: 820px), (max-height: 520px) { .kid, .rs { min-height: 0; } }
 .s-people .media-btn { position: static; align-self: flex-end; }
+
+/* 长卷：读到哪里，卷到哪里 */
+.s-scroll .stage { justify-content: center; }
+.qm-scroll { position: relative; flex: 1; min-height: 0; max-height: 30em; display: flex; justify-content: center; align-items: stretch; margin: .6em 0; }
+.qm-rod { flex: none; width: 1.5em; margin: -.7em 0; border-radius: .75em; background: linear-gradient(90deg, #5e3519, #b37a45 45%, #5e3519); box-shadow: 0 .3em .6em rgba(60, 30, 10, .3); z-index: 1; }
+.qm-paper { position: relative; overflow: hidden; flex: none; width: 0; transition: width 1.8s ease; background: #efe6cf; border-top: .55em solid #b8a27a; border-bottom: .55em solid #b8a27a; }
+.qm-scroll.open .qm-paper { width: calc(100% - 3em); }
+.qm-strip { height: 100%; display: flex; transition: transform 2.4s ease; }
+.qm-pic { flex: none; height: 100%; aspect-ratio: 16 / 9; background: center / cover no-repeat #e6dcc4; }
+.qm-ai { position: absolute; right: .6em; bottom: .4em; font-size: .75em; color: #fff; background: rgba(0, 0, 0, .45); padding: .1em .6em; border-radius: 1em; }
+.qm-label { position: absolute; top: 1.2em; left: 2.4em; z-index: 2; writing-mode: vertical-rl; font-family: var(--kai); font-size: 1.15em; letter-spacing: .15em; color: #5e3519; background: #f8f0dc; border: 1px solid #b8a27a; padding: .6em .25em; box-shadow: 0 .1em .3em rgba(0, 0, 0, .15); }
+.qm-scroll:not(.open) .qm-label { left: 50%; transform: translateX(-50%); }
+.qm-cap { position: relative; min-height: 5.4em; }
+.qm-cap p { margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.6; background: #fff; border-left: .3em solid var(--gold); border-radius: .4em; padding: .5em .9em; box-shadow: 0 .15em .5em rgba(80, 50, 20, .06); }
+.qm-cap p:not(.on), .qm-cap p.on:has(~ p.on) { display: none; }
+.qm-cap small { font-family: var(--serif); font-size: .68em; color: #fff; background: var(--red); border-radius: .3em; padding: .05em .5em; margin-right: .6em; vertical-align: .15em; }
+.s-scroll .media-btn { position: static; align-self: flex-end; }
+@media (max-width: 820px), (max-height: 520px) {
+  .qm-scroll { flex: none; height: 13em; }
+  .qm-cap p { font-size: 1.1em; }
+  .qm-scroll.open .qm-label { font-size: .8em; top: .8em; left: 2.2em; }
+}

@@ -64,32 +64,16 @@ function initExperiment() {
   });
 }
 
-/* ================= 排一排：按顺序点卡片（items 按正确顺序给出，页面上固定打乱） ================= */
-function initOrder(box, items, doneText) {
-  const keys = [...items.keys()];
-  const shuffled = [...keys.filter((i) => i % 2).reverse(), ...keys.filter((i) => !(i % 2))];
-  box.innerHTML = shuffled.map((i) => `<button class="order-card" type="button" data-i="${i}"><em></em>${items[i]}</button>`).join('');
-  const msg = document.createElement('p');
-  msg.className = 'order-msg';
-  msg.textContent = '先点第 1 步。';
-  box.after(msg);
-  let next = 0;
-  box.addEventListener('click', (e) => {
-    const card = e.target.closest('.order-card');
-    if (!card || card.classList.contains('right')) return;
-    card.classList.remove('wrong');
-    void card.offsetWidth; // 重新触发抖动动画
-    if (+card.dataset.i !== next) { card.classList.add('wrong'); return; }
-    next += 1;
-    card.classList.add('right');
-    card.style.order = next;
-    card.querySelector('em').textContent = next;
-    const done = next === items.length;
-    box.classList.toggle('all-done', done);
-    msg.textContent = done ? doneText : `对了！接着点第 ${next + 1} 步。`;
+/* ================= 我是讲解员：蝙蝠 / 雷达 提词卡切换 ================= */
+function initTell() {
+  const tabs = document.getElementById('tellTabs');
+  tabs.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-m]');
+    if (!b) return;
+    tabs.querySelectorAll('button').forEach((x) => x.classList.toggle('cur', x === b));
+    document.getElementById('tellCards').classList.toggle('radar-on', b.dataset.m === 'radar');
   });
 }
-const BAT_STEPS = ['一边飞，一边从嘴里发出超声波', '超声波向前传播', '遇到障碍物就反射回来', '传到蝙蝠的耳朵里', '蝙蝠立刻改变飞行的方向'];
 
 /* ================= 问题清单（k 是参考分类） ================= */
 const CATS = [
@@ -125,7 +109,7 @@ window.LESSON = {
     Narrative.init({});
     QList.init(QLISTS);
     initExperiment();
-    initOrder(document.getElementById('batOrder'), BAT_STEPS, '排好了！嘴发出 → 遇到障碍物反射 → 耳朵听见 → 改变方向。');
+    initTell();
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

@@ -65,3 +65,39 @@
   .fable-face { font-size: 1.15em; }
   .fable-card, .fable-in { min-height: 13em; }
 }
+
+/* 分屏对话：左池子，右河流 */
+.cz-duet { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
+.cz-pane { position: relative; overflow: hidden; border-radius: .8em; background: #8fa6a0; display: flex; flex-direction: column; justify-content: flex-end; padding: 1em; min-height: 0; transition: filter .6s; }
+.cz-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: center / cover no-repeat; }
+.cz-bg[data-step] { transform: none; transition: opacity 1.6s ease; }
+.cz-name { position: absolute; top: .7em; left: .8em; font-family: var(--kai); font-size: 1.4em; color: #fff; padding: .05em .6em; border-radius: .4em; }
+.cz-pane.cz .cz-name { background: var(--cz); }
+.cz-pane.hl .cz-name { background: var(--hl); }
+.cz-bub { position: relative; }
+.cz-bub p { margin: 0; font-family: var(--kai); font-size: 1.28em; line-height: 1.55; background: rgba(255, 253, 246, .94); border-radius: .8em; padding: .6em 1em; box-shadow: 0 .2em .6em rgba(0, 0, 0, .2); }
+.cz-pane.cz .cz-bub p { border-left: .35em solid var(--cz); }
+.cz-pane.hl .cz-bub p { border-left: .35em solid var(--hl); }
+.cz-bub p:not(.on), .cz-bub p.on:has(~ p.on), .cz-end p:not(.on), .cz-end p.on:has(~ p.on) { display: none; }
+.cz-duet[data-who="cz"] .cz-pane.hl, .cz-duet[data-who="hl"] .cz-pane.cz { filter: grayscale(.6) brightness(.75); }
+.cz-duet[data-who="pang"] .cz-bub { display: none; }
+.cz-end { position: absolute; left: 50%; bottom: 1em; transform: translateX(-50%); width: min(30em, 70%); }
+.cz-end p { margin: 0; font-family: var(--kai); font-size: 1.35em; line-height: 1.6; color: #fff; background: rgba(25, 40, 45, .82); border-radius: .8em; padding: .7em 1.2em; text-align: center; }
+.cz-end p.cz-moral { color: #ffe2a6; }
+
+/* 水和才能 */
+.cz-ana { display: grid; grid-template-columns: 4.6em 1fr 1fr; gap: .5em .7em; }
+.cz-ah { text-align: center; font-family: var(--kai); font-size: 1.4em; color: var(--red-d); border-bottom: 2px solid var(--gold); }
+.cz-ana > b { display: flex; align-items: center; justify-content: center; color: #fff; border-radius: .4em; font-family: var(--kai); font-size: 1.2em; }
+.cz-ana > b.hl { background: var(--hl); }
+.cz-ana > b.cz { background: var(--cz); }
+.cz-ana > span { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .5em .8em; font-family: var(--kai); font-size: 1.2em; line-height: 1.5; }
+.s-moral .bd { grid-template-columns: 1fr 1fr; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cz-duet { grid-template-columns: 1fr; }
+  .cz-pane { min-height: 15em; }
+  .cz-bub p, .cz-end p { font-size: 1.05em; }
+  .cz-end { position: static; transform: none; width: auto; }
+  .cz-ana > span { font-size: 1.02em; }
+}

@@ -16,16 +16,53 @@ Poem.render({
   },
 });
 
-/* 品读 · 难懂的句子 */
-const CLUE_LABELS = ['难懂的句子', '我读懂了'];
-const CLUES = [
-  { q: '钓竿上立着一只红蜻蜓。', a: '蜻蜓敢停在钓竿上，说明孩子一动不动，钓得很专心、很安静。<br><small>方法：联系生活——蜻蜓怕人，人一动它就飞走。</small>' },
-  { q: '草地上蹦跳着鱼儿和笑声。', a: '鱼钓上来了，在草地上蹦跳；孩子高兴得哈哈笑，笑声也像在“蹦跳”。<br><small>方法：想象画面。</small>' },
-  { q: '是哪个“水葫芦”一下钻入水中。', a: '“水葫芦”加了引号，指的是一个孩子：他在水里一沉一浮，像个葫芦。<br><small>方法：抓住引号，联系上下文。</small>' },
-  { q: '出水时只见一阵水花两排银牙。', a: '孩子从水里钻出来，咧着嘴笑，露出两排白白的牙齿。<br><small>方法：想象画面。</small>' },
-  { q: '松树刚洗过澡一身清清爽爽。', a: '刚下过一场雨，松树被雨水冲得干干净净。<br><small>方法：联系下文——“松针上一串串雨珠”。</small>' },
-  { q: '是谁一声欢叫把雨珠抖落。', a: '一个孩子采到蘑菇，高兴得叫起来，碰得树枝一晃，雨珠就落下来了。<br><small>方法：想象画面、联系上下文。</small>' },
+/* 品读 · 连一连：诗句 ↔ 画面（右栏固定打乱顺序 LINK_ORDER） */
+const LINKS = [
+  { l: '钓竿上立着一只红蜻蜓。', r: '孩子一动不动，钓得又专心又安静。', how: '联系生活：蜻蜓怕人，人一动它就飞走。' },
+  { l: '草地上蹦跳着鱼儿和笑声。', r: '鱼儿钓上来在草地上蹦，孩子乐得哈哈笑。', how: '想象画面。' },
+  { l: '是哪个“水葫芦”一下钻入水中。', r: '一个孩子在水里一沉一浮，像个葫芦。', how: '抓住引号，联系上下文。' },
+  { l: '出水时只见一阵水花两排银牙。', r: '孩子钻出水面，咧嘴笑，露出白白的牙。', how: '想象画面。' },
+  { l: '松树刚洗过澡一身清清爽爽。', r: '刚下过雨，松树被冲得干干净净。', how: '联系下文“松针上一串串雨珠”。' },
+  { l: '是谁一声欢叫把雨珠抖落。', r: '孩子采到蘑菇一声欢叫，碰得树枝一晃。', how: '想象画面、联系上下文。' },
 ];
+const LINK_ORDER = [3, 0, 5, 1, 4, 2];
+
+function initLink(box, links, order) {
+  box.innerHTML = `<svg class="link-lines"></svg>
+    <div class="link-col">${links.map((it, i) => `<button class="link-l" type="button" data-i="${i}">${it.l}<small></small></button>`).join('')}</div>
+    <div class="link-col">${order.map((i) => `<button class="link-r" type="button" data-i="${i}">${links[i].r}</button>`).join('')}</div>`;
+  const svg = box.querySelector('.link-lines');
+  const draw = () => {
+    const o = box.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${o.width} ${o.height}`);
+    svg.innerHTML = [...box.querySelectorAll('.link-l.done')].map((l) => {
+      const r = box.querySelector(`.link-r[data-i="${l.dataset.i}"]`).getBoundingClientRect();
+      const a = l.getBoundingClientRect();
+      return `<line x1="${a.right - o.left}" y1="${a.top + a.height / 2 - o.top}" x2="${r.left - o.left}" y2="${r.top + r.height / 2 - o.top}"/>`;
+    }).join('');
+  };
+  let picked = null;
+  box.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn || btn.classList.contains('done')) return;
+    if (btn.classList.contains('link-l')) {
+      box.querySelectorAll('.link-l').forEach((b) => b.classList.toggle('sel', b === btn));
+      picked = btn;
+      return;
+    }
+    if (!picked) return;
+    if (btn.dataset.i === picked.dataset.i) {
+      picked.classList.add('done'); btn.classList.add('done'); picked.classList.remove('sel');
+      picked.querySelector('small').textContent = `方法：${links[+picked.dataset.i].how}`;
+      picked = null;
+      box.closest('.slide').classList.toggle('link-all', !box.querySelector('.link-l:not(.done)'));
+    } else {
+      btn.classList.remove('no'); void btn.offsetWidth; btn.classList.add('no');
+    }
+    requestAnimationFrame(draw);
+  });
+  new ResizeObserver(draw).observe(box);
+}
 
 /* 读与写 · 我的童年水墨画 */
 const MOMENTS = [
@@ -57,7 +94,8 @@ const MOMENTS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
+    Narrative.init({ moments: MOMENTS });
+    initLink(document.getElementById('linkBox'), LINKS, LINK_ORDER);
     Poem.init();
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),

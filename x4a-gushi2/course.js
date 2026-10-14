@@ -36,17 +36,22 @@ const POEMS = {
 Poem.render(POEMS); // 必须在 deck.js 统计分步之前生成诗句
 
 /* 凉州词 · 翻卡片看画面 */
-const CLUE_LABELS = ['诗句', '画面'];
-const CLUES = [
-  { q: '葡萄美酒夜光杯', a: '晶莹的玉杯里，斟满了紫红色的葡萄酒——这是一场热闹的酒宴。' },
-  { q: '欲饮琵琶马上催', a: '刚要举杯，马背上响起急促的琵琶声：出发的时候到了！' },
-  { q: '醉卧沙场君莫笑', a: '就算喝醉了躺在战场上，你也别笑话我！' },
-  { q: '古来征战几人回', a: '自古以来出征打仗的人，有几个能回来呢？——明知危险，照样出发。' },
-];
+/* 课后第 2 题 · 比一比语气：点哪句，温度计升到哪句的“感情温度” */
+function initTone(box) {
+  if (!box) return;
+  const fill = box.querySelector('.tone-meter em');
+  box.addEventListener('click', (e) => {
+    const card = e.target.closest('.tone-card');
+    if (!card) return;
+    box.querySelectorAll('.tone-card').forEach((c) => c.classList.toggle('picked', c === card));
+    fill.style.height = `${card.dataset.heat}%`;
+  });
+}
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS });
+    Narrative.init({});
+    initTone(document.querySelector('.tone'));
     Poem.init();
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),

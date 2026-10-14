@@ -16,6 +16,39 @@ const PICKS = {
   ],
 };
 
+/* 危险温度计：写危险的句子让温度计升一格，写白求恩的句子放到左下角 */
+function initDanger() {
+  const pool = document.getElementById('dangerPool');
+  if (!pool) return;
+  const items = PICKS.battle;
+  const total = items.filter((it) => it.ok).length;
+  const fill = document.getElementById('gaugeFill');
+  const num = document.getElementById('gaugeNum');
+  const list = document.getElementById('bethuneList');
+  const GAUGE_H = 300;
+  let found = 0;
+  pool.innerHTML = items.map((it, i) => `<button class="dg" type="button" data-i="${i}">${it.t}<small></small></button>`).join('');
+  pool.addEventListener('click', (e) => {
+    const btn = e.target.closest('.dg');
+    if (!btn || btn.disabled) return;
+    const it = items[+btn.dataset.i];
+    btn.disabled = true;
+    if (it.ok) {
+      found += 1;
+      btn.classList.add('hot');
+      btn.querySelector('small').textContent = '危险 +1';
+      const h = (found / total) * GAUGE_H;
+      fill.setAttribute('y', 340 - h);
+      fill.setAttribute('height', h);
+      num.textContent = found;
+    } else {
+      btn.classList.add('calm');
+      btn.querySelector('small').textContent = it.why;
+      if (it.why.startsWith('写白求恩')) list.insertAdjacentHTML('beforeend', `<li>${it.t}</li>`);
+    }
+  });
+}
+
 /* 课后第 2 题：理解加点词语的方法 */
 const CLUE_LABELS = ['读句子', '我这样理解'];
 const CLUES = [
@@ -36,7 +69,8 @@ const SORT_ITEMS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ picks: PICKS, clues: CLUES, clueLabels: CLUE_LABELS, kinds: KINDS, sort: SORT_ITEMS });
+    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, kinds: KINDS, sort: SORT_ITEMS });
+    initDanger();
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

@@ -37,7 +37,74 @@
 .mind-end b { color: var(--red); }
 .mind-end em { font-style: normal; color: var(--red-d); font-weight: bold; }
 
+/* ---------- 本课独有：草丛小剧场（谁说话谁亮，台词进气泡，旁白在下面） ---------- */
+.play { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.play .ln { display: none; margin: 0; }
+.play .ln.now { display: block; animation: subIn .6s ease both; }
+.narr { position: absolute; left: 0; right: 0; bottom: 0; padding: 3.2em 9% 4.4em; background: linear-gradient(transparent, rgba(12, 10, 8, .8) 34%); color: #f4efe6; font-family: var(--kai); font-size: 1.45em; line-height: 1.7; min-height: 8.6em; }
+.narr .ln::before { content: "旁白"; display: inline-block; font-family: var(--serif); font-size: .6em; vertical-align: .25em; padding: .05em .5em; margin-right: .6em; border-radius: .3em; background: rgba(255, 255, 255, .2); }
+.actor { position: absolute; bottom: 10.5em; display: flex; flex-direction: column; align-items: center; transition: opacity .6s, transform .6s, filter .6s; filter: saturate(.6) brightness(.85); }
+.actor.dz { left: 4%; }
+.actor.xm { right: 4%; }
+.actor .ant { width: 7.5em; height: auto; }
+.actor > .ant, .actor .crowd { background: rgba(255, 253, 246, .92); border: 3px solid #2b211b; border-radius: 3em; padding: .2em .6em; box-shadow: .2em .25em 0 rgba(0, 0, 0, .25); margin-bottom: .3em; }
+.actor .crowd { display: flex; }
+.actor .crowd .ant { width: 4.6em; margin: 0 -.5em; }
+.actor .crowd .ant:nth-child(2) { transform: translateY(-.6em) scaleX(-1); }
+.actor .name { font-weight: normal; font-size: .95em; color: #fff; background: rgba(43, 33, 27, .78); padding: .1em .7em; border-radius: 1em; }
+.actor.speaking { filter: none; transform: scale(1.08); }
+.actor.speaking .name { background: var(--red); }
+.actor.speaking .ant { animation: hop .5s ease 2; }
+.actor.away { opacity: 0; transform: translateX(4em); }
+@keyframes hop { 50% { transform: translateY(-.4em); } }
+.bub { position: absolute; bottom: 100%; margin-bottom: .6em; width: max-content; max-width: 30em; }
+.actor.dz .bub { left: 0; }
+.actor.xm .bub { right: 0; }
+.bub .ln { position: relative; background: #fffdf6; color: #2b2420; border: 3px solid #2b211b; border-radius: 1.2em; padding: .5em 1em; font-family: var(--kai); font-size: 1.5em; line-height: 1.55; box-shadow: .2em .25em 0 rgba(0, 0, 0, .25); }
+.bub .ln::after { content: ""; position: absolute; top: 100%; left: 2.2em; border: .7em solid transparent; border-top-color: #2b211b; }
+.actor.xm .bub .ln::after { left: auto; right: 2.2em; }
+.bub .ln.think { border-style: dashed; border-radius: 2em; background: #f3f0ff; }
+.bub .ln.think::before { content: "（心里想）"; font-size: .7em; color: var(--ink-2); }
+.bub .ln.think::after { content: "●"; border: none; color: #2b211b; font-size: .7em; top: 108%; }
+.roles { position: absolute; left: 2.4em; top: 3.6em; z-index: 4; display: flex; align-items: center; gap: .4em; pointer-events: auto; color: #fff; font-size: .85em; text-shadow: 0 1px 3px rgba(0, 0, 0, .7); }
+.roles .btn { font-size: 1em; padding: .2em .8em; background: rgba(255, 255, 255, .85); }
+.roles .btn.solid { background: var(--red); color: #fff; }
+body[data-role="dz"] .ln.now[data-who="dz"], body[data-role="xm"] .ln.now[data-who="xm"], body[data-role="pb"] .ln.now[data-who="pb"] { outline: .2em solid #f2c14e; outline-offset: .15em; }
+body[data-role="dz"] .bub .ln.now[data-who="dz"]::before, body[data-role="xm"] .bub .ln.now[data-who="xm"]::before { content: "轮到你读 "; font-size: .7em; color: var(--red); font-family: var(--serif); }
+body[data-role="pb"] .narr .ln.now::before { content: "轮到你读 · 旁白"; background: #f2c14e; color: #2b2420; }
+
+/* ---------- 理由天平 ---------- */
+.s-scale .bd { grid-template-columns: 1fr 1fr; }
+.s-scale .tip { font-size: .95em; }
+.reasons { display: flex; flex-direction: column; gap: .5em; }
+.reason { font: inherit; font-family: var(--kai); font-size: 1.08em; line-height: 1.4; text-align: left; cursor: pointer; background: #fff; border: 2px solid var(--line); border-radius: .6em; padding: .3em .8em; transition: background .3s, border-color .3s, opacity .3s; }
+.reason small { display: inline-block; margin-right: .6em; font-family: var(--serif); font-size: .7em; color: #fff; background: #4e8a3a; padding: 0 .5em; border-radius: .3em; vertical-align: .15em; }
+.reason.dislike small { background: #b0563a; }
+.reason.placed { background: #f6f1e3; border-style: dashed; opacity: .75; }
+.evid { margin: 0; min-height: 3.6em; font-family: var(--kai); font-size: 1.12em; line-height: 1.7; background: #fff8e1; border-left: .3em solid var(--gold); border-radius: .3em; padding: .5em .9em; }
+.evid b { font-family: var(--serif); color: var(--red); font-size: .85em; }
+.scale { position: relative; flex: 1; min-height: 20em; }
+.sc-post { position: absolute; left: 50%; top: 4em; bottom: 0; width: 1em; margin-left: -.5em; background: linear-gradient(90deg, #8a5a2a, #b07a3a, #8a5a2a); border-radius: .3em .3em 0 0; }
+.sc-post::after { content: ""; position: absolute; left: -3em; right: -3em; bottom: 0; height: 1.2em; background: #8a5a2a; border-radius: .6em .6em 0 0; }
+.sc-beam { position: absolute; left: 50%; top: 3.6em; width: 18em; height: .8em; margin-left: -9em; background: #6b4522; border-radius: .4em; transition: transform .8s cubic-bezier(.3, 1.4, .5, 1); }
+.sc-beam::after { content: ""; position: absolute; left: 50%; top: -.5em; width: 1.6em; height: 1.6em; margin-left: -.8em; background: var(--gold); border-radius: 50%; }
+.sc-pan { position: absolute; top: 4.4em; width: 13em; min-height: 6em; background: #fff; border: 2px solid var(--line); border-top: .4em solid #4e8a3a; border-radius: 0 0 1.6em 1.6em; padding: .3em .7em .6em; transition: transform .8s cubic-bezier(.3, 1.4, .5, 1); font-size: .95em; }
+.sc-pan.like { left: calc(50% - 9em - 6.5em); }
+.sc-pan.dislike { left: calc(50% + 9em - 6.5em); border-top-color: #b0563a; }
+.sc-pan b { display: block; text-align: center; color: var(--red-d); }
+.sc-pan ul { margin: .2em 0 0; padding-left: 1.1em; font-family: var(--kai); line-height: 1.5; }
+.sc-pan li { animation: appear .5s ease; }
+
 @media (max-width: 820px), (max-height: 520px) {
+  .narr { font-size: 1.1em; padding: 2.4em 1em 5.6em; min-height: 9em; }
+  .actor { bottom: 11.5em; }
+  .actor .ant { width: 5em; }
+  .actor .crowd .ant { width: 3.2em; }
+  .bub { max-width: 15em; }
+  .actor.xm .bub { max-width: 15em; }
+  .bub .ln { font-size: 1.1em; }
+  .roles { left: .8em; right: .8em; top: 11.2em; flex-wrap: wrap; font-size: .8em; }
+  .scale { min-height: 17em; font-size: .78em; }
   .heart { right: .8em; top: 7em; }
   .mind { grid-template-columns: 1fr; }
 }

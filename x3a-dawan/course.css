@@ -17,8 +17,6 @@
 .hd h2 { font-size: 1.85em; }
 .tip { font-size: 1.05em; }
 .s-cover .cover-title { font-size: 6em; }
-.clue-face.front { font-size: 1.12em; }
-.clue-face.back { font-size: 1.05em; }
 
 /* 阅读提示 */
 .task-pic { border-radius: .6em; background: center / cover no-repeat #e9e2d6; min-height: 10em; }
@@ -28,34 +26,70 @@
 .q { margin: 0; font-size: 1.35em; background: #fff8e1; border-radius: .5em; padding: .5em .9em; }
 .q b { color: #fff; background: var(--red); font-size: .7em; padding: .15em .6em; border-radius: .3em; margin-right: .6em; vertical-align: .15em; }
 
-/* 排一排 */
-.order { display: flex; flex-direction: column; gap: .8em; }
-.ord-slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em; }
-.ord-slot { position: relative; min-height: 7em; border: 2px dashed var(--line); border-radius: .6em; padding: 1.6em .6em .5em; display: flex; flex-direction: column; justify-content: center; gap: .3em; text-align: center; background: rgba(255, 255, 255, .5); }
-.ord-slot + .ord-slot::before { content: "→"; position: absolute; left: -.62em; top: 45%; color: var(--red); font-weight: bold; }
-.ord-slot.done { border-style: solid; border-color: #9fcdb7; background: #f1f8f4; animation: appear .5s; }
-.ord-no { position: absolute; top: .3em; left: .5em; font-size: .9em; color: var(--ink-2); }
-.ord-slot p { margin: 0; font-family: var(--kai); font-size: 1.1em; line-height: 1.5; }
-.ord-slot b { color: var(--red); font-size: 1.15em; }
-.ord-pool { display: flex; flex-wrap: wrap; gap: .6em; justify-content: center; min-height: 3em; }
-.ord-card { font: inherit; font-family: var(--kai); font-size: 1.2em; padding: .45em 1em; border-radius: .5em; border: 1px solid var(--line); background: #fff; cursor: pointer; box-shadow: 0 .15em .4em rgba(40, 40, 60, .1); }
-.ord-card:disabled { visibility: hidden; }
-.ord-card.nope { animation: nope .35s; border-color: #e3a998; }
-.ord-foot { display: flex; align-items: center; justify-content: center; gap: 1em; }
-.ord-msg { margin: 0; color: var(--red); min-height: 1.4em; }
-
-.ord-slot { min-height: 4.6em; }
-.ord-slot:nth-child(4n + 1)::before { display: none; }
-
 @media (max-width: 820px), (max-height: 520px) {
   .subs { font-size: 1.2em; }
   .hd h2 { font-size: 1.35em; }
   .s-cover .cover-title { font-size: 3.2em; }
   .task-quote { font-size: 1.15em; }
   .q { font-size: 1.1em; }
-  .ord-slots { grid-template-columns: 1fr; }
-  .ord-slot { min-height: 3.6em; padding: .5em .5em .5em 2em; }
-  .ord-slot + .ord-slot::before { display: none; }
-  .ord-no { top: 50%; transform: translateY(-50%); }
-  .ord-card { font-size: 1.05em; }
+}
+
+/* ---------- 读故事：跟着碗走 ---------- */
+.s-bowl .bd { grid-template-columns: 34% 1fr; }
+.bowl-cam { display: flex; flex-direction: column; gap: .8em; min-height: 0; }
+.bc-pic { position: relative; flex: 1; min-height: 0; width: 100%; border-radius: .6em; background: #ddd3c2 center / cover no-repeat; object-fit: cover; }
+.bowl-cam video.bc-pic { inset: auto; height: auto; }
+.bowl-box { background: #fff; border: 1px solid var(--line); border-radius: .8em; padding: .6em .8em .8em; display: flex; flex-direction: column; align-items: center; gap: .3em; }
+.bowl-box .bowl-svg { width: 100%; max-width: 16em; }
+.bowl { width: 100%; height: auto; display: block; }
+.bowl .k { opacity: 0; transition: opacity .8s; }
+.bowl .bowl-body { transition: opacity .8s; }
+.bowl[data-k="museum"] .k-museum, .bowl[data-k="rice"] .k-rice, .bowl[data-k="gruel"] .k-gruel, .bowl[data-k="caipen"] .k-cai, .bowl[data-k="bag"] .k-bag, .bowl[data-k="gone"] .k-gone { opacity: 1; }
+.bowl[data-k="gone"] .bowl-body { opacity: .18; }
+.bowl-say { margin: 0; font-family: var(--kai); font-size: 1.3em; color: var(--red-d); text-align: center; min-height: 1.5em; }
+.bowl-text { justify-content: safe center; gap: .35em; overflow-y: auto; }
+.bowl-text p { margin: 0; font-family: var(--kai); font-size: 1.22em; line-height: 1.58; padding: .2em .6em; border-left: .25em solid transparent; border-radius: .3em; color: var(--ink-2); }
+.bowl-text p.now { color: var(--ink); background: #fff; border-left-color: var(--gold); }
+.bowl-text .hl { color: var(--red); font-weight: normal; }
+.bowl-text .reveal { font-size: 1.45em; color: var(--red-d); }
+
+/* ---------- 问题 1：碗的旅程 ---------- */
+.s-trip .bd { grid-template-columns: 1fr 34%; }
+.trip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4em 1.6em; flex: 1; align-content: center; }
+.trip-st { position: relative; font: inherit; display: flex; flex-direction: column; align-items: center; gap: .3em; padding: .6em .5em; min-height: 6.4em; border-radius: .8em; border: 2px dashed var(--line); background: rgba(255, 255, 255, .6); cursor: pointer; }
+.trip-st:nth-child(4) { grid-area: 2 / 3; } .trip-st:nth-child(5) { grid-area: 2 / 2; } .trip-st:nth-child(6) { grid-area: 2 / 1; }
+.trip-st:nth-child(-n + 2)::after { content: "→"; position: absolute; right: -1.25em; top: 40%; color: var(--red); font-weight: bold; }
+.trip-st:nth-child(4)::after, .trip-st:nth-child(5)::after { content: "←"; position: absolute; left: -1.25em; top: 40%; color: var(--red); font-weight: bold; }
+.trip-st:nth-child(3)::before { content: "↓"; position: absolute; bottom: -1.4em; left: 50%; color: var(--red); font-weight: bold; }
+.trip-st i { font-style: normal; width: 1.7em; height: 1.7em; border-radius: 50%; display: grid; place-items: center; background: var(--line); color: #fff; font-size: .9em; }
+.trip-st b { font-size: 1.3em; color: var(--red-d); }
+.trip-st span { font-family: var(--kai); font-size: 1em; color: var(--ink-2); line-height: 1.4; }
+.trip-st.done { border-style: solid; border-color: var(--gold); background: #fff; }
+.trip-st.done i { background: var(--red); }
+.trip-st.here { box-shadow: 0 0 0 .2em var(--gold-l); }
+.trip-st.nope { animation: nope .35s; }
+.trip-msg { margin: 0; color: var(--red); min-height: 1.4em; }
+.ord-foot { display: flex; align-items: center; justify-content: center; gap: 1em; }
+.trip-cam { justify-content: center; }
+
+/* ---------- 问题 2：默读画一画 ---------- */
+.s-mark .bd { grid-template-columns: 55% 1fr; }
+.mark-text { display: flex; flex-direction: column; gap: .5em; background: var(--stone); border-left: .3em solid var(--red); border-radius: .4em; padding: .8em 1em; }
+.mk { font: inherit; text-align: left; font-family: var(--kai); font-size: 1.3em; line-height: 1.6; background: none; border: none; padding: .15em .2em; cursor: pointer; color: var(--ink); }
+.mk.marked { text-decoration: underline wavy var(--red); text-underline-offset: .3em; text-decoration-thickness: 2px; color: var(--red-d); }
+.mark-notes { display: flex; flex-direction: column; gap: .5em; overflow-y: auto; }
+.mn, .mn-empty { margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.55; background: #fff8e1; border: 1px solid var(--gold-l); border-radius: .5em; padding: .4em .8em; animation: appear .5s; }
+.mn b { font-family: var(--serif); font-size: .75em; color: #fff; background: var(--red); padding: .05em .45em; border-radius: .3em; margin-right: .5em; vertical-align: .15em; }
+.mn-empty { background: none; border-style: dashed; color: var(--ink-2); }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .bc-pic { flex: none; aspect-ratio: 16 / 9; }
+  .bowl-box .bowl-svg { max-width: 11em; }
+  .bowl-text p { font-size: 1.1em; }
+  .trip { grid-template-columns: 1fr 1fr; gap: 1em 1.4em; }
+  .trip-st:nth-child(n) { grid-area: auto; }
+  .trip-st:nth-child(n)::after, .trip-st:nth-child(3)::before { display: none; }
+  .trip-st:nth-child(odd)::after { content: "→"; display: block; position: absolute; left: auto; right: -1.15em; top: 40%; color: var(--red); }
+  .mk { font-size: 1.1em; }
+  .mn, .mn-empty { font-size: 1em; }
 }

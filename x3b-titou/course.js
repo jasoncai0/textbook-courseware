@@ -33,17 +33,50 @@ const PANELS = [
 document.getElementById('comic').innerHTML = PANELS.map((p, i) => `<figure class="panel-c" data-step="${i + 1}">
   <b class="pn">${i + 1}</b><svg viewBox="0 0 200 200" aria-hidden="true">${p.svg}</svg><figcaption>${p.cap}</figcaption></figure>`).join('');
 
-/* 品读 · 课后第 2 题：边读边想 */
-const CLUE_LABELS = ['想一想', '我的理解'];
-const CLUES = [
-  { q: '“剃头大师”指谁？为什么这样称呼？', a: '指“我”。“我”觉得自己剪得比老师傅还熟练，就自封“大师”——其实剪得一塌糊涂，是在说笑。' },
-  { q: '“害人精”指谁？为什么这样称呼？', a: '指给小沙剃头的老剃头师傅。小沙怕剃头，觉得剃头让他吃尽苦头，就骂人家“害人精”。' },
-  { q: '“我”为什么说“世界上再也没有比他更优秀的顾客了”？', a: '头发剪坏了，小沙只摸摸耳朵还在，就无所谓了——不生气、不抱怨。这是一句好笑的反话。' },
-  { q: '“这一会儿痛一会儿痒的，跟受刑一样。”', a: '联系上文：推剪咬住头发——痛；碎头发掉进脖子——痒。小沙难受极了，所以说“跟受刑一样”。' },
-  { q: '“姑父的睡衣就像一张熊皮。”', a: '睡衣上落满了黑头发，黑乎乎、毛茸茸的，像熊的皮——剪下的头发真多。' },
-  { q: '我也来提个问题：', a: '例如：小沙为什么只怕剪破耳朵？“我”为什么说剪坏的头是“最时髦的发式”？' },
+/* 品读 · 课后第 2 题：理发店闯关（ok 为正确选项下标；最后一关自己提问题） */
+const QUIZ = [
+  { q: '“剃头大师”指谁？为什么这样称呼？', opts: ['老剃头师傅，他手艺最好', '“我”，自以为剪得熟练，其实是说笑', '姑父，他睡衣上全是头发'], ok: 1, why: '“我”自封“大师”，结果剪得一塌糊涂——题目本身就在说笑。' },
+  { q: '“害人精”指谁？小沙为什么这样叫？', opts: ['给小沙剃头的老剃头师傅', '“我”', '小沙的妈妈'], ok: 0, why: '小沙怕剃头，觉得老师傅让他吃尽苦头，就骂人家“害人精”。' },
+  { q: '“这一会儿痛一会儿痒的，跟受刑一样。”痛和痒从哪里来？', opts: ['剪刀剪破了耳朵', '推剪咬住头发痛，碎头发掉进脖子痒', '小沙生病了'], ok: 1, why: '联系上文就能读懂：痛是“推剪咬住头发”，痒是“碎头发掉进脖子”。' },
+  { q: '“姑父的睡衣就像一张熊皮。”为什么像熊皮？', opts: ['睡衣是用熊皮做的', '睡衣是棕色的', '睡衣上落满了黑头发，毛茸茸的'], ok: 2, why: '剪下的黑头发落满了睡衣，黑乎乎、毛茸茸——头发剪得真多。' },
+  { q: '“世界上再也没有比他更优秀的顾客了。”这是真夸吗？', opts: ['是真夸，小沙最有礼貌', '是好笑的反话：头剪坏了，小沙只摸摸耳朵还在，就无所谓了', '是在批评小沙'], ok: 1, why: '头发剪成“梯田”，小沙也不生气——“优秀”是笑着说的反话。' },
 ];
+const QUIZ_LAST = { q: '最后一关：你也来提一个问题！', eg: '例如：小沙为什么只怕剪破耳朵？“我”为什么说剪坏的头是“最时髦的发式”？' };
 
+function initQuiz(box, quiz, last) {
+  const total = quiz.length + 1;
+  const dots = (k) => `<div class="qz-dots">${Array.from({ length: total }, (_, i) => `<i class="${i < k ? 'ok' : i === k ? 'now' : ''}">✂</i>`).join('')}</div>`;
+  const show = (k) => {
+    if (k >= quiz.length) {
+      box.innerHTML = `${dots(k)}<p class="qz-q">${last.q}</p>
+        <textarea class="qz-ask" placeholder="我想问：……"></textarea>
+        <p class="qz-why">${last.eg}</p>
+        <div class="btns"><button class="btn" type="button" data-again>再闯一遍</button></div>`;
+      return;
+    }
+    const it = quiz[k];
+    box.innerHTML = `${dots(k)}<p class="qz-q"><small>第 ${k + 1} 关</small>${it.q}</p>
+      <div class="qz-opts">${it.opts.map((o, i) => `<button class="qz-opt" type="button" data-o="${i}">${'ABC'[i]}　${o}</button>`).join('')}</div>
+      <p class="qz-why"></p>
+      <div class="btns"><button class="btn solid" type="button" data-next hidden>下一关 →</button></div>`;
+    box.dataset.k = k;
+  };
+  box.addEventListener('click', (e) => {
+    const opt = e.target.closest('.qz-opt');
+    const k = +box.dataset.k;
+    if (opt && !box.querySelector('.qz-opt.right')) {
+      const it = quiz[k];
+      const right = +opt.dataset.o === it.ok;
+      opt.classList.remove('wrong'); void opt.offsetWidth;
+      opt.classList.add(right ? 'right' : 'wrong');
+      box.querySelector('.qz-why').textContent = right ? `✓ ${it.why}` : '再想想：回到课文里找一找这句话的前后文。';
+      box.querySelector('[data-next]').hidden = !right;
+    }
+    if (e.target.closest('[data-next]')) show(k + 1);
+    if (e.target.closest('[data-again]')) show(0);
+  });
+  show(0);
+}
 /* 品读 · 课后第 3 题：选一选 */
 const PICKS = {
   title: [
@@ -79,7 +112,8 @@ const MOMENTS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, picks: PICKS, moments: MOMENTS });
+    Narrative.init({ picks: PICKS, moments: MOMENTS });
+    initQuiz(document.getElementById('quizBox'), QUIZ, QUIZ_LAST);
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

@@ -36,10 +36,49 @@ function buildShrimp() {
 }
 buildShrimp();
 
+/* 观察笔记 · 放大镜：读到哪句，放大镜照到哪里（data-lens="x% y%"）；也可以用手指 / 鼠标拖着看 */
+const LENS_ZOOM = 2.4;
+const LENS_HOME = [0.5, 0.55];
+function placeLens(photo, x, y) {
+  const lens = photo.querySelector('.xx-lens');
+  const w = photo.clientWidth;
+  const h = photo.clientHeight;
+  const d = lens.offsetWidth;
+  if (!w || !d) return;
+  lens.style.backgroundImage = photo.style.backgroundImage;
+  lens.style.backgroundSize = `${w * LENS_ZOOM}px ${h * LENS_ZOOM}px`;
+  lens.style.backgroundPosition = `${d / 2 - x * w * LENS_ZOOM}px ${d / 2 - y * h * LENS_ZOOM}px`;
+  lens.style.left = `${x * w - d / 2}px`;
+  lens.style.top = `${y * h - d / 2}px`;
+}
+function updateLens(slide, step) {
+  const photo = slide.querySelector('.xx-photo');
+  if (!photo) return;
+  let pos = LENS_HOME;
+  slide.querySelectorAll('[data-lens]').forEach((p) => { if (+p.dataset.step <= step) pos = p.dataset.lens.split(' ').map((v) => parseFloat(v) / 100); });
+  placeLens(photo, ...pos);
+}
+function initLens() {
+  document.querySelectorAll('.xx-photo').forEach((photo) => {
+    const drag = (e) => {
+      const r = photo.getBoundingClientRect();
+      const clamp = (v) => Math.min(1, Math.max(0, v));
+      placeLens(photo, clamp((e.clientX - r.left) / r.width), clamp((e.clientY - r.top) / r.height));
+    };
+    photo.addEventListener('pointerdown', (e) => { photo.setPointerCapture(e.pointerId); drag(e); });
+    photo.addEventListener('pointermove', (e) => { if (photo.hasPointerCapture(e.pointerId)) drag(e); });
+  });
+}
+
 window.LESSON = {
   init() {
     Narrative.init({ picks: PICKS });
+    initLens();
     document.querySelectorAll('.cell').forEach((c) => c.addEventListener('click', () => c.classList.toggle('open')));
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateLens(slide, step);
+    setTimeout(() => updateLens(slide, step), 300); // 背景图按需加载后再取一次
+  },
 };

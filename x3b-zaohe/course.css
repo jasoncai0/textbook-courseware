@@ -18,7 +18,6 @@
 .tk i { display: block; font-style: normal; font-size: 3em; }
 .tk b { display: block; font-size: 1.5em; color: var(--red-d); margin: .2em 0; }
 .tk span { font-family: var(--kai); font-size: 1.15em; line-height: 1.6; }
-.clue-face.front b { color: var(--red); }
 
 /* ================= 中年级通用（三下第七、八单元各课相同） ================= */
 /* 8–10 岁：字号比五六年级再大一点 */
@@ -41,27 +40,51 @@
   .pic-box { min-height: 12em; }
 }
 
-/* ---------- 排一排（复述工具）：点卡片按顺序排 ---------- */
-.order { display: flex; flex-direction: column; gap: .7em; min-height: 0; }
-.order-slots, .order-pool { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: .6em; }
-.o-slot { position: relative; min-height: 8.4em; border: 2px dashed var(--line); border-radius: .6em; background: rgba(255, 255, 255, .55); display: flex; flex-direction: column; overflow: hidden; }
-.o-slot::after { content: attr(data-n); position: absolute; left: .35em; top: .3em; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 50%; background: var(--red); color: #fff; font-size: .85em; }
-.o-slot.filled { border-style: solid; border-color: var(--gold); background: #fff; animation: appear .4s ease; }
-.o-card { font: inherit; padding: 0; border: 1px solid var(--line); border-radius: .6em; background: #fff; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; text-align: left; color: var(--ink); box-shadow: 0 .15em .5em rgba(40, 30, 20, .1); transition: opacity .3s; }
-.o-pic { height: 4.6em; flex: none; background: #efe6d4 center / cover no-repeat; display: flex; align-items: center; justify-content: center; }
-.o-pic i { font-style: normal; font-size: 2.4em; line-height: 1; }
-.o-card > span, .o-slot > span { padding: .35em .6em .5em; font-family: var(--kai); font-size: .95em; line-height: 1.45; }
-.o-card.used { opacity: .2; pointer-events: none; }
-.o-card.wrong { animation: nope .35s; border-color: #e3a998; background: #fdf0ec; }
-.order-bar { display: flex; align-items: center; gap: 1em; }
-.order-msg { flex: 1; color: var(--ink-2); }
-.order.done .order-msg { color: #1f6b4f; font-weight: bold; }
-@media (max-width: 820px), (max-height: 520px) {
-  .order-slots, .order-pool { grid-template-columns: 1fr 1fr; }
-  .o-slot { min-height: 7em; }
-}
+/* ---------- 读故事 · 右上角小地图 ---------- */
+.minimap { position: absolute; top: .8em; right: 1.4em; width: 14em; z-index: 9; padding: .3em .5em; border-radius: .5em; background: rgba(255, 248, 232, .9); box-shadow: 0 .2em .6em rgba(0, 0, 0, .25); opacity: 0; transition: opacity .5s; pointer-events: none; }
+.minimap.show { opacity: 1; }
+.minimap svg { display: block; width: 100%; height: auto; }
+.mm-road { fill: none; stroke: #c9a46a; stroke-width: 3; stroke-dasharray: 6 5; }
+.mm-hill { fill: #9fbf86; }
+.mm-pt { fill: #fff; stroke: #8a5a2a; stroke-width: 2; }
+.mm-t { font-size: 13px; text-anchor: middle; fill: #5a3a1a; }
+.mm-dot { fill: var(--red); stroke: #fff; stroke-width: 2; transition: cx 1s ease, cy 1s ease; }
+
+/* ---------- 品读 · 故事地图 ---------- */
+.s-trek .bd { grid-template-columns: 1.35fr 1fr; }
+.trek-svg { flex: 1; min-height: 0; width: 100%; }
+.tk-land { fill: #f3e7cc; }
+.tk-hill { fill: #a9c78e; }
+.tk-river { fill: none; stroke: #9cc6dc; stroke-width: 10; stroke-linecap: round; }
+.tk-house rect, .tk-yamen rect { fill: #e9d3ad; stroke: #8a5a2a; stroke-width: 2; }
+.tk-house polygon, .tk-yamen polygon { fill: #b5553a; }
+.tk-road { fill: none; stroke: #c9a46a; stroke-width: 5; stroke-dasharray: 10 8; }
+.tk-walk { fill: none; stroke: var(--red); stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset 1.2s ease; }
+.tk-stop { cursor: pointer; }
+.tk-stop circle { fill: #fff; stroke: var(--red); stroke-width: 3; transition: fill .3s; }
+.tk-stop .tk-n { font-size: 20px; font-weight: bold; text-anchor: middle; fill: var(--red); }
+.tk-stop .tk-name { font-size: 17px; text-anchor: middle; fill: #4a2f17; paint-order: stroke; stroke: #f3e7cc; stroke-width: 4px; }
+.tk-stop.seen circle { fill: var(--gold-l); }
+.tk-stop.cur circle { fill: var(--red); }
+.tk-stop.cur .tk-n { fill: #fff; }
+.badges { display: flex; flex-wrap: wrap; align-items: center; gap: .4em; }
+.badges > b { color: var(--red-d); margin-right: .3em; }
+.bdg { display: inline-block; padding: .1em .7em; border-radius: 1em; border: 2px dashed var(--line); color: #b3a68f; font-family: var(--kai); font-size: 1.05em; }
+.bdg.got { border-style: solid; border-color: var(--gold); background: #fff6df; color: var(--red-d); }
+.trek-card { display: flex; flex-direction: column; gap: .5em; }
+.tc-pic { flex: none; height: 9em; border-radius: .5em; background: #efe6d4 center / cover no-repeat; }
+.tc-hd { margin: 0; font-size: 1.3em; color: var(--red-d); font-weight: bold; }
+.tc-hd b { display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; margin-right: .3em; border-radius: 50%; background: var(--red); color: #fff; }
+.tc-hd small { margin-left: .6em; font-size: .65em; font-weight: normal; color: #fff; background: var(--gold); padding: .05em .6em; border-radius: 1em; }
+.tc-t { margin: 0; font-family: var(--kai); font-size: 1.15em; line-height: 1.6; }
+.tc-sk { margin: 0; display: flex; flex-wrap: wrap; gap: .4em; align-items: center; color: var(--ink-2); }
+
 @media (max-width: 820px), (max-height: 520px) {
   .s-cover .cover-title { font-size: 5em; }
   .task-cards { grid-template-columns: 1fr; }
-  .order-slots, .order-pool { grid-template-columns: 1fr; }
+  .minimap { width: 9.5em; right: .6em; top: .5em; }
+  .trek-svg { flex: none; }
+  .tc-pic { height: 6em; }
+  .tc-t { font-size: 1em; }
+  .bdg { font-size: .9em; }
 }

@@ -28,19 +28,47 @@
 .ch b { display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; border-radius: 50%; background: var(--red); color: #fff; font-family: Georgia, serif; font-size: .8em; margin-right: .3em; }
 .ch:not(:last-child)::after { content: "→"; position: absolute; right: -1.15em; top: 50%; translate: 0 -50%; color: var(--gold); font-size: 1.2em; font-weight: bold; }
 .ch.hot { border-color: var(--gold); background: #fff8ec; }
-.places { display: flex; flex-wrap: wrap; gap: .5em; }
-.pl { position: relative; font-family: var(--kai); font-size: 1.25em; background: #fff; border-radius: .5em; padding: .3em .8em .3em 2em; border: 2px solid var(--line); }
-.pl small { display: block; font-family: var(--serif); font-size: .66em; color: var(--ink-2); }
-.pl::before { position: absolute; left: .5em; top: .3em; font-weight: bold; font-family: var(--serif); }
-.pl.no::before { content: "✗"; color: #c0392b; }
-.pl.maybe::before { content: "？"; color: #d08a1e; }
-.pl.secret::before { content: "♥"; color: var(--gold); }
-.pl.no { background: #f6f3f2; }
-.pl.maybe { border-color: #ecc58a; }
-.pl.secret { border-color: var(--gold); background: #fff8ec; }
-
+.s-chain .stage { justify-content: center; gap: 2em; }
+.s-chain .ch { font-size: 1.5em; padding: .8em 1em; }
+.s-chain .ch:not(:last-child)::after { font-size: .8em; right: -.95em; }
+.s-chain .tip { font-size: 1.2em; }
 /* ---------- 尝试解决 ---------- */
-.s-solve .clue-face { font-size: 1.1em; }
+.solve { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
+.sv { background: #fff; border-radius: .6em; padding: .6em .9em; border: 2px solid var(--line); }
+.sv.open { border-color: var(--gold); }
+.sv-q { margin: 0 0 .4em; font-family: var(--kai); font-size: 1.2em; line-height: 1.45; }
+.sv-ways { display: flex; flex-wrap: wrap; gap: .35em; }
+.sv-ways button { font: inherit; font-size: .95em; padding: .15em .7em; border-radius: 1em; border: 1px solid var(--red); background: #fff; color: var(--red-d); cursor: pointer; }
+.sv-ways button.yes { background: var(--red); color: #fff; }
+.sv-ways button.nope { border-color: #e3a998; background: #fdf0ec; color: #b0563c; animation: nope .35s; }
+.sv-a { display: none; margin: .5em 0 0; font-family: var(--kai); font-size: 1.05em; line-height: 1.55; background: #fff8ec; border-left: .25em solid var(--gold); padding: .3em .6em; border-radius: .3em; }
+.sv.open .sv-a { display: block; animation: subIn .5s ease both; }
+
+/* ---------- 寻家地图 ---------- */
+.s-hunt .bd { grid-template-columns: 34% 1fr; }
+.s-hunt .side { justify-content: space-between; }
+.hunt-txt { display: flex; flex-direction: column; gap: .5em; }
+.hunt-txt p { display: none; margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.6; padding: .3em .6em; border-left: .25em solid transparent; color: #8a9494; }
+.hunt-txt p.on { display: block; }
+.hunt-txt p.gone { display: none; }
+.hunt-txt p.now { color: var(--ink); background: #fff; border-left-color: var(--gold); border-radius: .3em; animation: subIn .6s ease both; }
+.hunt-txt b { color: #b0563c; }
+.worry { display: flex; align-items: center; gap: .6em; font-family: var(--kai); font-size: 1.15em; color: #b0563c; }
+.worry-bar { flex: 1; display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; height: .9em; padding: 3px; border-radius: 1em; background: #fff; border: 2px solid #e3c2b4; }
+.worry-bar i { border-radius: 1em; background: #e98a5f; opacity: 0; transition: opacity .6s; }
+.worry-bar i.on { opacity: 1; }
+.s-hunt .stage { justify-content: center; }
+.hunt-map { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; }
+.hunt-map > svg:first-child { display: block; width: 100%; height: 100%; }
+.hm-pl text { fill: #fff; paint-order: stroke; stroke: rgba(40, 50, 50, .7); stroke-width: 4px; }
+.hm-q { font-size: 34px; font-weight: bold; fill: #fff; }
+.hm-say { font-family: var(--kai); font-size: 24px; fill: #fff8ec; text-anchor: middle; }
+.hm-st circle { stroke: #fff; stroke-width: 3; }
+.hm-st text { font-size: 22px; font-weight: bold; fill: #fff; text-anchor: middle; }
+.hm-st.no circle { fill: #c0392b; }
+.hm-st.maybe circle { fill: #d08a1e; }
+.hm-st, .s-hunt svg [data-step] { opacity: 0; transition: opacity .5s; }
+.s-hunt svg [data-step].on { opacity: 1; }
 
 /* ---------- 旁批 ---------- */
 .pp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .9em; }
@@ -84,9 +112,13 @@
   .q-how { flex-direction: column; }
   .q-how > i { transform: rotate(90deg); font-size: 1.5em; }
   .chain { grid-template-columns: 1fr; gap: .6em; }
+  .s-chain .ch { font-size: 1.15em; padding: .5em .8em; }
+  .s-chain .ch:not(:last-child)::after { right: auto; font-size: 1em; }
+  .s-chain .tip { font-size: 1em; }
   .ch:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -1.2em; translate: -50% 0; }
-  .pl { font-size: 1em; }
   .qboard { grid-template-columns: 1fr; }
   .qcards { overflow: visible; }
-  .clues { grid-template-columns: 1fr; }
+  .solve { grid-template-columns: 1fr; }
+  .hunt-txt p { font-size: 1.1em; }
+  .worry { margin-top: .5em; }
 }

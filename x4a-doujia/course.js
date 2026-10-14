@@ -1,37 +1,33 @@
 'use strict';
-/* 一个豆荚里的五粒豆 · 本课数据与互动。记叙文模板见 ../shared/narrative.js，提问清单见 qlist.js，翻页引擎见 ../shared/deck.js */
+/* 一个豆荚里的五粒豆 · 本课数据与互动。记叙文模板见 ../shared/narrative.js，提问清单见 qlist.js，翻页引擎见 ../shared/deck.js
+ * 本课专属：豌豆飞行图（五粒豌豆的“愿望”和落点画在一张图上）。
+ */
 
-/* ================= 连一连：先点左边，再点右边（pairs[i].a 对 pairs[i].b；右边按 rightOrder 打乱） ================= */
-function initMatch(box, pairs, rightOrder) {
-  box.innerHTML = `<div class="m-col">${pairs.map((p, i) => `<button class="m-a" type="button" data-i="${i}">${p.a}</button>`).join('')}</div>
-    <div class="m-col">${rightOrder.map((i) => `<button class="m-b" type="button" data-i="${i}">${pairs[i].b}</button>`).join('')}</div>`;
-  let picked = null;
-  let found = 0;
-  box.addEventListener('click', (e) => {
-    const a = e.target.closest('.m-a');
-    const b = e.target.closest('.m-b');
-    if (a && !a.classList.contains('right')) {
-      box.querySelectorAll('.m-a').forEach((x) => x.classList.toggle('sel', x === a));
-      picked = a;
-      return;
-    }
-    if (!b || b.classList.contains('right') || !picked) return;
-    b.classList.remove('wrong');
-    void b.offsetWidth; // 重新触发抖动动画
-    if (b.dataset.i !== picked.dataset.i) { b.classList.add('wrong'); return; }
-    found += 1;
-    [picked, b].forEach((x) => { x.classList.remove('sel'); x.classList.add('right'); x.dataset.n = found; });
-    picked = null;
-    box.classList.toggle('all-found', found === pairs.length);
+/* ================= 豌豆飞行图：点一粒，看它说的话和落到哪里（g 对应 SVG 里 #pg0~#pg3） ================= */
+const PEAS = [
+  { who: '第一粒', say: '“现在我要飞到广阔的世界里去了！”', end: '落到了屋顶的水笕里，被一只鸽子吃掉了。' },
+  { who: '第二粒', say: '“我将直接飞进太阳里去。”', end: '却落到了水沟里，在脏水里躺了好几个星期，涨得大大的，还说自己“最了不起”。' },
+  { who: '第三、四粒', say: '“我们才会飞得最远呢！”', end: '也没有走多远，也被鸽子吃掉了。' },
+  { who: '最后一粒', say: '“该怎么样就怎么样吧！”', end: '落到顶楼窗子下面的旧板子上，在长满青苔的裂缝里生根、开花，给小女孩带来了希望。' },
+];
+function initPeaMap() {
+  const btns = document.getElementById('peaBtns');
+  const card = document.getElementById('peaCard');
+  btns.innerHTML = PEAS.map((p, i) => `<button type="button" class="pea-btn" data-i="${i}"><i></i>${p.who}</button>`).join('');
+  const seen = new Set();
+  btns.addEventListener('click', (e) => {
+    const b = e.target.closest('.pea-btn');
+    if (!b) return;
+    const i = +b.dataset.i;
+    const p = PEAS[i];
+    seen.add(i);
+    btns.querySelectorAll('.pea-btn').forEach((x) => x.classList.toggle('cur', x === b));
+    b.classList.add('seen');
+    document.getElementById(`pg${i}`).classList.add('go');
+    card.innerHTML = `<b>${p.who}说：</b><p>${p.say}</p><b>结果：</b><p>${p.end}</p>`
+      + (seen.size === PEAS.length ? '<p class="pea-q">谁走得最远？比一比路程，再比一比它带来了什么。</p>' : '');
   });
 }
-
-const PEAS = [
-  { a: '第一粒：“我要飞到广阔的世界里去了！”', b: '落到屋顶的水笕里，被鸽子吃掉了' },
-  { a: '第二粒：“我将直接飞进太阳里去。”', b: '落到水沟里，在脏水里涨得大大的' },
-  { a: '第三、四粒：“我们才会飞得最远呢！”', b: '没有走多远，也被鸽子吃掉了' },
-  { a: '最后一粒：“该怎么样就怎么样吧！”', b: '在石缝里生根、开花，给小女孩带来希望' },
-];
 
 /* 课后第 2 题：问题清单（k 是参考分类） */
 const QLISTS = {
@@ -52,7 +48,7 @@ window.LESSON = {
   init() {
     Narrative.init({});
     QList.init(QLISTS);
-    initMatch(document.getElementById('peaMatch'), PEAS, [1, 3, 0, 2]);
+    initPeaMap();
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

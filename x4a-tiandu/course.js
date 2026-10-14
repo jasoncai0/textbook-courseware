@@ -1,14 +1,6 @@
 'use strict';
 /* 爬天都峰 · 本课数据与互动。记叙文模板见 ../shared/narrative.js，翻页引擎见 ../shared/deck.js */
 
-/* 讲故事：起因 → 经过 → 结果 */
-const PLOT = [
-  { step: 1, stage: '起因', text: '峰顶高，石级陡，“我”不敢爬', pic: 'fengjiao', pos: '50% 70%', x: 12, y: 96 },
-  { step: 2, stage: '经过', text: '遇见老爷爷，约好一起爬', pic: 'xiangyu', x: 37, y: 80 },
-  { step: 3, stage: '经过', text: '奋力攀铁链，手脚并用向上爬', pic: 'panpa', x: 63, y: 62 },
-  { step: 4, stage: '结果', text: '都爬上峰顶，互相感谢', pic: 'fengding', x: 88, y: 46 },
-];
-
 /* 课后第 1 题：按什么顺序写 */
 const KINDS = ['爬山前', '爬山中', '爬上峰顶后'];
 const SORT = [
@@ -43,7 +35,7 @@ const MOMENTS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ plot: PLOT, sort: SORT, kinds: KINDS, moments: MOMENTS });
+    Narrative.init({ sort: SORT, kinds: KINDS, moments: MOMENTS });
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

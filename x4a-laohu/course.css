@@ -29,3 +29,46 @@
 .scene:has(.subs p[data-step="4"].on) .peep { opacity: 0; }
 .scene:has(.subs p[data-step="4"].on) .scene-bg { filter: none; }
 .scene .scene-bg { transition: transform 4s ease, transform-origin 4s ease, background-position 4s ease, object-position 4s ease, filter 1.2s ease; }
+
+/* ---------- 读故事：舞台剧（幕布 + 剧本台词轮流亮起） ---------- */
+.curtain { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.curtain::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9%; background: repeating-linear-gradient(90deg, #8e1f1a 0 2.2em, #b0302a 2.2em 3.4em); border-bottom: .35em solid #e0a22a; box-shadow: 0 .4em .8em rgba(0, 0, 0, .45); border-radius: 0 0 40% 40% / 0 0 1.4em 1.4em; }
+.curtain i { position: absolute; top: 0; bottom: 0; width: 11%; background: repeating-linear-gradient(90deg, #7d1814 0 .9em, #a92a24 .9em 2em, #8e1f1a 2em 2.6em); box-shadow: 0 0 1.2em rgba(0, 0, 0, .6); }
+.curtain .cl { left: 0; border-radius: 0 0 60% 0 / 0 0 12% 0; }
+.curtain .cr { right: 0; border-radius: 0 0 0 60% / 0 0 0 12%; }
+.slide.active .curtain .cl { animation: curtainL 1.6s ease both; }
+.slide.active .curtain .cr { animation: curtainR 1.6s ease both; }
+@keyframes curtainL { from { width: 51%; } to { width: 11%; } }
+@keyframes curtainR { from { width: 51%; } to { width: 11%; } }
+.play .hd { top: 2.6em; left: 13%; z-index: 4; }
+.play .hd .sub { color: #ffe7a8; font-weight: bold; }
+.play .subs { z-index: 3; left: 13%; right: 13%; bottom: 4.2em; padding: .7em 1.2em .7em 1.2em; background: rgba(253, 248, 236, .95); color: #3b2e22; border-radius: .4em; border-top: .35em solid var(--gold); box-shadow: 0 .4em 1.4em rgba(0, 0, 0, .5); font-size: 1.28em; line-height: 1.6; }
+.play .subs p { position: relative; padding: .15em 0 .15em 4.6em; border-radius: .3em; }
+.play .subs p.on:not(.now) { opacity: .42; }
+.play .subs p.now { background: #fff1c9; }
+.play .subs .who, .play .subs p:not(:has(.who))::before { position: absolute; left: .3em; top: .45em; margin: 0; width: 3.6em; text-align: center; font-family: var(--serif); font-size: .7em; padding: .05em 0; border-radius: .3em; color: #fff; background: #8a7a62; vertical-align: 0; }
+.play .subs p:not(:has(.who))::before { content: "旁白"; background: #b7a98f; }
+.play .subs .who.main { background: var(--red); }
+@media (max-width: 820px), (max-height: 520px) {
+  .curtain::before { height: 5%; }
+  .curtain i { width: 5%; }
+  @keyframes curtainL { from { width: 51%; } to { width: 5%; } }
+  @keyframes curtainR { from { width: 51%; } to { width: 5%; } }
+  .play .hd { top: 1.6em; left: 7%; }
+  .play .hd .sub { display: inline; font-size: .85em; }
+  .play .subs { left: 6%; right: 6%; bottom: 5em; font-size: 1.04em; padding: .5em .6em; max-height: 58%; }
+  .play .subs p { padding-left: 3.6em; }
+  .play .subs .who, .play .subs p:not(:has(.who))::before { width: 3em; left: 0; }
+}
+
+/* ---------- 开导“我”：选一选 ---------- */
+.s-kaidao .bd { grid-template-columns: 30% 1fr; }
+.s-kaidao .portrait-card { position: relative; }
+.kd-me { position: absolute; left: 8%; right: 8%; bottom: 8%; margin: 0; padding: .5em .8em; background: #fff; border: 2px solid #3b2e22; border-radius: 1em; font-family: var(--kai); font-size: 1.15em; line-height: 1.5; box-shadow: .15em .15em 0 rgba(0, 0, 0, .3); }
+.s-kaidao .pick { font-size: 1.12em; }
+@media (max-width: 820px), (max-height: 520px) {
+  .s-kaidao .bd { grid-template-columns: 1fr; }
+  .s-kaidao .portrait-img { min-height: 10em; }
+  .kd-me { font-size: 1em; bottom: 6%; }
+  .s-kaidao .pick { font-size: 1em; }
+}

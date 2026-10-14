@@ -17,8 +17,6 @@
 .stanza .subs { font-size: 1.75em; line-height: 1.65; }
 .stanza .subs p { margin-bottom: .4em; }
 .tip { font-size: 1em; }
-.clue-face.front { font-size: 1.25em; }
-.clue-face.back small { display: inline; font-size: .85em; color: var(--red-d); font-weight: normal; }
 
 /* 品读：示意图 */
 .ink-svg { flex: 1; min-height: 0; width: 100%; }
@@ -33,8 +31,18 @@
 .row.sense .tip { flex: 1; }
 .s-douli .title-img { flex: 1; }
 
-.s-clues .clues { grid-template-columns: repeat(3, 1fr); }
-.s-clues .clue, .s-clues .clue-in { min-height: 8.5em; }
+.link { position: relative; flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 5em; align-content: center; }
+.link-col { display: flex; flex-direction: column; gap: .45em; }
+.link-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.link-lines line { stroke: var(--red); stroke-width: 3; stroke-linecap: round; }
+.link-l, .link-r { font: inherit; font-family: var(--kai); font-size: 1.12em; text-align: left; padding: .3em .8em; border-radius: .5em; border: 2px solid var(--line); background: #fff; cursor: pointer; }
+.link-l small { display: block; font-family: var(--serif); font-size: .7em; color: var(--red-d); }
+.link-l small:empty { display: none; }
+.link-l.sel { border-color: var(--gold); background: #fdf6e3; }
+.link-l.done, .link-r.done { border-color: #8cc0a6; background: #eef7f1; cursor: default; }
+.link-r.no { animation: nope .4s; border-color: #d9534f; }
+.link-done { display: none; }
+.link-all .link-done { display: block; }
 
 .s-recite .bd { grid-template-columns: 34% 1fr; }
 .recite-lines { font-size: 1.9em; }
@@ -45,6 +53,6 @@
   .s-ranlv .quote { font-size: 1.15em; }
   .ink-svg { flex: none; }
   .row.sense { flex-direction: column; }
-  .s-clues .clues { grid-template-columns: 1fr; }
+  .link { column-gap: 1.6em; font-size: .78em; align-content: start; }
   .recite-lines { font-size: 1.35em; }
 }

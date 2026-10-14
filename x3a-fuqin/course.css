@@ -55,3 +55,33 @@
   .why-pic { min-height: 12em; }
   .why-chain .tip { font-size: 1.05em; }
 }
+
+/* ---------- 一 · 读课文：林边对话（雾随发现变淡） ---------- */
+.s-talk .bd { grid-template-columns: 38% 1fr; }
+.talk-pic { position: relative; border-radius: .8em; overflow: hidden; background: #c9d2d2; }
+.talk-pic .tp { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: center / cover no-repeat; }
+.talk-pic .tp[data-step] { transform: none; transition: opacity 1.6s ease; }
+.fog { position: absolute; inset: -10%; pointer-events: none; transition: opacity 2.4s ease; background: radial-gradient(ellipse at 30% 40%, rgba(255, 255, 255, .95), rgba(240, 244, 244, .7) 45%, rgba(230, 236, 236, .55)); animation: fogDrift 9s ease-in-out infinite alternate; }
+@keyframes fogDrift { to { transform: translateX(6%); } }
+.talk { position: relative; overflow-y: auto; display: flex; flex-direction: column; gap: .7em; padding: .4em .6em 1em; }
+.tk { display: flex; align-items: flex-start; gap: .6em; max-width: 92%; }
+.tk[data-step] { transform: none; display: none; }
+.tk.on { display: flex; animation: subIn .6s ease both; }
+.tk i { flex: none; font-style: normal; width: 2.6em; height: 2.6em; border-radius: 50%; display: grid; place-items: center; font-size: .95em; color: #fff; background: var(--red-d); }
+.tk p { margin: 0; font-family: var(--kai); font-size: 1.45em; line-height: 1.6; padding: .45em .9em; border-radius: .9em; background: #fff; box-shadow: 0 .15em .5em rgba(40, 60, 60, .1); }
+.tk.f p { border-top-left-radius: .2em; border: 1px solid #b9cdd0; }
+.tk.m { align-self: flex-end; flex-direction: row-reverse; }
+.tk.m i { background: var(--gold); color: #3a3220; }
+.tk.m p { background: #fff7e0; border-top-right-radius: .2em; border: 1px solid var(--gold-l); }
+.tk.n { align-self: center; max-width: 96%; }
+.tk.n p { background: none; box-shadow: none; padding: .1em .4em; color: var(--ink); text-align: center; }
+.tk.n.me p { color: var(--ink-2); }
+.tk.n.reveal p { font-size: 2em; color: var(--red-d); letter-spacing: .15em; }
+.tk em { font-style: normal; color: var(--red-d); border-bottom: 2px solid var(--gold); }
+.tk b { color: var(--red-d); }
+@media (max-width: 820px), (max-height: 520px) {
+  .talk-pic { flex: none; aspect-ratio: 16 / 10; }
+  .talk { overflow: visible; padding: 0; }
+  .tk p { font-size: 1.15em; }
+  .tk.n.reveal p { font-size: 1.4em; }
+}

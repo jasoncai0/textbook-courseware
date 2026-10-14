@@ -91,3 +91,46 @@
   .fable-face { font-size: 1.15em; }
   .fable-card, .fable-in { min-height: 13em; }
 }
+
+/* 小舞台：橱柜里的对话 */
+.tg-theater { flex: 1; border-radius: .8em; overflow: hidden; padding: .8em 1.2em 0; background: #3b2a1c; gap: .5em; }
+.tg-curtain { position: absolute; inset: 0; background: #5a3e28 center / cover no-repeat; opacity: .2; filter: blur(2px); }
+.tg-pang, .tg-roles { position: relative; }
+.tg-pang { min-height: 2.6em; }
+.tg-pang p { margin: 0; font-family: var(--kai); font-size: 1.3em; line-height: 1.5; color: #fbe9c8; text-align: center; }
+.tg-roles { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2em; }
+.tg-role { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-height: 0; transition: opacity .5s, filter .5s; }
+.tg-says { position: relative; width: 100%; flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+.tg-says p { margin: 0; font-family: var(--kai); font-size: 1.35em; line-height: 1.55; background: #fffdf6; border-radius: .8em; padding: .5em .9em; position: relative; box-shadow: 0 .2em .6em rgba(0, 0, 0, .25); }
+.tg-says p::after { content: ""; position: absolute; left: 50%; bottom: -.7em; border: .4em solid transparent; border-top: .5em solid #fffdf6; transform: translateX(-50%); }
+.tg-role.tie .tg-says p { border-left: .35em solid var(--tie); }
+.tg-role.tao .tg-says p { border-left: .35em solid var(--tao); }
+/* 每个角色只显示最新一句；旁白同理 */
+.tg-says p.on:has(~ p.on), .tg-pang p.on:has(~ p.on) { display: none; }
+.tg-says p:not(.on), .tg-pang p:not(.on) { position: absolute; visibility: hidden; }
+.tg-jar { width: 7.5em; height: 9em; margin-top: 1em; transition: transform .4s; transform-origin: 50% 100%; }
+.tg-name { font-family: var(--kai); font-size: 1.3em; color: #fbe9c8; padding-bottom: .1em; }
+.tg-shelf { position: relative; height: 1.2em; margin: 0 -1.2em; background: linear-gradient(#8a5a34, #5e3b20); }
+.tg-theater[data-who="tie"] .tg-role.tao, .tg-theater[data-who="tao"] .tg-role.tie { opacity: .45; filter: saturate(.5); }
+.tg-theater[data-who="tie"] .tg-role.tie .tg-jar, .tg-theater[data-who="tao"] .tg-role.tao .tg-jar { animation: tgSpeak .5s ease 2 alternate; }
+.tg-theater[data-who="pang"] .tg-says p { opacity: .55; }
+@keyframes tgSpeak { to { transform: translateY(-.5em) scale(1.06); } }
+
+/* 长处和短处 */
+.tg-pros { display: grid; grid-template-columns: 4.5em 1fr 1fr; gap: .5em .7em; align-items: stretch; }
+.tg-pros > b { font-family: var(--kai); font-size: 1.4em; color: #fff; border-radius: .4em; display: flex; align-items: center; justify-content: center; }
+.tg-pros > b.tie { background: var(--tie); }
+.tg-pros > b.tao { background: var(--tao); }
+.tg-ph { text-align: center; font-weight: bold; border-radius: .4em; padding: .15em; }
+.tg-ph.good { background: #e3f1e0; color: #2f6b2a; }
+.tg-ph.bad { background: #f6e1da; color: #9a3a22; }
+.tg-pros > span { background: #fff; border-radius: .5em; padding: .5em .8em; font-family: var(--kai); font-size: 1.25em; line-height: 1.5; border: 1px solid var(--line); }
+.s-moral .bd { grid-template-columns: 1fr 1fr; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .tg-theater { min-height: 27em; padding: .6em .6em 0; }
+  .tg-roles { gap: .6em; }
+  .tg-says p, .tg-pang p { font-size: 1.05em; }
+  .tg-jar { width: 5em; height: 6em; }
+  .tg-pros > span { font-size: 1.05em; }
+}

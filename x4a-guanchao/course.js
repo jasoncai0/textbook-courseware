@@ -1,6 +1,6 @@
 'use strict';
 /* 观潮 · 本课数据与互动。记叙文模板见 ../shared/narrative.js，背诵挖空见 ../shared/poem.js，翻页引擎见 ../shared/deck.js
- * 本课专属：三幅画面排顺序、潮来时“声音 + 样子”变化图、古诗与课文连一连。
+ * 本课专属：三幅画面排顺序、潮来时“声音 + 样子”变化图、古诗与课文古今对读。
  */
 
 /* 背诵第 3～4 自然段（一句一行） */
@@ -44,28 +44,14 @@ function initPicOrder(box, items, doneText) {
   });
 }
 
-/* ================= 连一连：先点左边，再点右边（pairs[i].a 对 pairs[i].b；右边固定打乱） ================= */
-function initMatch(box, pairs, rightOrder) {
-  box.innerHTML = `<div class="m-col">${pairs.map((p, i) => `<button class="m-a" type="button" data-i="${i}">${p.a}</button>`).join('')}</div>
-    <div class="m-col">${rightOrder.map((i) => `<button class="m-b" type="button" data-i="${i}">${pairs[i].b}</button>`).join('')}</div>`;
-  let picked = null;
-  let found = 0;
+/* ================= 古今对读：一句诗对一句课文，先说再点开 ================= */
+function initDuidu(box, pairs) {
+  box.innerHTML = pairs.map((p) => `<button class="dd-row" type="button">
+      <span class="dd-gu">${p.a}</span><i class="dd-k">${p.k}</i>
+      <span class="dd-jin"><em>课文里的哪句？说一说，再点开</em><span>${p.b}</span></span></button>`).join('');
   box.addEventListener('click', (e) => {
-    const a = e.target.closest('.m-a');
-    const b = e.target.closest('.m-b');
-    if (a && !a.classList.contains('right')) {
-      box.querySelectorAll('.m-a').forEach((x) => x.classList.toggle('sel', x === a));
-      picked = a;
-      return;
-    }
-    if (!b || b.classList.contains('right') || !picked) return;
-    b.classList.remove('wrong');
-    void b.offsetWidth;
-    if (b.dataset.i !== picked.dataset.i) { b.classList.add('wrong'); return; }
-    found += 1;
-    [picked, b].forEach((x) => { x.classList.remove('sel'); x.classList.add('right'); x.dataset.n = found; });
-    picked = null;
-    box.classList.toggle('all-found', found === pairs.length);
+    const row = e.target.closest('.dd-row');
+    if (row) row.classList.add('open');
   });
 }
 
@@ -76,10 +62,10 @@ const ORDER = [
 ];
 
 const POEM_PAIRS = [
-  { a: '八月涛声吼地来', b: '那声音如同山崩地裂，好像大地都被震得颤动起来。' },
-  { a: '头高数丈触山回', b: '只见白浪翻滚，形成一堵两丈多高的水墙。' },
-  { a: '须臾却入海门去', b: '霎时，潮头奔腾西去……' },
-  { a: '卷起沙堆似雪堆', b: '余波还在漫天卷地般涌来，江面上依旧风号浪吼。' },
+  { a: '八月涛声吼地来', k: '声音', b: '那声音如同山崩地裂，好像大地都被震得颤动起来。' },
+  { a: '头高数丈触山回', k: '样子', b: '只见白浪翻滚，形成一堵两丈多高的水墙。' },
+  { a: '须臾却入海门去', k: '潮去', b: '霎时，潮头奔腾西去……' },
+  { a: '卷起沙堆似雪堆', k: '余波', b: '余波还在漫天卷地般涌来，江面上依旧风号浪吼。' },
 ];
 
 /* 潮来时的“白色战马”和大堤上的人群：一排起伏的浪头、一排小人背影 */
@@ -103,7 +89,7 @@ window.LESSON = {
     Narrative.init({});
     Poem.init();
     initPicOrder(document.getElementById('tideOrder'), ORDER, '排好了！潮来前 → 潮来时 → 潮过后。');
-    initMatch(document.getElementById('poemMatch'), POEM_PAIRS, [2, 0, 3, 1]);
+    initDuidu(document.getElementById('poemDuidu'), POEM_PAIRS);
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

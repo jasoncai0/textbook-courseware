@@ -26,16 +26,22 @@ function initVote() {
   });
 }
 
-/* 寓言卡：正面故事，背面道理 */
-function initFable() {
-  document.querySelectorAll('.fable-card').forEach((c) => c.addEventListener('click', () => c.classList.toggle('flipped')));
+/* 分屏对话：谁说话谁那一边亮（最新一句的 data-who 写到 .cz-duet 上，CSS 只显示每边最新一节） */
+function updateDuet(slide, step) {
+  const box = slide.querySelector('.cz-duet');
+  if (!box) return;
+  let who = '';
+  box.querySelectorAll('[data-who][data-step]').forEach((el) => { if (+el.dataset.step <= step) who = el.dataset.who; });
+  box.dataset.who = who;
 }
 
 window.LESSON = {
   init() {
     Narrative.init({ picks: PICKS });
     initVote();
-    initFable();
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateDuet(slide, step);
+  },
 };

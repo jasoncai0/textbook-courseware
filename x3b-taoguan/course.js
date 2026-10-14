@@ -1,15 +1,6 @@
 'use strict';
 /* 陶罐和铁罐 · 本课数据与互动。记叙文模板见 ../shared/narrative.js */
 
-/* 课后第 1 题 · 情节图（起因—经过—结果） */
-const PLOT = [
-  { step: 1, stage: '起因', text: '骄傲的铁罐看不起陶罐，常常奚落它', pic: 'chugui', x: 10, y: 92 },
-  { step: 1, stage: '经过', text: '铁罐越说越凶，陶罐不再理会', pic: 'chugui', pos: '30% 50%', x: 31, y: 66 },
-  { step: 2, stage: '经过', text: '王朝覆灭，两个罐子埋在废墟里', pic: 'feixu', x: 52, y: 44 },
-  { step: 3, stage: '结果', text: '陶罐被掘出，依然光洁美观', pic: 'juechu', x: 72, y: 62 },
-  { step: 3, stage: '结果', text: '铁罐连影子也没见到', pic: 'tiexiu', x: 91, y: 86 },
-];
-
 /* 联系生活：哪些做法像陶罐 */
 const PICKS = {
   life: [
@@ -69,17 +60,23 @@ function initWind() {
   });
 }
 
-/* 寓言卡：正面故事，背面道理 */
-function initFable() {
-  document.querySelectorAll('.fable-card').forEach((c) => c.addEventListener('click', () => c.classList.toggle('flipped')));
+/* 小舞台：谁说话谁站出来（最新一句台词的 data-who 写到舞台上，CSS 负责高亮和只显示最新一句） */
+function updateStage(slide, step) {
+  const box = slide.querySelector('.tg-theater');
+  if (!box) return;
+  let who = '';
+  box.querySelectorAll('[data-who][data-step]').forEach((el) => { if (+el.dataset.step <= step) who = el.dataset.who; });
+  box.dataset.who = who;
 }
 
 window.LESSON = {
   init() {
-    Narrative.init({ plot: PLOT, picks: PICKS, moments: MOMENTS });
+    Narrative.init({ picks: PICKS, moments: MOMENTS });
     initFaces();
     initWind();
-    initFable();
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateStage(slide, step);
+  },
 };

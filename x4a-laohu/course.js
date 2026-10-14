@@ -61,13 +61,16 @@ Mood.render(document.getElementById('mood'), MOOD);
 Pizhu.render(document.getElementById('pizhu'), TEXT, { hints: HINTS, type: '有疑问' });
 
 /* 课后第 3 题：开导“我” */
-const CLUE_LABELS = ['想一想', '我的看法'];
-const CLUES = [
-  { q: '台下哄堂大笑，就说明演砸了吗？', a: '不一定。大家可能觉得这只老虎很可爱、很有趣，笑声也是一种喜欢。' },
-  { q: '不会豁虎跳，就不能扮老虎吗？', a: '老师说过“扮老虎不一定要豁虎跳”。动物园里的真老虎，也从没豁过虎跳呀！' },
-  { q: '“我”有没有做得好的地方？', a: '有！第一次上台，又紧张又看不清，还坚持演到了“躺下来死掉”。' },
-  { q: '如果你是“我”的同学，你会对“我”说什么？', a: '例如：“你的老虎爬得真像！下次我们一起练，你一定演得更好。”' },
-];
+const PICKS = {
+  kaidao: [
+    { t: '“台下的笑声，也许是大家喜欢这只可爱的老虎。”', ok: true, why: '有道理：笑不一定是嘲笑。' },
+    { t: '“老师说过，扮老虎不一定要豁虎跳。”', ok: true, why: '有道理：课文里老师亲口说的。' },
+    { t: '“谁让你连虎跳都不会，活该被笑。”', ok: false, why: '这是挖苦，不是开导。' },
+    { t: '“动物园里的真老虎，也从没豁过虎跳呀！”', ok: true, why: '有道理：课文结尾“我”自己发现的。' },
+    { t: '“第一次上台又紧张又看不清，你还坚持演完了，真不简单！”', ok: true, why: '有道理：看到了“我”做得好的地方。' },
+    { t: '“以后别演了，省得丢人。”', ok: false, why: '这只会让“我”更难过。' },
+  ],
+};
 
 /* 读与写（选做） */
 const MOMENTS = [
@@ -93,7 +96,7 @@ const MOMENTS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
+    Narrative.init({ picks: PICKS, moments: MOMENTS });
   },
   onRender: (slide, step) => Narrative.onRender(slide, step),
 };

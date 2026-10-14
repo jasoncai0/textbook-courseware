@@ -55,3 +55,13 @@
   .card-pick { font-size: 1.15em; }
   .imag-card textarea { min-height: 9em; }
 }
+
+/* 读故事 · 气泡：别人说出口的话 = 白色说话气泡；英英（变成树）只能在心里想 = 绿色虚线心里话云 */
+.talk .subs p { width: fit-content; max-width: 84%; padding: .25em .9em; margin: .35em 0; border-radius: 1em; position: relative; }
+.talk .subs p:has(.who) { background: #fffdf6; color: #3a3228; border-bottom-left-radius: .2em; box-shadow: 0 .15em .5em rgba(0, 0, 0, .25); }
+.talk .subs p:has(.who) .who { background: var(--red); color: #fff; }
+.talk .subs p:not(:has(.who)) { margin-left: auto; background: rgba(226, 241, 214, .95); color: #2a4a2f; border: 2px dashed #7fb26f; border-radius: 1.4em; }
+.talk .subs p:not(:has(.who))::before { content: '英英心里想'; display: block; font-family: var(--serif); font-size: .55em; color: #4f8a52; }
+.talk .subs p:not(:has(.who))::after { content: ''; position: absolute; right: 1.4em; bottom: -.55em; width: .5em; height: .5em; border-radius: 50%; background: rgba(226, 241, 214, .95); border: 2px dashed #7fb26f; }
+.talk .subs p.on:not(.now) { opacity: .62; }
+.talk .subs .reveal, .talk .subs .beat { color: #b0302a; }

@@ -42,5 +42,9 @@ window.LESSON = {
     Narrative.init({ plot: PLOT, moments: MOMENTS });
     initFresh(document.getElementById('fresh'), FRESH);
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    // 连环画：当前这一格描红框，前面的格子稍稍变淡
+    slide.querySelectorAll('.cm').forEach((c) => c.classList.toggle('now', +c.dataset.step === step));
+  },
 };

@@ -123,6 +123,19 @@ const MOMENTS = [
 ];
 
 /* ================= 接入通用引擎（../shared/deck.js） ================= */
+/* 第 3—7 段长卷：读到哪一句，镜头移到哪一处（data-pan = 第几幅） */
+function updateScroll(slide, step) {
+  const strip = slide.querySelector('#scrollStrip');
+  if (!strip) return;
+  const shown = [...slide.querySelectorAll('.subs p[data-pan]')].filter((p) => +p.dataset.step <= step);
+  const pan = shown.length ? +shown[shown.length - 1].dataset.pan : 0;
+  strip.style.transform = `translateX(${-pan * 25}%)`;
+  slide.querySelectorAll('#scrollMap li').forEach((li, i) => {
+    li.classList.toggle('now', i === pan);
+    li.classList.toggle('past', i < pan);
+  });
+}
+
 window.LESSON = {
   init() {
     Narrative.init({ moments: MOMENTS });
@@ -130,5 +143,8 @@ window.LESSON = {
     initSeaColor();
     initKeys();
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateScroll(slide, step);
+  },
 };

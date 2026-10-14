@@ -125,13 +125,32 @@ function initHand() {
 }
 
 /* ================= 课后第 3 题：翻卡片 ================= */
-const CLUE_LABELS = ['它会怎样变？', '留心观察发现'];
-const CLUES = [
-  { q: '向日葵', a: '花盘会随着太阳转动。（课本）' },
-  { q: '含羞草', a: '被触碰后，叶子会“害羞”地合起来，低下头。（课本）' },
-  { q: '牵牛花', a: '清晨开花，到了中午太阳一晒，花就慢慢合上了。' },
-  { q: '天上的月亮', a: '有时弯弯的像小船，有时圆圆的像玉盘。' },
+/* 课后第 3 题：观察三步卡（发现变化 → 问为什么 → 仔细观察） */
+const OBS = [
+  { name: '向日葵', find: '早上，花盘朝着东边；傍晚，花盘朝着西边。', ask: '它怎么会“扭头”呢？', see: '一天里看了好几次，原来花盘跟着太阳慢慢转。（课本）' },
+  { name: '含羞草', find: '手指轻轻一碰，叶子就合起来，低下了头。', ask: '它真的会“害羞”吗？', see: '等一会儿再看，合上的叶子又慢慢张开了。（课本）' },
+  { name: '牵牛花', find: '清晨开得像一个个小喇叭，中午却卷起来了。', ask: '这是为什么呢？', see: '早上、中午都去看，原来太阳一晒，花就慢慢合上了。' },
+  { name: '天上的月亮', find: '有时弯弯的像小船，有时圆圆的像玉盘。', ask: '月亮怎么会变样子？', see: '一连好些天，每晚都看一看，月亮一天比一天变化一点。' },
 ];
+const OBS_STEPS = [['find', '我发现'], ['ask', '我想问'], ['see', '仔细观察']];
+
+function initObs() {
+  const tabs = document.getElementById('obsTabs');
+  const card = document.getElementById('obsCard');
+  if (!tabs || !card) return;
+  const show = (i) => {
+    const o = OBS[i];
+    tabs.querySelectorAll('.btn').forEach((b, k) => b.classList.toggle('solid', k === i));
+    card.innerHTML = `<h3>${o.name}</h3>` + OBS_STEPS.map(([k, label], n) =>
+      `<div class="obs-row" style="animation-delay:${n * 0.7}s"><b>${n + 1}　${label}</b><p>${o[k]}</p></div>`).join('');
+  };
+  tabs.innerHTML = OBS.map((o, i) => `<button class="btn" type="button" data-i="${i}">${o.name}</button>`).join('');
+  tabs.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-i]');
+    if (btn) show(+btn.dataset.i);
+  });
+  show(0);
+}
 
 /* ================= 小练笔 ================= */
 const MOMENTS = [
@@ -153,7 +172,8 @@ const MOMENTS = [
 let stopDay = () => {};
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
+    Narrative.init({ moments: MOMENTS });
+    initObs();
     stopDay = initDay();
     initHand();
   },

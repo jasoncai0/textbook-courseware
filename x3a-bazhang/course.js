@@ -44,10 +44,37 @@ function initLeaves() {
   apply('messy');
 }
 
+/* ================= 本课独有：上学路长卷（读到哪里，画面走到哪里） =================
+ * 字幕行 data-pan = 第几幅画（4 = 走到终点，仍停在最后一幅）；画幅宽占屏 PANEL，左右露出相邻的画 */
+const PANEL = 0.78;
+const LAST_PANEL = 3;
+function updateRoll(slide, step) {
+  const shown = [...slide.querySelectorAll('.subs p[data-pan]')].filter((p) => +p.dataset.step <= step);
+  const stop = shown.length ? +shown[shown.length - 1].dataset.pan : 0;
+  const pan = Math.min(stop, LAST_PANEL);
+  const w = slide.clientWidth;
+  const isNarrow = w < slide.clientHeight; // 竖屏手机：一幅占满，不露邻图
+  const pw = isNarrow ? 1 : PANEL;
+  const track = slide.querySelector('.roll-track');
+  track.style.setProperty('--pw', `${pw * w}px`);
+  track.style.transform = `translateX(${((1 - pw) / 2 - pan * pw) * w}px)`;
+  slide.querySelectorAll('.roll-panel').forEach((p, i) => p.classList.toggle('cur', i === pan));
+  slide.querySelectorAll('.route li').forEach((li) => {
+    li.classList.toggle('done', +li.dataset.p < stop);
+    li.classList.toggle('cur', +li.dataset.p === stop && step > 0);
+  });
+  const v = slide.querySelector('.roll video');
+  if (v) { if (pan === LAST_PANEL) v.play().catch(() => { /* 不能自动播放就停在封面帧 */ }); else v.pause(); }
+}
+
 window.LESSON = {
   init() {
     Narrative.init({ kinds: KINDS, sort: SORT_ITEMS, clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
     initLeaves();
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    document.querySelectorAll('.s-roll').forEach((r) => { if (r !== slide) { const v = r.querySelector('video'); if (v) v.pause(); } });
+    if (slide.classList.contains('s-roll')) updateRoll(slide, step);
+  },
 };

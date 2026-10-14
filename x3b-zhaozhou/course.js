@@ -59,14 +59,20 @@ function initFlood() {
   });
 }
 
-/* 第 1 段：名片卡 */
-const CLUE_LABELS = ['小问题', '课文里说'];
-const CLUES = [
-  { q: '赵州桥在哪里？', a: '河北省赵县的洨河上。' },
-  { q: '它还叫什么名字？', a: '安济桥。它是一座世界闻名的石拱桥。' },
-  { q: '是谁设计的？', a: '隋朝的石匠李春设计并参加建造的。' },
-  { q: '到现在有多少年了？', a: '一千四百多年了。' },
-];
+/* 第 1 段：点原文里的词，填进“桥的名片” */
+function initCard() {
+  const card = document.getElementById('zzCard');
+  const src = document.querySelector('.zz-src');
+  src.addEventListener('click', (e) => {
+    const w = e.target.closest('.zz-w');
+    if (!w || w.classList.contains('got')) return;
+    w.classList.add('got');
+    const slot = card.querySelector(`[data-f="${w.dataset.f}"]`);
+    slot.textContent = w.textContent;
+    slot.classList.add('got');
+    card.classList.toggle('full', !card.querySelector('span[data-f]:not(.got)'));
+  });
+}
 
 /* 排一排：第 3 段的句子顺序 */
 const ORDER = [
@@ -128,7 +134,8 @@ const MOMENTS = [
 
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, moments: MOMENTS });
+    Narrative.init({ moments: MOMENTS });
+    initCard();
     initFlood();
     initOrder();
   },

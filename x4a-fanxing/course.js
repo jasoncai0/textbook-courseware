@@ -1,6 +1,6 @@
 'use strict';
 /* 繁星 · 本课数据与互动。记叙文模板见 ../shared/narrative.js，翻页引擎见 ../shared/deck.js
- * 本课专属：三次看星对照表（分步出现，写在页面里），看到的 / 想象的分一分。
+ * 本课专属：三次看星时间轴 + 会随句子变化的星空（读一句，星空变一变）、三次看星对照表、看到的 / 想象的分一分。
  */
 
 const KINDS = ['看到的', '想象的'];
@@ -21,9 +21,54 @@ const MOMENTS = [
     example: '城里的星星很少。有一天晚上停电了，我和爸爸到阳台上，忽然看见天上冒出了好多星星，一颗一颗都在眨眼。爸爸说，原来星星一直都在，只是灯太亮了，我们没看见。' },
 ];
 
+/* ================= 读一句，星空变一变 ================= */
+const STAR_N = 80;
+const STAR_FEW = 32; // 第一句之前只亮一部分，读到“密密麻麻”“星群密布”或到了海上才满天
+const FX_TEXT = { many: '密密麻麻', glow: '光明无处不在', twinkle: '半明半昧', sway: '摇摇欲坠', fly: '像萤火虫在飞', blink: '眨眼 · 小声说话', warm: '像睡在母亲的怀里' };
+function buildStars() {
+  let seed = 7;
+  const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+  const stars = Array.from({ length: STAR_N }, (_, i) => {
+    const r = (1.4 + rnd() * 2.4).toFixed(1);
+    const dx = ((rnd() - 0.5) * 60).toFixed(0);
+    const dy = ((rnd() - 0.5) * 40).toFixed(0);
+    return `<circle class="st${i >= STAR_FEW ? ' more' : ''}" cx="${(rnd() * 800).toFixed(0)}" cy="${(rnd() * 300).toFixed(0)}" r="${r}" style="--d:${(rnd() * 2).toFixed(2)}s;--dx:${dx}px;--dy:${dy}px"/>`;
+  }).join('');
+  document.getElementById('skStars').innerHTML = `<g class="sk-g">${stars}</g>`;
+}
+
+function updateSky(slide, step) {
+  const win = slide.querySelector('#skyWin');
+  if (!win) return;
+  const lines = [...slide.querySelectorAll('#skyTxt p')];
+  const shown = lines.filter((p) => +p.dataset.step <= step);
+  const now = shown[shown.length - 1];
+  const pan = now ? +now.dataset.pan : 0;
+  const part = now ? now.dataset.part : '0';
+  win.querySelectorAll('.sk-bg').forEach((el, i) => el.classList.toggle('cur', i === pan));
+  slide.querySelectorAll('#skyAxis span').forEach((el, i) => {
+    el.classList.toggle('cur', i === pan);
+    el.classList.toggle('done', i < pan);
+  });
+  const fx = now ? now.dataset.fx || '' : '';
+  Object.keys(FX_TEXT).forEach((k) => win.classList.toggle(`fx-${k}`, k === fx));
+  win.classList.toggle('dense', pan === 2 || shown.some((p) => +p.dataset.pan === pan && p.dataset.fx === 'many'));
+  const tag = slide.querySelector('#skFx');
+  tag.textContent = FX_TEXT[fx] || '';
+  tag.classList.toggle('show', Boolean(fx));
+  lines.forEach((p) => {
+    p.classList.toggle('here', p.dataset.part === part);
+    p.classList.toggle('now', p === now);
+  });
+}
+
 window.LESSON = {
   init() {
     Narrative.init({ kinds: KINDS, sort: SORT, moments: MOMENTS });
+    buildStars();
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateSky(slide, step);
+  },
 };

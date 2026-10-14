@@ -135,3 +135,29 @@ em.dot { font-style: normal; color: var(--red); background: radial-gradient(circ
   .m-brace .a, .m-brace .b { grid-column: auto; grid-row: auto; }
   .gems { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* 课后第 3 题：换词开关 */
+.swaps { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 1.2em; }
+.sw-row { background: #fff; border: 1px solid var(--line); border-radius: .7em; padding: .7em 1.1em; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .4em 1.2em; }
+.sw-s { margin: 0; font-family: var(--kai); font-size: 1.6em; line-height: 1.7; }
+.sw-w em { font-style: normal; color: var(--red); }
+.sw-w i { display: none; font-style: normal; color: #8a8a8a; background: #f1f1ee; border-radius: .2em; padding: 0 .2em; }
+.plain .sw-w em { display: none; }
+.plain .sw-w i { display: inline; }
+.sw-tg { font: inherit; display: flex; align-items: center; gap: .5em; border: 0; background: none; cursor: pointer; color: var(--ink-2); }
+.sw-tg span { width: 3.2em; height: 1.7em; border-radius: 1em; background: var(--red); position: relative; transition: background .3s; }
+.sw-tg span::after { content: ''; position: absolute; top: .2em; left: .2em; width: 1.3em; height: 1.3em; border-radius: 50%; background: #fff; transition: left .3s; }
+.plain .sw-tg span { background: #b9b9b2; }
+.plain .sw-tg span::after { left: 1.7em; }
+.sw-tg b:first-child { color: var(--red); }
+.plain .sw-tg b:first-child { color: var(--ink-2); }
+.plain .sw-tg b:last-child { color: #333; }
+.sw-why { grid-column: 1 / -1; margin: 0; font-size: 1.05em; color: var(--ink-2); visibility: hidden; }
+.tried .sw-why { visibility: visible; animation: appear .5s; }
+@media (max-width: 820px), (max-height: 520px) {
+  .sw-row { grid-template-columns: 1fr; }
+  .sw-s { font-size: 1.2em; }
+  .swaps { justify-content: flex-start; gap: .7em; flex: none; }
+  .sw-why { display: none; }
+  .tried .sw-why { display: block; }
+}

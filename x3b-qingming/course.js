@@ -1,14 +1,6 @@
 'use strict';
-/* 一幅名扬中外的画（三下 12*，略读）· 本课数据。翻卡、选一选、写作框见 ../shared/narrative.js
+/* 一幅名扬中外的画（三下 12*，略读）· 本课数据。长卷为本课独有；选一选、写作框见 ../shared/narrative.js
  * 注意：本课所有图片都是 AI 想象的“宋代汴河街市”示意，不是《清明上河图》原画，说明文字里都要写明 */
-
-const CLUE_LABELS = ['小问题', '课文里说'];
-const CLUES = [
-  { q: '这幅画叫什么？谁画的？', a: '《清明上河图》，北宋画家张择端画的。' },
-  { q: '画的是什么？', a: '北宋都城汴京热闹的场面。' },
-  { q: '这幅画有多少年的历史了？', a: '八九百年。早已名扬中外。' },
-  { q: '现在保存在哪里？', a: '北京故宫博物院。' },
-];
 
 const PICKS = {
   people: [
@@ -47,9 +39,26 @@ const MOMENTS = [
   },
 ];
 
+/* 长卷：有字幕出现就展开；按最新一句的 data-pan（0 左 ~ 1 右）把画卷移到对应位置 */
+function updateScroll(slide, step) {
+  const box = slide.querySelector('#qmScroll');
+  if (!box) return;
+  let pan = 0;
+  slide.querySelectorAll('.qm-cap [data-pan]').forEach((p) => { if (+p.dataset.step <= step) pan = +p.dataset.pan; });
+  box.classList.toggle('open', step >= 1);
+  const strip = box.querySelector('#qmStrip');
+  const paper = box.querySelector('.qm-paper');
+  const run = () => { strip.style.transform = `translateX(${-pan * Math.max(0, strip.scrollWidth - paper.clientWidth)}px)`; };
+  run();
+  setTimeout(run, 1900); // 纸展开动画结束后宽度才定，再校正一次
+}
+
 window.LESSON = {
   init() {
-    Narrative.init({ clues: CLUES, clueLabels: CLUE_LABELS, picks: PICKS, moments: MOMENTS });
+    Narrative.init({ picks: PICKS, moments: MOMENTS });
   },
-  onRender: (slide, step) => Narrative.onRender(slide, step),
+  onRender(slide, step) {
+    Narrative.onRender(slide, step);
+    updateScroll(slide, step);
+  },
 };
