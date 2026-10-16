@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多边形的内角和与外角和 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/caodi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第7章 平面图形的认识（二） · 7.5</p>
+    <h1 class="cover-title">多边形的内角和与外角和</h1>
+    <p class="cover-q" data-step="1">小学里，我们把三角形的 3 个角剪下来拼在一起，发现“三角形的内角和是 $180^\circ$”。</p>
+    <p class="cover-q" data-step="2">拼一拼只能说明“这几个”三角形，能不能<b>说明理由</b>？四边形、五边形……$n$ 边形的内角和又是多少？绕一块草地走一圈，一共转了多少度？</p>
+    <div class="chips" data-step="3"><span class="chip">转动直线</span><span class="chip">平行线说理</span><span class="chip">分成三角形</span><span class="chip">外角拼成周角</span></div>
+  </div>
+  <p class="note">课本 p28 开篇。封面三个问题对应本课三段：三角形内角和的说理、多边形内角和公式、多边形外角和。最后一个问题来自 p34 练一练 1（小明绕六边形草地走一周）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="小学 · 三角形内角和" data-step="1">
+        <p>把三角形的 3 个角拼在一起，正好拼成一个平角：内角和是 $180^\circ$。</p>
+        <span class="use">本课用平行线把“拼”变成“说理”。</span>
+      </div>
+      <div class="recall" data-label="7.2 · 平行线的性质" data-step="2">
+        <p>两直线平行，同位角相等、内错角相等、同旁内角互补。</p>
+        <span class="use">过顶点作平行线，把三个内角“搬”到一起。</span>
+      </div>
+      <div class="recall" data-label="七上 6.2 · 6.3 · 角" data-step="3">
+        <p>平角 $=180^\circ$，周角 $=360^\circ$；邻补角的和是 $180^\circ$。</p>
+        <p>角平分线把角分成相等的两个角。</p>
+        <span class="use">求外角、外角和；例 2、例 3 中的角平分线。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>三角形内角和 $180^\circ$ 的理由 → $n$ 边形内角和 → 多边形外角和。</p>
+  </div>
+  <p class="note">第一张卡请学生回忆小学的“撕角拼角”。追问：“量、拼都有误差，而且只试了几个三角形，能说明所有三角形都是 180° 吗？”——引出说理的必要。</p>
+</section>
+
+<!-- 3 ================= 议一议：转动直线 AC（图 7-29） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>直线 $AC$ 绕点 $A$ 转动，哪些角在变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="rot" class="rot-b"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="rotPar">转到 $AC'\parallel BC$</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 7-29，在 $\triangle ABC$ 的边 $AC$ 所在的直线绕点 $A$ 按逆时针方向旋转的过程中，直线 $AC$ 与边 $BC$ 的延长线交于点 $C_1$、$C_2$、$C_3$……拖动橙色点试一试．</p>
+      <div class="readout rot-read">
+        <span>$\angle BAC_k$</span><b class="v" id="rotA"></b>
+        <span>$\angle AC_kB$</span><b class="v" id="rotC"></b>
+        <span>和</span><b class="v" id="rotS"></b>
+      </div>
+      <p class="tip feedback" id="rotMsg"></p>
+      <p class="tip" data-step="1">(2) 两个角的和有什么规律？<span class="think" data-step="2" data-ask="说一说">一个变大、一个变小，和始终不变，等于 $180^\circ-\angle B$．</span></p>
+      <p class="tip" data-step="3">(3) 当 $AC'\parallel BC$ 时，$\angle BAC'$ 是多少？<span class="think" data-step="4" data-ask="点按钮看看">$\angle BAC'=180^\circ-\angle B$——交点“跑到无穷远”，$\angle AC_kB$ 变成 $0^\circ$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p28 议一议（1）–（3）与图 7-29。读数由坐标计算（∠B = 70°）。让学生边拖边说：∠BAC 越来越大，∠ACB 越来越小，但它们的和不变。转到 AC′ ∥ BC 时，“∠ACB”消失了，它的大小被“搬”到了 ∠CAC′ 上——这就是下一页说理的思路。</p>
+</section>
+
+<!-- 4 ================= 试一试：说理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>说明“三角形的内角和是 $180^\circ$”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="prf" class="gfig l"></div>
+      <p class="tip" data-step="1"><b>思路：</b>过点 $A$ 作 $AC'\parallel BC$，把 $\angle C$ “搬”到点 $A$ 处，三个角就拼在了一起。</p>
+    </div>
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="2"><span>作</span><span>过点 $A$ 作 $AC'\parallel BC$．</span><i class="why">过直线外一点有且只有一条直线与这条直线平行</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span>$\angle CAC'=\angle C$，</span><span class="think" data-step="4" data-ask="理由？">两直线平行，内错角相等</span></div>
+        <div class="dl" data-step="3"><span></span><span>$\angle BAC'+\angle B=180^\circ$．</span><span class="think" data-step="5" data-ask="理由？">两直线平行，同旁内角互补</span></div>
+        <div class="dl" data-step="6"><span>又</span><span>$\angle BAC'=\angle BAC+\angle CAC'=\angle BAC+\angle C$，</span><i class="why">角的和</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$\angle BAC+\angle C+\angle B=180^\circ$．</span><i class="why">等量代换</i></div>
+      </div>
+      <div class="def" data-step="8"><h4>结论</h4><em>三角形的内角和是 $180^\circ$</em>．</div>
+    </div>
+  </div>
+  <p class="note">课本 p28 试一试与两个卡通人的说理。“作 AC′ ∥ BC”是添加的辅助线，图中用虚线表示。可以请学生换一种作法：过 A 作 BC 的平行线后，用两对内错角（∠B、∠C 都搬到 A 处，和 ∠BAC 拼成平角）——这正是小学“拼角”的数学化。</p>
+</section>
+
+<!-- 5 ================= 例 1、例 2（图 7-30） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>用内角和求角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 1</b>　在 $\triangle ABC$ 中，$\angle A=40^\circ$，$\angle B=\angle C$．求 $\angle C$ 的度数．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>$\angle A+\angle B+\angle C=180^\circ$，$\angle A=40^\circ$，</span></div>
+        <div class="dl" data-step="1"><span>∴</span><span>$\angle B+\angle C=180^\circ-40^\circ=140^\circ$．</span></div>
+        <div class="dl end" data-step="2"><span>∵</span><span>$\angle B=\angle C$，∴ $2\angle C=140^\circ$，$\angle C=70^\circ$．</span></div>
+      </div>
+      <p class="tip" data-step="3"><b>例 2</b>　如图 7-30，$\triangle ABC$ 的角平分线 $BD$、$CE$ 相交于点 $P$，$\angle A=70^\circ$．求 $\angle BPC$ 的度数．</p>
+    </div>
+    <div class="col">
+      <div id="f730" class="gfig" data-step="3"></div>
+      <p class="tip" data-step="4"><b>思路：</b>$\angle BPC$ 在 $\triangle PBC$ 中，只要求出 $\angle1+\angle2$；不必求出 $\angle ABC$、$\angle ACB$ 各是多少——<b>整体</b>求和。</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="5"><span>∵</span><span>$\angle ABC+\angle ACB=180^\circ-\angle A=110^\circ$，</span><i class="why">三角形内角和</i></div>
+        <div class="dl" data-step="6"><span>∵</span><span>$BD$、$CE$ 分别平分 $\angle ABC$、$\angle ACB$，</span></div>
+        <div class="dl" data-step="6"><span>∴</span><span>$\angle1+\angle2=\dfrac12(\angle ABC+\angle ACB)=55^\circ$．</span></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$\angle BPC=180^\circ-(\angle1+\angle2)=125^\circ$．</span><i class="why">在 $\triangle PBC$ 中</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="整体代入">不知道每个角，但知道它们的<b>和</b>，就把“和”当作一个整体来算。</p>
+    </div>
+  </div>
+  <p class="note">课本 p29 例 1、例 2。例 2 图按 ∠A = 70°（∠B = 50°、∠C = 60°）用坐标画出，BD、CE 是精确的角平分线；可以问学生：换一个 ∠B、∠C（只要 ∠A 还是 70°），∠BPC 会变吗？（不变，都是 90° + ½∠A = 125°。）</p>
+</section>
+
+<!-- 6 ================= 练一练（p29）：铅笔转一圈 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>铅笔依次绕三个顶点转，笔尖方向怎样变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="pen" class="pen-b"></div>
+      <div class="slider-row" data-noswipe>转动 <input type="range" id="penT" min="0" max="3" step="0.01" value="0"><b class="v" id="penV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>2.</b> 铅笔放置在 $\triangle ABC$ 的边 $AB$ 上，笔尖方向为点 $A$ 到点 $B$ 的方向．把铅笔依次绕点 $A$、点 $C$、点 $B$ 按逆时针方向旋转 $\angle A$、$\angle C$、$\angle B$ 的度数，笔尖方向发生了怎样的变化？这说明了什么？</p>
+      <p class="tip feedback" id="penMsg"></p>
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求图中 $x$ 和 $y$ 的值．<b>3.</b> 一个三角形能有两个内角是直角或钝角吗？为什么？</p>
+        <div id="lx1" class="gfig"></div>
+        <details><summary>提示 1</summary>(1) $x=180-81-72$；(2) 直角三角形的两个锐角之和是 $90^\circ$。</details>
+        <details><summary>完整解答</summary>1. (1) $x=27$；(2) $y=90-31=59$．<br>2. 笔尖方向与原来<b>相反</b>，铅笔一共转了 $180^\circ$：$\angle A+\angle B+\angle C=180^\circ$．<br>3. 不能．若有两个角都 $\ge90^\circ$，它们的和已经 $\ge180^\circ$，第三个角就没有了．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p29 练一练 1–3。拖滑块：铅笔先在 A 处转 ∠A（转到 AC 上），再到 C 处转 ∠C（转到 BC 上），最后到 B 处转 ∠B（回到 AB 上，笔尖反向）。读数是累计转过的角度，结束时正好 180°，又一次说明内角和。练一练 1 的两个三角形按题中角度画出。</p>
+</section>
+
+<!-- 7 ================= 多边形 · 分成三角形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>多边形：分成几个三角形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>多边形（课本 p30）</h4>在平面内，由不在同一条直线上的 3 条或 3 条以上的线段首尾依次相接组成的图形叫做多边形．</div>
+      <div id="poly" class="poly-b"></div>
+      <div class="slider-row" data-noswipe>边数 $n=$ <input type="range" id="polyN" min="3" max="10" step="1" value="5"><b class="v" id="polyNV"></b><button class="btn" type="button" id="polyNew">换一个形状</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">图 7-31 中的两个图形分别记作四边形 $ABCD$、五边形 $ABCDE$．它们的内角和分别等于多少度？</p>
+      <p class="tip">在四边形中连接对角线 $AC$，把它分成 2 个三角形（图 7-32）；五边形连接 $AC$、$AD$，分成 3 个三角形．</p>
+      <div class="readout poly-read">
+        <span>从一个顶点出发的对角线</span><b class="v" id="polyD"></b>
+        <span>分成的三角形</span><b class="v" id="polyT"></b>
+        <span>量得的内角和</span><b class="v" id="polyS"></b>
+      </div>
+      <p class="tip" data-step="2">$n$ 边形可以分成多少个三角形？<span class="think" data-step="3" data-ask="先自己数">$n-2$ 个：从一个顶点出发可以作 $n-3$ 条对角线。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p30 多边形定义、图 7-31、7-32、7-33 与议一议。拖边数滑块，图中从顶点 A₁ 出发的对角线、分成的三角形（交替着色）自动更新；“量得的内角和”是由各顶点坐标逐个算角再相加的，不是用公式算的——请学生对照三角形个数 × 180° 验证。</p>
+</section>
+
+<!-- 8 ================= 填表 → 公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">填表</span><h2>$n$ 边形的内角和</h2></div>
+  <div class="bd full">
+    <table class="mtab fill-tab">
+      <tr><th>多边形的边数</th><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>…</td><td>$n$</td></tr>
+      <tr><th>分成的三角形个数</th><td>1</td><td>2</td><td>3</td><td><span class="blank" data-ans="4" data-w="2"></span></td><td><span class="blank" data-ans="5" data-w="2"></span></td><td>…</td><td><span class="blank" data-ans="n-2|n－2|n−2" data-w="4"></span></td></tr>
+      <tr><th>多边形的内角和</th><td>$180^\circ$</td><td>$180^\circ\times2$</td><td>$180^\circ\times3$</td><td><span class="blank" data-ans="720|180×4|180*4" data-w="5"></span>°</td><td><span class="blank" data-ans="900|180×5|180*5" data-w="5"></span>°</td><td>…</td><td><span class="blank" data-ans="(n−2)×180|(n−2)·180|(n-2)×180|(n-2)*180|(n-2)·180|180(n-2)|180×(n-2)" data-w="8"></span>°</td></tr>
+    </table>
+    <div class="def big-def" data-step="1"><h4>课本 p31</h4><em>$n$ 边形的内角和等于 $(n-2)\cdot180^\circ$</em>．</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">十边形的内角和？<span class="think" data-step="3" data-ask="算一算">$(10-2)\times180^\circ=1\,440^\circ$</span></p>
+      <p class="tip" data-step="2">内角和 $1\,080^\circ$ 是几边形？<span class="think" data-step="4" data-ask="列方程">$(n-2)\cdot180=1\,080$，$n=8$，八边形．</span></p>
+      <p class="tip" data-step="2">内角和能是 $1\,000^\circ$ 吗？<span class="think" data-step="5" data-ask="想一想">不能：$(n-2)\cdot180=1\,000$ 解出的 $n$ 不是整数．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p30 填表与 p31 结论框。表格可以直接输入，回车判对错（n 那一列写 n−2、(n−2)×180）。三个小问题分别是“正用公式、逆用公式、判断能否”，后两问要列方程。</p>
+</section>
+
+<!-- 9 ================= 试一试：点 P 的位置（图 7-34） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>换一个分法：从多边形内一点、边上一点出发</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="pBtns"><button class="btn solid" type="button" data-k="in">(1) $P$ 在 $n$ 边形内</button><button class="btn" type="button" data-k="side">(2) $P$ 在边 $A_2A_3$ 上</button></div>
+      <div id="pin" class="pin-b"></div>
+      <p class="muted center small-t">拖动橙色点 $P$</p>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="pinMsg"></p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>(1)</span><span class="think" data-step="2" data-ask="分成几个三角形？多算了什么？">分成 $n$ 个三角形，内角和 $n\cdot180^\circ$ 里多算了点 $P$ 处的一个周角：$n\cdot180^\circ-360^\circ=(n-2)\cdot180^\circ$．</span></div>
+        <div class="dl" data-step="3"><span>(2)</span><span class="think" data-step="4" data-ask="分成几个三角形？多算了什么？">分成 $n-1$ 个三角形，多算了点 $P$ 处的一个平角：$(n-1)\cdot180^\circ-180^\circ=(n-2)\cdot180^\circ$．</span></div>
+      </div>
+      <p class="method" data-step="5" data-label="转化">不管怎样分，都是把多边形转化为<b>三角形</b>，再减去不属于内角的部分。</p>
+    </div>
+  </div>
+  <p class="note">课本 p31 试一试与图 7-34。左图以六边形为例，P 可以拖动：内部任意位置都分成 6 个三角形；P 在边上时分成 5 个。读数里点 P 处那些角的和（周角 / 平角）由坐标算出。</p>
+</section>
+
+<!-- 10 ================= 例 3（图 7-35） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>四边形中的角平分线</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 3</b>　如图 7-35，在四边形 $ABCD$ 中，$\angle A$ 与 $\angle C$ 互补，$\angle ABC$、$\angle ADC$ 的平分线分别交 $CD$、$AB$ 于点 $E$、$F$．$\angle1$ 与 $\angle2$ 有怎样的数量关系？为什么？</p>
+      <div id="f735" class="gfig l"></div>
+    </div>
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>解</span><span class="think" data-step="2" data-ask="先猜">$\angle1$ 与 $\angle2$ 互余．</span></div>
+        <div class="dl" data-step="3"><span>∵</span><span>$\angle A+\angle ABC+\angle C+\angle ADC=(4-2)\times180^\circ=360^\circ$，</span><i class="why">四边形内角和</i></div>
+        <div class="dl" data-step="4"><span>又</span><span>$\angle A+\angle C=180^\circ$，∴ $\angle ABC+\angle ADC=180^\circ$．</span></div>
+        <div class="dl" data-step="5"><span>∵</span><span>$BE$、$DF$ 分别平分 $\angle ABC$、$\angle ADC$，∴ $\angle1=\dfrac12\angle ABC$，$\angle2=\dfrac12\angle ADC$．</span></div>
+        <div class="dl end" data-step="6"><span>∴</span><span>$\angle1+\angle2=\dfrac12(\angle ABC+\angle ADC)=90^\circ$，即 $\angle1$ 与 $\angle2$ 互余．</span></div>
+      </div>
+      <p class="method" data-step="7" data-label="又是整体">和例 2 一样：求的是两个角的<b>和</b>，用内角和公式先求出“另两个角的和”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p31 例 3。图按 ∠A + ∠C = 180°（四个顶点在同一个圆上）用坐标画出，BE、DF 是精确的角平分线，量得 ∠1 + ∠2 = 90°。第 2 步先请学生量一量、猜一猜。</p>
+</section>
+
+<!-- 11 ================= 练一练（p32） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用内角和公式求角</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求图中 $x$ 和 $y$ 的值．</p>
+        <div id="lx4a" class="gfig"></div>
+        <div id="lx4b" class="gfig"></div>
+        <details><summary>提示 1</summary>① 是四边形，内角和 $360^\circ$；② 是五边形，内角和 $540^\circ$。</details>
+        <details><summary>完整解答</summary>① $90+150+x+x=360$，$x=60$；<br>② $90+y+120+150+2y=540$，$y=60$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，六边形 $ABCDEF$ 的内角都相等，求它的每个内角的度数．</p>
+        <div id="lx5" class="gfig"></div>
+        <details><summary>提示 1</summary>先求六边形内角和，再平均分给 6 个角。</details>
+        <details><summary>完整解答</summary>$(6-2)\times180^\circ\div6=720^\circ\div6=120^\circ$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 一个多边形的内角和为 $1\,080^\circ$，这个多边形是几边形？</p>
+        <details><summary>提示 1</summary>设它是 $n$ 边形，列方程 $(n-2)\cdot180=1\,080$。</details>
+        <details><summary>完整解答</summary>$n-2=6$，$n=8$，是八边形．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p32 练一练 1–3。两幅图按算出的答案作图（x = 60°，y = 60°），角度准确，可以让学生用量角器在屏幕上验证。</p>
+</section>
+
+<!-- 12 ================= 外角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>多边形的外角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="cols2">
+        <div id="f736" class="gfig"></div>
+        <div id="f737" class="gfig"></div>
+      </div>
+      <p class="tip">图 7-36 中，把 $\triangle ABC$ 的边 $AB$ 延长，得到 $\angle CBD$；图 7-37 中，把五边形 $ABCDE$ 的边 $AB$ 延长，得到 $\angle CBF$．</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>外角（课本 p32）</h4>多边形的一边与它的邻边的<em>延长线</em>组成的角，叫做多边形的外角．<br>在多边形的每个顶点处分别取多边形的一个外角，这些外角的和叫做多边形的<em>外角和</em>．</div>
+      <p class="tip" data-step="2">一个外角和它相邻的内角有什么关系？<span class="think" data-step="3" data-ask="说一说">互补（是邻补角）：外角 $=180^\circ-$ 相邻的内角．</span></p>
+      <p class="warn" data-step="4" data-label="外角不是“外面的角”">外角的一边是多边形的边，另一边是<b>邻边的延长线</b>；$\angle CBD$ 的两边是 $BC$ 和 $AB$ 的延长线 $BD$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p32 图 7-36、7-37 与外角、外角和的定义。注意“每个顶点处取一个外角”：每个顶点处其实有两个外角（对顶角，相等），外角和只取其中一个。</p>
+</section>
+
+<!-- 13 ================= 做一做：外角拼成周角（图 7-38、7-39、7-40） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>把外角剪下来，顶点重合在一起</h2></div>
+  <button class="media-btn" hidden data-img="assets/waijiao.jpg" data-video="assets/waijiao.mp4" data-cap="五边形向中心缩小：边的方向不变，5 个外角最后拼成一个周角">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="extBtns"><button class="btn solid" type="button" data-n="3">三角形（图 7-38）</button><button class="btn" type="button" data-n="4">四边形（图 7-40）</button><button class="btn" type="button" data-n="5">五边形</button><button class="btn" type="button" data-n="6">六边形</button></div>
+      <div id="ext" class="ext-b"></div>
+      <div class="slider-row" data-noswipe>把外角移到点 $O$ <input type="range" id="extU" min="0" max="1" step="0.01" value="0"></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="extMsg"></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>三角形</span><span>$\angle\alpha+\angle1=180^\circ$，$\angle\beta+\angle2=180^\circ$，$\angle\gamma+\angle3=180^\circ$</span></div>
+        <div class="dl" data-step="2"><span>又</span><span>$\angle1+\angle2+\angle3=180^\circ$，∴ $\angle\alpha+\angle\beta+\angle\gamma=$ <span class="think" data-step="3" data-ask="?">$180^\circ\times3-180^\circ=360^\circ$</span></span></div>
+        <div class="dl" data-step="4"><span>四边形</span><span>$\angle\alpha+\angle\beta+\angle\gamma+\angle\delta=$ <span class="think" data-step="5" data-ask="?">$180^\circ\times4-180^\circ\times2=360^\circ$</span></span></div>
+      </div>
+      <p class="tip" data-step="6">五边形、六边形的外角和是多少度？<span class="think" data-step="7" data-ask="点左边按钮试试">都是 $360^\circ$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p32–33 做一做 1–3（图 7-38、7-39、7-40）。拖滑块把每个外角平移到同一点 O：外角恰好拼成一个周角（图 7-39 的剪拼）。三角形、四边形都按课本 (2) 的算式说理。右上角“看动画”是 16 秒无声动画（五边形缩小，外角拼成周角），供复述用。</p>
+</section>
+
+<!-- 14 ================= 想一想 + 议一议 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 议一议</span><h2>$n$ 边形的外角和；剪掉一个角之后</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>每个顶点</span><span>内角 + 相邻的外角 $=180^\circ$，$n$ 个顶点共 $n\cdot180^\circ$</span></div>
+        <div class="dl" data-step="2"><span>∴</span><span>外角和 $=n\cdot180^\circ-(n-2)\cdot180^\circ=$ <span class="think" data-step="3" data-ask="算一算">$360^\circ$</span></span></div>
+      </div>
+      <div class="def big-def" data-step="4"><h4>课本 p33</h4><em>多边形的外角和等于 $360^\circ$</em>．</div>
+      <p class="method" data-step="5" data-label="外角和与边数无关">内角和随边数增加，外角和永远是 $360^\circ$——求边数时常常先用外角。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6"><b>议一议：</b>从图 7-41 的五边形纸片中剪去一个三角形，剩余的部分是几边形？它们的内角和、外角和分别是多少？</p>
+      <div class="btns" data-noswipe id="cutBtns" data-step="6"><button class="btn solid" type="button" data-k="0">过两个顶点剪</button><button class="btn" type="button" data-k="1">过一个顶点剪</button><button class="btn" type="button" data-k="2">不过顶点剪</button></div>
+      <div id="cut" class="cut-b" data-step="6"></div>
+      <p class="tip feedback" id="cutMsg" data-step="6"></p>
+    </div>
+  </div>
+  <p class="note">课本 p33 想一想（卡通人提示：每个内角与相邻外角互补，总和 n·180°）、结论框与议一议（图 7-41）。剪法有三种：过两个顶点（剩四边形）、过一个顶点和一边（剩五边形）、不过顶点（剩六边形）。三种情况外角和都是 360°。</p>
+</section>
+
+<!-- 15 ================= 练一练 + 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 习题 7.5</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 1.</b> 小明从六边形草地 $ABCDEF$ 的边 $AB$ 上一点 $S$ 出发，步行 1 周回到原处．小明转过的角度的和是多少？这说明了什么？<br><b>练一练 2.</b> 在一个多边形中，小于 $108^\circ$ 的内角最多有几个？为什么？</p>
+        <details><summary>提示 1</summary>小明在每个顶点处转过的角是这个顶点处的一个<b>外角</b>。内角 $\lt108^\circ$ ⇔ 外角 $\gt72^\circ$。</details>
+        <details><summary>完整解答</summary>1. $360^\circ$；说明六边形的外角和是 $360^\circ$．<br>2. 最多 4 个：若有 5 个内角小于 $108^\circ$，这 5 个外角都大于 $72^\circ$，和大于 $360^\circ$，矛盾；而 4 个是可以的（如正方形）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 6.</b> 如果一个八边形的内角都相等，那么它的每个内角等于多少度？<br><b>习题 9.</b> 一个多边形的每一个外角都是 $45^\circ$，这个多边形是几边形？它的内角和为多少度？<br><b>习题 10.</b> 有没有这样的多边形，它的内角和是它的外角和的 3 倍？</p>
+        <details><summary>提示 1</summary>用外角求边数：$360^\circ\div$ 每个外角。</details>
+        <details><summary>完整解答</summary>6. $(8-2)\times180^\circ\div8=135^\circ$（或 $180^\circ-360^\circ\div8$）．<br>9. $360\div45=8$，八边形，内角和 $1\,080^\circ$．<br>10. 有．$(n-2)\cdot180=3\times360$，$n=8$，是八边形．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 12.</b> 小明从点 $A$ 出发沿直线前进 10 m 到达点 $B$，向左转 $30^\circ$ 后又沿直线前进 10 m 到达点 $C$，再向左转 $30^\circ$……照这样走下去，小明第一次回到出发点 $A$，一共走了多少米？</p>
+        <div id="xt12" class="gfig l"></div>
+        <details><summary>提示 1</summary>每次转的 $30^\circ$ 是外角；回到出发点时一共转了 $360^\circ$。</details>
+        <details><summary>完整解答</summary>$360\div30=12$，走了一个十二边形，共 $12\times10=120$（m）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p34 练一练 1、2 与 p34–35 习题 7.5 第 6、9、10、12 题。第 12 题图是按“前进 10 m、左转 30°”逐步算出的路线，正好闭合成十二边形。其余习题（第 1–5、7、8、11 题）留作作业。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">三角形内角和 $180^\circ$；$n$ 边形内角和 $(n-2)\cdot180^\circ$。</p>
+        <p class="def">多边形的外角和等于 $360^\circ$，与边数无关。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="添平行线">把分散的角“搬”到一起（三角形内角和）。</p>
+        <p class="method" data-label="整体代入">求两个角的和，不必求出每个角（例 2、例 3）。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">多边形 → 三角形；外角 → 内角的补角。</p>
+        <p class="recall" data-label="从特殊到一般">三角形、四边形、五边形……→ $n$ 边形。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章回顾：</b>7.1–7.2 平行线 → 7.3 平移 → 7.4 三角形 → 7.5 内角和与外角和：平行线是本章说理的“发动机”。</p>
+  </div>
+  <p class="note">请学生用自己的话说出三个结论的来历（平行线 / 分三角形 / 内角与外角互补）。课后作业建议：习题 7.5 第 1–5、7、8、11 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* 七下 12.1 定义与命题 · 本课专属样式 */
+.c-cond { color: var(--red); }
+.c-concl { color: var(--orange); }
+b.c-cond, b.c-concl { color: inherit; }
+b.c-cond { color: var(--red); }
+b.c-concl { color: var(--orange); }
+.mtab td.c-cond, .mtab td.c-concl { font-weight: bold; }
+
+.dfl p { margin: .2em 0; font-size: .9em; line-height: 1.55; }
+.dq { color: var(--red); }
+.cuboid-b { height: 11em; }
+.vtx-b { height: 9.5em; }
+
+/* 命题是不是：六张小卡两列 */
+.sorts { display: grid !important; grid-template-columns: 1fr 1fr; gap: .45em; }
+.sorts .jcard { font-size: .82em; padding: .35em .6em; }
+.sorts .jcard p { margin: 0 0 .25em; }
+.sorts .pick > button[data-k] { font-size: .85em; padding: .1em .6em; }
+
+/* 命题拆解台 */
+.splitter { display: flex; flex-direction: column; gap: .5em; background: #fff; border: 1px solid var(--line); border-radius: .6em; padding: .7em .9em; }
+.sp-tabs .btn.fin::after { content: " ✓"; color: var(--jade); }
+.sp-sent { font-size: 1.15em; line-height: 2.2; padding: .3em .2em; background: #f5f9fc; border-radius: .4em; }
+.sp-w { padding: .1em .05em; border-bottom: 3px solid transparent; transition: color .3s, border-color .3s; }
+.sp-w.sp-c { color: var(--red); border-bottom-color: var(--red); }
+.sp-w.sp-r { color: var(--orange); border-bottom-color: var(--orange); }
+.sp-w.sp-x { color: var(--ink-2); }
+.sp-gap {
+  font: inherit; font-size: .9em; color: #9fb0bf; background: none; border: none; cursor: pointer; padding: 0 .12em; margin: 0 .05em;
+  border-radius: .25em; line-height: 1;
+}
+.sp-gap:hover { color: var(--orange); background: #fdf1e6; }
+.sp-gap.on { color: var(--ink); font-weight: bold; }
+.sp-gap.bad { color: #c0392b; background: #fbe9e7; animation: mshake .35s; }
+@keyframes mshake { 25% { transform: translateX(-.15em); } 75% { transform: translateX(.15em); } }
+.sp-if { margin: 0; font-size: 1em; }
+.sp-judge { display: flex; align-items: center; gap: .5em; flex-wrap: wrap; font-size: .92em; }
+.sp-judge[hidden] { display: none; }
+.sp-judge .btn.ok { border-color: var(--jade); background: #eef6f2; color: var(--jade); font-weight: bold; }
+.sp-judge .btn.no { border-color: #c0392b; background: #fbe9e7; color: #c0392b; }
+.sp-why { margin: 0; font-size: .88em; line-height: 1.6; color: var(--ink-2); min-height: 1.5em; }
+.sp-why .tv { color: var(--jade); }
+.sp-why .fv { color: #c0392b; }
+
+/* 改写 */
+.rw { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .35em .8em; }
+.rw p { margin: 0; line-height: 1.6; }
+.rw .rw-s { font-weight: bold; color: var(--red-d); }
+.rw .think { font-size: .92em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .cuboid-b, .vtx-b { height: auto; }
+  .sorts { grid-template-columns: 1fr; }
+  .sp-sent { font-size: 1.05em; }
+}
+.mboard .gl.hid { stroke-dasharray: 6 5; stroke: #8a9aa8; }
+.mboard .gl.hot-a { stroke: var(--red); stroke-width: 4.5; }
+.mboard .gl.hot-b { stroke: var(--orange); stroke-width: 4.5; }
+.mboard .gl.hot-a.hid, .mboard .gl.hot-b.hid { stroke-dasharray: 9 6; }

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>定义与命题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/taolun.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第12章 证明 · 12.1</p>
+    <h1 class="cover-title">定义与命题</h1>
+    <p class="cover-q" data-step="1">小明说：“这两条直线不相交，所以它们平行。”小丽说：“不一定！”——两人<b>谁对</b>？</p>
+    <p class="cover-q" data-step="2">讲道理之前，得先把“平行线”是什么<b>说清楚</b>；还要分清：哪些话是在<b>下判断</b>，判断得对不对。</p>
+    <div class="chips" data-step="3"><span class="chip">定义</span><span class="chip">命题</span><span class="chip">条件 · 结论</span><span class="chip">真命题 · 假命题</span></div>
+  </div>
+  <p class="note">第 12 章章首语：“探索中，发现结论；证明中，证实结论，学会有条理地思考。”本节是全章的“词汇课”：定义、命题、条件、结论、真假。封面的争论先不下结论，第 3 页用长方体揭晓——问题出在“平行线”的定义里少了“在同一平面内”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们早就在用“定义”和“命题”了</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 6.4 · 平行" data-step="1">
+        <p>在同一平面内，不相交的两条直线叫做<b>平行线</b>。</p>
+        <span class="use">第 3 页：这就是一个“定义”；少了“在同一平面内”会出什么问题？</span>
+      </div>
+      <div class="recall" data-label="七上 2.4 · 绝对值" data-step="2">
+        <p>数轴上表示一个数的点与原点的距离，叫做这个数的<b>绝对值</b>。</p>
+        <span class="use">第 3 页定义的例子；第 6 页判断“如果 $a\gt0$，$b\lt0$，那么 $|a|=|b|$”。</span>
+      </div>
+      <div class="recall" data-label="七下 7.1 / 7.2 · 平行线" data-step="3">
+        <p>同位角相等，两直线平行；</p>
+        <p>两直线平行，同旁内角互补。</p>
+        <span class="use">第 5 页：这样的句子都是“命题”，要找出它的条件和结论。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>说理要有“共同语言”（定义）；说理说的是“判断”（命题）——每个判断都由<b>条件</b>和<b>结论</b>组成，有<b>真</b>有<b>假</b>。</p>
+  </div>
+  <p class="note">三张卡分别是“定义”“定义”“命题”的旧例子，先不点破，请学生说说这三类句子有什么不同：前两句在“说明一个名称是什么意思”，第三张卡在“判断一件事”。这正是本课要区分的两个概念。</p>
+</section>
+
+<!-- 3 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>定义：把名称的含义说清楚</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">人们在说理的时候，常常使用一些名称或术语．</p>
+      <div class="def" data-step="1"><h4>定义（课本 p144）</h4>对名称或术语的含义进行描述或做出规定，就是给出它们的<em>定义</em>（definition）．</div>
+      <div class="dfl" data-step="2">
+        <p><span class="dq">“在同一平面内，不相交的两条直线”</span>是<b>“平行线”</b>的定义．</p>
+        <p><span class="dq">“数轴上表示一个数的点与原点的距离”</span>是<b>“一个数的绝对值”</b>的定义．</p>
+        <p><span class="dq">“能使方程两边的值相等的未知数的值”</span>是<b>“方程的解”</b>的定义．</p>
+      </div>
+      <p class="method" data-step="3" data-label="定义的样子">“<b>……</b>叫做<b>（名称）</b>”或“<b>（描述）</b>是<b>（名称）</b>的定义”：一边是名称，一边是它的准确含义。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4">回到封面：<b>不相交</b>的两条直线一定平行吗？看长方体的两条棱 $AB$、$CG$：</p>
+      <div id="cuboid" class="cuboid-b" data-step="4"></div>
+      <div class="btns" data-noswipe id="cubBtns" data-step="4"><button class="btn" type="button" data-v="1">转一转</button><button class="btn" type="button" data-v="0">还原</button></div>
+      <p class="tip" data-step="5"><span class="think" data-step="6" data-ask="它们相交吗？平行吗？">$AB$ 与 $CG$ 永远不相交，但也<b>不平行</b>——它们不在同一个平面内。</span></p>
+      <p class="warn" data-step="7" data-label="定义要准确">平行线的定义里“<b>在同一平面内</b>”一个字也不能少：定义说不准，说理就会出错。</p>
+    </div>
+  </div>
+  <p class="note">课本 p144 定义的概念与三个例子。右边长方体（按坐标精确画，可点“转一转”换个角度看）：棱 AB 在上底面，棱 CG 在右侧面的后面，两条直线既不相交也不平行（高中叫“异面直线”，这里不必出现这个词）。由此回答封面的争论：小丽对——必须“在同一平面内”。</p>
+</section>
+
+<!-- 4 ================= 命题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>命题：判断一件事情的句子</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>命题（课本 p144）</h4>我们还经常要判断事物的对与错、是与非、可能与不可能等．判断一件事情的句子叫做<em>命题</em>（proposition）．</div>
+      <p class="tip" data-step="2">下面的句子是不是命题？点一点．<span class="muted small-t">（关键看：它有没有<b>做出判断</b>）</span></p>
+      <p class="method" data-step="3" data-label="怎样识别">问句、命令句（“画……”“延长……”）没有对一件事情做出判断，<b>不是命题</b>；判断错了的句子仍然是命题。</p>
+    </div>
+    <div class="col sorts" data-step="2">
+      <div class="jcard"><p>① 如果 $O$ 是线段 $AB$ 的中点，那么 $AO=BO$．</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">是命题</button><button type="button" data-k="n">不是</button><p class="pick-why">判断了“$AO$ 与 $BO$ 相等”。</p></div></div>
+      <div class="jcard"><p>② 等角的余角相等．</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">是命题</button><button type="button" data-k="n">不是</button><p class="pick-why">判断了“它们的余角相等”。</p></div></div>
+      <div class="jcard"><p>③ 无论 $x$ 是什么实数，代数式 $(x-1)^2$ 的值都不是负数．</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">是命题</button><button type="button" data-k="n">不是</button><p class="pick-why">判断了“值不是负数”。</p></div></div>
+      <div class="jcard"><p>④ 三角形中最大的内角是直角．</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">是命题</button><button type="button" data-k="n">不是</button><p class="pick-why">它做出了判断——虽然判断<b>错了</b>（最大角也可能是锐角、钝角），仍是命题。</p></div></div>
+      <div class="jcard"><p>⑤ 同位角相等吗？</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">是命题</button><button type="button" data-k="n">不是</button><p class="pick-why">这是问句，没有做出判断。</p></div></div>
+      <div class="jcard"><p>⑥ 过一点画已知直线的垂线．</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">是命题</button><button type="button" data-k="n">不是</button><p class="pick-why">这是一个作图的要求，没有判断“是什么”。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p144 的 4 个命题和 2 个非命题。先让学生点选再讲道理。第④句故意保留：它判断错了，但仍是命题——这为第 6 页“假命题”埋下伏笔。可追问：把⑤改成命题怎么说？（“同位角相等。”）</p>
+</section>
+
+<!-- 5 ================= 条件与结论：命题拆解台 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>命题的两部分：条件 ｜ 结论</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">在数学中，命题一般都由<b class="c-cond">条件</b>和<b class="c-concl">结论</b>两部分组成．</p>
+      <table class="mtab" data-step="1">
+        <tr><th>命题</th><th>条件</th><th>结论</th></tr>
+        <tr><td>如果 $a\gt0$，$b\lt0$，那么 $|a|=|b|$</td><td class="c-cond">$a\gt0$，$b\lt0$</td><td class="c-concl">$|a|=|b|$</td></tr>
+        <tr><td>同位角相等，两直线平行</td><td class="c-cond">同位角相等</td><td class="c-concl">两直线平行</td></tr>
+        <tr><td>对顶角相等</td><td class="c-cond">两个角是对顶角</td><td class="c-concl">这两个角相等</td></tr>
+      </table>
+      <p class="method" data-step="2" data-label="找条件和结论">能写成“<b>如果</b> <span class="c-cond">……</span>，<b>那么</b> <span class="c-concl">……</span>”：“如果”后面是条件（已知的事项），“那么”后面是结论（由已知推出的事项）。</p>
+    </div>
+    <div class="col">
+      <div class="splitter" id="sp1"></div>
+    </div>
+  </div>
+  <p class="note">课本 p145 表格与“议一议”1、2。右侧“拆解台”：先选一题，在句子中间点一下“切开”的位置（竖线），切对了左边变蓝（条件）、右边变橙（结论），并自动改写成“如果……，那么……”；然后判断“这个判断正确吗”。第 (5) 题最难：条件是“两个角有公共顶点”，结论是“这两个角是对顶角”。表格第 3 行“对顶角相等”看不到“如果”，要先补出“两个角是对顶角”。</p>
+</section>
+
+<!-- 6 ================= 真命题与假命题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>真命题与假命题</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">回顾议一议的 5 个命题：(2)、(3)、(4) 判断正确；(1)、(5) 判断错误．</p>
+      <div class="def" data-step="1"><h4>真命题（课本 p145）</h4>如果条件成立，那么结论成立．像这样的命题叫做<em>真命题</em>（true proposition）．</div>
+      <div class="def" data-step="2"><h4>假命题（课本 p145）</h4>条件成立时，不能保证结论总是正确的，也就是说结论不成立．像这样的命题叫做<em>假命题</em>（false proposition）．</div>
+      <p class="warn" data-step="5" data-label="“假”不是“不是命题”">假命题也是命题：它做出了判断，只是判断错了。</p>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="3">
+        <p><b>(1)</b> 如果 $a$、$b$ 两数的积为 0，那么 $a$、$b$ 两数都为 0．</p>
+        <div class="slider-row" data-noswipe>$a=$<input type="range" id="abA" min="-3" max="3" step="1" value="2"><b class="v" id="abAV"></b>　$b=$<input type="range" id="abB" min="-3" max="3" step="1" value="3"><b class="v" id="abBV"></b></div>
+        <p class="tip feedback" id="abMsg"></p>
+      </div>
+      <div class="jcard" data-step="4">
+        <p><b>(5)</b> 有公共顶点的两个角是对顶角．</p>
+        <div id="vtx" class="vtx-b"></div>
+        <p class="tip feedback" id="vtxMsg"></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p145 真命题、假命题的定义。右边两个小实验：(1) 拖滑块找一组 a、b，使“积为 0”成立而“都为 0”不成立（如 a = 0，b = 3）；(5) 拖动射线 OD，∠AOB 与 ∠COD 始终有公共顶点 O，只有当 OC、OD 恰好是 OA、OB 的反向延长线时才是对顶角。“举出一个满足条件、结论却不成立的例子”就是下一节要学的“反例”，这里先让学生体会。</p>
+</section>
+
+<!-- 7 ================= 改写成“如果……那么……” ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法</span><h2>看不到“如果”的命题：先补出条件</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <div class="rw" data-step="1"><p class="rw-s">对顶角相等．</p><p class="think" data-step="2" data-ask="改写成“如果……那么……”">如果<span class="c-cond">两个角是对顶角</span>，那么<span class="c-concl">这两个角相等</span>．</p></div>
+        <div class="rw" data-step="3"><p class="rw-s">等角的余角相等．</p><p class="think" data-step="4" data-ask="改写">如果<span class="c-cond">两个角分别是两个相等的角的余角</span>，那么<span class="c-concl">这两个角相等</span>．</p></div>
+        <div class="rw" data-step="5"><p class="rw-s">两点之间线段最短．</p><p class="think" data-step="6" data-ask="改写">如果<span class="c-cond">$A$、$B$ 是两个点</span>，那么<span class="c-concl">连接 $A$、$B$ 的所有线中，线段 $AB$ 最短</span>．</p></div>
+      </div>
+      <div class="col">
+        <div class="rw" data-step="7"><p class="rw-s">垂直于同一条直线的两条直线平行．</p><p class="think" data-step="8" data-ask="改写">如果<span class="c-cond">两条直线都垂直于同一条直线</span>，那么<span class="c-concl">这两条直线平行</span>．</p></div>
+        <div class="rw" data-step="9"><p class="rw-s">平方后等于 4 的数是 2．</p><p class="think" data-step="10" data-ask="改写">如果<span class="c-cond">一个数的平方等于 4</span>，那么<span class="c-concl">这个数是 2</span>．<span class="muted">（真还是假？$(-2)^2=4$，所以是<b>假</b>命题）</span></p></div>
+        <p class="method" data-step="11" data-label="三步改写">① 找出“谁”（研究对象）；② “的”字前面、“是／都”前面常藏着<b>条件</b>；③ 补上“这两个角”“这个数”等，让结论说完整。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">前两句来自课本 p144–145，后三句是习题 12.1 第 1、2 题。“两点之间线段最短”的改写不唯一，意思对即可，不必苛求。重点是第 ② 条：中文里“……的……是……”的结构，“的”字前常是条件。最后一句顺便判断真假：-2 也满足条件。</p>
+</section>
+
+<!-- 8 ================= 练一练（拆解台） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>切开命题，再判断真假</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p145 练一练：<br>1. 下列各命题的条件是什么？结论是什么？<br>2. 在第 1 题的命题中，哪些是真命题？哪些是假命题？</p>
+      <p class="method" data-step="1" data-label="判断真假">认为是真命题，要能说出道理；认为是假命题，只要找到<b>一个</b>满足条件、但结论不成立的例子。</p>
+      <p class="tip gold" data-step="2">第 (2) 题：取 $n=-2$，$n\lt1$ 成立，但 $n^2-1=3$，不小于 0．<span class="think" data-step="3" data-ask="所以？">所以“如果 $n\lt1$，那么 $n^2-1\lt0$”是假命题。</span></p>
+    </div>
+    <div class="col">
+      <div class="splitter" id="sp2"></div>
+    </div>
+  </div>
+  <p class="note">课本 p145 练一练 1、2。学生自己操作拆解台（4 题），每题先切开，再判真假。(1)(3)(4) 是真命题：(1) 两个负数相加，结果是负数；(3) 同角的补角相等（七上 6.3）；(4) 直角都等于 90°。(2) 是假命题，左边示范怎样举例说明。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 12.1</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 下列句子是不是命题？<br>(1) 延长线段 $AB$ 到点 $C$；<br>(2) 两点之间线段最短；<br>(3) $\angle\alpha$ 与 $\angle\beta$ 不相等；<br>(4) 2 月份有 4 个星期日；<br>(5) 用量角器画 $\angle AOB=90^\circ$；<br>(6) 任何数的平方都不小于 0 吗？</p>
+        <details><summary>提示 1</summary>逐句问：它有没有对一件事情做出判断？</details>
+        <details><summary>提示 2</summary>(1)(5) 是作图的要求，(6) 是问句。</details>
+        <details><summary>完整解答</summary>(2)(3)(4) 是命题；(1)(5)(6) 不是命题。（(3)(4) 是否正确要看具体情况，但它们做出了判断。）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 下列命题的条件是什么？结论是什么？<br>(1) 如果 $a=c$，$b=c$，那么 $a=b$；<br>(2) 如果 $a\lt-1$，那么 $ab\lt-b$；<br>(3) 两直线平行，内错角相等；<br>(4) 平方后等于 4 的数是 2；<br>(5) 垂直于同一条直线的两条直线平行．</p>
+        <details><summary>提示 1</summary>(1)(2) 已经有“如果……那么……”；(3)(4)(5) 先改写。</details>
+        <details><summary>提示 2</summary>(4)：如果一个数的平方等于 4，那么这个数是 2；(5)：如果两条直线都垂直于同一条直线，那么这两条直线平行。</details>
+        <details><summary>完整解答</summary>(1) 条件 $a=c$，$b=c$；结论 $a=b$．(2) 条件 $a\lt-1$；结论 $ab\lt-b$．(3) 条件 两直线平行；结论 内错角相等．(4) 条件 一个数的平方等于 4；结论 这个数是 2．(5) 条件 两条直线都垂直于同一条直线；结论 这两条直线平行．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 第 2 题的命题中，哪些是真命题？哪些是假命题？</p>
+        <details><summary>提示 1</summary>(2) 试试 $a=-2$，$b=-1$：$ab=2$，$-b=1$，$2\lt1$ 吗？</details>
+        <details><summary>提示 2</summary>(4) 还有哪个数的平方等于 4？</details>
+        <details><summary>完整解答</summary>真命题：(1)(3)(5)；假命题：(2)(4)．(2) 取 $a=-2$，$b=-1$，满足 $a\lt-1$，但 $ab=2\gt1=-b$；(4) $(-2)^2=4$，但 $-2\ne2$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p146 习题 12.1。第 3 题 (2) 是难点：学生往往以为“两边乘 b”就行，取一组具体数验证就会发现不对——因为 b 的正负不知道（不等式两边乘负数要变号，第 11 章已学）。(5) 是真命题，下一节 12.2 就要证明它。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def"><em>定义</em>：对名称或术语的含义做出描述或规定。</p>
+        <p class="def"><em>命题</em>：判断一件事情的句子，由<span class="c-cond">条件</span>和<span class="c-concl">结论</span>组成；分<em>真命题</em>、<em>假命题</em>。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="找条件与结论">改写成“如果……，那么……”。</p>
+        <p class="method" data-label="判断真假">假：找一个满足条件、结论不成立的例子；真：要说出道理。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="言必有据">说理先统一“词义”（定义），再分清“已知”（条件）与“要说明的”（结论）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>12.2 证明——怎样确定一个命题是真命题？“看上去对”“试几次都对”够不够？比如“垂直于同一条直线的两条直线平行”，怎样<b>证明</b>它？</p>
+  </div>
+  <p class="note">请学生用一句话分别说出“定义”和“命题”的区别：定义是“规定一个词的意思”，命题是“判断一件事”。课后作业建议：习题 12.1 第 1～3 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

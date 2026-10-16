@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>探索平行线的性质 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tiegui.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第7章 平面图形的认识（二） · 7.2</p>
+    <h1 class="cover-title">探索平行线的性质</h1>
+    <p class="cover-q" data-step="1">上节课：同位角相等、内错角相等、同旁内角互补，都能<b>推出</b>两直线平行。</p>
+    <p class="cover-q" data-step="2">反过来，如果两条直线<b>已经平行</b>（像笔直的两条铁轨），被第三条直线所截，同位角、内错角、同旁内角会有怎样的数量关系？</p>
+    <div class="chips" data-step="3"><span class="chip">剪纸片叠合</span><span class="chip">八个角只有两种大小</span><span class="chip">判定 ↔ 性质</span><span class="chip">反证说理</span></div>
+  </div>
+  <p class="note">课本 p13 开篇语。先请学生把上节课的三个判定背一遍，再提出“反过来”的问题，让学生先猜：平行时同位角会怎样？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="7.1 · 平行的条件" data-step="1">
+        <p>同位角相等，两直线平行；</p>
+        <p>内错角相等，两直线平行；</p>
+        <p>同旁内角互补，两直线平行。</p>
+        <span class="use">本课研究它们“反过来”的说法；例题里两类结论要配合使用。</span>
+      </div>
+      <div class="recall" data-label="七上 6.3 · 对顶角、补角" data-step="2">
+        <p>对顶角相等；邻补角的和是 $180^\circ$。</p>
+        <p>等量代换：$\angle1=\angle2$，$\angle1=\angle3$，则 $\angle2=\angle3$。</p>
+        <span class="use">由“同位角相等”说理得到“内错角相等”“同旁内角互补”。</span>
+      </div>
+      <div class="recall" data-label="七上 6.4 · 平行的基本事实" data-step="3">
+        <p>过直线外一点，<b>有且只有</b>一条直线与这条直线平行。</p>
+        <span class="use">读一读：用它说明“两直线平行，同位角相等”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>已知两直线平行 ⇒ 同位角、内错角、同旁内角各有什么关系？</p>
+  </div>
+  <p class="note">第一张卡请学生口头说出三个判定，并说出“条件”和“结论”分别是什么——判定的条件是角的关系，结论是平行。本课的性质恰好把条件和结论交换。</p>
+</section>
+
+<!-- 3 ================= 数学实验室：叠合（图 7-10、7-11、7-12） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>剪下纸片，把一对角叠在一起</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="lapTabs">
+        <button class="btn solid" type="button" data-m="tw">同位角 $\angle1$、$\angle2$</button>
+        <button class="btn" type="button" data-m="ncu">内错角 $\angle7$、$\angle2$</button>
+        <button class="btn" type="button" data-m="pang">同旁内角 $\angle5$、$\angle2$</button>
+      </div>
+      <div id="lap" class="lap-b"></div>
+      <div class="slider-row" data-noswipe>移动纸片 <input type="range" id="lapU" min="0" max="1" step="0.01" value="0">
+        <label class="chk"><input type="checkbox" id="lapTilt"> 让 $AB$ 歪 $6^\circ$（不平行）</label></div>
+    </div>
+    <div class="col">
+      <p class="tip">在练习本上画 $AB\parallel CD$，再画直线 $EF$ 与它们相交（图 7-10）。剪下含 $\angle1$ 的纸片（图 7-11），去盖 $\angle2$。</p>
+      <p class="tip feedback" id="lapMsg"></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>同位角</span><span class="think" data-step="2" data-ask="纸片怎样动？">沿 $EF$ <b>平移</b>，$\angle1$ 正好盖住 $\angle2$：每对同位角都相等</span></div>
+        <div class="dl" data-step="3"><span>内错角</span><span class="think" data-step="4" data-ask="纸片怎样动？">绕两交点连线的中点<b>转半圈</b>，$\angle7$ 正好盖住 $\angle2$：每对内错角都相等</span></div>
+        <div class="dl" data-step="5"><span>同旁内角</span><span class="think" data-step="6" data-ask="拼起来是什么角？">$\angle5$ 平移下来与 $\angle2$ 拼成一个<b>平角</b>：每对同旁内角都互补</span></div>
+      </div>
+      <p class="warn" data-step="7" data-label="勾上“歪 6°”再试">$AB$ 与 $CD$ 不平行时，纸片怎么也盖不严——“两直线平行”这个条件不能少。</p>
+    </div>
+  </div>
+  <p class="note">课本 p13 数学实验室 1、2（图 7-10、7-11）与 p14 做一做（图 7-12）。拖滑块让纸片一点点移动，请学生预测“能不能盖严”。三种动法正好对应三类角：同位角——平移（7.3 会专门学），内错角——转半圈，同旁内角——拼成平角。最后勾上“歪 6°”做对照实验。</p>
+</section>
+
+<!-- 4 ================= 性质 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>两直线平行，同位角相等</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>课本 p14</h4>两条平行直线被第三条直线所截，同位角相等．<br>简单说成：<em>两直线平行，同位角相等</em>．</div>
+      <p class="tip" data-step="2">我们通过<b>实验</b>发现了这个结论，以后可以加以证实（第 11 页“读一读”）。</p>
+      <table class="mtab dir-tab" data-step="3">
+        <tr><th></th><th>已知（条件）</th><th></th><th>得到（结论）</th></tr>
+        <tr><td>判定（7.1）</td><td>同位角相等</td><td>⇒</td><td>两直线平行</td></tr>
+        <tr><td>性质（7.2）</td><td>两直线平行</td><td>⇒</td><td>同位角相等</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <p class="method" data-step="4" data-label="条件和结论交换了">判定：由“<b>角</b>的关系”得到“<b>线</b>的位置关系”；<br>性质：由“<b>线</b>的位置关系”得到“<b>角</b>的关系”。</p>
+      <p class="warn" data-step="5" data-label="不能丢掉“平行”">“同位角相等”单独说是错的：第 3 页 $AB$ 歪了 $6^\circ$，同位角就差了 $6^\circ$。</p>
+      <p class="tip" data-step="6">想一想：已知 $a\parallel b$，内错角、同旁内角又有什么关系？能不能不剪纸，用<b>说理</b>得到？<span class="think" data-step="7" data-ask="猜一猜">内错角相等，同旁内角互补——下面来说理。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p14 结论框。用表格把判定和性质“上下对齐”，让学生看出条件与结论正好交换。这一页不急着做题，重点是分清两者的方向，后面辨析页还会专门练。</p>
+</section>
+
+<!-- 5 ================= 说理：内错角、同旁内角（图 7-13、7-14） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">说理</span><h2>由“同位角相等”推出另外两个性质</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">图 7-13：$a\parallel b$，求证 $\angle2=\angle3$．</p>
+      <div id="f713" class="gfig"></div>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>∵</span><span>$a\parallel b$，</span><i class="why">已知</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span>$\angle1=\angle2$．</span><span class="think" data-step="3" data-ask="理由？">两直线平行，同位角相等</span></div>
+        <div class="dl" data-step="4"><span>又</span><span>$\angle1=\angle3$，</span><span class="think" data-step="5" data-ask="理由？">对顶角相等</span></div>
+        <div class="dl end" data-step="6"><span>∴</span><span>$\angle2=\angle3$．</span><i class="why">等量代换</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7">图 7-14：$a\parallel b$，求证 $\angle2+\angle3=180^\circ$．</p>
+      <div id="f714" class="gfig" data-step="7"></div>
+      <div class="derive">
+        <div class="dl" data-step="8"><span>∵</span><span>$a\parallel b$，∴ $\angle1=\angle2$．</span><i class="why">两直线平行，同位角相等</i></div>
+        <div class="dl" data-step="9"><span>又</span><span>$\angle1+\angle3=180^\circ$，</span><span class="think" data-step="10" data-ask="理由？">$\angle1$、$\angle3$ 是邻补角</span></div>
+        <div class="dl end" data-step="11"><span>∴</span><span>$\angle2+\angle3=180^\circ$．</span><i class="why">等量代换</i></div>
+      </div>
+      <div class="def" data-step="12"><h4>课本 p15</h4>两条平行直线被第三条直线所截，内错角相等．简单说成：<em>两直线平行，内错角相等</em>．<br>两条平行直线被第三条直线所截，同旁内角互补．简单说成：<em>两直线平行，同旁内角互补</em>．</div>
+    </div>
+  </div>
+  <p class="note">课本 p14 下半页“证实小丽、小明得到的结论”。和 7.1 第 8 页的说理对照：那时是用对顶角、邻补角“走向”同位角，现在是从同位角“走出来”。每个“理由”先让学生说。</p>
+</section>
+
+<!-- 6 ================= 八个角只有两种大小 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>两直线平行时，八个角只有两种大小</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="eight" class="eight-b"></div>
+      <p class="muted center small-t">拖动截线 $EF$ 上的橙色点改变它的方向</p>
+    </div>
+    <div class="col">
+      <div class="readout eight-read">
+        <span class="grp g1">$\angle1=\angle7=\angle2=\angle8$</span><b class="v" id="eightA"></b>
+        <span class="grp g2">$\angle3=\angle5=\angle4=\angle6$</span><b class="v" id="eightB"></b>
+      </div>
+      <p class="tip feedback fb-ok" id="eightMsg"></p>
+      <p class="tip" data-step="1">为什么两种大小加起来总是 $180^\circ$？<span class="think" data-step="2" data-ask="说一说">同一顶点处相邻的两个角是邻补角。</span></p>
+      <p class="method" data-step="3" data-label="解题的窍门">两直线平行时，知道八个角中的<b>任意一个</b>，就能求出其余七个：相等的两组颜色相同，不同颜色的两角互补。</p>
+      <p class="tip" data-step="4">试一试：截线与 $AB$ 垂直时会怎样？<span class="think" data-step="5" data-ask="拖到 90° 看看">八个角都是 $90^\circ$：截线也与 $CD$ 垂直（练一练 1）。</span></p>
+    </div>
+  </div>
+  <p class="note">本页把三个性质“合在一起看”：拖动截线，蓝色四个角始终相等、橙色四个角始终相等，两色相加 180°。最后一问把截线拖成竖直，为练一练第 1 题（l₃ ⊥ l₁ ⇒ l₃ ⊥ l₂）做铺垫。</p>
+</section>
+
+<!-- 7 ================= 判定还是性质？ ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这一步用的是判定，还是性质？</h2></div>
+  <div class="bd full">
+    <div class="cols2 picks">
+      <div class="jcard"><p>① 因为 $\angle1=\angle2$，所以 $a\parallel b$．（$\angle1$、$\angle2$ 是同位角）</p>
+        <div class="pick" data-ans="p"><button type="button" data-k="p">判定</button><button type="button" data-k="x">性质</button><p class="pick-why">由角的关系得到平行：理由写“同位角相等，两直线平行”。</p></div></div>
+      <div class="jcard"><p>② 因为 $a\parallel b$，所以 $\angle1=\angle2$．（$\angle1$、$\angle2$ 是同位角）</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="p">判定</button><button type="button" data-k="x">性质</button><p class="pick-why">由平行得到角的关系：理由写“两直线平行，同位角相等”。</p></div></div>
+      <div class="jcard"><p>③ 因为 $a\parallel b$，所以 $\angle2+\angle5=180^\circ$．（同旁内角）</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="p">判定</button><button type="button" data-k="x">性质</button><p class="pick-why">已知平行，求角：性质“两直线平行，同旁内角互补”。</p></div></div>
+      <div class="jcard"><p>④ 因为 $\angle2=\angle7$，所以 $a\parallel b$．（内错角）</p>
+        <div class="pick" data-ans="p"><button type="button" data-k="p">判定</button><button type="button" data-k="x">性质</button><p class="pick-why">由角得线：判定“内错角相等，两直线平行”。</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="怎样分辨">看“因为”后面：是<b>角</b>的关系 → 用判定（得平行）；是<b>平行</b> → 用性质（得角）。</p>
+  </div>
+  <p class="note">点选判断，点对了显示理由。学生最常见的错误是理由写反：明明已知平行，却写“同位角相等，两直线平行”。可让学生把四句话的理由完整说出来。</p>
+</section>
+
+<!-- 8 ================= 例（图 7-15） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>性质与判定接力使用</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例</b>　如图 7-15，$AB\parallel CD$，$\angle A=\angle D$．判断 $AF$ 与 $ED$ 是否平行，并说明理由．</p>
+      <div id="ex" class="gfig l"></div>
+      <p class="tip" data-step="1"><b>思路：</b>要证 $AF\parallel ED$，需要一对“相等的同位角或内错角”。$\angle A$、$\angle D$ 不是这样的一对，找一个“中间角”——<span class="think" data-step="2" data-ask="哪个角？">$\angle BED$：它和 $\angle D$ 是内错角，和 $\angle A$ 是同位角。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="3"><span>解</span><span>$AF\parallel ED$．</span></div>
+        <div class="dl" data-step="4"><span>∵</span><span>$AB\parallel CD$，</span><i class="why">已知</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span>$\angle D=\angle BED$．</span><span class="think" data-step="5" data-ask="理由？">两直线平行，内错角相等（性质）</span></div>
+        <div class="dl" data-step="6"><span>又</span><span>$\angle A=\angle D$，∴ $\angle A=\angle BED$．</span><i class="why">等量代换</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$AF\parallel ED$．</span><span class="think" data-step="8" data-ask="理由？">同位角相等，两直线平行（判定）</span></div>
+      </div>
+      <p class="method" data-step="9" data-label="先性质，后判定">由已知的平行用<b>性质</b>得角相等 → 角之间代换 → 用<b>判定</b>得新的平行。</p>
+    </div>
+  </div>
+  <p class="note">课本 p15 例。关键是引入“中间角”∠BED。请学生在图上找：∠BED 与 ∠D 构成“Z”形，与 ∠A 构成“F”形。最后让学生说出每一步用的是性质还是判定。</p>
+</section>
+
+<!-- 9 ================= 练一练（p15） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用性质求角、判断位置关系</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，$l_1\parallel l_2$，$l_3\perp l_1$．$l_3$ 与 $l_2$ 有怎样的位置关系？为什么？</p>
+        <div id="lx1" class="gfig"></div>
+        <details><summary>提示 1</summary>$l_3\perp l_1$，所以 $l_3$ 与 $l_1$ 所成的角是 $90^\circ$；它与 $l_3$、$l_2$ 所成的角是同位角。</details>
+        <details><summary>完整解答</summary>$l_3\perp l_2$．∵ $l_1\parallel l_2$，∴ $l_3$ 与 $l_2$ 所成的角等于 $l_3$ 与 $l_1$ 所成的同位角，等于 $90^\circ$（两直线平行，同位角相等），∴ $l_3\perp l_2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$CD\parallel EF$，$DE\parallel AC$．图中哪些角相等？为什么？</p>
+        <div id="lx2" class="gfig"></div>
+        <details><summary>提示 1</summary>分两组看：被 $CD$、$EF$ 截出的角；被 $DE$、$AC$ 截出的角。</details>
+        <details><summary>完整解答</summary>由 $CD\parallel EF$：$\angle BFE=\angle BDC$，$\angle BEF=\angle BCD$（同位角），$\angle FED=\angle EDC$（内错角）；<br>由 $DE\parallel AC$：$\angle BDE=\angle A$，$\angle BED=\angle BCA$（同位角），$\angle EDC=\angle DCA$（内错角）．<br>理由都是两直线平行的性质．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 如图，点 $B$、$C$、$D$ 在一条直线上，$AB\parallel EC$，$\angle A=55^\circ$，$\angle B=60^\circ$．求 $\angle1$、$\angle2$ 和 $\angle ACB$ 的度数．</p>
+        <div id="lx3" class="gfig"></div>
+        <details><summary>提示 1</summary>$\angle1$ 与 $\angle A$ 是内错角，$\angle2$ 与 $\angle B$ 是同位角。</details>
+        <details><summary>完整解答</summary>∵ $AB\parallel EC$，∴ $\angle1=\angle A=55^\circ$（两直线平行，内错角相等），$\angle2=\angle B=60^\circ$（两直线平行，同位角相等）．<br>∵ $B$、$C$、$D$ 在一条直线上，∴ $\angle ACB=180^\circ-\angle1-\angle2=65^\circ$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p15 练一练 1–3。第 3 题算出 ∠A + ∠B + ∠ACB = 55° + 60° + 65° = 180°——这正是 7.5 “三角形内角和是 180°”的说理方法，可以先让学生留意这个巧合。</p>
+</section>
+
+<!-- 10 ================= 读一读：反证说理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">读一读</span><h2>怎样证实“两直线平行，同位角相等”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fan" class="fan-b"></div>
+      <div class="slider-row" data-noswipe>假设 $\angle1$ 比 $\angle2$ 大 <input type="range" id="fanD" min="0" max="20" step="1" value="12"><b class="v" id="fanDV"></b></div>
+      <p class="tip feedback" id="fanMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图，$AB\parallel CD$，$\angle1$ 与 $\angle2$ 是同位角．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>假设</span><span>$\angle1\ne\angle2$，过点 $O$ 作直线 $GH$，使 $\angle EOH=\angle2$．</span><i class="why">$GH$ 与 $AB$ 是两条直线</i></div>
+        <div class="dl" data-step="2"><span>则</span><span>$GH\parallel CD$．</span><span class="think" data-step="3" data-ask="凭什么？">同位角相等，两直线平行（基本事实）</span></div>
+        <div class="dl key" data-step="4"><span>于是</span><span>过点 $O$ 有两条直线 $AB$、$GH$ 都与 $CD$ 平行．</span><span class="think" data-step="5" data-ask="哪里不对？">与“过直线外一点有且只有一条直线与这条直线平行”矛盾</span></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$\angle1\ne\angle2$ 的假设不正确，$\angle1=\angle2$．</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p16 读一读。这是学生第一次接触“先假设结论不成立，推出矛盾”的说理方式（以后叫反证法），不要求掌握。左图：拖滑块设定“假设 ∠1 比 ∠2 大多少度”，图中画出满足 ∠EOH = ∠2 的直线 GH——它和 AB 是两条不同的直线，却都“应该”平行于 CD；拖到 0° 时 GH 与 AB 重合，矛盾消失。</p>
+</section>
+
+<!-- 11 ================= 习题选做 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.2</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 要在长方形钢板 $ABCD$ 的边 $AB$ 上找一点 $E$，使 $\angle AEC=150^\circ$，应怎样确定点 $E$ 的位置？为什么？</p>
+        <div id="xt3" class="gfig"></div>
+        <details><summary>提示 1</summary>$\angle AEC=150^\circ$，则 $\angle CEB=30^\circ$；$DC\parallel AB$。</details>
+        <details><summary>完整解答</summary>在 $C$ 处作 $\angle DCE=30^\circ$，射线 $CE$ 与 $AB$ 的交点就是 $E$．∵ $DC\parallel AB$，∴ $\angle CEB=\angle DCE=30^\circ$（两直线平行，内错角相等），∴ $\angle AEC=180^\circ-30^\circ=150^\circ$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 如图，$AD\parallel EF$，$\angle1+\angle2=180^\circ$．$\angle1$ 与 $\angle BAD$ 相等吗？为什么？</p>
+        <div id="xt4" class="gfig"></div>
+        <details><summary>提示 1</summary>$AD\parallel EF$，$\angle2$ 与 $\angle BAD$ 是同旁内角。</details>
+        <details><summary>完整解答</summary>相等．∵ $AD\parallel EF$，∴ $\angle2+\angle BAD=180^\circ$（两直线平行，同旁内角互补）．又 $\angle1+\angle2=180^\circ$，∴ $\angle1=\angle BAD$（同角的补角相等）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 点 $E$、$A$、$C$ 在一条直线上，$AD\perp BC$，$EG\perp BC$，垂足分别为 $D$、$G$，$EG$ 交 $AB$ 于点 $F$，且 $\angle1=\angle2$．$\angle BAD$ 与 $\angle CAD$ 相等吗？为什么？</p>
+        <div id="xt5" class="gfig"></div>
+        <details><summary>提示 1</summary>先由两个“垂直”得到 $AD\parallel EG$（同位角都是 $90^\circ$）。</details>
+        <details><summary>提示 2</summary>$\angle1$ 与 $\angle CAD$ 是同位角，$\angle2$ 与 $\angle BAD$ 是内错角。</details>
+        <details><summary>完整解答</summary>相等．∵ $AD\perp BC$，$EG\perp BC$，∴ $AD\parallel EG$（同位角相等，两直线平行）．∴ $\angle1=\angle CAD$，$\angle2=\angle BAD$（两直线平行，同位角相等、内错角相等）．又 $\angle1=\angle2$，∴ $\angle BAD=\angle CAD$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p17 习题 7.2 第 3–5 题。第 5 题先判定、再用性质，是本课“判定与性质接力”的综合题。第 1、2 题可口答：第 1 题由 a ∥ b 写出 4 对同位角相等、2 对内错角相等、2 对同旁内角互补。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">两直线平行 ⇒ 同位角相等、内错角相等、同旁内角互补。</p>
+        <p class="warn" data-label="分清方向">判定：角 ⇒ 平行；性质：平行 ⇒ 角。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="实验 → 说理">剪纸叠合发现结论，再用基本事实、对顶角、邻补角说理。</p>
+        <p class="method" data-label="中间角">性质得角相等 → 等量代换 → 判定得新的平行。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">知道一个角，平行线就把它“搬”到别处；八个角只有两种大小。</p>
+        <p class="recall" data-label="反证的萌芽">假设结论不成立，推出与基本事实矛盾。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>7.3 图形的平移——第 3 页把纸片沿 $EF$ 推下去，就是一次“平移”。平移前后的图形有什么关系？</p>
+  </div>
+  <p class="note">请学生合上书，把 7.1 的三个判定和 7.2 的三个性质成对说出来。课后作业建议：习题 7.2 第 1、2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

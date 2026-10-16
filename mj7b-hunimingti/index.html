@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>互逆命题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huanka.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第12章 证明 · 12.3</p>
+    <h1 class="cover-title">互逆命题</h1>
+    <p class="cover-q" data-step="1">小明举着“<b>同位角相等</b>”“<b>两直线平行</b>”两张卡片；小丽把两张卡片的位置<b>换了一下</b>。</p>
+    <p class="cover-q" data-step="2">换位置之后，还是原来那个命题吗？如果原命题是真命题，换过来的命题也一定是真的吗？</p>
+    <div class="chips" data-step="3"><span class="chip">条件 ⇄ 结论</span><span class="chip">逆命题</span><span class="chip">反例</span><span class="chip">互逆的真命题</span></div>
+  </div>
+  <p class="note">课本 p157 议一议（两个小人举牌）。封面先让学生说出两张牌组成的两个命题，体会“条件和结论交换了位置”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="12.1 · 命题" data-step="1">
+        <p>命题由<b>条件</b>和<b>结论</b>组成，常写成“如果……，那么……”；有真命题，也有假命题。</p>
+        <span class="use">第 3、5 页：把条件和结论交换，得到新命题。</span>
+      </div>
+      <div class="recall" data-label="12.2 · 上一课讲到" data-step="2">
+        <p>证明：根据已知的真命题确定某个命题的真实性；经过证明的真命题叫<b>定理</b>（如三角形内角和定理）。</p>
+        <span class="use">第 11、12 页：证明例 1、例 2 和一个逆命题。</span>
+      </div>
+      <div class="recall" data-label="七下 7.1 / 7.2 · 判定与性质" data-step="3">
+        <p>同位角相等，两直线平行（判定）；</p>
+        <p>两直线平行，同位角相等（性质）。</p>
+        <span class="use">它们正是一对“互逆命题”，而且都是真命题。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>交换条件与结论 → 逆命题；真命题的逆命题一定真吗？→ 用<b>反例</b>说明假命题 → 互逆的真命题在证明中配合使用。</p>
+  </div>
+  <p class="note">第三张卡在 7.2 已经用表格对比过“判定”与“性质”的方向，本课给这种关系起名字：互逆命题。</p>
+</section>
+
+<!-- 3 ================= 议一议：互逆命题的定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>这两个命题有什么联系和区别？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="duo">
+        <div class="duo-row"><span class="duo-no">命题①</span><span class="ccard c">同位角相等</span><span class="ccard r">两直线平行</span></div>
+        <div class="duo-row" data-step="1"><span class="duo-no">命题②</span><span class="ccard r2">两直线平行</span><span class="ccard c2">同位角相等</span></div>
+      </div>
+      <p class="tip" data-step="2">联系：<span class="think" data-step="3" data-ask="说一说">用的是同样的两句话；①的条件是②的结论，①的结论又是②的条件。</span></p>
+      <p class="tip" data-step="2">区别：<span class="think" data-step="4" data-ask="说一说">①由“角相等”推出“平行”（判定）；②由“平行”推出“角相等”（性质）。</span></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="5"><h4>互逆命题（课本 p157）</h4>在两个命题中，如果第一个命题的条件是第二个命题的结论，而第一个命题的结论又是第二个命题的条件，那么这两个命题叫做<em>互逆命题</em>．其中一个命题是另一个命题的<em>逆命题</em>（converse proposition）．</div>
+      <p class="method" data-step="6" data-label="怎样写逆命题">把一个命题的<b>条件和结论互换</b>，就得到它的逆命题，所以<b>每个命题都有逆命题</b>。</p>
+      <p class="warn" data-step="7" data-label="先找准条件和结论">“对顶角相等”的逆命题不是“相等对顶角”，而是“如果两个角相等，那么这两个角是对顶角”——要先改写成“如果……那么……”再交换。</p>
+    </div>
+  </div>
+  <p class="note">课本 p157 议一议与定义。蓝色卡 = 条件、橙色卡 = 结论：命题②里两张卡的颜色换了位置（条件、结论身份互换）。警示一条接 12.1 的改写方法，下一页“交换机”会自动演示。</p>
+</section>
+
+<!-- 4 ================= 试一试 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>下列各组命题是否为互逆命题？</h2></div>
+  <div class="bd full">
+    <div class="cols2 picks">
+      <div class="jcard"><p>(1) 正方形的 4 个角都是直角．<br>　　4 个角都是直角的四边形是正方形．</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">条件“是正方形”与结论“4 个角都是直角”互换了。（前真后假：长方形也有 4 个直角。）</p></div></div>
+      <div class="jcard"><p>(2) 等于同一个角的两个角相等．<br>　　如果两个角都等于同一个角，那么这两个角相等．</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">第二句只是把第一句改写成“如果……那么……”，条件、结论没变——是<b>同一个</b>命题。</p></div></div>
+      <div class="jcard"><p>(3) 对顶角相等．<br>　　如果两个角相等，那么这两个角是对顶角．</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">“两个角是对顶角”与“这两个角相等”互换了位置。</p></div></div>
+      <div class="jcard"><p>(4) 同位角相等，两直线平行．<br>　　同位角不相等，两直线不平行．</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">条件、结论都加了“不”，但位置没有交换——不是互逆命题。</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="判断方法">先分别找出两个命题的条件和结论，再看是不是“<b>交叉相等</b>”：甲的条件 = 乙的结论，甲的结论 = 乙的条件。</p>
+  </div>
+  <p class="note">课本 p157 试一试 1。点选判断，点对了显示理由。(2)(4) 是易错的“伪逆命题”：(2) 只是换了说法，(4) 是把条件和结论都否定（高中叫否命题），都不是交换。</p>
+</section>
+
+<!-- 5 ================= 交换机（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 交换机</span><h2>交换条件和结论，再判断真假</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="swapper" id="sw"></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p157 试一试 2：说出下列命题的逆命题，并与同学交流．<br>(1) 如果 $a^2=b^2$，那么 $a=b$；<br>(2) 如果两个角是对顶角，那么它们的平分线组成一个平角；<br>(3) 末位数字是 5 的数，能被 5 整除；<br>(4) 锐角与钝角互为补角．</p>
+      <p class="method" data-step="1" data-label="发现">原命题真、逆命题可以假；原命题假、逆命题可以真；也可以都真、都假——<b>原命题和逆命题的真假没有必然联系</b>，要分别判断。</p>
+      <p class="tip" data-step="2">试一试 3：举出几组互逆命题．<span class="think" data-step="3" data-ask="举一举">如“两直线平行，内错角相等”与“内错角相等，两直线平行”；“如果 $a=b$，那么 $a+c=b+c$”与“如果 $a+c=b+c$，那么 $a=b$”。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动“交换机”。选一题，先判断原命题真假，再按“⇄ 交换”：蓝色条件卡与橙色结论卡交换位置，自动改写出逆命题，再判断逆命题真假。5 题恰好覆盖“真—真、假—真、真—假、真—假、假—假”几种情况，右侧的“发现”请学生自己说出来再揭示。判断“假”时提示里给出反例——下一页正式学“反例”。</p>
+</section>
+
+<!-- 6 ================= 议一议：反例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>举一个例子，就能说明命题是假的</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="jcard">
+        <p><b>命题 1：</b>锐角与钝角互为补角．</p>
+        <div id="supB" class="sup-b"></div>
+        <div class="slider-row" data-noswipe>锐角 <input type="range" id="supA" min="10" max="85" step="5" value="60"><b class="v" id="supAV"></b>　钝角 <input type="range" id="supO" min="95" max="170" step="5" value="120"><b class="v" id="supOV"></b></div>
+        <p class="tip feedback" id="supMsg"></p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="jcard">
+        <p><b>命题 2：</b>如果 $a^2=b^2$，那么 $a=b$．</p>
+        <div class="slider-row" data-noswipe>$a=$<input type="range" id="sqA" min="-4" max="4" step="1" value="2"><b class="v" id="sqAV"></b>　$b=$<input type="range" id="sqB" min="-4" max="4" step="1" value="2"><b class="v" id="sqBV"></b></div>
+        <p class="tip feedback" id="sqMsg"></p>
+      </div>
+      <div class="def" data-step="1"><h4>反例（课本 p158）</h4>举出一个符合命题的条件，但命题结论不成立的例子来说明命题是假命题，这样的例子称为<em>反例</em>．</div>
+      <p class="method" data-step="2" data-label="判断假命题">数学中，判断一个命题是假命题，只需举出<b>一个</b>反例。（但要说明是真命题，举多少个例子都不够，必须证明。）</p>
+    </div>
+  </div>
+  <p class="note">课本 p158 议一议（小明：30° 的锐角与 120° 的钝角不互补；小丽：a = 2，b = −2）。左边拖两个滑块：锐角、钝角拼在一起，只有和为 180° 时才成一条直线（图按角度精确画）；右边找 a² = b² 而 a ≠ b 的例子。强调括号里的话：反例能否定，例子不能肯定——与 12.2 呼应。</p>
+</section>
+
+<!-- 7 ================= 想一想 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>真命题的逆命题，一定是真命题吗？</h2></div>
+  <div class="bd full">
+    <table class="mtab tt">
+      <tr><th>原命题</th><th>真假</th><th>逆命题</th><th>真假</th></tr>
+      <tr data-step="1"><td>对顶角相等</td><td><b class="tv">真</b></td><td>如果两个角相等，那么这两个角是对顶角</td><td><span class="think" data-step="2" data-ask="?"><b class="fv">假</b>（两个直角不一定是对顶角）</span></td></tr>
+      <tr data-step="3"><td>如果 $a=b$，那么 $a^2=b^2$</td><td><b class="tv">真</b></td><td>如果 $a^2=b^2$，那么 $a=b$</td><td><span class="think" data-step="4" data-ask="?"><b class="fv">假</b>（$a=2$，$b=-2$）</span></td></tr>
+      <tr data-step="5"><td>两直线平行，同位角相等</td><td><b class="tv">真</b></td><td>同位角相等，两直线平行</td><td><span class="think" data-step="6" data-ask="?"><b class="tv">真</b>（基本事实）</span></td></tr>
+      <tr data-step="7"><td>互为相反数的两个数的和为零</td><td><b class="tv">真</b></td><td>和为零的两个数互为相反数</td><td><span class="think" data-step="8" data-ask="?"><b class="tv">真</b></span></td></tr>
+    </table>
+    <p class="warn" data-step="9" data-label="结论">一个命题是真命题，它的逆命题<b>不一定</b>是真命题。原命题与逆命题的真假要分别判断：真的要证明，假的举反例。</p>
+  </div>
+  <p class="note">课本 p158 想一想。先让学生举例，再逐行揭示。前两行“真—假”，后两行“真—真”：说明“不一定”。第 4 行是习题 12.3 第 1(5) 题。</p>
+</section>
+
+<!-- 8 ================= 练一练：举反例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>举反例说明下列命题是假命题</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="jcard" data-step="1"><p>(1) 如果 $|a|=|b|$，那么 $a=b$．</p><span class="think" data-step="2" data-ask="举一个反例">$a=3$，$b=-3$：$|a|=|b|=3$，但 $a\ne b$．</span></div>
+      <div class="jcard" data-step="3"><p>(2) 任何数的平方大于 0．</p><span class="think" data-step="4" data-ask="举一个反例">$0^2=0$，不大于 0．</span></div>
+      <div class="jcard" data-step="5"><p>(3) 两个锐角的和是钝角．</p><span class="think" data-step="6" data-ask="举一个反例">$30^\circ+40^\circ=70^\circ$，是锐角．</span></div>
+      <p class="method" data-step="7" data-label="好的反例">① 满足<b>全部</b>条件；② 结论明显不成立；③ 越简单越好（常用 0、负数、特殊角）。</p>
+    </div>
+    <div class="col">
+      <div class="jcard"><p>(4) 如果一点到线段两端的距离相等，那么这点是这条线段的中点．</p>
+        <div id="mid" class="mid-b"></div>
+        <div class="readout mid-read"><span>$PA$</span><b class="v" id="midPA"></b><span>$PB$</span><b class="v" id="midPB"></b></div>
+        <p class="tip feedback" id="midMsg"></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p158 练一练。(4) 拖动点 P：P 只能在“到 A、B 距离相等”的直线上走（线段 AB 的垂直平分线，八年级会学），读数由坐标算出——PA 始终等于 PB，但 P 离开 AB 后就不是中点，这就是反例。</p>
+</section>
+
+<!-- 9 ================= 读一读：费马的猜想 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">读一读</span><h2>著名的反例：费马的猜想</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">公元 1640 年，法国数学家费马发现：$2^{2^0}+1=3$，$2^{2^1}+1=5$，$2^{2^2}+1=17$，$2^{2^3}+1=257$，$2^{2^4}+1=65\,537$ 都是质数．于是费马猜想：对于一切自然数 $n$，$2^{2^n}+1$ 都是质数．</p>
+      <div class="btns" data-noswipe id="fmBtns"></div>
+      <p class="tip feedback fm-out" id="fmOut"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">到了 1732 年，数学家欧拉发现：</p>
+      <p class="big center" data-step="1">$2^{2^5}+1=2^{32}+1=4\,294\,967\,297=641\times6\,700\,417$</p>
+      <p class="tip" data-step="2">这说明 $2^{2^5}+1$ 是一个合数，<span class="think" data-step="3" data-ask="这说明什么？">从而<b>否定</b>了费马的猜想——一个反例就够了。</span></p>
+      <p class="warn" data-step="4" data-label="启示">前 5 个都成立，第 6 个就不成立：再多的例子也代替不了证明。</p>
+    </div>
+  </div>
+  <p class="note">课本 p158 读一读。左边按钮逐个计算 2^(2^n)+1（n = 0～5），用计算机试除判断是否为质数，并检验 641 × 6 700 417 = 4 294 967 297（精确整数运算）。欧拉当年是手算找到 641 的。</p>
+</section>
+
+<!-- 10 ================= 互逆的真命题 · 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议 · 例 1</span><h2>互逆的真命题：一个判定，一个性质</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">“同位角相等，两直线平行”与“两直线平行，同位角相等”是互逆命题，<b>且都是真命题</b>．</p>
+      <div class="ycy2" data-step="1">
+        <div><b>判定</b>：同位角相等 ⟹ 两直线平行<small>根据它判断两条直线平行</small></div>
+        <div><b>性质</b>：两直线平行 ⟹ 同位角相等<small>根据它推出平行线的角的关系</small></div>
+      </div>
+      <p class="tip" data-step="2"><b>例 1</b>　证明：平行于同一条直线的两条直线平行．<br><b>已知：</b>如图 12-10，$b\parallel a$，$c\parallel a$．<b>求证：</b>$b\parallel c$．</p>
+    </div>
+    <div class="col">
+      <div class="proof">
+        <p data-step="3"><span class="lead">证明：</span>作直线 $d$，使它与直线 $a$、$b$、$c$ 都相交．</p>
+        <p data-step="4"><span class="so">∵</span>$b\parallel a$（<button class="yj" data-k="known"></button>），</p>
+        <p data-step="4"><span class="so">∴</span>$\angle2=\angle1$（<span class="think" data-step="5" data-ask="凭什么？"><button class="yj" data-k="tw-xz"></button></span>）．</p>
+        <p data-step="6"><span class="so">∵</span>$c\parallel a$（<button class="yj" data-k="known"></button>），</p>
+        <p data-step="6"><span class="so">∴</span>$\angle3=\angle1$（<button class="yj" data-k="tw-xz"></button>）．</p>
+        <p data-step="7"><span class="so">∴</span>$\angle2=\angle3$（<button class="yj" data-k="subst"></button>）．</p>
+        <p data-step="8"><span class="so">∴</span>$b\parallel c$（<span class="think" data-step="9" data-ask="凭什么？"><button class="yj" data-k="tw-pd"></button></span>）．</p>
+      </div>
+      <div id="f1210" class="gfig l" data-step="2"></div>
+      <p class="method" data-step="10" data-label="一对互逆真命题接力">先用<b>性质</b>（由平行得角相等），再用<b>判定</b>（由角相等得平行）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p159 议一议与例 1、图 12-10。这个结论七上 6.4 曾由操作得到，现在给出证明。辅助线 d 是“作”出来的——三条平行线被同一条直线所截，才有同位角可用。证明里依据可点开。</p>
+</section>
+
+<!-- 11 ================= 例 2 与它的逆命题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 试一试</span><h2>直角三角形的两个锐角互余；反过来呢？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="rt" class="rt-b"></div>
+      <div class="readout rt-read"><span>$\angle A+\angle B$</span><b class="v" id="rtAB"></b><span>$\angle C$</span><b class="v" id="rtC"></b></div>
+      <p class="tip feedback" id="rtMsg"></p>
+    </div>
+    <div class="col">
+      <div class="proof">
+        <p data-step="1"><b>例 2</b>　已知：在 $\triangle ABC$ 中，$\angle C=90^\circ$．求证：$\angle A+\angle B=90^\circ$．</p>
+        <p data-step="2"><span class="lead">证明：</span>在 $\triangle ABC$ 中，$\angle A+\angle B+\angle C=180^\circ$（<button class="yj" data-k="tri-sum"></button>）．</p>
+        <p data-step="2"><span class="so">∴</span>$\angle A+\angle B=180^\circ-\angle C$（<button class="yj" data-k="eq-prop"></button>）．<span class="so">∵</span>$\angle C=90^\circ$（已知），</p>
+        <p data-step="2"><span class="so">∴</span>$\angle A+\angle B=180^\circ-90^\circ$（<button class="yj" data-k="subst"></button>），即 $\angle A+\angle B=90^\circ$．</p>
+      </div>
+      <p class="tip" data-step="3"><b>试一试</b>　说出它的逆命题，这个逆命题是真命题吗？<span class="think" data-step="4" data-ask="逆命题是？">“<b>有两个角互余的三角形是直角三角形</b>”——可以证明它是真命题．</span></p>
+      <div class="proof" data-step="5">
+        <p>已知：在 $\triangle ABC$ 中，$\angle A+\angle B=90^\circ$．求证：$\triangle ABC$ 是直角三角形．</p>
+        <p><span class="lead">证明：</span>$\angle C=180^\circ-(\angle A+\angle B)$（<button class="yj" data-k="tri-sum"></button>、<button class="yj" data-k="eq-prop"></button>）．<span class="so">∵</span>$\angle A+\angle B=90^\circ$（已知），<span class="so">∴</span>$\angle C=180^\circ-90^\circ=90^\circ$（<button class="yj" data-k="subst"></button>），$\triangle ABC$ 是直角三角形．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p159 例 2、p160 试一试。左图：A、B 固定，拖动 C，读数随时显示 ∠A + ∠B 与 ∠C；当 ∠A + ∠B = 90° 时 ∠C 恰为 90°（C 落在以 AB 为直径的圆上，拖近会吸附，圆用虚线画出）。例 2 和它的逆命题都是真命题，又是一对“互逆的真命题”。</p>
+</section>
+
+<!-- 12 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>证明里用到了哪两个互逆的真命题？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">1. (1) 如图，$AB\parallel CD$，$AB$、$DE$ 相交于点 $G$，$\angle B=\angle D$．填写推理的依据：</p>
+      <div id="lx1" class="gfig"></div>
+      <div class="proof small-pf">
+        <p data-step="1"><span class="so">∵</span>$AB\parallel CD$（已知），<span class="so">∴</span>$\angle EGA=\angle D$（<span class="think" data-step="2" data-ask="依据？"><button class="yj" data-k="tw-xz"></button></span>）．</p>
+        <p data-step="3">又 <span class="so">∵</span>$\angle B=\angle D$（已知），<span class="so">∴</span>$\angle EGA=\angle B$（<span class="think" data-step="4" data-ask="依据？"><button class="yj" data-k="subst"></button></span>）．</p>
+        <p data-step="5"><span class="so">∴</span>$DE\parallel BF$（<span class="think" data-step="6" data-ask="依据？"><button class="yj" data-k="tw-pd"></button></span>）．</p>
+      </div>
+      <p class="tip" data-step="7">(2) 用了哪两个互逆的真命题？<span class="think" data-step="8" data-ask="说一说">“两直线平行，同位角相等”与“同位角相等，两直线平行”。</span></p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q">2. (1) 已知：如图，在直角三角形 $ABC$ 中，$\angle ACB=90^\circ$，$D$ 是 $AB$ 上一点，且 $\angle ACD=\angle B$．求证：$CD\perp AB$．<br>(2) 你在 (1) 的证明过程中应用了哪两个互逆的真命题？</p>
+        <div id="lx2" class="gfig"></div>
+        <details><summary>提示 1</summary>在 Rt$\triangle ABC$ 中，$\angle A+\angle B=?$</details>
+        <details><summary>提示 2</summary>把 $\angle B$ 换成 $\angle ACD$，看 $\triangle ACD$ 中哪两个角互余。</details>
+        <details><summary>完整解答</summary>(1) ∵ $\angle ACB=90^\circ$，∴ $\angle A+\angle B=90^\circ$（直角三角形的两个锐角互余）．∵ $\angle ACD=\angle B$（已知），∴ $\angle A+\angle ACD=90^\circ$（等量代换）．∴ $\triangle ACD$ 是直角三角形，$\angle ADC=90^\circ$（有两个角互余的三角形是直角三角形），∴ $CD\perp AB$（垂直的定义）．<br>(2) “直角三角形的两个锐角互余”与“有两个角互余的三角形是直角三角形”。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p160 练一练 1、2。图按条件精确画：第 2 题中 D 取在 C 到 AB 的垂足处，∠ACD 与 ∠B 相等。两道题都在“一个推理中先用性质、后用判定”，正是互逆真命题的典型用法。</p>
+</section>
+
+<!-- 13 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 12.3</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 写出下列命题的逆命题，并判断每对互逆命题的真假：<br>(1) 如果 $ab=0$，那么 $a=0$；<br>(2) 自然数是整数；<br>(3) 不是对顶角的两个角不相等；<br>(4) 内错角相等；<br>(5) 互为相反数的两个数的和为零．</p>
+        <details><summary>提示 1</summary>先改写成“如果……那么……”，再交换；假命题各找一个反例。</details>
+        <details><summary>完整解答</summary>(1) 逆：如果 $a=0$，那么 $ab=0$．原假（$a=1$，$b=0$）、逆真．<br>(2) 逆：整数是自然数．原真、逆假（$-1$）．<br>(3) 逆：如果两个角不相等，那么这两个角不是对顶角．原假（两个直角）、逆真．<br>(4) 逆：相等的角是内错角．原假（两直线不平行时）、逆假．<br>(5) 逆：和为零的两个数互为相反数．原真、逆真．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 举反例说明下列命题是假命题：<br>(1) 如果 $a\ne0$、$b\ne0$，那么 $a^2+b^2=(a+b)^2$；<br>(2) 质数都是奇数；<br>(3) 多边形的外角和小于内角和；<br>(4) 如果 $a\gt b$，那么 $(a+b)(a-b)\gt0$．</p>
+        <details><summary>提示 1</summary>(2) 最小的质数是几？(3) 试试三角形。</details>
+        <details><summary>完整解答</summary>(1) $a=b=1$：$1+1=2\ne4$；(2) 2 是质数，但不是奇数；(3) 三角形外角和 $360^\circ$，内角和 $180^\circ$；(4) $a=1$，$b=-2$：$(a+b)(a-b)=(-1)\times3=-3\lt0$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> (1) 直线 $AB$、$CD$、$EF$ 被直线 $BF$ 所截，$\angle B+\angle1=180^\circ$，$\angle2=\angle3$．求证：$\angle B+\angle F=180^\circ$．<br>(2) 证明过程中应用了哪两个互逆的真命题？</p>
+        <details><summary>提示 1</summary>由 $\angle B+\angle1=180^\circ$ 得 $AB\parallel CD$；由 $\angle2=\angle3$ 得 $CD\parallel EF$．</details>
+        <details><summary>提示 2</summary>$AB$、$EF$ 都平行于 $CD$——用例 1．</details>
+        <details><summary>完整解答</summary>(1) ∵ $\angle B+\angle1=180^\circ$，∴ $AB\parallel CD$（同旁内角互补，两直线平行）；∵ $\angle2=\angle3$，∴ $CD\parallel EF$（内错角相等，两直线平行）；∴ $AB\parallel EF$（平行于同一条直线的两条直线平行）；∴ $\angle B+\angle F=180^\circ$（两直线平行，同旁内角互补）．<br>(2) “同旁内角互补，两直线平行”与“两直线平行，同旁内角互补”．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p161 习题 12.3 第 1、2、4 题。第 3 题（与练一练 1 同类的填空）留作课后。第 1(4) 题注意：“内错角相等”单独说是假命题，必须有“两直线平行”这个条件。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 第 12 章回顾</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">条件与结论互换 → <em>逆命题</em>；两个命题叫<em>互逆命题</em>。每个命题都有逆命题。</p>
+        <p class="warn" data-label="真假无必然联系">真命题的逆命题不一定是真命题。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断真假">假：举<b>一个反例</b>；真：<b>证明</b>。</p>
+        <p class="method" data-label="互逆的真命题">一个作判定、一个作性质，证明中常常接力使用。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>第 12 章 证明</h3>
+        <p class="recall" data-label="一条主线">定义（说清词义）→ 命题（条件、结论、真假）→ 证明（言必有据）→ 定理 → 逆命题、反例。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>章首语：</b>探索中，发现结论，丰富对事物的认识；证明中，证实结论，学会有条理地思考．</p>
+  </div>
+  <p class="note">请学生说一说：本章学了哪几种“判断命题真假”的办法？课后作业建议：习题 12.3 第 1～4 题；有兴趣的同学可以完成课本 p167 课题学习。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

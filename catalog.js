@@ -3901,25 +3901,41 @@ window.CATALOG = [
                 "no": "5.1",
                 "title": "丰富的图形世界",
                 "genre": "概念",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mj7a-fengfutuxing",
+                "pages": 12,
+                "desc": "旋转几何体，数切角正方体，七巧板自动判对",
+                "cover": "mj7a-fengfutuxing/assets/chengshi.jpg"
               },
               {
                 "no": "5.2",
                 "title": "图形的运动",
                 "genre": "概念",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mj7a-tuxingyundong",
+                "pages": 12,
+                "desc": "拖滑块看平面图形转一周扫出几何体",
+                "cover": "mj7a-tuxingyundong/assets/yushua.jpg"
               },
               {
                 "no": "5.3",
                 "title": "展开与折叠",
                 "genre": "概念",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mj7a-zhankaizhedie",
+                "pages": 12,
+                "desc": "展开图逐步折叠，自动判断能否围成",
+                "cover": "mj7a-zhankaizhedie/assets/shougong.jpg"
               },
               {
                 "no": "5.4",
                 "title": "主视图、左视图、俯视图",
                 "genre": "概念",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mj7a-sanshitu",
+                "pages": 16,
+                "desc": "转到正前/左/上得视图；搭积木出三视图",
+                "cover": "mj7a-sanshitu/assets/lushan.jpg"
               }
             ]
           },
@@ -3932,7 +3948,11 @@ window.CATALOG = [
                 "no": "6.1",
                 "title": "线段、射线、直线",
                 "genre": "概念",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7a-xianduan",
+                "pages": 14,
+                "desc": "拉直小路看两点间线段最短；抽水站选址",
+                "cover": "mj7a-xianduan/assets/caoping.jpg"
               },
               {
                 "no": "6.2",
@@ -4005,31 +4025,51 @@ window.CATALOG = [
                 "no": "7.1",
                 "title": "探索直线平行的条件",
                 "genre": "推导",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7b-pingxingtiaojian",
+                "pages": 14,
+                "desc": "拖动直线看同位角相等时两线平行",
+                "cover": "mj7b-pingxingtiaojian/assets/mugong.jpg"
               },
               {
                 "no": "7.2",
                 "title": "探索平行线的性质",
                 "genre": "推导",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7b-pingxingxingzhi",
+                "pages": 12,
+                "desc": "平行线截出的同位角、内错角同步变化",
+                "cover": "mj7b-pingxingxingzhi/assets/tiegui.jpg"
               },
               {
                 "no": "7.3",
                 "title": "图形的平移",
                 "genre": "概念",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7b-pingyi",
+                "pages": 11,
+                "desc": "方格纸上一步步平移，对应点连线平行且相等",
+                "cover": "mj7b-pingyi/assets/futi.jpg"
               },
               {
                 "no": "7.4",
                 "title": "认识三角形",
                 "genre": "概念",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7b-sanjiaoxing",
+                "pages": 12,
+                "desc": "拖顶点看三边关系与三条重要线段",
+                "cover": "mj7b-sanjiaoxing/assets/jinzita.jpg"
               },
               {
                 "no": "7.5",
                 "title": "多边形的内角和与外角和",
                 "genre": "推导",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7b-neijiaohe",
+                "pages": 16,
+                "desc": "剪拼三角形内角，多边形分三角形求内角和",
+                "cover": "mj7b-neijiaohe/assets/caodi.jpg"
               }
             ]
           },
@@ -4185,19 +4225,31 @@ window.CATALOG = [
                 "no": "12.1",
                 "title": "定义与命题",
                 "genre": "概念",
-                "kind": "证明"
+                "kind": "证明",
+                "dir": "mj7b-dingyimingti",
+                "pages": 10,
+                "desc": "命题拆解台：切出条件｜结论再判真假",
+                "cover": "mj7b-dingyimingti/assets/taolun.jpg"
               },
               {
                 "no": "12.2",
                 "title": "证明",
                 "genre": "推导",
-                "kind": "证明"
+                "kind": "证明",
+                "dir": "mj7b-zhengming",
+                "pages": 17,
+                "desc": "证明搭积木：拖依据进∵∴空槽，可点开依据卡",
+                "cover": "mj7b-zhengming/assets/qujing.jpg"
               },
               {
                 "no": "12.3",
                 "title": "互逆命题",
                 "genre": "概念",
-                "kind": "证明"
+                "kind": "证明",
+                "dir": "mj7b-hunimingti",
+                "pages": 14,
+                "desc": "交换机：条件卡⇄结论卡，再用反例判真假",
+                "cover": "mj7b-hunimingti/assets/huanka.jpg"
               }
             ]
           },

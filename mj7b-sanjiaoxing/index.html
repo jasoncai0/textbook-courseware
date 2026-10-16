@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>认识三角形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jinzita.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第7章 平面图形的认识（二） · 7.4</p>
+    <h1 class="cover-title">认识三角形</h1>
+    <p class="cover-q" data-step="1">交通警告标志牌、金字塔的侧面……生活中常常见到三角形。</p>
+    <p class="cover-q" data-step="2">随便拿 3 根小木棒，<b>一定</b>能搭成一个三角形吗？三角形里除了三条边，还有哪些<b>重要的线段</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">搭小木棒</span><span class="chip">三边关系</span><span class="chip">拉橡皮筋</span><span class="chip">中线 · 角平分线 · 高</span></div>
+  </div>
+  <p class="note">课本 p22 情境。请学生举出生活中三角形的实例并交流。封面的两个问题对应本课两条主线：三边关系（数学实验室）、三角形的三种重要线段（议一议·橡皮筋）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="小学 · 三角形的分类" data-step="1">
+        <p>按角分：锐角三角形、直角三角形、钝角三角形。</p>
+        <p>按边：等腰三角形（有两条边相等）、等边三角形。</p>
+        <span class="use">做一做：用量角器、圆规检验图 7-22 的三角形。</span>
+      </div>
+      <div class="recall" data-label="七上 6.1 · 线段" data-step="2">
+        <p>基本事实：<b>两点之间线段最短</b>。</p>
+        <p>线段的中点把线段分成相等的两部分。</p>
+        <span class="use">说明三角形三边关系；定义三角形的中线。</span>
+      </div>
+      <div class="recall" data-label="七上 6.2 · 6.5 · 角平分线、垂线" data-step="3">
+        <p>角平分线把一个角分成相等的两个角。</p>
+        <p>过一点画已知直线的垂线，垂足是垂线与直线的交点。</p>
+        <span class="use">定义三角形的角平分线和高。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>三角形的边有什么关系？三角形里有哪些重要的线段？</p>
+  </div>
+  <p class="note">第一张卡请学生画出锐角、直角、钝角三角形各一个；第二张卡的基本事实是本课说理的唯一依据，务必让学生先复述。注意：七上学的“角平分线”是一条射线，三角形的角平分线是一条线段（第 8 页会对比）。</p>
+</section>
+
+<!-- 3 ================= 定义 + 做一做（图 7-21、7-22） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念 · 做一做</span><h2>三角形的边、角、顶点；量一量来分类</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>三角形（课本 p22）</h4>由 3 条<em>不在同一条直线上</em>的线段，<em>首尾依次相接</em>组成的图形．</div>
+      <div id="f721" class="gfig" data-step="2"></div>
+      <p class="tip" data-step="2">顶点是 $A$、$B$、$C$ 的三角形记作“$\triangle ABC$”．$\angle A$ 所对的边 $BC$ 可以用 $a$ 表示；$\angle B$ 所对的边 $AC$、$\angle C$ 所对的边 $AB$ 也可以分别用 $b$、$c$ 表示．</p>
+    </div>
+    <div class="col">
+      <div id="f722" class="f722-b"></div>
+      <div class="btns" data-noswipe id="f722Btns"><button class="btn" type="button" data-m="ang">用量角器量角</button><button class="btn" type="button" data-m="side">量边长（cm）</button><button class="btn" type="button" data-m="">清除</button></div>
+      <p class="tip" data-step="3">(1) 哪些是锐角、直角、钝角三角形？(2) 哪些是等腰三角形？<span class="think" data-step="4" data-ask="量完再说">(1) 锐角：③；直角：①④；钝角：②．(2) 等腰：③④．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p22 定义、图 7-21 与做一做（图 7-22）。定义里两个关键词：“不在同一条直线上”“首尾依次相接”。右图四个三角形按课本图的形状用坐标画出，点按钮显示量得的角度和边长（课本图里 ④ 是等腰直角三角形，③ 是锐角等腰三角形）。</p>
+</section>
+
+<!-- 4 ================= 数学实验室：搭小木棒（图 7-23） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>任取 3 根小木棒，能搭成三角形吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns sticks" data-noswipe id="stickBtns"></div>
+      <div id="stick" class="stick-b"></div>
+      <p class="tip feedback" id="stickMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">从长度分别为 3 cm、4 cm、5 cm、6 cm 和 9 cm 的小木棒中任意取 3 根（图 7-23）．点左边的木棒选 3 根试一试．</p>
+      <table class="mtab stick-tab" id="stickTab"></table>
+      <p class="tip" data-step="1">通过上面的实验，你发现三角形三边之间有怎样的关系？<span class="think" data-step="2" data-ask="说一说">两条边的和大于第三边。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p23 数学实验室与两个卡通人的发现（3、4、5 能搭成；3、5、9 不能）。木棒按真实比例画：最长的放底下，另两根绕两端转动，转到相交就是三角形；够不着时画面显示“还差多少”。一共 10 种取法，表格自动记录。可追问：5 + 4 = 9 时为什么也不行？（两根木棒会“躺平”在第三根上，围不成三角形。）</p>
+</section>
+
+<!-- 5 ================= 议一议：三边关系 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>为什么“两边之和大于第三边”？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f724" class="gfig l"></div>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>从 $B$ 到 $C$</span><span>走线段 $BC$，或者走折线 $B\to A\to C$</span></div>
+        <div class="dl" data-step="2"><span>∴</span><span>$AB+AC\gt BC$．</span><span class="think" data-step="3" data-ask="凭什么？">两点之间线段最短</span></div>
+        <div class="dl" data-step="4"><span>同样</span><span>$AC+BC\gt AB$，$AB+BC\gt AC$．</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def big-def" data-step="5"><h4>课本 p23</h4><em>三角形的任意两边之和大于第三边</em>．</div>
+      <p class="method" data-step="6" data-label="判断三根木棒能否搭成三角形">只要看<b>较短的两根之和</b>是否大于<b>最长的一根</b>：$3+5=8\lt9$，所以 3、5、9 不能．</p>
+      <p class="warn" data-step="7" data-label="“等于”也不行">$4+5=9$：两根木棒正好“躺平”在第三根上，三点在同一条直线上，不符合三角形定义中“不在同一条直线上”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p23 议一议与图 7-24。说理只有一步，但依据要说准：“两点之间线段最短”是基本事实。“任意两边”是三个不等式；实际判断时只要验一个（最短两边之和 > 最长边），可以请学生解释为什么另外两个自动成立。</p>
+</section>
+
+<!-- 6 ================= 练一练（p24） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>数三角形、搭三角形</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 图中共有几个三角形？把它们分别表示出来，并用量角器检验它们是锐角三角形、直角三角形，还是钝角三角形．</p>
+        <div id="lx1" class="gfig"></div>
+        <details><summary>提示 1</summary>按“含 $AD$ 的、含 $DE$ 的”分类数，不重不漏。</details>
+        <details><summary>完整解答</summary>共 5 个：$\triangle ACD$、$\triangle ACB$（直角三角形）；$\triangle ADB$、$\triangle DEB$（钝角三角形，$\angle ADB$、$\angle DEB$ 是钝角）；$\triangle ADE$（锐角三角形）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 4 根小木棒的长度分别为 2 cm、3 cm、4 cm 和 5 cm．用其中 3 根搭三角形，可以搭出几个不同的三角形？</p>
+        <details><summary>提示 1</summary>先列出所有取法：4 根取 3 根，共 4 种。</details>
+        <details><summary>完整解答</summary>2、3、4（$2+3\gt4$ ✓）；2、3、5（$2+3=5$ ✗）；2、4、5（$2+4\gt5$ ✓）；3、4、5（✓）．可以搭出 3 个．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4.</b> 下列长度的 3 根小木棒能搭成三角形吗？<br>(1) 3 cm，5 cm，10 cm；(2) 5 cm，4 cm，9 cm；(3) 4 cm，6 cm，9 cm．</p>
+        <details><summary>提示 1</summary>较短两根之和与最长一根比较。</details>
+        <details><summary>完整解答</summary>(1) $3+5=8\lt10$，不能；(2) $5+4=9$，不能；(3) $4+6=10\gt9$，能．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p24 练一练 1、2 与 p26 习题 7.4 第 4 题。第 1 题图按课本比例用坐标画出，各角大小由坐标算出（∠ADB ≈ 119°，∠DEB ≈ 110°）。数三角形要有序，避免遗漏 △ADE。</p>
+</section>
+
+<!-- 7 ================= 议一议：橡皮筋（图 7-25） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>拉橡皮筋：哪些位置是特殊的？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="band" class="band-b"></div>
+      <div class="btns" data-noswipe id="bandBtns"><button class="btn" type="button" data-k="mid">落在 $BC$ 的中点</button><button class="btn" type="button" data-k="bis">平分 $\angle BAC$</button><button class="btn" type="button" data-k="alt">与 $BC$ 垂直</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">橡皮筋的一端固定在 $\triangle ABC$ 的顶点 $A$ 处，另一端从点 $B$ 出发沿 $BC$ 方向移动（图 7-25）．拖动橙色点试一试．</p>
+      <div class="readout band-read">
+        <span>$BP$ ∶ $PC$</span><b class="v" id="bandR"></b>
+        <span>$\angle BAP$ ∶ $\angle PAC$</span><b class="v" id="bandA"></b>
+        <span>$\angle APB$</span><b class="v" id="bandP"></b>
+      </div>
+      <p class="tip feedback" id="bandMsg"></p>
+      <p class="tip" data-step="1">三个特殊位置是同一个点吗？<span class="think" data-step="2" data-ask="点三个按钮比一比">一般不是：三个点在 $BC$ 上各在一处（只有 $AB=AC$ 时才重合）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p24 议一议与三个卡通人的发现。先让学生自由拖动、说出“特殊”在哪里，再点按钮验证。读数里比值、角度都按坐标实时计算。第 2 步可以把橡皮筋停在中点，再点“平分 ∠BAC”，看点移动了多少。</p>
+</section>
+
+<!-- 8 ================= 中线、角平分线、高（图 7-26） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>三角形的中线、角平分线、高</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>中线（课本 p24）</h4>在三角形中，连接一个顶点与它的对边<em>中点</em>的线段，叫做三角形的中线．</div>
+      <div class="def" data-step="2"><h4>角平分线</h4>在三角形中，一个内角的<em>平分线</em>与这个角的对边相交，这个角的顶点与交点之间的<em>线段</em>叫做三角形的角平分线．</div>
+      <div class="def" data-step="3"><h4>高</h4>从三角形的一个顶点向它的对边所在直线作<em>垂线</em>，顶点与垂足之间的线段叫做三角形的高线，简称三角形的高．</div>
+    </div>
+    <div class="col">
+      <div id="f726" class="gfig l" data-step="4"></div>
+      <p class="tip" data-step="4">图 7-26：$D$ 是 $BC$ 的中点，$AD$ 是中线；$\angle BAC$ 的平分线交 $BC$ 于点 $E$，$AE$ 是角平分线；$AF\perp BC$，垂足为 $F$，$AF$ 是高．</p>
+      <p class="tip" data-step="5">三角形的中线、角平分线、高各有几条？<span class="think" data-step="6" data-ask="想一想">各有 3 条（每个顶点各一条）。</span></p>
+      <p class="warn" data-step="7" data-label="是线段，不是射线、直线">三角形的角平分线、高都是<b>线段</b>；“对边<b>所在直线</b>”——钝角三角形的高可能落在三角形外面（第 10 页）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p24–25 三个定义与图 7-26（图中 D、E、F 由坐标精确算出：中点、角平分线与 BC 的交点、垂足）。对比七上：角的平分线是射线，三角形的角平分线是线段；垂线是直线，三角形的高是线段。</p>
+</section>
+
+<!-- 9 ================= 想一想（图 7-27、7-28） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>是哪个三角形的角平分线、中线、高？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>1.</b> 如图 7-27，在 $\triangle ABC$ 中，点 $D$ 在 $BC$ 上，且 $\angle BAD=\angle CAD$，$E$ 是 $AC$ 的中点，$BE$ 交 $AD$ 于点 $F$．指出图中哪条线段是哪个三角形的角平分线，哪条线段是哪个三角形的中线．</p>
+      <div id="f727" class="gfig l"></div>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="说一说">$AD$ 是 $\triangle ABC$ 的角平分线，$AF$ 是 $\triangle ABE$ 的角平分线；$BE$ 是 $\triangle ABC$ 的中线，$DE$ 是 $\triangle ADC$ 的中线．</span></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>2.</b> 如图 7-28，在 $\triangle ABC$ 中，$\angle C=90^\circ$，点 $D$ 在 $BC$ 上，$DE\perp AB$，垂足为 $E$．指出图中 $DE$、$AC$ 分别是哪些三角形的高．</p>
+      <div id="f728" class="gfig l"></div>
+      <p class="tip" data-step="3"><span class="think" data-step="4" data-ask="说一说">$DE$ 是 $\triangle ABD$ 的高；$AC$ 是 $\triangle ABC$、$\triangle ADC$、$\triangle ABD$ 的高．（在直角三角形 $\triangle ADE$、$\triangle BDE$ 中，$DE$ 是直角边，同时也是高．）</span></p>
+      <p class="method" data-step="5" data-label="找高的窍门">看线段是否从某个顶点出发、垂直于对边<b>所在直线</b>——$AC$ 垂直于 $BD$ 所在直线 $BC$，所以也是 $\triangle ABD$ 的高（在三角形外）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p25 想一想 1、2。第 1 题提醒：一条线段可能同时是几个三角形的特殊线段（AF 是 AD 的一部分）。第 2 题 △ABD 是钝角三角形，它的一条高 AC 落在三角形外面，学生最容易漏。</p>
+</section>
+
+<!-- 10 ================= 练一练：画三条中线 / 角平分线 / 高 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>画出三条中线、角平分线、高，你有什么发现？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="triBtns"><button class="btn solid" type="button" data-k="med">3 条中线</button><button class="btn" type="button" data-k="bis">3 条角平分线</button><button class="btn" type="button" data-k="alt">3 条高</button></div>
+      <div id="tri3" class="tri3-b"></div>
+      <p class="muted center small-t">拖动三个顶点，变成锐角、直角、钝角三角形再看</p>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="triMsg"></p>
+      <p class="tip">课本 p25 练一练 1–3：折纸折出 3 条角平分线；画出各三角形的 3 条中线、3 条高．</p>
+      <p class="tip" data-step="1">发现：<span class="think" data-step="2" data-ask="说一说你的发现">三条中线交于一点；三条角平分线交于一点；三条高（所在的直线）交于一点。中线、角平分线的交点总在三角形内部。</span></p>
+      <p class="tip" data-step="3">三条高的交点在哪里？<span class="think" data-step="4" data-ask="分三种三角形说">锐角三角形：在内部；直角三角形：在直角顶点；钝角三角形：在外部（要把高延长）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p25–26 练一练 1–3。先让学生在纸上画一个，再用左图验证。三线交于一点的结论这里只要求“发现”，证明在八年级。钝角三角形的两条高在外部，要先延长对边（图中虚线），这是作图的难点。</p>
+</section>
+
+<!-- 11 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.4</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 方格中的点 $A$、$B$、$C$、$D$、$E$ 称为“格点”．以这 5 个格点中的 3 点为顶点画三角形，一共可以画多少个？其中哪些是直角三角形、钝角三角形、锐角三角形？哪些是等腰三角形？</p>
+        <div id="xt3" class="gfig"></div>
+        <details><summary>提示 1</summary>5 个点取 3 个有 10 种，但 $A$、$B$、$C$ 在同一条直线上。</details>
+        <details><summary>完整解答</summary>共 9 个．直角：$\triangle ABE$、$\triangle BCE$、$\triangle CDE$；钝角：$\triangle ABD$、$\triangle ACD$、$\triangle BCD$；锐角：$\triangle ACE$、$\triangle ADE$、$\triangle BDE$；等腰：$\triangle ACE$、$\triangle CDE$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> $\triangle ABC$ 是锐角三角形．(1) 过点 $A$ 画 $BC$ 的垂线，垂足为 $D$；过点 $A$ 画 $AB$ 的垂线，交 $BC$ 的延长线于点 $E$．(2) 哪些三角形是直角三角形、钝角三角形？$AD$ 是哪些三角形的高？</p>
+        <div id="xt5" class="gfig"></div>
+        <details><summary>提示 1</summary>$AD\perp BE$，所以 $AD$ 是以 $BE$ 上的线段为一边、以 $A$ 为顶点的所有三角形的高。</details>
+        <details><summary>完整解答</summary>直角三角形：$\triangle ABD$、$\triangle ADC$、$\triangle ADE$、$\triangle ABE$；钝角三角形：$\triangle ACE$（$\angle ACE$ 是钝角）；$AD$ 是 $\triangle ABC$、$\triangle ABD$、$\triangle ADC$、$\triangle ADE$、$\triangle ACE$、$\triangle ABE$ 的高．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>7.</b> (1) $AD$ 是 $\triangle ABC$ 的中线．$\triangle ABC$ 与 $\triangle ABD$ 的面积有怎样的数量关系？为什么？(2) 你能把 1 个三角形分成面积相等的 4 个三角形吗？</p>
+        <div id="xt7" class="gfig"></div>
+        <details><summary>提示 1</summary>$\triangle ABD$ 与 $\triangle ADC$ 的底 $BD=DC$，高都是从 $A$ 到 $BC$ 的高。</details>
+        <details><summary>完整解答</summary>(1) $S_{\triangle ABC}=2S_{\triangle ABD}$：两个三角形等底（$BD=DC$）同高．<br>(2) 能．例如把 $BC$ 四等分，连接 $A$ 与三个分点；或先作中线 $AD$，再分别作 $\triangle ABD$、$\triangle ADC$ 的中线．（答案不唯一）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p26–27 习题 7.4 第 3、5、7 题。第 3 题图按课本方格（4 × 3）画出，答案已逐个按坐标核对角度。第 5 题图是按题意作出的结果。其余（第 1、2、6 题）留作作业。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">三角形：边、角、顶点；记作 $\triangle ABC$。三边关系：任意两边之和大于第三边。</p>
+        <p class="def">三种重要线段：中线、角平分线、高（都是线段，各 3 条）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断能否组成三角形">较短两边之和 &gt; 最长边。</p>
+        <p class="method" data-label="画高">过顶点向对边<b>所在直线</b>作垂线，必要时延长对边。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="实验 → 说理">搭木棒发现，用“两点之间线段最短”说明。</p>
+        <p class="recall" data-label="运动中找特殊">橡皮筋在 $BC$ 上移动，停在三个特殊位置。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>7.5 多边形的内角和与外角和——小学把三个角拼在一起得到 $180^\circ$，能不能<b>说明理由</b>？四边形、五边形呢？</p>
+  </div>
+  <p class="note">请学生说出：三角形三边关系的依据是什么？三种线段的定义各抓住哪个关键词（中点、平分、垂直）？课后作业建议：习题 7.4 第 1、2、6 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

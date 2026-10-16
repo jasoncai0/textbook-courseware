@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>线段、射线、直线 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/caoping.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第6章 平面图形的认识（一） · 6.1</p>
+    <h1 class="cover-title">线段、射线、直线</h1>
+    <p class="cover-q" data-step="1">公园的草坪上，常常被人踩出一条斜穿过去的小路。</p>
+    <p class="cover-q" data-step="2">明明有铺好的步道，人们为什么偏偏要<b>斜着走</b>？这里面藏着一个什么道理？</p>
+    <div class="chips" data-step="3"><span class="chip">两点之间线段最短</span><span class="chip">两点确定一条直线</span><span class="chip">比较线段的大小</span><span class="chip">线段的中点</span></div>
+  </div>
+  <p class="note">本章章头是一张城市地图（课本 p145）：道路的平行、垂直、交叉，从火车站到汽车站怎样走最近……本节先研究最基本的图形：线段、射线、直线。封面问题请学生先说生活经验（“抄近路”），本课用数学说清楚“近”在哪里。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="小学四年级 · 线段 射线 直线" data-step="1">
+        <p>线段有两个端点，可以量出长度；射线有一个端点，向一方无限延伸；直线没有端点，向两方无限延伸。</p>
+        <span class="use">本课用字母<b>表示</b>它们，并说清它们之间的关系。</span>
+      </div>
+      <div class="recall" data-label="5.2 图形的运动" data-step="2">
+        <p>点动成线。<a href="../mj7a-tuxingyundong/index.html">回看 5.2</a></p>
+        <span class="use">第 3 页：从甲地到乙地，点走过不同的路线，留下不同的线。</span>
+      </div>
+      <div class="recall" data-label="2.3 数轴" data-step="3">
+        <p>数轴是规定了原点、正方向和单位长度的<b>直线</b>；两点之间的距离可以用数表示。<a href="../mj7a-shuzhou/index.html">回看 2.3</a></p>
+        <span class="use">第 9、10 页：线段的和、差、中点，就像在数轴上算距离。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">小学已经会区分三种线，本课的新东西有三件：符号表示（线段 AB、射线 AB、直线 AB）、两个基本事实、线段的大小比较与和差（中点）。</p>
+</section>
+
+<!-- 3 ================= 议一议（图 6-1） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>从甲地到乙地，走哪条路较近？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p146：1. 如图 6-1，从甲地到乙地有 3 条路，走哪条路较近？2. 从甲地到乙地能否修一条最短的路？如果能，你认为这条路应该怎样修？</p>
+      <p class="tip small">拖动橙色的点，把橙色的路改成你想修的样子。</p>
+      <p class="tip feedback" id="roadMsg"></p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="roadSeg">显示 / 隐藏线段 甲乙</button></div>
+      <div class="def" data-step="1"><h4>基本事实</h4>两点之间<em>线段</em>最短．<br><span class="small">两点之间线段的长度叫做这两点之间的<em>距离</em>．</span></div>
+    </div>
+    <div class="col">
+      <div id="roads" class="pb"></div>
+      <p class="readout1" id="roadRead"></p>
+      <p class="warn" data-step="2" data-label="辨一辨">“两点之间的距离”是线段的<b>长度</b>（一个数），不是线段本身（一个图形）。</p>
+      <p class="recall" data-step="3" data-label="想一想">研究章头的城市地图：由火车站到汽车站，哪条路线更近？<span class="think" data-step="4" data-ask="为什么？">越接近两站之间的那条线段，路线就越短——斜穿的道路往往更近。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p146 图 6-1 与“想一想”（城市地图：(1) 运河路→青年路，(2) 运河路→世纪大道→解放路，请学生在课本地图上比较）。三条路的长度由曲线坐标算出（单位：格）。“基本事实”是大家公认、不需要证明的结论，今后可以直接用作推理的依据——这与 2.x、3.x 的运算律地位相同。封面的草坪小路就是这个基本事实。</p>
+</section>
+
+<!-- 4 ================= 表示方法（图 6-2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>线段、射线、直线的表示</h2></div>
+  <div class="bd full top">
+    <div class="btns" data-noswipe id="extK"><button class="btn solid" type="button" data-k="seg">图 6-2(1) 线段</button><button class="btn" type="button" data-k="ray">(2) 延长 → 射线</button><button class="btn" type="button" data-k="line">(3) 反向延长 → 直线</button></div>
+    <div id="ext" class="pb3"></div>
+    <p class="tip feedback" id="extMsg"></p>
+    <table class="mtab" data-step="1">
+      <tr><th>名称</th><th>图形</th><th>表示</th><th>端点</th><th>延伸</th><th>能否度量</th></tr>
+      <tr><td>线段</td><td><svg viewBox="0 0 120 20" class="ic"><line x1="15" y1="10" x2="105" y2="10"/><circle cx="15" cy="10" r="3"/><circle cx="105" cy="10" r="3"/></svg></td><td>线段 $AB$、线段 $BA$、线段 $a$</td><td>2 个</td><td>不延伸</td><td>能</td></tr>
+      <tr><td>射线</td><td><svg viewBox="0 0 120 20" class="ic"><line x1="15" y1="10" x2="118" y2="10"/><circle cx="15" cy="10" r="3"/><circle cx="70" cy="10" r="3"/></svg></td><td>射线 $AB$（端点写在前）</td><td>1 个</td><td>向一方无限延伸</td><td>不能</td></tr>
+      <tr><td>直线</td><td><svg viewBox="0 0 120 20" class="ic"><line x1="2" y1="10" x2="118" y2="10"/><circle cx="40" cy="10" r="3"/><circle cx="80" cy="10" r="3"/></svg></td><td>直线 $AB$、直线 $BA$、直线 $l$</td><td>0 个</td><td>向两方无限延伸</td><td>不能</td></tr>
+    </table>
+    <p class="warn" data-step="2" data-label="易错">射线 $AB$ 与射线 $BA$ <b>不是</b>同一条射线：<span class="think" data-step="3" data-ask="为什么？">端点不同、延伸方向也不同。而线段 AB 与线段 BA、直线 AB 与直线 BA 是同一个图形。</span></p>
+  </div>
+  <p class="note">课本 p146–147 图 6-2。逐个按钮演示“延长”与“反向延长”。表示法要求：点用大写字母，线段、直线可用一个小写字母；射线只能用两个大写字母，且端点在前。</p>
+</section>
+
+<!-- 5 ================= 议一议（图 6-3） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>一条线段上有几个点，就有几条线段？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p147：如图 6-3，点 $B$、$C$ 在线段 $AD$ 上．(1) 图中以 $A$ 为一个端点的线段有几条？是哪几条？以 $B$ 为一个端点的线段呢？(2) 图中以 $A$、$B$、$C$、$D$ 四点中的两点为端点的线段有几条？是哪几条？</p>
+      <div class="slider-row" data-noswipe>线上的点数：<input type="range" id="cntN" min="2" max="7" step="1" value="4"><b class="v" id="cntNV"></b></div>
+      <p class="tip feedback" id="cntMsg"></p>
+    </div>
+    <div class="col">
+      <div id="cnt" class="pb"></div>
+      <p class="tip small">已找到：<span id="cntList"></span></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 以 A 为端点</span><span class="think" data-step="2" data-ask="几条？">3 条：AB、AC、AD</span><i class="why">A 与其余 3 个点各连一条</i></div>
+        <div class="dl" data-step="3"><span>以 B 为端点</span><span class="think" data-step="4" data-ask="几条？">3 条：BA、BC、BD</span><i class="why">同样与其余 3 个点各连一条</i></div>
+        <div class="dl end" data-step="5"><span>(2) 一共</span><span class="think" data-step="6" data-ask="是 4×3=12 条吗？">$4\times3\div2=6$ 条</span><i class="why">每条线段被它的两个端点各数了一次，要除以 2</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p147 议一议。先让学生在图上点两个点“找线段”，要求有序：先找以 A 为端点的，再找以 B 为端点的（不再算 BA）……拖动滑块改变点数，学生可以发现规律：$n$ 个点有 $\dfrac{n(n-1)}{2}$ 条线段（拓展，不要求记）。</p>
+</section>
+
+<!-- 6 ================= 试一试（图 6-4） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>过一点能画几条直线？过两点呢？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p147：如图 6-4，已知点 $A$、$B$．(1) 过点 $A$ 可以画几条直线？(2) 过 $A$、$B$ 两点可以画几条直线？由此，你得到了什么结论？</p>
+      <p class="tip small">拖动直线上的橙色点，让直线绕 A 转；点“留下这条”画出更多直线。</p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="thrKeep">留下这条</button></div>
+      <p class="tip feedback" id="thrMsg"></p>
+      <div class="def" data-step="1"><h4>基本事实</h4>两点确定一条直线．</div>
+      <p class="recall" data-step="2" data-label="生活中">木工弹墨线、植树时先定两头的树再拉线、射击时“三点一线”……<span class="think" data-step="3" data-ask="都用了哪个事实？">都用了“两点确定一条直线”。</span></p>
+    </div>
+    <div class="col"><div id="thr" class="pb2"></div></div>
+  </div>
+  <p class="note">课本 p147 试一试。过一点 A 的直线可以画无数条；转到经过 B 时会“吸住”——过 A、B 两点的直线有且只有一条。“确定”包含两层意思：有一条（存在），只有一条（唯一）。</p>
+</section>
+
+<!-- 7 ================= 做一做（图 6-5）+ 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 · 练一练</span><h2>按要求画图</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p147 做一做：如图 6-5，已知 $A$、$B$、$C$．(1) 画线段 $BC$（连接 $BC$），画直线 $AB$、$AC$；(2) 在线段 $BC$ 上取一点 $D$，画射线 $AD$．</p>
+      <p class="tip">练一练 1（p148）：已知点 $A$、$B$、$C$．(1) 画线段 $AB$；(2) 画射线 $BC$；(3) 画直线 $AC$．</p>
+      <div class="btns" data-noswipe id="drwT"><button class="btn solid" type="button" data-k="seg">线段</button><button class="btn" type="button" data-k="ray">射线</button><button class="btn" type="button" data-k="line">直线</button><button class="btn" type="button" id="drwClr">清空</button></div>
+      <p class="tip small">先选工具，再依次点两个点（画射线时先点端点）。已画：<span id="drwList"></span></p>
+    </div>
+    <div class="col">
+      <div id="drw" class="pb2"></div>
+      <p class="method" data-step="1" data-label="画图语言">“连接 $BC$”= 画线段 $BC$；“延长线段 $AB$”= 按从 $A$ 到 $B$ 的方向延长；“反向延长线段 $AB$”= 按从 $B$ 到 $A$ 的方向延长。</p>
+    </div>
+  </div>
+  <p class="note">点击两个点画图时，射线的方向由点击顺序决定（先点的是端点），这正好检验“射线 BC 端点写在前”。练一练 1 画完后请学生互相检查：射线 BC 是否从 B 出发、经过 C 向外延伸。</p>
+</section>
+
+<!-- 8 ================= 比较大小（图 6-6、6-7） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比较</span><h2>怎样比较两条线段的大小？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p148：通过<b>度量</b>或<b>叠合</b>可以比较两条线段的大小．用叠合的方法比较图 6-6 中线段 $AB$ 与 $CD$ 的大小，只要移动线段 $AB$，使点 $A$ 与点 $C$ 重合，线段 $AB$ 落在射线 $CD$ 上（如图 6-7）．</p>
+      <div class="slider-row" data-noswipe>线段 $AB$ 的长：<input type="range" id="ovlL" min="1.5" max="6" step="0.1" value="2.6"><b class="v" id="ovlLV"></b></div>
+      <p class="tip feedback" id="ovlMsg"></p>
+    </div>
+    <div class="col">
+      <div id="ovl" class="pb"></div>
+      <div class="def" data-step="1">此时，如果点 $B$ 落在线段 $CD$ 上（不与点 $C$、$D$ 重合），那么线段 $AB$ 小于线段 $CD$，记作 $AB\lt CD$．</div>
+      <p class="tip" data-step="2">想一想，点 $B$ 落在什么位置时，$AB=CD$，$AB\gt CD$？<span class="think" data-step="3" data-ask="说一说">$B$ 与 $D$ 重合时 $AB=CD$；$B$ 落在线段 $CD$ 的延长线上时 $AB\gt CD$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p148 图 6-6、6-7。拖动 A 靠近 C 会自动重合（叠合要“一端对齐、同一方向”）。再拖滑块改变 AB 的长，看 B 落在 CD 上、与 D 重合、落在延长线上三种情况。课本还介绍了用圆规在射线上截取等长线段（图 6-8），可在黑板上示范。</p>
+</section>
+
+<!-- 9 ================= 和差（图 6-9） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>线段的和与差</h2></div>
+  <div class="bd full top">
+    <p class="tip">课本 p149 试一试：1. 比较图 6-9 中以 $A$ 为一个端点的线段的大小，并把它们用“&lt;”号连接起来．2. 在图 6-9 中，$AC=AB+BC$，$AB=AD-DB$．类似地，还能写出哪些有关线段的和与差的关系式？</p>
+    <div id="sum" class="pb3"></div>
+    <p class="tip readout1" id="sumRead"></p>
+    <div class="cols2">
+      <p class="def" data-step="1">1. <span class="think" data-step="2" data-ask="用 < 连接">$AB\lt AC\lt AD$．</span></p>
+      <p class="def" data-step="3">2. 例如：<span class="think" data-step="4" data-ask="再写几个">$AD=AB+BC+CD$，$BD=BC+CD$，$CD=AD-AC$，$BC=AC-AB$……</span></p>
+    </div>
+    <p class="recall" data-step="5" data-label="做一做（p149）">已知线段 $AB$，延长线段 $AB$ 到点 $C$，使 $BC=AB$：用圆规在射线 $AB$ 上截取．这时 $AC=2AB$．</p>
+  </div>
+  <p class="note">拖动 B、C 两点（每次移动半格），等式中的数随之变化，但关系式不变——这就是用字母（线段名）表示的数量关系。可与 2.5 有理数加减联系：在数轴上，$AC=AB+BC$ 正是“距离可以相加”。</p>
+</section>
+
+<!-- 10 ================= 中点（图 6-11） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>线段的中点</h2></div>
+  <div class="bd full top">
+    <div class="def" data-step="1">如图 6-11，点 $B$ 把线段 $AC$ 分成两条相等的线段 $AB$ 和 $BC$，点 $B$ 叫做线段 $AC$ 的<em>中点</em>．</div>
+    <div id="mid" class="pb3"></div>
+    <p class="tip feedback" id="midRead"></p>
+    <p class="tip" data-step="2"><b>议一议：</b>在图 6-11 中，线段 $AB$、$BC$、$AC$ 之间有怎样的数量关系？</p>
+    <div class="derive" data-step="3">
+      <div class="dl"><span>∵</span><span>$B$ 是线段 $AC$ 的中点，</span><i class="why">已知</i></div>
+      <div class="dl key"><span>∴</span><span class="think" data-step="4" data-ask="写出关系">$AB=BC=\dfrac12AC$ 或 $AC=2AB=2BC$．</span><i class="why">中点的意义</i></div>
+    </div>
+  </div>
+  <p class="note">课本 p149 图 6-11 与议一议。“因为……所以……”是本章开始训练的几何书写格式，括号里写依据。反过来，若 $AB=BC$ 且 B 在线段 AC 上，B 也是中点——强调“在线段 AC 上”这个条件（否则 B 可能不在 AC 上）。</p>
+</section>
+
+<!-- 11 ================= 例（图 6-12） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>求线段 CD 的长</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p149 <b>例</b>　如图 6-12，线段 $AB=8$，$C$ 是 $AB$ 的中点，点 $D$ 在 $CB$ 上，且 $DB=1.5$．求线段 $CD$ 的长．</p>
+      <svg viewBox="0 0 400 70" class="fig612" aria-label="图 6-12">
+        <line x1="20" y1="30" x2="380" y2="30"/>
+        <g class="tk"><line x1="20" y1="24" x2="20" y2="36"/><line x1="200" y1="24" x2="200" y2="36"/><line x1="312.5" y1="24" x2="312.5" y2="36"/><line x1="380" y1="24" x2="380" y2="36"/></g>
+        <text x="20" y="58">A</text><text x="200" y="58">C</text><text x="312.5" y="58">D</text><text x="380" y="58">B</text>
+      </svg>
+      <p class="method" data-step="1" data-label="思路">要求 $CD$，看它是哪两条线段的差：<span class="think" data-step="2" data-ask="哪两条？">$CD=CB-DB$；$DB$ 已知，$CB$ 由“中点”求出。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解：因为</span><span>$C$ 是 $AB$ 的中点，</span><i class="why">已知</i></div>
+        <div class="dl" data-step="4"><span>所以</span><span class="think" data-step="5" data-ask="CB=？">$CB=\dfrac12AB=\dfrac12\times8=4$，</span><i class="why">中点的意义</i></div>
+        <div class="dl end" data-step="6"><span></span><span class="think" data-step="7" data-ask="CD=？">$CD=CB-DB=4-1.5=2.5$．</span><i class="why">线段的差</i></div>
+      </div>
+      <p class="warn" data-step="8" data-label="检验">图按比例画：$AB=8$ 时 $C$ 在 4 处，$D$ 在 6.5 处，$CD=2.5$ ✓。</p>
+    </div>
+  </div>
+  <p class="note">课本 p149 例题，图 6-12 按 AB = 8 的比例精确绘制。先分析（从要求的 CD 倒着想），再书写（从已知正着写）——与八年级证明的思路一致。</p>
+</section>
+
+<!-- 12 ================= 习题 8 抽水站 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 8</span><h2>抽水站修在哪里，到两村的距离和最小？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p151 习题 8：如图，$A$、$B$ 是河 $l$ 两侧的两个村庄．现要在河 $l$ 上修建一个抽水站 $C$，使它到 $A$、$B$ 两村庄的距离的和最小．请在图中画出点 $C$ 的位置，并说明理由．</p>
+      <p class="tip small">沿河拖动橙色的点 C。</p>
+      <p class="tip readout1" id="pumpRead"></p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="pumpShow">连接 AB</button></div>
+    </div>
+    <div class="col">
+      <div id="pump" class="pb2"></div>
+      <p class="def" data-step="1"><b>作法：</b>连接 $AB$，交直线 $l$ 于点 $C$，点 $C$ 就是抽水站的位置．</p>
+      <p class="tip" data-step="2"><b>理由：</b><span class="think" data-step="3" data-ask="为什么？">$AC+CB$ 是从 $A$ 到 $B$ 的一条路线；当 $C$ 在线段 $AB$ 上时，这条路线就是线段 $AB$，而两点之间线段最短．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p151 习题 8，用“两点之间线段最短”说理。拖动时读数显示 AC + CB 总比 AB 大，只有 C 落在 AB 与 l 的交点时相等（拖到附近会吸附）。八年级会学 A、B 在河同侧的情形（要用到轴对称）。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 3.</b> (1) 画直线 $l$，并在 $l$ 上依次取点 $A$、$B$、$C$，使 $AB=4\text{ cm}$，$BC=2\text{ cm}$；(2) 分别画线段 $AB$、$BC$ 的中点 $D$、$E$；(3) 求线段 $DE$ 的长．</p>
+        <details><summary>提示 1</summary>$DB=\dfrac12AB$，$BE=\dfrac12BC$。</details>
+        <details><summary>提示 2</summary>$DE=DB+BE$。</details>
+        <details><summary>完整解答</summary>$DB=\dfrac12\times4=2$（cm），$BE=\dfrac12\times2=1$（cm），$DE=DB+BE=3$（cm）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 6.</b> 如图，点 $A$、$C$、$D$、$B$ 依次在一条线段上，$AC=BD$．线段 $AD$ 与线段 $BC$ 有怎样的数量关系？为什么？</p>
+        <details><summary>提示 1</summary>$AD$ 与 $BC$ 都包含公共部分 $CD$。</details>
+        <details><summary>提示 2</summary>$AD=AC+CD$，$BC=BD+DC$。</details>
+        <details><summary>完整解答</summary>$AD=BC$．因为 $AD=AC+CD$，$BC=BD+CD$，又 $AC=BD$，所以 $AD=BC$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 7.</b> 如图，$B$ 是线段 $AD$ 上一点，$C$ 是线段 $BD$ 的中点，$AD=10$，$BC=3$．求线段 $CD$、$AB$ 的长．</p>
+        <details><summary>提示 1</summary>$C$ 是 $BD$ 的中点：$CD=BC$。</details>
+        <details><summary>提示 2</summary>$BD=2BC$，$AB=AD-BD$。</details>
+        <details><summary>完整解答</summary>$CD=BC=3$；$BD=2BC=6$，$AB=AD-BD=10-6=4$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p150 练一练 3、p151 习题 6、7。书写时每步写依据（中点的意义、线段的和差、等量代换）。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">线段、射线、直线的表示与区别；两点之间的距离；线段的中点。</p>
+        <p class="def">基本事实：两点之间线段最短；两点确定一条直线。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="比较">度量法、叠合法（一端对齐，看另一端落在哪里）。</p>
+        <p class="method" data-label="计算">把要求的线段写成已知线段的和或差，中点给出“一半”。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">线段的长短关系 ↔ 数的大小、和差。</p>
+        <p class="recall" data-label="有序思考">数线段时按端点顺序，不重不漏。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.2 角——从一点出发的两条射线，组成了什么图形？</p>
+  </div>
+  <p class="note">课后作业建议：习题 6.1 第 1–5 题。第 2、3 题是数线段、画延长线的练习，可用第 5、7 页的工具检验。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

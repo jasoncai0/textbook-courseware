@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>证明 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/qujing.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第12章 证明 · 12.2</p>
+    <h1 class="cover-title">证　明</h1>
+    <p class="cover-q" data-step="1">草坪中间有一条处处 1 m 宽的弯弯“曲径”。它的面积，比 1 m 宽的笔直小道<b>大</b>吗？</p>
+    <p class="cover-q" data-step="2">“看上去”“量一量”“试几次”得到的结论，<b>一定</b>正确吗？怎样才能让人确信无疑？</p>
+    <div class="chips" data-step="3"><span class="chip">眼见不一定为实</span><span class="chip">言必有据</span><span class="chip">证明搭积木</span><span class="chip">三角形内角和定理</span></div>
+  </div>
+  <p class="note">课本 p147 开篇：“观察、操作、实验是人们认识事物的重要手段……但是这些结论不一定都正确．数学中，探索发现的结论常常需要加以证实．”封面用“曲径”情境（第 4 页）提问，先请学生凭直觉表态。本课内容多，可分两课时：第 1–8 页“为什么要证明”，第 9–17 页“怎样写证明”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>本课要用到的“依据”，大多早就学过</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <div class="recall" data-label="12.1 · 上一课讲到" data-step="1">
+          <p>命题由<b>条件</b>和<b>结论</b>组成，有<b>真</b>有<b>假</b>。假命题举一个例子就能否定；真命题呢？</p>
+          <span class="use">本课回答：用<b>证明</b>确定一个命题是真命题。</span>
+        </div>
+        <div class="recall" data-label="七上 6.2–6.5 · 角、垂直" data-step="2">
+          <p>垂直的定义（夹角是 $90^\circ$）；角平分线的定义；平角等于 $180^\circ$；对顶角相等。</p>
+          <span class="use">证明中括号里写的依据：第 9、11、13 页。</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="recall" data-label="七下 7.1 / 7.2 · 平行线" data-step="3">
+          <p>判定：同位角相等（内错角相等、同旁内角互补），两直线平行。</p>
+          <p>性质：两直线平行，同位角相等（内错角相等、同旁内角互补）。</p>
+          <span class="use">由“角”推“平行”用判定，由“平行”推“角”用性质——第 11、12、13 页。</span>
+        </div>
+        <div class="recall" data-label="七下 7.5 · 三角形内角和" data-step="4">
+          <p>撕角拼图、用平行线说理，都得到：三角形三个内角的和是 $180^\circ$。</p>
+          <span class="use">第 13 页把它写成规范的证明，成为“定理”。</span>
+        </div>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>为什么要证明（眼见、实验都可能骗人）→ 什么是证明、定理 → 怎样写证明（∵ ∴ 和括号里的依据）。</p>
+  </div>
+  <p class="note">每张卡请学生先口述再揭示。本课所有证明里括号中的依据都可以点开（橙色带 ⓘ 的字），卡片上写着它来自哪一册哪一课——让学生体会“依据都是前面学过、确认为真的东西”。</p>
+</section>
+
+<!-- 3 ================= 眼见不一定为实 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 练一练</span><h2>先看一看，再量一量</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col">
+        <p class="tip">图 12-1：线段 $AB$ 与 $CD$ 哪一条长一些？</p>
+        <div id="il1" class="il-b"></div>
+        <div class="btns" data-noswipe><button class="btn" type="button" id="il1Btn">量一量</button></div>
+        <p class="tip feedback" id="il1Msg"></p>
+      </div>
+      <div class="col">
+        <p class="tip">练一练 1：线段 $AB$ 与 $BC$ 的长度相等吗？</p>
+        <div id="il2" class="il-b"></div>
+        <div class="btns" data-noswipe><button class="btn" type="button" id="il2Btn">量一量</button></div>
+        <p class="tip feedback" id="il2Msg"></p>
+      </div>
+      <div class="col">
+        <p class="tip">练一练 2：两组圆中央的圆，一样大吗？</p>
+        <div id="il3" class="il-b"></div>
+        <div class="btns" data-noswipe><button class="btn" type="button" id="il3Btn">量一量</button></div>
+        <p class="tip feedback" id="il3Msg"></p>
+      </div>
+    </div>
+    <p class="warn" data-step="1" data-label="眼见不一定为实">看上去 $AB$ 比 $CD$ 长，量一量却是 $CD$ 长；看上去不等的，量出来却相等。观察得到的结论<b>不一定正确</b>。</p>
+  </div>
+  <p class="note">课本 p147 试一试（图 12-1）和 p149 练一练 1、2。三幅图都按精确的长度画：图 12-1 中 CD = 6、AB = 5.4（B 是 CD 中点）；练一练 1 中 AB = BC；练一练 2 中两个中央圆半径相同。先让学生举手表决，再点“量一量”——把一条线段（一个圆）平移过去直接比较。</p>
+</section>
+
+<!-- 4 ================= 曲径（图 12-2、12-3） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>直道与“曲径”：哪条小道面积大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="qjTabs"><button class="btn" type="button" data-m="z">图 12-2(1) 直道</button><button class="btn solid" type="button" data-m="q">图 12-2(2) 曲径</button></div>
+      <div id="qj" class="qj-b"></div>
+      <div class="slider-row" data-noswipe id="qjRow">左边草坪向右平移 <input type="range" id="qjT" min="0" max="1" step="0.05" value="0"><b class="v" id="qjTV"></b> m</div>
+      <p class="tip feedback" id="qjMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">长方形草坪长 $a$ m、宽 $b$ m．中间 1 m 宽的直道改成处处 1 m 宽的“曲径”，面积相等吗？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>直道</span><span>$1\times b=b\ (\text{m}^2)$</span><i class="why">长方形面积</i></div>
+        <div class="dl" data-step="2"><span>平移后</span><span class="think" data-step="3" data-ask="草坪拼成了什么？">长 $(a-1)$ m、宽 $b$ m 的长方形</span><i class="why">左边草坪向右平移 1 m，正好贴上右边草坪（图 12-3）</i></div>
+        <div class="dl" data-step="4"><span>草坪面积</span><span>$b(a-1)\ (\text{m}^2)$</span><i class="why">平移不改变图形的形状和大小</i></div>
+        <div class="dl" data-step="5"><span>曲径面积</span><span class="think" data-step="6" data-ask="怎样算？">$ab-b(a-1)=ab-ab+b=b\ (\text{m}^2)$</span><i class="why">整块草坪 − 草坪部分</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="证实">通过图形的<b>平移</b>和<b>计算</b>，可以证实：两条小道的面积<b>相等</b>。凭直觉说“曲径大”，是错的。</p>
+    </div>
+  </div>
+  <p class="note">课本 p147–148 议一议与图 12-2、12-3。曲径的左右边界按“水平方向处处相距 1 m”精确画出（右边界 = 左边界向右平移 1）。拖动滑块到 1 m，左边草坪的弯边恰好与右边草坪的弯边重合，绿色部分拼成 (a−1)×b 的长方形。证实的过程用的是“平移不改变面积”和整式运算，而不是“看起来”。</p>
+</section>
+
+<!-- 5 ================= 做一做：x²−2x+2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>试了很多个数都是正数，就够了吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">1. 当 $x=-5$，$-\dfrac12$，$0$，$2$，$3$ 时，分别计算代数式 $x^2-2x+2$ 的值．</p>
+      <table class="mtab">
+        <tr><th>$x$</th><td>$-5$</td><td>$-\frac12$</td><td>$0$</td><td>$2$</td><td>$3$</td></tr>
+        <tr><th>$x^2-2x+2$</th><td><span class="think" data-step="1" data-ask="?">37</span></td><td><span class="think" data-step="1" data-ask="?">$\frac{13}{4}$</span></td><td><span class="think" data-step="1" data-ask="?">2</span></td><td><span class="think" data-step="1" data-ask="?">2</span></td><td><span class="think" data-step="1" data-ask="?">5</span></td></tr>
+      </table>
+      <p class="tip">2. 换几个数再试试：<span class="pb-row" data-noswipe>$x=$ <input type="number" id="xIn" value="1.5" step="0.5" class="num-in"> <span id="xOut"></span></span></p>
+      <p class="tip feedback" id="xMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="2">发现：$x$ 取不同的值，$x^2-2x+2$ 的值都是<b>正数</b>．——可是实数有无穷多个，<b>试不完</b>！</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span></span><span>$x^2-2x+2=(x^2-2x+1)+1$</span><i class="why">把 2 拆成 $1+1$</i></div>
+        <div class="dl" data-step="4"><span></span><span class="think" data-step="5" data-ask="凑成什么？">$=(x-1)^2+1$</span><i class="why">完全平方公式（9.4）</i></div>
+        <div class="dl" data-step="6"><span>∵</span><span>$(x-1)^2\ge0$</span><i class="why">任何数的平方都不是负数</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$(x-1)^2+1\ge1$</span><i class="why">不等式的性质（11.3）</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="证实">变形为 $(x-1)^2+1$，可以证实：无论 $x$ 取什么值，代数式的值都<b>不小于 1</b>——这比“都是正数”还多知道了一点。</p>
+    </div>
+  </div>
+  <p class="note">课本 p148 做一做。左下输入框可以输入任何数（含负数、小数），右边立即显示代数式的值和 (x − 1)² + 1 的拆分。追问：“试了 100 个数都是正数，能保证第 101 个也是吗？”——要靠代数变形一次说清所有的 x。最后一步“≥ 1”比课本小人说的“都是正数”更强，x = 1 时取到 1。</p>
+</section>
+
+<!-- 6 ================= 数学实验室 1：64 = 65？ ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>8 × 8 的正方形，剪拼成 13 × 5 的长方形？</h2></div>
+  <button class="media-btn" hidden data-img="assets/pinhe.jpg" data-video="assets/pinhe.mp4" data-cap="64 = 65？四块纸片拼合后，对角线处有一条细长的缝，面积恰好是 1">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="pz" class="pz-b"></div>
+      <div class="btns" data-noswipe id="pzBtns"><button class="btn solid" type="button" data-a="go">拼成长方形</button><button class="btn" type="button" data-a="back">还原正方形</button><button class="btn" type="button" data-a="zoom">放大对角线</button></div>
+      <div id="pzZoom" class="pz-zoom" hidden></div>
+    </div>
+    <div class="col">
+      <p class="tip">图 12-4(1) 是一张 $8\times8$ 的正方形纸片，剪成 4 块，按图 12-4(2) 重新拼合．这 4 块纸片恰好能拼成一个长为 13、宽为 5 的长方形吗？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>正方形面积</span><span>$8\times8=64$</span><i class="why"></i></div>
+        <div class="dl" data-step="1"><span>“长方形”面积</span><span>$13\times5=65$</span><i class="why">多出了 1？</i></div>
+      </div>
+      <p class="tip" data-step="2">比一比两条“斜边”的倾斜程度：<span class="think" data-step="3" data-ask="各是多少？">三角形斜边：每向右 8，下降 3，$\dfrac38=0.375$；梯形斜边：每向右 5，下降 2，$\dfrac25=0.4$．</span></p>
+      <p class="warn" data-step="4" data-label="看上去是长方形">两段斜边“陡度”不同，连不成一条直线，中间夹着一条细缝（面积 1）。课本说：在后续学习中，可以证实图 12-4(2) <b>不是</b>长方形。</p>
+    </div>
+  </div>
+  <p class="note">课本 p148 数学实验室 1 与章首图。四块纸片按坐标精确剪拼：两个直角边为 3、8 的三角形，两个上下底 3、5、高 5 的直角梯形。“拼成长方形”后，对角线处有一条细长的平行四边形缝（红色），顶点 (0,5)、(5,3)、(13,0)、(8,2)，面积恰为 1；点“放大对角线”看 4 倍放大图。缝最宽处只有 1/8 格，肉眼几乎看不出——这正是“眼见不一定为实”。</p>
+</section>
+
+<!-- 7 ================= 数学实验室 2：角平分线上的点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>三角尺转一转，$PE$ 与 $PF$ 还相等吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="bis" class="bis-b"></div>
+      <div class="slider-row" data-noswipe>三角尺绕 $P$ 旋转 <input type="range" id="bisR" min="-30" max="30" step="1" value="0"><b class="v" id="bisRV"></b></div>
+      <p class="muted center small-t">拖动橙色点，让 $P$ 在 $OC$ 上移动</p>
+    </div>
+    <div class="col">
+      <p class="tip">画 $\angle AOB=90^\circ$，并画 $\angle AOB$ 的平分线 $OC$．</p>
+      <p class="tip">(1) 三角尺的直角顶点落在 $OC$ 上任一点 $P$，两条直角边分别与 $OA$、$OB$ 垂直（垂足 $E$、$F$），$PE$、$PF$ 相等吗？<br>(2) 把三角尺绕点 $P$ 旋转，两条直角边分别交 $OA$、$OB$ 于点 $E$、$F$，$PE$ 与 $PF$ 相等吗？</p>
+      <div class="readout bis-read"><span>$PE$</span><b class="v" id="bisPE"></b><span>$PF$</span><b class="v" id="bisPF"></b></div>
+      <p class="tip feedback" id="bisMsg"></p>
+      <p class="method" data-step="1" data-label="实验 ≠ 证明">量了很多次都相等，仍然只是“发现”。课本说：在后续学习中，可以<b>证实</b> $PE$ 与 $PF$ 相等（八年级学全等三角形之后）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p149 数学实验室 2 与图 12-5。图中 E、F 由直线的交点精确算出，读数是计算出来的长度（不是量出来的），所以总是相等——但“读数相等”仍不是证明，八上学了全等三角形才能证实。这一页和上一页形成对比：上一页“看上去成立”其实不成立，这一页“量出来成立”确实成立，但两者都要靠证明来判定。</p>
+</section>
+
+<!-- 8 ================= 证明与定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>证明、定理：从基本事实出发</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="recall" data-label="数学文化" data-step="1">2 000 多年前，古希腊数学家欧几里得（Euclid）把人们公认的一些真命题作为<b>公理</b>，并以此为出发点，用推理的方法证实了一系列命题，编纂成数学巨著《原本》．</p>
+      <p class="tip" data-step="2">前面，我们曾把一些真命题作为<b>基本事实</b>，并从基本事实出发证实了有关余角、补角、对顶角、平行线的一些结论．</p>
+      <div class="def" data-step="3"><h4>证明与定理（课本 p150）</h4>根据已知的真命题，确定某个命题真实性的过程叫做<em>证明</em>（proof）．经过证明的真命题称为<em>定理</em>（theorem）．</div>
+    </div>
+    <div class="col" data-step="4">
+      <p class="tip">证明里可以用的“已知的真命题”——点一点看它从哪儿来：</p>
+      <div class="src3">
+        <div><h4>基本事实</h4><button class="yj" data-k="tw-pd"></button><button class="yj" data-k="par-axiom"></button></div>
+        <div><h4>定义</h4><button class="yj" data-k="perp-def"></button><button class="yj" data-k="bis-def"></button><button class="yj" data-k="flat-def"></button></div>
+        <div><h4>已证的定理、性质</h4><button class="yj" data-k="vert"></button><button class="yj" data-k="nc-pd"></button><button class="yj" data-k="tw-xz"></button></div>
+        <div><h4>等式、不等式的性质</h4><button class="yj" data-k="eq-prop"></button><button class="yj" data-k="subst"></button></div>
+      </div>
+      <p class="warn" data-step="5" data-label="不能当依据的">“看上去”“量出来”“试了几次都对”“图上画得像”都不能作为证明的依据。</p>
+    </div>
+  </div>
+  <p class="note">课本 p150。“定理”这个词第一次正式出现：以后课本中经过证明的结论都是定理，可以当作新的依据。右边的依据按“基本事实—定义—定理—等式性质”分类，每个都能点开看完整内容和出处。可以请学生说说：“同位角相等，两直线平行”为什么不用证明？（基本事实，由实践得出、公认为真。）</p>
+</section>
+
+<!-- 9 ================= 第一个证明：垂直于同一条直线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>证明：垂直于同一条直线的两条直线平行</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="gp"><p><b>已知：</b>如图 12-6，$a\perp c$，$b\perp c$．</p><p><b>求证：</b>$a\parallel b$．</p></div>
+      <div id="f126" class="gfig l"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="briefBtn">省略虚线框（简写）</button></div>
+      <p class="tip" data-step="9">为什么能省？<span class="think" data-step="10" data-ask="想一想">虚线框里的“因”正是上面刚推出的“果”（已证），通常可以省略不写．</span></p>
+    </div>
+    <div class="col">
+      <div class="proof" id="pf126">
+        <p data-step="1"><span class="lead">证明：</span><span class="so">∵</span>$a\perp c$（<button class="yj" data-k="known"></button>），</p>
+        <p data-step="2"><span class="so">∴</span>$\angle1=90^\circ$（<span class="think" data-step="3" data-ask="凭什么？"><button class="yj" data-k="perp-def"></button></span>）．</p>
+        <p data-step="4"><span class="so">∵</span>$b\perp c$（<button class="yj" data-k="known"></button>），</p>
+        <p data-step="4"><span class="so">∴</span>$\angle2=90^\circ$（<button class="yj" data-k="perp-def"></button>）．</p>
+        <p class="omit" data-step="5"><span class="so">∵</span>$\angle1=90^\circ$，$\angle2=90^\circ$（<button class="yj" data-k="proved"></button>），</p>
+        <p data-step="5"><span class="so">∴</span>$\angle1=\angle2$（<span class="think" data-step="6" data-ask="凭什么？"><button class="yj" data-k="subst"></button></span>）．</p>
+        <p class="omit" data-step="7"><span class="so">∵</span>$\angle1=\angle2$（<button class="yj" data-k="proved"></button>），</p>
+        <p data-step="7"><span class="so">∴</span>$a\parallel b$（<span class="think" data-step="8" data-ask="凭什么？"><button class="yj" data-k="tw-pd"></button></span>）．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p150 证明“垂直于同一条直线的两条直线平行”。这是本章第一个完整证明，逐行出示，每到“凭什么？”先让学生说依据再揭示。括号里的依据都可以点开。左边按钮切换课本说的“简写”：虚线框里的内容（前面推理的“果”作为后面推理的“因”）可以省略。∠1 与 ∠2 是 a、b 被 c 所截得的同位角——第 8 步可以追问。</p>
+</section>
+
+<!-- 10 ================= 证明的结构与步骤 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法</span><h2>言必有据：因、果、依据</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1">证明过程必须做到<b>言必有据</b>．证明过程通常包含几个推理，每个推理应包括<span class="cause">因</span>、<span class="effect">果</span>和<span class="reason">由因得果的依据</span>．</p>
+      <div class="ycy" data-step="2">
+        <div class="ycy-c"><span class="cause">因</span>$\angle1=\angle2$<small>已知事项</small></div>
+        <div class="ycy-arr">⟹<small class="reason">同位角相等，两直线平行</small></div>
+        <div class="ycy-c"><span class="effect">果</span>$a\parallel b$<small>推得的结论</small></div>
+      </div>
+      <p class="def" data-step="3">“由因得果的依据”是<em>基本事实</em>、<em>定义</em>、<em>已学过的定理</em>以及<em>等式性质</em>、<em>不等式性质</em>等．</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="4"><h4>证明与图形有关的命题，一般有以下步骤（课本 p151）</h4>
+        (1) 根据题意，<b>画出图形</b>；<br>(2) 根据命题的条件、结论，结合图形，写出<b>已知、求证</b>；<br>(3) 写出<b>证明过程</b>．</div>
+      <p class="tip" data-step="5">例：命题“两直线平行，同旁内角的平分线互相垂直”（习题 12.2 第 7 题）的已知、求证怎样写？<span class="think" data-step="6" data-ask="先想：条件、结论各是什么？">条件写成“已知”（并配图、用字母表示），结论写成“求证”：已知 $AB\parallel CD$，直线 $EF$ 分别交 $AB$、$CD$ 于 $M$、$N$，$MP$ 平分 $\angle BMN$，$NP$ 平分 $\angle DNM$；求证：$MP\perp NP$．</span></p>
+      <p class="warn" data-step="7" data-label="已知 ≠ 求证">“求证”里的结论，在证明完成之前<b>不能</b>当作依据使用。</p>
+    </div>
+  </div>
+  <p class="note">课本 p150–151。“因、果、依据”沿用 7.1 例 1 的颜色。三步骤里第 (2) 步是难点：文字命题要先画图、用字母把条件“翻译”成已知。习题 7 只要求写出已知、求证，证明留作课后。</p>
+</section>
+
+<!-- 11 ================= 例 1：证明搭积木 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 搭积木</span><h2>把依据“积木”放进证明的空槽</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="gp"><p><b>已知：</b>如图 12-7，直线 $EF$ 分别交直线 $AB$、$CD$ 于点 $M$、$N$，$AB\parallel CD$，$MG$ 平分 $\angle EMB$，$NH$ 平分 $\angle END$．</p><p><b>求证：</b>$MG\parallel NH$．</p></div>
+      <div id="f127" class="gfig l2"></div>
+      <p class="method" data-step="1" data-label="思路">要证 $MG\parallel NH$ ← 证同位角 $\angle EMG=\angle ENH$ ← 它们是 $\angle EMB$、$\angle END$ 的一半 ← $\angle EMB=\angle END$ ← $AB\parallel CD$．</p>
+    </div>
+    <div class="col">
+      <div class="pblocks" data-done="全部放对了！这就是课本例 1 的证明。点一点绿色的依据，看看它们都来自哪里。">
+        <div class="proof">
+          <p><span class="lead">证明：</span><span class="so">∵</span>$AB\parallel CD$（<button class="slot" data-ans="known"></button>），</p>
+          <p><span class="so">∴</span>$\angle EMB=\angle END$（<button class="slot" data-ans="tw-xz" data-hint="已知平行，要得到角相等，用平行线的“性质”；∠EMB 与 ∠END 是同位角。"></button>）．</p>
+          <p><span class="so">∵</span>$MG$ 平分 $\angle EMB$，$NH$ 平分 $\angle END$（<button class="slot" data-ans="known"></button>），</p>
+          <p><span class="so">∴</span>$\angle EMG=\frac12\angle EMB$，$\angle ENH=\frac12\angle END$（<button class="slot" data-ans="bis-def" data-hint="由“平分”得到“一半”，用的是哪个定义？"></button>）．</p>
+          <p><span class="so">∴</span>$\angle EMG=\angle ENH$（<button class="slot" data-ans="subst|eq-prop" data-hint="相等的角的一半也相等：一个量用与它相等的量代替。"></button>）．</p>
+          <p><span class="so">∴</span>$MG\parallel NH$（<button class="slot" data-ans="tw-pd" data-hint="由角相等得到平行，用平行线的“判定”；∠EMG 与 ∠ENH 是同位角。"></button>）．</p>
+        </div>
+        <div class="pb-bank">
+          <button class="tile" data-k="known"></button><button class="tile" data-k="tw-xz"></button><button class="tile" data-k="tw-pd"></button><button class="tile" data-k="nc-xz"></button><button class="tile" data-k="bis-def"></button><button class="tile" data-k="perp-def"></button><button class="tile" data-k="subst"></button><button class="tile" data-k="vert"></button>
+        </div>
+        <div class="pb-row"><p class="pb-msg"></p><button class="btn pb-reset" type="button">重来</button></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p151 例 1。本课核心互动“证明搭积木”：先和学生一起分析思路（左下，从结论倒推），再让学生把积木拖进空槽（或先点积木再点空槽）。放错时会提示该用“判定”还是“性质”。最容易混淆的是第 2 格和第 6 格：都是同位角，但一个由平行推角（性质），一个由角推平行（判定）。积木可以重复使用。</p>
+</section>
+
+<!-- 12 ================= 练一练：填理由（搭积木） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>填写推理中的空格</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p151 练一练 1：如图，点 $A$、$B$、$E$ 在一条直线上．</p>
+      <div id="lx1" class="gfig l2"></div>
+      <p class="method" data-step="1" data-label="先认角、再找线">先看这两个角是哪两条直线被哪条直线所截得的，是同位角、内错角还是同旁内角——平行的就是被截的那两条直线。</p>
+    </div>
+    <div class="col">
+      <div class="pblocks" data-done="全部正确！注意 (1)(4) 都是内错角，截线都是 AC，但平行的直线不同。">
+        <div class="proof small-pf">
+          <p>(1) <span class="so">∵</span>$\angle1=\angle3$（已知），<span class="so">∴</span>$AB\parallel DC$（<button class="slot" data-ans="nc-pd"></button>）；</p>
+          <p>(2) <span class="so">∵</span>$\angle DAE=\angle CBE$（已知），<span class="so">∴</span>$AD\parallel BC$（<button class="slot" data-ans="tw-pd"></button>）；</p>
+          <p>(3) <span class="so">∵</span>$\angle CDA+\angle DAB=180^\circ$（已知），<span class="so">∴</span>$AB\parallel DC$（<button class="slot" data-ans="tp-pd"></button>）；</p>
+          <p>(4) <span class="so">∵</span>$\angle2=\angle4$（已知），<span class="so">∴</span><button class="slot" data-ans="l-ad" data-hint="∠2 = ∠ACB，∠4 = ∠DAC：它们是哪两条直线被 AC 所截的内错角？"></button>（内错角相等，两直线平行）；</p>
+          <p>(5) <span class="so">∵</span>$\angle DCB+\angle ABC=180^\circ$（已知），<span class="so">∴</span><button class="slot" data-ans="l-ab" data-hint="这两个角的公共边是 BC，另两条边在哪两条直线上？"></button>（同旁内角互补，两直线平行）；</p>
+          <p>(6) <span class="so">∵</span>$\angle DAB+\angle ABC=180^\circ$（已知），<span class="so">∴</span><button class="slot" data-ans="l-ad" data-hint="这两个角的公共边是 AB，另两条边在哪两条直线上？"></button>（同旁内角互补，两直线平行）．</p>
+        </div>
+        <div class="pb-bank">
+          <button class="tile" data-k="l-ab">$AB\parallel DC$</button><button class="tile" data-k="l-ad">$AD\parallel BC$</button><button class="tile" data-k="tw-pd"></button><button class="tile" data-k="nc-pd"></button><button class="tile" data-k="tp-pd"></button><button class="tile" data-k="nc-xz"></button>
+        </div>
+        <div class="pb-row"><p class="pb-msg"></p><button class="btn pb-reset" type="button">重来</button></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p151–152 练一练第 1 题（6 小题）。图按课本画：AD ∥ BC、AB ∥ DC 的四边形与对角线 AC，∠1 = ∠DCA，∠2 = ∠ACB，∠3 = ∠CAB，∠4 = ∠DAC。第 2、3 题（填空证明 AD ∥ BC、证 ∠2 = 130°）放在习题页的提示阶梯里。</p>
+</section>
+
+<!-- 13 ================= 三角形内角和定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理</span><h2>三角形内角和定理：辅助线从哪里来？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>三角形内角和定理（课本 p153）</h4>三角形三个内角的和等于 $180^\circ$．</div>
+      <div id="tri" class="tri-b"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="triMove">把 $\angle A$、$\angle B$ 搬到 $C$ 处</button></div>
+      <p class="tip feedback" id="triMsg"></p>
+    </div>
+    <div class="col">
+      <div class="gp" data-step="2"><p><b>已知：</b>$\triangle ABC$．<b>求证：</b>$\angle A+\angle B+\angle C=180^\circ$．</p></div>
+      <div class="proof">
+        <p data-step="3"><span class="lead">证明：</span>如图 12-8，画 $\triangle ABC$ 的边 $BC$ 的延长线 $CD$，过点 $C$ 画 $CE\parallel AB$．</p>
+        <p data-step="4"><span class="so">∵</span>$CE\parallel AB$（<button class="yj" data-k="aux"></button>），</p>
+        <p data-step="5"><span class="so">∴</span>$\angle1=\angle A$（<span class="think" data-step="6" data-ask="凭什么？"><button class="yj" data-k="nc-xz"></button></span>），</p>
+        <p data-step="5"><span class="so"></span>$\angle2=\angle B$（<span class="think" data-step="7" data-ask="凭什么？"><button class="yj" data-k="tw-xz"></button></span>）．</p>
+        <p data-step="8"><span class="so">∵</span>$\angle1+\angle2+\angle ACB=180^\circ$（<button class="yj" data-k="flat-def"></button>），</p>
+        <p data-step="9"><span class="so">∴</span>$\angle A+\angle B+\angle ACB=180^\circ$（<button class="yj" data-k="subst"></button>）．</p>
+      </div>
+      <p class="method" data-step="10" data-label="辅助线">为了证明的需要，在原来图形上添画的线叫<b>辅助线</b>，通常画成虚线。这条辅助线是从“撕角拼图”得到的启发。</p>
+    </div>
+  </div>
+  <p class="note">课本 p153 定理、证明与图 12-8。左图：拖动橙色点转动射线 CE，读数显示 ∠1、∠A、∠2、∠B——只有 CE ∥ AB 时 ∠1 = ∠A、∠2 = ∠B 同时成立（吸附到平行位置）。点“搬到 C 处”把 ∠A、∠B 的精确复制品拼到 C 点：三个角正好拼成平角，拼缝就是 CE——这就是添辅助线的灵感（课本小人：“这样添辅助线是从拼图得到的启发”）。7.5 节我们已经说明过这个结论，今天把它写成规范证明，它就成为定理。</p>
+</section>
+
+<!-- 14 ================= 推论：外角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议 · 推论</span><h2>三角形的外角与不相邻的两个内角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ext" class="tri-b"></div>
+      <p class="muted center small-t">拖动橙色点 $A$，改变三角形的形状</p>
+      <div class="readout ext-read"><span>$\angle A+\angle B$</span><b class="v" id="extAB"></b><span>外角 $\angle ACD$</span><b class="v" id="extD"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">三角形的一个外角和与它不相邻的两个内角有怎样的数量关系？</p>
+      <div class="proof">
+        <p data-step="1"><span class="so">∵</span>$\angle ACD+\angle ACB=180^\circ$（<button class="yj" data-k="flat-def"></button>），</p>
+        <p data-step="2"><span class="so"></span>$\angle A+\angle B+\angle ACB=180^\circ$（<button class="yj" data-k="tri-sum"></button>），</p>
+        <p data-step="3"><span class="so">∴</span>$\angle ACD=\angle A+\angle B$（<span class="think" data-step="4" data-ask="凭什么？"><button class="yj" data-k="subst"></button>、<button class="yj" data-k="eq-prop"></button></span>）．</p>
+      </div>
+      <div class="def" data-step="5"><h4>推论（课本 p153）</h4>三角形的外角等于与它不相邻的两个内角的和．</div>
+      <p class="tip" data-step="6">像这样，由一个定理直接推出的正确结论，叫做这个定理的<em class="em2">推论</em>．它和定理一样，可以作为进一步证明的依据．</p>
+    </div>
+  </div>
+  <p class="note">课本 p153 议一议与推论。左边拖动 A，两个读数（由坐标算出、取整）始终相等。证明只用了两个等式，减去同一个 ∠ACB——学生能自己完成，适合让学生口述。推论以后可直接作为依据，如习题 8。</p>
+</section>
+
+<!-- 15 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>“8 字形”中的角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="gp"><p><b>已知：</b>如图 12-9，$AC$、$BD$ 相交于点 $O$．<b>求证：</b>$\angle A+\angle B=\angle C+\angle D$．</p></div>
+      <div id="eight" class="eight-b"></div>
+      <div class="readout ext-read"><span>$\angle A+\angle B$</span><b class="v" id="e8AB"></b><span>$\angle C+\angle D$</span><b class="v" id="e8CD"></b></div>
+    </div>
+    <div class="col">
+      <p class="method" data-step="1" data-label="思路">两个三角形 $\triangle AOB$、$\triangle COD$ 共享一对对顶角：两组角都等于 $180^\circ$ 减去“同一个”角。</p>
+      <div class="proof">
+        <p data-step="2"><span class="lead">证明：</span>在 $\triangle AOB$ 中，$\angle A+\angle B+\angle AOB=180^\circ$（<button class="yj" data-k="tri-sum">三角形三个内角的和等于 $180^\circ$</button>）．</p>
+        <p data-step="3"><span class="so">∴</span>$\angle A+\angle B=180^\circ-\angle AOB$（<button class="yj" data-k="eq-prop"></button>）．</p>
+        <p data-step="4">在 $\triangle COD$ 中，同理可得 $\angle C+\angle D=180^\circ-\angle COD$．</p>
+        <p data-step="5"><span class="so">∵</span>$\angle AOB=\angle COD$（<span class="think" data-step="6" data-ask="凭什么？"><button class="yj" data-k="vert"></button></span>），</p>
+        <p data-step="7"><span class="so">∴</span>$\angle A+\angle B=\angle C+\angle D$（<button class="yj" data-k="subst"></button>）．</p>
+      </div>
+      <p class="tip" data-step="8">“同理可得”什么时候能用？<span class="think" data-step="9" data-ask="想一想">后一段推理与前一段<b>完全一样</b>，只是换了字母时．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p154 例 2 与图 12-9。左图可拖动 A、B 两个橙色点（C、D 分别在 AO、BO 的延长线上），两个和始终相等。注意 AB 与 CD 不必平行。“同理可得”是课本首次使用的写法，要讲清条件。</p>
+</section>
+
+<!-- 16 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 习题 12.2</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练一练（p154）</b> 已知：$AD$ 是 $\triangle ABC$ 的角平分线，$E$ 是 $BC$ 延长线上一点，$\angle EAC=\angle B$．求证：$\angle ADE=\angle DAE$．</p>
+        <div id="lx2" class="gfig"></div>
+        <details><summary>提示 1</summary>$\angle ADE$ 是 $\triangle ABD$ 的外角：$\angle ADE=\angle B+\angle BAD$。</details>
+        <details><summary>提示 2</summary>$\angle DAE=\angle DAC+\angle CAE$；比较两边的两部分。</details>
+        <details><summary>完整解答</summary>∵ $AD$ 平分 $\angle BAC$（已知），∴ $\angle BAD=\angle DAC$（角平分线的定义）．∵ $\angle ADE=\angle B+\angle BAD$（三角形的外角等于与它不相邻的两个内角的和），$\angle DAE=\angle DAC+\angle CAE$，又 $\angle CAE=\angle B$（已知），∴ $\angle ADE=\angle DAE$（等量代换）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 1</b> 任意写 3 个连续自然数，把中间 1 个数的平方减去其余 2 个数的乘积，你发现了什么？证实你的发现．</p>
+        <details><summary>提示 1</summary>试试 3、4、5：$4^2-3\times5=1$；再试 9、10、11。</details>
+        <details><summary>提示 2</summary>设中间的数为 $n$，另两个是 $n-1$、$n+1$。</details>
+        <details><summary>完整解答</summary>差总是 1．证明：$n^2-(n-1)(n+1)=n^2-(n^2-1)=1$（平方差公式）．</details>
+        <p class="q"><b>习题 2</b> 步行 5 km/h 到乙地，骑车（速度是步行的 3 倍）原路返回，平均速度是步行速度的 2 倍吗？</p>
+        <details><summary>提示 1</summary>设路程为 $s$，平均速度 = 总路程 ÷ 总时间。</details>
+        <details><summary>完整解答</summary>总时间 $\dfrac s5+\dfrac s{15}=\dfrac{4s}{15}$，平均速度 $2s\div\dfrac{4s}{15}=7.5$ km/h，是步行速度的 1.5 倍，<b>不是</b> 2 倍．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 5</b> 已知：如图，$AB\parallel CD$，$BC\parallel DE$．求证：$\angle B+\angle CDE=180^\circ$．</p>
+        <div id="hx5" class="gfig"></div>
+        <details><summary>提示 1</summary>$AB\parallel CD$，截线 $BC$：$\angle B$ 与 $\angle BCD$ 是什么角？</details>
+        <details><summary>提示 2</summary>$BC\parallel DE$，截线 $CD$：$\angle BCD$ 与 $\angle CDE$ 呢？</details>
+        <details><summary>完整解答</summary>∵ $AB\parallel CD$（已知），∴ $\angle B=\angle BCD$（两直线平行，内错角相等）．∵ $BC\parallel DE$（已知），∴ $\angle BCD+\angle CDE=180^\circ$（两直线平行，同旁内角互补）．∴ $\angle B+\angle CDE=180^\circ$（等量代换）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">p154 练一练、习题 12.2 第 1、2、5 题。第 1、2 题是“代数证明”：先试、再发现、最后用式子证实，与第 5 页一脉相承；第 2 题很多学生直觉认为是 2 倍，计算后发现是 1.5 倍——又一次“直觉不可靠”。课后作业建议：习题 3、4、6、8。</p>
+</section>
+
+<!-- 17 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def"><em>证明</em>：根据已知的真命题，确定某个命题真实性的过程；经过证明的真命题称为<em>定理</em>；由定理直接推出的叫<em>推论</em>。</p>
+        <p class="recall" data-label="新定理">三角形内角和定理；外角等于不相邻两内角的和；垂直于同一条直线的两直线平行。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="三步">画图 → 写已知、求证 → 写证明。</p>
+        <p class="method" data-label="每一步">∵（因）∴（果）（依据），言必有据；需要时添辅助线。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="探索与证明">观察、实验帮我们<b>发现</b>结论（但可能出错：64 = 65？）；证明帮我们<b>确认</b>结论。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>12.3 互逆命题——“同位角相等，两直线平行”与“两直线平行，同位角相等”，条件与结论正好交换。一个真命题“反过来”还是真的吗？</p>
+  </div>
+  <p class="note">请学生总结：本课我们证明了哪几个结论？用到了哪些依据？课后作业建议：习题 12.2 第 3～8 题（第 7 题先写已知、求证）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

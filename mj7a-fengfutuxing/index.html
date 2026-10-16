@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>丰富的图形世界 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/solid3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chengshi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第5章 走进图形世界 · 5.1</p>
+    <h1 class="cover-title">丰富的图形世界</h1>
+    <p class="cover-q" data-step="1">高楼、钟塔、电视塔、圆顶……城市里的建筑多姿多彩。</p>
+    <p class="cover-q" data-step="2">如果不管颜色、材料和大小，<b>只看形状</b>，它们像哪些几何体？</p>
+    <div class="chips" data-step="3"><span class="chip">从物体抽象出几何体</span><span class="chip">棱柱 · 棱锥</span><span class="chip">点 · 线 · 面</span><span class="chip">七巧板</span></div>
+  </div>
+  <p class="note">课本 p120 章首与节首图片（钟楼、天坛、东方明珠）。“只看形状”就是数学上的“抽象”——本课主线：从物体抽象出几何体 → 认识棱柱、棱锥的各部分 → 看几何体由面、线、点组成 → 用七巧板拼平面图形。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>小学认识过的立体图形和平面图形</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="小学五年级 · 长方体和正方体" data-step="1">
+        <p>长方体有 <b>6</b> 个面、<b>12</b> 条棱、<b>8</b> 个顶点；相对的面完全相同。</p>
+        <p>正方体是 6 个面都是正方形的长方体。</p>
+        <span class="use">第 5 页认识“棱、顶点”；第 9 页数切去一块后的面、棱、顶点。</span>
+      </div>
+      <div class="recall" data-label="小学六年级 · 圆柱和圆锥" data-step="2">
+        <p>圆柱：上、下两个底面是相同的圆，侧面是一个<b>曲面</b>。</p>
+        <p>圆锥：底面是圆，侧面是曲面，有一个顶点。</p>
+        <span class="use">第 3 页连线；第 7 页分辨“平的面”和“曲的面”。</span>
+      </div>
+      <div class="recall" data-label="小学 · 平面图形" data-step="3">
+        <p>三角形、正方形、长方形、平行四边形、多边形……</p>
+        <p>拼一拼、剪一剪，一个图形可以分成几块。</p>
+        <span class="use">棱柱、棱锥的底面是多边形；第 10 页用七巧板拼图形。</span>
+      </div>
+    </div>
+    <p class="recall" data-label="第1章 1.1 生活 数学" data-step="4">数学就在身边：用数学的眼光看生活中的物体。<a href="../mj7a-shenghuoshuxue/index.html">回看 1.1</a><span class="use">本课第一步就是“用数学的眼光”看建筑和物品的形状。</span></p>
+  </div>
+  <p class="note">每张卡请学生先说再点开。长方体“6、12、8”这组数要让学生实际数一遍（可以拿一个粉笔盒），第 6、9 页会继续数。</p>
+</section>
+
+<!-- 3 ================= 试一试：连线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>这些物体，像哪个几何体？</h2></div>
+  <div class="bd full top">
+    <div class="gallery">
+      <figure><div id="g1" class="gv"></div><figcaption>圆柱</figcaption></figure>
+      <figure><div id="g2" class="gv"></div><figcaption>圆锥</figcaption></figure>
+      <figure><div id="g3" class="gv"></div><figcaption>正方体</figcaption></figure>
+      <figure><div id="g4" class="gv"></div><figcaption>长方体</figcaption></figure>
+      <figure><div id="g5" class="gv"></div><figcaption>球</figcaption></figure>
+    </div>
+    <p class="muted center small-t">图 5-2　拖动任意一个图形可以转着看；看不见的线画成虚线</p>
+    <div class="match">
+      <div class="mrow"><span class="obj">足球</span><div class="pick" data-ans="e"><button data-k="a">圆柱</button><button data-k="b">圆锥</button><button data-k="c">正方体</button><button data-k="d">长方体</button><button data-k="e">球</button></div></div>
+      <div class="mrow"><span class="obj">魔方</span><div class="pick" data-ans="c"><button data-k="a">圆柱</button><button data-k="b">圆锥</button><button data-k="c">正方体</button><button data-k="d">长方体</button><button data-k="e">球</button></div></div>
+      <div class="mrow"><span class="obj">礼品盒</span><div class="pick" data-ans="d"><button data-k="a">圆柱</button><button data-k="b">圆锥</button><button data-k="c">正方体</button><button data-k="d">长方体</button><button data-k="e">球</button></div></div>
+      <div class="mrow"><span class="obj">易拉罐</span><div class="pick" data-ans="a"><button data-k="a">圆柱</button><button data-k="b">圆锥</button><button data-k="c">正方体</button><button data-k="d">长方体</button><button data-k="e">球</button></div></div>
+      <div class="mrow"><span class="obj">斗笠</span><div class="pick" data-ans="b"><button data-k="a">圆柱</button><button data-k="b">圆锥</button><button data-k="c">正方体</button><button data-k="d">长方体</button><button data-k="e">球</button></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p120 试一试：图 5-1 的五个物体（足球、魔方、礼品盒、易拉罐、斗笠）与图 5-2 的几何体连线。请学生说理由：易拉罐“上下一样粗、两头是圆”所以像圆柱；斗笠“底是圆、顶上一个尖”像圆锥。强调“像”——物体有花纹、有厚度，几何体只保留形状，这就是抽象。</p>
+</section>
+
+<!-- 4 ================= 棱柱、棱锥 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">抽象</span><h2>从建筑中抽象出棱柱、棱锥</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 5-3，钟楼的塔身像一个<b>棱柱</b>，尖顶像一个<b>棱锥</b>。</p>
+      <div class="btns" data-noswipe id="ppKind"><button class="btn solid" type="button" data-k="prism">棱柱</button><button class="btn" type="button" data-k="pyr">棱锥</button></div>
+      <div class="slider-row" data-noswipe>底面：<input type="range" id="ppN" min="3" max="8" step="1" value="4"><b class="v" id="ppNV"></b></div>
+      <p class="tip big center">这是一个 <b id="ppName"></b></p>
+      <p class="method" data-step="1" data-label="怎样起名字">底面是几边形，就叫“几棱柱”“几棱锥”。长方体、正方体都是<b>四棱柱</b>。</p>
+    </div>
+    <div class="col">
+      <div id="pp" class="s3 big3"></div>
+      <div class="def" data-step="2"><h4>议一议（课本 p121）</h4>从本节开头的 3 幅图片中能抽象出哪些几何体？<br><span class="think" data-step="3" data-ask="说说你的想法">钟楼：塔身是棱柱，尖顶是棱锥；天坛祈年殿：一层层的圆柱形殿身，屋顶像圆锥；东方明珠：两个大球，中间是圆柱形的塔身。</span></div>
+    </div>
+  </div>
+  <p class="note">课本 p121 图 5-3。拖动滑块让底面边数变化，再在棱柱 / 棱锥之间切换：上下两个底面一样、侧面竖直的是棱柱；只有一个底面、侧面收拢到一点的是棱锥。“议一议”答案不唯一，只要说得出“哪一部分像什么”都应肯定。</p>
+</section>
+
+<!-- 5 ================= 各部分名称（图 5-4） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>棱柱、棱锥各部分的名称</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="partBtns">
+        <button class="btn" type="button" data-k="di">底面</button><button class="btn" type="button" data-k="ce">侧面</button><button class="btn" type="button" data-k="dl">棱</button><button class="btn" type="button" data-k="cl">侧棱</button><button class="btn" type="button" data-k="dd">顶点</button>
+      </div>
+      <p class="tip feedback" id="partTip">点上面的按钮，在右边两个图中找一找。</p>
+      <div class="def" data-step="1"><h4>课本 p122</h4>在棱柱、棱锥中，任何相邻两个面的交线叫做<em>棱</em>，相邻两个侧面的交线叫做<em>侧棱</em>．<br>棱柱的棱与棱的交点叫做棱柱的<em>顶点</em>．<br>棱锥的各侧棱的公共点叫做棱锥的<em>顶点</em>．</div>
+      <div class="def" data-step="2">棱柱的侧棱长相等，棱柱的上、下底面是相同的多边形，直棱柱的侧面都是长方形．<br>棱锥的侧面都是三角形．</div>
+    </div>
+    <div class="col">
+      <div class="cols2 pair"><figure><div id="partP" class="s3 mid3"></div><figcaption>棱柱</figcaption></figure><figure><div id="partQ" class="s3 mid3"></div><figcaption>棱锥</figcaption></figure></div>
+      <p class="warn" data-step="3" data-label="辨一辨">“棱”和“侧棱”：侧棱只指<b>两个侧面</b>的交线；底面上的边也是棱，但不是侧棱。<span class="think" data-step="4" data-ask="六棱柱有几条侧棱？">6 条侧棱；棱一共 $6+6+6=18$ 条。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p122 图 5-4（六棱柱、五棱锥）。逐个按钮点：先“底面”“侧面”，再“棱”“侧棱”，最后“顶点”。注意棱锥的“顶点”在课本里专指各侧棱的公共点；底面多边形的角上的点学生也会叫顶点，可以说明“课本定义的棱锥的顶点是最上面那一个”。</p>
+</section>
+
+<!-- 6 ================= 数一数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探究</span><h2>n 棱柱、n 棱锥有几个面、几条棱、几个顶点？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="cols2 pair"><div id="cntP" class="s3 sm3"></div><div id="cntQ" class="s3 sm3"></div></div>
+      <div class="slider-row" data-noswipe>底面边数 $n=$<input type="range" id="cntN" min="3" max="8" step="1" value="3"><b class="v" id="cntNV"></b></div>
+      <table class="mtab"><tr><th>名称</th><th>面</th><th>棱</th><th>顶点</th><th>名称</th><th>面</th><th>棱</th><th>顶点</th></tr><tr id="cntRow"></tr></table>
+    </div>
+    <div class="col">
+      <p class="tip">不要一个一个数——想一想它们是<b>怎样组成</b>的。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>n 棱柱的面</span><span class="think" data-step="2" data-ask="几个？">$n+2$</span><i class="why">2 个底面 + $n$ 个侧面（底面每条边对着一个侧面）</i></div>
+        <div class="dl" data-step="3"><span>n 棱柱的棱</span><span class="think" data-step="4" data-ask="几条？">$3n$</span><i class="why">上底 $n$ 条 + 下底 $n$ 条 + 侧棱 $n$ 条</i></div>
+        <div class="dl" data-step="5"><span>n 棱柱的顶点</span><span class="think" data-step="6" data-ask="几个？">$2n$</span><i class="why">上、下底面各 $n$ 个</i></div>
+        <div class="dl" data-step="7"><span>n 棱锥</span><span class="think" data-step="8" data-ask="面、棱、顶点？">面 $n+1$，棱 $2n$，顶点 $n+1$</span><i class="why">1 个底面 + $n$ 个侧面；底面 $n$ 条 + 侧棱 $n$ 条；底面 $n$ 个 + 顶上 1 个</i></div>
+      </div>
+      <p class="method" data-step="9" data-label="检验">四棱柱就是长方体：$4+2=6$ 个面，$3\times4=12$ 条棱，$2\times4=8$ 个顶点——和小学学的一样。</p>
+    </div>
+  </div>
+  <p class="note">这是对课本 p122 概念的延伸练习（课本没有给公式，这里不要求记，要求会“按组成去数”）。先让学生拖到 n = 3、4 自己数，再问 n = 100 怎么办，引出按“上底、下底、侧面”分类计数。</p>
+</section>
+
+<!-- 7 ================= 面、线、点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">点 · 线 · 面</span><h2>平的面、曲的面；面面相交得线，线线相交得点</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="surfK"><button class="btn solid" type="button" data-k="cyl">圆柱</button><button class="btn" type="button" data-k="cone">圆锥</button><button class="btn" type="button" data-k="cube">正方体</button><button class="btn" type="button" data-k="ball">球</button></div>
+      <div class="btns" data-noswipe id="surfH"><button class="btn solid" type="button" data-k="flat">平面</button><button class="btn" type="button" data-k="curve">曲面</button><button class="btn" type="button" data-k="line">线与点</button></div>
+      <div id="surf" class="s3 big3"></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="surfTip"></p>
+      <div class="def" data-step="1"><h4>课本 p121–122</h4>桌面、墙面、平静的水面等都给我们以<em>平面</em>的形象．水管、易拉罐的侧面，地球仪的表面等都给我们以<em>曲面</em>的形象．</div>
+      <div class="def" data-step="2">面与面相交得到线，线与线相交得到点．<br>几何图形由<em>点</em>、<em>线</em>、<em>面</em>组成．</div>
+      <p class="tip" data-step="3">线有直的也有曲的：<span class="think" data-step="4" data-ask="圆柱上的线是直的还是曲的？">圆柱的底面与侧面相交，得到的是<b>曲线</b>（圆）；正方体相邻两个面相交，得到的是<b>直线</b>的一段（棱）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p121 下半页（教室墙角、城市地图）。墙角：两面墙相交得到一条线，三条线交于一点；地图：两条路相交于路口。先选“平面/曲面”，四种几何体逐个看，再选“线与点”。球最有意思：只有一个曲面，没有棱和顶点。</p>
+</section>
+
+<!-- 8 ================= 分类（练一练 2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>把几何体分分类，并说明理由</h2></div>
+  <div class="bd full">
+    <p class="tip">课本 p123 练一练 2：(1) 围成下列几何体的各个面中，哪些面是平的？哪些面是曲的？(2) 将下列几何体分类，并说明理由．</p>
+    <div class="gallery five">
+      <figure><div id="k1" class="gv"></div><figcaption>①</figcaption></figure>
+      <figure><div id="k2" class="gv"></div><figcaption>②</figcaption></figure>
+      <figure><div id="k3" class="gv"></div><figcaption>③</figcaption></figure>
+      <figure><div id="k4" class="gv"></div><figcaption>④</figcaption></figure>
+      <figure><div id="k5" class="gv"></div><figcaption>⑤</figcaption></figure>
+    </div>
+    <div class="cols3">
+      <div class="jcard" data-step="1"><p><b>(1)</b> 平的面、曲的面</p><div class="think" data-step="2" data-ask="说一说"><p>①⑤ 的面都是平的；② 球只有一个曲面；③④ 底面是平的，侧面是曲的。</p></div></div>
+      <div class="jcard" data-step="3"><p><b>分法一</b>：按“有没有曲面”</p><div class="think" data-step="4" data-ask="怎样分？"><p>{①⑤}：围成它的面都是平面；{②③④}：有曲面。</p></div></div>
+      <div class="jcard" data-step="5"><p><b>分法二</b>：按“柱、锥、球”</p><div class="think" data-step="6" data-ask="怎样分？"><p>柱体 {③⑤}，锥体 {①④}，球 {②}。</p></div></div>
+    </div>
+    <p class="method" data-step="7" data-label="分类">分类先定<b>标准</b>，同一次分类只用一个标准，做到不重复、不遗漏。</p>
+  </div>
+  <p class="note">课本 p123 练一练 2 的五个图：① 三棱锥 ② 球 ③ 圆柱 ④ 圆锥 ⑤ 长方体。分类答案不唯一，关键是让学生说出标准。可以追问：还能按“有没有顶点”分吗？</p>
+</section>
+
+<!-- 9 ================= 切正方体（习题 3） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 3</span><h2>正方体切去一块：面、棱、顶点各有多少？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="cutBtns"><button class="btn" type="button" data-k="1">①</button><button class="btn solid" type="button" data-k="2">②</button><button class="btn" type="button" data-k="3">③</button><button class="btn" type="button" data-k="4">④</button><button class="btn" type="button" data-k="5">⑤</button></div>
+      <div id="cut" class="s3 big3"></div>
+      <p class="tip center" id="cutRead"></p>
+      <p class="recall" data-step="5" data-label="发现">每一列都有 面数 + 顶点数 − 棱数 $=2$。（这是数学家欧拉发现的规律，以后还会学到。）</p>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p124 习题 3：将图 ① 的正方体切去一块，可以得到图 ②～⑤ 的几何体．这些几何体各有多少个面？多少条棱？多少个顶点？</p>
+      <table class="mtab" id="cutTab">
+        <tr><th></th><th>①</th><th>②</th><th>③</th><th>④</th><th>⑤</th></tr>
+        <tr><td>面</td><td data-col="1" data-row="F"></td><td data-col="2" data-row="F"></td><td data-col="3" data-row="F"></td><td data-col="4" data-row="F"></td><td data-col="5" data-row="F"></td></tr>
+        <tr><td>棱</td><td data-col="1" data-row="E"></td><td data-col="2" data-row="E"></td><td data-col="3" data-row="E"></td><td data-col="4" data-row="E"></td><td data-col="5" data-row="E"></td></tr>
+        <tr><td>顶点</td><td data-col="1" data-row="V"></td><td data-col="2" data-row="V"></td><td data-col="3" data-row="V"></td><td data-col="4" data-row="V"></td><td data-col="5" data-row="V"></td></tr>
+      </table>
+      <p class="muted small-t">先自己数，再点上方按钮核对（表格随点随填）。</p>
+      <p class="tip small" data-step="1"><b>面：</b><span class="think" data-step="2" data-ask="为什么 ②～⑤ 都是 7 个面？">切掉一个角，原来的 6 个面都还在（只是变小了），又多出一个三角形截面：$6+1=7$。</span></p>
+      <p class="tip small" data-step="3"><b>棱、顶点：</b><span class="think" data-step="4" data-ask="为什么越来越少？">② 截面的 3 个顶点都在棱上；③④⑤ 截面的顶点依次有 1、2、3 个落在原来的顶点上——每落上一个，就少 1 个顶点、少 1 条棱。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p124 习题 3。图形按课本的切法用坐标精确计算：②截面三点在三条棱的中点；③过一个顶点和两条棱的中点；④过两个顶点和一条棱的中点；⑤过三个顶点。面、棱、顶点由程序从切出来的多面体数出，结果：①6、12、8；②7、15、10；③7、14、9；④7、13、8；⑤7、12、7。请学生先在课本上数，再转动图形核对“看不见的棱”。</p>
+</section>
+
+<!-- 10 ================= 七巧板 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>七巧板：用几块拼出正方形、长方形、三角形</h2></div>
+  <div class="bd full top">
+    <div class="btns" data-noswipe id="tgT">
+      <button class="btn" type="button" data-k="sq2">2 块 → 正方形</button><button class="btn" type="button" data-k="rect3">3 块 → 长方形</button><button class="btn solid" type="button" data-k="tri3">3 块 → 三角形</button><button class="btn" type="button" data-k="tri45">4 或 5 块 → 三角形</button><button class="btn" type="button" data-k="full">7 块 → 正方形</button>
+    </div>
+    <div id="tg" class="tgb"></div>
+    <div class="tgbar">
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="tgRot">选中的块转 45°</button><button class="btn" type="button" id="tgFlip">翻面</button><button class="btn" type="button" id="tgReset">放回</button></div>
+      <p class="tip feedback" id="tgMsg"></p>
+    </div>
+    <p class="recall" data-step="1" data-label="想一想">用 6 块能拼成三角形吗？<span class="think" data-step="2" data-ask="先猜">拼不成！七巧板拼出的三角形都是等腰直角三角形，面积只能是 1、2、4、8、9、16……（以小三角形面积为 1）；任取 6 块，面积是 12、14 或 15，都不在里面。</span></p>
+  </div>
+  <p class="note">课本 p123 数学实验室：(1) 哪些板能拼成正方形、长方形、平行四边形？(2) 用 3 块拼三角形，4 块、5 块、6 块呢？拖动每块中心的橙点移动，点一下某块再按“转 45°”“翻面”；靠近时顶点会自动吸附。拼成后程序用“目标框内每个点恰好被一块盖住”来判断。6 块的结论是拓展，供学有余力的学生思考（三角形的直角边由小三角形的直角边 √2 和斜边 2 组成，面积只能是 a² 或 2b² 的形式）。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 1.</b> 将下列几何体的名称填在相应的横线上（课本 p124 第 1 题四个图：尖顶圆底、横放的柱、上下两个五边形、四个三角形面）．</p>
+        <details><summary>提示 1</summary>看底面：是圆还是多边形？有几个底面？</details>
+        <details><summary>提示 2</summary>横放的也是圆柱；五边形底面的棱柱叫五棱柱；4 个面都是三角形的是三棱锥。</details>
+        <details><summary>完整解答</summary>圆锥、圆柱、五棱柱（棱柱）、三棱锥（棱锥）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2(2).</b> 举出一些形状是棱柱、棱锥、圆柱、圆锥和球的物体．</p>
+        <details><summary>提示 1</summary>看看教室里：粉笔盒、铅笔、灯管、篮球……</details>
+        <details><summary>提示 2</summary>六角形铅笔（没削的部分）是六棱柱；削尖的笔尖接近圆锥。</details>
+        <details><summary>完整解答</summary>例如：棱柱—粉笔盒、六角铅笔；棱锥—金字塔、帐篷顶；圆柱—茶叶罐、灯管；圆锥—漏斗、陀螺尖；球—篮球、地球仪。（答案不唯一）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>想一想.</b> 一个棱柱有 18 条棱，它是几棱柱？有几个面、几个顶点？</p>
+        <details><summary>提示 1</summary>回到第 6 页：$n$ 棱柱有 $3n$ 条棱。</details>
+        <details><summary>提示 2</summary>$3n=18$，$n=$ ？</details>
+        <details><summary>完整解答</summary>$n=6$，是六棱柱；面 $6+2=8$ 个，顶点 $2\times6=12$ 个。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 1、2(2) 照课本；第 3 题是第 6 页规律的逆用（自编巩固题，非课本题号）。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">常见几何体：圆柱、圆锥、正方体、长方体、球、棱柱、棱锥。</p>
+        <p class="def">棱柱、棱锥的底面、侧面、棱、侧棱、顶点；几何图形由点、线、面组成。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="抽象">不管颜色、材料、大小，只看形状。</p>
+        <p class="method" data-label="按组成计数">面、棱、顶点按“上底—下底—侧面”分组数，不重不漏。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="分类">先定标准：按有无曲面、按柱锥球……</p>
+        <p class="recall" data-label="从立体到平面">几何体的表面由一块块平面图形（或曲面）围成。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>5.2 图形的运动——点动成线、线动成面、面动成体：长方形绕一边转一周，会“转”出什么几何体？</p>
+  </div>
+  <p class="note">请学生用一句话说出“棱柱和棱锥的区别”。课后：习题 5.1 第 2、4 题（自制一副“巧板”拼图）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/solid3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

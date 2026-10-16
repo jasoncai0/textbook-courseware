@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>主视图、左视图、俯视图 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/lushan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第5章 走进图形世界 · 5.4</p>
+    <h1 class="cover-title">主视图、左视图、俯视图</h1>
+    <p class="cover-q" data-step="1">横看成岭侧成峰，远近高低各不同．不识庐山真面目，只缘身在此山中．——苏轼</p>
+    <p class="cover-q" data-step="2">从不同方向看<b>同一个物体</b>，看到的图形往往是不同的。反过来，只给你几个方向看到的图形，能想出物体的样子吗？</p>
+    <div class="chips" data-step="3"><span class="chip">从三个方向看</span><span class="chip">长对正 · 高平齐 · 宽相等</span><span class="chip">搭积木画视图</span><span class="chip">由视图想物体</span></div>
+  </div>
+  <p class="note">课本 p134 情境（庐山照片与苏轼《题西林壁》）。诗里的“横看”“侧看”就是从不同方向观察。本课的立体图都可以拖动旋转，按“从正面看”等按钮时，视线会精确转到正前方——这时屏幕上的图形就是视图。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="小学 · 观察物体" data-step="1">
+        <p>从正面、侧面、上面观察几个小正方体搭成的物体，画出看到的形状。</p>
+        <span class="use">本课把这三个方向的图形起名字，并规定怎样摆放。</span>
+      </div>
+      <div class="recall" data-label="5.1 丰富的图形世界" data-step="2">
+        <p>圆柱、圆锥、球、棱柱、棱锥的形状特点。<a href="../mj7a-fengfutuxing/index.html">回看 5.1</a></p>
+        <span class="use">第 4 页：这些几何体的视图分别是什么形状。</span>
+      </div>
+      <div class="recall" data-label="5.3 展开与折叠" data-step="3">
+        <p>棱柱的表面展开图由几个长方形和两个底面组成。<a href="../mj7a-zhankaizhedie/index.html">回看 5.3</a></p>
+        <span class="use">第 13 页例题：由视图想出容器，再画它的表面展开图。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">小学二年级、四年级、五年级都有“观察物体”。请学生回忆：从正面看一个长方体是什么形状？从上面看一个圆柱呢？</p>
+</section>
+
+<!-- 3 ================= 想一想（图 5-20/5-21） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>桌上的长方体和圆柱：三幅图分别从哪个方向看到？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p134：如图 5-20，桌面上放着 1 个长方体和 1 个圆柱，从不同方向观察这两个物体，指出图 5-21 中的 3 幅图分别是从哪一个方向看到的。</p>
+      <svg viewBox="0 0 420 110" class="v521" aria-label="图 5-21 三幅图">
+        <g class="vl"><rect x="10" y="60" width="30" height="30"/><rect x="86" y="30" width="30" height="60"/><text x="60" y="106">(1)</text></g>
+        <g class="vl"><rect x="150" y="60" width="82" height="30"/><rect x="176" y="30" width="30" height="30"/><text x="185" y="106">(2)</text></g>
+        <g class="vl"><rect x="290" y="8" width="30" height="82"/><circle cx="380" cy="47" r="15"/><text x="340" y="106">(3)</text></g>
+      </svg>
+      <div class="cols3 picks">
+        <div class="pick" data-ans="a"><span>(1)</span><button data-k="a">正面</button><button data-k="b">左面</button><button data-k="c">上面</button></div>
+        <div class="pick" data-ans="b"><span>(2)</span><button data-k="a">正面</button><button data-k="b">左面</button><button data-k="c">上面</button></div>
+        <div class="pick" data-ans="c"><span>(3)</span><button data-k="a">正面</button><button data-k="b">左面</button><button data-k="c">上面</button></div>
+      </div>
+      <p class="method" data-step="1" data-label="想一想">(2) 为什么圆柱只露出一个正方形？<span class="think" data-step="2" data-ask="说说理由">从左面看，长方体在圆柱前面，挡住了圆柱下面的一段，只露出比长方体高的部分。</span></p>
+    </div>
+    <div class="col">
+      <div id="sc" class="p3 big3"></div>
+      <div class="btns center-btns" data-noswipe id="scBtns"><button class="btn" type="button" data-k="front">从正面看</button><button class="btn" type="button" data-k="left">从左面看</button><button class="btn" type="button" data-k="top">从上面看</button><button class="btn" type="button" data-k="free">还原</button></div>
+    </div>
+  </div>
+  <p class="note">先让学生判断，再点右边按钮验证：视线转到正前方、正左方、正上方后，屏幕上的形状与课本图 5-21 完全一致（长方体 1×2.75×1，圆柱底面直径 1、高 2，按课本图量得）。生活中的类似体验：从正面看汽车与从上面看汽车、从不同位置看教学楼……</p>
+</section>
+
+<!-- 4 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>圆柱、圆锥、棱柱：从三个方向看到什么？</h2></div>
+  <div class="bd full top">
+    <p class="tip">课本 p135：观察下表中所示物体，并将看到的图形填入表中．先自己说，再点按钮让三个物体一起转过去．</p>
+    <div class="btns" data-noswipe id="tryBtns"><button class="btn" type="button" data-k="front">从正面看</button><button class="btn" type="button" data-k="left">从左面看</button><button class="btn" type="button" data-k="top">从上面看</button><button class="btn" type="button" data-k="free">还原</button></div>
+    <div class="cols3"><div id="try_cyl" class="p3 mid3"></div><div id="try_cone" class="p3 mid3"></div><div id="try_prism" class="p3 mid3"></div></div>
+    <table class="mtab" id="tryTab">
+      <tr><th></th><th>圆柱</th><th>圆锥</th><th>棱柱</th></tr>
+      <tr><td>从正面看</td><td data-row="front">长方形</td><td data-row="front">三角形</td><td data-row="front">长方形</td></tr>
+      <tr><td>从左面看</td><td data-row="left">长方形</td><td data-row="left">三角形</td><td data-row="left">长方形</td></tr>
+      <tr><td>从上面看</td><td data-row="top">圆</td><td data-row="top">圆（中间有一点）</td><td data-row="top">正方形</td></tr>
+    </table>
+  </div>
+  <p class="note">表格里的答案点了对应方向的按钮才显示。圆锥从上面看是圆，圆心处有一个点（顶点）——课本 p138 练一练第 2 题的俯视图里就有这个点。课本的棱柱是底面为正方形的四棱柱。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>主视图、左视图、俯视图</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>课本 p135</h4>人们从不同的方向观察某个物体，可以看到不同的图形．一般地，我们把从正面看到的图形，称为<em>主视图</em>；从左面看到的图形，称为<em>左视图</em>；从上面看到的图形，称为<em>俯视图</em>．</div>
+    <div class="cols3">
+      <p class="recall" data-step="2" data-label="主视图">站在物体<b>正前方</b>，视线水平地看过去。</p>
+      <p class="recall" data-step="3" data-label="左视图">站在物体<b>左边</b>，视线水平地向右看过去。</p>
+      <p class="recall" data-step="4" data-label="俯视图">从物体<b>正上方</b>往下看（“俯”就是低头往下看）。</p>
+    </div>
+    <p class="warn" data-step="5" data-label="易错">左视图是从物体的<b>左边</b>看，不是看物体的左半边；从左边看时，物体的<b>后面</b>在你的左手边、<b>前面</b>在你的右手边。<span class="think" data-step="6" data-ask="回看第 3 页验证">第 3 页按“从左面看”：长方体的后端在图的左边。</span></p>
+  </div>
+  <p class="note">“看”的时候视线要互相平行（像阳光一样），所以远处的东西不会变小——这正是课件里立体图采用的“正投影”。易错警示里的“左手边是物体的后面”对画左视图很重要，第 10 页搭积木时会再用。</p>
+</section>
+
+<!-- 6 ================= 做一做 1（图 5-22/5-23） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 1</span><h2>把三幅图的名称填在括号内</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p135：把图 5-22 所示物体的主视图、左视图、俯视图的名称填在图 5-23 相应的括号内．</p>
+      <svg viewBox="0 0 420 130" class="v521" aria-label="图 5-23">
+        <g class="vl"><path d="M10 10 H55 V50 H100 V90 H10 Z"/><text x="45" y="120">(  ①  )</text></g>
+        <g class="vl"><rect x="140" y="30" width="120" height="60"/><line x1="140" y1="60" x2="260" y2="60"/><text x="190" y="120">(  ②  )</text></g>
+        <g class="vl"><rect x="300" y="2" width="120" height="105"/><line x1="300" y1="47" x2="420" y2="47"/><text x="345" y="125">(  ③  )</text></g>
+      </svg>
+      <div class="cols3 picks">
+        <div class="pick" data-ans="b"><span>①</span><button data-k="a">主视图</button><button data-k="b">左视图</button><button data-k="c">俯视图</button></div>
+        <div class="pick" data-ans="a"><span>②</span><button data-k="a">主视图</button><button data-k="b">左视图</button><button data-k="c">俯视图</button></div>
+        <div class="pick" data-ans="c"><span>③</span><button data-k="a">主视图</button><button data-k="b">左视图</button><button data-k="c">俯视图</button></div>
+      </div>
+      <p class="method" data-step="1" data-label="线从哪里来">视图里的线，是物体上看得见的<b>棱</b>（两个面的交线）。②、③中间那条线分别是哪条棱？<span class="think" data-step="2" data-ask="找一找">② 是低台阶前面的上棱；③ 是高、低两个台阶面的分界棱。</span></p>
+    </div>
+    <div class="col">
+      <div id="st" class="p3 big3"></div>
+      <div class="btns center-btns" data-noswipe id="stBtns"><button class="btn" type="button" data-k="front">从正面看</button><button class="btn" type="button" data-k="left">从左面看</button><button class="btn" type="button" data-k="top">从上面看</button><button class="btn" type="button" data-k="free">还原</button></div>
+    </div>
+  </div>
+  <p class="note">图 5-23 按课本比例重画（深 7、宽 6、高 4，前低后高）。① L 形是左视图（左边高——物体的后面在左手边）；② 是主视图；③ 是俯视图。注意 ② 和 ③ 一样宽（都等于物体的宽），① 和 ③ 中“深度”也一样长——这就是后面要讲的“长对正、宽相等”。</p>
+</section>
+
+<!-- 7 ================= 做一做 2（图 5-24） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 2</span><h2>画出图 5-24 中两个物体的三视图</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p135：分别画出图 5-24 中两个物体的主视图、左视图、俯视图，并与同学交流．<b>先在本子上画，再看下面</b>。</p>
+      <div class="btns" data-noswipe id="drK"><button class="btn solid" type="button" data-k="w">图 5-24(1)</button><button class="btn" type="button" data-k="v">图 5-24(2)</button></div>
+      <div id="dr" class="p3 mid3"></div>
+    </div>
+    <div class="col" data-step="1">
+      <div class="tv">
+        <figure><div id="drF" class="p3 vv"></div><figcaption>主视图</figcaption></figure>
+        <figure><div id="drL" class="p3 vv"></div><figcaption>左视图</figcaption></figure>
+        <figure><div id="drT" class="p3 vv"></div><figcaption>俯视图</figcaption></figure>
+      </div>
+      <p class="tip small">三视图由程序把视线精确转到正前、正左、正上方画出（同一比例）。</p>
+    </div>
+  </div>
+  <p class="note">(1) 是三棱柱（直角三角形在正面）：主视图直角三角形，左视图、俯视图都是长方形；(2) 主视图是五边形，左视图、俯视图是长方形，中间各有一条线（分别是低处平面与斜面的交线在左面、上面看到的样子）。点“→”显示答案前，让学生先说出每条线代表哪条棱。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>认一认、画一画</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p136 练一练 1：把如图所示物体的主视图、左视图、俯视图的名称填在相应的括号内．</p>
+      <svg viewBox="0 0 420 120" class="v521" aria-label="练一练 1 三幅图">
+        <g class="vl"><path d="M10 20 H46 L96 90 H10 Z"/><text x="40" y="115">(  ①  )</text></g>
+        <g class="vl"><rect x="140" y="30" width="80" height="60"/><text x="165" y="115">(  ②  )</text></g>
+        <g class="vl"><rect x="270" y="2" width="80" height="88"/><line x1="270" y1="38" x2="350" y2="38"/><text x="295" y="115">(  ③  )</text></g>
+      </svg>
+      <div class="cols3 picks">
+        <div class="pick" data-ans="b"><span>①</span><button data-k="a">主视图</button><button data-k="b">左视图</button><button data-k="c">俯视图</button></div>
+        <div class="pick" data-ans="a"><span>②</span><button data-k="a">主视图</button><button data-k="b">左视图</button><button data-k="c">俯视图</button></div>
+        <div class="pick" data-ans="c"><span>③</span><button data-k="a">主视图</button><button data-k="b">左视图</button><button data-k="c">俯视图</button></div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 2.</b> 画出如图所示物体（课本 p136 第 2 题）的主视图、左视图、俯视图．</p>
+        <details><summary>提示</summary>看课本图：它的上、下两个面是什么形状？侧面是竖直的吗？</details>
+        <details><summary>完整解答</summary>它是竖直放置的五棱柱（上、下底面是五边形）：俯视图是五边形；主视图、左视图都是长方形，里面有表示侧棱的竖线（看得见几条侧棱就画几条）。画完与同学交流。</details>
+      </div>
+    </div>
+    <div class="col">
+      <div id="ln" class="p3 big3"></div>
+      <div class="btns center-btns" data-noswipe id="lnBtns"><button class="btn" type="button" data-k="front">从正面看</button><button class="btn" type="button" data-k="left">从左面看</button><button class="btn" type="button" data-k="top">从上面看</button><button class="btn" type="button" data-k="free">还原</button></div>
+    </div>
+  </div>
+  <p class="note">练一练 1 的物体两侧是直角梯形（前面向下斜伸出去）。梯形出现在左视图里（梯形斜边在右边 = 物体前面）；正面看斜面是长方形；从上面看到顶面和斜面两部分，所以俯视图中间有一条线。三幅图按课本比例重画。</p>
+</section>
+
+<!-- 9 ================= 三视图的位置（图 5-25/5-26 + 阅读） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">规定 · 阅读</span><h2>三个视图怎样摆？长对正、高平齐、宽相等</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="def" data-step="1">在生产实践中，通常把<em>俯视图画在主视图的下面</em>，<em>左视图画在主视图的右面</em>．（课本 p136）</p>
+      <div id="ly" class="p3 mid3"></div>
+      <p class="tip small">图 5-25（可旋转）</p>
+    </div>
+    <div class="col">
+      <div class="layout">
+        <figure class="lf"><div id="lyF" class="p3 lv"></div><figcaption>主视图</figcaption></figure>
+        <figure class="ll"><div id="lyL" class="p3 lv"></div><figcaption>左视图</figcaption></figure>
+        <figure class="lt"><div id="lyT" class="p3 lv"></div><figcaption>俯视图</figcaption></figure>
+        <div class="guide gv1"></div><div class="guide gv2"></div><div class="guide gh1"></div><div class="guide gh2"></div>
+      </div>
+      <p class="method" data-step="2" data-label="阅读 · 三视图（p138）">主视图与俯视图的<b>长对正</b>，主视图与左视图的<b>高平齐</b>，左视图与俯视图的<b>宽相等</b>．</p>
+      <p class="tip small" data-step="3">由主、俯视图知道物体的<b>长</b>，由主、左视图知道<b>高</b>，由左、俯视图知道<b>宽</b>——三个视图合起来就能确定简单物体的形状和大小。</p>
+    </div>
+  </div>
+  <p class="note">课本 p136 图 5-25、5-26 与 p138 阅读“三视图”。右侧三个视图由程序按同一比例画出并按规定位置摆放，虚线是对齐辅助线：主视图与俯视图左右对齐（长对正），主视图与左视图上下对齐（高平齐）。“宽相等”是左视图的宽 = 俯视图的高，请学生用尺量一量。</p>
+</section>
+
+<!-- 10 ================= 搭积木 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手搭</span><h2>用小立方块搭一搭，三视图跟着变</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small">点底座的格子，给这一摞加 1 块（加到 3 块后再点清零）。共 <b id="bdCount"></b> 块。</p>
+      <svg id="bdEdit" class="edit" viewBox="0 0 124 124" data-noswipe></svg>
+      <p class="muted center small-t">底座（从上往下看；上边是后面）</p>
+      <div class="btns" data-noswipe id="bdPre"><button class="btn" type="button" data-k="read">阅读图(2)</button><button class="btn" type="button" data-k="stair">台阶</button><button class="btn" type="button" data-k="empty">清空</button></div>
+      <div id="bd" class="p3 mid3"></div>
+    </div>
+    <div class="col">
+      <div class="layout grid3">
+        <figure class="lf"><svg id="bvF" class="bv"></svg><figcaption>主视图</figcaption></figure>
+        <figure class="ll"><svg id="bvL" class="bv"></svg><figcaption>左视图</figcaption></figure>
+        <figure class="lt"><svg id="bvT" class="bv"></svg><figcaption>俯视图</figcaption></figure>
+      </div>
+      <p class="def" data-step="1">三视图规定，画出的“视图”应是物体的轮廓线．如果把小正方体搭成的物体看成一个整体（拼缝已粘连、腻平），视图里只画<b>看得见的棱</b>．（课本 p138–139 阅读）</p>
+      <p class="method" data-step="2" data-label="视图里哪里有线">相邻两格前后（或高低）位置不同，中间就有一条棱，要画线；位置相同，拼缝已腻平，不画线。</p>
+    </div>
+  </div>
+  <p class="note">“阅读图(2)”就是课本 p139 的 6 个小正方体，三视图与课本图(3) 一致。让学生先预测加一块后哪个视图会变，再点击验证；也可反过来给出三视图，请学生搭出物体（答案往往不唯一——这是“由视图想物体”的伏笔）。“台阶”可与习题 3 对照。</p>
+</section>
+
+<!-- 11 ================= 想一想（图 5-27） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>由三视图想物体</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p136：根据图 5-27(1)、(2) 所示两个物体的主视图、左视图、俯视图，想象这两个物体的形状，说出相应几何体的名称．</p>
+      <svg viewBox="0 0 420 150" class="v521" aria-label="图 5-27">
+        <g class="vl"><circle cx="40" cy="38" r="30"/><circle cx="110" cy="38" r="30"/><circle cx="40" cy="108" r="30"/><text x="68" y="146">(1)</text></g>
+        <g class="vl"><path d="M230 68 A30 30 0 0 1 290 68 Z"/><path d="M300 68 A30 30 0 0 1 360 68 Z"/><circle cx="260" cy="108" r="30"/><text x="290" y="146">(2)</text></g>
+      </svg>
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="先想象">(1) 球；(2) 半球．</span></p>
+      <div class="btns" data-noswipe id="gsK" data-step="3"><button class="btn solid" type="button" data-k="1">看 (1)</button><button class="btn" type="button" data-k="2">看 (2)</button></div>
+    </div>
+    <div class="col" data-step="3">
+      <div id="gs" class="p3 mid3"></div>
+      <div class="tv">
+        <figure><div id="gsF" class="p3 vv"></div><figcaption>主视图</figcaption></figure>
+        <figure><div id="gsL" class="p3 vv"></div><figcaption>左视图</figcaption></figure>
+        <figure><div id="gsT" class="p3 vv"></div><figcaption>俯视图</figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <p class="note">先只看左边的视图，让学生描述想象中的物体，再揭示。(2) 的主视图、左视图都是半圆，俯视图是圆：半球（平的面朝下）。追问：(1) 只有三个圆，一定是球吗？——三个方向都是同样大的圆，只能是球。</p>
+</section>
+
+<!-- 12 ================= 试一试（图 5-28/5-29） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>你想象出的物体是图 5-29 中的哪两个？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p137：根据图 5-28(1)、(2) 所示两个物体的主视图、左视图、俯视图，想象这两个物体的形状．</p>
+      <svg viewBox="0 0 420 160" class="v521" aria-label="图 5-28">
+        <g class="vl"><path d="M10 40 L50 18 L90 40 V70 H10 Z M10 40 H90"/><path d="M100 40 L140 18 L180 40 V70 H100 Z M100 40 H180"/><circle cx="50" cy="112" r="40"/><circle cx="50" cy="112" r="1.8" class="dotf"/><text x="80" y="158">(1)</text></g>
+        <g class="vl"><path d="M230 70 V44 H253 L276 18 H300 V70 Z"/><path d="M315 18 H375 V70 H315 Z M315 44 H375"/><path d="M230 82 H300 V140 H230 Z M253 82 V140 M276 82 V140"/><text x="290" y="158">(2)</text></g>
+      </svg>
+      <p class="tip small">点下面的候选物体，对照它的三视图：</p>
+      <div class="btns" data-noswipe id="cdK"><button class="btn solid" type="button" data-k="1">图 5-29(1)</button><button class="btn" type="button" data-k="2">(2)</button><button class="btn" type="button" data-k="3">(3)</button><button class="btn" type="button" data-k="4">(4)</button></div>
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="先选">图 5-28(1) 对应 5-29(1)（圆柱上面一个圆锥）；图 5-28(2) 对应 5-29(4)（中间是斜面）．</span></p>
+    </div>
+    <div class="col">
+      <div id="cd" class="p3 mid3"></div>
+      <div class="tv">
+        <figure><div id="cdF" class="p3 vv"></div><figcaption>主视图</figcaption></figure>
+        <figure><div id="cdL" class="p3 vv"></div><figcaption>左视图</figcaption></figure>
+        <figure><div id="cdT" class="p3 vv"></div><figcaption>俯视图</figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <p class="note">5-29(2) 的顶上还有一个小圆柱，俯视图会多出两个同心圆；(3) 是两级台阶，主视图是台阶形而不是斜线。候选物体按课本图的样子用代码建模（比例为示意），视图由程序计算。</p>
+</section>
+
+<!-- 13 ================= 例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>由三视图想容器的形状，再画表面展开图</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p137 <b>例</b>　一个密封容器的主视图、左视图、俯视图如图 5-30 所示．试描述这个容器的形状，并画出它的表面展开图．</p>
+      <svg viewBox="0 0 220 180" class="v530" aria-label="图 5-30">
+        <g class="vl"><rect x="10" y="10" width="60" height="80"/><rect x="100" y="10" width="60" height="80"/><rect x="10" y="110" width="60" height="60"/></g>
+      </svg>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>主视图、左视图</span><span>都是长方形</span><i class="why">从正面、左面看，是“柱体”</i></div>
+        <div class="dl" data-step="2"><span>俯视图</span><span>是正方形</span><i class="why">底面是正方形</i></div>
+        <div class="dl end" data-step="3"><span>∴</span><span>它是棱柱体（图 5-31）</span><i class="why">底面为正方形的四棱柱（长方体）</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cols2">
+        <div><div id="ex" class="p3 mid3"></div><div class="btns center-btns" data-noswipe id="exBtns"><button class="btn" type="button" data-k="front">正面</button><button class="btn" type="button" data-k="left">左面</button><button class="btn" type="button" data-k="top">上面</button><button class="btn" type="button" data-k="free">还原</button></div></div>
+        <figure data-step="4"><svg viewBox="0 0 250 220" class="v530" aria-label="图 5-32 展开图">
+          <g class="vl"><rect x="10" y="10" width="45" height="45"/><rect x="10" y="55" width="45" height="60"/><rect x="55" y="55" width="45" height="60"/><rect x="100" y="55" width="45" height="60"/><rect x="145" y="55" width="45" height="60"/><rect x="10" y="115" width="45" height="45"/></g>
+        </svg><figcaption>图 5-32 表面展开图</figcaption></figure>
+      </div>
+      <p class="recall" data-step="5" data-label="生产中">物体的三视图标注相应尺寸，就能确定它的形状和大小，画出表面展开图，加工出所需的产品．</p>
+    </div>
+  </div>
+  <p class="note">课本 p137 例题。解答的依据要说完整：主、左视图是长方形 → 柱体；俯视图是正方形 → 底面是正方形。展开图 5-32：4 个相同的长方形排成一排（侧面），上下各一个正方形（底面）——与 5.3 的长方体展开图呼应。</p>
+</section>
+
+<!-- 14 ================= 练一练（p138） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>想一想，说一说</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 说出主视图是长方形的 3 种不同的几何体．</p>
+        <details><summary>提示 1</summary>回看第 4 页的表格：哪些几何体从正面看是长方形？</details>
+        <details><summary>提示 2</summary>“柱”类几何体正放时，正面看往往是长方形；换个放法也行。</details>
+        <details><summary>完整解答</summary>例如：长方体（正方体）、圆柱、正放的三棱柱……（答案不唯一）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 根据两个物体的主视图、左视图、俯视图，想象它们的形状，说出相应几何体的名称．①主、左视图是三角形，俯视图是带圆心点的圆；②主视图是两个并排的长方形，左视图是长方形，俯视图是三角形．</p>
+        <details><summary>提示 1</summary>① 俯视图圆心的点是什么？（回看第 4 页圆锥的俯视图）</details>
+        <details><summary>提示 2</summary>② 俯视图是三角形，说明从上往下看，底面是三角形；主视图里的竖线是一条侧棱。</details>
+        <details><summary>完整解答</summary>① 圆锥；② 三棱柱（竖直放置，一条侧棱朝前）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p138 练一练。第 2 题 ② 的俯视图是倒三角形，尖朝前（下方），所以正面能看到两个侧面，中间那条竖线就是朝前的侧棱。</p>
+</section>
+
+<!-- 15 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 5.4</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 半圆柱（半圆面朝前、平面朝下）的三幅图：宽长方形、半圆、窄长方形，分别是什么视图？</p>
+        <details><summary>提示</summary>半圆朝前，从正面看就是半圆；与主视图一样宽的是俯视图。</details>
+        <details><summary>完整解答</summary>宽长方形—俯视图；半圆—主视图；窄长方形—左视图。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 正方体、球的主视图、左视图、俯视图分别是什么图形？　<b>3.</b> 画出台阶（第 3 题图）的三视图．</p>
+        <details><summary>提示</summary>第 3 题可以在第 10 页用“台阶”搭一搭，对照视图。</details>
+        <details><summary>完整解答</summary>2：正方体三个视图都是同样大的正方形；球三个视图都是同样大的圆。3：从侧面看是台阶形（三级），另外两个视图是长方形，中间有表示每级台阶的线。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 根据两个物体的三视图，说出几何体的名称：①主、左视图是长方形，俯视图是圆；②主、左视图是三角形，俯视图是画有两条对角线的正方形．</p>
+        <details><summary>提示</summary>② 俯视图中的两条对角线是从顶点到底面四个角的侧棱。</details>
+        <details><summary>完整解答</summary>① 圆柱；② 四棱锥（底面是正方形）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p139 习题 5.4。第 1 题的三幅图在课本中依次为宽长方形、半圆、窄长方形。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">主视图（从正面看）、左视图（从左面看）、俯视图（从上面看）。</p>
+        <p class="def">俯视图在主视图下面，左视图在主视图右面；长对正、高平齐、宽相等。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="画视图">定方向 → 找轮廓 → 看得见的棱画线 → 按位置摆放。</p>
+        <p class="method" data-label="想物体">先看俯视图定“底”，再看主、左视图定“高”和形状。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="立体 ↔ 平面">视图把立体图形“压”成平面图形；三视图合起来又能还原物体。</p>
+        <p class="recall" data-label="换个角度看">横看成岭侧成峰：同一个物体，换个方向就不一样。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>第 5 章到此结束。</b>下一章 6.1 线段、射线、直线——从立体图形回到平面图形里最基本的“线”。</p>
+  </div>
+  <p class="note">第 5 章四节的主线：认识立体图形（5.1）→ 运动生成（5.2）→ 展开折叠（5.3）→ 从不同方向看（5.4），都是在立体与平面之间来回转化。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

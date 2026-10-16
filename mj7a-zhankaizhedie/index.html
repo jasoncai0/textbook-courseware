@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>展开与折叠 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shougong.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第5章 走进图形世界 · 5.3</p>
+    <h1 class="cover-title">展开与折叠</h1>
+    <p class="cover-q" data-step="1">把一个长方体纸盒沿着棱剪开、摊平，会得到一个<b>平面图形</b>。</p>
+    <p class="cover-q" data-step="2">反过来：什么样的平面图形，沿虚线一折，就能围成一个纸盒？</p>
+    <div class="chips" data-step="3"><span class="chip">圆柱、圆锥的侧面展开</span><span class="chip">正方体的展开图</span><span class="chip">先想一想，再折一折</span></div>
+  </div>
+  <p class="note">课本 p129 开头（长方体纸盒展开）。本课所有展开、折叠都由程序按真实尺寸计算：每块绕折痕转动，折完后自动检查“有没有重叠、合不合得拢”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="5.1 丰富的图形世界" data-step="1">
+        <p>正方体、长方体（四棱柱）有 6 个面；棱柱的侧面是长方形，棱锥的侧面是三角形。<a href="../mj7a-fengfutuxing/index.html">回看 5.1</a></p>
+        <span class="use">数一数：展开图要有几块、每块是什么形状。</span>
+      </div>
+      <div class="recall" data-label="5.2 图形的运动" data-step="2">
+        <p>长方形绕一边旋转一周得到圆柱，长方形的对边“扫”出了圆柱的侧面。<a href="../mj7a-tuxingyundong/index.html">回看 5.2</a></p>
+        <span class="use">第 3 页反过来：把圆柱的侧面摊平。</span>
+      </div>
+      <div class="recall" data-label="小学 · 圆的周长、长方体" data-step="3">
+        <p>圆的周长 $C=2\pi r$；长方体相对的面完全相同。</p>
+        <span class="use">圆柱侧面展开后长方形的长 = 底面周长；判断长方体展开图时看对面是否一样大。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">小学五年级已经接触过长方体、正方体的展开图，六年级学过圆柱侧面展开是长方形。本课把这些经验系统化：重点是“想象折叠”——先在脑中折，再动手验证。</p>
+</section>
+
+<!-- 3 ================= 圆柱、圆锥侧面展开 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 1、2</span><h2>把圆柱、圆锥的侧面剪开摊平</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p129：1. 将圆柱形纸筒的侧面沿虚线剪开（图 5-12），得到什么平面图形？2. 将圆锥形冰淇淋纸筒的侧面沿虚线剪开（图 5-13），得到什么平面图形？</p>
+      <div class="btns" data-noswipe id="rollK"><button class="btn solid" type="button" data-k="cyl">圆柱</button><button class="btn" type="button" data-k="cone">圆锥</button></div>
+      <div class="slider-row" data-noswipe>摊平：<input type="range" id="rollT" min="0" max="1" step="0.01" value="0"></div>
+      <p class="tip feedback" id="rollRead"></p>
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="先猜">圆柱的侧面展开是<b>长方形</b>；圆锥的侧面展开是<b>扇形</b>．</span></p>
+    </div>
+    <div class="col"><div id="roll" class="p3 big3"></div></div>
+  </div>
+  <p class="note">摊平的过程是精确的“保长”变形：圆柱侧面的弯曲半径逐渐变大、弧长始终等于底面周长；圆锥的母线长始终不变、底面半径逐渐变大直到等于母线长（此时完全平了）。所以展开后长方形的长恰好是 $2\pi r$，扇形的半径恰好是母线长。反过来，课本 p130 的照片：长方形纸片可以卷成圆柱的侧面。</p>
+</section>
+
+<!-- 4 ================= 无盖正方体（图 5-14） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 3</span><h2>沿红线把无盖的正方体纸盒剪开</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p129：沿图 5-14 中的红线将无盖的正方体纸盒剪开，得到什么平面图形？</p>
+      <p class="tip">红线是：左前竖直的棱、前面下方的棱、底面左右两条棱——共剪开 <b>4</b> 条棱。</p>
+      <div class="slider-row" data-noswipe>折起 ← → 展开：<input type="range" id="boxT" min="0" max="1" step="0.01" value="1"><button class="btn" type="button" id="boxPlay">▶ 折 / 展</button></div>
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="先想象">一排 4 个正方形（左、后、右、前），底面连在后面那个正方形的下边——共 5 个正方形．</span></p>
+      <p class="method" data-step="3" data-label="想一想">没剪开的棱就是展开图里的<b>折痕</b>（虚线）；剪开的棱变成展开图的<b>外边</b>。</p>
+    </div>
+    <div class="col"><div id="box" class="p3 big3"></div><p class="muted center small-t">拖动画面可以转着看</p></div>
+  </div>
+  <p class="note">课本图 5-14 的红线：左前方的竖棱、前下棱、底面左、右两条棱。演示从折好的纸盒开始，拖滑块向左“展开”。可追问：剪开的棱换一组，展开图会一样吗？——下一页就研究正方体的各种展开图。</p>
+</section>
+
+<!-- 5 ================= 数学实验室（图 5-15） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>能得到图 5-15 的平面图形吗？折回去试试</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p129：将一个正方体纸盒沿部分棱剪开展成一个平面图形．(1) 把你得到的平面图形与同学交流；(2) 你能得到如图 5-15 的平面图形吗？</p>
+      <div class="btns" data-noswipe id="labK"><button class="btn solid" type="button" data-k="n515a">图 5-15(1)</button><button class="btn" type="button" data-k="n515b">图 5-15(2)</button></div>
+      <div class="slider-row" data-noswipe>折叠：<input type="range" id="labT" min="0" max="1" step="0.01" value="0"><button class="btn" type="button" id="labPlay">▶ 折一折</button></div>
+      <p class="tip feedback" id="labMsg"></p>
+      <div class="jcard" data-step="1"><p>练一练 1（p130）：哪一个是棱锥的侧面展开图？①四个长方形并排 ②扇形 ③几个三角形围成扇形的样子</p><div class="pick" data-ans="c"><button data-k="a">①</button><button data-k="b">②</button><button data-k="c">③</button><p class="pick-why">棱锥的侧面都是三角形，展开后是几个有公共顶点的三角形；①是棱柱的侧面，②是圆锥的侧面。</p></div></div>
+    </div>
+    <div class="col"><div id="lab" class="p3 big3"></div></div>
+  </div>
+  <p class="note">两个图都能折成正方体。折的时候注意：程序选连着最多的那一块不动，其他各块绕折痕转 90°。折好后让学生找一找：展开图里哪两块是相对的面？（同一行隔一个的两块是相对面。）</p>
+</section>
+
+<!-- 6 ================= 图 5-16 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 2</span><h2>把图 5-16 的图形沿虚线折叠，围成 3 个几何体</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p130–131：你所折叠成的几何体分别是图 5-17 中的哪一个？</p>
+      <div class="btns" data-noswipe id="polyK"><button class="btn solid" type="button" data-k="octa">8 个三角形</button><button class="btn" type="button" data-k="dodeca">12 个五边形</button><button class="btn" type="button" data-k="icosa">20 个三角形</button></div>
+      <div class="slider-row" data-noswipe>折叠：<input type="range" id="polyT" min="0" max="1" step="0.01" value="0"><button class="btn" type="button" id="polyPlay">▶ 折一折</button></div>
+      <p class="tip feedback" id="polyMsg"></p>
+      <p class="recall" data-step="1" data-label="读一读">这三个几何体每个面都是相同的正多边形，叫做<b>正八面体、正十二面体、正二十面体</b>（图 5-17 从左到右）。</p>
+    </div>
+    <div class="col"><div id="poly" class="p3 big3"></div></div>
+  </div>
+  <p class="note">展开图的排法与课本图 5-16 相同（十二面体用两朵“五瓣花”相连的排法）。每条折痕折过的角度不再是 90°，而是 180° 减去相邻两个面的夹角（正八面体约 70.5°，正十二面体约 63.4°，正二十面体约 41.8°），所以折完能严丝合缝。正多面体的名称只作了解。</p>
+</section>
+
+<!-- 7 ================= 棱柱体纸盒 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 3 · 练一练 1</span><h2>哪些硬纸片能折成棱柱体（长方体）纸盒？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p131：图 5-18 中哪些硬纸片可以沿虚线折叠成（面与面之间不重叠）棱柱体纸盒？练一练 1：图中哪些硬纸片可以沿虚线折叠成长方体纸盒？<b>先想一想，再折一折</b>。</p>
+      <div class="btns" data-noswipe id="bxK">
+        <button class="btn solid" type="button" data-set="518" data-k="1">5-18(1)</button><button class="btn" type="button" data-set="518" data-k="2">(2)</button><button class="btn" type="button" data-set="518" data-k="3">(3)</button><button class="btn" type="button" data-set="518" data-k="4">(4)</button>
+        <button class="btn" type="button" data-set="p" data-k="1">练一练①</button><button class="btn" type="button" data-set="p" data-k="2">②</button><button class="btn" type="button" data-set="p" data-k="3">③</button><button class="btn" type="button" data-set="p" data-k="4">④</button>
+      </div>
+      <div class="slider-row" data-noswipe>折叠：<input type="range" id="bxT" min="0" max="1" step="0.01" value="0"><button class="btn" type="button" id="bxPlay">▶ 折一折</button></div>
+      <p class="tip feedback" id="bxMsg"></p>
+      <p class="method" data-step="1" data-label="看三件事">① 面的<b>个数</b>够不够（6 个）；② 相对的面是不是<b>一样大</b>；③ 两个“盖子”是不是在<b>两头</b>。</p>
+    </div>
+    <div class="col">
+      <div id="bx" class="p3 big3"></div>
+      <p class="def" data-step="2"><span class="think" data-step="3" data-ask="先判断">图 5-18：只有 (4) 能（(1) 只有 5 个面；(2) 有 7 个面；(3) 两个盖子在同一头）．练一练 1：① ③ 能，② ④ 不能．</span></p>
+    </div>
+  </div>
+  <p class="note">纸片尺寸按课本图量得的比例：图 5-18 是 3×1×1 的盒子，练一练 1 是长 2.75、宽高各 1 的盒子。② 折起来会有两个面重叠（同时缺一个盖子），④ 两个长面挨在一起，围不拢。程序判断的标准：没有两块重合，而且每条边都恰好被两块共用。</p>
+</section>
+
+<!-- 8 ================= 图 5-19 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 4</span><h2>选 1 个白格，与 5 个阴影格一起折成正方体</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p131：如图 5-19，纸板上有 10 个无阴影的小正方形，从中选 1 个（在所选小正方形上打“√”），使它与图中 5 个有阴影的小正方形一起能折叠成一个正方体纸盒．</p>
+      <svg id="pickGrid" class="pgrid" viewBox="0 0 308 208" data-noswipe></svg>
+      <p class="tip feedback" id="pickMsg"></p>
+      <div class="slider-row" data-noswipe>折叠：<input type="range" id="pickT" min="0" max="1" step="0.01" value="0"></div>
+    </div>
+    <div class="col">
+      <div id="pickV" class="p3 big3"></div>
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="共有几种选法？">共 4 种：最上面一行的 3 个，或者第 3 行最右边的 1 个．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p131 图 5-19。每点一个白格，程序就把这 6 块折一遍，并在格子上标 ✓ 或 ✗。先请学生预测，再逐个验证。规律：阴影部分已有“一行 3 个 + 下一行 2 个”，再加的那块不能让两块折到同一个面上——比如加在第 2 行最左边，会和第 2 行第 4 个重合。</p>
+</section>
+
+<!-- 9 ================= 练一练 2 + 自己设计 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 2</span><h2>哪个能折成正方体？不能的，挪一个小正方形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p132：图①、图②分别由 6 个小正方形组成．(1) 哪一个能折叠成正方体纸盒？哪一个不能？(2) 在不能的图形中，怎样改变其中一个小正方形的位置，使它与其余 5 个重新拼接后能折叠成正方体纸盒？</p>
+      <div class="btns" data-noswipe id="dsLoad"><button class="btn" type="button" data-k="p2a">载入图①</button><button class="btn" type="button" data-k="p2b">载入图②</button></div>
+      <svg id="dsGrid" class="pgrid" viewBox="0 0 270 182" data-noswipe></svg>
+      <p class="muted small-t">点方格可以加上 / 去掉（最多 6 个）</p>
+      <p class="tip feedback" id="dsMsg"></p>
+      <div class="slider-row" data-noswipe>折叠：<input type="range" id="dsT" min="0" max="1" step="0.01" value="0"><button class="btn" type="button" id="dsPlay">▶ 折一折</button></div>
+    </div>
+    <div class="col">
+      <div id="dsV" class="p3 big3"></div>
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="说说理由">① 能，② 不能：② 中有 4 个小正方形拼成了“田”字，折起来会重叠．把第 1 行的两个小正方形中任意一个，移到第 2 行下面（哪一列都行），就变成“1-4-1”型，能折成正方体．</span></p>
+    </div>
+  </div>
+  <p class="note">图 ① 是“三三”错开的展开图。图 ② 含“田”字形，一定不能折成正方体。请学生在格子板上自己移动一个方格并“折一折”验证；也可以挑战：正方体的展开图一共有多少种不同的形状？（共 11 种，课后探究。）</p>
+</section>
+
+<!-- 10 ================= 习题 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 5</span><h2>填数，使相对面上的两个数互为相反数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p133 习题 5：先在图中 6 个正方形里分别填写 1、2、3、−1、−2、−3，再把它沿虚线折叠成正方体，使正方体相对面上的两个数互为相反数．</p>
+      <svg id="numCells" class="pgrid" viewBox="0 0 224 170" data-noswipe></svg>
+      <p class="tip feedback" id="numMsg"></p>
+      <div class="slider-row" data-noswipe>折叠：<input type="range" id="numT" min="0" max="1" step="0.01" value="0"><button class="btn" type="button" id="numPlay">▶ 折一折</button></div>
+    </div>
+    <div class="col">
+      <div id="numV" class="p3 big3"></div>
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="哪两个面相对？">中间一行隔一个的两块相对（第 1 与第 3 个、第 2 与第 4 个）；最上面一块与最下面一块相对．</span></p>
+    </div>
+  </div>
+  <p class="note">与第 2 章“相反数”联系（<a href="../mj7a-jueduizhi/index.html">2.4 绝对值与相反数</a>）。点方格换数，折起来转着看，程序自动检查三组相对面。找相对面的口诀：“一行中隔一个”。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1、2.</b> 圆柱、圆锥的表面展开后分别得到怎样的平面图形？</p>
+        <details><summary>提示 1</summary>表面 = 侧面 + 底面。侧面展开见第 3 页。</details>
+        <details><summary>提示 2</summary>圆柱有 2 个底面，圆锥有 1 个底面。</details>
+        <details><summary>完整解答</summary>圆柱：一个长方形和两个圆（长方形的长等于圆的周长）；圆锥：一个扇形和一个圆（扇形的弧长等于圆的周长）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 沿红线将三棱柱表面剪开，能展开成图①～图④中的哪一个图形？（红线：上底面的两条棱、前面一条侧棱、下底面的两条棱）</p>
+        <details><summary>提示 1</summary>没剪的棱是折痕：上底面连着哪个侧面？下底面连着哪个侧面？</details>
+        <details><summary>提示 2</summary>上底面只剩右前方那条棱没剪，连在右边的侧面上；下底面只剩后面那条棱，连在后面的侧面（中间那块）上。</details>
+        <details><summary>完整解答</summary>图③：上面的三角形在第 3 个长方形上，下面的三角形在第 2 个长方形下。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4、6.</b> 4：图中纸片沿虚线折叠，围成什么几何体？（①五角星 ②五个长方形 + 两个五边形）6：图①～③的正方体中，哪些能用图④折成？</p>
+        <details><summary>提示 1</summary>4：五角星中间是五边形，5 个角都是三角形；6：先找图④的三组相对面。</details>
+        <details><summary>提示 2</summary>6：图④中绿与粉相对、蓝与下面的白紫相对、黄与上面的白紫相对——相对的两面不会同时看到。</details>
+        <details><summary>完整解答</summary>4：① 五棱锥，② 五棱柱。6：只有①能。②中黄、绿、白紫三面的位置顺序不对（左右颠倒）；③中黄色前面、蓝色右面，上面的白紫只能是与蓝色相对的那一块，矛盾。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p132–133 习题 1–4、6。第 6 题的结论用程序核对过（把图④折起来，检查三个面的相对位置与左右顺序）。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">圆柱侧面展开 → 长方形；圆锥侧面展开 → 扇形；棱柱侧面展开 → 几个长方形。</p>
+        <p class="def">正方体展开图由 6 个正方形组成，不能有“田”字形。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="找相对面">一行中隔一个的两块相对。</p>
+        <p class="method" data-label="想象 + 验证">先在脑中折，再折一折检验：看面数、看是否重叠、看能否合拢。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="立体 ↔ 平面">展开：立体变平面；折叠：平面变立体。</p>
+        <p class="recall" data-label="空间想象">同一个立体图形可以有不同的展开图。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>5.4 主视图、左视图、俯视图——不剪开、不展开，从不同方向“看”一个立体图形，又能得到哪些平面图形？</p>
+  </div>
+  <p class="note">课后：课题学习“制作无盖的长方体纸盒”（课本 p179）是本课的延伸。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

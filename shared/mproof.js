@@ -134,6 +134,7 @@ const MProof = (() => {
       const ok = slot.dataset.ans.split('|').includes(k);
       if (ok) {
         slot.innerHTML = tile.innerHTML;
+        slot.classList.remove('no');
         slot.classList.add('ok');
         if (BASIS[k]) { slot.classList.add('yj'); slot.dataset.k = k; }
         pick(null);

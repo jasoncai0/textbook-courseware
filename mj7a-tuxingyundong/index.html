@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图形的运动 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/solid3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/yushua.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第5章 走进图形世界 · 5.2</p>
+    <h1 class="cover-title">图形的运动</h1>
+    <p class="cover-q" data-step="1">下雨天，雨刷来回摆动，在挡风玻璃上扫出一块干净的区域。</p>
+    <p class="cover-q" data-step="2">一根“线”动起来，留下了一个“面”。那么一个“面”转起来，会留下什么？</p>
+    <div class="chips" data-step="3"><span class="chip">点动成线</span><span class="chip">线动成面</span><span class="chip">面动成体</span><span class="chip">平移 · 旋转 · 翻折</span></div>
+  </div>
+  <p class="note">课本 p125 图 5-6（雨刷）。上一节是“静止地看”几何体由点、线、面组成；这一节“动起来看”：点、线、面运动，生成线、面、体；再看平面图形的平移、旋转、翻折。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="5.1 丰富的图形世界" data-step="1">
+        <p>几何图形由<b>点</b>、<b>线</b>、<b>面</b>组成；面与面相交得到线，线与线相交得到点。</p>
+        <p><a href="../mj7a-fengfutuxing/index.html">回看 5.1</a></p>
+        <span class="use">反过来想：点、线、面“动”起来，能生成线、面、体。</span>
+      </div>
+      <div class="recall" data-label="小学六年级 · 圆柱与圆锥" data-step="2">
+        <p>圆柱的两个底面是相同的圆；圆锥的底面是圆，有一个顶点。</p>
+        <span class="use">第 4、5 页：长方形、直角三角形转一周，转出的就是它们。</span>
+      </div>
+      <div class="recall" data-label="小学 · 平移、旋转、轴对称" data-step="3">
+        <p>平移：沿直线移动，形状、大小不变。旋转：绕一个点转动。</p>
+        <p>轴对称图形沿对称轴对折，两边完全重合。</p>
+        <span class="use">第 7～9 页：在方格纸上平移、旋转、翻折。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第二张卡请学生回忆“圆柱、圆锥各部分的名称”，第 4 页会用到“底面半径”“高”与转动的长方形、三角形各边的对应。</p>
+</section>
+
+<!-- 3 ================= 点动成线、线动成面 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>点动成线，线动成面</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">如图 5-5，把笔尖看成一个点，这个点在纸上运动时形成<b>线</b>．<br><span class="muted small-t">拖动橙色的“笔尖”试试</span></p>
+        <div id="ptl" class="pb"></div>
+        <div class="btns" data-noswipe><button class="btn" type="button" id="ptlClr">擦掉重画</button></div>
+      </div>
+      <div class="col">
+        <p class="tip">如图 5-6，把汽车的雨刷看成一条线，这条线在挡风玻璃上运动时形成<b>扇面</b>．</p>
+        <div id="wiper" class="pb"></div>
+        <div class="slider-row" data-noswipe>雨刷转过：<input type="range" id="wiperA" min="0" max="140" step="1" value="0"><b class="v" id="wiperAV"></b></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="想一想">点走直的路，留下<span class="think" data-step="2" data-ask="？">直线的一段（线段）</span>；雨刷的一端固定着转，扫出的面的边缘是<span class="think" data-step="3" data-ask="？">两段圆弧（以转动中心为圆心）</span>。</p>
+  </div>
+  <p class="note">课本 p125 图 5-5、5-6。左图请学生拖出一条直的和一条弯的轨迹；右图拖动滑块，雨刷橙色的线扫出蓝色的扇面——雨刷不是从转轴开始的，所以扫出的是“扇环”的样子。图形由坐标精确计算，转过的角度就是滑块的读数。</p>
+</section>
+
+<!-- 4 ================= 面动成体（图 5-7） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>面动成体：平面图形转一周，形成什么几何体？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p125 想一想（图 5-7）：<br>(1) 长方形纸板绕它的一条边旋转 1 周；<br>(2) 直角三角形纸板绕它的一条直角边旋转 1 周；<br>(3) 一枚硬币在桌面上竖直快速旋转．<br>它们分别形成怎样的几何体？</p>
+      <div class="btns" data-noswipe id="swFig"><button class="btn solid" type="button" data-k="rect">(1) 长方形</button><button class="btn" type="button" data-k="tri">(2) 直角三角形</button><button class="btn" type="button" data-k="coin">(3) 硬币</button></div>
+      <div class="slider-row" data-noswipe>转过：<input type="range" id="swT" min="0" max="360" step="1" value="0"><button class="btn" type="button" data-play="sweep">▶ 转一周</button></div>
+      <p class="tip feedback" id="swRead"></p>
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="先猜，再转">(1) 圆柱；(2) 圆锥；(3) 球．</span></p>
+    </div>
+    <div class="col">
+      <div id="sweep" class="s3 big3"></div>
+      <p class="recall" data-step="3" data-label="点动成线，线动成面，面动成体">长方形的对边转出圆柱的侧面，绕着的那条边成了圆柱的<b>轴</b>，另外两条边转出两个<b>底面</b>（圆）。</p>
+    </div>
+  </div>
+  <p class="note">先让学生对每个图形说出猜想，再拖滑块或点“转一周”验证。蓝色弧线是图形上的点转过的路径（都是以轴上一点为圆心的圆弧），灰线是每隔 30° 留下的“影子”；转满 360° 后画成真正的几何体，看不见的线变成虚线。拖动右边图可以转着看。硬币是整个圆面绕直径转，转半周就已经扫出整个球了。</p>
+</section>
+
+<!-- 5 ================= 猜一猜再转 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 习题</span><h2>先想象，再转一转</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sw2Fig">
+        <p class="tip">课本 p127 练一练 2：下列图形绕直线旋转 1 周分别形成怎样的几何体？</p>
+        <div class="btns" data-noswipe><button class="btn solid" type="button" data-k="trap">练一练 ①</button><button class="btn" type="button" data-k="tri2">练一练 ②</button></div>
+        <p class="tip">课本 p128 习题 1：第 1 行的图形绕直线转 1 周后，是第 2 行的哪个？（圆环、球、圆柱、圆锥、花瓶）</p>
+        <div class="btns" data-noswipe><button class="btn" type="button" data-k="tri">习题 ①</button><button class="btn" type="button" data-k="semi">习题 ②</button><button class="btn" type="button" data-k="vase">习题 ③</button><button class="btn" type="button" data-k="rect">习题 ④</button><button class="btn" type="button" data-k="ring">习题 ⑤</button></div>
+      </div>
+      <div class="slider-row" data-noswipe>转过：<input type="range" id="sw2T" min="0" max="360" step="1" value="0"><button class="btn" type="button" data-play="sweep2">▶ 转一周</button></div>
+      <p class="tip feedback" id="sw2Read"></p>
+    </div>
+    <div class="col">
+      <div id="sweep2" class="s3 big3"></div>
+      <div class="cols2">
+        <p class="def" data-step="1">练一练：<span class="think" data-step="2" data-ask="先想象">① 下面是圆柱、上面是圆锥；② 两个圆锥，底面贴在一起．</span></p>
+        <p class="def" data-step="3">习题 1：<span class="think" data-step="4" data-ask="先连线">①圆锥 ②球 ③花瓶 ④圆柱 ⑤圆环．</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">练一练 ① 是直角梯形（直角腰贴着直线），② 是一边贴着直线的三角形；习题 ⑤ 的圆不碰直线，转出中间空的“圆环”。先让学生口答再转。花瓶和圆环转满后保留线框（每 30° 一条轮廓线、关键点的圆），其余转满后画成实体。</p>
+</section>
+
+<!-- 6 ================= 两块三角尺 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 1</span><h2>两块相同的直角三角尺，相等的边拼在一起</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p125 做一做 1：将两块相同的直角三角尺（如图 5-8）相等的边拼在一起，可以拼成哪些不同的平面图形？你能说出这些图形的名称吗？</p>
+      <p class="small-t muted">选哪一组相等的边：</p>
+      <div class="btns" data-noswipe id="sqEdge"><button class="btn" type="button" data-k="short">短直角边</button><button class="btn solid" type="button" data-k="long">长直角边</button><button class="btn" type="button" data-k="hyp">斜边</button></div>
+      <p class="small-t muted">第二块怎样放：</p>
+      <div class="btns" data-noswipe id="sqMode"><button class="btn solid" type="button" data-k="flip">沿这条边翻过去</button><button class="btn" type="button" data-k="turn">转半圈（180°）</button></div>
+      <p class="tip feedback" id="sqName"></p>
+    </div>
+    <div class="col">
+      <div id="sq" class="pb2"></div>
+      <table class="mtab" data-step="1"><tr><th></th><th>短直角边</th><th>长直角边</th><th>斜边</th></tr>
+        <tr><td>翻过去</td><td><span class="think" data-step="2" data-ask="?">等腰三角形</span></td><td><span class="think" data-step="2" data-ask="?">等边三角形</span></td><td><span class="think" data-step="2" data-ask="?">风筝形四边形</span></td></tr>
+        <tr><td>转半圈</td><td><span class="think" data-step="3" data-ask="?">平行四边形</span></td><td><span class="think" data-step="3" data-ask="?">平行四边形</span></td><td><span class="think" data-step="3" data-ask="?">长方形</span></td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="note">三角尺是 30°、60°、90° 的那一块：短直角边 : 长直角边 : 斜边 = 1 : √3 : 2，图按这个比例精确绘制。三组相等的边 × 两种放法 = 6 种拼法，按表格有序地找，不重不漏——这是本页的方法目标。风筝形四边形学生可能叫不出名字，说出“两组邻边分别相等的四边形”即可。</p>
+</section>
+
+<!-- 7 ================= 平移（图 5-10） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 3</span><h2>平移：把虚线以下的部分向右移</h2></div>
+  <div class="bd full top">
+    <p class="tip">课本 p126：图 5-10(1) 是由“回”向右平移而成的．把图 5-10(1) 沿虚线剪开，怎样改变图形的位置可以得到图 5-10(2)？把虚线以下的部分向右平移 4 格，得到怎样的图形？</p>
+    <div id="shift" class="shiftb"></div>
+    <div class="slider-row" data-noswipe>虚线以下的部分向右平移：<input type="range" id="shiftK" min="0" max="8" step="1" value="0"><b class="v" id="shiftKV"></b></div>
+    <p class="tip feedback" id="shiftMsg"></p>
+    <p class="method" data-step="1" data-label="平移">图形沿某个方向移动一定的距离，<b>形状、大小都不变</b>，每个点移动的方向和距离都相同。<span class="think" data-step="2" data-ask="平移 8 格会怎样？">平移 8 格，下半部分正好对上下一个“回”字的下半部分，又回到了图 5-10(1)（最左边少一块、最右边多出一块）。</span></p>
+  </div>
+  <p class="note">图中每个“回”字外框 6×6 格、内框 2×2 格，相邻两个相距 2 格，与课本图 5-10 一致。图 5-10(2) 是下半部分向右平移 2 格；平移 4 格的结果请学生先在课本图 5-10(3) 中画，再拖滑块核对。</p>
+</section>
+
+<!-- 8 ================= 旋转（图 5-11） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 4</span><h2>旋转：怎样把三角尺转到虚线位置？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p126：如何分别将图 5-11 中的三角尺旋转到图中虚线所示的位置？</p>
+      <p class="small-t muted">绕哪个点转：</p>
+      <div class="btns" data-noswipe id="turnC"><button class="btn solid" type="button" data-k="R">直角顶点 R</button><button class="btn" type="button" data-k="A">顶点 A</button><button class="btn" type="button" data-k="B">顶点 B</button></div>
+      <div class="slider-row" data-noswipe>转过：<input type="range" id="turnA" min="-180" max="180" step="15" value="0"></div>
+      <p class="small-t muted">滑块向右为逆时针，向左为顺时针</p>
+      <p class="tip feedback" id="turnMsg"></p>
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="说出转法">右边的虚线：绕直角顶点 R 顺时针旋转 90°；左边的虚线：绕顶点 A 旋转 180°．</span></p>
+    </div>
+    <div class="col">
+      <div id="turn" class="pb2"></div>
+      <p class="method" data-step="3" data-label="说清一次旋转">要说清三件事：绕<b>哪个点</b>（旋转中心）、往<b>哪个方向</b>（顺 / 逆时针）、转<b>多少度</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本图 5-11 的两个虚线位置在此按同样的关系复原：一个是绕直角顶点顺时针 90°，一个是绕 30° 角的顶点转 180°。滑块每格 15°，请学生先说出“中心、方向、角度”，再操作验证；转 180° 时顺、逆时针结果一样。</p>
+</section>
+
+<!-- 9 ================= 翻折 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 2</span><h2>翻折：沿直线翻过去，两边完全重合</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p126 做一做 2：在图 5-9 的空白方格中画出相应的图形，使直线一旁的图形沿直线翻折后能与直线另一旁的图形完全重合．</p>
+      <p class="tip">先在这里练一个：在直线右边涂出左边图形翻折过去的样子。</p>
+      <p class="tip feedback" id="foldMsg"></p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="foldAns">显示 / 隐藏答案</button></div>
+      <p class="method" data-step="1" data-label="翻折">翻折前后，对应的格子到直线的<b>距离相等</b>，在同一行（与直线垂直的方向）上。</p>
+    </div>
+    <div class="col"><div id="fold" class="pb2"></div></div>
+  </div>
+  <p class="note">课本图 5-9 的方格是斜放的，请学生在课本上画；这里先用一个横平竖直的例子（自编）练习“数到直线的格数”。离直线最近的一列翻过去仍最近，最远的仍最远——学生常犯的错是把图形“平移”过去而不是“翻”过去。</p>
+</section>
+
+<!-- 10 ================= 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 1</span><h2>说说下列图案是怎样形成的</h2></div>
+  <div class="bd full top">
+    <p class="tip">课本 p127 练一练 1（下面按课本图案的形成方式用代码重画）：</p>
+    <div class="cols4">
+      <figure><svg viewBox="0 0 200 160" class="pat" id="pat1"></svg><figcaption>①</figcaption><div class="pick" data-ans="a"><button data-k="a">平移</button><button data-k="b">旋转</button><button data-k="c">翻折</button><p class="pick-why">同一片羽毛沿斜上方向依次平移。</p></div></figure>
+      <figure><svg viewBox="0 0 200 160" class="pat" id="pat2"></svg><figcaption>②</figcaption><div class="pick" data-ans="a"><button data-k="a">平移</button><button data-k="b">旋转</button><button data-k="c">翻折</button><p class="pick-why">一个正八边形向右、向下平移，排成 3 行 3 列。</p></div></figure>
+      <figure><svg viewBox="0 0 200 160" class="pat" id="pat3"></svg><figcaption>③</figcaption><div class="pick" data-ans="b"><button data-k="a">平移</button><button data-k="b">旋转</button><button data-k="c">翻折</button><p class="pick-why">一个三角形绕中心每次旋转 60°，转 5 次。</p></div></figure>
+      <figure><svg viewBox="0 0 200 160" class="pat" id="pat4"></svg><figcaption>④</figcaption><div class="pick" data-ans="b"><button data-k="a">平移</button><button data-k="b">旋转</button><button data-k="c">翻折</button><p class="pick-why">一个菱形绕中心每次旋转 60°；也可以看成翻折得到。</p></div></figure>
+    </div>
+    <p class="method" data-step="1" data-label="三种运动">平移、旋转、翻折都<b>不改变图形的形状和大小</b>，只改变位置——所以能拼出整齐漂亮的图案。</p>
+  </div>
+  <p class="note">课本 p127 练一练 1 的四个图案在此按“基本图形 + 运动方式”重画（不是原图复制）。④ 既可以说旋转，也可以说翻折，只要说得出依据都对；点选题以“旋转”为判定答案，讲评时补充翻折的说法。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2.</b> 用折纸的方法，把一张正方形纸片分成形状、大小都相同的两部分．你有几种折法？</p>
+        <details><summary>提示 1</summary>沿一条直线对折，两边要能完全重合。</details>
+        <details><summary>提示 2</summary>正方形有几条对称轴？横、竖、两条对角线……</details>
+        <details><summary>完整解答</summary>沿两组对边中点的连线折（2 种），沿两条对角线折（2 种），共 4 种；如果只要求“形状、大小相同”而不要求一次对折，经过中心的任意一条折线都可以（例如剪开后转 180° 能重合）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 3.</b> 把直角三角形（直角边 2、1）和直角梯形（上底 1、下底 2、高 2）相等的边拼在一起，可以拼成哪些不同的平面图形？</p>
+        <details><summary>提示 1</summary>先找出两个图形中长度相等的边：长为 2 的边、长为 1 的边各有哪些？</details>
+        <details><summary>提示 2</summary>像第 6 页那样有序地试：选定一组边，再试“翻过去”和“转过来”两种放法。</details>
+        <details><summary>完整解答</summary>例如：三角形的斜边贴梯形的斜腰（两者一样长）→ 边长为 2 的正方形；三角形长为 2 的直角边贴梯形的直角腰 → 平行四边形或梯形；长为 1 的直角边贴梯形的上底 → 四边形或五边形……答案不唯一，说清“哪条边贴哪条边、怎样放”即可。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4.</b> 把长方形纸片对折两次成四层，画出图形，剪去阴影部分再展开，可以得到什么图案？</p>
+        <details><summary>提示 1</summary>对折一次，展开后图案关于折痕翻折对称。</details>
+        <details><summary>提示 2</summary>对折两次（同一方向），剪一次就得到 4 个相连的相同图案。</details>
+        <details><summary>完整解答</summary>得到一排 4 个首尾相连、相邻两个互为翻折的花边图案（像回纹窗花）。动手剪一剪验证。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p128 习题 2、3、4。第 3 题梯形的斜腰长 $\sqrt{1^2+2^2}$，学生还没学平方根，只需用“量一量”判断它和三角形的斜边一样长。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">点动成线，线动成面，面动成体。</p>
+        <p class="def">长方形绕一边 → 圆柱；直角三角形绕一条直角边 → 圆锥；半圆绕直径 → 球。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="想象 + 验证">先在脑中“转一转”，再动手或用课件核对。</p>
+        <p class="method" data-label="有序列举">拼图时按“哪组边 × 怎样放”列表，不重不漏。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="运动的观点">几何体可以看成平面图形运动生成的。</p>
+        <p class="recall" data-label="不变">平移、旋转、翻折只改变位置，形状大小不变。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>5.3 展开与折叠——把一个纸盒沿棱剪开，会得到什么平面图形？反过来，什么样的平面图形能折成正方体？</p>
+  </div>
+  <p class="note">课后可做课本 p128 习题 5（按规律继续画图形）和 p127“读一读：电视画面的清晰度”（像素是点，点排成线，线排成面）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/solid3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

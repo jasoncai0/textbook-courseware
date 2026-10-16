@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图形的平移 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/futi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第7章 平面图形的认识（二） · 7.3</p>
+    <h1 class="cover-title">图形的平移</h1>
+    <p class="cover-q" data-step="1">手扶电梯上的人、笔直轨道上的列车……都在沿着某一方向移动。</p>
+    <p class="cover-q" data-step="2">它们移动时，<b>形状、大小</b>变了吗？身上每一个点走过的路线，有什么共同点？</p>
+    <div class="chips" data-step="3"><span class="chip">方向 · 距离</span><span class="chip">对应点</span><span class="chip">方格纸上拖一拖</span><span class="chip">平移作图</span></div>
+  </div>
+  <p class="note">课本 p18 情境。请学生先举几个生活中“沿某一方向移动”的例子（抽屉、推拉窗、传送带……），再提出两个问题：形状大小变不变？每个点走的路线有什么关系？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 5.2 · 图形的运动" data-step="1">
+        <p>点动成线，线动成面；图形可以<b>平移</b>、旋转、翻折。</p>
+        <p>小学已经会在方格纸上把图形向上、下、左、右平移几格。</p>
+        <span class="use">本课从“会移”走向“说清平移的性质”。</span>
+      </div>
+      <div class="recall" data-label="7.1 · 7.2 · 平行线" data-step="2">
+        <p>在同一平面内不相交的两条直线叫平行线。</p>
+        <p>7.2 的叠合实验：把纸片沿 $EF$ 推下去，$\angle1$ 正好盖住 $\angle2$。</p>
+        <span class="use">发现“对应点的连线互相平行”；用平行线作平移后的图形。</span>
+      </div>
+      <div class="recall" data-label="七上 6.1 · 线段" data-step="3">
+        <p>两点之间线段的长度叫两点间的距离；可以用刻度尺量、在方格纸上数。</p>
+        <span class="use">平移的距离就是对应点连线的长；作图时截取相等的线段。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>平移由什么决定？平移前后的图形、对应点之间有什么关系？</p>
+  </div>
+  <p class="note">第二张卡呼应 7.2 第 3 页的叠合实验——那次推纸片其实就是一次平移。第三张卡提醒：方格纸上斜着的线段不能直接数格子，要看“向右几格、向上几格”。</p>
+</section>
+
+<!-- 3 ================= 三角尺沿直尺移动（图 7-16） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>三角尺沿直尺移动：方向和距离</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="slide16" class="s16-b"></div>
+      <div class="slider-row" data-noswipe>沿直尺推 <input type="range" id="s16" min="0" max="3" step="0.1" value="1.8"><b class="v" id="s16V"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 7-16，三角尺 $ABC$ 沿直尺的边缘移动一定距离到三角尺 $A'B'C'$ 的位置．</p>
+      <div class="readout s16-read" data-step="1">
+        <span>$AA'$</span><b class="v" id="s16a"></b>
+        <span>$BB'$</span><b class="v" id="s16b"></b>
+        <span>$CC'$</span><b class="v" id="s16c"></b>
+      </div>
+      <p class="tip" data-step="2">三角尺移动的方向是？移动的距离是？<span class="think" data-step="3" data-ask="说一说">方向：点 $B$ 到点 $B'$ 的方向；距离：线段 $BB'$ 的长。</span></p>
+      <p class="tip" data-step="4">三角尺的形状、大小变了吗？<span class="think" data-step="5" data-ask="说一说">没有变：每条边、每个角都和原来一样。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p18 图 7-16。拖滑块把三角尺推远、推近，读数里 AA′、BB′、CC′ 始终相等（单位：格）。说法上，课本用 B 到 B′ 的方向和 BB′ 的长来描述，其实用 A 到 A′、C 到 C′ 也一样——为下一页的定义做准备。</p>
+</section>
+
+<!-- 4 ================= 平移的定义 + 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>什么是平移</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>平移（课本 p18）</h4>在平面内，将一个图形沿着<em>某个方向</em>移动<em>一定的距离</em>，这样的图形运动叫做图形的<em>平移</em>（translation）．平移不改变图形的形状、大小．</div>
+      <p class="tip" data-step="2">在图 7-16 中，点 $A$、$B$、$C$ 分别移动到点 $A'$、$B'$、$C'$ 的位置，点 $A'$、$B'$、$C'$ 分别是点 $A$、$B$、$C$ 的<b>对应点</b>．</p>
+      <p class="method" data-step="3" data-label="平移的两个要素">方向 + 距离。确定了这两样，平移就确定了。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4"><b>辨一辨：</b>下面的运动是平移吗？</p>
+      <div class="jcard" data-step="4"><p>① 拉开抽屉</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">抽屉上每个点都沿同一方向移动同样的距离。</p></div></div>
+      <div class="jcard" data-step="4"><p>② 转动的电风扇叶片</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">叶片绕中心转动，方向一直在变——这是旋转。</p></div></div>
+      <div class="jcard" data-step="4"><p>③ 荡秋千</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">秋千沿弧线摆动，不是沿着一个方向直线移动。</p></div></div>
+      <div class="jcard" data-step="4"><p>④ 升国旗时国旗的运动</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">国旗沿旗杆竖直向上移动，形状、大小不变（不计飘动）。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p18 定义。强调定义中的三个关键词：“在平面内”“某个方向”“一定的距离”。辨一辨请学生说理由：判断平移看两点——图形上所有点是否沿<b>同一方向</b>移动<b>相同距离</b>（形状、大小、朝向都不变）。</p>
+</section>
+
+<!-- 5 ================= 做一做（图 7-17） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>先向左平移 4 格，再向上平移 3 格</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="g717" class="g717-b"></div>
+      <div class="btns" data-noswipe id="g717Btns">
+        <button class="btn" type="button" data-k="1">① 向左平移 4 格</button>
+        <button class="btn" type="button" data-k="2">② 再向上平移 3 格</button>
+        <button class="btn" type="button" data-k="3">连接 $AA''$、$BB''$</button>
+        <button class="btn" type="button" data-k="0">重来</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">在图 7-17 中，画出线段 $AB$ 向左平移 4 格得到的线段 $A'B'$；再画出线段 $A'B'$ 向上平移 3 格得到的线段 $A''B''$．</p>
+      <p class="tip feedback" id="g717Msg"></p>
+      <p class="method" data-step="1" data-label="关键">画线段 $A'B'$、$A''B''$ 的关键是确定点 $A'$、$B'$ 和点 $A''$、$B''$ 的位置——<b>先移点，再连线</b>。</p>
+      <p class="tip" data-step="2">线段 $AA''$、$BB''$ 之间有什么关系？<span class="think" data-step="3" data-ask="观察后说一说">$AA''\parallel BB''$，且 $AA''=BB''$（都是向左 4 格、向上 3 格）。</span></p>
+      <p class="tip" data-step="4">先左 4 格、再上 3 格，能不能“一步到位”？<span class="think" data-step="5" data-ask="想一想">能：沿 $A$ 到 $A''$ 的方向，移动 $AA''$ 的长度——两次平移的结果仍是一次平移。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p19 做一做与图 7-17、卡通人提示。逐个点按钮：先出现 A′B′，再出现 A″B″，最后连对应点。AA″ 是斜的，不能数格子量长度，但能看出它和 BB″ 一样“左 4 上 3”。最后一问为“两次平移可以合成一次平移”埋伏笔（不要求掌握）。</p>
+</section>
+
+<!-- 6 ================= 议一议（图 7-18）：方格纸上拖一拖 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>怎样平移四边形 $ABCD$ 得到四边形 $A'B'C'D'$？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="g718" class="g718-b"></div>
+      <p class="muted center small-t">拖动点 $A$ 处的橙色点（只能停在格点上），把四边形平移到虚线框的位置</p>
+    </div>
+    <div class="col">
+      <div class="readout g718-read">
+        <span>平移</span><b class="v" id="g718Mv"></b>
+      </div>
+      <p class="tip feedback" id="g718Msg"></p>
+      <p class="tip" data-step="1">连接对应点的线段 $AA'$、$BB'$、$CC'$、$DD'$，你能发现这些线段之间的关系吗？<span class="think" data-step="2" data-ask="说一说">它们互相平行，并且长度相等（都是向右 8 格、向下 1 格）。</span></p>
+      <p class="tip" data-step="3">若在图 7-16 中画出连接对应点的线段 $AA'$、$BB'$、$CC'$ 呢？<span class="think" data-step="4" data-ask="回到第 3 页看看">$BB'$、$CC'$ 在同一条直线（直尺边缘）上，$AA'$ 与它们平行；三条线段长度相等。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p19 议一议与图 7-18。请学生先说“向右几格、向下几格”，再上来拖。四边形没拖到位时，读数显示当前的平移（如“向右 5 格、向下 1 格”）；拖到位后自动连出四条对应点连线。第 4 步引出“在同一条直线上”的情况，这正是下一页性质里括号的来历。</p>
+</section>
+
+<!-- 7 ================= 平移的性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>平移的性质</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>课本 p19</h4>一个图形和它经过平移所得的图形中，两组对应点的连线<em>平行（或在同一条直线上）</em>且<em>相等</em>．</div>
+      <div id="same" class="gfig l" data-step="2"></div>
+      <p class="muted center small-t" data-step="2">线段 $MN$ 沿自身方向平移：$MM'$、$NN'$ 在同一条直线上</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="3">还有什么在平移中保持不变？<span class="think" data-step="4" data-ask="说一说">对应线段相等（$AB=A'B'$）、对应角相等（$\angle A=\angle A'$）——平移不改变形状、大小。</span></p>
+      <p class="method" data-step="5" data-label="性质怎么用">已知一个点的对应点 → 知道了平移的方向和距离 → 其他每个点都沿<b>同样的方向</b>移动<b>同样的距离</b>。</p>
+      <p class="warn" data-step="6" data-label="易错">对应点连线是 $AA'$、$BB'$……（同一个点平移前后）；不要把 $AB$ 与 $A'B'$ 当成对应点连线——它们是<b>对应线段</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p19 结论框。括号里的“或在同一条直线上”学生常忽略：左图演示沿线段自身方向平移的情况。“对应点连线”与“对应线段”要分清，可指着第 6 页的图让学生各说一组。</p>
+</section>
+
+<!-- 8 ================= 例：平移作图（图 7-19、7-20） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>平移三角形 $ABC$，使点 $A$ 移到点 $A'$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex" class="ex-b"></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>分析：</b>三角形 $ABC$ 沿点 $A$ 到点 $A'$ 的方向平移，平移的距离为线段 $AA'$ 的长．设点 $B$、$C$ 分别平移到 $B'$、$C'$，由平移的性质，<span class="think" data-step="1" data-ask="B′、C′ 满足什么？">$BB'\parallel CC'\parallel AA'$，$BB'=CC'=AA'$</span>，于是可以确定点 $B'$、$C'$ 的位置．</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>(1)</span><span>连接 $AA'$；</span></div>
+        <div class="dl" data-step="3"><span>(2)</span><span>分别过点 $B$、$C$ 画 $AA'$ 的平行线 $BD$、$CE$；</span></div>
+        <div class="dl" data-step="4"><span>(3)</span><span>分别在 $BD$、$CE$ 上截取 $BB'=AA'$，$CC'=AA'$；</span></div>
+        <div class="dl" data-step="5"><span>(4)</span><span>连接 $A'B'$、$B'C'$、$C'A'$．</span></div>
+      </div>
+      <p class="tip" data-step="6">三角形 $A'B'C'$ 就是所要画的三角形（图 7-20）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p20 例与图 7-19、7-20。按 → 逐步出现画法，左图同步作图：第 (2) 步过点画平行线可用 7.1 推三角尺的方法；第 (3) 步截取可用圆规（左图的小弧）。作完让学生检查：A′B′ = AB 吗？方向对吗？</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>说方向和距离；在方格纸上平移</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 图中的 4 个小三角形都是等边三角形，边长都是 1.2 cm．三角形 $ABC$ 可以平移到图中哪几个三角形的位置？分别说出三角形 $ABC$ 平移的方向和距离．</p>
+        <div id="lx1" class="gfig l"></div>
+        <details><summary>提示 1</summary>平移不改变图形的<b>朝向</b>：三角形 $ACE$ “倒着”，能平移得到吗？</details>
+        <details><summary>完整解答</summary>能平移到三角形 $CDE$ 和三角形 $AEF$ 的位置．<br>到 $CDE$：沿点 $B$ 到点 $C$ 的方向，平移 1.2 cm；<br>到 $AEF$：沿点 $B$ 到点 $A$ 的方向，平移 1.2 cm．<br>三角形 $ACE$ 与 $ABC$ 朝向相反，不能由平移得到．</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>2.</b> 平移所给的图形，使点 $A$ 移到点 $A'$ 的位置，画出平移后所得的图形．</p>
+      <div id="g8" class="g8-b"></div>
+      <p class="tip feedback" id="g8Msg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p20–21 练一练 1、2。第 1 题关键：平移前后图形“朝向”不变，倒立的 ACE 不行。第 2 题请学生先数出 A 到 A′ 是“向右 6 格、向下 1 格”，再拖动“8”字形；拖到位后图形变色。</p>
+</section>
+
+<!-- 10 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.3</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，画出三角形 $ABC$ 先向右平移 6 格，再向下平移 2 格所得的三角形 $A'B'C'$．</p>
+        <div id="xt1" class="gfig l"></div>
+        <details><summary>提示 1</summary>先把三个顶点都右移 6 格、下移 2 格，再连线。</details>
+        <details><summary>完整解答</summary><span class="xt1-show">$A(3,3)\to A'(9,1)$，$B(7,4)\to B'(13,2)$，$C(5,7)\to C'(11,5)$（以左下角为原点数格），连接 $A'B'$、$B'C'$、$C'A'$．左图已画出答案。</span></details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 三角形 $ABC$ 经过平移得到三角形 $A'B'C'$．说出三角形 $ABC$ 的平移方向，并量出平移的距离．</p>
+        <div id="xt2" class="gfig l"></div>
+        <details><summary>提示 1</summary>方向：点 $A$ 到点 $A'$ 的方向；距离：线段 $AA'$ 的长（量 $BB'$、$CC'$ 也一样）。</details>
+        <details><summary>完整解答</summary>沿点 $A$ 到点 $A'$ 的方向平移，平移的距离为线段 $AA'$ 的长（用刻度尺量课本上的图）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 平移图中的四边形 $ABCD$，使点 $A$ 移到点 $A'$ 的位置，画出平移后所得的四边形．</p>
+        <div id="xt3" class="gfig l"></div>
+        <details><summary>提示 1</summary>仿照例题：过 $B$、$C$、$D$ 分别画 $AA'$ 的平行线，截取与 $AA'$ 相等的线段。</details>
+        <details><summary>完整解答</summary>按例题的四步作出 $B'$、$C'$、$D'$，连接得四边形 $A'B'C'D'$（左图虚线为作法中的平行线）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p21 习题 7.3。第 1 题在方格纸上做（两次平移），打开完整解答后图中显示答案；第 2、3 题不在方格纸上，要用平行线和截取的方法。第 2 题的距离请学生用刻度尺在课本上量。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">平移：沿某个方向移动一定的距离；不改变形状、大小。</p>
+        <p class="def">性质：对应点的连线平行（或在同一条直线上）且相等。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="平移作图">找对应点 → 过各点画平行线 → 截取相等 → 连线。</p>
+        <p class="method" data-label="方格纸上">数“向右/左几格、向上/下几格”，先移点再连线。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="运动的眼光">把图形看成“动”起来的；动中找不变（形状、大小、方向一致）。</p>
+        <p class="recall" data-label="化整为点">平移一个图形 = 平移它的几个关键点。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>7.4 认识三角形——三角形的三条边之间有什么关系？三角形里还有哪些重要的线段？</p>
+  </div>
+  <p class="note">请学生用一句话说出“平移由什么决定”（方向和距离），再逐栏揭示。课后作业建议：习题 7.3 第 1–3 题，在方格纸和白纸上各做一遍。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
