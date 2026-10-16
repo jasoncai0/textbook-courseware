@@ -110,16 +110,21 @@ const GENRES = {
   诗文: { color: 'var(--g-shiwen)', label: '诗文类', tpl: '竖排诗 + 节奏 + 背诵' },
   识字: { color: '#7a4f9e', label: '识字类', tpl: '字理 + 识字游戏' },
   拼音: { color: '#2f6fa8', label: '拼音类', tpl: '四线三格 + 拼读' },
+  概念: { color: '#2b7a8c', label: '概念课', tpl: '情境 → 抽象 → 辨析' },
+  推导: { color: '#3f5bb5', label: '推导课', tpl: '猜想 → 证明 → 应用' },
 };
-const FILTERS = [['all', '全部'], ['ready', '已上线'], ['说明', '说明类'], ['叙事', '叙事类'], ['诗文', '诗文类'], ['识字', '识字类'], ['拼音', '拼音类']];
+// 筛选按钮只列本学科用到的课型
+const genresOf = (books) => Object.keys(GENRES).filter((k) => books.some((b) => b.units.some((u) => u.lessons.some((l) => l.genre === k))));
+const filtersOf = (books) => [['all', '全部'], ['ready', '已上线'], ...genresOf(books).map((k) => [k, GENRES[k].label])];
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 let subjectIdx = 0;
 // 选中的册用书名记（如“五年级上册”），也写进地址栏 #五年级上册，课件里的“目录”按钮据此跳回原册
 let bookName = decodeURIComponent(location.hash.slice(1));
 if (!bookName) { try { bookName = localStorage.getItem('catalog-book-name') || ''; } catch (e) { /* 无痕模式下不可用，用默认值 */ } }
-const gradeOf = (name) => name.slice(0, name.indexOf('年级') + 2);
-const termOf = (name) => name.slice(name.indexOf('年级') + 2);
+// 书名形如“五年级上册”“高一上册”：去掉末尾“上册/下册”是年级，剩下的是学期
+const gradeOf = (name) => name.replace(/[上下]册$/, '');
+const termOf = (name) => name.slice(gradeOf(name).length);
 let filter = 'all';
 try { filter = localStorage.getItem('catalog-filter') || 'all'; } catch (e) { /* 无痕模式下不可用，用默认值 */ }
 
@@ -160,8 +165,8 @@ function bookHtml(book) {
       <div class="progress"><small>已上线 ${ready} / ${all.length} 课</small><div class="bar"><i style="width:${(ready / all.length * 100).toFixed(1)}%"></i></div></div>
     </div>
     <div class="filters" role="group" aria-label="筛选"><span>筛选</span>
-      ${FILTERS.map(([k, t]) => `<button type="button" data-f="${k}" class="${k === filter ? 'on' : ''}">${t}</button>`).join('')}
-      <div class="legend">${Object.values(GENRES).map((g) => `<span><b style="background:${g.color}"></b>${g.label}：${g.tpl}</span>`).join('')}</div>
+      ${filtersOf(window.CATALOG[subjectIdx].books).map(([k, t]) => `<button type="button" data-f="${k}" class="${k === filter ? 'on' : ''}">${t}</button>`).join('')}
+      <div class="legend">${genresOf(window.CATALOG[subjectIdx].books).map((k) => GENRES[k]).map((g) => `<span><b style="background:${g.color}"></b>${g.label}：${g.tpl}</span>`).join('')}</div>
     </div>
     ${units || '<p class="empty">这个筛选下还没有课件。</p>'}
   </article>`;
@@ -169,6 +174,10 @@ function bookHtml(book) {
 
 function render() {
   const subjects = window.CATALOG;
+  // 地址栏指定的册属于哪个学科，就切到那个学科（课件“目录”按钮带 #书名 回来）
+  const owner = subjects.findIndex((s) => s.books.some((b) => b.name === bookName));
+  if (owner >= 0 && !subjects[subjectIdx].books.some((b) => b.name === bookName)) subjectIdx = owner;
+  if (!genresOf(subjects[subjectIdx].books).includes(filter) && !['all', 'ready'].includes(filter)) filter = 'all';
   document.getElementById('subjects').innerHTML = subjects.length > 1
     ? subjects.map((s, i) => `<button type="button" data-s="${i}" class="${i === subjectIdx ? 'on' : ''}">${esc(s.subject)}</button>`).join('')
     : `<button type="button" class="on">${esc(subjects[0].subject)}</button>`;

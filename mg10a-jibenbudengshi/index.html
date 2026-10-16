@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>基本不等式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面：天平问题 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tianping.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第3章 不等式 · 3.2</p>
+    <h1 class="cover-title">基本不等式</h1>
+    <p class="cover-q" data-step="1">一架天平的两臂<b>略有不同</b>。物体放在一个盘里，称得质量 $a$；调换到另一个盘里，称得 $b$。</p>
+    <p class="cover-q" data-step="2">物体的<b>实际质量</b>是多少？把两次结果“平均”一下，用 $\dfrac{a+b}{2}$ 表示，合理吗？</p>
+    <div class="chips" data-step="3"><span class="chip">算术平均数与几何平均数</span><span class="chip">三种证法</span><span class="chip">一正二定三相等</span><span class="chip">求最值</span></div>
+  </div>
+  <p class="note">课本 p51 情境。先不讲答案，让学生凭直觉表态：“取平均”合理吗？举手统计一下，留个悬念，第 3 页用力学算出真实质量，第 4 页再回来回答。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>动手之前，先清点手里的三件工具</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 乘法公式" data-step="1">
+        <p class="big">$(x-y)^2\ge 0$</p>
+        <p>展开得 $x^2+y^2\ge 2xy$，当且仅当 $x=y$ 时取等号。</p>
+        <span class="use">三种证法最后都要“落脚”到一个完全平方 $\ge 0$ 上。</span>
+      </div>
+      <div class="recall" data-label="初中 · 相似三角形" data-step="2">
+        <svg viewBox="0 0 300 130" class="mini-fig" aria-label="直角三角形斜边上的高">
+          <path d="M20 115 H280 M20 115 L200 30 L280 115 M200 30 V115" fill="none" stroke="#1f2d3a" stroke-width="2.5"/>
+          <path d="M200 103 h12 v12" fill="none" stroke="#1d6fa5" stroke-width="2"/>
+          <text x="8" y="128" class="fl">A</text><text x="282" y="128" class="fl">B</text><text x="196" y="24" class="fl">D</text><text x="196" y="130" class="fl">C</text>
+        </svg>
+        <p>$\angle ADB=90^\circ$，$CD\perp AB$ ⇒ $\triangle ACD\sim\triangle DCB$ ⇒ $CD^2=AC\cdot CB$。</p>
+        <span class="use">在半圆里“画出”一条长为 $\sqrt{ab}$ 的线段。</span>
+      </div>
+      <div class="recall" data-label="3.1 不等式的基本性质" data-step="3">
+        <p>$a\gt b\Leftrightarrow a-b\gt 0$　（比较大小看差的正负）</p>
+        <p>两边加同一个数、乘同一个<b>正数</b>，不等号方向不变。</p>
+        <p>“要证 $b\lt a$，只要证 $b-a\lt 0$”。</p>
+        <span class="use">证法 1 作差；证法 2 一步步“只要证”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的主角：</b>两个正数“平均”的两种方式——它们谁大谁小？</p>
+  </div>
+  <p class="note">每出一张卡，先让学生口头复述，再看“本课用在”。第三张卡里的“要证……只要证……”就是 3.1 证明性质 1、2、3 时用过的“分析”，今天的证法 2 会把它用成一种完整的证明方法。</p>
+</section>
+
+<!-- 3 ================= 情境建模 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境建模</span><h2>天平两臂不等长，真实质量是多少？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 360 300" class="lever" aria-label="两次称量示意">
+        <text x="0" y="22" class="fl s">第一次：物体在左盘</text>
+        <line x1="40" y1="70" x2="330" y2="70" stroke="#1f2d3a" stroke-width="4"/><path d="M120 70 l-14 26 h28z" fill="#556575"/>
+        <rect x="26" y="74" width="28" height="26" fill="#d9711c"/><text x="31" y="120" class="fl">M</text>
+        <rect x="314" y="74" width="30" height="20" fill="#9fb0bf"/><text x="322" y="118" class="fl">a</text>
+        <text x="72" y="62" class="fl s c1">l<tspan dy="5" font-size="13">1</tspan></text><text x="220" y="62" class="fl s c1">l<tspan dy="5" font-size="13">2</tspan></text>
+        <text x="0" y="172" class="fl s">第二次：物体在右盘</text>
+        <line x1="40" y1="220" x2="330" y2="220" stroke="#1f2d3a" stroke-width="4"/><path d="M120 220 l-14 26 h28z" fill="#556575"/>
+        <rect x="26" y="224" width="30" height="24" fill="#9fb0bf"/><text x="35" y="268" class="fl">b</text>
+        <rect x="316" y="224" width="28" height="26" fill="#d9711c"/><text x="320" y="270" class="fl">M</text>
+        <text x="72" y="212" class="fl s c1">l<tspan dy="5" font-size="13">1</tspan></text><text x="220" y="212" class="fl s c1">l<tspan dy="5" font-size="13">2</tspan></text>
+      </svg>
+      <p class="tip">设两臂长为 $l_1,l_2$，物体实际质量为 $M$。</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>第一次</span><span class="think" data-step="2" data-ask="平衡时满足什么等式？">$l_1M=l_2a$</span><i class="why">杠杆平衡：力 × 力臂相等</i></div>
+        <div class="dl" data-step="3"><span>第二次</span><span>$l_2M=l_1b$</span><i class="why">物体换到 $l_2$ 一侧</i></div>
+        <div class="dl key" data-step="4"><span>？</span><span class="think" data-step="5" data-ask="臂长不知道，怎样消去 l₁、l₂？">$l_1l_2M^2=l_1l_2ab$</span><i class="why">两式左右分别<b>相乘</b>，$l_1l_2$ 正好约去</i></div>
+        <div class="dl" data-step="6"><span>所以</span><span>$M=\sqrt{ab}$</span><i class="why">$M\gt 0$，开平方</i></div>
+      </div>
+      <div class="def" data-step="7"><h4>概念</h4>对于正数 $a,b$，我们把 $\dfrac{a+b}{2}$ 称为 $a,b$ 的<em>算术平均数</em>，$\sqrt{ab}$ 称为 $a,b$ 的<em>几何平均数</em>。</div>
+      <p class="tip gold" data-step="8"><b>问题：</b>“取平均”用的是算术平均数，真实质量却是几何平均数。两个正数的算术平均数与几何平均数，<b>谁大？</b></p>
+    </div>
+  </div>
+  <p class="note">课本 p51。第 2 步、第 5 步各停一下：先让学生说出等式，再点开。“两个方程、三个未知数，为什么还能求出 M？”——因为我们只要 M，l₁l₂ 作为整体能约掉。最后的问题就是本课要研究的核心问题。</p>
+</section>
+
+<!-- 4 ================= 先猜后证：数值实验 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">先猜</span><h2>算一算、拖一拖：谁大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">先口算（课本练习 1）：</p>
+      <table class="mtab">
+        <tr><th>$a,\ b$</th><th>$\dfrac{a+b}{2}$</th><th>$\sqrt{ab}$</th></tr>
+        <tr><td>$2,\ 8$</td><td><span class="think" data-step="1" data-ask="算一算">$5$</span></td><td><span class="think" data-step="1" data-ask="算一算">$4$</span></td></tr>
+        <tr><td>$3,\ 12$</td><td><span class="think" data-step="2" data-ask="算一算">$7.5$</span></td><td><span class="think" data-step="2" data-ask="算一算">$6$</span></td></tr>
+        <tr><td>$p,\ 9p$</td><td><span class="think" data-step="3" data-ask="算一算">$5p$</span></td><td><span class="think" data-step="3" data-ask="算一算">$3p$</span></td></tr>
+      </table>
+      <p class="tip" data-step="4">再拖动滑块，多试几组，特别试试让 $a=b$。</p>
+    </div>
+    <div class="col" data-step="4">
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="na" min="0.5" max="16" step="0.5" value="2"><b id="naV" class="v"></b></div>
+      <div class="slider-row" data-noswipe>$b=$<input type="range" id="nb" min="0.5" max="16" step="0.5" value="8"><b id="nbV" class="v"></b></div>
+      <div class="readout">
+        <span>$\dfrac{a+b}{2}$</span><span class="bar"><i id="barA" style="background:var(--orange)"></i></span><span class="v" id="vA"></span>
+        <span>$\sqrt{ab}$</span><span class="bar"><i id="barG" style="background:var(--red)"></i></span><span class="v" id="vG"></span>
+        <span>差</span><span class="muted">$\dfrac{a+b}{2}-\sqrt{ab}$</span><span class="v" id="vD"></span>
+      </div>
+      <div class="def" data-step="5"><h4>猜想</h4><span class="think" data-step="6" data-ask="你的猜想是什么？说出来再点开">$\sqrt{ab}\le\dfrac{a+b}{2}$，当且仅当 $a=b$ 时取等号。</span></div>
+      <p class="tip gold" data-step="7"><b>回到天平：</b>用 $\dfrac{a+b}{2}$ 代替真实质量 $\sqrt{ab}$，<span class="think" data-step="8" data-ask="偏大还是偏小？">会<b>偏大</b>；只有两臂等长（$a=b$）时才准确。</span></p>
+    </div>
+  </div>
+  <p class="note">先口算三组，第三组用字母 p，提醒学生：具体数字只能“猜”，不能“证”。拖滑块时请学生盯住“差”：始终 ≥ 0，a=b 时恰好为 0。让学生用自己的话说出猜想，教师再点开规范表述。</p>
+</section>
+
+<!-- 5 ================= 几何直观 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">几何直观</span><h2>在半圆里“看见” $\sqrt{ab}$ 和 $\frac{a+b}{2}$</h2></div>
+  <button class="media-btn" hidden data-img="assets/banyuan.jpg" data-video="assets/banyuan.mp4" data-cap="C 从 A 走到 B：CD 始终不超过半径 OD，C 与 O 重合时相等">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="semi" class="semi"></div>
+      <div class="readout">
+        <span>$CD$</span><span class="bar"><i id="barCD" style="background:var(--red)"></i></span><span class="v" id="vCD"></span>
+        <span>$OD$</span><span class="bar"><i id="barOD" style="background:var(--orange)"></i></span><span class="v" id="vOD"></span>
+      </div>
+      <p class="tip center muted">拖动橙色点 $C$（$AC=a$，$CB=b$）<br><b id="semiAB"></b></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图，$AB$ 是 $\odot O$ 的直径，$AC=a$，$CB=b$，过 $C$ 作 $CD\perp AB$ 交半圆于 $D$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$CD=$</span><span class="think" data-step="2" data-ask="CD 为什么等于 √ab？">$\sqrt{ab}$</span><i class="why">$\triangle ACD\sim\triangle DCB$，$\dfrac{CD}{CB}=\dfrac{CA}{CD}$，得 $CD^2=ab$</i></div>
+        <div class="dl" data-step="3"><span>$OD=$</span><span>$\dfrac{a+b}{2}$</span><i class="why">$OD$ 是半径，等于直径 $a+b$ 的一半</i></div>
+        <div class="dl key" data-step="4"><span>$CD$</span><span>$\le OD$</span><span class="think" data-step="5" data-ask="为什么 CD 不超过 OD？">$\text{Rt}\triangle OCD$ 中，$OD$ 是斜边；$C$ 与 $O$ 重合时 $CD$ 就是半径</span></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$\sqrt{ab}\le\dfrac{a+b}{2}$</span><i class="why">当且仅当 $C$ 与 $O$ 重合，即 $a=b$ 时取等号</i></div>
+      </div>
+      <p class="tip gold" data-step="7">图形让我们“看见”了猜想。下面用代数把它<b>严格证明</b>出来——而且有三种思路。</p>
+    </div>
+  </div>
+  <p class="note">课本 p51–52、图 3-2-1。先请一位学生上来拖动 C，全班观察两根柱子；再逐条追问“为什么”。CD ≤ OD 的理由用“斜边大于直角边”，学生最容易说出来。右上角“看动画”是 15 秒无声动画，可在复习时播放。</p>
+</section>
+
+<!-- 6 ================= 证法 1：作差 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证法 1</span><h2>作差比较：差是正是负？</h2></div>
+  <div class="bd full">
+    <p class="tip">比较两个数的大小，最基本的办法是什么？　<span class="think" data-step="1" data-ask="想一想">作差，看差的符号：$a-b\ge 0\Leftrightarrow a\ge b$（3.1 基本事实）。</span></p>
+    <div class="derive">
+      <div class="dl" data-step="2"><span>$\dfrac{a+b}{2}-\sqrt{ab}$</span><span>$=\dfrac{1}{2}\left(a+b-2\sqrt{ab}\right)$</span><i class="why">提出公因数 $\frac12$</i></div>
+      <div class="dl key" data-step="3"><span></span><span>$=\dfrac{1}{2}\left[(\sqrt a)^2+(\sqrt b)^2-2\sqrt a\sqrt b\right]$</span><span class="think" data-step="4" data-ask="为什么要把 a 写成 (√a)²？">$a\gt 0$ 时 $a=(\sqrt a)^2$，$\sqrt{ab}=\sqrt a\sqrt b$——为了<b>凑出完全平方</b></span></div>
+      <div class="dl" data-step="5"><span></span><span>$=\dfrac{1}{2}\left(\sqrt a-\sqrt b\right)^2$</span><i class="why">完全平方公式</i></div>
+      <div class="dl end" data-step="6"><span>因为 $(\sqrt a-\sqrt b)^2\ge 0$，</span><span>所以 $\dfrac{a+b}{2}-\sqrt{ab}\ge 0$，即 $\sqrt{ab}\le\dfrac{a+b}{2}$</span><i class="why">平方非负 ⇒ 差非负</i></div>
+      <div class="dl" data-step="7"><span>等号何时成立？</span><span class="think" data-step="8" data-ask="想一想">当且仅当 $\sqrt a=\sqrt b$，即 $a=b$ 时</span><i class="why">平方等于 0 ⇔ 底数为 0</i></div>
+    </div>
+    <p class="method" data-step="9">作差法三步：<b>作差 → 变形</b>（凑完全平方、因式分解）<b>→ 判断符号</b>。变形的目标，是变成一眼能看出正负的样子。</p>
+  </div>
+  <p class="note">课本 p52 证法 1。关键一步是第 3 行：为什么要“把 a 写成 (√a)²”？让学生先猜，答案指向“我们手里能判断符号的工具只有完全平方”。</p>
+</section>
+
+<!-- 7 ================= 证法 2：分析法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证法 2</span><h2>从结论倒着找：只要证什么？</h2></div>
+  <div class="bd full">
+    <p class="tip">不知道从哪下手时，换个方向：<b>从要证的结论出发</b>，一步步找“只要证明什么，它就成立”。</p>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>要证</span><span>$\sqrt{ab}\le\dfrac{a+b}{2}$，</span><i class="why">目标</i></div>
+      <div class="dl" data-step="2"><span>只要证</span><span>$2\sqrt{ab}\le a+b$，</span><span class="think" data-step="3" data-ask="凭什么可以这样换？">两边同乘正数 2，不等号方向不变（性质 4）</span></div>
+      <div class="dl" data-step="4"><span>只要证</span><span>$0\le a-2\sqrt a\sqrt b+b$，</span><i class="why">移项（性质 3），并把 $\sqrt{ab}$ 写成 $\sqrt a\sqrt b$</i></div>
+      <div class="dl key" data-step="5"><span>只要证</span><span>$0\le\left(\sqrt a-\sqrt b\right)^2$。</span><i class="why">完全平方公式</i></div>
+      <div class="dl end" data-step="6"><span>最后一个成立吗？</span><span class="think" data-step="7" data-ask="想一想">显然成立，所以 $\sqrt{ab}\le\dfrac{a+b}{2}$ 成立；当且仅当 $a=b$ 时取等号</span><i class="why">一路“只要证”回到了真命题</i></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="8" data-label="分析法">执果索因：从结论出发，每一步都找<b>使上一步成立的条件</b>，直到找到一个明显成立的式子。</p>
+      <p class="warn" data-step="9">不能写成“$\sqrt{ab}\le\dfrac{a+b}{2}\Rightarrow\cdots\Rightarrow 0\le(\sqrt a-\sqrt b)^2$，所以成立”——从结论<b>推出</b>一个真命题，证明不了结论本身。</p>
+    </div>
+  </div>
+  <p class="note">课本 p52 证法 2。3.1 证明不等式性质时已经用过“要证……只要证……”。强调书写格式：“只要证”表示箭头朝上指（⇐），每一步是上一步的充分条件。易错警示可以举例：由 1 = −1 两边平方得 1 = 1 是真的，但 1 = −1 并不成立。</p>
+</section>
+
+<!-- 8 ================= 证法 3：综合法 + 对比 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证法 3</span><h2>从已知正着推，再和证法 2 对照</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$\left(\sqrt a-\sqrt b\right)^2\ge 0$</span><i class="why">从一个已知成立的事实出发</i></div>
+        <div class="dl" data-step="2"><span>$\Rightarrow$</span><span>$a+b-2\sqrt{ab}\ge 0$</span><i class="why">展开</i></div>
+        <div class="dl" data-step="3"><span>$\Rightarrow$</span><span>$a+b\ge 2\sqrt{ab}$</span><i class="why">移项</i></div>
+        <div class="dl" data-step="4"><span>$\Rightarrow$</span><span>$\dfrac{a+b}{2}\ge\sqrt{ab}$</span><i class="why">两边乘正数 $\frac12$</i></div>
+      </div>
+      <p class="tip" data-step="4">当且仅当 $a=b$ 时，等号成立。</p>
+      <div class="def" data-step="7"><h4>基本不等式（课本 p53）</h4>如果 $a,b$ 是正数，那么 $\sqrt{ab}\le\dfrac{a+b}{2}$（当且仅当 $a=b$ 时，等号成立）。<br><span class="muted">当 $a,b\ge 0$ 时仍然成立。我们把 $\sqrt{ab}\le\dfrac{a+b}{2}\ (a,b\ge 0)$ 称为<em>基本不等式</em>。</span></div>
+    </div>
+    <div class="col">
+      <div class="flow2" data-step="5">
+        <div><h4>证法 2 · 分析法</h4><p>结论</p><i>⇑ 只要证</i><p>$2\sqrt{ab}\le a+b$</p><i>⇑ 只要证</i><p>$0\le(\sqrt a-\sqrt b)^2$</p><small>执果索因 · 用来<b>想</b></small></div>
+        <div><h4>证法 3 · 综合法</h4><p>$(\sqrt a-\sqrt b)^2\ge 0$</p><i>⇓</i><p>$a+b\ge 2\sqrt{ab}$</p><i>⇓</i><p>结论</p><small>由因导果 · 用来<b>写</b></small></div>
+      </div>
+      <p class="tip gold" data-step="6">三种证法的“落脚点”都是同一个式子：<span class="think" data-step="7" data-ask="是哪一个？">$(\sqrt a-\sqrt b)^2\ge 0$——把证法 2 倒过来读，就是证法 3。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p52–53 证法 3 与定理。对照两列：同一条链，方向相反。常见做法是：草稿上用分析法“找路”，答卷上用综合法“写路”。定理框里的“当且仅当”要逐字读：a=b 是取等号的充分必要条件。</p>
+</section>
+
+<!-- 9 ================= 例 1：直接用 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>用基本不等式证明不等式</h2></div>
+  <div class="bd full">
+    <p class="tip">设 $a,b$ 为正数，证明：(1) $\dfrac ba+\dfrac ab\ge 2$；　(2) $a+b+\dfrac1a+\dfrac1b\ge 4$。</p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1">用基本不等式之前，先检查什么？　<span class="think" data-step="2" data-ask="想一想">两项都是<b>正数</b>：$a,b\gt 0$，所以 $\dfrac ba,\dfrac ab$ 也为正数。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>$\dfrac ba+\dfrac ab$</span><span>$\ge 2\sqrt{\dfrac ba\cdot\dfrac ab}=2$</span><i class="why">积 $\dfrac ba\cdot\dfrac ab=1$ 是定值，右边才是常数</i></div>
+          <div class="dl" data-step="4"><span>等号</span><span>$\dfrac ba=\dfrac ab$，即 $a=b$</span><i class="why">所以原不等式成立</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="5">四项怎么用？　<span class="think" data-step="6" data-ask="能把四项一起用吗？">两两<b>配对</b>，让每一对的积是定值：$a$ 配 $\dfrac1a$，$b$ 配 $\dfrac1b$。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>$a+\dfrac1a$</span><span>$\ge 2\sqrt{a\cdot\dfrac1a}=2$</span><i class="why"></i></div>
+          <div class="dl" data-step="7"><span>$b+\dfrac1b$</span><span>$\ge 2\sqrt{b\cdot\dfrac1b}=2$</span><i class="why">两式相加（性质 5）</i></div>
+          <div class="dl end" data-step="8"><span>所以</span><span>$a+b+\dfrac1a+\dfrac1b\ge 4$</span><span class="think" data-step="9" data-ask="等号何时成立？">两个等号要<b>同时</b>成立：$a=\dfrac1a$，$b=\dfrac1b$，即 $a=b=1$</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p53 例 1。两个停顿：一是“先检查正数”，为下一页“一正”埋伏笔；二是第 (2) 题等号条件——两个不等式相加时，两处等号必须能同时取到，最后的等号才取得到。</p>
+</section>
+
+<!-- 10 ================= 一正二定三相等 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这三个解法，错在哪？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>求 $y=x+\dfrac1x\ (x\ne 0)$ 的最小值。</p>
+        <p class="muted">解：$x+\dfrac1x\ge 2\sqrt{x\cdot\dfrac1x}=2$，最小值是 2。</p>
+        <div class="think" data-step="2" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>取 $x=-1$，$y=-2\lt 2$。$x\lt 0$ 时两项都是负数，不能用基本不等式。</p><p><b>一正：</b>各项必须为正。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>设 $x\in[1,+\infty)$，求 $y=2x^2+1$ 的最小值。</p>
+        <p class="muted">甲：$y\ge 2\sqrt{2x^2\cdot 1}=2\sqrt2x\ge 2\sqrt2$，最小值是 $2\sqrt2$。</p>
+        <div class="think" data-step="4" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>右边 $2\sqrt2x$ 随 $x$ 变，不是定值；$2x^2=1$ 时 $x=\frac{\sqrt2}{2}\notin[1,+\infty)$。实际最小值是 $x=1$ 时的 3。</p><p><b>二定：</b>积（或和）必须是定值。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>求 $y=\sqrt{x^2+2}+\dfrac{1}{\sqrt{x^2+2}}$ 的最小值。</p>
+        <p class="muted">解：$y\ge 2\sqrt{1}=2$，最小值是 2。</p>
+        <div class="think" data-step="6" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>等号要 $\sqrt{x^2+2}=1$，即 $x^2=-1$，不可能！“$y\ge 2$”没错，但 2 取不到。</p><p><b>三相等：</b>等号必须取得到。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="用基本不等式求最值">一<b>正</b>（各项为正）　二<b>定</b>（和或积为定值）　三<b>相等</b>（等号取得到）——三个条件缺一不可。</p>
+  </div>
+  <p class="note">每张卡先让学生独立判断“对/错”，举手表决后再点开。第 2 张是课本习题 3.2 第 11 题甲的解法；第 3 张与习题 3.2 第 3(2) 题有关：(x²+3)/√(x²+2) = √(x²+2) + 1/√(x²+2)，正因为等号取不到，课本写的是“&gt; 2”。真正的最小值（x=0 时为 3√2/2）要等学了函数单调性再求。</p>
+</section>
+
+<!-- 11 ================= 例 2：凑定值 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>积不是定值？那就“凑”出一个</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">设 $y=x+\dfrac{16}{x+2}$，$x\in(-2,+\infty)$，求 $y$ 的最小值。</p>
+      <p class="tip" data-step="1">$x\cdot\dfrac{16}{x+2}$ 是定值吗？　<span class="think" data-step="2" data-ask="想一想">不是，它随 $x$ 变化——不能直接用。</span></p>
+      <p class="tip" data-step="3">怎样让积变成定值？　<span class="think" data-step="4" data-ask="想一想">把 $x$ 拆成 $(x+2)-2$：$(x+2)\cdot\dfrac{16}{x+2}=16$ 是定值！</span></p>
+      <div id="ex2" class="ex2" data-step="9"></div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="5"><span>一正</span><span>$x\gt -2\Rightarrow x+2\gt 0$</span><i class="why">先验条件</i></div>
+        <div class="dl key" data-step="6"><span>$x+\dfrac{16}{x+2}$</span><span>$=(x+2)+\dfrac{16}{x+2}-2$</span><i class="why">拆项，凑出积为定值的两项</i></div>
+        <div class="dl" data-step="7"><span></span><span>$\ge 2\sqrt{(x+2)\cdot\dfrac{16}{x+2}}-2=6$</span><i class="why">二定：积 $=16$</i></div>
+        <div class="dl" data-step="8"><span>三相等</span><span>$x+2=\dfrac{16}{x+2}$，即 $x=2$</span><i class="why">$x+2=4$，且 $x=2\in(-2,+\infty)$</i></div>
+        <div class="dl end" data-step="8"><span>因此</span><span>当 $x=2$ 时，$y$ 的最小值为 $6$。</span><i class="why"></i></div>
+      </div>
+      <p class="tip gold" data-step="9">拖动曲线上的点验证：最低点正是 $(2,\ 6)$。<b id="ex2V"></b></p>
+    </div>
+  </div>
+  <p class="note">课本 p54 例 2。“拆 x”是本题唯一的难点：引导学生从“想让谁和 x+2 相乘”出发，自然想到给 x 先加 2 再减 2。最后用图象验证——数形结合，代数结论有图为证。</p>
+</section>
+
+<!-- 12 ================= 例 3：和定积最大 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>铁丝长一定，怎样围面积最大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">用长为 $4a$ 的铁丝围成一个矩形，怎样才能使所围矩形的面积最大？</p>
+      <div class="rect-demo" data-noswipe>
+        <div class="rect-box"><div class="rect" id="rect"></div></div>
+        <div class="slider-row">长 $x$<input type="range" id="rx" min="0.1" max="3.9" step="0.1" value="1"><b id="rxV" class="v"></b></div>
+        <p class="tip center" id="rectInfo"></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">设长为 $x$，宽是多少？什么是定值？　<span class="think" data-step="2" data-ask="想一想">宽 $=2a-x$，长 + 宽 $=2a$ 是<b>定值</b>（和定）。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$S$</span><span>$=x(2a-x)$</span><i class="why">$0\lt x\lt 2a$，两项都为正</i></div>
+        <div class="dl key" data-step="4"><span>$\sqrt{x(2a-x)}$</span><span>$\le\dfrac{x+(2a-x)}{2}=a$</span><i class="why">和为定值 $2a$</i></div>
+        <div class="dl" data-step="5"><span>等号</span><span>$x=2a-x$，即 $x=a$</span><i class="why">$S$ 取最大值 $a^2$</i></div>
+      </div>
+      <p class="tip" data-step="6"><b>答</b>　将铁丝围成正方形时面积最大，最大面积为 $a^2$。</p>
+      <p class="method" data-step="7">对于正数 $a,b$：和 $a+b$ 为定值时，积 $ab$ 有<b>最大值</b>（例 3）；积 $ab$ 为定值时，和 $a+b$ 有<b>最小值</b>（例 4）。<br>口诀：<b>和定积最大，积定和最小</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p54–55 例 3（演示中取 a = 2，即铁丝长 8）。先让学生拖滑块找“最大”，再用基本不等式说明为什么是正方形。课本旁注：也可以转化为二次函数 S = x(2a−x) 求最大值，两种方法可以互相印证。例 4（水池造价）留作课后阅读：底面积 1600 一定，x + 1600/x ≥ 80，正是“积定和最小”。</p>
+</section>
+
+<!-- 13 ================= 练习：提示阶梯 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 若 $m\gt 0,n\gt 0$，$mn=81$，则 $m+n$ 的最小值是（　）<br>A. 4　B. $4\sqrt3$　C. 9　D. 18</p>
+        <details><summary>提示 1</summary>积 $mn$ 是定值 → 和有最小值。</details>
+        <details><summary>提示 2</summary>$m+n\ge 2\sqrt{mn}$，等号何时取到？</details>
+        <details><summary>完整解答</summary>$m+n\ge 2\sqrt{81}=18$，当且仅当 $m=n=9$ 时取等号。选 <b>D</b>。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 设 $x\gt 0,y\gt 0$，且 $2x+5y=20$，求 $xy$ 的最大值。</p>
+        <details><summary>提示 1</summary>$x+y$ 不是定值，但 $2x+5y$ 是。把 $2x$、$5y$ 看成两项。</details>
+        <details><summary>提示 2</summary>$2x\cdot 5y\le\left(\dfrac{2x+5y}{2}\right)^2$</details>
+        <details><summary>完整解答</summary>$10xy=2x\cdot5y\le\left(\dfrac{20}{2}\right)^2=100$，所以 $xy\le 10$；当且仅当 $2x=5y=10$，即 $x=5,y=2$ 时，$xy$ 取最大值 10。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 证明：$a+\dfrac{1}{a-1}\ge 3\ (a\gt 1)$。</p>
+        <details><summary>提示 1</summary>像例 2 一样：想让谁和 $\dfrac1{a-1}$ 相乘得定值？</details>
+        <details><summary>提示 2</summary>$a=(a-1)+1$，且 $a-1\gt 0$。</details>
+        <details><summary>完整解答</summary>$a+\dfrac{1}{a-1}=(a-1)+\dfrac{1}{a-1}+1\ge 2\sqrt{(a-1)\cdot\dfrac{1}{a-1}}+1=3$，当且仅当 $a-1=1$，即 $a=2$ 时取等号。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1、2 题是课本 p56 练习 1、3，第 3 题是 p54 练习 3(1)。先给 3 分钟独立做，再按需逐级点开提示。第 2 题是“凑定值”的另一种形式：系数不同时，把带系数的项整体看成一项。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$\sqrt{ab}\le\dfrac{a+b}{2}\ (a,b\ge 0)$，当且仅当 $a=b$ 时取等号。</p>
+        <p class="recall" data-label="常用变形 · a, b ∈ R">$$ab\le\frac{a^2+b^2}{2},\qquad ab\le\left(\frac{a+b}{2}\right)^2$$<span class="think" data-step="2" data-ask="为什么这里 a、b 可以是任意实数？">它们直接由 $(a-b)^2\ge 0$ 得到，没有开平方，不需要 $a,b\ge 0$。</span></p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>方法</h3>
+        <p class="method" data-label="证明不等式">作差法 · 分析法（执果索因）· 综合法（由因导果）</p>
+        <p class="method" data-label="求最值">一正、二定、三相等；和定积最大，积定和最小；不定就“拆项凑定值”。</p>
+      </div>
+      <div class="col" data-step="4">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">半圆中的半弦 $CD$ 与半径 $OD$；函数图象验证最小值。</p>
+        <p class="recall" data-label="转化">比较大小 → 判断差的符号 → 化成完全平方。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一步：</b>课本 p66「问题与探究 · 基本不等式的推广」——对于 3 个正数 $a,b,c$，是否有 $\sqrt[3]{abc}\le\dfrac{a+b+c}{3}$？先用几组具体数试一试。</p>
+  </div>
+  <p class="note">请学生先用自己的话说出本课三个层次，再逐栏揭示。课后作业建议：习题 3.2 第 1、2、4、5 题；第 11 题（阅读题）和本课“辨一辨”第 2 张卡呼应。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

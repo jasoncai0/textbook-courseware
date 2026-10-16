@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>函数的概念和图象 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/qiwen.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第5章 函数概念与性质 · 5.1</p>
+    <h1 class="cover-title">函数的概念和图象</h1>
+    <p class="cover-q" data-step="1">从凌晨到深夜，气温一直在变；任意一个时刻，气温<b>只有一个</b>。</p>
+    <p class="cover-q" data-step="2">初中说：“$y$ 随 $x$ 变化，$y$ 就是 $x$ 的函数。”可是——$y=\pi$ 呢？它根本不变，还算函数吗？</p>
+    <div class="chips" data-step="3"><span class="chip">从“变量说”到“对应说”</span><span class="chip">定义域与值域</span><span class="chip">同一个函数</span><span class="chip">函数的图象</span></div>
+  </div>
+  <p class="note">第 5 章引言（课本 p96）：“函数概念是近代数学思想之花。”封面只抛问题不作答：让学生凭初中印象表态“y = π 是不是函数”，第 3 页集中讨论。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>初中的函数定义 + 第 1 章的集合语言</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 函数（变量说）" data-step="1">
+        <p class="kai">在一个<b>变化过程</b>中的两个变量，记为 $x$ 和 $y$，如果对于 $x$ 的<b>每一个</b>值，$y$ 都有<b>唯一</b>的值与它对应，那么称 $y$ 是 $x$ 的函数，$x$ 是自变量。</p>
+        <span class="use">今天要把它“升级”：去掉“变化过程”，改用集合与对应来说。</span>
+      </div>
+      <div class="recall" data-label="第 1 章 · 集合" data-step="2">
+        <p>元素属于集合：$x\in A$</p>
+        <p>描述法：$\{x\mid x\ge 1\}$</p>
+        <p>区间：$(0,+\infty)$，$[1,3)$</p>
+        <span class="use">用两个数集 $A$、$B$ 重新定义函数，写出定义域、值域。</span>
+      </div>
+      <div class="recall" data-label="初中 · 函数的图象" data-step="3">
+        <p>一次函数 $y=kx+b$、反比例函数 $y=\dfrac kx$、二次函数 $y=ax^2+bx+c$，会用描点法画图。</p>
+        <span class="use">图象 = 所有点 $(x,f(x))$ 组成的点集。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第一张卡是课本 p96 对初中定义的复述，请学生齐读，并圈出“每一个”“唯一”两个关键词——它们在新定义里原封不动地保留下来，变的是“变化过程”和“变量”。</p>
+</section>
+
+<!-- 3 ================= 认知冲突 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>用初中的定义，回答得了这三个问题吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p><b>(1)</b> 设 $x$ 表示圆的半径，圆的周长与直径的比值为 $y=\pi$。当 $x\in(0,+\infty)$ 变化时，$y$ 是 $x$ 的函数吗？</p>
+        <div class="think" data-step="2" data-ask="“变量说”卡在哪？"><p>$y$ 根本没变。“$y$ 随 $x$ 变化”还成立吗？说不清。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>(2)</b> 函数 $y=\dfrac12x^2\ (x\in\R)$ 与 $y=\dfrac12x^2\ (x\in(0,+\infty))$ 是同一个函数吗？</p>
+        <div class="think" data-step="4" data-ask="“变量说”卡在哪？"><p>关系式一模一样。只盯着“变量怎么变”，看不出它们的区别在哪。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>(3)</b> 狄利克雷给出的例子：$y=\begin{cases}1, & x\text{ 为有理数},\\0, & x\text{ 为无理数},\end{cases}$　$y$ 是 $x$ 的函数吗？</p>
+        <div class="think" data-step="6" data-ask="“变量说”卡在哪？"><p>找不到“变化过程”，也画不出来。它到底算不算？</p></div>
+      </div>
+    </div>
+    <p class="tip gold" data-step="7"><b>问题：</b>怎样进一步认识“函数”概念？——需要一种更精确的语言：<b>集合</b>与<b>对应</b>。三个问题的答案，本课会一一揭晓。</p>
+  </div>
+  <p class="note">课本 p96 引言的三个问题。每张卡先让学生用初中定义尝试回答，暴露“说不清”的地方，再点开。不要急着给答案：(1)(3) 在第 8 页揭晓，(2) 在第 9 页揭晓。</p>
+</section>
+
+<!-- 4 ================= 三个情境 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>表格、式子、图象：共同点是什么？</h2></div>
+  <div class="bd full">
+    <div class="cols3 sit">
+      <div class="col" data-step="1">
+        <h3>① 人口数据表（1979～2014 年）</h3>
+        <table class="mtab small">
+          <tr><th>年份</th><td>1979</td><td>1984</td><td>1989</td><td>1994</td></tr>
+          <tr><th>人口/百万</th><td>975</td><td>1 044</td><td>1 127</td><td>1 199</td></tr>
+          <tr><th>年份</th><td>1999</td><td>2004</td><td>2009</td><td>2014</td></tr>
+          <tr><th>人口/百万</th><td>1 258</td><td>1 300</td><td>1 335</td><td>1 368</td></tr>
+        </table>
+      </div>
+      <div class="col" data-step="2">
+        <h3>② 自由落体</h3>
+        <p class="tip">物体从静止开始下落，下落距离 $y$（m）与时间 $x$（s）近似满足 $$y=4.9x^2$$</p>
+        <p class="tip">下落 2 s 的距离：<span class="think" data-step="3" data-ask="算一算">$y=4.9\times 2^2=19.6$（m）</span></p>
+      </div>
+      <div class="col" data-step="4">
+        <h3>③ 某市一天 24 小时的气温</h3>
+        <div id="temp" class="temp"></div>
+        <p class="muted center small-t">示意图，依课本图 5-1-1 描绘</p>
+      </div>
+    </div>
+    <div class="cols3">
+      <p class="tip" data-step="5">两个变量？<span class="think" data-step="6" data-ask="是什么">年份 → 人口数</span></p>
+      <p class="tip" data-step="5">两个变量？<span class="think" data-step="6" data-ask="是什么">时间 $x$ → 距离 $y$</span></p>
+      <p class="tip" data-step="5">两个变量？<span class="think" data-step="6" data-ask="是什么">时刻 $t$ → 气温 $\theta$</span></p>
+    </div>
+    <p class="def" data-step="7"><span class="think" data-step="8" data-ask="三个问题有什么共同点？">都含有两个变量；当一个变量的取值确定后，另一个变量的值<em>随之唯一确定</em>。</span></p>
+  </div>
+  <p class="note">课本 p97 三个情境，分别用表格、解析式、图象给出。先让学生找“两个变量”，再追问“x 取定一个值，y 能确定几个？”。注意：表格情境里根本没有“公式”，函数不等于“有式子”。</p>
+</section>
+
+<!-- 5 ================= 用集合语言抽象 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">抽象</span><h2>用集合语言说出共同点</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 360 330" class="arrow-fig" aria-label="箭头图：年份对应人口">
+        <ellipse cx="80" cy="165" rx="62" ry="150" fill="none" stroke="#4f9bd0" stroke-width="3"/>
+        <ellipse cx="280" cy="165" rx="62" ry="150" fill="none" stroke="#4f9bd0" stroke-width="3"/>
+        <text x="80" y="12" class="fl s c">A</text><text x="280" y="12" class="fl s c">B</text>
+        <g class="rows"></g>
+      </svg>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>第一</span><span class="think" data-step="2" data-ask="涉及什么？">两个<b>非空数集</b> $A$，$B$</span><i class="why">$A=\{1979,1984,\cdots,2014\}$，$B=\{975,1\,044,\cdots,1\,368\}$</i></div>
+        <div class="dl" data-step="3"><span>第二</span><span class="think" data-step="4" data-ask="A、B 之间有什么？">某种<b>对应关系</b></span><i class="why">对于 $A$ 中任意元素 $x$，$B$ 中总有一个元素 $y$ 与之对应</i></div>
+      </div>
+      <p class="tip" data-step="5">$x$ 取 1979，$y$ 取 975：“1979 对应到 975”，或“输入 1979，输出 975”，简记为 $1979\longrightarrow 975$。</p>
+      <p class="tip gold" data-step="6">箭头图的特征：<b>一个输入值对应到唯一的输出值</b>。</p>
+      <p class="tip" data-step="7">自由落体中，$A$ 是什么？　<span class="think" data-step="8" data-ask="想一想">下落时间组成的集合 $\{x\mid x\ge 0\}$；每个 $x$ 都对应唯一的 $y=4.9x^2$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p97–98、图 5-1-2。先请学生口述“人口问题里有哪两个集合”，再出现箭头图（第 6 步箭头逐条画出）。最后一步迁移到自由落体，检验学生是否会自己找 A。</p>
+</section>
+
+<!-- 6 ================= 函数的定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>函数：两个集合之间的一种对应</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>函数（课本 p98）</h4>给定两个<em>非空实数集合</em> $A$ 和 $B$，如果按照某种对应关系 $f$，对于集合 $A$ 中的<em>每一个</em>实数 $x$，在集合 $B$ 中都有<em>唯一</em>的实数 $y$ 和它对应，那么就称 $f:A\to B$ 为从集合 $A$ 到集合 $B$ 的一个<b>函数</b>，记作 $$y=f(x),\ x\in A.$$ 其中，$x$ 叫作自变量，集合 $A$ 叫作函数的<b>定义域</b>。所有输出值 $y$ 组成的集合 $\{y\mid y=f(x),\ x\in A\}$ 称为函数的<b>值域</b>。</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">为什么强调“<b>每一个</b>”？<br><span class="think" data-step="3" data-ask="去掉会怎样？">$A$ 里不能有“落单”的 $x$：每个输入都必须有输出。</span></p>
+      <p class="tip" data-step="4">为什么强调“<b>唯一</b>”？<br><span class="think" data-step="5" data-ask="去掉会怎样？">一个输入只能有一个输出，否则 $f(x)$ 到底等于几说不清。</span></p>
+      <p class="tip" data-step="6">$B$ 里每个元素都要被对应吗？<br><span class="think" data-step="7" data-ask="想一想">不必。被对应到的那些组成值域，值域 $\subseteq B$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p98 定义框。逐个关键词追问“去掉会怎样”。和初中定义对照：“每一个”“唯一”保留；“变化过程”换成了“两个非空数集”，“变量 y”换成了“对应关系 f”。f 是对应关系本身，f(x) 是 x 对应的输出值，两者不要混为一谈。</p>
+</section>
+
+<!-- 7 ================= 映射图互动 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手连一连</span><h2>连出来的，是不是函数？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">某班学号为 1～6 的学生的数学成绩（课本练习 1）：</p>
+      <table class="mtab"><tr><th>学号</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr><tr><th>成绩</th><td>80</td><td>75</td><td>79</td><td>80</td><td>98</td><td>80</td></tr></table>
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" data-map="fwd">学号 → 成绩</button>
+        <button class="btn" type="button" data-map="back">反过来：成绩 → 学号</button>
+        <button class="btn" type="button" id="mpFill">按成绩表连好</button>
+        <button class="btn" type="button" id="mpClear">清空</button>
+      </div>
+      <p class="tip feedback" id="mpMsg"></p>
+    </div>
+    <div class="col">
+      <div class="mapper" id="mapper" data-noswipe>
+        <div class="mp-col" id="mpA"></div>
+        <div class="mp-col" id="mpB"></div>
+        <svg class="mp-lines" id="mpLines"></svg>
+      </div>
+      <p class="muted center small-t">从左边的数拖到右边的数（或先点左、再点右）；点一下连线可删除</p>
+    </div>
+  </div>
+  <p class="note">先请学生按成绩表连好（多个学号连到 80 也可以——“多对一”不违反定义）；B 中可以有没被连到的数吗？再点“反过来”：80 要同时连 1、4、6，违反“唯一”；也可以故意漏连一个，看系统提示违反“每一个”。</p>
+</section>
+
+<!-- 8 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>判断下列对应是否为函数</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p><b>(1)</b> $x\to\dfrac2x,\ x\ne 0,\ x\in\R$；</p>
+        <div class="think" data-step="2" data-ask="是不是？理由？"><p><span class="verdict ok">是</span>对于任意一个非零实数 $x$，$\dfrac2x$ 由 $x$ 唯一确定，可表示为 $f(x)=\dfrac2x\ (x\ne 0)$。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>(2)</b> $x\to y$，这里 $y^2=x,\ x\in\N,\ y\in\R$；</p>
+        <div class="think" data-step="4" data-ask="是不是？理由？"><p><span class="verdict x">不是</span>当 $x=4$ 时，由 $y^2=4$ 得 $y=2$ 和 $y=-2$：一个输入值与两个输出值对应——违反“<b>唯一</b>”。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>(3)</b> 当 $x$ 为有理数时，$x\to 1$；当 $x$ 为无理数时，$x\to 0$。</p>
+        <div class="think" data-step="6" data-ask="是不是？理由？"><p><span class="verdict ok">是</span>任意有理数对应唯一的 1，任意无理数对应唯一的 0。这就是<b>狄利克雷函数</b>。</p></div>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="7" data-label="判断方法">看两条：$A$ 中<b>每一个</b> $x$ 都有输出吗？每个 $x$ 的输出<b>唯一</b>吗？——与“有没有公式”“$y$ 变不变”无关。</p>
+      <p class="recall" data-label="回到引言" data-step="8">(1) $y=\pi$：对每个 $x\in(0,+\infty)$，都有唯一的 $y=\pi$ 与之对应——<b>是</b>函数；(3) 狄利克雷的例子就是本例 (3)——<b>是</b>函数。</p>
+    </div>
+  </div>
+  <p class="note">课本 p99 例 1 与 p98 对引言问题 (1) 的解答。每题先举手表决再点开。第 (2) 题的反例正好对应上一页“反过来连”的情形。强调新定义的威力：不管有没有公式、y 变不变、能不能画出来，只看“每一个”和“唯一”。</p>
+</section>
+
+<!-- 9 ================= 同一个函数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">三要素</span><h2>什么时候是“同一个函数”？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="函数由哪几样东西决定？">定义域 $A$、对应关系 $f$、值域——值域由前两者确定。<br>对应关系相同、定义域相同，就是<em>同一个函数</em>。</span></p>
+      <div class="jcard" data-step="3"><p>$y=x^2\ (x\in(0,+\infty))$ 与 $s=t^2\ (t\in(0,+\infty))$</p><div class="think" data-step="4" data-ask="同一个吗？"><p><span class="verdict ok">是</span>表达形式不同（字母换了），对应关系与定义域都相同。</p></div></div>
+      <div class="jcard" data-step="5"><p>引言 (2)：$y=\dfrac12x^2\ (x\in\R)$ 与 $y=\dfrac12x^2\ (x\in(0,+\infty))$</p><div class="think" data-step="6" data-ask="同一个吗？"><p><span class="verdict x">不是</span>对应关系相同，但定义域不同。</p></div></div>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="7"><p>习题 5.1 第 4(1) 题：$y=x$ 与 $y=\dfrac{x^2}{x}$</p><div class="think" data-step="8" data-ask="同一个吗？"><p><span class="verdict x">不是</span>没有指明定义域时，取使表达式有意义的 $x$：$y=\dfrac{x^2}{x}$ 的定义域是 $\{x\mid x\ne 0\}$，而 $y=x$ 的定义域是 $\R$。</p></div></div>
+      <div id="hole" class="hole" data-step="8"></div>
+      <p class="muted center small-t" data-step="8">$y=\dfrac{x^2}{x}$ 的图象：在原点处“缺一个点”</p>
+    </div>
+  </div>
+  <p class="note">课本 p98–99。先问“函数由什么决定”，再连判三组。第三组是习题第 4(1) 题，学生最容易“约分”后说相同——用图象上的空心点让学生看见区别。顺带引出约定：给函数时要指明定义域；没有指明时，定义域是使表达式有意义的输入值的集合（下一页例 2）。</p>
+</section>
+
+<!-- 10 ================= 例 2 定义域 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>求定义域：哪些 $x$ 能让式子“有意义”？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip big">(1) $f(x)=\sqrt{x-1}$</p>
+        <p class="tip" data-step="1">$\sqrt{\ \ }$ 什么时候有意义？　<span class="think" data-step="2" data-ask="想一想">被开方数 $\ge 0$（在实数范围内）。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>$x-1\ge 0$</span><span>即 $x\ge 1$ 时</span><i class="why">$\sqrt{x-1}$ 有意义</i></div>
+          <div class="dl" data-step="3"><span>$x-1\lt 0$</span><span>即 $x\lt 1$ 时</span><i class="why">$\sqrt{x-1}$ 没有意义</i></div>
+          <div class="dl end" data-step="4"><span>定义域</span><span>$\{x\mid x\ge 1\}$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(2) $g(x)=\dfrac{1}{x+1}$</p>
+        <p class="tip" data-step="5">分式什么时候有意义？　<span class="think" data-step="6" data-ask="想一想">分母 $\ne 0$。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>$x+1\ne 0$</span><span>即 $x\ne -1$ 时</span><i class="why">$\dfrac1{x+1}$ 有意义</i></div>
+          <div class="dl" data-step="7"><span>$x+1=0$</span><span>即 $x=-1$ 时</span><i class="why">没有意义</i></div>
+          <div class="dl end" data-step="8"><span>定义域</span><span>$\{x\mid x\ne -1,\ \text{且 }x\in\R\}$</span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="9" data-label="求定义域">没有指明定义域时，找使表达式有意义的 $x$：偶次根号下 $\ge 0$，分母 $\ne 0$；几个条件要<b>同时</b>满足，取交集。结果写成集合或区间。</p>
+  </div>
+  <p class="note">课本 p99 例 2。“有意义”三个字是关键：让学生说出初中学过的两条“禁区”（负数不能开平方、分母不能为 0）。方法提炼里“同时满足取交集”为练习第 2 题做铺垫。</p>
+</section>
+
+<!-- 11 ================= 例 3 值域 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>求值域：同一个式子，值域为什么不同？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">(1) $f(x)=(x-1)^2+1,\ x\in\{-1,0,1,2,3\}$</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$f(-1)=$</span><span class="think" data-step="2" data-ask="算一算">$[(-1)-1]^2+1=5$</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>$f(0),f(1),f(2),f(3)$</span><span class="think" data-step="4" data-ask="算一算">$=2,\ 1,\ 2,\ 5$</span><i class="why"></i></div>
+        <div class="dl end" data-step="5"><span>值域</span><span>$\{1,2,5\}$</span><i class="why">重复的值只写一次</i></div>
+      </div>
+      <p class="tip" data-step="6">(2) $f(x)=(x-1)^2+1$　（定义域为 $\R$）</p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>因为</span><span class="think" data-step="8" data-ask="最小能到多少？">$(x-1)^2+1\ge 1$</span><i class="why">$(x-1)^2\ge 0$，$x=1$ 时取到 1</i></div>
+        <div class="dl end" data-step="9"><span>值域</span><span>$\{y\mid y\ge 1\}$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div id="range" class="range-b"></div>
+      <p class="tip gold" data-step="10">对应关系一样，<b>定义域不同</b>，值域就不同——值域由定义域和对应关系共同确定。</p>
+    </div>
+  </div>
+  <p class="note">课本 p100 例 3。(1) 先让学生逐个算，注意 f(−1) 的代入要加括号；值域里重复的 2、5 只写一次。(2) 引导学生从 (x−1)² ≥ 0 出发。右图：橙点是 (1) 的 5 个点，蓝色曲线是 (2) 的图象，两个值域在 y 轴上一目了然。</p>
+</section>
+
+<!-- 12 ================= 函数的图象 + 竖直线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">函数的图象</span><h2>一条竖直线，最多和函数图象交几个点？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="def" data-step="1"><span>点集 $\{(x,y)\mid y=f(x),\ x\in A\}$ 组成的图形，就是函数 $y=f(x)$ 的<em>图象</em>。</span></p>
+      <p class="tip" data-step="2">习题 5.1 第 6 题：直线 $x=a$ 和函数 $y=x^2+1$ 的图象的公共点可能有几个？<br><span class="think" data-step="3" data-ask="先猜，再拖动竖线验证">只有 1 个：定义域是 $\R$，每个 $a$ 都对应唯一的 $a^2+1$。</span></p>
+      <p class="tip feedback" id="vtMsg"></p>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="vtBtns"></div>
+      <div id="vt" class="vt"></div>
+      <p class="muted center small-t">拖动底部橙色点，左右移动竖直线</p>
+      <p class="method" data-step="4" data-label="竖直线检验">函数图象与任意竖直线 $x=a$ <b>至多一个</b>公共点：$a$ 在定义域内，恰好一个（“唯一”）；不在，就没有。</p>
+    </div>
+  </div>
+  <p class="note">课本 p101 图象定义 + 习题 5.1 第 6 题。依次点四条曲线：抛物线（是）、例 4(2) 的一段（是：竖线移出 [1,3) 就没有交点，“至多一个”而不是“恰好一个”）、圆（不是，两个交点违反唯一）、y² = x（不是，正是例 1(2)）。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> $A=B=\mathbf N^*$，对任意的 $x\in A$，$x\to x-1$。这是从 $A$ 到 $B$ 的函数吗？</p>
+        <details><summary>提示 1</summary>逐个检查 $A$ 中的元素：$x=1$ 时输出是多少？</details>
+        <details><summary>提示 2</summary>$1-1=0$，$0\in\mathbf N^*$ 吗？</details>
+        <details><summary>完整解答</summary><b>不是</b>。$x=1$ 时 $x-1=0\notin\mathbf N^*$，$A$ 中的 1 在 $B$ 中找不到对应元素，违反“每一个……都有……”。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 求函数 $f(x)=\sqrt{2+x}+\sqrt{1-x}$ 的定义域。</p>
+        <details><summary>提示 1</summary>两个根号都要有意义——两个条件<b>同时</b>满足。</details>
+        <details><summary>提示 2</summary>$2+x\ge 0$ 且 $1-x\ge 0$。</details>
+        <details><summary>完整解答</summary>由 $2+x\ge 0$ 得 $x\ge -2$，由 $1-x\ge 0$ 得 $x\le 1$，所以定义域为 $\{x\mid -2\le x\le 1\}$，即 $[-2,1]$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 求函数 $f(x)=(x-1)^2-1$ 的值域。</p>
+        <details><summary>提示 1</summary>像例 3(2)：$(x-1)^2$ 最小是多少？</details>
+        <details><summary>提示 2</summary>$(x-1)^2\ge 0$，$x=1$ 时取到 0。</details>
+        <details><summary>完整解答</summary>定义域为 $\R$。因为 $(x-1)^2\ge 0$，所以 $(x-1)^2-1\ge -1$，值域为 $\{y\mid y\ge -1\}$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p100 练习 3(3)、p101 练习 6(3)、7(2)。第 1 题专门检验“B 中都有”：输出必须落在 B 里。先独立做 3 分钟，卡住再逐级点开提示。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>从“变量说”到“对应说”</h2></div>
+  <div class="bd full">
+    <div class="evo">
+      <div class="evo-box" data-step="1"><h4>初中 · 变量说</h4><p>变化过程中两个<b>变量</b>，$x$ 的每一个值，$y$ 都有唯一的值与之对应</p></div>
+      <div class="evo-arrow" data-step="2">保留“每一个”“唯一”<br>⟶<br>换成集合 + 对应</div>
+      <div class="evo-box now" data-step="2"><h4>高中 · 对应说</h4><p>非空实数集 $A\to B$，$A$ 中<b>每一个</b> $x$，$B$ 中都有<b>唯一</b>的 $y$ 与之对应：$y=f(x),\ x\in A$</p></div>
+    </div>
+    <div class="cols3">
+      <p class="recall" data-label="三要素" data-step="3">定义域、对应关系、值域；前两者相同 ⇔ 同一个函数。</p>
+      <p class="recall" data-label="会求" data-step="4">定义域：使式子有意义；值域：由定义域和对应关系算出。</p>
+      <p class="recall" data-label="图象" data-step="5">点集 $\{(x,f(x))\mid x\in A\}$；竖直线与图象至多一个公共点。</p>
+    </div>
+    <p class="tip gold" data-step="6"><b>下一课：</b>5.2 函数的表示方法——本课的表格、解析式、图象，正是表示函数的三种方法。</p>
+  </div>
+  <p class="note">请学生先自己说出“新旧定义变在哪、没变在哪”，再揭示结构图。课后作业建议：习题 5.1 第 2、3、4 题；第 10 题（集合 A = R、B = {−1, 1} 的对应）可与狄利克雷函数对照思考。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
