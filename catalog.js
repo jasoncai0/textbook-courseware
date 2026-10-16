@@ -4082,19 +4082,31 @@ window.CATALOG = [
                 "no": "8.1",
                 "title": "同底数幂的乘法",
                 "genre": "推导",
-                "kind": "幂"
+                "kind": "幂",
+                "dir": "mj7b-tongdishumicheng",
+                "pages": 11,
+                "desc": "因数串拼接：m个a连n个a，可换底数核对数值",
+                "cover": "mj7b-tongdishumicheng/assets/yangguang.jpg"
               },
               {
                 "no": "8.2",
                 "title": "幂的乘方与积的乘方",
                 "genre": "推导",
-                "kind": "幂"
+                "kind": "幂",
+                "dir": "mj7b-midechengfang",
+                "pages": 16,
+                "desc": "因数方阵＋积的乘方“重新排队”动画",
+                "cover": "mj7b-midechengfang/assets/youguan.jpg"
               },
               {
                 "no": "8.3",
                 "title": "同底数幂的除法",
                 "genre": "推导",
-                "kind": "幂"
+                "kind": "幂",
+                "dir": "mj7b-tongdishumichu",
+                "pages": 17,
+                "desc": "分数约分器引出 a⁰、a⁻ⁿ；按比例画的 2ⁿ 阶梯",
+                "cover": "mj7b-tongdishumichu/assets/shuiziyuan.jpg"
               }
             ]
           },
@@ -4107,31 +4119,51 @@ window.CATALOG = [
                 "no": "9.1",
                 "title": "单项式乘单项式",
                 "genre": "推导",
-                "kind": "整式"
+                "kind": "整式",
+                "dir": "mj7b-danchengdan",
+                "pages": 9,
+                "desc": "可拖动电视墙 pa·qb＝pq·ab，带数值检验",
+                "cover": "mj7b-danchengdan/assets/huaduo.jpg"
               },
               {
                 "no": "9.2",
                 "title": "单项式乘多项式",
                 "genre": "推导",
-                "kind": "整式"
+                "kind": "整式",
+                "dir": "mj7b-danchengduo",
+                "pages": 10,
+                "desc": "拖分隔点分条求面积；按比例画的地块",
+                "cover": "mj7b-danchengduo/assets/xiaoqu.jpg"
               },
               {
                 "no": "9.3",
                 "title": "多项式乘多项式",
                 "genre": "推导",
-                "kind": "整式"
+                "kind": "整式",
+                "dir": "mj7b-duochengduo",
+                "pages": 11,
+                "desc": "“切两刀”面积模型＋带负号的格子表合并",
+                "cover": "mj7b-duochengduo/assets/taiyangneng.jpg"
               },
               {
                 "no": "9.4",
                 "title": "乘法公式",
                 "genre": "推导",
-                "kind": "整式"
+                "kind": "整式",
+                "dir": "mj7b-chengfagongshi",
+                "pages": 16,
+                "desc": "面积拼图看2ab，剪拼平方差",
+                "cover": "mj7b-chengfagongshi/assets/shoujian.jpg"
               },
               {
                 "no": "9.5",
                 "title": "多项式的因式分解",
                 "genre": "推导",
-                "kind": "整式"
+                "kind": "整式",
+                "dir": "mj7b-yinshifenjie",
+                "pages": 17,
+                "desc": "公因式提取器：调系数指数验能否提净",
+                "cover": "mj7b-yinshifenjie/assets/lvdi.jpg"
               }
             ]
           },
@@ -4144,19 +4176,31 @@ window.CATALOG = [
                 "no": "10.1",
                 "title": "二元一次方程",
                 "genre": "概念",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj7b-eryuanyici",
+                "pages": 9,
+                "desc": "计分板列表与格点拖点找全部解",
+                "cover": "mj7b-eryuanyici/assets/lanqiu.jpg"
               },
               {
                 "no": "10.2",
                 "title": "二元一次方程组",
                 "genre": "概念",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj7b-fangchengzu",
+                "pages": 9,
+                "desc": "鸡兔笼按只数画足，公共解对照表",
+                "cover": "mj7b-fangchengzu/assets/jitu.jpg"
               },
               {
                 "no": "10.3",
                 "title": "解二元一次方程组",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj7b-jiefangchengzu",
+                "pages": 13,
+                "desc": "消元操作台：选乘数加减即见消元",
+                "cover": "mj7b-jiefangchengzu/assets/qiuchang.jpg"
               },
               {
                 "no": "10.4",
@@ -4169,7 +4213,11 @@ window.CATALOG = [
                 "no": "10.5",
                 "title": "用二元一次方程组解决问题",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj7b-fangchengzuwenti",
+                "pages": 14,
+                "desc": "火车过桥模拟器：调速度车长对时间",
+                "cover": "mj7b-fangchengzuwenti/assets/qiao.jpg"
               }
             ]
           },

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二元一次方程 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/lanqiu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第10章 二元一次方程组 · 10.1</p>
+    <h1 class="cover-title">二元一次方程</h1>
+    <p class="cover-q" data-step="1">篮球比赛规则：赢一场得 2 分，输一场得 1 分。某球队赛了若干场，积 <b>20 分</b>。</p>
+    <p class="cover-q" data-step="2">它赢了几场、输了几场？只有一种可能吗？</p>
+    <div class="chips" data-step="3"><span class="chip">两个未知数</span><span class="chip">二元一次方程</span><span class="chip">方程的解</span><span class="chip">解有很多个</span></div>
+  </div>
+  <p class="note">课本 p94 情境。先让学生随口猜：赢 5 场、输 10 场？赢 8 场、输 4 场？——都对！这和以前“一个方程、一个答案”不一样，本课就研究这种方程和它的解。本章章首（p93）的环保知识竞赛问题，可以在第 2 页回顾一元一次方程时用。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>从“一元”到“二元”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 4.1 · 一元一次方程" data-step="1">
+        <p>只含有<b>一个</b>未知数，并且未知数的次数都是 <b>1</b> 的方程，如 $4x-(10-x)=25$。</p>
+        <span class="use">对照着给“二元一次方程”下定义：“元”指未知数，“次”指次数。<a href="../mj7a-wentidaofangcheng/index.html">回看 4.1</a></span>
+      </div>
+      <div class="recall" data-label="七上 4.1 · 方程的解" data-step="2">
+        <p>使方程左右两边的值相等的未知数的值，叫做方程的解。检验：代入两边，看是否相等。</p>
+        <span class="use">判断一对数是不是二元一次方程的解（第 6 页）。</span>
+      </div>
+      <div class="recall" data-label="七上 3.3 · 代数式的值" data-step="3">
+        <p>用字母表示数；求代数式的值，如 $x=3$ 时 $20-2x=14$。</p>
+        <span class="use">把 $2x+y=20$ 变形成 $y=20-2x$，再列表找解。<a href="../mj7a-daishushizhi/index.html">回看 3.3</a></span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>章首问题</b>（课本 p93）：环保知识竞赛，答对 1 题得 4 分，答错 1 题扣 1 分。小明答了 10 题共得 25 分，答对、答错各几题？<span class="think" data-step="5" data-ask="用一元一次方程">设答对 $x$ 题，则 $4x-(10-x)=25$，$x=7$：答对 7 题，答错 3 题。能不能设<b>两个</b>未知数？这一章就学。</span></p>
+  </div>
+  <p class="note">第 4 步是第 10 章的章首问题，学生用七上的一元一次方程就能解；追问“如果设答对 x 题、答错 y 题呢？”——引出两个未知数。</p>
+</section>
+
+<!-- 3 ================= 情境一：计分板 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境 · 列表</span><h2>积 20 分：赢、输场数有哪些可能？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">设该球队赢了 $x$ 场，输了 $y$ 场：<span class="think" data-step="1" data-ask="相等关系？">赢的场数 × 2 + 输的场数 × 1 = 20，即 $2x+y=20$。</span></p>
+      <div class="scal" data-noswipe>赢 $x=$<input type="range" id="winX" min="0" max="10" step="1" value="5"><span class="big" id="winXV"></span>场　→　输 $y=20-2x=$<span class="big" id="winYV"></span>场</div>
+      <p class="tip feedback" id="winMsg"></p>
+      <div class="tabwrap"><table class="vtab" id="winTab"></table></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="winAll">一次填满</button><button class="btn" type="button" id="winClr">清空</button></div>
+    </div>
+    <div class="col">
+      <div id="winLat" class="lat"></div>
+      <p class="tip" data-step="2">一共有几种可能？<span class="think" data-step="3" data-ask="数一数">11 种：$x=0,1,\ldots,10$，对应 $y=20,18,\ldots,0$。$x$ 再大，$y$ 就是负数了，不合实际。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p94 表格。拖滑块改赢的场数，表格里对应的一格自动填好、右边画出这一对 (x, y)；课本表中已给出 x = 5、y = 10。讨论 x = 0（一场没赢）是否合理——题目只说“赛了若干场”，可以接受。右图只是把找到的解画成点，不是函数图像（一次函数八年级才学）。</p>
+</section>
+
+<!-- 4 ================= 情境二：格点找解 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境 · 试一试</span><h2>共得 35 分，其中罚球得 10 分</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="balLat" class="lat"></div>
+      <p class="muted center small-t">拖动橙色点（落在格点上）：横向是两分球个数 $x$，纵向是三分球个数 $y$</p>
+    </div>
+    <div class="col">
+      <p class="tip">设投中 $x$ 个两分球、$y$ 个三分球，则 $2x+3y+10=35$．</p>
+      <div class="scal">$2x+3y+10=$<span class="big" id="balSum"></span><span id="balOk"></span></div>
+      <p class="tip">已找到：<span id="balFound">（拖到满足的点上就会记下）</span></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1)</span><span>最多投中几个三分球？</span><span class="think" data-step="2" data-ask="看表">7 个（$x=2$，$y=7$）</span></div>
+        <div class="dl" data-step="3"><span>(2)</span><span>除罚球外最多投中几个球？</span><span class="think" data-step="4" data-ask="看表">12 个（$x=11$，$y=1$）</span></div>
+        <div class="dl" data-step="5"><span>(3)</span><span>除罚球外投中 10 个，各几个？</span><span class="think" data-step="6" data-ask="看表">两分球 5 个、三分球 5 个</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p94“试一试”。让学生先自己列表（课本第 1 问），再上台拖点验证。只有 4 种可能：(11,1)、(8,3)、(5,5)、(2,7)——三分球个数必须是奇数，因为 2x 是偶数、25 是奇数。三个问题都从表里“读”答案。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>二元一次方程</h2></div>
+  <div class="bd full">
+    <p class="tip" data-step="1"><b>议一议：</b>方程 $2x+y=20$ 和 $2x+3y+10=35$ 有哪些共同的特点？<span class="think" data-step="2" data-ask="说说看">都含有<b>两个</b>未知数，并且含有未知数的项的次数都是 <b>1</b>。</span></p>
+    <div class="def big-def" data-step="3"><h4>二元一次方程（课本 p95）</h4>方程 $2x+y=20$、$2x+3y+10=35$，它们都含有<em>两个未知数</em>，并且含有未知数的项的<em>次数都是 1</em>．像这样的方程，叫做<em>二元一次方程</em>．</div>
+    <p class="tip" data-step="4"><b>辨一辨：</b>下面哪些是二元一次方程？</p>
+    <div class="jgrid" data-step="4">
+      <div class="jcard"><p>① $3x-y=0$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">两个未知数，含未知数的项 $3x$、$-y$ 次数都是 1。</p></div></div>
+      <div class="jcard"><p>② $xy=6$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$xy$ 这一项的次数是 2（两个字母的指数和）。</p></div></div>
+      <div class="jcard"><p>③ $x^2+y=5$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$x^2$ 的次数是 2。</p></div></div>
+      <div class="jcard"><p>④ $2x+1=7$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">只有一个未知数，是一元一次方程。</p></div></div>
+      <div class="jcard"><p>⑤ $x+y+z=1$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">有三个未知数（10.4 会学“三元”）。</p></div></div>
+      <div class="jcard"><p>⑥ $8x+3y=44$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">习题 10.1 第 1 题列出的就是它。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p95“议一议”与定义。辨一辨紧扣定义的两个条件：“两个未知数”与“含未知数的项的次数都是 1”。② 是最容易错的：xy 的次数是 2，七上学单项式次数时讲过。</p>
+</section>
+
+<!-- 6 ================= 方程的解 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念 · 练一练</span><h2>二元一次方程的解：一<b>对</b>数</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>二元一次方程的解（课本 p95）</h4>适合二元一次方程的<em>一对</em>未知数的值叫做这个二元一次方程的一个解．如 $x=8$、$y=3$ 是方程 $2x+3y+10=35$ 的一个解，记作 $\begin{cases}x=8,\\y=3.\end{cases}$　<span data-step="2">（解必须<b>成对</b>；一般有<b>无数个</b>，实际问题要看是否符合实际意义。）</span></div>
+    <p class="tip" data-step="3"><b>练一练 1</b> 下面 3 对数值，哪几对是 $2x+y=3$ 的解？哪几对是 $3x+4y=2$ 的解？（代进去算一算，再点）</p>
+    <div class="jgrid" data-step="3">
+      <div class="jcard"><p>$\begin{cases}x=-2\\y=2\end{cases}$</p>
+        <p>是 $2x+y=3$ 的解吗？</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$2\times(-2)+2=-2\ne3$。</p></div>
+        <p>是 $3x+4y=2$ 的解吗？</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$3\times(-2)+4\times2=2$ ✓</p></div></div>
+      <div class="jcard"><p>$\begin{cases}x=2\\y=-1\end{cases}$</p>
+        <p>是 $2x+y=3$ 的解吗？</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$2\times2+(-1)=3$ ✓</p></div>
+        <p>是 $3x+4y=2$ 的解吗？</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$3\times2+4\times(-1)=2$ ✓——它同时是两个方程的解！</p></div></div>
+      <div class="jcard"><p>$\begin{cases}x=\frac12\\y=2\end{cases}$</p>
+        <p>是 $2x+y=3$ 的解吗？</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$2\times\frac12+2=3$ ✓</p></div>
+        <p>是 $3x+4y=2$ 的解吗？</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$3\times\frac12+4\times2=9.5\ne2$。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p95 解的定义与练一练第 1 题。注意 (2, −1) 同时适合两个方程——这就是下一节“方程组的解”的伏笔，可以先让学生留意，不展开。</p>
+</section>
+
+<!-- 7 ================= 用含 y 的式子表示 x ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 2</span><h2>用一个未知数表示另一个，再找正整数解</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">(1) $x+3y=7$</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>移项</span><span class="think" data-step="2" data-ask="x = ?">$x=7-3y$</span><i class="why">等式的性质 1</i></div>
+        <div class="dl" data-step="3"><span>列表</span><span>$y=1$ 时 $x=4$；$y=2$ 时 $x=1$；$y=3$ 时 $x=-2$</span><i class="why">$y$ 从 1 开始试</i></div>
+        <div class="dl end" data-step="4"><span>正整数解</span><span>$\begin{cases}x=4\\y=1\end{cases}$，$\begin{cases}x=1\\y=2\end{cases}$</span><i class="why">$y\ge3$ 时 $x\le0$，不是正整数</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">(2) $4x+3y=32$</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="5"><span>变形</span><span class="think" data-step="6" data-ask="x = ?">$x=\dfrac{32-3y}4$</span><i class="why">移项，两边除以 4</i></div>
+        <div class="dl" data-step="7"><span>想一想</span><span>$32-3y$ 要能被 4 整除</span><i class="why">$32$ 是 4 的倍数，所以 $3y$ 也要是 4 的倍数</i></div>
+        <div class="dl" data-step="8"><span>试</span><span>$y=4$：$x=$<span class="blank" data-ans="5" data-w="2"></span>　$y=8$：$x=$<span class="blank" data-ans="2" data-w="2"></span></span><i class="why">$y=12$ 时 $x=-1$，不行</i></div>
+        <div class="dl end" data-step="9"><span>正整数解</span><span>$\begin{cases}x=5\\y=4\end{cases}$，$\begin{cases}x=2\\y=8\end{cases}$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="10" data-label="方法">先把方程写成“$x=$ 含 $y$ 的代数式”，再让 $y$ 取值、算 $x$，按要求（正整数、非负整数……）筛选。</p>
+    </div>
+  </div>
+  <p class="note">课本 p95 练一练第 2 题。“用含 y 的代数式表示 x”就是把 y 当作已知数解一元一次方程，10.3 的代入消元法第一步就是它，这里先练熟。(2) 中填空可直接输入数字回车判断。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 10.1</span><h2>列方程、找解：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>1.</b> 公园门票：成人票 8 元/张，儿童票 3 元/张．$x$ 名成人、$y$ 名儿童共花 44 元．列出关于 $x$、$y$ 的二元一次方程．</p>
+          <details><summary>提示</summary>成人票钱 + 儿童票钱 = 44。</details>
+          <details><summary>答案</summary>$8x+3y=44$。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 二元一次方程 $x-y=5$ 的解有多少个？写出 3 个解．</p>
+          <details><summary>提示</summary>$x=y+5$，$y$ 任取一个数都能算出 $x$。</details>
+          <details><summary>答案</summary>有无数个。如 $\begin{cases}x=5\\y=0\end{cases}$、$\begin{cases}x=6\\y=1\end{cases}$、$\begin{cases}x=3\\y=-2\end{cases}$（答案不唯一）。</details>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>3.</b> 把下列方程写成用含 $x$ 的代数式表示 $y$ 的形式，并写出一个解：(1) $5x+y=15$；(2) $3x-4y=12$．</p>
+          <details><summary>答案</summary>(1) $y=15-5x$，如 $\begin{cases}x=1\\y=10\end{cases}$；(2) $y=\dfrac{3x-12}4$，如 $\begin{cases}x=4\\y=0\end{cases}$。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>4.</b> 摸到 1 个红球得 2 分，1 个白球得 3 分．某人摸到 $x$ 个红球、$y$ 个白球共得 12 分．列方程，并写出符合实际意义的所有解．</p>
+          <details><summary>提示</summary>$x$、$y$ 是非负整数；$x=\dfrac{12-3y}2$，$y$ 必须是偶数。</details>
+          <details><summary>答案</summary>$2x+3y=12$；$\begin{cases}x=6\\y=0\end{cases}$，$\begin{cases}x=3\\y=2\end{cases}$，$\begin{cases}x=0\\y=4\end{cases}$。</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p95 习题 10.1 第 1–4 题。第 2 题与第 4 题对比：没有实际意义限制时解有无数个；有了“个数”的限制，只剩有限几个。第 4 题若学生认为至少摸到 1 个球，(6,0)、(0,4) 是否合理可以讨论。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">二元一次方程：两个未知数，含未知数的项的次数都是 1。</p>
+        <p class="def">解：适合方程的<b>一对</b>值，记作 $\begin{cases}x=\ldots\\y=\ldots\end{cases}$；一般有无数个。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="找解">写成 $y=\ldots$（或 $x=\ldots$），取值、计算、列表。</p>
+        <p class="method" data-label="实际意义">场数、个数要是非负整数，筛掉不合理的解。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="类比">一元一次方程 → 二元一次方程：“元”与“次”的含义不变。</p>
+        <p class="recall" data-label="方程模型">用两个字母表示两个未知量，列出相等关系。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>10.2 二元一次方程组——只知道“积 20 分”定不下赢几场；如果再知道“一共赛了 12 场”呢？两个方程放在一起，解就确定了。<a href="../mj7b-fangchengzu/index.html">10.2 →</a></p>
+  </div>
+  <p class="note">回到封面问题：只有一个方程时有 11 种可能。下一节加上第二个条件，答案就唯一了（第 6 页的 (2, −1) 也是一个伏笔）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

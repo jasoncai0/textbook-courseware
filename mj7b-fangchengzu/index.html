@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二元一次方程组 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jitu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第10章 二元一次方程组 · 10.2</p>
+    <h1 class="cover-title">二元一次方程组</h1>
+    <p class="cover-q" data-step="1">《孙子算经》第 31 题：“今有鸡兔同笼，上有<b>三十五</b>头，下有<b>九十四</b>足．问鸡兔各几何？”</p>
+    <p class="cover-q" data-step="2">只看“头”，鸡兔有很多种搭配；再看“足”，答案就定下来了。两个条件，怎样一起写成数学式子？</p>
+    <div class="chips" data-step="3"><span class="chip">鸡兔同笼</span><span class="chip">联立</span><span class="chip">公共解</span><span class="chip">方程组的解</span></div>
+  </div>
+  <p class="note">课本 p96 情境。先请学生解释古文：上有 35 个头、下有 94 只脚。可以让学生先用自己的办法猜一猜（小学里可能学过“假设法”），不急着给答案，第 3 页用笼子模型验证。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一节学到了什么</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="10.1 · 二元一次方程" data-step="1">
+        <p>含有两个未知数，并且含有未知数的项的次数都是 1 的方程，如 $2x+y=20$。</p>
+        <span class="use">方程组里的每一个方程都是它。<a href="../mj7b-eryuanyici/index.html">回看 10.1</a></span>
+      </div>
+      <div class="recall" data-label="10.1 · 方程的解" data-step="2">
+        <p>适合方程的一对值，一般有<b>无数个</b>；如 $2x+y=20$ 积 20 分有 11 种可能。</p>
+        <span class="use">一个方程定不下答案，所以需要两个方程“同时满足”。</span>
+      </div>
+      <div class="recall" data-label="七上 4.1 · 检验" data-step="3">
+        <p>把未知数的值代入方程左右两边，看是否相等。</p>
+        <span class="use">判断一对数是不是方程组的解：要代入<b>两个</b>方程都检验。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">上一节第 6 页，我们发现 $\begin{cases}x=2\\y=-1\end{cases}$ <b>同时</b>是 $2x+y=3$ 和 $3x+4y=2$ 的解——这正是今天的主角。</p>
+  </div>
+  <p class="note">回顾时请学生说说：为什么积 20 分时定不下赢几场？（只有一个相等关系。）引出“再加一个条件”。</p>
+</section>
+
+<!-- 3 ================= 鸡兔笼（核心交互一） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境 · 建模</span><h2>35 个头：鸡兔怎样搭配，脚才是 94 只？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="cage" viewBox="0 0 560 330" class="cage" aria-label="笼中 35 只鸡和兔"></svg>
+      <div class="scal" data-noswipe>鸡 $x=$<input type="range" id="henX" min="0" max="35" step="1" value="30"><span class="big" id="henV"></span>只　兔 $y=$<span class="big" id="rabV"></span>只</div>
+    </div>
+    <div class="col">
+      <div class="readout four">
+        <span>头：$x+y$</span><b class="v" id="headV"></b>
+        <span>足：$2x+4y$</span><b class="v" id="footV"></b>
+      </div>
+      <p class="tip feedback" id="cageMsg"></p>
+      <p class="tip" data-step="1">设鸡有 $x$ 只、兔有 $y$ 只，可得两个方程：<span class="think" data-step="2" data-ask="列方程">$x+y=35$，$2x+4y=94$．</span></p>
+      <p class="tip" data-step="3">鸡和兔的只数必须<b>同时</b>满足这两个方程．把它们联立在一起，写成 $\begin{cases}x+y=35,\\2x+4y=94.\end{cases}$</p>
+      <div class="def" data-step="4"><h4>二元一次方程组（课本 p96）</h4>把含有两个未知数的两个一次方程联立在一起，就组成了一个<em>二元一次方程组</em>．</div>
+    </div>
+  </div>
+  <p class="note">课本 p96。拖动滑块：35 个头一直不变（滑块只改鸡的只数，兔 = 35 − 鸡），所以每一种搭配都满足 x + y = 35，但脚数在变；只有一种搭配使脚数恰为 94。笼中的头、脚都按只数精确画出（鸡 2 只脚、兔 4 只脚）。先让学生找到答案，再说“这就是两个方程同时满足”。</p>
+</section>
+
+<!-- 4 ================= 想一想：摸球 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>摸一次，能确定吗？摸两次呢？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1">“我摸到 1 个红球、3 个绿球，共得 11 分．你知道摸到 1 个红球、1 个绿球各得多少分吗？”</p>
+        <p class="tip" data-step="2">　—— <span class="think" data-step="3" data-ask="能确定吗？">不能确定！$x+3y=11$ 有很多个解。</span></p>
+        <p class="tip" data-step="4">“我再摸 1 次，摸到 3 个红球、2 个绿球，共得 12 分．”</p>
+        <p class="tip" data-step="5">　—— <span class="think" data-step="6" data-ask="现在呢？">应该可以确定。</span></p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="7">设摸到 1 个红球得 $x$ 分，1 个绿球得 $y$ 分：</p>
+        <p class="def big-def" data-step="8">$x+3y=11$　　①<br>$3x+2y=12$　　②<br>联立：$\begin{cases}x+3y=11,\\3x+2y=12.\end{cases}$</p>
+        <p class="tip" data-step="9">下一页：两个方程各有很多解，哪一对是它们<b>共同</b>的？</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p96–97“想一想”。请两位学生分角色读对话。追问：“为什么摸一次不能确定？”——一个二元一次方程有无数个解。</p>
+</section>
+
+<!-- 5 ================= 公共解（核心交互二） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>两个方程的“公共解”</h2></div>
+  <div class="bd full">
+    <div class="scal" data-noswipe>取 $x=$<input type="range" id="comX" min="0" max="8" step="1" value="0"><span class="big" id="comXV"></span>，分别从两个方程算出 $y$：</div>
+    <div class="tabwrap"><table class="vtab" id="comTab"></table></div>
+    <p class="tip feedback" id="comMsg"></p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1">课本列出：方程①的解 $\begin{cases}x=2\\y=3\end{cases}$，$\begin{cases}x=5\\y=2\end{cases}$，$\begin{cases}x=8\\y=1\end{cases}$，……；方程②的解 $\begin{cases}x=0\\y=6\end{cases}$，$\begin{cases}x=2\\y=3\end{cases}$，$\begin{cases}x=4\\y=0\end{cases}$，……</p>
+      </div>
+      <div class="col">
+        <div class="def" data-step="2"><h4>二元一次方程组的解（课本 p97）</h4>二元一次方程组中两个方程的<em>公共解</em>叫做二元一次方程组的解．$\begin{cases}x=2\\y=3\end{cases}$ 是方程组 $\begin{cases}x+3y=11\\3x+2y=12\end{cases}$ 的解．</div>
+        <p class="tip" data-step="3">所以：摸到 1 个红球得 <span class="think" data-step="4" data-ask="?">2</span> 分，1 个绿球得 <span class="think" data-step="4" data-ask="?">3</span> 分。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p97。拖滑块，表格中两行 y 值同时出现：除 x = 2 外，同一个 x 算出的两个 y 都不相等（分数按精确值显示）；只有 x = 2 时两个方程给出同一个 y = 3。“公共解”三个字是本课的核心。</p>
+</section>
+
+<!-- 6 ================= 做一做 + 检验 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>“鸡兔同笼”方程组的解</h2></div>
+  <div class="bd full">
+    <p class="tip" data-step="1">你能找出 $\begin{cases}x+y=35,\\2x+4y=94\end{cases}$ 的解吗？（回第 3 页拖一拖，或自己试）</p>
+    <p class="tip big" data-step="2">$x=$<span class="blank" data-ans="23" data-w="2"></span>，$y=$<span class="blank" data-ans="12" data-w="2"></span></p>
+    <div class="derive" data-step="3">
+      <div class="dl"><span>检验①</span><span>$23+12=35$ ✓</span><i class="why">头数对</i></div>
+      <div class="dl"><span>检验②</span><span>$2\times23+4\times12=46+48=94$ ✓</span><i class="why">足数对</i></div>
+    </div>
+    <p class="method" data-step="4" data-label="检验方程组的解">把这对数分别代入<b>每一个</b>方程，都成立才是方程组的解；只满足一个不行。</p>
+    <p class="tip" data-step="5">答：鸡有 23 只，兔有 12 只。现在是“找”出来的——有没有不靠试、直接<b>算</b>出来的办法？<span class="think" data-step="6" data-ask="下一节">10.3 解二元一次方程组：代入消元法、加减消元法。</span></p>
+  </div>
+  <p class="note">课本 p97“做一做”。学生可以在第 3 页的笼子上拖到 23 只鸡；也有学生会用一元一次方程 2x + 4(35 − x) = 94 来解——这正是下节课代入法的思路，值得表扬并记在黑板一角。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>列方程组；判断是不是解</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>1.</b> 足球表面由黑色五边形和白色六边形共 32 块皮块围成，且白皮块数是黑皮块数的 $\dfrac53$ 倍．设黑皮块数为 $x$，白皮块数为 $y$，列出关于 $x$、$y$ 的二元一次方程组．</p>
+          <details><summary>提示</summary>两个相等关系：黑 + 白 = 32；白 = 黑 × $\dfrac53$。</details>
+          <details><summary>答案</summary>$\begin{cases}x+y=32,\\y=\dfrac53x.\end{cases}$（解是 $x=12$，$y=20$，可以代入检验。）</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 苹果 $x$ 元/千克，梨 $y$ 元/千克，苹果比梨贵 2 元/千克，买 5 千克苹果和 4 千克梨共花 46 元．列出方程组．</p>
+          <details><summary>答案</summary>$\begin{cases}x-y=2,\\5x+4y=46.\end{cases}$</details>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>3.</b> 哪 1 对是方程组 $\begin{cases}x+y=3\\x-y=-1\end{cases}$ 的解？</p>
+        <div class="pick" data-ans="b">
+          <button type="button" data-k="a">$\begin{cases}x=2\\y=1\end{cases}$</button>
+          <button type="button" data-k="b">$\begin{cases}x=1\\y=2\end{cases}$</button>
+          <button type="button" data-k="c">$\begin{cases}x=0\\y=-1\end{cases}$</button>
+          <button type="button" data-k="d">$\begin{cases}x=\frac12\\y=\frac32\end{cases}$</button>
+          <p class="pick-why">$(2,1)$、$(1,2)$、$(\frac12,\frac32)$ 都是 $x+y=3$ 的解；$(1,2)$、$(0,-1)$ 是 $x-y=-1$ 的解；只有 $\begin{cases}x=1\\y=2\end{cases}$ 是两个方程的<b>公共解</b>。</p>
+        </div>
+        <p class="tip small-t">提示：每一对都代入两个方程试试。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p97–98 练一练 1–3。第 3 题课本还问“哪几对是 x + y = 3 的解、哪几对是 x − y = −1 的解”，点对后的说明里全部给出，可请学生逐一口算。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 10.2</span><h2>古题、新题：列出方程组</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>1.</b> 地球表面积约为 5.1 亿平方千米，其中海洋面积约为陆地面积的 2.4 倍．设海洋面积为 $x$ 亿平方千米，陆地面积为 $y$ 亿平方千米，列方程组．</p>
+          <details><summary>答案</summary>$\begin{cases}x+y=5.1,\\x=2.4y.\end{cases}$</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 《算法统宗》：“我问开店李三公，众客都来到店中．一房七客多七客，一房九客一房空．”设客房 $x$ 间、房客 $y$ 人，列方程组．</p>
+          <details><summary>提示</summary>每间住 7 人，多出 7 人；每间住 9 人，空出一间（只有 $x-1$ 间住满）。</details>
+          <details><summary>答案</summary>$\begin{cases}7x+7=y,\\9(x-1)=y.\end{cases}$</details>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>3.</b> 已知 $\begin{cases}x=-2\\y=1\end{cases}$ 是方程组 $\begin{cases}x-2y=2m,\\nx+y=-3\end{cases}$ 的解，求 $m$、$n$ 的值．</p>
+          <details><summary>提示</summary>“是解”就是代入后两个方程都成立，得到关于 $m$、$n$ 的一元一次方程。</details>
+          <details><summary>答案</summary>$-2-2=2m$，$m=-2$；$-2n+1=-3$，$n=2$。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>4.</b> 用长 80 cm 的绳子围成长方形，长比宽多 10 cm．设长 $x$ cm、宽 $y$ cm，列方程组．你知道长和宽吗？</p>
+          <details><summary>答案</summary>$\begin{cases}2(x+y)=80,\\x-y=10.\end{cases}$ 试一试：$x=25$，$y=15$（代入两个方程都成立）。</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p98 习题 10.2。第 2 题是古诗题，先请学生翻译成白话；第 3 题是“解的定义”的逆用；第 4 题学生能猜出答案，但下节课要学会“算”。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">二元一次方程组：含两个未知数的两个一次方程联立。</p>
+        <p class="def">方程组的解：两个方程的<b>公共解</b>。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="列方程组">找出<b>两个</b>相等关系，各列一个方程，用大括号联立。</p>
+        <p class="method" data-label="检验">代入<b>每一个</b>方程，都成立才是解。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="方程模型">古代“鸡兔同笼”、今天摸球计分，都可以用方程组描述。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>10.3 解二元一次方程组——不再靠试，而是把“二元”化成“一元”来算。<a href="../mj7b-jiefangchengzu/index.html">10.3 →</a></p>
+  </div>
+  <p class="note">作业建议：习题 10.2 第 1–4 题。可以布置一个课前思考：鸡兔同笼，你能只设一个未知数来解吗？——为下节课代入法铺垫。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多项式的因式分解 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/lvdi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第9章 整式乘法与因式分解 · 9.5</p>
+    <h1 class="cover-title">多项式的因式分解</h1>
+    <p class="cover-q" data-step="1">小学里的巧算：$37\times2.8+37\times5+37\times2.2=37\times(2.8+5+2.2)=370$。</p>
+    <p class="cover-q" data-step="2">这是把乘法分配律<b>反过来</b>用。多项式能不能也“反过来”——把一个<b>和</b>写成几个整式的<b>积</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">公因式</span><span class="chip">提公因式法</span><span class="chip">运用公式法</span><span class="chip">分解到底</span></div>
+  </div>
+  <p class="note">课本 p81 小人对话里的巧算。先让学生口算，再问“为什么能这样算”（乘法分配律反过来）。封面图是例 4 的圆环形绿地情境。本课内容多，建议 2 课时：第 1 课时到第 7 页（提公因式法），第 2 课时从第 8 页（运用公式法）开始。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>“反过来”之前，先回忆“正着走”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="9.2 单项式乘多项式" data-step="1">
+        <p>$a(b+c+d)=ab+ac+ad$</p>
+        <span class="use">反过来就是提公因式：$ab+ac+ad=a(b+c+d)$。<a href="../mj7b-danchengduo/index.html">回看 9.2</a></span>
+      </div>
+      <div class="recall" data-label="9.4 乘法公式" data-step="2">
+        <p>$(a+b)(a-b)=a^2-b^2$</p>
+        <p>$(a\pm b)^2=a^2\pm2ab+b^2$</p>
+        <span class="use">反过来就是运用公式法（第 8–12 页）。<a href="../mj7b-chengfagongshi/index.html">回看 9.4</a></span>
+      </div>
+      <div class="recall" data-label="小学 · 最大公因数 / 8.1 幂" data-step="3">
+        <p>12 和 18 的最大公因数是 6；$a^3=a\cdot a^2$。</p>
+        <span class="use">找公因式：系数取最大公约数，字母的指数取最低次数。<a href="../mj7b-tongdishumicheng/index.html">回看 8.1</a></span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主角：</b>整式乘法是“积 → 和”，因式分解是“和 → 积”，两者方向相反。</p>
+  </div>
+  <p class="note">每张卡请学生先口头举一个例子。第三张卡是找公因式要用的两个小技能：最大公因数（小学）和“指数取最低”（同底数幂）。</p>
+</section>
+
+<!-- 3 ================= 公因式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>公因式：每一项都含有的因式</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <div class="derive">
+          <div class="dl" data-step="1"><span>单项式乘多项式</span><span>$a(b+c+d)=ab+ac+ad$</span><i class="why">积 → 和</i></div>
+          <div class="dl key" data-step="2"><span>反过来</span><span>$ab+ac+ad=a(b+c+d)$</span><i class="why">和 → 积</i></div>
+        </div>
+        <div class="def" data-step="3"><h4>公因式（课本 p81）</h4>多项式 $ab+ac+ad$ 各项都含有因式“$a$”，像这样的因式称为多项式各项的<em>公因式</em>．</div>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="4"><b>议一议：</b>找出各项的公因式．</p>
+        <p class="tip" data-step="4">(1) $a^2b+ab^2$　<span class="think" data-step="5" data-ask="公因式？">$ab$</span></p>
+        <p class="tip" data-step="4">(2) $3x^2-6x^3$　<span class="think" data-step="6" data-ask="公因式？">$3x^2$（3 与 6 的最大公约数是 3，$x$ 的最低次数是 2）</span></p>
+        <p class="tip" data-step="4">(3) $9abc-6a^2b^2+12abc^2$　<span class="think" data-step="7" data-ask="公因式？">$3ab$（没有 $c$：第二项不含 $c$）</span></p>
+        <p class="method" data-step="8" data-label="怎样找公因式">公因式常常不止一个。各项系数都是整数时：<b>系数</b>取各项系数的最大公约数；<b>字母</b>取各项相同的字母；各字母的<b>指数</b>取次数最低的。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p81“议一议”。(2) 有学生会答 $3x$ 或 $x^2$——它们也是公因式，但不是“最大”的，下一页用提取器验证“提完以后括号里还有没有公因式”。(3) 字母 c 只在两项里出现，不能提。</p>
+</section>
+
+<!-- 4 ================= 公因式提取器（核心交互） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手试</span><h2>公因式提取器：你选的因式，能“提”干净吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="gcf-pick" id="gcfPick" data-noswipe></div>
+      <p class="gcf-poly" id="gcfPoly"></p>
+      <p class="tip">调一调你要提出的因式（系数、各字母的指数）：</p>
+      <div class="steppers" id="gcfSteps" data-noswipe></div>
+      <p class="gcf-out" id="gcfF"></p>
+    </div>
+    <div class="col">
+      <p class="tip">每一项除以它：</p>
+      <div class="gcf-terms" id="gcfTerms"></div>
+      <p class="gcf-out" id="gcfOut"></p>
+      <p class="tip feedback" id="gcfMsg"></p>
+      <p class="method" data-step="1" data-label="提干净的标志">提出公因式后，括号里的各项<b>不再有公因式</b>（系数互质、没有共同的字母）——这时提出的才是“最大”的公因式。</p>
+    </div>
+  </div>
+  <p class="note">本课的核心交互。选一个多项式，用 ± 调系数和每个字母的指数，右边实时显示每一项除以它的结果：有一项除不尽（红色）就不是公因式；都除得尽但括号里还有公因式，说明“还能再提”。建议先让学生故意选 $3x$、$x^2$ 试 $3x^2-6x^3$，再找到 $3x^2$。例 2(2) 可以试试系数取 $2$ 和 $-2$ 的区别。</p>
+</section>
+
+<!-- 5 ================= 因式分解的定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>因式分解：把多项式写成积的形式</h2></div>
+  <div class="bd full">
+    <p class="tip" data-step="1">$9abc-6a^2b^2+12abc^2$ 各项有公因式 $3ab$：$=3ab\cdot3c-3ab\cdot2ab+3ab\cdot4c^2=3ab(3c-2ab+4c^2)$．</p>
+    <div class="def big-def" data-step="2"><h4>因式分解（课本 p81）</h4>把一个多项式写成几个整式的<em>积</em>的形式，叫做多项式的<em>因式分解</em>．</div>
+    <div class="cols2">
+        <p class="method" data-step="3" data-label="互逆">$\underbrace{3ab(3c-2ab+4c^2)}_{\text{积}}\ \overset{\text{整式乘法}}{\underset{\text{因式分解}}{\rightleftarrows}}\ \underbrace{9abc-6a^2b^2+12abc^2}_{\text{和}}$</p>
+        <p class="tip" data-step="4">所以因式分解的结果，可以用<b>整式乘法</b>来检验。</p>
+    </div>
+    <p class="tip" data-step="5"><b>练一练 1</b> 下列由左边到右边的变形，哪些是因式分解？</p>
+    <div class="jgrid" data-step="5">
+      <div class="jcard"><p>(1) $ab+ac+d=a(b+c)+d$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">右边最后还是“$+d$”，整体是和，不是积。</p></div></div>
+      <div class="jcard"><p>(2) $a^2-1=(a+1)(a-1)$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">左边是多项式，右边是两个整式的积。</p></div></div>
+      <div class="jcard"><p>(3) $(a+1)(a-1)=a^2-1$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">这是从积到和，是整式乘法。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p81 定义与 p82 练一练第 1 题。判断的关键只有一句：等号右边是不是“积”的形式。(2)(3) 是同一个等式的两个方向，正好对应“互逆”。</p>
+</section>
+
+<!-- 6 ================= 例 1、例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>提公因式：先找，再写成“公因式 × 另一个因式”</h2></div>
+  <div class="bd full top">
+    <div class="ex-grid">
+      <div class="col" data-step="1">
+        <p class="tip">例 1　$5x^3-10x^2$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="公因式是？">$5x^2\cdot x-5x^2\cdot2$</span></div>
+          <div class="dl end" data-step="4"><span>$=$</span><span>$5x^2(x-2)$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="5">
+        <p class="tip">例 2 (1)　$12ab^2c-6ab$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="6"><span>$=$</span><span class="think" data-step="7" data-ask="公因式是？">$6ab\cdot2bc-6ab\cdot1$</span></div>
+          <div class="dl end" data-step="8"><span>$=$</span><span>$6ab(2bc-1)$</span></div>
+        </div>
+        <p class="warn" data-step="9" data-label="别丢“1”">第二项 $6ab$ 全部提走后剩下 $1$，不是 $0$。</p>
+      </div>
+      <div class="col" data-step="10">
+        <p class="tip">例 2 (2)　$-2m^3+8m^2-12m$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="11"><span>$=$</span><span class="think" data-step="12" data-ask="首项是负的……">$-2m\cdot m^2-2m\cdot(-4m)-2m\cdot6$</span></div>
+          <div class="dl end" data-step="13"><span>$=$</span><span>$-2m(m^2-4m+6)$</span></div>
+        </div>
+        <p class="method" data-step="14" data-label="首项为负">第一项系数为负数时，通常把“$-$”号作为公因式的符号一起提出，括号里第一项的系数就为正数；括号里各项都要变号。</p>
+      </div>
+    </div>
+    <p class="tip" data-step="15"><b>检验：</b>把结果乘回去，看是不是原式。例如 $-2m(m^2-4m+6)=-2m^3+8m^2-12m$ ✓</p>
+  </div>
+  <p class="note">课本 p82 例 1、例 2 及其后的说明。每题先停在“公因式是？”。例 2(1) 的“1”是最常见的漏写；例 2(2) 回到上一页的提取器，把系数调成 2 和 −2 比较。</p>
+</section>
+
+<!-- 7 ================= 想一想：公因式是多项式；提公因式法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 方法</span><h2>公因式也可以是一个多项式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1">如何把 $3a(x+y)-2b(x+y)$ 分解因式？</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>公因式</span><span class="think" data-step="3" data-ask="两项都含有什么？">$(x+y)$</span><i class="why">把 $(x+y)$ 看成一个整体（一个“字母”）</i></div>
+        <div class="dl end" data-step="4"><span>原式 $=$</span><span>$(x+y)(3a-2b)$</span><i class="why">像 $3am-2bm=m(3a-2b)$ 一样</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>提公因式法（课本 p82）</h4>如果多项式的各项含有公因式，那么就可以把这个公因式提到括号外，把多项式写成公因式与另一个多项式的积的形式，这种分解因式的方法叫做<em>提公因式法</em>．</div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 2</b> 把下列各式分解因式：(1) $4x^2-12x^3$；(2) $-x^2y+4xy-5y$．</p>
+        <details><summary>提示</summary>(1) 公因式 $4x^2$；(2) 首项为负，提出 $-y$。</details>
+        <details><summary>答案</summary>(1) $4x^2(1-3x)$；(2) $-y(x^2-4x+5)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 3</b> 求代数式 $IR_1+IR_2+IR_3$ 的值，其中 $R_1=25.4$，$R_2=39.2$，$R_3=35.4$，$I=2.5$．</p>
+        <details><summary>提示</summary>先提公因式 $I$，括号里的三个数加起来是整百。</details>
+        <details><summary>答案</summary>$I(R_1+R_2+R_3)=2.5\times(25.4+39.2+35.4)=2.5\times100=250$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p82“想一想”与提公因式法、练一练 2–3。把 $(x+y)$ 看成一个整体，是 9.4 例 7 用过的整体思想。练一练 3 与封面的巧算呼应：先分解，再计算，简便得多。</p>
+</section>
+
+<!-- 8 ================= 平方差公式反过来 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">运用公式 · 一</span><h2>平方差公式反过来</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>（课本 p83）</h4>$$a^2-b^2=(a+b)(a-b)$$</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2"><b>议一议：</b>这个等式有什么特点？</p>
+        <p class="method" data-step="3" data-label="特点"><span class="think" data-step="4" data-ask="说说左右两边">从左到右是因式分解；左边是<b>两个数的平方差</b>，右边是这两个数的<b>和</b>与这两个数的<b>差</b>的积。</span></p>
+        <p class="warn" data-step="5" data-label="能用的条件">只有两项、都能写成平方、中间是<b>减号</b>。$a^2+b^2$ 不能用它分解。</p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="6"><b>做一做</b>（填好按回车）：</p>
+        <p class="blank-q" data-step="6">(1) $a^2-16=a^2-($<span class="blank" data-ans="4" data-w="2"></span>$)^2=(a+$<span class="blank" data-ans="4" data-w="2"></span>$)(a-$<span class="blank" data-ans="4" data-w="2"></span>$)$</p>
+        <p class="blank-q" data-step="6">(2) $64-b^2=($<span class="blank" data-ans="8" data-w="2"></span>$)^2-b^2=($<span class="blank" data-ans="8" data-w="2"></span>$+b)($<span class="blank" data-ans="8" data-w="2"></span>$-b)$</p>
+        <p class="method" data-step="7" data-label="先写成平方">先把每一项写成“某个式子的平方”，认清谁是 $a$、谁是 $b$，再套公式。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p83 与“议一议”“做一做”。可回到 9.4 第 9 页的剪拼图：$a^2-b^2$ 的阴影剪拼成长 $a+b$、宽 $a-b$ 的长方形，这正是“平方差 → 积”的直观。</p>
+</section>
+
+<!-- 9 ================= 例 3、例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 例 4</span><h2>用平方差公式分解；圆环的面积</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1)</span><span>$36-25x^2=6^2-(5x)^2=(6+5x)(6-5x)$</span></div>
+        <div class="dl" data-step="2"><span>(2)</span><span>$16a^2-9b^2=(4a)^2-(3b)^2=(4a+3b)(4a-3b)$</span></div>
+        <div class="dl" data-step="3"><span>(3)</span><span>$9(a+b)^2-4(a-b)^2$</span><span class="think" data-step="4" data-ask="谁是 a、b？">$3(a+b)$ 与 $2(a-b)$ 当作 $a$、$b$</span></div>
+        <div class="dl" data-step="5"><span>$=$</span><span>$[3(a+b)]^2-[2(a-b)]^2$</span></div>
+        <div class="dl" data-step="6"><span>$=$</span><span>$[3(a+b)+2(a-b)][3(a+b)-2(a-b)]$</span><i class="why">平方差公式</i></div>
+        <div class="dl end" data-step="7"><span>$=$</span><span>$(5a+b)(a+5b)$</span><i class="why">括号里去括号、合并同类项</i></div>
+      </div>
+    </div>
+    <div class="col" data-step="8">
+      <p class="tip"><b>例 4</b> 求图 9-7 中圆环形绿地的面积 $S$（结果保留 $\pi$）．</p>
+      <svg viewBox="0 0 300 190" class="ring-fig" id="ringFig" aria-label="圆环：外半径 32 m，内半径 18 m"></svg>
+      <div class="derive small-d">
+        <div class="dl" data-step="9"><span>$S=$</span><span>$\pi\times32^2-\pi\times18^2$</span></div>
+        <div class="dl" data-step="10"><span>$=$</span><span class="think" data-step="11" data-ask="怎样算简便？">$\pi(32^2-18^2)=\pi(32+18)(32-18)$</span></div>
+        <div class="dl end" data-step="12"><span>$=$</span><span>$700\pi\ (\text{m}^2)$</span><i class="why">$50\times14=700$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p83 例 3、p84 例 4。例 3(3) 是难点：$9(a+b)^2=[3(a+b)]^2$，把多项式看成整体；结果里的中括号要化简。例 4 的图按比例绘制（外半径 32、内半径 18）：先提公因式 π，再用平方差，比直接算 1024 − 324 快得多。</p>
+</section>
+
+<!-- 10 ================= 练一练（平方差） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>平方差公式：做完再点提示核对</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 分解因式：(1) $x^2-25$；(2) $x^2-16y^2$；(3) $a^2-\dfrac19b^2$；(4) $x^2y^2-z^2$；(5) $(x+2)^2-9$；(6) $(x+a)^2-(y-b)^2$．</p>
+        <details><summary>提示</summary>(4) $x^2y^2=(xy)^2$；(5)(6) 把括号看成整体。</details>
+        <details><summary>答案</summary>(1) $(x+5)(x-5)$；(2) $(x+4y)(x-4y)$；(3) $\left(a+\dfrac13b\right)\left(a-\dfrac13b\right)$；(4) $(xy+z)(xy-z)$；(5) $(x+5)(x-1)$；(6) $(x+a+y-b)(x+a-y+b)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在边长为 $16.4\text{ cm}$ 的正方形纸片的 4 角各剪去一个边长为 $1.8\text{ cm}$ 的正方形，求余下纸片的面积．</p>
+        <details><summary>提示</summary>$16.4^2-4\times1.8^2=16.4^2-(2\times1.8)^2$。</details>
+        <details><summary>答案</summary>$16.4^2-3.6^2=(16.4+3.6)(16.4-3.6)=20\times12.8=256\ (\text{cm}^2)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 写出一个单项式 $M$，使多项式 $4a^2+M$ 能用平方差公式分解因式．</p>
+        <details><summary>提示</summary>$M$ 要是“负的某个式子的平方”。</details>
+        <details><summary>答案</summary>如 $M=-b^2$：$4a^2-b^2=(2a+b)(2a-b)$；$M=-1$、$-9x^2$ 等也可以（答案不唯一）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p84 练一练 1–3。第 2 题的关键是把 $4\times1.8^2$ 看成 $3.6^2$；第 3 题是开放题，可请几位学生各写一个。</p>
+</section>
+
+<!-- 11 ================= 完全平方公式反过来 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">运用公式 · 二</span><h2>完全平方公式反过来</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>（课本 p84）</h4>$$a^2+2ab+b^2=(a+b)^2,\qquad a^2-2ab+b^2=(a-b)^2.$$</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="method" data-step="2" data-label="议一议：特点"><span class="think" data-step="3" data-ask="左边长什么样？">左边是两个数的<b>平方和</b>加上（减去）这两个数<b>积的 2 倍</b>，右边是这两个数的和（差）的平方。这样的多项式叫<b>完全平方式</b>。</span></p>
+        <p class="warn" data-step="4" data-label="三个条件">① 有两项是平方、且都是“$+$”；② 第三项是这两数积的 <b>2 倍</b>；③ 中间项的符号决定用和还是差。</p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="5"><b>做一做</b>（填 $a$ 和 $b$）：</p>
+        <p class="blank-q" data-step="5">(1) $a^2+6a+9=a^2+2\cdot a\cdot$<span class="blank" data-ans="3" data-w="2"></span>$+3^2=(a+$<span class="blank" data-ans="3" data-w="2"></span>$)^2$</p>
+        <p class="blank-q" data-step="5">(2) $a^2-6a+9=a^2-2\cdot a\cdot3+3^2=(a$<span class="blank" data-ans="-3|−3" data-w="2"></span>$)^2$</p>
+        <p class="blank-q" data-step="5">(3) $a^2+$<span class="blank" data-ans="4ab" data-w="3"></span>$+4b^2=a^2+2\cdot a\cdot2b+(2b)^2=(a+2b)^2$</p>
+        <p class="blank-q" data-step="5">(4) $a^2-8a+$<span class="blank" data-ans="16" data-w="2"></span>$=a^2-2\cdot a\cdot4+4^2=(a-4)^2$</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p84–85“议一议”“做一做”。“做一做”按课本格式简化成每行一到两个空，全部填完再请学生说：(3) 缺中间项，由首尾两项定；(4) 缺末项，由中间项定。</p>
+</section>
+
+<!-- 12 ================= 例 5、例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 例 6</span><h2>先认出“完全平方式”，再写成平方</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="derive small-d">
+          <div class="dl" data-step="1"><span>例 5 (1)</span><span>$x^2+10x+25$</span></div>
+          <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="改写成 a²+2ab+b²">$x^2+2\cdot x\cdot5+5^2$</span></div>
+          <div class="dl end" data-step="4"><span>$=$</span><span>$(x+5)^2$</span></div>
+          <div class="dl" data-step="5"><span>例 5 (2)</span><span>$4a^2-36ab+81b^2$</span></div>
+          <div class="dl" data-step="6"><span>$=$</span><span class="think" data-step="7" data-ask="改写成 a²−2ab+b²">$(2a)^2-2\cdot2a\cdot9b+(9b)^2$</span></div>
+          <div class="dl end" data-step="8"><span>$=$</span><span>$(2a-9b)^2$</span></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="derive small-d">
+          <div class="dl" data-step="9"><span>例 6 (1)</span><span>$25a^4+10a^2+1$</span></div>
+          <div class="dl" data-step="10"><span>$=$</span><span class="think" data-step="11" data-ask="谁的平方？">$(5a^2)^2+2\cdot5a^2\cdot1+1^2$</span></div>
+          <div class="dl end" data-step="12"><span>$=$</span><span>$(5a^2+1)^2$</span></div>
+          <div class="dl" data-step="13"><span>例 6 (2)</span><span>$(m+n)^2-4(m+n)+4$</span></div>
+          <div class="dl" data-step="14"><span>$=$</span><span class="think" data-step="15" data-ask="整体看">$(m+n)^2-2\cdot(m+n)\cdot2+2^2$</span><i class="why">把 $m+n$ 看成“$a$”</i></div>
+          <div class="dl" data-step="16"><span>$=$</span><span>$[(m+n)-2]^2$</span></div>
+          <div class="dl end" data-step="17"><span>$=$</span><span>$(m+n-2)^2$</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="def" data-step="18"><h4>运用公式法（课本 p85）</h4>运用平方差公式、完全平方公式，把一个多项式分解因式的方法叫做<em>运用公式法</em>．</div>
+  </div>
+  <p class="note">课本 p85 例 5、例 6。每题先停在“改写”这一步：先认出 a、b，再检验中间项是不是 2ab。例 6(2) 再次用整体思想。</p>
+</section>
+
+<!-- 13 ================= 练一练（完全平方） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>能分解吗？能，就分解</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1.</b> 下列多项式能否用完全平方公式分解因式？</p>
+        <div class="jgrid two">
+        <div class="jcard"><p>(1) $a^2+8a+16$</p><div class="pick" data-ans="y"><button type="button" data-k="y">能</button><button type="button" data-k="n">不能</button><p class="pick-why">$=a^2+2\cdot a\cdot4+4^2=(a+4)^2$。</p></div></div>
+        <div class="jcard"><p>(2) $9a^2-3a+1$</p><div class="pick" data-ans="n"><button type="button" data-k="y">能</button><button type="button" data-k="n">不能</button><p class="pick-why">$(3a)^2$ 与 $1^2$ 积的 2 倍是 $6a$，不是 $3a$。</p></div></div>
+        <div class="jcard"><p>(3) $4a^2+4a-1$</p><div class="pick" data-ans="n"><button type="button" data-k="y">能</button><button type="button" data-k="n">不能</button><p class="pick-why">$-1$ 不能写成某数的平方（平方不会是负数）。</p></div></div>
+        <div class="jcard"><p>(4) $a^2-ab+\dfrac14b^2$</p><div class="pick" data-ans="y"><button type="button" data-k="y">能</button><button type="button" data-k="n">不能</button><p class="pick-why">$=a^2-2\cdot a\cdot\dfrac12b+\left(\dfrac12b\right)^2=\left(a-\dfrac12b\right)^2$。</p></div></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 分解因式：(1) $25x^2+10xy+y^2$；(2) $a^2-12ab+36b^2$；(3) $16a^4+24a^2b^2+9b^4$；(4) $(x+y)^2-10(x+y)+25$．</p>
+          <details><summary>提示</summary>(3) $16a^4=(4a^2)^2$，$9b^4=(3b^2)^2$；(4) 把 $x+y$ 看成整体。</details>
+          <details><summary>答案</summary>(1) $(5x+y)^2$；(2) $(a-6b)^2$；(3) $(4a^2+3b^2)^2$；(4) $(x+y-5)^2$。</details>
+        </div>
+        <p class="tip"><b>3.</b> 填空：</p>
+        <p class="blank-q">(1) $4m^2-$<span class="blank" data-ans="12mn" data-w="4"></span>$+9n^2=($<span class="blank" data-ans="2" data-w="2"></span>$m-$<span class="blank" data-ans="3" data-w="2"></span>$n)^2$</p>
+        <p class="blank-q">(2) $9x^2+$<span class="blank" data-ans="6x" data-w="3"></span>$+1=($<span class="blank" data-ans="3x" data-w="3"></span>$+1)^2$</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p85–86 练一练 1–3。第 1 题点选即时反馈，错了可以再选；请学生说出“不能”的理由（中间项不对 / 有一项是负的）。</p>
+</section>
+
+<!-- 14 ================= 例 7：先提再套 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7</span><h2>两种方法一起用：先提公因式，再运用公式</h2></div>
+  <div class="bd full top">
+    <div class="ex-grid">
+      <div class="col" data-step="1">
+        <p class="tip">(1) $18a^2-50$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="先做什么？">$2(9a^2-25)$</span><i class="why">先提公因式 2</i></div>
+          <div class="dl end" data-step="4"><span>$=$</span><span>$2(3a+5)(3a-5)$</span><i class="why">平方差公式</i></div>
+        </div>
+      </div>
+      <div class="col" data-step="5">
+        <p class="tip">(2) $2x^2y-8xy+8y$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="6"><span>$=$</span><span class="think" data-step="7" data-ask="先做什么？">$2y(x^2-4x+4)$</span><i class="why">先提公因式 $2y$</i></div>
+          <div class="dl end" data-step="8"><span>$=$</span><span>$2y(x-2)^2$</span><i class="why">完全平方公式</i></div>
+        </div>
+      </div>
+      <div class="col" data-step="9">
+        <p class="tip">(3) $a^2(x-y)-b^2(x-y)$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="10"><span>$=$</span><span class="think" data-step="11" data-ask="公因式是多项式">$(x-y)(a^2-b^2)$</span></div>
+          <div class="dl end" data-step="12"><span>$=$</span><span>$(x-y)(a+b)(a-b)$</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="warn" data-step="13" data-label="常见的“半成品”">$18a^2-50$ 的两项都不能写成整式的平方，直接套公式套不上；$2y(x^2-4x+4)$ 停在这里也不对——括号里还能分解。</p>
+    <p class="method" data-step="14" data-label="一提二套">把一个多项式分解因式，应<b>先提公因式</b>，<b>再运用公式</b>。</p>
+  </div>
+  <p class="note">课本 p86 例 7 与小人的提示“先提公因式”。(1) 如果直接看 $18a^2-50$，两项都不是完全平方，就会卡住；先提出 2 才露出 $9a^2-25$。“半成品”是作业里最常见的扣分点，下一页专门讲“分解到底”。</p>
+</section>
+
+<!-- 15 ================= 例 8：分解到底（分解树） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8</span><h2>分解到底：每个因式都不能再分解为止</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">(1) $a^4-16$</p>
+      <svg viewBox="0 0 400 190" class="ftree" aria-label="a⁴−16 的分解树">
+        <g><rect class="node" x="140" y="8" width="120" height="34" rx="8"/><text x="200" y="31" text-anchor="middle">a⁴ − 16</text></g>
+        <g data-step="1"><line x1="200" y1="42" x2="110" y2="78"/><line x1="200" y1="42" x2="290" y2="78"/>
+          <rect class="leaf" x="55" y="78" width="110" height="34" rx="8"/><text x="110" y="101" text-anchor="middle">a² + 4</text>
+          <rect class="node" x="235" y="78" width="110" height="34" rx="8"/><text x="290" y="101" text-anchor="middle">a² − 4</text></g>
+        <g data-step="3"><line x1="290" y1="112" x2="235" y2="148"/><line x1="290" y1="112" x2="345" y2="148"/>
+          <rect class="leaf" x="190" y="148" width="90" height="34" rx="8"/><text x="235" y="171" text-anchor="middle">a + 2</text>
+          <rect class="leaf" x="300" y="148" width="90" height="34" rx="8"/><text x="345" y="171" text-anchor="middle">a − 2</text></g>
+      </svg>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>$=$</span><span>$(a^2)^2-4^2=(a^2+4)(a^2-4)$</span></div>
+        <div class="dl" data-step="2"><span></span><span class="think" data-step="3" data-ask="完了吗？">$a^2-4$ 还能继续分解！</span></div>
+        <div class="dl end" data-step="3"><span>$=$</span><span>$(a^2+4)(a+2)(a-2)$</span><i class="why">$a^2+4$ 不能再分解（绿色）</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">(2) $81x^4-72x^2y^2+16y^4$</p>
+      <svg viewBox="0 0 400 190" class="ftree" aria-label="81x⁴−72x²y²+16y⁴ 的分解">
+        <g><rect class="node" x="70" y="8" width="260" height="34" rx="8"/><text x="200" y="31" text-anchor="middle">81x⁴ − 72x²y² + 16y⁴</text></g>
+        <g data-step="5"><line x1="200" y1="42" x2="200" y2="78"/><rect class="node" x="120" y="78" width="160" height="34" rx="8"/><text x="200" y="101" text-anchor="middle">(9x² − 4y²)²</text></g>
+        <g data-step="7"><line x1="200" y1="112" x2="130" y2="148"/><line x1="200" y1="112" x2="270" y2="148"/>
+          <rect class="leaf" x="60" y="148" width="140" height="34" rx="8"/><text x="130" y="171" text-anchor="middle">(3x + 2y)²</text>
+          <rect class="leaf" x="200" y="148" width="140" height="34" rx="8"/><text x="270" y="171" text-anchor="middle">(3x − 2y)²</text></g>
+      </svg>
+      <div class="derive small-d">
+        <div class="dl" data-step="4"><span>$=$</span><span>$(9x^2)^2-2\cdot9x^2\cdot4y^2+(4y^2)^2$</span></div>
+        <div class="dl" data-step="5"><span>$=$</span><span>$(9x^2-4y^2)^2$</span><i class="why">完全平方公式</i></div>
+        <div class="dl" data-step="6"><span>$=$</span><span class="think" data-step="7" data-ask="括号里还能分解吗？">$[(3x+2y)(3x-2y)]^2$</span><i class="why">平方差公式</i></div>
+        <div class="dl end" data-step="7"><span>$=$</span><span>$(3x+2y)^2(3x-2y)^2$</span><i class="why">积的乘方</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p86 例 8 与 p87 的总结：“必须把每一个因式都分解到不能再分解为止”。分解树上绿色框是“不能再分解”的因式。$a^2+4$ 是平方<b>和</b>，在我们学过的范围内不能分解，这一点要明确告诉学生。</p>
+</section>
+
+<!-- 16 ================= 练一练（综合） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>一提、二套、三查到底</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 分解因式：(1) $2ax^2-2ay^4$；(2) $-2xy-x^2-y^2$；(3) $3ax^2+6axy+3ay^2$；(4) $(a+b)-a^2(a+b)$．</p>
+        <details><summary>提示</summary>(1) 提 $2a$ 后 $x^2-y^4=x^2-(y^2)^2$；(2) 先提“$-$”号；(4) 公因式是 $a+b$，剩下 $1-a^2$。</details>
+        <details><summary>答案</summary>(1) $2a(x+y^2)(x-y^2)$；(2) $-(x+y)^2$；(3) $3a(x+y)^2$；(4) $(a+b)(1+a)(1-a)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 分解因式：(1) $x^4-81$；(2) $(x^2-2y)^2-(1-2y)^2$；(3) $x^4-2x^2+1$；(4) $x^4-8x^2y^2+16y^4$．</p>
+        <details><summary>提示</summary>都要分解两次：第一次得到的因式里，还有平方差。</details>
+        <details><summary>答案</summary>(1) $(x^2+9)(x+3)(x-3)$；(2) $(x^2-4y+1)(x+1)(x-1)$；(3) $(x+1)^2(x-1)^2$；(4) $(x+2y)^2(x-2y)^2$。</details>
+      </div>
+    </div>
+    <div class="method" data-step="1" data-label="因式分解的一般步骤">① <b>一提</b>：有公因式先提公因式（首项为负先提“$-$”）；② <b>二套</b>：两项想平方差，三项想完全平方；③ <b>三查</b>：每个因式都分解到不能再分解；④ 可以用整式乘法检验。</div>
+  </div>
+  <p class="note">课本 p87 练一练 1–2。2(2) 中 $(x^2-2y)-(1-2y)=x^2-1$，还能分解，是本页最难的一题。最后的步骤卡请学生先总结，再揭示。</p>
+</section>
+
+<!-- 17 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">因式分解：把多项式写成几个整式的积；与整式乘法互逆。</p>
+        <p class="def">公因式：系数取最大公约数，相同字母取最低次数。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="提公因式法">$ma+mb+mc=m(a+b+c)$</p>
+        <p class="method" data-label="运用公式法">$a^2-b^2=(a+b)(a-b)$；$a^2\pm2ab+b^2=(a\pm b)^2$</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="逆向思维">乘法公式反过来用；巧算 $37\times2.8+37\times5+37\times2.2$。</p>
+        <p class="recall" data-label="整体思想">把 $x+y$、$m+n$ 看成一个字母。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>第 9 章到此结束。</b>下一章：第 10 章 二元一次方程组——环保知识竞赛中“答对几题、答错几题”，两个未知数怎么求？<a href="../mj7b-eryuanyici/index.html">10.1 二元一次方程 →</a></p>
+  </div>
+  <p class="note">作业建议：习题 9.5 第 1、3、5、7、8 题（每组各选两小题）。请学生把本课的方法画成一张“先提、再套、查到底”的流程卡贴在笔记本上。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

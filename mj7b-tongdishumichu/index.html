@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>同底数幂的除法 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shuiziyuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第8章 幂的运算 · 8.3</p>
+    <h1 class="cover-title">同底数幂的除法</h1>
+    <p class="cover-q" data-step="1">我国水资源总量居世界第 6 位，但人均水资源量排在世界第 121 位．据统计，2007 年我国水资源总量约为 <b>$2.8\times10^{12}$ m³</b>，按全国 <b>$1.32\times10^9$ 人</b>计算，人均水资源量为多少？</p>
+    <p class="cover-q" data-step="2">列式：$(2.8\times10^{12})\div(1.32\times10^9)$——$10^{12}\div10^9$ 等于多少？</p>
+    <div class="chips" data-step="3"><span class="chip">约分看除法</span><span class="chip">零指数幂</span><span class="chip">负整数指数幂</span><span class="chip">很小的数的科学记数法</span></div>
+  </div>
+  <p class="note">课本 p54 情境。先让学生列式，再问“$10^{12}\div10^9$ 会算吗”。本课内容较多：除法法则 → 0 次幂 → 负整数次幂 → 用科学记数法表示很小的数，可分两课时（第 1–7 页为第一课时）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="8.1 · 8.2 · 幂的乘法" data-step="1">
+        <p>$a^m\cdot a^n=a^{m+n}$；$(a^m)^n=a^{mn}$；$(ab)^n=a^nb^n$．</p>
+        <span class="use">除法是乘法的逆运算：$a^{m-n}\cdot a^n=a^m$，用来检验商。（<a href="../mj7b-tongdishumicheng/index.html">回看 8.1</a>　<a href="../mj7b-midechengfang/index.html">回看 8.2</a>）</span>
+      </div>
+      <div class="recall" data-label="小学 · 约分" data-step="2">
+        <p>分子、分母同时除以同一个不为 0 的数，分数的值不变：$\dfrac{2\times2\times2}{2\times2}=2$．</p>
+        <span class="use">把 $a^m\div a^n$ 写成分数，分子分母成对约去；除数不能为 0，所以要求 $a\ne0$。</span>
+      </div>
+      <div class="recall" data-label="七上 2.7 · 科学记数法" data-step="3">
+        <p>大数写成 $a\times10^n$（$1\le a\lt10$，$n$ 是正整数），如 $700\,000\,000=7\times10^8$．</p>
+        <span class="use">本课把它推广到很小的数：$0.000\,000\,000\,05=5\times10^{-11}$。（<a href="../mj7a-chengfang/index.html">回看 2.7</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>$a^m\div a^n$ 等于什么？如果 $m=n$、$m\lt n$，结果还能写成 $a$ 的幂吗？</p>
+  </div>
+  <p class="note">第二张卡是本课的直观工具：除法写成分数，约分就是“相同的因数抵消”。要特别说明“$a\ne0$”的来历——0 不能做除数。</p>
+</section>
+
+<!-- 3 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>先算一算，再找规律</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">计算下列各式（课本 p54），填数后回车：</p>
+      <div class="ex-list">
+        <p>(1) $2^8\div2^3=$ <span class="blank" data-ans="32" data-w="3"></span>，$2^5=$ <span class="blank" data-ans="32" data-w="3"></span></p>
+        <p>(2) $(-3)^5\div(-3)^2=$ <span class="blank" data-ans="-27" data-w="4"></span>，$(-3)^3=$ <span class="blank" data-ans="-27" data-w="4"></span></p>
+        <p>(3) $\left(\dfrac34\right)^5\div\left(\dfrac34\right)^3=$ <span class="blank" data-ans="9/16" data-w="4"></span>，$\left(\dfrac34\right)^2=$ <span class="blank" data-ans="9/16" data-w="4"></span></p>
+      </div>
+      <p class="muted small-t">分数用“/”输入，如 9/16。</p>
+    </div>
+    <div class="col">
+      <p class="tip gold" data-step="1">从上面的计算中，你发现了什么？<span class="think" data-step="2" data-ask="说说你的发现">每行两边相等：$2^8\div2^3=2^5$，$(-3)^5\div(-3)^2=(-3)^3$，$\left(\frac34\right)^5\div\left(\frac34\right)^3=\left(\frac34\right)^2$——底数不变，指数 $8-3=5$、$5-2=3$、$5-3=2$。</span></p>
+      <p class="tip" data-step="3">为什么 $2^8\div2^3=2^5$？用乘法检验：<span class="think" data-step="4" data-ask="检验">$2^5\times2^3=2^{5+3}=2^8$，商乘除数等于被除数，所以商是 $2^5$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p54 试一试。(2) 注意负号：$-243\div9=-27$。右栏用“乘法检验除法”，把除法和 8.1 联系起来；下一页用约分看得更直观。</p>
+</section>
+
+<!-- 4 ================= 核心交互：约分器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手操作</span><h2>写成分数，一对一对约去</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <div class="cancel-box" id="cancelBox" data-noswipe>
+        <div class="slider-row">底数：<button class="btn" type="button" data-base="a">$a$</button><button class="btn" type="button" data-base="2">2</button>　$m=$<input type="range" id="cancelMi" min="1" max="7" step="1" value="5"><b class="v" id="cancelM"></b>　$n=$<input type="range" id="cancelNi" min="1" max="7" step="1" value="2"><b class="v" id="cancelN"></b></div>
+        <div class="frac"><div class="frow num" id="numRow"></div><div class="bar"></div><div class="frow den" id="denRow"></div></div>
+        <div class="btns"><button class="btn solid" type="button" id="cancelGo">一对一对约去</button></div>
+        <p class="cancel-msg" id="cancelMsg"></p>
+        <p class="cancel-res" id="cancelRes"></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">$m\gt n$ 时，约去几对？剩下几个 $a$？<span class="think" data-step="2" data-ask="数一数">约去 $n$ 对，分子剩 $m-n$ 个 $a$，商是 $a^{m-n}$。</span></p>
+      <p class="tip" data-step="3">约分的依据是什么？为什么要 $a\ne0$？<span class="think" data-step="4" data-ask="想一想">分数的基本性质：分子分母同除以 $a$；0 不能做除数，所以 $a\ne0$。</span></p>
+      <p class="tip" data-step="5">把 $n$ 拖到等于 $m$、大于 $m$，会怎样？<span class="think" data-step="6" data-ask="试一试">全部约去得 1；分母有剩余得 $\dfrac1{a^{n-m}}$。这两种情况，第 8、9 页再研究。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心操作。先用 $m=5$、$n=2$ 点“约去”：红线一对一对划掉，剩 3 个 $a$。换底数 2 核对数值：$\frac{32}{4}=8=2^3$。最后故意把 $n$ 拖成 5、6，留下两个悬念（$a^0$、$a^{-1}$），为后半节课埋伏笔。</p>
+</section>
+
+<!-- 5 ================= 推导与性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导 · 性质</span><h2>同底数幂相除，底数不变，指数相减</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <p class="tip">当 $a\ne0$，$m$、$n$ 是正整数，且 $m\gt n$ 时：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$a^m\div a^n=\dfrac{\overbrace{a\cdot a\cdot\cdots\cdot a}^{m\text{个}a}}{\underbrace{a\cdot a\cdot\cdots\cdot a}_{n\text{个}a}}$</span><span class="think" data-step="2" data-ask="凭什么？">乘方的意义，除法写成分数</span></div>
+        <div class="dl" data-step="3"><span></span><span>$=\underbrace{a\cdot a\cdot\cdots\cdot a}_{(m-n)\text{个}a}$</span><span class="think" data-step="4" data-ask="凭什么？">约去 $n$ 对（分数的基本性质，$a\ne0$）</span></div>
+        <div class="dl end" data-step="5"><span></span><span>$=a^{m-n}$</span><span class="think" data-step="6" data-ask="凭什么？">乘方的意义</span></div>
+      </div>
+      <div class="def big-def" data-step="7"><h4>同底数幂的除法（课本 p54）</h4>$$a^m\div a^n=a^{m-n}$$（$a\ne0$，$m$、$n$ 是正整数，$m\gt n$）同底数幂相除，<em>底数不变</em>，<em>指数相减</em>．</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="8"><b>回到封面：</b>2007 年我国人均水资源量约为</p>
+      <div class="derive tight" data-step="8">
+        <div class="dl"><span></span><span>$(2.8\times10^{12})\div(1.32\times10^9)$</span></div>
+        <div class="dl"><span>$=$</span><span>$(2.8\div1.32)\times(10^{12}\div10^9)$</span><i class="why">把系数和 10 的幂分开</i></div>
+        <div class="dl"><span>$\approx$</span><span class="think" data-step="9" data-ask="算一算">$2.12\times10^3$（m³）</span><i class="why">$12-9=3$；$2.8\div1.32\approx2.12$</i></div>
+      </div>
+      <p class="warn" data-step="10" data-label="三个条件">$a\ne0$（除数不为 0）；底数相同；暂时要求 $m\gt n$——后面会把这个限制去掉。</p>
+    </div>
+  </div>
+  <p class="note">课本 p54 推导与性质框。“三条性质”此时可以比一比：乘法 → 指数相加，除法 → 指数相减，正好互逆。$m\gt n$ 这个条件先保留，第 10 页定义了零指数幂和负整数指数幂后再放宽。</p>
+</section>
+
+<!-- 6 ================= 例 1 + 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 辨一辨</span><h2>看准底数，指数相减</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 1</b> 计算（课本 p54）：</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>(1)</span><span>$a^6\div a^2$　<span class="think" data-step="2" data-ask="算一算">$=a^{6-2}=a^4$</span></span></div>
+        <div class="dl" data-step="3"><span>(2)</span><span>$(-b)^8\div(-b)$　<span class="think" data-step="4" data-ask="除数的指数是几？">$=(-b)^{8-1}=(-b)^7=-b^7$</span></span></div>
+        <div class="dl" data-step="5"><span>(3)</span><span>$(ab)^4\div(ab)^2$　<span class="think" data-step="6" data-ask="把谁看成底数？">$=(ab)^{4-2}=(ab)^2=a^2b^2$</span></span></div>
+        <div class="dl" data-step="7"><span>(4)</span><span>$t^{2m+3}\div t^2$（$m$ 是正整数）　<span class="think" data-step="8" data-ask="指数怎样减？">$=t^{2m+3-2}=t^{2m+1}$</span></span></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">下面的计算是否正确？如有错误，请改正（课本 p55 练一练 2）．</p>
+      <div class="judge4">
+        <div class="jcard" data-step="9"><p>(1) $a^8\div a^4=a^2$</p><div class="think" data-step="10" data-ask="对还是错？"><p><span class="verdict x">✗</span>指数相<b>减</b>不是相除：$a^4$。</p></div></div>
+        <div class="jcard" data-step="11"><p>(2) $t^{10}\div t^9=t$</p><div class="think" data-step="12" data-ask="对还是错？"><p><span class="verdict ok">✓</span>$t^{10-9}=t^1=t$。</p></div></div>
+        <div class="jcard" data-step="13"><p>(3) $m^5\div m=m^5$</p><div class="think" data-step="14" data-ask="对还是错？"><p><span class="verdict x">✗</span>$m=m^1$：$m^{5-1}=m^4$。</p></div></div>
+        <div class="jcard" data-step="15"><p>(4) $(-z)^6\div(-z)^2=-z^4$</p><div class="think" data-step="16" data-ask="对还是错？"><p><span class="verdict x">✗</span>$(-z)^4=z^4$，偶次幂为正。</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p54–55 例 1、练一练 2。例 1 (2) 中除数 $(-b)$ 的指数是 1；(3) 把 $ab$ 整体看作底数，最后用积的乘方。辨析 (2) 是对的，可以问学生“为什么对”，防止形成“见题就判错”的习惯。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>算一算</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>1.</b>（课本 p55）计算，填入结果后回车：</p>
+      <div class="ex-list two">
+        <p>(1) $3^{15}\div3^{13}=$ <span class="blank" data-ans="9" data-w="2"></span></p>
+        <p>(2) $\left(-\dfrac43\right)^7\div\left(-\dfrac43\right)^4=$ <span class="blank" data-ans="-64/27" data-w="6"></span></p>
+        <p>(3) $y^{14}\div y^2=y$<sup><span class="blank" data-ans="12" data-w="2"></span></sup></p>
+        <p>(6) $a^{10n}\div a^{2n}=a^{(\ \ )n}$：填 <span class="blank" data-ans="8" data-w="2"></span></p>
+      </div>
+      <p class="muted small-t">分数用“/”输入，如 −64/27 输入 -64/27。</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q">(4) $(-a)^5\div(-a)$；　(5) $(-xy)^5\div(-xy)^2$．</p>
+        <details><summary>提示</summary>先指数相减，再看符号：偶次幂为正，奇次幂为负；(5) 最后用积的乘方。</details>
+        <details><summary>完整解答</summary>(4) $(-a)^4=a^4$；(5) $(-xy)^3=-x^3y^3$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2</b>（课本 p59）填空：(1) $2^3\times(\ \ )=2^6$；(3) $3^{10}\div(\ \ )=3^4$；(4) $(\ \ )\div a^2=a^6$．</p>
+        <details><summary>提示</summary>乘法、除法互为逆运算：(1) 用除法求，(3) 用除法求，(4) 用乘法求。</details>
+        <details><summary>完整解答</summary>(1) $2^3$；(3) $3^6$；(4) $a^8$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p55 练一练 1、p59 习题 8.3 第 2 题。(2) 的结果：$\left(-\frac43\right)^3=-\frac{64}{27}$。第一课时可以在这里结束。</p>
+</section>
+
+<!-- 8 ================= 零指数幂 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议 · 规定</span><h2>$2^3\div2^3$ 能用这个性质吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">我们知道 $2^3\div2^3=8\div8=1$．</p>
+      <div class="cols2">
+        <p class="jcard" data-step="1">“不可以，因为 3 不大于 3．”</p>
+        <p class="jcard" data-step="1">“如果可以，$2^3\div2^3=2^{3-3}=2^0$．$2^0$ 是什么？等于几？”</p>
+      </div>
+      <p class="tip" data-step="2"><b>想一想</b>（课本 p55）1 个细胞分裂 1 次变为 2 个，分裂 2 次变为 4 个……$2=2^1$，$4=2^2$，$8=2^3$，$16=2^4$．当这个细胞没有分裂（分裂次数为 0）时，细胞的个数是几？<span class="think" data-step="3" data-ask="想一想">还是 1 个：$2^0$ 应该等于 1。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4">两条路得到的都是 1：</p>
+      <div class="derive tight" data-step="4">
+        <div class="dl"><span>算出来</span><span>$2^3\div2^3=8\div8=1$</span></div>
+        <div class="dl"><span>照性质</span><span>$2^3\div2^3=2^{3-3}=2^0$</span></div>
+      </div>
+      <div class="def big-def" data-step="5"><h4>零指数幂（课本 p56）</h4>一般地，我们规定：$$a^0=1\ (a\ne0)$$任何不等于 0 的数的 0 次幂等于 1．</div>
+      <p class="warn" data-step="6" data-label="为什么 a ≠ 0">$0^0$ 来自 $0^3\div0^3$，而 0 不能做除数，所以 $0^0$ 没有意义。</p>
+    </div>
+  </div>
+  <p class="note">课本 p55–56 议一议、想一想。强调这是“规定”：为了让“指数相减”在 $m=n$ 时也成立，同时又和 $8\div8=1$ 一致，才规定 $a^0=1$。可回到第 4 页把 $m$、$n$ 拖成相等再看一次。</p>
+</section>
+
+<!-- 9 ================= 指数阶梯 · 负整数指数幂 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 猜想</span><h2>指数每减 1，幂就除以 2</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <div class="slider-row" data-noswipe>指数往下走：<input type="range" id="ladK" min="-3" max="4" step="1" value="1" style="direction: rtl"><b class="v" id="ladKV"></b></div>
+      <div class="ladder" id="ladder"></div>
+      <p class="muted small-t">长条按真实比例：$2^4=16$ 为满格，每下一行恰好是上一行的一半。</p>
+    </div>
+    <div class="col">
+      <p class="tip">我们知道 $2^3\div2^4=8\div16=\dfrac12$．照性质，$2^3\div2^4=2^{3-4}=2^{-1}$．</p>
+      <p class="tip" data-step="1">观察左边：$2^4=16$，$2^3=8$，$2^2=4$，$2^1=2$，$2^0=1$，$2^{(\ \ )}=\dfrac12$．你有什么猜想？<span class="think" data-step="2" data-ask="说说猜想">指数每减少 1，幂就除以 2：$2^{-1}=\frac12$，$2^{-2}=\frac14=\frac1{2^2}$，$2^{-3}=\frac18=\frac1{2^3}$。</span></p>
+      <div class="def big-def" data-step="3"><h4>负整数指数幂（课本 p56）</h4>一般地，我们规定：$$a^{-n}=\dfrac1{a^n}\ (a\ne0,\ n\text{ 是正整数})$$任何不等于 0 的数的 $-n$（$n$ 是正整数）次幂，等于这个数的 $n$ 次幂的倒数．</div>
+    </div>
+  </div>
+  <p class="note">课本 p55–56 数轴观察与“观察下列式子”。拖滑块，指数从 4 一步步往下走到 $-3$；长条长度按真实比例画出，每下一行正好减半——所以 $2^0=1$、$2^{-1}=\frac12$ 是“规律的延续”，不是凭空规定。负指数的幂不是负数：$2^{-3}=\frac18\gt0$。</p>
+</section>
+
+<!-- 10 ================= 扩展后的性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 推广</span><h2>两种方法算，结果一样吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">计算（课本 p56）：(1) $a^5\div a^0$；(2) $a^5\div a^{-2}$（$a\ne0$）．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>按规定</span><span class="think" data-step="2" data-ask="算一算">$a^5\div a^0=a^5\div1=a^5$；$a^5\div a^{-2}=a^5\div\dfrac1{a^2}=a^5\cdot a^2=a^7$</span></div>
+        <div class="dl" data-step="3"><span>照性质</span><span class="think" data-step="4" data-ask="算一算">$a^5\div a^0=a^{5-0}=a^5$；$a^5\div a^{-2}=a^{5-(-2)}=a^7$</span></div>
+      </div>
+      <p class="tip gold" data-step="5">两种方法结果一致——新规定和原来的运算性质“不打架”。</p>
+    </div>
+    <div class="col">
+      <div class="def big-def" data-step="6"><h4>同底数幂的除法（扩展后，课本 p57）</h4>规定了零指数幂、负整数指数幂的意义后，$$a^m\div a^n=a^{m-n}$$（$a\ne0$，$m$、$n$ 为<em>整数</em>）．</div>
+      <p class="method" data-step="7" data-label="指数范围扩大了">正整数 → 整数：$m\gt n$、$m=n$、$m\lt n$ 都能用；8.1、8.2 的性质对整数指数同样成立。</p>
+    </div>
+  </div>
+  <p class="note">课本 p56 试一试（两个小人的两种算法）与 p57 扩展后的性质。这一页是“规定合理性”的检验：新定义要与旧规律相容。</p>
+</section>
+
+<!-- 11 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>用小数或分数表示</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 2</b> 用小数或分数表示下列各数（课本 p57）：</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>(1)</span><span>$4^{-2}$　<span class="think" data-step="2" data-ask="倒数">$=\dfrac1{4^2}=\dfrac1{16}$</span></span></div>
+        <div class="dl" data-step="3"><span>(2)</span><span>$-3^{-3}$　<span class="think" data-step="4" data-ask="负号管谁？">$=-\dfrac1{3^3}=-\dfrac1{27}$</span></span></div>
+        <div class="dl" data-step="5"><span>(3)</span><span>$3.14\times10^{-5}$　<span class="think" data-step="6" data-ask="10⁻⁵ 是多少？">$=3.14\times\dfrac1{10^5}=3.14\times0.000\,01=0.000\,031\,4$</span></span></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="warn" data-step="7" data-label="易错">$a^{-n}$ 是 $a^n$ 的<b>倒数</b>，不是相反数：$4^{-2}=\frac1{16}$，不是 $-16$，也不是 $-8$。</p>
+      <p class="warn" data-step="8" data-label="负号的位置">$-3^{-3}$ 的底数是 3，前面的“$-$”在外面；而 $(-3)^{-3}=\dfrac1{(-3)^3}=-\dfrac1{27}$，结果恰好相同，但意义不同。</p>
+      <p class="method" data-step="9" data-label="10 的负整数次幂">$10^{-n}=\dfrac1{10^n}$：小数点后第 $n$ 位是 1，如 $10^{-3}=0.001$，$10^{-5}=0.000\,01$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p57 例 2。(3) 为后面“用科学记数法表示很小的数”作铺垫：乘 $10^{-5}$ 就是小数点向左移 5 位。</p>
+</section>
+
+<!-- 12 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>零指数幂、负整数指数幂</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>1.</b>（课本 p57）用小数或分数表示，填入后回车：</p>
+      <div class="ex-list two">
+        <p>(1) $10^{-2}=$ <span class="blank" data-ans="0.01" data-w="4"></span></p>
+        <p>(2) $(-0.1)^5=$ <span class="blank" data-ans="-0.00001" data-w="8"></span></p>
+        <p>(3) $5^{-1}=$ <span class="blank" data-ans="1/5|0.2" data-w="3"></span></p>
+        <p>(4) $2.1\times10^{-3}=$ <span class="blank" data-ans="0.0021" data-w="6"></span></p>
+      </div>
+      <p class="tip"><b>2.</b> 写成负整数指数幂的形式（填指数）：</p>
+      <div class="ex-list two">
+        <p>(1) $0.001=10$<sup><span class="blank" data-ans="-3" data-w="2"></span></sup></p>
+        <p>(2) $0.000\,001=10$<sup><span class="blank" data-ans="-6" data-w="2"></span></sup></p>
+        <p>(3) $\dfrac1{64}=2$<sup><span class="blank" data-ans="-6" data-w="2"></span></sup></p>
+        <p>(4) $\dfrac1{81}=3$<sup><span class="blank" data-ans="-4" data-w="2"></span></sup></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>3.</b> 计算（课本 p57），填入结果后回车：</p>
+      <div class="ex-list">
+        <p>(1) $(-3)^2\times(-3)^{-2}=$ <span class="blank" data-ans="1" data-w="3"></span></p>
+        <p>(2) $\left(\dfrac12\right)^2\div\left(\dfrac12\right)^{-1}=$ <span class="blank" data-ans="1/8|0.125" data-w="4"></span></p>
+        <p>(3) $10^{-1}+(-0.3)^0=$ <span class="blank" data-ans="1.1" data-w="3"></span></p>
+        <p>(4) $5^0-(-2)^{-4}=$ <span class="blank" data-ans="15/16" data-w="5"></span></p>
+      </div>
+      <div class="hint-ladder">
+        <details><summary>提示</summary>(2) 指数 $2-(-1)=3$；(3) $(-0.3)^0=1$；(4) $(-2)^{-4}=\frac1{(-2)^4}=\frac1{16}$。</details>
+        <details><summary>完整解答</summary>(1) $(-3)^0=1$；(2) $\left(\frac12\right)^3=\frac18$；(3) $0.1+1=1.1$；(4) $1-\frac1{16}=\frac{15}{16}$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p57 练一练。第 2 题 (3)(4) 答案不唯一：$\frac1{64}$ 也可写成 $4^{-3}$、$8^{-2}$，$\frac1{81}$ 也可写成 $9^{-2}$；这里按底数 2、3 填。</p>
+</section>
+
+<!-- 13 ================= 很小的数的科学记数法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">科学记数法</span><h2>很小的数，也能写成 $a\times10^n$</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">太阳的半径约为 700 000 000 m．太阳的主要成分是氢，氢原子的半径约为 0.000 000 000 05 m（课本 p57）．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span></span><span>$700\,000\,000=7\times10^8$</span><i class="why">七上学过</i></div>
+        <div class="dl" data-step="2"><span></span><span class="think" data-step="3" data-ask="怎样写？">$0.000\,000\,000\,05=5\times0.000\,000\,000\,01=5\times10^{-11}$</span><i class="why">$0.000\,000\,000\,01=\frac1{10^{11}}=10^{-11}$</i></div>
+      </div>
+      <div class="def" data-step="4"><h4>科学记数法（课本 p57）</h4>用科学记数法可以把一个正数写成 $a\times10^n$ 的形式，其中 $1\le a\lt10$，$n$ 是<em>整数</em>．类似地，一个负数也可以用科学记数法表示．</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5"><b>例 3</b>（课本 p58）用科学记数法表示：</p>
+      <div class="derive tight" data-step="5">
+        <div class="dl"><span></span><span class="think" data-step="6" data-ask="?">$0.001\,5=1.5\times0.001=1.5\times10^{-3}$</span></div>
+        <div class="dl"><span></span><span class="think" data-step="7" data-ask="?">$0.000\,109=1.09\times0.000\,1=1.09\times10^{-4}$</span></div>
+        <div class="dl"><span></span><span class="think" data-step="8" data-ask="?">$-0.000\,006\,2=-6.2\times0.000\,001=-6.2\times10^{-6}$</span></div>
+      </div>
+      <p class="method" data-step="9" data-label="指数怎样定">小于 1 的正数：$n$ 是负数，$|n|$ = 第一个非零数字前所有 0 的个数（包括小数点前的 0）。如 $0.001\,5$ 前有 3 个 0，$n=-3$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p57–58。“数 0 的个数”这个方法要让学生用例 3 自己验证：$0.000\,109$ 第一个非零数字 1 前有 4 个 0，所以 $n=-4$。也可以理解为小数点向右移了几位。</p>
+</section>
+
+<!-- 14 ================= 例 4、例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 例 5</span><h2>细胞有多小？1 纳米有多短？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 4</b>（课本 p58）某种细胞的截面可以近似地看成圆，它的半径约为 $7.80\times10^{-7}$ m，求这种细胞的截面面积 $S$．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>$S=$</span><span>$\pi\times(7.80\times10^{-7})^2$</span><i class="why">圆面积 $S=\pi r^2$</i></div>
+        <div class="dl" data-step="2"><span>$=$</span><span>$\pi\times7.80^2\times10^{-14}$</span><i class="why">积的乘方、幂的乘方：$(10^{-7})^2=10^{-14}$</i></div>
+        <div class="dl" data-step="3"><span>$\approx$</span><span>$1.91\times10^{-12}$（m²）</span><i class="why">$\pi\times60.84\approx191.1$</i></div>
+      </div>
+      <p class="tip" data-step="4"><b>答：</b>该细胞的截面面积约为 $1.91\times10^{-12}$ m²．</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5"><b>例 5</b>（课本 p58）纳米（记为 nm）是长度单位，它等于 1 m 的十亿分之一．以毫米为长度单位表示 1 nm．</p>
+      <div class="derive tight" data-step="5">
+        <div class="dl"><span>1 nm $=$</span><span>$\dfrac1{1\,000\,000\,000}$ m $=10^{-9}$ m</span></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="6" data-ask="换成 mm">$10^{-9}\times10^3$ mm $=10^{-6}$ mm</span><i class="why">1 m $=10^3$ mm；同底数幂相乘</i></div>
+      </div>
+      <svg id="ruler" class="ruler" viewBox="0 0 620 50" aria-label="10 cm 刻度尺，每一小格 1 mm（按比例）" data-step="7"></svg>
+      <p class="tip" data-step="7">刻度尺上橙色的一小格是 1 mm．1 nm 是它的<b>百万分之一</b>——把这一小格平均分成 100 万份中的 1 份！</p>
+    </div>
+  </div>
+  <p class="note">课本 p58 例 4、例 5。例 4 中 $(10^{-7})^2=10^{-14}$ 说明 8.2 的幂的乘方对负整数指数也成立。刻度尺按比例绘制：10 cm 共 100 个 1 mm 小格。</p>
+</section>
+
+<!-- 15 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用科学记数法表示</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>1.</b>（课本 p58）用科学记数法表示，填系数和指数后回车：</p>
+      <div class="ex-list">
+        <p>$0.000\,17=$ <span class="blank" data-ans="1.7" data-w="3"></span> $\times10$<sup><span class="blank" data-ans="-4" data-w="2"></span></sup></p>
+        <p>$0.000\,021\,5=$ <span class="blank" data-ans="2.15" data-w="4"></span> $\times10$<sup><span class="blank" data-ans="-5" data-w="2"></span></sup></p>
+        <p>$0.000\,000\,608\,9=$ <span class="blank" data-ans="6.089" data-w="5"></span> $\times10$<sup><span class="blank" data-ans="-7" data-w="2"></span></sup></p>
+        <p>$-0.001\,000\,2=$ <span class="blank" data-ans="-1.0002" data-w="7"></span> $\times10$<sup><span class="blank" data-ans="-3" data-w="2"></span></sup></p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（课本 p58）(1) 肥皂泡的泡壁厚度大约是 0.000 7 mm，换算成以米为单位是多少？<br>(2) 蚕丝的截面可以近似地看成圆，直径约为 10 μm（1 μm $=10^{-6}$ m），以平方厘米为单位表示蚕丝截面的面积．</p>
+        <details><summary>提示 1</summary>(1) 1 mm $=10^{-3}$ m；(2) 先把直径化成 cm：10 μm $=10^{-5}$ m $=10^{-3}$ cm，半径是多少？</details>
+        <details><summary>提示 2</summary>(2) 半径 $r=5\times10^{-4}$ cm，$S=\pi r^2$。</details>
+        <details><summary>完整解答</summary>(1) $7\times10^{-4}\times10^{-3}=7\times10^{-7}$ m；<br>(2) $S=\pi\times(5\times10^{-4})^2=25\pi\times10^{-8}\approx7.85\times10^{-7}$ cm²．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p58 练一练。最后一个数是负数：先写正数部分 $0.001\,000\,2=1.000\,2\times10^{-3}$，再加负号；系数中间的 0 不能省略。</p>
+</section>
+
+<!-- 16 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（习题 8.3 第 4 题）计算：<br>(2) $\left(\dfrac12\right)^0-\left(\dfrac13\right)^{-2}$；<br>(4) $\left(-\dfrac12\right)^2\div(-2)^3\times(-2)^{-2}$．</p>
+        <details><summary>提示</summary>$\left(\frac13\right)^{-2}=\frac1{\left(\frac13\right)^2}=9$；$(-2)^{-2}=\frac14$；从左往右依次算。</details>
+        <details><summary>完整解答</summary>(2) $1-9=-8$；<br>(4) $\frac14\div(-8)\times\frac14=-\frac1{32}\times\frac14=-\frac1{128}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 8.3 第 6 题）每枚鸵鸟蛋的质量约 $8\times10^2$ g；每枚蜂鸟蛋的质量约 $2\times10^2$ mg．1 枚鸵鸟蛋的质量相当于多少枚蜂鸟蛋的质量？</p>
+        <details><summary>提示</summary>单位不同！1 g $=10^3$ mg，$8\times10^2$ g $=8\times10^5$ mg。</details>
+        <details><summary>完整解答</summary>$(8\times10^5)\div(2\times10^2)=4\times10^3$，相当于 $4\times10^3$ 枚．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 8.3 第 7、8 题）(1) 水珠滴石，40 年形成深 $4\times10^{-2}$ m 的小洞，平均每月增加多少（m）？<br>(2) 5 万粒芝麻质量约 200 g，1 粒芝麻的质量是多少（g）？</p>
+        <details><summary>提示</summary>(1) 40 年 $=480$ 个月；(2) 5 万 $=5\times10^4$。</details>
+        <details><summary>完整解答</summary>(1) $4\times10^{-2}\div480\approx8.3\times10^{-5}$ m；<br>(2) $200\div(5\times10^4)=4\times10^{-3}$ g．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p59 习题 8.3。第 2 题的关键是统一单位；第 3 题 (1) 结果保留两位有效数字。</p>
+</section>
+
+<!-- 17 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$a^m\div a^n=a^{m-n}$；$a^0=1$；$a^{-n}=\dfrac1{a^n}$（$a\ne0$，$m$、$n$ 为整数）。</p>
+        <p class="def">很小的数：$a\times10^n$，$1\le a\lt10$，$n$ 是负整数。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="约分看除法">除法写成分数，相同因数成对约去。</p>
+        <p class="warn" data-label="易错">$a^{-n}$ 是倒数不是相反数；底数不能为 0。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="规律的延续">指数每减 1 幂就除以底数，于是有了 $a^0$、$a^{-n}$。</p>
+        <p class="recall" data-label="新旧相容">新规定让原来的运算性质对整数指数仍然成立。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一章：</b>9.1 单项式乘单项式——幂的运算是整式乘法的基础：$3a\cdot3b=?$　$2a^2b\cdot3ab^2=?$（<a href="../mj7b-danchengdan/index.html">进入 9.1</a>）</p>
+  </div>
+  <p class="note">作业建议：习题 8.3 第 1、3、5 题。全章回顾：四条运算性质 + 两个规定，本质都是“乘方的意义”。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

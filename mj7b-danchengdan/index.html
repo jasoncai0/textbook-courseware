@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>单项式乘单项式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huaduo.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第9章 整式乘法与因式分解 · 9.1</p>
+    <h1 class="cover-title">单项式乘单项式</h1>
+    <p class="cover-q" data-step="1">几台型号相同的电视机叠放在一起组成“电视墙”，一起播放一朵花的特写．每台电视长 <b>$a$</b>、宽 <b>$b$</b>．</p>
+    <p class="cover-q" data-step="2">一面 3 列 3 行的电视墙，面积是多少？看成一个大长方形算一次，看成 9 台电视再算一次——两个式子有什么关系？</p>
+    <div class="chips" data-step="3"><span class="chip">电视墙：面积算两遍</span><span class="chip">交换律 · 结合律</span><span class="chip">系数相乘 · 同底数幂相乘</span></div>
+  </div>
+  <p class="note">课本 p66 情境（图 9-1 电视墙）。第 9 章章首的拼纸片问题也是“面积算两遍”，本章会反复用这种面积模型解释整式乘法。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 3.2 · 单项式" data-step="1">
+        <p>数与字母的积叫单项式，如 $3a$、$-2x^2y$；数字因数叫<b>系数</b>．</p>
+        <span class="use">认清每个单项式的系数和字母。（<a href="../mj7a-daishushi/index.html">回看 3.2</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 2.6 · 乘法运算律" data-step="2">
+        <p>交换律 $ab=ba$；结合律 $(ab)c=a(bc)$．</p>
+        <span class="use">把系数和系数放一起、相同字母放一起。（<a href="../mj7a-chengchufa/index.html">回看 2.6</a>）</span>
+      </div>
+      <div class="recall" data-label="第 8 章 · 幂的运算" data-step="3">
+        <p>$a^m\cdot a^n=a^{m+n}$；$(a^m)^n=a^{mn}$；$(ab)^n=a^nb^n$．</p>
+        <span class="use">相同字母相乘；有乘方的先算乘方。（<a href="../mj7b-tongdishumicheng/index.html">8.1</a>　<a href="../mj7b-midechengfang/index.html">8.2</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>两个单项式相乘，结果是什么？系数、字母、指数分别怎样处理？</p>
+  </div>
+  <p class="note">本章从“数的乘法”走向“式的乘法”。三张卡正好对应单项式乘法的三步：系数相乘（数的乘法）、交换结合（运算律）、相同字母相乘（幂的运算）。</p>
+</section>
+
+<!-- 3 ================= 核心交互：电视墙 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 操作</span><h2>电视墙的面积，算两遍</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="tvwall" class="tvwall"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="tvA" min="1.2" max="2" step="0.2" value="1.8"><b class="v" id="tvAV"></b>　$b=$<input type="range" id="tvB" min="0.8" max="1.4" step="0.2" value="1.2"><b class="v" id="tvBV"></b></div>
+      <p class="muted small-t">拖右上角的橙色点，改变电视墙的列数、行数（每台电视按比例绘制）</p>
+    </div>
+    <div class="col">
+      <div class="tv-read" id="tvRead">
+        <span class="k">看成一个大长方形</span><b id="tvBig"></b>
+        <span class="k">看成若干台电视</span><b id="tvSmall"></b>
+        <span class="k">所以</span><b id="tvEq"></b>
+        <span class="k">数值检验</span><span id="tvNum" class="tv-num"></span>
+      </div>
+      <p class="tip" data-step="1">如果把图 9-1 的“电视墙”看成一个大长方形，它的长为 $3a$、宽为 $3b$，面积为 <span class="think" data-step="2" data-ask="写出来">$3a\cdot3b$</span>；看成由 9 个小长方形组成，面积为 <span class="think" data-step="3" data-ask="写出来">$9ab$</span>．</p>
+      <p class="tip gold" data-step="4">由此得到 <span class="think" data-step="5" data-ask="?">$3a\cdot3b=9ab$</span>．不用画图，能直接算出来吗？</p>
+    </div>
+  </div>
+  <p class="note">课本 p66 图 9-1 与两个小人的提示。先拖成 3 列 3 行（课本的情形），再拖成 4 列 2 行等，让学生每次先说“大长方形面积”和“小电视台数”，右边读数核对。“代数检验”一栏代入当前的 $a$、$b$ 值，两种算法数值相等。</p>
+</section>
+
+<!-- 4 ================= 推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>运算律把“乱序”排整齐</h2></div>
+  <div class="bd wr">
+    <div class="col">
+      <p class="tip">对于任意 $a$、$b$，运用乘法交换律、结合律（课本 p66）：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$3a\cdot3b$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>$=$</span><span>$3\times3\cdot a\cdot b$</span><span class="think" data-step="3" data-ask="凭什么？">乘法交换律</span></div>
+        <div class="dl" data-step="4"><span>$=$</span><span>$(3\times3)\cdot(a\cdot b)$</span><span class="think" data-step="5" data-ask="凭什么？">乘法结合律</span></div>
+        <div class="dl end" data-step="6"><span>$=$</span><span>$9ab$</span><i class="why">系数相乘</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7"><b>试一试</b> 计算下列各式，并说明理由（课本 p66）：</p>
+      <table class="mtab sort3" data-step="7">
+        <tr><th>算式</th><th class="c1">系数相乘</th><th class="c2">相同字母相乘</th><th class="c3">只在一个式子里的字母</th><th>结果</th></tr>
+        <tr><td>$2a^2b\cdot3ab^2$</td><td><span class="think" data-step="8" data-ask="?">$2\times3=6$</span></td><td><span class="think" data-step="9" data-ask="?">$a^2\cdot a=a^3$，$b\cdot b^2=b^3$</span></td><td>无</td><td><span class="think" data-step="10" data-ask="?">$6a^3b^3$</span></td></tr>
+        <tr><td>$4ab^2\cdot5b$</td><td><span class="think" data-step="11" data-ask="?">$20$</span></td><td><span class="think" data-step="12" data-ask="?">$b^2\cdot b=b^3$</span></td><td><span class="think" data-step="13" data-ask="?">$a$</span></td><td><span class="think" data-step="14" data-ask="?">$20ab^3$</span></td></tr>
+        <tr><td>$6x^3\cdot(-2x^2y)$</td><td><span class="think" data-step="15" data-ask="?">$-12$</span></td><td><span class="think" data-step="16" data-ask="?">$x^3\cdot x^2=x^5$</span></td><td><span class="think" data-step="17" data-ask="?">$y$</span></td><td><span class="think" data-step="18" data-ask="?">$-12x^5y$</span></td></tr>
+      </table>
+      <div class="def big-def" data-step="19"><h4>单项式与单项式相乘（课本 p66）</h4>单项式与单项式相乘，把它们的<em>系数</em>、<em>相同字母的幂</em>分别相乘，对于只在一个单项式里含有的字母，则<em>连同它的指数</em>作为积的一个因式．</div>
+    </div>
+  </div>
+  <p class="note">课本 p66 推导、试一试与法则框。试一试的三题用表格“三栏分类”：先找系数，再找相同字母，最后看“落单”的字母——三栏正好对应法则的三句话。(3) 系数带负号，$6\times(-2)=-12$。</p>
+</section>
+
+<!-- 5 ================= 例题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>先定符号与系数，再算字母</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例</b> 计算（课本 p67）：(1) $-\dfrac13a^2\cdot(-6ab)$；</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span></span><span>$-\dfrac13a^2\cdot(-6ab)$</span></div>
+        <div class="dl" data-step="2"><span>$=$</span><span>$\left[\left(-\dfrac13\right)\times(-6)\right]\cdot(a^2\cdot a)\cdot b$</span><i class="why">交换律、结合律：系数、$a$、$b$ 分组</i></div>
+        <div class="dl" data-step="3"><span>$=$</span><span class="think" data-step="3" data-ask="算一算">$2a^3b$</span><i class="why">负负得正；同底数幂相乘；$b$ 照写</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4">(2) $(2x)^3\cdot(-3xy^2)$．</p>
+      <div class="derive tight" data-step="4">
+        <div class="dl"><span></span><span>$(2x)^3\cdot(-3xy^2)$</span></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="5" data-ask="先算什么？">$8x^3\cdot(-3xy^2)$</span><i class="why">有乘方，先算积的乘方</i></div>
+        <div class="dl"><span>$=$</span><span>$[8\times(-3)](x^3\cdot x)y^2$</span><i class="why">分组</i></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="6" data-ask="算一算">$-24x^4y^2$</span></div>
+      </div>
+      <p class="method" data-step="7" data-label="三步走">① 有乘方先算乘方；② 系数相乘（先定符号）；③ 相同字母指数相加，落单字母照抄。</p>
+    </div>
+  </div>
+  <p class="note">课本 p67 例。(1) 两个负系数相乘为正；(2) 学生常把 $(2x)^3$ 写成 $2x^3$ 或 $6x^3$，要回到 8.2 积的乘方。</p>
+</section>
+
+<!-- 6 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>下面的计算是否正确？如有错误，请改正</h2></div>
+  <div class="bd full">
+    <div class="judge4">
+      <div class="jcard" data-step="1"><p>(1) $3x^3\cdot(-2x^2)=5x^5$</p><div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>系数要<b>相乘</b>：$3\times(-2)=-6$，结果 $-6x^5$。</p></div></div>
+      <div class="jcard" data-step="3"><p>(2) $3a^2\cdot4a^2=12a^2$</p><div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>相同字母的指数要<b>相加</b>：$a^2\cdot a^2=a^4$，结果 $12a^4$。</p></div></div>
+      <div class="jcard" data-step="5"><p>(3) $3b^3\cdot8b^3=24b^9$</p><div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>指数相加不是相乘：$b^{3+3}=b^6$，结果 $24b^6$。</p></div></div>
+      <div class="jcard" data-step="7"><p>(4) $-3x\cdot2xy=6x^2y$</p><div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">✗</span>符号丢了：$(-3)\times2=-6$，结果 $-6x^2y$。</p></div></div>
+    </div>
+    <p class="warn" data-step="9" data-label="别和合并同类项混">单项式<b>相乘</b>：系数相乘、指数相加；同类项<b>相加</b>：系数相加、指数不变。$3a^2\cdot4a^2=12a^4$，$3a^2+4a^2=7a^2$。</p>
+  </div>
+  <p class="note">课本 p67 习题 9.1 第 1 题。四个错误分别对应：系数相加了、指数没加、指数相乘了、符号丢了。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>分三栏填一填</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>1.</b>（课本 p67）计算，填入系数和指数后回车：</p>
+      <div class="parts">
+        <p>(1) $0.25a^2\cdot4a$</p><p>$=$ <span class="blank" data-ans="1" data-w="2"></span> $a$<sup><span class="blank" data-ans="3" data-w="1"></span></sup>（系数为 1 时省略不写）</p>
+        <p>(2) $\dfrac34a^2b^3\cdot\left(-\dfrac89abc\right)$</p><p>$=$ <span class="blank" data-ans="-2/3" data-w="4"></span> $a$<sup><span class="blank" data-ans="3" data-w="1"></span></sup>$b$<sup><span class="blank" data-ans="4" data-w="1"></span></sup>$c$</p>
+        <p>(4) $-0.1abc\cdot10ab^2c$</p><p>$=$ <span class="blank" data-ans="-1" data-w="2"></span> $a$<sup><span class="blank" data-ans="2" data-w="1"></span></sup>$b$<sup><span class="blank" data-ans="3" data-w="1"></span></sup>$c$<sup><span class="blank" data-ans="2" data-w="1"></span></sup></p>
+        <p>(5) $(-x^2)^2\cdot(2xy^2)^2$</p><p>$=$ <span class="blank" data-ans="4" data-w="2"></span> $x$<sup><span class="blank" data-ans="6" data-w="1"></span></sup>$y$<sup><span class="blank" data-ans="4" data-w="1"></span></sup></p>
+      </div>
+      <p class="muted small-t">分数用“/”输入，如 −2/3 输入 -2/3。</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q">(3) $3a^2bc\cdot\left(-\dfrac17ab\right)$；　(6) $-8a^2b\cdot(-a^3b^2)\cdot\dfrac14b^2$．</p>
+        <details><summary>提示</summary>(6) 三个单项式相乘，法则照用：系数 $(-8)\times(-1)\times\frac14$。</details>
+        <details><summary>完整解答</summary>(3) $-\frac37a^3b^2c$；(6) $2a^5b^5$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（课本 p67）一个正方体的棱长是 $1.5a$，求它的表面积和体积．</p>
+        <details><summary>提示</summary>表面积 $=6\times$ 棱长²，体积 $=$ 棱长³；$(1.5a)^2=2.25a^2$。</details>
+        <details><summary>完整解答</summary>表面积 $6\times(1.5a)^2=13.5a^2$；体积 $(1.5a)^3=3.375a^3$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p67 练一练。左边按“系数—各字母指数”分栏填写，即时判对错，帮学生养成“分三栏”的习惯。(4) 系数 $-0.1\times10=-1$，写成 $-a^2b^3c^2$。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（习题 9.1 第 2 题）计算：<br>(1) $(a^2)^2\cdot(-2ab)$；<br>(2) $5m\cdot\left(-\dfrac94abm\right)\cdot(-am)$；<br>(3) $0.5a^3b^2c\cdot(-0.2a^2b^3)$．</p>
+        <details><summary>提示</summary>(1) 先算 $(a^2)^2=a^4$；(2) 两个负号，积为正；$m\cdot m\cdot m=m^3$。</details>
+        <details><summary>完整解答</summary>(1) $-2a^5b$；(2) $\frac{45}4a^2bm^3$；(3) $-0.1a^5b^5c$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 9.1 第 2 题 (4)）计算：<br>$\dfrac14x^3y^2\cdot(-2xy^2)+(-2x^2y)\cdot\left(-\dfrac12xy\right)\cdot3xyz$．</p>
+        <details><summary>提示</summary>先分别算两个乘积，再看能不能合并（是不是同类项）。</details>
+        <details><summary>完整解答</summary>$-\frac12x^4y^4+3x^4y^3z$．两项字母不全相同，不是同类项，不能合并．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 9.1 第 3 题）填空：<br>(1) $(\quad)\cdot(-3xy)=-12x^2y$；(2) $2ab\cdot(\quad)=-6a^2bc$；<br>(3) $(-2x)\cdot(\quad)=10xy$；(4) $(2\times10^2)\times(\quad)=3\times10^6$．</p>
+        <details><summary>提示</summary>系数用除法求，字母看“还缺什么”。</details>
+        <details><summary>完整解答</summary>(1) $4x$；(2) $-3ac$；(3) $-5y$；(4) $1.5\times10^4$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p67–68 习题 9.1。第 3 题是逆向思考：已知积和一个因式求另一个因式，为 9.5 因式分解埋下伏笔。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">单项式乘单项式：系数相乘；相同字母的幂相乘；只在一个单项式里的字母连同指数照写。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="三栏分类">系数一栏、相同字母一栏、落单字母一栏；有乘方先算乘方。</p>
+        <p class="warn" data-label="易错">符号；指数相加不是相乘；别漏落单字母。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">电视墙：同一块面积算两遍。</p>
+        <p class="recall" data-label="转化">单项式乘法 → 数的乘法 + 同底数幂的乘法。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>9.2 单项式乘多项式——一个长方形的长是 $b+c+d$、宽是 $a$，面积 $a(b+c+d)$ 等于什么？（<a href="../mj7b-danchengduo/index.html">进入 9.2</a>）</p>
+  </div>
+  <p class="note">作业建议：习题 9.1 第 2 题 (1)～(3)。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

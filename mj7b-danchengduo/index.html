@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>单项式乘多项式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xiaoqu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第9章 整式乘法与因式分解 · 9.2</p>
+    <h1 class="cover-title">单项式乘多项式</h1>
+    <p class="cover-q" data-step="1">在一块长方形地块上建造住宅、广场、商厦．地块宽 <b>$4a$</b>，长由 <b>$3a+2b$</b> 和 <b>$2a-b$</b> 两段组成．</p>
+    <p class="cover-q" data-step="2">这块地的面积是多少？能写成一个单项式乘一个多项式吗？结果又能化成什么样子？</p>
+    <div class="chips" data-step="3"><span class="chip">拖一拖：分条算面积</span><span class="chip">乘法分配律</span><span class="chip">每一项都要乘到</span><span class="chip">符号别丢</span></div>
+  </div>
+  <p class="note">课本 p70 例 2 情境（图 9-3）放在封面作为本课的“大问题”，第 6 页回来解决。先从更简单的图 9-2 开始。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="9.1 · 单项式乘单项式" data-step="1">
+        <p>系数相乘，相同字母的幂相乘，落单字母照写：$-3x^2\cdot4x=-12x^3$．</p>
+        <span class="use">分配之后，每一项都是一次“单项式乘单项式”。（<a href="../mj7b-danchengdan/index.html">回看 9.1</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 2.6 · 乘法分配律" data-step="2">
+        <p>$a(b+c)=ab+ac$：一个数乘两个数的和，等于这个数分别乘这两个数，再把积相加．</p>
+        <span class="use">本课法则的依据。（<a href="../mj7a-chengchufa/index.html">回看 2.6</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 3.5 · 去括号" data-step="3">
+        <p>括号前是“$-$”号，去括号后括号里各项都改变符号：$-(x-2)=-x+2$．</p>
+        <span class="use">单项式带负号时，乘出来的每一项都要变号。（<a href="../mj7a-qukuohao/index.html">回看 3.5</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>$a(b+c+d)$ 等于什么？怎样保证“每一项都乘到、符号都对”？</p>
+  </div>
+  <p class="note">第三张卡提醒：去括号其实就是“$-1$ 乘多项式”，是本课的特例。</p>
+</section>
+
+<!-- 3 ================= 核心交互：分条长方形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 操作</span><h2>一个长方形，分成几条：面积算两遍</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="strip" class="strip"></div>
+      <div class="slider-row" data-noswipe><span class="nparts btns" id="nParts">分成 <button class="btn" type="button" data-k="2">2 条</button><button class="btn" type="button" data-k="3">3 条</button><button class="btn" type="button" data-k="4">4 条</button></span>　$a=$<input type="range" id="stripA" min="1.5" max="4" step="0.5" value="2.5"><b class="v" id="stripAV"></b></div>
+      <p class="muted small-t">拖顶边上的橙色点，改变每一条的宽（按比例绘制）</p>
+    </div>
+    <div class="col">
+      <div class="strip-read" id="stripRead">
+        <p><span class="k">看成一个大长方形：</span><b id="stripBig"></b></p>
+        <p><span class="k">看成几个小长方形：</span><b id="stripSmall"></b></p>
+        <p class="k" id="stripNum"></p>
+      </div>
+      <p class="tip" data-step="1">图 9-2（3 条）：看成大长方形，长 $b+c+d$、宽 $a$，面积为 <span class="think" data-step="2" data-ask="写出来">$a(b+c+d)$</span>；看成 3 个小长方形，面积为 <span class="think" data-step="3" data-ask="写出来">$ab+ac+ad$</span>．</p>
+      <p class="tip gold" data-step="4">由此得到 <span class="think" data-step="5" data-ask="?">$a(b+c+d)=ab+ac+ad$</span>．分成 4 条呢？<span class="think" data-step="6" data-ask="猜一猜">$a(b+c+d+e)=ab+ac+ad+ae$：多项式有几项，就得到几个积。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p69 图 9-2。先让学生拖分隔点，体会“不管每条多宽，总面积 = 各条面积之和”；右边的数值检验按当前尺寸计算（保留两位小数）。再点“4 条”，引出“多项式有几项，就乘出几项”。与 9.1 的电视墙对比：那里是相同的小块“复制”，这里是不同宽度的条“拼接”。</p>
+</section>
+
+<!-- 4 ================= 法则 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导 · 法则</span><h2>乘法分配律：每一项都乘到</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">一般地，对于任意的 $a$、$b$、$c$、$d$，由乘法分配律可以得到（课本 p69）：</p>
+      <p class="arrow-eq" data-step="1">$a(b+c+d)=\underbrace{a\cdot b}_{(1)}+\underbrace{a\cdot c}_{(2)}+\underbrace{a\cdot d}_{(3)}=ab+ac+ad$</p>
+      <p class="muted small-t" data-step="1">$a$ 分别乘 $b$、$c$、$d$（课本用弧线箭头表示“分别乘”）</p>
+      <div class="def big-def" data-step="2"><h4>单项式与多项式相乘（课本 p69）</h4>单项式与多项式相乘，先用单项式乘多项式的<em>每一项</em>，再把所得的积<em>相加</em>．</div>
+      <p class="method" data-step="3" data-label="转化">单项式 × 多项式 $\xrightarrow{\text{分配律}}$ 若干个“单项式 × 单项式” $\xrightarrow{}$ 相加。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4"><b>试一试</b> 计算下列各式，并说明理由（课本 p69）：</p>
+      <div class="derive tight" data-step="4">
+        <div class="dl"><span>(1)</span><span>$a(5a+3b)$　<span class="think" data-step="5" data-ask="算一算">$=a\cdot5a+a\cdot3b=5a^2+3ab$</span></span></div>
+        <div class="dl"><span>(2)</span><span>$(x-2y)\cdot2x$　<span class="think" data-step="6" data-ask="算一算">$=x\cdot2x+(-2y)\cdot2x=2x^2-4xy$</span></span></div>
+      </div>
+      <p class="warn" data-step="7" data-label="把减号看成负号">$x-2y=x+(-2y)$，第二项是 $-2y$，连同符号一起乘：$(-2y)\cdot2x=-4xy$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p69。箭头表示单项式“分别”去乘每一项，课本也是用弧线箭头表示的。(2) 单项式在右边，分配律同样成立（乘法交换律）。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>带符号分配：先定符号，再算单项式乘法</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">计算（课本 p70）：(1) $(-3x^2)\cdot(4x-3)$．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span></span><span>$(-3x^2)\cdot(4x-3)$</span></div>
+        <div class="dl" data-step="2"><span>$=$</span><span>$(-3x^2)\cdot4x+(-3x^2)\cdot(-3)$</span><i class="why">分配：多项式有两项 $4x$、$-3$</i></div>
+        <div class="dl" data-step="3"><span>$=$</span><span class="think" data-step="3" data-ask="符号？">$-12x^3+9x^2$</span><i class="why">负乘负得正</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4">(2) $\left(\dfrac34ab^2-3ab\right)\cdot\dfrac13ab$．</p>
+      <div class="derive tight" data-step="4">
+        <div class="dl"><span></span><span>$\left(\dfrac34ab^2-3ab\right)\cdot\dfrac13ab$</span></div>
+        <div class="dl"><span>$=$</span><span>$\dfrac34ab^2\cdot\dfrac13ab+(-3ab)\cdot\dfrac13ab$</span><i class="why">分配</i></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="5" data-ask="算一算">$\dfrac14a^2b^3-a^2b^2$</span><i class="why">单项式乘单项式</i></div>
+      </div>
+      <p class="method" data-step="6" data-label="检查两件事">① 积的项数 = 多项式的项数（没有合并前）；② 每一项的符号都算过一遍。</p>
+    </div>
+  </div>
+  <p class="note">课本 p70 例 1。让学生先说“多项式有几项、每一项带什么符号”，再动笔。(1) 最常见的错误是写成 $-12x^3-9x^2$。</p>
+</section>
+
+<!-- 6 ================= 例 2：地块 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>回到封面：地块的面积</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="land" class="land"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="landA" min="1" max="1.4" step="0.1" value="1.2"><b class="v" id="landAV"></b>　$b=$<input type="range" id="landB" min="0.2" max="1.2" step="0.2" value="0.8"><b class="v" id="landBV"></b></div>
+      <p class="muted small-t" id="landNum"></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 9-3，在长方形地块上建造住宅、广场、商厦，计算这块地的面积（课本 p70）．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span></span><span>$4a\cdot[(3a+2b)+(2a-b)]$</span><i class="why">长 × 宽</i></div>
+        <div class="dl" data-step="2"><span>$=$</span><span>$4a\cdot(5a+b)$</span><i class="why">先合并括号里的同类项</i></div>
+        <div class="dl" data-step="3"><span>$=$</span><span>$4a\cdot5a+4a\cdot b$</span><i class="why">分配</i></div>
+        <div class="dl" data-step="4"><span>$=$</span><span>$20a^2+4ab$</span></div>
+      </div>
+      <p class="tip" data-step="5"><b>还有其他算法吗？</b><span class="think" data-step="6" data-ask="分块算">住宅 + 广场 + 商厦：$4a(3a+2b)+3a(2a-b)+a(2a-b)=12a^2+8ab+6a^2-3ab+2a^2-ab=20a^2+4ab$．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p70 例 2 与小人的问题“还有其他算法吗？”。图按滑块给的 $a$、$b$ 精确绘制（$2a-b$ 始终为正），下方数值检验两种算法相等。分块算法要用到三次单项式乘多项式，再合并同类项，是很好的综合练习。</p>
+</section>
+
+<!-- 7 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些计算错在哪？</h2></div>
+  <div class="bd full">
+    <div class="judge3">
+      <div class="jcard" data-step="1"><p>$-2x(3x-1)=-6x^2-2x$</p><div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>符号错：$(-2x)\cdot(-1)=+2x$，应为 $-6x^2+2x$。</p></div></div>
+      <div class="jcard" data-step="3"><p>$3a(a^2-2a+1)=3a^3-6a^2$</p><div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>漏乘了常数项 1：应为 $3a^3-6a^2+3a$（三项乘出三项）。</p></div></div>
+      <div class="jcard" data-step="5"><p>$x(y-5)+y(3-x)=-5x+3y$</p><div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict ok">✓</span>$xy-5x+3y-xy=-5x+3y$，$xy$ 与 $-xy$ 抵消（课本 p70 练一练 1(5)）。</p></div></div>
+    </div>
+    <p class="method" data-step="7" data-label="自查口诀">一项一项乘，项数不能少；负号跟着走，最后再合并。</p>
+  </div>
+  <p class="note">前两张卡是常见错误示例（非课本题号），第三张是课本练一练 1(5)，结果正确——让学生说出“为什么 $xy$ 没了”。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>算一算，填一填</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（课本 p70）计算：<br>(1) $(q+r-13)\cdot a$；(2) $-3xy\cdot(4y-2x-1)$；<br>(3) $-\dfrac12x^3y^2\cdot(4y+8xy^3)$；(4) $(3a^3b-2ab^2+ab^3)\cdot(-2ab)$；<br>(6) $a(a^2-ab+b^2)+b(a^2-ab+b^2)$．</p>
+        <details><summary>提示</summary>(2)(4) 单项式带负号，每一项都变号；(6) 先分别乘开，再找同类项。</details>
+        <details><summary>完整解答</summary>(1) $aq+ar-13a$；(2) $-12xy^2+6x^2y+3xy$；(3) $-2x^3y^3-4x^4y^5$；(4) $-6a^4b^2+4a^2b^3-2a^2b^4$；(6) $a^3+b^3$．</details>
+      </div>
+      <p class="tip"><b>3.</b>（课本 p70）填空（填单项式，如 2x）：</p>
+      <div class="ex-list">
+        <p>(1) $(\quad)\cdot(3x-4)=3x^2-4x$：<span class="blank" data-ans="x" data-w="3"></span></p>
+        <p>(2) $2x\cdot(\quad)=2x^2+14x$：<span class="blank" data-ans="x+7" data-w="4"></span></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>2.</b>（课本 p70）计算图中梯形的面积．</p>
+      <svg viewBox="0 -14 300 158" class="trap-fig" aria-label="梯形：上底 x，下底 5x−2，高 2x（x = 2 时按比例绘制）">
+        <!-- 取 x = 2：上底 2、下底 8、高 4；1 单位 = 28 -->
+        <path d="M38 120 L262 120 L178 8 L122 8 Z" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2.5"/>
+        <line x1="178" y1="8" x2="178" y2="120" stroke="#9fb0bf" stroke-dasharray="5 4"/>
+        <text x="150" y="4" class="fl" text-anchor="middle">x</text>
+        <text x="150" y="137" class="fl" text-anchor="middle">5x − 2</text>
+        <text x="200" y="70" class="fl">2x</text>
+      </svg>
+      <div class="hint-ladder">
+        <details><summary>提示</summary>梯形面积 $=\frac12\times$（上底 + 下底）$\times$ 高。</details>
+        <details><summary>完整解答</summary>$\frac12(x+5x-2)\cdot2x=(6x-2)\cdot x=6x^2-2x$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p70 练一练。第 3 题填空是“逆向”：已知积求因式，为 9.5 因式分解作准备；(2) 输入 x+7。梯形图取 $x=2$ 按比例绘制（上底 2、下底 8、高 4）。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（习题 9.2 第 1 题）计算：<br>(1) $\dfrac12ab^2(2a^2b-3ab^2)$；<br>(2) $x(2x-5)+3x(x+2)-5x(x-1)$；<br>(3) $a(a^2+ab+b^2)-b(a^2+ab+b^2)$．</p>
+        <details><summary>提示</summary>(2)(3) 先逐个乘开（注意“$-5x$”“$-b$”带负号），再合并同类项。</details>
+        <details><summary>完整解答</summary>(1) $a^3b^3-\frac32a^2b^4$；(2) $2x^2-5x+3x^2+6x-5x^2+5x=6x$；(3) $a^3-b^3$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 9.2 第 2 题）已知 $A=-2ab$，$B=4ab(a-b)$，求 $A\cdot B$．</p>
+        <details><summary>提示</summary>先算 $-2ab\cdot4ab=-8a^2b^2$，再乘 $(a-b)$。</details>
+        <details><summary>完整解答</summary>$A\cdot B=-8a^2b^2(a-b)=-8a^3b^2+8a^2b^3$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 9.2 第 3 题）填空：<br>(1) $(\quad)(-2a+3b)=12a^2b-18ab^2$；<br>(2) $ab(a^2+\underline{\quad}+3)=a^3b+2a^2b+3ab$．</p>
+        <details><summary>提示</summary>(1) $(\ )\cdot(-2a)=12a^2b$，所以括号里是 $12a^2b\div(-2a)$。</details>
+        <details><summary>完整解答</summary>(1) $-6ab$；(2) $2a$．</details>
+      </div>
+    </div>
+    <p class="tip gold"><b>习题 4（思考）</b>在 $m(c+d)=mc+md$ 中，如果将 $m$ 换成 $(a+b)$，你能计算 $(a+b)(c+d)$ 吗？——这就是下一节的内容。</p>
+  </div>
+  <p class="note">课本 p71 习题 9.2。第 1 题 (3) 的结果 $a^3-b^3$ 很简洁，可留作“立方差”的伏笔。习题 4 直接引向 9.3。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">单项式乘多项式：用单项式乘多项式的每一项，再把所得的积相加．$a(b+c+d)=ab+ac+ad$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="分配 → 单乘单 → 合并">项数不漏，符号不丢。</p>
+        <p class="warn" data-label="易错">漏乘常数项；负号只乘了第一项。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">新问题（单 × 多）化成旧问题（单 × 单）。</p>
+        <p class="recall" data-label="数形结合">长方形分条，面积算两遍。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>9.3 多项式乘多项式——$(a+b)(c+d)$：把长方形横着、竖着都切一刀（<a href="../mj7b-duochengduo/index.html">进入 9.3</a>）</p>
+  </div>
+  <p class="note">作业建议：习题 9.2 第 1 题 (4)、第 3 题 (3)(4)。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

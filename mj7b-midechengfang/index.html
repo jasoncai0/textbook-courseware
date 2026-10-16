@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>幂的乘方与积的乘方 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/youguan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第8章 幂的运算 · 8.2</p>
+    <h1 class="cover-title">幂的乘方与积的乘方</h1>
+    <p class="cover-q" data-step="1">你会求 <b>100 个 $10^4$ 相乘</b>的积吗？一个同学说：“100 个 $10^4$ 相乘，黑板上写不下。”</p>
+    <p class="cover-q" data-step="2">另一个同学说：“100 个 $10^4$ 相乘，就是 $(10^4)^{100}$！”——它等于 10 的几次方？</p>
+    <div class="chips" data-step="3"><span class="chip">因数方阵</span><span class="chip">底数不变 · 指数相乘</span><span class="chip">重新排队</span><span class="chip">每个因式分别乘方</span></div>
+  </div>
+  <p class="note">课本 p49 情境（两个同学在黑板前）。先让学生估一估：$(10^4)^{100}$ 是 $10^{104}$ 还是 $10^{400}$？把不同意见写在黑板一角，本课结束时回来验证。封面图是课本习题中的原油储油罐，本课最后会算它的容积。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="8.1 · 同底数幂的乘法" data-step="1">
+        <p>$a^m\cdot a^n=a^{m+n}$（$m$、$n$ 是正整数）．</p>
+        <p>推广：$a^m\cdot a^n\cdot a^p=a^{m+n+p}$．</p>
+        <span class="use">$n$ 个 $a^m$ 相乘，就是 $n$ 个指数 $m$ 连加。（<a href="../mj7b-tongdishumicheng/index.html">回看 8.1</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 2.7 · 乘方的意义" data-step="2">
+        <p>$a^n=\underbrace{a\cdot a\cdot\cdots\cdot a}_{n\text{个}}$；负数的偶次幂是正数，奇次幂是负数．</p>
+        <span class="use">把 $(a^m)^n$、$(ab)^n$ 拆回“几个相同的因数相乘”。（<a href="../mj7a-chengfang/index.html">回看 2.7</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 2.6 · 乘法运算律" data-step="3">
+        <p>交换律 $ab=ba$；结合律 $(ab)c=a(bc)$．</p>
+        <span class="use">把 $n$ 对 $(a\cdot b)$ 重新排队：$a$ 和 $a$ 放一起，$b$ 和 $b$ 放一起。（<a href="../mj7a-chengchufa/index.html">回看 2.6</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>8.1 是“底数相同的幂相乘”。今天看两种新情况：<b>幂再乘方</b> $(a^m)^n$，<b>积再乘方</b> $(ab)^n$——都能化成学过的运算吗？</p>
+  </div>
+  <p class="note">第一张卡是本课最直接的“工具”：幂的乘方本质上是同底数幂的连乘。第三张卡为积的乘方做准备。</p>
+</section>
+
+<!-- 3 ================= 试一试：幂的乘方 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>先算一算，再找规律</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">计算下列各式（课本 p49），填数后回车：</p>
+      <div class="ex-list">
+        <p>(1) $(2^3)^2=$ <span class="blank" data-ans="64" data-w="3"></span>，$2^6=$ <span class="blank" data-ans="64" data-w="3"></span></p>
+        <p>(2) $[(-10)^2]^4=$ <span class="blank" data-ans="100000000" data-w="9"></span>，$(-10)^8=$ <span class="blank" data-ans="100000000" data-w="9"></span></p>
+        <p>(3) $\left[\left(\dfrac13\right)^2\right]^3=$ <span class="blank" data-ans="1/729" data-w="5"></span>，$\left(\dfrac13\right)^6=$ <span class="blank" data-ans="1/729" data-w="5"></span></p>
+      </div>
+      <p class="muted small-t">分数用“/”输入，如 1/729。</p>
+      <p class="tip gold" data-step="1">从上面的计算中，你发现了什么？<span class="think" data-step="2" data-ask="说说你的发现">每一行左右两边相等：$(2^3)^2=2^6$，$[(-10)^2]^4=(-10)^8$，$\left[\left(\frac13\right)^2\right]^3=\left(\frac13\right)^6$——幂再乘方，底数不变，指数 $3\times2=6$、$2\times4=8$、$2\times3=6$。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="3">为什么 $(2^3)^2=2^6$？用学过的知识说清楚：</p>
+      <div class="derive tight">
+        <div class="dl" data-step="4"><span></span><span>$(2^3)^2=2^3\cdot2^3$</span><span class="think" data-step="5" data-ask="凭什么？">乘方的意义：2 个 $2^3$ 相乘</span></div>
+        <div class="dl" data-step="6"><span></span><span>$=2^{3+3}=2^6$</span><span class="think" data-step="7" data-ask="凭什么？">同底数幂的乘法（8.1）</span></div>
+      </div>
+      <p class="warn" data-step="8" data-label="注意">指数是 $3+3=3\times2$，不是 $3+2$。“2 个 3 相加”就是 $3\times2$——这就是指数<b>相乘</b>的来历。</p>
+    </div>
+  </div>
+  <p class="note">课本 p49 试一试。先让学生在本上算，再到屏幕上填空（即时判对错）。$[(-10)^2]^4$ 可以先算 $(-10)^2=100$，再算 $100^4$，八位数的 0 要数清。第 2 栏的推导是本课的关键一步：幂的乘方被“翻译”成了同底数幂的乘法。</p>
+</section>
+
+<!-- 4 ================= 核心交互：因数方阵 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手操作</span><h2>$n$ 个 $a^m$ 相乘：一共几个 $a$？</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <div class="grid-box" id="gridBox" data-noswipe>
+        <div class="slider-row">底数：<button class="btn" type="button" data-base="a">$a$</button><button class="btn" type="button" data-base="2">2</button>　$m=$<input type="range" id="pgMi" min="1" max="6" step="1" value="3"><b class="v" id="pgM"></b>　$n=$<input type="range" id="pgNi" min="1" max="5" step="1" value="2"><b class="v" id="pgN"></b></div>
+        <div class="pow-grid" id="powGrid"></div>
+        <p class="pg-cnt" id="pgCnt"></p>
+        <p class="pg-eq" id="pgEq"></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">每一行是一个 $a^m$，有 $n$ 行。数因数的个数，用加法还是乘法？<span class="think" data-step="2" data-ask="想一想">$n$ 行、每行 $m$ 个，像长方形方阵：$m\times n$ 个。</span></p>
+      <p class="tip cmp-81" id="pgCmp" data-step="3"></p>
+      <p class="tip" data-step="4">拖到 $m=2$，$n=2$：$a^2\cdot a^2$ 和 $(a^2)^2$ 都是 $a^4$。这能说明“指数相加”和“指数相乘”一样吗？<span class="think" data-step="5" data-ask="判断">不能！$2+2=2\times2$ 只是巧合；换 $m=3$，$n=2$：$3+2=5$，$3\times2=6$。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心操作。先用 $m=3$、$n=2$ 对应试一试 (1)，再拖成 $m=4$、$n=5$ 看方阵变大；底数换成 2 时同步给出精确数值，如 $(8)^2=64=2^6$。右栏第 2 条把 8.1 的“连成一串（相加）”与今天的“方阵（相乘）”放在一起对比，是区分两条性质的关键。</p>
+</section>
+
+<!-- 5 ================= 推导与性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导 · 性质</span><h2>幂的乘方，底数不变，指数相乘</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <p class="tip">对于任意的底数 $a$，当 $m$、$n$ 是正整数时：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$(a^m)^n=\underbrace{a^m\cdot a^m\cdot\cdots\cdot a^m}_{n\text{个}a^m}$</span><span class="think" data-step="2" data-ask="凭什么？">乘方的意义</span></div>
+        <div class="dl" data-step="3"><span></span><span>$=a^{\overbrace{m+m+\cdots+m}^{n\text{个}m}}$</span><span class="think" data-step="4" data-ask="凭什么？">同底数幂的乘法</span></div>
+        <div class="dl end" data-step="5"><span></span><span>$=a^{mn}$</span><span class="think" data-step="6" data-ask="凭什么？">$n$ 个 $m$ 相加就是 $mn$</span></div>
+      </div>
+      <div class="def big-def" data-step="7"><h4>幂的乘方（课本 p49）</h4>$$(a^m)^n=a^{mn}$$（$m$、$n$ 是正整数）幂的乘方，<em>底数不变</em>，<em>指数相乘</em>．</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="8"><b>回到封面：</b>100 个 $10^4$ 相乘</p>
+      <div class="derive tight" data-step="8">
+        <div class="dl"><span></span><span>$(10^4)^{100}$</span></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="9" data-ask="指数怎样算？">$10^{4\times100}=10^{400}$</span><i class="why">幂的乘方：指数相乘，不是 $4+100$</i></div>
+      </div>
+      <p class="tip" data-step="10">所以封面上的猜测，<span class="think" data-step="11" data-ask="谁对了？">$10^{400}$ 对，$10^{104}$ 错：它是 1 后面跟 400 个 0。</span></p>
+      <p class="method" data-step="12" data-label="两条性质对比">$a^m\cdot a^n=a^{m+n}$：同底数幂<b>相乘</b>，指数<b>相加</b>；<br>$(a^m)^n=a^{mn}$：幂<b>乘方</b>，指数<b>相乘</b>。<br>运算“升一级”，指数的运算也“升一级”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p49 推导与性质框。第二步“$n$ 个 $m$ 连加”是用 8.1 的推广（$a^m\cdot a^n\cdot a^p=a^{m+n+p}$）。最后的“升一级”是帮助记忆的说法：乘法→乘方，加法→乘法。</p>
+</section>
+
+<!-- 6 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>相乘？乘方？还是相加？</h2></div>
+  <div class="bd full">
+    <div class="judge4">
+      <div class="jcard" data-step="1">
+        <p>(1) $(a^3)^2=a^5$</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>幂的乘方，指数<b>相乘</b>：$(a^3)^2=a^{3\times2}=a^6$。$a^5$ 是 $a^3\cdot a^2$ 的结果。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>(2) $(b^4)^2=b^{16}$</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>指数是 $4\times2=8$，不是 $4^2=16$：$(b^4)^2=b^8$。</p></div>
+      </div>
+    </div>
+    <table class="mtab cmp3" data-step="5">
+      <tr><th>算式</th><th>运算</th><th>结果</th><th>指数怎么变</th></tr>
+      <tr><td>$a^3+a^3$</td><td>加法（合并同类项）</td><td><span class="think" data-step="6" data-ask="?">$2a^3$</span></td><td>不变</td></tr>
+      <tr><td>$a^3\cdot a^3$</td><td>同底数幂相乘</td><td><span class="think" data-step="7" data-ask="?">$a^6$</span></td><td>相加 $3+3$</td></tr>
+      <tr><td>$(a^3)^3$</td><td>幂的乘方</td><td><span class="think" data-step="8" data-ask="?">$a^9$</span></td><td>相乘 $3\times3$</td></tr>
+      <tr><td>$a^{3^3}$（不常见）</td><td>指数本身是幂</td><td>$a^{27}$</td><td>$3^3=27$</td></tr>
+    </table>
+  </div>
+  <p class="note">课本 p50 练一练第 2 题。两张卡先表决再点开。下面的表把三种最容易混的运算放在一起：同样的“$a^3$ 和 3”，加、乘、乘方的结果完全不同。最后一行只是为了说明 $(a^3)^3$ 不等于 $a^{3^3}$，不要求掌握。</p>
+</section>
+
+<!-- 7 ================= 例 1、例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>指数可以是字母，底数可以是一个式子</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 1</b> 计算（课本 p50）：</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>(1)</span><span>$(10^6)^2$　<span class="think" data-step="2" data-ask="算一算">$=10^{6\times2}=10^{12}$</span></span></div>
+        <div class="dl" data-step="3"><span>(2)</span><span>$(a^m)^4$（$m$ 是正整数）　<span class="think" data-step="4" data-ask="算一算">$=a^{m\times4}=a^{4m}$</span></span></div>
+        <div class="dl" data-step="5"><span>(3)</span><span>$-(y^3)^2$　<span class="think" data-step="6" data-ask="负号管谁？">$=-y^{3\times2}=-y^6$</span></span></div>
+        <div class="dl" data-step="7"><span>(4)</span><span>$[(x-y)^n]^2$（$n$ 是正整数）　<span class="think" data-step="8" data-ask="把谁看成 a？">$=(x-y)^{2n}$</span></span></div>
+      </div>
+      <p class="warn" data-step="9" data-label="负号在括号外">$-(y^3)^2$ 的负号在乘方外面，不参与乘方，结果保留负号；对比 $(-y^3)^2=y^6$。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="10"><b>例 2</b> 计算（课本 p50）：</p>
+      <div class="derive tight" data-step="10">
+        <div class="dl"><span>(1)</span><span>$x^2\cdot x^4+(x^3)^2$</span></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="11" data-ask="先算什么？">$x^{2+4}+x^{3\times2}=x^6+x^6$</span><i class="why">先乘方、乘法，后加法</i></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="12" data-ask="还能化简吗？">$2x^6$</span><i class="why">合并同类项</i></div>
+        <div class="dl"><span>(2)</span><span>$(a^3)^3\cdot(a^4)^3$</span></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="13" data-ask="先算什么？">$a^{3\times3}\cdot a^{4\times3}=a^9\cdot a^{12}$</span><i class="why">幂的乘方</i></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="14" data-ask="再算">$a^{9+12}=a^{21}$</span><i class="why">同底数幂的乘法</i></div>
+      </div>
+      <p class="method" data-step="15" data-label="运算顺序">和数的运算一样：先乘方，再乘除，最后加减。</p>
+    </div>
+  </div>
+  <p class="note">课本 p50 例 1、例 2。例 1 (3) 与 (4) 各有一个提醒：负号在括号外不参与乘方；$(x-y)$ 整体看作底数。例 2 是本课性质与 8.1 性质、合并同类项的综合，关键是说清每一步用的是哪条性质。</p>
+</section>
+
+<!-- 8 ================= 练一练（幂的乘方） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>幂的乘方：算一算，填一填</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>1.</b>（课本 p50）计算，在指数位置填数后回车：</p>
+      <div class="ex-list two">
+        <p>(1) $(10^4)^4=10$<sup><span class="blank" data-ans="16" data-w="2"></span></sup></p>
+        <p>(2) $(x^5)^4=x$<sup><span class="blank" data-ans="20" data-w="2"></span></sup></p>
+        <p>(3) $-(a^2)^5=-a$<sup><span class="blank" data-ans="10" data-w="2"></span></sup></p>
+        <p>(4) $(-2^3)^{20}=2$<sup><span class="blank" data-ans="60" data-w="2"></span></sup></p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(5) $(-b^m)^5$（$m$ 是正整数）；　(6) $-[(2a-b)^4]^2$．</p>
+        <details><summary>提示</summary>(5) $-b^m$ 的 5 次方：奇数个负因数，结果为负；(6) 把 $(2a-b)$ 看成底数，外面的负号保留。</details>
+        <details><summary>完整解答</summary>(5) $-b^{5m}$；(6) $-(2a-b)^8$．</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 计算：(1) $(m^4)^2+m^5\cdot m^3$；(2) $(x^5)^4+(x^{10})^2$；(3) $(a^3)^5\cdot(a^2)^2$；(4) $2^{10}\cdot4^{10}$．</p>
+        <details><summary>提示 1</summary>(1)～(3) 先算乘方、乘法，再合并同类项。(4) 底数不同，能把 4 写成 2 的幂吗？</details>
+        <details><summary>提示 2</summary>$4^{10}=(2^2)^{10}=2^{20}$。</details>
+        <details><summary>完整解答</summary>(1) $m^8+m^8=2m^8$；(2) $x^{20}+x^{20}=2x^{20}$；(3) $a^{15}\cdot a^4=a^{19}$；(4) $2^{10}\cdot2^{20}=2^{30}$．</details>
+      </div>
+      <p class="tip"><b>5.</b>（课本 p50）填空：</p>
+      <div class="ex-list">
+        <p>(1) $8^2=2^{(\ \ )}=2^2\times2^{(\ \ )}$：依次填 <span class="blank" data-ans="6" data-w="2"></span>、<span class="blank" data-ans="4" data-w="2"></span></p>
+        <p>(2) $a^{12}=(a^3)^{(\ \ )}=(a^2)^{(\ \ )}=a^3\cdot a^{(\ \ )}$：依次填 <span class="blank" data-ans="4" data-w="2"></span>、<span class="blank" data-ans="6" data-w="2"></span>、<span class="blank" data-ans="9" data-w="2"></span></p>
+      </div>
+      <p class="tip"><b>4.</b> 正方体的棱长是 $10^2$ cm，体积是 <span class="think" data-step="1" data-ask="算一算">$(10^2)^3=10^6$（cm³）</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p50 练一练 1、3、4、5。第 1 题 (4) 的底数是 $-2^3=-8$，偶次幂为正，$(-8)^{20}=8^{20}=(2^3)^{20}=2^{60}$。第 3 题 (4)、第 5 题都是“化成同底”的逆用，为后面习题第 6 题作铺垫。</p>
+</section>
+
+<!-- 9 ================= 试一试：积的乘方 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>积的乘方：先算再比较</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">计算下列各式（课本 p50），填数后回车：</p>
+      <div class="ex-list">
+        <p>(1) $(3\times4)^2=$ <span class="blank" data-ans="144" data-w="4"></span>，$3^2\times4^2=$ <span class="blank" data-ans="144" data-w="4"></span></p>
+        <p>(2) $[2\times(-5)]^4=$ <span class="blank" data-ans="10000" data-w="5"></span>，$2^4\times(-5)^4=$ <span class="blank" data-ans="10000" data-w="5"></span></p>
+        <p>(3) $\left(\dfrac12\times\dfrac13\right)^3=$ <span class="blank" data-ans="1/216" data-w="5"></span>，$\left(\dfrac12\right)^3\times\left(\dfrac13\right)^3=$ <span class="blank" data-ans="1/216" data-w="5"></span></p>
+      </div>
+      <p class="muted small-t">分数用“/”输入，如 1/216。</p>
+    </div>
+    <div class="col">
+      <p class="tip gold" data-step="1">从上面的计算中，你发现了什么？<span class="think" data-step="2" data-ask="说说你的发现">一个<b>积</b>的乘方，等于把积里的每个因数分别乘方，再把结果相乘。</span></p>
+      <p class="tip" data-step="3">为什么？以 $(3\times4)^2$ 为例：</p>
+      <div class="derive tight" data-step="3">
+        <div class="dl"><span></span><span>$(3\times4)^2=(3\times4)\times(3\times4)$</span><span class="think" data-step="4" data-ask="凭什么？">乘方的意义</span></div>
+        <div class="dl"><span>$=$</span><span>$(3\times3)\times(4\times4)$</span><span class="think" data-step="5" data-ask="凭什么？">乘法交换律、结合律</span></div>
+        <div class="dl"><span>$=$</span><span>$3^2\times4^2$</span><span class="think" data-step="6" data-ask="凭什么？">乘方的意义</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p50 试一试（积的乘方）。学生填完会发现每行两边相等。重点在右栏的第二步：把 3 和 4“重新排队”——下一页用动画把这一步看清楚。(2) 中 $[2\times(-5)]^4=(-10)^4$，偶次幂为正。</p>
+</section>
+
+<!-- 10 ================= 核心交互：重新排队 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手操作</span><h2>$n$ 对 $(a\cdot b)$：$a$ 排一队，$b$ 排一队</h2></div>
+  <div class="bd full top">
+    <div class="line-box" id="lineBox" data-noswipe>
+      <div class="slider-row">因数：<button class="btn" type="button" data-pair="ab">$a$ 与 $b$</button><button class="btn" type="button" data-pair="34">3 与 4</button>　$n=$<input type="range" id="lineNi" min="1" max="6" step="1" value="3"><b class="v" id="lineN"></b>　<button class="btn solid" type="button" id="lineGo">交换、结合：重新排队</button></div>
+      <div class="line" id="line"></div>
+      <p class="line-brace" id="lineBrace"></p>
+      <p class="pg-eq" id="lineEq"></p>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="1">重新排队的依据是什么？<span class="think" data-step="2" data-ask="说一说">乘法交换律、结合律：因数可以任意交换位置、任意加括号，积不变。</span></p>
+      <p class="tip" data-step="3">排队后，$a$ 有几个？$b$ 有几个？<span class="think" data-step="4" data-ask="数一数">各 $n$ 个：$\underbrace{a\cdot\cdots\cdot a}_{n\text{个}}\cdot\underbrace{b\cdot\cdots\cdot b}_{n\text{个}}=a^nb^n$。</span></p>
+    </div>
+  </div>
+  <p class="note">本课第二个核心操作。点按钮，$n$ 对 $(a\cdot b)$ 中的 $a$、$b$ 分别移动、排成两队（动画只改变位置，因数个数一个不多一个不少）。先用“3 与 4”核对数值：$12^3=1\,728=27\times64$，再换回字母。可让学生上台说：“我用了交换律，把第二个 $a$ 换到了第一个 $b$ 前面……”</p>
+</section>
+
+<!-- 11 ================= 推导与性质 · 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导 · 性质</span><h2>积的乘方，等于各因式乘方的积</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">对于任意的底数 $a$、$b$，当 $n$ 是正整数时：</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span></span><span>$(ab)^n=\underbrace{(ab)\cdot(ab)\cdot\cdots\cdot(ab)}_{n\text{个}ab}$</span><span class="think" data-step="2" data-ask="凭什么？">乘方的意义</span></div>
+        <div class="dl" data-step="3"><span>$=$</span><span>$\underbrace{(a\cdot a\cdot\cdots\cdot a)}_{n\text{个}a}\cdot\underbrace{(b\cdot b\cdot\cdots\cdot b)}_{n\text{个}b}$</span><span class="think" data-step="4" data-ask="凭什么？">乘法交换律、结合律</span></div>
+        <div class="dl end" data-step="5"><span>$=$</span><span>$a^nb^n$</span><span class="think" data-step="6" data-ask="凭什么？">乘方的意义</span></div>
+      </div>
+      <div class="def big-def" data-step="7"><h4>积的乘方（课本 p51）</h4>$$(ab)^n=a^nb^n$$（$n$ 是正整数）积的乘方，把积的<em>每一个因式分别乘方</em>，再把所得的幂相乘．</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="8"><b>例 3</b> 计算（课本 p51）：</p>
+      <div class="derive tight" data-step="8">
+        <div class="dl"><span>(1)</span><span>$(5m)^3$　<span class="think" data-step="9" data-ask="5 也要乘方吗？">$=5^3\cdot m^3=125m^3$</span></span></div>
+        <div class="dl"><span>(2)</span><span>$(-xy^2)^3$　<span class="think" data-step="10" data-ask="有几个因式？">$=(-1)^3\cdot x^3\cdot(y^2)^3=-x^3y^6$</span></span></div>
+      </div>
+      <p class="tip" data-step="11"><b>试一试</b> $n$ 是正整数，你会计算 $(abc)^n$ 吗？<span class="think" data-step="12" data-ask="推广">$(abc)^n=[(ab)c]^n=(ab)^nc^n=a^nb^nc^n$．</span></p>
+      <p class="warn" data-step="13" data-label="一个都不能漏">系数（包括符号 $-1$）也是因式，也要乘方：$(-xy^2)^3$ 看成 $(-1)\cdot x\cdot y^2$ 三个因式。</p>
+    </div>
+  </div>
+  <p class="note">课本 p51 推导、性质框、例 3 与试一试。例 3 (2) 是易错点：学生常写成 $-xy^6$ 或 $x^3y^6$，课本的做法是把“$-$”看成因式 $-1$ 单独乘方。$(abc)^n$ 的推广用了“整体思想”：先把 $ab$ 看成一个因式。</p>
+</section>
+
+<!-- 12 ================= 例 4 + 辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 辨一辨</span><h2>系数、符号、每个字母都要乘方</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 4</b> 计算（课本 p51）：</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>(1)</span><span>$\left(\dfrac13xy^2\right)^2$</span></div>
+        <div class="dl" data-step="2"><span>$=$</span><span>$\left(\dfrac13\right)^2\cdot x^2\cdot(y^2)^2$</span><i class="why">积的乘方</i></div>
+        <div class="dl" data-step="3"><span>$=$</span><span class="think" data-step="3" data-ask="算一算">$\dfrac19x^2y^4$</span><i class="why">幂的乘方 $2\times2=4$</i></div>
+        <div class="dl" data-step="4"><span>(2)</span><span>$(-2ab^3c^2)^4$</span></div>
+        <div class="dl" data-step="5"><span>$=$</span><span>$(-2)^4\cdot a^4\cdot(b^3)^4\cdot(c^2)^4$</span><i class="why">积的乘方：4 个因式分别乘方</i></div>
+        <div class="dl" data-step="6"><span>$=$</span><span class="think" data-step="6" data-ask="算一算">$16a^4b^{12}c^8$</span><i class="why">$(-2)^4=16$，偶次幂为正</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">下面的计算是否正确？如有错误，请改正（课本 p52 练一练 2）．</p>
+      <div class="jcard" data-step="7">
+        <p>(1) $(xy^2)^3=xy^6$</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">✗</span>$x$ 漏了乘方：$(xy^2)^3=x^3y^6$。</p></div>
+      </div>
+      <div class="jcard" data-step="9">
+        <p>(2) $(-2b^2)^2=-4b^4$</p>
+        <div class="think" data-step="10" data-ask="对还是错？"><p><span class="verdict x">✗</span>$-2$ 整个乘方：$(-2)^2=4$，所以 $(-2b^2)^2=4b^4$。</p></div>
+      </div>
+      <p class="method" data-step="11" data-label="三步走">① 数清有几个因式（系数、符号算在内）；② 每个因式分别乘方；③ 用幂的乘方算出每个字母的指数。</p>
+    </div>
+  </div>
+  <p class="note">课本 p51 例 4，课本 p52 练一练第 2 题。例 4 把三条性质用在一道题里：积的乘方 → 幂的乘方 → 数的乘方。辨析两题对应两种最常见的错：漏乘方、符号错。</p>
+</section>
+
+<!-- 13 ================= 例 5 + 储油罐 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 应用</span><h2>木星有多大？储油罐能装多少油？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 5</b>（课本 p51）球的体积计算公式为 $V=\dfrac43\pi r^3$．木星可以近似地看成球体，半径约是 $7.15\times10^4$ km，求木星的体积．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>$V=$</span><span>$\dfrac43\pi\times(7.15\times10^4)^3$</span><i class="why">代入公式</i></div>
+        <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="2" data-ask="怎样乘方？">$\dfrac43\pi\times7.15^3\times10^{12}$</span><i class="why">积的乘方、幂的乘方：$(10^4)^3=10^{12}$</i></div>
+        <div class="dl" data-step="3"><span>$\approx$</span><span>$1.53\times10^{15}$（km³）</span><i class="why">用计算器：$\frac43\pi\times7.15^3\approx1\,531$</i></div>
+      </div>
+      <p class="tip" data-step="4"><b>答：</b>木星的体积大约是 $1.53\times10^{15}$ km³．</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5"><b>练一练 4</b>（课本 p52）圆柱体储油罐的半径是 20 m、高是 40 m（不计壁厚），求它的容积．如果最大储油高度为 30 m，最多能储油多少（单位：L）？</p>
+      <svg viewBox="0 -8 300 208" class="tank-fig" aria-label="储油罐：半径 20 m，高 40 m，按比例绘制" data-step="5">
+        <!-- 1 m = 3.6 单位：直径 40 m → 144，高 40 m → 144；顶面椭圆竖半轴取 18（透视） -->
+        <path d="M78 28 V172 A72 18 0 0 0 222 172 V28 Z" fill="#e3f1fb"/>
+        <path id="oil" d="" fill="rgba(217,113,28,.35)"/>
+        <ellipse id="oilTop" cx="150" cy="64" rx="72" ry="18" fill="rgba(217,113,28,.5)" stroke="#d9711c" stroke-width="1.5"/>
+        <path d="M78 28 V172 A72 18 0 0 0 222 172 V28" fill="none" stroke="#1f2d3a" stroke-width="2.5"/>
+        <ellipse cx="150" cy="28" rx="72" ry="18" fill="none" stroke="#1f2d3a" stroke-width="2.5"/>
+        <path d="M78 172 A72 18 0 0 1 222 172" fill="none" stroke="#1f2d3a" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="150" y1="28" x2="222" y2="28" stroke="#1d6fa5" stroke-width="2"/><text x="186" y="8" class="fl s" text-anchor="middle">20 m</text>
+        <line x1="250" y1="28" x2="250" y2="172" stroke="#1d6fa5" stroke-width="1.5"/><text x="258" y="104" class="fl s">40 m</text>
+        <text id="oilLbl" x="52" y="120" class="fl s c2" text-anchor="middle">30 m</text>
+      </svg>
+      <div class="slider-row" data-noswipe data-step="5">储油高度 $h=$<input type="range" id="tankH" min="0" max="40" step="5" value="30"><b class="v" id="tankHV"></b>m　$V=\pi\times20^2\times h=$<b class="v" id="tankV"></b></div>
+      <div class="hint-ladder" data-step="5">
+        <details><summary>提示</summary>容积 $V=\pi r^2h$；$1\text{ m}^3=1\,000\text{ L}=10^3$ L．</details>
+        <details><summary>完整解答</summary>容积 $\pi\times20^2\times40=1.6\times10^4\pi\approx5.03\times10^4$ (m³) $\approx5.03\times10^7$ L；<br>最多储油 $\pi\times20^2\times30=1.2\times10^4\pi\approx3.77\times10^4$ (m³) $\approx3.77\times10^7$ L．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p51–52 例 5、练一练 4。例 5 的关键一步是 $(7.15\times10^4)^3=7.15^3\times(10^4)^3$——积的乘方和幂的乘方同时用。储油罐图按比例绘制（直径与高都是 40 m），拖滑块改储油高度，体积用 $\pi\approx3.14159$ 实时计算。课本 p52“计算器操作”可用来核对。</p>
+</section>
+
+<!-- 14 ================= 练一练（积的乘方） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>积的乘方：自己试试</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（课本 p52）计算：<br>(1) $(-ab)^3$；(2) $(x^2y^3)^4$；<br>(3) $(2\times10^3)^2$；(4) $(-2a^3y^4)^3$．</p>
+        <details><summary>提示</summary>先数因式：(1) $-1$、$a$、$b$；(4) $-2$、$a^3$、$y^4$。</details>
+        <details><summary>完整解答</summary>(1) $-a^3b^3$；(2) $x^8y^{12}$；(3) $4\times10^6$；(4) $-8a^9y^{12}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（课本 p52）计算：<br>(1) $a^5\cdot a^3+(2a^2)^4$；<br>(2) $-2x^6-(-3x^2)^3$．</p>
+        <details><summary>提示 1</summary>先算乘方与乘法，再合并同类项。</details>
+        <details><summary>提示 2</summary>$(2a^2)^4=16a^8$；$(-3x^2)^3=-27x^6$，前面还有一个减号。</details>
+        <details><summary>完整解答</summary>(1) $a^8+16a^8=17a^8$；(2) $-2x^6-(-27x^6)=-2x^6+27x^6=25x^6$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 3</b>（课本 p53）计算：<br>(1) $(2ab^2)^3$；(2) $(-a^3b^2)^2$；<br>(3) $(-3a^2b^3c)^3$；(4) $-(-2x^3y)^4$．</p>
+        <details><summary>提示</summary>(4) 括号里的 $-2$ 乘 4 次方为正，括号外还有负号。</details>
+        <details><summary>完整解答</summary>(1) $8a^3b^6$；(2) $a^6b^4$；(3) $-27a^6b^9c^3$；(4) $-16x^{12}y^4$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p52 练一练 1、3，p53 习题 8.2 第 3 题。先独立做 3 分钟，卡住再逐级点开。共同的易错点：系数忘了乘方、负号的处理（括号里还是括号外）。</p>
+</section>
+
+<!-- 15 ================= 逆用 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">拓展 · 逆用</span><h2>倒过来用：$a^nb^n=(ab)^n$，$a^{mn}=(a^m)^n$</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 6</b>（课本 p53）计算：<br>(1) $(0.25)^{100}\times4^{100}$；　(2) $3^{14}\times\left(-\dfrac19\right)^7$．</p>
+        <details><summary>提示 1</summary>(1) 指数相同，倒过来用积的乘方：$a^nb^n=(ab)^n$；$0.25\times4=\ ?$</details>
+        <details><summary>提示 2</summary>(2) 指数不同。把 $3^{14}$ 写成 $(3^2)^7=9^7$，指数就相同了。</details>
+        <details><summary>完整解答</summary>(1) $(0.25\times4)^{100}=1^{100}=1$；<br>(2) $9^7\times\left(-\frac19\right)^7=\left[9\times\left(-\frac19\right)\right]^7=(-1)^7=-1$．</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>习题 5</b>（课本 p53）填空：</p>
+      <div class="ex-list">
+        <p>(1) $9^3=3^{(\ \ )}=3^2\times3^{(\ \ )}$：依次填 <span class="blank" data-ans="6" data-w="2"></span>、<span class="blank" data-ans="4" data-w="2"></span></p>
+        <p>(2) $3^3\times9^9=3^3\times3^{(\ \ )}=3^{(\ \ )}$：依次填 <span class="blank" data-ans="18" data-w="2"></span>、<span class="blank" data-ans="21" data-w="2"></span></p>
+        <p>(4) $[a^2b^{(\ \ )}]^{(\ \ )}=a^4b^6$：依次填 <span class="blank" data-ans="3" data-w="2"></span>、<span class="blank" data-ans="2" data-w="2"></span></p>
+      </div>
+      <p class="tip" data-step="1">(3) $[-a^{(\ \ )}]^{(\ \ )}=a^6$，答案唯一吗？<span class="think" data-step="2" data-ask="试一试">不唯一，但外面的指数必须是偶数（负号才会消失）：$(-a^3)^2$、$(-a)^6$ 都可以；$(-a^2)^3=-a^6$ 不行。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p53 习题 8.2 第 5、6 题。这一页是“逆用”：性质的等号左右两边可以互换。第 6 题 (2) 先“化成相同指数”再逆用积的乘方，计算量一下子变小——这是幂的运算的妙处。第 5 题 (3) 是开放题，适合讨论。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <table class="mtab cmp3" data-step="1">
+      <tr><th>运算</th><th>性质（$m$、$n$ 是正整数）</th><th>怎样记</th><th>由来</th></tr>
+      <tr><td>同底数幂的乘法</td><td>$a^m\cdot a^n=a^{m+n}$</td><td>底数不变，指数相加</td><td>连成一串（8.1）</td></tr>
+      <tr><td>幂的乘方</td><td>$(a^m)^n=a^{mn}$</td><td>底数不变，指数相乘</td><td>因数方阵</td></tr>
+      <tr><td>积的乘方</td><td>$(ab)^n=a^nb^n$</td><td>每个因式分别乘方，再相乘</td><td>重新排队</td></tr>
+    </table>
+    <div class="cols3 sum">
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="回到定义">三条性质都由“乘方的意义 + 运算律”推出。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>易错</h3>
+        <p class="warn" data-label="三处小心">指数相加还是相乘；系数、符号也要乘方；负号在括号内还是外。</p>
+      </div>
+      <div class="col" data-step="4">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化 · 整体">新运算转化成旧运算；$(x-y)$、$ab$ 整体看作底数。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一节：</b>8.3 同底数幂的除法——$a^m\div a^n$ 会怎样？$2^3\div2^3$、$2^3\div2^4$ 还能用同样的规律吗？</p>
+  </div>
+  <p class="note">小结先请学生口述三条性质的“由来”，再出表格。作业建议：习题 8.2 第 1、2、4、7 题（第 7 题储油罐：$2\times\pi\times30^2\times20=3.6\times10^4\pi\approx1.13\times10^5$ m³ $\approx1.13\times10^8$ L）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

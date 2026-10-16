@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>乘法公式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shoujian.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第9章 整式乘法与因式分解 · 9.4</p>
+    <h1 class="cover-title">乘法公式</h1>
+    <p class="cover-q" data-step="1">一块正方形纸片，横着看被分成 $b$ 和 $a$ 两段，竖着看也被分成 $a$ 和 $b$ 两段（课本图 9-5）。</p>
+    <p class="cover-q" data-step="2">它的面积，你能用<b>几种方法</b>算？算出来的式子一样吗？</p>
+    <div class="chips" data-step="3"><span class="chip">面积拼图</span><span class="chip">完全平方公式</span><span class="chip">剪拼：平方差公式</span><span class="chip">认清“$a$”和“$b$”</span></div>
+  </div>
+  <p class="note">课本 p75 开头的问题。封面只提问，不给答案：让学生先说“整体看是一个正方形，分开看是 4 块”，两种算法的结果写在黑板一角，第 3 页再用拼图板验证。本课内容多（7 个例题），建议 2 课时：第 1 课时到第 8 页（完全平方公式），第 2 课时从第 9 页（平方差公式）开始。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的三件“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="9.3 多项式乘多项式" data-step="1">
+        <p>$(a+b)(m+n)=am+an+bm+bn$</p>
+        <p>用一个多项式的每一项，乘另一个多项式的<b>每一项</b>，再把所得的积相加。</p>
+        <span class="use">推出两个公式：$(a+b)(a+b)$、$(a+b)(a-b)$ 都按它展开。<a href="../mj7b-duochengduo/index.html">回看 9.3</a></span>
+      </div>
+      <div class="recall" data-label="8.2 积的乘方" data-step="2">
+        <p>$(ab)^n=a^nb^n$，如 $(3p)^2=9p^2$，$(-2a)^2=4a^2$。</p>
+        <p>反过来：$a^nb^n=(ab)^n$。</p>
+        <span class="use">代入公式时给 $(3p)^2$、$(2x)^2$ 平方；例 5 把 $(2x+3)^2(2x-3)^2$ 合成一个平方。<a href="../mj7b-midechengfang/index.html">回看 8.2</a></span>
+      </div>
+      <div class="recall" data-label="小学 · 面积的割与补" data-step="3">
+        <p>同一个图形，可以<b>整体</b>算，也可以<b>分块</b>算；剪开再拼，面积不变。</p>
+        <p>正方形 $S=$ 边长$^2$，长方形 $S=$ 长 × 宽。</p>
+        <span class="use">用面积“看见”公式：拼图板、剪拼成长方形。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主角：</b>两种特殊的多项式乘法——$(a\pm b)^2$ 和 $(a+b)(a-b)$。它们出现得特别多，算一次就记住结果，以后直接用。</p>
+  </div>
+  <p class="note">先请学生口算 $(x+2)(x+3)$ 热身（多项式乘多项式），再出示三张卡。第三张卡是本课的“直观线”：每个公式都配一幅面积图。积的乘方是计算时最容易漏的地方（$(3p)^2$ 写成 $3p^2$），这里先提醒一句。</p>
+</section>
+
+<!-- 3 ================= 图 9-5：面积拼图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 猜想</span><h2>同一个正方形，面积算两遍</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="g2" class="gsq"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="g2a" min="1" max="4.5" step="0.5" value="3.5"><b class="v" id="g2aV"></b>　$b=$<input type="range" id="g2b" min="0.5" max="3" step="0.5" value="2"><b class="v" id="g2bV"></b></div>
+    </div>
+    <div class="col">
+      <div class="readout four" id="g2Read">
+        <span>整体：$(a+b)^2$</span><b class="v" id="g2v1"></b>
+        <span>分块：$a^2+ab+ab+b^2$</span><b class="v" id="g2v2"></b>
+        <span class="muted">只算两个正方形：$a^2+b^2$</span><b class="v" id="g2v3"></b>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>整体</span><span class="think" data-step="2" data-ask="大正方形的边长？">$S=(a+b)^2$</span><i class="why">边长是 $a+b$ 的正方形</i></div>
+        <div class="dl" data-step="3"><span>分块</span><span class="think" data-step="4" data-ask="4 块分别多大？">$S=a^2+2ab+b^2$</span><i class="why">2 个正方形 $a^2$、$b^2$ + 2 个长方形 $ab$</i></div>
+        <div class="dl key" data-step="5"><span>∴</span><span>$(a+b)^2=a^2+2ab+b^2$</span><i class="why">同一个图形的面积相等</i></div>
+      </div>
+      <p class="tip" data-step="6">图只能画 $a\gt0$、$b\gt0$ 的情形。对<b>任意</b>的 $a$、$b$ 成立吗？<span class="think" data-step="7" data-ask="用乘法法则说明">$(a+b)^2=(a+b)(a+b)=a^2+ab+ba+b^2=a^2+2ab+b^2$（多项式乘法法则，合并同类项）</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p75 图 9-5。拖动滑块换 a、b：左边读数里“整体”和“分块”永远相等；第三行故意只算两个正方形，学生会看到它总比整体少 2 块长方形——这正是后面“$(a+b)^2\ne a^2+b^2$”的直观理由。第 7 步强调：面积图只能说明 a、b 为正数的情形，用乘法法则才说明了“任意的 a、b”。</p>
+</section>
+
+<!-- 4 ================= 例 1：(a−b)² ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>$(a-b)^2$ 等于什么？算一算，再看图</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：</span><span>$(a-b)^2$</span><span class="think" data-step="2" data-ask="能用上一页的结论吗？">把 $a-b$ 看成 $a+(-b)$</span></div>
+        <div class="dl" data-step="3"><span>$=$</span><span>$[a+(-b)]^2$</span><i class="why">减去 $b$ 就是加上 $-b$</i></div>
+        <div class="dl" data-step="4"><span>$=$</span><span>$a^2+2\cdot a\cdot(-b)+(-b)^2$</span><i class="why">用 $(a+b)^2$ 的结论，$b$ 换成 $-b$</i></div>
+        <div class="dl end" data-step="5"><span>$=$</span><span>$a^2-2ab+b^2$</span><i class="why">$(-b)^2=b^2$</i></div>
+      </div>
+      <p class="tip" data-step="6">再从图上看（设 $a\gt b\gt0$）：边长 $a$ 的正方形，<b>右边</b>、<b>上边</b>各剪去一条宽 $b$ 的长条，剩下的是边长 $a-b$ 的正方形。</p>
+      <p class="method" data-step="10" data-label="图上的算式">$(a-b)^2=a^2-ab-ab+b^2=a^2-2ab+b^2$——角上的 $b^2$ 被<b>减了两次</b>，要加回一次。</p>
+    </div>
+    <div class="col">
+      <div id="sqm" class="gsq tall"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="sqma" min="3" max="7" step="0.5" value="6"><b class="v" id="sqmaV"></b>　$b=$<input type="range" id="sqmb" min="0.5" max="2.5" step="0.5" value="2"><b class="v" id="sqmbV"></b></div>
+      <p class="tip feedback" id="sqmMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p75 例 1（把 $a-b$ 看成 $a+(-b)$）。右边的图跟着步骤走：第 7 步减去右边长条，第 8 步再减去上边长条（角上颜色变深 = 减了两次），第 9 步加回角上的 $b^2$，剩下的蓝色正方形就是 $(a-b)^2$。可以拖滑块验证读数。课本只用代数推导，这幅图是帮助理解“为什么是 $+b^2$”。</p>
+  <i data-step="7" hidden></i><i data-step="8" hidden></i><i data-step="9" hidden></i>
+</section>
+
+<!-- 5 ================= 完全平方公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">公式</span><h2>完全平方公式：说说它的特点</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>完全平方公式（课本 p75）</h4>$$(a+b)^2=a^2+2ab+b^2,\qquad (a-b)^2=a^2-2ab+b^2.$$</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2"><b>议一议：</b>左边是什么？右边有几项？各是什么？</p>
+        <p class="method" data-step="3" data-label="口诀"><span class="think" data-step="4" data-ask="用自己的话说">左边是两数和（差）的平方；右边是这两数的<b>平方和</b>，<b>加上（减去）</b>这两数<b>积的 2 倍</b>——“首平方，尾平方，积的 2 倍放中央，符号看前方”。</span></p>
+        <p class="tip" data-step="5">$a$、$b$ 可以是数、字母，也可以是<b>单项式、多项式</b>：$(5+3p)^2$ 里 $a=5$，$b=3p$。</p>
+      </div>
+      <div class="col">
+        <p class="warn" data-step="6" data-label="最常见的错">$(a+b)^2=a^2+b^2$？<span class="think" data-step="7" data-ask="举个数试试">取 $a=3$，$b=2$：$(3+2)^2=25$，$3^2+2^2=13$，差了 $12=2\times3\times2$——漏掉了中间项 $2ab$（第 3 页图上那两块长方形）。</span></p>
+        <p class="warn" data-step="8" data-label="符号">$(a-b)^2$ 的最后一项是 <b>$+b^2$</b>，不是 $-b^2$：<span class="think" data-step="9" data-ask="为什么？">$(-b)^2=b^2$，平方的结果不会是负的（第 4 页：角上减两次加回一次）。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p75 公式框与 p76“议一议”。先让学生不看书说特点，再揭示口诀。两条警示是本课最高频的错误：可让全班用 $a=3,b=2$ 代进去算，用数说话。</p>
+</section>
+
+<!-- 6 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>用完全平方公式计算：先认 $a$、$b$</h2></div>
+  <div class="bd full top">
+    <div class="ex-grid">
+      <div class="col" data-step="1">
+        <p class="tip">(1) $(5+3p)^2$　<span class="think" data-step="2" data-ask="a、b 各是什么？">$a=5$，$b=3p$</span></p>
+        <div class="derive small-d">
+          <div class="dl" data-step="3"><span>$=$</span><span>$5^2+2\cdot5\cdot3p+(3p)^2$</span></div>
+          <div class="dl end" data-step="4"><span>$=$</span><span>$25+30p+9p^2$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="5">
+        <p class="tip">(2) $(2x-7y)^2$　<span class="think" data-step="6" data-ask="a、b 各是什么？">$a=2x$，$b=7y$，用“差”的公式</span></p>
+        <div class="derive small-d">
+          <div class="dl" data-step="7"><span>$=$</span><span>$(2x)^2-2\cdot2x\cdot7y+(7y)^2$</span></div>
+          <div class="dl end" data-step="8"><span>$=$</span><span>$4x^2-28xy+49y^2$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="9">
+        <p class="tip">(3) $(-2a-5)^2$　<span class="think" data-step="10" data-ask="a、b 各是什么？">$a=-2a$，$b=5$（看成差）</span></p>
+        <div class="derive small-d">
+          <div class="dl" data-step="11"><span>$=$</span><span>$(-2a)^2-2\cdot(-2a)\cdot5+5^2$</span></div>
+          <div class="dl end" data-step="12"><span>$=$</span><span>$4a^2+20a+25$</span></div>
+        </div>
+        <p class="tip" data-step="13">另一种想法：$(-2a-5)^2=[-(2a+5)]^2=(2a+5)^2$，结果一样。</p>
+      </div>
+    </div>
+    <p class="method" data-step="14" data-label="三步走">① 认清公式里的 $a$、$b$（带上系数和符号）→ ② 套公式，给 $a$、$b$ 整体加括号 → ③ 用积的乘方化简。</p>
+    <p class="tip" data-step="15"><b>试一试：</b>计算 $(a+b+c)^2$——下一页用拼图看答案。</p>
+  </div>
+  <p class="note">课本 p76 例 2 与两个小人的对话：(3) 可以看成 $(-2a)$ 与 $5$ 的差，也可以先提出负号变成 $(2a+5)^2$。每题先停在“a、b 各是什么”，让学生说完再点开。第 3 步的 $(3p)^2$ 要特别强调括号——这里用到了 8.2 的积的乘方。</p>
+</section>
+
+<!-- 7 ================= 试一试 (a+b+c)² ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>$(a+b+c)^2$：三段拼成的正方形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="g3" class="gsq tall"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="g3a" min="1" max="3.5" step="0.5" value="3"><b class="v" id="g3aV"></b>　$b=$<input type="range" id="g3b" min="1" max="3" step="0.5" value="2"><b class="v" id="g3bV"></b>　$c=$<input type="range" id="g3c" min="0.5" max="2.5" step="0.5" value="1.5"><b class="v" id="g3cV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">数一数：图里有几个正方形？几个长方形？<span class="think" data-step="2" data-ask="数一数">3 个正方形 $a^2,b^2,c^2$；6 个长方形，$ab$、$ac$、$bc$ 各 2 个。</span></p>
+      <div class="def" data-step="3"><h4>结论</h4>$$(a+b+c)^2=a^2+b^2+c^2+2ab+2ac+2bc$$</div>
+      <div class="derive small-d">
+        <div class="dl" data-step="4"><span>代数说理</span><span>$[(a+b)+c]^2$</span><i class="why">把 $a+b$ 看成一个整体</i></div>
+        <div class="dl" data-step="5"><span>$=$</span><span class="think" data-step="6" data-ask="套公式">$(a+b)^2+2(a+b)c+c^2$</span><i class="why">完全平方公式</i></div>
+        <div class="dl end" data-step="7"><span>$=$</span><span>$a^2+2ab+b^2+2ac+2bc+c^2$</span><i class="why">再用一次完全平方公式，单项式乘多项式</i></div>
+      </div>
+      <p class="readout four" id="g3Read"></p>
+    </div>
+  </div>
+  <p class="note">课本 p76“试一试”。先让学生在纸上试，再拖滑块看图：正方形在对角线上，长方形成对出现在两侧，所以每个“积”都是 2 倍。代数推导里“把 $a+b$ 看成一个整体”是本课第一次出现整体思想，例 7 还会再用。</p>
+</section>
+
+<!-- 8 ================= 练一练（完全平方） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>完全平方公式：做完再点提示核对</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算：(1) $(1+x)^2$；(2) $(y-4)^2$；(3) $(-3x+2)^2$；(4) $\left(\dfrac32x-\dfrac43y\right)^2$．</p>
+        <details><summary>提示</summary>先认 $a$、$b$：(3) 可看成 $(-3x)$ 与 $2$ 的和；(4) 中间项是 $2\cdot\dfrac32x\cdot\dfrac43y$。</details>
+        <details><summary>答案</summary>(1) $1+2x+x^2$；(2) $y^2-8y+16$；(3) $9x^2-12x+4$；(4) $\dfrac94x^2-4xy+\dfrac{16}9y^2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 下面的计算是否正确？如有错误，请改正．<br>(1) $(x+y)^2=x^2+y^2$；<br>(2) $(-a-b)^2=a^2-2ab+b^2$．</p>
+        <details><summary>提示</summary>(1) 看第 5 页的警示；(2) $-a-b=-(a+b)$。</details>
+        <details><summary>答案</summary>都不对。(1) 应为 $x^2+2xy+y^2$；(2) $(-a-b)^2=(a+b)^2=a^2+2ab+b^2$。</details>
+      </div>
+      <div class="col">
+        <p class="q"><b>3.</b> 填空（填好按回车，即时判断）：</p>
+        <p class="blank-q">(1) $(a+$<span class="blank" data-ans="2b" data-w="3"></span>$)^2=a^2+4ab+4b^2$</p>
+        <p class="blank-q">(2) $(2a+$<span class="blank" data-ans="b" data-w="2"></span>$)^2=4a^2+4ab+b^2$</p>
+        <p class="blank-q">(3) $(3x-$<span class="blank" data-ans="2y" data-w="3"></span>$)^2=9x^2-12xy+$<span class="blank" data-ans="4y²|4y^2|4yy" data-w="4"></span></p>
+        <p class="blank-q">(4) $(-x-$<span class="blank" data-ans="1" data-w="2"></span>$)^2=x^2+$<span class="blank" data-ans="2x" data-w="3"></span>$+1$</p>
+        <div class="hint-ladder">
+          <p class="q"><b>4.</b> 正方形边长 $a\text{ cm}$（$a\gt6$），边长减少 $6\text{ cm}$，面积减少了多少？</p>
+          <details><summary>提示</summary>原面积 $a^2$，新面积 $(a-6)^2$，相减。</details>
+          <details><summary>答案</summary>$a^2-(a-6)^2=a^2-(a^2-12a+36)=12a-36$（$\text{cm}^2$）。</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p76 练一练 1–4。第 3 题可以输入 4y² 或 4y^2。第 3(1) 的思路：$4ab=2\cdot a\cdot(\ )$，所以括号里是 $2b$，再用 $(2b)^2=4b^2$ 检验——“由中间项定 b，用末项检验”。第 4 题去括号时整体变号是易错点。</p>
+</section>
+
+<!-- 9 ================= 数学实验室：平方差的剪拼 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>剪一剪，拼一拼：阴影部分的面积</h2></div>
+  <button class="media-btn" hidden data-img="assets/pingfangcha.jpg" data-video="assets/pingfangcha.mp4" data-cap="剪拼动画：边长 a 的正方形剪去边长 b 的小正方形，剩下的部分拼成长 a + b、宽 a − b 的长方形">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="cut" class="gsq tall"></div>
+      <div class="slider-row" data-noswipe>剪拼<input type="range" id="cutT" min="0" max="1" step="0.01" value="0"><button class="btn" type="button" id="cutPlay">▶ 演示</button><button class="btn" type="button" id="cutTrap">分成两个梯形</button></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="cuta" min="3" max="6" step="0.5" value="5"><b class="v" id="cutaV"></b>　$b=$<input type="range" id="cutb" min="0.5" max="2.5" step="0.5" value="2"><b class="v" id="cutbV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">在边长为 $a$ 的正方形纸片上剪去一个边长为 $b$（$b\lt a$）的小正方形（图 9-6(1)）。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>直接算</span><span class="think" data-step="2" data-ask="阴影面积？">$a^2-b^2$</span><i class="why">大正方形减小正方形</i></div>
+        <div class="dl" data-step="3"><span>剪拼后</span><span class="think" data-step="4" data-ask="长方形的长、宽？">长 $a+b$，宽 $a-b$</span><i class="why">沿虚线剪开，右边一条转过来接在后面（拖“剪拼”滑块）</i></div>
+        <div class="dl" data-step="5"><span>面积</span><span>$(a+b)(a-b)$</span><i class="why">长方形面积 = 长 × 宽</i></div>
+        <div class="dl key" data-step="6"><span>∴</span><span>$(a+b)(a-b)=a^2-b^2$</span><i class="why">剪拼前后面积不变</i></div>
+      </div>
+      <p class="tip feedback" id="cutMsg"></p>
+      <p class="tip" data-step="7"><b>还有别的方法吗？</b>点“分成两个梯形”：<span class="think" data-step="8" data-ask="两个梯形的面积和">两个全等的直角梯形，上底 $b$、下底 $a$、高 $a-b$：$2\times\dfrac{(a+b)(a-b)}2=(a+b)(a-b)$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p77 数学实验室与图 9-6。先让学生用纸片真剪一次，再看板上演示：剪开的右边一条宽 $a-b$、长 $a$，转 90° 后接到左上那块（宽 $b$）的右边，拼成长 $a+b$、宽 $a-b$ 的长方形——所有长度由 a、b 计算，拖动滑块可换数据。右上角“看动画”是 18 秒无声动画（a = 5，b = 2：25 − 4 = 7 × 3 = 21）。“分成两个梯形”对应课本右侧小人的提示。</p>
+</section>
+
+<!-- 10 ================= 平方差公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">公式</span><h2>平方差公式</h2></div>
+  <div class="bd full">
+    <div class="derive" data-step="1">
+      <div class="dl"><span>一般地</span><span>$(a+b)(a-b)=a^2-ab+ab-b^2=a^2-b^2$</span><i class="why">多项式乘法法则；$-ab$ 与 $+ab$ 抵消</i></div>
+    </div>
+    <div class="def big-def" data-step="2"><h4>平方差公式（课本 p77）</h4>$$(a+b)(a-b)=a^2-b^2$$</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="method" data-step="3" data-label="议一议：特点"><span class="think" data-step="4" data-ask="左边、右边各是什么？">左边：两个数的<b>和</b>与这两个数的<b>差</b>相乘；右边：这两个数的<b>平方差</b>（“相同项”的平方 − “相反项”的平方）。</span></p>
+        <p class="tip" data-step="5">两个因式中，一项<b>完全相同</b>（$a$），另一项<b>互为相反数</b>（$b$ 与 $-b$）——这样才能用平方差公式。</p>
+      </div>
+      <div class="col">
+        <p class="warn" data-step="6" data-label="辨一辨">下面哪个能用平方差公式？<br>① $(x+2)(x-2)$　② $(a+b)(b-a)$　③ $(a+b)(-a-b)$<span class="think" data-step="7" data-ask="先判断"><br>①② 能（② 中 $b$ 相同，$a$ 与 $-a$ 相反：$=b^2-a^2$）；③ 不能，两项都互为相反数，它等于 $-(a+b)^2$。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p77 公式框与“议一议”。与完全平方公式对比：平方差公式结果只有两项，中间项“抵消”了，所以叫“平方差”。辨一辨 ③ 是常见陷阱：没有“相同项”，只能用完全平方公式。</p>
+</section>
+
+<!-- 11 ================= 例 3、例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 例 4</span><h2>先找“相同项”和“相反项”</h2></div>
+  <div class="bd full top">
+    <div class="ex-grid">
+      <div class="col" data-step="1">
+        <p class="tip">例 3 (1) $(5x+y)(5x-y)$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="谁是 a、谁是 b？">$(5x)^2-y^2$</span></div>
+          <div class="dl end" data-step="4"><span>$=$</span><span>$25x^2-y^2$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="5">
+        <p class="tip">例 3 (2) $(m+2n)(2n-m)$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="6"><span>$=$</span><span class="think" data-step="7" data-ask="先调换位置">$(2n+m)(2n-m)$</span><i class="why">加法交换律</i></div>
+          <div class="dl" data-step="8"><span>$=$</span><span>$(2n)^2-m^2$</span></div>
+          <div class="dl end" data-step="9"><span>$=$</span><span>$4n^2-m^2$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="10">
+        <p class="tip">例 4 $(3y-x)(-x-3y)$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="11"><span>$=$</span><span>$(-x+3y)(-x-3y)$</span><i class="why">把 $-x$、$3y$ 分别看成 $a$、$b$</i></div>
+          <div class="dl" data-step="12"><span>$=$</span><span>$(-x)^2-(3y)^2$</span></div>
+          <div class="dl end" data-step="13"><span>$=$</span><span>$x^2-9y^2$</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cols2" data-step="14">
+      <div class="col">
+        <p class="tip">点一点：$(3y-x)(-x-3y)$ 中，平方差公式里的 “$a$” 是哪一项？</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">$3y$</button><button type="button" data-k="b">$-x$</button><button type="button" data-k="c">$x$</button><p class="pick-why">两个因式里都有 $-x$（相同项），所以 $a=-x$；$3y$ 与 $-3y$ 互为相反数，$b=3y$。</p></div>
+      </div>
+      <p class="method" data-label="方法">完全平方公式、平方差公式统称<b>乘法公式</b>，计算时可以直接使用。先调整顺序，让“相同项”在前、“相反项”在后，再套公式。</p>
+    </div>
+  </div>
+  <p class="note">课本 p77–78 例 3、例 4。三题的难度递增：(1) 直接套；(2) 先交换位置；例 4 两个因式都以“负”开头，学生容易把 $3y$ 当成 a。最后的点选可以全班举手表决。</p>
+</section>
+
+<!-- 12 ================= 练一练（平方差） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>平方差公式：算、改、填</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 用平方差公式计算：<br>(1) $(1+x)(1-x)$；(2) $(a+3b)(a-3b)$；<br>(3) $(3+2a)(3-2a)$；(4) $\left(\dfrac12x-2y\right)\left(-\dfrac12x-2y\right)$．</p>
+        <details><summary>提示</summary>(4) 相同项是 $-2y$，相反项是 $\dfrac12x$ 与 $-\dfrac12x$。</details>
+        <details><summary>答案</summary>(1) $1-x^2$；(2) $a^2-9b^2$；(3) $9-4a^2$；(4) $(-2y)^2-\left(\dfrac12x\right)^2=4y^2-\dfrac14x^2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 下面的计算是否正确？如有错误，请改正．<br>(1) $(x+2)(x-2)=x^2-2$；<br>(2) $(a+b)(b-a)=a^2-b^2$．</p>
+        <details><summary>提示</summary>(1) $2$ 也要平方；(2) 相同项是谁？</details>
+        <details><summary>答案</summary>都不对。(1) $x^2-4$；(2) 相同项是 $b$，结果是 $b^2-a^2$。</details>
+      </div>
+      <div class="col">
+        <p class="q"><b>3.</b> 填空（按回车判断）：</p>
+        <p class="blank-q">(1) $(x+$<span class="blank" data-ans="6" data-w="2"></span>$)(x-$<span class="blank" data-ans="6" data-w="2"></span>$)=x^2-36$</p>
+        <p class="blank-q">(2) $(m+$<span class="blank" data-ans="5n" data-w="3"></span>$)(m-$<span class="blank" data-ans="5n" data-w="3"></span>$)=m^2-25n^2$</p>
+        <p class="blank-q">(3) $(a+b)($<span class="blank" data-ans="b-a|-a+b|b−a|−a+b" data-w="4"></span>$)=b^2-a^2$</p>
+        <p class="blank-q">(4) $($<span class="blank" data-ans="-1-x²|-x²-1|-1-x^2|-x^2-1|−1−x²|−x²−1" data-w="5"></span>$)(1-x^2)=x^4-1$</p>
+        <p class="tip small-t">(4) 提示：$x^4-1=-(1-x^4)$，相反项要放在哪？</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p78 练一练 1–3。第 3(4) 是本页难点：$x^4-1=(-x^2)^2-1^2$，与 $(1-x^2)$ 配对，相同项应是 $-x^2$，相反项是 $-1$ 与 $1$，所以填 $-1-x^2$（写成 $-x^2-1$ 也对）。</p>
+</section>
+
+<!-- 13 ================= 例 5、例 6、例 7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 例 6 · 例 7</span><h2>公式连用：先观察结构，再决定先算哪里</h2></div>
+  <div class="bd full top">
+    <div class="ex-grid">
+      <div class="col" data-step="1">
+        <p class="tip">例 5 (1) $(x-3)(x+3)(x^2+9)$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="2"><span>$=$</span><span>$(x^2-9)(x^2+9)$</span><i class="why">前两个先用平方差</i></div>
+          <div class="dl end" data-step="3"><span>$=$</span><span class="think" data-step="4" data-ask="再用一次">$x^4-81$</span></div>
+        </div>
+        <p class="tip">例 5 (2) $(2x+3)^2(2x-3)^2$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="5"><span>$=$</span><span>$[(2x+3)(2x-3)]^2$</span><i class="why">$a^nb^n=(ab)^n$</i></div>
+          <div class="dl" data-step="6"><span>$=$</span><span>$(4x^2-9)^2$</span></div>
+          <div class="dl end" data-step="7"><span>$=$</span><span>$16x^4-72x^2+81$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="8">
+        <p class="tip">例 6 $(2a+b)(b-2a)-(a-3b)^2$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="9"><span>$=$</span><span>$(b+2a)(b-2a)-(a-3b)^2$</span></div>
+          <div class="dl" data-step="10"><span>$=$</span><span>$b^2-4a^2-(a^2-6ab+9b^2)$</span><i class="why">完全平方的结果先加括号</i></div>
+          <div class="dl" data-step="11"><span>$=$</span><span>$b^2-4a^2-a^2+6ab-9b^2$</span><i class="why">去括号，各项变号</i></div>
+          <div class="dl end" data-step="12"><span>$=$</span><span>$-5a^2+6ab-8b^2$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="13">
+        <p class="tip">例 7 $(x+y+4)(x+y-4)$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="14"><span>$=$</span><span>$[(x+y)+4][(x+y)-4]$</span><i class="why">把 $(x+y)$ 看成“$a$”</i></div>
+          <div class="dl" data-step="15"><span>$=$</span><span>$(x+y)^2-4^2$</span></div>
+          <div class="dl end" data-step="16"><span>$=$</span><span>$x^2+2xy+y^2-16$</span></div>
+        </div>
+        <p class="tip" data-step="17"><b>想一想：</b>$(x+y-3)(x-y+3)$ 能用平方差公式吗？<span class="think" data-step="18" data-ask="谁相同，谁相反？">能：$=[x+(y-3)][x-(y-3)]=x^2-(y-3)^2=x^2-y^2+6y-9$。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p78–79 例 5–7 与“想一想”。例 5(2) 若直接展开两个平方再相乘会很繁，引导学生“先观察结构”：逆用积的乘方，先用平方差。例 6 第 10 步“先加括号再去括号”是防止符号错误的关键。想一想：把 $-y+3$ 写成 $-(y-3)$，才看出相同项 $x$ 与相反项 $\pm(y-3)$。</p>
+</section>
+
+<!-- 14 ================= 练一练（综合）+ 第 3 题图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>综合运用；四块长方形围成的正方形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算：(1) $a^2+(b-a)(b+a)$；(2) $(a-1)(a+1)(a^2-1)$；(3) $(3a+1)^2(3a-1)^2$；(4) $(a-b+c)(a-b-c)$．</p>
+        <details><summary>提示</summary>(2) 前两个因式相乘得 $a^2-1$；(3) 学例 5(2)；(4) 把 $a-b$ 看成整体。</details>
+        <details><summary>答案</summary>(1) $b^2$；(2) $(a^2-1)^2=a^4-2a^2+1$；(3) $(9a^2-1)^2=81a^4-18a^2+1$；(4) $(a-b)^2-c^2=a^2-2ab+b^2-c^2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 计算：(1) $\left(\dfrac a2-b\right)^2-\dfrac14(a+b)(a-b)$；(2) $2(x+y)(-x-y)-(2x+y)(-2x+y)$．</p>
+        <details><summary>提示</summary>(2) $2(x+y)(-x-y)=-2(x+y)^2$；$(2x+y)(-2x+y)=y^2-4x^2$。</details>
+        <details><summary>答案</summary>(1) $\dfrac{a^2}4-ab+b^2-\dfrac{a^2}4+\dfrac{b^2}4=-ab+\dfrac54b^2$；(2) $-2x^2-4xy-2y^2-y^2+4x^2=2x^2-4xy-3y^2$。</details>
+      </div>
+      <p class="tip"><b>第 3 题</b>（右图）阴影面积的两种表示：</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>方法一</span><span class="think" data-step="2" data-ask="4 块长方形">$4ab$</span></div>
+        <div class="dl" data-step="3"><span>方法二</span><span class="think" data-step="4" data-ask="大减小">$(a+b)^2-(a-b)^2$</span><i class="why">大正方形边长 $a+b$，中间空白边长 $a-b$</i></div>
+        <div class="dl end" data-step="5"><span>∴</span><span>$(a+b)^2-(a-b)^2=4ab$</span><i class="why">乘法公式验证：$(a^2+2ab+b^2)-(a^2-2ab+b^2)=4ab$</i></div>
+      </div>
+
+    </div>
+    <div class="col">
+      <p class="tip"><b>3.</b> 4 块完全相同的长方形（长 $a$、宽 $b$）围成一个正方形．用不同的代数式表示阴影部分的面积，能得到怎样的等式？</p>
+      <div id="ring4" class="gsq short"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="ring4a" min="2.5" max="6" step="0.5" value="5"><b class="v" id="ring4aV"></b>　$b=$<input type="range" id="ring4b" min="0.5" max="2.5" step="0.5" value="2"><b class="v" id="ring4bV"></b></div>
+      <p class="tip feedback" id="ring4Msg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p79 练一练 1–3。第 3 题的图按 a、b 精确绘制：中间空白正方形的边长正好是 $a-b$。把 b 拖到接近 a 时空白缩小，读数里的等式始终成立。这个等式下一节因式分解还会见到。</p>
+</section>
+
+<!-- 15 ================= 用公式巧算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">巧算 · 拓展</span><h2>把数“凑”成公式的样子</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="col" data-step="1">
+        <p class="tip"><b>习题 5 (1)</b> $998^2$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="998 离谁近？">$(1000-2)^2$</span></div>
+          <div class="dl" data-step="4"><span>$=$</span><span>$1000000-4000+4$</span></div>
+          <div class="dl end" data-step="5"><span>$=$</span><span>$996004$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="6">
+        <p class="tip"><b>习题 5 (2)</b> $1007\times993$</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="7"><span>$=$</span><span class="think" data-step="8" data-ask="两数的“中间数”？">$(1000+7)(1000-7)$</span></div>
+          <div class="dl" data-step="9"><span>$=$</span><span>$1000^2-7^2$</span></div>
+          <div class="dl end" data-step="10"><span>$=$</span><span>$999951$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="11">
+        <p class="tip">你来试：$102^2=$<span class="blank" data-ans="10404" data-w="5"></span>，$59\times61=$<span class="blank" data-ans="3599" data-w="4"></span>，$49^2=$<span class="blank" data-ans="2401" data-w="4"></span></p>
+        <div class="hint-ladder">
+          <p class="q"><b>习题 2</b> 边长 20 的正方形草坪中修了横、竖两条宽 $a$ 的小路（如图），用不同的代数式表示草坪面积．</p>
+          <svg viewBox="0 0 200 130" class="fig-sm" id="lawnFig" aria-label="草坪与两条小路"></svg>
+          <details><summary>提示</summary>把四块草坪“推”到一起，拼成边长为多少的正方形？</details>
+          <details><summary>答案</summary>$(20-a)^2=400-40a+a^2$；也可用 $400-20a-20a+a^2$ 表示（两条路的交叉处减了两次）。</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p80 习题 9.4 第 5 题、第 2 题。巧算的关键是“凑整”：998 = 1000 − 2；1007 与 993 的“中间数”是 1000。习题 2 的草坪图按比例绘制（a = 3），四块草坪平移拼起来正好是边长 20 − a 的正方形，与第 4 页“减两次加回一次”一致。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">完全平方公式：$(a\pm b)^2=a^2\pm2ab+b^2$</p>
+        <p class="def">平方差公式：$(a+b)(a-b)=a^2-b^2$</p>
+        <p class="warn" data-label="别漏 · 别错">$(a+b)^2\ne a^2+b^2$；$(a-b)^2$ 的末项是 $+b^2$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="认 a、b">完全平方：看成两数和（差）的平方；平方差：找相同项（$a$）、相反项（$b$）。</p>
+        <p class="method" data-label="先观察结构">调换顺序、添括号、整体代换，凑出公式的样子。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">面积拼图看见 $2ab$；剪拼看见 $(a+b)(a-b)$。</p>
+        <p class="recall" data-label="一般到特殊 · 整体">公式是多项式乘法的特例；把 $x+y$ 看成一个字母。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>9.5 多项式的因式分解——把公式<b>反过来</b>用：$a^2-b^2=(a+b)(a-b)$，$a^2\pm2ab+b^2=(a\pm b)^2$。</p>
+  </div>
+  <p class="note">请学生先说出两个公式及其“长相”，再逐栏揭示。作业建议：习题 9.4 第 1、4、6、7 题。第 7 题（先化简再求值）是乘法公式最典型的用途：化简后再代入，数据会简单得多。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

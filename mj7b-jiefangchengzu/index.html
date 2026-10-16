@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>解二元一次方程组 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/qiuchang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第10章 二元一次方程组 · 10.3</p>
+    <h1 class="cover-title">解二元一次方程组</h1>
+    <p class="cover-q" data-step="1">篮球比赛：赢一场得 2 分，输一场得 1 分。某球队赛了 <b>12</b> 场，共得 <b>20</b> 分。该球队赢了几场？输了几场？</p>
+    <p class="cover-q" data-step="2">小明设了两个未知数，列出方程组；小丽只设了一个未知数，列出一元一次方程。她们的方法之间有什么联系？</p>
+    <div class="chips" data-step="3"><span class="chip">消元：二元 → 一元</span><span class="chip">代入消元法</span><span class="chip">加减消元法</span><span class="chip">消元操作台</span></div>
+  </div>
+  <p class="note">课本 p99“议一议”。上一节“鸡兔同笼”是试出来的，这节课要“算”出来。先让学生分别用两个未知数、一个未知数列式，第 3 页比较。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 4.2 · 解一元一次方程" data-step="1">
+        <p>去分母、去括号、移项、合并同类项、系数化为 1。</p>
+        <span class="use">消元后得到的就是一元一次方程，按老办法解。<a href="../mj7a-jieyiyuanyici/index.html">回看 4.2</a></span>
+      </div>
+      <div class="recall" data-label="七上 · 等式的性质" data-step="2">
+        <p>等式两边同时加（减）同一个数或式子，同时乘同一个数（或除以同一个不为 0 的数），结果仍是等式。</p>
+        <span class="use">加减法的依据：两个等式“左加左、右加右”仍相等；方程两边同乘一个数。</span>
+      </div>
+      <div class="recall" data-label="10.1 · 10.2" data-step="3">
+        <p>$x+3y=7$ 可写成 $x=7-3y$；方程组的解是两个方程的<b>公共解</b>。</p>
+        <span class="use">代入法的第一步；求出解后代回检验。<a href="../mj7b-fangchengzu/index.html">回看 10.2</a></span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主角：</b>我们会解“一元”方程，不会直接解“二元”方程组——能不能想办法<b>消去</b>一个未知数？</p>
+  </div>
+  <p class="note">第二张卡是加减消元法的理论依据，要求学生能说出“为什么两个方程可以相加”。</p>
+</section>
+
+<!-- 3 ================= 议一议 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>小明和小丽的方法有什么联系？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="小明：两个未知数" data-step="1">设赢了 $x$ 场，输了 $y$ 场：$\begin{cases}x+y=12,\\2x+y=20.\end{cases}$</div>
+      <div class="recall" data-label="小丽：一个未知数" data-step="2">设赢了 $x$ 场，则输了 $(12-x)$ 场：$2x+(12-x)=20$．</div>
+    </div>
+    <p class="tip" data-step="3">比较：小丽式子里的 $(12-x)$ 就是小明的 <span class="think" data-step="4" data-ask="?">$y$——由 $x+y=12$ 得 $y=12-x$。</span></p>
+    <p class="tip" data-step="5">把小明第二个方程里的 $y$ 换成 $12-x$，<span class="think" data-step="6" data-ask="得到什么？">就得到小丽的一元一次方程 $2x+(12-x)=20$，解得 $x=8$，$y=4$。</span></p>
+    <p class="method" data-step="7" data-label="启发：消元">二元一次方程组 $\xrightarrow{\text{消去一个未知数}}$ 一元一次方程。这就是“<b>消元</b>”——化未知为已知、化二元为一元的<b>转化</b>思想。</p>
+  </div>
+  <p class="note">课本 p99“议一议”的两个小人。关键是让学生自己发现“小丽的 12 − x 就是小明的 y”，消元的想法由此自然产生。</p>
+</section>
+
+<!-- 4 ================= 例 1 代入 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>代入：用一个未知数表示另一个</h2></div>
+  <div class="bd full top">
+    <div>
+      <p class="tip">解方程组 $\begin{cases}x+y=12,&\text{\textcircled{1}}\\2x+y=20.&\text{\textcircled{2}}\end{cases}$</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>由①，得</span><span class="think" data-step="2" data-ask="y = ?">$y=12-x$　③</span><i class="why">用含 $x$ 的式子表示 $y$</i></div>
+        <div class="dl key" data-step="3"><span>将③代入②</span><span class="think" data-step="4" data-ask="得到什么方程？">$2x+12-x=20$</span><i class="why">消去未知数 $y$，得到关于 $x$ 的一元一次方程</i></div>
+        <div class="dl" data-step="5"><span>解得</span><span>$x=8$</span><i class="why">解一元一次方程</i></div>
+        <div class="dl" data-step="6"><span>将 $x=8$ 代入③</span><span>$y=4$</span><i class="why">代入③最简单</i></div>
+        <div class="dl end" data-step="7"><span>所以原方程组的解是</span><span>$\begin{cases}x=8,\\y=4.\end{cases}$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="warn" data-step="8" data-label="易错：代回原来的方程">③ 是由①变形来的，<b>不能</b>再把③代入①——那样得到 $x+12-x=12$，$12=12$，什么也求不出来。</p>
+      <p class="tip" data-step="9"><b>检验：</b>$8+4=12$ ✓，$2\times8+4=20$ ✓——赢 8 场，输 4 场。</p>
+    </div>
+  </div>
+  <p class="note">课本 p99 例 1 与旁边小人的提示。推导每一步先让学生说“下一步做什么”。易错警示是常见现象：学生把③代回①，得到恒等式，困惑不解——要代入<b>另一个</b>方程。KaTeX 中的①②为方程编号。</p>
+</section>
+
+<!-- 5 ================= 做一做 + 代入消元法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 · 方法</span><h2>代入消元法</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 将例 1 中方程①变形为 $x=12-y$，代入方程②解方程组．</p>
+        <details><summary>提示</summary>$2(12-y)+y=20$，注意括号。</details>
+        <details><summary>答案</summary>$24-2y+y=20$，$y=4$；代入 $x=12-y$ 得 $x=8$。结果和例 1 一样。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 解方程组 $\begin{cases}x+3y=11,\\3x+2y=12.\end{cases}$</p>
+        <details><summary>提示</summary>由第一个方程得 $x=11-3y$（$x$ 的系数是 1，最好变形）。</details>
+        <details><summary>答案</summary>$3(11-3y)+2y=12$，$33-7y=12$，$y=3$，$x=2$。——上一节摸球问题的答案！</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>代入消元法（课本 p100）</h4>将方程组的一个方程中的某个未知数用含有另一个未知数的代数式表示，并代入另一个方程，消去这个未知数，从而把解二元一次方程组转化为解一元一次方程．这种解方程组的方法称为<em>代入消元法</em>，简称<em>代入法</em>．</div>
+      <div class="flow" data-step="2"><span>① 变形：$y=\ldots$</span><i>→</i><span>② 代入另一个方程</span><i>→</i><span>③ 解一元方程</span><i>→</i><span>④ 回代求另一个</span><i>→</i><span>⑤ 写出解</span></div>
+      <p class="method" data-step="3" data-label="选谁变形">优先选系数为 $1$ 或 $-1$ 的未知数来表示，计算最简单。</p>
+    </div>
+  </div>
+  <p class="note">课本 p99 做一做与 p100 代入消元法的定义。做一做 2 正是 10.2 摸球问题的方程组，学生会很有成就感：不用试，算出来了。</p>
+</section>
+
+<!-- 6 ================= 练一练 代入法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用代入法解下列方程组</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q">(1) $\begin{cases}y=x,\\y+4x=15;\end{cases}$　(2) $\begin{cases}x+2y=4,\\2x-3y=1;\end{cases}$</p>
+        <details><summary>提示</summary>(1) 直接把 $y=x$ 代入；(2) 由第一个方程得 $x=4-2y$。</details>
+        <details><summary>答案</summary>(1) $5x=15$，$\begin{cases}x=3\\y=3\end{cases}$；(2) $2(4-2y)-3y=1$，$y=1$，$\begin{cases}x=2\\y=1\end{cases}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(3) $\begin{cases}x-7y=0,\\x-9y+8=0;\end{cases}$　(4) $\begin{cases}x-y=3,\\x+y=5.\end{cases}$</p>
+        <details><summary>提示</summary>(3) $x=7y$；(4) $x=y+3$。</details>
+        <details><summary>答案</summary>(3) $7y-9y+8=0$，$y=4$，$\begin{cases}x=28\\y=4\end{cases}$；(4) $y+3+y=5$，$y=1$，$\begin{cases}x=4\\y=1\end{cases}$。</details>
+      </div>
+    </div>
+    <p class="tip" data-step="1">做完 (4) 想一想：两个方程<b>直接相加</b>会怎样？<span class="think" data-step="2" data-ask="试试">$(x-y)+(x+y)=3+5$，$2x=8$，$y$ 一下子就没了！——这就是下面要学的另一种方法。</span></p>
+  </div>
+  <p class="note">课本 p100 练一练。第 (4) 题作为过渡：两方程中 y 的系数互为相反数，相加就能消去 y，引出例 2 的加减法。</p>
+</section>
+
+<!-- 7 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>两边分别相加，直接消去 $y$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">解方程组 $\begin{cases}x+2y=1,&\text{\textcircled{1}}\\3x-2y=5.&\text{\textcircled{2}}\end{cases}$</p>
+      <div class="cols2">
+        <p class="recall" data-label="想法一" data-step="1">由①得 $x=1-2y$，代入②就能消去 $x$。</p>
+        <p class="recall" data-label="想法二" data-step="2">①、②左右两边分别相加，就能直接消去 $y$。</p>
+      </div>
+      <p class="tip" data-step="3">为什么能加？<span class="think" data-step="4" data-ask="依据？">①的左边等于右边，②的左边等于右边，“等量加等量，和相等”（等式的性质）。$2y$ 与 $-2y$ 互为相反数，相加为 0。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="5"><span>①+②，得</span><span>$4x=6$</span><i class="why">$(x+3x)+(2y-2y)=1+5$</i></div>
+        <div class="dl" data-step="6"><span></span><span>$x=\dfrac32$</span><i class="why">系数化为 1</i></div>
+        <div class="dl" data-step="7"><span>将 $x=\dfrac32$ 代入①</span><span>$\dfrac32+2y=1$</span><i class="why"></i></div>
+        <div class="dl" data-step="8"><span></span><span>$y=-\dfrac14$</span><i class="why"></i></div>
+        <div class="dl end" data-step="9"><span>所以原方程组的解是</span><span>$\begin{cases}x=\dfrac32,\\y=-\dfrac14.\end{cases}$</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p100 例 2 及两个小人的想法。想法一也能做，但会出现分数运算；想法二一步就消去 y。可以请一半同学用想法一、一半用想法二，比较哪个快。</p>
+</section>
+
+<!-- 8 ================= 例 3 + 消元操作台（核心交互） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 操作台</span><h2>系数不相等？先乘，再加减</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="desk-pick" id="deskPick" data-noswipe></div>
+      <div class="desk-eq" id="deskEq"></div>
+      <div class="desk-ops" data-noswipe>
+        <span class="stepper" id="deskK1"></span><span class="stepper" id="deskK2"></span>
+        <button class="btn" type="button" id="deskAdd">③ + ④</button><button class="btn" type="button" id="deskSub">③ − ④</button>
+      </div>
+      <p class="tip feedback desk-res" id="deskMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">例 3　解方程组 $\begin{cases}5x-2y=4,&\text{\textcircled{1}}\\2x-3y=-5.&\text{\textcircled{2}}\end{cases}$　如何消去 $y$？</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>想法</span><span class="think" data-step="2" data-ask="怎么让 y 的系数相同？">使两个方程中 $y$ 的系数相等：2 和 3 的最小公倍数是 6</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>①×3，得</span><span>$15x-6y=12$　③</span><i class="why">等式的性质</i></div>
+        <div class="dl" data-step="4"><span>②×2，得</span><span>$4x-6y=-10$　④</span><i class="why"></i></div>
+        <div class="dl key" data-step="5"><span>③−④，得</span><span>$11x=22$，$x=2$</span><i class="why">$y$ 的系数相同，相减消去</i></div>
+        <div class="dl" data-step="6"><span>代入①</span><span>$5\times2-2y=4$，$y=3$</span><i class="why"></i></div>
+        <div class="dl end" data-step="7"><span>所以</span><span>$\begin{cases}x=2,\\y=3.\end{cases}$</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p101 例 3。左边“消元操作台”是本课的核心交互：给①、②各选一个乘数（±），再选“相加”或“相减”，台子会精确算出新方程，告诉你消去了哪个未知数、解出多少。先让学生自己在台子上试出“①×3、②×2、相减”，再看右边的书写格式。也可以试试别的组合：乘数选错时，两个未知数都还在。</p>
+</section>
+
+<!-- 9 ================= 想一想 + 加减消元法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 方法</span><h2>也可以消去 $x$ 吗？加减消元法</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1"><b>想一想：</b>可以消去 $x$，解例 3 中的方程组吗？</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>①×2</span><span class="think" data-step="3" data-ask="?">$10x-4y=8$　③</span><i class="why">$x$ 的系数 5 和 2，公倍数 10</i></div>
+        <div class="dl" data-step="3"><span>②×5</span><span>$10x-15y=-25$　④</span><i class="why"></i></div>
+        <div class="dl key" data-step="4"><span>③−④</span><span class="think" data-step="5" data-ask="?">$11y=33$，$y=3$</span><i class="why"></i></div>
+        <div class="dl end" data-step="6"><span>代入①</span><span>$5x-6=4$，$x=2$</span><i class="why">结果相同</i></div>
+      </div>
+      <p class="tip small-t" data-step="6">回上一页的操作台，选“①×2、②×5、相减”验证。</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="7"><h4>加减消元法（课本 p101）</h4>把方程组的两个方程（或先做适当变形）的左、右两边分别相加或相减，消去其中一个未知数，从而把解二元一次方程组转化为解一元一次方程．这种解方程组的方法称为<em>加减消元法</em>，简称<em>加减法</em>．</div>
+      <p class="method" data-step="8" data-label="加还是减？">同一未知数的系数<b>相同</b>→ 相减；<b>互为相反数</b>→ 相加；都不是 → 先乘适当的数，使系数绝对值相等。</p>
+    </div>
+  </div>
+  <p class="note">课本 p101“想一想”与加减消元法的定义。消去 x 和消去 y 都可以，选乘数较小的那个更简便（本题消 y 用 3 和 2，消 x 用 2 和 5）。</p>
+</section>
+
+<!-- 10 ================= 怎样选方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>用哪种方法更简便？</h2></div>
+  <div class="bd full">
+    <div class="jgrid">
+      <div class="jcard"><p>(1) $\begin{cases}y=2x-3\\3x+2y=8\end{cases}$</p><div class="pick" data-ans="d"><button type="button" data-k="d">代入法</button><button type="button" data-k="j">加减法</button><p class="pick-why">第一个方程已经是“$y=$ 含 $x$ 的式子”，直接代入。（解：$x=2$，$y=1$）</p></div></div>
+      <div class="jcard"><p>(2) $\begin{cases}2x+y=32\\2x-y=0\end{cases}$</p><div class="pick" data-ans="j"><button type="button" data-k="d">代入法</button><button type="button" data-k="j">加减法</button><p class="pick-why">$y$ 的系数互为相反数，相加即可。（$x=8$，$y=16$）</p></div></div>
+      <div class="jcard"><p>(3) $\begin{cases}6x+5z=25\\3x+4z=20\end{cases}$</p><div class="pick" data-ans="j"><button type="button" data-k="d">代入法</button><button type="button" data-k="j">加减法</button><p class="pick-why">没有系数为 1 的未知数；②×2 后 $x$ 的系数相同，相减。（$x=0$，$z=5$）</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="小结">两种方法的本质相同：<b>消元</b>，把“二元”转化为“一元”。有系数为 $\pm1$ 的未知数（或已解出一个未知数）时用代入法方便；同一未知数系数相等、相反或成倍数时用加减法方便。</p>
+  </div>
+  <p class="note">三道题都选自课本练习（(2)(3) 是 p102 练一练 (1)(3)），先选方法再说理由；括号里的解供核对。</p>
+</section>
+
+<!-- 11 ================= 练一练 加减法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>解下列方程组（可用操作台验证）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q">(1) $\begin{cases}2x+y=32,\\2x-y=0;\end{cases}$　(2) $\begin{cases}3x-y=-4,\\x-2y=-3;\end{cases}$</p>
+        <details><summary>提示</summary>(1) 相加消 $y$；(2) ①×2 后与②相减消 $y$。</details>
+        <details><summary>答案</summary>(1) $4x=32$，$\begin{cases}x=8\\y=16\end{cases}$；(2) $6x-2y=-8$，减②得 $5x=-5$，$\begin{cases}x=-1\\y=1\end{cases}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(3) $\begin{cases}6x+5z=25,\\3x+4z=20;\end{cases}$　(4) $\begin{cases}3s+4t=7,\\3t-2s=1.\end{cases}$</p>
+        <details><summary>提示</summary>(3) ②×2 再减①；(4) 先把②写成 $-2s+3t=1$，再①×2 + ②×3 消 $s$。</details>
+        <details><summary>答案</summary>(3) $3z=15$，$\begin{cases}x=0\\z=5\end{cases}$；(4) $17t=17$，$\begin{cases}s=1\\t=1\end{cases}$。</details>
+      </div>
+    </div>
+    <p class="warn" data-step="1" data-label="易错">两式相减时，<b>右边也要减</b>，而且负数要加括号：$-8-(-3)=-5$。未知数不一定叫 $x$、$y$：(3) 是 $x$、$z$，(4) 是 $s$、$t$。</p>
+  </div>
+  <p class="note">课本 p102 练一练。这 4 题都在第 8 页操作台的题目按钮里，学生做完可上台验证乘数和加减的选择是否正确。</p>
+</section>
+
+<!-- 12 ================= 习题精选 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 10.3</span><h2>综合运用：选方法、去分母、求系数</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1 (2)</b> 用代入法解 $\begin{cases}-x+3y=7,\\2x=5y.\end{cases}$</p>
+        <details><summary>提示</summary>由②得 $x=\dfrac52y$，或由①得 $x=3y-7$。</details>
+        <details><summary>答案</summary>$x=3y-7$ 代入②：$6y-14=5y$，$y=14$，$x=35$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2 (4)</b> 用加减法解 $\begin{cases}\dfrac x2+\dfrac y3=16,\\\dfrac x3-\dfrac y4=5.\end{cases}$</p>
+        <details><summary>提示</summary>先去分母：①×6，②×12。</details>
+        <details><summary>答案</summary>$\begin{cases}3x+2y=96\\4x-3y=60\end{cases}$；①×3 + ②×2：$17x=408$，$x=24$，$y=12$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在等式 $y=ax+b$ 中，当 $x=5$ 时，$y=6$；当 $x=-3$ 时，$y=-10$．求 $a$、$b$ 的值．</p>
+        <details><summary>提示</summary>代入得关于 $a$、$b$ 的方程组：$\begin{cases}5a+b=6\\-3a+b=-10\end{cases}$。</details>
+        <details><summary>答案</summary>相减：$8a=16$，$a=2$；$b=6-10=-4$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p102 习题 10.3 选题。第 3 题“未知数是 a、b”，是八年级求一次函数表达式（待定系数法）的雏形。其余习题可布置为作业。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">代入消元法：变形 → 代入 → 解 → 回代。</p>
+        <p class="def">加减消元法：乘数使系数相等或相反 → 相减或相加。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="选方法">有 $\pm1$ 系数用代入；系数相等、相反、成倍数用加减。</p>
+        <p class="method" data-label="检验">解出后代入原方程组的两个方程。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="消元 · 转化">二元 → 一元，未知 → 已知。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>10.4 三元一次方程组（选学）同样用消元：三元 → 二元 → 一元。10.5 用二元一次方程组解决实际问题。<a href="../mj7b-fangchengzuwenti/index.html">10.5 →</a></p>
+  </div>
+  <p class="note">作业建议：习题 10.3 第 1、2 题。请学生口述：“消元”消的是什么？为什么能消？</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

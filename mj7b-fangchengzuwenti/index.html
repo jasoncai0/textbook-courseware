@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用二元一次方程组解决问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/qiao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第10章 二元一次方程组 · 10.5</p>
+    <h1 class="cover-title">用二元一次方程组解决问题</h1>
+    <p class="cover-q" data-step="1">一座铁路桥长 1 000 m。一列火车从开始上桥到完全过桥用了 1 min，整列火车完全在桥上的时间是 40 s。</p>
+    <p class="cover-q" data-step="2">火车的<b>速度</b>和<b>长度</b>都不知道——两个未知数，能求出来吗？</p>
+    <div class="chips" data-step="3"><span class="chip">找两个相等关系</span><span class="chip">列表格</span><span class="chip">画线段图</span><span class="chip">火车过桥模拟器</span></div>
+  </div>
+  <p class="note">封面是课本问题 6（p110）的情境，作为全课的悬念，在第 11–12 页解决。本课例题多（6 个问题），建议 2 课时：第 1 课时到第 9 页（问题 1–4），第 2 课时从第 10 页开始。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>解决问题的“老步骤”和“新工具”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 4.3 · 列方程解应用题" data-step="1">
+        <p>审题 → 设未知数 → 找相等关系、列方程 → 解方程 → 检验 → 答。</p>
+        <span class="use">步骤不变，只是可以设<b>两个</b>未知数、找<b>两个</b>相等关系。<a href="../mj7a-fangchengjiejuewenti/index.html">回看 4.3</a></span>
+      </div>
+      <div class="recall" data-label="10.3 · 解方程组" data-step="2">
+        <p>代入消元法、加减消元法：二元 → 一元。</p>
+        <span class="use">列出方程组后，选简便的方法解。<a href="../mj7b-jiefangchengzu/index.html">回看 10.3</a></span>
+      </div>
+      <div class="recall" data-label="小学 · 数量关系" data-step="3">
+        <p>路程 = 速度 × 时间；总价 = 单价 × 数量；$1\text{ min}=60\text{ s}$，$1\text{ h}=3\,600\text{ s}$，$1\text{ kg}=1\,000\text{ g}$。</p>
+        <span class="use">问题 3 要统一单位；问题 6 用路程关系列方程。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主角：</b>实际问题 $\xrightarrow{\ \text{设两个未知数，找两个相等关系}\ }$ 二元一次方程组 $\xrightarrow{\ \text{消元}\ }$ 答案。</p>
+  </div>
+  <p class="note">第一张卡请学生先背出七上学过的步骤。强调：设两个未知数时，题目里通常“藏着”两个相等关系，一个都不能少。</p>
+</section>
+
+<!-- 3 ================= 数学实验室：硬币 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>猜硬币：1 角和 5 角各几枚？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">“我有 1 角、5 角的硬币共 <b>40</b> 枚，总面值为 <b>12</b> 元．你知道我有 1 角、5 角的硬币各几枚吗？”</p>
+      <div class="scal" data-noswipe>1 角 $x=$<input type="range" id="coinX" min="0" max="40" step="1" value="30"><span class="big" id="coinXV"></span>枚　5 角 $y=$<span class="big" id="coinYV"></span>枚</div>
+      <p class="tip feedback" id="coinMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>相等关系①</span><span class="think" data-step="2" data-ask="个数">$x+y=40$</span><i class="why">1 角枚数 + 5 角枚数 = 40</i></div>
+        <div class="dl" data-step="3"><span>相等关系②</span><span class="think" data-step="4" data-ask="钱数（用角作单位）">$x+5y=120$</span><i class="why">12 元 = 120 角，单位要统一</i></div>
+        <div class="dl" data-step="5"><span>②−①</span><span>$4y=80$，$y=20$，$x=20$</span><i class="why">加减法</i></div>
+        <div class="dl end" data-step="6"><span>答</span><span>1 角、5 角硬币各 20 枚</span><i class="why">检验：$20+20=40$，$20+100=120$ ✓</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p106 数学实验室。两人一组：一人出题（真的数好硬币），另一人列方程组求解。左边的滑块是“试”的办法，只调 1 角的枚数（5 角 = 40 − 1 角），总面值随之变化；再与右边“算”的办法对比。注意单位：元换成角，或者写成 $0.1x+0.5y=12$。</p>
+</section>
+
+<!-- 4 ================= 问题 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1</span><h2>旅行社：人数与收费，两个相等关系</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">国庆长假期间，某旅行社接待 1 日游和 3 日游的旅客共 2 200 人，收旅游费 200 万元，其中 1 日游每人收费 200 元，3 日游每人收费 1 500 元．该旅行社接待的 1 日游和 3 日游旅客各有多少人？</p>
+      <div class="method" data-step="1" data-label="分析：两个相等关系">1 日游旅客人数 + 3 日游旅客人数 $=2\,200$；<br>所收的 1 日游旅游费 + 所收的 3 日游旅游费 $=200$ 万元．</div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="2"><span>设</span><span>1 日游 $x$ 人，3 日游 $y$ 人</span><i class="why">问什么，设什么</i></div>
+        <div class="dl" data-step="3"><span>则收费</span><span class="think" data-step="4" data-ask="各收多少元？">$200x$ 元，$1\,500y$ 元</span><i class="why">总价 = 单价 × 人数</i></div>
+        <div class="dl key" data-step="5"><span>根据题意</span><span>$\begin{cases}x+y=2\,200,\\200x+1\,500y=2\,000\,000.\end{cases}$</span><i class="why">200 万元 = 2 000 000 元</i></div>
+        <div class="dl" data-step="6"><span>解得</span><span class="think" data-step="7" data-ask="自己解一解">$\begin{cases}x=1\,000,\\y=1\,200.\end{cases}$</span><i class="why">第二个方程先两边除以 100：$2x+15y=20\,000$</i></div>
+        <div class="dl end" data-step="8"><span>答</span><span>1 日游 1 000 人，3 日游 1 200 人</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p106 问题 1。提醒两点：① “200 万元”要换成元；② 方程 200x + 1 500y = 2 000 000 两边先同除以 100 再解，数据会小很多。解法：由①得 x = 2 200 − y，代入 2x + 15y = 20 000：4 400 + 13y = 20 000，y = 1 200。</p>
+</section>
+
+<!-- 5 ================= 问题 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2</span><h2>废旧电池：每节多重？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">某校环保小组收集废旧电池．第一天收集 5 节 1 号电池、6 节 5 号电池，总质量为 500 g；第二天收集 3 节 1 号电池、4 节 5 号电池，总质量为 310 g．1 节 1 号电池和 1 节 5 号电池的质量分别是多少？</p>
+      <div class="method" data-step="1" data-label="分析">5 节 1 号的质量 + 6 节 5 号的质量 $=500$ g；<br>3 节 1 号的质量 + 4 节 5 号的质量 $=310$ g．</div>
+      <p class="recall" data-label="读一读：废旧电池的危害" data-step="7">1 节 1 号废旧锌锰电池约 70 g。电池里含少量铅、汞、镉等重金属，泄漏后会污染土壤和水源——请把废电池投进回收箱。</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="2"><span>设</span><span>1 号每节 $x$ g，5 号每节 $y$ g</span><i class="why"></i></div>
+        <div class="dl key" data-step="3"><span>根据题意</span><span>$\begin{cases}5x+6y=500,\\3x+4y=310.\end{cases}$</span><i class="why"></i></div>
+        <div class="dl" data-step="4"><span>怎样消元？</span><span class="think" data-step="5" data-ask="选乘数">①×2 − ②×3：$x=70$；代入得 $y=25$</span><i class="why">$10x+12y=1\,000$，$9x+12y=930$</i></div>
+        <div class="dl end" data-step="6"><span>答</span><span>1 号电池 70 g，5 号电池 25 g</span><i class="why">检验：$350+150=500$，$210+100=310$ ✓</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p106–107 问题 2 与“读一读”。本题系数都不是 1，用加减法：消 y 的乘数是 2 和 3。可回顾 10.3 的消元操作台。读一读只简述，渗透环保教育。</p>
+</section>
+
+<!-- 6 ================= 练一练 p107 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>先找两个相等关系，再列方程组</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 停车场收费：中型汽车 10 元/辆，小型汽车 6 元/辆．现在停车场内停有 50 辆中、小型汽车，共缴纳停车费 360 元，中、小型汽车各有多少辆？</p>
+        <details><summary>提示</summary>辆数之和 = 50；停车费之和 = 360。</details>
+        <details><summary>答案</summary>设中型 $x$ 辆、小型 $y$ 辆：$\begin{cases}x+y=50\\10x+6y=360\end{cases}$，解得 $\begin{cases}x=15\\y=35\end{cases}$。中型 15 辆，小型 35 辆。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一个两位数的十位数字与个位数字的和是 7，如果把它的个位数字与十位数字互换，那么所得的两位数比原数大 45．求这个两位数．</p>
+        <details><summary>提示 1</summary>设十位数字 $x$、个位数字 $y$，原数是 $10x+y$（不是 $xy$！）。</details>
+        <details><summary>提示 2</summary>新数是 $10y+x$：$(10y+x)-(10x+y)=45$，化简 $y-x=5$。</details>
+        <details><summary>答案</summary>$\begin{cases}x+y=7\\y-x=5\end{cases}$，$x=1$，$y=6$，这个两位数是 16（$61-16=45$ ✓）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p107 练一练。第 2 题的难点是“两位数的表示”：十位数字 x、个位数字 y 的两位数是 10x + y，七上代数式里学过。</p>
+</section>
+
+<!-- 7 ================= 问题 3：列表格 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3</span><h2>列表格，找相等关系</h2></div>
+  <div class="bd full">
+    <p class="tip">某厂生产甲、乙两种型号的产品，生产 1 个甲种产品需用时 8 s、铜 8 g；生产 1 个乙种产品需用时 6 s、铜 16 g．如果生产甲、乙两种产品共用时 1 h、用铜 6.4 kg，那么甲、乙两种产品各生产多少个？</p>
+    <p class="tip" data-step="1"><b>填表</b>（设甲种 $x$ 个、乙种 $y$ 个；填好按回车）：</p>
+    <table class="mtab" data-step="1">
+      <tr><th></th><th>甲种产品 $x$ 个</th><th>乙种产品 $y$ 个</th><th>总计</th></tr>
+      <tr><td>用时/s</td><td><span class="blank" data-ans="8x" data-w="3"></span></td><td><span class="blank" data-ans="6y" data-w="3"></span></td><td><span class="blank" data-ans="3600" data-w="4"></span></td></tr>
+      <tr><td>用铜/g</td><td><span class="blank" data-ans="8x" data-w="3"></span></td><td><span class="blank" data-ans="16y" data-w="3"></span></td><td><span class="blank" data-ans="6400" data-w="4"></span></td></tr>
+    </table>
+    <div class="cols2">
+      <div class="derive" data-step="2">
+        <div class="dl"><span>根据题意</span><span>$\begin{cases}8x+6y=3\,600,\\8x+16y=6\,400.\end{cases}$</span><i class="why">每一行都是一个相等关系</i></div>
+      </div>
+      <div class="derive" data-step="3">
+        <div class="dl"><span>②−①</span><span class="think" data-step="4" data-ask="解">$10y=2\,800$，$y=280$，$x=240$</span><i class="why">$x$ 的系数相同，相减</i></div>
+        <div class="dl end"><span>答</span><span class="think" data-step="5" data-ask="?">甲种 240 个，乙种 280 个</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p108 问题 3 与小人举的牌子“列表格找相等关系！”。表格的“总计”一栏要统一单位：1 h = 3 600 s，6.4 kg = 6 400 g——最常见的错误是直接写 1 和 6.4。</p>
+</section>
+
+<!-- 8 ================= 问题 4：水费 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 4</span><h2>阶梯水价：两种价格各是多少？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">每户每月用水不超过 15 m³ 时，按基本价格收费；超过 15 m³ 时，超过的部分加价收费．某户 4 月用水 16 m³、水费 50 元；5 月用水 20 m³、水费 70 元．求两种收费价格．</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>设</span><span>基本价 $x$ 元/m³，超出部分 $y$ 元/m³</span><i class="why"></i></div>
+        <div class="dl key" data-step="2"><span>根据题意</span><span class="think" data-step="3" data-ask="16 m³ 怎么拆？">$\begin{cases}15x+(16-15)y=50,\\15x+(20-15)y=70.\end{cases}$</span><i class="why">前 15 m³ 按基本价，超出的按加价</i></div>
+        <div class="dl end" data-step="4"><span>解得</span><span>$\begin{cases}x=3,\\y=5.\end{cases}$</span><i class="why">②−①：$4y=20$</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5"><b>水费计算器</b>（$x=3$，$y=5$）：拖动用水量</p>
+      <div class="scal" data-noswipe data-step="5">用水 <input type="range" id="waterU" min="0" max="30" step="1" value="16"><span class="big" id="waterUV"></span>m³</div>
+      <svg id="waterBar" viewBox="0 0 520 90" class="fig-sm" data-step="5" aria-label="水费分段条"></svg>
+      <p class="tip feedback" id="waterMsg" data-step="5"></p>
+      <p class="tip" data-step="6"><b>做一做：</b>某户某月交水费 80 元，用水量是多少？<span class="think" data-step="7" data-ask="先判断是否超过 15 m³">$15\times3=45\lt80$，超过了；超出部分 $(80-45)\div5=7$，用水 $15+7=22$ m³。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p108–109 问题 4 与“做一做”。阶梯计价是生活中常见的分段收费。计算器的分段条按用水量精确画出：蓝色是前 15 m³（3 元/m³），橙色是超出部分（5 元/m³）。可以拖到 16、20 验证表格中的 50 元、70 元，再拖到 22 验证做一做。</p>
+</section>
+
+<!-- 9 ================= 练一练 p109 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>救灾物资；邮购杂志</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 运输两批救灾物资，第一批 360 t，用 6 节火车车皮和 15 辆汽车正好装完；第二批 440 t，用 8 节火车车皮和 10 辆汽车正好装完．每节火车车皮和每辆汽车平均各装物资多少（单位：t）？</p>
+        <details><summary>提示</summary>$\begin{cases}6x+15y=360\\8x+10y=440\end{cases}$，可先化简为 $2x+5y=120$、$4x+5y=220$。</details>
+        <details><summary>答案</summary>相减 $2x=100$，$x=50$，$y=4$：每节车皮 50 t，每辆汽车 4 t。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 邮购每册 6 元的杂志：1～99 册，邮寄费为书价的 10%，书价不优惠；100 册以上（含 100），免邮费、书价优惠 10%．两次邮购共 200 册，总计 1 140 元．两次各邮购多少册？</p>
+        <details><summary>提示 1</summary>两次都不到 100 册不可能（共 200 册）；两次都是 100 册时只要 $200\times6\times0.9=1\,080$ 元。所以一次少于 100 册，一次不少于 100 册。</details>
+        <details><summary>提示 2</summary>少的一次 $x$ 册：$6x\times1.1$；多的一次 $y$ 册：$6y\times0.9$。</details>
+        <details><summary>答案</summary>$\begin{cases}x+y=200\\6.6x+5.4y=1\,140\end{cases}$，$x=50$，$y=150$：一次 50 册，一次 150 册。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p109 练一练。第 2 题需要先分类讨论（提示 1），是本页的难点，可作为小组讨论题。</p>
+</section>
+
+<!-- 10 ================= 问题 5：纸盒 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 5</span><h2>做纸盒：正方形和长方形纸片恰好用完</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">制作甲、乙两种无盖的长方体纸盒（图 10-1），长方形的宽与正方形的边长相等．现有 150 张正方形硬纸片和 300 张长方形硬纸片，可制作甲、乙两种纸盒各多少个？</p>
+      <svg id="boxFig" viewBox="0 0 520 170" class="fig-sm box-fig" aria-label="图 10-1 甲、乙两种纸盒和硬纸片"></svg>
+      <p class="method" data-step="1" data-label="分析">每个甲种纸盒用正方形 <span class="think" data-step="2" data-ask="?">1</span> 张、长方形 <span class="think" data-step="2" data-ask="?">4</span> 张；每个乙种纸盒用正方形 <span class="think" data-step="3" data-ask="?">2</span> 张、长方形 <span class="think" data-step="3" data-ask="?">3</span> 张．</p>
+    </div>
+    <div class="col">
+      <div class="scal" data-noswipe>甲 $x=$<input type="range" id="boxX" min="0" max="75" step="1" value="20"><span class="big" id="boxXV"></span>　乙 $y=$<input type="range" id="boxY" min="0" max="75" step="1" value="40"><span class="big" id="boxYV"></span></div>
+      <div class="readout" id="boxRead"></div>
+      <p class="tip feedback" id="boxMsg"></p>
+      <div class="derive small-d">
+        <div class="dl" data-step="4"><span>方程组</span><span>$\begin{cases}x+2y=150,\\4x+3y=300.\end{cases}$</span><i class="why">正方形用完；长方形用完</i></div>
+        <div class="dl end" data-step="5"><span>解得</span><span class="think" data-step="6" data-ask="解">$x=30$，$y=60$：甲 30 个，乙 60 个</span><i class="why">①×4 − ②：$5y=300$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p109–110 问题 5 与图 10-1。先让学生数一数每种纸盒用几张正方形、几张长方形（甲：底面 1 个正方形 + 4 个侧面；乙：两端 2 个正方形 + 底面和两侧 3 个长方形，无盖）。右边拖动两种纸盒的个数，计数条显示两种纸片各用了多少，恰好用完时变绿。</p>
+</section>
+
+<!-- 11 ================= 问题 6：火车过桥模拟器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 6 · 模拟</span><h2>火车过桥：调速度和车长，让两个时间都对上</h2></div>
+  <div class="bd full">
+    <div id="train" class="train-board"></div>
+    <div class="cols2">
+      <div class="col">
+        <div class="slider-row" data-noswipe>速度 $x=$<input type="range" id="trV" min="10" max="30" step="1" value="25"><b class="v" id="trVV"></b>m/s　车长 $y=$<input type="range" id="trL" min="100" max="300" step="10" value="150"><b class="v" id="trLV"></b>m</div>
+        <div class="slider-row" data-noswipe>时刻 $t=$<input type="range" id="trT" min="0" max="1" step="0.001" value="0"><b class="v" id="trTV"></b>s　<button class="btn" type="button" id="trPlay">▶ 开过去</button></div>
+      </div>
+      <div class="col">
+        <div class="readout four" id="trRead"></div>
+        <p class="tip feedback" id="trMsg"></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p110 问题 6 与图 10-2。先“试”：调速度、车长，看“开始上桥到完全过桥”和“完全在桥上”两个时间，目标是 60 s 和 40 s——学生会发现只调一个量不行，两个条件要同时满足（正是方程组！）。图中桥长 1 000 m、车长、位置都按比例画，红色是车头走过的路程。试出 x = 20、y = 200 后，下一页用方程组“算”出来验证。</p>
+</section>
+
+<!-- 12 ================= 问题 6：列方程组 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 6 · 求解</span><h2>画线段图，找路程的相等关系</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="segFig" viewBox="0 0 560 220" class="fig-sm seg-fig" aria-label="图 10-2 线段图"></svg>
+      <p class="tip" data-step="1">由图 10-2：火车 1 min 行驶的路程 = 桥长 <span class="think" data-step="2" data-ask="+ 还是 −？">+ 车长</span>；火车 40 s 行驶的路程 = 桥长 <span class="think" data-step="3" data-ask="+ 还是 −？">− 车长</span>．</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="4"><span>设</span><span>速度 $x$ m/s，车长 $y$ m</span><i class="why"></i></div>
+        <div class="dl key" data-step="5"><span>根据题意</span><span>$\begin{cases}60x=1\,000+y,\\40x=1\,000-y.\end{cases}$</span><i class="why">1 min = 60 s</i></div>
+        <div class="dl" data-step="6"><span>①+②</span><span class="think" data-step="7" data-ask="消去 y">$100x=2\,000$，$x=20$；$y=200$</span><i class="why">$y$ 的系数互为相反数</i></div>
+        <div class="dl end" data-step="8"><span>答</span><span>火车速度 20 m/s，长 200 m</span><i class="why">检验：$\dfrac{1200}{20}=60$，$\dfrac{800}{20}=40$ ✓</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p110–111 问题 6。线段图的关键是“看车头”：从车头上桥到车尾离桥，车头走了桥长 + 车长；从车尾上桥到车头到达桥尾，车头走了桥长 − 车长。回上一页把滑块调到 20 m/s、200 m，两个时间正好是 60 s、40 s。</p>
+</section>
+
+<!-- 13 ================= 练一练 + 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 习题</span><h2>行程、图形、古题</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练 1.</b> 梯形的高是 4 cm，面积是 18 cm²，上底比下底的 $\dfrac13$ 多 1 cm．求上、下底的长．</p>
+        <details><summary>提示</summary>$\dfrac12(x+y)\times4=18$，$x=\dfrac13y+1$（$x$ 上底、$y$ 下底）。</details>
+        <details><summary>答案</summary>$x+y=9$，代入得 $\dfrac43y=8$，$y=6$，$x=3$：上底 3 cm，下底 6 cm。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练 2.</b> 甲、乙沿 400 m 环形跑道同时同地出发跑步．同向而行，200 s 后两人相遇；背向而行，40 s 后两人相遇．求两人的速度．</p>
+        <details><summary>提示</summary>同向相遇：快的比慢的多跑一圈；背向相遇：两人合跑一圈。</details>
+        <details><summary>答案</summary>设甲 $x$ m/s（较快）、乙 $y$ m/s：$\begin{cases}200(x-y)=400\\40(x+y)=400\end{cases}$，$x=6$，$y=4$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 5.</b>（《希腊文选》）驴和骡驮着货物走路，骡子对驴说：“你若给我一口袋，我驮的货就比你的重 1 倍；我若给你一口袋，咱俩才刚好一样多．”驴和骡各驮几口袋货物？</p>
+        <details><summary>提示</summary>设驴 $x$ 袋、骡 $y$ 袋：$y+1=2(x-1)$；$y-1=x+1$。</details>
+        <details><summary>答案</summary>由②得 $y=x+2$，代入①：$x+3=2x-2$，$x=5$，$y=7$：驴驮 5 袋，骡驮 7 袋。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p111 练一练 1–2、习题 10.5 第 5 题（题意按课本对话概括；“重 1 倍”即是对方的 2 倍）。习题第 6 题（汽车上下坡）可作为课后作业：平路 150 km、坡路 120 km，共 270 km。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>步骤</h3>
+        <p class="def">审 → 设（两个未知数）→ 列（两个相等关系）→ 解（消元）→ 验 → 答。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>找相等关系的工具</h3>
+        <p class="method" data-label="列表格">问题 3：每一行一个等式。</p>
+        <p class="method" data-label="画线段图">问题 6：路程的和与差。</p>
+        <p class="warn" data-label="单位">元与角、h 与 s、kg 与 g 要统一。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想（课本 p112 阅读）</h3>
+        <p class="recall" data-label="转化">实际问题 → 方程组（建模）；二元 → 一元（消元）；三元 → 二元 → 一元。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>第 10 章到此结束。</b>下一章：第 11 章 一元一次不等式——“不超过 15 m³”“至少”“多于”，生活中的不相等关系怎样用数学表示？</p>
+  </div>
+  <p class="note">作业建议：习题 10.5 第 1、2、3、6 题。课本 p112“阅读：转化”可让学生课后读，并写一句话：本章哪里用到了转化？</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

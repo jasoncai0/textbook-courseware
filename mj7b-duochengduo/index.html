@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多项式乘多项式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/taiyangneng.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第9章 整式乘法与因式分解 · 9.3</p>
+    <h1 class="cover-title">多项式乘多项式</h1>
+    <p class="cover-q" data-step="1">太阳能电池板面积越大，输出的电能越大．一块长 <b>90 cm</b>、宽 <b>60 cm</b> 的长方形电池板，长和宽都增加 <b>$a$ cm</b>．</p>
+    <p class="cover-q" data-step="2">新面积是 $(90+a)(60+a)$——两个多项式相乘，怎样展开？面积增加了多少？</p>
+    <div class="chips" data-step="3"><span class="chip">切两刀：四个小长方形</span><span class="chip">整体代换</span><span class="chip">格子表 · 每项乘每项</span><span class="chip">合并同类项</span></div>
+  </div>
+  <p class="note">课本 p74 习题 9.3 第 4 题作为封面问题，第 10 页回来解决。也可以从 9.2 习题 4 引入：“$m(c+d)=mc+md$ 中把 $m$ 换成 $(a+b)$，你能计算 $(a+b)(c+d)$ 吗？”</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="9.2 · 单项式乘多项式" data-step="1">
+        <p>$m(c+d)=mc+md$：用单项式乘多项式的每一项，再把积相加．</p>
+        <span class="use">把 $(a+b)$ 整体看成 $m$，就化成了 9.2。（<a href="../mj7b-danchengduo/index.html">回看 9.2</a>）</span>
+      </div>
+      <div class="recall" data-label="9.1 · 单项式乘单项式" data-step="2">
+        <p>系数相乘，相同字母指数相加：$3x\cdot(-2)=-6x$，$x\cdot x=x^2$．</p>
+        <span class="use">展开后每一个积都是单项式乘单项式。（<a href="../mj7b-danchengdan/index.html">回看 9.1</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 3.4 · 合并同类项" data-step="3">
+        <p>所含字母相同、相同字母指数也相同的项是同类项；系数相加，字母和指数不变．</p>
+        <span class="use">展开后常有同类项，要合并：$-3x+2x=-x$。（<a href="../mj7a-hebingtongleixiang/index.html">回看 3.4</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>$(a+b)(c+d)$ 等于什么？“整体代换”怎样把新问题变成 9.2 的旧问题？</p>
+  </div>
+  <p class="note">9.1 → 9.2 → 9.3 是层层转化：多 × 多 → 单 × 多 → 单 × 单。</p>
+</section>
+
+<!-- 3 ================= 核心交互：切两刀 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 操作</span><h2>图 9-4：竖着切一刀，再横着切一刀</h2></div>
+  <button class="media-btn" hidden data-img="assets/qiedao.jpg" data-video="assets/qiedao.mp4" data-cap="(a+b)(c+d)：竖切一刀得 a(c+d)+b(c+d)，横切一刀得 ac+ad+bc+bd">▶ 看动画</button>
+  <div class="bd half">
+    <div class="col">
+      <div id="cutBoard" class="cut-board"></div>
+      <div class="slider-row" data-noswipe>$a$<input type="range" id="cutA" min="2" max="6" step="0.5" value="4"><b class="v" id="cutAV"></b>$b$<input type="range" id="cutB" min="1.5" max="4" step="0.5" value="2.5"><b class="v" id="cutBV"></b></div>
+      <div class="slider-row" data-noswipe>$c$<input type="range" id="cutC" min="1.5" max="3.5" step="0.5" value="2"><b class="v" id="cutCV"></b>$d$<input type="range" id="cutD" min="1.5" max="3.5" step="0.5" value="3.5"><b class="v" id="cutDV"></b></div>
+    </div>
+    <div class="col">
+      <div class="cut-read" id="cutRead">
+        <p><span class="k" id="cutK"></span>：<b id="cutTex"></b></p>
+        <p class="k" id="cutNum"></p>
+      </div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="cutGo">竖着切一刀</button></div>
+      <p class="tip" data-step="1">把图 9-4 看成 1 个大长方形，面积为 <span class="think" data-step="2" data-ask="写出来">$(a+b)\cdot(c+d)$</span>；看成 4 个小长方形，面积为 <span class="think" data-step="3" data-ask="写出来">$ac+ad+bc+bd$</span>．</p>
+      <p class="tip gold" data-step="4">由此得到 <span class="think" data-step="5" data-ask="?">$(a+b)(c+d)=ac+ad+bc+bd$</span>．第一刀切完的式子 $a(c+d)+b(c+d)$，正是下一页推导的中间一步。</p>
+    </div>
+  </div>
+  <p class="note">课本 p72 图 9-4。点按钮分两次切：竖切一刀把 $(a+b)$ 拆开，得到两个“单项式乘多项式”；横切一刀再把 $(c+d)$ 拆开。这两刀正好对应代数推导的两步。滑块改变各段长度（按比例绘制），右边数值检验两种算法相等。右上角“看动画”是 14 秒无声动画。</p>
+</section>
+
+<!-- 4 ================= 推导与法则 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导 · 法则</span><h2>把 $(c+d)$ 看成一个整体</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">一般地，对于任意的 $a$、$b$、$c$、$d$，利用单项式乘多项式法则可以得到（课本 p72）：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$(a+b)(c+d)$</span><i class="why">把 $(c+d)$ 看成一个整体 $m$</i></div>
+        <div class="dl" data-step="2"><span>$=$</span><span>$a(c+d)+b(c+d)$</span><span class="think" data-step="3" data-ask="凭什么？">$(a+b)m=am+bm$：单项式乘多项式（分配律）</span></div>
+        <div class="dl end" data-step="4"><span>$=$</span><span>$ac+ad+bc+bd$</span><span class="think" data-step="5" data-ask="凭什么？">再用一次单项式乘多项式</span></div>
+      </div>
+      <p class="tip" data-step="6">上面的运算过程，也可以用连线表示：$a$ 分别乘 $c$、$d$，$b$ 分别乘 $c$、$d$——一共 <span class="think" data-step="7" data-ask="几个积？">$2\times2=4$ 个积</span>．</p>
+    </div>
+    <div class="col">
+      <div class="def big-def" data-step="8"><h4>多项式与多项式相乘（课本 p73）</h4>多项式与多项式相乘，先用一个多项式的<em>每一项</em>乘另一个多项式的<em>每一项</em>，再把所得的积<em>相加</em>．</div>
+      <p class="tip" data-step="9"><b>试一试</b> 计算下列各式，并说明理由（课本 p72）：</p>
+      <div class="derive tight" data-step="9">
+        <div class="dl"><span>(1)</span><span>$(a+4)(a+3)$　<span class="think" data-step="10" data-ask="算一算">$=a^2+3a+4a+12=a^2+7a+12$</span></span></div>
+        <div class="dl"><span>(2)</span><span>$(x-2)(x-3)$　<span class="think" data-step="11" data-ask="算一算">$=x^2-3x-2x+6=x^2-5x+6$</span></span></div>
+      </div>
+      <p class="method" data-step="12" data-label="检查项数">没合并前，积的项数 = 两个多项式项数的乘积（$2\times2=4$，$2\times3=6$）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p72–73 推导、连线图与法则框。“把 $(c+d)$ 看成一个整体”是课本小人的提示，这是整体思想第三次出现（8.1 把 $(m+n)$ 看成 $a$）。试一试 (2) 有负数项，面积图画不出来了——下一页用格子表处理。</p>
+</section>
+
+<!-- 5 ================= 格子表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手操作</span><h2>有负号画不成面积？用格子表逐格相乘</h2></div>
+  <div class="bd half" id="boxWrap">
+    <div class="col">
+      <div class="box-pick" id="boxPick" data-noswipe>选一题：<button class="btn" type="button" data-box="e1">$(x+2)(x-3)$</button><button class="btn" type="button" data-box="e2">$(3x-1)(x-2)$</button><button class="btn" type="button" data-box="e3">$(3m+n)(m-2n)$</button></div>
+      <table class="boxtab" id="boxTab" data-noswipe></table>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="boxAll">全部翻开</button><button class="btn solid" type="button" id="boxMerge">同类项上色，合并</button></div>
+      <p class="box-res" id="boxRes"></p>
+    </div>
+    <div class="col">
+      <p class="tip">左边一列是第一个多项式的项，上面一行是第二个多项式的项——<b>连同符号</b>写进表头．</p>
+      <p class="tip" data-step="1">每一格填什么？<span class="think" data-step="2" data-ask="说一说">这一格所在的“行的项 × 列的项”，符号一起乘：$(+2)\times(-3)=-6$。</span></p>
+      <p class="tip" data-step="3">为什么 4 格就够了？<span class="think" data-step="4" data-ask="想一想">“每一项乘每一项”：2 行 × 2 列，一格不多一格不少，所以不会漏乘。</span></p>
+      <p class="tip" data-step="5">哪些格可以合并？<span class="think" data-step="6" data-ask="找一找">同类项通常在对角线上：$-3x$ 与 $+2x$ 合并为 $-x$。</span></p>
+    </div>
+  </div>
+  <p class="note">本课第二个核心操作。点格子逐个翻开（先让学生说出这一格的结果），再点“上色合并”：同色的格子是同类项。三道题依次是例 1 (1)(2)、例 2 (1)。格子表是“连线”的整理版，适合检查漏乘和符号。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>写出每一个积，再合并</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">计算（课本 p73）：(1) $(x+2)(x-3)$．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span></span><span>$(x+2)(x-3)$</span></div>
+        <div class="dl" data-step="2"><span>$=$</span><span>$x\cdot x+x\cdot(-3)+2\cdot x+2\cdot(-3)$</span><i class="why">每一项乘每一项，共 4 个积</i></div>
+        <div class="dl" data-step="3"><span>$=$</span><span>$x^2-3x+2x-6$</span><i class="why">单项式乘单项式</i></div>
+        <div class="dl" data-step="4"><span>$=$</span><span class="think" data-step="4" data-ask="合并">$x^2-x-6$</span><i class="why">合并同类项</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5">(2) $(3x-1)(x-2)$．</p>
+      <div class="derive tight" data-step="5">
+        <div class="dl"><span></span><span>$(3x-1)(x-2)$</span></div>
+        <div class="dl"><span>$=$</span><span>$3x\cdot x+3x\cdot(-2)+(-1)\cdot x+(-1)\cdot(-2)$</span></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="6" data-ask="算一算">$3x^2-6x-x+2$</span></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="7" data-ask="合并">$3x^2-7x+2$</span></div>
+      </div>
+      <p class="warn" data-step="8" data-label="符号">$(-1)\cdot(-2)=+2$：两个负项相乘得正，最容易错成 $-2$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p73 例 1。第二行把 4 个积完整写出（课本就是这样写的），熟练后可以省略这一步，但符号一定要随项走。可用代入检验：$x=1$ 时 $(1+2)(1-3)=-6$，$1-1-6=-6$ ✓。</p>
+</section>
+
+<!-- 7 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>两个字母；三个多项式连乘</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">计算（课本 p73）：(1) $(3m+n)(m-2n)$．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span></span><span>$(3m+n)(m-2n)$</span></div>
+        <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="2" data-ask="写出 4 个积">$3m^2-6mn+mn-2n^2$</span></div>
+        <div class="dl" data-step="3"><span>$=$</span><span class="think" data-step="3" data-ask="合并">$3m^2-5mn-2n^2$</span><i class="why">$-6mn$ 与 $mn$ 是同类项</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4">(2) $n(n+1)(n+2)$．</p>
+      <div class="derive tight" data-step="4">
+        <div class="dl"><span></span><span>$n(n+1)(n+2)$</span></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="5" data-ask="先算哪两个？">$n(n^2+2n+n+2)$</span><i class="why">先算后两个多项式相乘</i></div>
+        <div class="dl"><span>$=$</span><span>$n(n^2+3n+2)$</span><i class="why">括号里先合并</i></div>
+        <div class="dl"><span>$=$</span><span class="think" data-step="6" data-ask="再乘 n">$n^3+3n^2+2n$</span><i class="why">单项式乘多项式</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="连乘">三个式子相乘，先任选两个乘（结合律），每一步都及时合并，式子会更短。</p>
+    </div>
+  </div>
+  <p class="note">课本 p73 例 2。(2) 也可以先算 $n(n+1)=n^2+n$，再乘 $(n+2)$，结果相同——可请两组学生用不同顺序算，比较哪种更简便。</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些展开，对吗？</h2></div>
+  <div class="bd full">
+    <div class="judge3">
+      <div class="jcard" data-step="1"><p>$(x+2)(x-3)=x^2-6$</p><div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>只乘了“首×首、尾×尾”，漏了 $x\cdot(-3)$ 与 $2\cdot x$。应为 $x^2-x-6$。</p></div></div>
+      <div class="jcard" data-step="3"><p>$(a+b)(c+d)=ac+bd$</p><div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>2 项 × 2 项应有 4 个积。看图 9-4：只算了 2 块，少了 $ad$、$bc$ 两块。</p></div></div>
+      <div class="jcard" data-step="5"><p>$(2x-1)(x+3)=2x^2+5x-3$</p><div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict ok">✓</span>$2x^2+6x-x-3=2x^2+5x-3$。</p></div></div>
+    </div>
+    <p class="method" data-step="7" data-label="自查">① 数积的个数；② 每个积的符号；③ 合并同类项；④ 必要时代入一个数检验。</p>
+  </div>
+  <p class="note">常见错误示例（非课本题号）。第一张卡的错误与第二张本质相同：把多项式乘法当成“对应项相乘”。第三张是正确的，请学生用格子表或代入 $x=1$ 验证：$(1)(4)=4$，$2+5-3=4$ ✓。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>算一算；截去一圈后的面积</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（课本 p73）计算：<br>(1) $(x+1)(2x-3)$；(2) $(7-3x)(7+3x)$；<br>(3) $(3m+2n)(7m-6n)$；(4) $n(n+2)(2n+1)$．</p>
+        <details><summary>提示</summary>(2) 4 个积中有两个是同类项且互为相反数；(4) 先算 $(n+2)(2n+1)$。</details>
+        <details><summary>完整解答</summary>(1) $2x^2-x-3$；(2) $49-9x^2$；(3) $21m^2-4mn-12n^2$；(4) $2n^3+5n^2+2n$．</details>
+      </div>
+      <p class="tip"><b>2.</b>（课本 p73）一块长方形地砖的长、宽分别为 $a$ cm、$b$ cm（$a\gt2$，$b\gt2$）．如果长、宽各截去 2 cm，那么剩余部分的面积是多少？</p>
+      <div class="hint-ladder">
+        <details><summary>提示</summary>剩余部分仍是长方形，长 $a-2$、宽 $b-2$。</details>
+        <details><summary>完整解答</summary>$(a-2)(b-2)=ab-2a-2b+4$（cm²）．</details>
+      </div>
+    </div>
+    <div class="col">
+      <div id="trimBoard" class="trim-board"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="trimA" min="4" max="9" step="1" value="8"><b class="v" id="trimAV"></b>　$b=$<input type="range" id="trimB" min="3" max="7" step="1" value="6"><b class="v" id="trimBV"></b></div>
+      <p class="muted small-t" id="trimNum"></p>
+      <p class="tip" data-step="1">为什么最后是 $+4$？<span class="think" data-step="2" data-ask="看图">截去的两条（$2a$ 和 $2b$）在右上角重叠了一个 $2\times2$ 的小正方形，被减了两次，要加回一次。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p73 练一练。第 2 题的图按 $a$、$b$ 的值精确绘制：绿色是剩余部分，红色虚线框是截去部分，深红色角块是被重复减去的 $2\times2=4$。这个“$+4$”从图上一眼就能看出来，是数形结合的好例子。</p>
+</section>
+
+<!-- 10 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（习题 9.3 第 1 题）计算：<br>(2) $(2a+1)(-a-2)$；(3) $\left(x+\dfrac12\right)\left(x-\dfrac13\right)$；<br>(4) $(x^2-10)(x^2-12)$；(6) $(5m-4n)(4m-5n)$．</p>
+        <details><summary>提示</summary>(3) $\frac12-\frac13=\frac16$；(4) 把 $x^2$ 看成一个整体。</details>
+        <details><summary>完整解答</summary>(2) $-2a^2-5a-2$；(3) $x^2+\frac16x-\frac16$；(4) $x^4-22x^2+120$；(6) $20m^2-41mn+20n^2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 9.3 第 3 题）求 $(x-1)(2x+1)-2(x-5)(x+2)$ 的值，其中 $x=\dfrac15$．</p>
+        <details><summary>提示 1</summary>先化简再代入：$(x-1)(2x+1)=2x^2-x-1$，$(x-5)(x+2)=x^2-3x-10$。</details>
+        <details><summary>提示 2</summary>$-2(x^2-3x-10)=-2x^2+6x+20$，与前面合并。</details>
+        <details><summary>完整解答</summary>原式 $=5x+19$．当 $x=\frac15$ 时，原式 $=1+19=20$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 9.3 第 4 题，回到封面）长 90 cm、宽 60 cm 的电池板，长和宽都增加 $a$ cm，面积将增加多少？</p>
+        <details><summary>提示</summary>增加的面积 = 新面积 − 原面积 $=(90+a)(60+a)-90\times60$。</details>
+        <details><summary>完整解答</summary>$(90+a)(60+a)=5\,400+150a+a^2$，增加 $(a^2+150a)$ cm²．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p74 习题 9.3。第 2 题体现“先化简再求值”——直接代入 $\frac15$ 会很繁。第 3 题回到封面：增加的部分是两条长方形 $90a$、$60a$ 加一个 $a\times a$ 的角块，可回到第 3 页的切两刀图来说明。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">多项式乘多项式：先用一个多项式的每一项乘另一个多项式的每一项，再把所得的积相加。$(a+b)(c+d)=ac+ad+bc+bd$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="格子表 / 连线">保证每项乘每项，积的个数 = 项数之积。</p>
+        <p class="warn" data-label="易错">漏乘；符号；忘记合并同类项。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="整体 · 转化">多×多 → 单×多 → 单×单。</p>
+        <p class="recall" data-label="数形结合">切两刀，四个小长方形。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>9.4 乘法公式——当两个多项式一样时，$(a+b)(a+b)=a^2+ab+ba+b^2=\ ?$（<a href="../mj7b-chengfagongshi/index.html">进入 9.4</a>）</p>
+  </div>
+  <p class="note">作业建议：习题 9.3 第 1 题 (1)(5)、第 2 题。下一节的完全平方公式就是本课法则在 $c=a$、$d=b$ 时的特例，图 9-4 也会变成图 9-5 的正方形。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
