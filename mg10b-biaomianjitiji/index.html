@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>表面积和体积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/solid3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/cangku.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第13章 立体几何初步 · 13.3</p>
+    <h1 class="cover-title">空间图形的表面积和体积</h1>
+    <p class="cover-q" data-step="1">做一个正四棱锥形的冷水塔塔顶，要多少铁板？一个圆锥形盐仓能装多少盐？</p>
+    <p class="cover-q" data-step="2">弯曲的侧面怎样“<b>摊平</b>”来算面积？球既摊不平、也切不成方块，它的体积又怎么求？</p>
+    <div class="chips" data-step="3"><span class="chip">侧面展开图</span><span class="chip">柱、锥、台的侧面积</span><span class="chip">祖暅原理</span><span class="chip">柱、锥、台、球的体积</span><span class="chip">球的表面积</span></div>
+  </div>
+  <p class="note">课本 p185 引言、例 1 与习题 13.3 第 10 题的情境。表面积 = 空间图形表面的面积；体积 = 空间图形所占空间的大小。两个问题分别对应本课的两条主线：“展开”与“截面”。</p>
+</section>
+
+<!-- 2 ================= 知识链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>本课要用到的旧知</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="13.1 基本立体图形" data-step="1">
+        <p>棱柱由多边形平移而成；圆柱、圆锥、圆台由矩形、直角三角形、直角梯形旋转而成，<b>母线</b>是不垂直于轴的那条边。</p>
+        <span class="use">侧面沿母线剪开展平；“平移”说明等底等高的柱体体积相等。</span>
+      </div>
+      <div class="recall" data-label="初中 · 圆与扇形" data-step="2">
+        <p>圆周长 $2\pi r$，圆面积 $\pi r^2$；扇形弧长 $l=\dfrac{n\pi R}{180}$，扇形面积 $S=\dfrac{n\pi R^2}{360}=\dfrac12 lR$。</p>
+        <span class="use">圆锥侧面展开是扇形，圆台侧面展开是扇环：用扇形面积公式推出侧面积。</span>
+      </div>
+      <div class="recall" data-label="13.2 · 线面垂直 + 初中勾股定理" data-step="3">
+        <p>高 = 两底面间的距离；正棱锥顶点在底面的射影是底面中心。</p>
+        <span class="use">在“高、斜高、底面内切圆半径”组成的直角三角形里求斜高（例 1）。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>表面积靠“<b>展开</b>”（空间 → 平面）；体积靠长方体体积 $V=abc=Sh$ 和“<b>截面</b>”（祖暅原理）。</p>
+  </div>
+  <p class="note">扇形面积 S = ½lR 是推导圆锥侧面积的关键，请学生先回忆它的来历（扇形是圆的 n/360）。长方体体积公式课本作为已知事实使用。</p>
+</section>
+
+<!-- 3 ================= 直棱柱、正棱锥、正棱台 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">13.3.1</span><h2>多面体：沿一条侧棱剪开，侧面就摊平了</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col">
+        <div id="unP" class="un2"></div>
+        <p class="def small-def" data-step="1">侧棱和底面垂直的棱柱叫作<em>直棱柱</em>；底面为正多边形的直棱柱叫作<em>正棱柱</em>．展开图是矩形：长 = 底面周长 $c$，宽 = 高 $h$．$$S_{\text{直棱柱侧}}=ch$$</p>
+      </div>
+      <div class="col">
+        <div id="unY" class="un2"></div>
+        <p class="def small-def" data-step="2">底面是正多边形、顶点在底面的射影是底面中心的棱锥叫<em>正棱锥</em>，侧面是全等的等腰三角形．底面周长 $c$，<b>斜高</b>（侧面等腰三角形底边上的高）$h'$：$$S_{\text{正棱锥侧}}=\frac12ch'$$</p>
+      </div>
+      <div class="col">
+        <div id="unT" class="un2"></div>
+        <p class="def small-def" data-step="3">正棱锥被平行于底面的平面所截，截面和底面之间的部分叫<em>正棱台</em>，侧面是全等的等腰梯形．上、下底面周长 $c',c$：$$S_{\text{正棱台侧}}=\frac12(c+c')h'$$</p>
+      </div>
+    </div>
+    <div class="chain" data-step="4"><span class="ch">$S_{\text{正棱柱侧}}=ch$</span><i>$\xleftarrow{\ c'=c\ }$</i><span class="ch now">$S_{\text{正棱台侧}}=\frac12(c+c')h'$</span><i>$\xrightarrow{\ c'=0\ }$</i><span class="ch">$S_{\text{正棱锥侧}}=\frac12ch'$</span></div>
+  </div>
+  <p class="note">课本 p185–186、图 13-3-1 至 13-3-4。展开图由代码按边长精确画出（正六棱柱、正四棱锥、正四棱台）。先问“怎样剪开”，再问“展开后是什么形状、面积怎么算”。正 n 棱锥侧面积 = n·½ah′ = ½ch′（课本旁注）。图 13-3-4 的箭头：上底面周长变成 c 得到棱柱，变成 0 得到棱锥。</p>
+</section>
+
+<!-- 4 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>冷水塔塔顶需要多少铁板？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex1" class="v3"></div>
+      <p class="s3d-hint">拖动旋转：蓝色直角三角形 $SOE$ 含高、斜高与底面内切圆半径</p>
+    </div>
+    <div class="col">
+      <p class="tip">设计一个正四棱锥形冷水塔塔顶，高是 $1.0$ m，底面的边长是 $1.5$ m，制造这种塔顶需要多少平方米铁板（精确到 $0.1\ \text{m}^2$）？</p>
+      <p class="tip" data-step="1"><b>分析</b>　<span class="think" data-step="2" data-ask="算侧面积，缺哪个量？">只需计算斜高：在正四棱锥中作出相应的直角三角形，再解三角形。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$OE=$</span><span>$\dfrac{1.5}{2}=0.75$</span><i class="why">$O$ 为底面中心，$E$ 为底边中点</i></div>
+        <div class="dl key" data-step="4"><span>$SE=$</span><span>$\sqrt{\left(\dfrac{1.5}{2}\right)^2+1.0^2}=1.25$（m）</span><i class="why">$\text{Rt}\triangle SOE$，勾股定理</i></div>
+        <div class="dl end" data-step="5"><span>$S_{\text{正棱锥侧}}=$</span><span>$\dfrac12ch'=\dfrac12\times(1.5\times4)\times1.25=3.75\approx3.8$（m²）</span><i class="why"></i></div>
+      </div>
+      <p class="tip" data-step="6"><b>答</b>　制造这种塔顶需要约 $3.8\ \text{m}^2$ 铁板．</p>
+      <p class="method" data-step="7">空间图形的计算问题，转化为平面图形（直角三角形）的计算问题——这是最常用也是最基本的方法。</p>
+    </div>
+  </div>
+  <p class="note">课本 p187 例 1、图 13-3-6。旁注追问：图中还能作出哪些类似的直角三角形？（如 S、O 与底面顶点构成的三角形，含高、侧棱、底面外接圆半径。）</p>
+</section>
+
+<!-- 5 ================= 核心：旋转体侧面展开 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">展开</span><h2>圆柱、圆锥、圆台的侧面，沿母线剪开能摊平吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="ufBtns"></div>
+      <div class="slider-row" data-noswipe>展开<input type="range" id="ufU" min="0" max="1" step="0.01" value="0.5"><b id="ufUV" class="v"></b></div>
+      <p class="tip feedback" id="ufMsg"></p>
+      <p class="tip" data-step="1">展开图的弧长等于什么？　<span class="think" data-step="2" data-ask="看一看再说">等于底面圆的周长 $2\pi r$——摊平前它正是底面圆周。</span></p>
+      <p class="tip" data-step="3">圆锥的展开图是扇形，它的半径和圆心角各是多少？　<span class="think" data-step="4" data-ask="想一想">半径 = 母线长 $l$；圆心角 $\theta=\dfrac{2\pi r}{l}$（弧度），即 $\dfrac{360^\circ r}{l}$。</span></p>
+    </div>
+    <div class="col">
+      <div id="unfold" class="v3 tall"></div>
+      <p class="s3d-hint">沿正面的一条母线保持不动，侧面向两边展开；拖动可旋转观察</p>
+    </div>
+  </div>
+  <p class="note">课本 p186–187、图 13-3-5。本课独有互动：滑块从 0 到 1，侧面在过一条母线的切平面上连续摊平——弧长始终是 2πr，母线长始终是 l（代码按弧长不变精确计算）。三种都拉到 1，对照读数：矩形 2πr × l，扇形半径 l、圆心角 360°·r/l，扇环。此处停顿让学生先猜展开图的形状。</p>
+</section>
+
+<!-- 6 ================= 侧面积公式 + 连续变化 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>从展开图算出侧面积公式</h2></div>
+  <div class="bd wide-l">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>扇形</span><span>$S_{\text{扇形}}=\dfrac{d}{2\pi R}\cdot\pi R^2=\dfrac12Rd$</span><i class="why">弧长为 $d$ 的扇形占整圆的 $\dfrac{d}{2\pi R}$</i></div>
+        <div class="dl key" data-step="2"><span>圆锥</span><span>$S_{\text{圆锥侧}}=\dfrac12cl=\pi rl$</span><i class="why">扇形半径 $l$，弧长 $c=2\pi r$</i></div>
+        <div class="dl" data-step="3"><span>圆台</span><span>$S_{\text{圆台侧}}=\dfrac12c(l+x)-\dfrac12c'x$</span><i class="why">扇环 = 大扇形 − 小扇形，$x$ 为小圆锥母线长</i></div>
+        <div class="dl" data-step="4"><span></span><span>$\dfrac{c}{c'}=\dfrac{x+l}{x}\Rightarrow(c-c')x=c'l$</span><i class="why">相似三角形</i></div>
+        <div class="dl end" data-step="5"><span></span><span>$S_{\text{圆台侧}}=\dfrac12(c+c')l=\pi(r+r')l$</span><i class="why"></i></div>
+      </div>
+      <div class="chain sm" data-step="6"><span class="ch">$S_{\text{圆柱侧}}=cl=2\pi rl$</span><i>$\xleftarrow{c'=c}$</i><span class="ch now">$\pi(r+r')l$</span><i>$\xrightarrow{c'=0}$</i><span class="ch">$\pi rl$</span></div>
+    </div>
+    <div class="col">
+      <div id="rr" class="v3"></div>
+      <div class="slider-row" data-noswipe>上底半径 $r'$<input type="range" id="rrR" min="0" max="1.2" step="0.01" value="0.6"><b id="rrRV" class="v"></b></div>
+      <p class="tip feedback" id="rrMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p188 “链接：圆锥、圆台侧面积公式的推导”。右图下底半径 r = 1.2、母线长 l = 2 固定，拖动 r′：r′ = r 时圆台变圆柱，公式 π(r+r′)l 变成 2πrl；r′ = 0 时变圆锥，公式变成 πrl——三个公式是一个公式。</p>
+</section>
+
+<!-- 7 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>圆台上底面积、下底面积和侧面积之比</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">一个直角梯形上底、下底和高之比为 $2:4:\sqrt5$．将此直角梯形以垂直于底的腰为轴旋转一周形成一个圆台，求这个圆台上底面积、下底面积和侧面积之比．</p>
+      <div id="ex2" class="ex2b"></div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设</span><span>上底、下底、高为 $2x,4x,\sqrt5x$</span><i class="why">即圆台的上、下底面半径和高</i></div>
+        <div class="dl" data-step="2"><span>$AC=$</span><span>$OA-O'B=4x-2x=2x$</span><i class="why">过 $B$ 作 $BC\perp OA$</i></div>
+        <div class="dl key" data-step="3"><span>$AB=$</span><span class="think" data-step="4" data-ask="母线长怎么求？">$\sqrt{(2x)^2+(\sqrt5x)^2}=3x$</span><i class="why">$\text{Rt}\triangle ABC$，$BC=O'O=\sqrt5x$</i></div>
+        <div class="dl end" data-step="5"><span>比</span><span>$[\pi(2x)^2]:[\pi(4x)^2]:[\pi(2x+4x)\times3x]=2:8:9$</span><i class="why">$4:16:18$ 约简</i></div>
+      </div>
+      <p class="method" data-step="6">求旋转体的量，回到生成它的平面图形（直角梯形）里去算。</p>
+    </div>
+  </div>
+  <p class="note">课本 p187–188 例 2、图 13-3-7。左图是轴截面的一半（直角梯形 O′OAB），按 x = 1 精确画出。关键是求母线长 AB——又是一个直角三角形。</p>
+</section>
+
+<!-- 8 ================= 体积：祖暅原理 + 柱体 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">13.3.2</span><h2>一摞书推斜了，体积变了吗？——祖暅原理</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="zg1" class="v3"></div>
+      <div class="slider-row" data-noswipe>推斜<input type="range" id="zgK" min="0" max="1" step="0.01" value="0.6"><b id="zgKV" class="v"></b></div>
+      <div class="slider-row" data-noswipe>截面高度<input type="range" id="zgH" min="0" max="1" step="0.01" value="0.5"><b id="zgHV" class="v"></b></div>
+      <p class="tip feedback" id="zgMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">一摞纸改变一下形状：高度没变，每页纸的面积也没变，所以体积与变形前相等．</p>
+      <div class="def" data-step="1"><h4>祖暅原理（课本 p193 阅读）</h4>“幂势既同，则积不容异．”——两个等高的几何体若在<em>所有等高处</em>的水平截面的面积相等，则这两个几何体的体积相等．</div>
+      <p class="tip" data-step="2">棱柱（圆柱）由多边形（圆）平移而得，所以底面积相等、高也相等的柱体，每一处截面都和底面全等：</p>
+      <div class="def" data-step="3"><h4>柱体的体积</h4>$$V_{\text{柱体}}=Sh$$（$S$ 为底面积，$h$ 为高）</div>
+      <p class="muted small" data-step="4">祖暅是祖冲之的儿子；西方 1635 年由卡瓦列利独立提出，对微积分的建立有重要影响。</p>
+    </div>
+  </div>
+  <p class="note">课本 p189–190 与 p193“阅读·祖暅原理”。左图：直四棱柱与推斜的四棱柱，底面相同、高相同。拖动“截面高度”，两个截面始终是全等的正方形（读数由代码算出）。长方体 V = abc = Sh 是已知事实，由祖暅原理推广到一切柱体。</p>
+</section>
+
+<!-- 9 ================= 锥体 + 台体 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">锥 · 台</span><h2>锥体为什么是 $\frac13Sh$？台体呢？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cut3" class="v3"></div>
+      <div class="slider-row" data-noswipe>分开<input type="range" id="c3K" min="0" max="1" step="0.01" value="0"><b id="c3KV" class="v"></b></div>
+      <p class="tip small" data-step="1">三棱柱 $ABC\text{-}A'B'C'$ 分割为 3 个三棱锥：①橙 $A'\text{-}ABC$，②蓝 $B\text{-}A'B'C'$，③绿 $A'\text{-}BCC'$．<span class="think" data-step="2" data-ask="为什么三个体积相等？">①② 底面 $\triangle ABC\cong\triangle A'B'C'$，高相同；② 也是 $A'\text{-}BB'C'$，与 ③ 顶点同为 $A'$，底面是平行四边形 $BCC'B'$ 被对角线 $BC'$ 分成的两半。所以每个都是 $\frac13Sh$。</span></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="3"><h4>锥体的体积</h4>底面积相等、高也相等的两个锥体体积相等（祖暅原理）；三棱锥 $V=\frac13Sh$，所以 $$V_{\text{锥体}}=\frac13Sh$$</div>
+      <div class="def" data-step="4"><h4>台体的体积</h4>台体可以转化为两个锥体之差．上、下底面面积 $S',S$，高 $h$：$$V_{\text{台体}}=\frac13h\left(S+\sqrt{SS'}+S'\right)$$</div>
+      <div class="chain sm" data-step="5"><span class="ch">$V_{\text{柱}}=Sh$</span><i>$\xleftarrow{S'=S}$</i><span class="ch now">$V_{\text{台}}$</span><i>$\xrightarrow{S'=0}$</i><span class="ch">$V_{\text{锥}}=\frac13Sh$</span></div>
+    </div>
+  </div>
+  <p class="note">课本 p190–191 思考与图 13-3-12 至 13-3-14。左图把三棱柱分成三个三棱锥（代码按顶点坐标切分，拖动“分开”看清每一块）。证明“三块体积相等”请学生分组讨论，再点开理由。台体公式由“大锥 − 小锥”推出，课本不要求推导过程；可让学有余力的学生用相似比 √S′ : √S 自己推。</p>
+</section>
+
+<!-- 10 ================= 球的体积：祖暅 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">球的体积</span><h2>半球 = 圆柱挖去圆锥？截一刀比一比</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ball" class="v3 tall"></div>
+      <div class="slider-row" data-noswipe>截面高度 $t$<input type="range" id="blT" min="0" max="1" step="0.01" value="0.5"><b id="blTV" class="v"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">底面半径和高都等于 $R$ 的圆柱，挖去一个以上底面为底面、下底面圆心为顶点的圆锥，与半径为 $R$ 的半球比较（图 13-3-15）：</p>
+      <p class="tip feedback" id="blMsg"></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>半球截面</span><span class="think" data-step="2" data-ask="截面圆半径是多少？">$\pi\left(\sqrt{R^2-t^2}\right)^2=\pi(R^2-t^2)$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="3"><span>圆环截面</span><span class="think" data-step="4" data-ask="内圆半径是多少？">$\pi R^2-\pi t^2=\pi(R^2-t^2)$</span><i class="why">圆锥在高 $t$ 处的截面半径为 $t$（轴截面是等腰直角三角形）</i></div>
+        <div class="dl key" data-step="5"><span>$\frac12V_{\text{球}}=$</span><span>$\pi R^2\cdot R-\frac13\pi R^2\cdot R=\frac23\pi R^3$</span><i class="why">祖暅原理：处处截面积相等 ⇒ 体积相等</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$V_{\text{球}}=\dfrac43\pi R^3$</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p191 与图 13-3-15（旁注：做一个倒沙实验检验，并尝试用祖暅原理证明）。本课第二个核心互动：拖动 t 从 0 到 R，橙色圆面与蓝色圆环的面积读数始终相等。此处停顿：先让学生自己算出两个截面积，再看读数。</p>
+</section>
+
+<!-- 11 ================= 球表面积 + 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">球的表面积 · 例 3</span><h2>球面积：把球看成许多“准锥体”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">设想球由许多顶点在球心、底面都在球面上的“准锥体”组成；底面足够小时，近似看成棱锥，高趋近于 $R$：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$\dfrac43\pi R^3=V_{\text{球}}=\dfrac13RS_1+\dfrac13RS_2+\cdots=\dfrac13RS_{\text{球面}}$</span><i class="why"></i></div>
+        <div class="dl end" data-step="2"><span>所以</span><span>$S_{\text{球面}}=4\pi R^2$</span><i class="why">是球的大圆面积的 4 倍</i></div>
+      </div>
+      <p class="muted small" data-step="2">球面被经过球心的平面截得的圆叫作球的<b>大圆</b>，大圆半径等于球半径。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 3</b>　一堆相同规格的六角螺帽毛坯共重 6 kg．毛坯底面正六边形边长 12 mm，高 10 mm，内孔直径 10 mm．这堆毛坯约有多少个（铁的密度是 $7.8\ \text{g/cm}^3$）？</p>
+      <div id="nut" class="v3 sm"></div>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$V_{\text{正六棱柱}}=$</span><span>$\dfrac{\sqrt3}{4}\times12^2\times6\times10\approx3.741\times10^3$（mm³）</span><i class="why"></i></div>
+        <div class="dl" data-step="4"><span>$V_{\text{圆柱}}\approx$</span><span>$3.14\times\left(\dfrac{10}{2}\right)^2\times10=0.785\times10^3$（mm³）</span><i class="why"></i></div>
+        <div class="dl end" data-step="5"><span>个数</span><span class="think" data-step="6" data-ask="接下来怎么算？">$V\approx2.956\ \text{cm}^3$，$6\times10^3\div(7.8\times2.956)\approx260$（个）</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p191–192。“准锥体”的思想是“分割—求和—取极限”，是微积分的雏形，点到即可。例 3 的毛坯就是 13.1 例 3“六棱柱挖去一个圆柱”——前后呼应。课本 π 取 3.14。</p>
+</section>
+
+<!-- 12 ================= 例 4 奖杯 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>组合体的体积：拆成简单图形再相加</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cup" class="v3 tall"></div>
+    </div>
+    <div class="col">
+      <p class="tip">一个奖杯由球、长方体和正四棱台构成．球的半径为 3 cm，长方体的长、宽和高分别为 8 cm，6 cm，18 cm，正四棱台的上、下底面边长和高分别为 11 cm，15 cm，5 cm．计算这个奖杯的体积（精确到 $0.01\ \text{cm}^3$）．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$V_{\text{正四棱台}}=$</span><span>$\dfrac13\times5\times(15^2+15\times11+11^2)\approx851.667$</span><i class="why">台体公式，$\sqrt{SS'}=15\times11$</i></div>
+        <div class="dl" data-step="2"><span>$V_{\text{长方体}}=$</span><span>$6\times8\times18=864$</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>$V_{\text{球}}=$</span><span>$\dfrac43\pi\times3^3\approx113.097$</span><i class="why"></i></div>
+        <div class="dl end" data-step="4"><span>$V\approx$</span><span>$1828.76$（cm³）</span><i class="why" id="cupV"></i></div>
+      </div>
+      <p class="method" data-step="5">计算组合体的体积，转化为计算柱、锥、台、球等简单空间图形的体积。</p>
+    </div>
+  </div>
+  <p class="note">课本 p192–193 例 4、图 13-3-18。右图按课本尺寸 1:1 比例画出，可拖动旋转。注意正四棱台的 √(SS′) = √(15²·11²) = 15×11。最后一行右侧是代码按同样公式算出的值，用来核对。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（练习 p188 第 5 题）如果用半径为 $r$ 的半圆形铁皮卷成一个圆锥筒，这个圆锥筒的高是多少？</p>
+        <details><summary>提示 1</summary>半圆的半径变成圆锥的什么？半圆的弧长变成什么？</details>
+        <details><summary>提示 2</summary>母线 $l=r$；底面周长 $2\pi\rho=\pi r$，底面半径 $\rho=\dfrac r2$。</details>
+        <details><summary>完整解答</summary>高 $h=\sqrt{r^2-\left(\dfrac r2\right)^2}=\dfrac{\sqrt3}{2}r$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（练习 p193 第 1 题）用一张长 12 cm、宽 8 cm 的矩形铁皮围成圆柱形的侧面，求这个圆柱的体积．</p>
+        <details><summary>提示 1</summary>哪条边当底面周长？有两种围法。</details>
+        <details><summary>提示 2</summary>周长 12 时 $r=\dfrac6\pi$，高 8；周长 8 时 $r=\dfrac4\pi$，高 12。</details>
+        <details><summary>完整解答</summary>$V=\pi\left(\dfrac6\pi\right)^2\times8=\dfrac{288}{\pi}$（cm³）或 $V=\pi\left(\dfrac4\pi\right)^2\times12=\dfrac{192}{\pi}$（cm³）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（练习 p193 第 5 题）一个正四棱台形油槽可以装煤油 190 L，它的上、下底面边长分别为 60 cm 和 40 cm，求它的深度．</p>
+        <details><summary>提示 1</summary>单位统一：$190\ \text{L}=190\,000\ \text{cm}^3$。</details>
+        <details><summary>提示 2</summary>$S=3600$，$S'=1600$，$\sqrt{SS'}=2400$。</details>
+        <details><summary>完整解答</summary>$\dfrac13h(3600+2400+1600)=190\,000$，解得 $h=75$（cm）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题呼应“展开”：半圆卷成圆锥，圆心角 180° = 360°·ρ/l，所以 ρ = l/2。第 2 题有两解，提醒学生分类。第 3 题注意 1 L = 1000 cm³。课后作业建议：习题 13.3 第 1、2、5、8 题；第 10 题（盐仓两种方案）可作为建模作业。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols2 sum">
+      <div class="col" data-step="1">
+        <h3>表面积 = 侧面积 + 底面积</h3>
+        <p class="def">$S_{\text{圆柱侧}}=2\pi rl$，$S_{\text{圆锥侧}}=\pi rl$，$S_{\text{圆台侧}}=\pi(r+r')l$；$S_{\text{直棱柱侧}}=ch$，$S_{\text{正棱锥侧}}=\frac12ch'$，$S_{\text{正棱台侧}}=\frac12(c+c')h'$；$S_{\text{球面}}=4\pi R^2$</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>体积</h3>
+        <p class="def">$V_{\text{柱}}=Sh$，$V_{\text{锥}}=\frac13Sh$，$V_{\text{台}}=\frac13h(S+\sqrt{SS'}+S')$，$V_{\text{球}}=\frac43\pi R^3$</p>
+      </div>
+    </div>
+    <div class="cols3 sum">
+      <p class="method" data-label="方法" data-step="3">展开（曲面 → 平面）；割补（组合体 → 简单体）；在直角三角形里求高、斜高、母线。</p>
+      <p class="recall" data-label="思想" data-step="4">转化；“台”是统一的桥梁：$c'=c$ 得柱，$c'=0$ 得锥。</p>
+      <p class="recall" data-label="数学文化" data-step="5">祖暅原理“幂势既同，则积不容异”；分割求和取极限（准锥体）。</p>
+    </div>
+    <p class="tip gold" data-step="6"><b>下一章：</b>第 14 章 统计——从“量图形”转向“用数据说话”：先学怎样获取数据（14.1）。</p>
+  </div>
+  <p class="note">请学生先用“台”把六个侧面积公式、三个体积公式串起来，再揭示。本章结束，可布置复习题，并阅读课本 p196“拟柱体体积公式”（应用与建模）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/solid3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

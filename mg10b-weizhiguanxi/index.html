@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>基本图形位置关系 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/solid3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/men.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第13章 立体几何初步 · 13.2</p>
+    <h1 class="cover-title">基本图形位置关系</h1>
+    <p class="cover-q" data-step="1">用<b>两个合页和一把锁</b>就可以把一扇门固定；把直尺放在桌面上，看<b>漏不漏光</b>就能检查桌面平不平——为什么？</p>
+    <p class="cover-q" data-step="2">在空间里，两条直线除了平行、相交，还能怎样？直线和平面、平面和平面，又有哪些位置关系？</p>
+    <div class="chips" data-step="3"><span class="chip">平面的基本事实</span><span class="chip">异面直线与夹角</span><span class="chip">线面平行 · 线面垂直</span><span class="chip">面面平行 · 二面角 · 面面垂直</span></div>
+  </div>
+  <p class="note">课本 p152 引言。本节内容多（四个小节），建议 4–5 课时；课件按小节分段，每段可单独使用。封面两个生活问题第 3 页揭晓。</p>
+</section>
+
+<!-- 2 ================= 知识链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>从“看见”空间图形，到研究点、线、面的关系</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="13.1 基本立体图形" data-step="1">
+        <p>上一课：用平移、旋转生成了棱柱、棱锥、棱台和旋转体；会用斜二测画法画直观图，被挡住的线画虚线。</p>
+        <span class="use">本课的“实验室”就是长方体、正方体：在其中找线、面的位置关系。</span>
+      </div>
+      <div class="recall" data-label="初中 · 平行线与三角形" data-step="2">
+        <p>同一平面内不相交的两条直线叫平行线；平行于同一直线的两直线平行；三角形中位线平行于第三边；平行四边形的判定。</p>
+        <span class="use">基本事实 4、“等角定理”、线面平行的证明，都要把空间问题化归为这些平面结论。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 第1章 · 集合" data-step="3">
+        <p>$a\in A$，$a\notin A$，$A\subseteq B$，$A\cap B$。</p>
+        <span class="use">把直线、平面看成点的集合：$P\in l$，$l\subset\alpha$，$\alpha\cap\beta=l$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>先确定研究的“地基”（平面的基本事实），再依次研究<b>线线 → 线面 → 面面</b>的位置关系；每一步都想办法“<b>降维</b>”到平面里解决。</p>
+  </div>
+  <p class="note">第一张卡承接上一课。第二张卡请学生说出“三角形中位线定理”“平行四边形的判定”，后面的例题都要用。第三张卡：点与线、面之间用 ∈，线与面之间用 ⊂——因为直线、平面都是点集。</p>
+</section>
+
+<!-- 3 ================= 13.2.1 三个基本事实 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">13.2.1</span><h2>平面的三个基本事实</h2></div>
+  <div class="bd full">
+    <p class="tip">平面没有厚薄，无限延展；通常用平行四边形表示，记作平面 $\alpha$、平面 $AC$ 等。课本把下面三条作为推理的基础：</p>
+    <div class="cols3">
+      <div class="col" data-step="1">
+        <div id="bf1" class="v3 xs"></div>
+        <p class="def"><b>基本事实 1</b>　过不在一条直线上的三个点，有且只有一个平面．</p>
+        <p class="tip small"><span class="think" data-step="2" data-ask="门为什么能固定？">两个合页 + 一把锁 = 不共线的三个点，确定门所在的平面。照相机支架只需三条腿也是这个道理。</span></p>
+      </div>
+      <div class="col" data-step="3">
+        <div id="bf2" class="v3 xs"></div>
+        <p class="def"><b>基本事实 2</b>　如果一条直线上的两个点在一个平面内，那么这条直线在这个平面内．</p>
+        <p class="tip small">$\left.\begin{array}{l}A\in\alpha\\B\in\alpha\end{array}\right\}\Rightarrow AB\subset\alpha$　<span class="think" data-step="4" data-ask="直尺为什么能验桌面？">直尺上两点贴住桌面，整条棱都应在桌面内，漏光说明桌面不平。</span></p>
+      </div>
+      <div class="col" data-step="5">
+        <div id="bf3" class="v3 xs"></div>
+        <p class="def"><b>基本事实 3</b>　如果两个不重合的平面有一个公共点，那么它们有且只有一条过该点的公共直线．</p>
+        <p class="tip small">$\left.\begin{array}{l}P\in\alpha\\P\in\beta\end{array}\right\}\Rightarrow\alpha\cap\beta=l$ 且 $P\in l$．这条公共直线叫作<b>交线</b>。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p152–154。三幅图都可以拖动旋转。逐条出现，每条先让学生用自己的话说生活例子再点开。强调“有且只有”= 存在 + 唯一；“确定一个平面”就是有且只有一个平面。教室相邻两墙面在墙角处有公共点，于是交于一条直线（墙角线）。</p>
+</section>
+
+<!-- 4 ================= 推论 + 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推论</span><h2>还有哪些条件也能“确定一个平面”？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="def" data-step="1"><b>推论 1</b>　经过一条直线和这条直线外的一点，有且只有一个平面．</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>存在</span><span class="think" data-step="3" data-ask="怎样化归到基本事实 1？">在 $l$ 上任取两点 $B,C$，不共线三点 $A,B,C$ 确定平面 $\alpha$</span><i class="why">基本事实 1</i></div>
+        <div class="dl" data-step="4"><span></span><span>$B\in\alpha$，$C\in\alpha$ ⇒ $l\subset\alpha$</span><i class="why">基本事实 2：平面 $\alpha$ 经过 $l$ 和 $A$</i></div>
+        <div class="dl end" data-step="5"><span>唯一</span><span>过 $l$ 和 $A$ 的平面一定过 $A,B,C$</span><i class="why">而过不共线三点的平面只有一个（基本事实 1）</i></div>
+      </div>
+      <p class="def" data-step="6"><b>推论 2</b>　经过两条相交直线，有且只有一个平面．<br><b>推论 3</b>　经过两条平行直线，有且只有一个平面．</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7"><b>桌子放不稳</b>，是地面不平还是桌子有问题？用两根细绳沿四条腿的<b>对角</b>拉直：<span class="think" data-step="8" data-ask="依据是哪条推论？">两绳相交，说明四条腿底端共面（推论 2）；否则桌子本身有问题。</span></p>
+      <div class="jcard" data-step="9">
+        <p><b>例 1</b>　已知：$A\in l$，$B\in l$，$C\in l$，$D\notin l$．求证：直线 $AD,BD,CD$ 共面．</p>
+        <div class="derive">
+          <div class="dl"><span>①</span><span>$D\notin l$ ⇒ $l$ 与 $D$ 确定平面 $\alpha$</span><i class="why">推论 1</i></div>
+          <div class="dl"><span>②</span><span class="think" data-step="10" data-ask="接下来证什么？">$A\in l\subset\alpha$，$D\in\alpha$ ⇒ $AD\subset\alpha$；同理 $BD,CD\subset\alpha$</span><i class="why">基本事实 2</i></div>
+        </div>
+        <p class="muted small">空间若干点或直线都在同一个平面内，就称它们<b>共面</b>。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p154–155。推论 1 的证明是课本原文的分步版，“存在 + 唯一”两部分要分开写。推论 2、3 的证明留给学生（习题 13.2(1) 第 3 题证明推论 2）。推论 3 要先用平行线定义说明 a、b 共面。</p>
+</section>
+
+<!-- 5 ================= 例 2 截面交线 + 符号 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>平面与长方体表面的交线怎么画？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="jiaox" class="v3"></div>
+      <p class="s3d-hint">拖动旋转；橙色三角形就是平面 $\alpha$ 截长方体所得的截面</p>
+    </div>
+    <div class="col">
+      <p class="tip">在长方体 $ABCD\text{-}A_1B_1C_1D_1$ 中，$P$ 为棱 $BB_1$ 的中点，画出由 $A_1,C_1,P$ 三点所确定的平面 $\alpha$ 与长方体表面的交线．</p>
+      <p class="tip" data-step="1">点 $P$ 在哪两个平面内？　<span class="think" data-step="2" data-ask="想一想">既在平面 $\alpha$ 内，又在平面 $AB_1$ 内；$A_1$ 也是——所以 $PA_1$ 就是平面 $\alpha$ 与平面 $AB_1$ 的交线（基本事实 3）。</span></p>
+      <p class="tip" data-step="3"><b>作法</b>　连接 $A_1P$，$PC_1$，$A_1C_1$，它们就是平面 $\alpha$ 与长方体表面的交线．</p>
+      <table class="mtab" data-step="4">
+        <tr><th>位置关系</th><th>符号</th><th>位置关系</th><th>符号</th></tr>
+        <tr><td>点 $C$ 不在直线 $AB$ 上</td><td>$C\notin AB$</td><td>直线 $AB$ 与 $BC$ 交于 $B$</td><td>$AB\cap BC=B$</td></tr>
+        <tr><td>点 $A_1$ 不在平面 $AC$ 内</td><td>$A_1\notin$ 平面 $AC$</td><td>直线 $AB$ 在平面 $AC$ 内</td><td>$AB\subset$ 平面 $AC$</td></tr>
+        <tr><td colspan="2">直线 $AA_1$ 不在平面 $AC$ 内</td><td colspan="2">$AA_1\not\subset$ 平面 $AC$</td></tr>
+      </table>
+      <p class="warn" data-step="5">点与线、点与面用 $\in$；线与面用 $\subset$。写成 “$PQ\in\alpha$” 是错的（练习第 4 题 A）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p155–156 例 2 与 p153 符号表。找交线的方法：找两个平面的两个公共点，连起来就是交线。旋转图形，从侧面看 A₁P 正好落在侧面 ABB₁A₁ 内。</p>
+</section>
+
+<!-- 6 ================= 13.2.2 空间两直线：核心互动 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">13.2.2</span><h2>正方体里找关系：两条直线还能怎样？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">在平面内，两条直线只有平行、相交两种关系。在正方体里点两条线（棱或对角线）试试：</p>
+      <div id="ll" class="v3 tall"></div>
+      <div class="btns" data-noswipe id="llBtns"></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="llMsg"></p>
+      <div class="def" data-step="1"><h4>异面直线（课本 p157）</h4>不同在任何一个平面内的两条直线叫作<em>异面直线</em>．如 $A_1B_1$ 与 $BC$、$A_1B_1$ 与 $CC_1$．</div>
+      <table class="mtab" data-step="2">
+        <tr><th>位置关系</th><th>共面情况</th><th>公共点个数</th></tr>
+        <tr><td>相交直线</td><td>在同一平面内</td><td>有且只有一个</td></tr>
+        <tr><td>平行直线</td><td>在同一平面内</td><td>没有</td></tr>
+        <tr><td>异面直线</td><td>不同在任何一个平面内</td><td>没有</td></tr>
+      </table>
+      <p class="warn" data-step="3">“没有公共点”的两条直线，不一定平行——还可能异面（练习 p162 第 2 题）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p157。先请学生上来点两条棱，系统用坐标判断平行 / 相交 / 异面并算出所成角；再试面对角线、体对角线。异面时会画出“平移后”的绿色虚线，这正是后面求异面直线夹角的方法。此处停顿让学生找出三组异面直线。</p>
+</section>
+
+<!-- 7 ================= 基本事实 4 + 等角定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">平行直线</span><h2>平行的传递性、等角定理</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">平面里 $a\parallel b$，$b\parallel c$ ⇒ $a\parallel c$。在空间还成立吗？长方体中 $AA_1\parallel BB_1$，$CC_1\parallel BB_1$，观察得 $AA_1\parallel CC_1$。</p>
+      <p class="def" data-step="1"><b>基本事实 4</b>　平行于同一条直线的两条直线平行．　$\left.\begin{array}{l}a\parallel b\\b\parallel c\end{array}\right\}\Rightarrow a\parallel c$</p>
+      <div class="jcard" data-step="2">
+        <p><b>例 1</b>　长方体 $ABCD\text{-}A_1B_1C_1D_1$ 中，$E,F$ 分别是 $AB,BC$ 的中点．求证：$EF\parallel A_1C_1$．</p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>连接 $AC$</span><span>$EF\parallel AC$</span><i class="why">三角形中位线</i></div>
+          <div class="dl" data-step="4"><span></span><span class="think" data-step="5" data-ask="AC 与 A₁C₁ 为什么平行？">$AA_1\,/\!\!/\!\!=BB_1$，$BB_1\,/\!\!/\!\!=CC_1$ ⇒ $AA_1\,/\!\!/\!\!=CC_1$ ⇒ $AA_1C_1C$ 是平行四边形 ⇒ $AC\parallel A_1C_1$</span><i class="why">基本事实 4（平行且相等）</i></div>
+          <div class="dl end" data-step="6"><span>所以</span><span>$EF\parallel A_1C_1$</span><i class="why">基本事实 4</i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div id="dj" class="v3"></div>
+      <div class="def" data-step="7"><h4>定理（等角定理，课本 p158）</h4>如果空间中一个角的两边和另一个角的两边分别平行并且方向相同，那么这两个角相等．</div>
+      <p class="tip" data-step="8">图中 $\angle BEF$ 与 $\angle B_1A_1C_1$：$\angle BEF=\angle BAC=\angle B_1A_1C_1$。<span class="think" data-step="9" data-ask="一边方向相同、一边相反呢？">两角<b>互补</b>（课本 p159 思考）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p157–159。“/ /=”读作“平行且相等”（课本记号）。等角定理的证明课本用“截取相等线段 + 两次平行四边形 + 全等”，可让学有余力的学生阅读。例 2（正方体中 ∠C₁E₁B₁ = ∠CEB）与本例同法，留作阅读。</p>
+</section>
+
+<!-- 8 ================= 异面直线判定与夹角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">异面直线</span><h2>怎样说明异面？怎样度量“歪”了多少？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">长方体中 $AB$ 与 $A_1C$ 为什么异面？<span class="think" data-step="1" data-ask="试试反证法">假设共面：过点 $C$ 和直线 $AB$ 的平面只有一个，即平面 $ABCD$，于是 $A_1\in$ 平面 $ABCD$，与“$A_1$ 在平面 $ABCD$ 外”矛盾。</span></p>
+      <p class="def" data-step="2"><b>定理</b>　过平面内一点与平面外一点的直线，和这个平面内不经过该点的直线是异面直线．</p>
+      <div class="def" data-step="3"><h4>异面直线所成的角（p161）</h4>$a,b$ 是异面直线，经过空间任意一点 $O$，作直线 $a'\parallel a$，$b'\parallel b$，把 $a'$ 和 $b'$ 所成的<em>锐角（或直角）</em>叫作异面直线 $a,b$ 所成的角或夹角．所成角是直角时，称 $a,b$ <b>互相垂直</b>，记作 $a\perp b$．</div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 3</b>　棱长为 $a$ 的正方体中：(1) 哪些棱所在直线与 $BC_1$ 异面？(3) 求 $BC_1$ 与 $AC$ 的夹角．</p>
+      <div id="ex3" class="v3 sm"></div>
+      <p class="tip small" data-step="4">(1) <span class="think" data-step="5" data-ask="12 条棱，数一数">相交的 6 条，平行的 0 条，余下 6 条（绿色）：$A_1A,A_1B_1,A_1D_1,DA,DC,DD_1$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>(3)</span><span>$AC\parallel A_1C_1$</span><i class="why">$AA_1C_1C$ 是平行四边形：把 $AC$ <b>平移</b>到 $A_1C_1$</i></div>
+        <div class="dl end" data-step="7"><span></span><span class="think" data-step="8" data-ask="△A₁BC₁ 是什么三角形？">$A_1B=BC_1=A_1C_1$（面对角线）⇒ 正三角形 ⇒ 夹角 $60^\circ$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="9" data-label="转化思想">求异面直线所成的角：<b>平移</b>成相交直线，把空间问题化为平面问题（解三角形）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p160–162。为什么所成角与点 O 的选择无关？——等角定理。例 3(2)（AA₁ ⊥ BC）可口答：AD ∥ BC，∠A₁AD = 90°。第 6 页的“找关系”工具可以验证 60°：点 BC₁ 和 AC 两条线。</p>
+</section>
+
+<!-- 9 ================= 13.2.3 线面三种关系 + 平行 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">13.2.3</span><h2>直线与平面：平行的判定与性质</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>位置关系</th><th>直线 $a$ 在平面 $\alpha$ 内</th><th>相交</th><th>平行</th></tr>
+        <tr><td>公共点</td><td>无数个</td><td>有且只有一个</td><td>没有</td></tr>
+        <tr><td>符号</td><td>$a\subset\alpha$</td><td>$a\cap\alpha=A$</td><td>$a\parallel\alpha$</td></tr>
+      </table>
+      <p class="muted small">相交或平行统称直线在平面外，记作 $a\not\subset\alpha$。</p>
+      <div class="def" data-step="1"><h4>直线与平面平行的判定定理（p165）</h4>如果平面外一条直线与此平面内的一条直线平行，那么该直线与此平面平行．　$a\not\subset\alpha,\ b\subset\alpha,\ a\parallel b\Rightarrow a\parallel\alpha$</div>
+      <div class="def" data-step="4"><h4>直线与平面平行的性质定理（p166）</h4>一条直线与一个平面平行，如果过该直线的平面与此平面相交，那么该直线与交线平行．　$l\parallel\alpha,\ l\subset\beta,\ \alpha\cap\beta=m\Rightarrow l\parallel m$</div>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="2">
+        <p><b>例 1</b>　$E,F$ 分别是三棱锥 $A\text{-}BCD$ 的侧棱 $AB,AD$ 的中点，求证：$EF\parallel$ 平面 $BCD$．</p>
+        <div id="xm1" class="v3 xs"></div>
+        <p><span class="think" data-step="3" data-ask="在平面 BCD 里找谁和 EF 平行？">$AE=EB,\ AF=FD\Rightarrow EF\parallel BD$；又 $EF\not\subset$ 平面 $BCD$，$BD\subset$ 平面 $BCD$ ⇒ $EF\parallel$ 平面 $BCD$．</span></p>
+      </div>
+      <p class="tip" data-step="5">$l\parallel\alpha$，$l$ 与 $\alpha$ 内的任意直线都平行吗？<span class="think" data-step="6" data-ask="想一想">不。没有公共点，只能<b>平行或异面</b>；只有过 $l$ 的平面与 $\alpha$ 的交线才与 $l$ 平行。</span></p>
+      <p class="method" data-step="7">判定：<b>线线平行 ⇒ 线面平行</b>；性质：<b>线面平行 ⇒ 线线平行</b>。线线与线面位置关系可以相互转化。</p>
+    </div>
+  </div>
+  <p class="note">课本 p164–167。判定定理的三个条件缺一不可，尤其“平面外”。例 2（过 P 和棱 BC 锯开木块）是性质定理的应用：BC ∥ 平面 A₁C₁，所以截线 EF ∥ BC，可结合实物讲。本章判定定理的证明课本不作要求。</p>
+</section>
+
+<!-- 10 ================= 线面垂直 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">线面垂直</span><h2>直线垂直于平面：定义、判定、性质</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>定义（p168）</h4>如果直线 $a$ 与平面 $\alpha$ 内的<em>任意一条</em>直线都垂直，那么称直线 $a$ 与平面 $\alpha$ 垂直，记作 $a\perp\alpha$．$a$ 叫平面的垂线，$\alpha$ 叫直线的垂面，交点叫垂足．</div>
+      <p class="tip" data-step="2">垂直于平面内<b>无数条</b>直线，就垂直于平面吗？<span class="think" data-step="3" data-ask="先判断">不一定：这无数条直线可能互相平行（右图拖动直线 $a$ 倒下时看看）。</span></p>
+      <div class="def" data-step="4"><h4>判定定理（p169）</h4>如果一条直线与一个平面内的<em>两条相交直线</em>垂直，那么该直线与此平面垂直．</div>
+      <div class="def" data-step="5"><h4>性质定理（p169）</h4>垂直于同一个平面的两条直线平行．</div>
+    </div>
+    <div class="col">
+      <div id="xc" class="v3"></div>
+      <div class="slider-row" data-noswipe>直线 $a$ 的倾斜<input type="range" id="xcT" min="0" max="60" step="1" value="0"><b id="xcTV" class="v"></b></div>
+      <p class="tip feedback" id="xcMsg"></p>
+      <p class="tip" data-step="6">对折的矩形纸片竖立在桌面上，折痕与桌面垂直——折痕垂直于桌面内两条<b>相交</b>的底边。从平面外一点引垂线，点与垂足间的距离叫作<b>点到平面的距离</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p168–170。右图：直线 a 过平面上一点，m、n 是平面内两条相交直线，还有一组与 m 平行的直线。把 a 倾斜（绕 m 方向的轴转），a 始终垂直于 m 方向的那一族直线（无数条），却不再垂直于 n——所以“无数条”不够，要“两条相交”。性质定理课本用反证法证明，可选讲。</p>
+</section>
+
+<!-- 11 ================= 线面角 + 线面工具 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">线面角</span><h2>斜线与平面所成的角：在正方体里量一量</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>定义（p171）</h4>平面的一条斜线与它在这个平面内的<em>射影</em>所成的锐角，叫作这条直线与这个平面所成的角．直线垂直于平面时所成角是直角；平行或在平面内时所成角是 $0^\circ$．</div>
+      <div class="btns" data-noswipe id="lpBtns"></div>
+      <p class="tip feedback" id="lpMsg"></p>
+      <p class="tip" data-step="2">练习 p173 第 3 题：$AD_1$ 与平面 $ABCD$ 所成角是 <span class="think" data-step="3" data-ask="点出来验证">$45^\circ$（射影是 $AD$，$\triangle ADD_1$ 等腰直角）。</span></p>
+    </div>
+    <div class="col">
+      <div id="lp" class="v3 tall"></div>
+      <p class="s3d-hint">先选一个平面，再点正方体里的一条线；绿色虚线是射影（拖动空白处旋转）</p>
+    </div>
+  </div>
+  <p class="note">课本 p171 斜线、斜足、射影与线面角。工具按坐标计算：在平面内 / 平行 / 垂直 / 相交，并给出所成角及射影。可依次验证练习 2：AA₁ 与平面 ABCD 成 90°，AA₁ 与平面 BCC₁B₁ 成 0°（平行），A₁B 在平面 ABCD 内的射影是 AB。求线面角三步：作（找射影）—证—算。</p>
+</section>
+
+<!-- 12 ================= 13.2.4 面面平行 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">13.2.4</span><h2>两个平面平行：判定与性质</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">两个平面的位置关系只有两种：<b>平行</b>（没有公共点，$\alpha\parallel\beta$）、<b>相交</b>（有一条公共直线，$\alpha\cap\beta=a$）。</p>
+      <div class="def" data-step="1"><h4>两个平面平行的判定定理（p176）</h4>如果一个平面内的<em>两条相交直线</em>与另一个平面平行，那么这两个平面平行．</div>
+      <p class="tip small" data-step="2">水平仪在桌面上<b>交叉</b>放置两次，气泡都居中，桌面就水平。</p>
+      <div class="def" data-step="5"><h4>两个平面平行的性质定理（p177）</h4>两个平面平行，如果另一个平面与这两个平面相交，那么两条交线平行．</div>
+      <p class="tip small" data-step="6">两个平行平面的公垂线段都相等，其长度叫作两个平行平面间的距离。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 1</b>　在长方体 $ABCD\text{-}A'B'C'D'$ 中，求证：平面 $C'DB\parallel$ 平面 $AB'D'$．</p>
+      <div id="mp" class="v3 sm"></div>
+      <div class="derive">
+        <div class="dl" data-step="3"><span></span><span class="think" data-step="4" data-ask="平面 C′DB 里找哪两条相交直线？">$AB\,/\!\!/\!\!=DC\,/\!\!/\!\!=D'C'$ ⇒ $ABC'D'$ 是平行四边形 ⇒ $BC'\parallel AD'$ ⇒ $BC'\parallel$ 平面 $AB'D'$；同理 $C'D\parallel$ 平面 $AB'D'$；$BC'\cap C'D=C'$</span><i class="why">线面平行 ⇒ 面面平行</i></div>
+      </div>
+      <p class="warn" data-step="7">平面 $\alpha$ 内有<b>无数条</b>直线与 $\beta$ 平行，$\alpha$ 与 $\beta$ 不一定平行（练习 p178 第 2(2) 题）——这些直线可能互相平行。</p>
+    </div>
+  </div>
+  <p class="note">课本 p175–178。判定定理与线面垂直判定一样，关键词是“两条相交直线”。例 1 课本用框图写出，这里改成一行推导链。性质定理说明“面面平行 ⇒ 线线平行”，例 2（垂直于两平行平面中的一个，也垂直于另一个）可作阅读。</p>
+</section>
+
+<!-- 13 ================= 二面角：翻折 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">二面角</span><h2>把一张纸沿棱翻折：怎样刻画两个面张开的“角”？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fold" class="v3 tall"></div>
+      <div class="slider-row" data-noswipe>翻折角度<input type="range" id="fdT" min="0" max="180" step="1" value="60"><b id="fdTV" class="v"></b></div>
+      <div class="slider-row" data-noswipe>棱上的点 $O$<input type="range" id="fdO" min="-1.4" max="1.4" step="0.05" value="0"><b id="fdOV" class="v"></b></div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>二面角（p179）</h4>一条直线和由这条直线出发的两个半平面所组成的图形叫作<em>二面角</em>，这条直线叫作二面角的<b>棱</b>，每个半平面叫作二面角的<b>面</b>．记作二面角 $\alpha\text{-}l\text{-}\beta$．</div>
+      <div class="def" data-step="2"><h4>平面角</h4>以二面角的棱上任意一点为端点，在两个面内分别作<em>垂直于棱</em>的射线，这两条射线所成的角叫作二面角的平面角．约定 $0^\circ\le$ 二面角 $\le 180^\circ$；平面角是直角的二面角叫作直二面角．</div>
+      <p class="tip feedback" id="fdMsg"></p>
+      <p class="tip" data-step="3"><b>例 3</b>　正方体 $ABCD\text{-}A'B'C'D'$ 中，二面角 $D'\text{-}AB\text{-}D$ 的大小是 <span class="think" data-step="4" data-ask="平面角是哪个？">$AB\perp AD'$，$AB\perp AD$ ⇒ $\angle D'AD$ 是平面角，$=45^\circ$；二面角 $A'\text{-}AB\text{-}D$ 的平面角 $\angle A'AD=90^\circ$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p178–180。先把翻折角度从 0 拉到 180，像打开笔记本电脑；再拖动“棱上的点 O”：OA、OB 始终垂直于棱，∠AOB 不随 O 改变（课本思考：平面角与 O 的位置无关——等角定理）。“东方红 1 号”轨道平面与赤道平面成 68.5° 的二面角，可以把滑块拉到 68.5 附近。</p>
+</section>
+
+<!-- 14 ================= 面面垂直 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">面面垂直</span><h2>两个平面垂直：判定与性质</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">两个平面所成的二面角是直二面角，就说这两个平面互相垂直。门转到任何位置，门所在平面都与地面垂直——<span class="think" data-step="1" data-ask="为什么？">门轴始终垂直于地面。</span></p>
+      <div class="def" data-step="2"><h4>平面与平面垂直的判定定理（p180）</h4>如果一个平面过另一个平面的垂线，那么这两个平面垂直．　$l\perp\alpha,\ l\subset\beta\Rightarrow\alpha\perp\beta$</div>
+      <div class="def" data-step="5"><h4>平面与平面垂直的性质定理（p181）</h4>两个平面垂直，如果一个平面内有一条直线垂直于这两个平面的交线，那么这条直线与另一个平面垂直．</div>
+      <p class="warn" data-step="6">两个平面垂直，一个平面内的直线<b>不一定</b>垂直于另一个平面（图 13-2-57）——必须“垂直于交线”。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 4</b>　正方体中，求证：平面 $A'C'CA\perp$ 平面 $B'D'DB$．</p>
+      <div id="mz" class="v3 sm"></div>
+      <div class="derive">
+        <div class="dl" data-step="3"><span></span><span class="think" data-step="4" data-ask="在哪个平面里找另一个平面的垂线？">$AA'\perp$ 平面 $ABCD$ ⇒ $AA'\perp BD$；又 $AC\perp BD$，$AA'\cap AC=A$ ⇒ $BD\perp$ 平面 $A'C'CA$；而 $BD\subset$ 平面 $B'D'DB$</span><i class="why">线面垂直 ⇒ 面面垂直</i></div>
+      </div>
+      <p class="method" data-step="7">面面垂直 ⇐ 线面垂直 ⇐ 线线垂直；性质定理反过来：面面垂直 ⇒ 线面垂直。</p>
+    </div>
+  </div>
+  <p class="note">课本 p180–182。铅垂线检查墙面是否垂直于水平面，依据的就是判定定理。例 4 中 BD 是关键：它同时垂直于 AA′ 和 AC。性质定理课本的证明：在 β 内作 BC ⊥ l，∠ABC 是直二面角的平面角，所以 AB ⊥ BC，再加 AB ⊥ l。</p>
+</section>
+
+<!-- 15 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（练习 p163 第 6(3) 题）正方体 $ABCD\text{-}A_1B_1C_1D_1$ 中，作出异面直线 $A_1C$ 与 $D_1D$ 所成的角，并求出该角的正切值．</p>
+        <details><summary>提示 1</summary>把 $D_1D$ 平移：$D_1D\parallel A_1A$。</details>
+        <details><summary>提示 2</summary>所成角就是 $\angle AA_1C$，在 $\text{Rt}\triangle A_1AC$ 中求。</details>
+        <details><summary>完整解答</summary>设棱长为 $a$。$\angle AA_1C$ 即所成角，$AC=\sqrt2a$，$AA_1=a$，$\tan\angle AA_1C=\dfrac{AC}{AA_1}=\sqrt2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（练习 p173 第 7 题）正方体中，$O$ 为上底面 $A_1B_1C_1D_1$ 的中心．作出直线 $OC$ 与平面 $ABCD$ 所成的角，并求出该角的正切值．</p>
+        <details><summary>提示 1</summary>先找 $O$ 在平面 $ABCD$ 内的射影：下底面的中心 $O'$。</details>
+        <details><summary>提示 2</summary>$OO'\perp$ 平面 $ABCD$，所成角是 $\angle OCO'$。</details>
+        <details><summary>完整解答</summary>设棱长为 $a$，$OO'=a$，$O'C=\dfrac{\sqrt2}{2}a$，$\tan\angle OCO'=\dfrac{a}{\frac{\sqrt2}{2}a}=\sqrt2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（练习 p182 第 3(3) 题）正方体中，平面 $ABC_1D_1$ 与平面 $A_1B_1CD$ 是否垂直？为什么？</p>
+        <details><summary>提示 1</summary>在平面 $ABC_1D_1$ 里找一条垂直于平面 $A_1B_1CD$ 的直线。</details>
+        <details><summary>提示 2</summary>看 $BC_1$：它和 $B_1C$、$CD$ 都垂直吗？</details>
+        <details><summary>完整解答</summary>垂直。$BC_1\perp B_1C$（正方形对角线），$CD\perp$ 平面 $BCC_1B_1$ ⇒ $CD\perp BC_1$；$B_1C\cap CD=C$ ⇒ $BC_1\perp$ 平面 $A_1B_1CD$；又 $BC_1\subset$ 平面 $ABC_1D_1$，所以两平面垂直。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">三题分别对应：异面直线所成角、线面角、面面垂直。共同方法：平移 / 找射影 / 找垂线，把空间问题化为平面三角形。可用第 6、11 页的工具验证：A₁C 与 DD₁ 所成角 ≈ 54.7°（tan = √2）。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>线线、线面、面面：相互转化</h2></div>
+  <div class="bd full">
+    <div class="conv" data-step="1">
+      <div class="cv-row"><b>平行</b><span class="cv">线线 ∥</span><i>⇄</i><span class="cv">线面 ∥</span><i>⇄</i><span class="cv">面面 ∥</span></div>
+      <div class="cv-row"><b>垂直</b><span class="cv">线线 ⊥</span><i>⇄</i><span class="cv">线面 ⊥</span><i>⇄</i><span class="cv">面面 ⊥</span></div>
+      <p class="muted small center">→ 方向是判定定理，← 方向是性质定理；“两条相交直线”是判定线面垂直、面面平行的关键词</p>
+    </div>
+    <div class="cols3 sum">
+      <p class="recall" data-label="知识" data-step="2">三个基本事实及推论；空间两直线三种关系；线面三种关系；面面两种关系；异面直线所成角、线面角、二面角。</p>
+      <p class="method" data-label="方法" data-step="3">求角：平移（线线）、找射影（线面）、作棱的垂线（二面角）——化归为平面三角形。</p>
+      <p class="recall" data-label="思想" data-step="4">转化（空间 → 平面、高维关系 → 低维关系）；反证法证明唯一性、异面。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一课：</b>13.3 空间图形的表面积和体积——位置关系弄清楚了，就可以“量”空间图形了。</p>
+  </div>
+  <p class="note">请学生先自己画出“转化图”，再逐行揭示。课后可做习题 13.2(4) 第 17 题（用平面截正方体，截面可以是几边形？）作为探究作业。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/solid3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

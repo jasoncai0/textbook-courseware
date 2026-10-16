@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>角 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mangle.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shemen.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第6章 平面图形的认识（一） · 6.2</p>
+    <h1 class="cover-title">角</h1>
+    <p class="cover-q" data-step="1">足球场上，把球射向球门时，<b>射门的角度越大</b>，进球的可能性也越大。</p>
+    <p class="cover-q" data-step="2">站在不同位置射门，“射门角”谁大谁小？凭眼睛估，还是有办法<b>量</b>出来？</p>
+    <div class="chips" data-step="3"><span class="chip">角的两种定义</span><span class="chip">比较大小</span><span class="chip">量角器 · 度分秒</span><span class="chip">尺规作角</span><span class="chip">角的平分线</span></div>
+  </div>
+  <p class="note">课本 p152 情境。封面只抛问题：射门角“越大越好”，那怎样比较两个角的大小？请学生先说说小学学过角的哪些知识。本课内容较多（课本 p152–158），建议分 2 课时：第 1 课时到第 9 页（量角器），第 2 课时从尺规作角开始。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 recall4">
+      <div class="recall" data-label="七上 6.1 · 射线" data-step="1">
+        <p>射线只有<b>一个端点</b>，向一方无限延伸；记作“射线 $OA$”，端点字母写在前面。</p>
+        <span class="use">角的两条边都是从顶点出发的射线（第 4 页）。</span>
+      </div>
+      <div class="recall" data-label="七上 6.1 · 比较线段的长短" data-step="2">
+        <p><b>度量法</b>：用刻度尺量出长度再比较；<b>叠合法</b>：一端对齐，看另一端落在哪里。</p>
+        <span class="use">比较角的大小，也是这两种方法（第 6 页）。</span>
+      </div>
+      <div class="recall" data-label="小学四年级 · 角的度量" data-step="3">
+        <p>用量角器量角，单位“度（°）”；直角 $90^\circ$，平角 $180^\circ$，周角 $360^\circ$；比直角小的是锐角，比直角大、比平角小的是钝角。</p>
+        <span class="use">用量角器量角、画角（第 9、10 页）。</span>
+      </div>
+      <div class="recall" data-label="小学三年级 · 时、分、秒" data-step="4">
+        <p>1 时 = 60 分，1 分 = 60 秒；$0.5$ 时 = 30 分。</p>
+        <span class="use">度、分、秒的换算方法和它一模一样（第 8 页）。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>什么是角 → 怎样比较角的大小 → 怎样量、怎样画 → 角的平分线。</p>
+  </div>
+  <p class="note">每张卡请学生先口述，再看“本课用在”。第二张卡最关键：比较角的大小时，要让学生自己想到“和比较线段一样”，这是类比的思想。</p>
+</section>
+
+<!-- 3 ================= 射门角（图 6-13） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>在哪一点射门，进球的可能性最大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="goal" class="goal"></div>
+      <div class="btns" data-noswipe id="goalBtns">
+        <button class="btn" type="button" data-p="A">站到 A</button>
+        <button class="btn" type="button" data-p="B">站到 B</button>
+        <button class="btn" type="button" data-p="C">站到 C</button>
+        <button class="btn solid" type="button" id="goalMeasure">量一量</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 6-13，点 $A$、$B$、$C$ 表示 3 个不同的射门位置，$MN$ 表示球门线。拖动橙色点（射门点 $P$）试一试。</p>
+      <p class="tip" data-step="1">(1) 先<b>估测</b>：$\angle1$、$\angle2$、$\angle3$ 哪个最大？</p>
+      <p class="tip feedback" id="goalMsg">射门角 $\angle MPN$：先估一估，再点“量一量”。</p>
+      <table class="mtab" id="goalTab"><tr><th>位置</th><th>A（∠1）</th><th>B（∠2）</th><th>C（∠3）</th></tr><tr><td>射门角</td><td id="gA">?</td><td id="gB">?</td><td id="gC">?</td></tr></table>
+      <p class="tip gold" data-step="2">(3) 在哪一点射门进球的可能性最大？<span class="think" data-step="3" data-ask="量完再说">点 $B$：$\angle 2$ 最大。</span></p>
+      <p class="tip" data-step="4">要比较角的大小，先得说清楚：<b>什么是角</b>？</p>
+    </div>
+  </div>
+  <p class="note">课本 p152 图 6-13 与问题 (1)–(3)。先让学生只用眼睛估，举手表决哪个角最大，再点“量一量”。读数由坐标算出（与图中位置一致）。可以继续拖动 P：离球门越近、越正对球门，射门角越大。问题 (2)“交流度量角的方法”留到第 9 页量角器。</p>
+</section>
+
+<!-- 4 ================= 角的定义与表示 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>角：有公共端点的两条射线</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>角（课本 p152）</h4>有公共端点的两条射线组成的图形叫做<em>角</em>（angle），这个公共端点是角的<em>顶点</em>，这两条射线是角的两<em>边</em>．</div>
+      <div id="fig614" class="fig614"></div>
+      <p class="muted center small-t">图 6-14：顶点 $O$，两边 $OA$、$OB$</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="2"><b>三种表示法：</b>用符号“∠”</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>三个字母</span><span>$\angle AOB$ 或 $\angle BOA$</span><i class="why">表示顶点的字母写在<b>中间</b></i></div>
+        <div class="dl" data-step="4"><span>一个数字或希腊字母</span><span>$\angle\alpha$、$\angle1$</span><i class="why">在角内画弧，写上 $\alpha$ 或数字</i></div>
+        <div class="dl" data-step="5"><span>顶点字母</span><span>$\angle O$</span><i class="why">只能在<b>不引起混淆</b>时用</i></div>
+      </div>
+      <div class="pick" data-ans="b" data-step="6">
+        <p class="pq">下面哪种写法表示的是图 6-14 中的角？</p>
+        <button type="button" data-k="a">$\angle OAB$</button><button type="button" data-k="b">$\angle BOA$</button><button type="button" data-k="c">$\angle ABO$</button>
+        <p class="pick-why">顶点 $O$ 必须写在中间：$\angle AOB$、$\angle BOA$ 都可以；$\angle OAB$ 的顶点变成了 $A$，是另一个角。</p>
+      </div>
+      <p class="warn" data-step="7" data-label="什么时候不能只写 ∠O？">一个顶点处有<b>好几个角</b>时（如第 7 页的图 6-19），只写 $\angle O$ 不知道指哪一个，必须用三个字母。</p>
+    </div>
+  </div>
+  <p class="note">课本 p152 角的定义与表示。强调两点：① 角的边是射线，所以“边的长短”与角的大小无关（下一页旋转时可再说）；② 三个字母表示时顶点在中间。点选题先让学生举手再点。</p>
+</section>
+
+<!-- 5 ================= 旋转定义（图 6-15、6-16） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>换个角度看：射线绕端点旋转</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="spin" class="spin"></div>
+      <div class="slider-row" data-noswipe>旋转 $\theta=$<input type="range" id="spinR" min="0" max="360" step="1" value="50"><b class="v" id="spinV"></b></div>
+      <div class="btns" data-noswipe id="spinBtns">
+        <button class="btn" type="button" data-v="35">锐角</button><button class="btn" type="button" data-v="90">直角</button><button class="btn" type="button" data-v="130">钝角</button><button class="btn" type="button" data-v="180">平角</button><button class="btn" type="button" data-v="360">周角</button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>角的另一种定义（课本 p152）</h4>角也可以看成是一条射线绕着它的端点旋转到另一个位置所成的图形．起始位置 $OA$ 叫<em>始边</em>，终止位置 $OB$ 叫<em>终边</em>．</div>
+      <p class="tip feedback" id="spinMsg"></p>
+      <div class="def" data-step="2"><h4>平角与周角（课本 p153）</h4>射线 $OA$ 绕点 $O$ 旋转 1 周的过程中，当终边 $OB$ 与始边 $OA$ 成一条直线时，所成的角叫做<em>平角</em>；当 $OB$ 与 $OA$ 重合时，所成的角叫做<em>周角</em>．</div>
+      <p class="warn" data-step="3" data-label="平角不是直线，周角不是射线">平角的两边“看起来”成一条直线，但它有<b>顶点</b>、有旋转的过程；周角的两边重合，但它转了整整一周。</p>
+      <p class="tip" data-step="4">角的大小与什么有关？<span class="think" data-step="5" data-ask="边画长一些，角会变大吗？">只与终边<b>转过的多少</b>有关，与边画得长短无关（边是射线，本来就无限长）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p152–153 图 6-15、6-16。拖动滑块或终边上的橙色点让射线旋转，读数和角的名称实时变化（吸附在 90°、180°、360° 附近）。先请学生预测“转到哪里是平角”“转一整圈是什么角”，再拖。说明：大于平角的角我们暂不研究（读数会提示）。</p>
+</section>
+
+<!-- 6 ================= 比较大小（图 6-17、6-18） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>怎样比较两个角的大小？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cmp" class="cmp"></div>
+      <div class="slider-row" data-noswipe>$\angle AOB=$<input type="range" id="cmpR" min="15" max="75" step="1" value="32"><b class="v" id="cmpV">?</b></div>
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" id="cmpGo">叠合：把 ∠AOB 移过去</button><button class="btn" type="button" id="cmpBack">移回</button><button class="btn" type="button" id="cmpDeg">度量：显示度数</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">两位同学的想法：“可以用<b>度量</b>的方法”“与比较线段大小类似，可以用<b>叠合</b>的方法”。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>① 顶点重合</span><span>$O$ 与 $O'$ 重合</span><i class="why">只移动 $\angle AOB$，不改变它的大小</i></div>
+        <div class="dl" data-step="1"><span>② 一边重合</span><span>$OA$ 与 $O'A'$ 重合</span><i class="why">就像比线段时“一端对齐”</i></div>
+        <div class="dl" data-step="1"><span>③ 同侧</span><span>$OB$ 与 $O'B'$ 在 $O'A'$ 同侧</span><i class="why">否则另一边无法比较</i></div>
+        <div class="dl key" data-step="2"><span>看 $OB$</span><span>落在 $\angle A'O'B'$ 内部</span><i class="why">$\angle AOB\lt\angle A'O'B'$</i></div>
+        <div class="dl" data-step="3"><span></span><span class="think" data-step="4" data-ask="落在哪里时相等？">与 $O'B'$ 重合</span><i class="why">$\angle AOB=\angle A'O'B'$</i></div>
+        <div class="dl" data-step="3"><span></span><span class="think" data-step="5" data-ask="落在哪里时更大？">落在 $\angle A'O'B'$ 外部</span><i class="why">$\angle AOB\gt\angle A'O'B'$</i></div>
+      </div>
+      <p class="tip feedback" id="cmpMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p153 想一想、图 6-17、6-18。先拖滑块让两个角看起来“差不多”，请学生判断谁大，再点“叠合”。然后改变 ∠AOB，请学生说 OB 落在哪里、结论是什么。最后点“度量”与叠合结果对照：两种方法结论一致。</p>
+</section>
+
+<!-- 7 ================= 试一试（图 6-19） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>一个顶点，好几个角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="rays" class="rays"></div>
+      <div class="btns" data-noswipe id="rayBtns">
+        <button class="btn" type="button" data-r="A">OA</button><button class="btn" type="button" data-r="B">OB</button><button class="btn" type="button" data-r="C">OC</button><button class="btn" type="button" data-r="D">OD</button>
+      </div>
+      <p class="tip feedback" id="rayMsg">任选两条射线，看它们组成的角。</p>
+    </div>
+    <div class="col">
+      <p class="tip">1. 在图 6-19 中，以 $OA$ 为一边的角有哪几个？按从小到大用“$\lt$”连接。</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="先数，再排">3 个：$\angle AOB\lt\angle AOC\lt\angle AOD$。</span></p>
+      <p class="tip" data-step="3">图中一共有几个角？（小于平角的）<span class="think" data-step="4" data-ask="不重不漏地数">$OA$ 开头 3 个，$OB$ 开头 2 个（$\angle BOC$、$\angle BOD$），$OC$ 开头 1 个（$\angle COD$）：$3+2+1=6$ 个。</span></p>
+      <p class="tip" data-step="5">2. $\angle AOC=\angle AOB+\angle BOC$，$\angle AOB=\angle AOD-\angle BOD$．类似地，还能写出哪些？</p>
+      <p class="tip" data-step="6"><span class="think" data-step="7" data-ask="写几个">$\angle AOD=\angle AOC+\angle COD$；$\angle BOD=\angle BOC+\angle COD$；$\angle COD=\angle AOD-\angle AOC$；$\angle BOC=\angle AOC-\angle AOB$……</span></p>
+      <p class="method" data-step="8" data-label="数角的方法">从一边开始按顺序数，不重复、不遗漏；角也能像线段一样<b>相加、相减</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p153 试一试。请学生点两条射线验证自己找的角，右下读数显示度数，可以用数据验证“和差关系”（例如 ∠AOB + ∠BOC 正好等于 ∠AOC）。读数由坐标算出。这里也回答了第 4 页的问题：这个图里不能只写 ∠O。</p>
+</section>
+
+<!-- 8 ================= 度、分、秒 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">度量单位</span><h2>比 1° 更小的单位：分、秒</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>度、分、秒（课本 p154）</h4>$1^\circ$ 的 $\dfrac1{60}$ 为 1 分，记作 $1'$，即 $1^\circ=60'$．<br>$1'$ 的 $\dfrac1{60}$ 为 1 秒，记作 $1''$，即 $1'=60''$．</div>
+      <p class="recall" data-label="类似于时、分、秒的换算" data-step="2">1 时 = 60 分 ↔ $1^\circ=60'$；化“大单位 → 小单位”乘 60，“小单位 → 大单位”除以 60。</p>
+      <div class="derive" data-step="3">
+        <div class="dl"><span>度 → 分</span><span>$0.75^\circ=0.75\times60'=45'$</span><i class="why">大化小，乘进率 60</i></div>
+        <div class="dl"><span>分 → 度</span><span>$54'=\left(\dfrac{54}{60}\right)^\circ=0.9^\circ$</span><i class="why">小化大，除以进率 60</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4"><b>练一练 1（课本 p154）</b></p>
+      <p class="tip" data-step="4">$0.75^\circ=$ <span class="blank" data-ans="45"></span> $'$；　$78^\circ54'=$ <span class="blank" data-ans="78.9" data-w="4"></span> $^\circ$</p>
+      <p class="tip" data-step="5"><b>习题 6.2 第 1 题（课本 p157）</b></p>
+      <p class="tip" data-step="5">$22.5^\circ=$ <span class="blank" data-ans="1350" data-w="4"></span> $'$；　$54^\circ36'=$ <span class="blank" data-ans="54.6" data-w="4"></span> $^\circ$</p>
+      <p class="warn" data-step="6" data-label="易错">$78^\circ54'$ 不是 $78.54^\circ$！进率是 60，不是 100：$54'=0.9^\circ$，所以 $78^\circ54'=78.9^\circ$。</p>
+      <p class="tip" data-step="7">再试一个：$20^\circ15'$ 写成度是多少？<span class="think" data-step="8" data-ask="想一想">$15'=\left(\dfrac{15}{60}\right)^\circ=0.25^\circ$，所以 $20^\circ15'=20.25^\circ$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p154 度分秒与练一练 1、习题 1。填空回车即判对错。易错卡针对“把度分当小数”的常见错误：可以对比 1 时 30 分 ≠ 1.30 时。第 7 步的 20°15′ 在第 13 页的练习里还会用到。</p>
+</section>
+
+<!-- 9 ================= 量角器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手量</span><h2>用量角器量角：两对齐，一读数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="prot" class="prot"></div>
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" id="protNew">换一个角</button><button class="btn" type="button" id="protSnap">帮我对齐</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">拖量角器<b>中心</b>的橙色点移动它，拖<b>基线右端</b>的橙色点旋转它。</p>
+      <div class="checks">
+        <p id="protC1" class="ck">① 量角器的中心对准角的顶点 $O$</p>
+        <p id="protC2" class="ck">② 0 刻度线对准角的一边 $OA$</p>
+        <p id="protC3" class="ck">③ 看另一边 $OB$ 对着的刻度——从 0 那一圈读</p>
+      </div>
+      <p class="tip">读数：$\angle AOB=$ <span class="blank" id="protAns" data-ans="0" data-w="3"></span> $^\circ$</p>
+      <p class="warn" data-step="1" data-label="内圈还是外圈？">量角器有两圈数：$OA$ 对着外圈的 0，就读外圈；对着内圈的 0，就读内圈。先看角是锐角还是钝角，读数就不会错。</p>
+      <p class="recall" data-label="反过来：画角" data-step="2">用量角器可以画出大小在 $0^\circ$ 到 $180^\circ$ 之间的任何角：中心对顶点、0 线对一边，在要画的度数处点一点，再连线（图 6-21）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p154“度量”与 p155 图 6-21。这一页练“量”：每次“换一个角”，角的大小和摆放方向都会变，学生必须自己旋转量角器。三条检查项对齐后会变绿；读数填空回车判对错（读错内外圈是最常见错误）。“帮我对齐”给示范用。量角器刻度由代码精确绘制，每小格 1°。</p>
+</section>
+
+<!-- 10 ================= 尺规作角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>只用直尺和圆规，作一个角等于已知角</h2></div>
+  <button class="media-btn" hidden data-img="assets/zuojiao.jpg" data-video="assets/zuojiao.mp4" data-cap="尺规作一个角等于已知角：两次画同样半径的弧，再截取同样长的弦">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="cons" class="cons"></div>
+      <div class="slider-row" data-noswipe>已知 $\angle AOB=$<input type="range" id="consR" min="20" max="120" step="1" value="40"><b class="v" id="consV"></b>　半径 $OC$<input type="range" id="consK" min="1.2" max="2.6" step="0.1" value="1.8"></div>
+    </div>
+    <div class="col">
+      <p class="tip">一副三角尺只能画出 $30^\circ$、$45^\circ$、$60^\circ$、$90^\circ$ 和它们的和、差（如 $75^\circ$、$15^\circ$）；不用量角器，任意一个角怎么“复制”？</p>
+      <table class="mtab steps">
+        <tr><th>作法（课本 p155）</th></tr>
+        <tr data-step="1"><td>1. 以点 $O$ 为圆心，任意长为半径画弧，分别交 $OA$、$OB$ 于点 $C$、$D$．</td></tr>
+        <tr data-step="2"><td>2. 画射线 $O'A'$，以点 $O'$ 为圆心，$OC$ 长为半径画弧，交 $O'A'$ 于点 $C'$．</td></tr>
+        <tr data-step="3"><td>3. 以点 $C'$ 为圆心，$CD$ 长为半径画弧，交前弧于点 $D'$．</td></tr>
+        <tr data-step="4"><td>4. 过点 $D'$ 画射线 $O'B'$．$\angle A'O'B'$ 就是与 $\angle AOB$ 相等的角．</td></tr>
+      </table>
+      <p class="tip feedback" id="consMsg" data-step="5"></p>
+      <p class="method" data-step="6" data-label="为什么能“复制”？">两次弧的<b>半径相同</b>、截的弦 $CD=C'D'$ 也相同，张开的程度就一样（八年级学了全等三角形就能证明）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p154 想一想（三角尺画特殊角）、p155 议一议与做一做。按 → 逐步作图，每一步左右两图同步出现；先请学生说“下一步该以谁为圆心、多长为半径”。可先拖滑块改已知角和半径再作，结论不变；第 5 步给出量角器复核的读数（由坐标计算）。右上角“看动画”是 20 秒无声动画。严格的证明要到八年级（全等三角形），这里只要求会按步骤作图、会说每一步。</p>
+</section>
+
+<!-- 11 ================= 角平分线（图 6-22、6-23） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>角的平分线：把角分成两个相等的角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="bis" class="bis"></div>
+      <p class="muted center small-t">拖动 $OC$ 上的橙色点；拖 $OB$ 上的点可改变 $\angle AOB$</p>
+      <p class="tip feedback" id="bisMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">在透明纸上画一个角，把这个角<b>对折</b>，使角的两边重合，再展平纸片——折痕把这个角分成了两个相等的角（图 6-22）。</p>
+      <div class="def" data-step="1"><h4>角的平分线（课本 p156）</h4>如图 6-23，射线 $OC$ 把 $\angle AOB$ 分成两个相等的角，射线 $OC$ 叫做这个角的<em>平分线</em>（angular bisector）．</div>
+      <p class="tip" data-step="2">议一议：$\angle AOC$、$\angle BOC$、$\angle AOB$ 之间有怎样的数量关系？</p>
+      <div class="derive" data-step="3">
+        <div class="dl"><span>∵</span><span>$OC$ 是 $\angle AOB$ 的平分线</span><i class="why">已知</i></div>
+        <div class="dl key"><span>∴</span><span class="think" data-step="4" data-ask="怎样写？">$\angle AOC=\angle BOC=\dfrac12\angle AOB$</span><i class="why">平分线的定义</i></div>
+        <div class="dl"><span>或</span><span class="think" data-step="5" data-ask="反过来呢？">$\angle AOB=2\angle AOC=2\angle BOC$</span><i class="why">平分线的定义</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p155–156 图 6-22、6-23 与议一议。先拖 OC，让学生观察两个读数何时相等（误差 1° 内会吸附到平分线并提示）。再改变 ∠AOB，平分线位置跟着变：任何一个角都有且只有一条平分线。推理格式“∵…∴…（依据）”是本学期几何书写的开始，要求学生会写。</p>
+</section>
+
+<!-- 12 ================= 例题（图 6-24） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>用平分线和角的和差求角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例（课本 p156）</b> 如图 6-24，$\angle AOD=80^\circ$，$OB$ 是 $\angle AOC$ 的平分线，$\angle AOB=30^\circ$．求 $\angle AOC$、$\angle COD$ 的度数．</p>
+      <div id="ex24" class="ex24"></div>
+      <div class="method" data-step="1" data-label="思路分析">要求 $\angle COD$，<span class="think" data-step="2" data-ask="它等于哪两个角的差？">$\angle COD=\angle AOD-\angle AOC$</span>；$\angle AOD$ 已知，只缺 $\angle AOC$——<span class="think" data-step="3" data-ask="怎样求 ∠AOC？">由平分线，$\angle AOC=2\angle AOB$。</span></div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="4"><span>解：∵</span><span>$OB$ 是 $\angle AOC$ 的平分线</span><i class="why">已知</i></div>
+        <div class="dl" data-step="5"><span>∴</span><span>$\angle AOC=2\angle AOB$</span><i class="why">角平分线的定义</i></div>
+        <div class="dl" data-step="5"><span></span><span>$=2\times30^\circ=60^\circ$</span><i class="why">代入 $\angle AOB=30^\circ$</i></div>
+        <div class="dl key" data-step="6"><span></span><span>$\angle COD=\angle AOD-\angle AOC$</span><i class="why">角的和差（看图）</i></div>
+        <div class="dl end" data-step="7"><span></span><span>$=80^\circ-60^\circ=20^\circ$</span><i class="why">代入计算</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="方法提炼">① 看图找“谁是谁的和或差”；② 有平分线就有“2 倍”或“一半”；③ 先写关系式，再代数值。</p>
+    </div>
+  </div>
+  <p class="note">课本 p156 例。图按题中数据精确绘制（OA 0°、OB 30°、OC 60°、OD 80°）。先只读题和看图，按 → 让学生口答思路的两个问题，再逐行书写。强调书写时先写“角的关系式”，再代入数。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 2（p156）</b> 如图，$OC$ 是 $\angle AOE$ 内的一条射线，$OB$ 平分 $\angle AOC$，$OD$ 平分 $\angle COE$，$\angle AOC=40^\circ$，$\angle COE=20^\circ$．求 $\angle BOD$．</p>
+        <div id="pr2" class="minib"></div>
+        <details><summary>提示 1</summary>$\angle BOD=\angle BOC+\angle COD$。</details>
+        <details><summary>提示 2</summary>$\angle BOC=\dfrac12\angle AOC$，$\angle COD=\dfrac12\angle COE$。</details>
+        <details><summary>完整解答</summary>∵ $OB$ 平分 $\angle AOC$，$OD$ 平分 $\angle COE$，<br>∴ $\angle BOC=\frac12\times40^\circ=20^\circ$，$\angle COD=\frac12\times20^\circ=10^\circ$，<br>∴ $\angle BOD=20^\circ+10^\circ=30^\circ$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2（p157）</b> 如图，$\angle AOC=50^\circ$，$\angle BOC=20^\circ15'$．求 $\angle AOB$．</p>
+        <div id="pr3" class="minib"></div>
+        <p class="q">$\angle AOB=$ <span class="blank" data-ans="29°45′|29°45'|29.75" data-w="5"></span></p>
+        <details><summary>提示 1</summary>$\angle AOB=\angle AOC-\angle BOC$。</details>
+        <details><summary>提示 2</summary>$50^\circ$ 不够减 $15'$，借 $1^\circ$：$50^\circ=49^\circ60'$。</details>
+        <details><summary>完整解答</summary>$\angle AOB=50^\circ-20^\circ15'=49^\circ60'-20^\circ15'=29^\circ45'$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 7（p157）</b> 如图，$OB$ 是 $\angle AOC$ 的平分线，$\angle COD=2\angle AOB$．$\angle COD$ 与 $\angle AOC$ 有怎样的数量关系？为什么？</p>
+        <div id="pr4" class="minib"></div>
+        <details><summary>提示 1</summary>$\angle AOC$ 也能用 $\angle AOB$ 表示。</details>
+        <details><summary>提示 2</summary>$OB$ 是平分线 ⇒ $\angle AOC=2\angle AOB$。</details>
+        <details><summary>完整解答</summary>相等。∵ $OB$ 平分 $\angle AOC$，∴ $\angle AOC=2\angle AOB$（角平分线的定义）。又 $\angle COD=2\angle AOB$，∴ $\angle COD=\angle AOC$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p156 练一练 2、p157 习题 2、7。先独立做 3 分钟。第 2 题填空可以写 29°45′（也接受 29.75）；“借 1° 当 60′”与时间的借位相同。三个小图按题中数据精确绘制（习题 7 取 ∠AOB = 20°）。</p>
+</section>
+
+<!-- 14 ================= 方向角 + 发现 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · 发现</span><h2>用角表示方向；一个有趣的发现</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>习题 5（p157）</b> $OA$ 表示北偏东 $50^\circ$ 方向．试画出表示下列方向的射线：(1) 北偏西 $30^\circ$；(2) 南偏东 $75^\circ$．</p>
+      <div id="compass" class="compass"></div>
+      <p class="tip feedback" id="compMsg"></p>
+    </div>
+    <div class="col">
+      <p class="recall" data-label="方向的说法">先说<b>北</b>或<b>南</b>，再说偏<b>东</b>或偏<b>西</b>，度数是射线与正北（或正南）方向所成的角。</p>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 8（p158）</b> 如图，$\angle AOC$ 和 $\angle BOD$ 都是直角．(1) 设 $\angle COD=30^\circ$，求 $\angle AOD$、$\angle BOC$；(2) 改变 $\angle COD$ 的大小，它们还相等吗？(3) 你发现了什么？</p>
+        <div id="pr8" class="minib w"></div>
+        <div class="slider-row" data-noswipe>$\angle COD=$<input type="range" id="pr8R" min="5" max="85" step="1" value="30"><b class="v" id="pr8V"></b></div>
+        <details><summary>提示</summary>$\angle AOD=\angle AOC-\angle COD$，$\angle BOC=\angle BOD-\angle COD$。</details>
+        <details><summary>完整解答</summary>(1) $\angle AOD=90^\circ-30^\circ=60^\circ$，$\angle BOC=90^\circ-30^\circ=60^\circ$，相等；(2) 仍相等（拖滑块看读数）；(3) 两个直角都减去<b>同一个角</b>，剩下的角相等——下一节 6.3 会把它总结成一条结论。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p157 习题 5、p158 习题 8。左图：拖动射线端点，读数实时显示方向（吸附到整度数），请学生画出两个方向并口述；右图：滑块改变 ∠COD，∠AOD 与 ∠BOC 的读数始终相等，为 6.3“同角的余角相等”埋伏笔。</p>
+</section>
+
+<!-- 15 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">角：有公共端点的两条射线；或射线绕端点旋转而成。平角 $180^\circ$，周角 $360^\circ$。</p>
+        <p class="def">$1^\circ=60'$，$1'=60''$；角平分线：$\angle AOC=\angle BOC=\frac12\angle AOB$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="比较大小">叠合法（顶点、一边重合，看另一边）；度量法（量角器）。</p>
+        <p class="method" data-label="作角">三角尺画特殊角；量角器画 $0^\circ$～$180^\circ$ 的角；尺规作一个角等于已知角。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="类比">角 ↔ 线段：比较大小、和差、平分线（中点）都能对照着学。</p>
+        <p class="recall" data-label="运动的观点">射线旋转形成角：转得多，角就大。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.3 余角、补角、对顶角——第 14 页的发现（两个直角减去同一个角，剩下的角相等）背后是什么道理？</p>
+  </div>
+  <p class="note">先请学生对照“线段”说一说这节课学了角的哪些对应内容（定义、表示、比较、和差、平分线↔中点、度量）。作业建议：习题 6.2 第 3、4、6 题；第 6 题（三等分 69°）可用量角器画出每份 23°。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mangle.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

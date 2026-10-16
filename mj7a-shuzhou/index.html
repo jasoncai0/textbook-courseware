@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数轴 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/gonglu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第2章 有理数 · 2.3</p>
+    <h1 class="cover-title">数　轴</h1>
+    <p class="cover-q" data-step="1">把温度计<b>横过来</b>放：0 ℃ 在中间，右边是正、左边是负。</p>
+    <p class="cover-q" data-step="2">一条直线上，怎样“安排”所有的数？面积为 2 的正方形的边长 $a$、圆周率 $\pi$，也能在直线上找到吗？</p>
+    <div class="chips" data-step="3"><span class="chip">原点 · 正方向 · 单位长度</span><span class="chip">用点表示数</span><span class="chip">滚出 π</span><span class="chip">比较大小</span></div>
+  </div>
+  <p class="note">课本 p18–22。数轴是第 2 章的核心工具：后面的绝对值、相反数、加减法都要在数轴上“看”出来。本课的两条线：数和点的对应；用位置比较大小。</p>
+</section>
+
+<!-- 2 ================= 知识链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="小学 · 在直线上表示数" data-step="1">
+        <p>根据直线上一个点的位置写出合适的数，也会在直线上画出表示一个数的点。</p>
+        <span class="use">第 3 页：试一试（图 2-2）。</span>
+      </div>
+      <div class="recall" data-label="2.1 正数与负数" data-step="2">
+        <p>温度计：0 ℃ 以上为正，以下为负；每一小格表示的温度相同。</p>
+        <span class="use">第 4 页：数轴就是“横放的温度计”——原点、方向、单位长度。</span>
+      </div>
+      <div class="recall" data-label="2.2 有理数与无理数" data-step="3">
+        <p>面积为 2 的正方形边长 $a$（$a^2=2$）和 $\pi$ 都是无理数。</p>
+        <span class="use">第 7、8 页：在数轴上找到表示 $a$ 和 $\pi$ 的点。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>用直线上的<b>点</b>表示<b>数</b>，再用点的<b>位置</b>比较数的<b>大小</b>。</p>
+  </div>
+  <p class="note">请学生先说说温度计上的刻度有什么特点（有 0、有方向、刻度均匀）——这三点就是数轴的三要素。</p>
+</section>
+
+<!-- 3 ================= 试一试 图 2-2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>直线上的点表示什么数？</h2></div>
+  <div class="bd full">
+    <p class="tip">课本 p18 图 2-2：把直线上的点所表示的数写在相应的方框里（输入后按回车）．</p>
+    <div id="f22" class="nl-board big"></div>
+    <p class="center f22-blanks">点 ①：<span class="blank" data-ans="-4|−4" data-w="3"></span>　点 ②：<span class="blank" data-ans="-3|−3" data-w="3"></span>　点 ③：<span class="blank" data-ans="3" data-w="3"></span>　点 ④：<span class="blank" data-ans="5" data-w="3"></span></p>
+    <p class="tip gold" data-step="1">你是怎样看出来的？<span class="think" data-step="2" data-ask="说一说">先找到 0，再看每一格代表 1：在 0 右边几格就是正几，在 0 左边几格就是负几。</span></p>
+  </div>
+  <p class="note">课本 p18 试一试，四个红点在 −4、−3、3、5。追问“你先看哪里？”，引出：要读一个点表示的数，必须知道 0 在哪、哪边是正、一格是多少——这就是下一页的三要素。</p>
+</section>
+
+<!-- 4 ================= 做一做：三要素（核心一） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>一步一步，画出一条数轴</h2></div>
+  <div class="bd full">
+    <div class="btns" data-noswipe id="buildBtns">
+      <button class="btn" type="button" data-k="o">① 取原点</button>
+      <button class="btn" type="button" data-k="d">② 规定正方向</button>
+      <button class="btn" type="button" data-k="u">③ 选单位长度</button>
+      <button class="btn" type="button" data-k="reset">擦掉重画</button>
+    </div>
+    <div id="build" class="nl-board big"></div>
+    <p class="tip feedback" id="buildMsg"></p>
+    <div class="def" data-step="1"><h4>数轴（课本 p18）</h4>像这样规定了<em>原点</em>、<em>正方向</em>和<em>单位长度</em>的直线叫做<em>数轴</em>（number axis）．</div>
+  </div>
+  <p class="note">课本 p18 做一做三个步骤。请学生按顺序点按钮，每点一步，说出这一步解决了什么问题：原点——“0 在哪”；正方向——“哪边是正”；单位长度——“1 有多长”。三个按钮可以任意顺序点，少一个，就读不出点表示的数（提示框会说明）。</p>
+</section>
+
+<!-- 5 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>下面哪些是数轴？缺了什么？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1"><svg class="mini-ax" id="ax1"></svg><div class="think" data-step="2" data-ask="是不是？"><p><span class="verdict x">不是</span>没有原点（0）。</p></div></div>
+      <div class="jcard" data-step="1"><svg class="mini-ax" id="ax2"></svg><div class="think" data-step="3" data-ask="是不是？"><p><span class="verdict x">不是</span>没有正方向（箭头）。</p></div></div>
+      <div class="jcard" data-step="4"><svg class="mini-ax" id="ax3"></svg><div class="think" data-step="5" data-ask="是不是？"><p><span class="verdict x">不是</span>单位长度不统一：每一格长短不同。</p></div></div>
+      <div class="jcard" data-step="4"><svg class="mini-ax" id="ax4"></svg><div class="think" data-step="6" data-ask="是不是？"><p><span class="verdict ok">是</span>三要素齐全。正方向向右，单位长度可以自己选。</p></div></div>
+    </div>
+    <p class="method" data-step="7" data-label="画数轴">一画直线、二取原点、三定方向、四选单位——<b>三要素，缺一不可</b>。</p>
+  </div>
+  <p class="note">四条直线都由代码按要求精确画出。第 3 条最隐蔽：刻度看起来整齐，但间隔不相等（第二格明显长）。第 4 条单位长度和课本不一样，也是数轴——单位长度可以按需要选取，一旦选定就要统一。</p>
+</section>
+
+<!-- 6 ================= 例 1、例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>由点读数，由数画点</h2></div>
+  <div class="bd full">
+    <div id="ex1" class="nl-board short"></div>
+    <p class="tip"><b>例 1</b> 如图 2-4，分别写出数轴上点 $A$、$B$、$C$ 表示的数．　解：点 $A$ 表示 <span class="think" data-step="1" data-ask="?">$-2.5$</span>；点 $B$ 表示 <span class="think" data-step="1" data-ask="?">$0$</span>；点 $C$ 表示 <span class="think" data-step="1" data-ask="?">$3.5$</span>．</p>
+    <p class="tip"><b>例 2</b> 在数轴上画出表示下列各数的点：$-1.5$，$3$，$-\dfrac35$，$1.5$，$-3\dfrac12$．（把上方的点拖到数轴上）</p>
+    <div id="ex2" class="nl-board tall"></div>
+    <p class="tip feedback" id="ex2Msg"></p>
+  </div>
+  <p class="note">课本 p18–19 例 1、例 2。例 1 课本说法：“用原点右边到原点的距离是 1.5 个单位长度的点表示 1.5，用原点左边到原点的距离是 2.4 个单位长度的点表示 −2.4”。例 2 拖动时以 0.1 为单位吸附；$-\frac35=-0.6$ 要先化成小数估位置，$-3\frac12$ 在 −3 与 −4 正中间。放对的点会变绿。</p>
+</section>
+
+<!-- 7 ================= 议一议：画出 a ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>用圆规在数轴上画出无理数 $a$</h2></div>
+  <div class="bd lw">
+    <div class="col">
+      <div id="sq2" class="sq2-board"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="arcBtn">以原点为圆心、$a$ 为半径画弧</button><button class="btn" type="button" id="arcReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">面积为 2 的正方形的边长 $a$ 是无理数（2.2 节），如何在数轴上画出表示 $a$ 的点？</p>
+      <p class="tip" data-step="1">两个同学的想法：<span class="think" data-step="2" data-ask="说一说">“以原点为一个端点，在数轴上向右画一条长为 $a$ 的线段”；“$a$ 应位于 1.41 与 1.42 之间”。</span></p>
+      <p class="tip" data-step="3">课本的做法（图 2-6）：<span class="think" data-step="4" data-ask="怎样画？">把图 2-1 中边长为 $a$ 的正方形放到数轴上，以原点为圆心、$a$ 为半径画弧，交数轴于点 $A$，点 $A$ 就表示无理数 $a$。</span></p>
+      <p class="tip gold" data-step="5">为什么 $OA=a$？<span class="think" data-step="6" data-ask="想一想">圆规画弧时半径不变：弧上每一点到原点的距离都等于正方形的边长 $a$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p19 议一议与图 2-6。正方形的对角线恰好是数轴上从 0 到 2 的线段（2.2 节剪拼时两条对角线长都是 2），所以它的一条边从原点出发、长为 $a$。弧按 $a=\sqrt2$ 精确计算，落点 1.414… 在 1.41 与 1.42 之间，可以放大看。</p>
+</section>
+
+<!-- 8 ================= 做一做：滚出 π（核心二） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>怎样用数轴上的点表示圆周率 $\pi$？</h2></div>
+  <div class="bd full">
+    <div id="roll" class="roll-board"></div>
+    <div class="slider-row" data-noswipe>圆片转过<input type="range" id="rollT" min="0" max="360" step="1" value="0"><b class="v" id="rollTV"></b><button class="btn" type="button" id="rollPlay">▶ 滚一周</button></div>
+    <div class="cols2">
+      <p class="tip" data-step="1">做一个直径为 1 个单位长度的圆片，它的周长是多少？<span class="think" data-step="2" data-ask="算一算">$C=\pi d=\pi\times1=\pi$（课本写作 $2\pi\times\frac12=\pi$）。</span></p>
+      <p class="tip" data-step="3">把圆片上的点 $A$ 放在原点，沿数轴<b>无滑动</b>地滚动 1 周，点 $A$ 到达 $A'$：<span class="think" data-step="4" data-ask="A′ 表示什么数？">滚过的距离等于圆片的周长 $\pi$，所以点 $A'$ 表示的数就是 $\pi$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p19 做一做。拖动滑块或点“滚一周”：圆心匀速前进，转过的弧长始终等于前进的距离（无滑动），点 A 的轨迹（橙色）是一条“摆线”，落地点精确在 π ≈ 3.14 处。可以追问：如果圆片直径是 2，滚一周到哪里？（2π）</p>
+</section>
+
+<!-- 9 ================= 结论 + 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>数轴上的点 ↔ 有理数、无理数</h2></div>
+  <div class="bd full">
+    <p class="def" data-step="1">有理数和无理数都可以用数轴上的点表示；反过来，数轴上的任意一点都表示一个有理数或无理数．</p>
+    <p class="tip"><b>练一练 1</b>（课本 p20）分别写出数轴上点 $A$、$B$、$C$、$D$、$E$ 表示的数：</p>
+    <div id="p20" class="nl-board"></div>
+    <p class="center">$A$：<span class="blank" data-ans="-4|−4" data-w="4"></span>　$B$：<span class="blank" data-ans="3" data-w="4"></span>　$C$：<span class="blank" data-ans="-0.5|−0.5|-1/2" data-w="4"></span>　$D$：<span class="blank" data-ans="-1|−1" data-w="4"></span>　$E$：<span class="blank" data-ans="4.5|9/2" data-w="4"></span></p>
+    <p class="tip" data-step="2"><b>练一练 3</b> 在图 2-6 中，画出表示 $-a$ 的点．<span class="think" data-step="3" data-ask="怎样画？">以原点为圆心、$a$ 为半径画弧，交数轴<b>负半轴</b>于一点，它表示 $-a$（第 7 页的弧向左延长即可）。</span></p>
+  </div>
+  <p class="note">课本 p20 的结论与练一练 1、3（第 2 题画点可回第 6 页拖一拖）。练一练 1 中 C 在 −1 与 0 正中间，表示 −0.5；E 在 4 与 5 正中间，表示 4.5。“数轴上的点与数一一对应”到八年级学实数时再正式说，这里用课本的说法即可。</p>
+</section>
+
+<!-- 10 ================= 比较大小 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>数轴上的位置，决定了数的大小</h2></div>
+  <div class="bd full">
+    <p class="tip">1．把 0 ℃、5 ℃、−3 ℃、−2 ℃ 按从低到高的顺序排列：<span class="think" data-step="1" data-ask="排一排">$-3$ ℃ 、$-2$ ℃、$0$ ℃、$5$ ℃</span></p>
+    <div id="cmp" class="nl-board"></div>
+    <p class="tip" data-step="2">在数轴上画出表示 0、5、−3、−2 的点，从左往右看：<span class="think" data-step="3" data-ask="发现了什么？">从左到右，数越来越大：$-3\lt-2\lt0\lt5$。</span></p>
+    <div class="def" data-step="4"><h4>课本 p20</h4>在数轴上表示的两个数，<em>右边的数总比左边的数大</em>．正数都大于 0，负数都小于 0，正数大于负数．</div>
+    <p class="tip" data-step="5"><b>例 3</b> 比较 $-3.5$ 和 $-0.5$ 的大小．<span class="think" data-step="6" data-ask="谁大？">在数轴上画出表示 −3.5 和 −0.5 的点 $A$、$B$（图 2-7）。因为点 $B$ 在点 $A$ 的右边，所以 $-0.5\gt-3.5$。</span></p>
+  </div>
+  <p class="note">课本 p20 试一试与例 3。温度从低到高，正好是数轴上从左到右——这就是“温度计横过来”的好处。注意 −3.5 和 −0.5：小学的经验“3.5 比 0.5 大”在负数里反过来了，用数轴的位置说理最清楚（2.4 节会再用绝对值说明）。“&gt;”“&lt;”读作“大于”“小于”。</p>
+</section>
+
+<!-- 11 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>画出各数，用“&lt;”号连接</h2></div>
+  <div class="bd full">
+    <p class="tip">课本 p21 例 4：在数轴上画出表示下列各数的点，并用“&lt;”号将这些数按从小到大的顺序连接起来：$-\dfrac12$，$0$，$2$，$-3$，$5$，$-1.5$．</p>
+    <div id="ex4" class="nl-board tall"></div>
+    <p class="tip feedback" id="ex4Msg"></p>
+    <p class="def big center" data-step="1">$-3\lt-1.5\lt-\dfrac12\lt0\lt2\lt5$</p>
+    <p class="method" data-step="2" data-label="方法">先在数轴上画点，再<b>从左到右</b>读出来，就是从小到大。</p>
+  </div>
+  <p class="note">课本 p21 例 4 与图 2-8。请学生先把六个点拖到数轴上（放对变绿），全部放对后，读数区按从左到右给出顺序，再揭示课本的连写结果。连写时“&lt;”的开口朝向大数。</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（练一练 p21）数轴上的点 $A$ 和点 $B$ 分别表示 $-\frac12$ 与 $-\frac34$，哪一个点离原点的距离较近？$-\frac12$ 与 $-\frac34$ 哪一个数较大？</p>
+        <details><summary>提示 1</summary>化成小数：$-\frac12=-0.5$，$-\frac34=-0.75$。</details>
+        <details><summary>提示 2</summary>两个点都在原点左边，哪个更靠近 0？哪个更靠右？</details>
+        <details><summary>完整解答</summary>表示 $-\frac12$ 的点 $A$ 离原点较近；点 $A$ 在点 $B$ 的右边，所以 $-\frac12\gt-\frac34$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 2.3 第 4 题）点 $A$、$B$、$C$ 分别表示 −3、−1、4．(1) 把点 $A$ 向右移动 3 个单位长度，哪个数最小？(2) 把点 $C$ 向左移动 6 个单位长度，点 $B$ 表示的数比点 $C$ 表示的数大多少？</p>
+        <details><summary>提示 1</summary>向右移动，数变大；向左移动，数变小。</details>
+        <details><summary>提示 2</summary>(1) $A$ 到了 0；(2) $C$ 到了 $4-6$。</details>
+        <details><summary>完整解答</summary>(1) 点 $A$ 移到 0，三个数是 0、−1、4，点 $B$ 表示的 −1 最小；(2) 点 $C$ 移到 −2，点 $B$（−1）在它右边 1 个单位长度，大 1。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 2.3 第 5、6 题）某天最低气温：北京 −7 ℃、哈尔滨 −25 ℃、南京 0 ℃、乌鲁木齐 −12 ℃、拉萨 −8 ℃、广州 14 ℃、台北 12 ℃、海口 15 ℃．按从低到高排列．要测 −50 ℃ 左右的气温，用水银温度计还是酒精温度计？</p>
+        <details><summary>提示 1</summary>负数都小于 0；两个负数，在数轴上越靠左越小。</details>
+        <details><summary>提示 2</summary>2.1 资料卡片：水银凝固点 −38.87 ℃，酒精凝固点 −117.3 ℃。</details>
+        <details><summary>完整解答</summary>哈尔滨、乌鲁木齐、拉萨、北京、南京、台北、广州、海口；−50 ℃ 低于水银的凝固点 −38.87 ℃（水银会凝固），应使用酒精温度计。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p21 练一练 3、p22 习题 2.3 第 4、5、6 题。第 3 题把 2.1 节的资料卡片用上了：−50 &lt; −38.87，所以水银已经凝固。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">数轴：规定了<em>原点</em>、<em>正方向</em>、<em>单位长度</em>的直线。</p>
+        <p class="recall" data-label="对应">有理数、无理数都能用数轴上的点表示（$a$ 用圆规、$\pi$ 用滚圆）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="比较大小">数轴上右边的数总比左边的大；正数 &gt; 0 &gt; 负数。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">数 ↔ 点，大小 ↔ 左右位置。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.4 绝对值与相反数——−3 和 3 在数轴上离原点一样远，这个“距离”叫什么？</p>
+  </div>
+  <p class="note">课后作业建议：习题 2.3 第 1、2、3 题。第 3 题（比较两个负数）可以先画数轴，下一节学了绝对值再用“绝对值大的负数反而小”验证。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

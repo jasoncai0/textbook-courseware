@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生活 数学 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chengshi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第1章 数学与我们同行 · 1.1</p>
+    <h1 class="cover-title">生活　数学</h1>
+    <p class="cover-q" data-step="1">广阔的田野，繁华的都市，到处都有我们常见的<b>图形</b>、<b>数字</b>。</p>
+    <p class="cover-q" data-step="2">一张长途汽车票上的数字告诉了我们什么？自行车的车轮<b>为什么是圆形的</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">数字里的信息</span><span class="chip">图形里的道理</span><span class="chip">估一估</span><span class="chip">篱笆怎样围</span></div>
+  </div>
+  <p class="note">课本 p5 章首页与 p6。这是初中数学的第一节课：不急着讲新知识，而是让学生换一副“数学眼光”看身边的事。封面两个问题来自章首页，请学生先随口回答，第 3 页再用作图验证“车轮为什么是圆的”。</p>
+</section>
+
+<!-- 2 ================= 知识链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>小学里学过的，今天都用得上</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三年级 · 长方形的周长和面积" data-step="1">
+        <p>长方形的周长 $=(\text{长}+\text{宽})\times2$</p>
+        <p>长方形的面积 $=\text{长}\times\text{宽}$</p>
+        <span class="use">第 7、8 页：16 m 的篱笆围成长方形，怎样围面积最大？</span>
+      </div>
+      <div class="recall" data-label="五年级下册 · 圆" data-step="2">
+        <p>圆上任意一点到圆心的距离都等于<b>半径</b>。</p>
+        <p>圆的周长 $C=\pi d\approx3.14\,d$</p>
+        <span class="use">第 3 页解释车轮为什么是圆的；第 6 页由周长估大树的粗细。</span>
+      </div>
+      <div class="recall" data-label="小学 · 数字编码" data-step="3">
+        <p>邮政编码、门牌号、电话号码……一串数字，每一位都有确定的含义。</p>
+        <span class="use">第 4、5 页：读懂身份证号码、车票里的信息。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>生活中，我们离不开数学——数学已成为我们<b>表达和交流的工具</b>。</p>
+  </div>
+  <p class="note">三张卡片都是小学旧知，请学生口述公式。初中第一课的重点是“用数学的眼光看生活”：数字可以“编码”信息，图形背后有道理，数量之间可以比较、估计和优化。</p>
+</section>
+
+<!-- 3 ================= 车轮为什么是圆的 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>车轮为什么是圆形的？滚一滚就知道</h2></div>
+  <div class="bd lw">
+    <div class="col">
+      <div id="wheelBoard" class="wheel-board"></div>
+      <div class="slider-row" data-noswipe>滚动距离<input type="range" id="wheelD" min="0" max="8" step="0.05" value="0"><b class="v" id="wheelDV"></b><button class="btn" type="button" id="wheelPlay">▶ 滚起来</button></div>
+    </div>
+    <div class="col">
+      <div class="readout wheel-read">
+        <span>圆形轮子：车轴离地</span><b class="v" id="hCircle"></b><span class="muted">（半径 1）</span>
+        <span>方形轮子：车轴离地</span><b class="v" id="hSquare"></b><span class="muted">（边长 2）</span>
+      </div>
+      <p class="tip" data-step="1">滚动时，哪个车轴（中心点）的高度不变？<span class="think" data-step="2" data-ask="看一看">圆形轮子：车轴的高度一直是 1，走得平稳；方形轮子：车轴忽高忽低，在 1 和约 1.41 之间颠簸。</span></p>
+      <p class="tip gold" data-step="3">为什么？<span class="think" data-step="4" data-ask="想一想">圆上每一点到圆心的距离都等于半径，着地点无论是哪一点，车轴离地面的高度都等于半径。</span></p>
+      <p class="method" data-step="5" data-label="数学眼光">看到生活现象，问一句“为什么”，再用学过的数学知识说清道理。</p>
+    </div>
+  </div>
+  <p class="note">章首页问题“车轮为什么是圆形的”。拖动滑块或点“滚起来”，对比两个轮子中心点的轨迹（橙色）。方形轮子绕着地的顶点转动，中心离地最高是对角线的一半 ≈ 1.41（以后学了勾股定理就能算出 √2）。这里只要学生说出“圆上点到圆心距离相等”。</p>
+</section>
+
+<!-- 4 ================= 身份证号码 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数字里的信息</span><h2>一串数字，藏着一个人的信息</h2></div>
+  <div class="bd full">
+    <p class="tip">某人的身份证号码是 32010619621118××××（后四位用 × 代替）。点一点每一段数字，看它表示什么。</p>
+    <div class="idcard" id="idCard" data-noswipe></div>
+    <p class="tip feedback" id="idMsg">先猜一猜，再点数字段。</p>
+    <div class="cols2">
+      <p class="tip" data-step="1">这个人是哪一天出生的？<span class="think" data-step="2" data-ask="读一读">1962 年 11 月 18 日。</span></p>
+      <p class="tip" data-step="3">为什么出生日期要写成 8 位（1962 11 18），而不写成 1962 11 8 这样的样子？<span class="think" data-step="4" data-ask="想一想">每一段的位数固定，计算机和人才能准确地把号码分段读出；11 月 8 日要写成 1108。</span></p>
+    </div>
+    <p class="recall" data-step="5" data-label="议一议 · 课本 p7">你的<b>学籍号</b>表达了哪些信息？长途汽车票上的数字（日期、发车时间、票价、座号……）又告诉了我们哪些信息？</p>
+  </div>
+  <p class="note">课本 p6 身份证号码。32、01、06 是省（市、自治区）、市、县（市、区）的编码，1962、11、18 是出生的年、月、日，×××× 中前三个数字是顺序码，最后一个数字是校验码。【隐私】不要让学生在课堂上说出自己或家人的完整身份证号码。“议一议”请学生说说自己的学籍号（只说结构，不说完整号码）。</p>
+</section>
+
+<!-- 5 ================= 图形里的信息 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">图形里的信息</span><h2>不用一个字，图形也能“说话”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col" data-step="1">
+        <svg viewBox="0 0 240 120" class="rings" id="rings" aria-label="奥林匹克五环"></svg>
+        <p class="tip">奥林匹克五环旗：<b>5</b> 个大小相同、颜色不同的圆环，环环相扣。<span class="think" data-step="2" data-ask="象征什么？">象征五大洲的团结，体现“和平、友谊、进步”的奥林匹克宗旨。</span></p>
+      </div>
+      <div class="col" data-step="3">
+        <svg viewBox="0 0 240 120" class="rings" aria-label="红十字标志">
+          <rect x="95" y="15" width="30" height="90" fill="#e8492b"/><rect x="65" y="45" width="90" height="30" fill="#e8492b"/>
+        </svg>
+        <p class="tip">议一议：从这个图案中你获得了哪些信息？<span class="think" data-step="4" data-ask="说一说">红十字标志：医疗救护、人道救助。它由 5 个大小相同的正方形拼成，上下、左右都对称。</span></p>
+      </div>
+      <div class="col" data-step="5">
+        <div class="ticket" aria-label="长途汽车票示意">
+          <p class="t-title">江苏省公路汽车客票（课本章首页）</p>
+          <p>南京 → 苏州　票价 <b>64.00</b>　开车时间 <b>09:15</b>　票种 全</p>
+          <p>乘车日期 <b>2009.08.04</b>　座号 <b>2</b>　检票口 <b>1</b></p>
+        </div>
+        <p class="tip">车票上的数字告诉了我们什么？<span class="think" data-step="6" data-ask="说一说">从南京到苏州，2009 年 8 月 4 日 9 点 15 分开车，坐 2 号座位，到 1 号检票口检票，全票 64 元。</span></p>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="小结">数字和图形，都是我们<b>表达和交流</b>信息的工具。</p>
+  </div>
+  <p class="note">课本 p7：奥运五环、北京 2008 奥运会会徽、议一议的两个图案（红十字与一家银行的行徽，可以请学生说说行徽由哪些图形组成）、章首页的汽车票。五环和红十字都是按比例用代码画的。车票内容照课本章首页的江苏省公路汽车客票摘录（车次 11KK5331、上车地点“总站”等也可让学生补充）。</p>
+</section>
+
+<!-- 6 ================= 估一估 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>估一估：这棵大树有多粗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 320 260" class="tree-fig" id="treeFig" aria-label="同学手拉手围住大树（俯视示意）"></svg>
+      <div class="slider-row" data-noswipe>围树的人数<input type="range" id="treeN" min="3" max="8" step="1" value="4"><b class="v" id="treeNV"></b></div>
+      <div class="slider-row" data-noswipe>每人两臂伸开长约<input type="range" id="treeA" min="1.3" max="1.7" step="0.05" value="1.5"><b class="v" id="treeAV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p7：没有那么长的尺子，怎样知道大树有多粗？</p>
+      <p class="tip" data-step="1">想办法：<span class="think" data-step="2" data-ask="有什么办法？">几位同学手拉手把树围起来。一个人两臂伸开的长度大约等于他的身高。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>周长约</span><span id="treeC"></span><i class="why">人数 × 每人两臂伸开的长</i></div>
+        <div class="dl end" data-step="4"><span>直径约</span><span id="treeD"></span><i class="why">$d=C\div\pi$，$\pi$ 取 3.14</i></div>
+      </div>
+      <p class="warn" data-step="5" data-label="估计不是瞎猜">手拉手围成的圈比树干略大，所以结果是<b>近似值</b>；但每一步都有依据，估计得就有道理。</p>
+    </div>
+  </div>
+  <p class="note">课本 p7“试一试”1、2。先请学生举出“生活中处处有数学”的例子，再估大树。可以请学生现场伸开双臂和身高比一比。直径 = 周长 ÷ π 是五年级下册“圆”的知识，滑块改变人数和臂长，结果实时重算（保留一位小数）。</p>
+</section>
+
+<!-- 7 ================= 篱笆围兔（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>16 m 篱笆围长方形，怎样围小兔的地方最大？</h2></div>
+  <div class="bd lw2">
+    <div class="col">
+      <div id="fenceBoard" class="fence-board"></div>
+      <p class="muted center small-t">拖动橙色角点：篱笆总长始终是 16 m（一个方格边长 1 m）</p>
+    </div>
+    <div class="col">
+      <div class="readout fence-read">
+        <span>一边长</span><b class="v" id="fL"></b>
+        <span>邻边长</span><b class="v" id="fW"></b>
+        <span>周长</span><b class="v" id="fP"></b>
+        <span>面积</span><b class="v" id="fS"></b>
+      </div>
+      <p class="tip feedback" id="fenceMsg"></p>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="fenceRec">记下这一种</button><button class="btn" type="button" id="fenceClr">清空</button></div>
+      <table class="mtab" id="fenceTab"><tr><th>一边长/m</th><th>邻边长/m</th><th>面积/m²</th></tr></table>
+      <p class="tip gold" data-step="1">一边长加邻边长总是多少？<span class="think" data-step="2" data-ask="为什么？">$16\div2=8$（m）：周长是两个“一边长 + 邻边长”。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p7“试一试”3，本课核心活动。请学生先猜“怎样围面积最大”，再拖动角点试几种，每种都“记下”。注意拖动时周长始终显示 16 m：变的是形状，不变的是周长。下一页把整米数的情况列成表，找规律。</p>
+</section>
+
+<!-- 8 ================= 找规律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">发现</span><h2>把所有整米数的围法列出来</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab big-tab">
+        <tr><th>一边长/m</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+        <tr><th>邻边长/m</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td></tr>
+        <tr data-step="1"><th>面积/m²</th><td>7</td><td>12</td><td>15</td><td class="on">16</td><td>15</td><td>12</td><td>7</td></tr>
+      </table>
+      <div id="areaBoard" class="area-board" data-step="2"></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="3">面积怎样变化？<span class="think" data-step="4" data-ask="说一说">一边长从 1 增加到 4，面积越来越大；再增加，面积又越来越小。两边一样长（都是 4 m）时，面积最大，是 16 m²。</span></p>
+      <p class="tip" data-step="5">和 16 比一比：<span class="think" data-step="6" data-ask="少了多少？">$15=16-1\times1$，$12=16-2\times2$，$7=16-3\times3$：两边长相差越多，面积少得越多。</span></p>
+      <p class="def" data-step="7"><span class="think" data-step="8" data-ask="你的结论">周长一定（16 m）时，长和宽越接近，围成的面积越大；围成<em>正方形</em>（边长 4 m）时面积最大。</span></p>
+      <p class="recall" data-step="9" data-label="说明">一边长不一定是整米数，比如 3.5 m 时面积是 $3.5\times4.5=15.75$（m²），仍然比 16 小——可以回上一页拖一拖验证。</p>
+    </div>
+  </div>
+  <p class="note">表格里只列整米数，这是有序列举（小学“解决问题的策略”）。第 6 步的规律“16 − 1×1、16 − 2×2、16 − 3×3”学生用乘法口算就能验证，不需要字母；到初二学了整式乘法可以证明对所有长度都成立。右侧的点是七组数据，连起来像一座“山”，山顶就是正方形。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用数学的眼光看一看、算一算</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>“生活中处处有数学”，你能举出一些例子吗？（课本 p7 试一试 1）</p>
+        <details><summary>提示 1</summary>想一想：买东西、看时间、看地图、运动会成绩……哪里用到了数？</details>
+        <details><summary>提示 2</summary>再想图形：窗户、井盖、球、楼梯……它们为什么做成这样的形状？</details>
+        <details><summary>参考答案</summary>例如：超市里的价签和电子秤；运动会上的成绩与名次；地图上的比例尺；井盖是圆形的，不会掉进井里；蜂巢是正六边形的……言之有理即可。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用 16 m 长的篱笆围成长方形，一边长为 2.5 m，另一边长多少？面积是多少？</p>
+        <details><summary>提示 1</summary>一边长 + 邻边长 = $16\div2$。</details>
+        <details><summary>提示 2</summary>邻边长 $=8-2.5$。</details>
+        <details><summary>完整解答</summary>另一边长 $8-2.5=5.5$（m），面积 $2.5\times5.5=13.75$（m²）。比边长 4 m 的正方形少 $16-13.75=2.25$（m²）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 围成的地方最大是多少平方米？如果篱笆长 20 m 呢？</p>
+        <details><summary>提示 1</summary>周长一定时，围成正方形面积最大。</details>
+        <details><summary>提示 2</summary>20 m 篱笆围正方形，边长是 $20\div4$。</details>
+        <details><summary>完整解答</summary>16 m：边长 4 m 的正方形，面积 16 m²；20 m：边长 5 m 的正方形，面积 25 m²。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题是课本 p7 试一试 1；第 2、3 题由试一试 3 变式而来（课本本节没有编号的练习题）。第 3 题让学生用刚得到的结论，而不是重新列表。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>今天，我们用“数学眼光”看了生活</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>看见数学</h3>
+        <p class="def">数字可以<em>编码</em>信息（身份证号码、学籍号、车票），图形也能传递信息（五环、红十字）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>说清道理</h3>
+        <p class="method" data-label="车轮">圆上各点到圆心距离相等 → 车轴高度不变。</p>
+        <p class="method" data-label="篱笆">周长一定，长和宽越接近面积越大，正方形最大。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>学会估计</h3>
+        <p class="recall" data-label="大树多粗">用身边的“尺子”（两臂伸开约等于身高）估周长，再算直径——近似但有依据。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>1.2 活动 思考——折一折、搭一搭、看一看月历，在动手活动中找规律、说理由。</p>
+  </div>
+  <p class="note">请学生用一句话说说“今天发现了哪些生活中的数学”。课后：观察家里或上学路上的数字与图形，记录 2 个例子（只记录结构，不记录他人隐私号码）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

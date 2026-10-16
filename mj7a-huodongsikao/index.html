@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>活动 思考 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zhezhi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第1章 数学与我们同行 · 1.2</p>
+    <h1 class="cover-title">活动　思考</h1>
+    <p class="cover-q" data-step="1">一张长方形纸片，只折一次、剪一刀，能得到什么图形？</p>
+    <p class="cover-q" data-step="2">搭 10 个三角形要多少根火柴棒？月历上框出的几个数，藏着什么关系？</p>
+    <p class="cover-q" data-step="3"><b>动手做 → 仔细看 → 找规律 → 说理由</b></p>
+    <div class="chips" data-step="4"><span class="chip">折一折</span><span class="chip">搭一搭</span><span class="chip">框一框月历</span><span class="chip">做调查</span><span class="chip">读条形码</span></div>
+  </div>
+  <p class="note">课本 p8–9。本节是“活动课”：三个活动 + 一个调查 + 一篇阅读。每个活动都要求学生不只说出“是什么”，还要说出“为什么”——这是初中数学和小学最大的不同之一。</p>
+</section>
+
+<!-- 2 ================= 知识链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>动手之前，先想起这些</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三年级 · 长方形和正方形" data-step="1">
+        <p>长方形：对边相等，四个角都是直角。</p>
+        <p>正方形：<b>四条边都相等</b>，四个角都是直角。</p>
+        <span class="use">活动一：说明折剪出来的图形为什么是正方形。</span>
+      </div>
+      <div class="recall" data-label="三年级 · 年、月、日" data-step="2">
+        <p>月历每一行是一个星期，有 7 天。</p>
+        <p>同一行相邻两天差 1，同一列上下两天差 <b>7</b>。</p>
+        <span class="use">活动三：找月历方框里几个数之间的关系。</span>
+      </div>
+      <div class="recall" data-label="1.1 生活 数学" data-step="3">
+        <p>数学是我们表达和交流的工具；数字可以编码信息。</p>
+        <span class="use">做一做（调查表）、阅读（条形码）。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>在活动中<b>观察、猜想</b>，再<b>说出理由</b>——“看起来是”还不够，要说清“为什么是”。</p>
+  </div>
+  <p class="note">第二张卡是活动三的关键：请学生先在月历上指出“上下两天差 7”。第一张卡请学生说出正方形的特征，活动一的说理就用它。</p>
+</section>
+
+<!-- 3 ================= 活动一：折一折 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">活动一</span><h2>折一折、剪一剪、展开：得到什么图形？</h2></div>
+  <div class="bd lw">
+    <div class="col">
+      <div id="foldBoard" class="fold-board"></div>
+      <div class="btns" data-noswipe id="foldBtns">
+        <button class="btn solid" type="button" data-a="fold">① 折叠</button>
+        <button class="btn" type="button" data-a="cut">② 剪去多余部分</button>
+        <button class="btn" type="button" data-a="open">③ 展开</button>
+        <button class="btn" type="button" data-a="reset">重来</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p8 图 1-1：把一张长方形纸片按图折叠、裁剪、展开．</p>
+      <p class="tip feedback" id="foldMsg">点“① 折叠”：把左下角沿虚线折上去，让纸的左边和上边重合。</p>
+      <p class="tip" data-step="1">你得到了什么图形？<span class="think" data-step="2" data-ask="猜一猜">正方形。</span></p>
+      <p class="tip gold" data-step="3">“看起来像正方形”就够了吗？<span class="think" data-step="4" data-ask="想一想">不够。要用正方形的特征说明：四条边都相等，四个角都是直角——下一页说理由。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p8 活动一。最好让每个学生都拿一张长方形纸真折一次，再看动画核对。动画里纸片 12 × 8，折痕从左上角 D 到底边上的点 E（AE = AD = 8），折叠按真实的空间翻转计算投影。展开后虚线就是折痕。</p>
+</section>
+
+<!-- 4 ================= 说理由 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">说理由</span><h2>为什么展开后是正方形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 300 260" class="sq-fig" aria-label="展开后的正方形 AEFD 和折痕 DE">
+        <rect x="40" y="30" width="200" height="200" fill="#ede7f8" stroke="#1f2d3a" stroke-width="2.5"/>
+        <line x1="40" y1="30" x2="240" y2="230" stroke="#6b5aa8" stroke-width="2.5" stroke-dasharray="8 6"/>
+        <text x="20" y="250" class="fl">A</text><text x="248" y="250" class="fl">E</text><text x="248" y="28" class="fl">F</text><text x="18" y="28" class="fl">D</text>
+        <path d="M40 216 h14 v14" fill="none" stroke="#1d6fa5" stroke-width="2"/><path d="M226 30 v14 h14" fill="none" stroke="#1d6fa5" stroke-width="2"/>
+        <text x="110" y="150" class="fl s">折痕</text>
+      </svg>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>折叠时</span><span class="think" data-step="2" data-ask="什么和什么重合？">$\triangle DAE$ 与 $\triangle DFE$ 重合</span><i class="why">沿折痕 $DE$ 折过去，正好盖住</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span>$AD=DF$，$AE=EF$</span><i class="why">重合的线段一样长</i></div>
+        <div class="dl" data-step="4"><span>∵</span><span>$\angle A=\angle ADF=90^\circ$</span><i class="why">原来长方形的角</i></div>
+        <div class="dl" data-step="5"><span>∴</span><span class="think" data-step="6" data-ask="∠F 呢？">$\angle DFE=\angle A=90^\circ$</span><i class="why">重合的角相等</i></div>
+        <div class="dl" data-step="7"><span>又</span><span>$\angle AEF=90^\circ$</span><i class="why">剪痕 $EF$ 与底边垂直</i></div>
+        <div class="dl key" data-step="8"><span>∴</span><span>$AD=EF$</span><i class="why">四个角都是直角，对边相等</i></div>
+        <div class="dl end" data-step="9"><span>∴</span><span>$AD=DF=EF=AE$</span><i class="why">四边相等、四角都是直角 → 正方形</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">这是学生第一次用“∵……∴……”说理，不必苛求格式，重点是每一步都有依据：“重合”是本活动最关键的依据。符号 △ 读作“三角形”，∠ 读作“角”，第一次出现要读给学生听。也可以让学生用量一量来验证，但要说明“量”只能验证，“说理”才能保证。</p>
+</section>
+
+<!-- 5 ================= 活动二：搭一搭 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">活动二</span><h2>用火柴棒搭三角形：搭得越多，要几根？</h2></div>
+  <div class="bd full">
+    <svg class="match-fig" id="matchFig" aria-label="用火柴棒搭成的一排三角形"></svg>
+    <div class="slider-row" data-noswipe>三角形的个数<input type="range" id="matchN" min="1" max="10" step="1" value="3"><b class="v" id="matchNV"></b>　　需要火柴棒<b class="v big-v" id="matchS"></b></div>
+    <div class="cols2">
+      <table class="mtab">
+        <tr><th>三角形个数</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>…</td><td>10</td></tr>
+        <tr><th>火柴棒根数</th><td><span class="blank" data-ans="3" data-w="2"></span></td><td><span class="blank" data-ans="5" data-w="2"></span></td><td><span class="blank" data-ans="7" data-w="2"></span></td><td><span class="blank" data-ans="9" data-w="2"></span></td><td><span class="blank" data-ans="11" data-w="2"></span></td><td>…</td><td><span class="blank" data-ans="21" data-w="2"></span></td></tr>
+      </table>
+      <p class="tip" data-step="1">先别拖到 10，你能<b>不数</b>就说出搭 10 个要几根吗？<span class="think" data-step="2" data-ask="找规律">每多搭 1 个三角形，就多用 <b>2</b> 根。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p8 活动二与图 1-2。表格里可以直接输入，回车判断对错。拖动滑块看三角形一个个搭出来：新增的 2 根用橙色标出，帮助学生发现“每次多 2 根”。先让学生填 1～5，再挑战不数直接说出 10。</p>
+</section>
+
+<!-- 6 ================= 找规律：三种数法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">找规律</span><h2>同一个答案，三种想法</h2></div>
+  <div class="bd full">
+    <div class="btns" data-noswipe id="countBtns">
+      <button class="btn solid" type="button" data-m="a">想法①：先搭 1 个，再一次添 2 根</button>
+      <button class="btn" type="button" data-m="b">想法②：先放 1 根，每个三角形添 2 根</button>
+      <button class="btn" type="button" data-m="c">想法③：每个 3 根，减去重复的</button>
+    </div>
+    <svg class="match-fig" id="countFig" aria-label="三种数火柴棒的方法"></svg>
+    <div class="cols3">
+      <p class="tip way" data-step="1"><b>①</b> $3+2\times(10-1)=21$<small>第 1 个用 3 根，后面 9 个每个添 2 根</small></p>
+      <p class="tip way" data-step="2"><b>②</b> $1+2\times10=21$<small>最左边 1 根，每个三角形再添 2 根</small></p>
+      <p class="tip way" data-step="3"><b>③</b> $3\times10-(10-1)=21$<small>10 个各 3 根，相邻两个共用 1 根，共用了 9 根</small></p>
+    </div>
+    <p class="method" data-step="4" data-label="想一想">搭 100 个三角形要几根？<span class="think" data-step="5" data-ask="用你喜欢的想法">$1+2\times100=201$（根）。想法不同，结果相同——说明规律找对了。</span></p>
+  </div>
+  <p class="note">课本只问“搭 10 个”，这里展开三种数法，请学生先说自己的想法，再点按钮看图上的颜色。三个算式里，“三角形个数”在不同位置出现；到第 3 章“字母表示数”，我们会用一个字母代替“三角形个数”，把规律写成一个式子。</p>
+</section>
+
+<!-- 7 ================= 活动三：月历（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">活动三</span><h2>在月历上框一框：框里的数有什么关系？</h2></div>
+  <div class="bd lw2">
+    <div class="col">
+      <div class="btns" data-noswipe id="calSize">
+        <button class="btn solid" type="button" data-n="2">2 × 2 方框（4 个数）</button>
+        <button class="btn" type="button" data-n="3">3 × 3 方框（9 个数）</button>
+      </div>
+      <div class="cal" id="cal" data-noswipe></div>
+      <p class="muted center small-t">按住方框拖到月历的任何位置</p>
+    </div>
+    <div class="col">
+      <div class="tip cal-read" id="calRead"></div>
+      <p class="tip" data-step="1">(1) 蓝色方框内的 4 个数之间有什么关系？<span class="think" data-step="2" data-ask="说一说">$4+12=5+11=16$：斜对角两数之和相等；左右相差 1，上下相差 7。</span></p>
+      <p class="tip" data-step="3">再找一个这样的方框，还有这样的关系吗？<span class="think" data-step="4" data-ask="拖一拖">拖到哪里都成立。</span></p>
+      <p class="tip gold" data-step="5">为什么一定成立？<span class="think" data-step="6" data-ask="说理由">设左上角的数是“□”，另外三个是 □+1、□+7、□+8。斜对角：□ + (□+8) 与 (□+1) + (□+7)，都是两个 □ 再加 8。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p8–9 活动三 (1)，本课核心交互。月历照课本：这个月 1 日是星期二，共 31 天。先在课本的位置（4、5、11、12）观察，再请学生拖到别处，读数区的等式实时更新。第 6 步用“□”代表一个数是为第 3 章“字母表示数”做铺垫：位置关系（右边 +1、下边 +7）决定了数量关系。</p>
+</section>
+
+<!-- 8 ================= 3×3 方框 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">活动三</span><h2>黄色方框里的 9 个数：和与中间的数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 330 250" class="nine-fig" id="nineFig" aria-label="3×3 方框中关于中心对称的四对数"></svg>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="nineBtn">连一连：两两配对</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">(2) 课本中黄色方框内的 9 个数是 7、8、9、14、15、16、21、22、23．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>9 个数的和</span><span class="think" data-step="2" data-ask="算一算">$135$</span><i class="why">逐个相加</i></div>
+        <div class="dl" data-step="3"><span>中间的数</span><span>$15$</span><i class="why">正中间一格</i></div>
+        <div class="dl key" data-step="4"><span>发现</span><span class="think" data-step="5" data-ask="135 与 15？">$135=9\times15$</span><i class="why">和是中间数的 9 倍</i></div>
+        <div class="dl" data-step="6"><span>为什么</span><span>$7+23=8+22=9+21=14+16=30$</span><i class="why">关于中间数对称的两个数，一个多几、一个就少几</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>和 $=4\times30+15=9\times15$</span><i class="why">4 对，每对是中间数的 2 倍</i></div>
+      </div>
+      <p class="tip gold" data-step="8">上一页切换成 3 × 3 方框拖一拖：<span class="think" data-step="9" data-ask="还成立吗？">任何位置都成立：9 个数的和 = 中间数 × 9。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p8–9 活动三 (2)。点“连一连”，图上会把对称的四对数连起来：每一对“一个比 15 多几、一个比 15 少几”，所以每对之和都是 30——这就是“移多补少”。</p>
+</section>
+
+<!-- 9 ================= 旅游问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">活动三</span><h2>(3) 5 天的日期之和是 20，小明几号回家？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="cal small" id="trip" data-noswipe></div>
+      <div class="slider-row" data-noswipe>出发日期<input type="range" id="tripS" min="1" max="27" step="1" value="8"><b class="v" id="tripSV"></b></div>
+      <p class="tip feedback" id="tripMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">小明一家外出旅游 5 天，这 5 天的日期之和是 20．小明几号回家？</p>
+      <p class="tip" data-step="1">先估一估：<span class="think" data-step="2" data-ask="5 天的日期在月初还是月中？">和只有 20，每天平均是 $20\div5=4$，应该在月初。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>5 天连续</span><span>中间一天的日期 $=20\div5=4$</span><i class="why">像 3×3 方框一样，“移多补少”：前后对称的两天之和相等</i></div>
+        <div class="dl" data-step="4"><span>5 天是</span><span class="think" data-step="5" data-ask="哪 5 天？">2、3、4、5、6 日</span><i class="why">中间是 4，前后各两天</i></div>
+        <div class="dl end" data-step="6"><span>验算</span><span>$2+3+4+5+6=20$</span><i class="why">小明 <b>6 号</b>回家</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p9 活动三 (3)。拖滑块改变出发日期，读数区显示 5 天的日期之和；请学生先猜，再拖到和为 20 的位置。追问：如果和是 85 呢？（中间一天 17，15～19 日，19 号回家）。</p>
+</section>
+
+<!-- 10 ================= 做一做：调查 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>你最喜欢的社团：用数据提建议</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p9：某校学生会设计了“你最喜欢的社团调查表”．每位同学选一个最喜欢的社团，点一下就记一票．</p>
+      <div class="vote" id="vote" data-noswipe></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="voteClr">清空重来</button></div>
+    </div>
+    <div class="col">
+      <div class="bars" id="bars"></div>
+      <p class="tip feedback" id="voteMsg"></p>
+      <p class="tip" data-step="1">根据调查结果，你会给学校提什么建议？<span class="think" data-step="2" data-ask="说一说">例如：票数多的社团可以多开几个班或换更大的活动室；票数少的社团可以想办法让更多同学了解它。</span></p>
+      <p class="method" data-step="3" data-label="请你设计">根据本校的实际情况，设计 1 份类似的调查表：调查谁？问什么？怎样统计？</p>
+    </div>
+  </div>
+  <p class="note">课本 p9“做一做”。可以当堂请全班同学依次上来点一票（或老师按举手人数点），条形图自动更新。统计图在六年级学过（条形统计图），这里只要能读出“哪个最多、哪个最少”并据此提建议。</p>
+</section>
+
+<!-- 11 ================= 阅读：条形码 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">阅读</span><h2>商品条形码：最后一位为什么是 3？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">本册课本的条形码下方有 13 个数字：<b>9787534593383</b>．</p>
+      <div class="isbn" id="isbn"></div>
+      <p class="tip">“978”是图书代码，“7”表示中国出版的图书，“5345”是江苏凤凰科学技术出版社的代号，“9338”表示本册课本在该出版社排列的出版序号，<b>3 是校验码</b>．（课本 p9 阅读）</p>
+    </div>
+    <div class="col">
+      <p class="tip">校验码怎样算出来？把前 12 个数字从左到右，奇数位乘 1、偶数位乘 3，再相加：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>奇数位</span><span>$9+8+5+4+9+3=38$</span><i class="why">第 1、3、5、7、9、11 位</i></div>
+        <div class="dl" data-step="2"><span>偶数位</span><span>$(7+7+3+5+3+8)\times3=99$</span><i class="why">第 2、4、6、8、10、12 位</i></div>
+        <div class="dl" data-step="3"><span>总和</span><span>$38+99=137$</span><i class="why"></i></div>
+        <div class="dl end" data-step="4"><span>校验码</span><span class="think" data-step="5" data-ask="凑到整十还差几？">$140-137=3$ ✓</span><i class="why">再加几就能凑成整十</i></div>
+      </div>
+      <p class="tip gold" data-step="6">如果收银员输错了一个数字，会发生什么？<span class="think" data-step="7" data-ask="试一试">在左边改一位数字，算出的校验码就和 3 对不上，机器就知道“读错了”。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p9“阅读”只说“3 是校验码”，这里补充商品条形码（EAN-13）公开的校验规则，作为拓展。左边每一位数字都可以点击修改（0～9 循环），校验码会实时重算；点“还原”回到课本的号码。条形码上方的 ISBN 978-7-5345-9338-3 与条形码数字相同。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>动手做 · 找规律 · 说理由</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>活动一 · 折纸</h3>
+        <p class="method" data-label="说理">折叠后<b>重合</b>的线段相等、角相等 → 四边相等、四角是直角 → 正方形。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>活动二 · 火柴棒</h3>
+        <p class="method" data-label="找规律">每多 1 个三角形多 2 根：10 个要 $1+2\times10=21$ 根。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>活动三 · 月历</h3>
+        <p class="method" data-label="位置 → 数量">右边 +1、下边 +7：2×2 斜对角和相等；3×3 的和 = 中间数 × 9。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一章：</b>第 2 章 有理数——温度计上的“零下”、海平面以下的“−154 m”，数的家庭要添新成员了。</p>
+  </div>
+  <p class="note">请学生说一说：三个活动里，哪一步是“观察猜想”，哪一步是“说理由”？课后可以让学生自己在月历上设计一种方框（如十字形 5 个数），找找规律。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

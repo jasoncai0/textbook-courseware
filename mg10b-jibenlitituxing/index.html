@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>基本立体图形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/solid3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/wuti.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第13章 立体几何初步 · 13.1</p>
+    <h1 class="cover-title">基本立体图形</h1>
+    <p class="cover-q" data-step="1">冰激凌筒、篮球、包装盒、罐头……只考虑<b>形状和大小</b>，它们就抽象成了空间图形。</p>
+    <p class="cover-q" data-step="2">长方体可以看作一个矩形<b>沿竖直方向平移</b>而成。那么，别的空间图形又是怎样“<b>生成</b>”的？怎样把它们画在纸上？</p>
+    <div class="chips" data-step="3"><span class="chip">平移 → 棱柱</span><span class="chip">收缩、截 → 棱锥、棱台</span><span class="chip">旋转 → 圆柱、圆锥、圆台、球</span><span class="chip">斜二测画法</span></div>
+  </div>
+  <p class="note">课本 p141 章引言与图 13-1-1、13-1-2。先让学生说说身边物体抽象出来是什么图形，再抛出本课两个问题：结构特征是什么？怎样在平面上表示？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>动手之前：我们已经认识哪些空间图形？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 认识立体图形" data-step="1">
+        <p>长方体、正方体、圆柱、圆锥、球；会数面、棱、顶点，会看展开图和三视图。</p>
+        <span class="use">本课把它们“升级”为一类一类的图形：棱柱、棱锥、棱台、旋转体，并说清每一类的结构特征。</span>
+      </div>
+      <div class="recall" data-label="初中 · 图形的平移与旋转" data-step="2">
+        <p><b>平移</b>：图形上所有点按同一方向移动相同距离。</p>
+        <p><b>旋转</b>：图形绕一个中心转动一个角度，各点到中心的距离不变。</p>
+        <span class="use">平面多边形<b>平移</b>得棱柱；平面图形绕直线<b>旋转</b>得圆柱、圆锥、圆台、球。</span>
+      </div>
+      <div class="recall" data-label="初中 · 相似多边形" data-step="3">
+        <p>相似多边形对应边成比例、对应角相等；平行线截三角形，截得的三角形与原三角形相似。</p>
+        <span class="use">平行于底面的平面截棱锥，截面与底面相似——棱台“上下底面相似”的来历。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>空间图形不是“摆”出来的，是“<b>动</b>”出来的——看清它怎么生成，就看清了它的结构特征。</p>
+  </div>
+  <p class="note">每张卡请学生先口头回忆，再看“本课用在”。平移、旋转是初中图形变换的内容，今天把“平面图形的运动”推广到“生成空间图形”。</p>
+</section>
+
+<!-- 3 ================= 平移生成棱柱 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>平面多边形“走”一段，扫出什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">图 13-1-3(1)(3) 中的空间图形，分别由平行四边形和五边形沿某一方向平移而得（图 13-1-4）。</p>
+      <div class="btns" data-noswipe id="swBase"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" data-dir="up">竖直平移</button><button type="button" class="btn" data-dir="tilt">斜着平移</button></div>
+      <div class="slider-row" data-noswipe>平移距离<input type="range" id="swT" min="0" max="1" step="0.01" value="1"><b id="swTV" class="v"></b></div>
+      <p class="tip" data-step="1">平移前后的两个面有什么关系？　<span class="think" data-step="2" data-ask="先看再说">全等，且互相平行；对应边也互相平行。</span></p>
+      <p class="tip" data-step="3">多边形的每条边扫出什么面？　<span class="think" data-step="4" data-ask="先看再说">平行四边形（每条边平移，两端走的是平行且相等的线段）。</span></p>
+    </div>
+    <div class="col">
+      <div id="sweep" class="v3"></div>
+      <p class="s3d-hint">拖动图形可以旋转观察；虚线是被挡住的棱</p>
+    </div>
+  </div>
+  <p class="note">课本 p141–142 图 13-1-3、13-1-4 与“思考”。先把滑块拉到 0 再慢慢拉开，让学生描述“扫”的过程；换成斜着平移，问：侧面还是平行四边形吗？（是，但不再是矩形）。此处停顿让学生说出两条发现，再点开。</p>
+</section>
+
+<!-- 4 ================= 棱柱定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>棱柱：由平移得到的空间图形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>棱柱（课本 p142）</h4>一般地，由一个平面多边形沿某一方向平移形成的空间图形叫作<em>棱柱</em>．平移起止位置的两个面叫作棱柱的<b>底面</b>，多边形的边平移所形成的面叫作棱柱的<b>侧面</b>．</div>
+      <p class="tip" data-step="2">相邻侧面的公共边叫作<b>侧棱</b>；侧面与底面的公共顶点叫作<b>顶点</b>（图 13-1-5、13-1-6）。</p>
+      <p class="tip" data-step="3">底面为三角形、四边形、五边形……的棱柱分别称为三棱柱、四棱柱、五棱柱……右图记作棱柱 $ABC\text{-}A'B'C'$。</p>
+      <div class="method" data-step="4" data-label="结构特征"><span class="think" data-step="5" data-ask="由形成过程，你能说出棱柱的特点吗？">两个底面是<b>全等</b>的多边形，且对应边互相<b>平行</b>，侧面都是<b>平行四边形</b>．</span></div>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="pnBtns"><button type="button" class="btn solid" data-n="3">三棱柱</button><button type="button" class="btn" data-n="6">六棱柱</button></div>
+      <div id="pnames" class="v3"></div>
+      <p class="s3d-hint">橙色：底面；蓝色：一条侧棱</p>
+    </div>
+  </div>
+  <p class="note">课本 p142 定义与图 13-1-5、13-1-6。“特点”请学生自己从上一页的平移过程推出来，再点开：平移不改变形状大小 ⇒ 两底面全等；边平移扫出平行四边形 ⇒ 侧面是平行四边形。记法注意顺序：先底面再对应的另一个底面。</p>
+</section>
+
+<!-- 5 ================= 底面收缩成点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">变一变</span><h2>让棱柱的一个底面“收缩”，会怎样？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="shrink" class="v3"></div>
+      <div class="slider-row" data-noswipe>上底面缩放<input type="range" id="shK" min="0" max="1" step="0.01" value="1"><b id="shKV" class="v"></b></div>
+      <div class="btns" data-noswipe id="shBase"></div>
+    </div>
+    <div class="col">
+      <p class="tip">与图 13-1-3 对比：当各棱柱的一个底面<b>收缩为一个点</b>时，就得到图 13-1-7。</p>
+      <div class="def" data-step="1"><h4>棱锥（课本 p143）</h4>当棱柱的一个底面收缩为一个点时，得到的空间图形叫作<em>棱锥</em>．图 13-1-8 中的四棱锥可记作棱锥 $S\text{-}ABCD$．</div>
+      <div class="method" data-step="2" data-label="结构特征"><span class="think" data-step="3" data-ask="仿照棱柱说一说">底面是多边形，侧面是有一个<b>公共顶点</b>的三角形．</span></div>
+      <p class="tip gold" data-step="4">滑块停在 0 和 1 之间时，上底面没有缩成一个点，得到的图形是什么？<span class="think" data-step="5" data-ask="先猜">上下底面<b>相似</b>、侧棱延长后交于一点——它就是下一页的<b>棱台</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p142–143 图 13-1-7、13-1-8。演示时上底面按比例向它的中心缩小（和下底面始终相似、对应边平行）。拉到 0 时侧面全部变成三角形。最后一问是承上启下：中间状态正是“截掉一个小棱锥”剩下的部分。</p>
+</section>
+
+<!-- 6 ================= 截出棱台 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">截一截</span><h2>平行于底面的平面截棱锥：棱台</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cut" class="v3"></div>
+      <div class="slider-row" data-noswipe>截面高度<input type="range" id="cutU" min="0.1" max="0.9" step="0.01" value="0.45"><b id="cutUV" class="v"></b></div>
+      <p class="tip center" id="cutInfo"></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>棱台（课本 p143）</h4>如图 13-1-9，用一个<b>平行于棱锥底面</b>的平面去截棱锥，截面和底面之间的部分称之为<em>棱台</em>．它有上底面、下底面、侧面．</div>
+      <p class="tip" data-step="2">截面与底面是什么关系？　<span class="think" data-step="3" data-ask="读一读右边的数">相似多边形，相似比 = 截面到顶点的距离 : 底面到顶点的距离。</span></p>
+      <div class="def" data-step="4"><h4>多面体（课本 p143–144）</h4>由若干个平面多边形围成的空间图形叫作<em>多面体</em>．棱柱、棱锥和棱台都是多面体；多面体有几个面就称为几面体，如三棱锥是四面体．</div>
+      <p class="warn" data-step="5">截面<b>不平行于</b>底面时，截面和底面之间的部分<b>不是</b>棱台（图 13-1-9 右边两种截法）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p143–144 图 13-1-9 与多面体的定义。拖动截面高度：读数显示截面边长与底面边长之比，恰好等于截面到顶点 S 的距离与高之比（相似）。食盐、明矾、石膏晶体的图（图 13-1-12）可让学生课后上网看看。</p>
+</section>
+
+<!-- 7 ================= 例 1 画图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>画一个四棱柱和一个三棱台</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <div id="ex1a" class="v3 sm"></div>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>第一步</span><span>画上底面</span><i class="why">画一个四边形</i></div>
+          <div class="dl" data-step="2"><span>第二步</span><span>画侧棱</span><i class="why">从四边形的每一个顶点画<b>平行且相等</b>的线段</i></div>
+          <div class="dl" data-step="3"><span>第三步</span><span>画下底面</span><i class="why">顺次连接这些线段的另一个端点；被遮挡的线画成<b>虚线</b></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <div id="ex1b" class="v3 sm"></div>
+        <div class="derive">
+          <div class="dl" data-step="4"><span>①</span><span>先画一个三棱锥</span><i class="why"></i></div>
+          <div class="dl" data-step="5"><span>②</span><span>在一条侧棱上取一点</span><i class="why">从这点开始，顺次在各个侧面内画出与底面对应边<b>平行</b>的线段</i></div>
+          <div class="dl" data-step="6"><span>③</span><span>擦去多余的线段</span><i class="why">剩下的就是三棱台</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="7">画棱柱，抓住“侧棱<b>平行且相等</b>”；画棱台，抓住“棱台是截出来的”——先画棱锥，再画与底面对应边平行的截线。</p>
+  </div>
+  <p class="note">课本 p143 例 1、图 13-1-10、13-1-11。按 → 一步步出现，与课本三步一一对应。为什么第二步要“平行且相等”？——这正是平移的特征。为什么画三棱台要先画三棱锥？——保证三条侧棱延长后交于一点。</p>
+</section>
+
+<!-- 8 ================= 旋转生成 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">旋转</span><h2>平面图形绕一条直线转一周，扫出什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="spBtns"></div>
+      <div class="slider-row" data-noswipe>旋转角<input type="range" id="spA" min="0" max="360" step="1" value="150"><b id="spAV" class="v"></b></div>
+      <div class="def sm-def" data-step="1"><h4>圆柱、圆锥、圆台（课本 p145）</h4>将矩形、直角三角形、直角梯形分别绕着它的<b>一边</b>、<b>一直角边</b>、<b>垂直于底边的腰</b>所在的直线旋转一周，形成的空间图形分别叫作<em>圆柱</em>、<em>圆锥</em>、<em>圆台</em>，这条直线叫作<b>轴</b>．垂直于轴的边旋转而成的圆面叫作<b>底面</b>．不垂直于轴的边旋转而成的曲面叫作<b>侧面</b>，无论旋转到什么位置，这条边都叫作<b>母线</b>．</div>
+      <div class="def sm-def" data-step="2"><h4>球</h4>半圆绕着它的直径所在的直线旋转一周所形成的曲面叫作<em>球面</em>，球面围成的空间图形叫作<em>球体</em>，简称<em>球</em>．</div>
+    </div>
+    <div class="col">
+      <div id="spin" class="v3 tall"></div>
+      <p class="s3d-hint" id="spInfo"></p>
+    </div>
+  </div>
+  <p class="note">课本 p145 图 13-1-13、13-1-14。先选矩形，从 0° 慢慢拉到 360°：橙色是转到当前位置的矩形，蓝色细线是它的边扫过的轨迹（母线与纬圆）。转满一周后显示完整的圆柱。再依次换直角三角形、直角梯形、半圆，每次先让学生猜“会扫出什么”再拉滑块。此处停顿让学生说出“哪条边扫出底面、哪条边扫出侧面”。</p>
+</section>
+
+<!-- 9 ================= 例 2 / 例 3 组合体 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>复杂的空间图形，由简单图形“组合”或“割补”而成</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 2</b>　如图 13-1-16，将直角梯形 $ABCD$ 绕 $AB$ 边所在的直线旋转一周，由此形成的空间图形是由哪些简单空间图形构成的？</p>
+        <div class="ex2row">
+          <svg viewBox="0 0 150 220" class="trap" aria-label="直角梯形 ABCD，AB 为轴">
+            <line x1="40" y1="8" x2="40" y2="214" stroke="#9fb0bf" stroke-width="1.6" stroke-dasharray="10 4 2 4"/>
+            <path d="M40 30 L40 190 L108.6 190 L108.6 98.6 Z" fill="rgba(217,113,28,.15)" stroke="#d9711c" stroke-width="3"/>
+            <path d="M40 178 h12 v12 M108.6 178 h-12 v12" fill="none" stroke="#1f2d3a" stroke-width="1.5"/>
+            <text x="22" y="34" class="fl">A</text><text x="22" y="200" class="fl">B</text><text x="114" y="200" class="fl">C</text><text x="114" y="102" class="fl">D</text>
+          </svg>
+          <div id="ex2" class="v3 sm"></div>
+        </div>
+        <p class="tip" data-step="1">解　<span class="think" data-step="2" data-ask="先想：每条边各扫出什么？">这个空间图形是由<b>圆柱</b>和<b>圆锥</b>组合而成的：$BC$ 扫出底面，$CD$ 扫出圆柱侧面，$DA$ 扫出圆锥侧面（图 13-1-17）。</span></p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 3</b>　指出图 13-1-18 中的空间图形是由哪些简单空间图形割补而成的．</p>
+        <div id="ex3" class="v3 sm"></div>
+        <p class="tip" data-step="3">解　<span class="think" data-step="4" data-ask="想一想">它是由一个<b>六棱柱挖去一个圆柱</b>所成的。</span></p>
+        <p class="tip muted" data-step="5">图 13-1-19 可以看作长方体<b>割去</b>一个四棱柱，也可以看作长方体与两个四棱柱<b>组合</b>而成；它也是一个柱体，底面为一个凹多边形。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p146–147 例 2、例 3。例 2 课本把轴 AB 画成水平的，这里竖着放便于观察，可拖动旋转到课本的角度。例 3 的孔：转动图形观察，孔底的圆只有从孔口“看得进去”的部分是实线，其余被六棱柱挡住——这也是代码按视线算出来的。</p>
+</section>
+
+<!-- 10 ================= 斜二测：例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">斜二测画法</span><h2>例 4　画水平放置的正三角形的直观图</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>第一步</span><span>建轴</span><i class="why">取 $AB$ 所在直线为 $x$ 轴，对称轴 $CO$ 为 $y$ 轴；画对应的 $x'$ 轴、$y'$ 轴，使 $\angle x'O'y'=45^\circ$</i></div>
+        <div class="dl" data-step="2"><span>第二步</span><span>取点</span><i class="why">在 $x'$ 轴上取 $O'A'=OA$，$O'B'=OB$；在 $y'$ 轴上取 $O'C'=\dfrac12 OC$</i></div>
+        <div class="dl" data-step="3"><span>第三步</span><span>连线</span><i class="why">连接 $A'B'$，$B'C'$，$C'A'$，$\triangle A'B'C'$ 就是所求直观图</i></div>
+      </div>
+      <p class="tip" data-step="4">拖动左图中的点 $P$：它的直观图 $P'$ 在哪？　<span class="think" data-step="5" data-ask="规律是什么？">横坐标不变；竖直方向的线段变成与 $y'$ 轴平行、长度减半。</span></p>
+      <p class="tip feedback" id="obMsg"></p>
+    </div>
+    <div class="col">
+      <div class="obpair">
+        <div><p class="cap">原图（水平放置的平面图形）</p><div id="obA" class="ob"></div></div>
+        <div><p class="cap">直观图</p><div id="obB" class="ob"></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p148 例 4、图 13-1-21（正三角形边长取 4）。三步按 → 出现。然后请学生上来拖点 P：P 到 x 轴的距离 d，对应 P′ 沿 y′ 方向的距离是 d/2。直观图里 ∠A′C′B′ 已经不是 60°，三角形变“扁”了——“直观”不等于“保形”。</p>
+</section>
+
+<!-- 11 ================= 斜二测规则 + 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">规则 · 例 5</span><h2>斜二测画法的规则，画正方体</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def rules" data-step="1"><h4>斜二测画法（课本 p149）</h4>
+        (1) 在空间图形中取互相垂直的 $x$ 轴和 $y$ 轴，两轴交于 $O$ 点，再取 $z$ 轴，使 $\angle xOz=90^\circ$，且 $\angle yOz=90^\circ$．<br>
+        (2) 画直观图时把它们画成对应的 $x'$ 轴、$y'$ 轴和 $z'$ 轴，它们相交于点 $O'$，并使 $\angle x'O'y'=45^\circ$（或 $135^\circ$），$\angle x'O'z'=90^\circ$，$x'$ 轴和 $y'$ 轴所确定的平面表示水平面．<br>
+        (3) 已知图形中平行于 $x$ 轴、$y$ 轴或 $z$ 轴的线段，在直观图中分别画成平行于 $x'$ 轴、$y'$ 轴或 $z'$ 轴的线段．<br>
+        (4) 已知图形中平行于 $x$ 轴或 $z$ 轴的线段，在直观图中保持原长度不变；平行于 $y$ 轴的线段，长度为原来的一半．</div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 5</b>　画棱长为 2 cm 的正方体的直观图．</p>
+      <div id="ex5" class="ex5"></div>
+      <div class="derive small-d">
+        <div class="dl" data-step="2"><span>第一步</span><span>底面</span><i class="why">画正方形的直观图 $ABCD$，使 $\angle BAD=45^\circ$，$AB=2$ cm，$AD=1$ cm</i></div>
+        <div class="dl" data-step="3"><span>第二步</span><span>侧棱</span><i class="why">过 $A$ 作 $z'$ 轴，$\angle BAz'=90^\circ$；过 $B,C,D$ 作 $z'$ 轴的平行线，截取 $AA'=BB'=CC'=DD'=2$ cm</i></div>
+        <div class="dl" data-step="4"><span>第三步</span><span>上底面</span><i class="why">连接 $A'B',B'C',C'D',D'A'$，擦去辅助线</i></div>
+      </div>
+      <p class="tip" data-step="5">口诀：<b>斜</b>（$y'$ 轴斜 $45^\circ$）<b>二测</b>（两种度量：$x,z$ 方向不变，$y$ 方向减半）。水平放置的圆，直观图画成椭圆。</p>
+    </div>
+  </div>
+  <p class="note">课本 p148–149 例 5、图 13-1-22 与斜二测规则。规则 (4) 是关键：为什么 AD 只画 1 cm？因为 AD 平行于 y 轴。正等测画法（课本“链接”）用于画水平放置的圆，课堂上可以只介绍椭圆模板，不展开。</p>
+</section>
+
+<!-- 12 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>先判断，再看理由</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>1.</b>（练习 p147 第 4 题）利用斜二测画法得到的：① 三角形的直观图是三角形；② 平行四边形的直观图是平行四边形；③ 正方形的直观图是正方形；④ 菱形的直观图是菱形．上述结论中正确的是（　）</p>
+        <div class="pick" data-ans="A"><button type="button" data-k="A">A. ①②</button><button type="button" data-k="B">B. ①</button><button type="button" data-k="C">C. ③④</button><button type="button" data-k="D">D. ①②③④</button>
+          <p class="pick-why">平行关系保持（规则 3），所以 ①② 对；但 $y$ 方向的长度减半、直角变成 $45^\circ$，正方形、菱形的边长关系和角都变了，③④ 错。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b>（与练习 p144 第 4 题同类）下方左图：上下底面平行，下底面是正方形、上底面是长方形，侧棱延长后<b>不交于一点</b>。它是棱台吗？</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button>
+          <p class="pick-why">棱台是用<b>平行于底面</b>的平面截棱锥得到的，所以各侧棱延长后必交于一点（原棱锥的顶点）。侧棱延长不交于一点，就不是棱台。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 有两个面互相平行、其余各面都是平行四边形的空间图形，一定是棱柱吗？</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">一定是</button><button type="button" data-k="n">不一定</button>
+          <p class="pick-why">把两个侧棱方向不同的斜四棱柱“上下叠”在一起，上下底面平行、其余各面都是平行四边形，但它不能由<b>一个</b>多边形沿<b>一个</b>方向平移得到——侧棱不全平行（下方右图）。判断棱柱要回到定义。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>4.</b>（习题 13.1 第 8 题）用一个平面截球，截面一定是圆吗？</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">一定是</button><button type="button" data-k="n">不一定</button>
+          <p class="pick-why">设球心到截面的距离为 $d$，截面上任一点到球心距离都是 $R$，到垂足的距离都是 $\sqrt{R^2-d^2}$——所以截面是以垂足为圆心的圆（$d=0$ 时是大圆）。</p></div>
+      </div>
+    </div>
+    <div id="bian" class="bian"><div id="bian2" class="v3 xs"></div><div id="bian3" class="v3 xs"></div></div>
+  </div>
+  <p class="note">每题先举手表决再点选。第 2 题与课本练习第 4 题同类（以课本图为准讲解）；第 3 题不是课本原题，是检验“用定义判断”的经典反例。下方两图可拖动旋转。第 4 题是习题 13.1 探究·拓展，勾股定理即可说明，可留作讨论。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（练习 p147 第 5 题）已知一个圆台的上、下底面的半径分别为 1 cm，2 cm，高为 3 cm，求该圆台的母线长．</p>
+        <details><summary>提示 1</summary>圆台是直角梯形绕“垂直于底边的腰”旋转而成：母线就是梯形的另一条腰。</details>
+        <details><summary>提示 2</summary>过上底端点作下底的垂线，得直角三角形：两直角边为 $3$ 和 $2-1$。</details>
+        <details><summary>完整解答</summary>母线长 $l=\sqrt{3^2+(2-1)^2}=\sqrt{10}$（cm）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 13.1 第 2 题）将 $\triangle ABC$ 绕 $BC$ 边所在的直线旋转一周（$A$ 到 $BC$ 的垂足在线段 $BC$ 上），形成的空间图形由哪些简单空间图形构成？若绕 $AC$ 边所在直线旋转呢（图(2)，$B$ 到直线 $AC$ 的垂足在 $CA$ 的延长线上）？</p>
+        <details><summary>提示 1</summary>过 $A$ 作 $AH\perp BC$：$AH$ 把三角形分成两个直角三角形。</details>
+        <details><summary>提示 2</summary>两个直角三角形分别绕直角边旋转，各得一个圆锥；它们的底面都是 $AH$ 扫出的圆。</details>
+        <details><summary>完整解答</summary>绕 $BC$：两个<b>同底</b>的圆锥组合而成（底面半径 $AH$）。绕 $AC$：一个以 $C$ 为顶点的大圆锥<b>挖去</b>一个以 $A$ 为顶点、与它同底的小圆锥。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（练习 p144 第 5 题）多面体至少有几个面？这个多面体是怎样的空间图形？</p>
+        <details><summary>提示 1</summary>三个平面多边形能围成一个封闭的空间图形吗？</details>
+        <details><summary>提示 2</summary>一个顶点处至少要有 3 个面相交；再加一个面把它“封口”。</details>
+        <details><summary>完整解答</summary>至少有 4 个面，这个多面体是<b>三棱锥</b>（四面体）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题回到旋转生成的“母线”；第 2 题是例 2 的同类题，第二问是“割”（挖去）；第 3 题呼应多面体命名。课后作业建议：习题 13.1 第 1、3、4、5、6 题（画直观图）。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="gen-map" data-step="1">
+      <div class="gm-box"><h4>平移</h4><p>平面多边形 → <b>棱柱</b></p><small>两底面全等且平行，侧面是平行四边形</small></div>
+      <div class="gm-box"><h4>收缩 / 截</h4><p>底面缩成点 → <b>棱锥</b>；平行于底面截棱锥 → <b>棱台</b></p><small>侧面是三角形 / 梯形，台的侧棱延长交于一点</small></div>
+      <div class="gm-box"><h4>旋转</h4><p>矩形、直角三角形、直角梯形、半圆 → <b>圆柱、圆锥、圆台、球</b></p><small>轴、底面、侧面、母线</small></div>
+    </div>
+    <div class="cols3 sum">
+      <p class="recall" data-label="知识" data-step="2">多面体与旋转体；简单空间图形可以<b>组合</b>、<b>割补</b>成复杂图形。</p>
+      <p class="method" data-label="方法" data-step="3">斜二测画法：$45^\circ$，$x,z$ 方向长度不变，$y$ 方向减半；被遮挡的线画虚线。</p>
+      <p class="recall" data-label="思想" data-step="4">运动生成（静中看动）；由平面到空间、由具体到抽象。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一课：</b>13.2 基本图形位置关系——空间图形是由点、线、面构成的，它们之间有哪些位置关系？先从“平面”说起。</p>
+  </div>
+  <p class="note">请学生用“怎么生成”串起本课全部图形，再逐栏揭示。课后作业建议：习题 13.1 第 1–6 题；第 7 题（选择生活中的空间图形画直观图）可作为长作业。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/solid3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

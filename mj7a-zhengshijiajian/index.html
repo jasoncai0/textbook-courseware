@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>整式的加减 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shougong.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第3章 代数式 · 3.6</p>
+    <h1 class="cover-title">整式的加减</h1>
+    <p class="cover-q" data-step="1">做 3 张卡片：两张是直角边为 $b$、斜边为 $a$ 的直角三角形，一张是长 $a$、宽 $b$ 的长方形．</p>
+    <p class="cover-q" data-step="2">用它们拼成各种形状不同的四边形．<b>拼法不同，周长一样吗？两个周长的和、差怎样算？</b></p>
+    <div class="chips" data-step="3"><span class="chip">拼卡片 · 算周长</span><span class="chip">先去括号，再合并</span><span class="chip">化简求值</span><span class="chip">归纳</span></div>
+  </div>
+  <p class="note">课本 p86“做一做”与图 3-9。封面只抛问题；可以请学生课前真的剪 3 张卡片（直角三角形的两条直角边相等）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>本章已经学过的两件“工具”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="3.4 · 合并同类项" data-step="1">
+        <p>系数相加，字母和字母的指数不变：$4a+2a=6a$．</p>
+        <span class="use">把周长、和、差化成最简形式．</span>
+      </div>
+      <div class="recall" data-label="上一课 · 3.5 去括号" data-step="2">
+        <p>$+(\ \ )$：各项不变号；$-(\ \ )$：各项都变号．</p>
+        <p>$-(2a+4b)=-2a-4b$</p>
+        <span class="use">上一课讲到怎样去括号；今天求“差”时，减式要先加括号再去括号．</span>
+      </div>
+      <div class="recall" data-label="小学 · 周长" data-step="3">
+        <p>封闭图形一周的长度叫周长：把<b>外面一圈</b>的边长加起来．</p>
+        <span class="use">拼图时，拼在里面的边不算周长．</span>
+      </div>
+    </div>
+    <p class="recall" data-label="3.2 · 整式" data-step="4">单项式和多项式统称<b>整式</b>．$4a+2b$、$2a^2-4a+1$ 都是整式．<span class="use">今天学整式与整式相加、相减．</span></p>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>整式的加减，其实就是把前两课的方法连起来用．</p>
+  </div>
+  <p class="note">本课是第 3 章的最后一节，起“串联”作用：去括号（3.5）+ 合并同类项（3.4）= 整式的加减。第三张卡提醒“拼在里面的边不算”，这是下一页拼图算周长的关键。</p>
+</section>
+
+<!-- 3 ================= 核心：拼卡片算周长 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>拼一拼：四边形的周长是多少？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="cardBoard" class="card-board"></div>
+      <div class="btns" data-noswipe id="shapeBtns"></div>
+    </div>
+    <div class="col">
+      <p class="tip">三张卡片（图 3-9）：直角三角形两条直角边都是 $b$、斜边是 $a$；长方形长 $a$、宽 $b$．点左边的按钮拼一拼．</p>
+      <p class="tip feedback" id="perMsg"></p>
+      <table class="mtab per-tab" id="perTab"></table>
+      <p class="tip" data-step="1">你发现了什么？<span class="think" data-step="2" data-ask="说一说">拼法不同，周长可能不同：有的是 $4a+2b$，有的是 $2a+4b$——要看哪些边拼到了里面．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p86“做一做”。四种拼法中前两种是课本黑板上的图（梯形、右边的四边形），后两种是学生常拼出的平行四边形、长方形。图按 a = √2·b 精确绘制（直角边为 b 的等腰直角三角形，斜边正好是 b 的 √2 倍）。每拼一种，边上会标出组成周长的线段，右边写出周长算式，并记进表格。让学生先预测周长再点按钮。</p>
+</section>
+
+<!-- 4 ================= 和与差 · 整式的加减 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>两个周长的和与差</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">这两个四边形周长的<b>和</b>是：</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span></span><span>$(4a+2b)+(2a+4b)$</span><i class="why">把每个整式看成一个整体，加括号</i></div>
+          <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="去括号">$4a+2b+2a+4b$</span><i class="why">“+”号，不变号</i></div>
+          <div class="dl end" data-step="4"><span>$=$</span><span>$6a+6b$</span><i class="why">合并同类项</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip">这两个四边形周长的<b>差</b>是：</p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span></span><span>$(4a+2b)-(2a+4b)$</span><i class="why">减式 $2a+4b$ 整体被减，必须加括号</i></div>
+          <div class="dl" data-step="6"><span>$=$</span><span class="think" data-step="7" data-ask="去括号">$4a+2b-2a-4b$</span><i class="why">“−”号，各项都变号</i></div>
+          <div class="dl end" data-step="8"><span>$=$</span><span>$2a-2b$</span><i class="why">合并同类项</i></div>
+        </div>
+      </div>
+    </div>
+    <div class="def big-def" data-step="9"><h4>整式的加减（课本 p86）</h4>上面的这些计算就是整式的加减．进行整式的加减运算时，<em>如果有括号先去括号，再合并同类项</em>．</div>
+    <p class="warn" data-step="10" data-label="易错">写成 $4a+2b-2a+4b$ 对吗？<span class="think" data-step="11" data-ask="对还是错？">错．减去的是<b>整个</b> $2a+4b$，不加括号就只减了 $2a$．先加括号，再去括号．</span></p>
+    <p class="tip small-p" data-step="12">差 $2a-2b$ 是正还是负？<span class="think" data-step="13" data-ask="想一想">$a=\sqrt2\,b\gt b$（斜边比直角边长），所以 $2a-2b\gt0$：梯形的周长更长．</span></p>
+  </div>
+  <p class="note">课本 p86 的周长的和与差。重点在“差”：减数是一个多项式，必须整体加括号。最后一问联系图形：斜边大于直角边，所以差为正——可以回到上一页看梯形确实“更长”（√2 本课不要求，只说“斜边比直角边长”即可）。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>求两个多项式的差</h2></div>
+  <div class="bd full">
+    <p class="tip">求 $2a^2-4a+1$ 与 $-3a^2+2a-5$ 的差．</p>
+    <div class="cols2">
+      <div class="col">
+        <div class="derive">
+          <div class="dl" data-step="1"><span>解：</span><span class="think" data-step="2" data-ask="先列式：括号加在哪？">$(2a^2-4a+1)-(-3a^2+2a-5)$</span><i class="why">“与……的差”：前者减后者，各自加括号</i></div>
+          <div class="dl" data-step="3"><span>$=$</span><span class="think" data-step="4" data-ask="去括号">$2a^2-4a+1+3a^2-2a+5$</span><i class="why">去括号：$-3a^2$、$2a$、$-5$ 都变号</i></div>
+          <div class="dl end" data-step="5"><span>$=$</span><span>$5a^2-6a+6$</span><i class="why">合并同类项</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="method" data-step="6" data-label="整式加减三步">① <b>列</b>：每个整式整体加括号，用 $+$、$-$ 连接；<br>② <b>去</b>：去括号（注意“−”号）；<br>③ <b>合</b>：合并同类项．</p>
+        <p class="tip" data-step="7">检验：取 $a=1$，<span class="think" data-step="8" data-ask="算一算">$2-4+1=-1$，$-3+2-5=-6$，差为 $-1-(-6)=5$；$5-6+6=5$．✓</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p86 例 1。“A 与 B 的差”是 A − B，顺序不能反。检验时取 a = 1 最省事：原来两式的值相减，应等于结果的值。</p>
+</section>
+
+<!-- 6 ================= 例 2：化简求值 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>先化简，再求值</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <p class="tip">求 $5(3a^2b-ab^2)-4(-ab^2+3a^2b)$ 的值，其中 $a=-2$，$b=3$．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：</span><span>$5(3a^2b-ab^2)-4(-ab^2+3a^2b)$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="去括号">$15a^2b-5ab^2+4ab^2-12a^2b$</span><i class="why">每项都乘 5；每项都乘 $-4$</i></div>
+        <div class="dl" data-step="4"><span>$=$</span><span>$3a^2b-ab^2$</span><i class="why">合并同类项</i></div>
+        <div class="dl end" data-step="5"><span>当 $a=-2$，$b=3$ 时</span><span class="think" data-step="6" data-ask="代入">原式 $=3\times(-2)^2\times3-(-2)\times3^2=36+18=54$</span><i class="why">负数代入要加括号</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>换一组值试试：</b>化简前后，值总相等吗？</p>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="evA" min="-4" max="4" step="1" value="-2"><b class="v" id="evAV"></b></div>
+      <div class="slider-row" data-noswipe>$b=$<input type="range" id="evB" min="-4" max="4" step="1" value="3"><b class="v" id="evBV"></b></div>
+      <div class="ev-box" id="evBox"></div>
+      <p class="method" data-step="7" data-label="为什么先化简">化简后只剩两项：代入一次只算 $3a^2b-ab^2$，不容易错．</p>
+    </div>
+  </div>
+  <p class="note">课本 p87 例 2。右边滑块任取 a、b，上面一行按原式直接代入计算，下面一行按化简结果计算，两个值始终相等（a = −2，b = 3 时都是 54）。提醒学生：负数代入时要加括号，(−2)² = 4 不是 −4。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算：<br>(1) $(5a+b)+6a$；<br>(2) $(2x-7)-(4x-5)$．</p>
+        <details><summary>提示</summary>(2) 去括号：$-(4x-5)=-4x+5$．</details>
+        <details><summary>完整解答</summary>(1) $5a+b+6a=11a+b$；<br>(2) $2x-7-4x+5=-2x-2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算：<br>(3) $(3a^2-3a-1)-(5a^2+6a-8)$；<br>(4) $(8mn-3m^2)-5mn-2(3mn-2m^2)$．</p>
+        <details><summary>提示 1</summary>(3) 后一个括号里的三项都变号．</details>
+        <details><summary>提示 2</summary>(4) $-2(3mn-2m^2)=-6mn+4m^2$．</details>
+        <details><summary>完整解答</summary>(3) $3a^2-3a-1-5a^2-6a+8=-2a^2-9a+7$；<br>(4) $8mn-3m^2-5mn-6mn+4m^2=m^2-3mn$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 求 $3y^2-x^2+(2x-y)-(x^2+3y^2)$ 的值，其中 $x=1$，$y=-2$．</p>
+        <details><summary>提示 1</summary>先化简：$3y^2$ 与 $-3y^2$ 抵消．</details>
+        <details><summary>提示 2</summary>化简结果：$-2x^2+2x-y$．</details>
+        <details><summary>完整解答</summary>原式 $=3y^2-x^2+2x-y-x^2-3y^2=-2x^2+2x-y$．当 $x=1$，$y=-2$ 时，原式 $=-2+2+2=2$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p87 练一练。先独立做 3 分钟，卡住再逐级点开。第 2 题化简后 y² 项全部抵消，正好说明“先化简”的好处。</p>
+</section>
+
+<!-- 8 ================= 习题：车站 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 3.6</span><h2>四个车站之间的距离</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="stBoard" class="st-board"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="stA" min="1" max="4" step="0.5" value="3"><b class="v" id="stAV"></b>　$b=$<input type="range" id="stB" min="0.5" max="3" step="0.5" value="1.5"><b class="v" id="stBV"></b></div>
+      <p class="tip feedback" id="stMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>3.</b> $A$、$B$、$C$、$D$ 四个车站的位置如图所示，求：(1) $A$、$D$ 两站的距离；(2) $C$、$D$ 两站的距离．</p>
+      <div class="derive st-der">
+        <div class="dl" data-step="1"><span>(1) $AD$</span><span class="think" data-step="2" data-ask="是哪两段的和？">$=AB+BD=(a+b)+(3a+2b)$</span><i class="why">$AD$ 由 $AB$、$BD$ 拼成</i></div>
+        <div class="dl end" data-step="3"><span>$=$</span><span>$4a+3b$</span><i class="why">去括号，合并同类项</i></div>
+        <div class="dl" data-step="4"><span>(2) $CD$</span><span class="think" data-step="5" data-ask="是哪两段的差？">$=BD-BC=(3a+2b)-(2a-b)$</span><i class="why">从 $BD$ 中去掉 $BC$</i></div>
+        <div class="dl end" data-step="6"><span>$=$</span><span>$a+3b$</span><i class="why">“−”号去括号：$-2a+b$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 3.6 第 3 题。线段图按滑块给出的 a、b 精确绘制（AB = a + b，BC = 2a − b，BD = 3a + 2b），下方读数用数值验证 AD = 4a + 3b、CD = a + 3b。b 太大时 2a − b 会小于 0、C 跑到 B 的左边，滑块会自动限制 b &lt; 2a。</p>
+</section>
+
+<!-- 9 ================= 阅读：归纳 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">阅读</span><h2>归纳：从特殊到一般</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">三角形内部画 $n$ 个点，以这 $(n+3)$ 个点为顶点画三角形，最多可以剪得多少个这样的三角形？</p>
+      <table class="mtab"><tr><th>内部点数 $n$</th><td>1</td><td>2</td><td>3</td><td>…</td><td>$n$</td></tr><tr><th>最多三角形个数</th><td>3</td><td>5</td><td>7</td><td>…</td><td><span class="think" data-step="1" data-ask="猜一猜">$2n+1$</span></td></tr></table>
+      <p class="small-p">$3=1\times2+1$，$5=2\times2+1$，$7=3\times2+1$……点每增加 1 个，三角形增加 2 个．</p>
+      <div class="def" data-step="2"><h4>归纳（课本 p88）</h4>像这样通过对现象的观察、分析，从特殊到一般地探索这类现象的规律、提出猜想的思想方法称为<em>归纳</em>．</div>
+      <p class="warn" data-step="3" data-label="注意">用归纳的方法得出的结论不一定正确，是否正确需要加以证实．</p>
+    </div>
+    <div class="col">
+      <p class="tip">请你尝试用归纳的方法探索：$1+3+5+7+\cdots+(2n-1)$ 的和是多少？</p>
+      <div id="oddBoard" class="odd-board"></div>
+      <div class="slider-row" data-noswipe>$n=$<input type="range" id="oddN" min="1" max="8" step="1" value="4"><b class="v" id="oddNV"></b></div>
+      <p class="tip feedback" id="oddMsg"></p>
+      <p class="tip" data-step="4">猜想：<span class="think" data-step="5" data-ask="和是多少？">$1+3+5+\cdots+(2n-1)=n^2$．每加一个奇数，就在正方形外面添一圈“拐角”，边长加 1．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p88 阅读“归纳”。左边是课本的例子，只做观察；右边是课本留给学生的探索题：拖动 n，方格图按“拐角”逐层着色（第 k 层有 2k − 1 个格子），学生会看出 n 层正好拼成 n × n 的正方形。图形给出直观理由，但严格证明要到高中（数学归纳法）。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 本章回顾</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">整式的加减：如果有括号先去括号，再合并同类项．</p>
+        <p class="warn" data-label="易错">“A 与 B 的差”$=(A)-(B)$：两个括号都不能省．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="三步">列（整体加括号）→ 去（去括号）→ 合（合并同类项）．</p>
+        <p class="method" data-label="化简求值">先化简，再代入；负数代入加括号．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>第 3 章 代数式</h3>
+        <p class="recall" data-label="一条线">字母表示数 → 代数式 → 代数式的值 → 合并同类项 → 去括号 → 整式的加减．</p>
+        <p class="recall" data-label="思想">用字母代替数；归纳：从特殊到一般．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一章：</b>第 4 章 一元一次方程——4.1 从问题到方程：用含字母的式子表示相等关系，会得到什么？</p>
+  </div>
+  <p class="note">本课是第 3 章最后一节，小结第三栏顺带回顾整章。课后作业建议：习题 3.6 第 1、2 题；第 3 题已在课上完成，可让学生补全书写。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

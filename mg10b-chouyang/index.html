@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>抽样 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第14章 统计 · 14.2</p>
+    <h1 class="cover-title">抽样</h1>
+    <p class="cover-q" data-step="1">尝一勺汤，就知道整锅汤的咸淡——前提是：先把汤<b>搅匀</b>。</p>
+    <p class="cover-q" data-step="2">要从全班 45 名同学中抽 10 名查视力，怎样把 45 名同学“<b>搅匀</b>”？全校三个年级视力差别大，又该怎么抽？</p>
+    <div class="chips" data-step="3"><span class="chip">抽签法</span><span class="chip">随机数表法</span><span class="chip">简单随机抽样</span><span class="chip">分层抽样</span></div>
+  </div>
+  <p class="note">课本 p214 引言：样本具有随机性，其好坏直接影响统计结论的可靠性。“搅汤”的比喻是课本原文的思路，请学生先说说为什么要搅匀。</p>
+</section>
+
+<!-- 2 ================= 知识链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>上一课讲到哪里？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="14.1 获取数据" data-step="1">
+        <p>上一课：总体、个体、样本、样本容量；《文学文摘》的教训——一个好样本必须具有好的<b>代表性</b>，样本的选取具有<b>随机性</b>。</p>
+        <span class="use">本课回答“怎样抽”才能让样本有代表性。</span>
+      </div>
+      <div class="recall" data-label="初中 · 等可能事件的概率" data-step="2">
+        <p>每个结果出现的可能性相同时，$P(A)=\dfrac{m}{n}$。</p>
+        <span class="use">抽签法、随机数表法的关键：每个个体被抽到的<b>机会相等</b>。</span>
+      </div>
+      <div class="recall" data-label="初中 · 比与比例" data-step="3">
+        <p>按比例分配：总量 × 各部分所占的比。</p>
+        <span class="use">分层抽样：各层抽取人数 = 样本容量 × 该层人数占总体的比。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课问题：</b>如何合理地抽取样本？</p>
+  </div>
+  <p class="note">第一张卡请学生复述《文学文摘》的两种偏差，它们都是“没搅匀”造成的。</p>
+</section>
+
+<!-- 3 ================= 抽签法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">14.2.1</span><h2>抽签法：把 45 名同学“搅匀”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">某校要了解高一（2）班学生的视力情况，决定从班级里 45 名学生中抽取 10 名学生进行检查．</p>
+      <div class="lots" id="lots"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="lotGo">搅匀，抽 10 个签</button><button type="button" class="btn" id="lotOne">抽 1 个</button><button type="button" class="btn" id="lotReset">放回重来</button></div>
+      <p class="tip feedback" id="lotMsg"></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>抽签法的步骤（课本 p214）</h4>用抽签法从个体个数为 $N$ 的总体中抽取一个容量为 $k$ 的样本：<br>(1) 将总体中的 $N$ 个个体编号；<br>(2) 将这 $N$ 个号码写在形状、大小相同的号签上；<br>(3) 将号签放在同一箱中，并搅拌均匀；<br>(4) 从箱中每次抽出 1 个号签，连续抽取 $k$ 次；<br>(5) 将总体中与抽到的号签的编号一致的 $k$ 个个体取出．</div>
+      <p class="tip" data-step="2">为什么号签要“形状、大小相同”，还要“搅拌均匀”？　<span class="think" data-step="3" data-ask="想一想">让每个个体被抽中的<b>概率相等</b>（课本旁注）。</span></p>
+      <p class="tip" data-step="4">抽签法简单易行，适用于<b>总体中个体数不多</b>的情形；也可以利用已有的编号（学号、座位号）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p214。左边是 45 个号签，每次在剩下的签里等可能地抽一个（不放回）。请学生说说：如果号签有大有小，会怎样？彩票抽奖常用的“抽奖机”就是抽签法。</p>
+</section>
+
+<!-- 4 ================= 随机数表法（互动） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">随机数表法</span><h2>制签太麻烦？用随机数表“读”出样本</h2></div>
+  <div class="bd full top">
+    <p class="tip small">随机数表由 0～9 这 10 个数字组成，表中任一位置出现任一数字的概率相同，且不同位置的数字之间是独立的．下面是课本附录随机数表的第 6～10 行．<b>点任意一个数字作为开始</b>，从左向右每次读两位（编号 01～45）：</p>
+    <div class="rtab" id="rtab" data-noswipe></div>
+    <div class="cols2">
+      <div class="col">
+        <div class="btns" data-noswipe><button type="button" class="btn solid" id="rtBook">课本的开始：第 8 行第 29 列</button><button type="button" class="btn" id="rtClear">清空</button></div>
+        <p class="tip legend"><span class="lg ok">取出</span><span class="lg out">不在 01～45 中，跳过</span><span class="lg rep">已经读过，跳过</span></p>
+      </div>
+      <p class="tip feedback" id="rtMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p215 及附录随机数表。表格数字照课本第 6～10 行录入；从第 8 行第 29 列的“7”开始向右读，程序依次判断，得到 12，07，44，39，38，33，21，34，29，42——与课本完全一致。再请学生随便点一个起点，看样本是否改变。读到表末尾时接着回到第 6 行开头。读数方向也可以向左、向上、向下等。</p>
+</section>
+
+<!-- 5 ================= 简单随机抽样 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>简单随机抽样</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>随机数表法的步骤（课本 p215）</h4>(1) 对总体中的个体编号（每个号码位数一致）．<br>(2) 在随机数表中任选一个数．<br>(3) 从选定的数开始按一定的方向读下去，若得到的号码在编号中，则取出；若得到的号码不在编号中或前面已经取出，则跳过．如此继续下去，直到取满为止．<br>(4) 根据选定的号码抽取样本．</div>
+      <div class="def" data-step="2"><h4>简单随机抽样</h4>一般地，从个体数为 $N$ 的总体中逐个<em>不放回</em>地取出 $n$ 个个体作为样本（$n\lt N$），如果每个个体都有<em>相同的机会</em>被取到，那么这样的抽样方法称为简单随机抽样．抽签法和随机数表法都是简单随机抽样．</div>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="3">
+        <p><b>练习 p216 第 5 题</b>　对于随机数表，下列说法对吗？</p>
+        <p>(1) 每 40 个数字里，正好有 4 个 0．</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button><p class="pick-why">每个数字出现的<b>概率</b>是 $\frac1{10}$，不等于“每 40 个里正好 4 个”。</p></div>
+        <p>(2) 每一对数字都有 1% 的机会是 00．</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button><p class="pick-why">两个位置独立，各为 0 的概率都是 $\frac1{10}$，同时为 0 的概率是 $\frac1{100}$。</p></div>
+        <p>(3) 表里不可能出现像 0000 这样 4 个连续的 0，因为这个模式太不随机了．</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button><p class="pick-why">0000 出现的概率是 $\frac1{10\,000}$，和任何其他 4 位数字一样，可能出现。</p></div>
+      </div>
+      <p class="tip small" data-step="4"><b>练习 p216 第 3 题</b>：5 个个体 $a,b,c,d,e$ 逐个不放回抽取容量为 2 的样本，共 <span class="think" data-step="5" data-ask="数一数">$10$ 种：$ab,ac,ad,ae,bc,bd,be,cd,ce,de$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p215–216。“不放回”“机会相同”是简单随机抽样的两个要点。随机数表可以用抽签法、抛掷正二十面体骰子法（相对两面数字相同）或计算机（Excel 的 RAND、GeoGebra 的 random）生成（课本“链接”）。</p>
+</section>
+
+<!-- 6 ================= 分层抽样：问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">14.2.2</span><h2>三个年级视力差别大：怎样抽 100 人较为合理？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">某校高一、高二和高三年级分别有学生 1 000 名、800 名和 700 名，为了解全校学生的视力情况，从中抽取容量为 100 的样本．</p>
+      <div id="strat" class="strat"></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">在 2 500 名学生中直接随机抽 100 名，或者每个年级平均抽 33 名，好不好？　<span class="think" data-step="2" data-ask="先讨论">都不太好：随机抽可能某个年级抽得偏多；平均抽，人数少的高三被“放大”了。要注意总体中个体的<b>层次性</b>。</span></p>
+      <p class="tip" data-step="3">让样本中各年级所占的比与实际相同：</p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>高一</span><span>$100\times\dfrac{1000}{2500}=40$（名）</span><i class="why"></i></div>
+        <div class="dl" data-step="4"><span>高二</span><span>$100\times\dfrac{800}{2500}=32$（名）</span><i class="why"></i></div>
+        <div class="dl" data-step="4"><span>高三</span><span>$100\times\dfrac{700}{2500}=28$（名）</span><i class="why">合计 100</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p217。左图：每个方块代表 25 名学生（共 100 块），颜色区分年级，按真实人数比例画出。先请学生判断两种“直觉”方案的问题，再按比例计算。</p>
+</section>
+
+<!-- 7 ================= 抽样模拟器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">模拟</span><h2>抽 200 次比一比：哪种抽法估计得更稳？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="pop" id="pop"></div>
+      <p class="muted small">2 500 名学生的视力（<b>模拟数据</b>：三个年级平均视力不同），亮点是本次抽中的 100 人</p>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="smSRS">简单随机抽样 100 人</button><button type="button" class="btn solid" id="smST">分层抽样 40+32+28</button><button type="button" class="btn" id="sm200">两种各抽 200 次</button><button type="button" class="btn" id="smClr">清空</button></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="smMsg"></p>
+      <div id="smPlot" class="smplot"></div>
+      <p class="muted small center">每个点是一次抽样得到的样本平均视力；竖线是全校平均视力</p>
+      <p class="method" data-step="1">两种方法都“每个个体被抽到的机会相同”；但当各层差异明显时，<b>分层抽样</b>的样本平均数更集中在总体平均数附近——样本更有代表性。</p>
+    </div>
+  </div>
+  <p class="note">本课独有互动。总体是程序按“高一平均 4.9、高二 4.7、高三 4.5（五分记录法）”生成的模拟数据，固定种子，每次打开相同。点“两种各抽 200 次”，比较上下两行点图的分散程度和下方的标准差读数。简单随机抽样时，样本里各年级人数会随机波动（读数里可以看到），这正是它波动更大的原因。</p>
+</section>
+
+<!-- 8 ================= 分层抽样定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>分层抽样</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>分层抽样（课本 p217）</h4>一般地，当总体由<em>差异明显</em>的几个部分组成时，为了使样本更客观地反映总体情况，我们常常将总体中的个体按不同的特点分成层次比较分明的几个部分，然后<em>按各个部分在总体中所占的比</em>实施抽样，这种抽样方法叫作分层抽样，所分成的各个部分称为“层”．</div>
+    <div class="cols2">
+      <div class="method" data-step="2" data-label="步骤">(1) 将总体按一定标准分层；(2) 计算各层的个体数与总体的个体数的比；(3) 按各层的个体数占总体的个体数的比确定各层应抽取的样本容量；(4) 在每一层进行抽样（可用简单随机抽样）．</div>
+      <div class="warn" data-step="3" data-label="注意">按比例算出的个体数不是整数时，可作适当的近似处理（课本旁注），但各层人数之和要等于样本容量。</div>
+    </div>
+  </div>
+  <p class="note">课本 p217。分层抽样“按比例”保证了每个个体被抽到的机会仍然相同：高一每人被抽到的机会 40/1000 = 高二 32/800 = 高三 28/700 = 1/25。</p>
+</section>
+
+<!-- 9 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>网上调查 12 000 人，抽 60 人详细调查</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">某电视台在因特网上就观众对某一节目的喜爱程度进行调查，参加调查的总人数为 12 000 人，其中持各种态度的人数如表 14-2-1．打算从中抽取 60 人进行更为详细的调查，应怎样进行抽样？</p>
+      <table class="mtab"><tr><th>很喜爱</th><th>喜爱</th><th>一般</th><th>不喜爱</th></tr><tr><td>2 435</td><td>4 567</td><td>3 926</td><td>1 072</td></tr></table>
+      <p class="tip" data-step="1"><b>分析</b>　<span class="think" data-step="2" data-ask="用哪种抽样？">总体中个体数较多，不宜采用简单随机抽样；四类人群观点各不相同，所以运用分层抽样。</span></p>
+    </div>
+    <div class="col">
+      <table class="mtab calc" id="ex1Tab" data-step="3"></table>
+      <p class="tip" data-step="4">按比例算出的 12.18、22.84、19.63、5.36 都不是整数——<span class="think" data-step="5" data-ask="怎么处理？">四舍五入为 12，23，20，5，恰好合计 60。</span></p>
+      <p class="tip gold" data-step="6">因此在“很喜爱”的 2 435 人、“喜爱”的 4 567 人、“一般”的 3 926 人和“不喜爱”的 1 072 人中分别抽取 12 人、23 人、20 人和 5 人．</p>
+    </div>
+  </div>
+  <p class="note">课本 p218 例 1、表 14-2-1。右表由程序按课本数据计算（60 × 人数 / 12 000）。若四舍五入后合计不等于 60，需要调整——本题恰好等于 60。课本探究：帮厂家设计新饮品的社会调查方案，可作为课后小组任务。</p>
+</section>
+
+<!-- 10 ================= 比较 + 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比较 · 例 2</span><h2>两种抽样方法：怎样选？</h2></div>
+  <div class="bd full">
+    <table class="mtab cmp">
+      <tr><th>类别</th><th>特点</th><th>相互联系</th><th>适用范围</th><th>共同点</th></tr>
+      <tr><td>简单随机抽样</td><td>从总体中逐个抽取</td><td rowspan="2">各层抽样时，可以采用简单随机抽样</td><td>总体中的个体数相对较少</td><td rowspan="2">抽样过程中每个个体被抽到的可能性相同</td></tr>
+      <tr><td>分层抽样</td><td>将总体分成几层，按各层的个体数之比抽取</td><td>总体由差异明显的几部分组成</td></tr>
+    </table>
+    <p class="muted small">表 14-2-2；这样按“每个个体被抽取的概率相等”规则抽取的样本称为<b>随机样本</b>。</p>
+    <div class="cols3">
+      <div class="jcard"><p><b>例 2(1)</b> 从 10 台冰箱中抽取 3 台进行质量检查．</p>
+        <div class="pick" data-ans="a"><button type="button" data-k="a">简单随机抽样</button><button type="button" data-k="b">分层抽样</button><p class="pick-why">总体容量比较小，用抽签法或随机数表法都很方便。</p></div></div>
+      <div class="jcard"><p><b>例 2(2)</b> 教职工 160 名（教师 120，行政 16，后勤 24），抽 20 人了解对校务公开的意见．</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">简单随机抽样</button><button type="button" data-k="b">分层抽样</button><p class="pick-why">各类人员看法可能差异较大：教师 $20\times\frac{120}{160}=15$，行政 $2$，后勤 $3$（名）。</p></div></div>
+      <div class="jcard"><p><b>例 2(3)</b> 一个季度 22 984 份运货单，运费相差很大，抽一定量审核．</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">简单随机抽样</button><button type="button" data-k="b">分层抽样</button><p class="pick-why">运费相差很大：按运费多少分层，再按各层运货单的数量比抽样。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p219 表 14-2-2 与例 2。每题先让学生判断再点选。第 (2) 题的人数请学生口算。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（练习 p218 第 1 题）某公司生产 3 种型号的轿车，产量分别为 1 200 辆、6 000 辆和 2 000 辆．用分层抽样的方法抽取 46 辆进行检验，这 3 种型号的轿车应分别抽取多少辆？</p>
+        <details><summary>提示 1</summary>总产量是多少？抽样比是多少？</details>
+        <details><summary>提示 2</summary>总产量 9 200，抽样比 $\dfrac{46}{9200}=\dfrac1{200}$。</details>
+        <details><summary>完整解答</summary>$1200\times\dfrac1{200}=6$，$6000\times\dfrac1{200}=30$，$2000\times\dfrac1{200}=10$，分别抽取 6 辆、30 辆、10 辆。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（练习 p218 第 2 题）某工厂生产 $A,B,C$ 3 种不同型号的产品，产量之比为 $2:3:5$．用分层抽样抽取容量为 $n$ 的样本，若样本中 $A$ 种型号的产品有 16 件，则 $n=$＿＿．</p>
+        <details><summary>提示 1</summary>$A$ 种在样本中所占的比，等于它在总体中所占的比。</details>
+        <details><summary>提示 2</summary>$\dfrac{2}{2+3+5}=\dfrac15$。</details>
+        <details><summary>完整解答</summary>$n\times\dfrac15=16$，所以 $n=80$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 14.2 第 2 题）用分层抽样的方法从某校学生中抽取 1 个容量为 45 的样本，其中高一年级抽 20 人，高三年级抽 10 人．已知该校高二年级共有学生 300 人，求该校学生总数．</p>
+        <details><summary>提示 1</summary>高二年级抽了多少人？</details>
+        <details><summary>提示 2</summary>$45-20-10=15$ 人，抽样比 $\dfrac{15}{300}=\dfrac1{20}$。</details>
+        <details><summary>完整解答</summary>学生总数 $=45\div\dfrac1{20}=900$（人）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">三题都抓住一个不变量：分层抽样中，各层的抽样比都等于总的抽样比（样本容量 / 总体容量）。课后作业建议：习题 14.2 第 1、3、6、8 题。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="tree" data-step="1">
+      <div class="tr-root">随机抽样：每个个体被抽到的可能性相同</div>
+      <div class="tr-kids"><div><b>简单随机抽样</b><small>抽签法 · 随机数表法 · 计算机生成随机数</small><small>个体数相对较少</small></div><div><b>分层抽样</b><small>按各层所占的比抽取，层内用简单随机抽样</small><small>由差异明显的几部分组成</small></div></div>
+    </div>
+    <div class="cols3 sum">
+      <p class="recall" data-label="知识" data-step="2">抽签法与随机数表法的步骤；简单随机抽样、分层抽样的定义。</p>
+      <p class="method" data-label="方法" data-step="3">各层抽取人数 = 样本容量 × 该层占总体的比；不是整数时近似处理，合计保持不变。</p>
+      <p class="recall" data-label="思想" data-step="4">用随机性保证代表性（“搅匀”）；利用总体的结构（分层）提高估计的稳定性。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一课：</b>14.3 统计图表——抽到了样本数据，怎样整理、画图，看出数据的分布？</p>
+  </div>
+  <p class="note">请学生先说出两种抽样方法各自适用的场合，再揭示结构图。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

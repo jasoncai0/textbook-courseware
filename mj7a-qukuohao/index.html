@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>去括号 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/maibao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第3章 代数式 · 3.5</p>
+    <h1 class="cover-title">去括号</h1>
+    <p class="cover-q" data-step="1">假期勤工俭学：小亮从报社以每份 0.4 元购进 $a$ 份报纸，以每份 0.5 元卖出 $b$ 份（$b\le a$），剩余的以每份 0.2 元退回报社．</p>
+    <p class="cover-q" data-step="2">小亮赢利 $[-0.4a+0.5b+0.2(a-b)]$ 元．<b>括号把同类项“挡住”了——怎样把括号去掉？去掉后，括号里各项的符号变不变？</b></p>
+    <div class="chips" data-step="3"><span class="chip">填表 · 发现规律</span><span class="chip">去括号法则</span><span class="chip">符号翻转演示</span><span class="chip">先去括号再合并</span></div>
+  </div>
+  <p class="note">课本 p84 情境。封面先让学生说清楚三笔钱：支出 0.4a、收入 0.5b、退回 0.2(a − b)，下一页回顾旧知后再算。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 3.4 合并同类项" data-step="1">
+        <p>同类项的系数相加，字母和字母的指数不变：$-0.4a+0.2a=-0.2a$．</p>
+        <span class="use">上一课讲到“没有括号”的多项式怎样合并；今天先去括号，再合并．</span>
+      </div>
+      <div class="recall" data-label="2.6 · 乘法分配律" data-step="2">
+        <p>$k(b+c)=kb+kc$</p>
+        <p>$(-1)\times(-b+c)=b-c$</p>
+        <span class="use">说明去括号法则为什么成立；括号前有数（如 $3(2x-x^2)$）时，每一项都要乘．</span>
+      </div>
+      <div class="recall" data-label="2.4 / 2.5 · 相反数与减法" data-step="3">
+        <p>$-(-3)=3$；减去一个数，等于加上这个数的相反数：$5-(-2)=5+2$．</p>
+        <span class="use">括号前是“−”号时，括号里每一项都变成它的相反数．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>括号前面是“+”号或“−”号时，去掉括号后，括号里各项的符号<b>变不变</b>？为什么？</p>
+  </div>
+  <p class="note">第二张卡请学生口算 (−1) × (−b + c)：这是本课法则的“证明”所在。第三张卡强调“每一项”——本课最常见的错误就是只改了括号里第一项的符号。</p>
+</section>
+
+<!-- 3 ================= 情境：卖报纸 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>小亮赢利多少元？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row" data-noswipe>购进 $a=$<input type="range" id="npA" min="50" max="300" step="10" value="200"><b class="v" id="npAV"></b>份</div>
+      <div class="slider-row" data-noswipe>卖出 $b=$<input type="range" id="npB" min="0" max="300" step="10" value="150"><b class="v" id="npBV"></b>份</div>
+      <div class="money" id="money"></div>
+      <p class="tip feedback" id="npMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>购进支出</span><span class="think" data-step="2" data-ask="多少元？">$0.4a$ 元</span><i class="why">每份 0.4 元，$a$ 份</i></div>
+        <div class="dl" data-step="1"><span>售出收入</span><span class="think" data-step="2" data-ask="多少元？">$0.5b$ 元</span><i class="why">每份 0.5 元，$b$ 份</i></div>
+        <div class="dl" data-step="3"><span>退回收入</span><span class="think" data-step="4" data-ask="剩几份？多少元？">$0.2(a-b)$ 元</span><i class="why">剩余 $(a-b)$ 份，每份 0.2 元</i></div>
+        <div class="dl key" data-step="5"><span>赢利</span><span>$-0.4a+0.5b+0.2(a-b)$</span><i class="why">收入记正，支出记负</i></div>
+      </div>
+      <p class="tip" data-step="6"><b>议一议：</b>如何合并这个多项式中的同类项？<span class="think" data-step="7" data-ask="卡在哪里？">$-0.4a$ 和 $a$、$0.5b$ 和 $b$ 能合并，但 $a$、$b$ 被括号“包”着——<b>先要把多项式中的括号去掉</b>．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p84 情境与“议一议”。滑块只用来让学生体会三笔钱的意义（b 不超过 a，滑块会自动限制）。先不急着化简——赢利式子里的括号怎么去，就是本课的问题。</p>
+</section>
+
+<!-- 4 ================= 试一试：填表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>填表：你发现了什么？</h2></div>
+  <div class="bd full top">
+    <table class="mtab calc-tab">
+      <tr><th>$a$</th><th>$b$</th><th>$c$</th><th class="pa">$a+(-b+c)$</th><th class="pa">$a-b+c$</th><th class="pb">$a-(-b+c)$</th><th class="pb">$a+b-c$</th></tr>
+      <tr><td>5</td><td>2</td><td>−1</td><td><span class="blank" data-ans="2" data-w="4"></span></td><td><span class="blank" data-ans="2" data-w="4"></span></td><td><span class="blank" data-ans="8" data-w="4"></span></td><td><span class="blank" data-ans="8" data-w="4"></span></td></tr>
+      <tr><td>−6</td><td>−4</td><td>3</td><td><span class="blank" data-ans="1" data-w="4"></span></td><td><span class="blank" data-ans="1" data-w="4"></span></td><td><span class="blank" data-ans="-13" data-w="4"></span></td><td><span class="blank" data-ans="-13" data-w="4"></span></td></tr>
+      <tr><td>−9.5</td><td>−5</td><td>−7</td><td><span class="blank" data-ans="-11.5" data-w="5"></span></td><td><span class="blank" data-ans="-11.5" data-w="5"></span></td><td><span class="blank" data-ans="-7.5" data-w="5"></span></td><td><span class="blank" data-ans="-7.5" data-w="5"></span></td></tr>
+      <tbody id="rndRows"></tbody>
+    </table>
+    <div class="btns" data-noswipe><button class="btn solid" type="button" id="rndBtn">再换几个数试试（随机）</button><button class="btn" type="button" id="rndClr">清空</button></div>
+    <p class="tip" data-step="1">你发现了什么？<span class="think" data-step="2" data-ask="说一说">蓝色两列总相等：$a+(-b+c)=a-b+c$；粉色两列总相等：$a-(-b+c)=a+b-c$．</span></p>
+    <p class="warn" data-step="3" data-label="追问">试了这么多组都对，能说明“任何数都成立”吗？<span class="think" data-step="4" data-ask="能吗？">不能．试得再多也只是“一些数”，要用运算律说明理由（下一页）．</span></p>
+  </div>
+  <p class="note">课本 p84“试一试”填表。前三行请学生口算后输入（回车判断，错了可再改）；然后点“随机”多换几组，表格自动算出，学生观察哪两列相等。最后一问把学生从“验证”推到“说理”。</p>
+</section>
+
+<!-- 5 ================= 说理 + 法则 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">说理 · 法则</span><h2>能说明你发现的结论正确吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$a+(-b+c)$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="怎样看？">$a+(+1)(-b+c)$</span><i class="why">把“+”号看成“+1”乘括号</i></div>
+        <div class="dl end" data-step="4"><span>$=$</span><span>$a-b+c$</span><i class="why">乘法分配律：$(+1)\times(-b)=-b$，$(+1)\times c=c$</i></div>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="5"><span></span><span>$a-(-b+c)$</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span>$=$</span><span class="think" data-step="7" data-ask="怎样看？">$a+(-1)(-b+c)$</span><i class="why">把“−”号看成“+(−1)”乘括号</i></div>
+        <div class="dl end" data-step="8"><span>$=$</span><span>$a+b-c$</span><i class="why">乘法分配律：$(-1)\times(-b)=b$，$(-1)\times c=-c$</i></div>
+      </div>
+    </div>
+    <div class="def big-def" data-step="9"><h4>去括号法则（课本 p84）</h4>括号前面是“+”号，把括号和它前面的“+”号去掉，括号里各项的符号<em>都不改变</em>．<br>括号前面是“−”号，把括号和它前面的“−”号去掉，括号里各项的符号<em>都要改变</em>．</div>
+    <p class="warn" data-step="10" data-label="三个“都”">① 括号连同前面的符号<b>一起</b>去掉；② “−”号时，括号里<b>每一项</b>都变号，不能只变第一项；③ 括号前有数时，括号里每一项都要乘这个数．</p>
+  </div>
+  <p class="note">课本 p84 两个小人的提示（看成 a + (+1)(−b + c)、a + (−1)(−b + c)）和去括号法则框。这是本课的“推理”环节：法则不是规定，而是乘法分配律的结果。让学生在“每一项”下面画重点线。</p>
+</section>
+
+<!-- 6 ================= 核心交互：符号翻转 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手</span><h2>去括号演示：每一项的符号怎样变？</h2></div>
+  <div class="bd full top">
+    <div class="btns" data-noswipe id="flTabs"></div>
+    <div class="fl-stage" id="flStage" data-noswipe></div>
+    <div class="btns" data-noswipe>
+      <button class="btn solid" type="button" id="flGo">去括号 ▶</button>
+      <button class="btn" type="button" id="flBack">还原</button>
+      <button class="btn" type="button" id="flWrong">错误示范：只变第一项</button>
+    </div>
+    <p class="tip feedback" id="flMsg"></p>
+    <div class="fl-check" id="flCheck"></div>
+  </div>
+  <p class="note">本课核心交互，题目来自课本 p85“试一试”第 2 题 (1)–(4) 和例题 (2)。点“去括号”：括号前的符号先亮起并标出“×(+1)”或“×(−1)”（例题是“×3”），然后括号里的项一个一个变号。“错误示范”只改第一项，下方的“代入检验”会显示两边的值不相等——用数值说明错在哪里。</p>
+</section>
+
+<!-- 7 ================= 例题 + 回到情境 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>先去括号，再合并同类项</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col">
+        <p class="tip"><b>例 (1)</b> $5a-(2a-4b)$</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>解：</span><span>$5a-(2a-4b)$</span><i class="why"></i></div>
+          <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="括号前是什么号？">$5a-2a+4b$</span><i class="why">“−”号：$2a$、$-4b$ 都变号</i></div>
+          <div class="dl end" data-step="4"><span>$=$</span><span>$3a+4b$</span><i class="why">合并同类项</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 (2)</b> $2x^2+3(2x-x^2)$</p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span>解：</span><span>$2x^2+3(2x-x^2)$</span><i class="why"></i></div>
+          <div class="dl" data-step="6"><span>$=$</span><span class="think" data-step="7" data-ask="3 乘谁？">$2x^2+6x-3x^2$</span><i class="why">括号内每项都要乘 3</i></div>
+          <div class="dl end" data-step="8"><span>$=$</span><span>$-x^2+6x$</span><i class="why">合并同类项</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>试一试 1</b> 回到小亮卖报：计算 $-0.4a+0.5b+0.2(a-b)$．</p>
+        <div class="derive nowhy">
+          <div class="dl" data-step="9"><span>$=$</span><span class="think" data-step="10" data-ask="去括号（“+”号）">$-0.4a+0.5b+0.2a-0.2b$</span><i class="why"></i></div>
+          <div class="dl end" data-step="11"><span>$=$</span><span>$-0.2a+0.3b$</span><i class="why"></i></div>
+        </div>
+        <p class="tip small-p" data-step="12">检验：$a=200$、$b=150$ 时，赢利 $-40+45=5$（元），与第 3 页滑块显示的一致．</p>
+      </div>
+    </div>
+    <p class="method" data-step="13" data-label="步骤">① 看括号前的符号（和数）；② 去括号，每一项都处理；③ 合并同类项．</p>
+  </div>
+  <p class="note">课本 p85 例与“试一试”1。例 (2) 小人提示“括号内每项都要乘 3”，常见错误是写成 2x² + 6x − x²。试一试 1 的结果说明：赢利只跟 a、b 有关，−0.2a + 0.3b 比原式算起来简单多了；可以回到第 3 页拖动滑块核对。</p>
+</section>
+
+<!-- 8 ================= 练一练 1：判断 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>下列计算正确吗？如有错误，请改正</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard"><p>(1) $-(-a-b)=a-b$</p><div class="pick" data-ans="n"><button type="button" data-k="y">正确</button><button type="button" data-k="n">错误</button><p class="pick-why">括号里<b>每一项</b>都要变号：$-(-a-b)=a+b$．</p></div></div>
+      <div class="jcard"><p>(2) $5x-(2x-1)-x^2=5x-2x+1+x^2$</p><div class="pick" data-ans="n"><button type="button" data-k="y">正确</button><button type="button" data-k="n">错误</button><p class="pick-why">$-x^2$ 不在括号里，不变号：应为 $5x-2x+1-x^2$．</p></div></div>
+      <div class="jcard"><p>(3) $3xy-\dfrac12(xy-y^2)=3xy-\dfrac12xy+y^2$</p><div class="pick" data-ans="n"><button type="button" data-k="y">正确</button><button type="button" data-k="n">错误</button><p class="pick-why">$-\dfrac12$ 要乘括号里每一项：$-\dfrac12\times(-y^2)=\dfrac12y^2$，应为 $3xy-\dfrac12xy+\dfrac12y^2$．</p></div></div>
+      <div class="jcard"><p>(4) $(a^3+b^3)-3(2a^3-3b^3)=a^3+b^3-6a^3+9b^3$</p><div class="pick" data-ans="y"><button type="button" data-k="y">正确</button><button type="button" data-k="n">错误</button><p class="pick-why">$-3\times2a^3=-6a^3$，$-3\times(-3b^3)=9b^3$，正确．（还可以继续合并成 $-5a^3+10b^3$．）</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="三类错误">漏变号（只变第一项）　·　多变号（括号外的项也变了）　·　漏乘（括号前的数没乘到每一项）</p>
+  </div>
+  <p class="note">课本 p85 练一练第 1 题。先让学生独立判断、写出改正，再上台点按钮。四题对应三类典型错误，第 (4) 题是正确的，可以追问“还能继续化简吗”。</p>
+</section>
+
+<!-- 9 ================= 练一练 2 + 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>先去括号，再合并同类项</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（练一练 2）(1) $a+(-3b-2a)$；<br>(2) $(x+2y)-(-2x-y)$．</p>
+        <details><summary>提示 1</summary>(1) “+”号，不变号；(2) “−”号，$-2x$、$-y$ 都变号．</details>
+        <details><summary>完整解答</summary>(1) $a-3b-2a=-a-3b$；<br>(2) $x+2y+2x+y=3x+3y$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（练一练 2）(3) $6m-3(-m+2n)$；<br>(4) $2x-3(x-y^2)+2(-x-y^2)$．</p>
+        <details><summary>提示 1</summary>把 $-3$ 看成整体去乘：$-3\times(-m)=3m$，$-3\times2n=-6n$．</details>
+        <details><summary>提示 2</summary>(4) 两个括号分别处理：$-3x+3y^2$；$-2x-2y^2$．</details>
+        <details><summary>完整解答</summary>(3) $6m+3m-6n=9m-6n$；<br>(4) $2x-3x+3y^2-2x-2y^2=-3x+y^2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 3.5 第 1 题）去括号：<br>(3) $3x+[4y-(7z+3)]$；<br>(4) $-3a^3-[2x^2-(5x+1)]$．</p>
+        <details><summary>提示 1</summary>有中括号时，可以<b>由内向外</b>：先去小括号，再去中括号．</details>
+        <details><summary>提示 2</summary>(4) $-(5x+1)=-5x-1$，于是 $-[2x^2-5x-1]$，再整体变号．</details>
+        <details><summary>完整解答</summary>(3) $3x+[4y-7z-3]=3x+4y-7z-3$；<br>(4) $-3a^3-[2x^2-5x-1]=-3a^3-2x^2+5x+1$．</details>
+      </div>
+    </div>
+    <p class="muted center small-t" data-step="1">更多：习题 3.5 第 1 题 (1)(2)、第 2 题 (1)–(5)．</p>
+  </div>
+  <p class="note">课本 p85 练一练第 2 题与习题 3.5 第 1 题。第 3 题出现中括号，课本没有专门讲，提示里给“由内向外”的方法；也可以由外向内，让学有余力的学生比较两种顺序结果是否相同。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">“+”号：去括号，各项<b>都不变</b>号；<br>“−”号：去括号，各项<b>都要变</b>号．</p>
+        <p class="warn" data-label="括号前有数">每一项都要乘这个数（连同符号）．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="化简步骤">看符号（和数）→ 去括号 → 合并同类项．</p>
+        <p class="method" data-label="检验">任取一组数代入，比较去括号前后的值．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="从特殊到一般">填表发现规律（特殊）→ 用分配律说明理由（一般）．</p>
+        <p class="recall" data-label="转化">把“−”号看成“乘 −1”，去括号就变成了熟悉的分配律．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>3.6 整式的加减——用卡片拼出不同的四边形，求它们周长的和与差：$(4a+2b)-(2a+4b)=\ ?$</p>
+  </div>
+  <p class="note">请学生先口述法则，强调两个“都”。课后作业建议：习题 3.5 第 1、2 题。下一节把“去括号 + 合并同类项”合起来，就是整式的加减。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

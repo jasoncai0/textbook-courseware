@@ -3683,13 +3683,21 @@ window.CATALOG = [
                 "no": "1.1",
                 "title": "生活 数学",
                 "genre": "概念",
-                "kind": "数学与生活"
+                "kind": "数学与生活",
+                "dir": "mj7a-shenghuoshuxue",
+                "pages": 10,
+                "desc": "拖角点围篱笆，比圆轮方轮滚动",
+                "cover": "mj7a-shenghuoshuxue/assets/chengshi.jpg"
               },
               {
                 "no": "1.2",
                 "title": "活动 思考",
                 "genre": "推导",
-                "kind": "数学与生活"
+                "kind": "数学与生活",
+                "dir": "mj7a-huodongsikao",
+                "pages": 12,
+                "desc": "月历上拖方框，折纸动画，火柴棒",
+                "cover": "mj7a-huodongsikao/assets/zhezhi.jpg"
               }
             ]
           },
@@ -3702,31 +3710,51 @@ window.CATALOG = [
                 "no": "2.1",
                 "title": "正数与负数",
                 "genre": "概念",
-                "kind": "有理数"
+                "kind": "有理数",
+                "dir": "mj7a-zhengshufushu",
+                "pages": 12,
+                "desc": "拖温度计液柱与海拔，数字分类",
+                "cover": "mj7a-zhengshufushu/assets/xuefeng.jpg"
               },
               {
                 "no": "2.2",
                 "title": "有理数与无理数",
                 "genre": "概念",
-                "kind": "有理数"
+                "kind": "有理数",
+                "dir": "mj7a-youlishu",
+                "pages": 13,
+                "desc": "逐位放大逼近√2，剪拼正方形",
+                "cover": "mj7a-youlishu/assets/yueduj.jpg"
               },
               {
                 "no": "2.3",
                 "title": "数轴",
                 "genre": "概念",
-                "kind": "有理数"
+                "kind": "有理数",
+                "dir": "mj7a-shuzhou",
+                "pages": 13,
+                "desc": "三要素画数轴，滚圆得π",
+                "cover": "mj7a-shuzhou/assets/gonglu.jpg"
               },
               {
                 "no": "2.4",
                 "title": "绝对值与相反数",
                 "genre": "概念",
-                "kind": "有理数"
+                "kind": "有理数",
+                "dir": "mj7a-jueduizhi",
+                "pages": 15,
+                "desc": "沿原点对折数轴，相反数重合",
+                "cover": "mj7a-jueduizhi/assets/shangxue.jpg"
               },
               {
                 "no": "2.5",
                 "title": "有理数的加法与减法",
                 "genre": "推导",
-                "kind": "有理数"
+                "kind": "有理数",
+                "dir": "mj7a-jiajianfa",
+                "pages": 18,
+                "desc": "数轴加法机走两步，减法化加法",
+                "cover": "mj7a-jiajianfa/assets/zuqiu.jpg"
               },
               {
                 "no": "2.6",
@@ -3799,19 +3827,31 @@ window.CATALOG = [
                 "no": "3.4",
                 "title": "合并同类项",
                 "genre": "推导",
-                "kind": "代数式"
+                "kind": "代数式",
+                "dir": "mj7a-hebingtongleixiang",
+                "pages": 14,
+                "desc": "点选同类项一键合并，选错指出原因",
+                "cover": "mj7a-hebingtongleixiang/assets/xiaoyuan.jpg"
               },
               {
                 "no": "3.5",
                 "title": "去括号",
                 "genre": "推导",
-                "kind": "代数式"
+                "kind": "代数式",
+                "dir": "mj7a-qukuohao",
+                "pages": 10,
+                "desc": "去括号逐项变号演示，含代入检验",
+                "cover": "mj7a-qukuohao/assets/maibao.jpg"
               },
               {
                 "no": "3.6",
                 "title": "整式的加减",
                 "genre": "推导",
-                "kind": "代数式"
+                "kind": "代数式",
+                "dir": "mj7a-zhengshijiajian",
+                "pages": 10,
+                "desc": "卡片旋转拼成四种四边形求周长",
+                "cover": "mj7a-zhengshijiajian/assets/shougong.jpg"
               }
             ]
           },
@@ -3824,19 +3864,31 @@ window.CATALOG = [
                 "no": "4.1",
                 "title": "从问题到方程",
                 "genre": "概念",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj7a-wentidaofangcheng",
+                "pages": 11,
+                "desc": "以绳测井：调绳长比两种量法的井深",
+                "cover": "mj7a-wentidaofangcheng/assets/shengjing.jpg"
               },
               {
                 "no": "4.2",
                 "title": "解一元一次方程",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj7a-jieyiyuanyici",
+                "pages": 17,
+                "desc": "天平变形器：两边同时操作仍平衡",
+                "cover": "mj7a-jieyiyuanyici/assets/tianping.jpg"
               },
               {
                 "no": "4.3",
                 "title": "用一元一次方程解决问题",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj7a-fangchengjiejuewenti",
+                "pages": 18,
+                "desc": "环形跑道追及动画，与线形图同步",
+                "cover": "mj7a-fangchengjiejuewenti/assets/paobu.jpg"
               }
             ]
           },
@@ -3886,25 +3938,41 @@ window.CATALOG = [
                 "no": "6.2",
                 "title": "角",
                 "genre": "概念",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7a-jiao",
+                "pages": 15,
+                "desc": "拖射门点比角，旋转量角器量角，尺规作角",
+                "cover": "mj7a-jiao/assets/shemen.jpg"
               },
               {
                 "no": "6.3",
                 "title": "余角、补角、对顶角",
                 "genre": "推导",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7a-yujiaobujiao",
+                "pages": 15,
+                "desc": "三角尺拼角，三组角连线，转木条看对顶角",
+                "cover": "mj7a-yujiaobujiao/assets/xiaokong.jpg"
               },
               {
                 "no": "6.4",
                 "title": "平行",
                 "genre": "概念",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7a-pingxing",
+                "pages": 9,
+                "desc": "推三角尺画平行线，方格纸点格点画平行线",
+                "cover": "mj7a-pingxing/assets/paodao.jpg"
               },
               {
                 "no": "6.5",
                 "title": "垂直",
                 "genre": "概念",
-                "kind": "平面图形"
+                "kind": "平面图形",
+                "dir": "mj7a-chuizhi",
+                "pages": 13,
+                "desc": "拖动点看长度曲线，翻折说明垂线段最短",
+                "cover": "mj7a-chuizhi/assets/daqiao.jpg"
               }
             ]
           },
@@ -5401,19 +5469,31 @@ window.CATALOG = [
                 "no": "13.1",
                 "title": "基本立体图形",
                 "genre": "概念",
-                "kind": "立体几何初步"
+                "kind": "立体几何初步",
+                "dir": "mg10b-jibenlitituxing",
+                "pages": 14,
+                "desc": "平移、截、旋转生成立体，斜二测拖点",
+                "cover": "mg10b-jibenlitituxing/assets/wuti.jpg"
               },
               {
                 "no": "13.2",
                 "title": "基本图形位置关系",
                 "genre": "推导",
-                "kind": "立体几何初步"
+                "kind": "立体几何初步",
+                "dir": "mg10b-weizhiguanxi",
+                "pages": 16,
+                "desc": "正方体点两线判关系算夹角，二面角翻折",
+                "cover": "mg10b-weizhiguanxi/assets/men.jpg"
               },
               {
                 "no": "13.3",
                 "title": "空间图形的表面积和体积",
                 "genre": "推导",
-                "kind": "立体几何初步"
+                "kind": "立体几何初步",
+                "dir": "mg10b-biaomianjitiji",
+                "pages": 14,
+                "desc": "圆柱、圆锥、圆台侧面连续展开，祖暅截面",
+                "cover": "mg10b-biaomianjitiji/assets/cangku.jpg"
               }
             ]
           },
@@ -5426,25 +5506,41 @@ window.CATALOG = [
                 "no": "14.1",
                 "title": "获取数据的基本途径及相关概念",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mg10b-huoqushuju",
+                "pages": 12,
+                "desc": "概念判对错，坦克序列号估计模拟",
+                "cover": "mg10b-huoqushuju/assets/yutang.jpg"
               },
               {
                 "no": "14.2",
                 "title": "抽样",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mg10b-chouyang",
+                "pages": 12,
+                "desc": "随机数表点选读数，两种抽样各抽200次对比",
+                "cover": "mg10b-chouyang/assets/tang.jpg"
               },
               {
                 "no": "14.3",
                 "title": "统计图表",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mg10b-tongjitubiao",
+                "pages": 11,
+                "desc": "改组距实时重算频率直方图与折线",
+                "cover": "mg10b-tongjitubiao/assets/shulin.jpg"
               },
               {
                 "no": "14.4",
                 "title": "用样本估计总体",
                 "genre": "推导",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mg10b-yangbengujizongti",
+                "pages": 15,
+                "desc": "拖点看平均数、中位数、方差，百分位数滑块",
+                "cover": "mg10b-yangbengujizongti/assets/gangjin.jpg"
               }
             ]
           },

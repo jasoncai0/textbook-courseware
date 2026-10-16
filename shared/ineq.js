@@ -61,7 +61,7 @@ const Ineq = (() => {
 
   /** 在任意位置 v 加刻度与竖排分数标签（负分数在分数线左边加“−”） */
   function frac(b, v, top, bot, o = {}) {
-    b.seg([[v, -0.16], [v, 0.16]], { cls: 'nl-tick' });
+    b.seg([[v, 0], [v, 0.16]], { cls: o.tcls || 'iq-tick' });
     const dy = o.dy || 0;
     b.text([v, 0], top, { cls: 'iq-fr', dy: 24 + dy });
     b.text([v, 0], '—', { cls: 'iq-fr bar', dy: 31 + dy });
@@ -71,10 +71,26 @@ const Ineq = (() => {
 
   /** 单独一个刻度 + 数字（不在整数步长上的端点，如 136、170） */
   function tick(b, v, label, o = {}) {
-    b.seg([[v, -0.16], [v, 0.16]], { cls: 'nl-tick' });
+    b.seg([[v, 0], [v, 0.16]], { cls: o.tcls || 'iq-tick' });
     b.text([v, 0], label ?? num(v), { cls: o.cls || 'nl-num', dy: o.dy || 26, dx: o.dx || 0 });
   }
 
-  return { ray, both, texOf, band, frac, tick, TEX, strict, right };
+  /** 课本插图式数轴：只在 marks 处画刻度和数字（课本图 11-2 只标 0 和端点）。marks 元素为数或 [数, 标签] */
+  function axis(b, o) {
+    const left = o.from - (o.lead ?? 0.45);
+    const right = o.to + (o.tail ?? 0.75);
+    b.seg([[left, 0], [right, 0]], { cls: 'iq-ax' });
+    const ax = 16 / (b.X(1) - b.X(0));
+    const ay = 7 / (b.Y(0) - b.Y(1));
+    b.poly([[right + ax * 0.3, 0], [right - ax * 0.7, ay], [right - ax * 0.7, -ay]], { cls: 'iq-arrow' });
+    (o.marks || []).forEach((m) => {
+      const [v, t] = Array.isArray(m) ? m : [m, num(m)];
+      if (t && typeof t === 'object') frac(b, v, t[0], t[1]);
+      else tick(b, v, t);
+    });
+    return b;
+  }
+
+  return { ray, both, texOf, band, frac, tick, axis, TEX, strict, right };
 })();
 window.Ineq = Ineq;

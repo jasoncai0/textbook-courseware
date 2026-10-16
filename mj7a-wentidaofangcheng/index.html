@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>从问题到方程 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shengjing.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第4章 一元一次方程 · 4.1</p>
+    <h1 class="cover-title">从问题到方程</h1>
+    <p class="cover-q" data-step="1">我国古代问题：以绳测井，若将绳三折测之，绳多四尺；若将绳四折测之，绳多一尺．绳长、井深各几何？</p>
+    <p class="cover-q" data-step="2">绳长不知道，井深也不知道——<b>能不能先用字母表示其中一个，再把“相等的关系”写成一个等式？</b></p>
+    <div class="chips" data-step="3"><span class="chip">找相等关系</span><span class="chip">以绳测井</span><span class="chip">一元一次方程</span><span class="chip">列方程</span></div>
+  </div>
+  <p class="note">课本 p96“想一想”的古代问题，放在封面做悬念，第 5 页用可调的“测井图”解决。本章导语：本章将学习一元一次方程的概念、解法和应用；本节只学“列方程”，不要求解。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="小学五年级 · 简易方程" data-step="1">
+        <p>含有未知数的<b>等式</b>叫做方程，如 $x+3=10$、$3x=18$．</p>
+        <span class="use">本课从实际问题中找出相等关系，列出方程．</span>
+      </div>
+      <div class="recall" data-label="3.1 / 3.2 · 用字母表示数" data-step="2">
+        <p>每份 0.4 元，$a$ 份共 $0.4a$ 元；比 $x$ 少 4：$x-4$．</p>
+        <span class="use">设未知数后，用含字母的代数式表示其他的量．</span>
+      </div>
+      <div class="recall" data-label="3.3 · 代数式的值" data-step="3">
+        <p>搭 $n$ 条“小鱼”需要 $[8+6(n-1)]$ 根火柴棒；$n=3$ 时为 20 根．</p>
+        <span class="use">反过来问：用了 140 根，搭了几条？——就要列方程．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>实际问题中有已知量、未知量，它们之间常常有<b>相等</b>的关系．怎样描述这种相等关系最简明？</p>
+  </div>
+  <p class="note">第一张卡请学生说出“方程”的两个要素：有未知数、是等式。第三张卡是 3.3 的“小鱼”，本课 p97 试一试第 1 题会把它倒过来问，体会“求值”与“列方程”方向相反。</p>
+</section>
+
+<!-- 3 ================= 议一议 1：天平 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>天平平衡：怎样描述其中的相等关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 420 250" class="scale-fig" aria-label="天平：左盘两个相同的小球和一个 1 g 砝码，右盘一个 5 g 砝码，天平平衡">
+        <path d="M200 228 L220 228 L214 92 L206 92 Z" fill="#6f5aa8"/>
+        <rect x="150" y="226" width="120" height="12" rx="4" fill="#6f5aa8"/>
+        <line x1="70" y1="92" x2="350" y2="92" stroke="#4a5a6a" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="210" cy="92" r="9" fill="#f2c94c" stroke="#4a5a6a" stroke-width="2"/>
+        <line x1="70" y1="92" x2="70" y2="140" stroke="#4a5a6a" stroke-width="2"/><line x1="350" y1="92" x2="350" y2="140" stroke="#4a5a6a" stroke-width="2"/>
+        <path d="M20 140 H120 Q110 165 70 165 Q30 165 20 140 Z" fill="#5b9bd5" stroke="#3a6f9f" stroke-width="2"/>
+        <path d="M300 140 H400 Q390 165 350 165 Q310 165 300 140 Z" fill="#5b9bd5" stroke="#3a6f9f" stroke-width="2"/>
+        <circle cx="44" cy="124" r="15" fill="#2f6db5"/><circle cx="76" cy="124" r="15" fill="#2f6db5"/>
+        <rect x="94" y="122" width="16" height="17" rx="2" fill="#7a5c99"/><text x="102" y="135" class="fl s t-w" text-anchor="middle">1</text>
+        <rect x="333" y="112" width="34" height="27" rx="3" fill="#b8860b"/><text x="350" y="131" class="fl s t-w" text-anchor="middle">5</text>
+        <text x="44" y="210" class="fl s">x</text><text x="76" y="210" class="fl s">x</text>
+        <text x="60" y="235" class="fl s" text-anchor="middle">左盘</text><text x="350" y="235" class="fl s" text-anchor="middle">右盘</text>
+      </svg>
+      <p class="muted center small-t">图 4-1（示意）：两个相同的小球 + 1 g 砝码，与 5 g 砝码平衡</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>1.</b> 怎样描述图 4-1 中天平平衡所表示的数量之间的相等关系？</p>
+      <div class="three-say">
+        <p data-step="1"><b>说法 ①</b>　<span class="think" data-step="2" data-ask="用一句话说">左托盘中 3 个球的质量与右托盘中砝码的质量相等．</span></p>
+        <p data-step="3"><b>说法 ②</b>　<span class="think" data-step="4" data-ask="把“3 个球”拆开说">两个相同小球的质量 $+1$ g $=5$ g．</span></p>
+        <p data-step="5"><b>说法 ③</b>　<span class="think" data-step="6" data-ask="设小球的质量为 x g">设两个相同小球的质量都是 $x$ g，可以用方程 $2x+1=5$ 来描述．</span></p>
+      </div>
+      <p class="method" data-step="7" data-label="比一比">三种说法都对，哪种最<b>简明</b>？<span class="think" data-step="8" data-ask="哪种？">方程：一个式子就把“谁和谁相等”说清楚了．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p96 议一议 1 与图 4-1（三个小人的三种说法）。天平图是示意（不按比例），只说明“平衡 = 相等”。这里不急着求 x——解方程是下一节 4.2 的内容（下一节会用天平说明“等式的性质”）。章首页的问题“两个小球的质量”也就是这个方程。</p>
+</section>
+
+<!-- 4 ================= 议一议 2：篮球 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>篮球联赛：胜几场、负几场？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>2.</b> 篮球联赛规则规定：胜一场得 2 分，负一场得 1 分．某篮球队赛了 12 场，共得 20 分．怎样描述其中数量之间的相等关系？</p>
+      <div class="slider-row" data-noswipe>胜 $x=$<input type="range" id="bkX" min="0" max="12" step="1" value="5"><b class="v" id="bkXV"></b>场</div>
+      <div class="games" id="bkGames"></div>
+      <p class="tip feedback" id="bkMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>相等关系</span><span class="think" data-step="2" data-ask="用文字说">胜场得分 $+$ 负场得分 $=20$ 分</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>设</span><span>该队胜 $x$ 场</span><i class="why">设未知数</i></div>
+        <div class="dl" data-step="4"><span>负</span><span class="think" data-step="5" data-ask="负几场？">$(12-x)$ 场</span><i class="why">一共 12 场</i></div>
+        <div class="dl key" data-step="6"><span>方程</span><span>$2x+(12-x)=20$</span><i class="why">胜场得 $2x$ 分，负场得 $(12-x)$ 分</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="发现">实际问题中数量之间的相等关系，可以用多种不同的方式描述．通过比较可以看出，<b>用方程描述这种相等关系最简明</b>．</p>
+    </div>
+  </div>
+  <p class="note">课本 p96 议一议 2。左边滑块用来“试”：胜场 x 从 0 拖到 12，总分怎样变？学生会试出 x = 8 时正好 20 分。追问：如果题目数字很大，一个一个试太慢——方程把“试”变成“算”（下一节学怎么解）。</p>
+</section>
+
+<!-- 5 ================= 核心：以绳测井 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>以绳测井：同一口井，两种量法</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="wellBoard" class="well-board"></div>
+      <div class="slider-row" data-noswipe>绳长 $x=$<input type="range" id="wellX" min="24" max="48" step="1" value="30"><b class="v" id="wellXV"></b>尺</div>
+    </div>
+    <div class="col">
+      <p class="tip">这段话的意思是：用绳子量井深，把绳三折来量，井外余绳四尺；把绳四折来量，井外余绳一尺．绳长、井深各几尺？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设绳长</span><span>$x$ 尺</span><i class="why">设未知数</i></div>
+        <div class="dl" data-step="2"><span>三折：井深</span><span class="think" data-step="3" data-ask="怎样表示？">$\left(\dfrac13x-4\right)$ 尺</span><i class="why">每折长 $\frac13x$，减去井外的 4 尺</i></div>
+        <div class="dl" data-step="4"><span>四折：井深</span><span class="think" data-step="5" data-ask="怎样表示？">$\left(\dfrac14x-1\right)$ 尺</span><i class="why">每折长 $\frac14x$，减去井外的 1 尺</i></div>
+        <div class="dl key" data-step="6"><span>方程</span><span class="think" data-step="7" data-ask="相等关系是什么？">$\dfrac13x-4=\dfrac14x-1$</span><i class="why">两种方法量的是<b>同一口井</b></i></div>
+      </div>
+      <p class="tip feedback" id="wellMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p96–97“想一想”。本课核心交互：左边两幅图按比例画出同一根绳子的三折、四折（每一股的长度 = 绳长 ÷ 折数，井外露出的部分分别是 4 尺、1 尺），井深随之确定。拖动绳长：两种量法算出的井深一般不相等——但它们是同一口井，所以必须相等，这就是方程。拖到 x = 36 时两边都是 8 尺（学生会自己发现，但本节不要求解方程）。</p>
+</section>
+
+<!-- 6 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>先找相等关系，再列方程</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1.</b> 按图 4-2 的方式搭 $n$ 条“小鱼”需要 $[8+6(n-1)]$ 根火柴棒．搭 $n$ 条“小鱼”用了 140 根火柴棒，怎样用方程来描述其中数量之间的相等关系？</p>
+        <svg class="fish-fig" id="fishFig" aria-label="用火柴棒搭成的 3 条小鱼"></svg>
+        <p class="tip" data-step="1">相等关系：<span class="think" data-step="2" data-ask="说一说">搭 $n$ 条用的根数 $=140$</span>　方程：<span class="think" data-step="3" data-ask="列一列">$8+6(n-1)=140$</span></p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>2.</b> 今年小红 5 岁，爸爸 32 岁．(1) 用代数式分别表示 $x$ 年后小红与爸爸的年龄；(2) 如果 $x$ 年后小红的年龄是爸爸年龄的 $\dfrac14$，怎样用方程来描述其中数量之间的相等关系？</p>
+        <div class="derive">
+          <div class="dl" data-step="4"><span>(1)</span><span class="think" data-step="5" data-ask="x 年后各几岁？">小红 $(5+x)$ 岁，爸爸 $(32+x)$ 岁</span><i class="why">每人都长了 $x$ 岁</i></div>
+          <div class="dl key" data-step="6"><span>(2)</span><span class="think" data-step="7" data-ask="列方程">$5+x=\dfrac14(32+x)$</span><i class="why">小红的年龄 $=\frac14\times$ 爸爸的年龄</i></div>
+        </div>
+        <p class="warn" data-step="8" data-label="易错">$\dfrac14(32+x)$ 的括号不能丢：是 $x$ 年后爸爸年龄的 $\dfrac14$，不是 $32$ 的 $\dfrac14$ 再加 $x$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p97“试一试”与图 4-2。第 1 题把 3.3“求代数式的值”倒过来：知道值，求字母——这就是方程。第 2 题的关键是“x 年后两人都长了 x 岁”，以及“爸爸年龄的 1/4”要整体加括号。</p>
+</section>
+
+<!-- 7 ================= 一元一次方程 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>这些方程有什么共同点？</h2></div>
+  <div class="bd full">
+    <p class="tip">$2x+1=5$，$2x+(12-x)=20$，$\dfrac13x-4=\dfrac14x-1$，$8+6(n-1)=140$，$5+x=\dfrac14(32+x)$</p>
+    <div class="cols2">
+      <p class="tip" data-step="1">含有几个未知数？<span class="think" data-step="2" data-ask="数一数">都只含有<b>一个</b>未知数（$x$ 或 $n$）．</span></p>
+      <p class="tip" data-step="1">未知数的次数是几？<span class="think" data-step="3" data-ask="看一看">未知数的次数都是 <b>1</b>．</span></p>
+    </div>
+    <div class="def big-def" data-step="4"><h4>一元一次方程（课本 p97）</h4>方程 $2x+1=5$、$2x+(12-x)=20$、$\frac13x-4=\frac14x-1$、$8+6(n-1)=140$、$5+x=\frac14(32+x)$，它们都只含有<em>一个未知数（元）</em>，并且<em>未知数的次数都是 1（次）</em>．像这样的方程，叫做<b>一元一次方程</b>（linear equation with one unknown）．</div>
+    <p class="recall" data-step="5" data-label="名字的由来">“元”指未知数，“次”指未知数的次数：“一元一次”＝一个未知数、次数是 1．</p>
+  </div>
+  <p class="note">课本 p97 定义。先让学生自己找共同点，再揭示定义。可以追问：$2x+(12-x)=20$ 里 x 出现了两次，为什么还是“一元”？（未知数只有 x 这一个，出现几次都算一元。）</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>是不是一元一次方程？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard"><p>(1) $3x-2=7$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">一个未知数 $x$，次数是 1，是等式．</p></div></div>
+      <div class="jcard"><p>(2) $x+y=3$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">含有两个未知数，是“二元”（七年级下册第 10 章学）．</p></div></div>
+      <div class="jcard"><p>(3) $x^2-1=3$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">未知数的次数是 2，不是“一次”（九年级学一元二次方程）．</p></div></div>
+      <div class="jcard"><p>(4) $3x-2$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">没有等号，是代数式，不是方程．</p></div></div>
+      <div class="jcard"><p>(5) $2+3=5$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">是等式，但不含未知数，不是方程．</p></div></div>
+      <div class="jcard"><p>(6) $\dfrac12y=0$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">未知数不一定叫 $x$：一个未知数 $y$，次数是 1．</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="判断三问">① 是不是<b>等式</b>？　② 是不是只有<b>一个</b>未知数？　③ 未知数的次数是不是 <b>1</b>？</p>
+  </div>
+  <p class="note">补充辨析（非课本原题），帮助理解定义的三个要点。第 (4)(5) 题区分“方程”与“代数式”“等式”，第 (2)(3) 题顺带预告后面要学的方程。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用方程描述数量之间的相等关系</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一头半岁的蓝鲸体重 22 t，90 天后体重为 30.1 t．设蓝鲸体重平均每天增加 $x$ t，可得方程____．</p>
+        <details><summary>提示 1</summary>相等关系：原来的体重 $+$ 90 天增加的体重 $=$ 30.1 t．</details>
+        <details><summary>完整解答</summary>$22+90x=30.1$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 把 50 kg 大米分装在 3 个同样大小的袋子里，装满后还剩余 5 kg．设每个袋子可装大米 $x$ kg，可得方程____．</p>
+        <details><summary>提示 1</summary>3 袋装的 $+$ 剩下的 $=$ 50 kg．</details>
+        <details><summary>完整解答</summary>$3x+5=50$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 甲、乙两城市间的铁路经过技术改造后，列车在两城市间的运行速度从 100 km/h 提高到 120 km/h，运行时间缩短了 2 h．设甲、乙两城市间的路程为 $x$ km，可得方程____．</p>
+        <details><summary>提示 1</summary>时间 $=$ 路程 $\div$ 速度：原来用 $\dfrac{x}{100}$ h，现在用 $\dfrac{x}{120}$ h．</details>
+        <details><summary>完整解答</summary>$\dfrac{x}{100}-\dfrac{x}{120}=2$（原来的时间 $-$ 现在的时间 $=2$ h）．</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="列方程的步骤">① <b>设</b>：用字母表示适当的未知数；② <b>表</b>：用含字母的式子表示其他相关的量；③ <b>找</b>：找出相等关系；④ <b>列</b>：列出方程．</p>
+  </div>
+  <p class="note">课本 p98 练一练。先让学生说出“相等关系”的文字形式，再写方程。第 3 题时间之差的方向：原来慢、用时多，所以是 x/100 − x/120 = 2。</p>
+</section>
+
+<!-- 10 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 4.1</span><h2>先说相等关系，再列方程</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 小亮买 5 本练习本和 2 枝圆珠笔一共用了 5.5 元，圆珠笔每枝 1.5 元．设练习本每本 $x$ 元，可得方程____．</p>
+        <details><summary>提示</summary>练习本的钱 $+$ 圆珠笔的钱 $=5.5$ 元．</details>
+        <details><summary>完整解答</summary>$5x+2\times1.5=5.5$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 小丽从出版社邮购 3 本同样的书，包括邮费的总价为 37.5 元，邮费 6 元．设每本书 $x$ 元，可得方程____．</p>
+        <details><summary>提示</summary>书的钱 $+$ 邮费 $=$ 总价．</details>
+        <details><summary>完整解答</summary>$3x+6=37.5$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 某市出租车的收费标准是：起步价为 8 元，起步里程为 3 km（3 km 以内按起步价付费），3 km 后每千米收 2 元．某人乘出租车从甲地到乙地共付费 16 元．设甲、乙两地间的路程为 $x$ km，可得方程____．</p>
+        <details><summary>提示 1</summary>付了 16 元 &gt; 8 元，说明路程超过了 3 km；超出的部分是 $(x-3)$ km．</details>
+        <details><summary>完整解答</summary>$8+2(x-3)=16$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 甲、乙两人分别用面值为 20 元和 10 元的人民币购买一本同样的书，甲找回的钱是乙找回钱的 6 倍．设这本书的价格为 $x$ 元，可得方程____．</p>
+        <details><summary>提示</summary>甲找回 $(20-x)$ 元，乙找回 $(10-x)$ 元．</details>
+        <details><summary>完整解答</summary>$20-x=6(10-x)$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 4.1 第 1–4 题。这些方程下一节都会解（课本 4.2 练一练要求“解习题 4.1 中列出的方程”），请学生把列出的方程记在本子上。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def"><b>一元一次方程：</b>只含有一个未知数（元），并且未知数的次数都是 1（次）的方程．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="列方程">设未知数 → 用含未知数的式子表示相关的量 → 找相等关系 → 列方程．</p>
+        <p class="method" data-label="找相等关系">“同一个量，两种表示”（测井）；“部分之和 = 总量”（篮球）．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="方程思想">把实际问题中的相等关系，用含未知数的等式表示出来．</p>
+        <p class="recall" data-label="数学建模">从问题到方程：用数学的语言描述现实世界．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>4.2 解一元一次方程——$2x+1=5$、$\frac13x-4=\frac14x-1$ 中的未知数等于多少？天平会告诉我们怎样一步一步“变形”．</p>
+  </div>
+  <p class="note">请学生用自己的话回答“怎样从问题得到方程”。课后作业建议：习题 4.1 第 1–4 题，把方程留着下一节解。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

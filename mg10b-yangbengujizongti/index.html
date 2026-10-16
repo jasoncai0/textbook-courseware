@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用样本估计总体 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/gangjin.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第14章 统计 · 14.4</p>
+    <h1 class="cover-title">用样本估计总体</h1>
+    <p class="cover-q" data-step="1">甲、乙两种钢筋各抽 10 根，抗拉强度的平均数都是 125——哪种钢筋的质量好？</p>
+    <p class="cover-q" data-step="2">一个数够不够？什么时候用平均数，什么时候用中位数、众数？怎样刻画数据“稳不稳”？</p>
+    <div class="chips" data-step="3"><span class="chip">平均数 · 中位数 · 众数</span><span class="chip">极差 · 方差 · 标准差</span><span class="chip">用直方图估计分布</span><span class="chip">百分位数</span></div>
+  </div>
+  <p class="note">课本 p229 引言：统计学的基本思想是抽取样本，运用样本数据估计总体的状况。本节内容多（14.4.1～14.4.4），建议 3 课时；课件按小节分段。</p>
+</section>
+
+<!-- 2 ================= 知识链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>前面已经准备好的工具</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 数据的代表与波动" data-step="1">
+        <p>平均数、中位数、众数；方差 $s^2=\dfrac1n\sum(x_i-\bar x)^2$。</p>
+        <span class="use">本课说清“为什么”：平均数为什么能代表数据；什么情况选哪个代表值。</span>
+      </div>
+      <div class="recall" data-label="14.3 统计图表" data-step="2">
+        <p>上一课：频率分布表、频率直方图；例 2 的 40 个企业销售收入。</p>
+        <span class="use">用组中值估计平均数、方差；14.4.4 求这 40 个数据的上四分位数。</span>
+      </div>
+      <div class="recall" data-label="14.2 分层抽样" data-step="3">
+        <p>按各层所占的比抽样，各层样本量 $n_j$，$\sum n_j=n$。</p>
+        <span class="use">由各层的平均数、方差求全部样本的平均数、方差（例 3、例 8）。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课问题：</b>如何运用样本估计总体？——集中趋势（代表值）、离散程度（波动）、分布、位置（百分位数）。</p>
+  </div>
+  <p class="note">初中学过三个代表值和方差，本课的新东西：①平均数的“最优性”；②分组数据、分层数据的平均数与方差；③百分位数。</p>
+</section>
+
+<!-- 3 ================= 平均数：离差平方和最小（互动） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">14.4.1 平均数</span><h2>用哪个数“代表”一组实验数据最合理？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="lsq" class="lsq"></div>
+      <p class="tip feedback" id="lsqMsg"></p>
+      <p class="muted small">拖动橙色点 $x$：每条竖线是离差 $x-a_i$，右边的柱子是离差的平方和</p>
+    </div>
+    <div class="col">
+      <p class="tip">测得 $n$ 个数据 $a_1,a_2,\cdots,a_n$，用一个数 $x$ 近似表示它们。离差 $x-a_i$ 有正有负，不宜直接相加，考虑离差的平方和：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$f(x)=$</span><span>$(x-a_1)^2+\cdots+(x-a_n)^2$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>$=$</span><span>$nx^2-2(a_1+\cdots+a_n)x+a_1^2+\cdots+a_n^2$</span><i class="why">展开</i></div>
+        <div class="dl key" data-step="3"><span>最小时</span><span class="think" data-step="4" data-ask="二次函数何时最小？">$x=\dfrac{a_1+a_2+\cdots+a_n}{n}$</span><i class="why">开口向上的二次函数，对称轴处最小</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>平均数与总体均值</h4>称 $\bar a=\dfrac{a_1+a_2+\cdots+a_n}{n}$ 为这 $n$ 个数据的<em>平均数</em>；总体中所有数据的算术平均数称为总体的<em>均值</em>．常用样本平均数估计总体均值．</div>
+    </div>
+  </div>
+  <p class="note">课本 p229–230。本课独有互动之一：先让学生猜“x 取多少时柱子最短”，再拖动验证，最低点恰好是平均数（读数由代码实时计算）。这里用 14.3 例 2 中 127 万元那个问题引入也可以：40 个企业平均销售收入 116.175 万元，127 高于平均水平。</p>
+</section>
+
+<!-- 4 ================= 例 1 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>原始数据求平均；分组数据用“组中值”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip small"><b>例 1</b>　甲、乙两个班（均为 50 人）的语文测试成绩（总分 150 分），哪个班成绩更好一些？</p>
+        <div id="twoCls" class="dots2"></div>
+        <p class="tip" data-step="1">用一组数据的平均数衡量集中趋势：<span class="think" data-step="2" data-ask="算一算">甲班平均分 $101.1$ 分，乙班约 $105.4$ 分，故这次考试乙班成绩要好于甲班。</span></p>
+      </div>
+      <div class="col">
+        <p class="tip small"><b>例 2</b>　某校学生日睡眠时间（h）的抽样频率分布表（表 14-4-1），估计平均日睡眠时间．</p>
+        <table class="mtab"><tr><th>睡眠时间</th><th>[6,6.5)</th><th>[6.5,7)</th><th>[7,7.5)</th><th>[7.5,8)</th><th>[8,8.5)</th><th>[8.5,9]</th></tr><tr><td>人数</td><td>5</td><td>17</td><td>33</td><td>37</td><td>6</td><td>2</td></tr></table>
+        <p class="tip" data-step="3">每组只知道范围，怎么算？　<span class="think" data-step="4" data-ask="想一想">用各组区间中点（<b>组中值</b>）近似表示该组的数据。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span>解法 1</span><span>$6.25\times5+6.75\times17+7.25\times33+7.75\times37+8.25\times6+8.75\times2=739$</span><i class="why">总睡眠时间，再除以 100</i></div>
+          <div class="dl" data-step="6"><span>解法 2</span><span>$6.25\times0.05+6.75\times0.17+\cdots+8.75\times0.02=7.39$</span><i class="why">组中值 × 频率 之和</i></div>
+        </div>
+        <p class="method" data-step="7">取值 $x_1,\cdots,x_n$ 的频率分别为 $p_1,\cdots,p_n$，则平均数为 $x_1p_1+x_2p_2+\cdots+x_np_n$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p230–231 例 1、例 2。左图是两个班 50 个成绩的点图（按课本数据画），竖线为平均分 101.1、105.38（课本写“约 105.4”）。例 2 估计值约 7.39 h，Excel 的 AVERAGE、GGB 的“平均数[ ]”也能直接算。</p>
+</section>
+
+<!-- 5 ================= 例 3 分层 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>分层抽样的样本平均数</h2></div>
+  <div class="bd full">
+    <p class="tip">某地约有产业工人 50 000 人、企业管理人员约 1 000 人，月工资差异比较大．分层抽样抽取产业工人 500 人（人均月工资 5 328 元）、管理人员 10 人（人均 8 426 元），估计这个地区企业员工的人均月工资．</p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>工资总额</span><span>$5328\times500+8426\times10$（元）</span><i class="why">各层：人均 × 人数</i></div>
+        <div class="dl key" data-step="2"><span>人均</span><span class="think" data-step="3" data-ask="算一算">$\dfrac{5328\times500+8426\times10}{510}\approx5389$（元）</span><i class="why">不是 $\frac{5328+8426}{2}$！</i></div>
+      </div>
+      <div class="col">
+        <p class="def" data-step="4">总体分为 $k$ 层，第 $j$ 层样本量 $n_j$、样本平均数 $\bar x_j$，$\sum_{j=1}^k n_j=n$，则全部样本的平均数 $$\bar x=\frac1n\sum_{j=1}^{k}n_j\bar x_j$$</p>
+        <p class="warn" data-step="5">直接把两层的平均数再平均：$\frac{5328+8426}{2}=6877$ 元，严重高估——管理人员只占约 2%。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p231 例 3。“加权平均”的权就是各层的样本量（也就是各层在总体中所占的比）。错误做法的数值 6877 由同一组数据算出，用来对比。</p>
+</section>
+
+<!-- 6 ================= 众数 中位数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">众数 · 中位数</span><h2>平均数不是万能的</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small">某超市上个月出售的牙膏（表 14-4-2）：</p>
+      <div id="paste" class="paste"></div>
+      <p class="tip" data-step="1">能按 5 种品牌销量的平均值作为下次各品牌的进货量吗？<span class="think" data-step="2" data-ask="超市更关心什么？">不能。出现次数最多的是“4”号——4 号最受欢迎，要多进 4 号；平均销售量没有实际意义。</span></p>
+      <p class="def" data-step="3">一组数据中出现次数最多的那个数据叫作该组数据的<em>众数</em>．</p>
+    </div>
+    <div class="col">
+      <p class="tip small">某篮球队 11 名队员一个赛季的得分：108，92，42，47，343，32，50，71，51，83，112．</p>
+      <p class="tip" data-step="4">用什么代表这个队的得分“水平”？<span class="think" data-step="5" data-ask="想一想">有 343 这个“极端”值，用平均数不恰当；11 个数互不相同，没有众数。排序后正中间的 <b>71</b>，两边各有 5 个数。</span></p>
+      <div class="def" data-step="6"><h4>中位数</h4>将一组数据按照从小到大的顺序排成一列，如果数据的个数为奇数，那么排在正中间的数据就是这组数据的<em>中位数</em>；如果数据的个数为偶数，那么排在正中间的两个数据的平均数即为这组数据的中位数．</div>
+    </div>
+  </div>
+  <p class="note">课本 p233–234。左图按表 14-4-2 的销售量画出（1 号 65，2 号 70，3 号 280，4 号 547，5 号 102 支）。众数、中位数都是刻画数据集中趋势的度量值。下一页用拖动实验看“极端值”对平均数和中位数的不同影响。</p>
+</section>
+
+<!-- 7 ================= 拖动数据点（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">拖一拖</span><h2>把一个数据拖得很远：谁会跟着跑？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="dpSets"></div>
+      <p class="tip feedback" id="dpMsg"></p>
+      <p class="method" data-step="1">平均数受<b>每一个</b>数据影响，对极端值敏感；中位数只看位置，不受极端值大小影响；众数关心“最多”。</p>
+    </div>
+    <div class="col">
+      <div id="dp" class="dp"></div>
+      <p class="muted small center">拖动任意一个点（橙色三角：平均数　蓝色三角：中位数　绿色：众数）</p>
+    </div>
+  </div>
+  <p class="note">本课核心互动：数据点可左右拖动（取整），平均数、中位数、众数、极差、方差、标准差实时由代码计算。建议：先选“篮球队得分”，把 343 拖回 100 附近，看平均数大幅变化而中位数几乎不动；再选“例 4 体重”，把 71 拖到 50 附近试试。</p>
+</section>
+
+<!-- 8 ================= 例 4 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 例 5</span><h2>选合适的代表值</h2></div>
+  <div class="bd full">
+    <div class="jcard" data-step="1"><p><b>例 4</b>　某校高一（2）班 6 名学生的体重分别为 47，49，52，57，60，71．(1) 用哪种统计量代表比较合适？(2) 中位数是多少？</p>
+      <div class="think" data-step="2" data-ask="先判断"><p>(1) 有“71”这个极端值，不宜用平均数；各数据均不相同，没有众数；极端值对中位数没有影响，用<b>中位数</b>．(2) $\dfrac{52+57}{2}=54.5$．</p></div></div>
+    <p class="tip"><b>例 5</b>　下面的说法是否恰当？</p>
+    <div class="cols3">
+      <div class="jcard"><p>(1) 5 人中 3 名学生 16 岁，1 名学生 18 岁，1 名教师 59 岁，用平均年龄 25 岁作为他们年龄的代表值．</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">恰当</button><button type="button" data-k="n">不恰当</button><p class="pick-why">教师的年龄与学生差异太大，明显拉高了平均数，平均数没有代表性。</p></div></div>
+      <div class="jcard"><p>(2) 用顾客购买的运动衫尺码的<b>平均数</b>作为生产的标准尺码（大多数为该尺码）．</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">恰当</button><button type="button" data-k="n">不恰当</button><p class="pick-why">销售商品的型号应以<b>众数</b>为最多进货或生产的标准。</p></div></div>
+      <div class="jcard"><p>(3) 满分 30 分的测试，5 个 20 分，3 个 26 分，1 个 29 分．用中位数 20 作为代表值．</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">恰当</button><button type="button" data-k="n">不恰当</button><p class="pick-why">分数分布很特殊，中位数就是最小数，用它代表小组水平不恰当。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p234 例 4、例 5。每题先表决再点选。例 5(3) 可以让学生自己算平均数（207÷9 = 23）比较。</p>
+</section>
+
+<!-- 9 ================= 14.4.2 离散程度 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">14.4.2</span><h2>平均数相同，哪种钢筋更稳定？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="steel" class="steel"></div>
+      <p class="muted small center">图 14-4-4 点线图（按表 14-4-3 数据画出），竖线是平均数 125</p>
+      <p class="tip" data-step="1"><b>极差</b>（最大值 − 最小值）：<span class="think" data-step="2" data-ask="各是多少？">甲 $135-110=25$，乙 $145-100=45$；乙的数据点较分散。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip small">极差只看两端；数据差异不大时不易下结论。考虑每个数据与平均数的离差的平方和，再除以数据个数：</p>
+      <div class="def" data-step="3"><h4>方差与标准差（课本 p236）</h4>设一组样本数据 $x_1,x_2,\cdots,x_n$，其平均数为 $\bar x$，则称 $$s^2=\frac1n\sum_{i=1}^{n}(x_i-\bar x)^2$$ 为这个样本的<em>方差</em>，其算术平方根 $s=\sqrt{\dfrac1n\sum_{i=1}^{n}(x_i-\bar x)^2}$ 为样本的<em>标准差</em>．</div>
+      <p class="tip" data-step="4">甲、乙的方差分别为 <span class="think" data-step="5" data-ask="算一算">$50$ 和 $165$，可以认为甲种钢筋的质量好于乙种钢筋。</span></p>
+      <p class="muted small" data-step="6">为什么还要标准差？方差与原始数据单位不同，平方后可能夸大离差；标准差是样本数据到平均数的一种“平均距离”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p235–236。点线图由代码按表 14-4-3 数据画出，相同数值的点向上叠放。极差、方差、标准差都是刻画数据离散程度的度量值。可回到第 7 页的拖动工具，选“钢筋”数据组，观察拖动一个点时方差的变化。</p>
+</section>
+
+<!-- 10 ================= 例 6 例 7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6 · 例 7</span><h2>比较稳定性；分组数据的方差</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip small"><b>例 6</b>　甲、乙两种水稻连续 5 年的平均单位面积产量（t/hm²）：</p>
+        <table class="mtab"><tr><th>品种</th><th>第1年</th><th>第2年</th><th>第3年</th><th>第4年</th><th>第5年</th></tr><tr><td>甲</td><td>9.8</td><td>9.9</td><td>10.1</td><td>10</td><td>10.2</td></tr><tr><td>乙</td><td>9.4</td><td>10.3</td><td>10.8</td><td>9.7</td><td>9.8</td></tr></table>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>甲</span><span>$\bar x=10$，$s^2=[(9.8-10)^2+\cdots+(10.2-10)^2]\div5=0.02$</span><i class="why"></i></div>
+          <div class="dl" data-step="2"><span>乙</span><span>$\bar x=10$，$s^2=[(9.4-10)^2+\cdots+(9.8-10)^2]\div5=0.244$</span><i class="why"></i></div>
+          <div class="dl end" data-step="3"><span>结论</span><span>$0.244\gt0.02$，甲种水稻的产量比较稳定</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip small"><b>例 7</b>　100 只日光灯必须换掉前的使用天数（表 14-4-5），估计平均使用寿命和标准差．</p>
+        <div id="lamp" class="lamp"></div>
+        <div class="derive">
+          <div class="dl" data-step="4"><span>平均数</span><span>$465.5\times1\%+495.5\times11\%+\cdots+675.5\times2\%=568.4\approx568$</span><i class="why">组中值 × 频率</i></div>
+          <div class="dl" data-step="5"><span>方差</span><span>$\frac1{100}[1\times(465.5-568.4)^2+\cdots+2\times(675.5-568.4)^2]=2128.59$</span><i class="why">标准差 $\sqrt{2128.59}\approx46$（天）</i></div>
+        </div>
+        <p class="tip small" data-step="6">在 $[568-2\times46,\ 568+2\times46]$ 之外的只有 3 只——区间 $[\bar x-2s,\bar x+2s]$ 几乎包含了所有数据（图中阴影）。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p236–238 例 6、例 7。右图按表 14-4-5 的只数精确画出频率直方图，阴影区间 [x̄−2s, x̄+2s] 由代码算出。一般地，取值 x₁,…,xₙ 的频率为 p₁,…,pₙ 时，方差为 Σpᵢ(xᵢ−x̄)²。</p>
+</section>
+
+<!-- 11 ================= 例 8 分层方差 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8</span><h2>男生、女生两层合起来，方差怎么求？</h2></div>
+  <div class="bd full">
+    <p class="tip">分层抽样抽取男生 32 人、女生 18 人．男生身高的样本平均数 173.5 cm、方差 17 cm²；女生 163.83 cm、方差 30.03 cm²．求所有 50 个身高数据的样本方差．</p>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>$\bar x_{\text{总}}=$</span><span>$\dfrac{32}{50}\times173.5+\dfrac{18}{50}\times163.83\approx170.02$（cm）</span><i class="why">例 3 的方法</i></div>
+      <div class="dl key" data-step="2"><span>$s^2_{\text{总}}=$</span><span class="think" data-step="3" data-ask="能不能直接把两个方差加权平均？">$\dfrac1{50}\{32[s^2_{\text{男}}+(\bar y_{\text{男}}-\bar x_{\text{总}})^2]+18[s^2_{\text{女}}+(\bar z_{\text{女}}-\bar x_{\text{总}})^2]\}\approx43.24$（cm²）</span><i class="why">还要加上各层平均数偏离总平均数的部分</i></div>
+    </div>
+    <div class="def" data-step="4"><h4>一般结论</h4>总体分为 $k$ 层，第 $j$ 层样本量 $n_j$、平均数 $\bar x_j$、方差 $s_j^2$，则所有数据的样本方差 $$s^2=\frac1n\sum_{j=1}^{k}n_j\left[s_j^2+(\bar x_j-\bar x)^2\right]$$</div>
+    <p class="warn" data-step="5">只把方差加权平均：$\frac{32\times17+18\times30.03}{50}\approx21.69$，远小于 43.24——漏掉了“男女平均身高不同”造成的波动。</p>
+  </div>
+  <p class="note">课本 p238–239 例 8 与“链接：分层抽样数据的方差计算”（推导中交叉项求和为 0）。读数均由代码按课本数据复算：x̄ ≈ 170.02，s² ≈ 43.24。错误做法 21.69 用于对比。</p>
+</section>
+
+<!-- 12 ================= 14.4.3 直方图估计分布 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">14.4.3</span><h2>一天中车流量怎样分布？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small"><b>例 9</b>　随机抽查新修公路某路段一个月中 7 天的车流量（表 14-4-6），用各时段的平均数估计每个时间段的车流量（表 14-4-7，频数合计 8 565），试估计该公路一天中车流量的分布情况．</p>
+      <p class="tip" data-step="1">从直方图看出什么？　<span class="think" data-step="2" data-ask="找高峰">车流高峰分别为 7:00～8:00 和 17:00～20:00；夜间车流量很小，从 5:00 起逐步增加。</span></p>
+      <p class="method" data-step="3">频率直方图是研究数据分布状况的数学模型：用样本的频率分布估计总体的分布。</p>
+    </div>
+    <div class="col">
+      <div id="traffic" class="traffic"></div>
+      <p class="muted small center">图 14-4-5（按表 14-4-7 频数精确画出，组距 1 h，高 = 频率）</p>
+    </div>
+  </div>
+  <p class="note">课本 p240–242 例 9。每个矩形高度 = 该时段频数 ÷ 8 565（组距为 1 小时，频率/组距 = 频率）。课本探究：调查某交通路口各方向车流量，评估红绿灯时间分配是否合理。</p>
+</section>
+
+<!-- 13 ================= 14.4.4 百分位数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">14.4.4</span><h2>百分位数：一个数据在全体中的“位置”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small">甲市 3 600 人、乙市 2 800 人参加同一测试，两市总体状况基本相当．甲市第 1 200 名与乙市第 1 160 名相比，哪个更好？<span class="think" data-step="1" data-ask="比较什么？">看低于他的人所占的比：甲市 $\frac{2400}{3600}\approx67\%$，乙市 $\frac{1640}{2800}\approx59\%$——甲市第 1 200 名更好。</span></p>
+      <div class="def" data-step="2"><h4>$k$ 百分位数（课本 p243）</h4>一组数据的 $k$ 百分位数是这样一个值 $p_k$，它使得这组数据中至少有 $k\%$ 的数据小于或等于 $p_k$，且至少有 $(100-k)\%$ 的数据大于或等于 $p_k$．</div>
+      <p class="method small-m" data-step="3">计算：①从小到大排列；②计算 $n\cdot\dfrac{k}{100}$；③若为整数，取第 $n\cdot\frac{k}{100}$ 位与下一位数值的平均数；④若不是整数，向上取整，该位置上的数值即为 $p_k$．中位数即 50 百分位数；25、75 百分位数称为下、上四分位数．</p>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>$k=$<input type="range" id="pkK" min="1" max="99" step="1" value="75"><b id="pkKV" class="v"></b></div>
+      <div class="sorted" id="pkRow"></div>
+      <p class="tip feedback" id="pkMsg"></p>
+      <p class="tip small" data-step="4"><b>例 10</b>　14.3 节例 2 数据的上四分位数：$40\times\frac{75}{100}=30$ 是整数，第 30、31 位为 125、126，上四分位数为 $\dfrac{125+126}{2}=125.5$．</p>
+    </div>
+  </div>
+  <p class="note">课本 p243–244。右边是 14.3 例 2 的 40 个销售收入数据（已排序）。拖动 k：程序按课本四步计算，并高亮所用的位置。k = 75 时得到 125.5（例 10）；k = 50 得中位数 115.5。请学生找一个 k 使 n·k/100 不是整数（如 k = 33：13.2 → 第 14 位）。</p>
+</section>
+
+<!-- 14 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（练习 p239 第 1 题）已知一组数据 1，3，2，5，4，则这组数据的标准差为＿＿．</p>
+        <details><summary>提示 1</summary>先求平均数：$\bar x=3$。</details>
+        <details><summary>提示 2</summary>$s^2=\frac15[(1-3)^2+(3-3)^2+(2-3)^2+(5-3)^2+(4-3)^2]$。</details>
+        <details><summary>完整解答</summary>$s^2=\frac{4+0+1+4+1}{5}=2$，标准差 $s=\sqrt2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（练习 p235 第 5 题）一个射击选手连续射击 20 次：10 环 3 次，9 环 8 次，8 环 7 次，7 环 2 次．求射击成绩的中位数和众数．</p>
+        <details><summary>提示 1</summary>20 个数据，中位数是第 10、11 位的平均数。</details>
+        <details><summary>提示 2</summary>从小到大：7 环占第 1～2 位，8 环第 3～9 位，9 环第 10～17 位。</details>
+        <details><summary>完整解答</summary>第 10、11 位都是 9，中位数为 9 环；9 环出现 8 次最多，众数为 9 环。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（练习 p232 第 3 题）3 道题的测试卷，每题 1 分．全班得 3 分、2 分、1 分和 0 分的学生所占比例分别为 30%，50%，10% 和 10%．若班级人数未知，能求出平均分吗？</p>
+        <details><summary>提示 1</summary>先算全班 10 人、20 人时的平均分。</details>
+        <details><summary>提示 2</summary>平均数 $=x_1p_1+x_2p_2+\cdots$，只用到频率。</details>
+        <details><summary>完整解答</summary>能：$3\times0.3+2\times0.5+1\times0.1+0\times0.1=2$（分），与人数无关（10 人、20 人时都是 2 分）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题直接用方差公式；第 2 题是分组的离散数据求中位数、众数；第 3 题说明平均数只与频率分布有关。课后作业建议：习题 14.4 第 2、4、5 题；练习 p244 第 1 题（百分位数）。</p>
+</section>
+
+<!-- 15 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols2 sum">
+      <div class="col" data-step="1">
+        <h3>集中趋势：代表值</h3>
+        <p class="def">平均数（离差平方和最小，受极端值影响）；中位数（只看位置）；众数（出现最多）。分组数据：$\sum x_ip_i$；分层数据：$\frac1n\sum n_j\bar x_j$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>离散程度：波动</h3>
+        <p class="def">极差；方差 $s^2=\frac1n\sum(x_i-\bar x)^2$；标准差 $s$。分组：$\sum p_i(x_i-\bar x)^2$；分层：$\frac1n\sum n_j[s_j^2+(\bar x_j-\bar x)^2]$。</p>
+      </div>
+    </div>
+    <div class="cols3 sum">
+      <p class="recall" data-label="分布与位置" data-step="3">频率直方图估计总体分布；$k$ 百分位数刻画一个数据在全体中的位置。</p>
+      <p class="method" data-label="方法" data-step="4">先看数据特点（有无极端值、是否为类别），再选统计量；用样本的统计量估计总体。</p>
+      <p class="recall" data-label="思想" data-step="5">用样本估计总体；最优化（离差平方和最小）；数形结合（点线图、直方图）。</p>
+    </div>
+    <p class="tip gold" data-step="6"><b>下一章：</b>第 15 章 概率——样本是随机的，结论“可能”出错；怎样刻画“可能性的大小”？</p>
+  </div>
+  <p class="note">本章结束。请学生回答封面问题：甲、乙钢筋平均数相同，方差 50 &lt; 165，甲更稳定。可布置“本章回顾”与复习题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

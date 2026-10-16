@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用一元一次方程解决问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/paobu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第4章 一元一次方程 · 4.3</p>
+    <h1 class="cover-title">用一元一次方程解决问题</h1>
+    <p class="cover-q" data-step="1">运动场环形跑道周长 400 m，小红跑步的速度是爷爷的 $\frac53$ 倍．他们从同一起点沿跑道的同一方向同时出发，5 min 后小红第一次与爷爷相遇．</p>
+    <p class="cover-q" data-step="2">小红和爷爷跑步的速度各是多少？<b>“第一次相遇”藏着一个什么样的相等关系？</b></p>
+    <div class="chips" data-step="3"><span class="chip">月历游戏</span><span class="chip">列表格 · 画线形图</span><span class="chip">环形跑道追及</span><span class="chip">工作量 · 利润</span></div>
+  </div>
+  <p class="note">课本 p108 问题 4 做封面悬念，第 10 页用跑道动画解决。本节课本 p105–113 共 6 个问题，建议分 3 课时：问题 1–3（第 3–9 页）、问题 4–5（第 10–13 页）、问题 6 与总结（第 14–18 页）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="4.1 · 从问题到方程" data-step="1">
+        <p>设未知数 → 用含未知数的式子表示相关的量 → 找相等关系 → 列方程．</p>
+        <span class="use">每个问题的“分析”都按这个顺序．</span>
+      </div>
+      <div class="recall" data-label="上一课 · 4.2 解一元一次方程" data-step="2">
+        <p>去分母 → 去括号 → 移项 → 合并同类项 → 系数化为 1．</p>
+        <span class="use">上一课讲到怎样解；本课列出方程后照此求解，再检验．</span>
+      </div>
+      <div class="recall" data-label="小学 · 常见数量关系" data-step="3">
+        <p>路程 = 速度 × 时间；工作量 = 工作效率 × 时间；售价 = 标价 × 折扣；利润 = 售价 − 成本．</p>
+        <span class="use">用来写出“含未知数的式子”．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>实际问题 → <b>设</b>未知数 → <b>列</b>方程 → <b>解</b>方程 → <b>检验</b> → 写出<b>答</b>案．难点在“找相等关系”——表格、线形图、扇形图、柱状图都是帮手．</p>
+  </div>
+  <p class="note">第三张卡请学生各举一个例子说出数量关系；本课问题 4（行程）、问题 5（工程）、问题 6（利润）分别用到。</p>
+</section>
+
+<!-- 3 ================= 数学实验室：月历 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>月历游戏：知道和，猜出这 5 个数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns" data-noswipe id="calModes"><button class="btn" type="button" data-m="row">(1) 同一行相邻 5 个数</button><button class="btn" type="button" data-m="cross">(2) 一个数和上下左右</button></div>
+      <div class="cal" id="cal" data-noswipe></div>
+    </div>
+    <div class="col">
+      <p class="tip">两人一组：一人在月历上圈出 5 个数，只把<b>和</b>告诉同学，让同学求出这 5 个数．</p>
+      <p class="tip feedback" id="calMsg"></p>
+      <p class="tip" data-step="1">同学怎么能“猜”得这么快？<span class="think" data-step="2" data-ask="想一想">设一个数为 $x$，其余几个数都能用 $x$ 表示；它们的和等于告诉的和——列方程，一解就出来．</span></p>
+      <p class="method" data-step="3" data-label="关键">选好“设谁为 $x$”：设中间的数，(2) 的方程最简单：$5x=$ 和．</p>
+    </div>
+  </div>
+  <p class="note">课本 p105 数学实验室。请两名学生上台玩：一人背对屏幕，另一人点数后说出和，前者用方程算出。月历左右相邻相差 1，上下相邻相差 7。</p>
+</section>
+
+<!-- 4 ================= 问题 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1</span><h2>3.8 m³ 木材能做多少张桌子？</h2></div>
+  <div class="bd full">
+    <p class="tip">一张桌子有一张桌面和四条桌腿，做一张桌面需用木料 0.03 m³，做一条桌腿需用木料 0.002 m³．用 3.8 m³ 木材可做多少张这样的桌子（不计木材加工时的损耗）？</p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>分析：</span><span class="think" data-step="2" data-ask="相等关系？">桌面木料 + 桌腿木料 = 3.8 m³</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>解：设</span><span>可做 $x$ 张这样的桌子．</span><i class="why">设</i></div>
+        <div class="dl" data-step="4"><span>根据题意，得</span><span class="think" data-step="5" data-ask="列方程">$0.03x+4\times0.002x=3.8$</span><i class="why">列：每张桌子 4 条腿</i></div>
+        <div class="dl" data-step="6"><span>解这个方程，得</span><span>$x=100$</span><i class="why">解：$0.038x=3.8$</i></div>
+        <div class="dl end" data-step="7"><span>答：</span><span>用 3.8 m³ 木材可做 100 张这样的桌子．</span><i class="why">答</i></div>
+      </div>
+      <div class="col">
+        <p class="method" data-step="8" data-label="一般步骤（课本 p105）">用一元一次方程解决问题，通常先用字母表示适当的未知数，并用含有这个字母的代数式表示其他相关的量，再根据实际问题中数量之间的相等关系列出方程，然后解这个方程，写出问题的答案．</p>
+        <p class="warn" data-step="9" data-label="检验">解出 $x=100$ 后想一想：是正整数吗？代入：$3+0.8=3.8$ ✓．实际问题的解还要符合实际意义．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p105 问题 1。“设—列—解—答”四个字写在黑板一角，后面每个问题都按这个格式。检验课本没有单独写，但要养成习惯。</p>
+</section>
+
+<!-- 5 ================= 练一练 p105 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>设、列、解、答</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某商店今年共销售 21 英寸、25 英寸、29 英寸 3 种彩电 360 台，它们的销售数量的比是 1∶7∶4．这 3 种彩电各销售了多少台？</p>
+        <details><summary>提示</summary>设 21 英寸的销售 $x$ 台，则另两种是 $7x$、$4x$ 台．</details>
+        <details><summary>完整解答</summary>$x+7x+4x=360$，$x=30$；各销售 30 台、210 台、120 台．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某学生寄了 2 封信和一些明信片，一共用了 5.6 元．已知每封信的邮费为 1.2 元，每张明信片的邮费为 0.8 元．他寄了多少张明信片？</p>
+        <details><summary>提示</summary>信的邮费 + 明信片的邮费 = 5.6 元．</details>
+        <details><summary>完整解答</summary>$2\times1.2+0.8x=5.6$，$x=4$；寄了 4 张明信片．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 一本书封面的周长为 68 cm，长比宽多 6 cm．这本书封面的长和宽分别是多少？</p>
+        <details><summary>提示</summary>设宽为 $x$ cm，长为 $(x+6)$ cm．</details>
+        <details><summary>完整解答</summary>$2[x+(x+6)]=68$，$x=14$；长 20 cm，宽 14 cm．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 某人从甲地到乙地，全程的 $\frac12$ 乘车，全程的 $\frac13$ 乘船，最后又步行 4 km 到达乙地．甲、乙两地的路程是多少？</p>
+        <details><summary>提示</summary>三段路程之和 = 全程 $x$ km．</details>
+        <details><summary>完整解答</summary>$\frac12x+\frac13x+4=x$，两边乘 6：$3x+2x+24=6x$，$x=24$；路程是 24 km．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p105–106 练一练。第 1 题“按比分配”设一份为 x 最方便；第 4 题去分母时，不含分母的 4 也要乘 6。</p>
+</section>
+
+<!-- 6 ================= 问题 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2</span><h2>列表格，理清数量关系</h2></div>
+  <div class="bd full">
+    <p class="tip">小丽在水果店用 18 元买了苹果和橘子共 6 千克，已知苹果每千克 3.2 元，橘子每千克 2.6 元．小丽买了苹果和橘子各多少千克？</p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1"><b>分析：</b>相等关系是：买苹果的金额 + 买橘子的金额 = 18 元．可以列出表格：</p>
+        <table class="mtab" data-step="1">
+          <tr><th>品名</th><th>单价/(元/千克)</th><th>质量/千克</th><th>金额/元</th></tr>
+          <tr><td>苹果</td><td>3.2</td><td>$x$</td><td><span class="think" data-step="2" data-ask="?">$3.2x$</span></td></tr>
+          <tr><td>橘子</td><td>2.6</td><td><span class="think" data-step="3" data-ask="?">$6-x$</span></td><td><span class="think" data-step="4" data-ask="?">$2.6(6-x)$</span></td></tr>
+        </table>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="5"><span>解：设</span><span>苹果买了 $x$ 千克，则橘子买了 $(6-x)$ 千克．</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span>根据题意，得</span><span>$3.2x+2.6(6-x)=18$</span><i class="why"></i></div>
+        <div class="dl" data-step="7"><span>解这个方程，得</span><span>$x=4$，$6-x=2$</span><i class="why">$0.6x=2.4$</i></div>
+        <div class="dl end" data-step="8"><span>答：</span><span>小丽买了苹果 4 千克、橘子 2 千克．</span><i class="why"></i></div>
+      </div>
+    </div>
+    <p class="tip" data-step="9"><b>议一议</b> 如果设橘子买了 $x$ 千克，可以列出怎样的方程？<span class="think" data-step="10" data-ask="列一列">$2.6x+3.2(6-x)=18$，解得 $x=2$——结果一样，设法不同、方程不同．</span></p>
+  </div>
+  <p class="note">课本 p106 问题 2 与议一议。表格是本节的第一个“帮手”：行是对象、列是“单价、数量、总价”三个量，填好最后一列，相等关系就出来了。</p>
+</section>
+
+<!-- 7 ================= 练一练 p107 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>先列表或说出相等关系</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某班学生分两组参加植树活动，甲组有 17 人，乙组有 25 人，后来由于需要，从甲组抽调了部分学生去乙组，结果乙组的人数是甲组的 2 倍．从甲组抽调了多少学生去乙组？</p>
+        <details><summary>提示</summary>抽调 $x$ 人后：甲组 $17-x$，乙组 $25+x$．</details>
+        <details><summary>完整解答</summary>$25+x=2(17-x)$，$x=3$；抽调了 3 人．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在一场篮球比赛中，小明投中的两分球、三分球共得 28 分，且他投中的两分球比三分球多 4 个．小明投中的两分球、三分球各几个？</p>
+        <details><summary>提示</summary>设三分球 $x$ 个，两分球 $(x+4)$ 个．</details>
+        <details><summary>完整解答</summary>$2(x+4)+3x=28$，$x=4$；两分球 8 个，三分球 4 个．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 某蔬菜经营户用 120 元从蔬菜市场批发了番茄和豆角共 45 千克，批发价番茄 2.4、豆角 3.2 元/千克，零售价番茄 3.6、豆角 5.0 元/千克．(1) 番茄和豆角各批发多少千克？(2) 卖完能盈利多少元？</p>
+        <details><summary>提示</summary>设番茄 $x$ 千克：$2.4x+3.2(45-x)=120$．</details>
+        <details><summary>完整解答</summary>(1) $x=30$：番茄 30 千克，豆角 15 千克；(2) $(3.6-2.4)\times30+(5.0-3.2)\times15=36+27=63$（元）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p107 练一练。第 1 题注意“抽调后”两组都变了；第 3 题 (2) 不用方程，直接算。</p>
+</section>
+
+<!-- 8 ================= 问题 3：线形示意图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3</span><h2>画线形示意图：计划做多少个“中国结”？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="knotBoard" class="knot-board"></div>
+      <div class="slider-row" data-noswipe>人数 $x=$<input type="range" id="knotX" min="16" max="30" step="1" value="20"><b class="v" id="knotXV"></b></div>
+      <p class="tip feedback" id="knotMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">某小组计划做一批“中国结”，如果每人做 5 个，那么可比计划多做 9 个；如果每人做 4 个，那么将比计划少做 15 个．该小组共有多少人？计划做多少个“中国结”？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>每人 5 个</span><span class="think" data-step="2" data-ask="计划是？">计划数 $=5x-9$</span><i class="why">共做 $5x$ 个，比计划多 9 个</i></div>
+        <div class="dl" data-step="3"><span>每人 4 个</span><span class="think" data-step="4" data-ask="计划是？">计划数 $=4x+15$</span><i class="why">共做 $4x$ 个，比计划少 15 个</i></div>
+        <div class="dl key" data-step="5"><span>方程</span><span>$5x-9=4x+15$</span><i class="why">计划数不变</i></div>
+        <div class="dl end" data-step="6"><span>解得</span><span>$x=24$，$5x-9=111$</span><i class="why"></i></div>
+      </div>
+      <p class="tip small-p" data-step="7">答：该小组共有 24 人，计划做 111 个“中国结”．<b>议一议：</b>还可以怎样列方程？<span class="think" data-step="8" data-ask="想一想">设计划做 $y$ 个：$\frac{y+9}{5}=\frac{y-15}{4}$．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p107–108 问题 3 与图 4-3。线形图按滑块的人数精确画出（横向长度与个数成正比）：上方是“每人 5 个”的情形，下方是“每人 4 个”；两条“计划”线一样长时就是答案。“议一议”另一种设法：设计划数为 y，用人数相等列方程。</p>
+</section>
+
+<!-- 9 ================= 练一练 p108 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>“多了……少了……”：盈亏问题</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 将一堆糖果分给幼儿园某班的小朋友，如果每人 2 颗，那么就多 8 颗；如果每人 3 颗，那么就少 12 颗．这个班共有多少名小朋友？</p>
+        <details><summary>提示</summary>糖果总数不变：$2x+8=3x-12$．</details>
+        <details><summary>完整解答</summary>$x=20$；这个班共有 20 名小朋友．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 七年级（2）班举办了一次集邮展览，展出的邮票张数比每人 4 张多 14 张，比每人 5 张少 26 张．这个班共有多少名学生？展出的邮票共有多少张？</p>
+        <details><summary>提示</summary>$4x+14=5x-26$．</details>
+        <details><summary>完整解答</summary>$x=40$，$4x+14=174$；共有 40 名学生，展出邮票 174 张．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 某汽车队运送一批货物，每辆汽车装 4 t 还剩下 8 t 未装，每辆汽车装 4.5 t 就恰好装完．该车队运送货物的汽车共有多少辆？</p>
+        <details><summary>提示</summary>货物总量不变：$4x+8=4.5x$．</details>
+        <details><summary>完整解答</summary>$x=16$；共有 16 辆汽车．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 某班学生分组参加活动，原来每组 8 人，后来重新编组，每组 6 人，这样比原来增加了 2 组．这个班有多少名学生？</p>
+        <details><summary>提示</summary>设有 $x$ 名学生：原来 $\frac{x}{8}$ 组，现在 $\frac{x}{6}$ 组．</details>
+        <details><summary>完整解答</summary>$\frac{x}{8}+2=\frac{x}{6}$，两边乘 24：$3x+48=4x$，$x=48$；有 48 名学生．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p108 练一练。这类问题的共同点：总量不变，两种分法表示同一个总量。第 4 题换一种设法（设原来 x 组）也可以：8x = 6(x + 2)。</p>
+</section>
+
+<!-- 10 ================= 问题 4：环形跑道（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 4</span><h2>环形跑道：“第一次相遇”是什么意思？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="track-row">
+        <div id="trackBoard" class="track-board"></div>
+        <div class="col tr-ctrl" data-noswipe>
+          <div class="slider-row">爷爷 $x=$<input type="range" id="trV" min="60" max="180" step="10" value="90"><b class="v" id="trVV"></b></div>
+          <p class="small-p">小红 $\frac53x=$ <b id="trHV"></b> m/min</p>
+          <div class="slider-row">时间<input type="range" id="trT" min="0" max="5" step="0.1" value="0"><b class="v" id="trTV"></b>min</div>
+          <button class="btn solid" type="button" id="trPlay">▶ 跑 5 分钟</button>
+        </div>
+      </div>
+      <div id="lineBoard" class="line-board"></div>
+      <p class="tip feedback" id="trMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip small-p">运动场环形跑道周长 400 m，小红跑步的速度是爷爷的 $\frac53$ 倍，他们从同一起点沿跑道的同一方向同时出发，5 min 后小红第一次与爷爷相遇．小红和爷爷跑步的速度各是多少？</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>相等关系</span><span class="think" data-step="2" data-ask="看动画说一说">小红跑的路程 − 爷爷跑的路程 = 400 m</span><i class="why">同向第一次相遇：小红正好多跑一圈</i></div>
+        <div class="dl" data-step="3"><span>解：设</span><span>爷爷 $x$ m/min，小红 $\frac53x$ m/min</span><i class="why"></i></div>
+        <div class="dl key" data-step="4"><span>根据题意，得</span><span>$5\times\frac53x-5x=400$</span><i class="why">路程 = 速度 × 时间</i></div>
+        <div class="dl end" data-step="5"><span>解得</span><span>$x=120$，$\frac53x=200$</span><i class="why"></i></div>
+      </div>
+      <p class="tip small-p" data-step="6">答：小红跑步的速度为 200 m/min，爷爷跑步的速度为 120 m/min．</p>
+    </div>
+  </div>
+  <p class="note">课本 p108–109 问题 4、表格与图 4-4。本课核心交互：跑道一圈按 400 m 换算角度，两人位置按“路程 = 速度 × 时间”实时计算；下方线形图与动画同步。先让学生随意设爷爷的速度点“跑 5 分钟”，看 5 分钟时两人差多少；再把速度调到 120——5 分钟时正好差 400 m，小红刚好追上爷爷（在此之前从未追上）。这就是方程 5·(5/3)x − 5x = 400 的意义。</p>
+</section>
+
+<!-- 11 ================= 议一议 + 练一练 p109 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议 · 练一练</span><h2>相遇与追及</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>议一议</b> 如果小红与爷爷相遇后立即转身沿相反方向跑，那么几分钟后小红再次与爷爷相遇？</p>
+        <details><summary>提示</summary>反向跑：两人合起来跑一圈就相遇．</details>
+        <details><summary>完整解答</summary>设 $t$ min 后相遇：$200t+120t=400$，$t=1.25$．1.25 min 后再次相遇．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一队学生从学校步行去博物馆，他们以 5 km/h 的速度行进 24 min 后，一名教师骑自行车以 15 km/h 的速度按原路追赶学生队伍．这名教师从出发到途中与学生队伍会合用了多少时间？</p>
+        <details><summary>提示 1</summary>24 min = 0.4 h，单位要统一．</details>
+        <details><summary>提示 2</summary>会合时两者走的路程相等：$15x=5(x+0.4)$．</details>
+        <details><summary>完整解答</summary>$10x=2$，$x=0.2$（h），即 12 min．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某人沿着相同的路径上山、下山共用了 2 h．如果上山速度为 3 km/h，下山速度为 5 km/h，那么这条山路长是多少？</p>
+        <details><summary>提示</summary>上山时间 + 下山时间 = 2 h．</details>
+        <details><summary>完整解答</summary>$\frac{x}{3}+\frac{x}{5}=2$，$5x+3x=30$，$x=3.75$；山路长 3.75 km．</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="行程问题">同向：快者路程 − 慢者路程 = 相距（追及；环形跑道上为一圈）．反向：两者路程之和 = 相距（相遇）．</p>
+  </div>
+  <p class="note">课本 p109 议一议与 p109–110 练一练。练一练 1 的 24 min 要化成 0.4 h，单位不统一是最常见的错误。</p>
+</section>
+
+<!-- 12 ================= 问题 5：工作量 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 5</span><h2>把全部工作量看作 1</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="pieBoard" class="pie-board"></div>
+      <div class="slider-row" data-noswipe>合做 $x=$<input type="range" id="pieX" min="0" max="7" step="0.5" value="2"><b class="v" id="pieXV"></b>h</div>
+      <p class="pie-key"><i class="k1"></i>甲单独做　<i class="k2"></i>合做时甲完成　<i class="k3"></i>合做时乙完成</p>
+      <p class="tip feedback" id="pieMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip small-p">将一批资料录入电脑，甲单独做需 18 h 完成，乙单独做需 12 h 完成．现在先由甲单独做 8 h，剩下的部分由甲、乙合做完成，甲、乙两人合做了多少时间？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>工作效率</span><span class="think" data-step="2" data-ask="1 h 完成几分之几？">甲 $\frac1{18}$，乙 $\frac1{12}$</span><i class="why">全部工作量看作 1</i></div>
+        <div class="dl" data-step="3"><span>相等关系</span><span>甲单独做的 + 甲、乙合做的 = 全部工作量</span><i class="why"></i></div>
+        <div class="dl key" data-step="4"><span>方程</span><span>$\frac{8}{18}+\left(\frac1{18}+\frac1{12}\right)x=1$</span><i class="why"></i></div>
+        <div class="dl end" data-step="5"><span>解得</span><span>$x=4$</span><i class="why">两边乘 36：$16+5x=36$</i></div>
+      </div>
+      <p class="tip small-p" data-step="6"><b>议一议</b> 小明列 $\left(\frac{8}{18}+\frac{x}{18}\right)+\frac{x}{12}=1$，小丽列 $\frac{x}{18}+\frac{x}{12}=1-\frac{8}{18}$，意义是？<span class="think" data-step="7" data-ask="说一说">小明：甲一共做的 + 乙做的 = 1；小丽：合做的 = 剩下的工作量．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p110–111 问题 5、图 4-5 与议一议。扇形图按工作量精确绘制（圆心角 = 工作量 × 360°）：拖动合做时间 x，三块扇形正好拼满整圆时 x = 4。</p>
+</section>
+
+<!-- 13 ================= 练一练 p111 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>工作量问题 · 丢番图的墓志铭</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求解 4.2 节“阅读——丢番图的墓志铭”中提出的问题：童年占一生的 $\frac16$，又过 $\frac1{12}$ 长出胡须，又过 $\frac17$ 结婚，5 年后得子，儿子活了父亲寿命的一半，儿子死后老人又活了 4 年．</p>
+        <details><summary>提示</summary>设丢番图活了 $x$ 岁：$\frac{x}6+\frac{x}{12}+\frac{x}7+5+\frac{x}2+4=x$．</details>
+        <details><summary>完整解答</summary>两边乘 84：$14x+7x+12x+420+42x+336=84x$，$x=84$．结婚时 $\frac{84}6+\frac{84}{12}+\frac{84}7=33$（岁），去世时 84 岁．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某下水管道工程由甲、乙两个工程队单独铺设分别需要 10 天、15 天完成．如果两队从两端同时施工 2 天，然后由乙队单独施工，还需多少天完成？</p>
+        <details><summary>提示</summary>$2\left(\frac1{10}+\frac1{15}\right)+\frac{x}{15}=1$．</details>
+        <details><summary>完整解答</summary>$\frac13+\frac{x}{15}=1$，$x=10$；还需 10 天．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 整理一批图书，甲、乙两人单独做分别需要 4 h、6 h 完成．现在先由甲单独做 1 h，然后两人合作完成．甲、乙两人合作整理这批图书用了多少时间？</p>
+        <details><summary>提示</summary>$\frac14+\left(\frac14+\frac16\right)x=1$．</details>
+        <details><summary>完整解答</summary>两边乘 12：$3+5x=12$，$x=1.8$；合作用了 1.8 h．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p111 练一练。第 1 题呼应上一节的阅读材料，84 是 6、12、7、2 的最小公倍数。</p>
+</section>
+
+<!-- 14 ================= 问题 6：利润 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 6</span><h2>画柱状示意图：夹克衫的成本</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="barBoard" class="bar-board"></div>
+      <p class="muted center small-t">图 4-6（按解出的成本 140 元按比例绘制：标价 210 元，售价 168 元）</p>
+    </div>
+    <div class="col">
+      <p class="tip small-p">一件夹克衫先按成本提高 50% 标价，再以 8 折出售，获利 28 元．这件夹克衫的成本是多少元？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>相等关系</span><span class="think" data-step="2" data-ask="看图说">成本 + 获利 = 售价</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>解：设</span><span>成本是 $x$ 元</span><i class="why"></i></div>
+        <div class="dl key" data-step="4"><span>根据题意，得</span><span>$x+28=(1+50\%)x\times80\%$</span><i class="why">8 折即 $\times80\%$</i></div>
+        <div class="dl end" data-step="5"><span>解得</span><span>$x=140$</span><i class="why">$1.2x-x=28$</i></div>
+      </div>
+      <p class="tip small-p" data-step="6">答：这件夹克衫的成本是 140 元．<b>试一试：</b>改变问题 6 中的部分条件，编一个问题，请同伴列方程并求解．</p>
+    </div>
+  </div>
+  <p class="note">课本 p111–112 问题 6、图 4-6 与试一试。柱状图在解出 x 之后按比例画（成本 140、标价 210、售价 168，售价柱中虚线以上是 28 元利润），用来检验答案；教学时先画示意图、后解方程。</p>
+</section>
+
+<!-- 15 ================= 练一练 p112 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>利润问题</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一件商品先按成本提高 20% 标价，再以 9 折出售，售价为 270 元．这件商品的成本是多少元？</p>
+        <details><summary>提示</summary>$(1+20\%)x\times90\%=270$．</details>
+        <details><summary>完整解答</summary>$1.08x=270$，$x=250$；成本是 250 元．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某种家具的标价为 1 320 元，如果以 9 折出售，那么售价比进货价高 10%．求这件家具的进货价．</p>
+        <details><summary>提示</summary>售价 $1320\times90\%$ = 进货价 $\times(1+10\%)$．</details>
+        <details><summary>完整解答</summary>$1.1x=1188$，$x=1080$；进货价是 1 080 元．</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="利润问题">标价 = 成本 ×（1 + 提高的百分率）；售价 = 标价 × 折扣；利润 = 售价 − 成本．</p>
+  </div>
+  <p class="note">课本 p112 练一练。第 2 题“比进货价高 10%”是以进货价为标准，进货价是未知数。</p>
+</section>
+
+<!-- 16 ================= 方法总结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法</span><h2>找相等关系的“帮手”</h2></div>
+  <div class="bd full">
+    <div class="helpers">
+      <div data-step="1"><b>列表格</b><span>问题 2（单价 × 质量 = 金额）、问题 4</span></div>
+      <div data-step="2"><b>线形示意图</b><span>问题 3（计划数）、问题 4（多跑一圈）</span></div>
+      <div data-step="3"><b>扇形示意图</b><span>问题 5（工作量之和 = 1）</span></div>
+      <div data-step="4"><b>柱状示意图</b><span>问题 6（成本 + 获利 = 售价）</span></div>
+    </div>
+    <div class="steps5" data-step="5">
+      <div><b>审</b><span>弄清已知量、未知量</span></div>
+      <div><b>设</b><span>设未知数，表示其他量</span></div>
+      <div><b>列</b><span>找相等关系，列方程</span></div>
+      <div><b>解</b><span>解方程</span></div>
+      <div><b>验 · 答</b><span>检验是否符合实际，写答</span></div>
+    </div>
+    <p class="warn" data-step="6" data-label="注意">单位要统一；设未知数要写单位；解出来的值要符合实际意义（人数、件数是正整数）．</p>
+  </div>
+  <p class="note">本页是对课本 p105–112 六个问题的归纳（课本把一般步骤写在 p105）。请学生回忆每个问题用了哪种图表，再揭示。</p>
+</section>
+
+<!-- 17 ================= 习题选做 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 4.3</span><h2>选做：用方程解决下列问题</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 小明比爸爸小 26 岁，今年爸爸的年龄正好是小明的 3 倍．小明今年几岁？</p>
+        <details><summary>提示</summary>设小明 $x$ 岁，爸爸 $3x$ 岁．</details>
+        <details><summary>完整解答</summary>$3x-x=26$，$x=13$；小明今年 13 岁．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>11.</b> 甲、乙两人从楼底爬楼梯到楼顶，甲平均每分钟爬楼梯 40 级，乙平均每分钟爬楼梯 50 级，甲先出发 2 min，结果两人同时到达楼顶．从楼底到楼顶共有楼梯多少级？</p>
+        <details><summary>提示</summary>设乙用了 $x$ min：$40(x+2)=50x$．</details>
+        <details><summary>完整解答</summary>$x=8$，$50\times8=400$；共有楼梯 400 级．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>17.</b> 某商店以 90 元相同的售价卖出 2 件不同的衬衫，其中一件盈利 25%，另一件亏损 25%．商店卖出这两件衬衫是盈利了，还是亏损了？</p>
+        <details><summary>提示</summary>分别设成本：$(1+25\%)a=90$，$(1-25\%)b=90$．</details>
+        <details><summary>完整解答</summary>$a=72$，$b=120$；成本共 192 元，售价共 180 元，亏损了 12 元．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 4.3 第 4、11、17 题。第 17 题是常见的“直觉陷阱”：一盈一亏百分率相同，并不是不赚不亏——因为两件的成本不同。</p>
+</section>
+
+<!-- 18 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">用一元一次方程解决问题：设 → 列 → 解 → 检验 → 答．</p>
+        <p class="recall" data-label="常见类型">和差倍分 · 盈亏 · 行程（相遇、追及）· 工程 · 利润．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="找相等关系">同一个量用两种方法表示；部分之和 = 整体．</p>
+        <p class="method" data-label="帮手">列表格、画线形图、扇形图、柱状图．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="方程思想 · 建模">把实际问题转化为方程，再把方程的解放回实际问题中检验．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一章：</b>第 5 章 走进图形世界——从“数”走向“形”．（七年级下册还将学二元一次方程组，解决含两个未知数的问题．）</p>
+  </div>
+  <p class="note">课后作业建议：习题 4.3 第 1、2、3、6、9、10 题；第 18 题（铁皮做盒子）可作选做。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

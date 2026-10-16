@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>解一元一次方程 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tianping.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第4章 一元一次方程 · 4.2</p>
+    <h1 class="cover-title">解一元一次方程</h1>
+    <p class="cover-q" data-step="1">上一节列出了 $2x+1=5$、$2x+(12-x)=20$、$\frac13x-4=\frac14x-1$、$8+6(n-1)=140$、$5+x=\frac14(32+x)$ 等方程．</p>
+    <p class="cover-q" data-step="2">怎样求出方程中未知数的值？<b>一个一个试太慢了——能不能像天平那样，两边同时“动一动”，一步一步把 $x$“请”出来？</b></p>
+    <div class="chips" data-step="3"><span class="chip">方程的解</span><span class="chip">等式的基本性质</span><span class="chip">天平变形器</span><span class="chip">移项</span><span class="chip">去括号 · 去分母</span></div>
+  </div>
+  <p class="note">课本 p99 开头的问题。本课内容多（课本 p99–104，8 道例题），可分 2–3 课时：第 1 课时到移项（第 1–10 页），第 2 课时去括号、去分母（第 11–17 页）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="上一课 · 4.1 从问题到方程" data-step="1">
+        <p>只含有一个未知数，并且未知数的次数都是 1 的方程，叫做一元一次方程．</p>
+        <span class="use">上一课只“列”方程，留下的方程本课来“解”（练一练要解习题 4.1 列出的方程）．</span>
+      </div>
+      <div class="recall" data-label="小学五年级 · 等式的性质" data-step="2">
+        <p>等式两边同时加上或减去同一个数，同时乘或除以同一个不是 0 的数，所得结果仍然是等式．</p>
+        <span class="use">解方程的每一步变形都靠它；今天把“数”推广到“整式”．</span>
+      </div>
+      <div class="recall" data-label="3.4 / 3.5 · 合并同类项、去括号" data-step="3">
+        <p>$4x+5x=9x$；$-3(x+1)=-3x-3$．</p>
+        <span class="use">方程两边有同类项、有括号时先化简．</span>
+      </div>
+      <div class="recall" data-label="小学 · 最小公倍数" data-step="4">
+        <p>2 与 3 的最小公倍数是 6；3、4、12 的最小公倍数是 12．</p>
+        <span class="use">方程两边都乘分母的最小公倍数，就能“去分母”．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>什么是方程的解？怎样通过“变形”把方程化成 $x=a$ 的形式？每一步的依据是什么？</p>
+  </div>
+  <p class="note">四张卡分别对应本课的四个环节：方程的解（4.1）、等式的性质（小学）、去括号与合并（第 3 章）、去分母（最小公倍数）。</p>
+</section>
+
+<!-- 3 ================= 方程的解 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做 · 试一试</span><h2>哪个值能使方程两边相等？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>做一做</b> 填表：当 $x=$ <span class="blank" data-ans="2" data-w="2"></span> 时，方程 $2x+1=5$ 两边的值相等．</p>
+        <table class="mtab">
+          <tr><th>$x$</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+          <tr><th>$2x+1$</th><td><span class="blank" data-ans="3" data-w="2"></span></td><td><span class="blank" data-ans="5" data-w="2"></span></td><td><span class="blank" data-ans="7" data-w="2"></span></td><td><span class="blank" data-ans="9" data-w="2"></span></td><td><span class="blank" data-ans="11" data-w="2"></span></td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="1"><b>试一试</b> 分别把 0、1、2、3、4 代入下列方程，哪一个值能使方程两边的值相等？<br>(1) $2x-1=5$：<span class="think" data-step="2" data-ask="代入试试">$x=3$</span>　(2) $3x-2=4x-3$：<span class="think" data-step="3" data-ask="代入试试">$x=1$</span></p>
+      </div>
+    </div>
+    <div class="def big-def" data-step="4"><h4>方程的解 · 解方程（课本 p99）</h4>能使方程两边的值相等的未知数的值叫做<em>方程的解</em>（solution of equation）．求方程的解的过程叫做<em>解方程</em>（solving equation）．</div>
+    <p class="warn" data-step="5" data-label="想一想">“试”的方法有什么不足？<span class="think" data-step="6" data-ask="说一说">解是 $\frac{14}{3}$、$-\frac35$ 这样的数时，很难试出来——需要一般的方法．</span></p>
+  </div>
+  <p class="note">课本 p99 做一做、试一试与定义。表格请学生口算输入（回车判断）。“方程的解”是一个数，“解方程”是一个过程，要分清。最后的追问引出本课：用等式的性质变形。</p>
+</section>
+
+<!-- 4 ================= 核心：天平变形器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手</span><h2>天平变形器：两边同时动，天平仍平衡</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="btns" data-noswipe id="balTabs"></div>
+      <div id="balBoard" class="bal-board"></div>
+      <div class="btns" data-noswipe id="balOps"></div>
+    </div>
+    <div class="col">
+      <p class="tip">蓝色方块是质量为 $x$ g 的小球，金色是 1 g 砝码．现在的方程：<b id="balEq"></b></p>
+      <p class="tip feedback" id="balMsg"></p>
+      <div class="bal-log" id="balLog"></div>
+      <p class="tip" data-step="1">每一步，天平为什么仍然平衡？<span class="think" data-step="2" data-ask="说一说">两边<b>同时</b>拿走同样多（或同时分成同样的几份），剩下的仍然相等．</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互，对应课本 p99 两个天平变形图（2x + 1 = 5 → 2x = 4 → x = 2；3x = 3 + 2x → x = 3），第三个方程 4x + 2 = x + 11 留给学生自己操作。只有“两边同时”的操作才能点；“错误示范”只在左边拿走 1 g，横梁立即倾斜（倾角按两盘质量差计算），说明等式被破坏。天平只能表示正数，负数系数的方程下一页用等式的性质处理。</p>
+</section>
+
+<!-- 5 ================= 等式的基本性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>等式的基本性质</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$2x+1=5$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>$\Downarrow$</span><span class="think" data-step="3" data-ask="做了什么？">两边都减去 1</span><i class="why">$2x$ 等于 5 与 1 的差</i></div>
+        <div class="dl" data-step="2"><span></span><span>$2x=4$</span><i class="why"></i></div>
+        <div class="dl" data-step="4"><span>$\Downarrow$</span><span class="think" data-step="5" data-ask="做了什么？">两边都除以 2</span><i class="why">$x$ 等于 4 除以 2 的商</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$x=2$</span><i class="why"></i></div>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="6"><span></span><span>$3x=3+2x$</span><i class="why"></i></div>
+        <div class="dl" data-step="7"><span>$\Downarrow$</span><span class="think" data-step="8" data-ask="做了什么？">两边同减去 $2x$</span><i class="why">$3x$ 减去 $2x$ 等于 3</i></div>
+        <div class="dl end" data-step="7"><span></span><span>$x=3$</span><i class="why">减去的是<b>整式</b> $2x$</i></div>
+      </div>
+    </div>
+    <div class="def big-def" data-step="9"><h4>等式的基本性质（课本 p100）</h4>等式两边都<em>加上（或减去）同一个数或同一个整式</em>，所得结果仍是等式．<br>等式两边都<em>乘（或除以）同一个数（除数不能是 0）</em>，所得结果仍是等式．</div>
+    <p class="warn" data-step="10" data-label="三个关键词">“两边都”——不能只动一边；“同一个”——加减、乘除的必须一样；“除数不能是 0”．</p>
+  </div>
+  <p class="note">课本 p99–100 两个变形图与等式的基本性质。与小学相比，多了“同一个整式”（如减去 2x），这正是第 4 页天平上“两边都减去 x”的操作。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>用等式的性质解方程</h2></div>
+  <div class="bd full top ex1">
+    <p class="tip">解下列方程：(1) $x+5=2$；(2) $-2x=4$．</p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：(1)</span><span class="think" data-step="2" data-ask="两边都怎样？">两边都减去 5，得 $x+5-5=2-5$</span><i class="why">等式的基本性质</i></div>
+        <div class="dl end" data-step="3"><span>合并同类项，得</span><span>$x=-3$</span><i class="why"></i></div>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>(2)</span><span class="think" data-step="5" data-ask="两边都怎样？">两边都除以 $-2$，得 $\dfrac{-2x}{-2}=\dfrac{4}{-2}$</span><i class="why">等式的基本性质</i></div>
+        <div class="dl end" data-step="6"><span>即</span><span>$x=-2$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="7"><b>检验</b>：把求出的 $x$ 的值代入原方程．<span class="think" data-step="8" data-ask="检验 (2)">$x=-2$ 时，左边 $=-2\times(-2)=4$，右边 $=4$，左边 $=$ 右边，所以 $x=-2$ 是原方程的解．</span></p>
+      <p class="method" data-step="9" data-label="目标">求方程的解，就是把方程变形为 $x=a$ 的形式．</p>
+    </div>
+  </div>
+  <p class="note">课本 p100 例 1 与小人提示“把求出的 x 的值代入原方程，可以检验解方程是否正确”。(2) 的天平做不出来（−2x 表示不了），但等式的性质照样能用——这就是“从直观到一般”。检验格式：左边 = …，右边 = …，左边 = 右边。</p>
+</section>
+
+<!-- 7 ================= 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>解下列方程（填出 x 的值）</h2></div>
+  <div class="bd full">
+    <div class="cols2 sol-grid">
+      <p>(1) $x+2=-6$　　$x=$ <span class="blank" data-ans="-8" data-w="4"></span></p>
+      <p>(2) $3x=10-2x$　　$x=$ <span class="blank" data-ans="2" data-w="4"></span></p>
+      <p>(3) $\dfrac12x=3$　　$x=$ <span class="blank" data-ans="6" data-w="4"></span></p>
+      <p>(4) $-6x=2$　　$x=$ <span class="blank" data-ans="-1/3" data-w="4"></span></p>
+    </div>
+    <p class="muted small-t">分数输入如 $-1/3$，回车判断．</p>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q">(2) 怎样做？</p>
+        <details><summary>提示</summary>两边都加上 $2x$（同一个整式）．</details>
+        <details><summary>完整解答</summary>$3x+2x=10$，$5x=10$，两边都除以 5，$x=2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(3)(4) 怎样做？</p>
+        <details><summary>提示</summary>(3) 两边都乘 2；(4) 两边都除以 $-6$．</details>
+        <details><summary>完整解答</summary>(3) $x=6$；(4) $x=\dfrac{2}{-6}=-\dfrac13$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p100 练一练。每题要求写出“两边都……，得……”，填空只是核对结果。做完请学生选一题口头检验。</p>
+</section>
+
+<!-- 8 ================= 例 2、例 3：移项 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>“从一边移到另一边”：发现了什么？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 2</b> 解方程 $4x-15=9$．</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>解：两边都加上 15，得</span><span>$4x=9+15$</span><i class="why">等式的基本性质</i></div>
+          <div class="dl" data-step="2"><span>合并同类项，得</span><span>$4x=24$</span><i class="why"></i></div>
+          <div class="dl end" data-step="3"><span>两边都除以 4，得</span><span>$x=6$</span><i class="why"></i></div>
+        </div>
+        <div class="move" data-step="4"><span>$4x$<b class="mv a">$-15$</b>$=9$</span><span class="arrow">→</span><span>$4x=9$<b class="mv b">$+15$</b></span></div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 3</b> 解方程 $2x=5x-21$．</p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span>解：两边都减去 $5x$，得</span><span>$2x-5x=-21$</span><i class="why">等式的基本性质</i></div>
+          <div class="dl" data-step="6"><span>合并同类项，得</span><span>$-3x=-21$</span><i class="why"></i></div>
+          <div class="dl end" data-step="7"><span>两边都除以 $-3$，得</span><span>$x=7$</span><i class="why"></i></div>
+        </div>
+        <div class="move" data-step="8"><span>$2x=$<b class="mv a">$5x$</b>$-21$</span><span class="arrow">→</span><span>$2x$<b class="mv b">$-5x$</b>$=-21$</span></div>
+      </div>
+    </div>
+    <p class="tip gold" data-step="9">比较变形前后：$-15$ 和 $5x$ 发生了什么变化？<span class="think" data-step="10" data-ask="说一说">从等号一边“搬”到了另一边，并且<b>改变了符号</b>：$-15$ 变成 $+15$，$5x$ 变成 $-5x$．</span></p>
+  </div>
+  <p class="note">课本 p100–101 例 2、例 3 与两个小人的图示（把方程左边的 −15 改变符号后移到右边；把右边的 5x 改变符号后移到左边）。先按等式的性质规范地做，再让学生观察“搬家”的现象，下一页给出“移项”的名称。</p>
+</section>
+
+<!-- 9 ================= 移项 + 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">移项 · 例 4</span><h2>移项：变号后从一边移到另一边</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>移项（课本 p101）</h4>方程中的某些项<em>改变符号</em>后，可以从方程的一边移到另一边，这样的变形叫做<b>移项</b>（moving terms）．</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 4</b> 解方程 $x-3=4-\dfrac12x$．</p>
+        <div class="derive">
+          <div class="dl" data-step="2"><span>解：移项，得</span><span class="think" data-step="3" data-ask="移哪些项？">$x+\dfrac12x=4+3$</span><i class="why">$-\frac12x$ 移到左边，$-3$ 移到右边，都变号</i></div>
+          <div class="dl" data-step="4"><span>合并同类项，得</span><span>$\dfrac32x=7$</span><i class="why"></i></div>
+          <div class="dl end" data-step="5"><span>两边都除以 $\dfrac32$，得</span><span>$x=\dfrac{14}{3}$</span><i class="why">也可以两边都乘 $\frac23$</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="method" data-step="6" data-label="系数化为 1">方程“两边都除以 $\frac32$”或“乘 $\frac23$”，都能把未知数 $x$ 的系数化为 1．</p>
+        <p class="warn" data-step="7" data-label="易错">移项要<b>变号</b>；没有移动的项不变号．$x-3=4-\frac12x$ 移项写成 $x-\frac12x=4+3$ 对吗？<span class="think" data-step="8" data-ask="对吗？">错：$-\frac12x$ 移到左边应变成 $+\frac12x$．</span></p>
+        <p class="recall" data-step="9" data-label="习惯">通常把含未知数的项移到左边，常数项移到右边．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p101 移项定义、例 4 及两个小人的提示。强调移项的依据仍是等式的基本性质，“变号”是“两边同加（减）”的简便写法。</p>
+</section>
+
+<!-- 10 ================= 练一练 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用移项解方程</h2></div>
+  <div class="bd full">
+    <p class="tip"><b>1.</b> 解下列方程：</p>
+    <div class="cols2 sol-grid">
+      <p>(1) $5x+2=-8$　　$x=$ <span class="blank" data-ans="-2" data-w="4"></span></p>
+      <p>(2) $3x=5x-14$　　$x=$ <span class="blank" data-ans="7" data-w="4"></span></p>
+      <p>(3) $7-2x=3-4x$　　$x=$ <span class="blank" data-ans="-2" data-w="4"></span></p>
+      <p>(4) $\dfrac12x+1=3-x$　　$x=$ <span class="blank" data-ans="4/3" data-w="4"></span></p>
+    </div>
+    <p class="tip"><b>2.</b> 解习题 4.1 中第 1、2 题列出的方程：</p>
+    <div class="cols2 sol-grid">
+      <p>$5x+2\times1.5=5.5$　　$x=$ <span class="blank" data-ans="0.5|1/2" data-w="4"></span></p>
+      <p>$3x+6=37.5$　　$x=$ <span class="blank" data-ans="10.5|21/2" data-w="4"></span></p>
+    </div>
+    <div class="hint-ladder">
+      <p class="q">(3) 怎样移项？</p>
+      <details><summary>提示</summary>$-4x$ 移到左边变 $+4x$，$7$ 移到右边变 $-7$．</details>
+      <details><summary>完整解答</summary>$-2x+4x=3-7$，$2x=-4$，$x=-2$．</details>
+    </div>
+  </div>
+  <p class="note">课本 p101 练一练。第 2 题解上一节列出的方程，答案是练习本 0.5 元、书每本 10.5 元，请学生说出实际意义。</p>
+</section>
+
+<!-- 11 ================= 例 5、例 6：去括号 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 例 6</span><h2>方程里有括号：先去括号</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 5</b> 解方程 $-3(x+1)=9$．</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>解：去括号，得</span><span>$-3x-3=9$</span><i class="why">$-3$ 乘括号里每一项</i></div>
+          <div class="dl" data-step="2"><span>移项，得</span><span>$-3x=9+3$</span><i class="why"></i></div>
+          <div class="dl" data-step="3"><span>合并同类项，得</span><span>$-3x=12$</span><i class="why"></i></div>
+          <div class="dl end" data-step="4"><span>系数化为 1，得</span><span>$x=-4$</span><i class="why">就是“两边都除以 $-3$”</i></div>
+        </div>
+        <p class="tip small-p" data-step="5">也可以在原方程两边都除以 $-3$：$x+1=-3$，$x=-4$．</p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 6</b> 解方程 $2(2x+1)=1-5(x-2)$．</p>
+        <div class="derive">
+          <div class="dl" data-step="6"><span>解：去括号，得</span><span class="think" data-step="7" data-ask="去括号">$4x+2=1-5x+10$</span><i class="why">$-5\times(-2)=+10$</i></div>
+          <div class="dl" data-step="8"><span>移项，得</span><span>$4x+5x=1+10-2$</span><i class="why"></i></div>
+          <div class="dl" data-step="9"><span>合并同类项，得</span><span>$9x=9$</span><i class="why"></i></div>
+          <div class="dl end" data-step="10"><span>系数化为 1，得</span><span>$x=1$</span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p102 例 5、例 6 及小人提示。例 6 去括号最容易错在 −5(x − 2)：要把 −5 连同符号乘进去，−5 × (−2) = +10。</p>
+</section>
+
+<!-- 12 ================= 练一练 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>先去括号，再解方程</h2></div>
+  <div class="bd full">
+    <p class="tip"><b>1.</b> 解下列方程：</p>
+    <div class="cols2 sol-grid">
+      <p>(1) $2(x-1)=6$　　$x=$ <span class="blank" data-ans="4" data-w="4"></span></p>
+      <p>(2) $4-x=3(2-x)$　　$x=$ <span class="blank" data-ans="1" data-w="4"></span></p>
+      <p>(3) $5(x+1)=3(3x+1)$　　$x=$ <span class="blank" data-ans="1/2|0.5" data-w="4"></span></p>
+      <p>(4) $2(x-2)=3(4x-1)+9$　　$x=$ <span class="blank" data-ans="-1" data-w="4"></span></p>
+    </div>
+    <p class="tip"><b>2.</b> 解习题 4.1 中第 3、4 题列出的方程：</p>
+    <div class="cols2 sol-grid">
+      <p>$8+2(x-3)=16$　　$x=$ <span class="blank" data-ans="7" data-w="4"></span></p>
+      <p>$20-x=6(10-x)$　　$x=$ <span class="blank" data-ans="8" data-w="4"></span></p>
+    </div>
+    <div class="hint-ladder">
+      <p class="q">(4) 卡住了？</p>
+      <details><summary>提示</summary>去括号：$2x-4=12x-3+9$．</details>
+      <details><summary>完整解答</summary>移项：$2x-12x=-3+9+4$，$-10x=10$，$x=-1$．</details>
+    </div>
+  </div>
+  <p class="note">课本 p102 练一练。第 2 题：甲、乙两地相距 7 km；书价 8 元——都请学生回到实际问题检验是否合理。</p>
+</section>
+
+<!-- 13 ================= 例 7：去分母 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7</span><h2>方程里有分母：两边都乘最小公倍数</h2></div>
+  <div class="bd full">
+    <p class="tip"><b>例 7</b> 解方程 $\dfrac{x+1}{2}=\dfrac43x+1$．</p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1"><b>分析：</b><span class="think" data-step="2" data-ask="怎样转化？">只要设法把方程中的分母去掉，就可以把它转化为像例 6 那样不含分母的方程求解．</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>解：两边都乘 6，得</span><span class="think" data-step="4" data-ask="每一项都乘 6">$3(x+1)=8x+6$</span><i class="why">6 是分母 2 与 3 的最小公倍数</i></div>
+          <div class="dl" data-step="5"><span>去括号，得</span><span>$3x+3=8x+6$</span><i class="why"></i></div>
+          <div class="dl" data-step="6"><span>移项、合并同类项，得</span><span>$-5x=3$</span><i class="why"></i></div>
+          <div class="dl end" data-step="7"><span>系数化为 1，得</span><span>$x=-\dfrac35$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="warn" data-step="8" data-label="去分母的两个“别忘”">① 不含分母的项也要乘：右边的 $1$ 乘 6 得 $6$，不能还写 1；<br>② 分子是多项式时要加括号：$\frac{x+1}{2}\times6=3(x+1)$．</p>
+        <p class="tip" data-step="9">检验：<span class="think" data-step="10" data-ask="代入检验">$x=-\frac35$ 时，左边 $=\frac{-\frac35+1}{2}=\frac15$，右边 $=\frac43\times\left(-\frac35\right)+1=-\frac45+1=\frac15$．✓</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p102–103 例 7 与小人提示“6 是原方程中分母 2 与 3 的最小公倍数，方程‘两边都乘 6’就能‘去分母’”。两个“别忘”是去分母最常见的错误。</p>
+</section>
+
+<!-- 14 ================= 例 8 + 议一议 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8 · 议一议</span><h2>去分母的练习与变式</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 8</b> 解方程 $\dfrac13(2x-5)=\dfrac14(x-3)-\dfrac1{12}$．</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>解：去分母，得</span><span>$4(2x-5)=3(x-3)-1$</span><i class="why">两边都乘 12</i></div>
+          <div class="dl" data-step="2"><span>去括号，得</span><span>$8x-20=3x-9-1$</span><i class="why"></i></div>
+          <div class="dl" data-step="3"><span>移项、合并同类项，得</span><span>$5x=10$</span><i class="why"></i></div>
+          <div class="dl end" data-step="4"><span>系数化为 1，得</span><span>$x=2$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="5"><b>议一议</b> 如何解方程 $\dfrac{x-2}{0.2}-\dfrac{x+1}{0.5}=3$？</p>
+        <div class="hint-ladder" data-step="5">
+          <details><summary>提示 1</summary>可以先分别将分子、分母扩大 10 倍：$\dfrac{10(x-2)}{2}-\dfrac{10(x+1)}{5}$（分数的基本性质，值不变）．</details>
+          <details><summary>提示 2</summary>化简为 $5(x-2)-2(x+1)=3$．注意右边的 3 <b>不变</b>．</details>
+          <details><summary>完整解答</summary>$5x-10-2x-2=3$，$3x=15$，$x=5$．</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p103 例 8 与议一议。议一议的变形依据是“分数的基本性质”（分子、分母同乘 10），不是等式的性质——所以右边的 3 不变，这一点要和“去分母”区分开。</p>
+</section>
+
+<!-- 15 ================= 步骤总结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>解一元一次方程有哪些步骤？</h2></div>
+  <div class="bd full">
+    <div class="steps5">
+      <div data-step="1"><b>去分母</b><span>两边都乘各分母的最小公倍数</span><em>依据：等式的基本性质</em><i>不含分母的项也要乘；分子加括号</i></div>
+      <div data-step="2"><b>去括号</b><span>括号前的数乘括号里每一项</span><em>依据：乘法分配律、去括号法则</em><i>“−”号时各项都变号</i></div>
+      <div data-step="3"><b>移项</b><span>含未知数的项移到一边，常数项移到另一边</span><em>依据：等式的基本性质</em><i>移动的项要变号</i></div>
+      <div data-step="4"><b>合并同类项</b><span>化成 $ax=b$ 的形式</span><em>依据：合并同类项法则</em><i>系数相加</i></div>
+      <div data-step="5"><b>系数化为 1</b><span>两边都除以 $a$（$a\ne0$）</span><em>依据：等式的基本性质</em><i>得到 $x=\frac{b}{a}$</i></div>
+    </div>
+    <p class="def big-def" data-step="6">一般地，解一元一次方程的步骤是：<em>去分母，去括号，移项，合并同类项，未知数的系数化为 1</em>．通过这些步骤可以将一个一元一次方程转化为 $x=a$ 的形式．（课本 p103）</p>
+    <p class="method" data-step="7" data-label="灵活">步骤不必死板：没有分母就跳过去分母；例 5 也可以先两边都除以 $-3$．</p>
+  </div>
+  <p class="note">课本 p103 想一想。请学生先回顾例 5–8，自己说出步骤，再逐个揭示。每一步都对应前面学过的一个依据——这是“化归”思想：把复杂方程一步步转化为 x = a。</p>
+</section>
+
+<!-- 16 ================= 综合练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>综合练习：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p103 练一练）(1) $\dfrac{5x-1}{6}=\dfrac73$；(2) $\dfrac{x-1}{2}=x+3$．</p>
+        <details><summary>提示</summary>(1) 两边都乘 6；(2) 两边都乘 2，右边每一项都要乘．</details>
+        <details><summary>完整解答</summary>(1) $5x-1=14$，$x=3$；<br>(2) $x-1=2x+6$，$-x=7$，$x=-7$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（续）(3) $\dfrac13(x+1)=\dfrac17(2x+3)$；(4) $\dfrac12(x-1)=2-\dfrac15(x+2)$．</p>
+        <details><summary>提示</summary>(3) 两边都乘 21；(4) 两边都乘 10．</details>
+        <details><summary>完整解答</summary>(3) $7(x+1)=3(2x+3)$，$7x+7=6x+9$，$x=2$；<br>(4) $5(x-1)=20-2(x+2)$，$5x-5=16-2x$，$7x=21$，$x=3$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（p103 练一练）当 $x$ 取何值时，代数式 $\dfrac{x+2}{2}$ 的值比 $\dfrac{x-1}{3}$ 的值小 2？</p>
+        <details><summary>提示 1</summary>“小 2”：$\dfrac{x+2}{2}=\dfrac{x-1}{3}-2$．</details>
+        <details><summary>提示 2</summary>两边都乘 6：$3(x+2)=2(x-1)-12$．</details>
+        <details><summary>完整解答</summary>$3x+6=2x-14$，$x=-20$．</details>
+      </div>
+    </div>
+    <p class="muted center small-t">更多：p103 练一练第 2 题（解 4.1 练一练第 3 题列出的方程 $\frac{x}{100}-\frac{x}{120}=2$，得 $x=1200$）；习题 4.2．</p>
+  </div>
+  <p class="note">课本 p103 练一练。第 3 题先把文字翻译成方程（“A 比 B 小 2”即 A = B − 2），这是下一节“用方程解决问题”的预热。</p>
+</section>
+
+<!-- 17 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def"><b>方程的解</b>：使方程两边相等的未知数的值．<b>等式的基本性质</b>：两边同加（减）同一个数或整式；同乘（除以）同一个数（除数不为 0）．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="五步">去分母 → 去括号 → 移项 → 合并同类项 → 系数化为 1．</p>
+        <p class="method" data-label="检验">把解代入原方程，左边 = 右边．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="化归">把复杂的方程一步步转化成 $x=a$．</p>
+        <p class="recall" data-label="阅读 · 丢番图的墓志铭">“他生命的六分之一是幸福的童年……”你知道丢番图结婚时和去世时的年龄吗？（下一节练一练会解）</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>4.3 用一元一次方程解决问题——设、列、解、答，怎样从实际问题中找出相等关系？</p>
+  </div>
+  <p class="note">课后作业建议：习题 4.2 第 1、2、3、6 题；第 7 题（y₁ 与 y₂）可作选做。阅读材料“丢番图的墓志铭”留作思考，4.3 节练一练第 1 题会要求求解。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

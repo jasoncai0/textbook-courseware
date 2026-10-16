@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>统计图表 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shulin.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第14章 统计 · 14.3</p>
+    <h1 class="cover-title">统计图表</h1>
+    <p class="cover-q" data-step="1">随机测量一片经济林中 100 株树木的底部周长，得到 100 个数。只看这一大串数，你能看出什么？</p>
+    <p class="cover-q" data-step="2">“图表的最大作用在于它能使我们发现一些我们预料之外的内容．”——约翰·图基。怎样把数据<b>画</b>出来？</p>
+    <div class="chips" data-step="3"><span class="chip">扇形图 · 折线图</span><span class="chip">频率分布表</span><span class="chip">频率直方图</span><span class="chip">频率折线图</span></div>
+  </div>
+  <p class="note">课本 p221 引言与旁注（图基的话）。封面情境是本课例 3。先让学生说说初中学过哪些统计图。</p>
+</section>
+
+<!-- 2 ================= 知识链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>初中的统计图 + 上两课的样本</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 统计图" data-step="1">
+        <p>扇形统计图（饼图）、折线统计图、条形图、频数直方图；频数、频率 $=\dfrac{\text{频数}}{\text{总数}}$。</p>
+        <span class="use">本课先复习它们各自的特点，再把频数直方图升级为<b>频率直方图</b>。</span>
+      </div>
+      <div class="recall" data-label="14.1–14.2 · 样本" data-step="2">
+        <p>统计分析：获取数据 → 分析数据 → 作出估计；用简单随机抽样、分层抽样得到样本。</p>
+        <span class="use">本课是“分析数据”：把样本整理成表和图，再用样本的分布估计总体的分布。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 · 区间" data-step="3">
+        <p>$[a,b)$：含左端点、不含右端点。</p>
+        <span class="use">分组写成 $[80,90),[90,100),\cdots$，保证每个数据恰好落在一组里。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课问题：</b>怎样用图表表示和分析数据？</p>
+  </div>
+  <p class="note">第一张卡请学生说出三种图各自的特点（下一页验证）。第三张卡强调分组要“不重不漏”：最后一组通常写成闭区间，如 [150,160]。</p>
+</section>
+
+<!-- 3 ================= 例 1 扇形图 折线图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">14.3.1 · 例 1</span><h2>扇形统计图看占比，折线统计图看趋势</h2></div>
+  <div class="bd full">
+    <table class="mtab">
+      <tr><th>年龄 \ 年份</th><th>1990</th><th>2000</th><th>2014</th></tr>
+      <tr><td>0～14 岁</td><td>27.7%</td><td>22.9%</td><td>16.5%</td></tr>
+      <tr><td>15～64 岁</td><td>66.7%</td><td>70.1%</td><td>73.4%</td></tr>
+      <tr><td>65 岁及以上</td><td>5.6%</td><td>7.0%</td><td>10.1%</td></tr>
+    </table>
+    <p class="muted small">表 14-3-1　据《中国统计年鉴（2015）》，我国人口年龄分布情况</p>
+    <div class="cols2">
+      <div class="col" data-step="1"><p class="tip small">(1) 用扇形统计图表示 2014 年三个年龄段人口所占比：</p><div id="pie" class="pie"></div></div>
+      <div class="col" data-step="2"><p class="tip small">(2) 用折线统计图表示三个年份 65 岁及以上人口占比：</p><div id="line" class="linec"></div></div>
+    </div>
+    <p class="method" data-step="3">扇形统计图能够直观地反映各个类别在总体中所占的<b>比例</b>；折线统计图可以看出<b>变化趋势</b>。</p>
+  </div>
+  <p class="note">课本 p221–222 例 1、图 14-3-1、14-3-2。两幅图都由代码按表中百分比精确画出：扇形圆心角 = 360° × 百分比。联系章引言“老龄化加速”：65 岁及以上占比从 5.6% 升到 10.1%。</p>
+</section>
+
+<!-- 4 ================= 例 2 频数分布 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>销售收入 127 万元，业绩是好还是差？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small">某公司下属 40 个企业的年度销售收入数据（单位：万元）：</p>
+      <table class="mtab data" id="salesTab"></table>
+      <p class="tip" data-step="1">怎么判断？　<span class="think" data-step="2" data-ask="想一想">看 127 在全部 40 个数据中所处的<b>位置</b>：按每 10（万元）为一档（组距）整理成频率分布表。</span></p>
+    </div>
+    <div class="col">
+      <table class="mtab" id="salesFreq" data-step="3"></table>
+      <p class="tip" data-step="4"><span class="think" data-step="5" data-ask="127 在哪一档？">127 位于 $[120,130)$ 一档，此档及比它高的档中的数据共 14 个，低于这一档的有 26 个——业绩还是<b>比较好</b>的。</span></p>
+      <div id="salesHist" class="hist" data-step="6"></div>
+    </div>
+  </div>
+  <p class="note">课本 p222 例 2、表 14-3-2、图 14-3-3。频率分布表由代码从 40 个原始数据统计得到，与课本表 14-3-2 一致。旁注：也可以与销售收入的平均水平比较（见 14.4.1）。频数直方图既能反映分布状况，又可以表示变化趋势。</p>
+</section>
+
+<!-- 5 ================= 组距不等的错觉 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">14.3.2</span><h2>把最后三组合成一组：图会“骗人”吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe><button type="button" class="btn solid" data-mg="0">等距 8 组</button><button type="button" class="btn" data-mg="1">合并为 $[130,160]$</button></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" data-ax="cnt">纵轴：频数</button><button type="button" class="btn" data-ax="den">纵轴：频率/组距</button></div>
+      <p class="tip feedback" id="mgMsg"></p>
+    </div>
+    <div class="col">
+      <div id="mgHist" class="hist big"></div>
+    </div>
+  </div>
+  <p class="note">课本 p224 图 14-3-4、14-3-5。先点“合并”：[130,160] 上的频数为 7，矩形又宽又高，面积最大，让人误以为这里的企业最多（错觉）。再切换“纵轴：频率/组距”：每个矩形的面积恰好是该组的频率，错觉消失。此处停顿，让学生说出矩形的高应该怎样取才能“面积 = 频率”。</p>
+</section>
+
+<!-- 6 ================= 频率直方图定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>频率直方图与频率折线图</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>频率直方图（课本 p224）</h4>把横轴均分成若干段，每一段对应的长度称为<em>组距</em>，然后以此段为底作矩形，它的高等于 $\dfrac{\text{频率}}{\text{组距}}$，这样得出一系列的矩形，每个矩形的面积恰好是该组的频率，这些矩形就构成了直方图．我们将这种直方图称为<em>频率直方图</em>．</div>
+    <div class="def" data-step="2"><h4>频率折线图</h4>将频率直方图中各个矩形的上底边的中点顺次连接起来，并将两边端点向外延伸半个组距，就得到频率折线图，简称折线图．</div>
+    <div class="cols3">
+      <p class="tip" data-step="3">每个矩形面积 $=\text{组距}\times\dfrac{\text{频率}}{\text{组距}}=$ 频率。</p>
+      <p class="tip" data-step="4">所有矩形面积之和 $=$ <span class="think" data-step="5" data-ask="是多少？">各组频率之和 $=1$（练习 p227 第 2 题）。</span></p>
+      <p class="tip" data-step="6">折线两端为什么延伸半个组距？<span class="think" data-step="7" data-ask="想一想">落到横轴上，使折线与横轴围成的面积也等于 1。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p224–225。第 6 个问题是拓展，可以用几何说明：延伸后，折线下方被“剪掉”和“补上”的三角形面积相等。下一页的构建器里可以打开折线验证。</p>
+</section>
+
+<!-- 7 ================= 构建器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手做</span><h2>100 株树的底部周长：改一改组距，直方图怎么变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row" data-noswipe>组距<input type="range" id="bwW" min="0" max="5" step="1" value="2"><b id="bwWV" class="v"></b></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="bwLine">显示折线图</button></div>
+      <div class="ftab" id="bwTab"></div>
+    </div>
+    <div class="col">
+      <div id="bwHist" class="hist big"></div>
+      <p class="tip feedback" id="bwMsg"></p>
+    </div>
+  </div>
+  <p class="note">本课独有互动，数据是课本例 3 表 14-3-3 的 100 个数据。程序从 80 开始按所选组距分组，实时重算频数、频率、频率/组距，并读出所有矩形面积之和（始终为 1）。组距取 5 时得到 11 组，与课本表 14-3-4 完全一致。组距太小，图形参差不齐；组距太大，看不出分布特点——组数一般取 5～12 组较合适。</p>
+</section>
+
+<!-- 8 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>用样本的频率分布估计总体</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small">（1）编制频率分布表；（2）绘制频率直方图；（3）估计该片经济林中底部周长小于 100 cm 的树木约占多少，不小于 120 cm 的树木约占多少．</p>
+      <p class="tip" data-step="1">怎样分组？　<span class="think" data-step="2" data-ask="先看最大、最小值">最大值 135，最小值 80，全距 55，分为 11 组，组距为 5，从 $[80,85)$ 开始。</span></p>
+      <div class="ftab" id="ex3Tab" data-step="3"></div>
+    </div>
+    <div class="col">
+      <div id="ex3Hist" class="hist" data-step="4"></div>
+      <div class="derive">
+        <div class="dl" data-step="5"><span>小于 100</span><span>$0.01+0.02+0.04+0.14=0.21$</span><i class="why">图中左边四个橙色矩形</i></div>
+        <div class="dl" data-step="6"><span>不小于 120</span><span>$0.11+0.06+0.02=0.19$</span><i class="why">图中右边三个绿色矩形</i></div>
+        <div class="dl end" data-step="7"><span>估计</span><span>约占 $21\%$，约占 $19\%$</span><i class="why">用样本的频率估计总体</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p225–226 例 3、表 14-3-4、图 14-3-7。表与图都由代码从 100 个原始数据计算。表中“频率/组距”一列合计 0.2 = 1 ÷ 5。第 (3) 问的实质：矩形面积之和。</p>
+</section>
+
+<!-- 9 ================= 例 4 + 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 辨一辨</span><h2>选对图；看清数据再下结论</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="jcard" data-step="1"><p><b>例 4(1)</b> 分析去年全年某商品价格的变化情况：<span class="think" data-step="2" data-ask="选什么图？">获取每个月各天的价格，算出月平均价格，用<b>折线统计图</b>表示变化趋势。</span></p></div>
+      <div class="jcard" data-step="3"><p><b>例 4(2)</b> 分析某举重选手的整体水平（成绩的高低与发挥的稳定性）：<span class="think" data-step="4" data-ask="选什么图？">获取最近各次比赛的成绩，作<b>频率直方图</b>，看整体水平、稳定程度。</span></p></div>
+      <p class="tip small" data-step="5"><b>练习 p223 第 3 题</b>　有人指责某高校招生歧视女生，学校认为没有依据．两方都用频率阐述理由：</p>
+    </div>
+    <div class="col" data-step="5">
+      <div id="adm" class="adm"></div>
+      <p class="tip feedback" id="admMsg"></p>
+      <p class="warn" data-step="6">合起来看：男生录取率 $\frac{35}{80}\approx43.8\%$，女生 $\frac{20}{60}\approx33.3\%$；分专业看：两个专业男女录取率都<b>相同</b>（50%、25%）。女生多报了录取率低的英文专业——分组与合并，结论可能相反。</p>
+    </div>
+  </div>
+  <p class="note">课本 p226–227 例 4 与 p223–224 练习第 3 题。右图按两张表的数据精确画出录取率（录取数 / 申报人数）。这是统计学中著名的“辛普森悖论”现象，提醒学生：图表能揭示信息，也可能掩盖信息。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（练习 p227 第 3 题）一批灯泡共 10 000 只，抽取 100 只测试，使用寿命（h）在 $[500,600),\cdots,[1400,1500]$ 各组的只数为 1，4，8，15，20，24，18，7，2，1．估计使用寿命不低于 1 000 h 的灯泡约有多少只．</p>
+        <details><summary>提示 1</summary>不低于 1 000 h 的是哪几组？</details>
+        <details><summary>提示 2</summary>$[1000,1100)$ 起的 5 组：$24+18+7+2+1$。</details>
+        <details><summary>完整解答</summary>样本中频率为 $\dfrac{52}{100}=0.52$，估计约有 $10\,000\times0.52=5\,200$（只）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 14.3 第 1 题）某射手在同一条件下射击 30 次：6 环及以下 2 次，7 环 6 次，8 环 7 次，9 环 10 次，10 环 5 次．估计射手击中 7～9 环的可能性．</p>
+        <details><summary>提示 1</summary>先列频率分布表：频率 = 频数 ÷ 30。</details>
+        <details><summary>提示 2</summary>7～9 环共 $6+7+10=23$ 次。</details>
+        <details><summary>完整解答</summary>频率 $\dfrac{23}{30}\approx0.77$，估计击中 7～9 环的可能性约为 $77\%$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 14.3 第 4 题）抽取容量为 40 的样本：一等品 8 件，二等品 18 件，三等品 12 件，次品 2 件．画扇形统计图时，二等品对应的圆心角是多少度？估计二等品或三等品的百分率．</p>
+        <details><summary>提示 1</summary>圆心角 = 360° × 频率。</details>
+        <details><summary>提示 2</summary>二等品频率 $\dfrac{18}{40}=0.45$。</details>
+        <details><summary>完整解答</summary>圆心角 $360^\circ\times0.45=162^\circ$；二等品或三等品的频率 $\dfrac{18+12}{40}=0.75$，估计为 $75\%$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题用样本频率估计总体数量；第 2 题是离散数据的频率分布；第 3 题第一问是在课本题目上加的一个小问（课本原题要求画扇形统计图），帮助学生画图。课后作业建议：习题 14.3 第 2、3、5 题。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="steps4" data-step="1"><span>求全距</span><i>→</i><span>定组距与组数</span><i>→</i><span>分组（左闭右开）</span><i>→</i><span>列频率分布表</span><i>→</i><span>画频率直方图 / 折线图</span></div>
+    <div class="cols3 sum">
+      <p class="recall" data-label="知识" data-step="2">扇形图看占比，折线图看趋势，直方图看分布；频率直方图中矩形高 $=\frac{\text{频率}}{\text{组距}}$，面积 = 频率，面积和 = 1。</p>
+      <p class="method" data-label="方法" data-step="3">用样本的频率分布估计总体的分布：某范围内的频率 = 对应矩形面积之和。</p>
+      <p class="recall" data-label="思想" data-step="4">数形结合；用图表发现“预料之外的内容”，也要警惕图表造成的错觉。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一课：</b>14.4 用样本估计总体——除了看图，还要用数字刻画数据：平均数、中位数、众数、方差、百分位数。</p>
+  </div>
+  <p class="note">请学生口述作频率直方图的步骤，再揭示流程。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

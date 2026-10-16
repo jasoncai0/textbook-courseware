@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>合并同类项 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xiaoyuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第3章 代数式 · 3.4</p>
+    <h1 class="cover-title">合并同类项</h1>
+    <p class="cover-q" data-step="1">一所学校正在做校园规划：教学区、操场、学生活动中心、图书馆的长已经定了，操场的宽 $a$ m、活动中心的宽 $b$ m 还没定。</p>
+    <p class="cover-q" data-step="2">学校的占地面积怎样用含 $a$、$b$ 的式子表示？<b>两个同学列出了不同的式子，谁对？能不能写得更简单？</b></p>
+    <div class="chips" data-step="3"><span class="chip">同类项</span><span class="chip">合并同类项法则</span><span class="chip">选一组 · 合并</span><span class="chip">先化简再求值</span></div>
+  </div>
+  <p class="note">课本 p80 图 3-8 情境。封面只抛问题，下一页回顾旧知后，第 3 页用可调的规划图让学生自己列式。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="3.2 代数式 · 单项式与多项式" data-step="1">
+        <p>$-\dfrac12ab^2$ 是<b>单项式</b>：系数 $-\dfrac12$，次数 $1+2=3$。</p>
+        <p>$a^2-3ab+5$ 是<b>多项式</b>，它的项是 $a^2$、$-3ab$、$5$，其中 $5$ 是常数项。</p>
+        <span class="use">看清每一项的系数、字母和字母的指数——判断同类项就靠它们。</span>
+      </div>
+      <div class="recall" data-label="2.6 · 乘法分配律" data-step="2">
+        <p>$a(b+c)=ab+ac$</p>
+        <p>反过来用：$3\times7+5\times7=(3+5)\times7$</p>
+        <span class="use">合并同类项的依据：把相同的“字母部分”提出来，系数相加。</span>
+      </div>
+      <div class="recall" data-label="2.5 · 有理数的加减" data-step="3">
+        <p>$-3-5=-8$，$\ 2-7=-5$，$\ 5+\dfrac12-13=-7\dfrac12$</p>
+        <span class="use">系数相加时常有负数、分数，符号要看准。</span>
+      </div>
+    </div>
+    <p class="recall" data-label="3.3 代数式的值" data-step="4">把字母的值代入代数式计算：当 $x=\dfrac12$ 时，$4x^2-2=4\times\left(\dfrac12\right)^2-2=-1$。<span class="use">第 10 页比较“直接代入”和“先合并再代入”哪个更省事。</span></p>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>多项式里哪些项能“合在一起”？合并的依据是什么？合并时什么变、什么不变？</p>
+  </div>
+  <p class="note">每张卡请学生先口答，再看“本课用在”。第二张卡要让学生说出“反过来用”分配律，这是本课合并的依据；第三张卡的 5 + 1/2 − 13 会在“试一试”里原样出现。</p>
+</section>
+
+<!-- 3 ================= 情境：校园规划图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>学校的占地面积是多少？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="campus" class="campus"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="campA" min="60" max="180" step="10" value="120"><b class="v" id="campAV"></b>　$b=$<input type="range" id="campB" min="40" max="100" step="10" value="60"><b class="v" id="campBV"></b></div>
+      <div class="btns" data-noswipe id="campBtns">
+        <button class="btn" type="button" data-mode="ming">小明：分四块算</button>
+        <button class="btn" type="button" data-mode="li">小丽：分两条算</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">图 3-8 是某学校校园的总体规划图（单位：m），试计算这个学校的占地面积．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>小明</span><span class="think" data-step="2" data-ask="四块各是多少？">$(100a+200a+240b+60b)\ \text{m}^2$</span><i class="why">教学区 + 操场 + 活动中心 + 图书馆</i></div>
+        <div class="dl" data-step="3"><span>小丽</span><span class="think" data-step="4" data-ask="两条各是多少？">$[(100+200)a+(240+60)b]\ \text{m}^2$</span><i class="why">上面一条长 $100+200$，下面一条长 $240+60$</i></div>
+      </div>
+      <p class="tip feedback" id="campMsg"></p>
+      <p class="tip" data-step="5">两个式子为什么相等？<span class="think" data-step="6" data-ask="依据是什么？">乘法分配律：$(100+200)a=100a+200a$，$(240+60)b=240b+60b$．</span></p>
+      <p class="method" data-step="7" data-label="发现">计算 $100a+200a$，可以先把它们的<b>系数相加</b>，再乘 $a$：$100a+200a=300a$；同样 $240b+60b=300b$．</p>
+    </div>
+  </div>
+  <p class="note">课本 p80 图 3-8 与两个小人的算法。图按比例绘制（横向长 300 m 不变，a、b 可调）。先让学生自己列式，再点两个按钮看两种分法；拖动滑块，右边两种算法的数值始终相等。结论“系数相加，再乘字母”是本课的雏形——但要追问：100a 和 240b 能不能也这样合？（不能，字母不同。）</p>
+</section>
+
+<!-- 4 ================= 同类项的概念 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>哪些项能“合”？它们有什么共同点</h2></div>
+  <div class="bd full">
+    <p class="tip">$100a$ 和 $200a$；$240b$ 和 $60b$；$-9x^2y^3$ 和 $5x^2y^3$；$5ab^2$、$-\dfrac12ab^2$ 和 $-13ab^2$ 有什么共同特点？</p>
+    <table class="mtab like-tab" data-step="1">
+      <tr><th>每组的项</th><th>系数</th><th>所含字母</th><th>字母的指数</th></tr>
+      <tr><td>$100a$，$200a$</td><td>$100$，$200$</td><td><span class="think" data-step="2" data-ask="?">都是 $a$</span></td><td><span class="think" data-step="2" data-ask="?">$a$ 都是 1 次</span></td></tr>
+      <tr><td>$-9x^2y^3$，$5x^2y^3$</td><td>$-9$，$5$</td><td><span class="think" data-step="3" data-ask="?">都是 $x$、$y$</span></td><td><span class="think" data-step="3" data-ask="?">$x$ 都是 2 次，$y$ 都是 3 次</span></td></tr>
+      <tr><td>$5ab^2$，$-\dfrac12ab^2$，$-13ab^2$</td><td>$5$，$-\dfrac12$，$-13$</td><td><span class="think" data-step="4" data-ask="?">都是 $a$、$b$</span></td><td><span class="think" data-step="4" data-ask="?">$a$ 都是 1 次，$b$ 都是 2 次</span></td></tr>
+    </table>
+    <div class="def big-def" data-step="5"><h4>同类项（课本 p80）</h4>所含<em>字母相同</em>，并且<em>相同字母的指数也相同</em>的项叫做<b>同类项</b>（like terms）．几个常数项也是同类项．</div>
+    <div class="cols2">
+      <p class="method" data-step="6" data-label="两个“相同”">① 字母相同；② 相同字母的指数相同．——只看“字母部分”．</p>
+      <p class="warn" data-step="7" data-label="两个“无关”">与<b>系数</b>无关（$-9$ 和 $5$ 不同也行）；与<b>字母的排列顺序</b>无关（$ab^2$ 和 $b^2a$ 是同类项）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p80“议一议”和同类项定义。先让学生填表中“所含字母”“指数”两列，再用自己的话概括，最后点开定义。系数那一列故意都不同：说明同类项和系数无关。“与顺序无关”课本没有单独写，但例 2 里 −3m²n 与 2nm² 合并就用到了，这里提前说清。</p>
+</section>
+
+<!-- 5 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>是不是同类项？点一点</h2></div>
+  <div class="bd full">
+    <div class="cols3 judge-grid">
+      <div class="jcard"><p>(1) $3x^2y$ 与 $3xy^2$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">字母都是 $x$、$y$，但 $x$ 的指数 2 和 1 不同——“指数也相同”不满足．</p></div></div>
+      <div class="jcard"><p>(2) $2ab$ 与 $-ba$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">字母都是 $a$、$b$，指数都是 1；字母顺序不同、系数不同都没关系．</p></div></div>
+      <div class="jcard"><p>(3) $-5$ 与 $\dfrac12$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">几个常数项也是同类项．</p></div></div>
+      <div class="jcard"><p>(4) $abc$ 与 $ab$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$abc$ 多一个字母 $c$——所含字母不同．</p></div></div>
+      <div class="jcard"><p>(5) $x^3$ 与 $3^3$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$3^3=27$ 是常数项，不含字母；$x^3$ 含字母 $x$．</p></div></div>
+      <div class="jcard"><p>(6) $-m^2n$ 与 $2nm^2$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">都是 $m$ 的 2 次、$n$ 的 1 次，只是顺序不同（课本例 2 就合并了它们）．</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="判断步骤">① 先看字母是否<b>完全相同</b>（不多不少）；② 再逐个对照<b>每个字母的指数</b>；③ 系数、顺序不用管．</p>
+  </div>
+  <p class="note">学生先在本子上写“是/否”，再请学生上台点。点错的按钮会变红、可以再点。第 (5) 题专门针对“看见指数相同就以为是同类项”的误区：3³ 是一个数。</p>
+</section>
+
+<!-- 6 ================= 合并同类项法则 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">法则</span><h2>合并：什么变，什么不变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$4x^2+2x^2$</span><i class="why">两项是同类项</i></div>
+        <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="依据？">$(4+2)x^2$</span><i class="why">乘法分配律（反过来用）</i></div>
+        <div class="dl end" data-step="4"><span>$=$</span><span>$6x^2$</span><i class="why">系数相加：$4+2=6$</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>合并同类项（课本 p81）</h4>根据乘法分配律把同类项合并成一项叫做<b>合并同类项</b>（unite like terms）．</div>
+      <div class="def big-def" data-step="6"><h4>合并同类项法则</h4>同类项的<em>系数相加</em>，所得的结果作为系数，<em>字母和字母的指数不变</em>．</div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>试一试（课本 p80）</b> 把下列各式中的同类项合并成一项（只填系数）：</p>
+      <div class="try-list">
+        <p>(1) $7a-3a=$ <span class="blank" data-ans="4" data-w="3"></span>$\,a$</p>
+        <p>(2) $4x^2+2x^2=$ <span class="blank" data-ans="6" data-w="3"></span>$\,x^2$</p>
+        <p>(3) $-9x^2y^3+5x^2y^3=$ <span class="blank" data-ans="-4" data-w="3"></span>$\,x^2y^3$</p>
+        <p>(4) $5ab^2+\dfrac12ab^2-13ab^2=$ <span class="blank" data-ans="-15/2|-7.5|-7又1/2" data-w="5"></span>$\,ab^2$</p>
+      </div>
+      <p class="muted small-t">分数可以输入 $-15/2$ 或小数 $-7.5$，回车判断．</p>
+      <p class="warn" data-step="7" data-label="易错">$4x^2+2x^2=6x^4$ 对吗？<span class="think" data-step="8" data-ask="对还是错？">错．字母和指数<b>不变</b>，只是系数相加：结果是 $6x^2$．（$x^2$ 表示“有几个 $x^2$”的那个单位，4 个加 2 个是 6 个．）</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p80“试一试”与 p81 法则框。左边的推导要让学生说出每一步依据。右边 4 个空可以让学生上台输入，错了变红可以再改。最后的易错题建议用“4 个苹果 + 2 个苹果 = 6 个苹果，不会变成 6 个‘苹果的平方’”帮助理解。</p>
+</section>
+
+<!-- 7 ================= 核心交互：选一组·合并 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手</span><h2>选一组 · 合并：把多项式“化简到底”</h2></div>
+  <div class="bd full top">
+    <div class="btns" data-noswipe id="mgTabs"></div>
+    <div class="mg-poly" id="mgPoly" data-noswipe></div>
+    <div class="btns" data-noswipe>
+      <button class="btn solid" type="button" id="mgDo">合并选中的项</button>
+      <button class="btn" type="button" id="mgReset">重来</button>
+      <span class="muted mg-hint">点选几个你认为是同类项的项（颜色会跟着变），再点“合并”．</span>
+    </div>
+    <p class="tip feedback" id="mgMsg"></p>
+    <div class="mg-log" id="mgLog"></div>
+  </div>
+  <p class="note">本课核心交互。四个多项式：①课本 p81 例 2；②练一练 1(4)（注意 yx 与 xy）；③p82 练一练 1(2)（有一组系数和为 0）；④习题 3.4 第 2(5) 题（分数系数）。让学生点选一组再合并：选错了，系统会指出是“字母不同”还是“某个字母的指数不同”；选对了，下方记录会写出“系数相加”的过程。全部合并完会提示“没有同类项了”。</p>
+</section>
+
+<!-- 8 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>合并同类项：先找、再移、后合</h2></div>
+  <div class="bd full">
+    <p class="tip">合并同类项：(1) $-3x+2y-5x-7y$；　(2) $a^2-3ab+5-a^2-3ab-7$．</p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1"><b>思路：</b>哪几项是同类项？<span class="think" data-step="2" data-ask="先找一找">$\underline{-3x}$ 与 $\underline{-5x}$；$\underline{\underline{2y}}$ 与 $\underline{\underline{-7y}}$（用不同的线画出来）．</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>解：(1)</span><span>$-3x+2y-5x-7y$</span><i class="why"></i></div>
+          <div class="dl" data-step="4"><span>$=$</span><span>$-3x-5x+2y-7y$</span><i class="why">加法交换律（项连同前面的符号一起移动）</i></div>
+          <div class="dl" data-step="5"><span>$=$</span><span>$(-3-5)x+(2-7)y$</span><i class="why">合并同类项法则</i></div>
+          <div class="dl end" data-step="6"><span>$=$</span><span>$-8x-5y$</span><i class="why">有理数加减</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="derive">
+          <div class="dl" data-step="7"><span>(2)</span><span>$a^2-3ab+5-a^2-3ab-7$</span><i class="why"></i></div>
+          <div class="dl" data-step="8"><span>$=$</span><span>$a^2-a^2-3ab-3ab+5-7$</span><i class="why">把同类项放在一起</i></div>
+          <div class="dl" data-step="9"><span>$=$</span><span>$(1-1)a^2+(-3-3)ab+(-2)$</span><i class="why">$5$ 与 $-7$ 是常数项，也是同类项</i></div>
+          <div class="dl end" data-step="10"><span>$=$</span><span>$-6ab-2$</span><span class="think" data-step="11" data-ask="a² 去哪儿了？">$a^2$ 与 $-a^2$ 的系数互为相反数，合并得 $0$．</span></div>
+        </div>
+        <p class="method" data-step="12" data-label="合并三步">① <b>找</b>：用不同记号标出同类项；② <b>移</b>：交换位置，符号跟着项走；③ <b>合</b>：系数相加，字母和指数不变．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p81 例 1。书写时每一步右边可以不写依据，但要会说。“移”这一步最容易丢符号：−5x 移到前面，它前面的“−”要跟着走。第 (2) 题的小人提示“a² 与 −a² 的系数互为相反数”，合并结果为 0，不写出来。</p>
+</section>
+
+<!-- 9 ================= 练一练 p81 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 合并同类项：<br>(1) $3x-5x$；　(2) $-4ab+\dfrac92ab$；<br>(3) $a^2-3a-3a^2+a^2+2a-7$．</p>
+        <details><summary>提示 1</summary>(3) 有三类：$a^2$ 项、$a$ 项、常数项．</details>
+        <details><summary>提示 2</summary>(3) $a^2$ 项的系数：$1-3+1$；$a$ 项的系数：$-3+2$．</details>
+        <details><summary>完整解答</summary>(1) $-2x$；(2) $\left(-4+\dfrac92\right)ab=\dfrac12ab$；<br>(3) $(1-3+1)a^2+(-3+2)a-7=-a^2-a-7$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1.(4)</b> $x^2-5xy+yx+2x^2$．</p>
+        <details><summary>提示 1</summary>$yx$ 和 $xy$ 是不是同类项？</details>
+        <details><summary>提示 2</summary>是：字母相同、指数都是 1，顺序无关．</details>
+        <details><summary>完整解答</summary>$(1+2)x^2+(-5+1)xy=3x^2-4xy$．</details>
+      </div>
+      <div class="col">
+        <p class="tip"><b>2.</b> 填空（填一项）：</p>
+        <p>(1) $2xy+(\ $<span class="blank" data-ans="5xy|5yx" data-w="4"></span>$\ )=7xy$</p>
+        <p>(2) $-a^2b-(\ $<span class="blank" data-ans="-2a^2b|-2a²b|-2ba^2|-2ba²" data-w="5"></span>$\ )=a^2b$</p>
+        <p class="muted small-t">平方可以写成 a^2 或 a²．</p>
+        <div class="hint-ladder">
+          <p class="q">(3) $m^2+m+(\quad)+(\quad)-1=3m^2-2m-1$</p>
+          <details><summary>提示</summary>$m^2$ 项还差几个？$m$ 项要从 $1$ 变成 $-2$，还要加多少？</details>
+          <details><summary>完整解答</summary>$2m^2$ 和 $-3m$（顺序可交换）．</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p81 练一练。第 2 题是“逆向”：已知合并结果，反求缺少的项。(2) 要从 −a²b − (  ) = a²b 想到“减去一个 −2a²b”，学生容易填成 2a²b，可以用法则验证：−1 − (−2) = 1。</p>
+</section>
+
+<!-- 10 ================= 例 2 + 做一做 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 做一做</span><h2>先合并，再求值：省了多少事？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 2</b> 合并多项式 $5m^3-3m^2n-m^3+2nm^2-7+2m^3$ 中的同类项．</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>解：</span><span>$5m^3-3m^2n-m^3+2nm^2-7+2m^3$</span><i class="why"></i></div>
+          <div class="dl" data-step="2"><span>$=$</span><span>$5m^3-m^3+2m^3+2m^2n-3m^2n-7$</span><span class="think" data-step="3" data-ask="2nm² 怎么变成 2m²n 了？">字母顺序无关，按同一种顺序写，便于看出同类项</span></div>
+          <div class="dl" data-step="4"><span>$=$</span><span>$(5-1+2)m^3+(2-3)m^2n-7$</span><i class="why">合并同类项法则</i></div>
+          <div class="dl end" data-step="5"><span>$=$</span><span>$6m^3-m^2n-7$</span><i class="why">系数为 $-1$ 时，“1”省略不写</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>做一做（课本 p82）</b> 求 $2x^3-5x^2+x^3+9x^2-3x^3-2$ 的值，其中 $x=\dfrac12$．</p>
+        <div class="two-way">
+          <div class="way" data-step="6">
+            <h4>直接代入</h4>
+            <p>$2\times\left(\frac12\right)^3-5\times\left(\frac12\right)^2+\left(\frac12\right)^3$<br>$+9\times\left(\frac12\right)^2-3\times\left(\frac12\right)^3-2$<br>$=\frac14-\frac54+\frac18+\frac94-\frac38-2=-1$</p>
+          </div>
+          <div class="way" data-step="7">
+            <h4>先合并</h4>
+            <p>$(2+1-3)x^3+(-5+9)x^2-2$<br>$=4x^2-2$<br>当 $x=\frac12$ 时，原式 $=4\times\frac14-2=-1$</p>
+          </div>
+        </div>
+        <p class="method" data-step="8" data-label="方法">求代数式的值时，如果代数式中含有同类项，通常<b>先合并同类项再进行计算</b>．（$x^3$ 项合并后系数为 0，一下子少算了三项．）</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p81 例 2、p82 做一做。例 2 可以回到第 7 页的“选一组·合并”里再做一遍（第一个多项式就是它）。做一做先让两组学生分别用两种方法计时，比一比谁快、谁出错少，再看课本结论。</p>
+</section>
+
+<!-- 11 ================= 议一议：整体代换 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>把 $(x-2y)$ 看成一个整体</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">求代数式 $5(x-2y)-3(x-2y)+8(x-2y)-4(x-2y)$ 的值，其中 $x=\dfrac12$、$y=\dfrac13$．</p>
+      <div class="box-row" id="boxRow"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="boxBtn">把 (x − 2y) 换成 a</button></div>
+      <p class="tip" data-step="1">这四项像不像同类项？<span class="think" data-step="2" data-ask="说一说">每一项都是“一个数 × $(x-2y)$”：把 $(x-2y)$ 看成一个字母 $a$，就是 $5a-3a+8a-4a$．</span></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span>设</span><span>$x-2y=a$</span><i class="why">整体代换</i></div>
+        <div class="dl" data-step="4"><span>原式</span><span>$=5a-3a+8a-4a=6a$</span><i class="why">合并同类项</i></div>
+        <div class="dl" data-step="5"><span>当 $x=\frac12$、$y=\frac13$ 时</span><span>$a=\dfrac12-2\times\dfrac13=-\dfrac16$</span><i class="why">先算整体的值</i></div>
+        <div class="dl end" data-step="6"><span>原式</span><span>$=6a=6\times\left(-\dfrac16\right)=-1$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="7" data-label="整体思想">一个式子反复出现时，可以把它<b>看成一个字母</b>；“同类项”的想法对整体同样适用．</p>
+    </div>
+  </div>
+  <p class="note">课本 p82 议一议。两个小人分别是“直接代入”和“看成整体”。请学生先说直接代入要算几次 x − 2y（4 次），再看整体法。按钮把四个括号统一换成 a（颜色相同的方块），直观体会“一样的东西才能合”。p82 练一练 2(3) 的 (a + b) 也可以这样做。</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>先合并，再求值</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p82 练一练 1(1)）合并同类项：$5a^2-2ab+3b^2+ab-3b^2-5a^2$．</p>
+        <details><summary>提示 1</summary>$5a^2$ 与 $-5a^2$；$3b^2$ 与 $-3b^2$；$-2ab$ 与 $ab$．</details>
+        <details><summary>完整解答</summary>$(5-5)a^2+(-2+1)ab+(3-3)b^2=-ab$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（p82 练一练 2(1)）求 $6y^2-9y+5-y^2+4y-5y^2$ 的值，其中 $y=-\dfrac35$．</p>
+        <details><summary>提示 1</summary>先合并：$y^2$ 项的系数 $6-1-5=$？</details>
+        <details><summary>提示 2</summary>化简得 $-5y+5$，再代入．</details>
+        <details><summary>完整解答</summary>原式 $=-5y+5$．当 $y=-\dfrac35$ 时，原式 $=-5\times\left(-\dfrac35\right)+5=3+5=8$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（p83 练一练 2(3)）求 $3(a+b)-\dfrac23(a+b)-(a+b)-\dfrac13(a+b)$ 的值，其中 $a=-\dfrac12$、$b=\dfrac15$．</p>
+        <details><summary>提示 1</summary>把 $(a+b)$ 看成一个整体．</details>
+        <details><summary>提示 2</summary>系数：$3-\dfrac23-1-\dfrac13=1$．</details>
+        <details><summary>完整解答</summary>原式 $=(a+b)$．当 $a=-\dfrac12$、$b=\dfrac15$ 时，原式 $=-\dfrac12+\dfrac15=-\dfrac{3}{10}$．</details>
+      </div>
+    </div>
+    <p class="muted center small-t" data-step="1">更多：p82 练一练 1(2)、2(2)；习题 3.4 第 2、4 题．</p>
+  </div>
+  <p class="note">课本 p82–83 练一练。先独立做 3 分钟，卡住再逐级点开。第 2 题可以请一位学生直接代入、一位先合并，对比结果都是 8。</p>
+</section>
+
+<!-- 13 ================= 习题：判断 + 应用 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 3.4</span><h2>判断对错，并说明理由</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>1.</b> 判断下列计算是否正确，为什么？</p>
+      <div class="cols2">
+      <div class="jcard"><p>(1) $3a+2b=5ab$</p><div class="pick" data-ans="n"><button type="button" data-k="y">正确</button><button type="button" data-k="n">错误</button><p class="pick-why">$3a$ 与 $2b$ 字母不同，不是同类项，不能合并．</p></div></div>
+      <div class="jcard"><p>(2) $5y^2-2y^2=3$</p><div class="pick" data-ans="n"><button type="button" data-k="y">正确</button><button type="button" data-k="n">错误</button><p class="pick-why">字母和指数不变：应为 $3y^2$．</p></div></div>
+      <div class="jcard"><p>(3) $7a+a=7a^2$</p><div class="pick" data-ans="n"><button type="button" data-k="y">正确</button><button type="button" data-k="n">错误</button><p class="pick-why">$a$ 的系数是 1：$7a+a=(7+1)a=8a$．</p></div></div>
+      <div class="jcard"><p>(4) $4x^2y-2xy^2=2xy$</p><div class="pick" data-ans="n"><button type="button" data-k="y">正确</button><button type="button" data-k="n">错误</button><p class="pick-why">$x^2y$ 与 $xy^2$ 指数不同，不是同类项，结果就是 $4x^2y-2xy^2$．</p></div></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>3.(1)</b> 3 个连续偶数中最小的一个为 $2n$，这 3 个连续偶数的和为多少？</p>
+        <details><summary>提示</summary>相邻两个偶数相差 2：另外两个是 $2n+2$、$2n+4$．</details>
+        <details><summary>完整解答</summary>$2n+(2n+2)+(2n+4)=6n+6$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.(3)</b> 小明、小亮从同一地点同时反向绕环形跑道跑步，小明的速度为 $a$ m/s，小亮的速度为 $b$ m/s，经过 $t$ s 两人第一次相遇．这条环形跑道的周长为多少？</p>
+        <details><summary>提示</summary>第一次相遇时，两人合起来正好跑了一圈．</details>
+        <details><summary>完整解答</summary>$at+bt$（m）．$at$ 与 $bt$ 不是同类项，不能合并成一项（也可写成 $(a+b)t$ m）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 3.4 第 1、3 题。第 1 题四个错误分别对应四种典型错：不是同类项硬合并、丢了字母、把系数 1 漏掉并乘了指数、指数不同当同类项。第 3(3) 题顺便说明：不是同类项的项保留在结果里，是正常的。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def"><b>同类项：</b>所含字母相同，并且相同字母的指数也相同的项；几个常数项也是同类项．</p>
+        <p class="def"><b>法则：</b>系数相加，字母和字母的指数不变．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="合并三步">找（标记号）→ 移（符号跟着走）→ 合（系数相加）．</p>
+        <p class="method" data-label="求值">含同类项时，先合并，再代入．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="化繁为简">合并同类项让多项式的项数变少，计算变简单．</p>
+        <p class="recall" data-label="整体思想">把 $(x-2y)$ 看成一个字母，也能“合并”．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>3.5 去括号——小亮卖报纸赢利 $[-0.4a+0.5b+0.2(a-b)]$ 元，里面的同类项被括号“挡住”了，怎么办？</p>
+  </div>
+  <p class="note">请学生先回答“哪些项能合并？合并时什么变、什么不变？”，再逐栏揭示。课后作业建议：习题 3.4 第 2、4 题；第 3(2) 题（商品单价）可作选做。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

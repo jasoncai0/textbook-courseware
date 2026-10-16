@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>垂直 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mangle.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/daqiao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第6章 平面图形的认识（一） · 6.5</p>
+    <h1 class="cover-title">垂　直</h1>
+    <p class="cover-q" data-step="1">大桥的桥塔竖直地立在水面上，桥面水平地横跨海湾——桥塔与桥面所在的直线<b>相交成直角</b>。</p>
+    <p class="cover-q" data-step="2">跳远成绩怎样量才公平？过马路怎样走路线最短？答案都藏在“垂直”里。</p>
+    <div class="chips" data-step="3"><span class="chip">垂线与垂足</span><span class="chip">过一点画垂线</span><span class="chip">垂线段最短</span><span class="chip">点到直线的距离</span></div>
+  </div>
+  <p class="note">课本 p169 章首图（大桥）与议一议：先找图中、教室里互相垂直的线。封面第二个问题对应 p171 的两个议一议，本课后半段揭晓。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 recall4">
+      <div class="recall" data-label="七上 6.3 · 对顶角、补角" data-step="1">
+        <p>对顶角相等；两条直线相交，相邻的两个角互补（和为 $180^\circ$）。</p>
+        <span class="use">说明“有一个角是直角，四个角就都是直角”（第 3 页）。</span>
+        <p class="link"><a href="../mj7a-yujiaobujiao/index.html">回看 6.3 →</a></p>
+      </div>
+      <div class="recall" data-label="七上 6.4 · 平行" data-step="2">
+        <p>过直线外一点有且只有一条直线与这条直线平行；用三角尺和直尺“推”出平行线。</p>
+        <span class="use">垂线也有类似的基本事实和画法（第 4 页）。</span>
+        <p class="link"><a href="../mj7a-pingxing/index.html">回看 6.4 →</a></p>
+      </div>
+      <div class="recall" data-label="七上 6.1 · 两点之间" data-step="3">
+        <p>两点之间的所有连线中，<b>线段最短</b>（基本事实）。</p>
+        <span class="use">说明“垂线段最短”的道理（第 8 页）。</span>
+      </div>
+      <div class="recall" data-label="七上 6.2 · 直角" data-step="4">
+        <p>直角 $=90^\circ$；用三角尺的直角或量角器检验一个角是不是直角。</p>
+        <span class="use">检验两条直线是否垂直。</span>
+        <p class="link"><a href="../mj7a-jiao/index.html">回看 6.2 →</a></p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>什么是垂直 → 怎样画垂线 → 垂线段有什么特别之处 → 点到直线的距离。</p>
+  </div>
+  <p class="note">本课与 6.4 平行“对照着学”：定义、记号、基本事实、画法一一对应。第 1、3 张卡是本课两处说理要用的依据。</p>
+</section>
+
+<!-- 3 ================= 定义（图 6-38） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>两条直线互相垂直</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="rot" class="rot"></div>
+      <div class="readout four">
+        <span>$\angle1$</span><b class="v" id="r1"></b><span>$\angle2$</span><b class="v" id="r2"></b>
+        <span>$\angle3$</span><b class="v" id="r3"></b><span>$\angle4$</span><b class="v" id="r4"></b>
+      </div>
+      <p class="muted center small-t">拖动直线 $b$ 上的橙色点；接近 $90^\circ$ 时会吸附</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>垂直（课本 p169）</h4>如果两条直线相交所成的四个角中有一个角是直角，那么这两条直线<em>互相垂直</em>，其中的一条直线叫做另一条直线的<em>垂线</em>（perpendicular line），它们的交点叫做<em>垂足</em>（foot of a perpendicular）．</div>
+      <p class="tip" data-step="2">只要<b>一个</b>角是直角就够了吗？另外三个角呢？</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>∵</span><span>$\angle1=90^\circ$</span><i class="why">已知</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span class="think" data-step="5" data-ask="∠2 呢？">$\angle2=180^\circ-\angle1=90^\circ$</span><i class="why">邻补角（平角 $180^\circ$）</i></div>
+        <div class="dl" data-step="6"><span></span><span class="think" data-step="7" data-ask="∠3、∠4 呢？">$\angle3=\angle1=90^\circ$，$\angle4=\angle2=90^\circ$</span><i class="why">对顶角相等</i></div>
+      </div>
+      <p class="tip" data-step="8">图 6-38 中，两条直线互相垂直，记作 $a\perp b$ 或 $AB\perp CD$，读作“$a$ 垂直于 $b$”．其中点 $O$ 是垂足．</p>
+    </div>
+  </div>
+  <p class="note">课本 p169 定义与图 6-38。读数由坐标计算。先让学生拖动 b，观察“四个角何时同时是 90°”，再写出说理：这正好用到 6.3 的两条结论。垂直是相交的特殊情况。</p>
+</section>
+
+<!-- 4 ================= 画垂线（图 6-39、6-40） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>过一点画已知直线的垂线，能画几条？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="draw" class="drawb"></div>
+      <div class="btns" data-noswipe id="drawBtns"><button class="btn solid" type="button" data-k="P">点 P 在直线外</button><button class="btn" type="button" data-k="Q">点 Q 在直线上</button><button class="btn" type="button" id="drawGo">画线</button></div>
+    </div>
+    <div class="col">
+      <div class="derive steps4">
+        <div class="dl" data-step="1"><span>一落</span><span>三角尺的一条直角边<b>落</b>在直线 $a$ 上</span></div>
+        <div class="dl" data-step="2"><span>二移</span><span>沿直线 $a$ <b>移动</b>三角尺，使另一条直角边经过点 $P$</span></div>
+        <div class="dl" data-step="3"><span>三画</span><span>沿这条直角边<b>画</b>直线 $b$，$b\perp a$</span></div>
+      </div>
+      <p class="tip feedback" id="drawMsg"></p>
+      <p class="tip" data-step="4">这样的垂线能画几条？<span class="think" data-step="5" data-ask="试一试再回答">只有一条：三角尺只有在一个位置时，直角边才经过点 $P$（或 $Q$）。</span></p>
+      <div class="def thm" data-step="6"><h4>实践告诉我们一个基本事实（课本 p170）</h4>过一点有且只有一条直线与已知直线垂直．</div>
+      <p class="warn" data-step="7" data-label="和平行对比">平行：“过直线<b>外</b>一点”；垂直：“过<b>一点</b>”——点在直线上、直线外都可以。</p>
+    </div>
+  </div>
+  <p class="note">课本 p170 做一做 1、2（图 6-39、6-40）与基本事实。拖三角尺上的橙色点，它只能沿 a 平移；直角边经过点时会吸附，点“画线”画出垂线。切换到“点 Q 在直线上”再做一次。最后一张卡请学生比较两个基本事实的条件差别。</p>
+</section>
+
+<!-- 5 ================= 试一试（图 6-41） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>画线段的垂线：垂足可能在延长线上</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="seg" class="segb"></div>
+      <p class="muted center small-t">拖动点 $A$、$D$</p>
+    </div>
+    <div class="col">
+      <p class="tip">画一条线段或射线的垂线，就是画它们<b>所在直线</b>的垂线．在图 6-41 中，分别过点 $A$、$D$ 画 $BC$ 的垂线，垂足分别为 $E$、$F$．</p>
+      <p class="tip feedback" id="segMsg"></p>
+      <p class="method" data-step="1" data-label="画法要点">先把线段 $BC$ <b>延长</b>（画成虚线），再过点画垂线；垂足标在延长线上，并画上直角记号。</p>
+      <div class="hint-ladder" data-step="2">
+        <p class="q"><b>练一练 2（p170）</b> 在 $\triangle ABC$ 中，(1) 过点 $A$ 画 $BC$ 的垂线，垂足为 $D$；(2) 过点 $B$ 画 $AC$ 的垂线，过点 $C$ 画 $AB$ 的垂线，垂足分别为 $E$、$F$．</p>
+        <details><summary>提示</summary>课本图中 $\angle A$ 是钝角：过 $B$、$C$ 画垂线时，要先延长 $CA$、$BA$。</details>
+        <details><summary>完整解答</summary>$D$ 在边 $BC$ 上；$E$ 在 $CA$ 的延长线上，$F$ 在 $BA$ 的延长线上（第 12 页可以拖动三角形看三条垂线）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p170 试一试与练一练 2。垂足 E、F 由坐标计算（投影点）。拖动 A、D：垂足落在线段 BC 上时为实线说明，落在延长线上时自动画出虚线延长部分，提醒学生“先延长再画”。</p>
+</section>
+
+<!-- 6 ================= 议一议：跳远、斑马线 + 垂线段 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>跳远怎样量？过马路怎样走最短？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="jump" class="jump"></div>
+      <p class="tip">1. 如图 6-42，怎样测量跳远成绩？</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="怎样量？">从脚印（后脚跟）的点 $P$ 向起跳线 $l$ 画<b>垂线段</b>，量它的长度。斜着量会量多。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">2. 如图 6-43，从人行横道线上的点 $P$ 处过马路，怎样走线路最短？</p>
+      <p class="tip" data-step="3"><span class="think" data-step="4" data-ask="画出最短的线路">沿着与马路边线<b>垂直</b>的方向走过去。</span></p>
+      <div class="def" data-step="5"><h4>垂线段（课本 p171）</h4>如图 6-44，点 $P$ 在直线 $l$ 外，$PO\perp l$，垂足为 $O$，$PO$ 叫做点 $P$ 到直线 $l$ 的<em>垂线段</em>（vertical line segment）．</div>
+      <p class="warn" data-step="6" data-label="垂线与垂线段">垂线是<b>直线</b>，不能量长度；垂线段是<b>线段</b>，可以量长度。</p>
+    </div>
+  </div>
+  <p class="note">课本 p171 议一议 1、2 与垂线段的定义。左图是跳远沙坑的示意（代码绘制）：橙色虚线是斜着量的距离，蓝色是垂线段，读数由坐标计算，可直观看出斜着量更长。为什么垂直最短？下一页做实验。</p>
+</section>
+
+<!-- 7 ================= 垂线段最短（图 6-44 做一做） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>哪一条最短？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="short" class="short"></div>
+      <div id="shortPlot" class="splot"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="shortRec">记下 $PO_k$</button><button class="btn" type="button" id="shortClr">清空</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">在图 6-44 的直线 $l$ 上取点 $O_1$、$O_2$、$O_3$……量出线段 $PO$、$PO_1$、$PO_2$、$PO_3$……的长度．在这些线段中，哪一条最短？</p>
+      <p class="tip feedback" id="shortMsg"></p>
+      <table class="mtab" id="shortTab"><tr><th>点</th><th>到垂足 $O$ 的距离</th><th>$PO_k$ 的长</th></tr></table>
+      <div class="def thm" data-step="1"><h4>结论（课本 p171）</h4>直线外一点与直线上各点连接的所有线段中，垂线段最短．</div>
+      <div class="def" data-step="2"><h4>点到直线的距离</h4>直线外一点到这条直线的垂线段的<em>长度</em>，叫做<em>点到直线的距离</em>．图 6-44 中，垂线段 $PO$ 的长度就是点 $P$ 到直线 $l$ 的距离．</div>
+    </div>
+  </div>
+  <p class="note">课本 p171 做一做与两个结论。拖动 l 上的橙色点 Oₖ，上方的曲线画出“PO_k 的长度随位置的变化”，最低点正好在垂足 O 处（长度由坐标计算，单位为方格边长）。每“记下”一次，表格加一行。强调“距离”是长度（一个数），垂线段是图形。</p>
+</section>
+
+<!-- 8 ================= 阅读：说理（p172） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">阅读 · 说理</span><h2>为什么垂线段最短？折一折就明白</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fold" class="fold"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="foldGo">沿直线 l 翻折</button><button class="btn" type="button" id="foldBack">还原</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图，$P$ 是直线 $l$ 外一点，$PO\perp l$，垂足为 $O$，$O_1$、$O_2$ 是直线 $l$ 上的任意两点（不与点 $O$ 重合）．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>翻折</span><span>$P'O=PO$，$P'O_1=PO_1$</span><i class="why">翻折前后线段长度不变</i></div>
+        <div class="dl" data-step="2"><span>∵</span><span>$PO\perp l$，$P'O\perp l$</span><i class="why">翻折后直角还是直角</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span class="think" data-step="4" data-ask="三点有什么关系？">$P$、$O$、$P'$ 三点在一条直线上</span><i class="why">两个直角合成平角</i></div>
+        <div class="dl key" data-step="5"><span>∴</span><span>$PP'\lt PO_1+P'O_1$</span><i class="why">两点之间线段最短</i></div>
+        <div class="dl" data-step="6"><span>即</span><span>$2PO\lt 2PO_1$</span><i class="why">代入 $PP'=2PO$，$P'O_1=PO_1$</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$PO\lt PO_1$（同理 $PO\lt PO_2$）</span><i class="why">等式（不等式）两边除以 2</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p172 阅读“垂线段最短”。点“翻折”看 P 沿 l 翻到 P′（动画按坐标计算），折线 P–O₁–P′ 与直线 PP′ 对比。这是本章第一次用基本事实“两点之间线段最短”去证明一个新结论，体会“用已知说明未知”。可作为选学内容。</p>
+</section>
+
+<!-- 9 ================= 试一试（图 6-45） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>比一比：$PH$、$PC$、$CO$ 谁长谁短？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cmp" class="cmpb"></div>
+      <p class="muted center small-t">拖动点 $P$ 或改变 $\angle AOB$</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 6-45，$P$ 是 $\angle AOB$ 的边 $OB$ 上一点．(1) 过点 $P$ 画 $OA$ 的垂线，垂足为 $H$；(2) 过点 $P$ 画 $OB$ 的垂线，交 $OA$ 于点 $C$．分别比较 $PH$ 与 $PC$、$PC$ 与 $CO$、$PH$ 与 $CO$ 的大小，并说明理由．</p>
+      <div class="readout four"><span>$PH$</span><b class="v" id="pH"></b><span>$PC$</span><b class="v" id="pC"></b><span>$CO$</span><b class="v" id="cO"></b></div>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$PH\lt PC$</span><span class="think" data-step="2" data-ask="理由？">$PH$ 是点 $P$ 到 $OA$ 的垂线段</span><i class="why">垂线段最短</i></div>
+        <div class="dl" data-step="3"><span>$PC\lt CO$</span><span class="think" data-step="4" data-ask="理由？">$CP\perp OB$，$CP$ 是点 $C$ 到 $OB$ 的垂线段</span><i class="why">垂线段最短</i></div>
+        <div class="dl end" data-step="5"><span>$PH\lt CO$</span><span>$PH\lt PC\lt CO$</span><i class="why">不等关系可以传递</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p171 试一试。H、C 由坐标计算。第二个比较最容易想不到：要换一个角度看——从点 C 出发，CP 是到直线 OB 的垂线段，CO 是斜线段。拖动 P 和 ∠AOB（限制为锐角）验证读数始终满足 PH &lt; PC &lt; CO。</p>
+</section>
+
+<!-- 10 ================= 练一练 p172 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用“垂线段最短”解决问题</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.（p172）</b> 污水处理厂要从 $A$ 处把处理过的水引入排水沟 $PQ$，应如何铺设排水管道，才能使用料最省？画出线路，并说明理由．</p>
+        <div id="pipe" class="pipe"></div>
+        <details><summary>提示</summary>“用料最省”就是管道最短。</details>
+        <details><summary>完整解答</summary>过点 $A$ 画 $PQ$ 的垂线段 $AM$（$M$ 为垂足），沿 $AM$ 铺设。理由：直线外一点与直线上各点连接的所有线段中，垂线段最短。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.（p172）</b> 度量图中点 $C$ 到直线 $AB$ 的距离时，甲说：只要量出线段 $AC$ 的长度；乙说：过点 $C$ 画不出直线 $AB$ 的垂线，所以量不出点 $C$ 到直线 $AB$ 的距离．你认为他们的说法正确吗？</p>
+        <div id="dist" class="pipe"></div>
+        <details><summary>提示</summary>点到直线的距离是哪条线段的长？“直线 $AB$”能延长吗？</details>
+        <details id="distAns"><summary>完整解答</summary>都不正确。延长 $BA$，过点 $C$ 画 $BA$ 延长线的垂线，垂足为 $D$，量出 $CD$ 的长度，就是点 $C$ 到直线 $AB$ 的距离；$AC$ 是斜线段，比 $CD$ 长。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p172 练一练 1、2。两幅图由代码绘制：第 1 题的蓝色线段是垂线段（读数为由坐标计算的长度），虚线是几条其他线路作对比；第 2 题 ∠BAC 为钝角，按“完整解答”打开后图中显示延长线与垂足 D。</p>
+</section>
+
+<!-- 11 ================= 方格纸画垂线（习题 4） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 4</span><h2>方格纸上画垂线：走法“转个弯”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="g4" class="g4"></div>
+      <p class="tip feedback" id="g4Msg">点一个格点，画出过 $P$ 和这个格点的直线．</p>
+    </div>
+    <div class="col">
+      <p class="tip">(1) 用三角尺或量角器检验图中 $AB$ 与 $BC$ 是否互相垂直．</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="看走法">垂直。$BA$：右 2、上 3；$BC$：右 3、下 2——两个格数<b>交换</b>，一个向上一个向下。</span></p>
+      <p class="tip" data-step="3">(2) 你能发现在方格纸中画垂线有什么简便的方法吗？过点 $P$ 画 $PQ$ 的垂线．</p>
+      <p class="method" data-step="4" data-label="简便方法">把一条线段的走法“横、竖格数交换，再把其中一个方向反过来”，得到的就是它的垂线的走法。$PQ$：右 2、下 4 → 垂线：右 4、上 2（即右 2、上 1）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p173 习题 4。格点坐标照课本图读出。左图可直接点格点画线：画对会变绿，并显示“量一量”的夹角 90°（由坐标计算）；画错显示实际夹角。可以对比 6.4 方格纸画平行线：平行是走法相同，垂直是走法“交换并反向”。</p>
+</section>
+
+<!-- 12 ================= 习题 2：三条垂线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>三角形的三条垂线，有什么巧合？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="alt" class="alt"></div>
+      <p class="muted center small-t">拖动 $A$、$B$、$C$（保持锐角三角形）</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>习题 2（p173）</b> 在图中，(1) 画 $AD\perp BC$，垂足为 $D$；(2) 画 $BE\perp AC$，垂足为 $E$；(3) 设 $AD$、$BE$ 相交于点 $H$，连接并延长 $CH$，交 $AB$ 于点 $F$．$CF$ 与 $AB$ 垂直吗？用三角尺或量角器加以检验．</p>
+      <p class="tip feedback" id="altMsg"></p>
+      <p class="tip" data-step="1">发现：<span class="think" data-step="2" data-ask="说一说">$CF\perp AB$。三角形三条边上的垂线（高所在的直线）交于同一点——八年级下学期会证明。</span></p>
+      <div class="hint-ladder" data-step="3">
+        <p class="q"><b>习题 3（p173）</b> 已知 $\angle AOB$．画射线 $OC\perp OA$、射线 $OD\perp OB$．你能画出几种符合要求的图形？</p>
+        <details><summary>提示</summary>$OC$ 可以在 $OA$ 的上方或下方，$OD$ 也有两种位置。</details>
+        <details><summary>完整解答</summary>$OC$ 有 2 种位置，$OD$ 有 2 种位置，共 $2\times2=4$ 种图形。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p173 习题 2、3。左图中 D、E 为垂足，H 为 AD、BE 的交点，F 为 CH 与 AB 的交点，全部由坐标计算；读数 ∠CFB 始终为 90°（保留一位小数），拖动顶点验证。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">两条直线相交成直角 → 互相垂直，$a\perp b$；垂线、垂足。</p>
+        <p class="def">过一点有且只有一条直线与已知直线垂直；垂线段最短；点到直线的距离是垂线段的长度。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="画垂线">一落、二移、三画；线段的垂线先延长；方格纸上走法“交换并反向”。</p>
+        <p class="method" data-label="说理">翻折 + 两点之间线段最短，说明垂线段最短。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="对比">平行 ↔ 垂直：定义、记号、基本事实、画法对照着记。</p>
+        <p class="recall" data-label="最短问题">“最省、最近”往往就是垂线段。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章回顾：</b>线段、射线、直线 → 角 → 余角、补角、对顶角 → 平行 → 垂直：平面图形的“基石”都齐了。</p>
+  </div>
+  <p class="note">作业建议：习题 6.5 第 1、3 题；课本 p171 试一试作为说理练习。可以请学生列一张“平行 vs 垂直”对照表作为章末复习。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mangle.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

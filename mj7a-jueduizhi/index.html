@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>绝对值与相反数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shangxue.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第2章 有理数 · 2.4</p>
+    <h1 class="cover-title">绝对值与相反数</h1>
+    <p class="cover-q" data-step="1">小明家在学校正西方 3 km 处，小丽家在学校正东方 2 km 处。</p>
+    <p class="cover-q" data-step="2">他们上学所花的时间，与<b>方向</b>有关，还是与<b>到学校的距离</b>有关？</p>
+    <div class="chips" data-step="3"><span class="chip">到原点的距离</span><span class="chip">|a| 的读写</span><span class="chip">对折数轴</span><span class="chip">两个负数比大小</span></div>
+  </div>
+  <p class="note">课本 p23 情境。本课有两个新概念：绝对值（只看距离、不看方向）和相反数（距离相同、方向相反），它们都在数轴上“看得见”。也是七年级第一次出现“|a|”这样的新符号，要慢一点。</p>
+</section>
+
+<!-- 2 ================= 知识链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="2.3 数轴" data-step="1">
+        <p>原点、正方向、单位长度；有理数都可以用数轴上的点表示。</p>
+        <span class="use">绝对值、相反数都在数轴上定义。</span>
+      </div>
+      <div class="recall" data-label="2.1 正数与负数" data-step="2">
+        <p>“向东 2 km”记作 +2 km，“向西 3 km”记作 −3 km：符号表示<b>方向</b>，数字表示<b>多少</b>。</p>
+        <span class="use">绝对值就是“去掉方向、只看多少”。</span>
+      </div>
+      <div class="recall" data-label="2.3 比较大小" data-step="3">
+        <p>数轴上右边的数总比左边的数大。</p>
+        <span class="use">第 12 页：两个负数，用绝对值比较大小。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>一个数 = <b>符号</b>（方向）+ <b>绝对值</b>（距离）。</p>
+  </div>
+  <p class="note">第二张卡是本课的直观来源：把“−3 km”拆成“向西”和“3 km”两部分，绝对值管的是后一部分。</p>
+</section>
+
+<!-- 3 ================= 做一做 图 2-9 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>画数轴：学校、小明家、小丽家</h2></div>
+  <div class="bd full">
+    <div id="f29" class="nl-board tall"></div>
+    <div class="btns" data-noswipe><button class="btn solid" type="button" id="f29Btn">量一量到原点的距离</button></div>
+    <p class="tip" data-step="1">如图 2-9，用数轴的原点 $O$ 表示学校的位置，点 $A$、点 $B$ 分别表示小明家、小丽家的位置（规定向东为正方向，1 个单位长度表示 1 km）．</p>
+    <div class="cols2">
+      <p class="tip" data-step="2">点 $A$、$B$ 表示什么数？<span class="think" data-step="3" data-ask="读一读">点 $A$ 表示 $-3$，点 $B$ 表示 $2$。</span></p>
+      <p class="tip" data-step="4">它们与原点的距离呢？<span class="think" data-step="5" data-ask="量一量">点 $A$ 与原点的距离是 3 个单位长度，点 $B$ 与原点的距离是 2 个单位长度——距离没有正负。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p23 做一做与图 2-9。点“量一量”：从原点出发向两边画出测量线段并标出长度 3 和 2。强调“距离”总是正数（或 0）：小明家虽然用 −3 表示，但离学校是 3 km，不是 −3 km。</p>
+</section>
+
+<!-- 4 ================= 绝对值 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>绝对值：数轴上的点到原点的距离</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>绝对值（课本 p23）</h4>数轴上表示一个数的点与原点的<em>距离</em>叫做这个数的<em>绝对值</em>（absolute value）．</div>
+    <p class="tip" data-step="2">例如，表示 −3 的点与原点的距离是 3，因此 −3 的绝对值是 3；表示 2 的点与原点的距离是 2，因此 2 的绝对值是 2；表示 0 的点与原点的距离是 0，因此 0 的绝对值是 0．</p>
+    <p class="tip"><b>议一议</b>（图 2-10）你能说出数轴上点 $A$、$B$、$C$、$D$、$E$ 所表示的数的绝对值吗？</p>
+    <div id="f210" class="nl-board"></div>
+    <p class="center">$A$：<span class="blank" data-ans="5" data-w="3"></span>　$B$：<span class="blank" data-ans="3.5|7/2" data-w="3"></span>　$C$：<span class="blank" data-ans="1" data-w="3"></span>　$D$：<span class="blank" data-ans="2.5|5/2" data-w="3"></span>　$E$：<span class="blank" data-ans="5" data-w="3"></span></p>
+  </div>
+  <p class="note">课本 p23 绝对值的定义与议一议图 2-10（A、B、C、D、E 分别表示 −5、−3.5、1、2.5、5）。输入绝对值后按回车判断。发现：A 和 E 一左一右，绝对值都是 5——为后面的相反数埋伏笔。</p>
+</section>
+
+<!-- 5 ================= 例 1 与记号 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>求 4、−3.5 的绝对值；新记号 $|a|$</h2></div>
+  <div class="bd full">
+    <div id="f211" class="nl-board tall"></div>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>点 $A$ 与原点的距离是 4</span><span>所以 4 的绝对值是 4</span><i class="why">在数轴上画出表示 4、−3.5 的点 $A$、$B$（图 2-11）</i></div>
+      <div class="dl" data-step="2"><span>点 $B$ 与原点的距离是 3.5</span><span>所以 −3.5 的绝对值是 3.5</span><i class="why">距离是 3.5 个单位长度</i></div>
+    </div>
+    <div class="def" data-step="3"><h4>记号（课本 p24）</h4>通常，我们将数 $a$ 的绝对值记为 $|a|$．这样，例 1 的结论可以写为 $|4|=4$，$|-3.5|=3.5$．</div>
+    <div class="cols2">
+      <p class="tip" data-step="4">“$|\ |$”怎样读、怎样写？<span class="think" data-step="5" data-ask="读一读">$|a|$ 读作“$a$ 的绝对值”，两条竖线把数夹在中间；$|-3.5|$ 读作“−3.5 的绝对值”。</span></p>
+      <p class="tip" data-step="6">这里的 $a$ 表示什么？<span class="think" data-step="7" data-ask="想一想">任意一个数（可以是正数、负数或 0），就像 2.2 节 $\frac mn$ 里的字母。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p24 例 1 与图 2-11。这是学生第一次见到“|a|”：两条竖线不是数字“1”，也不是括号，书写时要竖直、等高。请学生读出 $|4|=4$、$|-3.5|=3.5$。</p>
+</section>
+
+<!-- 6 ================= 例 2 + 距离器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>已知一个数的绝对值是 $\frac52$，求这个数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="kBoard" class="nl-board tall"></div>
+      <div class="slider-row" data-noswipe>到原点的距离<input type="range" id="kS" min="0" max="5" step="0.5" value="2.5"><b class="v" id="kV"></b></div>
+      <p class="tip feedback" id="kMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">数轴上到原点的距离是 $\frac52$ 的点有几个？<span class="think" data-step="2" data-ask="拖一拖">有 2 个：点 $A$ 和点 $B$，分别在原点的右边和左边，表示 $\frac52$、$-\frac52$（图 2-12）。</span></p>
+      <p class="def" data-step="3">解：绝对值是 $\dfrac52$ 的数有 2 个，它们是 $\dfrac52$、$-\dfrac52$．</p>
+      <p class="warn" data-step="4" data-label="别漏解">已知绝对值求这个数，要想到原点<b>两边</b>。<span class="think" data-step="5" data-ask="绝对值是 0 的数呢？">只有 0 一个。（滑块拖到 0 试一试）</span></p>
+      <p class="tip" data-step="6">练一练 2：已知一个数的绝对值是 2，求这个数．<span class="think" data-step="7" data-ask="求一求">2 或 −2。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p24 例 2 与图 2-12，练一练 2。拖滑块改变“距离”，数轴上同时亮出两个点和两段测量线。追问：有没有绝对值是 −2 的数？（没有：距离不会是负数）</p>
+</section>
+
+<!-- 7 ================= 相反数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>符号不同、绝对值相同：相反数</h2></div>
+  <div class="bd full">
+    <div id="f213" class="nl-board"></div>
+    <div class="cols2">
+      <p class="tip" data-step="1"><b>议一议 1</b>（图 2-13）观察点 $A$、$B$ 的位置及它们到原点的距离：<span class="think" data-step="2" data-ask="你有什么发现？">点 $A$、$B$ 在原点两侧，分别表示 −5 和 5；它们与原点的距离都等于 5。</span></p>
+      <p class="tip" data-step="3"><b>议一议 2</b> 观察：5 与 −5，2.5 与 −2.5，$\frac23$ 与 $-\frac23$，$\pi$ 与 $-\pi$．<span class="think" data-step="4" data-ask="你有什么发现？">每一组：符号不同，绝对值相同。</span></p>
+    </div>
+    <div class="def big-def" data-step="5"><h4>相反数（课本 p25）</h4><em>符号不同、绝对值相同</em>的两个数互为相反数，其中一个数叫做另一个数的<em>相反数</em>（opposite number）．例如，5 与 −5 互为相反数，5 是 −5 的相反数，−5 是 5 的相反数；$\pi$ 的相反数是 $-\pi$．<b>0 的相反数是 0</b>．</div>
+  </div>
+  <p class="note">课本 p25 议一议 1、2 与相反数的描述。“互为”是相互的意思：说“5 是相反数”是不完整的，要说“5 是 −5 的相反数”。0 很特殊：它的相反数是它自己。</p>
+</section>
+
+<!-- 8 ================= 对折数轴（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手观察</span><h2>沿原点对折数轴：互为相反数的点重合</h2></div>
+  <div class="bd full">
+    <div id="fold" class="nl-board fold-b"></div>
+    <div class="btns" data-noswipe>
+      <button class="btn solid" type="button" id="foldBtn">沿原点对折</button>
+      <span class="slider-row">拖动橙色点，或选一个数：<input type="range" id="foldP" min="-5" max="5" step="0.5" value="3"><b class="v" id="foldPV"></b></span>
+    </div>
+    <p class="tip feedback" id="foldMsg"></p>
+    <div class="cols2">
+      <p class="tip" data-step="1">对折后，哪些点重合了？<span class="think" data-step="2" data-ask="看一看">表示 3 和 −3、2.5 和 −2.5……的点都重合：互为相反数的两个点关于原点<b>对称</b>。</span></p>
+      <p class="tip" data-step="3">原点对折后到哪里去了？<span class="think" data-step="4" data-ask="想一想">还在原点：0 的相反数是 0。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。点“沿原点对折”：数轴左半部分绕原点处的竖直折痕翻过来（按空间翻转投影，位置精确），为了看得清，翻过来的一层稍稍抬高。拖动橙色点（以 0.5 为单位），它的相反数（蓝色）始终在原点另一侧同样远的地方；对折后两点重合。</p>
+</section>
+
+<!-- 9 ================= 例 3、例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 例 4</span><h2>求相反数；化简 $-(-5)$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 3</b> 求 3、−4.5、$\dfrac47$ 的相反数．</p>
+      <p class="tip" data-step="1">解：3、−4.5、$\dfrac47$ 的相反数分别是 <span class="think" data-step="2" data-ask="?">$-3$、$4.5$、$-\dfrac47$</span>．</p>
+      <div class="def" data-step="3"><h4>课本 p25</h4>表示一个数的相反数，可以在这个数的前面添一个“−”号．如 −5 的相反数可以表示为 $-(-5)$，而我们知道 −5 的相反数是 5，所以 $-(-5)=5$．</div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 4</b> 化简：$-(+2)$，$-(+2.7)$，$-(-3)$，$-\left(-\dfrac34\right)$．</p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>∵ +2 的相反数是 −2</span><span>∴ $-(+2)=-2$</span></div>
+        <div class="dl" data-step="5"><span>类似地</span><span class="think" data-step="6" data-ask="?">$-(+2.7)=-2.7$</span></div>
+        <div class="dl" data-step="7"><span>∵ −3 的相反数是 3</span><span>∴ $-(-3)=3$</span></div>
+        <div class="dl end" data-step="8"><span>类似地</span><span class="think" data-step="9" data-ask="?">$-\left(-\dfrac34\right)=\dfrac34$</span></div>
+      </div>
+      <p class="warn" data-step="10" data-label="同一个“−”，三种意思">$5-3$ 里是<b>减号</b>；$-3$ 里是<b>负号</b>；$-(-5)$ 最前面的“−”表示“<b>相反数</b>”（习题 2.4 第 8 题）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p25–26 例 3、例 4。“−(−5)”读作“−5 的相反数”，不要急着说“负负得正”（那是 2.6 节乘法的内容），要说清楚：前面的“−”表示求相反数。计算器上求相反数也用负号键 (−)。</p>
+</section>
+
+<!-- 10 ================= 练一练 p26 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>课本 p26 练一练（输入后按回车）</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>1.</b> 写出下列各数的相反数：<br>
+        0：<span class="blank" data-ans="0" data-w="3"></span>　58：<span class="blank" data-ans="-58|−58" data-w="3"></span>　−4：<span class="blank" data-ans="4" data-w="3"></span>　3.14：<span class="blank" data-ans="-3.14|−3.14" data-w="4"></span>　$-\frac23$：<span class="blank" data-ans="2/3" data-w="3"></span></p>
+      <p class="tip"><b>3.</b> 填空：<br>
+        (1) $-(-7)$ 是 <span class="blank" data-ans="-7|−7" data-w="3"></span> 的相反数，$-(-7)=$ <span class="blank" data-ans="7" data-w="3"></span>；<br>
+        (2) $-(+4)$ 是 <span class="blank" data-ans="+4|4" data-w="3"></span> 的相反数，$-(+4)=$ <span class="blank" data-ans="-4|−4" data-w="3"></span>．</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>4.</b> 化简：<br>
+        $-(+2.5)=$ <span class="blank" data-ans="-2.5|−2.5" data-w="4"></span>　$-(-2.5)=$ <span class="blank" data-ans="2.5" data-w="4"></span><br>
+        $+(-2.5)=$ <span class="blank" data-ans="-2.5|−2.5" data-w="4"></span>　$+(+2.5)=$ <span class="blank" data-ans="2.5" data-w="4"></span></p>
+      <p class="tip gold" data-step="1">第 4 题的规律？<span class="think" data-step="2" data-ask="说一说">前面添“+”，数不变；前面添“−”，变成它的相反数。</span></p>
+      <p class="tip" data-step="3"><b>2.</b> 用数轴上的点表示 −4、0.5、3、−2 以及它们的相反数．<span class="think" data-step="4" data-ask="怎样画？">相反数的点在原点另一侧、离原点一样远：4、−0.5、−3、2（可回第 8 页拖一拖）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p26 练一练 1～4。负号可以用键盘上的减号输入，分数用“/”输入。第 2 题画图可以回到对折数轴那一页验证。</p>
+</section>
+
+<!-- 11 ================= 绝对值与数本身 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>一个数的绝对值与这个数本身、它的相反数有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">试一试（课本 p26）：$|2.3|=$<span class="blank" data-ans="2.3" data-w="3"></span>，$|6|=$<span class="blank" data-ans="6" data-w="2"></span>；$|-5|=$<span class="blank" data-ans="5" data-w="2"></span>，$-5$ 的相反数是 <span class="blank" data-ans="5" data-w="2"></span>；$|-10.5|=$<span class="blank" data-ans="10.5" data-w="4"></span>；$|0|=$<span class="blank" data-ans="0" data-w="2"></span>．</p>
+      <div class="def" data-step="1"><h4>课本 p27</h4>正数的绝对值是它本身；<br>负数的绝对值是它的相反数；<br>0 的绝对值是 0．</div>
+      <div class="derive small-d" data-step="2">
+        <div class="dl"><span>$|a|=a$</span><span>当 $a\gt0$ 时</span></div>
+        <div class="dl"><span>$|a|=0$</span><span>当 $a=0$ 时</span></div>
+        <div class="dl key"><span>$|a|=-a$</span><span>当 $a\lt0$ 时</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 5</b> 求下列各数的绝对值：$+6$，$\pi$，$-3$，$-2.7$，$0$．</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$|+6|=6$</span><span>，$|\pi|=\pi$</span><i class="why">正数的绝对值是它本身</i></div>
+        <div class="dl" data-step="4"><span>$|-3|=-(-3)=3$</span><span>，$|-2.7|=-(-2.7)=2.7$</span><i class="why">负数的绝对值是它的相反数</i></div>
+        <div class="dl" data-step="5"><span>$|0|=0$</span><span></span><i class="why">0 的绝对值是 0</i></div>
+      </div>
+      <p class="warn" data-step="6" data-label="−a 一定是负数吗？">不一定！当 $a\lt0$ 时，$-a$ 是 $a$ 的相反数，是<b>正数</b>。例如 $a=-3$ 时，$-a=-(-3)=3$。</p>
+      <p class="method" data-step="7" data-label="方法">求 $|a|$，先分清 $a$ 是正数、负数还是 0，再写出它的绝对值。</p>
+    </div>
+  </div>
+  <p class="note">课本 p26 试一试、p27 议一议、例 5 与 $|a|$ 的三种情况。$|a|=-a$ 是本课最难的一句：这里的 $-a$ 读作“$a$ 的相反数”，不是“负 $a$ 是负数”。用 $a=-3$ 代进去，学生就能接受。</p>
+</section>
+
+<!-- 12 ================= 两个负数比大小 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>两个负数，绝对值大的反而小</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="cmpBtns"><button class="btn solid" type="button" data-s="1">两个正数：3 与 5</button><button class="btn" type="button" data-s="-1">两个负数：−3 与 −5</button></div>
+      <div id="cmpBoard" class="nl-board tall"></div>
+      <p class="tip feedback" id="cmpMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">在两个正数中，绝对值较大的那个数一定大吗？两个负数呢？</p>
+      <p class="tip" data-step="1">课本 p27：<span class="think" data-step="2" data-ask="看数轴说理由">表示两个正数的点都在原点右边，绝对值较大的点在另一个点的<b>右边</b>；表示两个负数的点都在原点左边，绝对值较大的点在另一个点的<b>左边</b>。</span></p>
+      <div class="def" data-step="3"><h4>课本 p28</h4>两个正数，绝对值大的正数大；<br>两个负数，<em>绝对值大的负数小</em>．</div>
+      <p class="tip" data-step="4"><b>例 6</b> 比较 −9.5 与 −1.75 的大小．<span class="think" data-step="5" data-ask="怎样比？">因为 $|-9.5|=9.5$，$|-1.75|=1.75$，且 $9.5\gt1.75$，所以 $-9.5\lt-1.75$（两个负数，绝对值大的负数小）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p27 议一议（两个小人的数轴图）、p28 结论与例 6。切换两种情况，看测量线：长的那条，在正数里伸得更“右”，在负数里伸得更“左”。生活例子：零下 9.5 ℃ 比零下 1.75 ℃ 冷。</p>
+</section>
+
+<!-- 13 ================= 练一练 p28 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>课本 p28 练一练（输入后按回车）</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>1.</b> 填空：<br>
+        (1) $-\frac25$ 的符号是 <span class="blank" data-ans="-|−|负" data-w="2"></span>，绝对值是 <span class="blank" data-ans="2/5|0.4" data-w="3"></span>；<br>
+        (2) 10.5 的符号是 <span class="blank" data-ans="+|＋|正" data-w="2"></span>，绝对值是 <span class="blank" data-ans="10.5" data-w="4"></span>；<br>
+        (3) 符号是“+”，绝对值是 $\frac37$ 的数是 <span class="blank" data-ans="3/7|+3/7" data-w="4"></span>；<br>
+        (4) 符号是“−”，绝对值是 9 的数是 <span class="blank" data-ans="-9|−9" data-w="3"></span>；<br>
+        (5) 符号是“−”，绝对值是 0.37 的数是 <span class="blank" data-ans="-0.37|−0.37" data-w="5"></span>．</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>2.</b> 用“&lt;”或“&gt;”填空：<br>
+        (1) $-12.3$ <span class="blank" data-ans="<|＜" data-w="1"></span> $-12$；<br>
+        (2) $-(-2.75)$ <span class="blank" data-ans=">|＞" data-w="1"></span> $-(-2.67)$；<br>
+        (3) $|-8|$ <span class="blank" data-ans=">|＞" data-w="1"></span> $-8$；<br>
+        (4) $-|-0.4|$ <span class="blank" data-ans="<|＜" data-w="1"></span> $-(-0.4)$．</p>
+      <p class="method" data-step="1" data-label="先化简，再比较">(2) 化简为 2.75 与 2.67；(4) 化简为 −0.4 与 0.4。</p>
+    </div>
+  </div>
+  <p class="note">课本 p28 练一练 1、2。第 2 题 (2)(4) 先化简再比较，是相反数、绝对值的综合运用。“&lt;”“&gt;”可以直接用键盘输入。</p>
+</section>
+
+<!-- 14 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 2.4</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 写出各数：(1) 符号为“+”，绝对值是 0.5；(2) 符号为“−”，绝对值是 3；(3) 绝对值是 2 的数；(4) 绝对值小于 2 的整数．</p>
+        <details><summary>提示 1</summary>(3) 想想例 2：到原点距离为 2 的点有几个？</details>
+        <details><summary>提示 2</summary>(4) 在数轴上找离原点不到 2 个单位长度的整数点，别忘了 0。</details>
+        <details><summary>完整解答</summary>(1) $+0.5$；(2) $-3$；(3) $2$、$-2$；(4) $-1$、$0$、$1$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>7.</b> 比较下列各组数的大小：(1) 3 与 −7；(2) −5.3 与 −5.4；(3) $-\frac38$ 与 $-\frac58$；(4) $-|-3.71|$ 与 $-(-0.84)$．</p>
+        <details><summary>提示 1</summary>正数大于负数；两个负数，绝对值大的反而小。</details>
+        <details><summary>提示 2</summary>(4) 先化简：$-|-3.71|=-3.71$，$-(-0.84)=0.84$。</details>
+        <details><summary>完整解答</summary>(1) $3\gt-7$；(2) $-5.3\gt-5.4$；(3) $-\frac38\gt-\frac58$；(4) $-|-3.71|\lt-(-0.84)$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>9.</b> 乒乓球质量检验记录（“+”表示超出标准质量，“−”表示不足）：1 号 +0.04，2 号 −0.02，3 号 +0.03，4 号 +0.05，5 号 −0.04（单位：g）．选出质量最接近标准质量的乒乓球．</p>
+        <details><summary>提示 1</summary>“接近标准”与超出还是不足无关，只看偏差的多少。</details>
+        <details><summary>提示 2</summary>比较各偏差的<b>绝对值</b>。</details>
+        <details><summary>完整解答</summary>各偏差的绝对值依次是 0.04、0.02、0.03、0.05、0.04，最小的是 0.02，所以 2 号乒乓球最接近标准质量．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p29 习题 2.4 第 5、7、9 题。第 9 题是绝对值的典型应用：只关心“偏离多少”，不关心“偏向哪边”。第 6 题（哈尔滨月平均气温排序）、第 8 题（三种“−”号）可口答。</p>
+</section>
+
+<!-- 15 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>绝对值</h3>
+        <p class="def">点到原点的<em>距离</em>；$|a|\ge0$．正数、0 的绝对值是它本身，负数的绝对值是它的相反数．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>相反数</h3>
+        <p class="def"><em>符号不同、绝对值相同</em>；在数轴上关于原点对称（对折重合）．0 的相反数是 0；$-(-a)=a$．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>比较大小</h3>
+        <p class="method" data-label="两个负数">绝对值大的反而小。</p>
+        <p class="recall" data-label="思想">分类讨论：$a\gt0$、$a=0$、$a\lt0$。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.5 有理数的加法与减法——在数轴上“走一走”：先向左 5，再向右 3，停在哪里？和的符号、和的绝对值怎样确定？</p>
+  </div>
+  <p class="note">请学生用“符号 + 绝对值”描述一个数（−7.3：符号负，绝对值 7.3）——下一节的加法法则正是“先定符号，再算绝对值”。课后作业建议：习题 2.4 第 1～4、6、8 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

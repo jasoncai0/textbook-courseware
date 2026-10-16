@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>余角、补角、对顶角 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mangle.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xiaokong.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第6章 平面图形的认识（一） · 6.3</p>
+    <h1 class="cover-title">余角、补角、对顶角</h1>
+    <p class="cover-q" data-step="1">把一副三角尺靠在直尺上，三角尺转来转去，两侧的角 $\angle\alpha$、$\angle\beta$ 一个变大、一个变小——它们的<b>和</b>变不变？</p>
+    <p class="cover-q" data-step="2">两千多年前，墨子让光穿过一个小孔，墙上出现了<b>倒立</b>的人像。两条光线在小孔处交叉，形成的角有什么关系？</p>
+    <div class="chips" data-step="3"><span class="chip">余角与补角</span><span class="chip">同角的余角相等</span><span class="chip">对顶角相等</span><span class="chip">说理：因为…所以…</span></div>
+  </div>
+  <p class="note">课本 p159、p161 情境。本课是第 6 章第一次系统“说理”：从度数关系出发，推出“同角的余角相等”“对顶角相等”两条结论，每一步都要讲依据。封面两个问题对应本课两部分。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 6.2 · 角" data-step="1">
+        <p>直角 $=90^\circ$，平角 $=180^\circ$；角可以相加、相减：$\angle AOC=\angle AOB+\angle BOC$。</p>
+        <span class="use">“两个角的和是直角 / 平角”就是余角、补角的定义。</span>
+        <p class="link"><a href="../mj7a-jiao/index.html">回看 6.2 角 →</a></p>
+      </div>
+      <div class="recall" data-label="七上 6.2 · 习题 8 的发现" data-step="2">
+        <p>$\angle AOC$、$\angle BOD$ 都是直角，不管 $\angle COD$ 多大，总有 $\angle AOD=\angle BOC$。</p>
+        <span class="use">今天要说清楚它的道理：同角的余角相等（第 7 页）。</span>
+      </div>
+      <div class="recall" data-label="七上 4.2 · 解一元一次方程" data-step="3">
+        <p>设未知数，根据相等关系列方程：$x+(x+30)=180$，解得 $x=75$。</p>
+        <span class="use">已知两角的关系求度数（例 1）。</span>
+        <p class="link"><a href="../mj7a-jieyiyuanyici/index.html">回看 4.2 →</a></p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>两个角的<b>度数和</b>是特殊值 → 余角、补角 → 推出“同角的余角（补角）相等” → 用它说明“对顶角相等”。</p>
+  </div>
+  <p class="note">第二张卡请学生回忆上节课最后一页的滑块实验：结论是“看出来的”，本课要把它“说出来”。第三张卡为例 1 的方程做准备。</p>
+</section>
+
+<!-- 3 ================= 议一议（图 6-25） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>三角尺转一转：$\angle\alpha$ 与 $\angle\beta$ 的度数有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sq" class="sq"></div>
+      <div class="slider-row" data-noswipe>$\angle\alpha=$<input type="range" id="sqR" min="5" max="85" step="1" value="35"><b class="v" id="sqV"></b></div>
+      <div class="btns" data-noswipe id="sqBtns"><button class="btn solid" type="button" data-m="1">图 (1)：三角尺的直角顶点在直尺上</button><button class="btn" type="button" data-m="2">图 (2)：三角尺的一边在直尺上</button></div>
+    </div>
+    <div class="col">
+      <div class="readout big-read">
+        <span>$\angle\alpha$</span><b class="v" id="sqA"></b>
+        <span>$\angle\beta$</span><b class="v" id="sqB"></b>
+        <span>$\angle\alpha+\angle\beta$</span><b class="v hlv" id="sqS"></b>
+      </div>
+      <p class="tip" data-step="1">图 (1)：<span class="think" data-step="2" data-ask="和是多少？为什么？">$\angle\alpha+\angle\beta=90^\circ$：平角 $180^\circ$ 减去三角尺的直角 $90^\circ$。</span></p>
+      <p class="tip" data-step="3">图 (2)：<span class="think" data-step="4" data-ask="和是多少？为什么？">$\angle\alpha+\angle\beta=180^\circ$：两个角合起来正好是直尺边上的平角。</span></p>
+      <p class="tip gold" data-step="5">$\angle\alpha$ 变，$\angle\beta$ 跟着变，但<b>和不变</b>——和是一个直角或一个平角的两个角，各起一个名字。</p>
+    </div>
+  </div>
+  <p class="note">课本 p159 议一议、图 6-25。先切到图 (1)，拖滑块让学生观察读数，再问“为什么和总是 90°”——依据是平角 180° 与三角尺的直角。再切图 (2)。度数由坐标计算；图 (2) 中只画了射线，代表三角尺靠在直尺上的一边。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>余角与补角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>余角（课本 p159）</h4>如果两个角的和是一个直角，那么这两个角互为余角，简称<em>互余</em>，其中的一个角叫做另一个角的<em>余角</em>（complementary angle）．</div>
+      <div id="f626" class="fdef" data-step="1"></div>
+      <p class="muted center small-t" data-step="1">图 6-26：$\angle\alpha=35^\circ$，$\angle\beta=55^\circ$，$\angle\alpha$ 与 $\angle\beta$ 互为余角</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="2"><h4>补角（课本 p159）</h4>如果两个角的和是一个平角，那么这两个角互为补角，简称<em>互补</em>，其中的一个角叫做另一个角的<em>补角</em>（supplementary angle）．</div>
+      <div id="f627" class="fdef" data-step="2"></div>
+      <p class="muted center small-t" data-step="2">图 6-27：$\angle\alpha=45^\circ$，$\angle\beta=135^\circ$，$\angle\alpha$ 与 $\angle\beta$ 互为补角</p>
+      <p class="warn" data-step="3" data-label="只看度数和，不看位置">互余、互补说的是<b>两个角</b>之间的数量关系，两个角不一定挨在一起（上面两个图里它们就是分开的）。</p>
+      <p class="tip" data-step="4">钝角有余角吗？<span class="think" data-step="5" data-ask="想一想">没有：钝角已经大于 $90^\circ$。只有锐角才有余角；锐角、直角、钝角都有补角。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p159 定义与图 6-26、6-27。两幅小图按课本度数精确绘制，两个角分开画——强调定义只看“和”。“互为”的意思：∠α 是 ∠β 的余角，∠β 也是 ∠α 的余角。</p>
+</section>
+
+<!-- 5 ================= 做一做 1 填表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>填表：已知一个，求另外两个</h2></div>
+  <div class="bd full">
+    <p class="tip">1．填表（课本 p159）．输入后按回车判断．</p>
+    <table class="mtab ftab" data-noswipe>
+      <tr><th>$\angle\alpha$</th><td>$50^\circ$</td><td><span class="blank" data-ans="45"></span>°</td><td><span class="blank" data-ans="60"></span>°</td><td>$n^\circ\ (0\lt n\lt 90)$</td></tr>
+      <tr><th>$\angle\alpha$ 的余角</th><td><span class="blank" data-ans="40"></span>°</td><td>$45^\circ$</td><td><span class="blank" data-ans="30"></span>°</td><td><span class="blank" data-ans="90-n|(90-n)" data-w="5"></span>°</td></tr>
+      <tr><th>$\angle\alpha$ 的补角</th><td><span class="blank" data-ans="130"></span>°</td><td><span class="blank" data-ans="135"></span>°</td><td>$120^\circ$</td><td><span class="blank" data-ans="180-n|(180-n)" data-w="5"></span>°</td></tr>
+    </table>
+    <div class="cols2">
+      <p class="method" data-step="1" data-label="怎样求">余角 $=90^\circ-\angle\alpha$；补角 $=180^\circ-\angle\alpha$；已知补角 $120^\circ$，先求 $\angle\alpha=180^\circ-120^\circ=60^\circ$。</p>
+      <p class="tip gold" data-step="2">看最后一列：同一个锐角，补角比余角大多少？<span class="think" data-step="3" data-ask="算一算">$(180-n)-(90-n)=90$，补角比余角大 $90^\circ$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p159 做一做 1。最后一列用字母 n 表示“任意锐角”，填 90-n、180-n。第 3 步的发现可以让学生用前三列验证。</p>
+</section>
+
+<!-- 6 ================= 做一做 2 连线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>找朋友：三组角连一连</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="match" id="match" data-noswipe>
+        <div class="grp" data-g="A"><h4>A 组</h4></div>
+        <div class="grp" data-g="B"><h4>B 组</h4></div>
+        <div class="grp" data-g="C"><h4>C 组</h4></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">2．已知 3 组角（课本 p160）：<br>(1) 对 A 组中的每一个角，在 B 组中找出它的<b>补角</b>；<br>(2) B 组中有哪些角的<b>余角</b>在 C 组中？</p>
+      <p class="tip feedback" id="matchMsg">先点一个角，再点另一组里的角。</p>
+      <p class="tip" id="matchCount"></p>
+      <p class="warn" data-step="1" data-label="想一想">B 组的 $105^\circ$、$125^\circ$、$170^\circ$ 为什么在 C 组里找不到余角？<span class="think" data-step="2" data-ask="原因">它们都是钝角，比 $90^\circ$ 大，没有余角。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p160 做一做 2。点 A 组的一个角，再点 B 组的一个角：和为 180° 就连上（同色标记）；点 B 组与 C 组：和为 90° 就连上。点错会提示两角之和是多少。答案：A→B 10–170、55–125、75–105、100–80、145–35；B→C 35–55、80–10。</p>
+</section>
+
+<!-- 7 ================= 同角的余角相等 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议 · 说理</span><h2>同一个角的两个余角，相等吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="tong" class="tong"></div>
+      <div class="slider-row" data-noswipe>$\angle1=$<input type="range" id="tongR" min="5" max="85" step="1" value="30"><b class="v" id="tongV"></b></div>
+      <p class="tip feedback" id="tongMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">如果 $\angle1$ 与 $\angle2$ 互为余角，$\angle1$ 与 $\angle3$ 互为余角，那么 $\angle2$ 与 $\angle3$ 相等吗？为什么？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>因为</span><span>$\angle1$ 与 $\angle2$、$\angle1$ 与 $\angle3$ 互为余角</span><i class="why">已知</i></div>
+        <div class="dl" data-step="2"><span>所以</span><span class="think" data-step="3" data-ask="凭什么？">$\angle1+\angle2=90^\circ$，$\angle1+\angle3=90^\circ$</span><i class="why">余角的定义</i></div>
+        <div class="dl" data-step="4"><span>即</span><span>$\angle2=90^\circ-\angle1$，$\angle3=90^\circ-\angle1$</span><i class="why">等式的性质</i></div>
+        <div class="dl end" data-step="5"><span>由此可知</span><span>$\angle2=\angle3$</span><i class="why">都等于同一个式子 $90^\circ-\angle1$</i></div>
+      </div>
+      <p class="tip" data-step="6">如果 $\angle\alpha$ 与 $\angle\beta$ 互为补角，$\angle\alpha$ 与 $\angle\gamma$ 互为补角，那么用同样的方法可以说明 <span class="think" data-step="7" data-ask="仿照着说">$\angle\beta=180^\circ-\angle\alpha=\angle\gamma$</span>。</p>
+      <div class="def thm" data-step="8"><h4>由此，我们得到（课本 p160）</h4>同角（等角）的余角相等．<br>同角（等角）的补角相等．</div>
+    </div>
+  </div>
+  <p class="note">课本 p160 议一议。左图就是 6.2 习题 8 的图：∠AOC、∠BOD 都是直角，∠1 = ∠COD 是“同一个角”，∠2 = ∠BOC、∠3 = ∠AOD 是它的两个余角。拖滑块看读数始终相等——这是“看出来”；右边一行一行写出来才是“说出来”。“等角”：如果 ∠1 = ∠4，那么 ∠1 的余角与 ∠4 的余角也相等（因为都等于 90° 减去同一个度数）。</p>
+</section>
+
+<!-- 8 ================= 例 1 + 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题 · 练一练</span><h2>用方程求角；用结论说理</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 1（课本 p160）</b> 已知 $\angle\alpha$ 与 $\angle\beta$ 互为补角，且 $\angle\beta$ 比 $\angle\alpha$ 大 $30^\circ$．求 $\angle\alpha$、$\angle\beta$ 的度数．</p>
+      <p class="method" data-step="1" data-label="思路">两个未知角，两句话：“互补”给出<b>和</b>，“大 $30^\circ$”给出<b>差</b>——用一个角表示另一个，列方程。</p>
+      <div class="derive ex1">
+        <div class="dl" data-step="2"><span>解：</span><span>$\angle\beta=\angle\alpha+30^\circ$</span><i class="why">根据题意</i></div>
+        <div class="dl" data-step="3"><span>∵</span><span>$\angle\alpha$ 与 $\angle\beta$ 互为补角</span><i class="why">已知</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span>$\angle\alpha+\angle\beta=180^\circ$</span><i class="why">补角的定义</i></div>
+        <div class="dl key" data-step="4"><span>即</span><span>$\angle\alpha+(\angle\alpha+30^\circ)=180^\circ$</span><i class="why">代入，列方程</i></div>
+        <div class="dl end" data-step="5"><span>∴</span><span>$\angle\alpha=75^\circ$，$\angle\beta=75^\circ+30^\circ=105^\circ$</span><i class="why">解方程</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 1（p161）</b> 如果 $\angle1=\angle2$，$\angle2=\angle3$，那么 $\angle1$ <span class="blank" data-ans="=" data-w="1"></span> $\angle3$；如果 $\angle1\gt\angle2$，$\angle2\gt\angle3$，那么 $\angle1$ <span class="blank" data-ans="&gt;|>" data-w="1"></span> $\angle3$．</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 2（p161）</b> 如图，$\angle A+\angle B=90^\circ$，$\angle BCD+\angle B=90^\circ$．$\angle A$ 与 $\angle BCD$ 有怎样的大小关系？为什么？</p>
+        <div id="tri" class="tri"></div>
+        <details><summary>提示</summary>$\angle A$ 和 $\angle BCD$ 都是谁的余角？</details>
+        <details><summary>完整解答</summary>$\angle A=\angle BCD$。因为 $\angle A$ 与 $\angle BCD$ 都是 $\angle B$ 的余角，所以 $\angle A=\angle BCD$（同角的余角相等）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p160 例 1、p161 练一练 1、2。例 1 也可以设 ∠α = x° 列方程，与第 4 章联系。练一练 2 的图按 ∠ACB = 90°、CD ⊥ AB 精确绘制（三角形边长 3、4）；书写时括号里写“同角的余角相等”。</p>
+</section>
+
+<!-- 9 ================= 对顶角：小孔成像 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">读一读 · 概念</span><h2>小孔成像里的角：对顶角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="hole" class="hole"></div>
+      <p class="recall" data-label="读一读：小孔成像">墨子让一个人对着小孔站在屋外，屋内墙上出现了倒立人像：光沿直线传播，头部的光到了下边，足部的光到了上边。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">通过小孔 $O$ 的两条光线 $AA'$、$BB'$ 形成了 4 个角：$\angle AOB$、$\angle AOB'$、$\angle A'OB'$、$\angle A'OB$．</p>
+      <div class="def" data-step="2"><h4>对顶角（课本 p161）</h4>$OA'$ 是 $OA$ 的反向延长线，$OB'$ 是 $OB$ 的反向延长线，我们把 $\angle AOB$ 和 $\angle A'OB'$ 叫做<em>对顶角</em>（opposite angles）．$\angle AOB'$ 和 $\angle A'OB$ 也是对顶角．</div>
+      <p class="method" data-step="3" data-label="怎样认对顶角">① 有<b>公共顶点</b>；② 一个角的两边分别是另一个角两边的<b>反向延长线</b>——两条直线相交才有对顶角。</p>
+      <p class="tip" data-step="4">你能举出生活中的对顶角的实例吗？<span class="think" data-step="5" data-ask="举例">剪刀的两个刀刃与两个把手、交叉的两根木条、马路上斜交的两条斑马线……</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p161 读一读与对顶角的定义。左图是代码绘制的光路示意：A、O、A′ 在一条直线上，B、O、B′ 在一条直线上，所以 ∠AOB 与 ∠A′OB′ 是对顶角（标同色）。注意对顶角是“位置关系”，与余角、补角（数量关系）不同。</p>
+</section>
+
+<!-- 10 ================= 想一想 + 试一试（图 6-29、6-30） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 说理</span><h2>转动木条：对顶角有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cross" class="cross"></div>
+      <div class="readout four">
+        <span>$\angle1$</span><b class="v" id="c1"></b><span>$\angle2$</span><b class="v" id="c2"></b>
+        <span>$\angle3$</span><b class="v" id="c3"></b><span>$\angle4$</span><b class="v" id="c4"></b>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 6-29，将两根木条 $a$、$b$ 钉在一起，看成两条相交直线．如果 $\angle1=50^\circ$，那么 $\angle2$、$\angle3$、$\angle4$ 各等于多少度？<span class="think" data-step="1" data-ask="先算再拖">$\angle2=130^\circ$，$\angle3=50^\circ$，$\angle4=130^\circ$。</span></p>
+      <p class="tip" data-step="2">拖动木条 $b$ 改变 $\angle1$ 的大小，发现的结论仍成立吗？</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>因为</span><span>$\angle1$、$\angle3$ 都是 $\angle2$ 的补角</span><i class="why">$\angle1+\angle2=180^\circ$，$\angle3+\angle2=180^\circ$（平角）</i></div>
+        <div class="dl key" data-step="4"><span>所以</span><span>$\angle1=\angle3$</span><i class="why">同角的补角相等</i></div>
+        <div class="dl" data-step="5"><span>同样</span><span class="think" data-step="6" data-ask="仿照着说">$\angle2=\angle4$</span><i class="why">都是 $\angle1$ 的补角，同角的补角相等</i></div>
+      </div>
+      <div class="def thm" data-step="7"><h4>由此，我们得到（课本 p162）</h4>对顶角相等．</div>
+    </div>
+  </div>
+  <p class="note">课本 p162 想一想（图 6-29）与试一试（图 6-30）。拖木条 b 的橙色端点，四个读数实时变化（由坐标计算），学生会看到 ∠1 = ∠3、∠2 = ∠4 始终成立，相邻两角和始终是 180°。再按 → 写出说理过程：这里用到了刚学的“同角的补角相等”——新结论建立在旧结论上。</p>
+</section>
+
+<!-- 11 ================= 议一议 图 6-28 + 辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议 · 辨一辨</span><h2>三条直线交于一点，有几对对顶角？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="three" class="three"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="threeNext">下一对</button><button class="btn" type="button" id="threeClr">清除</button></div>
+      <p class="tip feedback" id="threeMsg">如图 6-28，直线 $AB$、$CD$、$EF$ 相交于点 $O$．先自己数，再点“下一对”验证．</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">一共有<span class="think" data-step="2" data-ask="几对？">6 对：每两条直线组成 2 对，三条直线有 $AB$ 与 $CD$、$AB$ 与 $EF$、$CD$ 与 $EF$ 三种组合，$3\times2=6$。</span></p>
+      <p class="tip" data-step="3"><b>辨一辨</b>：下面的说法对吗？</p>
+      <div class="jcard" data-step="3"><p>有公共顶点且相等的两个角是对顶角．</p><div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>如一个角的平分线分成的两个角，有公共顶点、相等，但边不是反向延长线。对顶角相等，相等的角不一定是对顶角。</p></div></div>
+      <div class="jcard" data-step="5"><p>两条直线相交，$\angle1$ 与 $\angle2$ 相邻，则 $\angle1+\angle2=180^\circ$．</p><div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict ok">✓</span>它们合起来是一个平角（第 10 页的读数也可以验证）。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p162 议一议（图 6-28）。“下一对”依次高亮 6 对对顶角，两个角分别用橙、蓝弧标出，读数（由坐标计算）相等。前 3 对是相邻射线组成的角，后 3 对是“跨过一条射线”的较大的角，学生最容易漏数后 3 对。辨析第 1 题是对顶角定义的逆命题，为八年级“命题”埋伏笔。</p>
+</section>
+
+<!-- 12 ================= 例 2（图 6-31） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>对顶角 + 余角：一步一步求</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 2（课本 p162）</b> 如图 6-31，直线 $AB$、$CD$ 相交于点 $O$，$\angle BOD$ 与 $\angle BOE$ 互为余角，$\angle AOC=72^\circ$．求 $\angle BOE$ 的度数．</p>
+      <div id="ex2" class="ex2"></div>
+    </div>
+    <div class="col">
+      <div class="method" data-step="1" data-label="思路分析">已知 $\angle AOC$，要求 $\angle BOE$：中间缺一座“桥”——<span class="think" data-step="2" data-ask="哪个角能连起它们？">$\angle BOD$：它与 $\angle AOC$ 是对顶角，又与 $\angle BOE$ 互余。</span></div>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解：∵</span><span>$\angle AOC$ 与 $\angle BOD$ 是对顶角</span><i class="why">看图：$OB$、$OD$ 是 $OA$、$OC$ 的反向延长线</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span>$\angle BOD=\angle AOC=72^\circ$</span><i class="why">对顶角相等</i></div>
+        <div class="dl" data-step="5"><span>又∵</span><span>$\angle BOD$ 与 $\angle BOE$ 互为余角</span><i class="why">已知</i></div>
+        <div class="dl" data-step="5"><span>∴</span><span>$\angle BOD+\angle BOE=90^\circ$</span><i class="why">余角的定义</i></div>
+        <div class="dl end" data-step="6"><span>∴</span><span>$\angle BOE=90^\circ-\angle BOD=90^\circ-72^\circ=18^\circ$</span><i class="why">等式的性质</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p162–163 例 2。图按题中数据精确绘制：∠AOC = ∠BOD = 72°，∠BOE = 18°，∠DOE = 90°。思路分析强调“找桥梁”：已知角 → 对顶角 → 余角。书写每步都要括号注明依据。</p>
+</section>
+
+<!-- 13 ================= 练习 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>练一练：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 1（p163）</b> 已知 $\angle\alpha=34^\circ30'$，求 $\angle\alpha$ 的余角和补角．</p>
+        <p class="q">余角 <span class="blank" data-ans="55°30′|55°30'|55.5" data-w="5"></span>　补角 <span class="blank" data-ans="145°30′|145°30'|145.5" data-w="6"></span></p>
+        <details><summary>提示</summary>$90^\circ=89^\circ60'$，$180^\circ=179^\circ60'$。</details>
+        <details><summary>完整解答</summary>余角 $=89^\circ60'-34^\circ30'=55^\circ30'$；补角 $=179^\circ60'-34^\circ30'=145^\circ30'$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 2（p163）</b> 如图，(1) 射线 $OA$ 表示什么方向？(2) 画 $OA$ 的反向延长线 $OA'$，并指出它表示的方向．</p>
+        <div id="dirB" class="minib"></div>
+        <details><summary>提示</summary>$OA'$ 与正南方向所成的角，和 $OA$ 与正北方向所成的角是对顶角。</details>
+        <details><summary>完整解答</summary>(1) 北偏东 $45^\circ$；(2) $OA'$ 表示南偏西 $45^\circ$（对顶角相等）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 3（p163）</b> 直线 $AB$、$CD$ 相交于点 $O$，$\angle AOC+\angle COE=90^\circ$．写出 $\angle COE$ 的余角、$\angle BOD$ 的补角．</p>
+        <div id="pr3" class="minib"></div>
+        <details><summary>提示 1</summary>$\angle AOC$ 是一个；和 $\angle AOC$ 相等的角也是（等角的余角相等）。</details>
+        <details><summary>完整解答</summary>$\angle COE$ 的余角：$\angle AOC$、$\angle BOD$（对顶角相等）；$\angle BOD$ 的补角：$\angle AOD$、$\angle BOC$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p163 练一练 2、3 与习题 1。习题 1 可填 55°30′ 或 55.5（补角同理）。练一练 2 的方向图就是“对顶角相等”的应用：反向延长线与原射线形成的方向角相等。</p>
+</section>
+
+<!-- 14 ================= 练习 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>习题：找关系，求角度</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 5（p164）</b> $\angle AOC=90^\circ$，$\angle BOC$ 与 $\angle COD$ 互为补角，$\angle COD=115^\circ$．求 $\angle AOB$．</p>
+        <div id="h5" class="minib"></div>
+        <p class="q">$\angle AOB=$ <span class="blank" data-ans="25"></span>°</p>
+        <details><summary>提示</summary>先求 $\angle BOC=180^\circ-115^\circ$，再用 $\angle AOB=\angle AOC-\angle BOC$。</details>
+        <details><summary>完整解答</summary>$\angle BOC=180^\circ-115^\circ=65^\circ$（补角的定义），$\angle AOB=90^\circ-65^\circ=25^\circ$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 8（p164）</b> 直线 $AB$、$CD$ 相交于点 $O$，$\angle AOC=70^\circ$，$\angle1=25^\circ$．求 $\angle2$．</p>
+        <div id="h8" class="minib"></div>
+        <p class="q">$\angle2=$ <span class="blank" data-ans="45"></span>°</p>
+        <details><summary>提示</summary>$\angle1+\angle2=\angle BOD$，而 $\angle BOD$ 与 $\angle AOC$ 是对顶角。</details>
+        <details><summary>完整解答</summary>$\angle BOD=\angle AOC=70^\circ$（对顶角相等），$\angle2=70^\circ-25^\circ=45^\circ$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 9（p164）</b> 直线 $AB$、$CD$ 相交于点 $O$，$OE$ 平分 $\angle BOD$，$\angle AOC=72^\circ$，$\angle DOF=90^\circ$．求 $\angle EOF$．</p>
+        <div id="h9" class="minib"></div>
+        <p class="q">$\angle EOF=$ <span class="blank" data-ans="54"></span>°</p>
+        <details><summary>提示</summary>$\angle BOD=72^\circ$（对顶角），$\angle DOE=\frac12\angle BOD$。</details>
+        <details><summary>完整解答</summary>$\angle BOD=\angle AOC=72^\circ$，$\angle DOE=36^\circ$（角平分线的定义），$\angle EOF=\angle DOF-\angle DOE=90^\circ-36^\circ=54^\circ$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p164 习题 5、8、9。三个图都按题中数据精确绘制（习题 9 中 OE 取水平方向）。先独立做，再逐级点开；每一步都要求说出依据：补角的定义、对顶角相等、角平分线的定义。</p>
+</section>
+
+<!-- 15 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">互余：和为 $90^\circ$；互补：和为 $180^\circ$（只看度数，不看位置）。</p>
+        <p class="def">同角（等角）的余角相等，同角（等角）的补角相等；对顶角相等。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="说理格式">因为……所以……，括号写依据：定义、已学的结论。</p>
+        <p class="method" data-label="求角">找“桥梁”角：对顶角、余角、补角、平分线；数量关系复杂时列方程。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="从数量到图形">先研究度数和（余、补），再用它说明图形中的位置关系（对顶角）。</p>
+        <p class="recall" data-label="方程思想">例 1：用一个角表示另一个角，列方程。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.4 平行——两条直线在同一平面内，除了相交，还可能怎样？</p>
+  </div>
+  <p class="note">请学生说出本课两条结论“是怎样一步步说出来的”：定义 → 同角的余角（补角）相等 → 对顶角相等。作业建议：习题 6.3 第 2、3、6、7 题（第 3 题画余角、补角，可用三角尺和直尺）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mangle.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
