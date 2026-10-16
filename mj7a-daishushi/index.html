@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>代数式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xingli.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第3章 代数式 · 3.2</p>
+    <h1 class="cover-title">代数式</h1>
+    <p class="cover-q" data-step="1">乘飞机时，经济舱旅客可免费携带行李 20 kg，超重部分每千克按票价的 1.5% 付行李费。</p>
+    <p class="cover-q" data-step="2">票价不同、行李重量不同，行李费也不同。能不能<b>用一个式子</b>把所有情况都写出来？</p>
+    <div class="chips" data-step="3"><span class="chip">月历里的字母</span><span class="chip">代数式的书写</span><span class="chip">单项式 · 多项式</span><span class="chip">系数与次数</span></div>
+  </div>
+  <p class="note">课本 p69“议一议”情境。封面只抛问题，第 4 页再算。本课概念较多（代数式、单项式、多项式、整式），建议 2 课时：第 1 课时到第 7 页，第 2 课时从第 8 页起。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="3.1 · 字母表示数" data-step="1">
+        <p>用字母表示数，使数量关系更简明、更具有一般性（<a href="../mj7a-zimubiaoshishu/index.html">回看 3.1</a>）。</p>
+        <span class="use">本课给 $n-2$、$\dfrac st$、$0.8a$ 这些式子一个名字。</span>
+      </div>
+      <div class="recall" data-label="2.7 · 乘方" data-step="2">
+        <p>$a^2$ 中 2 是指数；$a=a^1$，指数 1 通常不写。</p>
+        <span class="use">数一数单项式里字母的指数，得到“次数”。</span>
+      </div>
+      <div class="recall" data-label="六年级 · 圆的面积" data-step="3">
+        <p>$S=\pi r^2$；圆环面积 = 外圆面积 − 内圆面积。</p>
+        <span class="use">例 2 的草皮面积；$\pi$ 是一个数，不是字母变量。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>含字母的式子怎样<b>规范地写</b>？它们可以怎样<b>分类</b>？</p>
+  </div>
+  <p class="note">第三张卡强调 π 是一个确定的数（约 3.14），后面判断系数、次数时会用到。</p>
+</section>
+
+<!-- 3 ================= 试一试：月历 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>月历方框里的 4 个数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="cal" id="cal" data-noswipe></div>
+      <p class="muted small-t">点月历上的日期，移动 2×2 方框（方框左上角落在你点的位置）。</p>
+    </div>
+    <div class="col">
+      <p class="tip">观察图 3-2 月历中各涂色方框里的 4 个数，它们之间有怎样的关系？</p>
+      <div class="btns" data-noswipe id="calPos"></div>
+      <div class="frame4" id="calFrame"></div>
+      <p class="tip feedback" id="calMsg"></p>
+      <p class="tip" data-step="1">为什么右边一格总比左边大 1、下面一格总比上面大 7？<span class="think" data-step="2" data-ask="想一想">同一行相邻两天差 1 天；同一列相邻两格正好隔一个星期，差 7 天。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p69 试一试与图 3-2、3-3。先按课本：用 a 表示方框里<b>右上角</b>的数，写出其他 3 个数（a − 1、a + 6、a + 7）；再换成用 a 表示另一个位置的数。每次移动方框，右边都用具体日期验证——不管方框放在哪里，式子都对，这就是“一般性”。</p>
+</section>
+
+<!-- 4 ================= 议一议：行李费 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>行李费：从具体的数到字母</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">(1) 从南京出发，携带行李 30 kg 乘飞机分别到达下列城市，应付行李费多少元？</p>
+      <table class="mtab" id="fareTab"></table>
+      <div class="slider-row" data-noswipe>行李：<input type="range" id="kg" min="20" max="40" step="1" value="30"><b class="v" id="kgV"></b></div>
+      <p class="tip formula" id="feeEq"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">算法是什么？<span class="think" data-step="2" data-ask="用文字说">行李费 = 超重的千克数 × 票价 × 1.5%。30 kg 超重 10 kg。</span></p>
+      <p class="tip" data-step="3">(2) 如果机票价格为 $m$ 元，携带行李 30 kg，应付行李费多少元？<span class="think" data-step="4" data-ask="写一写">$0.015m\times10=0.15m$（元）。</span></p>
+      <p class="tip" data-step="5">(3) 如果机票价格为 $m$ 元，携带行李 $n$ kg（$n\gt20$），应付行李费多少元？<span class="think" data-step="6" data-ask="写一写">$0.015m(n-20)$ 元。</span></p>
+      <p class="method" data-step="7" data-label="字母越多，式子越“一般”">(1) 只算一种情况；(2) 适用于所有票价；(3) 适用于所有票价、所有超重的行李——一个式子，说尽所有情况。</p>
+    </div>
+  </div>
+  <p class="note">课本 p69 议一议与票价表。先请学生用文字说出算法，再点表格里的城市、拖动行李重量，看具体数值是怎样代入 0.015m(n − 20) 算出来的。n &gt; 20 这个条件要强调：不超重时不付行李费。</p>
+</section>
+
+<!-- 5 ================= 代数式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>代数式</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>代数式（课本 p69–70）</h4>像 $a-1$、$a+6$、$a+7$、$40-m+n$、$0.015m(n-20)$、$\dfrac st$ 和 $2a^2$ 这样的式子都是<em>代数式</em>（algebraic expression）．<em>单独一个数或一个字母</em>也是代数式．代数式可以简明地描述许多实际问题中的数量关系．</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2">下面哪些是代数式？<br>① $3$　② $x$　③ $\dfrac{a+b}{2}$　④ $a+b=b+a$　⑤ $x\gt 1$　⑥ $2\pi r$</p>
+        <p class="tip" data-step="3"><span class="think" data-step="4" data-ask="先判断">①②③⑥ 是代数式；④ 是等式，⑤ 是不等式，它们含等号、不等号，都不是代数式。</span></p>
+      </div>
+      <div class="col">
+        <p class="method" data-step="5" data-label="怎样判断">代数式由数、字母用运算符号（加、减、乘、除、乘方）连接而成，<b>不含等号、不等号</b>。</p>
+        <p class="tip" data-step="6">$\pi$ 是字母吗？<span class="think" data-step="7" data-ask="想一想">$\pi$ 表示圆周率，是一个确定的<b>数</b>（约 3.14），不是代表任意数的字母。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p69–70 代数式的概念。“单独一个数或一个字母也是代数式”学生容易忽略，① ② 两项专门检验。等式、不等式不是代数式——课本没有专门说明，这里根据定义补充辨析。</p>
+</section>
+
+<!-- 6 ================= 书写规范 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">书写规范</span><h2>代数式怎样写才规范？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="def" data-step="1"><h4>课本 p70</h4>在代数式中，数字与字母、字母与字母相乘，乘号通常用“·”表示或<em>省略不写</em>，并且把<em>数字写在字母的前面</em>；除法运算通常写成<em>分数的形式</em>．</div>
+      <table class="mtab rules" data-step="2">
+        <tr><th>不规范</th><th>规范</th><th>依据</th></tr>
+        <tr><td>$a\times b$</td><td>$a\cdot b$ 或 $ab$</td><td>乘号省略</td></tr>
+        <tr><td>$a\times5$</td><td>$5a$</td><td>数字在前</td></tr>
+        <tr><td>$s\div t$</td><td>$\dfrac st$</td><td>除法写成分数</td></tr>
+        <tr><td>$0.015\times m\times(n-20)$</td><td>$0.015m(n-20)$</td><td>乘号省略</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <p class="tip">改成规范的写法：</p>
+      <div class="ex-list">
+        <p data-step="3">(1) $x\times y\times3=$ <span class="think" data-step="4" data-ask="改一改">$3xy$</span></p>
+        <p data-step="3">(2) $(a+b)\div2=$ <span class="think" data-step="4" data-ask="改一改">$\dfrac{a+b}{2}$</span></p>
+        <p data-step="3">(3) $m\times m\times 2=$ <span class="think" data-step="4" data-ask="改一改">$2m^2$</span></p>
+        <p data-step="3">(4) $4\times5=$ <span class="think" data-step="5" data-ask="可以写成 45 吗？">$4\times5$ 或 $4\cdot5$，<b>数字与数字相乘，乘号不能省略</b>，否则就成了 45。</span></p>
+      </div>
+      <p class="warn" data-step="6" data-label="和、差带单位要加括号">$(a-15)$ 元、$(a+b)$ 个；只写 $a-15$ 元，单位就只“跟着” 15 了。</p>
+    </div>
+  </div>
+  <p class="note">课本 p70 书写约定。表格最后一行就是行李费的式子。(4) 是易错点：只有数字与字母、字母与字母相乘时才省略乘号。和、差带单位加括号，3.1 的试一试里已经这样做了。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用代数式表示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在月历中任意圈出同列中相邻的三个数，设中间的一个数为 $a$，按从小到大的顺序用含 $a$ 的代数式表示这三个数：____．</p>
+        <details><summary>提示</summary>同一列上下相邻差几？可以回到第 3 页的月历看一看。</details>
+        <details><summary>完整解答</summary>$a-7$，$a$，$a+7$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用代数式表示图中阴影部分的面积．</p>
+        <svg viewBox="0 0 300 150" class="arc-fig" id="arcFig" aria-label="长 a 宽 b 的长方形中两个四分之一圆"></svg>
+        <details><summary>提示</summary>两个空白部分都是半径为 $b$ 的四分之一圆。</details>
+        <details><summary>完整解答</summary>$ab-2\times\dfrac14\pi b^2=ab-\dfrac12\pi b^2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 剪绳子：将一根绳子对折 1 次后从中间剪一刀，绳子变成____段；对折 2 次后从中间剪一刀，变成____段；对折 3 次，变成____段；对折 $n$ 次，变成____段．</p>
+        <details><summary>提示 1</summary>对折 $n$ 次，绳子叠成 $2^n$ 层，剪一刀剪出 $2^n$ 个切口。</details>
+        <details><summary>提示 2</summary>原来 1 段，每多一个切口就多 1 段。</details>
+        <details><summary>完整解答</summary>3 段、5 段、9 段；对折 $n$ 次变成 $(2^n+1)$ 段。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p70 练一练。第 2 题图按课本比例精确绘制：长方形长 a、宽 b，左下角、右上角为圆心各画四分之一圆（半径 b）。第 3 题最好让学生真拿一根绳子试 1、2 次，再找规律，用到了 2.7 的乘方。</p>
+</section>
+
+<!-- 8 ================= 例 1 · 单项式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 概念</span><h2>单项式：数与字母的积</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 1</b>　某地每天 8:00 到 21:00 为用电高峰段（简称“峰时”），峰时电价为 0.55 元/千瓦时；21:00 到次日 8:00 为用电低谷段（简称“谷时”），谷时电价为 0.35 元/千瓦时．某用户上月峰时用电 $a$ 千瓦时，谷时用电 $b$ 千瓦时，该用户上月的峰时电费、谷时电费和总电费分别为多少？</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>解：</span><span>峰时电费为 $0.55a$ 元；</span><i class="why">电费 = 电价 × 用电量</i></div>
+        <div class="dl" data-step="1"><span></span><span>谷时电费为 $0.35b$ 元；</span><i class="why"></i></div>
+        <div class="dl end" data-step="2"><span></span><span>总电费为 $(0.55a+0.35b)$ 元．</span><i class="why">和带单位，加括号</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="3"><h4>单项式（课本 p71）</h4>代数式 $0.55a$、$0.35b$、$0.15m$、$2a$、$2a^2$、$0.8a$ 和 $abc$ 等都是<em>数与字母的积</em>，像这样的代数式叫做<em>单项式</em>．单独一个数或一个字母也是单项式．</div>
+      <div class="def" data-step="4"><h4>系数与次数（课本 p71）</h4>单项式中的<em>数字因数</em>叫做单项式的<em>系数</em>．单项式中<em>所有字母的指数的和</em>叫做单项式的<em>次数</em>．</div>
+      <table class="mtab" data-step="5">
+        <tr><th>单项式</th><th>$\dfrac{s}{50}$</th><th>$abc$</th><th>$\dfrac12\pi r^2$</th></tr>
+        <tr><th>系数</th><td><span class="think" data-step="6" data-ask="?">$\dfrac1{50}$</span></td><td><span class="think" data-step="7" data-ask="?">1</span></td><td><span class="think" data-step="8" data-ask="?">$\dfrac12\pi$</span></td></tr>
+        <tr><th>次数</th><td><span class="think" data-step="6" data-ask="?">1</span></td><td><span class="think" data-step="7" data-ask="?">3</span></td><td><span class="think" data-step="8" data-ask="?">2</span></td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="note">课本 p70–71 例 1 与单项式、系数、次数的定义。表格三个例子都是课本原例，每一个都“藏”着一个易错点：s/50 = (1/50)s，系数是 1/50；abc 的系数 1 省略不写；π 是数，所以 ½πr² 的系数是 ½π，次数只数 r 的指数，是 2。</p>
+</section>
+
+<!-- 9 ================= 单项式练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>说出系数和次数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <table class="mtab coef">
+        <tr><th>单项式</th><th>系数</th><th>次数</th></tr>
+        <tr><td>$2a^2$</td><td><span class="blank" data-ans="2" data-w="3"></span></td><td><span class="blank" data-ans="2" data-w="2"></span></td></tr>
+        <tr><td>$0.8a$</td><td><span class="blank" data-ans="0.8" data-w="3"></span></td><td><span class="blank" data-ans="1" data-w="2"></span></td></tr>
+        <tr><td>$-ab$</td><td><span class="blank" data-ans="-1" data-w="3"></span></td><td><span class="blank" data-ans="2" data-w="2"></span></td></tr>
+        <tr><td>$-\dfrac{3x^2y}{5}$</td><td><span class="blank" data-ans="-3/5|-0.6" data-w="4"></span></td><td><span class="blank" data-ans="3" data-w="2"></span></td></tr>
+        <tr><td>$-5$</td><td><span class="blank" data-ans="-5" data-w="3"></span></td><td><span class="blank" data-ans="0" data-w="2"></span></td></tr>
+      </table>
+      <p class="muted small-t">填入后回车判对错；分数用“/”输入。</p>
+    </div>
+    <div class="col">
+      <p class="warn" data-step="1" data-label="易错 ①：系数 1 和 −1">$ab$ 的系数是 1，$-ab$ 的系数是 $-1$，“1”省略不写，但不是没有系数。</p>
+      <p class="warn" data-step="2" data-label="易错 ②：系数带着符号">$-\dfrac{3x^2y}{5}=-\dfrac35x^2y$，系数是 $-\dfrac35$，负号也是系数的一部分。</p>
+      <p class="warn" data-step="3" data-label="易错 ③：次数要把所有字母的指数加起来">$x^2y$ 的次数是 $2+1=3$（$y$ 的指数 1 省略了）。</p>
+      <p class="tip" data-step="4">单独一个数 $-5$ 的次数呢？<span class="think" data-step="5" data-ask="想一想">它不含字母，次数是 0（也可以说它是常数）。</span></p>
+    </div>
+  </div>
+  <p class="note">左表中前三个来自课本 p71 的例子，后两个是补充练习。“−5 的次数为 0”课本未提，作为拓展可点到为止。</p>
+</section>
+
+<!-- 10 ================= 例 2 · 多项式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 概念</span><h2>多项式与整式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 220 300" class="lawn" id="lawnFig" aria-label="图 3-4 长方形和环形地块"></svg>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 2</b>　如图 3-4，要在长方形和环形地块中铺设草坪，长方形的长、宽分别为 $a$ m、$b$ m，环形的外圆、内圆的半径分别为 $R$ m、$r$ m，求共需草皮的面积．</p>
+      <p class="tip" data-step="1">解：长方形地块中需铺草皮<span class="think" data-step="2" data-ask="?">$ab$ m²</span>，环形地块中需铺草皮<span class="think" data-step="3" data-ask="?">$(\pi R^2-\pi r^2)$ m²</span>，共需草皮<span class="think" data-step="4" data-ask="?">$(ab+\pi R^2-\pi r^2)$ m²</span>．</p>
+      <div class="def" data-step="5"><h4>多项式（课本 p71）</h4>几个单项式的和叫做<em>多项式</em>．多项式中，每个单项式叫做多项式的<em>项</em>；多项式里含有几项，就把这个多项式叫做几项式，其中<em>次数最高的项的次数</em>叫做这个多项式的<em>次数</em>，不含字母的项叫做<em>常数项</em>．</div>
+      <p class="tip" data-step="6">$n-2$ 是<span class="think" data-step="7" data-ask="?">二项式，次数是 1，常数项是 $-2$</span>；$ab+\pi R^2-\pi r^2$ 是<span class="think" data-step="8" data-ask="?">三项式，次数是 2</span>．</p>
+      <div class="def" data-step="9">单项式和多项式统称<em>整式</em>（integral expression）．</div>
+    </div>
+  </div>
+  <p class="note">课本 p71 例 2 与图 3-4、多项式与整式的定义。“减号”也算在项里：n − 2 = n + (−2)，两项是 n 和 −2，常数项是 −2（带符号）。ab + πR² − πr² 三项的次数都是 2。</p>
+</section>
+
+<!-- 11 ================= 分类 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分一分</span><h2>单项式？多项式？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="sort-grid" id="sortGrid"></div>
+      <p class="muted small-t">每张卡片点一个答案；点对了会显示理由。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练一练（课本 p72）3.</b> 说出下列多项式的次数和各项的系数：</p>
+      <table class="mtab">
+        <tr><th>多项式</th><th>次数</th><th>各项的系数</th></tr>
+        <tr><td>$x-y$</td><td><span class="think" data-step="1" data-ask="?">1</span></td><td><span class="think" data-step="1" data-ask="?">$1,\ -1$</span></td></tr>
+        <tr><td>$-a^2b^3+a^3b^2$</td><td><span class="think" data-step="2" data-ask="?">5</span></td><td><span class="think" data-step="2" data-ask="?">$-1,\ 1$</span></td></tr>
+        <tr><td>$\dfrac x2-\dfrac y3$</td><td><span class="think" data-step="3" data-ask="?">1</span></td><td><span class="think" data-step="3" data-ask="?">$\dfrac12,\ -\dfrac13$</span></td></tr>
+        <tr><td>$3a^2+2b^3$</td><td><span class="think" data-step="4" data-ask="?">3</span></td><td><span class="think" data-step="4" data-ask="?">$3,\ 2$</span></td></tr>
+      </table>
+      <p class="method" data-step="5" data-label="多项式的次数">不是把各项的次数加起来，而是取<b>最高</b>的那一项：$-a^2b^3+a^3b^2$ 两项都是 5 次，多项式是 5 次。</p>
+    </div>
+  </div>
+  <p class="note">左边分类卡片是补充练习，$\dfrac st$ 是课本 p69 出现过的代数式，但分母里有字母，它既不是单项式也不是多项式（八年级会学“分式”）。右边是课本 p72 练一练第 3 题。</p>
+</section>
+
+<!-- 12 ================= 议一议 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>同一个代数式，不同的意义</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">填空：</p>
+      <p class="tip" data-step="1">(1) 苹果每千克 $a$ 元，橘子每千克 $b$ 元，买 5 千克苹果、6 千克橘子应付<span class="think" data-step="2" data-ask="?">$(5a+6b)$</span>元；</p>
+      <p class="tip" data-step="3">(2) 小明每步长 $a$ m，小亮每步长 $b$ m，小明、小亮从小桥的两端相向而行，小明走 5 步、小亮走 6 步两人相遇，小桥长<span class="think" data-step="4" data-ask="?">$(5a+6b)$</span>m；</p>
+      <p class="tip" data-step="5">(3) $a$ 个五边形、$b$ 个六边形共有<span class="think" data-step="6" data-ask="?">$(5a+6b)$</span>条边．</p>
+      <p class="tip gold" data-step="7">你有什么发现？<span class="think" data-step="8" data-ask="说一说">三个完全不同的问题，列出的代数式一样：<b>同一个代数式可以表示不同的实际意义</b>。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="9">代数式 $2(x+y)$ 可以表示不同的实际意义，试举例说明．<span class="think" data-step="10" data-ask="举个例子">长、宽分别为 $x$、$y$ 的长方形的周长；一支笔 $x$ 元、一本本子 $y$ 元，各买 2 件的总价……</span></p>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练（课本 p72）</b> 1. 若 $n$ 表示任意一个整数，试用含 $n$ 的代数式表示任意一个偶数、任意一个奇数．</p>
+        <details><summary>提示</summary>偶数都是 2 的倍数；奇数比偶数大 1。</details>
+        <details><summary>完整解答</summary>偶数 $2n$；奇数 $2n+1$（或 $2n-1$）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">2. (5) 一个两位数的个位数字是 $a$，十位数字是 $b$，这个两位数是____；(6) 某商场推出 7.5 折优惠，现售价为 $y$ 元的商品的原价是____元．</p>
+        <details><summary>提示</summary>(5) 如 35 = 3 × 10 + 5；(6) 原价 × 0.75 = 现价。</details>
+        <details><summary>完整解答</summary>(5) $10b+a$（不能写成 $ba$）；(6) $\dfrac{y}{0.75}$，即 $\dfrac{4y}{3}$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p72 议一议与练一练 1、2。三个问题答案相同是课本精心设计的，请学生先独立写，再比较。练一练 2(5) 的易错点：ba 表示 b × a，不是两位数。练一练 2 的 (1)～(4) 可作课后练习：(1) ½a + 5；(2) 100 − b；(3) 8m + 100n；(4) 3 + 4t。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">代数式 ⊃ 整式 = 单项式 + 多项式。</p>
+        <p class="def">单项式：系数（数字因数）、次数（字母指数和）；多项式：项、次数（最高项）、常数项。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="书写">省略乘号、数字在前、除法写成分数、和差带单位加括号。</p>
+        <p class="warn" data-label="易错">系数带符号、1 不写；π 是数；多项式次数取最高项。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="一般化">月历、行李费：一个式子概括所有情况。</p>
+        <p class="recall" data-label="分类">像有理数分类一样，代数式也可以分类。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>3.3 代数式的值——搭 20 条、100 条“小鱼”各要多少根火柴？把具体的数代入 $8+6(n-1)$ 就知道了。</p>
+  </div>
+  <p class="note">课后作业建议：习题 3.2 第 1、2、3、4 题。第 2 题（写出代数式表示的实际意义）是本课“议一议”的延伸。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

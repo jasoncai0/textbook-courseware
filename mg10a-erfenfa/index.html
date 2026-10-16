@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二分法与求方程近似解 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xianlu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第8章 函数应用 · 8.1</p>
+    <h1 class="cover-title">二分法与求方程近似解</h1>
+    <p class="cover-q" data-step="1">方程 $\lg x=3-x$ 的解是多少？移项、配方、开方……学过的办法都用不上。</p>
+    <p class="cover-q" data-step="2">求不出<b>精确解</b>，能不能求出一个足够好的<b>近似解</b>？——就像沿着一条长长的线路找故障：每次查中间一点，就能把范围缩小一半。</p>
+    <div class="chips" data-step="3"><span class="chip">函数的零点</span><span class="chip">零点存在定理</span><span class="chip">二分法</span><span class="chip">精确到 0.1</span></div>
+  </div>
+  <p class="note">课本 p215–216。8.1 的两个核心问题：函数与方程有什么关系？如何用函数的知识研究方程的解？“查线路”的比喻只在封面用一次，帮助理解“每次取中点、一分为二”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>用函数研究方程：手里已有哪些工具？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="3.3 从函数观点看一元二次方程" data-step="1">
+        <p>使 $y=ax^2+bx+c$ 的值为 0 的实数 $x$ 叫作二次函数的<b>零点</b>：它就是方程 $ax^2+bx+c=0$ 的实数解，也是图象与 $x$ 轴交点的横坐标。</p>
+        <span class="use">把“零点”推广到一般函数 $y=f(x)$。</span>
+      </div>
+      <div class="recall" data-label="第 6 章 · 指数、对数函数" data-step="2">
+        <p>$y=2^x$、$y=\lg x$ 的图象与单调性：$y=\lg x$ 在 $(0,+\infty)$ 上增。</p>
+        <span class="use">画 $y=\lg x$ 与 $y=3-x$ 的图象，估计交点在哪个区间（例 3）。</span>
+      </div>
+      <div class="recall" data-label="5.3 单调性 · 初中近似数" data-step="3">
+        <p>单调函数的图象穿过 $x$ 轴<b>至多一次</b>。</p>
+        <p>精确到 0.1：四舍五入到十分位，如 $2.375\approx 2.4$。</p>
+        <span class="use">说明区间内零点唯一；判断何时可以停止二分。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的路线：</b>方程的解 → 函数的零点 → 零点在哪个区间 → 把区间一次次“折半”。</p>
+  </div>
+  <p class="note">第 3 章 3.3 节学过“二次函数的零点”。请学生口答：y = x² − 2x − 1 的零点是多少？（1 ± √2，配方或求根公式）——这个方程能精确求解，正好拿来检验后面的近似方法。</p>
+</section>
+
+<!-- 3 ================= 函数的零点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">8.1.1</span><h2>函数的零点：方程的解在图象上是什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="zero" class="zero"></div>
+      <p class="muted center small-t">$f(x)=x^2-2x-1$：两个零点 $1\pm\sqrt2\approx -0.41,\ 2.41$</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>零点（课本 p215）</h4>一般地，我们把使函数 $y=f(x)$ 的值为 0 的实数 $x$ 称为函数 $y=f(x)$ 的<b>零点</b>（zero point）。</div>
+      <p class="tip" data-step="2">“零点”是一个点吗？<span class="think" data-step="3" data-ask="想一想">不是点，是一个<b>实数</b>——图象与 $x$ 轴交点的横坐标。</span></p>
+      <div class="eqv" data-step="4">
+        <span>方程 $f(x)=0$ 的实数解</span><b>⇔</b><span>函数 $y=f(x)$ 的零点</span><b>⇔</b><span>图象与 $x$ 轴交点的横坐标</span>
+      </div>
+      <p class="tip gold" data-step="5">所以，求方程的解 ⇔ 找函数的零点。<b>零点在哪儿？</b>——先看图象在哪里“穿过”$x$ 轴。</p>
+    </div>
+  </div>
+  <p class="note">课本 p215。强调“零点是数不是点”：说“零点是 2.41”，不说“零点是 (2.41, 0)”。三者等价是本节一切方法的出发点。</p>
+</section>
+
+<!-- 4 ================= 零点存在定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探究</span><h2>$f(x)=x^2-2x-1$ 在区间 $(2,3)$ 上有零点吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sign" class="sign"></div>
+      <p class="muted center small-t">拖动 $x$ 轴上的两个橙色点 $a$、$b$</p>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="signMsg"></p>
+      <p class="tip" data-step="1">不解方程，怎样判断？<span class="think" data-step="2" data-ask="算两个函数值">$f(2)=-1\lt 0$，$f(3)=2\gt 0$：图象从 $x$ 轴下方到了上方。</span></p>
+      <p class="tip" data-step="3">一定会穿过 $x$ 轴吗？需要什么前提？<span class="think" data-step="4" data-ask="想一想">图象在 $[2,3]$ 上是<b>不间断</b>的，就一定穿过 $x$ 轴。</span></p>
+      <div class="def" data-step="5"><h4>函数零点存在定理（课本 p215）</h4>若函数 $y=f(x)$ 在区间 $[a,b]$ 上的图象是一条<em>不间断的曲线</em>，且 <em>$f(a)f(b)\lt 0$</em>，则函数 $y=f(x)$ 在区间 $(a,b)$ 上<b>有零点</b>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p215 与图 8-1-1。先让学生拖 a、b，看“f(a)、f(b) 异号”时中间是否总有交点；把 a、b 都放在 1 + √2 右边（同号），再问“中间有没有零点”。定理的两个条件用橙色标出，下一页逐一拆开。</p>
+</section>
+
+<!-- 5 ================= 定理辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>定理的条件能去掉吗？结论能反过来吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>① 去掉“不间断”：$f(x)=\dfrac1x$，$f(-1)f(1)\lt 0$。</p>
+        <div id="d1" class="dmini"></div>
+        <div class="think" data-step="2" data-ask="(−1,1) 上有零点吗？"><p><span class="verdict x">没有</span>图象在 $x=0$ 处断开，“跳”过了 $x$ 轴。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>② 思考（课本 p216）：$x_0$ 是二次函数的零点，$m\lt x_0\lt n$，$f(m)f(n)\lt 0$ 一定成立吗？</p>
+        <div id="d2" class="dmini"></div>
+        <div class="think" data-step="4" data-ask="一定吗？"><p><span class="verdict x">不一定</span>$f(x)=x^2$，$x_0=0$，$f(-1)f(1)=1\gt 0$：图象“碰”了 $x$ 轴又回去。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>③ “有零点”是几个？$f(x)=x^3-x$，$f(-2)f(2)\lt 0$。</p>
+        <div id="d3" class="dmini"></div>
+        <div class="think" data-step="6" data-ask="(−2,2) 上有几个零点？"><p><span class="verdict ok">3 个</span>$-1,0,1$。定理只保证<b>至少一个</b>；函数单调时才唯一。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="读懂定理">不间断 + 两端异号 ⇒ 至少一个零点。反过来不成立：有零点，两端未必异号。</p>
+  </div>
+  <p class="note">②是课本 p216 的思考，①③为课堂补充辨析。三张卡分别对应定理的三个关键词：“不间断”“f(a)f(b) &lt; 0”是条件，且只是充分条件；“有零点”不等于“恰有一个零点”。</p>
+</section>
+
+<!-- 6 ================= 例 1 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>用定理证明零点存在：找两个“异号”的点</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip big"><b>例 1</b>　证明：函数 $f(x)=x^3+x^2+1$ 在区间 $(-2,-1)$ 上存在零点。</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>$f(-2)$</span><span>$=(-2)^3+(-2)^2+1=-3\lt 0$</span><i class="why"></i></div>
+          <div class="dl" data-step="2"><span>$f(-1)$</span><span>$=(-1)^3+(-1)^2+1=1\gt 0$</span><i class="why"></i></div>
+          <div class="dl end" data-step="3"><span>且</span><span>图象在 $[-2,-1]$ 上不间断</span><i class="why">所以 $f(x)$ 在 $(-2,-1)$ 上存在零点</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big"><b>例 2</b>　求证：函数 $f(x)=2^x+2x-3$ 有零点。</p>
+        <p class="tip" data-step="4">区间没给，去哪里找？<span class="think" data-step="5" data-ask="想一想">试几个好算的值：$x=0$，$x=1$。（也可画 $y=2^x$ 与 $y=3-2x$ 的图象估计）</span></p>
+        <div class="derive">
+          <div class="dl" data-step="6"><span>$f(0)$</span><span>$=2^0+2\times 0-3=-2\lt 0$</span><i class="why"></i></div>
+          <div class="dl" data-step="7"><span>$f(1)$</span><span>$=2^1+2\times 1-3=1\gt 0$</span><i class="why"></i></div>
+          <div class="dl end" data-step="8"><span>且</span><span>图象在 $[0,1]$ 上不间断</span><i class="why">所以 $f(x)$ 在 $(0,1)$ 上有零点，从而有零点</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="9" data-label="证明零点存在">① 选区间（试值或看图）；② 算两端函数值，说明异号；③ 说明图象不间断；④ 下结论。</p>
+  </div>
+  <p class="note">课本 p215–216 例 1、例 2。例 2 的旁注：可通过画 y = 2^x 和 y = 3 − 2x 的图象大致判断零点位置——方程 f(x) = 0 等价于两个函数图象的交点，例 3 会再用。</p>
+</section>
+
+<!-- 7 ================= 8.1.2 问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">8.1.2</span><h2>零点在 $(2,3)$ 里——能把它“关”进更小的区间吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="zoom" class="zoom"></div>
+      <p class="muted center small-t">$f(x)=x^2-2x-1$ 在 $[1.9,\ 3.1]$ 上的图象（放大）</p>
+    </div>
+    <div class="col">
+      <p class="tip">方程 $x^2-2x-1=0$ 在 $(2,3)$ 上有实数解；又因为 $f(x)$ 在 $(2,3)$ 上单调递增，所以这个解<b>唯一</b>，记为 $x_1$。</p>
+      <p class="tip" data-step="1">一个区间两个端点，取哪一点来“试”最公平？<span class="think" data-step="2" data-ask="想一想">取<b>中点</b> $\dfrac{2+3}{2}=2.5$，不管零点在哪一半，区间都缩小一半。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$f(2.5)$</span><span>$=\dfrac14\gt 0$</span><i class="why">与 $f(2)\lt 0$ 异号</i></div>
+        <div class="dl end" data-step="4"><span>所以</span><span class="think" data-step="5" data-ask="零点在哪一半？">$x_1\in(2,\ 2.5)$</span><i class="why">零点存在定理用在 $[2,2.5]$ 上</i></div>
+      </div>
+      <p class="tip gold" data-step="6">再取 $2$ 与 $2.5$ 的中点 $2.25$……一直做下去会怎样？——下一页亲手试。</p>
+    </div>
+  </div>
+  <p class="note">课本 p216–217 与图 8-1-2。关键问题是“为什么取中点”：取别的点，零点若落在较长的那一段就缩得慢；中点保证每次恰好缩小一半。</p>
+</section>
+
+<!-- 8 ================= 核心交互：二分法器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手做</span><h2>二分法：每按一次，区间缩小一半</h2></div>
+  <button class="media-btn" hidden data-img="assets/erfen.jpg" data-video="assets/erfen.mp4" data-cap="二分法求 x² − 2x − 1 = 0 在 (2, 3) 上的近似解（精确到 0.1）">▶ 看动画</button>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns" data-noswipe id="bsFn"></div>
+      <div class="btns" data-noswipe>精确到：<button class="btn" type="button" data-p="0.1">0.1</button><button class="btn" type="button" data-p="0.01">0.01</button></div>
+      <div id="bsPlot" class="bsplot"></div>
+      <div id="bsLine" class="bsline"></div>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="bsStep">取中点 $c=\frac{a+b}{2}$</button><button class="btn" type="button" id="bsReset">重来</button></div>
+      <div class="bstab" id="bsTab" data-noswipe></div>
+      <p class="tip feedback" id="bsMsg"></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动，四个方程依次是：引例 x² − 2x − 1 = 0、例 3、例 4、练习 1，区间与课本相同。每按一次，先让学生预测“f(c) 是正是负、零点去哪一半”，再看结果。表格写法与课本一致；当 a、b 精确到 0.1 的近似值相同时自动停止。换成“精确到 0.01”比较步数。</p>
+</section>
+
+<!-- 9 ================= 二分法 定义 + 流程 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>二分法：操作流程</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>二分法（课本 p217）</h4>像上面这种求方程近似解的方法称为<b>二分法</b>，它是求一元方程近似解的常用方法。<br>运用二分法的前提是要先判断某解所在的<em>区间</em>。</div>
+      <p class="tip" data-step="2">引例的结果：$f(2.375)\lt 0$，$f(2.437\,5)\gt 0\Rightarrow x_1\in(2.375,\ 2.437\,5)$。<span class="think" data-step="3" data-ask="为什么可以停了？">两个端点精确到 0.1 的近似值都是 2.4，所以 $x_1\approx 2.4$。</span></p>
+      <p class="tip" data-step="9">如果某一步恰好 $f(c)=0$，那么 $c$ 就是方程 $f(x)=0$ 的一个<b>精确解</b>。</p>
+    </div>
+    <div class="col">
+      <div class="flow">
+        <div data-step="4"><i>1</i>方程 $f(x)=0$ 的解</div><small data-step="4">转化为</small>
+        <div data-step="4"><i>2</i>函数 $f(x)$ 的零点</div><small data-step="5">$f(a)f(b)\lt 0$</small>
+        <div data-step="5"><i>3</i>确定零点 $x_0\in(a,b)$</div>
+        <div data-step="6" class="loop"><i>4</i>取 $a,b$ 的平均数 $c=\dfrac{a+b}{2}$</div><small data-step="6">$f(c)$ 的符号</small>
+        <div data-step="6" class="loop"><i>5</i>确定零点 $x_0\in(a_1,b_1)$</div><small data-step="7">连续重复步骤 4, 5</small>
+        <div data-step="7"><i>6</i>$a_n,b_n$ 的近似值都为 $m$</div><small data-step="8">$x_0\approx m$</small>
+        <div data-step="8"><i>7</i>方程的一个近似解为 $m$</div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p217、p219–220 的流程图与说明。请学生对照上一页刚做的操作，说出每一步对应哪一次点击。步骤 4、5 是循环体（橙色边框）。练习 3“用自己的语言叙述二分法的基本步骤”可在此口头完成。</p>
+</section>
+
+<!-- 10 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>利用计算器，求方程 $\lg x=3-x$ 的近似解（精确到 0.1）</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex3" class="ex3"></div>
+      <p class="muted center small-t">$y=\lg x$ 与 $y=3-x$ 的图象：交点横坐标就是方程的解</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1"><b>分析</b>　方程怎样转化为求零点？<span class="think" data-step="2" data-ask="想一想">求函数 $f(x)=\lg x+x-3$ 的零点。</span></p>
+      <p class="tip" data-step="3">解在哪个区间？<span class="think" data-step="4" data-ask="看图">由图象，方程有唯一解 $x_1$，且在 $(2,3)$ 内。</span></p>
+      <div class="derive tight">
+        <div class="dl" data-step="5"><span></span><span>$f(2)\lt 0,\ f(3)\gt 0\Rightarrow x_1\in(2,3)$</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span></span><span>$f(2.5)\lt 0,\ f(3)\gt 0\Rightarrow x_1\in(2.5,3)$</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span></span><span>$f(2.5)\lt 0,\ f(2.75)\gt 0\Rightarrow x_1\in(2.5,2.75)$</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span></span><span>$f(2.5)\lt 0,\ f(2.625)\gt 0\Rightarrow x_1\in(2.5,2.625)$</span><i class="why"></i></div>
+        <div class="dl" data-step="7"><span></span><span>$f(2.562\,5)\lt 0,\ f(2.625)\gt 0\Rightarrow x_1\in(2.562\,5,2.625)$</span><i class="why"></i></div>
+      </div>
+      <p class="tip gold" data-step="8">2.562 5 与 2.625 精确到 0.1 的近似值都为 2.6，所以原方程的近似解为 <span class="think" data-step="9" data-ask="结论">$x_1\approx 2.6$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p217–218 例 3、图 8-1-3。旁注：先利用函数图象估算出方程的解所在的区间。可回第 8 页选“lg x + x − 3”逐步验证这张表。</p>
+</section>
+
+<!-- 11 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>利用计算器，求方程 $\sin x=1-x$ 的近似解（精确到 0.1）</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex4" class="ex4"></div>
+      <p class="muted center small-t">$y=\sin x$（$x$ 用弧度）与 $y=1-x$ 的图象</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">转化：$\sin x=1-x\iff x+\sin x-1=0$，即求 $f(x)=x+\sin x-1$ 的零点。$f(0)=-1\lt 0$，$f(1)=\sin 1\gt 0$，所以零点 $x_0\in(0,1)$。</p>
+      <table class="mtab small">
+        <tr><th>取中点 $c$</th><th>$f(c)$</th><th>零点所在区间</th></tr>
+        <tr data-step="2"><td>$0.5$</td><td>$-0.020\,57\lt 0$</td><td>$(0.5,\ 1)$</td></tr>
+        <tr data-step="3"><td>$0.75$</td><td>$0.431\,64\gt 0$</td><td>$(0.5,\ 0.75)$</td></tr>
+        <tr data-step="4"><td>$0.625$</td><td>$0.210\,10\gt 0$</td><td>$(0.5,\ 0.625)$</td></tr>
+        <tr data-step="5"><td>$0.562\,5$</td><td>$0.095\,80\gt 0$</td><td>$(0.5,\ 0.562\,5)$</td></tr>
+        <tr data-step="6"><td>$0.531\,25$</td><td>$0.037\,86\gt 0$</td><td>$(0.5,\ 0.531\,25)$</td></tr>
+      </table>
+      <p class="tip" data-step="7">第一步就有 $f(0.5)\lt 0$——为什么还要继续算？<span class="think" data-step="8" data-ask="想一想">$(0.5,1)$ 的两端精确到 0.1 是 0.5 和 1.0，不同，还不能确定 $x_0$ 精确到 0.1 是几。</span></p>
+      <p class="tip gold" data-step="9">区间 $(0.5,\ 0.531\,25)$ 内的所有数精确到 0.1 都是 0.5，所以 <b>$x_0\approx 0.5$</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p218–219 例 4、图 8-1-4。表中数值照课本（如 f(0.5) = sin 0.5 − 0.5 = −0.020 57），也可在第 8 页验证。提醒：三角函数在第 7 章学习，这里只需会用计算器按弧度求 sin x 的值。</p>
+</section>
+
+<!-- 12 ================= 想一想：为什么能停、要几步 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想深一层</span><h2>为什么“两端近似值相同”就能停？要算几步？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1">引例最后 $x_1\in(2.375,\ 2.437\,5)$。精确到 0.1 是 2.4 的数，在什么范围？<span class="think" data-step="2" data-ask="想一想">$[2.35,\ 2.45)$。</span></p>
+        <div id="why" class="whyline" data-step="2"></div>
+        <p class="tip" data-step="3">$(2.375,\ 2.437\,5)\subseteq[2.35,\ 2.45)$，<span class="think" data-step="4" data-ask="所以？">区间里<b>每一个</b>数精确到 0.1 都是 2.4——不管 $x_1$ 是其中哪一个，$x_1\approx 2.4$。</span></p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="5">区间 $(2,3)$ 长度为 1，二分 $n$ 次后长度是多少？<span class="think" data-step="6" data-ask="算一算">$\dfrac{1}{2^n}$。</span></p>
+        <table class="mtab small" data-step="6"><tr><th>$n$</th><td>1</td><td>2</td><td>3</td><td>4</td><td>7</td><td>10</td></tr><tr><th>区间长度</th><td>0.5</td><td>0.25</td><td>0.125</td><td>0.0625</td><td>0.0078…</td><td>0.00098…</td></tr></table>
+        <p class="tip" data-step="7">每多做 3～4 次，精确度大约提高一位小数：<span class="think" data-step="8" data-ask="为什么？">$2^3=8$，$2^4=16$，而提高一位要缩小到原来的 $\dfrac1{10}$。</span></p>
+        <p class="method" data-step="9" data-label="二分法的特点">方法简单、步骤机械（适合计算机反复执行）；每次只需判断 $f(c)$ 的符号；但需要先找到一个“两端异号”的区间。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">本页是对课本“因为 2.375 与 2.437 5 精确到 0.1 的近似值都为 2.4，所以 x₁ ≈ 2.4”这句话的追问，不是新知识。“2ⁿ 增长很快”也为 8.2 节“指数爆炸”埋下伏笔。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 利用计算器，求方程 $x^3+3x-1=0$ 在区间 $(0,1)$ 上的近似解（精确到 0.1）。</p>
+        <details><summary>提示 1</summary>$f(0)=-1\lt 0$，$f(1)=3\gt 0$；取中点 0.5。</details>
+        <details><summary>提示 2</summary>$f(0.5)=0.625\gt 0$，$f(0.25)\approx -0.234\lt 0$，$f(0.375)\approx 0.178\gt 0$……</details>
+        <details><summary>完整解答</summary>$f(0.312\,5)\approx -0.032\lt 0$，$f(0.343\,75)\approx 0.072\gt 0$，$x\in(0.312\,5,\ 0.343\,75)$，两端精确到 0.1 都是 0.3，所以近似解为 $x\approx 0.3$。（第 8 页可验证）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用两种方法解方程 $2x^2=3x-1$。</p>
+        <details><summary>提示 1</summary>方法一：移项后因式分解 $2x^2-3x+1=0$。</details>
+        <details><summary>提示 2</summary>方法二：看作求 $f(x)=2x^2-3x+1$ 的零点（图象与 $x$ 轴的交点），或画 $y=2x^2$ 与 $y=3x-1$ 的图象找交点。</details>
+        <details><summary>完整解答</summary>$(2x-1)(x-1)=0$，得 $x_1=\frac12$，$x_2=1$。图象法：$f(0)=1\gt 0$，$f(0.75)=-0.125\lt 0$，$f(2)=3\gt 0$，两个零点分别在 $(0,0.75)$、$(0.75,2)$ 内，与 $\frac12$、$1$ 吻合。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 利用计算器，求方程 $x-\cos x=0$ 的近似解（精确到 0.1）。</p>
+        <details><summary>提示 1</summary>$f(x)=x-\cos x$：$f(0)=-1\lt 0$，$f(1)=1-\cos 1\gt 0$。</details>
+        <details><summary>提示 2</summary>$f(0.5)\lt 0$，$f(0.75)\gt 0$，$f(0.625)\lt 0$，$f(0.687\,5)\lt 0$……注意 0.75 精确到 0.1 是 0.8。</details>
+        <details><summary>完整解答</summary>继续二分：$f(0.718\,75)\lt 0$，$f(0.734\,375)\lt 0$，$f(0.742\,187\,5)\gt 0$，$x\in(0.734\,375,\ 0.742\,187\,5)$，两端都约为 0.7，所以 $x\approx 0.7$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p220 练习 1、4、6。第 3 题需要二分 7 次：0.75 四舍五入是 0.8，学生容易在 (0.6875, 0.75) 就停下，正好检验“两端近似值相同”的理解。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">零点：使 $f(x)=0$ 的实数 $x$；方程的解 ⇔ 零点 ⇔ 图象与 $x$ 轴交点的横坐标。</p>
+        <p class="recall" data-label="零点存在定理">$[a,b]$ 上不间断，$f(a)f(b)\lt 0$ ⇒ $(a,b)$ 上有零点（至少一个）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="二分法">定区间 → 取中点 → 看 $f(c)$ 符号 → 换区间 → 重复，直到两端近似值相同。</p>
+        <p class="method" data-label="估区间">试值，或画两个函数的图象看交点。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="函数与方程">用函数的图象与性质研究方程。</p>
+        <p class="recall" data-label="逼近">精确解求不出，就一步步逼近；算法思想。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>8.2 函数与数学模型——指数函数、对数函数、幂函数谁增长得快？怎样用函数解决实际问题？</p>
+  </div>
+  <p class="note">课后作业建议：习题 8.1 第 1、2、5、6 题；第 12 题（探究·拓展）是零点存在定理的一个漂亮应用，学有余力的同学可以尝试。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

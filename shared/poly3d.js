@@ -7,6 +7,7 @@
  *   const v = Poly3D.view(el, { w: 600, h: 440, scale: 70, yaw: -30, pitch: 22, center: [0, 0, 1] });
  *   v.add(() => [Poly3D.box([0,0,0], [2,1,1], { cls: 'm1' }), …]);   // 返回物体数组的函数，每次 update 重新求值
  *   物体种类：
+ *     （任何物体可加 color: '#rrggbb' 按朝向加明暗；再加 flat: true 则不加明暗，画“视图”时用白色）
  *     { type: 'mesh', V, F, smooth, sharp, cls }   封闭多面体，面朝外逆时针；背面剔除。smooth=true 时只描轮廓线和 sharp 棱
  *     { type: 'face', pts, cls, out, label, lines } 单张双面纸片（展开图用）；out 为“外侧”法向，label 只在外侧朝向观察者时显示
  *     { type: 'sphere', c, r, cls }  { type: 'dot', p, cls }  { type: 'text', p, text, cls, dx, dy }
@@ -104,7 +105,7 @@ const Poly3D = (() => {
     const ch = (v) => Math.round(Math.min(255, v * s));
     return `rgb(${ch((c >> 16) & 255)},${ch((c >> 8) & 255)},${ch(c & 255)})`;
   }
-  const paint = (el, obj, n) => { if (obj.color) { const c = shade(obj.color, n); el.style.fill = c; el.style.stroke = el.classList.contains('sm') ? c : ''; } return el; };
+  const paint = (el, obj, n) => { if (obj.color) { const c = obj.flat ? obj.color : shade(obj.color, n); el.style.fill = c; el.style.stroke = el.classList.contains('sm') ? c : ''; } return el; };
 
   function view(el, opt = {}) {
     const host = typeof el === 'string' ? document.querySelector(el) : el;
@@ -194,7 +195,7 @@ const Poly3D = (() => {
           },
         });
       } else if (obj.type === 'sphere') {
-        out.push({ depth: dot(obj.c, E), draw(g) { const [x, y] = proj(obj.c); mk('circle', { class: `pf sphere ${obj.cls || ''}`, cx: x, cy: y, r: obj.r * (val(opt.scale) || 60) }, g); } });
+        out.push({ depth: dot(obj.c, E), draw(g) { const [x, y] = proj(obj.c); const c = mk('circle', { class: `pf sphere ${obj.cls || ''}`, cx: x, cy: y, r: obj.r * (val(opt.scale) || 60) }, g); if (obj.color) c.style.fill = obj.color; } });
       } else if (obj.type === 'dot') {
         out.push({ depth: dot(obj.p, E) + 1e-3, draw(g) { const [x, y] = proj(obj.p); mk('circle', { class: `pd ${obj.cls || ''}`, cx: x, cy: y, r: (obj.r || 4) * k }, g); } });
       } else if (obj.type === 'text') {

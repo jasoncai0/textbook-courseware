@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>对数函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xibao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第6章 幂函数、指数函数和对数函数 · 6.3</p>
+    <h1 class="cover-title">对数函数</h1>
+    <p class="cover-q" data-step="1">某种细胞每次分裂，1 个变成 2 个。分裂 $x$ 次后，细胞个数 $y=2^x$。</p>
+    <p class="cover-q" data-step="2">反过来：显微镜下数出了 $y$ 个细胞，<b>分裂了几次</b>？$x$ 是 $y$ 的函数吗？</p>
+    <div class="chips" data-step="3"><span class="chip">对数函数的定义</span><span class="chip">沿 y = x 翻折</span><span class="chip">反函数</span><span class="chip">定义域、比较大小</span><span class="chip">图象变换</span></div>
+  </div>
+  <p class="note">课本 p143 引入。上一课是“已知分裂次数求个数”，这一课把问题倒过来。先让学生口答：数出 8 个细胞，分裂了几次？数出 1 024 个呢？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课讲到哪里？今天要用哪些旧知？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="6.2 指数函数（上一课）" data-step="1">
+        <p>$y=a^x\ (a\gt 0,a\ne 1)$：定义域 $\R$，值域 $(0,+\infty)$，过 $(0,1)$；$a\gt 1$ 增，$0\lt a\lt 1$ 减。</p>
+        <span class="use">对数函数的性质，全部由指数函数“对调”得到。</span>
+      </div>
+      <div class="recall" data-label="4.2 对数" data-step="2">
+        <p>$a^b=N\iff b=\log_aN$（$a\gt 0,a\ne 1,N\gt 0$）</p>
+        <p class="muted">$\log_a1=0$，$\log_aa=1$；$\lg N=\log_{10}N$，$\ln N=\log_eN$</p>
+        <span class="use">把 $y=2^x$ 改写成 $x=\log_2y$；负数和零没有对数 ⇒ 定义域。</span>
+      </div>
+      <div class="recall" data-label="初中 · 坐标与对称" data-step="3">
+        <p>点 $(m,n)$ 与 $(n,m)$ 关于直线 $y=x$ 对称。</p>
+        <p class="muted">5.1 函数：对 $A$ 中每一个 $x$，$B$ 中都有<b>唯一</b>的 $y$ 与之对应。</p>
+        <span class="use">说明 $y=2^x$ 与 $y=\log_2x$ 的图象关于 $y=x$ 对称；判断“反过来”是不是函数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章到此：</b>$a^b=N$ 中，6.1 让底数变，6.2 让指数变，今天让<b>真数</b>当自变量。</p>
+  </div>
+  <p class="note">上一课结尾已经预告：从 y = 2^x 得到 x = log₂y。请学生先复述对数的定义，再说“为什么负数和零没有对数”——答案正是“a^b 永远大于 0”，即指数函数的值域。</p>
+</section>
+
+<!-- 3 ================= 反过来问 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>知道细胞个数 $y$，怎样确定分裂次数 $x$？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>细胞个数 $y$</th><td>1</td><td>2</td><td>4</td><td>8</td><td>3</td></tr>
+        <tr><th>分裂次数 $x$</th><td><span class="think" data-step="1" data-ask="?">0</span></td><td><span class="think" data-step="1" data-ask="?">1</span></td><td><span class="think" data-step="1" data-ask="?">2</span></td><td><span class="think" data-step="1" data-ask="?">3</span></td><td><span class="think" data-step="2" data-ask="?">$\log_23$</span></td></tr>
+      </table>
+      <p class="tip" data-step="3">为了求 $y=2^x$ 中的 $x$，改写成对数式：<span class="think" data-step="4" data-ask="怎么改写？">$x=\log_2y$</span></p>
+      <p class="tip" data-step="5">这是函数吗？<span class="think" data-step="6" data-ask="对照函数定义">对每一个给定的 $y$ 值，都有<b>唯一</b>的 $x$ 值与之对应——$y$ 是自变量，$x$ 是 $y$ 的函数。</span></p>
+    </div>
+    <div class="col">
+      <div class="machine" data-step="3">
+        <div class="mc"><span>输入 $x$</span><b>$y=2^x$</b><span>输出 $y$</span></div>
+        <div class="mc rev"><span>输入 $y$</span><b>$x=\log_2y$</b><span>输出 $x$</span></div>
+      </div>
+      <p class="tip" data-step="7">放射性物质：$y=0.84^x$ ⇒ <span class="think" data-step="8" data-ask="改写">$x=\log_{0.84}y$</span></p>
+      <p class="tip gold" data-step="9">习惯上仍用 $x$ 表示自变量、$y$ 表示函数：写成 $y=\log_2x$，$y=\log_{0.84}x$。类似还有 $y=\log_3x$，$y=\log_{\frac12}x$ 等。</p>
+    </div>
+  </div>
+  <p class="note">课本 p143。表格最后一格是 3 个细胞：没有整数次分裂对应，但 2^x = 3 仍有唯一解 x = log₂3（实际意义上细胞数只取 2 的幂，这里只看数学对应）。“函数 2^y = x 即函数 y = log₂x”（课本旁注）。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>对数函数</h2></div>
+  <div class="bd full">
+    <p class="tip">函数 $y=\log_2x$，$y=\log_{0.84}x$，$y=\log_3x$，$y=\log_{\frac12}x$ 有什么共同特征？<span class="think" data-step="1" data-ask="说一说">表达式都是对数的形式，<b>底数是常数</b>，<b>真数是自变量</b>。</span></p>
+    <div class="def big-def" data-step="2"><h4>对数函数（课本 p143）</h4>函数 $$y=\log_ax\ (a\gt 0,\ a\ne 1)$$ 叫作<b>对数函数</b>（logarithmic function），它的定义域是 <em>$(0,+\infty)$</em>。</div>
+    <div class="cols2">
+      <p class="tip" data-step="3">为什么定义域是 $(0,+\infty)$？<span class="think" data-step="4" data-ask="想一想">$x=a^y\gt 0$：真数就是指数函数的函数值，负数和零没有对数。</span></p>
+      <p class="tip" data-step="5">为什么同样要求 $a\gt 0$，$a\ne 1$？<span class="think" data-step="6" data-ask="想一想">它由 $y=a^x$ 改写而来，底数的要求与指数函数相同。</span></p>
+    </div>
+    <p class="warn" data-step="7">$y=2\log_2x$、$y=\log_2(x+1)$、$y=\log_x2$ 都<b>不是</b>对数函数：系数为 1、真数就是 $x$、底数是常数，三者缺一不可。</p>
+  </div>
+  <p class="note">课本 p143 定义框。两个“为什么”都指向同一件事：对数函数是从指数函数“倒过来”得到的，所以它的条件都继承自指数函数。易错警示与 6.2 的警示对照着讲。</p>
+</section>
+
+<!-- 5 ================= 核心交互：沿 y = x 翻折 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>把 $y=a^x$ 的图象沿直线 $y=x$ 翻折</h2></div>
+  <button class="media-btn" hidden data-img="assets/fanzhe.jpg" data-video="assets/fanzhe.mp4" data-cap="y = 2ˣ 上的每一点 (m, n) 沿垂直于 y = x 的方向移到 (n, m)，翻折成 y = log₂x">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="fold" class="fold"></div>
+      <p class="muted center small-t">拖动蓝色曲线上的橙色点 $P$</p>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="foldBase"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="foldGo">▶ 沿 $y=x$ 翻折</button><button class="btn" type="button" id="foldBack">复原</button></div>
+      <p class="tip feedback" id="foldMsg"></p>
+      <p class="tip" data-step="1">$P(m,n)$ 在 $y=a^x$ 上，那么 $P'(n,m)$ 在哪条曲线上？<span class="think" data-step="2" data-ask="为什么？">$n=a^m\iff m=\log_an$，所以 $P'(n,m)$ 在 $y=\log_ax$ 上。</span></p>
+      <p class="tip" data-step="3">$P$ 与 $P'$ 是什么关系？<span class="think" data-step="4" data-ask="看图说">关于直线 $y=x$ 对称：$PP'$ 垂直于 $y=x$，中点 $M$ 在 $y=x$ 上。</span></p>
+      <p class="def" data-step="5"><span>函数 $y=a^x$ 与 $y=\log_ax$ 的图象<em>关于直线 $y=x$ 对称</em>（课本 p144，图 6-3-2）。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。先选 a = 2，拖 P 读出几组 P、P′ 的坐标（横纵坐标对调）；再点“翻折”：每一个点都沿垂直于 y = x 的方向走到对称位置，整条曲线变成 y = log₂x。换 a = 1/2 再做一次，得到课本图 6-3-2(2)。右上角“看动画”是 18 秒无声动画。</p>
+</section>
+
+<!-- 6 ================= 性质：对调 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>表 6-3-1　对数函数的性质：从指数函数“对调”而来</h2></div>
+  <div class="bd full">
+    <div class="cols2 figs">
+      <div><div id="lA" class="tfig"></div><p class="muted center small-t">$y=\log_ax\ (a\gt 1)$</p></div>
+      <div><div id="lB" class="tfig"></div><p class="muted center small-t">$y=\log_ax\ (0\lt a\lt 1)$</p></div>
+    </div>
+    <table class="mtab cmp">
+      <tr><th></th><th>指数函数 $y=a^x$</th><th></th><th>对数函数 $y=\log_ax$</th></tr>
+      <tr><th>定义域</th><td>$\R$</td><td class="sw">⇄</td><td><span class="think" data-step="1" data-ask="对调">$(0,+\infty)$</span></td></tr>
+      <tr><th>值域</th><td>$(0,+\infty)$</td><td class="sw">⇄</td><td><span class="think" data-step="2" data-ask="对调">$\R$</span></td></tr>
+      <tr><th>定点</th><td>$(0,1)$</td><td class="sw">⇄</td><td><span class="think" data-step="3" data-ask="对调">$(1,0)$</span></td></tr>
+      <tr><th>$a\gt 1$</th><td>增；$x\gt 0$ 时 $y\gt 1$</td><td class="sw">⇄</td><td><span class="think" data-step="4" data-ask="对调">在 $(0,+\infty)$ 上是<b>增</b>函数；$0\lt x\lt 1$ 时 $y\lt 0$，$x\gt 1$ 时 $y\gt 0$</span></td></tr>
+      <tr><th>$0\lt a\lt 1$</th><td>减；$x\gt 0$ 时 $0\lt y\lt 1$</td><td class="sw">⇄</td><td><span class="think" data-step="5" data-ask="对调">在 $(0,+\infty)$ 上是<b>减</b>函数；$0\lt x\lt 1$ 时 $y\gt 0$，$x\gt 1$ 时 $y\lt 0$</span></td></tr>
+    </table>
+  </div>
+  <p class="note">课本 p144 表 6-3-1 与思考“定义域、值域之间有怎样的关系”。不要让学生背表：每一行都先说指数函数的那一格，再“横纵对调”说出对数函数的那一格，最后对照图验证。</p>
+</section>
+
+<!-- 7 ================= 反函数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">链接</span><h2>反函数：把“输入”与“输出”对调</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="inv" class="inv"></div>
+      <p class="legend"><i class="k1"></i>$y=3x+6$　<i class="k2"></i>$y=\frac x3-2$　<i class="kd"></i>$y=x$</p>
+    </div>
+    <div class="col">
+      <p class="def" data-step="1"><span>当 $a\gt 0$，$a\ne 1$ 时，$y=\log_ax$ 称为 $y=a^x$ 的<em>反函数</em>；反之，$y=a^x$ 也称为 $y=\log_ax$ 的反函数。函数 $y=f(x)$ 的反函数记作 $y=f^{-1}(x)$。</span></p>
+      <p class="tip" data-step="2">例：求函数 $y=3x+6\ (x\in\R)$ 的反函数。</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解出 $x$</span><span class="think" data-step="4" data-ask="从 y = 3x + 6 解出 x">$x=\dfrac y3-2\ (y\in\R)$</span><i class="why">对每个 $y$，都有唯一的 $x$：它也是一个函数</i></div>
+        <div class="dl end" data-step="5"><span>改写</span><span>$y=\dfrac x3-2\ (x\in\R)$</span><i class="why">习惯上仍用 $x$ 表示自变量</i></div>
+      </div>
+      <p class="method" data-step="6" data-label="反函数">原函数的定义域 = 反函数的值域；原函数的值域 = 反函数的定义域；两者的图象关于直线 $y=x$ 对称。</p>
+    </div>
+  </div>
+  <p class="note">课本 p145 思考与 p148“链接”。本课只要求知道“互为反函数”这个说法和三条关系，不要求一般地求反函数。可作思考：y = 3x + 6 上的点 (−1, 3)，对称点 (3, −1) 在反函数图象上吗？</p>
+</section>
+
+<!-- 8 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>求定义域：真数必须大于 0</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip big">(1) $y=\log_{0.2}(4-x)$</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>当 $4-x\gt 0$</span><span>即 $x\lt 4$ 时</span><i class="why">$\log_{0.2}(4-x)$ 有意义</i></div>
+          <div class="dl" data-step="2"><span>当 $x\ge 4$ 时</span><span class="think" data-step="3" data-ask="有意义吗？">没有意义</span><i class="why">真数 $\le 0$</i></div>
+          <div class="dl end" data-step="4"><span>定义域</span><span>$(-\infty,4)$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(2) $y=\log_a\sqrt{x-1}\ (a\gt 0,a\ne 1)$</p>
+        <p class="tip" data-step="5">要满足几个条件？<span class="think" data-step="6" data-ask="想一想">$\sqrt{x-1}$ 本身有意义，并且 $\sqrt{x-1}\gt 0$——后者已包含前者。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>当 $\sqrt{x-1}\gt 0$</span><span>即 $x\gt 1$ 时</span><i class="why">有意义</i></div>
+          <div class="dl" data-step="8"><span>当 $x\le 1$ 时</span><span>没有意义</span><i class="why">$x=1$ 时真数为 0</i></div>
+          <div class="dl end" data-step="9"><span>定义域</span><span>$(1,+\infty)$</span><i class="why">注意：不是 $[1,+\infty)$</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="10" data-label="对数型函数的定义域">真数 $\gt 0$；若真数里还有根号、分母，各条件<b>同时</b>满足。底数是字母时，还要求底数 $\gt 0$ 且 $\ne 1$。</p>
+  </div>
+  <p class="note">课本 p145 例 1。(2) 题最容易错成 [1, +∞)：问学生“x = 1 时，log_a 0 有意义吗？”。</p>
+</section>
+
+<!-- 9 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>比较大小：和指数函数同一个思路</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col">
+        <p class="tip big">(1) $\log_23.4$，$\log_23.8$</p>
+        <div class="derive one">
+          <div class="dl" data-step="1"><span>考察</span><span>$y=\log_2x$，$2\gt 1$，在 $(0,+\infty)$ 上增</span><i class="why"></i></div>
+          <div class="dl end" data-step="2"><span>$3.4\lt 3.8$</span><span class="think" data-step="3" data-ask="结论">$\log_23.4\lt\log_23.8$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(2) $\log_{0.5}1.8$，$\log_{0.5}2.1$</p>
+        <div class="derive one">
+          <div class="dl" data-step="4"><span>考察</span><span>$y=\log_{0.5}x$，$0\lt 0.5\lt 1$，在 $(0,+\infty)$ 上减</span><i class="why"></i></div>
+          <div class="dl end" data-step="5"><span>$1.8\lt 2.1$</span><span class="think" data-step="6" data-ask="结论">$\log_{0.5}1.8\gt\log_{0.5}2.1$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(3) $\log_75$，$\log_67$</p>
+        <p class="tip" data-step="7">底数、真数都不同，找哪个中间量？<span class="think" data-step="8" data-ask="想一想">$1=\log_77=\log_66$</span></p>
+        <div class="derive one">
+          <div class="dl" data-step="9"><span>$0\lt 5\lt 7$</span><span>$\log_75\lt\log_77=1$</span><i class="why">$y=\log_7x$ 增</i></div>
+          <div class="dl" data-step="10"><span>同理</span><span>$\log_67\gt\log_66=1$</span><i class="why">$y=\log_6x$ 增</i></div>
+          <div class="dl end" data-step="11"><span>所以</span><span>$\log_75\lt\log_67$</span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="12" data-label="比较对数的大小">同底：构造对数函数，看 $a$ 与 1 定增减；异底：找中间量（$\log_aa=1$，$\log_a1=0$）。对照 6.2 例 1——“同底 + 单调性 + 中间量”的套路完全一样。</p>
+  </div>
+  <p class="note">课本 p145–146 例 2。请学生先说出 6.2 例 1 的方法，再迁移到对数。第 (3) 题的中间量要自己“造”：1 = log₇7 = log₆6。</p>
+</section>
+
+<!-- 10 ================= 例 3 平移 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>$y=\log_3(x+2)$ 与 $y=\log_3x$ 的图象有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sh3" class="sh3"></div>
+      <div class="btns center-b" data-noswipe><button class="btn" type="button" id="sh3Go">画出 $y=\log_3(x+2)$</button></div>
+    </div>
+    <div class="col">
+      <table class="mtab small">
+        <tr><th>$x$</th><th>$y=\log_3x$</th><th>$y=\log_3(x+2)$</th></tr>
+        <tr><td>$-1$</td><td>/</td><td>0</td></tr>
+        <tr><td>$-0.5$</td><td>/</td><td class="e1">$\log_31.5$</td></tr>
+        <tr><td>$0$</td><td>/</td><td>$\log_32$</td></tr>
+        <tr><td>$1$</td><td>0</td><td class="e0">1</td></tr>
+        <tr><td>$1.5$</td><td class="e1">$\log_31.5$</td><td>$\log_33.5$</td></tr>
+        <tr><td>$3$</td><td class="e0">1</td><td>$\log_35$</td></tr>
+      </table>
+      <p class="tip" data-step="1">“/”表示什么？<span class="think" data-step="2" data-ask="想一想">$x\le 0$ 不在 $y=\log_3x$ 的定义域内。$y=\log_3(x+2)$ 的定义域是 $(-2,+\infty)$。</span></p>
+      <p class="tip" data-step="3">$y=\log_3(x+2)$ 中 $x=a-2$ 的值，等于 $y=\log_3x$ 中 $x=a$ 的值，所以<span class="think" data-step="4" data-ask="怎样平移？">把 $y=\log_3x$ 的图象<b>向左</b>平移 2 个单位长度，就得到 $y=\log_3(x+2)$ 的图象。</span></p>
+      <p class="method" data-step="5" data-label="思考">$y=\log_a(x+b)$：由 $y=\log_ax$ 的图象 $b\gt 0$ 时向左、$b\lt 0$ 时向右平移 $|b|$ 个单位——和 6.2 例 3 一样“左加右减”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p146–147 例 3、表 6-3-2、图 6-3-3 与思考。表中同色的格子函数值相同。连同竖直虚线（渐近线）一起平移：x = 0 移到 x = −2，这正是新定义域的左端。</p>
+</section>
+
+<!-- 11 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>画出 $y=\log_2|x|$ 的图象，写出单调区间</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="absx" class="absx"></div>
+      <div class="btns center-b" data-noswipe><button class="btn" type="button" id="c2Go">作 $C_1$ 关于 $y$ 轴的对称图形 $C_2$</button></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">定义域是什么？<span class="think" data-step="2" data-ask="想一想">$|x|\gt 0$，即 $(-\infty,0)\cup(0,+\infty)$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$f(-x)$</span><span>$=\log_2|-x|=\log_2|x|=f(x)$</span><i class="why">偶函数，图象关于 $y$ 轴对称</i></div>
+        <div class="dl" data-step="4"><span>$x\gt 0$ 时</span><span>$\log_2|x|=\log_2x$</span><i class="why">先画 $y=\log_2x\ (x\gt 0)$ 的图象 $C_1$</i></div>
+        <div class="dl" data-step="5"><span>再作</span><span>$C_1$ 关于 $y$ 轴的对称图形 $C_2$</span><i class="why">$C_1$ 和 $C_2$ 构成 $y=\log_2|x|$ 的图象</i></div>
+      </div>
+      <p class="tip gold" data-step="6">单调区间：<span class="think" data-step="7" data-ask="看图写">减区间是 $(-\infty,0)$，增区间是 $(0,+\infty)$。</span></p>
+      <p class="warn" data-step="8">不能写成“在 $(-\infty,0)\cup(0,+\infty)$ 上……”：两段要分开写。</p>
+    </div>
+  </div>
+  <p class="note">课本 p147 例 4、图 6-3-4。思路是“先研究性质（奇偶性），再借助性质作图”：只要画一半，另一半对称得到。这是 5.4 奇偶性的一个应用。</p>
+</section>
+
+<!-- 12 ================= 底数藏在哪 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 运用</span><h2>看图判断底数的大小：底数藏在哪里？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="bases" class="bases"></div>
+      <div class="btns center-b" data-noswipe><button class="btn" type="button" id="y1Go">画出直线 $y=1$</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">习题 6.3 第 11 题：如图，函数 $y=\log_ax$，$y=\log_bx$，$y=\log_cx$，$y=\log_dx$ 的图象分别是 $C_1,C_2,C_3,C_4$。试判断 $0,1,a,b,c,d$ 的大小关系。</p>
+      <p class="tip" data-step="1">$\log_ax=1$ 时 $x$ 等于几？<span class="think" data-step="2" data-ask="想一想">$x=a$（因为 $\log_aa=1$）。</span></p>
+      <p class="tip" data-step="3">所以：曲线与直线 $y=1$ 交点的<b>横坐标就是底数</b>。<span class="think" data-step="4" data-ask="读出四个交点，排序">从左到右依次是 $C_2$，$C_1$，$C_4$，$C_3$ 的交点：$0\lt b\lt a\lt 1\lt d\lt c$。</span></p>
+      <p class="method" data-step="5" data-label="方法">作直线 $y=1$，交点横坐标从左到右，底数从小到大。（本图按 $a=\frac12,b=\frac13,c=3,d=2$ 精确绘制。）</p>
+    </div>
+  </div>
+  <p class="note">习题 6.3 第 11 题（思考·运用）。学生常凭“陡不陡”去猜，容易乱。引导：底数在哪个点“露脸”？——log_a a = 1。点按钮画出 y = 1，四个交点一目了然。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求函数 $y=\log_{0.5}(2x-3)$ 的定义域。</p>
+        <details><summary>提示 1</summary>真数必须大于 0。</details>
+        <details><summary>提示 2</summary>$2x-3\gt 0$。</details>
+        <details><summary>完整解答</summary>由 $2x-3\gt 0$ 得 $x\gt\frac32$，定义域为 $\left(\frac32,+\infty\right)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 比较 $\log_{\frac13}\pi$，$\log_{\frac13}\mathrm e$ 的大小。</p>
+        <details><summary>提示 1</summary>同底：考察 $y=\log_{\frac13}x$，它是增还是减？</details>
+        <details><summary>提示 2</summary>$\pi\approx 3.14$，$\mathrm e\approx 2.72$。</details>
+        <details><summary>完整解答</summary>$0\lt\frac13\lt 1$，$y=\log_{\frac13}x$ 在 $(0,+\infty)$ 上是减函数；$\pi\gt\mathrm e$，所以 $\log_{\frac13}\pi\lt\log_{\frac13}\mathrm e$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 解方程：$\log_2(3x)=\log_2(2x+1)$。</p>
+        <details><summary>提示 1</summary>$y=\log_2x$ 在 $(0,+\infty)$ 上单调，函数值相等 ⇒ 真数相等。</details>
+        <details><summary>提示 2</summary>$3x=2x+1$；别忘了检验真数 $\gt 0$。</details>
+        <details><summary>完整解答</summary>由 $3x=2x+1$ 得 $x=1$。检验：$3x=3\gt 0$，$2x+1=3\gt 0$，所以原方程的解是 $x=1$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p148 练习 2(2)、4(2)、5(1)。第 3 题“检验”是对数方程必做的一步，练习 5(2)(3) 就会出现需要舍根的情况，可布置课后尝试。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$y=\log_ax\ (a\gt 0,a\ne 1)$，定义域 $(0,+\infty)$，值域 $\R$，过 $(1,0)$。</p>
+        <p class="recall" data-label="与指数函数">互为反函数；图象关于 $y=x$ 对称；定义域与值域对调。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="定义域">真数 $\gt 0$；有根号、分母时取交集。</p>
+        <p class="method" data-label="比较 · 图象">同底看单调、异底找中间量；平移“左加右减”；底数看与 $y=1$ 的交点。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">对数问题 ⇄ 指数问题：性质“对调”得到。</p>
+        <p class="recall" data-label="数形结合 · 对称">翻折、平移、关于 $y$ 轴对称作图。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章回望：</b>$a^b=N$ 一个等式，长出了幂函数、指数函数、对数函数。课本 p150「问题与探究 · 钢琴与指数曲线」——琴键的频率为什么是一条指数曲线？</p>
+  </div>
+  <p class="note">课后作业建议：习题 6.3 第 1、2、3、6 题；第 15 题（探究题）把 a^b = c 中不同的量看作变量，可作为本章复习的总结。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

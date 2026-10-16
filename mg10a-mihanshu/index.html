@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>幂函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/qiche.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第6章 幂函数、指数函数和对数函数 · 6.1</p>
+    <h1 class="cover-title">幂函数</h1>
+    <p class="cover-q" data-step="1">等式 $2^3=8$ 里有三个数。把它抽象成 $a^b=N$：如果<b>只让两个数变</b>，会得到什么样的函数？</p>
+    <p class="cover-q" data-step="2">$x^3=y$，$2^x=y$，$2^y=x$——这三个关系，哪个数在变？本章从第一个开始。</p>
+    <div class="chips" data-step="3"><span class="chip">幂函数的定义</span><span class="chip">定义域与奇偶性</span><span class="chip">α 与图象</span><span class="chip">比较大小</span></div>
+  </div>
+  <p class="note">第 6 章引言（课本 p130）。请学生说出 $x^3=y$、$2^x=y$、$2^y=x$ 中“谁是自变量、谁是常数”。本课研究第一种：底数变、指数不变；下一课 6.2 研究第二种，6.3 研究第三种。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>研究一个新函数，要带上哪些工具？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="4.1 指数 · 分数指数幂" data-step="1">
+        <p>$a^{\frac mn}=\sqrt[n]{a^m}$，　$a^{-n}=\dfrac{1}{a^n}$</p>
+        <p class="muted">如 $x^{\frac12}=\sqrt x$，$x^{-2}=\dfrac1{x^2}$，$x^{\frac23}=\sqrt[3]{x^2}$</p>
+        <span class="use">把 $x^\alpha$ 改写成根式、分式，才看得出定义域（例 1）。</span>
+      </div>
+      <div class="recall" data-label="5.4 函数的奇偶性" data-step="2">
+        <p>定义域关于原点对称，且</p>
+        <p>$f(-x)=-f(x)$ ⇒ 奇函数；$f(-x)=f(x)$ ⇒ 偶函数。</p>
+        <span class="use">判断幂函数的奇偶性：先看定义域，再算 $f(-x)$。</span>
+      </div>
+      <div class="recall" data-label="5.3 函数的单调性" data-step="3">
+        <p>在区间上 $x_1\lt x_2\Rightarrow f(x_1)\lt f(x_2)$，就是增函数。</p>
+        <p class="muted">初中见过：$y=x$，$y=x^2$，$y=\dfrac1x$ 的图象。</p>
+        <span class="use">读图得单调性（思考）、用单调性比较大小（例 2）。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>研究路线</b>（和第 5 章一样）：定义 → 定义域 → 奇偶性 → 图象 → 单调性 → 应用。</p>
+  </div>
+  <p class="note">第 5 章学了“研究一个函数要研究什么”，本章三个函数都照这条路线走。第一张卡请学生现场改写：$x^{-3}$、$x^{\frac14}$ 各等于什么？</p>
+</section>
+
+<!-- 3 ================= 情境 + 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>三个问题，三个式子：共同特征是什么？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1"><p><b>(1)</b> 正方体的边长为 $x$，体积为 $y$，则</p><p class="center big">$y=x^3$</p></div>
+      <div class="jcard" data-step="2"><p><b>(2)</b> 某放射性物质每经过 1 年，剩余量是原来的 $x$ 倍。质量为 1 的这种物质 100 年后剩余</p><p class="center big">$C=x^{100}$</p></div>
+      <div class="jcard" data-step="3"><p><b>(3)</b> 某人驾车在 $t$ s 内行进了 1 km，平均速度</p><p class="center big">$v=t^{-1}$ km/s</p></div>
+    </div>
+    <p class="tip" data-step="4">底数是什么？指数是什么？　<span class="think" data-step="5" data-ask="先说再点开">底数是<b>自变量</b>（$x$、$x$、$t$），指数是<b>常数</b>（3、100、−1）。</span></p>
+    <div class="def big-def" data-step="6"><h4>幂函数（课本 p131）</h4>我们把形如 $$y=x^\alpha$$ 的函数称为<b>幂函数</b>（power function），其中 $x$ 是<em>自变量</em>，$\alpha$ 是<em>常数</em>。</div>
+  </div>
+  <p class="note">课本 p131 的三个问题。逐个出示后问“这三个式子长得像什么”。定义里只有两句话，抓住“底数是变量、指数是常数”，下一页立刻辨析。</p>
+</section>
+
+<!-- 4 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>下面哪些是幂函数？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1"><p>① $y=x^{-\frac12}$</p><div class="think" data-step="2" data-ask="是不是？"><p><span class="verdict ok">是</span>形如 $x^\alpha$，$\alpha=-\frac12$。</p></div></div>
+      <div class="jcard" data-step="1"><p>② $y=2x^2$</p><div class="think" data-step="3" data-ask="是不是？"><p><span class="verdict x">不是</span>$x^\alpha$ 前面<b>系数必须是 1</b>。</p></div></div>
+      <div class="jcard" data-step="1"><p>③ $y=2^x$</p><div class="think" data-step="4" data-ask="是不是？"><p><span class="verdict x">不是</span>变量在<b>指数</b>上——这是下一课的指数函数。</p></div></div>
+      <div class="jcard" data-step="1"><p>④ $y=x^2+1$</p><div class="think" data-step="5" data-ask="是不是？"><p><span class="verdict x">不是</span>多了一项“+1”，不是单独的 $x^\alpha$。</p></div></div>
+      <div class="jcard" data-step="1"><p>⑤ $y=(x+1)^3$</p><div class="think" data-step="6" data-ask="是不是？"><p><span class="verdict x">不是</span>底数是 $x+1$，不是自变量 $x$ 本身。</p></div></div>
+      <div class="jcard" data-step="1"><p>⑥ $y=\dfrac{1}{x^3}$</p><div class="think" data-step="7" data-ask="是不是？"><p><span class="verdict ok">是</span>$\dfrac1{x^3}=x^{-3}$，改写后就是幂函数。</p></div></div>
+    </div>
+    <p class="method" data-step="8" data-label="判断幂函数">三看：系数是 1；底数就是 $x$；指数是常数。能改写成 $x^\alpha$ 的（如 $\dfrac1{x^3}$、$\sqrt x$）也是。</p>
+  </div>
+  <p class="note">课堂辨析（不是课本题）。先让学生在本子上写“是/不是”，再逐个揭示。③ 特意放进来，和下一课形成对照：“$x^2$ 与 $2^x$，变量站的位置不同”。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>写出定义域，并指出奇偶性</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col">
+        <p class="tip big">(1) $y=x^3$</p>
+        <div class="derive one">
+          <div class="dl" data-step="1"><span>定义域</span><span>$\R$</span><i class="why">任何实数都能立方</i></div>
+          <div class="dl" data-step="2"><span>$(-x)^3$</span><span class="think" data-step="3" data-ask="等于什么？">$=(-1)^3x^3=-x^3$</span><i class="why"></i></div>
+          <div class="dl end" data-step="3"><span>结论</span><span><b>奇函数</b></span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(2) $y=x^{\frac12}$</p>
+        <div class="derive one">
+          <div class="dl" data-step="4"><span>改写</span><span>$y=\sqrt x$</span><i class="why">分数指数幂</i></div>
+          <div class="dl" data-step="5"><span>定义域</span><span class="think" data-step="6" data-ask="是什么？">$[0,+\infty)$</span><i class="why"></i></div>
+          <div class="dl end" data-step="7"><span>结论</span><span class="think" data-step="7" data-ask="奇？偶？">$x\in(0,+\infty)$ 时 $-x\notin[0,+\infty)$：定义域不关于原点对称，<b>既不是奇函数，也不是偶函数</b></span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(3) $y=x^{-2}$</p>
+        <div class="derive one">
+          <div class="dl" data-step="8"><span>改写</span><span>$y=\dfrac1{x^2}$</span><i class="why">负整数指数幂</i></div>
+          <div class="dl" data-step="9"><span>定义域</span><span>$(-\infty,0)\cup(0,+\infty)$</span><i class="why">分母 $\ne 0$</i></div>
+          <div class="dl" data-step="10"><span>$(-x)^{-2}$</span><span class="think" data-step="11" data-ask="等于什么？">$=(-1)^{-2}x^{-2}=x^{-2}$</span><i class="why"></i></div>
+          <div class="dl end" data-step="11"><span>结论</span><span><b>偶函数</b></span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="12" data-label="先改写，再判断">分数指数 → 根式（偶次根号下 $\ge 0$）；负指数 → 分式（分母 $\ne 0$）。奇偶性先看定义域是否关于原点对称。</p>
+  </div>
+  <p class="note">课本 p131 例 1。第 (2) 题是学生最容易出错的：有人会算 $(-x)^{\frac12}$。提醒：定义域不对称，根本不用算。</p>
+</section>
+
+<!-- 6 ================= 核心交互：α 实验室 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>改变指数 $\alpha$，图象怎样变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="lab" class="lab"></div>
+      <p class="muted center small-t">拖动 $x$ 轴上的橙色点改变 $x$：黑点 $P(x,f(x))$，空心点 $Q(-x,f(-x))$</p>
+    </div>
+    <div class="col">
+      <div class="slider-row big" data-noswipe>$\alpha=$ <input type="range" id="alpha" min="0" max="11" step="1" value="10"> <b id="alphaV" class="v"></b></div>
+      <div class="btns" data-noswipe id="alphaBtns"></div>
+      <table class="mtab props">
+        <tr><th>函数</th><td id="pF"></td></tr>
+        <tr><th>定义域</th><td id="pD"></td></tr>
+        <tr><th>奇偶性</th><td id="pP"></td></tr>
+        <tr><th>在 $(0,+\infty)$ 上</th><td id="pM"></td></tr>
+        <tr><th>过定点</th><td id="pT"></td></tr>
+      </table>
+      <p class="tip feedback" id="pQ"></p>
+      <p class="tip gold" data-step="1">拖滑块时盯住两个点：<span class="think" data-step="2" data-ask="哪个点始终在曲线上？">$(1,1)$ 永远在；$\alpha\gt 0$ 时 $(0,0)$ 也在。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动，相当于课本 p133 用 GGB 拖动滑动条 α（图 6-1-3）。建议顺序：先点 α = 3、2，拖 P 看 Q 的位置（奇函数 Q 在 P 的中心对称处，偶函数在轴对称处）；再点 1/2，P 拖到负半轴就没有了——定义域不对称；最后把 α 从正拖到负，看第一象限从“上升”变“下降”。表格由程序按 α = p/q 计算，可与例 1 对照。</p>
+</section>
+
+<!-- 7 ================= α > 0 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>$\alpha\gt 0$：$y=x^2$，$y=x^3$，$y=x^{\frac12}$ 的共同特性</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="pos" class="pair"></div>
+      <p class="legend"><i class="k1"></i>$y=x^2$　<i class="k2"></i>$y=x^3$　<i class="k3"></i>$y=x^{\frac12}$</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">三条曲线都经过哪两个点？　<span class="think" data-step="2" data-ask="看图说">$(0,0)$ 和 $(1,1)$。</span></p>
+      <p class="tip" data-step="3">为什么一定过这两点？　<span class="think" data-step="4" data-ask="想一想">$1^\alpha=1$ 对任何 $\alpha$ 都成立；$\alpha\gt 0$ 时 $0^\alpha=0$。</span></p>
+      <p class="tip" data-step="5">在第一象限，图象怎样变化？　<span class="think" data-step="6" data-ask="看图说">随 $x$ 的增大而<b>上升</b>：在 $[0,+\infty)$ 上是增函数。</span></p>
+      <div class="def" data-step="7"><h4>课本 p132</h4>观察图象：(1) 函数的图象都过点 $(0,0)$ 和 $(1,1)$；(2) 在第一象限内，图象随 $x$ 的增大而上升，函数在区间 $[0,+\infty)$ 上是增函数。<br>一般地，对于函数 $y=x^\alpha$，当 <em>$\alpha\gt 0$</em> 时，也具有上述两条性质。</div>
+    </div>
+  </div>
+  <p class="note">课本 p132 思考与图 6-1-1。第 3 步“为什么一定过这两点”是从“看出来”到“说出理由”的台阶。可以回到上一页拖 α 验证“一般地”这句话。</p>
+</section>
+
+<!-- 8 ================= α < 0 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">对比</span><h2>$\alpha\lt 0$：$y=x^{-1}$，$y=x^{-3}$，$y=x^{-\frac12}$ 呢？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="neg" class="pair"></div>
+      <p class="legend"><i class="k1"></i>$y=x^{-1}$　<i class="k2"></i>$y=x^{-3}$　<i class="k3"></i>$y=x^{-\frac12}$</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">还过 $(0,0)$ 吗？　<span class="think" data-step="2" data-ask="想一想">不过：$0^{-1}=\dfrac10$ 没有意义。只过 $(1,1)$。</span></p>
+      <p class="tip" data-step="3">第一象限内的变化趋势？　<span class="think" data-step="4" data-ask="看图说">随 $x$ 增大而<b>下降</b>，越来越贴近 $x$ 轴；$x$ 越接近 0，函数值越大。</span></p>
+      <div class="def" data-step="5"><h4>课本 p133</h4>(1) 函数的图象都过点 $(1,1)$；(2) 在第一象限内，图象随 $x$ 的增大而下降，函数在区间 $(0,+\infty)$ 上是减函数。<br>一般地，对于函数 $y=x^\alpha$，当 <em>$\alpha\lt 0$</em> 时，也具有上述两条性质。</div>
+      <table class="mtab small" data-step="6"><tr><th></th><th>$\alpha\gt 0$</th><th>$\alpha\lt 0$</th></tr><tr><th>定点</th><td>$(0,0)$，$(1,1)$</td><td>$(1,1)$</td></tr><tr><th>第一象限</th><td>增</td><td>减</td></tr></table>
+    </div>
+  </div>
+  <p class="note">课本 p133 图 6-1-2。对比表让学生自己填。课本旁注问：“能否利用函数单调性定义给出严格证明？”——看图得到的只是猜想，下一页就用定义证明一个。</p>
+</section>
+
+<!-- 9 ================= 严格证明 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">严格证明</span><h2>看图得到的“上升”，怎样用定义证明？</h2></div>
+  <div class="bd full">
+    <p class="tip">证明：幂函数 $y=\sqrt x$ 在区间 $[0,+\infty)$ 上是增函数。<span class="muted">（习题 6.1 第 5 题）</span></p>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>任取</span><span>$x_1,x_2\in[0,+\infty)$，且 $x_1\lt x_2$</span><i class="why">单调性定义的第一步：任取、定序</i></div>
+      <div class="dl" data-step="2"><span>作差</span><span>$f(x_1)-f(x_2)=\sqrt{x_1}-\sqrt{x_2}$</span><i class="why">比较大小看差的正负</i></div>
+      <div class="dl key" data-step="3"><span></span><span class="think" data-step="4" data-ask="两个根号相减，看不出正负，怎么变形？">$=\dfrac{(\sqrt{x_1}-\sqrt{x_2})(\sqrt{x_1}+\sqrt{x_2})}{\sqrt{x_1}+\sqrt{x_2}}=\dfrac{x_1-x_2}{\sqrt{x_1}+\sqrt{x_2}}$</span><i class="why">分子有理化：乘以“和”再除以“和”（$x_1,x_2$ 不同时为 0，分母 $\gt 0$）</i></div>
+      <div class="dl" data-step="5"><span>定号</span><span>$x_1-x_2\lt 0$，$\sqrt{x_1}+\sqrt{x_2}\gt 0$</span><i class="why">分子负、分母正</i></div>
+      <div class="dl end" data-step="6"><span>所以</span><span>$f(x_1)-f(x_2)\lt 0$，即 $f(x_1)\lt f(x_2)$</span><i class="why">$y=\sqrt x$ 在 $[0,+\infty)$ 上是增函数</i></div>
+    </div>
+    <p class="method" data-step="7" data-label="定义法四步">任取 $x_1\lt x_2$ → 作差 → 变形（因式分解、通分、<b>有理化</b>）→ 定号下结论。图象只能“看出”，证明才能“确定”。</p>
+  </div>
+  <p class="note">习题 6.1 第 5 题，回应 p133 旁注。关键在第 3 步：学生熟悉“平方差”，引导他们想到“缺一个和，就乘一个和”。可布置：仿此证明 $y=x^{-1}$ 在 $(0,+\infty)$ 上是减函数。</p>
+</section>
+
+<!-- 10 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>比较大小：找一个“合适的幂函数”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">(1) $1.1^3$，$0.89^3$；　(2) $2.1^{\frac12}$，$2^{\frac12}$，$1.8^{\frac12}$</p>
+      <p class="tip" data-step="1">两题有什么共同点？　<span class="think" data-step="2" data-ask="想一想">指数相同、底数不同——看成同一个幂函数的两个函数值。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>(1)</span><span>$y=x^3$ 在 $[0,+\infty)$ 上增</span><i class="why">$1.1\gt 0.89$ ⇒ $1.1^3\gt 0.89^3$</i></div>
+        <div class="dl" data-step="4"><span>(2)</span><span>$y=x^{\frac12}$ 在 $[0,+\infty)$ 上增</span><i class="why">$2.1\gt 2\gt 1.8$ ⇒ $2.1^{\frac12}\gt 2^{\frac12}\gt 1.8^{\frac12}$</i></div>
+      </div>
+      <p class="method" data-step="10" data-label="比较幂的大小">同指数：构造幂函数 $y=x^\alpha$，用单调性；指数不同：找中间量（常用 1）。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5">(3) $\left(\frac12\right)^{1.3}$，$1$，$3^{\frac13}$ ——指数不同，怎么办？<br><span class="think" data-step="6" data-ask="想一想">把 1 写成 $1^{1.3}$ 和 $1^{\frac13}$，<b>分别</b>和 1 比。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span></span><span>$\left(\frac12\right)^{1.3}\lt 1^{1.3}=1$</span><i class="why">$y=x^{1.3}$ 增，$\frac12\lt 1$</i></div>
+        <div class="dl" data-step="8"><span></span><span>$3^{\frac13}\gt 1^{\frac13}=1$</span><i class="why">$y=x^{\frac13}$ 增，$3\gt 1$</i></div>
+        <div class="dl end" data-step="9"><span>于是</span><span>$\left(\frac12\right)^{1.3}\lt 1\lt 3^{\frac13}$</span><i class="why">1 是“中间量”</i></div>
+      </div>
+      <div id="ex2" class="ex2" data-step="7"></div>
+      <p class="muted center small-t" data-step="7">蓝：$y=x^{1.3}$　橙：$y=x^{\frac13}$　虚线：$y=1$</p>
+    </div>
+  </div>
+  <p class="note">课本 p132 例 2。图中两个点分别是 $(\frac12,(\frac12)^{1.3})$ 与 $(3,3^{\frac13})$，一个在 $y=1$ 下方、一个在上方，“中间量”一目了然。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 写出 $y=x^{\frac23}$ 的定义域，并指出它的奇偶性。</p>
+        <details><summary>提示 1</summary>改写：$x^{\frac23}=\sqrt[3]{x^2}$，奇次根号对被开方数有限制吗？</details>
+        <details><summary>提示 2</summary>定义域关于原点对称；算 $\sqrt[3]{(-x)^2}$。</details>
+        <details><summary>完整解答</summary>定义域为 $\R$。$f(-x)=\sqrt[3]{(-x)^2}=\sqrt[3]{x^2}=f(x)$，所以是<b>偶函数</b>。可回第 6 页取 $\alpha=\frac23$ 验证。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知幂函数 $y=x^\alpha$ 的图象过点 $(2,\sqrt2)$，求这个函数的解析式。</p>
+        <details><summary>提示 1</summary>把点代入：$2^\alpha=\sqrt2$。</details>
+        <details><summary>提示 2</summary>$\sqrt2$ 写成 2 的几次幂？</details>
+        <details><summary>完整解答</summary>$2^\alpha=\sqrt2=2^{\frac12}$，所以 $\alpha=\frac12$，解析式为 $y=x^{\frac12}$（即 $y=\sqrt x$）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 比较 $1.2^{-\frac12}$，$1.3^{-\frac12}$ 的大小。</p>
+        <details><summary>提示 1</summary>指数相同，构造哪个幂函数？</details>
+        <details><summary>提示 2</summary>$y=x^{-\frac12}$，$\alpha\lt 0$，在 $(0,+\infty)$ 上增还是减？</details>
+        <details><summary>完整解答</summary>$y=x^{-\frac12}$ 在 $(0,+\infty)$ 上是减函数，$1.2\lt 1.3$，所以 $1.2^{-\frac12}\gt 1.3^{-\frac12}$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p134 练习 1(4)、2、4(3)。第 3 题检验 α &lt; 0 时“减”的结论——学生容易照搬“底大幂大”。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$y=x^\alpha$：底数是自变量，指数是常数。</p>
+        <p class="recall" data-label="图象性质">都过 $(1,1)$；$\alpha\gt 0$ 还过 $(0,0)$，第一象限增；$\alpha\lt 0$ 第一象限减。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="定义域与奇偶性">改写成根式 / 分式；先看定义域是否对称，再算 $f(-x)$。</p>
+        <p class="method" data-label="比较大小">同指数 → 构造幂函数；不同 → 找中间量 1。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="从特殊到一般">由 3 个具体函数的图象，归纳出 $\alpha\gt 0$、$\alpha\lt 0$ 的一般规律。</p>
+        <p class="recall" data-label="数形结合">看图猜想，再用定义证明。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>6.2 指数函数——把 $a^b=N$ 中的<b>指数</b>当作自变量：$y=2^x$。同样是“幂”，变量换了位置，图象会完全不同。</p>
+  </div>
+  <p class="note">课后作业建议：习题 6.1 第 1、2、3、4 题；第 7 题（比较 $\frac{f(x_1)+f(x_2)}{2}$ 与 $f(\frac{x_1+x_2}{2})$）可画图思考“凸凹”。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

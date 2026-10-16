@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>有理数的乘方 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/lamian.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第2章 有理数 · 2.7</p>
+    <h1 class="cover-title">有理数的乘方</h1>
+    <p class="cover-q" data-step="1">拉面师傅把面团揉成 1 根长条，拉长、对折，再拉长、再对折……每次对折称为<b>一扣</b>。</p>
+    <p class="cover-q" data-step="2">拉扣 6 次后共有多少根面条？拉扣 21 次呢？——这么多个 2 连乘，<b>怎样写得又短又清楚？</b></p>
+    <div class="chips" data-step="3"><span class="chip">拉面里的连乘</span><span class="chip">底数 · 指数 · 幂</span><span class="chip">负数的幂的符号</span><span class="chip">科学记数法</span></div>
+  </div>
+  <p class="note">课本 p50 情境。先请学生猜：拉扣 6 次大约几根？10 根？50 根？再到第 3 页动手验证。本课 2 课时：第 1 课时到第 8 页（乘方），第 2 课时第 9 页起（科学记数法）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="2.6 · 有理数的乘法" data-step="1">
+        <p>几个不等于 0 的数相乘，负因数有<b>偶数</b>个积为正，<b>奇数</b>个积为负。</p>
+        <span class="use">判断负数的幂是正还是负。（<a href="../mj7a-chengchufa/index.html">回看 2.6</a>）</span>
+      </div>
+      <div class="recall" data-label="小学 · 面积与体积" data-step="2">
+        <p>正方形面积 $S=a\times a$，正方体体积 $V=a\times a\times a$。</p>
+        <span class="use">“平方”“立方”这两个名字就从这里来。</span>
+      </div>
+      <div class="recall" data-label="五年级 · 用字母表示数" data-step="3">
+        <p>$a\times a$ 可以写作 $a^2$，读作“$a$ 的平方”。</p>
+        <span class="use">推广到 $n$ 个相同因数相乘：$a^n$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>“相同加数的和”可以用乘法简写（$2+2+2=2\times3$）；“<b>相同因数的积</b>”能不能也找一种简写？</p>
+  </div>
+  <p class="note">第三张卡是关键铺垫：小学已经见过 a² 的写法，本课只是把“2 个”推广到“n 个”，并把底数推广到负数和分数。主线卡里的类比（加法→乘法，乘法→乘方）可以请学生自己说出来。</p>
+</section>
+
+<!-- 3 ================= 拉面 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境 · 操作</span><h2>拉一扣，面条数就翻一倍</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row" data-noswipe>拉扣次数：<input type="range" id="lmN" min="0" max="8" step="1" value="1"><b class="v" id="lmNV"></b></div>
+      <svg id="lmFig" class="lm-fig" viewBox="0 0 520 260" aria-label="面条根数示意"></svg>
+      <p class="tip formula" id="lmEq"></p>
+    </div>
+    <div class="col">
+      <table class="mtab" id="lmTab"><tr><th>拉扣次数</th><th>面条根数</th><th>算式</th></tr></table>
+      <p class="tip" data-step="1">拉扣 1 次 2 根，2 次 $2\times2$ 根……每拉扣 1 次，面条数怎样变？<span class="think" data-step="2" data-ask="说一说">增加 1 倍（乘 2）。</span></p>
+      <p class="tip" data-step="3">拉扣 6 次共有多少根？<span class="think" data-step="4" data-ask="算一算">$2\times2\times2\times2\times2\times2=64$（根）。</span></p>
+      <p class="tip gold" data-step="5">拉扣 21 次呢？要写 21 个 2 吗？<span class="think" data-step="6" data-ask="想一想">太长了！需要一种简便的写法——乘方。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p50。拖动滑块从 0 到 6，每一次都请学生先说根数再看图（左图每根线就是一根面条，按实际根数画出；7、8 次时线条已经密得数不清——这正说明需要“算”而不是“数”）。0 次是 1 根（还没拉）。</p>
+</section>
+
+<!-- 4 ================= 乘方的意义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 概念</span><h2>相同因数的积：乘方</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>试一试</b>　将一张报纸对折，再对折……直到无法对折为止．你对折了多少次？用算式表示对折出来的报纸层数．</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="例如">折 6 次（一般折到 6～7 次就折不动了）：层数 $2\times2\times2\times2\times2\times2=64$。</span></p>
+      <div class="def" data-step="3"><h4>记法与读法（课本 p50）</h4>$2\times2\times2\times2\times2\times2$ 记作 $2^6$，读作“2 的 6 次方”；<br>$7\times7\times7$ 记作 $7^3$，读作“7 的 3 次方”．<br>一般地，$\underbrace{a\cdot a\cdot a\cdot\cdots\cdot a}_{n\text{个}}$ 记作 $a^n$，读作“$a$ 的 $n$ 次方”．</div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="4"><h4>乘方（课本 p50）</h4>求 $n$ 个相同因数的积的运算叫做<em>乘方</em>（power），相同因数叫做<em>底数</em>，相同因数的个数叫做<em>指数</em>，乘方运算的结果叫做<em>幂</em>．</div>
+      <svg viewBox="0 0 360 150" class="pow-fig" data-step="5" aria-label="a 的 n 次方各部分名称">
+        <rect x="130" y="20" width="110" height="100" rx="6" fill="#f6d3e6" stroke="#c97aa5" stroke-width="2"/>
+        <text x="170" y="98" class="pw-a">a</text><text x="212" y="58" class="pw-n">n</text>
+        <line x1="236" y1="45" x2="290" y2="45" stroke="#1f2d3a" stroke-width="2" marker-end="url(#ar)"/><text x="296" y="51" class="pw-l">指数</text>
+        <line x1="100" y1="70" x2="128" y2="70" stroke="#1f2d3a" stroke-width="2"/><text x="56" y="76" class="pw-l">幂</text>
+        <line x1="182" y1="140" x2="182" y2="110" stroke="#1f2d3a" stroke-width="2"/><text x="200" y="146" class="pw-l">底数</text>
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M10 0 L0 5 L10 10 z" fill="#1f2d3a"/></marker></defs>
+      </svg>
+      <p class="tip" data-step="6">$2^6$ 中，底数是<span class="think" data-step="7" data-ask="?">2</span>，指数是<span class="think" data-step="7" data-ask="?">6</span>．把 $2^6$ 看作乘方运算的结果时，读作<span class="think" data-step="8" data-ask="怎样读？">“2 的 6 次幂”</span>．</p>
+    </div>
+  </div>
+  <p class="note">课本 p50。乘方是一种运算（像加、减、乘、除一样），幂是这种运算的结果（像和、差、积、商）。图示仿课本：底数在下、指数在右上角、整体叫幂。“$a^n$”中 n 写得小、写在右上角，书写时要注意。</p>
+</section>
+
+<!-- 5 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>看清底数是谁</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>$2^3=2\times3=6$．</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>$2^3$ 是 3 个 2 相乘：$2\times2\times2=8$。指数表示<b>因数的个数</b>，不是乘数。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>$(-3)^4$ 和 $-3^4$ 是一样的．</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>$(-3)^4$ 的底数是 $-3$：$(-3)^4=81$；<br>$-3^4$ 的底数是 $3$，表示 $3^4$ 的相反数：$-3^4=-81$。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>$\left(\dfrac23\right)^2$ 和 $\dfrac{2^2}{3}$ 是一样的．</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>$\left(\dfrac23\right)^2=\dfrac23\times\dfrac23=\dfrac49$，底数是 $\dfrac23$；而 $\dfrac{2^2}{3}=\dfrac43$，只有分子平方。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="书写规范">底数是<b>负数或分数</b>时，要用括号把底数括起来，再在右上角写指数：$(-3)^4$、$\left(-\dfrac23\right)^4$。</p>
+  </div>
+  <p class="note">这三个错误在后面的混合运算里会反复出现，先在这里辨清。第 2 张卡最重要：括号决定底数——有括号，底数连同负号；没括号，指数只管紧挨着它的那个数。</p>
+</section>
+
+<!-- 6 ================= 例 1、例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>乘方，就是乘法</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 1</b>　计算：(1) $3^7$；(2) $7^3$；(3) $(-3)^4$；(4) $(-4)^3$．</p>
+      <div class="derive tight small-d">
+        <div class="dl" data-step="1"><span>(1)</span><span>$3^7=3\times3\times3\times3\times3\times3\times3=2\,187$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>(2)</span><span>$7^3=7\times7\times7=343$</span><i class="why">$3^7\ne7^3$：底数和指数不能交换</i></div>
+        <div class="dl" data-step="3"><span>(3)</span><span>$(-3)^4=(-3)\times(-3)\times(-3)\times(-3)=81$</span><i class="why">4 个负因数，积为正</i></div>
+        <div class="dl" data-step="4"><span>(4)</span><span>$(-4)^3=(-4)\times(-4)\times(-4)=-64$</span><i class="why">3 个负因数，积为负</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 2</b>　计算：(1) $\left(\dfrac12\right)^5$；(2) $\left(\dfrac35\right)^3$；(3) $\left(-\dfrac23\right)^4$．</p>
+      <div class="derive tight small-d">
+        <div class="dl" data-step="5"><span>(1)</span><span>$\left(\dfrac12\right)^5=\dfrac12\times\dfrac12\times\dfrac12\times\dfrac12\times\dfrac12=\dfrac1{32}$</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span>(2)</span><span>$\left(\dfrac35\right)^3=\dfrac35\times\dfrac35\times\dfrac35=\dfrac{27}{125}$</span><i class="why">分子、分母各自连乘</i></div>
+        <div class="dl" data-step="7"><span>(3)</span><span>$\left(-\dfrac23\right)^4=\left(-\dfrac23\right)\times\left(-\dfrac23\right)\times\left(-\dfrac23\right)\times\left(-\dfrac23\right)$</span><i class="why"></i></div>
+        <div class="dl end" data-step="8"><span></span><span>$=\dfrac23\times\dfrac23\times\dfrac23\times\dfrac23=\dfrac{16}{81}$</span><i class="why">偶数个负因数，积为正</i></div>
+      </div>
+      <p class="method" data-step="9" data-label="怎样算乘方">先把乘方写成乘法（写出 $n$ 个因数），再用乘法法则：先定符号，再算绝对值。</p>
+    </div>
+  </div>
+  <p class="note">课本 p51 例 1、例 2。(1)(2) 一对比：3⁷ = 2 187 而 7³ = 343，底数和指数交换后结果不同。(3)(4) 和例 2(3) 都直接用了 2.6 学过的“数负因数个数”。</p>
+</section>
+
+<!-- 7 ================= 想一想：符号 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>负数的幂：什么时候正，什么时候负？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="sgBase"></div>
+      <div class="slider-row" data-noswipe>指数 $n$：<input type="range" id="sgN" min="1" max="10" step="1" value="4"><b class="v" id="sgNV"></b></div>
+      <div class="pairs" id="sgPairs"></div>
+      <p class="tip formula" id="sgEq"></p>
+      <p class="tip feedback" id="sgMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">1. $(-1)^{10}$、$(-1)^7$、$\left(-\dfrac12\right)^4$、$\left(-\dfrac12\right)^5$ 是正数还是负数？</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="先判断，再到左边验证">$(-1)^{10}=1$ 正；$(-1)^7=-1$ 负；$\left(-\dfrac12\right)^4=\dfrac1{16}$ 正；$\left(-\dfrac12\right)^5=-\dfrac1{32}$ 负。</span></p>
+      <p class="tip" data-step="3">2. 负数的幂的符号如何确定？<span class="think" data-step="4" data-ask="说一说">看指数：指数是几，就有几个负因数。负因数两两一对相乘得正，偶数个刚好配完，奇数个剩下一个。</span></p>
+      <div class="def" data-step="5"><h4>幂的符号（课本 p51）</h4>正数的任何次幂都是<em>正数</em>；<br>负数的<em>奇数</em>次幂是负数，负数的<em>偶数</em>次幂是正数．</div>
+      <p class="recall" data-label="平方与立方" data-step="6">一个数的二次方，也称为这个数的<b>平方</b>（square）；三次方也称为<b>立方</b>（cube）。（0 的任何正整数次幂都是 0。）</p>
+    </div>
+  </div>
+  <p class="note">课本 p51“想一想”。左边先选底数 −1，把指数从 1 拖到 10：负因数按两个一组配对（每对的积为正），配不上对的剩下一个就使结果为负。再换成 −1/2、−2、2 各试几下。课本结论只说正数、负数；0 的幂是补充说明。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>算一算，填一填</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>1.</b>（课本 p51）计算，填入结果后回车：</p>
+      <div class="ex-list two">
+        <p>(1) $(-5)^3=$ <span class="blank" data-ans="-125" data-w="4"></span></p>
+        <p>(2) $\left(-\dfrac12\right)^5=$ <span class="blank" data-ans="-1/32" data-w="5"></span></p>
+        <p>(3) $\left(-\dfrac13\right)^4=$ <span class="blank" data-ans="1/81" data-w="4"></span></p>
+        <p>(4) $-5^3=$ <span class="blank" data-ans="-125" data-w="4"></span></p>
+        <p>(5) $0.1^4=$ <span class="blank" data-ans="0.0001" data-w="6"></span></p>
+        <p>(6) $1^8=$ <span class="blank" data-ans="1" data-w="3"></span></p>
+      </div>
+      <p class="muted small-t">分数用“/”输入，如 −1/32 输入 -1/32。</p>
+      <p class="tip" data-step="1">(1) 与 (4) 结果一样，意义一样吗？<span class="think" data-step="2" data-ask="想一想">不一样：$(-5)^3$ 是 3 个 $-5$ 相乘；$-5^3$ 是 $5^3$ 的相反数。只是恰好相等。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>2.</b>（课本 p52）填空：</p>
+      <div class="ex-list two">
+        <p>(1) $3^2+4^2=($ <span class="blank" data-ans="5" data-w="2"></span> $)^2$</p>
+        <p>(2) $5^2+12^2=($ <span class="blank" data-ans="13" data-w="2"></span> $)^2$</p>
+        <p>(3) $7^2+24^2=($ <span class="blank" data-ans="25" data-w="2"></span> $)^2$</p>
+        <p>(4) $9^2+40^2=($ <span class="blank" data-ans="41" data-w="2"></span> $)^2$</p>
+      </div>
+      <div class="hint-ladder">
+        <details><summary>提示</summary>先算左边的和：$9+16=25$，$25+144=169$，$49+576=625$，$81+1\,600=1\,681$；再找哪个数的平方等于它。</details>
+        <details><summary>完整解答</summary>$5^2=25$，$13^2=169$，$25^2=625$，$41^2=1\,681$。</details>
+      </div>
+      <p class="recall" data-label="八年级会再见到" data-step="3">像 3、4、5 这样满足 $a^2+b^2=c^2$ 的三个正整数，八年级学勾股定理时叫做“勾股数”（<a href="../mj8a-gougudingli/index.html">八上 3.1</a>）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p51–52 练一练 1、2。第 1 题 (4) $-5^3$ 呼应第 5 页的辨析；第 2 题的四组数正是勾股数，可以顺便预告八年级的勾股定理。</p>
+</section>
+
+<!-- 9 ================= 10 的幂 + 科学记数法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 科学记数法</span><h2>很大的数，怎样写得简明？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>练一练 3</b>　观察下列各式，然后填空：</p>
+      <div class="derive tight small-d">
+        <div class="dl"><span>$10$</span><span>$=10^1$</span><i class="why"></i></div>
+        <div class="dl"><span>$100$</span><span>$=10\times10=10^2$</span><i class="why"></i></div>
+        <div class="dl"><span>$1\,000$</span><span>$=10\times10\times10=10^3$</span><i class="why"></i></div>
+        <div class="dl" data-step="1"><span>$10\,000$</span><span>$=10\times10\times10\times10=10^4$</span><i class="why"></i></div>
+        <div class="dl" data-step="1"><span>$100\,000$</span><span>$=10\times10\times10\times10\times10=10^5$</span><i class="why"></i></div>
+        <div class="dl" data-step="1"><span>$1\,000\,000$</span><span>$=10\times10\times10\times10\times10\times10=10^6$</span><i class="why"></i></div>
+      </div>
+      <p class="tip gold" data-step="2">$10^n$ 写出来是 1 后面跟几个 0？<span class="think" data-step="3" data-ask="找规律">$n$ 个 0。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">“先见闪电，后闻雷声”：光速大约为 300 000 000 m/s，声音约为 340 m/s．</p>
+      <p class="tip"><b>做一做</b>　人体中大约有 25 000 000 000 000 个红细胞．把它输入计算器，按“=”键，计算器上显示什么？</p>
+      <p class="calc" data-step="4"><span>2.5</span><small>13</small></p>
+      <div class="derive tight small-d" data-step="5">
+        <div class="dl"><span></span><span>$25\,000\,000\,000\,000=2.5\times10\,000\,000\,000\,000=2.5\times10^{13}$</span><i class="why"></i></div>
+        <div class="dl"><span></span><span>$8\,000\,000\times600\,000\,000=4.8\times10^{15}$</span><i class="why">计算器显示 4.8 和 15</i></div>
+      </div>
+      <div class="def" data-step="6"><h4>科学记数法（课本 p52）</h4>一般地，一个大于 10 的数可以写成 $a\times10^n$ 的形式，其中 $1\le a\lt 10$，$n$ 是正整数．这种记数法称为<em>科学记数法</em>（scientific notation）．</div>
+    </div>
+  </div>
+  <p class="note">课本 p52 练一练 3、“做一做”与科学记数法定义。计算器的具体显示格式随型号不同（有的显示 2.5×10¹³、有的显示 2.5E13），要点是“前面一个 1～10 之间的数、后面一个 10 的指数”。注意两个条件：1 ≤ a &lt; 10（a 只有一位整数），n 是正整数。</p>
+</section>
+
+<!-- 10 ================= 小数点移动器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手</span><h2>小数点向左移几位，指数就是几</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="snPick"></div>
+      <div class="sn-num" id="snNum"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="snLeft">← 小数点左移一位</button><button class="btn" type="button" id="snRight">右移一位 →</button></div>
+      <p class="tip formula" id="snEq"></p>
+      <p class="tip feedback" id="snMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">把小数点向左移动一位，数就缩小到原来的 $\dfrac1{10}$，所以要乘<span class="think" data-step="2" data-ask="?">一个 10</span>才能保持大小不变。</p>
+      <p class="tip" data-step="3">小数点停在哪里，$a$ 才满足 $1\le a\lt10$？<span class="think" data-step="4" data-ask="想一想">停在<b>第一个数字后面</b>（$a$ 只有一位整数）。</span></p>
+      <p class="method" data-step="5" data-label="快速确定 n">$n$ = 原数的<b>整数位数 − 1</b>。例如 25 000 000 000 000 有 14 位，$n=13$。</p>
+      <p class="warn" data-step="6" data-label="易错">$25\times10^{12}$ 不是科学记数法（$a=25\gt10$）；$0.25\times10^{14}$ 也不是（$a\lt1$）。</p>
+    </div>
+  </div>
+  <p class="note">核心操作：选一个数，一次次点“小数点左移一位”，每移一位，右边就多乘一个 10，数的大小始终不变。移到 a 在 1～10 之间时显示“科学记数法 ✓”。再移一次就变成 0.25×10¹⁴，提示 a &lt; 1。方法卡的“整数位数 − 1”是从操作中总结的规律。</p>
+</section>
+
+<!-- 11 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 练一练</span><h2>用科学记数法表示</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 3</b>　2007 年 10 月 24 日我国成功发射“嫦娥 1 号”探月卫星．“嫦娥 1 号”于 11 月 7 日顺利进入绕月工作轨道，共飞行 326 h，行程约 1 800 000 km，其中在地月转移轨道飞行了 436 600 km．试用科学记数法表示这两个行程．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>解：</span><span>$1\,800\,000\ \text{km}=1.8\times10^6\ \text{km}$</span><i class="why">7 位整数，$n=6$</i></div>
+        <div class="dl" data-step="2"><span></span><span>$436\,600\ \text{km}=4.366\times10^5\ \text{km}$</span><i class="why">6 位整数，$n=5$；$a$ 末尾的 0 可以省去</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练一练（课本 p53）</b>　1. 用科学记数法表示：</p>
+      <div class="ex-list">
+        <p>(1) 地球的半径大约为 6 400 km：<span class="think" data-step="3" data-ask="写一写">$6.4\times10^3$ km</span></p>
+        <p>(2) 地月平均距离大约为 384 000 km：<span class="think" data-step="4" data-ask="写一写">$3.84\times10^5$ km</span></p>
+        <p>(3) 日地平均距离大约为 150 000 000 km：<span class="think" data-step="5" data-ask="写一写">$1.5\times10^8$ km</span></p>
+      </div>
+      <p class="tip">2. 不用科学记数法写出下列各数：</p>
+      <div class="ex-list">
+        <p>(1) $1.3\times10^9=$ <span class="think" data-step="6" data-ask="写一写">$1\,300\,000\,000$</span></p>
+        <p>(2) $9.597\times10^6=$ <span class="think" data-step="7" data-ask="写一写">$9\,597\,000$</span></p>
+        <p>(3) $2.0\times10^8=$ <span class="think" data-step="8" data-ask="写一写">$200\,000\,000$</span></p>
+      </div>
+      <p class="tip" data-step="9">还原时怎样想？<span class="think" data-step="10" data-ask="说一说">小数点向<b>右</b>移 $n$ 位，位数不够补 0。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p53 例 3 与练一练。可以把这些数放到上一页的移动器里验证（384 000、150 000 000 都在里面）。第 2 题是逆过程：小数点向右移 n 位。</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（习题 2.7 第 2 题）如果你第 1 个月存 2 元，从第 2 个月起每个月的存钱数都是上个月的 2 倍，那么第 6 个月要存多少钱？第 12 个月呢？</p>
+        <details><summary>提示 1</summary>第 1 个月 $2$，第 2 个月 $2\times2=2^2$，第 3 个月 $2^3$……</details>
+        <details><summary>提示 2</summary>第 $n$ 个月存 $2^n$ 元。</details>
+        <details><summary>完整解答</summary>第 6 个月存 $2^6=64$（元）；第 12 个月存 $2^{12}=4\,096$（元）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 2.7 第 3 题）计算：<br>(1) $-3^2-(-3)^3+(-2)^2-2^3$；<br>(2) $-18\div(-3)^2$．</p>
+        <details><summary>提示 1</summary>先分清底数：$-3^2=-9$，$(-3)^3=-27$，$(-2)^2=4$，$2^3=8$。</details>
+        <details><summary>提示 2</summary>(2) 先算乘方 $(-3)^2=9$，再算除法。</details>
+        <details><summary>完整解答</summary>(1) $=-9-(-27)+4-8=-9+27+4-8=14$；<br>(2) $=-18\div9=-2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 2.7 第 6 题）我国拉面高手用 1 kg 面粉拉扣 21 次．(1) 用计算器算出共拉出多少根细面条；(2) 每根面条长 1.29 m，总长度能超过珠穆朗玛峰的高度吗？</p>
+        <details><summary>提示 1</summary>拉扣 21 次：$2^{21}$ 根。</details>
+        <details><summary>提示 2</summary>总长 = 根数 × 1.29 m；珠峰高约 8 848.86 m。</details>
+        <details><summary>完整解答</summary>(1) $2^{21}=2\,097\,152$（根）；(2) $2\,097\,152\times1.29\approx2.7\times10^6$（m），远远超过珠峰高度。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 2.7 第 2、3、6 题。第 2 题的 (1) 是本课辨析的综合检验，四个乘方先各自算准；顺序问题下一节 2.8 再系统讲。第 3 题回到本课开头的拉面，2²¹ 超过两百万根。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$a^n$：$n$ 个 $a$ 相乘；$a$ 是底数，$n$ 是指数，结果叫幂。</p>
+        <p class="def">负数的奇数次幂为负，偶数次幂为正；正数的任何次幂为正。</p>
+        <p class="def">科学记数法：$a\times10^n$，$1\le a\lt10$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="算乘方">写成乘法 → 定符号 → 算绝对值。</p>
+        <p class="method" data-label="看底数">有括号，底数连同符号；$-a^n$ 是 $a^n$ 的相反数。</p>
+        <p class="method" data-label="定 n">整数位数 − 1。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="化归">乘方 → 乘法 → 符号 + 绝对值。</p>
+        <p class="recall" data-label="简洁的记号">加法简写成乘法，乘法简写成乘方——好的记号让数学更简洁。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.8 有理数的混合运算——$8-2^3\div(-4)\times(-7+5)$ 里加、减、乘、除、乘方都有，先算哪一步？</p>
+  </div>
+  <p class="note">课后作业建议：习题 2.7 第 1、4、5 题。计算器操作（课本 p53）可在课后练习：平方用 x² 键，高次幂用乘方键。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

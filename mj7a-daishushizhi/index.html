@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>代数式的值 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huochai.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级上册 · 第3章 代数式 · 3.3</p>
+    <h1 class="cover-title">代数式的值</h1>
+    <p class="cover-q" data-step="1">用火柴棒搭“小鱼”：搭 1 条用 8 根，搭 2 条用 14 根……</p>
+    <p class="cover-q" data-step="2">搭 20 条“小鱼”需用多少根火柴棒？搭 100 条呢？——<b>总不能真的搭 100 条再数吧？</b></p>
+    <div class="chips" data-step="3"><span class="chip">搭小鱼 · 找规律</span><span class="chip">代入求值</span><span class="chip">数值转换机</span><span class="chip">循环的程序</span></div>
+  </div>
+  <p class="note">课本 p74 情境，也是第 3 章章首图的问题。请学生先估一估 100 条小鱼要多少根，再动手找规律。本课约 2 课时：第 1 课时到第 7 页，第 2 课时从第 8 页（数值转换机）起。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="3.2 · 代数式" data-step="1">
+        <p>$2a^2-3ab+b^2$ 是多项式；省略的乘号：$3ab=3\times a\times b$（<a href="../mj7a-daishushi/index.html">回看 3.2</a>）。</p>
+        <span class="use">代入时要把省略的乘号“还原”出来。</span>
+      </div>
+      <div class="recall" data-label="2.8 · 混合运算" data-step="2">
+        <p>先乘方，后乘除，再加减；有括号先算括号内（<a href="../mj7a-hunheyunsuan/index.html">回看 2.8</a>）。</p>
+        <span class="use">代入后得到的就是一道有理数混合运算。</span>
+      </div>
+      <div class="recall" data-label="2.7 · 看清底数" data-step="3">
+        <p>$(-2)^2=4$，而 $-2^2=-4$。</p>
+        <span class="use">负数代入乘方时一定要加括号。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>代数式里的字母可以取不同的数；字母取定一个数，代数式就“算得出”一个数——这个数怎样求？它怎样随字母变化？</p>
+  </div>
+  <p class="note">第三张卡请学生口答。本课最常见的错误就是负数代入时忘记加括号，例题之前先打好预防针。</p>
+</section>
+
+<!-- 3 ================= 做一做：小鱼 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>搭“小鱼”：每多 1 条，多几根？</h2></div>
+  <div class="bd full">
+    <svg id="fishFig" class="fish-fig" viewBox="0 0 960 200" aria-label="火柴棒搭成的小鱼"></svg>
+    <div class="cols2">
+      <div class="col">
+        <div class="slider-row" data-noswipe>小鱼条数 $n$：<input type="range" id="fishN" min="1" max="6" step="1" value="1"><b class="v" id="fishNV"></b></div>
+        <p class="tip feedback" id="fishMsg"></p>
+      </div>
+      <div class="col">
+        <table class="mtab" id="fishTab"></table>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p74“做一做”。拖动滑块逐条搭：每次新加的 6 根火柴用橙色标出（上下各 3 根），第 1 条比后面多出的 2 根是“鱼尾”。请学生先数出 1、2、3 条的根数，再说出“每多 1 条增加 6 根”。图中火柴按坐标精确排布，与课本图一致。</p>
+</section>
+
+<!-- 4 ================= 代数式的值 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>用数值代替字母</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>1 条</span><span>$8$</span><i class="why"></i></div>
+        <div class="dl" data-step="1"><span>2 条</span><span>$8+6=14$</span><i class="why">增加 6 根</i></div>
+        <div class="dl" data-step="1"><span>3 条</span><span>$8+6\times2=20$</span><i class="why">又增加 6 根</i></div>
+        <div class="dl" data-step="2"><span>4 条</span><span class="think" data-step="3" data-ask="?">$8+6\times3=26$</span><i class="why"></i></div>
+        <div class="dl key" data-step="4"><span>$n$ 条</span><span class="think" data-step="5" data-ask="你能写出来吗？">$8+6(n-1)$</span><i class="why">乘 6 的次数比条数少 1</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6">用 20 代替 $8+6(n-1)$ 中的 $n$，得<span class="think" data-step="7" data-ask="算一算">$8+6\times(20-1)=122$</span>；用 100 代替 $n$，得<span class="think" data-step="8" data-ask="算一算">$8+6\times(100-1)=602$</span>．</p>
+      <p class="tip">所以，搭 20 条“小鱼”需用 122 根火柴棒，搭 100 条需用 602 根．</p>
+      <div class="def" data-step="9"><h4>代数式的值（课本 p75）</h4>根据问题的需要，用<em>具体数值代替</em>代数式中的字母，计算所得的结果叫做<em>代数式的值</em>．</div>
+      <p class="warn" data-step="10" data-label="代入后要写回乘号">$6(n-1)$ 中省略了乘号，代入后写成 $6\times(20-1)$，不能写成 $6(20-1)$ 当作 $620-1$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p74–75。从 1、2、3 条的算式中让学生自己写出 4 条（8 + 6 × 3），再概括 n 条。课本小人说“用不同数字代替 8 + 6(n − 1) 中的字母 n，就能算出搭不同条数‘小鱼’所需要的火柴棒根数了”——这就是代数式的值。</p>
+</section>
+
+<!-- 5 ================= 例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>代入求值的规范写法</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例</b>　当 $a=-2$、$b=-3$ 时，求代数式 $2a^2-3ab+b^2$ 的值．</p>
+      <div class="derive tight">
+        <div class="dl" data-step="1"><span>解：</span><span>当 $a=-2$、$b=-3$ 时，</span><i class="why">先写条件</i></div>
+        <div class="dl" data-step="2"><span></span><span>$2a^2-3ab+b^2$</span><i class="why">再写原式</i></div>
+        <div class="dl" data-step="3"><span></span><span>$=2\times(-2)^2-3\times(-2)\times(-3)+(-3)^2$</span><i class="why">代入：负数加括号，乘号写回来</i></div>
+        <div class="dl" data-step="4"><span></span><span>$=2\times4-3\times(-2)\times(-3)+9$</span><i class="why">先乘方</i></div>
+        <div class="dl" data-step="5"><span></span><span>$=8-18+9$</span><i class="why">再乘法</i></div>
+        <div class="dl end" data-step="6"><span></span><span>$=-1$</span><i class="why">最后加减</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="7">
+        <p><b>小马虎：</b>$2a^2=2\times-2^2=-8$．</p>
+        <div class="think" data-step="8" data-ask="错在哪里？"><p><span class="verdict x">✗</span>负数代入没加括号，$-2^2$ 成了 $2^2$ 的相反数。应为 $2\times(-2)^2=2\times4=8$。</p></div>
+      </div>
+      <div class="jcard" data-step="9">
+        <p><b>小糊涂：</b>$-3ab=-3-2-3$．</p>
+        <div class="think" data-step="10" data-ask="错在哪里？"><p><span class="verdict x">✗</span>$ab$ 是 $a\times b$，省略的乘号代入后要写回来：$-3\times(-2)\times(-3)=-18$。</p></div>
+      </div>
+      <p class="method" data-step="11" data-label="代入三步">① 写条件；② 原样照抄，把字母换成数：<b>负数、分数加括号，乘号写回来</b>；③ 按运算顺序计算。</p>
+    </div>
+  </div>
+  <p class="note">课本 p75 例题。书写格式请学生照抄一遍：“当……时，原式 = ……”。两个错例分别是“漏括号”“漏乘号”，几乎是本课所有错误的来源。</p>
+</section>
+
+<!-- 6 ================= 议一议：表格 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>字母变，代数式的值怎样变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row" data-noswipe>$x=$<input type="range" id="tbX" min="-3" max="3" step="1" value="-3"><b class="v" id="tbXV"></b></div>
+      <table class="mtab vtab" id="vTab"></table>
+      <p class="tip formula" id="vEq"></p>
+      <div id="vBoard" class="v-board"></div>
+    </div>
+    <div class="col">
+      <p class="tip">根据所填表格，讨论下列问题：</p>
+      <p class="tip" data-step="1">(1) 当 $x$ 为何值时，代数式 $2x-1$ 的值等于 $-1$？<span class="think" data-step="2" data-ask="查表">$x=0$。</span></p>
+      <p class="tip" data-step="3">(2) 随着 $x$ 的值增大，代数式 $2x-1$、$-3x$ 的值怎样变化？<span class="think" data-step="4" data-ask="看表格">$2x-1$ 的值增大（每次增加 2）；$-3x$ 的值减小（每次减少 3）。</span></p>
+      <p class="tip" data-step="5">(3) 随着 $x$ 的值增大，代数式 $x^2$ 的值怎样变化？<span class="think" data-step="6" data-ask="看表格">先减小后增大：$x$ 从 $-3$ 到 $0$ 时减小，从 $0$ 到 $3$ 时增大；$x=0$ 时最小，是 0。</span></p>
+      <p class="def" data-step="7">一般地，代数式的值随着代数式中字母取值的变化而变化．（课本 p75）</p>
+    </div>
+  </div>
+  <p class="note">课本 p75 议一议。拖动 x，表格逐列填出（当前列高亮），下方三种颜色的点画出三个代数式的值。不急着讲“图像”（八年级学函数时再讲），只让学生看出“变大”“变小”“先变小再变大”。表中所有数值由代码计算。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>代入，计算，填写</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>1.</b> 当 $x=2$ 时，求下列代数式的值：</p>
+      <div class="ex-list">
+        <p>(1) $4x^2-4x+4=$ <span class="blank" data-ans="12" data-w="3"></span></p>
+        <p>(2) $5x^3-2x^2+x-3=$ <span class="blank" data-ans="31" data-w="3"></span></p>
+      </div>
+      <p class="tip"><b>2.</b> 根据所给 $a$、$b$ 的值，求代数式 $a^2b-ab^2-6$ 的值：</p>
+      <div class="ex-list">
+        <p>(1) $a=3$，$b=-1$：<span class="blank" data-ans="-18" data-w="3"></span></p>
+        <p>(2) $a=-\dfrac12$，$b=8$：<span class="blank" data-ans="28" data-w="3"></span></p>
+      </div>
+      <div class="hint-ladder">
+        <details><summary>提示</summary>2(1) $=3^2\times(-1)-3\times(-1)^2-6=-9-3-6$；2(2) $=\left(-\dfrac12\right)^2\times8-\left(-\dfrac12\right)\times8^2-6=2+32-6$。</details>
+        <details><summary>完整解答</summary>1. (1) $16-8+4=12$；(2) $40-8+2-3=31$。2. (1) $-18$；(2) $28$。</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>3.</b> 填表并回答问题：</p>
+      <table class="mtab ftab">
+        <tr><th>$x$</th><td>$-\dfrac32$</td><td>$-1$</td><td>$0$</td><td>$\dfrac12$</td><td>$1.5$</td><td>$9$</td></tr>
+        <tr><th>$3x$</th><td><span class="blank" data-ans="-9/2|-4.5" data-w="3"></span></td><td><span class="blank" data-ans="-3" data-w="2"></span></td><td><span class="blank" data-ans="0" data-w="2"></span></td><td><span class="blank" data-ans="3/2|1.5" data-w="3"></span></td><td><span class="blank" data-ans="4.5|9/2" data-w="3"></span></td><td><span class="blank" data-ans="27" data-w="2"></span></td></tr>
+        <tr><th>$-2x+1$</th><td><span class="blank" data-ans="4" data-w="2"></span></td><td><span class="blank" data-ans="3" data-w="2"></span></td><td><span class="blank" data-ans="1" data-w="2"></span></td><td><span class="blank" data-ans="0" data-w="2"></span></td><td><span class="blank" data-ans="-2" data-w="2"></span></td><td><span class="blank" data-ans="-17" data-w="3"></span></td></tr>
+      </table>
+      <p class="tip" data-step="1">(1) 当 $x$ 为何值时，代数式 $-2x+1$ 的值等于 0？<span class="think" data-step="2" data-ask="查表">$x=\dfrac12$。</span></p>
+      <p class="tip" data-step="3">(2) 随着 $x$ 的值增大，$3x$、$-2x+1$ 的值怎样变化？<span class="think" data-step="4" data-ask="看表">$3x$ 增大；$-2x+1$ 减小。</span></p>
+      <p class="muted small-t">输入后回车判对错；分数用“/”输入。</p>
+    </div>
+  </div>
+  <p class="note">课本 p76 练一练。第 2 题 (2) 是分数代入，乘方部分要加括号；可以让做错的学生回到第 5 页对照“代入三步”。</p>
+</section>
+
+<!-- 8 ================= 数值转换机 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>数值转换机：程序就是代数式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns machines" data-noswipe id="mcPick"></div>
+      <div class="machine" id="mcFlow"></div>
+      <div class="palette" id="mcPal" data-noswipe hidden></div>
+    </div>
+    <div class="col">
+      <p class="tip formula" id="mcExpr"></p>
+      <div class="btns inputs" data-noswipe id="mcIn"></div>
+      <table class="mtab io" id="mcTab"></table>
+      <p class="tip feedback" id="mcMsg"></p>
+      <p class="tip" data-step="1">图 3-7 要输出 $3x^2-5$，三个方框应依次填什么？<span class="think" data-step="2" data-ask="先想再搭">平方 → 乘 3 → 减 5（先乘方，后乘，再减——和运算顺序一致）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p77 做一做（图 3-6、图 3-7）、习题 3.3 第 2、3 题。选一台转换机，点输入的数（都是课本表格里的数），数值会一格一格“流”过程序，输出填入右表。“自己搭”可以选 3 个步骤组成程序，右上方自动写出它对应的代数式——让学生体会“程序的顺序就是运算的顺序”。</p>
+</section>
+
+<!-- 9 ================= 储蓄：循环 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">算一算</span><h2>转存几次，本息和超过 10 000 元？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="loop" id="loopFig"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="loopStep">运行一步</button><button class="btn" type="button" id="loopReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">小明的爸爸存入 2 年期的定期储蓄 8 800 元（假定 2 年期定期储蓄的年利率为 3.9%），到期后本息和（本金与利息的和）自动转存 2 年期的定期储蓄．像这样，要转存几次就能使本息和超过 10 000 元？请你按图 3-5 的程序，用计算器帮小明的爸爸算一算．</p>
+      <table class="mtab" id="loopTab"></table>
+      <p class="tip feedback" id="loopMsg"></p>
+      <p class="tip" data-step="1">“$\times(1+3.9\%\times2)$”是什么意思？<span class="think" data-step="2" data-ask="想一想">存 2 年，利息是本金的 $3.9\%\times2$；本息和 = 本金 × $(1+3.9\%\times2)$ = 本金 × 1.078。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p76 图 3-5。点“运行一步”：数值沿程序走一圈，判断“&gt; 10 000？”，否则回到乘法框再算一次。第一次到期 9 486.4 元，还不够；转存 1 次，再到期时为 10 226.34 元（保留两位小数），超过 10 000 元。所以转存 1 次（共存 4 年）就超过了。程序里出现了“循环”——这是程序框图的重要结构。</p>
+</section>
+
+<!-- 10 ================= 练一练：程序填空 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>倒过来想：程序里该填什么？</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>①</b> 输入 2 → $(\quad)^2$ → $+1$ → 输出 ____</p>
+        <details><summary>提示</summary>先平方：$2^2=4$。</details>
+        <details><summary>完整解答</summary>$2^2+1=5$，输出 5。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>②</b> 输入 ____ → $+1$ → $(\quad)^2$ → 输出 25</p>
+        <details><summary>提示 1</summary>倒着想：平方后是 25，平方前是几？（别漏了负数！）</details>
+        <details><summary>提示 2</summary>平方前是 5 或 $-5$，加 1 之前呢？</details>
+        <details><summary>完整解答</summary>输入 4 或 $-6$：$(4+1)^2=25$，$(-6+1)^2=(-5)^2=25$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>③</b> 输入 2 → □ → □ → 输出 $-15$</p>
+        <details><summary>提示</summary>答案不唯一。试试先乘一个负数，再加或减一个数。</details>
+        <details><summary>完整解答</summary>例如 $\times(-8)$、$+1$：$2\times(-8)+1=-15$；或 $+3$、$\times(-3)$：$(2+3)\times(-3)=-15$。</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4</b>　摄氏温度与华氏温度的转换关系是 $t_C=\dfrac59(t_F-32)$ 或 $t_F=32+\dfrac95t_C$．某天，纽约的气温是 64.4 ℉，上海的气温是 18 ℃，试比较这天两地气温的高低．</p>
+        <details><summary>提示</summary>把纽约的华氏温度换成摄氏温度：代入 $t_F=64.4$。</details>
+        <details><summary>完整解答</summary>$t_C=\dfrac59\times(64.4-32)=\dfrac59\times32.4=18$（℃），两地气温相同。</details>
+      </div>
+      <p class="method" data-step="1" data-label="正着算，倒着推">正着算：按程序顺序代入；倒着推：从输出往回，每一步做“相反”的运算（$+1$ 的相反是 $-1$；平方的“相反”要想到两个数）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p77 练一练与习题 3.3 第 4 题。② 是本页亮点：平方等于 25 的数有 5 和 −5 两个，所以输入有 4 和 −6 两个答案，可以回到第 8 页“自己搭”验证。③ 答案不唯一，请学生多说几种。</p>
+</section>
+
+<!-- 11 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 3.3</span><h2>代入以后，发现了什么？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 当 $a=2$、$b=3$ 时，求：(3) $a^2b^2$ 与 (4) $(ab)^2$；(5) $a^2+b^2$ 与 (6) $(a+b)^2$ 与 (7) $a^2+2ab+b^2$．</p>
+        <details><summary>提示</summary>$(ab)^2$ 先算 $ab=6$；$(a+b)^2$ 先算 $a+b=5$。</details>
+        <details><summary>完整解答</summary>(3) $a^2b^2=4\times9=36$，(4) $(ab)^2=36$，相等；(5) $4+9=13$，(6) $25$，(7) $4+12+9=25$：$(a+b)^2\ne a^2+b^2$，而 $(a+b)^2=a^2+2ab+b^2$（七年级下册会证明）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> (1) 用含 $a$ 的代数式分别表示图①～③中阴影部分的面积；(2) 当 $a=10$ 时，计算阴影部分的面积．</p>
+        <details><summary>提示</summary>图②中每个圆的直径是 $\dfrac a2$，图③中是 $\dfrac a3$。</details>
+        <details><summary>完整解答</summary>① $a^2-\pi\left(\dfrac a2\right)^2$；② $a^2-4\pi\left(\dfrac a4\right)^2$；③ $a^2-9\pi\left(\dfrac a6\right)^2$——三个都等于 $a^2-\dfrac{\pi a^2}{4}$！$a=10$ 时都是 $100-25\pi\approx21.5$。</details>
+      </div>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 330 112" class="circ-fig" id="circFig" aria-label="三个边长为 a 的正方形中的圆"></svg>
+      <p class="tip" data-step="1">三个图的阴影面积为什么一样？<span class="think" data-step="2" data-ask="想一想">圆越来越多，但每个圆越来越小：$4\times\left(\dfrac a4\right)^2=9\times\left(\dfrac a6\right)^2=\left(\dfrac a2\right)^2$。</span></p>
+      <p class="method" data-step="3" data-label="代入求值的妙用">算几组具体的值，可以<b>检验</b>两个代数式是否相等（如 $(a+b)^2$ 与 $a^2+b^2$），也可以<b>发现</b>规律。</p>
+    </div>
+  </div>
+  <p class="note">习题 3.3 第 1、5 题。第 1 题的结论（$(ab)^2=a^2b^2$；$(a+b)^2\ne a^2+b^2$）只代入了一组值，严格来说只能“否定”不能“证明”，可以点到为止。第 5 题右图按比例精确绘制（各圆与正方形边、彼此相切）。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">用具体数值代替代数式中的字母，计算所得的结果叫做代数式的值。</p>
+        <p class="def">代数式的值随字母取值的变化而变化。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="代入三步">写条件 → 换成数（负数、分数加括号，乘号写回来）→ 按顺序计算。</p>
+        <p class="method" data-label="程序">程序的顺序 = 运算的顺序；倒推时做相反的运算。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="一般与特殊">代数式（一般）→ 代入（特殊）→ 一个具体的数。</p>
+        <p class="recall" data-label="变化的眼光">字母变，值也变——八年级学“函数”时会再次见到。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>3.4 合并同类项——3.1 里写过 $5m-2m=3m$，这样的式子为什么能合并？什么样的项才能合并？</p>
+  </div>
+  <p class="note">课后作业建议：习题 3.3 第 1、2、3、6 题；第 7 题（查阅球的表面积、体积公式并计算地球的）可作为课外拓展。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

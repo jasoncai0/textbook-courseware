@@ -3732,19 +3732,31 @@ window.CATALOG = [
                 "no": "2.6",
                 "title": "有理数的乘法与除法",
                 "genre": "推导",
-                "kind": "有理数"
+                "kind": "有理数",
+                "dir": "mj7a-chengchufa",
+                "pages": 17,
+                "desc": "水位标尺推乘法法则，翻符号，乘法迷宫",
+                "cover": "mj7a-chengchufa/assets/shuiwen.jpg"
               },
               {
                 "no": "2.7",
                 "title": "有理数的乘方",
                 "genre": "推导",
-                "kind": "有理数"
+                "kind": "有理数",
+                "dir": "mj7a-chengfang",
+                "pages": 13,
+                "desc": "拉面根数翻倍，负因数配对，小数点移位器",
+                "cover": "mj7a-chengfang/assets/lamian.jpg"
               },
               {
                 "no": "2.8",
                 "title": "有理数的混合运算",
                 "genre": "推导",
-                "kind": "有理数"
+                "kind": "有理数",
+                "dir": "mj7a-hunheyunsuan",
+                "pages": 12,
+                "desc": "点运算符逐步计算，点错说明原因",
+                "cover": "mj7a-hunheyunsuan/assets/heiban.jpg"
               }
             ]
           },
@@ -3757,19 +3769,31 @@ window.CATALOG = [
                 "no": "3.1",
                 "title": "字母表示数",
                 "genre": "概念",
-                "kind": "代数式"
+                "kind": "代数式",
+                "dir": "mj7a-zimubiaoshishu",
+                "pages": 10,
+                "desc": "拖滑块拼正方形，L 形 2n−1 规律",
+                "cover": "mj7a-zimubiaoshishu/assets/lvdao.jpg"
               },
               {
                 "no": "3.2",
                 "title": "代数式",
                 "genre": "概念",
-                "kind": "代数式"
+                "kind": "代数式",
+                "dir": "mj7a-daishushi",
+                "pages": 13,
+                "desc": "月历 2×2 方框，a 换格同步验证",
+                "cover": "mj7a-daishushi/assets/xingli.jpg"
               },
               {
                 "no": "3.3",
                 "title": "代数式的值",
                 "genre": "推导",
-                "kind": "代数式"
+                "kind": "代数式",
+                "dir": "mj7a-daishushizhi",
+                "pages": 12,
+                "desc": "数值转换机：搭程序自动写代数式",
+                "cover": "mj7a-daishushizhi/assets/huochai.jpg"
               },
               {
                 "no": "3.4",
@@ -5092,19 +5116,31 @@ window.CATALOG = [
                 "no": "6.1",
                 "title": "幂函数",
                 "genre": "概念",
-                "kind": "幂函数、指数函数和对数函数"
+                "kind": "幂函数、指数函数和对数函数",
+                "dir": "mg10a-mihanshu",
+                "pages": 12,
+                "desc": "α 滑块＋拖点 P、Q 看奇偶与单调",
+                "cover": "mg10a-mihanshu/assets/qiche.jpg"
               },
               {
                 "no": "6.2",
                 "title": "指数函数",
                 "genre": "概念",
-                "kind": "幂函数、指数函数和对数函数"
+                "kind": "幂函数、指数函数和对数函数",
+                "dir": "mg10a-zhishuhanshu",
+                "pages": 14,
+                "desc": "拖点 (1,a) 改底数；一尺之棰精确截半",
+                "cover": "mg10a-zhishuhanshu/assets/chui.jpg"
               },
               {
                 "no": "6.3",
                 "title": "对数函数",
                 "genre": "概念",
-                "kind": "幂函数、指数函数和对数函数"
+                "kind": "幂函数、指数函数和对数函数",
+                "dir": "mg10a-duishuhanshu",
+                "pages": 14,
+                "desc": "沿 y=x 逐点翻折动画，指对互为反函数",
+                "cover": "mg10a-duishuhanshu/assets/xibao.jpg"
               }
             ]
           },
@@ -5164,13 +5200,21 @@ window.CATALOG = [
                 "no": "8.1",
                 "title": "二分法与求方程近似解",
                 "genre": "推导",
-                "kind": "函数应用"
+                "kind": "函数应用",
+                "dir": "mg10a-erfenfa",
+                "pages": 14,
+                "desc": "二分法器：4 个方程，可选精度 0.1/0.01",
+                "cover": "mg10a-erfenfa/assets/xianlu.jpg"
               },
               {
                 "no": "8.2",
                 "title": "函数与数学模型",
                 "genre": "推导",
-                "kind": "函数应用"
+                "kind": "函数应用",
+                "dir": "mg10a-hanshumoxing",
+                "pages": 13,
+                "desc": "四函数赛跑可拉大视野；数量级比较器",
+                "cover": "mg10a-hanshumoxing/assets/kafei.jpg"
               }
             ]
           }

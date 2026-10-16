@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指数函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chui.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第6章 幂函数、指数函数和对数函数 · 6.2</p>
+    <h1 class="cover-title">指数函数</h1>
+    <p class="cover-q" data-step="1">庄子曰：“一尺之棰，日取其半，万世不竭。”</p>
+    <p class="cover-q" data-step="2">一根一尺长的木棍，每天截去一半。第 $x$ 天后还剩多长？为什么<b>永远</b>截不完？</p>
+    <div class="chips" data-step="3"><span class="chip">指数函数的定义</span><span class="chip">底数 a 与图象</span><span class="chip">比较大小、解不等式</span><span class="chip">图象平移</span><span class="chip">指数模型</span></div>
+  </div>
+  <p class="note">课本 p135 情境 (3)。“棰”同“棰（木棒）”。先让学生凭直觉回答“第 10 天还剩多少”，第 3 页用精确作图一天天截给大家看。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课讲到哪里？今天要用哪些旧知？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="6.1 幂函数（上一课）" data-step="1">
+        <p>$y=x^\alpha$：<b>底数</b>是自变量，指数是常数。</p>
+        <p class="muted">研究了定义域、奇偶性、图象过定点、第一象限的单调性。</p>
+        <span class="use">今天把 $a^b=N$ 中的<b>指数</b>当自变量，按同一条路线研究。</span>
+      </div>
+      <div class="recall" data-label="4.1 指数 · 实数指数幂" data-step="2">
+        <p>$a^r a^s=a^{r+s}$，$(a^r)^s=a^{rs}$，$a^{-r}=\dfrac1{a^r}$</p>
+        <p class="muted">4.1 节细胞分裂：$y=2^x$；4.2.2 节例 10：$y=0.999\,879^x$</p>
+        <span class="use">算函数值、把 25 写成 $0.2^{-2}$（例 2）、说明对称（探究）。</span>
+      </div>
+      <div class="recall" data-label="5.3 单调性" data-step="3">
+        <p>增函数：$x_1\lt x_2\Rightarrow f(x_1)\lt f(x_2)$；减函数反之。</p>
+        <span class="use">比较 $1.5^{2.5}$ 与 $1.5^{3.2}$：同底数，看成同一个函数的两个值（例 1）。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>对照：</b>$y=x^2$ 是幂函数（底数变），$y=2^x$ 是指数函数（指数变）——变量站的位置不同。</p>
+  </div>
+  <p class="note">第一张卡说清上一课讲到哪：幂函数研究完了“底数变”。第二张卡的两个函数正是本课情境 (1)(2)，学生在第 4 章已经见过。</p>
+</section>
+
+<!-- 3 ================= 一尺之棰 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>一尺之棰，日取其半</h2></div>
+  <div class="bd full">
+    <div id="stick" class="stick" data-noswipe></div>
+    <div class="btns center-b" data-noswipe><button class="btn solid" type="button" id="stDay">截一次（过一天）</button><button class="btn" type="button" id="stReset">重来</button><span class="muted" id="stInfo"></span></div>
+    <table class="mtab" id="stTab"></table>
+    <div class="cols3">
+      <p class="tip" data-step="1">剩余长度 $y$（尺）与天数 $x$：<span class="think" data-step="2" data-ask="写出关系式">$y=\left(\dfrac12\right)^x$</span></p>
+      <p class="tip" data-step="3">情境 (1) 细胞分裂：<span class="think" data-step="3" data-ask="关系式">$y=2^x$</span>；情境 (2)：$y=0.999\,879^x$</p>
+      <p class="tip" data-step="4">三个函数的共同特征？<span class="think" data-step="5" data-ask="说一说">底数是<b>常数</b>，指数是<b>自变量</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p135。点“截一次”，木棍按 1 尺 = 整条宽度精确截半（不是示意）。截到第 6 天，剩下的只有 1/64 尺，但永远大于 0——这就是后面“值域是 (0, +∞)”的直观来源。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>指数函数：为什么规定 $a\gt 0$，$a\ne 1$？</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>指数函数（课本 p135）</h4>函数 $$y=a^x\ (a\gt 0,\ a\ne 1)$$ 叫作<b>指数函数</b>（exponential function），它的定义域是 <em>$\mathbf R$</em>。</div>
+    <p class="tip">定义域要是 $\R$——任何实数 $x$ 都得能算 $a^x$。看看三种“不合格”的底数：</p>
+    <div class="cols3">
+      <div class="jcard" data-step="2"><p>若 $a=0$：</p><div class="think" data-step="3" data-ask="会出什么问题？"><p>$0^{-1}=\dfrac10$、$0^0$ 都没有意义，$x\le 0$ 时算不出来。</p></div></div>
+      <div class="jcard" data-step="4"><p>若 $a\lt 0$，如 $a=-2$：</p><div class="think" data-step="5" data-ask="会出什么问题？"><p>$(-2)^{\frac12}=\sqrt{-2}$ 在实数范围内没有意义。</p></div></div>
+      <div class="jcard" data-step="6"><p>若 $a=1$：</p><div class="think" data-step="7" data-ask="会出什么问题？"><p>$1^x=1$，是常数函数，没有研究的必要。</p></div></div>
+    </div>
+    <p class="warn" data-step="8">指数函数的解析式必须是 $a^x$ 的样子：$y=2\cdot 3^x$、$y=3^{x+1}$、$y=-2^x$ 都<b>不是</b>指数函数（系数是 1，指数就是 $x$）。</p>
+  </div>
+  <p class="note">课本只给出规定，这里用三问让学生自己说出理由。规定 a &gt; 0、a ≠ 1 后，以后讨论指数函数一律按 a &gt; 1 与 0 &lt; a &lt; 1 两类。</p>
+</section>
+
+<!-- 5 ================= 核心交互：拖动 (1, a) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>拖动点 $(1,a)$：底数怎样决定图象？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="base" class="basefig"></div>
+      <p class="muted center small-t">上下拖动橙色点 $(1,a)$；黑点 $(0,1)$ 你拖不动它</p>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe>
+        <button class="btn" type="button" data-a="10">$a=10$</button><button class="btn" type="button" data-a="2">$a=2$</button><button class="btn" type="button" data-a="0.5">$a=\frac12$</button><button class="btn" type="button" data-a="1">$a=1$</button>
+        <label class="btn chk"><input type="checkbox" id="mirror"> 同时画 $y=\left(\frac1a\right)^x$</label>
+      </div>
+      <p class="tip feedback" id="baseMsg"></p>
+      <table class="mtab"><tr><th>$x$</th><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td></tr><tr><th>$a^x$</th><td id="v0"></td><td id="v1"></td><td id="v2"></td><td id="v3"></td><td id="v4"></td></tr></table>
+      <p class="tip" data-step="1">不管 $a$ 怎么变，图象总经过哪一点？<span class="think" data-step="2" data-ask="为什么？">$(0,1)$：$a^0=1$。</span></p>
+      <p class="tip" data-step="3">$a$ 从大于 1 拖到小于 1，图象怎样变？<span class="think" data-step="4" data-ask="说一说">从“左低右高”（上升）变成“左高右低”（下降）；$a=1$ 时变成水平直线。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。点 (1, a) 的纵坐标就是底数，拖它就是改 a。先点课本图 6-2-1 的 10、2、1/2 三条；再慢慢拖过 a = 1，让学生说出“分界线是 a = 1”。勾选镜像后观察第 7 页的结论：y = a^x 与 y = (1/a)^x 关于 y 轴对称。</p>
+</section>
+
+<!-- 6 ================= 性质表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>表 6-2-1　指数函数 $y=a^x$ 的图象与性质</h2></div>
+  <div class="bd full">
+    <div class="ptab">
+      <div class="ph"></div><div class="ph">$a\gt 1$</div><div class="ph">$0\lt a\lt 1$</div>
+      <div class="pl">图象</div><div><div id="tA" class="tfig"></div></div><div><div id="tB" class="tfig"></div></div>
+      <div class="pl">定义域</div><div class="span2" data-step="1">$\R$</div>
+      <div class="pl">值域</div><div class="span2" data-step="2"><span class="think" data-step="3" data-ask="图象在 x 轴哪一侧？">$(0,+\infty)$——图象在 $x$ 轴的<b>上方</b>，越来越贴近 $x$ 轴但永不相交</span></div>
+      <div class="pl">定点</div><div class="span2" data-step="4">图象过定点 $(0,1)$</div>
+      <div class="pl">单调性</div><div data-step="5"><span class="think" data-step="6" data-ask="增还是减？">在 $(-\infty,+\infty)$ 上是<b>增函数</b>；<br>当 $x\gt 0$ 时，$y\gt 1$；当 $x\lt 0$ 时，$0\lt y\lt 1$</span></div><div data-step="5"><span class="think" data-step="7" data-ask="增还是减？">在 $(-\infty,+\infty)$ 上是<b>减函数</b>；<br>当 $x\gt 0$ 时，$0\lt y\lt 1$；当 $x\lt 0$ 时，$y\gt 1$</span></div>
+    </div>
+  </div>
+  <p class="note">课本 p136 表 6-2-1。每一行先请学生从图上“读”出来再点开。值域一行与第 3 页木棍呼应：“万世不竭”= 永远大于 0。最后一行的 y 与 1 比较，例 1(3) 找中间量时会用到。</p>
+</section>
+
+<!-- 7 ================= 探究：对称 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探究</span><h2>$y=2^x$ 与 $y=\left(\frac12\right)^x$ 的图象有怎样的关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sym" class="sym"></div>
+      <p class="muted center small-t">拖动橙色点 $P$，空心点 $P'$ 跟着走</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">猜一猜：<span class="think" data-step="2" data-ask="看图说">关于 $y$ 轴对称。</span></p>
+      <p class="tip" data-step="3">能说出理由吗？</p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>设</span><span>$P(m,n)$ 在 $y=2^x$ 上</span><i class="why">$n=2^m$</i></div>
+        <div class="dl key" data-step="5"><span>则</span><span class="think" data-step="6" data-ask="(1/2) 的几次方等于 n？">$\left(\dfrac12\right)^{-m}=2^m=n$</span><i class="why">$\left(\frac12\right)^{-m}=(2^{-1})^{-m}=2^m$</i></div>
+        <div class="dl end" data-step="7"><span>所以</span><span>$P'(-m,n)$ 在 $y=\left(\frac12\right)^x$ 上</span><i class="why">$P$ 与 $P'$ 关于 $y$ 轴对称</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="一般结论">$y=a^x$ 与 $y=\left(\dfrac1a\right)^x$ 的图象关于 $y$ 轴对称。所以只要掌握 $a\gt 1$ 的图象，$0\lt a\lt 1$ 的“翻过去”就是。</p>
+    </div>
+  </div>
+  <p class="note">课本 p136 探究 (2)。先看图猜，再“任取一点”说明——这是证明图象对称的标准方法，6.3 节证明指数、对数图象关于 y = x 对称时还要用。读数里的 P、P′ 纵坐标始终相同。</p>
+</section>
+
+<!-- 8 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>比较大小：同底看单调，异底找中间量</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col">
+        <p class="tip big">(1) $1.5^{2.5}$，$1.5^{3.2}$</p>
+        <div class="derive one">
+          <div class="dl" data-step="1"><span>考察</span><span>$y=1.5^x$</span><i class="why">两数底数相同</i></div>
+          <div class="dl" data-step="2"><span>$1.5\gt 1$</span><span class="think" data-step="3" data-ask="增还是减？">$\R$ 上是增函数</span><i class="why"></i></div>
+          <div class="dl end" data-step="4"><span>$2.5\lt 3.2$</span><span>$1.5^{2.5}\lt 1.5^{3.2}$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(2) $0.5^{-1.2}$，$0.5^{-1.5}$</p>
+        <div class="derive one">
+          <div class="dl" data-step="5"><span>考察</span><span>$y=0.5^x$</span><i class="why"></i></div>
+          <div class="dl" data-step="6"><span>$0\lt 0.5\lt 1$</span><span class="think" data-step="7" data-ask="增还是减？">$\R$ 上是减函数</span><i class="why"></i></div>
+          <div class="dl end" data-step="8"><span>$-1.2\gt -1.5$</span><span>$0.5^{-1.2}\lt 0.5^{-1.5}$</span><i class="why">减函数：自变量大的，函数值反而小</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(3) $1.5^{0.3}$，$0.8^{1.2}$</p>
+        <p class="tip" data-step="9">底数不同，指数也不同，怎么办？<span class="think" data-step="10" data-ask="想一想">各自和 1 比：$1=1.5^0=0.8^0$。</span></p>
+        <div class="derive one">
+          <div class="dl" data-step="11"><span>$0.3\gt 0$</span><span>$1.5^{0.3}\gt 1.5^0=1$</span><i class="why">$y=1.5^x$ 增</i></div>
+          <div class="dl" data-step="12"><span>同理</span><span>$0.8^{1.2}\lt 0.8^0=1$</span><i class="why">$y=0.8^x$ 减</i></div>
+          <div class="dl end" data-step="13"><span>故</span><span>$1.5^{0.3}\gt 0.8^{1.2}$</span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="14" data-label="比较指数幂的大小">同底数：构造指数函数，先判断 $a$ 与 1 的大小（定增减），再比指数。不同底：找中间量 1（$a^0=1$）。</p>
+  </div>
+  <p class="note">课本 p136–137 例 1。(2) 题两个指数都是负数，学生容易比错，先问“−1.2 和 −1.5 谁大”。课本旁注：可以用计算器验证结论。对照 6.1 例 2：那里同指数构造幂函数，这里同底数构造指数函数。</p>
+</section>
+
+<!-- 9 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>解指数不等式：化成同底，再看增减</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip big">(1) 已知 $3^x\ge 3^{0.5}$，求实数 $x$ 的取值范围。</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>因为</span><span>$3\gt 1$</span><i class="why">$y=3^x$ 在 $\R$ 上是增函数</i></div>
+          <div class="dl" data-step="2"><span>由 $3^x\ge 3^{0.5}$</span><span class="think" data-step="3" data-ask="不等号方向？">得 $x\ge 0.5$</span><i class="why">增函数：函数值大 ⇔ 自变量大</i></div>
+          <div class="dl end" data-step="4"><span>故</span><span>$x$ 的取值范围为 $[0.5,+\infty)$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(2) 已知 $0.2^x\lt 25$，求实数 $x$ 的取值范围。</p>
+        <p class="tip" data-step="5">25 不是 0.2 的幂的样子，怎么办？<span class="think" data-step="6" data-ask="想一想">$25=\left(\dfrac15\right)^{-2}=0.2^{-2}$，化成同底。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>因为</span><span>$0\lt 0.2\lt 1$</span><i class="why">$y=0.2^x$ 在 $\R$ 上是减函数</i></div>
+          <div class="dl key" data-step="8"><span>$0.2^x\lt 0.2^{-2}$</span><span class="think" data-step="9" data-ask="不等号方向？">得 $x\gt -2$</span><i class="why">减函数：函数值小 ⇔ 自变量<b>大</b>，不等号<b>改变方向</b></i></div>
+          <div class="dl end" data-step="10"><span>故</span><span>$x$ 的取值范围为 $(-2,+\infty)$</span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="11" data-label="解指数不等式">两边化成同底 $a^{f(x)}\lessgtr a^{g(x)}$ → $a\gt 1$ 时不等号方向不变，$0\lt a\lt 1$ 时方向改变 → 写成区间。</p>
+  </div>
+  <p class="note">课本 p137 例 2。第 (2) 题有两个难点：把 25 化成 0.2 的幂；减函数让不等号反向。可请学生在第 5 页图上指一指：y = 0.2^x 低于 25 的部分对应哪些 x。</p>
+</section>
+
+<!-- 10 ================= 例 3 平移 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>$y=2^{x-2}$、$y=2^{x+2}$ 与 $y=2^x$ 的图象有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe><button class="btn" type="button" data-h="-2">$y=2^{x-2}$</button><button class="btn" type="button" data-h="2">$y=2^{x+2}$</button><button class="btn" type="button" data-h="0">回到 $y=2^x$</button></div>
+      <div id="shift" class="shift"></div>
+      <p class="muted center small-t">也可以左右拖动橙色点：它是 $y=2^{x+h}$ 上“对应 $(0,1)$”的点</p>
+    </div>
+    <div class="col">
+      <table class="mtab small" id="shTab"></table>
+      <p class="tip" data-step="1">表中相同的值，在哪两格？<span class="think" data-step="2" data-ask="找一找">$y=2^{x-2}$ 在 $x=2$ 的值 $=$ $y=2^x$ 在 $x=0$ 的值（都是 $2^0$）。</span></p>
+      <div class="derive one">
+        <div class="dl" data-step="3"><span>$y=2^{x-2}$ 中 $x=a+2$</span><span>$2^{(a+2)-2}=2^a$</span><i class="why">等于 $y=2^x$ 中 $x=a$ 的值</i></div>
+        <div class="dl end" data-step="4"><span>所以</span><span class="think" data-step="5" data-ask="向哪边移？">$y=2^x$ 的图象<b>向右</b>平移 2 个单位，得到 $y=2^{x-2}$；同理<b>向左</b>平移 2 个单位，得到 $y=2^{x+2}$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="6" data-label="思考">$y=a^{x+h}$：由 $y=a^x$ 的图象 $h\gt 0$ 时向左、$h\lt 0$ 时向右平移 $|h|$ 个单位。</p>
+    </div>
+  </div>
+  <p class="note">课本 p137–138 例 3、表 6-2-2、图 6-2-2 及思考。学生最容易凭直觉认为“x − 2 向左”。用表格找“同一个函数值出现在哪个 x”，比死记口诀可靠：要得到同样的 y，x 要多走 2，所以图象往右移。</p>
+</section>
+
+<!-- 11 ================= 例 4 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 例 5</span><h2>指数函数模型：每次都乘同一个数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 4</b>　某种放射性物质每经过 1 年，剩留的质量是原来的 84%。写出剩留量关于时间的函数关系式。</p>
+      <div class="derive one">
+        <div class="dl" data-step="1"><span>1 年、2 年后</span><span>$y=0.84^1$，$y=0.84\times 0.84=0.84^2$</span><i class="why">设最初质量为 1</i></div>
+        <div class="dl end" data-step="2"><span>$x$ 年后</span><span class="think" data-step="3" data-ask="归纳">$y=0.84^x\ (x\gt 0,\ x\in\mathbf N^*)$</span><i class="why"></i></div>
+      </div>
+      <p class="tip" data-step="4"><b>例 5</b>　本金 $a$ 元，每期利率 $r$，按复利计算，存 $x$ 期后本利和为 $y$ 元。(1) 写出关系式；(2) $a=1\,000$，$r=2.25\%$，求 5 期后的本利和。</p>
+      <div class="derive one">
+        <div class="dl" data-step="5"><span>1 期、2 期后</span><span>$a(1+r)$，$a(1+r)^2$</span><i class="why">复利：利息并入本金</i></div>
+        <div class="dl" data-step="6"><span>$x$ 期后</span><span class="think" data-step="7" data-ask="归纳">$y=a(1+r)^x,\ x\in\mathbf N^*$</span><i class="why"></i></div>
+        <div class="dl end" data-step="8"><span>(2)</span><span>$1\,000\times 1.022\,5^5\approx 1\,117.68$（元）</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col" data-step="9">
+      <h3 class="sub">思考：借助计算器</h3>
+      <div class="slider-row big" data-noswipe>存 $x$ 期：<input type="range" id="cx" min="1" max="30" step="1" value="5"><b id="cxV" class="v"></b></div>
+      <div id="comp" class="comp"></div>
+      <p class="tip feedback" id="cMsg"></p>
+      <p class="tip">(1) 第几期后本利和超过本金的 1.5 倍？<span class="think" data-step="10" data-ask="拖一拖，找到它">第 19 期：$1\,000\times1.022\,5^{18}\approx 1\,492.6\lt 1\,500$，$1\,000\times1.022\,5^{19}\approx 1\,526.2\gt 1\,500$。</span></p>
+      <p class="tip">(2) 要使 10 期后本利和翻一番，利率应为多少？<span class="think" data-step="11" data-ask="想一想">$(1+r)^{10}=2$，$1+r=2^{0.1}\approx 1.071\,8$，$r\approx 0.072$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p139–140 例 4、例 5 及思考。两个模型的共同点：“每过一个单位时间，都乘同一个数”，就得到指数函数（自变量取正整数，图象是一串点）。思考 (1) 让学生拖滑块逐期试，比直接解方程直观；(2) 的 2^0.1 用计算器。</p>
+</section>
+
+<!-- 12 ================= 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6</span><h2>按年均增长 7.8% 计算，2016 年 GDP 约是 2000 年的几倍？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设</span><span>2000 年 GDP 为 1，$x$ 年后为 $y$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>每年</span><span>是上一年的 $1.078$ 倍</span><i class="why">增长 7.8%：$1+7.8\%$</i></div>
+        <div class="dl end" data-step="3"><span>$x$ 年后</span><span class="think" data-step="4" data-ask="写出关系式">$y=1.078^x,\ x\in\mathbf N^*$</span><i class="why"></i></div>
+      </div>
+      <p class="tip" data-step="5">2016 年对应 $x=$ <span class="think" data-step="6" data-ask="算一算">$16$</span>。从图象上看 $y\approx$ <span class="think" data-step="7" data-ask="看图读">$3$</span>。</p>
+      <p class="tip gold" data-step="8"><b>答</b>　到 2016 年我国年国内生产总值约为 2000 年的 3 倍。</p>
+      <p class="muted small-t" data-step="8">（计算器：$1.078^{16}\approx 3.33$，结果取整数为 3。）</p>
+    </div>
+    <div class="col">
+      <div id="gdp" class="gdp"></div>
+      <p class="muted center small-t">拖动曲线上的点；$x$ 取正整数时才有实际意义</p>
+      <p class="tip center" id="gdpV"></p>
+    </div>
+  </div>
+  <p class="note">课本 p140–141 例 6、图 6-2-3。先列式，再“用图象估值”。拖到 x = 9、10 附近（y ≈ 2），可以追问：GDP 大约多少年翻一番？</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 下列各数中，哪些大于 1，哪些小于 1？<br>$\left(\frac65\right)^{\frac23}$，$\left(\frac34\right)^{-\frac73}$，$\left(\frac53\right)^{-\frac56}$，$(0.16)^{0.2}$</p>
+        <details><summary>提示 1</summary>都和 $1=a^0$ 比：看底数与 1 的大小、指数的正负。</details>
+        <details><summary>提示 2</summary>$a\gt 1$：指数正则 $\gt 1$；$0\lt a\lt 1$：指数正则 $\lt 1$，指数负则 $\gt 1$。</details>
+        <details><summary>完整解答</summary>大于 1：$\left(\frac65\right)^{\frac23}$，$\left(\frac34\right)^{-\frac73}$；小于 1：$\left(\frac53\right)^{-\frac56}$，$(0.16)^{0.2}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 若指数函数 $f(x)=(a-1)^x$ 是 $\R$ 上的减函数，则 $a$ 的取值范围是（　）<br>A. $a\lt 2$　B. $a\gt 2$　C. $1\lt a\lt 2$　D. $0\lt a\lt 1$</p>
+        <details><summary>提示 1</summary>这里的“底数”是 $a-1$。</details>
+        <details><summary>提示 2</summary>减函数 ⇔ $0\lt$ 底数 $\lt 1$。</details>
+        <details><summary>完整解答</summary>$0\lt a-1\lt 1$，即 $1\lt a\lt 2$，选 <b>C</b>。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 求满足 $\left(\frac12\right)^x\gt\sqrt2$ 的实数 $x$ 的取值范围。</p>
+        <details><summary>提示 1</summary>把 $\sqrt2$ 写成 $\frac12$ 的幂：$\sqrt2=2^{\frac12}=\left(\frac12\right)^{?}$</details>
+        <details><summary>提示 2</summary>$\sqrt2=\left(\frac12\right)^{-\frac12}$；$y=\left(\frac12\right)^x$ 是减函数。</details>
+        <details><summary>完整解答</summary>$\left(\frac12\right)^x\gt\left(\frac12\right)^{-\frac12}$，因为 $y=\left(\frac12\right)^x$ 在 $\R$ 上是减函数，所以 $x\lt -\frac12$，取值范围是 $\left(-\infty,-\frac12\right)$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p138 练习 1、3、6(3)。第 3 题综合了例 2 的两个难点：化同底、减函数变号。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$y=a^x\ (a\gt 0,a\ne 1)$，定义域 $\R$，值域 $(0,+\infty)$，过 $(0,1)$。</p>
+        <p class="recall" data-label="单调性">$a\gt 1$ 增，$0\lt a\lt 1$ 减；$y=a^x$ 与 $y=\left(\frac1a\right)^x$ 关于 $y$ 轴对称。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="比较 · 解不等式">化同底 → 看 $a$ 与 1 → 定增减；异底找中间量 1。</p>
+        <p class="method" data-label="平移">$y=a^{x+h}$：左加右减；用“同一个函数值出现在哪”来理解。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="分类讨论">按 $a\gt 1$、$0\lt a\lt 1$ 分两类研究。</p>
+        <p class="recall" data-label="建模">“每次乘同一个数”的增长或衰减 → 指数函数模型。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>6.3 对数函数——反过来问：已知细胞个数 $y$，怎样求分裂次数 $x$？从 $y=2^x$ 得到 $x=\log_2y$。</p>
+  </div>
+  <p class="note">课后作业建议：习题 6.2 第 2、3、7、8 题；第 9 题（$f(x)f(y)=f(x+y)$）与指数运算性质对照。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -37,3 +37,11 @@
 @media (max-width: 820px), (max-height: 520px) {
   .gfig, .gfig.s, .gfig.l { height: auto; }
 }
+/* 推导链中间一栏是长句时：允许折行，不把依据栏挤出页面 */
+.derive.wrap { grid-template-columns: max-content minmax(0, 1fr) minmax(5.5em, .45fr); }
+.derive.wrap .dl > span { overflow: visible; }
+.derive.wrap .dl > :first-child:nth-last-child(2) { grid-column: auto; text-align: right; }
+@media (max-width: 820px), (max-height: 520px) {
+  .derive.wrap { grid-template-columns: 1fr; }
+  .derive.wrap .dl > :first-child:nth-last-child(2) { text-align: left; }
+}

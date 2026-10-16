@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>函数与数学模型 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/kafei.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第8章 函数应用 · 8.2</p>
+    <h1 class="cover-title">函数与数学模型</h1>
+    <p class="cover-q" data-step="1">一杯 88 ℃ 的热咖啡放在 24 ℃ 的房间里，20 min 后降到 40 ℃。</p>
+    <p class="cover-q" data-step="2">降到 35 ℃ 还要多久？——“凭感觉再等 5 分钟”，还是能<b>算</b>出来？</p>
+    <div class="chips" data-step="3"><span class="chip">指数爆炸</span><span class="chip">增长快慢的比较</span><span class="chip">建立函数模型</span><span class="chip">解决实际问题</span></div>
+  </div>
+  <p class="note">封面问题是课本 p225 例 4，留到第 10 页解决。先让学生凭直觉猜一个时间写在本子上，最后对照。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>建模的“工具箱”里已经有什么？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="6.1–6.3 三类基本初等函数" data-step="1">
+        <p>幂函数 $y=x^\alpha$；指数函数 $y=a^x$；对数函数 $y=\log_ax$。$a\gt 1$ 时后两者都是增函数。</p>
+        <span class="use">比较它们“谁增长得快”（例 1、例 2）。</span>
+      </div>
+      <div class="recall" data-label="6.2 指数模型 · 4.2 对数" data-step="2">
+        <p>“每次乘同一个数”⇒ $y=a(1+r)^x$。</p>
+        <p>$a^b=N\iff b=\log_aN$：两边取对数解指数方程。</p>
+        <span class="use">牛顿冷却规律求时间（例 4）、半衰期（习题）。</span>
+      </div>
+      <div class="recall" data-label="5.2 函数的表示 · 8.1 二分法" data-step="3">
+        <p>表格、图象、解析式；二次函数配方求最值。</p>
+        <span class="use">读气温图、写成本利润关系式（例 3）、求利润最大值（例 5）。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>上一课</b>（8.1）用函数研究<b>方程</b>；这一课用函数研究<b>现实世界</b>：不同的函数模型刻画不同的变化规律。</p>
+  </div>
+  <p class="note">本节分两部分：8.2.1 几个函数模型的比较（例 1、例 2），8.2.2 函数的实际应用（例 3～例 5）。回顾时请学生各举一个“指数函数模型”的例子（复利、细胞分裂、放射性衰减）。</p>
+</section>
+
+<!-- 3 ================= 气温：从现象到模型 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">引入</span><h2>怎样用数学研究“气温的变化”？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="temp" class="temp"></div>
+      <p class="muted center small-t">依课本图 8-2-1 描绘的示意曲线：$t\in[0,24]$，$T\in[-2,9]$</p>
+      <p class="tip center" id="tempV"></p>
+    </div>
+    <div class="col">
+      <div class="derive one">
+        <div class="dl" data-step="1"><span>(1)</span><span class="think" data-step="2" data-ask="用什么刻画状态？">用数 $T$（℃）、$t$（h）刻画温度和时间，得到两个数集</span><i class="why">$t\in[0,24]$，$T\in[-2,9]$</i></div>
+        <div class="dl" data-step="3"><span>(2)</span><span class="think" data-step="4" data-ask="两个数集之间是什么？">把温度与时间的关系抽象为数集之间元素的<b>对应关系</b>——一种数学模型</span><i class="why">每个时刻 $t$，对应唯一的温度 $T$：函数</i></div>
+        <div class="dl" data-step="5"><span>(3)</span><span class="think" data-step="6" data-ask="接下来做什么？">借助数学方法研究这个模型的性质（最值、单调区间……），给出气温的变化规律</span><i class="why">如：14 时最高 9 ℃；4 时最低 −2 ℃</i></div>
+      </div>
+      <p class="tip gold" data-step="7">两个问题贯穿本节：不同的数学模型之间有什么<b>区别</b>？怎样<b>建立</b>函数模型去解决实际问题？</p>
+    </div>
+  </div>
+  <p class="note">课本 p221 与图 8-2-1。拖动曲线上的点读出几个时刻的温度，让学生说出“几点到几点在升温”。这里的曲线是按课本图描出的示意，用于说明建模三步，不是真实数据。</p>
+</section>
+
+<!-- 4 ================= 例 1 指数爆炸 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>先猜再算：$1.01^{365}$ 大概是多少？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <table class="mtab">
+        <tr><th></th><th>平方</th><th>立方</th><th>四次方</th></tr>
+        <tr><th>$1.01$</th><td>1.020 1</td><td>1.030 301</td><td>1.040 604 01</td></tr>
+        <tr><th>$0.99$</th><td>0.980 1</td><td>0.970 299</td><td>0.960 596 01</td></tr>
+        <tr><th>$1.1$</th><td>1.21</td><td>1.331</td><td>1.464 1</td></tr>
+        <tr><th>$0.9$</th><td>0.81</td><td>0.729</td><td>0.656 1</td></tr>
+      </table>
+      <p class="tip" data-step="1">每次只多乘一点点。猜一猜：$1.01^{365}$，$0.99^{365}$，$1.1^{100}$，$1.1^{260}$，$0.9^{100}$，$0.9^{1\,000}$ 大概是多少？</p>
+      <table class="mtab" data-step="2">
+        <tr><td>$1.01^{365}\approx$ <span class="think" data-step="3" data-ask="?">37.8</span></td><td>$0.99^{365}\approx$ <span class="think" data-step="3" data-ask="?">0.03</span></td></tr>
+        <tr><td>$1.1^{100}\approx$ <span class="think" data-step="4" data-ask="?">13 781</span></td><td>$0.9^{100}\approx$ <span class="think" data-step="4" data-ask="?">$2.656\times 10^{-5}$</span></td></tr>
+        <tr><td>$1.1^{260}\approx$ <span class="think" data-step="5" data-ask="?">57 822 669 934</span></td><td>$0.9^{1\,000}\approx$ <span class="think" data-step="5" data-ask="?">$1.748\times 10^{-46}$</span></td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="powBase"></div>
+      <div class="slider-row big" data-noswipe>$n=$ <input type="range" id="powN" min="1" max="1000" step="1" value="365"><b id="powNV" class="v"></b></div>
+      <p class="tip big center" id="powV"></p>
+      <div id="powPlot" class="powplot"></div>
+      <p class="def" data-step="6"><span><b>“指数爆炸”</b>：当 $a\gt 1$ 时，$y=a^x$ 随 $x$ 的增大而增大，且增大的速度<em>越来越快</em>；当 $0\lt a\lt 1$ 时，$y=a^x$ 随 $x$ 的增大而减小，并逐步趋向于 0。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p221–222 例 1。先让学生写下自己的猜测（多数人会严重低估），再用右边的计算器验证。图中纵轴是“乘了 n 次之后的值”，蓝点是当前的 n。常说的“每天进步一点点”：1.01³⁶⁵ ≈ 37.8；“每天退步一点点”：0.99³⁶⁵ ≈ 0.03。</p>
+</section>
+
+<!-- 5 ================= 核心交互：增长赛跑 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>四个函数赛跑：$y=2^x$，$y=x^2$，$y=x^{0.5}$，$y=\log_2x$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="race" class="race"></div>
+      <p class="legend"><i class="k1"></i>$2^x$　<i class="k2"></i>$x^2$　<i class="k3"></i>$x^{0.5}$　<i class="k4"></i>$\log_2x$</p>
+    </div>
+    <div class="col">
+      <div class="slider-row big" data-noswipe>视野：$0\lt x\le$ <input type="range" id="raceX" min="5" max="20" step="1" value="5"><b id="raceXV" class="v"></b></div>
+      <p class="muted small-t">拖动竖线（底部橙色点）读出四个函数值，从大到小排列：</p>
+      <ol class="rank" id="raceRank"></ol>
+      <p class="tip" data-step="1">视野 $x\le 5$ 时：$2^x$ 与 $x^2$ 谁在上面？<span class="think" data-step="2" data-ask="拖一拖">在 $x=2$、$x=4$ 处相交（$2^2=2^2$，$2^4=4^2$），$2\lt x\lt 4$ 时 $x^2$ 更大。</span></p>
+      <p class="tip" data-step="3">把视野拉到 20：<span class="think" data-step="4" data-ask="看图说">$x\gt 4$ 后 $2^x$ 一骑绝尘；$x^{0.5}$ 与 $\log_2x$ 在 $x=4$、$x=16$ 处相交，$x\gt 16$ 后 $x^{0.5}$ 在上。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动，对应课本例 2(1) 与图 8-2-2。横纵轴同比例，看得出“快慢”的真实差别。建议先在视野 5 里找交点，再一格格拉大视野——2^x 很快冲出画面，这就是“指数爆炸”的样子。</p>
+</section>
+
+<!-- 6 ================= 例 2 (1) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 (1)</span><h2>$x$ 足够大（$x\gt 16$）时，四个函数值的大小关系</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <h3 class="sub">$y=2^x$ 与 $y=x^2$</h3>
+        <div class="derive one">
+          <div class="dl" data-step="1"><span>$0\lt x\lt 2$</span><span>$0\lt x^2\lt 2^x\lt 4$</span><i class="why"></i></div>
+          <div class="dl" data-step="2"><span>$x=2$</span><span>$2^x=x^2=4$</span><i class="why"></i></div>
+          <div class="dl" data-step="3"><span>$2\lt x\lt 4$</span><span>$4\lt 2^x\lt x^2\lt 16$</span><i class="why"></i></div>
+          <div class="dl" data-step="4"><span>$x=4$</span><span>$2^x=x^2=16$</span><i class="why"></i></div>
+          <div class="dl end" data-step="5"><span>$x\gt 4$</span><span>$16\lt x^2\lt 2^x$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <h3 class="sub">$y=x^{0.5}$ 与 $y=\log_2x$</h3>
+        <div class="derive one">
+          <div class="dl" data-step="6"><span>$0\lt x\lt 4$</span><span>$0\lt\log_2x\lt x^{0.5}\lt 2$</span><i class="why">（$x\gt 1$ 时）</i></div>
+          <div class="dl" data-step="7"><span>$x=4$</span><span>$x^{0.5}=\log_2x=2$</span><i class="why"></i></div>
+          <div class="dl" data-step="8"><span>$4\lt x\lt 16$</span><span>$2\lt x^{0.5}\lt\log_2x\lt 4$</span><i class="why"></i></div>
+          <div class="dl" data-step="9"><span>$x=16$</span><span>$x^{0.5}=\log_2x=4$</span><i class="why"></i></div>
+          <div class="dl end" data-step="10"><span>$x\gt 16$</span><span>$x^{0.5}\gt\log_2x$</span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+    <p class="def big center" data-step="11"><span>当 $x$ 的值足够大（$x\gt 16$）时：　$2^x\gt x^2\gt x^{0.5}\gt\log_2x$</span></p>
+  </div>
+  <p class="note">课本 p222–223 例 2(1)。请学生对照上一页的图逐行说出每一段的大小关系；“0 &lt; x &lt; 4 时 0 &lt; log₂x”只在 x &gt; 1 时成立，课本这一行讨论的是第一象限的图象。</p>
+</section>
+
+<!-- 7 ================= 例 2 (2)(3) 数量级 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 (2)(3)</span><h2>先想象，再用数值验算：最后谁会胜出？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns" data-noswipe id="magPair"></div>
+      <div class="slider-row big" data-noswipe>$x=$ <input type="range" id="magX" min="0.3" max="12" step="0.01" value="3"><b id="magXV" class="v"></b></div>
+      <div class="btns" data-noswipe id="magJump"></div>
+      <div class="mag" id="magOut"></div>
+      <p class="tip feedback" id="magMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">① $y=1.01^x$ 与 $y=x^{10}$：一开始谁大？<span class="think" data-step="2" data-ask="先猜">$2\le x\le 9\,000$ 时 $1.01^x\lt x^{10}$；$x\ge 10\,000$ 时 $1.01^x\gt x^{10}$。</span></p>
+      <p class="tip" data-step="3">② $y=x^{0.1}$ 与 $y=\lg x$：<span class="think" data-step="4" data-ask="先猜">$30\le x\lt 10^{10}$ 时 $x^{0.1}\lt\lg x$；$x=10^{10}$ 时相等；$x\gt 10^{10}$ 时 $x^{0.1}\gt\lg x$。</span></p>
+      <p class="tip" data-step="5">(3) $y=2^x$ 与 $y=x^{100}$；$y=x^{0.25}$ 与 $y=\log_2x$：<span class="think" data-step="6" data-ask="先猜">$x\gt 997$ 时总有 $2^x\gt x^{100}$；$x\gt 65\,536$ 时总有 $x^{0.25}\gt\log_2x$。</span></p>
+      <div class="def" data-step="7"><h4>一般的猜想（课本 p224）</h4>对于指数函数 $y=a^x\ (a\gt 1)$、幂函数 $y=x^\alpha\ (\alpha\gt 0)$ 和对数函数 $y=\log_ax\ (a\gt 1)$，当 $x$ 足够大时，总有 $$a^x\gt x^\alpha\gt\log_ax.$$</div>
+    </div>
+  </div>
+  <p class="note">课本 p223–224 例 2(2)(3)、图 8-2-3、图 8-2-4。这些数太大，画不进同一张图，所以左边用“数量级”比较：把两个数都写成 m × 10ⁿ。滑块是 x 的数量级（10⁰.³ 到 10¹²）。旁注术语：“指数爆炸”“直线上升”“对数增长”。</p>
+</section>
+
+<!-- 8 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">8.2.2 · 例 3</span><h2>计算机生产：成本、收入、利润的函数关系</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">某计算机集团公司生产某种型号计算机的固定成本为 200 万元，生产每台计算机的可变成本为 3 000 元，每台计算机的售价为 5 000 元。分别写出总成本 $C$、单位成本 $P$、销售收入 $R$ 以及利润 $L$（单位：万元）关于总产量 $x$（单位：台）的函数关系式。</p>
+      <p class="tip" data-step="1">单位要统一：3 000 元 = <span class="think" data-step="2" data-ask="多少万元？">0.3 万元</span>，5 000 元 = <span class="think" data-step="2" data-ask="多少万元？">0.5 万元</span>。</p>
+      <p class="tip" data-step="9">追问：至少生产多少台才不亏本？<span class="think" data-step="10" data-ask="想一想">$L=0.2x-200\gt 0$ ⇒ $x\gt 1\,000$。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span>总成本</span><span>$C=200+0.3x,\ x\in\mathbf N^*$</span><i class="why">固定成本 + 可变成本</i></div>
+        <div class="dl" data-step="4"><span>单位成本</span><span class="think" data-step="5" data-ask="怎么算？">$P=\dfrac{200}{x}+0.3,\ x\in\mathbf N^*$</span><i class="why">总成本 ÷ 台数：产量越大，单位成本越低</i></div>
+        <div class="dl" data-step="6"><span>销售收入</span><span>$R=0.5x,\ x\in\mathbf N^*$</span><i class="why"></i></div>
+        <div class="dl end" data-step="7"><span>利润</span><span class="think" data-step="8" data-ask="怎么算？">$L=R-C=0.2x-200,\ x\in\mathbf N^*$</span><i class="why">收入 − 成本</i></div>
+      </div>
+      <div id="cost" class="cost" data-step="9"></div>
+    </div>
+  </div>
+  <p class="note">课本 p225 例 3。注意自变量取正整数（台数）。追问不是课本原题，用来体会“一次函数模型”的直线上升：图中蓝线 R、橙线 C 在 x = 1 000 处相交，之后利润为正。</p>
+</section>
+
+<!-- 9 ================= 例 4 牛顿冷却 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>回到封面：咖啡降到 35 ℃ 需要多久？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cool" class="cool"></div>
+      <p class="tip center" id="coolV"></p>
+    </div>
+    <div class="col">
+      <p class="tip">牛顿冷却规律：$T-T_a=(T_0-T_a)\left(\dfrac12\right)^{\frac th}$，其中 $T_a$ 是环境温度，$h$ 称为半衰期。$T_0=88$，$T_a=24$。</p>
+      <div class="derive one">
+        <div class="dl" data-step="1"><span>代入 20 min、40 ℃</span><span class="think" data-step="2" data-ask="先求参数 h">$40-24=(88-24)\left(\dfrac12\right)^{\frac{20}h}$，即 $\dfrac14=\left(\dfrac12\right)^{\frac{20}h}$，解得 $h=10$</span><i class="why">$\frac14=\left(\frac12\right)^2$，所以 $\frac{20}{h}=2$</i></div>
+        <div class="dl key" data-step="4"><span>模型</span><span>$T-24=(88-24)\left(\dfrac12\right)^{\frac t{10}}$</span><i class="why">参数确定，模型建好</i></div>
+        <div class="dl" data-step="5"><span>$T=35$ 时</span><span>$\left(\dfrac12\right)^{\frac t{10}}=\dfrac{11}{64}$</span><i class="why">$35-24=11$</i></div>
+        <div class="dl end" data-step="6"><span>求解</span><span class="think" data-step="7" data-ask="怎样解出 t？">两边取对数，用计算器求得 $t\approx 25.4$</span><i class="why">$t=10\log_{\frac12}\dfrac{11}{64}$</i></div>
+      </div>
+      <p class="tip gold" data-step="8">因此，约需要 25.4 min 咖啡可降温到 35 ℃。你猜对了吗？</p>
+    </div>
+  </div>
+  <p class="note">课本 p225–226 例 4。两个关键步骤：先用一组数据“求参数 h”，再“用模型求 t”。注意 t ≈ 25.4 是从开始算起的总时间。图中虚线 T = 24 是室温：咖啡越来越接近室温，但不会低于室温。</p>
+</section>
+
+<!-- 10 ================= 例 5 边际函数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>利润函数与边际利润函数，最大值相同吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">边际函数：$Mf(x)=f(x+1)-f(x)$。某公司每月最多生产 100 台报警系统装置，收入 $R(x)=3\,000x-20x^2$，成本 $C(x)=500x+4\,000$（元），$x\in\mathbf N^*$。</p>
+      <div class="derive one">
+        <div class="dl" data-step="1"><span>$P(x)$</span><span>$=R(x)-C(x)=-20x^2+2\,500x-4\,000$</span><i class="why">$x\in[1,100]$，$x\in\mathbf N^*$</i></div>
+        <div class="dl" data-step="2"><span>$MP(x)$</span><span class="think" data-step="3" data-ask="化简 P(x+1) − P(x)">$=P(x+1)-P(x)=2\,480-40x$</span><i class="why">平方项正好抵消</i></div>
+        <div class="dl" data-step="4"><span>$P(x)$</span><span>$=-20\left(x-\dfrac{125}{2}\right)^2+74\,125$</span><i class="why">配方；$x$ 只能取整数</i></div>
+        <div class="dl end" data-step="5"><span>最大值</span><span class="think" data-step="6" data-ask="x 取几？">$x=62$ 或 $63$ 时 $P$ 最大为 $74\,120$ 元；$x=1$ 时 $MP$ 最大为 $2\,440$ 元</span><i class="why">$MP$ 是减函数</i></div>
+      </div>
+      <p class="tip gold" data-step="7">所以不具有相同的最大值。$MP(x)$ 递减：随着产量增加，每台利润与前一台相比在<b>减少</b>。</p>
+    </div>
+    <div class="col">
+      <div class="slider-row big" data-noswipe>$x=$ <input type="range" id="mx" min="1" max="99" step="1" value="30"><b id="mxV" class="v"></b></div>
+      <div id="mp1" class="mp"></div>
+      <div id="mp2" class="mp2"></div>
+      <p class="tip center" id="mpV"></p>
+    </div>
+  </div>
+  <p class="note">课本 p226 例 5。右上图是 P(x) 的 100 个点（x 为正整数），右下图是 MP(x)。拖到 x = 62、63，两点等高；同时 MP(62) = P(63) − P(62) = 0，MP(x) 的值正好是相邻两点的“高度差”——这就是边际的含义。</p>
+</section>
+
+<!-- 11 ================= 建模流程 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>解决实际问题的程序</h2></div>
+  <div class="bd full">
+    <div class="model" data-step="1"><span>实际问题</span><b>→</b><span>建立数学模型</span><b>→</b><span>求解数学模型</span><b>→</b><span>解决实际问题</span></div>
+    <p class="tip center" data-step="1">其中<b>建立数学模型</b>是关键（课本 p227）。</p>
+    <p class="tip">练习 1：某地高山上温度从山脚起每升高 100 m 降低 0.6 ℃。已知山顶的温度是 14.6 ℃，山脚的温度是 26 ℃。问：此山有多高？</p>
+    <div class="cols3">
+      <div class="jcard" data-step="2"><p><b>建立模型</b></p><div class="think" data-step="3" data-ask="设什么？关系式？"><p>设高度为 $x$ m，温度 $T=26-0.6\cdot\dfrac{x}{100}$（一次函数模型）。</p></div></div>
+      <div class="jcard" data-step="4"><p><b>求解模型</b></p><div class="think" data-step="5" data-ask="T = 14.6 时？"><p>$14.6=26-0.006x$，得 $x=1\,900$。</p></div></div>
+      <div class="jcard" data-step="6"><p><b>回到实际</b></p><div class="think" data-step="7" data-ask="答"><p>此山高约 1 900 m。检验：降低 11.4 ℃，正好是 19 个 0.6 ℃。</p></div></div>
+    </div>
+    <p class="method" data-step="8" data-label="选模型">“直线上升”选一次函数；“每次乘同一个数”选指数函数；有最值的选二次函数；增长越来越慢选对数（或幂）函数。</p>
+  </div>
+  <p class="note">课本 p227 程序框与练习 1。用一道最简单的题把四个环节走一遍，并请学生回头说出例 3、例 4、例 5 分别选了什么模型（一次、指数、二次）。</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某店从水果批发市场购得椰子两筐，连同运费总共花了 300 元，回来后发现有 12 个是坏的，不能将它们出售，余下的椰子按每个高出成本价 1 元售出，售完后共赚得 78 元。问：这两筐椰子原来共有多少个？</p>
+        <details><summary>提示 1</summary>设原来共 $x$ 个，成本价每个 $\dfrac{300}{x}$ 元。</details>
+        <details><summary>提示 2</summary>收入 $(x-12)\left(\dfrac{300}{x}+1\right)=300+78$。</details>
+        <details><summary>完整解答</summary>整理得 $x^2-90x-3\,600=0$，$(x-120)(x+30)=0$，取 $x=120$。这两筐椰子原来共有 120 个。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知镭经过 100 年剩留原来的 95.76%，设质量为 1 的镭经过 $x$ 年后的剩留量为 $y$，则 $x,y$ 的函数关系是怎样的？</p>
+        <details><summary>提示 1</summary>“每 100 年乘 0.957 6”：$x$ 年里有几个 100 年？</details>
+        <details><summary>提示 2</summary>$\dfrac{x}{100}$ 个。</details>
+        <details><summary>完整解答</summary>$y=0.957\,6^{\frac{x}{100}}\ (x\ge 0)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 一种放射性元素最初质量为 1 000 g，按每年 10% 衰减。(1) 写出 $x$ 年后质量 $y$ 与 $x$ 的关系式；(2) 求半衰期（精确到 0.1）。</p>
+        <details><summary>提示 1</summary>每年剩下原来的 90%：$y=1\,000\times 0.9^x$。</details>
+        <details><summary>提示 2</summary>半衰期：$0.9^x=0.5$，两边取对数。</details>
+        <details><summary>完整解答</summary>(1) $y=1\,000\times 0.9^x\ (x\ge 0)$；(2) $x=\log_{0.9}0.5=\dfrac{\lg 0.5}{\lg 0.9}\approx 6.6$，半衰期约为 6.6 年。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p227 练习 4、5 与习题 8.2 第 3 题。第 1 题是方程模型，提醒“负根舍去”要回到实际意义；第 3 题与例 4 一样要两边取对数。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$x$ 足够大时：$a^x\gt x^\alpha\gt\log_ax$（$a\gt 1,\alpha\gt 0$）。</p>
+        <p class="recall" data-label="增长方式">指数爆炸 · 直线上升 · 对数增长。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="建模四步">实际问题 → 建立模型 → 求解模型 → 解决实际问题。</p>
+        <p class="method" data-label="求参数">先用已知数据定参数（如半衰期 $h$），再用模型预测。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数学建模">用函数刻画现实中的变化规律。</p>
+        <p class="recall" data-label="数形结合">图象看趋势，数值来验证。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p229「应用与建模 · 体重与脉搏」——动物越大，心跳越慢？用幂函数模型 $Q=k_1W^{\frac23}$ 试一试。</p>
+  </div>
+  <p class="note">课后作业建议：习题 8.2 第 1、2、4 题；第 8 题（写作题）可作为小组调查作业，收集生活中的指数、对数、幂函数模型实例。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
