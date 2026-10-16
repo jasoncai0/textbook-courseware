@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>余弦定理 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shuitang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第11章 解三角形 · 11.1</p>
+    <h1 class="cover-title">余弦定理</h1>
+    <p class="cover-q" data-step="1">水塘两端 $A$、$B$ 之间量不了，可以在岸上另选一点 $C$，量出 $CA$、$CB$ 和 $\angle ACB$。</p>
+    <p class="cover-q" data-step="2">如果 $\triangle ABC$ 是直角三角形，勾股定理马上给出 $AB$。可它<b>不是</b>直角三角形呢？</p>
+    <div class="chips" data-step="3"><span class="chip">向量推导</span><span class="chip">勾股定理的推广</span><span class="chip">解三角形</span><span class="chip">判断三角形形状</span></div>
+  </div>
+  <p class="note">第 11 章引言（课本 p84）和 11.1 例 2 的情境。先让学生说：已知两边和夹角，三角形“定不定”？（初中 SAS 全等：定！）既然定了，第三边就应该能<b>算</b>出来——这就是本课要找的关系。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>推导之前，先清点手里的四件工具</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="第 9 章 9.2 · 向量加法" data-step="1">
+        <p>三角形法则：首尾相接，$\overrightarrow{BC}=\overrightarrow{BA}+\overrightarrow{AC}$。</p>
+        <span class="use">把三角形的三条边“装进”一个向量等式。</span>
+      </div>
+      <div class="recall" data-label="第 9 章 9.2 · 数量积" data-step="2">
+        <p>$\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos\theta$，$\theta$ 是两向量<b>起点放在一起</b>时的夹角；$\boldsymbol a\cdot\boldsymbol a=|\boldsymbol a|^2$。</p>
+        <span class="use">等式两边“平方”，向量等式就变成了长度和角的等式。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 7.2 · 诱导公式" data-step="3">
+        <p>$\cos(180^\circ-\alpha)=-\cos\alpha$</p>
+        <span class="use">$\overrightarrow{BA}$ 与 $\overrightarrow{AC}$ 的夹角不是 $A$，而是 $180^\circ-A$。</span>
+      </div>
+      <div class="recall" data-label="初中 · 勾股定理与锐角三角函数" data-step="4">
+        <p>$C=90^\circ\Rightarrow c^2=a^2+b^2$；直角三角形中 $\cos A=\dfrac{\text{邻边}}{\text{斜边}}$。</p>
+        <span class="use">检验新公式（$A=90^\circ$ 时应回到勾股定理），以及“思考”中的另一种证法。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>记号约定（课本 p85 旁注）：</b>本章如无特别说明，$a,b,c$ 分别表示 $\triangle ABC$ 中角 $A,B,C$ 所对边的长。</p>
+  </div>
+  <p class="note">本章是第 9 章平面向量的直接应用。每张卡先请学生口述，再看“本课用在”。第二张卡强调“起点放在一起”——这是推导中最容易出错的一步。</p>
+</section>
+
+<!-- 3 ================= 先猜：拖动角 A ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">先猜</span><h2>两边不变，夹角一变，第三边怎么变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="gap" class="gapb"></div>
+      <div class="slider-row" data-noswipe>$A=$<input type="range" id="gA" min="10" max="170" step="1" value="60"><b id="gAV" class="v"></b></div>
+      <p class="tip center muted">固定 $b=AC=4$，$c=AB=5$，拖动滑块改变 $\angle A$</p>
+    </div>
+    <div class="col">
+      <div class="readout">
+        <span>$a^2$</span><span class="bar"><i id="barA2" style="background:var(--red)"></i></span><span class="v" id="vA2"></span>
+        <span>$b^2+c^2$</span><span class="bar"><i id="barBC" style="background:var(--orange)"></i></span><span class="v" id="vBC"></span>
+        <span>差</span><span class="muted">$a^2-(b^2+c^2)$</span><span class="v" id="vGap"></span>
+      </div>
+      <p class="tip" data-step="1">$A=90^\circ$ 时，差是多少？　<span class="think" data-step="2" data-ask="试一试">$0$——这就是勾股定理 $a^2=b^2+c^2$。</span></p>
+      <p class="tip" data-step="3">$A$ 是锐角时差为正还是负？钝角呢？　<span class="think" data-step="4" data-ask="拖一拖再说">锐角：$a^2\lt b^2+c^2$，差为<b>负</b>；钝角：差为<b>正</b>。</span></p>
+      <p class="tip gold" data-step="5"><b>猜想：</b>差的符号和 $\cos A$ 的符号恰好<b>相反</b>，大小似乎也跟 $\cos A$ 有关。差 $=\ ?\times\cos A$　<span class="think" data-step="6" data-ask="看看最后一行">差 $\div\cos A$ 总是 $-40=-2bc$！<b id="gRatio"></b></span></p>
+    </div>
+  </div>
+  <p class="note">本课核心问题：勾股定理“缺”了什么？先让学生拖到 90°、锐角、钝角三处观察差的符号；再按第 6 步打开“差 ÷ cos A”，学生会发现它恒为 −40 = −2×4×5。这是猜想，下一页用向量严格推出来。</p>
+</section>
+
+<!-- 4 ================= 向量推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>把向量等式 $\overrightarrow{BC}=\overrightarrow{BA}+\overrightarrow{AC}$ “数量化”</h2></div>
+  <div class="bd narrow">
+    <div class="col">
+      <div id="vecfig" class="vecb"></div>
+      <p class="tip muted small-t">虚线是 $\overrightarrow{BA}$ 的延长线：把 $\overrightarrow{BA}$ 平移到起点 $A$，它与 $\overrightarrow{AC}$ 的夹角是绿色的 $180^\circ-A$。</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\overrightarrow{BC}\cdot\overrightarrow{BC}$</span><span>$=(\overrightarrow{BA}+\overrightarrow{AC})\cdot(\overrightarrow{BA}+\overrightarrow{AC})$</span><i class="why">两边同时“平方”</i></div>
+        <div class="dl" data-step="2"><span></span><span>$=\overrightarrow{BA}^2+2\overrightarrow{BA}\cdot\overrightarrow{AC}+\overrightarrow{AC}^2$</span><i class="why">运算律展开</i></div>
+        <div class="dl key" data-step="3"><span></span><span>$=|\overrightarrow{BA}|^2+2|\overrightarrow{BA}||\overrightarrow{AC}|\cos(180^\circ-A)+|\overrightarrow{AC}|^2$</span><span class="think" data-step="4" data-ask="夹角为什么是 180°−A？">首尾相接，起点不重合；平移到同一起点后夹角是 $180^\circ-A$</span></div>
+        <div class="dl" data-step="5"><span></span><span>$=c^2-2cb\cos A+b^2$</span><i class="why">$\cos(180^\circ-A)=-\cos A$</i></div>
+        <div class="dl end" data-step="6"><span>即</span><span>$a^2=b^2+c^2-2bc\cos A$</span><i class="why">$|\overrightarrow{BC}|=a$</i></div>
+        <div class="dl" data-step="7"><span>同理</span><span class="think" data-step="8" data-ask="b² = ？ c² = ？">$b^2=c^2+a^2-2ca\cos B$，$c^2=a^2+b^2-2ab\cos C$</span><i class="why">换一个顶点出发</i></div>
+      </div>
+      <p class="tip gold" data-step="6">回到上一页：差 $=a^2-(b^2+c^2)=-2bc\cos A=-40\cos A$，猜想被证实。</p>
+    </div>
+  </div>
+  <p class="note">课本 p85。第 3 行是关键，务必停顿：许多学生会直接写 cos A。用图中的虚线说明：把 BA 平移到起点 A，与 AC 的夹角是 A 的补角。“同理可得”请两位学生口述：求 b² 从哪个向量等式出发？（如 CA = CB + BA）</p>
+</section>
+
+<!-- 5 ================= 定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理</span><h2>余弦定理：勾股定理的推广</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="def" data-step="1"><h4>余弦定理（课本 p85）</h4>三角形任何一边的平方等于其他两边平方的和减去这两边与它们夹角的余弦的积的两倍：
+        $$a^2=b^2+c^2-2bc\cos A,$$ $$b^2=c^2+a^2-2ca\cos B,$$ $$c^2=a^2+b^2-2ab\cos C.$$</div>
+      <div class="def" data-step="2"><h4>也可以写成</h4>
+        $$\cos A=\frac{b^2+c^2-a^2}{2bc},$$ $$\cos B=\frac{c^2+a^2-b^2}{2ca},$$ $$\cos C=\frac{a^2+b^2-c^2}{2ab}.$$</div>
+    </div>
+    <div class="cols3">
+      <p class="tip" data-step="3">$A=90^\circ$ 时变成什么？<br><span class="think" data-step="4" data-ask="代进去">$\cos 90^\circ=0$，$a^2=b^2+c^2$：<b>勾股定理是余弦定理的特例</b>。</span></p>
+      <p class="tip" data-step="5">第一种写法用来求什么？<br><span class="think" data-step="6" data-ask="看已知、看所求">已知两边和夹角 → 求<b>第三边</b>。</span></p>
+      <p class="tip" data-step="7">第二种写法用来求什么？<br><span class="think" data-step="8" data-ask="看已知、看所求">已知三边 → 求<b>角</b>（$\cos$ 值定角，$0\lt A\lt\pi$ 时唯一）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p85 两个定理框。让学生用“文字”读一遍第一种写法：每个式子左边的边，正对着右边余弦里的角。记忆口诀可以由学生自己编，例如“对边平方 = 两边平方和 − 两倍两边乘夹角余弦”。</p>
+</section>
+
+<!-- 6 ================= 思考：用勾股定理证明 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>不用向量，只用勾股定理能证吗？</h2></div>
+  <div class="bd narrow">
+    <div class="col">
+      <div id="alt" class="altb"></div>
+      <p class="tip center muted">拖动橙色点 $C$：作 $CD\perp AB$ 于 $D$<br><b id="altInfo"></b></p>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p85“思考”：尝试用勾股定理证明余弦定理。　约定：$AD$ 按 $\overrightarrow{AB}$ 的方向取正负（有向长度），这样不用分锐角、钝角写两遍。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$CD=$</span><span class="think" data-step="2" data-ask="用 b 和 A 表示">$b\sin A$</span><i class="why">$\text{Rt}\triangle ACD$ 中</i></div>
+        <div class="dl" data-step="3"><span>$AD=$</span><span class="think" data-step="4" data-ask="用 b 和 A 表示">$b\cos A$，$BD=|c-b\cos A|$</span><i class="why">$A$ 为钝角时 $\cos A\lt0$，$D$ 在 $BA$ 延长线上，仍成立</i></div>
+        <div class="dl key" data-step="5"><span>$a^2$</span><span>$=CD^2+BD^2=b^2\sin^2A+(c-b\cos A)^2$</span><i class="why">$\text{Rt}\triangle BCD$ 中用勾股定理</i></div>
+        <div class="dl end" data-step="6"><span></span><span>$=b^2(\sin^2A+\cos^2A)+c^2-2bc\cos A=b^2+c^2-2bc\cos A$</span><i class="why">$\sin^2A+\cos^2A=1$</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="两种证法对照">向量法：一个等式“平方”，锐角、钝角不必分类；几何法：作高化成直角三角形，要留意垂足 $D$ 的位置。</p>
+    </div>
+  </div>
+  <p class="note">课本 p85“思考”。请学生拖动 C，使 A 变成钝角，观察垂足 D 跑到 BA 的延长线上——此时 AD = b cos A 是负数，用坐标（有向长度）来理解，c − b cos A 仍是 BD 的“带符号长度”，平方后不受影响。这里也预告了习题 11.1 第 11 题（坐标法）。</p>
+</section>
+
+<!-- 7 ================= 解三角形 + 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>解三角形：已知几个元素，求其他元素</h2></div>
+  <div class="bd full">
+    <p class="def" data-step="1">三角形的三个角和三条边叫作三角形的<em>元素</em>。已知三角形的几个元素求其他元素的过程叫作<em>解三角形</em>。</p>
+    <p class="tip">根据下列条件解三角形（边长精确到 0.01，角度精确到 0.1°）：</p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip big">(1) 已知 $b=3,\ c=1,\ A=60^\circ$，求 $a$；</p>
+        <p class="tip" data-step="2">用哪个式子？　<span class="think" data-step="3" data-ask="两边夹一角">已知两边及夹角 → $a^2=b^2+c^2-2bc\cos A$。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="4"><span>$a^2$</span><span>$=3^2+1^2-2\times3\times1\times\cos60^\circ=7$</span><i class="why">$\cos60^\circ=\frac12$</i></div>
+          <div class="dl end" data-step="5"><span>所以</span><span>$a=\sqrt7\approx2.65$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(2) 已知 $a=4,\ b=5,\ c=6$，求 $A$。</p>
+        <p class="tip" data-step="6">用哪个式子？　<span class="think" data-step="7" data-ask="三边求角">已知三边 → $\cos A=\dfrac{b^2+c^2-a^2}{2bc}$。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="8"><span>$\cos A$</span><span>$=\dfrac{5^2+6^2-4^2}{2\times5\times6}=0.75$</span><i class="why"></i></div>
+          <div class="dl end" data-step="9"><span>所以</span><span>$A\approx41.4^\circ$</span><i class="why">计算器：$\arccos0.75\approx41.41^\circ$</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="tip gold" data-step="10">课本旁注：用余弦定理来解三角形，其结果唯一确定吗？为什么？　<span class="think" data-step="11" data-ask="想一想">唯一。(1) 两边夹角定第三边（SAS）；(2) $\cos A$ 的值在 $(0,\pi)$ 内只对应一个角（SSS）。</span></p>
+  </div>
+  <p class="note">课本 p86 例 1。让学生先判断“已知的是哪几个元素、用哪种形式”，再动笔。第 (2) 题要用计算器，提醒设置为角度制。旁注的问题与初中全等判定 SAS、SSS 对应，为下一课“SSA 可能两解”埋伏笔。</p>
+</section>
+
+<!-- 8 ================= 例 2 水塘 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>隔着水塘的两地，相距多远？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 360 300" class="fig" aria-label="图 11-1-2 水塘">
+        <g id="pondTri"></g>
+      </svg>
+      <p class="tip muted small-t">按 $CA=182$、$CB=126$、$\angle ACB=63^\circ$ 等比例画出（$1$ 单位 $=1$ m）。</p>
+    </div>
+    <div class="col">
+      <p class="tip">$A,B$ 两地之间隔着一个水塘，选择另一点 $C$，测得 $CA=182\text{ m}$，$CB=126\text{ m}$，$\angle ACB=63^\circ$，求 $A,B$ 两地之间的距离（精确到 1 m）。</p>
+      <p class="tip" data-step="1">已知什么？　<span class="think" data-step="2" data-ask="是哪类问题？">两边 $CA,CB$ 及它们的<b>夹角</b> $C$ → 用余弦定理求第三边 $AB$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$AB^2$</span><span>$=CA^2+CB^2-2CA\cdot CB\cos C$</span><i class="why">余弦定理（第三个式子）</i></div>
+        <div class="dl" data-step="4"><span></span><span>$=182^2+126^2-2\times182\times126\cos63^\circ$</span><i class="why">代入</i></div>
+        <div class="dl" data-step="5"><span></span><span>$\approx28\,178.18\ (\text{m}^2)$</span><i class="why">$\cos63^\circ\approx0.454\,0$</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$AB\approx168\text{ m}$</span><i class="why"></i></div>
+      </div>
+      <p class="tip" data-step="7"><b>答</b>　$A,B$ 两地之间的距离约为 168 m。<span class="muted">（图中按比例量 $AB$：<b id="pondAB"></b> m）</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p86 例 2。实际问题要写“答”。左图是按真实数据等比例画的，量出来的 AB 与计算一致——可以让学生体会“三角形被两边夹角唯一确定”。</p>
+</section>
+
+<!-- 9 ================= 例 3 锐角钝角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>只看三边，能判断是锐角还是钝角三角形吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cls" class="clsb"></div>
+      <p class="tip feedback" id="clsMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">用余弦定理证明：在 $\triangle ABC$ 中，当 $C$ 为锐角时，$a^2+b^2\gt c^2$；当 $C$ 为钝角时，$a^2+b^2\lt c^2$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$C$ 为锐角</span><span>$\cos C\gt0$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>$c^2$</span><span>$=a^2+b^2-2ab\cos C\lt a^2+b^2$</span><span class="think" data-step="3" data-ask="为什么是“<”？">减去的 $2ab\cos C$ 是正数</span></div>
+        <div class="dl end" data-step="4"><span>即</span><span>$a^2+b^2\gt c^2$</span><i class="why">同理可证，$C$ 为钝角时 $a^2+b^2\lt c^2$</i></div>
+      </div>
+      <p class="method" data-step="5" data-label="判断三角形形状">看<b>最大边</b> $c$ 所对的角：$a^2+b^2\gt c^2$ ⇔ 锐角三角形；$=$ ⇔ 直角三角形；$\lt$ ⇔ 钝角三角形。</p>
+      <p class="tip" data-step="6">课本练习 2：三条线段长 5，6，7 能组成什么三角形？　<span class="think" data-step="7" data-ask="先判断">最大边 7：$5^2+6^2=61\gt49$，能组成<b>锐角</b>三角形，选 B。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p86 例 3 和旁注“怎样判定锐角、直角、钝角三角形”。注意：只需检查最大边——最大边对的角是锐角，其他两个角更小，当然也是锐角。拖动 C 让学生看到：橙色差值的符号一变，角 C 的类型就跟着变。</p>
+</section>
+
+<!-- 10 ================= 两类问题 + 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>渡船过江：向量、余弦定理一起上</h2></div>
+  <div class="bd narrow">
+    <div class="col">
+      <svg viewBox="0 0 340 320" class="fig" aria-label="图 11-1-3 渡船">
+        <defs><marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1d6fa5"/></marker></defs>
+        <g id="ferry"></g>
+      </svg>
+      <p class="tip muted small-t">按 $AB=1.2$、$AC=0.5$、$\angle NAB=15^\circ$ 等比例画出</p>
+    </div>
+    <div class="col">
+      <p class="tip">江水以 5 km/h 向东流。渡船从南岸 $A$ 出发，预定 0.1 h 后到达北岸 $B$；$B$ 在 $A$ 北偏东 $15^\circ$，相距 1.2 km。渡船应按什么方向航行？速度多少？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>建模</span><span class="think" data-step="2" data-ask="实际位移 = ？ + ？">$\overrightarrow{AB}=\overrightarrow{AD}+\overrightarrow{AC}$：船速位移 + 水流位移，作 $\square ACBD$</span><i class="why">$AB=1.2,\ AC=0.5$</i></div>
+        <div class="dl" data-step="3"><span>$BC^2$</span><span>$=1.2^2+0.5^2-2\times1.2\times0.5\cos(90^\circ-15^\circ)\approx1.38$</span><i class="why">$\angle BAC=75^\circ$，余弦定理</i></div>
+        <div class="dl" data-step="4"><span>$AD=BC$</span><span>$\approx1.17$，速度 $1.17\div0.1=11.7$（km/h）</span><i class="why">平行四边形对边相等</i></div>
+        <div class="dl" data-step="5"><span>$\cos\angle ABC$</span><span>$=\dfrac{1.2^2+1.17^2-0.5^2}{2\times1.2\times1.17}\approx0.911\,3$</span><i class="why">三边求角</i></div>
+        <div class="dl end" data-step="6"><span>$\angle DAN$</span><span>$=\angle ABC-15^\circ\approx24.3^\circ-15^\circ=9.3^\circ$</span><i class="why">$\angle DAB=\angle ABC$（内错角）</i></div>
+      </div>
+      <p class="tip" data-step="7"><b>答</b>　渡船应按北偏西 $9.3^\circ$ 的方向，以 11.7 km/h 的速度航行。</p>
+    </div>
+  </div>
+  <p class="note">课本 p87 例 4。先用向量的平行四边形法则建模（第 9 章 9.4 向量应用），再在 △ABC 中两次用余弦定理：先“两边夹角求边”，再“三边求角”。这正是余弦定理能解决的两类问题。</p>
+</section>
+
+<!-- 11 ================= 例 5 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 例 6</span><h2>用余弦定理“边角互化”、算中线</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">例 5　在 $\triangle ABC$ 中，已知 $a\cos B=b\cos A$，求证：$\triangle ABC$ 为等腰三角形。</p>
+        <p class="tip" data-step="1">式子里既有边又有角，怎么办？　<span class="think" data-step="2" data-ask="想一想">用余弦定理把 $\cos$ <b>换成边</b>，只剩边的关系。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span></span><span>$a\cdot\dfrac{a^2+c^2-b^2}{2ac}=b\cdot\dfrac{b^2+c^2-a^2}{2bc}$</span><i class="why">角化边</i></div>
+          <div class="dl" data-step="4"><span>整理得</span><span>$a^2=b^2$</span><i class="why">两边同乘 $2c$</i></div>
+          <div class="dl end" data-step="5"><span></span><span>$a=b$，$\triangle ABC$ 为等腰三角形</span><i class="why">$a\gt0,\ b\gt0$</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip">例 6　$AM$ 是 $\triangle ABC$ 的边 $BC$ 上的中线，求证：$AM=\dfrac12\sqrt{2(AB^2+AC^2)-BC^2}$。</p>
+        <div class="derive">
+          <div class="dl" data-step="6"><span>设</span><span>$\angle AMB=\alpha$，则 $\angle AMC=180^\circ-\alpha$</span><i class="why">邻补角</i></div>
+          <div class="dl" data-step="7"><span>$AB^2$</span><span>$=AM^2+BM^2-2AM\cdot BM\cos\alpha$</span><i class="why">$\triangle ABM$</i></div>
+          <div class="dl" data-step="7"><span>$AC^2$</span><span>$=AM^2+MC^2-2AM\cdot MC\cos(180^\circ-\alpha)$</span><i class="why">$\triangle ACM$</i></div>
+          <div class="dl key" data-step="8"><span>相加</span><span>$AB^2+AC^2=2AM^2+\dfrac12BC^2$</span><span class="think" data-step="9" data-ask="cos 项为什么消掉了？">两个 cos 互为相反数；$BM=MC=\frac12BC$</span></div>
+        </div>
+        <p class="tip gold" data-step="10">思考：这与“平行四边形各边的平方和等于两条对角线的平方和”有何联系？　<span class="think" data-step="11" data-ask="把三角形补成平行四边形">延长 $AM$ 一倍补成平行四边形，$2AM$ 与 $BC$ 正是两条对角线。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p87–88 例 5、例 6 与思考。例 5 体现“角化边”；例 6 的妙处是两个互补角的余弦互为相反数，相加正好消去。思考题与习题 11.1 第 8 题呼应。</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在 $\triangle ABC$ 中，已知 $A=60^\circ,\ b=4,\ c=7$，求 $a$。</p>
+        <details><summary>提示 1</summary>两边及夹角 → 求第三边。</details>
+        <details><summary>提示 2</summary>$a^2=b^2+c^2-2bc\cos A$，$\cos60^\circ=\frac12$。</details>
+        <details><summary>完整解答</summary>$a^2=16+49-2\times4\times7\times\frac12=37$，所以 $a=\sqrt{37}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在 $\triangle ABC$ 中，已知 $a^2+b^2+\sqrt2ab=c^2$，求 $C$。</p>
+        <details><summary>提示 1</summary>$a^2+b^2-c^2$ 等于多少？</details>
+        <details><summary>提示 2</summary>$\cos C=\dfrac{a^2+b^2-c^2}{2ab}$。</details>
+        <details><summary>完整解答</summary>$a^2+b^2-c^2=-\sqrt2ab$，$\cos C=\dfrac{-\sqrt2ab}{2ab}=-\dfrac{\sqrt2}{2}$，又 $0\lt C\lt\pi$，所以 $C=\dfrac{3\pi}{4}$（即 $135^\circ$）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在 $\triangle ABC$ 中，如果 $a:b:c=2:3:4$，求 $\cos C$ 的值。</p>
+        <details><summary>提示 1</summary>设 $a=2k,\ b=3k,\ c=4k\ (k\gt0)$。</details>
+        <details><summary>提示 2</summary>代入 $\cos C=\dfrac{a^2+b^2-c^2}{2ab}$，$k$ 会约掉。</details>
+        <details><summary>完整解答</summary>$\cos C=\dfrac{4k^2+9k^2-16k^2}{2\cdot2k\cdot3k}=-\dfrac14$。（所以 $C$ 是钝角。）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1、2 题是课本 p87 练习 1(2)、4，第 3 题是 p88 练习 1。先独立做 3 分钟，再按需逐级点开。第 2 题要看出“c² 比 a² + b² 多出来的部分”，也是角化边的反向运用。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$a^2=b^2+c^2-2bc\cos A$<br>$\cos A=\dfrac{b^2+c^2-a^2}{2bc}$</p>
+        <p class="recall" data-label="能解决的两类问题">(1) 已知三边，求三个角；<br>(2) 已知两边和它们的夹角，求第三边和其他两个角。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="推导">向量等式两边“平方”化为数量等式；或作高用勾股定理。</p>
+        <p class="method" data-label="应用">求边、求角；看最大边判断锐角/直角/钝角三角形；角化边证明等式。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="一般与特殊">勾股定理是余弦定理在 $A=90^\circ$ 时的特例。</p>
+        <p class="recall" data-label="数形结合">向量把“方向和长度”统一起来，三角形的边角关系由此算出。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课 11.2 正弦定理：</b>已知两角和一边，或两边和其中一边的<b>对角</b>，余弦定理不太好用了——向量等式 $\overrightarrow{BC}=\overrightarrow{BA}+\overrightarrow{AC}$ 还有别的“数量化”方法吗？</p>
+  </div>
+  <p class="note">请学生先说出“余弦定理能解决哪两类问题”，再揭示。课后作业建议：习题 11.1 第 1、3、5、6 题；第 11 题（坐标法证明）供学有余力的学生思考。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

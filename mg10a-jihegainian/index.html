@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>集合的概念与表示 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/niaoqun.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第1章 集合 · 1.1</p>
+    <h1 class="cover-title">集合的概念与表示</h1>
+    <p class="cover-q" data-step="1">蓝天中的一群鸟，草原上的一群羊，湖水里的一群鱼……都是“<b>同一类对象汇集在一起</b>”。</p>
+    <p class="cover-q" data-step="2">我们早就说过“自然数集”“有理数集”“实数集”。那么——<b>什么是集合？怎样用数学语言把它写清楚？</b></p>
+    <div class="chips" data-step="3"><span class="chip">集合与元素</span><span class="chip">属于 ∈ / 不属于 ∉</span><span class="chip">列举法 · 描述法</span><span class="chip">有限集 · 无限集 · 空集</span></div>
+  </div>
+  <p class="note">课本第 1 章章首（p4）。高中数学的第一课：集合是后面函数、不等式、概率的“通用语言”。封面只提问不作答，请学生举几个“一群……”的例子，再追问：“一群鸟”算不算数学里的集合？留到第 4 页讨论。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>其实我们早就在用“集合”了</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七年级 · 有理数的分类" data-step="1">
+        <p>按符号：正数、$0$、负数；</p>
+        <p>按整分：整数、分数（有限小数、无限循环小数都是分数）。</p>
+        <span class="use">第 3 页把 10 个数“填进圈里”，就是在给数找集合。</span>
+      </div>
+      <div class="recall" data-label="初中 · 不等式的解集" data-step="2">
+        <p>$2x-3\gt 5\Rightarrow x\gt 4$，解集在数轴上是一条射线。</p>
+        <span class="use">例 2：解集里有无数个数，怎样写成一个集合？</span>
+      </div>
+      <div class="recall" data-label="初中 · 方程的解" data-step="3">
+        <p>$x^2-1=0$ 的解是 $x_1=-1,\ x_2=1$；</p>
+        <p>$x^2+x+1=0$ 中 $\Delta=1-4\lt 0$，没有实数解。</p>
+        <span class="use">同一个集合可以有两种写法；“一个元素也没有”也是集合。</span>
+      </div>
+    </div>
+    <svg viewBox="0 0 520 150" class="nest" data-step="4" aria-label="实数集包含有理数集包含自然数集">
+      <ellipse cx="260" cy="75" rx="250" ry="70" fill="#fff" stroke="#4f9bd0" stroke-width="2.5"/>
+      <ellipse cx="320" cy="85" rx="160" ry="48" fill="#eef5fb" stroke="#4f9bd0" stroke-width="2.5"/>
+      <ellipse cx="370" cy="95" rx="78" ry="24" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="2.5"/>
+      <text x="70" y="62" class="fl s">实数集</text><text x="205" y="80" class="fl s">有理数集</text><text x="370" y="101" class="fl s c">自然数集</text>
+    </svg>
+    <p class="tip gold center" data-step="4">课本 p4 的图：实数集“包含”有理数集，有理数集“包含”自然数集——这些说法，本章要把它们说<b>精确</b>。</p>
+  </div>
+  <p class="note">三张卡逐张出现，请学生先口答再看“本课用在”。第一张卡提醒：有限小数（如 0.1、2.333）和无限循环小数都是分数，第 3 页会用到。最后一张图来自章首，“包含”关系在 1.2 节正式学习，这里只点到。</p>
+</section>
+
+<!-- 3 ================= 核心交互：分拣圈 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手分一分</span><h2>把下列各数填入它所属于的集合的圈内</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">初中作业（课本 p5）：点一个数，再点一个圈；也可以直接拖进去。<b>一个数可以进几个圈？</b></p>
+      <div class="pool" id="pool" data-noswipe></div>
+      <div class="sort-ctrl" data-noswipe><button class="btn" type="button" id="sortReset">重来</button><button class="btn" type="button" id="sortFill">全部放好</button><span class="sort-count" id="sortCount"></span></div>
+      <p class="tip feedback" id="sortMsg">先选一个数。</p>
+    </div>
+    <div class="col">
+      <div class="bins" id="bins" data-noswipe></div>
+      <div class="derive" data-step="1">
+        <div class="dl"><span>$15$</span><span class="think" data-step="2" data-ask="能填入“整数集合”吗？">能</span><i class="why">$-\frac19$ 就不能</i></div>
+        <div class="dl"><span>$-5$</span><span class="think" data-step="3" data-ask="能填入“整数集合”吗？">能</span><i class="why">$\frac{2}{15}$ 就不能</i></div>
+        <div class="dl key" data-step="4"><span>发现</span><span class="think" data-step="5" data-ask="对给定的一个数，有几种可能？">要么在“整数集合”中，要么不在，两者<b>有且只有一个</b>成立</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">请两三位学生上台分拣。15 既是正数又是整数，要放进两个圈；0.1、−5.32、2.333 是有限小数，属于分数。放错时系统会说明理由。分完后追问：“整数集合”由什么组成？任给一个数，能不能判断它在不在里面？——引出“确定的、互不相同的”。</p>
+</section>
+
+<!-- 4 ================= 集合的定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>什么是集合？</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>集合与元素（课本 p5）</h4>一般地，一定范围内某些<em>确定的</em>、<em>不同的</em>对象的全体组成一个<b>集合</b>（set）。集合中的每一个对象称为该集合的<b>元素</b>（element），简称<b>元</b>。</div>
+    <div class="cols3">
+      <div class="jcard" data-step="2"><p>“中国的直辖市”组成一个集合，元素是？</p><div class="think" data-step="3" data-ask="有几个元素？"><p>北京、天津、上海和重庆这 <b>4</b> 个城市。</p></div></div>
+      <div class="jcard" data-step="2"><p>“young 中的字母”“book 中的字母”各组成一个集合，元素各有几个？</p><div class="think" data-step="4" data-ask="book 有几个？"><p>y, o, u, n, g 共 5 个；b, o, k 只有 <b>3</b> 个——两个 o 是同一个元素，只算一次（<b>不同的</b>）。</p></div></div>
+      <div class="jcard" data-step="2"><p>“我们班个子高的同学”能组成一个集合吗？</p><div class="think" data-step="5" data-ask="能不能？为什么？"><p><span class="verdict x">不能</span>多高算“高”说不清，某位同学在不在里面无法判断（不<b>确定</b>）。改成“身高超过 175 cm 的同学”就可以。</p></div></div>
+    </div>
+    <p class="method" data-step="6" data-label="判断能否组成集合">看两点：任给一个对象，能否<b>确定</b>它在不在里面？相同的对象只算<b>一个</b>元素。</p>
+  </div>
+  <p class="note">课本 p5 定义与例子。第三张卡是补充辨析（非课本原题），用来解释“确定的”三个字：标准必须明确。“book 中的字母”是课本例子，说明“不同的”。旁边可介绍康托尔（1845—1918），集合论创始人，1874 年发表关于集合论的论文。</p>
+</section>
+
+<!-- 5 ================= 符号：∈ ∉、常用数集 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">符号</span><h2>元素与集合：属于，还是不属于？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab sets" data-step="1">
+        <tr><th>集合</th><th>记号</th></tr>
+        <tr><td>自然数集（全体自然数）</td><td>$\mathbf N$</td></tr>
+        <tr><td>正整数集</td><td>$\mathbf N^*$ 或 $\mathbf N_+$</td></tr>
+        <tr><td>整数集</td><td>$\mathbf Z$</td></tr>
+        <tr><td>有理数集</td><td>$\mathbf Q$</td></tr>
+        <tr><td>实数集</td><td>$\mathbf R$</td></tr>
+      </table>
+      <p class="tip" data-step="2">集合常用大写字母 $A,B,\cdots$ 表示，元素常用小写字母表示。</p>
+    </div>
+    <div class="col">
+      <div class="cols2">
+        <p class="def" data-step="3"><b>$a\in A$</b>　读作“$a$ 属于 $A$”<br>例如 $\sqrt2\in\R$</p>
+        <p class="def" data-step="3"><b>$a\notin A$</b>　读作“$a$ 不属于 $A$”<br>例如 $\sqrt2\notin\mathbf Q$</p>
+      </div>
+      <p class="tip" data-step="4">课本练习 1：点“∈”或“∉”，马上知道对不对。</p>
+      <div class="belong" data-step="4">
+        <div><span>$1$ ___ $\mathbf N$</span><div class="pick" data-ans="in"><button data-k="in">∈</button><button data-k="out">∉</button></div></div>
+        <div><span>$-3$ ___ $\mathbf N$</span><div class="pick" data-ans="out"><button data-k="in">∈</button><button data-k="out">∉</button></div></div>
+        <div><span>$0$ ___ $\mathbf N$</span><div class="pick" data-ans="in"><button data-k="in">∈</button><button data-k="out">∉</button><p class="pick-why">$0$ 是自然数！</p></div></div>
+        <div><span>$\sqrt2$ ___ $\mathbf N$</span><div class="pick" data-ans="out"><button data-k="in">∈</button><button data-k="out">∉</button></div></div>
+        <div><span>$1$ ___ $\mathbf Z$</span><div class="pick" data-ans="in"><button data-k="in">∈</button><button data-k="out">∉</button></div></div>
+        <div><span>$-3$ ___ $\mathbf Q$</span><div class="pick" data-ans="in"><button data-k="in">∈</button><button data-k="out">∉</button><p class="pick-why">整数也是有理数。</p></div></div>
+        <div><span>$0$ ___ $\mathbf Z$</span><div class="pick" data-ans="in"><button data-k="in">∈</button><button data-k="out">∉</button></div></div>
+        <div><span>$\sqrt2$ ___ $\R$</span><div class="pick" data-ans="in"><button data-k="in">∈</button><button data-k="out">∉</button></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p6 与练习 1。强调两点：0 属于 N（自然数集包含 0），N* 才是正整数集；“∈”连接的是“元素”和“集合”，左边是元素，右边是集合，不能写反。</p>
+</section>
+
+<!-- 6 ================= 列举法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">列举法</span><h2>把元素一一列出来，放进花括号</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>列举法（课本 p6）</h4>将集合的元素一一列举出来，并置于花括号“$\{\ \}$”内，例如 $\{$北京, 天津, 上海, 重庆$\}$、$\{\mathrm{y,o,u,n,g}\}$。元素之间要用逗号分隔，但列举时与元素的<em>次序无关</em>。</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2">$\{$北京, 天津, 上海, 重庆$\}$ 与 $\{$上海, 北京, 天津, 重庆$\}$ 是同一个集合吗？</p>
+        <p class="tip" data-step="2"><span class="think" data-step="3" data-ask="想一想">是。集合由它的<b>元素</b>唯一确定，顺序换了，元素没变。两个集合所含元素完全相同，就称这两个集合<b>相等</b>。</span></p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="4"><b>例 1</b>　用列举法表示下列集合：<br>(1) 大于 1 且小于 13 的所有偶数组成的集合；<br>(2) 由 1～15 以内的所有质数组成的集合。</p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span>(1)</span><span class="think" data-step="6" data-ask="写出来">$A=\{2,4,6,8,10,12\}$</span><i class="why">不含 1 和 13 本身</i></div>
+          <div class="dl" data-step="7"><span>(2)</span><span class="think" data-step="8" data-ask="写出来">$B=\{2,3,5,7,11,13\}$</span><i class="why">1 不是质数；2 是唯一的偶质数</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p6–7。例 1 先让学生自己写，再点开。常见错误：(1) 把 1、13 写进去；(2) 把 1 当成质数、漏掉 2。列举法的优点是一目了然，缺点马上就会暴露——下一页。</p>
+</section>
+
+<!-- 7 ================= 描述法 + 筛子 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">描述法</span><h2>列举不完怎么办？把“条件”写出来</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">“大于 1 且小于 13 的偶数”与“大于 1 的偶数”，各用条件筛一遍：</p>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" data-sieve="fin">大于 1 且小于 13 的偶数</button><button class="btn" type="button" data-sieve="inf">大于 1 的偶数</button></div>
+      <div class="sieve" id="sieve"></div>
+      <p class="tip feedback" id="sieveMsg"></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>描述法（课本 p6）</h4>将集合的所有元素都具有的性质（满足的条件）表示出来，写成 $\{x\mid p(x)\}$ 的形式。<br><span class="muted">$x$ 为集合的代表元素，$p(x)$ 指元素 $x$ 具有的性质。</span></div>
+      <p class="tip" data-step="2"><b>例 2(1)</b>　用描述法表示“大于 1 的所有偶数组成的集合”。</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>代表元素</span><span>设大于 1 的偶数为 $x$</span><i class="why">先说“元素长什么样”</i></div>
+        <div class="dl" data-step="4"><span>条件</span><span class="think" data-step="5" data-ask="“偶数”怎样用式子说？">$x\gt 1,\ x=2k,\ k\in\mathbf N$</span><i class="why">偶数就是 2 的整数倍</i></div>
+        <div class="dl end" data-step="6"><span>集合</span><span>$A=\{x\mid x\gt 1,\ x=2k,\ k\in\mathbf N\}$</span><i class="why"></i></div>
+      </div>
+      <p class="tip" data-step="7"><b>例 2(2)</b>　不等式 $2x-3\gt 5$ 的解集：<span class="think" data-step="8" data-ask="写出来">由 $2x-3\gt 5$ 得 $x\gt 4$，解集为 $\{x\mid x\gt 4,\ x\in\R\}$，可简记为 $\{x\mid x\gt 4\}$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p6–7、例 2。先点两个按钮对比：第一个筛到 12 就停了，第二个筛到 24 还没完——列举法写不完，于是改写“条件”。也可以用列举法加省略号写成 {4, 6, 8, …}，但描述法更精确。描述法三要素：花括号、代表元素、竖线后的条件。</p>
+</section>
+
+<!-- 8 ================= 同一集合，两种写法；Venn ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">表示</span><h2>同一个集合，不同的写法</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip" data-step="1">方程 $x^2-1=0$ 所有的实数解组成的集合：</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>列举法</span><span class="think" data-step="3" data-ask="写出来">$\{-1,1\}$</span><i class="why">也可以是 $\{1,-1\}$</i></div>
+        <div class="dl" data-step="4"><span>描述法</span><span class="think" data-step="5" data-ask="写出来">$\{x\mid x^2-1=0,\ x\in\R\}$</span><i class="why">也可以是 $\{x\mid x$ 为方程 $x^2-1=0$ 的实数解$\}$</i></div>
+      </div>
+      <p class="tip gold" data-step="6">集合是由<b>元素</b>唯一确定的：对给定的 $a$ 和集合 $A$，我们能够判定 $a\in A$，还是 $a\notin A$。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7">为了直观，常画一条封闭曲线，用它的内部表示一个集合，称为 <b>Venn 图</b>（图 1-1-1）：</p>
+      <svg viewBox="0 0 520 160" class="venn11" data-step="7" aria-label="Venn 图">
+        <ellipse cx="130" cy="72" rx="118" ry="60" fill="#fff" stroke="#4f9bd0" stroke-width="2.5"/>
+        <ellipse cx="390" cy="72" rx="118" ry="60" fill="#fff" stroke="#4f9bd0" stroke-width="2.5"/>
+        <text x="130" y="64" class="fl s c">北京，上海，</text><text x="130" y="94" class="fl s c">天津，重庆</text>
+        <text x="390" y="80" class="fl c">y, o, u, n, g</text>
+        <text x="130" y="152" class="fl s c">(1)</text><text x="390" y="152" class="fl s c">(2)</text>
+      </svg>
+      <div class="method" data-step="8" data-label="三种表示">列举法：元素少、能列全时用；描述法：元素多或无限时用；Venn 图：看清集合之间的关系（1.2、1.3 节大量使用）。</div>
+    </div>
+  </div>
+  <p class="note">课本 p6。先请学生用两种方法写出 x²−1=0 的解集。描述法里“x∈R”不能随便丢：若改成 x∈N，集合就只剩 {1}。文恩（1834—1923），英国数学家。</p>
+</section>
+
+<!-- 9 ================= 有限集、无限集、空集 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分类</span><h2>按元素个数：有限、无限，还是一个也没有？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1"><p>例 1 的 $A=\{2,4,6,8,10,12\}$、$B=\{2,3,5,7,11,13\}$</p><div class="think" data-step="2" data-ask="元素有多少个？"><p>有限个 → <b>有限集</b></p></div></div>
+      <div class="jcard" data-step="1"><p>例 2 的 $\{x\mid x\gt 1,\ x=2k,\ k\in\mathbf N\}$、$\{x\mid x\gt 4\}$</p><div class="think" data-step="3" data-ask="元素有多少个？"><p>无限个 → <b>无限集</b></p></div></div>
+      <div class="jcard" data-step="1"><p>$\{x\mid x^2+x+1=0,\ x\in\R\}$</p><div class="think" data-step="4" data-ask="元素有多少个？"><p>$x^2+x+1=\left(x+\frac12\right)^2+\frac34\gt 0$，方程没有实数解——<b>一个元素也没有</b>。</p></div></div>
+    </div>
+    <div class="def" data-step="5"><h4>课本 p7</h4>含有有限个元素的集合称为<b>有限集</b>，含有无限个元素的集合称为<b>无限集</b>。我们把不含任何元素的集合称为<b>空集</b>，记作 $\varnothing$。</div>
+    <p class="warn" data-step="6">$\varnothing$、$\{0\}$、$0$ 是三回事：$\varnothing$ 没有元素；$\{0\}$ 是集合，有一个元素 $0$；$0$ 是一个数，不是集合。</p>
+  </div>
+  <p class="note">课本 p7。第三张卡也可以用初中的判别式 Δ = 1 − 4 &lt; 0 说明。为什么需要空集？解方程、解不等式之前，我们并不知道解集里有没有元素；有了 ∅，“解集”永远是一个集合。易错警示为 1.2 节练习 3(5)(6) 做铺垫。</p>
+</section>
+
+<!-- 10 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些写法，对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>方程 $x+1=0$ 的解集写成 $\{x+1=0\}$</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>花括号里要么是元素，要么是“代表元素 | 条件”。应写成 $\{x\mid x+1=0\}$，或用列举法 $\{-1\}$。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>“mathematics 中的字母”组成的集合写成 $\{\mathrm{m,a,t,h,e,m,a,t,i,c,s}\}$。</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>元素要<b>互不相同</b>，重复的 m、a、t 只写一次：$\{\mathrm{m,a,t,h,e,i,c,s}\}$，共 8 个元素。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>$\{x\mid x\gt 4\}$ 与 $\{y\mid y\gt 4\}$ 是两个不同的集合。</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>代表元素用什么字母无关紧要，两个集合的元素都是“大于 4 的实数”，所以相等。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="书写要点">列举法：元素互不相同、用逗号隔开、与次序无关。描述法：竖线左边写<b>代表元素</b>，右边写元素满足的<b>条件</b>。</p>
+  </div>
+  <p class="note">第 2 张卡是课本练习 5(2) 的变式提醒，请学生先数一数 mathematics 有几个不同字母。第 3 张卡说明：描述法里的字母只是“代号”，真正决定集合的是元素满足的条件。</p>
+</section>
+
+<!-- 11 ================= 选择适当方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用适当的方法表示下列集合</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip big">(1) 方程 $x^2+2x-15=0$ 的根的集合</p>
+        <p class="tip" data-step="1">根有几个？能列全吗？　<span class="think" data-step="2" data-ask="先解方程">$(x+5)(x-3)=0$，$x=-5$ 或 $x=3$，只有两个。</span></p>
+        <div class="derive">
+          <div class="dl end" data-step="3"><span>列举法</span><span>$\{-5,3\}$</span><i class="why">元素少，列举最清楚</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip big">(2) 不等式 $4x-3\lt 5$ 的解集</p>
+        <p class="tip" data-step="4">解有几个？能列全吗？　<span class="think" data-step="5" data-ask="先解不等式">$4x\lt 8$，$x\lt 2$，有无数个解，列不完。</span></p>
+        <div class="derive">
+          <div class="dl end" data-step="6"><span>描述法</span><span>$\{x\mid x\lt 2\}$</span><i class="why">写出所有元素满足的条件</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="怎样选方法">先想“元素有多少、能不能列全”：能列全且不多 → 列举法；无限或太多 → 描述法。</p>
+  </div>
+  <p class="note">课本 p8 练习 4。先请学生判断用哪种方法，再动笔。(1) 用十字相乘因式分解（初中方法）；(2) 用初中解一元一次不等式的方法。</p>
+</section>
+
+<!-- 12 ================= 练习：提示阶梯 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 用列举法表示 $\{x\mid x$ 为 15 的正约数$\}$。</p>
+        <details><summary>提示 1</summary>15 能被哪些正整数整除？从 1 开始试。</details>
+        <details><summary>提示 2</summary>$15=1\times15=3\times5$。</details>
+        <details><summary>完整解答</summary>$\{1,3,5,15\}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用列举法表示 $\{a\mid 0\le a\lt 6,\ a\in\mathbf N\}$</p>
+        <details><summary>提示 1</summary>$a$ 是自然数：$0$ 算不算？</details>
+        <details><summary>提示 2</summary>左端“$\le$”含 0，右端“$\lt$”不含 6。</details>
+        <details><summary>完整解答</summary>$\{0,1,2,3,4,5\}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 用描述法表示不等式 $x^2+1\le 0$ 的解集。这个集合有元素吗？</p>
+        <details><summary>提示 1</summary>对任意实数 $x$，$x^2\ge 0$。</details>
+        <details><summary>提示 2</summary>$x^2+1$ 最小是多少？能 $\le 0$ 吗？</details>
+        <details><summary>完整解答</summary>$\{x\mid x^2+1\le 0\}$。因为 $x^2+1\ge 1\gt 0$，没有实数满足条件，这个集合是空集 $\varnothing$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p7 练习 2(2)、p8 练习 5(1)、练习 3(3)。第 2 题检验“0 ∈ N”和端点；第 3 题与第 9 页空集呼应。先独立做 3 分钟，再逐级点开提示。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">集合：确定的、不同的对象的全体；元素与集合：$a\in A$ 或 $a\notin A$，有且只有一个成立。</p>
+        <p class="recall" data-label="常用数集">$\mathbf N,\ \mathbf N^*,\ \mathbf Z,\ \mathbf Q,\ \R$；有限集、无限集、空集 $\varnothing$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="列举法">$\{\ \}$ 里一一列出元素，互不相同、与次序无关。</p>
+        <p class="method" data-label="描述法">$\{x\mid p(x)\}$：代表元素 + 条件；元素无限时必用。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="符号化">用 $\in$、$\{\ \}$、$\{x\mid p(x)\}$ 把日常语言说成精确的数学语言。</p>
+        <p class="recall" data-label="数形结合">Venn 图、数轴，让集合“看得见”。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>1.2 子集、全集、补集——集合与集合之间有什么关系？“实数集包含有理数集”怎样用符号写出来？</p>
+  </div>
+  <p class="note">请学生先用自己的话说出“集合的两种表示方法各适合什么情形”，再逐栏揭示。课后作业建议：习题 1.1 第 1、2、3、5、6 题；第 7 题（写作题：符号 ∈ 的来历）可作为选做。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

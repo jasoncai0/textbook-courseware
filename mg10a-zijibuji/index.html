@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>子集、全集、补集 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shujia.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第1章 集合 · 1.2</p>
+    <h1 class="cover-title">子集、全集、补集</h1>
+    <p class="cover-q" data-step="1">图书馆里，“数学书”都在“理科书”里，“理科书”又都在“全部藏书”里。</p>
+    <p class="cover-q" data-step="2">上一课学会了表示<b>一个</b>集合。<b>两个</b>集合之间有怎样的关系？又怎样用数学语言来表述？</p>
+    <div class="chips" data-step="3"><span class="chip">子集 ⊆</span><span class="chip">真子集 ⫋</span><span class="chip">子集有几个？</span><span class="chip">全集 U 与补集 ∁</span></div>
+  </div>
+  <p class="note">课本 p9 开头的问题。“大类里套小类”是学生熟悉的经验；先让学生说说生活中“包含”的例子，再进入课本的三组集合。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课的工具 + 初中的两件旧知</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="1.1 · 元素与集合" data-step="1">
+        <p>$a\in A$ 或 $a\notin A$，两者有且只有一个成立；常用数集 $\mathbf N,\ \mathbf Z,\ \mathbf Q,\ \R$。</p>
+        <span class="use">“$A$ 的每个元素都属于 $B$”——子集的定义就是用 $\in$ 说的。</span>
+      </div>
+      <div class="recall" data-label="1.1 · 列举法、描述法、空集" data-step="2">
+        <p>$\{-1,1\}$、$\{x\mid x\le 0\}$；不含任何元素的集合叫空集 $\varnothing$。</p>
+        <span class="use">写出一个集合的所有子集；补集也要用描述法写。</span>
+      </div>
+      <div class="recall" data-label="初中 · 四边形的分类" data-step="3">
+        <p>正方形是特殊的矩形，矩形是特殊的平行四边形，平行四边形是特殊的四边形。</p>
+        <span class="use">观察 (3)：$\{x\mid x$ 为正方形$\}$ 与 $\{x\mid x$ 为四边形$\}$。</span>
+      </div>
+      <div class="recall" data-label="初中 · 在数轴上表示解集" data-step="4">
+        <p>含端点画<b>实心点</b>，不含端点画<b>空心点</b>；解不等式组，取各解集的公共部分。</p>
+        <span class="use">例 4：把 $A$ 和它的补集画在数轴上。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一课讲到：</b>集合由元素唯一确定；两个集合元素完全相同就相等。今天研究：元素<b>不完全相同</b>时，两个集合还能有什么关系？</p>
+  </div>
+  <p class="note">四张卡逐张出现，请学生先口答。第三张卡用来解释“包含”：所有正方形都是四边形，但不是所有四边形都是正方形——这正是“子集”与“真子集”的区别。</p>
+</section>
+
+<!-- 3 ================= 观察 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>这三组集合 A 与 B，有什么共同特征？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="jcard" data-step="1"><p><b>(1)</b> $A=\{-1,1\}$，$B=\{-1,0,1,2\}$</p></div>
+      <div class="jcard" data-step="1"><p><b>(2)</b> $A=\mathbf N$，$B=\R$</p></div>
+      <div class="jcard" data-step="1"><p><b>(3)</b> $A=\{x\mid x$ 为正方形$\}$，$B=\{x\mid x$ 为四边形$\}$</p></div>
+      <p class="tip" data-step="2">逐个检查 (1)：$-1\in B$ 吗？$1\in B$ 吗？<span class="think" data-step="3" data-ask="检查一下">都属于 $B$。$A$ 中的<b>每个</b>元素都是 $B$ 的元素。</span></p>
+      <p class="tip" data-step="4">(2)(3) 也是这样吗？<span class="think" data-step="5" data-ask="想一想">是：每个自然数都是实数；每个正方形都是四边形。</span></p>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 420 260" class="venn-in" data-step="6" aria-label="B 包含 A 的 Venn 图">
+        <ellipse cx="210" cy="130" rx="195" ry="115" fill="#fff" stroke="#4f9bd0" stroke-width="3"/>
+        <ellipse cx="230" cy="142" rx="95" ry="58" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/>
+        <text x="75" y="100" class="fl">B</text><text x="230" y="120" class="fl c">A</text>
+        <text x="200" y="160" class="fl c">−1</text><text x="262" y="160" class="fl c">1</text>
+        <text x="90" y="160" class="fl c">0</text><text x="360" y="150" class="fl c">2</text>
+      </svg>
+      <p class="tip gold" data-step="7">这时称 <b>$A$ 是 $B$ 的子集</b>。在 Venn 图里：表示 $A$ 的圈整个落在表示 $B$ 的圈里面。</p>
+    </div>
+  </div>
+  <p class="note">课本 p9。先请学生口述“A、B 有什么关系”，再追问“如何用数学语言来表述”。答案的关键词是“每一个”：A 中只要有一个元素不在 B 里，A 就不是 B 的子集（例 1(2)）。</p>
+</section>
+
+<!-- 4 ================= 子集定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>子集：A 中任意一个元素都是 B 的元素</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>子集（课本 p9）</h4>如果集合 $A$ 的<em>任意一个</em>元素都是集合 $B$ 的元素（若 $a\in A$，则 $a\in B$），那么集合 $A$ 称为集合 $B$ 的<b>子集</b>（subset），记为 $A\subseteq B$ 或 $B\supseteq A$，读作“集合 $A$ 包含于集合 $B$”或“集合 $B$ 包含集合 $A$”。</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">$A\subseteq A$ 成立吗？<br><span class="think" data-step="3" data-ask="用定义检验">成立：$A$ 的每个元素当然是 $A$ 的元素。<b>任何一个集合是它本身的子集。</b></span></p>
+      <p class="tip" data-step="4">$\varnothing$ 与任何集合 $A$：<br><span class="think" data-step="5" data-ask="想一想">我们规定 $\varnothing\subseteq A$，即<b>空集是任何集合的子集</b>。</span></p>
+      <div class="tip" data-step="6"><b>例 1</b>　$A$ 是否为 $B$ 的子集？<br>(1) $A=\{0,1\}$，$B=\{-1,0,1,-2\}$<br><span class="think" data-step="7" data-ask="是不是？"><span class="verdict ok">是</span> $0\in B$，$1\in B$</span><br>(2) $A=\{0,1\}$，$B=\{x\mid x=2k,\ k\in\mathbf N\}$<br><span class="think" data-step="8" data-ask="是不是？"><span class="verdict x">不是</span> $1\in A$，但 $1\notin B$</span></div>
+    </div>
+    <p class="method" data-step="9" data-label="判断子集">要说明 $A\subseteq B$：逐一检查 $A$ 的<b>每个</b>元素都在 $B$ 中；要说明 $A\not\subseteq B$：只要找出 $A$ 中<b>一个</b>不在 $B$ 中的元素。</p>
+  </div>
+  <p class="note">课本 p9 定义框、例 1。“若 a∈A，则 a∈B”是定义的符号化，下一章学“若 p，则 q”时还会回来。例 1(2) 的 B 是自然数中的偶数 {0, 2, 4, …}：反驳只需要一个反例 1。∅⊆A 是“规定”，可以这样理解：∅ 里找不到一个“不在 A 里”的元素。</p>
+</section>
+
+<!-- 5 ================= 相等与真子集 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">真子集</span><h2>A ⊆ B 与 B ⊆ A 能否同时成立？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1">课本“思考”：$A\subseteq B$ 与 $B\subseteq A$ 能否同时成立？</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$A\subseteq B$</span><span>$A$ 的元素都在 $B$ 中</span></div>
+        <div class="dl" data-step="3"><span>$B\subseteq A$</span><span>$B$ 的元素都在 $A$ 中</span></div>
+        <div class="dl end" data-step="4"><span>所以</span><span class="think" data-step="5" data-ask="能同时成立吗？">能，此时 $A=B$</span></div>
+      </div>
+      <p class="tip" data-step="5">两个集合元素完全相同，就是 1.1 的“相等”。</p>
+      <p class="tip gold" data-step="6">反过来，$A\subseteq B$ 但 $A\ne B$：$B$ 中至少有一个元素<b>不属于</b> $A$。</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="7"><h4>真子集（课本 p9）</h4>如果 $A\subseteq B$，并且 $A\ne B$，那么集合 $A$ 称为集合 $B$ 的<b>真子集</b>（proper subset），记为 $A\subsetneqq B$ 或 $B\supsetneqq A$，读作“$A$ 真包含于 $B$”或“$B$ 真包含 $A$”，如 $\{a\}\subsetneqq\{a,b\}$。</div>
+      <table class="mtab" data-step="8">
+        <tr><th>关系</th><th>$\{1,2\}$ 与 $\{1,2,3\}$</th><th>$\{1,2\}$ 与 $\{2,1\}$</th></tr>
+        <tr><td>$\subseteq$</td><td>$\{1,2\}\subseteq\{1,2,3\}$ ✓</td><td>$\{1,2\}\subseteq\{2,1\}$ ✓</td></tr>
+        <tr><td>$\subsetneqq$</td><td><span class="think" data-step="9" data-ask="成立吗？">✓（3 不在前者中）</span></td><td><span class="think" data-step="9" data-ask="成立吗？">✗（两者相等）</span></td></tr>
+      </table>
+      <p class="warn" data-step="10">$\in$ 连接<b>元素与集合</b>，$\subseteq$ 连接<b>集合与集合</b>：$1\in\{1,2\}$，$\{1\}\subseteq\{1,2\}$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p9“思考”与真子集定义。⊆ 与 ⫋ 的关系可以类比 ≤ 与 &lt;：2 ≤ 2 成立，2 &lt; 2 不成立。易错警示是本节练习 3 的核心，第 11 页会集中练。</p>
+</section>
+
+<!-- 6 ================= 核心交互：子集枚举 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手找一找</span><h2>一个集合有多少个子集？一个不漏地找出来</h2></div>
+  <button class="media-btn" hidden data-img="assets/zishu.jpg" data-video="assets/zishu.mp4" data-cap="每多一个元素，每个旧子集都分成“不选它”“选它”两个：1 → 2 → 4 → 8">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 2</b>　写出集合 $\{a,b\}$ 的所有子集。再试试 3 个、4 个元素（课本旁注：$\{a_1,a_2,a_3,a_4\}$ 有多少个子集？）</p>
+      <div class="btns" data-noswipe id="subN"></div>
+      <p class="tip">点元素决定“选 / 不选”，再点“记下”：</p>
+      <div class="btns" data-noswipe id="subEls"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="subAdd">记下这个子集</button><button class="btn" type="button" id="subTree">按“选 / 不选”列全</button><button class="btn" type="button" id="subClear">清空</button></div>
+      <p class="tip feedback" id="subMsg"></p>
+    </div>
+    <div class="col">
+      <div class="found" id="subFound"></div>
+      <div class="tree" id="subTreeBox"></div>
+    </div>
+  </div>
+  <p class="note">课本 p9 例 2：{a, b} 的所有子集是 ∅、{a}、{b}、{a, b}。先让学生在纸上写，再上台“记下”；最容易漏的是 ∅ 和集合本身。找不全时点“按选/不选列全”：每个元素都要回答一次“选不选”，树的每片叶子正好是一个子集，不重不漏。</p>
+</section>
+
+<!-- 7 ================= 推导：2^n ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>为什么是 1, 2, 4, 8, …？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab cnt">
+        <tr><th>集合</th><th>元素个数 $n$</th><th>子集个数</th></tr>
+        <tr data-step="1"><td>$\varnothing$</td><td>0</td><td><span class="think" data-step="2" data-ask="?">1（只有 $\varnothing$）</span></td></tr>
+        <tr data-step="1"><td>$\{a\}$</td><td>1</td><td><span class="think" data-step="2" data-ask="?">2</span></td></tr>
+        <tr data-step="1"><td>$\{a,b\}$</td><td>2</td><td><span class="think" data-step="2" data-ask="?">4</span></td></tr>
+        <tr data-step="1"><td>$\{a,b,c\}$</td><td>3</td><td><span class="think" data-step="2" data-ask="?">8</span></td></tr>
+        <tr data-step="3"><td>$\{a_1,\cdots,a_n\}$</td><td>$n$</td><td><span class="think" data-step="4" data-ask="猜一猜">$2^n$ ？</span></td></tr>
+      </table>
+      <p class="tip" data-step="5">猜想只看了几个例子，还要说清<b>为什么</b>。</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="5"><span>$\{a,b\}$：</span><span>$\varnothing,\ \{a\},\ \{b\},\ \{a,b\}$</span><i class="why">4 个</i></div>
+        <div class="dl key" data-step="6"><span>添上 $c$：</span><span class="think" data-step="7" data-ask="新的子集从哪里来？">每个旧子集变成两个：不放 $c$、放进 $c$</span><i class="why">要么含 $c$，要么不含</i></div>
+        <div class="dl" data-step="8"><span>所以</span><span>$\{a,b,c\}$ 有 $4\times2=8$ 个</span><i class="why">两类不重、合起来不漏</i></div>
+        <div class="dl end" data-step="9"><span>一般地</span><span>每添一个元素，个数<b>翻倍</b>：$2^n$</span><i class="why">每个元素“选、不选”</i></div>
+      </div>
+      <p class="method" data-step="10" data-label="结论">含 $n$ 个元素的集合有 $2^n$ 个子集，其中真子集有 $2^n-1$ 个（去掉它本身）。$\{a_1,a_2,a_3,a_4\}$ 有 $2^4=16$ 个子集。</p>
+    </div>
+  </div>
+  <p class="note">这一页回答课本 p9 旁注的问题。关键一步是第 6 步：{a, b, c} 的子集按“含不含 c”分成两类，每类都和 {a, b} 的子集一一对应，所以个数翻倍。“非空真子集有 2ⁿ − 2 个”可留给学生自己说。</p>
+</section>
+
+<!-- 8 ================= 例 3：补集的由来 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>三个集合之间，还藏着什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">下列各组的 3 个集合中，哪 2 个集合之间具有包含关系？</p>
+      <div class="jcard"><p>(1) $S=\{-2,-1,1,2\}$，$A=\{-1,1\}$，$B=\{-2,2\}$；</p></div>
+      <div class="jcard"><p>(2) $S=\R$，$A=\{x\mid x\le 0\}$，$B=\{x\mid x\gt 0\}$；</p></div>
+      <div class="jcard"><p>(3) $S=\{x\mid x$ 为整数$\}$，$A=\{x\mid x$ 为奇数$\}$，$B=\{x\mid x$ 为偶数$\}$。</p></div>
+      <p class="tip" data-step="1"><b>解</b>　<span class="think" data-step="2" data-ask="说出包含关系">在 (1)(2)(3) 中都有 $A\subsetneqq S$，$B\subsetneqq S$。</span></p>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 420 220" class="venn-split" data-step="3" aria-label="S 被分成 A 与 B 两部分">
+        <ellipse cx="210" cy="115" rx="190" ry="95" fill="#fff" stroke="#4f9bd0" stroke-width="3"/>
+        <path d="M232 21 C196 70, 196 160, 232 209" fill="none" stroke="#1f2d3a" stroke-width="2.5"/>
+        <text x="216" y="16" class="fl c">S</text><text x="120" y="122" class="fl c">A</text><text x="310" y="122" class="fl c">B</text>
+      </svg>
+      <p class="tip" data-step="4">课本“思考”：每组的 3 个集合之间还有什么关系？</p>
+      <p class="tip" data-step="5">看 (1)：$S$ 中的元素去掉 $A$ 中的 $-1$，$1$，<span class="think" data-step="6" data-ask="剩下什么？">剩下 $-2$，$2$，组成的集合正好是 $B$。</span></p>
+      <p class="tip gold" data-step="7">(2)(3) 也是如此：$B$ 由 $S$ 中<b>不属于</b> $A$ 的元素组成。这时称 $B$ 是 $A$ 在 $S$ 中的<b>补集</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p10 例 3 与“思考”。图 1-2-2 中一条曲线把 S 分成两块：A 和 B 互不重叠、合起来正好是 S。请学生用 (2)(3) 各说一遍：“S 中不是非正数的，就是正数”；“整数中不是奇数的，就是偶数”。</p>
+</section>
+
+<!-- 9 ================= 补集与全集 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>补集与全集</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>补集（课本 p10）</h4>设 $A\subseteq S$，由 $S$ 中不属于 $A$ 的所有元素组成的集合称为 $S$ 的子集 $A$ 的<b>补集</b>（complementary set），记为 $\complement_SA$（读作“$A$ 在 $S$ 中的补集”），即 $$\complement_SA=\{x\mid x\in S,\ \text{且}\ x\notin A\}.$$</div>
+      <p class="tip" data-step="2">对于例 3：<span class="think" data-step="3" data-ask="B 与 A 互为什么？">$B=\complement_SA$，$A=\complement_SB$。</span></p>
+      <div class="def" data-step="4"><h4>全集（课本 p10）</h4>如果一个集合包含我们所研究问题中涉及的所有元素，那么就称这个集合为<b>全集</b>（universal set），通常记作 $U$。例如，在实数范围内讨论集合时，$\R$ 便可看作一个全集 $U$。</div>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 420 250" class="venn-comp" data-step="1" aria-label="补集的 Venn 图">
+        <defs><pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#d3e6f4"/><line x1="0" y1="0" x2="0" y2="10" stroke="#4f9bd0" stroke-width="3"/></pattern></defs>
+        <rect x="10" y="10" width="400" height="230" fill="url(#hatch)" stroke="#1d6fa5" stroke-width="3"/>
+        <ellipse cx="225" cy="130" rx="115" ry="65" fill="#fff" stroke="#1d6fa5" stroke-width="3"/>
+        <text x="28" y="40" class="fl">S</text><text x="225" y="138" class="fl c">A</text>
+        <text x="80" y="215" class="fl s lab">阴影：∁<tspan font-size="13" dy="5">S</tspan><tspan dy="-5">A</tspan></text>
+      </svg>
+      <p class="tip" data-step="5">同一个 $A=\{x\mid x\le 0\}$，全集不同，补集一样吗？<span class="think" data-step="6" data-ask="想一想">不一样：$U=\R$ 时 $\complement_UA=\{x\mid x\gt 0\}$；$U=\mathbf Z$ 时 $\complement_UA$ 是正整数集 $\mathbf N^*$。</span></p>
+      <p class="warn" data-step="7">说补集，一定要说清“在哪个全集中”。求补集的前提是 $A\subseteq U$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p10 补集定义、图 1-2-3、全集。定义中“且”字要读重：x 既要在 S 里，又要不在 A 里。第 5–6 步是补充辨析（A 取例 3(2) 的集合，换一个全集），说明补集依赖全集。</p>
+</section>
+
+<!-- 10 ================= 例 4：数轴上的补集 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>在数轴上画出 A 与它的补集</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">设全集 $U=\R$，不等式组 $\begin{cases}2x-1\gt 0,\\3x-6\le 0\end{cases}$ 的解集为 $A$，试求 $A$ 及 $\complement_UA$，并把它们分别表示在数轴上。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解不等式组</span><span class="think" data-step="2" data-ask="先解">$x\gt\frac12$ 且 $x\le 2$</span><i class="why">初中：取公共部分</i></div>
+        <div class="dl" data-step="3"><span>$A=$</span><span>$\left\{x\,\middle|\,\frac12\lt x\le 2\right\}$</span><i class="why"></i></div>
+        <div class="dl key" data-step="4"><span>$\complement_UA=$</span><span class="think" data-step="5" data-ask="R 中不在 A 里的数是哪些？">$\left\{x\,\middle|\,x\le\frac12,\ \text{或}\ x\gt 2\right\}$</span><i class="why">两段，用“或”连接</i></div>
+      </div>
+      <p class="tip" data-step="6">端点归谁？点一点：</p>
+      <div class="endpt" data-step="6">
+        <div><span>$\frac12$ 在 $\complement_UA$ 中画</span><div class="pick" data-ans="s"><button data-k="s">实心点</button><button data-k="h">空心点</button><p class="pick-why">$\frac12\notin A$，所以 $\frac12\in\complement_UA$。</p></div></div>
+        <div><span>$2$ 在 $\complement_UA$ 中画</span><div class="pick" data-ans="h"><button data-k="s">实心点</button><button data-k="h">空心点</button><p class="pick-why">$2\in A$，所以 $2\notin\complement_UA$。</p></div></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe><button class="btn solid" type="button" data-nl="A">显示 $A$</button><button class="btn" type="button" data-nl="C">显示 $\complement_UA$</button><button class="btn" type="button" data-nl="both">合起来看</button></div>
+      <div id="nl" class="nl"></div>
+      <p class="tip feedback" id="nlMsg"></p>
+      <p class="method" data-step="7" data-label="端点规律">一个端点，在 $A$ 里是实心，在 $\complement_UA$ 里就是空心，反之亦然——每个实数恰好属于两者之一。</p>
+    </div>
+  </div>
+  <p class="note">课本 p10 例 4、图 1-2-4，旁注“注意实心点与空心点的区别”。先让学生自己画，再点按钮对照。“合起来看”：A 与它的补集不重叠，合起来铺满整条数轴——这就是 1.3 节要学的 A ∩ ∁UA = ∅、A ∪ ∁UA = U 的直观。</p>
+</section>
+
+<!-- 11 ================= 辨一辨：练习 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>判断下列表述是否正确（课本练习 3）</h2></div>
+  <div class="bd full">
+    <div class="judge8">
+      <div><span>(1) $a\subseteq\{a\}$</span><div class="pick" data-ans="n"><button data-k="y">对</button><button data-k="n">错</button><p class="pick-why">$a$ 是元素，应写 $a\in\{a\}$。</p></div></div>
+      <div><span>(2) $\{a\}\in\{a,b\}$</span><div class="pick" data-ans="n"><button data-k="y">对</button><button data-k="n">错</button><p class="pick-why">集合与集合之间用 $\subseteq$：$\{a\}\subseteq\{a,b\}$。</p></div></div>
+      <div><span>(3) $\{a,b\}\subseteq\{b,a\}$</span><div class="pick" data-ans="y"><button data-k="y">对</button><button data-k="n">错</button><p class="pick-why">两集合相等，任何集合是它本身的子集。</p></div></div>
+      <div><span>(4) $\{-1,1\}\subsetneqq\{-1,0,1\}$</span><div class="pick" data-ans="y"><button data-k="y">对</button><button data-k="n">错</button><p class="pick-why">是子集，且 $0$ 不在前者中。</p></div></div>
+      <div><span>(5) $0\in\varnothing$</span><div class="pick" data-ans="n"><button data-k="y">对</button><button data-k="n">错</button><p class="pick-why">空集不含任何元素。</p></div></div>
+      <div><span>(6) $\{0\}=\varnothing$</span><div class="pick" data-ans="n"><button data-k="y">对</button><button data-k="n">错</button><p class="pick-why">$\{0\}$ 有一个元素 $0$，不是空集。</p></div></div>
+      <div><span>(7) $\varnothing\subseteq\{0\}$</span><div class="pick" data-ans="y"><button data-k="y">对</button><button data-k="n">错</button><p class="pick-why">空集是任何集合的子集。</p></div></div>
+      <div><span>(8) $\varnothing\subsetneqq\{-1,1\}$</span><div class="pick" data-ans="y"><button data-k="y">对</button><button data-k="n">错</button><p class="pick-why">$\varnothing\subseteq\{-1,1\}$ 且两者不相等。</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="先看两边是什么">元素 ↔ 集合：用 $\in,\notin$；集合 ↔ 集合：用 $\subseteq,\subsetneqq,=$。</p>
+  </div>
+  <p class="note">课本 p11 练习 3。全班先独立判断，再请学生上台点，点错可以重选，点对会显示理由。(7)(8) 用到“空集是任何集合的子集”，也是任何非空集合的真子集。</p>
+</section>
+
+<!-- 12 ================= 练习：提示阶梯 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 已知全集 $U=\{0,1,2,3,4,5,6\}$，$A=\{0,2,4,6\}$，求 $\complement_UA$；若 $A=\varnothing$ 呢？</p>
+        <details><summary>提示 1</summary>从 $U$ 中划去 $A$ 的元素。</details>
+        <details><summary>提示 2</summary>$A=\varnothing$ 时，什么也不用划去。</details>
+        <details><summary>完整解答</summary>$\complement_UA=\{1,3,5\}$；$A=\varnothing$ 时 $\complement_UA=U=\{0,1,2,3,4,5,6\}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 若 $U=\mathbf Z$，$A=\{x\mid x=2k,\ k\in\mathbf Z\}$，则 $\complement_UA=$______；$\complement_U(\complement_UA)=$______。</p>
+        <details><summary>提示 1</summary>$A$ 是全体偶数。整数中不是偶数的是什么数？</details>
+        <details><summary>提示 2</summary>再取一次补集，回到了哪里？</details>
+        <details><summary>完整解答</summary>$\complement_UA=\{x\mid x=2k+1,\ k\in\mathbf Z\}$（全体奇数）；$\complement_U(\complement_UA)=A$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 已知 $A\subseteq B$，$A\subseteq C$，$B=\{0,2,4\}$，$C=\{0,2,6\}$，写出所有满足条件的集合 $A$。</p>
+        <details><summary>提示 1</summary>$A$ 的元素既要在 $B$ 中，又要在 $C$ 中。</details>
+        <details><summary>提示 2</summary>同时在 $B$、$C$ 中的元素只有 $0$ 和 $2$，问题变成：写出 $\{0,2\}$ 的所有子集。</details>
+        <details><summary>完整解答</summary>$A=\varnothing,\ \{0\},\ \{2\},\ \{0,2\}$，共 $2^2=4$ 个。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p11 练习 2(1)(3)、练习 4、练习 5，习题 1.2 第 6 题。第 3 题把“子集个数”用上了，别漏掉 ∅。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$A\subseteq B$：$A$ 的任意元素都属于 $B$；$A\subsetneqq B$：$A\subseteq B$ 且 $A\ne B$；$\varnothing\subseteq A$。</p>
+        <p class="recall" data-label="补集">$\complement_UA=\{x\mid x\in U,\ \text{且}\ x\notin A\}$；$\complement_U(\complement_UA)=A$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断包含">逐个元素检查；否定只需一个反例。</p>
+        <p class="method" data-label="列全子集">每个元素“选 / 不选”，共 $2^n$ 个，不重不漏。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">Venn 图看包含，数轴看补集（注意实心、空心）。</p>
+        <p class="recall" data-label="分类">一个子集“含不含某个元素”，分两类计数。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>1.3 交集、并集——补集是由两个集合“算”出的新集合，集合还能怎样“运算”？</p>
+  </div>
+  <p class="note">课后作业建议：习题 1.2 第 1、2、4、6 题；第 7 题（含参数 m 的补集与包含）选做；第 8 题把 ⊆ 与 ≤ 的性质类比，可作为探究。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全称量词命题与存在量词命题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shuizu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第2章 常用逻辑用语 · 2.3</p>
+    <h1 class="cover-title">全称量词命题与存在量词命题</h1>
+    <p class="cover-q" data-step="1">“<b>所有</b>水生动物都用鳃呼吸。”——海洋馆里，一只海豚游了过去。</p>
+    <p class="cover-q" data-step="2">一只海豚，就能推翻“所有”？要说明“所有”是对的，又要检查多少只？</p>
+    <div class="chips" data-step="3"><span class="chip">全称量词 ∀</span><span class="chip">存在量词 ∃</span><span class="chip">判断真假</span><span class="chip">命题的否定</span></div>
+  </div>
+  <p class="note">情境取自习题 2.3 第 6 题（阅读题）“所有水生动物都用鳃呼吸”。海豚是水生动物，却用肺呼吸——一个反例。封面先让学生说说“所有”“有的”在推理中分量有何不同。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>本章前两课 + 第 1 章的数集</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="2.1 · 命题与真假" data-step="1">
+        <p>可判断真假的陈述句叫命题。真：证明；假：举一个反例。</p>
+        <span class="use">判断全称量词命题、存在量词命题的真假。</span>
+      </div>
+      <div class="recall" data-label="2.2 · p ⇒ q" data-step="2">
+        <p>“$x\gt 1\Rightarrow x^2\gt 1$”说的是：<b>任意</b>大于 1 的实数，平方都大于 1。</p>
+        <span class="use">“若 $p$，则 $q$”里，常常藏着一个“任意”。</span>
+      </div>
+      <div class="recall" data-label="1.1 · 常用数集" data-step="3">
+        <p>$\mathbf N,\ \mathbf N^*,\ \mathbf Z,\ \mathbf Q,\ \R$；$\sqrt2,\ 2\sqrt2$ 是无理数。</p>
+        <span class="use">$\forall x\in M$、$\exists x\in M$ 里的 $M$ 是哪个集合，影响真假。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>上一课讲到：</b>充分条件、必要条件，都建立在“$p\Rightarrow q$”是否成立上。本课研究章首提出的另外两个基本用语：“<b>任意的</b>”“<b>存在</b>”。</p>
+  </div>
+  <p class="note">第二张卡点出本课与 2.2 的联系：p ⇒ q 成立，意思是“任意满足 p 的对象都满足 q”；要推翻它，只要“存在”一个反例——这就是全称与存在的关系。</p>
+</section>
+
+<!-- 3 ================= 观察五个语句 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>“任意”“存在”“有的”，表示什么含义？</h2></div>
+  <div class="bd full">
+    <p class="tip">在日常生活和学习中，我们经常遇到这样的语句（课本 p34）：</p>
+    <div class="five">
+      <div data-step="1"><span>(1) <b class="u">对任意</b>实数 $x$，都有 $x^2\ge 0$；</span><span class="think" data-step="2" data-ask="含义？">对每一个实数 $x$，必定有 $x^2\ge 0$，即没有使 $x^2\ge 0$ 不成立的实数 $x$ 存在。</span></div>
+      <div data-step="3"><span>(2) <b class="e">存在</b>有理数 $x$，使 $x^2-2=0$；</span><span class="think" data-step="4" data-ask="含义？">至少可以找到一个有理数 $x$，使 $x^2-2=0$ 成立。</span></div>
+      <div data-step="5"><span>(3) <b class="e">有的</b>矩形是菱形；</span><span class="think" data-step="6" data-ask="含义？">可以找到一个矩形，它是菱形。</span></div>
+      <div data-step="7"><span>(4) <b class="u">所有的</b>质数都是奇数；</span><span class="think" data-step="8" data-ask="含义？">每一个质数都是奇数。</span></div>
+      <div data-step="9"><span>(5) <b class="e">有一个</b>素数是偶数。</span><span class="think" data-step="10" data-ask="含义？">可以找到一个素数，它是偶数。</span></div>
+    </div>
+    <p class="tip gold" data-step="11">两类词：<b class="u">“所有”“任意”</b>说的是<b>全体</b>，<b class="e">“存在”“有的”“有一个”</b>说的是<b>部分或个体</b>。</p>
+  </div>
+  <p class="note">课本 p34 的五个语句与 2.3.1 开头的解释。(5) 的“素数”就是质数。先请学生自己说含义，再点开；最后归成两类，下一页给出名称和符号。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>全称量词 ∀，存在量词 ∃</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="def" data-step="1"><h4>全称量词（课本 p34）</h4>“所有”“任意”“每一个”等表示全体的词在逻辑学中称为<b>全称量词</b>（universal quantifier），通常用符号“$\forall x$”表示“对任意 $x$”。</div>
+      <p class="tip" data-step="2">语句 (1) 可以表示为 <span class="think" data-step="3" data-ask="用符号写">“$\forall x\in\R,\ x^2\ge 0$”，即“任意实数的平方都不小于 0”。</span></p>
+      <div class="def" data-step="4"><h4>存在量词（课本 p34）</h4>“存在”“有的”“有一个”等表示部分或个体的词在逻辑学中称为<b>存在量词</b>（existential quantifier），通常用符号“$\exists x$”表示“存在 $x$”。</div>
+      <p class="tip" data-step="5">语句 (2) 可以表示为 <span class="think" data-step="6" data-ask="用符号写">“$\exists x\in\mathbf Q,\ x^2-2=0$”，即“方程 $x^2-2=0$ 存在有理数解”。</span></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="7"><h4>两类命题（课本 p34）</h4>含有全称量词的命题称为<b>全称量词命题</b>，含有存在量词的命题称为<b>存在量词命题</b>。一般形式：<br>全称量词命题：$\forall x\in M,\ p(x)$；<br>存在量词命题：$\exists x\in M,\ p(x)$。<br><span class="muted">其中，$M$ 为给定的集合，$p(x)$ 是一个关于 $x$ 的语句。</span></div>
+      <div class="sym-mem" data-step="8"><span><b>∀</b>：倒写的 A（<b>A</b>ll，全部）</span><span><b>∃</b>：反写的 E（<b>E</b>xist，存在）</span></div>
+      <p class="tip" data-step="9">课本旁注：语句 (1)～(5) 中，哪些是全称量词命题，哪些是存在量词命题？点一点：</p>
+      <div class="cls5" data-step="9">
+        <div><span>(1)</span><div class="pick" data-ans="u"><button data-k="u">全称</button><button data-k="e">存在</button></div></div>
+        <div><span>(2)</span><div class="pick" data-ans="e"><button data-k="u">全称</button><button data-k="e">存在</button></div></div>
+        <div><span>(3)</span><div class="pick" data-ans="e"><button data-k="u">全称</button><button data-k="e">存在</button></div></div>
+        <div><span>(4)</span><div class="pick" data-ans="u"><button data-k="u">全称</button><button data-k="e">存在</button></div></div>
+        <div><span>(5)</span><div class="pick" data-ans="e"><button data-k="u">全称</button><button data-k="e">存在</button></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p34。符号记法“倒 A、反 E”为补充记忆法。旁注问题：五个语句都能判断真假，都是命题；其中 (1)(4) 是全称量词命题，(2)(3)(5) 是存在量词命题。它们的真假下一页一起判断。</p>
+</section>
+
+<!-- 5 ================= 核心交互：量词判真 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手判一判</span><h2>“任意”要全部成立，“存在”只要找到一个</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 1</b>　判断下列命题的真假（点一题，再拖动数轴上的点检验）：</p>
+      <div class="btns props" id="qProps" data-noswipe></div>
+      <p class="tip">换一个集合 $M$ 试试（课本“思考”：给定的集合对真假有没有影响？）：</p>
+      <div class="btns" id="qDom" data-noswipe></div>
+    </div>
+    <div class="col">
+      <div class="q-cur" id="qCur"></div>
+      <div id="qBoard" class="qboard"></div>
+      <p class="tip feedback" id="qMsg"></p>
+      <p class="muted center small-t">绿色：$p(x)$ 成立；红色：$p(x)$ 不成立。拖动橙色点检验单个 $x$</p>
+    </div>
+  </div>
+  <p class="note">课本 p35 例 1 与“思考”。依次点 (1)～(4)，请学生先判断，再看图：(1) x = 2 就行；(2) x = 0 是反例（[0, 1] 上都不成立）；(3) 方程 x² = 8 的根 ±2√2 都不是有理数，M 换成 R 就变成真命题；(4) x² + 2 ≥ 2 &gt; 0。把 (2) 的 M 换成 (1, +∞)，它就变成真命题——集合 M 会影响真假。</p>
+</section>
+
+<!-- 6 ================= 例 1 规范解答 + 发现 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>规范地写出判断过程</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) $\exists x\in\R,\ x^2\gt x$</span><span>因为当 $x=2$ 时，$x^2\gt x$ 成立，所以是<b>真</b>命题</span></div>
+        <div class="dl" data-step="2"><span>(2) $\forall x\in\R,\ x^2\gt x$</span><span>因为当 $x=0$ 时，$x^2\gt x$ 不成立，所以是<b>假</b>命题</span></div>
+        <div class="dl" data-step="3"><span>(3) $\exists x\in\mathbf Q,\ x^2-8=0$</span><span>使 $x^2-8=0$ 成立的 $x$ 只有 $2\sqrt2$ 与 $-2\sqrt2$，都不是有理数，所以是<b>假</b>命题</span></div>
+        <div class="dl" data-step="4"><span>(4) $\forall x\in\R,\ x^2+2\gt 0$</span><span>对任意实数 $x$，$x^2\ge 0$，所以 $x^2+2\ge 2\gt 0$，是<b>真</b>命题</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="method" data-step="5" data-label="由例 1 我们发现（课本 p35）">要判定一个<b>存在量词命题</b>为真，只要在给定的集合中找到一个元素，使命题为真即可；否则命题为假。<br>要判定一个<b>全称量词命题</b>为真，必须对给定的集合中的每一个元素，命题都为真；但要判定一个全称量词命题为假，只要在给定的集合中找到一个元素，使命题为假。</div>
+      <table class="mtab" data-step="6">
+        <tr><th></th><th>判为真</th><th>判为假</th></tr>
+        <tr><th>$\forall x\in M,\ p(x)$</th><td>证明每一个都成立</td><td>举<b>一个</b>反例</td></tr>
+        <tr><th>$\exists x\in M,\ p(x)$</th><td>找<b>一个</b>例子</td><td>证明每一个都不成立</td></tr>
+      </table>
+      <p class="tip gold" data-step="7">表中对角的两格是“找一个”，另两格要“说明全部”——<span class="think" data-step="8" data-ask="为什么会这样对称？">因为“全称为假”就是“存在不成立的”，“存在为假”就是“全都不成立”——这正是 2.3.2 要学的<b>否定</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p35 例 1 的解答与“由例 1 我们发现”。表格是对这段话的整理。最后一步预告本课后半部分：否定命题时，全称与存在互换。</p>
+</section>
+
+<!-- 7 ================= 练习 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>是哪一类？是真是假？（课本 p35 练习）</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>1.</b> 全称量词命题还是存在量词命题？</p>
+      <div class="pq4">
+        <div><span>(1) 任何实数的平方都是非负数</span><div class="pick" data-ans="u"><button data-k="u">全称</button><button data-k="e">存在</button></div></div>
+        <div><span>(2) 任何数与 0 相乘，都等于 0</span><div class="pick" data-ans="u"><button data-k="u">全称</button><button data-k="e">存在</button></div></div>
+        <div><span>(3) 任何一个实数都有相反数</span><div class="pick" data-ans="u"><button data-k="u">全称</button><button data-k="e">存在</button></div></div>
+        <div><span>(4) 有些三角形的三个内角都是锐角</span><div class="pick" data-ans="e"><button data-k="u">全称</button><button data-k="e">存在</button></div></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>2.</b> 判断真假：</p>
+      <div class="pq4">
+        <div><span>(1) 任意一个平行四边形对边都相等</span><div class="pick" data-ans="t"><button data-k="t">真</button><button data-k="f">假</button><p class="pick-why">平行四边形的性质。</p></div></div>
+        <div><span>(2) 有的四边形既是矩形又是菱形</span><div class="pick" data-ans="t"><button data-k="t">真</button><button data-k="f">假</button><p class="pick-why">正方形就是一个。</p></div></div>
+        <div><span>(3) 实系数方程都有实数解</span><div class="pick" data-ans="f"><button data-k="t">真</button><button data-k="f">假</button><p class="pick-why">反例：$x^2+1=0$。</p></div></div>
+        <div><span>(4) 有的正数比它的倒数小</span><div class="pick" data-ans="t"><button data-k="t">真</button><button data-k="f">假</button><p class="pick-why">$\frac12\lt 2$。</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p35 练习 1、2。注意 2(3)“实系数方程都有实数解”省略了全称量词“所有的”——有些全称量词命题的量词是省略的，判断前先补出来。</p>
+</section>
+
+<!-- 8 ================= 否定的规律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">2.3.2 否定</span><h2>把命题否定，量词怎么变？</h2></div>
+  <div class="bd full">
+    <div class="neg4">
+      <div class="hdr"><span>命题</span><span>否定</span><span>换言之</span></div>
+      <div data-step="1"><span>(1) <b class="u">所有的</b>正方形都是矩形</span><span>不是所有的正方形都是矩形</span><span class="think" data-step="2" data-ask="换个说法"><b class="e">有的</b>正方形<b>不是</b>矩形</span></div>
+      <div data-step="3"><span>(2) <b class="e">存在</b>有理数 $x$，使 $x^2-2=0$</span><span>不存在有理数 $x$，使 $x^2-2=0$</span><span class="think" data-step="4" data-ask="换个说法"><b class="u">对所有的</b>有理数 $x$，$x^2-2\ne 0$</span></div>
+      <div data-step="5"><span>(3) <b class="u">对任意的</b>实数 $a$，都有 $|a|\ge 0$</span><span>不是对任意的实数 $a$，都有 $|a|\ge 0$</span><span class="think" data-step="6" data-ask="换个说法"><b class="e">存在</b>实数 $a$，使 $|a|\lt 0$</span></div>
+      <div data-step="7"><span>(4) <b class="e">有的</b>矩形是菱形</span><span>不是有的矩形是菱形</span><span class="think" data-step="8" data-ask="换个说法"><b class="u">所有的</b>矩形都<b>不是</b>菱形</span></div>
+    </div>
+    <div class="def" data-step="9"><h4>一般地（课本 p36）</h4>“$\forall x\in M,\ p(x)$”的否定为“$\exists x\in M,\ \neg p(x)$”；“$\exists x\in M,\ p(x)$”的否定为“$\forall x\in M,\ \neg p(x)$”。其中，“$\neg p(x)$”是对语句“$p(x)$”的否定。</div>
+    <p class="tip gold" data-step="10">两条变化：<b>量词互换</b>（全称 ↔ 存在），<b>“肯定”变成“否定”</b>。对一个命题进行否定，就得到了一个新的命题，这两个命题“一真一假”。</p>
+  </div>
+  <p class="note">课本 p36。每一行先请学生读出否定，再用“换言之”说得更自然。对照真假：(1) 原命题真、否定假；(2) 原命题假、否定真……正好“此假彼真”。</p>
+</section>
+
+<!-- 9 ================= Venn：所有水生动物 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">看图理解</span><h2>“所有水生动物都用鳃呼吸”的否定</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <svg viewBox="0 0 460 260" class="aqua" id="aqua" aria-label="用鳃呼吸的动物与水生动物">
+        <ellipse cx="200" cy="130" rx="180" ry="115" class="gill"/>
+        <text x="200" y="45" class="al">用鳃呼吸的动物</text>
+        <g id="aquaIn" class="water-g"><ellipse cx="200" cy="150" rx="80" ry="45" class="water"/><text x="200" y="157" class="al">水生动物</text></g>
+        <text x="390" y="250" class="al note-t" id="aquaNote">一些水生动物不用鳃呼吸</text>
+      </svg>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" data-aq="0">(1) 原命题</button><button class="btn" type="button" data-aq="1">(2) 否定</button></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">图 (1)：表示水生动物的集合<b>整个</b>在“用鳃呼吸的动物”里——“所有水生动物都用鳃呼吸”。</p>
+      <p class="tip" data-step="2">把水生动物的集合<b>部分地移出</b>，<span class="think" data-step="3" data-ask="图 (2) 表示什么？">就表示“并非所有水生动物用鳃呼吸”，即“一些水生动物不用鳃呼吸”——例如海豚。</span></p>
+      <p class="method" data-step="4" data-label="用集合看否定">“$\forall x\in M,\ p(x)$”是“$M\subseteq P$”；它的否定是“$M\nsubseteq P$”：$M$ 中<b>存在</b>不在 $P$ 里的元素。</p>
+      <p class="tip gold" data-step="5">可以看出，当我们否定一个含有全称量词的命题时，就会得到一个含有存在量词的命题。</p>
+    </div>
+  </div>
+  <p class="note">习题 2.3 第 6 题（阅读题）。点“(2) 否定”，水生动物的圈移出一部分。方法提炼把本课与 1.2 的子集、2.2 的集合视角连在一起：否定“包含”，只要有一个元素“跑出去”。</p>
+</section>
+
+<!-- 10 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>写出下列命题的否定</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1"><p>(1) 所有的无理数都是实数；</p><div class="think" data-step="2" data-ask="否定是？"><p>有的无理数不是实数。</p></div></div>
+      <div class="jcard" data-step="3"><p>(2) $\forall x\in\R,\ x^2+x+1\gt 0$；</p><div class="think" data-step="4" data-ask="否定是？"><p>$\exists x\in\R,\ x^2+x+1\le 0$。</p></div></div>
+      <div class="jcard" data-step="5"><p>(3) 菱形不是矩形；</p><div class="think" data-step="6" data-ask="先补出量词，再否定"><p>“菱形不是矩形”是指“任意一个菱形都不是矩形”，它的否定是“存在一个菱形，它是矩形”，或“存在是矩形的菱形”。</p></div></div>
+      <div class="jcard" data-step="7"><p>(4) $\exists x\in\R,\ x^2-x+1=0$。</p><div class="think" data-step="8" data-ask="否定是？"><p>$\forall x\in\R,\ x^2-x+1\ne 0$。</p></div></div>
+    </div>
+    <div class="cols2">
+      <p class="warn" data-step="9">课本旁注：注意 (2) 的否定与“$\forall x\in\R,\ x^2+x+1\le 0$”的区别——只改结论、不改量词是常见错误。</p>
+      <p class="method" data-step="10" data-label="否定的写法">“任意”“所有”的否定分别是“存在”“不都”；“存在”“有”的否定分别是“任意”“所有”。$\gt$ 的否定是 $\le$，$=$ 的否定是 $\ne$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p36–37 例 2 与总结。(3) 量词被省略了，要先补出“任意一个”。可顺带判断真假：(1) 原真；(2) x² + x + 1 = (x + ½)² + ¾ &gt; 0，原真；(3) 正方形既是菱形又是矩形，原命题假、否定真；(4) Δ = 1 − 4 &lt; 0，原命题假、否定真。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="pick-row">
+      <span><b>练习 3.</b> 命题“$\forall x\in\R,\ x^2\ge 0$”的否定为（　）</span>
+      <div class="pick" data-ans="D"><button data-k="A">A. $\forall x\in\R,\ x^2\lt 0$</button><button data-k="B">B. 不存在 $x\in\R,\ x^2\lt 0$</button><button data-k="C">C. $\exists x_0\in\R,\ x_0^2\ge 0$</button><button data-k="D">D. $\exists x_0\in\R,\ x_0^2\lt 0$</button><p class="pick-why">量词 ∀ 改为 ∃，结论 $\ge$ 改为 $\lt$，两处都要改。</p></div>
+    </div>
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 写出命题“二次函数有最小值”的否定，并判断原命题与否定的真假。</p>
+        <details><summary>提示 1</summary>先补出被省略的量词：“所有的二次函数都有最小值”。</details>
+        <details><summary>提示 2</summary>想想 $y=-x^2$ 有没有最小值。</details>
+        <details><summary>完整解答</summary>否定：有的二次函数没有最小值。$y=-x^2$ 的图象开口向下，没有最小值，所以原命题为假，否定为真。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 写出命题“大于 3 的自然数是不等式 $x^2\gt 10$ 的解”的否定，并判断真假。</p>
+        <details><summary>提示 1</summary>补出量词：“任意大于 3 的自然数，都是 $x^2\gt 10$ 的解”。</details>
+        <details><summary>提示 2</summary>大于 3 的最小自然数是 4，$4^2=16$。</details>
+        <details><summary>完整解答</summary>否定：存在大于 3 的自然数，不是不等式 $x^2\gt 10$ 的解。大于 3 的自然数 $n\ge 4$，$n^2\ge 16\gt 10$，原命题为真，所以否定为假。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 写出命题“存在有序整数组 $(x,y)$ 满足 $xy=x+y$”的否定，并判断真假。</p>
+        <details><summary>提示 1</summary>“存在”的否定是“任意”，“满足”的否定是“不满足”。</details>
+        <details><summary>提示 2</summary>试试 $(0,0)$、$(2,2)$。</details>
+        <details><summary>完整解答</summary>否定：对任意有序整数组 $(x,y)$，都有 $xy\ne x+y$。因为 $(2,2)$ 满足 $2\times2=2+2$，原命题为真，所以否定为假。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p37 练习 3（选择题，点选即判）、练习 2(3)，习题 2.3 第 5(1)(2) 题。先判断原命题真假，再利用“一真一假”判断否定，往往更快。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想（第 2 章回顾）</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$\forall x\in M,\ p(x)$ 的否定：<br>$\exists x\in M,\ \neg p(x)$<br>$\exists x\in M,\ p(x)$ 的否定：<br>$\forall x\in M,\ \neg p(x)$</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断真假">全称：真要证全部，假举一个反例；存在：真找一个例子，假要证全部不成立。</p>
+        <p class="method" data-label="写否定">补出量词 → 量词互换 → 结论取否。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="一般与特殊">“任意”关乎一般，“存在”关乎特殊。</p>
+        <p class="recall" data-label="集合观点">$\forall x\in M,\ p(x)\Leftrightarrow M\subseteq\{x\mid p(x)\}$。</p>
+      </div>
+    </div>
+    <div class="ch2" data-step="4"><span>2.1 命题：若 $p$，则 $q$</span><i>→</i><span>2.2 $p\Rightarrow q$：充分、必要、充要</span><i>→</i><span>2.3 任意、存在与否定</span></div>
+    <p class="tip gold" data-step="5"><b>下一章：</b>第 3 章 不等式——3.1 不等式的基本性质。本章的“$\Rightarrow$”“$\Leftrightarrow$”“任意”，马上就要用来证明不等式的性质。</p>
+  </div>
+  <p class="note">第 2 章的最后一课，请学生用一句话串起三节：命题 → 推出关系 → 量词。课后作业建议：习题 2.3 第 1～5 题；第 6 题（阅读题）请学生仿照“水生动物”自己举例并画图。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

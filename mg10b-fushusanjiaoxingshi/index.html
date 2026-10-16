@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>复数的三角形式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/motianlun.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第12章 复数 · 12.4（选学）</p>
+    <h1 class="cover-title">复数的三角形式</h1>
+    <p class="cover-q" data-step="1">摩天轮上一个座舱的位置，可以说“向右几米、向上几米”，也可以说“离轮心多远、转过了多大的角”。</p>
+    <p class="cover-q" data-step="2">复数 $z=a+b\mathrm i$ 对应点 $Z(a,b)$。能不能用<b>模 $r$</b> 和<b>角 $\theta$</b> 来表示它？换一种表示，乘法会变得怎样？</p>
+    <div class="chips" data-step="3"><span class="chip">辐角与辐角主值</span><span class="chip">三角形式</span><span class="chip">乘法 = 旋转 + 伸缩</span><span class="chip">除法的几何意义</span></div>
+  </div>
+  <p class="note">课本 p125。本节为选学内容。用摩天轮引出“极坐标式”的描述：位置 = 距离 + 方向。上一课结尾的问题“i·z 的几何意义”会在本课揭晓。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课讲到哪里？今天还要用什么？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="12.3 · 复数的几何意义（上一课）" data-step="1">
+        <p>$z=a+b\mathrm i\leftrightarrow Z(a,b)\leftrightarrow\overrightarrow{OZ}$；模 $|z|=r=\sqrt{a^2+b^2}$。</p>
+        <span class="use">$r$ 是“距离”；今天再添上“方向”——辐角 $\theta$。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 第7章 · 任意角的三角函数" data-step="2">
+        <p>角 $\theta$ 终边上一点 $(a,b)$，$r=\sqrt{a^2+b^2}$：$\cos\theta=\dfrac ar$，$\sin\theta=\dfrac br$；终边相同的角 $\theta+2k\pi\ (k\in\Z)$。</p>
+        <span class="use">由 $a,b$ 求辐角；一个复数有无穷多个辐角。</span>
+      </div>
+      <div class="recall" data-label="第 10 章 10.1 · 两角和与差的三角函数" data-step="3">
+        <p>$\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta$；$\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$。</p>
+        <span class="use">推导三角形式的乘法法则：辐角相加。</span>
+      </div>
+      <div class="recall" data-label="12.2 · i 的乘方" data-step="4">
+        <p>$1\to\mathrm i\to-1\to-\mathrm i\to1$：每乘一次 $\mathrm i$ 换一个位置。</p>
+        <span class="use">本课解释：乘 $\mathrm i$ 就是逆时针旋转 $\dfrac\pi2$。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第三张卡的两个公式请学生默写——今天的乘法法则就是它们的“复数版本”。第四张卡回扣 12.2 的循环图。</p>
+</section>
+
+<!-- 3 ================= 辐角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辐角</span><h2>以 $x$ 轴非负半轴为始边，$\overrightarrow{OZ}$ 所在射线为终边</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="arg" class="argb"></div>
+      <p class="tip center muted small-t">拖动 $Z$（模按 0.5、角按 $15^\circ$ 取整）</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>辐角（课本 p125）</h4>以 $x$ 轴的非负半轴为始边、向量 $\overrightarrow{OZ}$ 所在的射线为终边的角 $\theta$ 叫作复数 $z=a+b\mathrm i$ 的<em>辐角</em>。适合于 $0\le\theta\lt2\pi$ 的辐角 $\theta$ 的值叫作<em>辐角主值</em>，记作 $\arg z$。</div>
+      <p class="tip feedback" id="argMsg"></p>
+      <p class="tip" data-step="2">一个非零复数有几个辐角？几个辐角主值？　<span class="think" data-step="3" data-ask="想一想">无限多个辐角（相差 $2\pi$ 的整数倍）；辐角主值<b>唯一</b>。</span></p>
+      <p class="tip" data-step="4">$z=0$ 呢？　<span class="think" data-step="5" data-ask="想一想">对应零向量，模为 0，<b>辐角是任意的</b>。</span></p>
+      <p class="def" data-step="6"><span>两个非零复数相等，当且仅当它们的模与辐角主值分别相等。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p125。本课核心互动之一：拖动 Z，观察 r、arg z 以及“所有辐角”θ + 2kπ。特别拖到第三、四象限：辐角主值大于 π（本教材规定主值在 [0, 2π)）。</p>
+</section>
+
+<!-- 4 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>求辐角主值：先求 $r$，再由 $\cos\theta$、$\sin\theta$ 定角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex1" class="ex1b"></div>
+    </div>
+    <div class="col">
+      <p class="tip">求复数 $1+\mathrm i,\ -1-\mathrm i,\ \sqrt2,\ -\sqrt2\,\mathrm i$ 的辐角主值。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$1+\mathrm i$</span><span>$r_1=\sqrt2$，$\cos\theta_1=\dfrac1{\sqrt2}$，$\sin\theta_1=\dfrac1{\sqrt2}$</span><i class="why">$\cos\theta=\frac ar,\ \sin\theta=\frac br$</i></div>
+        <div class="dl" data-step="2"><span></span><span>又 $0\le\theta_1\lt2\pi$，故 $\theta_1=\dfrac\pi4$</span><i class="why">两个三角函数值同时确定一个角</i></div>
+        <div class="dl" data-step="3"><span>同理</span><span class="think" data-step="4" data-ask="另外三个？">$\theta_2=\dfrac{5\pi}4$，$\theta_3=0$，$\theta_4=\dfrac{3\pi}2$（模都是 $\sqrt2$）</span><i class="why">看左图：分别在第三象限、实轴正半轴、虚轴负半轴</i></div>
+      </div>
+      <p class="warn" data-step="5">只用 $\tan\theta=\dfrac ba$ 会出错：$1+\mathrm i$ 与 $-1-\mathrm i$ 的 $\tan$ 都是 1，但辐角主值相差 $\pi$。要看点在哪个象限。</p>
+    </div>
+  </div>
+  <p class="note">课本 p125–126 例 1。左图按坐标精确画出四个点及其辐角主值的角弧。易错警示：很多学生习惯用 tan 求角，务必结合象限。</p>
+</section>
+
+<!-- 5 ================= 三角形式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>$z=a+b\mathrm i$ 能用 $r,\theta$ 表示吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <div class="derive">
+          <div class="dl" data-step="1"><span>由</span><span>$\cos\theta=\dfrac ar$，$\sin\theta=\dfrac br$</span><i class="why">任意角三角函数的定义</i></div>
+          <div class="dl" data-step="2"><span>得</span><span>$a=r\cos\theta$，$b=r\sin\theta$</span><i class="why"></i></div>
+          <div class="dl end" data-step="3"><span>故</span><span>$a+b\mathrm i=r\cos\theta+\mathrm ir\sin\theta=r(\cos\theta+\mathrm i\sin\theta)$</span><i class="why"></i></div>
+        </div>
+        <div class="def" data-step="4"><h4>三角形式（课本 p126）</h4>$$z=r(\cos\theta+\mathrm i\sin\theta),$$其中 $r=\sqrt{a^2+b^2}$，$\cos\theta=\dfrac ar$，$\sin\theta=\dfrac br$。$r(\cos\theta+\mathrm i\sin\theta)$ 称为复数 $z$ 的<em>三角形式</em>，$a+b\mathrm i$ 称为<em>代数形式</em>。</div>
+      </div>
+      <div class="col">
+        <p class="tip">例 2　把下面的复数表示成三角形式：(1) $\sqrt3+\mathrm i$；(2) $-2$。</p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span>(1)</span><span>$r=\sqrt{(\sqrt3)^2+1^2}=2$，$\cos\theta=\dfrac{\sqrt3}2$，$\sin\theta=\dfrac12$</span><i class="why"></i></div>
+          <div class="dl" data-step="6"><span></span><span>$\arg(\sqrt3+\mathrm i)=\dfrac\pi6$，$\sqrt3+\mathrm i=2\left(\cos\dfrac\pi6+\mathrm i\sin\dfrac\pi6\right)$</span><i class="why"></i></div>
+          <div class="dl end" data-step="7"><span>(2)</span><span>$r=2$，$\arg(-2)=\pi$，$-2=2(\cos\pi+\mathrm i\sin\pi)$</span><i class="why">负实数的辐角主值是 $\pi$</i></div>
+        </div>
+        <p class="method" data-step="8" data-label="代数形式 → 三角形式">求模 $r$ → 由 $\cos\theta,\sin\theta$ 确定一个辐角（通常写辐角主值）→ 写成 $r(\cos\theta+\mathrm i\sin\theta)$。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p126 推导与例 2。知道代数形式，就能求出模和辐角（通常只要写出一个辐角），从而写成三角形式。上一页的拖动图里，右侧一直在显示 Z 的三角形式，可以回去对照。</p>
+</section>
+
+<!-- 6 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>哪些是三角形式？“长得像”不算</h2></div>
+  <div class="bd full">
+    <p class="tip" data-step="1">课本“思考”：对于 $z=\sqrt3+\mathrm i$，$2\left(\cos\dfrac{13\pi}6+\mathrm i\sin\dfrac{13\pi}6\right)$、$2\left[\cos\left(-\dfrac{11\pi}6\right)+\mathrm i\sin\left(-\dfrac{11\pi}6\right)\right]$ 是它的三角形式吗？　<span class="think" data-step="2" data-ask="更一般的结论？">都是。$\theta$ 可以取<b>任意一个辐角</b>：$\dfrac\pi6+2k\pi$ 都行。三角形式要求：$r\gt0$，“$\cos$ 在前、$+\mathrm i\sin$ 在后”，两个角相同。</span></p>
+    <div class="cols3">
+      <div class="jcard" data-step="3"><p>习题 12.4 第 2(1) 题：$2\left(\cos\dfrac\pi4-\mathrm i\sin\dfrac\pi4\right)$</p><div class="think" data-step="4" data-ask="是不是？"><p><span class="verdict x">不是</span>中间是减号。改写：$2\left[\cos\left(-\dfrac\pi4\right)+\mathrm i\sin\left(-\dfrac\pi4\right)\right]=2\left(\cos\dfrac{7\pi}4+\mathrm i\sin\dfrac{7\pi}4\right)$。</p></div></div>
+      <div class="jcard" data-step="5"><p>第 2(2) 题：$-2\left(\cos\dfrac\pi3+\mathrm i\sin\dfrac\pi3\right)$</p><div class="think" data-step="6" data-ask="是不是？"><p><span class="verdict x">不是</span>$r$ 必须为正。改写：$2\left(\cos\dfrac{4\pi}3+\mathrm i\sin\dfrac{4\pi}3\right)$（转半圈）。</p></div></div>
+      <div class="jcard" data-step="7"><p>第 2(3) 题：$2\left(\sin\dfrac\pi3+\mathrm i\cos\dfrac\pi3\right)$</p><div class="think" data-step="8" data-ask="是不是？"><p><span class="verdict x">不是</span>$\sin$、$\cos$ 位置反了。改写：$2\left(\cos\dfrac\pi6+\mathrm i\sin\dfrac\pi6\right)$。</p></div></div>
+    </div>
+    <p class="tip" data-step="9">例 3　求复数 $2\left(\cos\dfrac\pi3-\mathrm i\sin\dfrac\pi3\right)$ 的模与辐角。　<span class="think" data-step="10" data-ask="两种解法">解法 1：化代数形式 $1-\sqrt3\,\mathrm i$，$r=2$，$\arg=\dfrac{5\pi}3$，辐角 $\dfrac{5\pi}3+2k\pi$；解法 2：$=2\left[\cos\left(-\dfrac\pi3\right)+\mathrm i\sin\left(-\dfrac\pi3\right)\right]$，辐角 $-\dfrac\pi3+2k\pi$——两个表达式表示的是同一组角。</span></p>
+  </div>
+  <p class="note">课本 p127 思考、例 3 与习题 12.4 第 2 题。第 (4) 小题 ½(cos 7π/3 + i sin 7π/3) 是三角形式（角不必是主值），可口头补充。例 3 的旁注问“两个解法得到的辐角表达式不一样，你能给出解释吗？”——5π/3 与 −π/3 相差 2π。</p>
+</section>
+
+<!-- 7 ================= 乘法推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>三角形式下的乘法：模相乘，辐角相加</h2></div>
+  <div class="bd full">
+    <p class="tip">设 $z_1=r_1(\cos\theta_1+\mathrm i\sin\theta_1)$，$z_2=r_2(\cos\theta_2+\mathrm i\sin\theta_2)$。</p>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>$z_1z_2$</span><span>$=r_1r_2(\cos\theta_1+\mathrm i\sin\theta_1)(\cos\theta_2+\mathrm i\sin\theta_2)$</span><i class="why">乘法交换律、结合律</i></div>
+      <div class="dl" data-step="2"><span></span><span>$=r_1r_2[(\cos\theta_1\cos\theta_2-\sin\theta_1\sin\theta_2)+\mathrm i(\sin\theta_1\cos\theta_2+\cos\theta_1\sin\theta_2)]$</span><i class="why">复数乘法法则 $(ac-bd)+(bc+ad)\mathrm i$</i></div>
+      <div class="dl key" data-step="3"><span></span><span>$=r_1r_2[\cos(\theta_1+\theta_2)+\mathrm i\sin(\theta_1+\theta_2)]$</span><span class="think" data-step="4" data-ask="用的是哪两个公式？">两角和的余弦、正弦公式（第 10 章）</span></div>
+    </div>
+    <div class="def" data-step="5"><h4>乘法（课本 p128）</h4>$$r_1(\cos\theta_1+\mathrm i\sin\theta_1)\cdot r_2(\cos\theta_2+\mathrm i\sin\theta_2)=r_1r_2[\cos(\theta_1+\theta_2)+\mathrm i\sin(\theta_1+\theta_2)].$$两个复数相乘，积的模等于这两个复数的模的积，积的辐角等于这两个复数的辐角的和。</div>
+    <p class="tip gold" data-step="6">用代数形式乘，要展开四项；用三角形式乘，只要“模乘、角加”。旁注：你还能用其他方法推导吗？</p>
+  </div>
+  <p class="note">课本 p128。第 2 行的实部、虚部正好是 cos(θ₁ + θ₂)、sin(θ₁ + θ₂) 的展开式——请学生自己认出来。这是“三角恒等变换”与“复数乘法”的漂亮汇合。</p>
+</section>
+
+<!-- 8 ================= 乘法几何意义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">几何意义</span><h2>乘以 $z_2$：先逆时针旋转 $\theta_2$，再把模变为原来的 $r_2$ 倍</h2></div>
+  <button class="media-btn" hidden data-img="assets/chengfa.jpg" data-video="assets/chengfa.mp4" data-cap="z₁ 乘 z₂：先逆时针旋转 θ₂，再伸缩为 r₂ 倍；最后演示乘 i = 旋转 90°">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="mul" class="mulb"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="mulPlay">▶ 演示：先转，再伸缩</button><button class="btn" type="button" id="mulI">$z_2=\mathrm i$</button><button class="btn" type="button" id="mul2">$z_2=2$</button></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="mulMsg"></p>
+      <p class="tip" data-step="1">如图 12-4-2，把 $\overrightarrow{OZ_1}$ 按逆时针方向旋转角 $\theta_2$ 得 $\overrightarrow{OZ_1'}$（模仍为 $r_1$），再把 $\overrightarrow{OZ_1'}$ 的模变为原来的 $r_2$ 倍，得到 $\overrightarrow{OZ}$——<span class="think" data-step="2" data-ask="OZ 对应哪个复数？">它对应的复数 $r_1r_2[\cos(\theta_1+\theta_2)+\mathrm i\sin(\theta_1+\theta_2)]$ 即为 $z_1z_2$：这就是复数乘法的几何意义。</span></p>
+      <p class="tip gold" data-step="3">习题 12.3 第 12 题：$\mathrm i\cdot z$ 的几何意义？　<span class="think" data-step="4" data-ask="i 的模和辐角？">$\mathrm i=\cos\dfrac\pi2+\mathrm i\sin\dfrac\pi2$：模 1、辐角 $\dfrac\pi2$。$\mathrm i\cdot z$ 就是把 $\overrightarrow{OZ}$ <b>逆时针旋转 $90^\circ$</b>，长度不变——12.2 中 $1\to\mathrm i\to-1\to-\mathrm i$ 的循环由此而来。$kz\ (k\gt0)$：只伸缩不旋转。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p128、图 12-4-2。本课核心互动之二：拖动 Z₁、Z₂，点“演示”看两步变换（旋转 → 伸缩），绿色虚线是中间位置 OZ₁′。再点“z₂ = i”“z₂ = 2”分别看纯旋转和纯伸缩。右上角“看动画”是 18 秒无声动画。</p>
+</section>
+
+<!-- 9 ================= 除法 + 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">除法 · 例 4</span><h2>除法：模相除，辐角相减</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>除法（课本 p128–129）</h4>当 $z_2\ne0$ 时，$$\frac{r_1(\cos\theta_1+\mathrm i\sin\theta_1)}{r_2(\cos\theta_2+\mathrm i\sin\theta_2)}=\frac{r_1}{r_2}[\cos(\theta_1-\theta_2)+\mathrm i\sin(\theta_1-\theta_2)].$$两个复数相除，商的模等于被除数的模除以除数的模所得的商，商的辐角等于被除数的辐角减去除数的辐角所得的差。</div>
+    <p class="tip" data-step="2">试用此式解释复数除法的几何意义（课本旁注）：　<span class="think" data-step="3" data-ask="想一想">把 $\overrightarrow{OZ_1}$ <b>顺时针</b>旋转 $\theta_2$，再把模变为原来的 $\dfrac1{r_2}$。</span></p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="4"><span>例 4(1)</span><span>$2\left(\cos\frac\pi{12}+\mathrm i\sin\frac\pi{12}\right)\times3\left(\cos\frac\pi6+\mathrm i\sin\frac\pi6\right)$</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span></span><span>$=6\left(\cos\frac\pi4+\mathrm i\sin\frac\pi4\right)=3\sqrt2+3\sqrt2\,\mathrm i$</span><i class="why">$\frac\pi{12}+\frac\pi6=\frac\pi4$</i></div>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>例 4(2)</span><span>$\left[\sqrt6\left(\cos\frac{2\pi}3+\mathrm i\sin\frac{2\pi}3\right)\right]\div\left[\sqrt2\left(\cos\frac\pi3+\mathrm i\sin\frac\pi3\right)\right]$</span><i class="why"></i></div>
+        <div class="dl" data-step="7"><span></span><span>$=\sqrt3\left(\cos\frac\pi3+\mathrm i\sin\frac\pi3\right)=\frac{\sqrt3}2+\frac32\mathrm i$</span><i class="why">$\frac{2\pi}3-\frac\pi3=\frac\pi3$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p128–129 除法与例 4。除法的推导（分子分母同乘 cos θ₂ − i sin θ₂）课本已给出，可让学生课后补全。例 4 结果要求化成代数形式。</p>
+</section>
+
+<!-- 10 ================= 单位根 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探究</span><h2>$z^n=1$ 的 $n$ 个根，在复平面上排成什么样？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="roots" class="rootsb"></div>
+      <div class="slider-row" data-noswipe>$n=$<input type="range" id="rn" min="2" max="8" step="1" value="3"><b id="rnV" class="v"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">习题 12.4 第 12 题：验证 $\omega_k=\cos\dfrac{2k\pi}n+\mathrm i\sin\dfrac{2k\pi}n\ (k=0,1,\cdots,n-1)$ 为方程 $z^n=1$ 的 $n$ 个根，并给出几何解释。</p>
+      <p class="tip" data-step="1">为什么 $\omega_k^n=1$？　<span class="think" data-step="2" data-ask="用乘法法则">乘 $n$ 次：模 $1^n=1$，辐角 $n\cdot\dfrac{2k\pi}n=2k\pi$，所以 $\omega_k^n=\cos2k\pi+\mathrm i\sin2k\pi=1$。</span></p>
+      <p class="tip" data-step="3">几何解释？　<span class="think" data-step="4" data-ask="看左图">$n$ 个根都在单位圆上，从 1 开始每隔 $\dfrac{2\pi}n$ 一个，恰好是<b>正 $n$ 边形</b>的顶点。</span></p>
+      <p class="tip gold" data-step="5">$n=3$ 时：$1,\ \omega=-\dfrac12+\dfrac{\sqrt3}2\mathrm i,\ \bar\omega$——正是 12.2 例 4 的那个 $\omega$！$n=4$ 时：$1,\mathrm i,-1,-\mathrm i$。</p>
+    </div>
+  </div>
+  <p class="note">习题 12.4 第 12 题（探究·拓展）。左图按 ωₖ 的精确坐标绘制；拖动 n 观察正多边形。橙色箭头表示“乘 ω₁ = 旋转 2π/n”：每个根乘 ω₁ 就跳到下一个根。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求 $-1+\mathrm i$ 的模与辐角主值，并写成三角形式。</p>
+        <details><summary>提示 1</summary>$r=\sqrt2$；点在第几象限？</details>
+        <details><summary>提示 2</summary>$\cos\theta=-\dfrac{\sqrt2}2$，$\sin\theta=\dfrac{\sqrt2}2$。</details>
+        <details><summary>完整解答</summary>$r=\sqrt2$，$\arg(-1+\mathrm i)=\dfrac{3\pi}4$，$-1+\mathrm i=\sqrt2\left(\cos\dfrac{3\pi}4+\mathrm i\sin\dfrac{3\pi}4\right)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 计算 $\sqrt2\left(\cos\dfrac\pi6+\mathrm i\sin\dfrac\pi6\right)\times\sqrt5\left(\cos\dfrac\pi{12}+\mathrm i\sin\dfrac\pi{12}\right)$。</p>
+        <details><summary>提示 1</summary>模相乘，辐角相加。</details>
+        <details><summary>完整解答</summary>$=\sqrt{10}\left(\cos\dfrac\pi4+\mathrm i\sin\dfrac\pi4\right)=\sqrt{10}\left(\dfrac{\sqrt2}2+\dfrac{\sqrt2}2\mathrm i\right)=\sqrt5+\sqrt5\,\mathrm i$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 向量 $\overrightarrow{OZ_1}$ 对应的复数为 $-1+\mathrm i$，把 $\overrightarrow{OZ_1}$ 按逆时针方向旋转 $\dfrac{2\pi}3$，得到 $\overrightarrow{OZ}$，求与 $\overrightarrow{OZ}$ 对应的复数（代数形式）。</p>
+        <details><summary>提示 1</summary>逆时针旋转 $\dfrac{2\pi}3$ = 乘以 $\cos\dfrac{2\pi}3+\mathrm i\sin\dfrac{2\pi}3$。</details>
+        <details><summary>提示 2</summary>$(-1+\mathrm i)\left(-\dfrac12+\dfrac{\sqrt3}2\mathrm i\right)$。</details>
+        <details><summary>完整解答</summary>$=\dfrac12-\dfrac{\sqrt3}2\mathrm i-\dfrac12\mathrm i-\dfrac{\sqrt3}2=\dfrac{1-\sqrt3}2-\dfrac{1+\sqrt3}2\mathrm i$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题是课本 p127 练习 1(1) 加写三角形式，第 2 题是 p129 练习 1(1)，第 3 题是习题 12.4 第 8 题。第 3 题可以回到第 8 页把 z₂ 拖成模 1、辐角 2π/3 验证。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$z=r(\cos\theta+\mathrm i\sin\theta)$，$r=|z|$，$\theta$ 为辐角，$\arg z\in[0,2\pi)$。</p>
+        <p class="recall" data-label="乘除">乘：模相乘、角相加；除：模相除、角相减。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="化三角形式">求 $r$ → 由 $\cos\theta,\sin\theta$（结合象限）定 $\theta$；检查 $r\gt0$、$\cos$ 在前、$+\mathrm i\sin$。</p>
+        <p class="method" data-label="旋转问题">绕原点旋转 $\alpha$ ⇔ 乘 $\cos\alpha+\mathrm i\sin\alpha$。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">乘法 = 旋转 + 伸缩；$z^n=1$ 的根 = 正 $n$ 边形顶点。</p>
+        <p class="recall" data-label="联系">三角恒等变换、向量、复数三章在这里汇合。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>延伸：</b>课本 p131「问题与探究 · 复数的开方」、p134「阅读 · 复数是怎样建立的？」；习题 12.4 第 10 题：利用复数证明余弦定理——第 11 章与第 12 章首尾相连。</p>
+  </div>
+  <p class="note">课后作业建议：习题 12.4 第 1、3、4、5 题；第 9 题（ω³ = 1）与 12.2 例 4、本课单位根呼应。本节为选学内容，可按学情取舍第 10 页。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

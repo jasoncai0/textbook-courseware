@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>复数的几何意义 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/hanghai.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第12章 复数 · 12.3</p>
+    <h1 class="cover-title">复数的几何意义</h1>
+    <p class="cover-q" data-step="1">实数与数轴上的点一一对应：每个实数都有自己的“位置”。</p>
+    <p class="cover-q" data-step="2">复数 $a+b\mathrm i$ 由<b>两个</b>实数 $a,b$ 决定——一条数轴放不下了。它的“位置”在哪里？</p>
+    <div class="chips" data-step="3"><span class="chip">复平面</span><span class="chip">点 · 向量 · 复数</span><span class="chip">模</span><span class="chip">加减法的几何意义</span></div>
+  </div>
+  <p class="note">课本 p121 开头。封面图是航海图：在海上，一个位置要用两个数（经度、纬度）来描述——引出“用平面上的点表示复数”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课讲到哪里？今天还要用什么？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="12.1–12.2 · 复数相等与运算（上一课）" data-step="1">
+        <p>$a+b\mathrm i=c+d\mathrm i\Leftrightarrow a=c,\ b=d$；</p>
+        <p>$(a+b\mathrm i)\pm(c+d\mathrm i)=(a\pm c)+(b\pm d)\mathrm i$；$\bar z=a-b\mathrm i$，$z\bar z=a^2+b^2$。</p>
+        <span class="use">复数由有序实数对 $(a,b)$ 唯一确定；加减法“分别算”，像坐标运算。</span>
+      </div>
+      <div class="recall" data-label="第 9 章 9.3 · 向量的坐标表示" data-step="2">
+        <p>以原点为起点的向量 $\overrightarrow{OZ}$ 与终点坐标 $(a,b)$ 一一对应；$\boldsymbol a\pm\boldsymbol b$ 的坐标 = 坐标分别加减。</p>
+        <span class="use">复数 ↔ 向量；复数的加减 ↔ 向量的加减。</span>
+      </div>
+      <div class="recall" data-label="第 9 章 9.2 · 向量加减法的几何作图" data-step="3">
+        <p>加法：平行四边形法则；减法：$\overrightarrow{OZ_1}-\overrightarrow{OZ_2}=\overrightarrow{Z_2Z_1}$（共起点，指向被减向量）。</p>
+        <span class="use">复数加减法的几何意义。</span>
+      </div>
+      <div class="recall" data-label="两点间距离 · 圆的定义" data-step="4">
+        <p>$|\overrightarrow{AB}|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$；到定点距离等于定长的点的集合是圆。</p>
+        <span class="use">求模；判断 $|z|=2$、$|z-2|=1$ 表示什么图形。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">本课把第 9 章向量与第 12 章复数连起来。第二张卡最关键：“向量 ↔ 坐标”已经是一一对应，今天再加上“复数”这一角。</p>
+</section>
+
+<!-- 3 ================= 复平面 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">复平面</span><h2>用平面直角坐标系中的点 $Z(a,b)$ 表示 $z=a+b\mathrm i$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cp" class="cpb"></div>
+      <label class="chk" data-noswipe><input type="checkbox" id="cpConj"> 显示共轭复数 $\bar z$ 和模 $|z|$</label>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">为什么可以这样表示？　<span class="think" data-step="2" data-ask="想一想">由复数相等，$z=a+b\mathrm i$ 由有序实数对 $(a,b)$ <b>唯一确定</b>；有序实数对又与平面上的点一一对应。</span></p>
+      <p class="def" data-step="3">建立了直角坐标系来表示复数的平面叫作<em>复平面</em>，$x$ 轴叫作<em>实轴</em>，$y$ 轴叫作<em>虚轴</em>。<span class="muted">（也称为阿甘得图）</span></p>
+      <p class="tip feedback" id="cpMsg"></p>
+      <p class="tip" data-step="4">实轴上的点表示什么数？虚轴上的呢？　<span class="think" data-step="5" data-ask="拖到轴上看看">实轴上的点都表示实数；除原点外，虚轴上的点都表示<b>纯虚数</b>（原点表示 0，是实数）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p121、图 12-3-1。拖动橙色点 Z（坐标按 0.5 取整），读出它表示的复数；分别拖到实轴、虚轴、原点、各象限。课本例子：A(−2, 0) 表示 −2，B(0, 1) 表示 i，C(1, 2) 表示 1 + 2i——可以请学生把 Z 拖到这几处。</p>
+</section>
+
+<!-- 4 ================= 三者对应 + 模 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">对应 · 模</span><h2>复数、点、向量：三者一一对应</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 380 300" class="tri3" aria-label="图 12-3-3 三者对应">
+        <g data-step="1">
+          <circle cx="190" cy="66" r="58" class="tc"/><text x="190" y="60" class="tt">复数</text><text x="190" y="88" class="tm">z = a + bi</text>
+          <circle cx="76" cy="226" r="62" class="tc"/><text x="76" y="214" class="tt">复平面内的点</text><text x="76" y="244" class="tm">Z(a, b)</text>
+          <circle cx="304" cy="226" r="62" class="tc"/><text x="304" y="214" class="tt">平面向量</text><text x="304" y="244" class="tm">OZ</text>
+          <path d="M292 226 h24" stroke="#1f2d3a" stroke-width="1.5"/><path d="M312 222 l5 4 -5 4" fill="none" stroke="#1f2d3a" stroke-width="1.5"/>
+          <path d="M150 112 L104 172" stroke="#d9711c" stroke-width="3" marker-start="url(#t3a)" marker-end="url(#t3a)"/><path d="M230 112 L276 172" stroke="#d9711c" stroke-width="3" marker-start="url(#t3a)" marker-end="url(#t3a)"/><path d="M146 226 L234 226" stroke="#d9711c" stroke-width="3" marker-start="url(#t3a)" marker-end="url(#t3a)"/>
+          <text x="104" y="136" class="ts">对应</text><text x="252" y="136" class="ts">对应</text><text x="190" y="216" class="ts c">对应</text>
+        </g>
+        <defs><marker id="t3a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#d9711c"/></marker></defs>
+      </svg>
+      <p class="tip muted small-t">原点 $O$ 与零向量对应，表示复数 0。规定相等的向量表示同一个复数。</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="2"><h4>复数的模（课本 p122）</h4>向量 $\overrightarrow{OZ}$ 的模叫作复数 $z=a+b\mathrm i$ 的<em>模</em>（或绝对值），记作 $|z|$ 或 $|a+b\mathrm i|$：$$|z|=|a+b\mathrm i|=\sqrt{a^2+b^2}.$$</div>
+      <p class="tip" data-step="3">$b=0$ 时，$|z|$ 是什么？　<span class="think" data-step="4" data-ask="想一想">$\sqrt{a^2}=|a|$：就是实数 $a$ 的绝对值——模是绝对值的推广。</span></p>
+      <p class="tip" data-step="5">课本“思考”：$z$、$\bar z$ 与 $|z|$ 之间有什么关系？　<span class="think" data-step="6" data-ask="回上一页拖一拖">$Z$ 与 $\bar Z$ 关于<b>实轴对称</b>，所以 $|z|=|\bar z|$；并且 $z\bar z=a^2+b^2=|z|^2=|\bar z|^2$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p121–122、图 12-3-3。为方便起见，常把复数 z = a + bi 说成点 Z 或向量 OZ。“思考”的答案可以回到上一页勾选“显示共轭”验证。</p>
+</section>
+
+<!-- 5 ================= 例 1 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>用点和向量表示复数；比较模的大小</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe><button class="btn solid" type="button" data-ex1="pt">(1) 用点表示</button><button class="btn" type="button" data-ex1="vec">(2) 用向量表示</button></div>
+      <div id="ex1" class="ex1b"></div>
+    </div>
+    <div class="col">
+      <p class="tip">例 1　在复平面内，分别用点和向量表示下列复数：$4,\ 2+\mathrm i,\ -\mathrm i,\ -1+3\mathrm i,\ 3-2\mathrm i$。</p>
+      <p class="tip" data-step="1"><b>解</b>　点 $A,B,C,D,E$ 分别表示复数 $4,\ 2+\mathrm i,\ -\mathrm i,\ -1+3\mathrm i,\ 3-2\mathrm i$；向量 $\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC},\overrightarrow{OD},\overrightarrow{OE}$ 分别表示它们（图 12-3-4）。</p>
+      <p class="tip">例 2　已知复数 $z_1=3+4\mathrm i$，$z_2=-1+5\mathrm i$，试比较它们模的大小。</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$|z_1|$</span><span>$=\sqrt{3^2+4^2}=5$</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>$|z_2|$</span><span>$=\sqrt{(-1)^2+5^2}=\sqrt{26}$</span><i class="why"></i></div>
+        <div class="dl end" data-step="4"><span>所以</span><span>$|z_1|\lt|z_2|$</span><i class="why">$5=\sqrt{25}\lt\sqrt{26}$</i></div>
+      </div>
+      <p class="warn" data-step="5">两个虚数不能比较大小，但它们的<b>模</b>是实数，可以比较：模表示点到原点的距离。</p>
+    </div>
+  </div>
+  <p class="note">课本 p122 例 1、例 2。左图的点和向量都是按坐标精确绘制的。例 2 的结论可以在图上看：哪个点离原点更远？</p>
+</section>
+
+<!-- 6 ================= 例 3 点集 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>满足 $|z|=2$、$2\lt|z|\lt3$ 的点 $Z$ 组成什么图形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe><button class="btn solid" type="button" data-ring="eq">(1) $|z|=2$</button><button class="btn" type="button" data-ring="band">(2) $2\lt|z|\lt3$</button></div>
+      <div id="ring3" class="ring3b"></div>
+      <p class="tip feedback" id="ringMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1)</span><span>$|z|=2$，即 $|\overrightarrow{OZ}|=2$</span><i class="why">模 = 点 $Z$ 到原点的距离</i></div>
+        <div class="dl end" data-step="2"><span></span><span class="think" data-step="3" data-ask="是什么图形？">以原点为圆心、2 为半径的圆</span><i class="why">图 12-3-5(1)</i></div>
+        <div class="dl" data-step="4"><span>(2)</span><span>$2\lt|z|\lt3\Leftrightarrow\begin{cases}|z|\gt2,\\|z|\lt3.\end{cases}$</span><i class="why">化为不等式组</i></div>
+        <div class="dl" data-step="5"><span></span><span>$|z|\gt2$：圆 $|z|=2$ 外部；$|z|\lt3$：圆 $|z|=3$ 内部</span><i class="why">两个集合取交集</i></div>
+        <div class="dl end" data-step="6"><span></span><span class="think" data-step="7" data-ask="是什么图形？">以原点为圆心、分别以 2 和 3 为半径的两个圆所夹的圆环，<b>不包括</b>圆环的边界</span><i class="why">图 12-3-5(2)</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p122–123 例 3。先不揭示图形：让学生拖动 Z，满足条件时点变绿、不满足时变红，自己“描”出图形；再看规范解答。第 (2) 题的边界用虚线，强调“不包括边界”。</p>
+</section>
+
+<!-- 7 ================= 加减法的几何意义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">几何意义</span><h2>复数的加减 = 向量的加减</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe><button class="btn solid" type="button" data-op="add">加法 $z_1+z_2$</button><button class="btn" type="button" data-op="sub">减法 $z_1-z_2$</button></div>
+      <div id="vec" class="vecb"></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="vecMsg"></p>
+      <p class="tip" data-step="1"><b>加法</b>（图 12-3-6(1)）：以 $\overrightarrow{OZ_1},\overrightarrow{OZ_2}$ 为两条邻边作 $\square OZ_1ZZ_2$，<span class="think" data-step="2" data-ask="对角线表示什么？">对角线 $\overrightarrow{OZ}$ 就是与复数 $(a+c)+(b+d)\mathrm i$ 对应的向量。</span></p>
+      <p class="tip" data-step="3"><b>减法</b>（图 12-3-6(2)）：$z_1-z_2$ 对应 $\overrightarrow{OZ_1}-\overrightarrow{OZ_2}$，<span class="think" data-step="4" data-ask="即哪个向量？">即向量 $\overrightarrow{Z_2Z_1}$。作 $\overrightarrow{OZ}=\overrightarrow{Z_2Z_1}$，点 $Z$ 对应的复数就是 $z_1-z_2$。</span></p>
+      <div class="def" data-step="5"><span>$|z_1-z_2|=|\overrightarrow{Z_2Z_1}|=\sqrt{(a-c)^2+(b-d)^2}$：<em>两个复数的差的模，就是复平面内与这两个复数对应的两点间的距离。</em></span></div>
+    </div>
+  </div>
+  <p class="note">课本 p123、图 12-3-6。本课核心互动：拖动 Z₁、Z₂（坐标按 0.5 取整），切换加法/减法。减法时注意：Z₂Z₁ 的方向“指向被减数”；平移到原点后终点 Z 才是 z₁ − z₂ 的点。最后的蓝字结论是下一页的工具。</p>
+</section>
+
+<!-- 8 ================= 点集与距离 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">用距离看等式</span><h2>$|z-z_0|$ 是 $Z$ 到 $Z_0$ 的距离</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe><button class="btn solid" type="button" data-loc="c">$|z-2|=1$</button><button class="btn" type="button" data-loc="d">$|z-(1+2\mathrm i)|\le2$</button><button class="btn" type="button" data-loc="b">$|z+1|=|z-\mathrm i|$</button></div>
+      <div id="loc" class="locb"></div>
+      <label class="chk" data-noswipe><input type="checkbox" id="locShow"> 显示答案图形</label>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="locMsg"></p>
+      <p class="tip" data-step="1">习题 12.3 第 8 题：$|z-2|=1$ 的点 $Z$ 的集合？　<span class="think" data-step="2" data-ask="到哪个点的距离？">$Z$ 到点 $(2,0)$ 的距离等于 1：以 $(2,0)$ 为圆心、1 为半径的圆。</span></p>
+      <p class="tip" data-step="3">第 9 题：$|z-m|\le2$，$m=1+2\mathrm i$？　<span class="think" data-step="4" data-ask="想一想">以 $(1,2)$ 为圆心、2 为半径的圆及其内部（圆面）。</span></p>
+      <p class="tip" data-step="5">第 10 题：$|z+1|=|z-\mathrm i|$？　<span class="think" data-step="6" data-ask="z+1 = z−(−1)">$Z$ 到 $(-1,0)$ 与到 $(0,1)$ 的距离相等：这两点连线的<b>垂直平分线</b>，即直线 $y=-x$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p124 习题 12.3 第 8、9、10 题。先选一个条件，拖动 Z 看两段距离（或满足与否）的读数，让学生猜图形，再勾选“显示答案图形”。|z + 1| 要先写成 |z − (−1)|，这是学生最容易卡住的地方。</p>
+</section>
+
+<!-- 9 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在 $\square ABCD$ 中，点 $A,B,C$ 分别对应复数 $2+\mathrm i,\ 4+3\mathrm i,\ 3+5\mathrm i$，求点 $D$ 对应的复数。</p>
+        <details><summary>提示 1</summary>平行四边形：$\overrightarrow{AD}=\overrightarrow{BC}$。</details>
+        <details><summary>提示 2</summary>$\overrightarrow{BC}$ 对应 $(3+5\mathrm i)-(4+3\mathrm i)=-1+2\mathrm i$。</details>
+        <details><summary>完整解答</summary>$z_D=z_A+(z_C-z_B)=(2+\mathrm i)+(-1+2\mathrm i)=1+3\mathrm i$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知向量 $\overrightarrow{AB}$ 对应的复数为 $1+\mathrm i$，点 $A$ 对应的复数为 $1+3\mathrm i$，求点 $B$ 对应的复数。</p>
+        <details><summary>提示 1</summary>$\overrightarrow{AB}=\overrightarrow{OB}-\overrightarrow{OA}$。</details>
+        <details><summary>完整解答</summary>$z_B=z_A+(1+\mathrm i)=(1+3\mathrm i)+(1+\mathrm i)=2+4\mathrm i$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 设 $m$ 为实数，复数 $z=(m-2)+(m^2-9)\mathrm i$ 在复平面内对应的点位于第四象限，求 $m$ 的取值范围。</p>
+        <details><summary>提示 1</summary>第四象限：实部 $\gt0$，虚部 $\lt0$。</details>
+        <details><summary>提示 2</summary>$m-2\gt0$ 且 $m^2-9\lt0$。</details>
+        <details><summary>完整解答</summary>$m\gt2$ 且 $-3\lt m\lt3$，所以 $2\lt m\lt3$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1、2 题是课本 p124 练习 5、6，第 3 题是习题 12.3 第 2 题。第 1 题可以回到第 7 页用加减法作图验证。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$z=a+b\mathrm i\ \leftrightarrow\ Z(a,b)\ \leftrightarrow\ \overrightarrow{OZ}$；$|z|=\sqrt{a^2+b^2}$。</p>
+        <p class="recall" data-label="加减">加法：平行四边形对角线；减法：$\overrightarrow{Z_2Z_1}$；$|z_1-z_2|$ = 两点距离。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断位置">看实部、虚部的符号：实轴、虚轴、各象限。</p>
+        <p class="method" data-label="点集">把 $|z-z_0|$ 读成“到 $Z_0$ 的距离”，转化为圆、圆环、垂直平分线。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">复数是“数”，也是“点”和“向量”。</p>
+        <p class="recall" data-label="类比">复数 ↔ 向量；模 ↔ 绝对值的推广。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课 12.4 复数的三角形式：</b>点 $Z$ 的位置也可以用“到原点的距离 $r$”和“方向角 $\theta$”来描述。那么 $z=a+b\mathrm i$ 能用 $r,\theta$ 表示吗？乘法又有怎样的几何意义？（习题 12.3 第 12 题：$\mathrm i\cdot z$ 的几何意义是什么？）</p>
+  </div>
+  <p class="note">课后作业建议：习题 12.3 第 1、3、4、5、6 题。第 12 题（2z₁、i·z₁ 的几何意义）留作思考，正好引入下一课“乘法 = 旋转 + 伸缩”。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

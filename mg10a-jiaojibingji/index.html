@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>交集、并集 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/saichang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第1章 集合 · 1.3</p>
+    <h1 class="cover-title">交集、并集</h1>
+    <p class="cover-q" data-step="1">高一（1）班 45 名同学，12 人参加排球赛，20 人参加田径赛，两项都参加的有 6 人。</p>
+    <p class="cover-q" data-step="2">有多少人<b>没有参加过比赛</b>？$45-12-20=13$ 吗？</p>
+    <div class="chips" data-step="3"><span class="chip">集合的运算</span><span class="chip">交集 ∩</span><span class="chip">并集 ∪</span><span class="chip">区间</span></div>
+  </div>
+  <p class="note">课本 p13 例 2 的情境，先放在封面当悬念。多数学生会脱口而出 13，追问“两项都参加的 6 人被减了几次？”，不急着给答案，第 8 页用 Venn 图解决。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>补集是“算”出来的——集合也能做运算</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="1.2 · 子集与补集" data-step="1">
+        <p>$A\subseteq B$；$\complement_UA=\{x\mid x\in U,\ \text{且}\ x\notin A\}$。</p>
+        <span class="use">交集、并集的定义照着补集的样子写；$A\cup\complement_UA$ 是什么？</span>
+      </div>
+      <div class="recall" data-label="1.2 · Venn 图、数轴" data-step="2">
+        <p>用圈表示集合；在数轴上，含端点画实心点，不含画空心点。</p>
+        <span class="use">交、并都用图来“看”：Venn 图看元素，数轴看范围。</span>
+      </div>
+      <div class="recall" data-label="初中 · 解一元一次不等式组" data-step="3">
+        <p>$\begin{cases}x\gt 0\\ x\le 3\end{cases}$ 的解集是 $0\lt x\le 3$：取两个解集的<b>公共部分</b>。</p>
+        <span class="use">“公共部分”就是今天的交集。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>上一课讲到：</b>补集 $\complement_SA$ 是由给定的两个集合 $A$、$S$ 得到的一个新集合。这种由两个给定集合按照某种规则得到一个新集合的过程称为<b>集合的运算</b>（课本 p12）。</p>
+  </div>
+  <p class="note">第三张卡是初中解不等式组的“取公共部分”，学生非常熟悉，正好用来理解交集。最后一句是课本 p12 的开场白：补集、交集、并集都是集合的运算。</p>
+</section>
+
+<!-- 3 ================= 观察 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>A、B、C 之间有怎样的关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="jcard" data-step="1"><p><b>(1)</b> $A=\{-1,1,2,3\}$，$B=\{-2,-1,1\}$，$C=\{-1,1\}$</p></div>
+      <div class="jcard" data-step="1"><p><b>(2)</b> $A=\{x\mid x\le 3\}$，$B=\{x\mid x\gt 0\}$，$C=\{x\mid 0\lt x\le 3\}$</p></div>
+      <div class="jcard" data-step="1"><p><b>(3)</b> $A=\{x\mid x$ 为矩形$\}$，$B=\{x\mid x$ 为菱形$\}$，$C=\{x\mid x$ 为正方形$\}$</p></div>
+      <p class="tip" data-step="2">看 (1)：$1\in A$ 且 $1\in B$，<span class="think" data-step="3" data-ask="这样的元素还有谁？">还有 $-1$。所有这样的元素组成的集合就是 $C=\{-1,1\}$。</span></p>
+      <p class="tip" data-step="4">(2)(3) 呢？<span class="think" data-step="5" data-ask="想一想">既不大于 3 又大于 0 的数组成 $C$；既是矩形又是菱形的，正是正方形。</span></p>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 440 250" class="venn-obs" data-step="6" aria-label="A 与 B 的公共元素">
+        <circle cx="160" cy="125" r="105" fill="#fff" stroke="#4f9bd0" stroke-width="3"/>
+        <circle cx="285" cy="125" r="105" fill="none" stroke="#d9711c" stroke-width="3"/>
+        <text x="80" y="40" class="fl">A</text><text x="360" y="40" class="fl">B</text>
+        <text x="100" y="110" class="fl c">2</text><text x="100" y="160" class="fl c">3</text>
+        <text x="222" y="110" class="fl c hlc">−1</text><text x="222" y="160" class="fl c hlc">1</text>
+        <text x="340" y="135" class="fl c">−2</text>
+      </svg>
+      <p class="tip gold" data-step="7">$C$ 由<b>既属于 $A$ 又属于 $B$</b> 的元素组成——两圈重叠的那一块。这时称 $C$ 是 $A$ 与 $B$ 的<b>交集</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p12 观察。(3) 呼应初中：正方形既是矩形又是菱形。Venn 图里把 (1) 的元素放进去，−1、1 正好在重叠部分。</p>
+</section>
+
+<!-- 4 ================= 交集定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>交集：既属于 A，又属于 B</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>交集（课本 p12）</h4>由所有属于集合 $A$ <em>且</em>属于集合 $B$ 的元素构成的集合，称为 $A$ 与 $B$ 的<b>交集</b>（intersection set），记作 $A\cap B$（读作“$A$ 交 $B$”），即 $$A\cap B=\{x\mid x\in A,\ \text{且}\ x\in B\}.$$</div>
+      <svg viewBox="0 0 360 170" class="venn-def" data-step="1" aria-label="交集的 Venn 图">
+        <defs><clipPath id="clipA1"><circle cx="135" cy="85" r="72"/></clipPath><pattern id="h1" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="9" height="9" fill="#d3e6f4"/><line x1="0" y1="0" x2="0" y2="9" stroke="#4f9bd0" stroke-width="3"/></pattern></defs>
+        <circle cx="225" cy="85" r="72" fill="url(#h1)" clip-path="url(#clipA1)"/>
+        <circle cx="135" cy="85" r="72" fill="none" stroke="#4f9bd0" stroke-width="3"/><circle cx="225" cy="85" r="72" fill="none" stroke="#4f9bd0" stroke-width="3"/>
+        <text x="95" y="92" class="fl c">A</text><text x="265" y="92" class="fl c">B</text>
+      </svg>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="2">由定义，显然有：</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$A\cap B=B\cap A$</span><i class="why">“且”的两边交换，意思不变</i></div>
+        <div class="dl" data-step="3"><span>$A\cap B\subseteq A$，$A\cap B\subseteq B$</span><i class="why">公共元素当然属于 $A$，也属于 $B$</i></div>
+      </div>
+      <p class="tip" data-step="4">课本“思考”：$A\cap B=A$ 可能成立吗？<span class="think" data-step="5" data-ask="什么时候？">可能：当 $A\subseteq B$ 时，$A$ 的元素全是公共元素。</span></p>
+      <p class="tip" data-step="6">$A\cap B=\varnothing$ 可能成立吗？<span class="think" data-step="7" data-ask="什么时候？">可能：$A$、$B$ 没有公共元素时，例如奇数集与偶数集。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p12 定义框、图 1-3-1、“思考”。“且”是关键词，对应初中“公共部分”。A∩B = A 与 A ⊆ B 其实可以互相推出，第 2 章学“充要条件”时会再见到它。</p>
+</section>
+
+<!-- 5 ================= 并集定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>并集：属于 A，或者属于 B</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1">$A=\{-1,1,2,3\}$，$B=\{-2,-1,1\}$，$D=\{-2,-1,1,2,3\}$：<span class="think" data-step="2" data-ask="D 由哪些元素构成？">$D$ 由所有属于 $A$ <b>或者</b>属于 $B$ 的元素构成，公共的 $-1,1$ 只写一次。</span></p>
+      <div class="def" data-step="3"><h4>并集（课本 p13）</h4>由所有属于集合 $A$ <em>或者</em>属于集合 $B$ 的元素构成的集合，称为 $A$ 与 $B$ 的<b>并集</b>（union set），记作 $A\cup B$（读作“$A$ 并 $B$”），即 $$A\cup B=\{x\mid x\in A,\ \text{或}\ x\in B\}.$$</div>
+      <svg viewBox="0 0 360 170" class="venn-def" data-step="3" aria-label="并集的 Venn 图">
+        <circle cx="135" cy="85" r="72" fill="url(#h1)"/><circle cx="225" cy="85" r="72" fill="url(#h1)"/>
+        <circle cx="135" cy="85" r="72" fill="none" stroke="#4f9bd0" stroke-width="3"/><circle cx="225" cy="85" r="72" fill="none" stroke="#4f9bd0" stroke-width="3"/>
+        <text x="95" y="92" class="fl c">A</text><text x="265" y="92" class="fl c">B</text>
+      </svg>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="4"><span>$A\cup B=B\cup A$</span><i class="why">“或”的两边交换</i></div>
+        <div class="dl" data-step="5"><span>$A\subseteq A\cup B$，$B\subseteq A\cup B$</span><i class="why">$A$、$B$ 的元素都被“并”进来了</i></div>
+      </div>
+      <p class="tip" data-step="6">课本“思考”：$A\cup B=A$ 可能成立吗？<span class="think" data-step="7" data-ask="什么时候？">可能：当 $B\subseteq A$ 时。</span></p>
+      <p class="tip" data-step="8">$A\cup\complement_UA$ 是什么集合？<span class="think" data-step="9" data-ask="想一想">是全集 $U$：$U$ 中每个元素，要么属于 $A$，要么属于 $\complement_UA$。</span></p>
+      <p class="warn" data-step="10">数学里的“或”包含“两者都是”：$x\in A$ 或 $x\in B$，包括 $x$ 同时属于 $A$、$B$ 的情形。</p>
+    </div>
+  </div>
+  <p class="note">课本 p12–13、图 1-3-2、“思考”。易错警示：日常“或”常表示二选一，数学里的“或”是“至少一个”，所以重叠部分也在并集里。</p>
+</section>
+
+<!-- 6 ================= Venn 涂色 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">看图说话</span><h2>点一个运算，看它涂出哪一块</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns ops" id="vOps" data-noswipe></div>
+      <p class="tip feedback" id="vMsg"></p>
+      <p class="tip" data-step="1">习题 1.3 第 10 题：分别点 $\complement_U(A\cup B)$ 与 $(\complement_UA)\cap(\complement_UB)$，<span class="think" data-step="2" data-ask="你发现了什么？">涂出的是同一块：$\complement_U(A\cup B)=(\complement_UA)\cap(\complement_UB)$。</span></p>
+      <p class="tip" data-step="3">再比较 $\complement_U(A\cap B)$ 与 $(\complement_UA)\cup(\complement_UB)$：<span class="think" data-step="4" data-ask="又发现了什么？">也相同：$\complement_U(A\cap B)=(\complement_UA)\cup(\complement_UB)$。</span></p>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 460 300" class="vpaint" id="vPaint" aria-label="Venn 图涂色">
+        <defs>
+          <mask id="mNotA"><rect width="460" height="300" fill="#fff"/><circle cx="175" cy="155" r="100" fill="#000"/></mask>
+          <mask id="mNotB"><rect width="460" height="300" fill="#fff"/><circle cx="295" cy="155" r="100" fill="#000"/></mask>
+          <clipPath id="cB"><circle cx="295" cy="155" r="100"/></clipPath>
+        </defs>
+        <g mask="url(#mNotA)"><rect class="rg" data-r="out" x="10" y="10" width="440" height="280" mask="url(#mNotB)"/></g>
+        <circle class="rg" data-r="a" cx="175" cy="155" r="100" mask="url(#mNotB)"/>
+        <circle class="rg" data-r="ab" cx="175" cy="155" r="100" clip-path="url(#cB)"/>
+        <circle class="rg" data-r="b" cx="295" cy="155" r="100" mask="url(#mNotA)"/>
+        <rect x="10" y="10" width="440" height="280" fill="none" stroke="#1d6fa5" stroke-width="3"/>
+        <circle cx="175" cy="155" r="100" fill="none" stroke="#1d6fa5" stroke-width="3"/>
+        <circle cx="295" cy="155" r="100" fill="none" stroke="#1d6fa5" stroke-width="3"/>
+        <text x="28" y="40" class="fl">U</text><text x="120" y="160" class="fl c">A</text><text x="350" y="160" class="fl c">B</text>
+      </svg>
+    </div>
+  </div>
+  <p class="note">课本“思考”与习题 1.3 第 9、10 题的直观版。先让学生口头描述“交、并、补”各涂哪一块，再点按钮验证。第 10 题的两个发现叫“德·摩根律”，课本不要求记名称；p17“问题与探究”还会用 Venn 图探究运算律。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>有限集：把元素一个个对一对</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip big">已知 $A=\{-1,0,1\}$，$B=\{0,1,2,3\}$，求 $A\cap B$ 和 $A\cup B$。</p>
+      <svg viewBox="0 0 440 230" class="venn-obs" data-step="1" aria-label="例 1 的 Venn 图">
+        <circle cx="160" cy="115" r="100" fill="#fff" stroke="#4f9bd0" stroke-width="3"/>
+        <circle cx="280" cy="115" r="100" fill="none" stroke="#d9711c" stroke-width="3"/>
+        <text x="80" y="30" class="fl">A</text><text x="358" y="30" class="fl">B</text>
+        <text x="105" y="122" class="fl c">−1</text>
+        <text x="220" y="100" class="fl c hlc">0</text><text x="220" y="148" class="fl c hlc">1</text>
+        <text x="330" y="100" class="fl c">2</text><text x="330" y="148" class="fl c">3</text>
+      </svg>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="2"><span>公共元素</span><span class="think" data-step="3" data-ask="哪些？">$0,1$</span><i class="why">逐个检查 $A$ 的元素是否在 $B$ 中</i></div>
+        <div class="dl end" data-step="4"><span>$A\cap B=$</span><span>$\{-1,0,1\}\cap\{0,1,2,3\}=\{0,1\}$</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span>全部元素</span><span class="think" data-step="6" data-ask="哪些？">$-1,0,1,2,3$</span><i class="why">公共的 $0,1$ 只写一次</i></div>
+        <div class="dl end" data-step="7"><span>$A\cup B=$</span><span>$\{-1,0,1\}\cup\{0,1,2,3\}=\{-1,0,1,2,3\}$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="8" data-label="有限集求交、并">画 Venn 图，先找公共元素放在重叠部分；交集取重叠部分，并集取全部，重复的只写一次。</p>
+    </div>
+  </div>
+  <p class="note">课本 p13 例 1。常见错误：并集写成 {−1, 0, 1, 0, 1, 2, 3}——违反元素的互异性。</p>
+</section>
+
+<!-- 8 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>多少名同学没有参加过比赛？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">学校举办了排球赛，高一（1）班 45 名同学中有 12 名同学参赛。后来又举办了田径赛，班上有 20 名同学参赛。已知两项都参赛的有 6 名同学。两项比赛中，高一（1）班共有多少名同学没有参加过比赛？</p>
+      <p class="tip" data-step="1">设 $U=\{x\mid x$ 为高一（1）班的同学$\}$，$A=\{x\mid x$ 为参加排球赛的同学$\}$，$B=\{x\mid x$ 为参加田径赛的同学$\}$，<span class="think" data-step="2" data-ask="“两项都参加”是哪个集合？">则 $A\cap B=\{x\mid x$ 为排球赛和田径赛都参加的同学$\}$。</span></p>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 460 250" class="venn-cnt" data-step="3" aria-label="例 2 的 Venn 图">
+        <rect x="8" y="8" width="444" height="234" fill="#fff" stroke="#1d6fa5" stroke-width="3"/>
+        <circle cx="175" cy="130" r="95" fill="#eef5fb" stroke="#4f9bd0" stroke-width="3"/>
+        <circle cx="290" cy="130" r="95" fill="#fdf1e6" fill-opacity=".6" stroke="#d9711c" stroke-width="3"/>
+        <text x="26" y="38" class="fl">U</text><text x="130" y="68" class="fl c">A</text><text x="335" y="68" class="fl c">B</text>
+        <text x="130" y="140" class="fl s c" data-step="5">(6)</text><text x="232" y="140" class="fl s c" data-step="4">(6)</text><text x="335" y="140" class="fl s c" data-step="5">(14)</text>
+        <text x="400" y="225" class="fl s c" data-step="7">(19)</text>
+      </svg>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>重叠部分</span><span>$6$ 人</span><i class="why">两项都参加</i></div>
+        <div class="dl" data-step="5"><span>只参加一项</span><span>排球 $12-6=6$，田径 $20-6=14$</span><i class="why"></i></div>
+        <div class="dl key" data-step="6"><span>参加过的</span><span class="think" data-step="6" data-ask="为什么要减 6？">$12+20-6=26$</span><i class="why">$12+20$ 把重叠的 6 人数了<b>两次</b></i></div>
+        <div class="dl end" data-step="7"><span>没参加的</span><span>$45-(12+20-6)=19$（名）</span><i class="why">即 $\complement_U(A\cup B)$ 的人数</i></div>
+      </div>
+      <p class="tip" data-step="8"><b>答</b>　这个班共有 19 名同学没有参加过比赛。</p>
+    </div>
+  </div>
+  <p class="note">课本 p13 例 2、图 1-3-3。回到封面的悬念：45 − 12 − 20 = 13 错在哪？——两项都参加的 6 人被减了两次。要点：参加过比赛的同学组成 A ∪ B，人数 = 12 + 20 − 6。</p>
+</section>
+
+<!-- 9 ================= 区间 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">区间</span><h2>一段连续的实数，有更简洁的写法</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">设 $a,b\in\R$，且 $a\lt b$，规定（课本 p13–14）：</p>
+      <table class="mtab ivl">
+        <tr><th>区间</th><th>集合</th><th>名称</th></tr>
+        <tr><td>$[a,b]$</td><td>$\{x\mid a\le x\le b\}$</td><td>闭区间</td></tr>
+        <tr><td>$(a,b)$</td><td>$\{x\mid a\lt x\lt b\}$</td><td>开区间</td></tr>
+        <tr><td>$[a,b)$</td><td>$\{x\mid a\le x\lt b\}$</td><td>左闭右开区间</td></tr>
+        <tr><td>$(a,b]$</td><td>$\{x\mid a\lt x\le b\}$</td><td>左开右闭区间</td></tr>
+        <tr><td>$(a,+\infty)$</td><td>$\{x\mid x\gt a\}$</td><td rowspan="3" class="muted">$+\infty$ 读作“正无穷大”<br>$-\infty$ 读作“负无穷大”</td></tr>
+        <tr><td>$(-\infty,b)$</td><td>$\{x\mid x\lt b\}$</td></tr>
+        <tr><td>$(-\infty,+\infty)$</td><td>$\R$</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <div class="ivl-figs" id="ivlFigs"></div>
+      <p class="tip" data-step="1">$a,b$ 叫作区间的<b>端点</b>。方括号 ↔ <span class="think" data-step="2" data-ask="实心还是空心？">实心点（含端点）</span>；圆括号 ↔ <span class="think" data-step="2" data-ask="实心还是空心？">空心点（不含端点）</span>。</p>
+      <p class="warn" data-step="3">$\infty$ 不是一个数，所以 $\pm\infty$ 一侧<b>只能用圆括号</b>：写 $[2,+\infty)$，不能写 $[2,+\infty]$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p13–14 区间定义与图 1-3-4（右侧六条数轴按图 1-3-4 的顺序画出）。区间是“数集”的简写，只能表示连续的一段实数；{1, 2, 3} 这样的有限集不能写成区间。</p>
+</section>
+
+<!-- 10 ================= 核心交互：数轴上的交与并 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手拖一拖</span><h2>数轴上的交集与并集</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 3</b>　设 $A=\{x\mid x\gt 0\}$，$B=\{x\mid x\le 1\}$，求 $A\cap B$ 和 $A\cup B$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$A\cap B=$</span><span class="think" data-step="2" data-ask="公共部分是？">$\{x\mid 0\lt x\le 1\}$</span><i class="why">即 $(0,1]$</i></div>
+        <div class="dl" data-step="3"><span>$A\cup B=$</span><span class="think" data-step="4" data-ask="合起来是？">$\R$</span><i class="why">两段合起来盖住整条数轴</i></div>
+      </div>
+      <div class="btns" data-noswipe id="ivPre"></div>
+      <p class="method" data-step="5" data-label="无限集求交、并">画数轴：交集看<b>两层都盖住</b>的部分，并集看<b>至少一层盖住</b>的部分；端点逐个看是否同时（或至少一个）含有。</p>
+    </div>
+    <div class="col">
+      <div class="iv-ctrl" id="ivCtrl" data-noswipe></div>
+      <div id="iv" class="iv"></div>
+      <div class="iv-out" id="ivOut"></div>
+      <p class="muted center small-t">拖动彩色端点；点下面的按钮切换实心 / 空心</p>
+    </div>
+  </div>
+  <p class="note">课本 p13 例 3，并可切换到习题 1.3 第 2 题（A = (−1, 3]，B = [2, 4)）、练习 4(3)。请学生先说结果再拖：把 B 的左端拖到 A 的右端外面，交集变成 ∅、并集断成两段；两端点重合时，只有两边都是实心，交集才是一个点。</p>
+</section>
+
+<!-- 11 ================= 练习 2：A 与 ∅、U ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">填一填</span><h2>设 U 为全集，A 为 U 的子集（课本练习 2）</h2></div>
+  <div class="bd full">
+    <div class="fill6">
+      <div><span>$A\cap A=$</span><div class="pick" data-ans="A"><button data-k="A">$A$</button><button data-k="e">$\varnothing$</button><button data-k="U">$U$</button></div></div>
+      <div><span>$A\cup A=$</span><div class="pick" data-ans="A"><button data-k="A">$A$</button><button data-k="e">$\varnothing$</button><button data-k="U">$U$</button></div></div>
+      <div><span>$A\cap\varnothing=$</span><div class="pick" data-ans="e"><button data-k="A">$A$</button><button data-k="e">$\varnothing$</button><button data-k="U">$U$</button><p class="pick-why">$\varnothing$ 没有元素，哪来公共元素？</p></div></div>
+      <div><span>$A\cup\varnothing=$</span><div class="pick" data-ans="A"><button data-k="A">$A$</button><button data-k="e">$\varnothing$</button><button data-k="U">$U$</button></div></div>
+      <div><span>$A\cap\complement_UA=$</span><div class="pick" data-ans="e"><button data-k="A">$A$</button><button data-k="e">$\varnothing$</button><button data-k="U">$U$</button><p class="pick-why">没有元素既属于 $A$ 又不属于 $A$。</p></div></div>
+      <div><span>$A\cup\complement_UA=$</span><div class="pick" data-ans="U"><button data-k="A">$A$</button><button data-k="e">$\varnothing$</button><button data-k="U">$U$</button><p class="pick-why">$U$ 中每个元素要么属于 $A$，要么属于 $\complement_UA$。</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="记不住就画图">$\varnothing$ 对交集像“0 乘任何数”，对并集像“加 0”；$A$ 与 $\complement_UA$：交为空，并为全。</p>
+  </div>
+  <p class="note">课本 p14 练习 2。先独立选，再上台点（点错可重选）。也可以回到第 6 页用涂色验证 A ∩ ∁UA、A ∪ ∁UA。</p>
+</section>
+
+<!-- 12 ================= 练习：提示阶梯 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 已知 $A=\{x\mid x$ 为小于 7 的正偶数$\}$，$B=\{-2,0,2,4\}$，求 $A\cap B$ 和 $A\cup B$。</p>
+        <details><summary>提示 1</summary>先用列举法写出 $A$。</details>
+        <details><summary>提示 2</summary>$A=\{2,4,6\}$，公共元素是哪些？</details>
+        <details><summary>完整解答</summary>$A\cap B=\{2,4\}$，$A\cup B=\{-2,0,2,4,6\}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 设 $A=\{(x,y)\mid y=-4x+6\}$，$B=\{(x,y)\mid y=5x-3\}$，求 $A\cap B$。</p>
+        <details><summary>提示 1</summary>元素是<b>点</b>。公共元素是两条直线上都有的点。</details>
+        <details><summary>提示 2</summary>解方程组 $\begin{cases}y=-4x+6\\ y=5x-3\end{cases}$。</details>
+        <details><summary>完整解答</summary>$-4x+6=5x-3$，$x=1$，$y=2$，所以 $A\cap B=\{(1,2)\}$（不能写成 $\{1,2\}$）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 设 $m$ 为实数，$A=\{m+1,-3\}$，$B=\{2m-1,m-3\}$。若 $A\cap B=\{-3\}$，求 $m$ 的值。</p>
+        <details><summary>提示 1</summary>$-3\in B$，所以 $2m-1=-3$ 或 $m-3=-3$。</details>
+        <details><summary>提示 2</summary>求出 $m$ 后，<b>代回检验</b> $A\cap B$ 是否恰为 $\{-3\}$。</details>
+        <details><summary>完整解答</summary>$m=-1$ 时 $A=\{0,-3\}$，$B=\{-3,-4\}$，$A\cap B=\{-3\}$ ✓；$m=0$ 时 $A=\{1,-3\}$，$B=\{-1,-3\}$，$A\cap B=\{-3\}$ ✓。所以 $m=-1$ 或 $m=0$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p14 练习 1、练习 5，习题 1.3 第 12 题。第 2 题提醒：点集的交集元素是有序数对；第 3 题强调分类讨论后必须代回检验（元素互异、交集恰好是 {−3}）。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$A\cap B=\{x\mid x\in A,\ \text{且}\ x\in B\}$<br>$A\cup B=\{x\mid x\in A,\ \text{或}\ x\in B\}$</p>
+        <p class="recall" data-label="区间">$[a,b],\ (a,b),\ [a,b),\ (a,b]$，$\pm\infty$ 一侧用圆括号。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="有限集">Venn 图，逐个对元素。</p>
+        <p class="method" data-label="数集">数轴：交看重叠，并看覆盖，端点逐个判断。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">Venn 图、数轴把运算“画”出来。</p>
+        <p class="recall" data-label="类比">“且 / 或 / 非”对应交、并、补；集合运算律可类比实数的 $+$、$\times$（课本 p17 问题与探究）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一章：</b>2.1 命题、定理、定义——“且”“或”“若……则……”这些词，在推理中怎样使用？</p>
+  </div>
+  <p class="note">课后作业建议：习题 1.3 第 1、2、3、5、6、11 题；第 8 题（三个微信群）可画三个圈的 Venn 图；第 13 题（差集）和 p17“集合运算的运算律”作探究。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

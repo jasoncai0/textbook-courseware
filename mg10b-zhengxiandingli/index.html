@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正弦定理 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/dengshan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第11章 解三角形 · 11.2</p>
+    <h1 class="cover-title">正弦定理</h1>
+    <p class="cover-q" data-step="1">登山队在山脚测得山顶的仰角，沿斜坡前进 1 000 m 后再测一次——知道的是<b>两个角和一条边</b>。</p>
+    <p class="cover-q" data-step="2">余弦定理每个式子都要“两边夹一角”或“三条边”。只知道角和对边时，有没有更直接的关系？</p>
+    <div class="chips" data-step="3"><span class="chip">另一种“数量化”</span><span class="chip">边与对角正弦之比</span><span class="chip">外接圆直径 2R</span><span class="chip">一解还是两解</span></div>
+  </div>
+  <p class="note">课本 p92 例 3 的情境。先回忆上一课余弦定理能解决的两类问题（三边；两边夹角），再问：已知两角一边呢？已知两边和其中一边的对角呢？让学生感到需要新工具。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课讲到哪里？今天还要用什么？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="11.1 · 余弦定理（上一课）" data-step="1">
+        <p>由 $\overrightarrow{BC}=\overrightarrow{BA}+\overrightarrow{AC}$ 两边“平方”，得 $a^2=b^2+c^2-2bc\cos A$。</p>
+        <span class="use">同一个向量等式，今天换一种“数量化”的办法。</span>
+      </div>
+      <div class="recall" data-label="第 9 章 9.2 · 数量积与垂直" data-step="2">
+        <p>$\boldsymbol a\perp\boldsymbol b\Leftrightarrow\boldsymbol a\cdot\boldsymbol b=0$；$\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos\theta$。</p>
+        <span class="use">两边同乘一个与 $\overrightarrow{BC}$ <b>垂直</b>的向量，$\overrightarrow{BC}$ 那一项就消失了。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 7.2 · 诱导公式" data-step="3">
+        <p>$\cos(90^\circ+\alpha)=-\sin\alpha$，$\cos(90^\circ-\alpha)=\sin\alpha$，$\sin(180^\circ-\alpha)=\sin\alpha$。</p>
+        <span class="use">把夹角的余弦化成三角形内角的正弦；判断“两解”时 $\sin B$ 对应两个角。</span>
+      </div>
+      <div class="recall" data-label="初中 · 圆周角定理" data-step="4">
+        <p>同弧所对的圆周角相等；直径所对的圆周角是直角。</p>
+        <span class="use">探究“比值 = 外接圆直径 $2R$”。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第一张卡点明上一课的思路：“平方”。第二张卡是今天的突破口——让学生先猜：乘一个什么向量，能让某一项变成 0？</p>
+</section>
+
+<!-- 3 ================= 向量推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>两边同乘一个与 $\overrightarrow{BC}$ 垂直的向量</h2></div>
+  <div class="bd narrow">
+    <div class="col">
+      <div id="ad" class="adb"></div>
+      <p class="tip muted small-t">图 11-2-1：$C$ 为最大角，$AD\perp BC$ 于 $D$，$\overrightarrow{AC}$ 与 $\overrightarrow{AD}$ 的夹角为 $\alpha$。拖动 $A$ 试试（保持 $C$ 最大）。<b id="adInfo"></b></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\overrightarrow{BC}\cdot\overrightarrow{AD}$</span><span>$=(\overrightarrow{BA}+\overrightarrow{AC})\cdot\overrightarrow{AD}$</span><i class="why">两边同乘 $\overrightarrow{AD}$（数量积）</i></div>
+        <div class="dl" data-step="2"><span></span><span>$=\overrightarrow{BA}\cdot\overrightarrow{AD}+\overrightarrow{AC}\cdot\overrightarrow{AD}$</span><i class="why">分配律</i></div>
+        <div class="dl key" data-step="3"><span>即 $0$</span><span>$=|\overrightarrow{BA}||\overrightarrow{AD}|\cos(90^\circ+B)+|\overrightarrow{AC}||\overrightarrow{AD}|\cos\alpha$</span><span class="think" data-step="4" data-ask="左边为什么是 0？夹角为什么是 90°+B？">$\overrightarrow{BC}\perp\overrightarrow{AD}$；平移 $\overrightarrow{BA}$ 到起点 $A$，与 $\overrightarrow{AD}$ 夹角是 $90^\circ+B$</span></div>
+        <div class="dl" data-step="5"><span>$\alpha=$</span><span>$90^\circ-C$（$C$ 锐角或直角）；$C-90^\circ$（$C$ 钝角）</span><i class="why">两种情况都有 $\cos\alpha=\sin C$</i></div>
+        <div class="dl" data-step="6"><span>于是</span><span>$-c\sin B+b\sin C=0$</span><i class="why">两边除以 $|\overrightarrow{AD}|$</i></div>
+        <div class="dl end" data-step="7"><span>即</span><span>$\dfrac{b}{\sin B}=\dfrac{c}{\sin C}$</span><i class="why">同理可得 $\dfrac a{\sin A}=\dfrac c{\sin C}$</i></div>
+      </div>
+      <p class="tip" data-step="8">课本“思考”：$C$ 为锐角时，$\sin B=\dfrac{AD}{c}$，$\sin C=\dfrac{AD}{b}$，所以 <span class="think" data-step="9" data-ask="得到什么？">$AD=c\sin B=b\sin C$——同一条高算两遍，也得到 $c\sin B=b\sin C$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p90。上一课“平方”，这一课“乘垂直向量”——关键是左边变成 0。第 5 行的两种情况可以拖动 A 让学生看：C 为钝角时垂足 D 在 BC 延长线上，α = C − 90°，但 cos α 仍等于 sin C（诱导公式）。“思考”给出更直观的作高法，课后可以请学生补全钝角情形。</p>
+</section>
+
+<!-- 4 ================= 定理 + 外接圆探究 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理 · 探究</span><h2>三个比值相等——等于什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>正弦定理（课本 p90）</h4>三角形的各边与它所对角的正弦的比相等：$$\frac a{\sin A}=\frac b{\sin B}=\frac c{\sin C}.$$</div>
+      <p class="tip" data-step="2">习题 11.2 第 10 题：在 $\text{Rt}\triangle ABC$ 中，斜边 $c$ 是外接圆的直径 $2R$，故 $\dfrac a{\sin A}=\dfrac b{\sin B}=\dfrac c{\sin C}=2R$。对任意三角形也成立吗？</p>
+      <p class="tip gold" data-step="3">拖动圆上的三个点，看三个比值和 $2R$。　<span class="think" data-step="4" data-ask="为什么？">作直径 $BD$，同弧 $BC$ 所对圆周角 $\angle D=\angle A$（或互补，$A$ 为钝角时），$\angle BCD=90^\circ$，$a=BC=2R\sin D=2R\sin A$。</span></p>
+    </div>
+    <div class="col">
+      <div id="circ" class="circb"></div>
+      <table class="mtab" id="circTab"></table>
+    </div>
+  </div>
+  <p class="note">课本 p90 定理框 + p95 习题 11.2 第 10 题（课本用图形计算器演示，这里用代码精确计算）。先请学生拖动三个点：无论三角形怎么变，三个比值始终相等，并且等于圆的直径。证明思路点开后口头讲，书面证明留作习题。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>已知两角和一边</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex1" class="ex1b"></div>
+      <p class="tip muted small-t center">按 $A=30^\circ$，$C=100^\circ$，$a=10$ 等比例画出（图 11-2-2）</p>
+    </div>
+    <div class="col">
+      <p class="tip">在 $\triangle ABC$ 中，$A=30^\circ$，$C=100^\circ$，$a=10$，求 $b,c$（精确到 0.01）。</p>
+      <p class="tip" data-step="1">第一步做什么？　<span class="think" data-step="2" data-ask="想一想">先求第三个角：$B=180^\circ-30^\circ-100^\circ=50^\circ$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$b$</span><span>$=\dfrac{a\sin B}{\sin A}=\dfrac{10\sin50^\circ}{\sin30^\circ}\approx15.32$</span><i class="why">$\dfrac a{\sin A}=\dfrac b{\sin B}$</i></div>
+        <div class="dl" data-step="4"><span>$c$</span><span>$=\dfrac{a\sin C}{\sin A}=\dfrac{10\sin100^\circ}{\sin30^\circ}\approx19.70$</span><i class="why">$\dfrac a{\sin A}=\dfrac c{\sin C}$</i></div>
+      </div>
+      <p class="tip" data-step="5">因此，$b,c$ 的长分别为 15.32 和 19.70。</p>
+      <p class="method" data-step="6" data-label="思路">已知两角 → 先求第三角；用“已知边 : 它的对角正弦”这个比值作桥梁，求其余两边。三角形<b>唯一确定</b>（ASA / AAS）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p90–91 例 1。注意 sin 100° = sin 80°，c 是最长边（对最大角）。图按真实比例绘制，可以让学生估计 b、c 的长度与计算对照。</p>
+</section>
+
+<!-- 6 ================= SSA 探究 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探究</span><h2>已知两边和一边的对角：三角形定不定？</h2></div>
+  <button class="media-btn" hidden data-img="assets/ssa.jpg" data-video="assets/ssa.mp4" data-cap="A = 30°、b = 26 固定，a 由 8 增大到 30：无解 → 相切一解 → 两解 → 一解">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="ssa" class="ssab"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="sa" min="6" max="40" step="0.5" value="16"><b id="saV" class="v"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" data-a="16">例 2(1)：$a=16$</button><button class="btn" type="button" data-a="30">例 2(2)：$a=30$</button><button class="btn" type="button" data-a="13">$a=13$</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">固定 $A=30^\circ$，$b=AC=26$。以 $C$ 为圆心、$a$ 为半径画弧，弧与射线 $AB$ 的交点就是 $B$ 的位置。</p>
+      <p class="tip feedback" id="ssaMsg"></p>
+      <p class="tip" data-step="1">$a$ 多长时没有三角形？只有一个？有两个？　<span class="think" data-step="2" data-ask="拖滑块找分界点">分界点是 $C$ 到射线的距离 $b\sin A=13$ 和 $b=26$。</span></p>
+      <div class="def" data-step="3"><h4>习题 11.2 第 11 题（$A$ 为锐角）</h4>
+        <table class="mtab cases"><tr><th>$a\lt b\sin A$</th><th>$a=b\sin A$</th><th>$b\sin A\lt a\lt b$</th><th>$a\ge b$</th></tr><tr><td>无解</td><td>一解</td><td><b>两解</b></td><td>一解</td></tr></table></div>
+    </div>
+  </div>
+  <p class="note">本课核心互动。先点“例 2(1)”（右上角“看动画”是 16 秒无声动画，复习时可播放）：弧与射线交于两点 B₁、B₂，两个三角形都符合条件；再点“例 2(2)”：另一个交点落在 A 的另一侧（射线反向延长线上），舍去。最后拖动滑块找到两个分界值 13 和 26。课本习题第 11 题还问：A 为钝角时有哪几种情况？留给学生画草图（答：a ≤ b 无解，a &gt; b 一解）。</p>
+</section>
+
+<!-- 7 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>用正弦定理算：两解怎么取舍？</h2></div>
+  <div class="bd full">
+    <p class="tip">根据下列条件解三角形（边长精确到 0.01，角度精确到 0.1°）：(1) $a=16,\ b=26,\ A=30^\circ$；　(2) $a=30,\ b=26,\ A=30^\circ$。</p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) $\sin B$</span><span>$=\dfrac{b\sin A}{a}=\dfrac{26\sin30^\circ}{16}=\dfrac{13}{16}$</span><i class="why">正弦定理</i></div>
+        <div class="dl key" data-step="2"><span>所以</span><span>$B_1\approx54.3^\circ$ 或 $B_2=125.7^\circ$</span><span class="think" data-step="3" data-ask="为什么有两个？">$\sin B=\sin(180^\circ-B)$；$B_2+A=155.7^\circ\lt180^\circ$，也符合</span></div>
+        <div class="dl" data-step="4"><span>$B_1$ 时</span><span>$C_1=95.7^\circ$，$c_1=\dfrac{16\sin95.7^\circ}{\sin30^\circ}\approx31.84$</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span>$B_2$ 时</span><span>$C_2=24.3^\circ$，$c_2=\dfrac{16\sin24.3^\circ}{\sin30^\circ}\approx13.17$</span><i class="why"></i></div>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>(2) $\sin B$</span><span>$=\dfrac{26\sin30^\circ}{30}=\dfrac{13}{30}$</span><i class="why"></i></div>
+        <div class="dl key" data-step="7"><span>所以</span><span>$B_1\approx25.7^\circ$ 或 $B_2=154.3^\circ$</span><span class="think" data-step="8" data-ask="B₂ 能要吗？">$B_2+A=184.3^\circ\gt180^\circ$，<b>舍去</b>；只有一解</span></div>
+        <div class="dl" data-step="9"><span></span><span>$C=124.3^\circ$，$c=\dfrac{30\sin124.3^\circ}{\sin30^\circ}\approx49.57$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="tip gold" data-step="10">课本旁注的另一种舍法：$b\lt a$，所以 $B\lt A$，即 $B\lt30^\circ$——大边对大角。</p>
+      <p class="method" data-step="11" data-label="两解问题">由 $\sin B$ 求 $B$ 时，$(0^\circ,180^\circ)$ 内可能有两个角；用“内角和 $\lt180^\circ$”或“大边对大角”检验取舍。</p>
+    </div>
+  </div>
+  <p class="note">课本 p91 例 2（图 11-2-3、11-2-4）。上一页的弧已经“看见”了两解，这一页用代数确认：sin B 的两个解对应弧与射线的两个交点。强调：余弦定理求角（cos 值）不会出现两解，正弦定理求角要检验。</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>“角大正弦就大”对吗？</h2></div>
+  <div class="bd full">
+    <p class="tip">课本练习 4：判断下列结论是否正确；若不正确，举例说明；若正确，说明理由。</p>
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <p><b>(1)</b> 若 $A,B\in(0,\pi)$，且 $A\gt B$，则 $\sin A\gt\sin B$。</p>
+        <div class="think" data-step="2" data-ask="对还是错？先判断"><p><span class="verdict x">✗ 不正确</span>例如 $A=150^\circ$，$B=60^\circ$：$\sin A=\dfrac12\lt\dfrac{\sqrt3}2=\sin B$。正弦在 $(0,\pi)$ 上不是单调的。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>(2)</b> 若 $A,B$ 是三角形的两个内角，且 $A\gt B$，则 $\sin A\gt\sin B$。</p>
+        <div class="think" data-step="4" data-ask="对还是错？先判断"><p><span class="verdict ok">✓ 正确</span>三角形中大角对大边：$A\gt B\Rightarrow a\gt b$；由正弦定理 $a=2R\sin A$，$b=2R\sin B$，所以 $\sin A\gt\sin B$。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="5" data-label="边角互化">$a=2R\sin A,\ b=2R\sin B,\ c=2R\sin C$：边的关系 ⇔ 正弦的关系。在三角形中，$A\gt B\Leftrightarrow a\gt b\Leftrightarrow\sin A\gt\sin B$。</p>
+    <p class="tip" data-step="6">利用正弦定理，可以解决两类解三角形的问题：<span class="think" data-step="7" data-ask="哪两类？">(1) 已知两角和任一边，求其他两边和一角；(2) 已知两边和其中一边的对角，求另一边的对角（从而进一步求出其他的边和角）。</span></p>
+  </div>
+  <p class="note">课本 p92 练习 4 与“两类问题”。第 (1) 题的反例让学生自己举；第 (2) 题的关键是“三角形的两个内角”——此时 A + B &lt; π，A 是钝角时 B 必是锐角。</p>
+</section>
+
+<!-- 9 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>测山高：先解哪个三角形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="mt" class="mtb"></div>
+      <p class="tip muted small-t center">按 $\angle BAC=35^\circ$、坡角 $20^\circ$、$AD=1\,000$、$\angle BDE=65^\circ$ 等比例画出（图 11-2-5）</p>
+    </div>
+    <div class="col">
+      <p class="tip">山脚 $A$ 处测得山顶 $B$ 的仰角为 $35^\circ$，沿倾斜角为 $20^\circ$ 的斜坡前进 1 000 m 到达 $D$，又测得山顶的仰角为 $65^\circ$，求山高 $BC$（精确到 1 m）。</p>
+      <p class="tip" data-step="1"><b>分析</b>　要求 $BC$，先要求什么？　<span class="think" data-step="2" data-ask="想一想">$AB$。$\triangle ABD$ 中已知 $AD$，再求出两个角就能用正弦定理。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$\angle ADB$</span><span>$=360^\circ-160^\circ-65^\circ=135^\circ$</span><i class="why">过 $D$ 作 $DE\parallel AC$，$\angle ADE=160^\circ$</i></div>
+        <div class="dl" data-step="4"><span>$\angle ABD$</span><span>$=180^\circ-15^\circ-135^\circ=30^\circ$</span><i class="why">$\angle BAD=35^\circ-20^\circ=15^\circ$</i></div>
+        <div class="dl" data-step="5"><span>$AB$</span><span>$=\dfrac{AD\sin\angle ADB}{\sin\angle ABD}$</span><i class="why">$\triangle ABD$ 中，正弦定理</i></div>
+        <div class="dl" data-step="5"><span></span><span>$=\dfrac{1\,000\sin135^\circ}{\sin30^\circ}=1\,000\sqrt2\ (\text{m})$</span><i class="why">$\sin135^\circ=\frac{\sqrt2}2$</i></div>
+        <div class="dl end" data-step="6"><span>$BC$</span><span>$=AB\sin35^\circ\approx811\text{ (m)}$</span><i class="why">$\text{Rt}\triangle ABC$</i></div>
+      </div>
+      <p class="tip" data-step="7"><b>答</b>　山的高度约为 811 m。<span class="muted">（图中按比例量 $BC$：<b id="mtBC"></b> m）</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p92 例 3。“分析”一步最重要：从要求的 BC 倒推，需要 AB；AB 在哪个三角形里可解？△ABD 已知一边两角，正好用正弦定理。∠ADB 的求法也可以用“三角形外角”，请学生说出不同算法。</p>
+</section>
+
+<!-- 10 ================= 例 4 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 例 5</span><h2>边化角：判断形状、证明比例</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">例 4　在 $\triangle ABC$ 中，已知 $\dfrac a{\cos A}=\dfrac b{\cos B}=\dfrac c{\cos C}$，试判断 $\triangle ABC$ 的形状。</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>令</span><span>$\dfrac a{\sin A}=k$，则 $a=k\sin A,\ b=k\sin B,\ c=k\sin C$</span><i class="why">正弦定理</i></div>
+          <div class="dl" data-step="2"><span>代入</span><span>$\dfrac{\sin A}{\cos A}=\dfrac{\sin B}{\cos B}=\dfrac{\sin C}{\cos C}$</span><i class="why">边化角，$k$ 约去</i></div>
+          <div class="dl" data-step="3"><span>即</span><span>$\tan A=\tan B=\tan C$</span><i class="why"></i></div>
+          <div class="dl end" data-step="4"><span></span><span>$A=B=C$，$\triangle ABC$ 为正三角形</span><i class="why">$A,B,C\in(0,\pi)$</i></div>
+        </div>
+        <p class="tip gold" data-step="4">课本旁注：通过正弦定理，可以实现<b>边角互化</b>。</p>
+      </div>
+      <div class="col">
+        <p class="tip">例 5　$AD$ 是 $\angle BAC$ 的平分线，用正弦定理证明：$\dfrac{AB}{AC}=\dfrac{BD}{DC}$。</p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span>设</span><span>$\angle BAD=\angle CAD=\alpha$，$\angle BDA=\beta$，$\angle CDA=180^\circ-\beta$</span><i class="why"></i></div>
+          <div class="dl" data-step="6"><span></span><span>$\dfrac{AB}{BD}=\dfrac{\sin\beta}{\sin\alpha}$，$\dfrac{AC}{DC}=\dfrac{\sin(180^\circ-\beta)}{\sin\alpha}$</span><i class="why">在 $\triangle ABD$、$\triangle ACD$ 中用正弦定理</i></div>
+          <div class="dl key" data-step="7"><span></span><span>$\dfrac{AB}{BD}=\dfrac{AC}{DC}$，即 $\dfrac{AB}{AC}=\dfrac{BD}{DC}$</span><span class="think" data-step="8" data-ask="关键一步？">$\sin(180^\circ-\beta)=\sin\beta$，两个比值相等</span></div>
+        </div>
+        <p class="tip" data-step="9">课本旁注：你能用平面几何的方法证明吗？　<span class="think" data-step="10" data-ask="提示">过 $C$ 作 $CE\parallel AD$ 交 $BA$ 延长线于 $E$，证 $AE=AC$。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p92–93 例 4、例 5。对比上一课例 5（余弦定理“角化边”），今天是正弦定理“边化角”。例 5 与上一课例 6 的结构相同：两个互补角，一个正弦相等、一个余弦相反。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一个三角形的两个内角分别为 $30^\circ$ 和 $45^\circ$，如果 $45^\circ$ 角所对边的长为 8，那么 $30^\circ$ 角所对边的长为（　）<br>A. 4　B. $4\sqrt2$　C. $4\sqrt3$　D. $4\sqrt6$</p>
+        <details><summary>提示 1</summary>已知两角和一边：$\dfrac{x}{\sin30^\circ}=\dfrac{8}{\sin45^\circ}$。</details>
+        <details><summary>完整解答</summary>$x=\dfrac{8\sin30^\circ}{\sin45^\circ}=\dfrac{4}{\frac{\sqrt2}2}=4\sqrt2$，选 <b>B</b>。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 解三角形：$b=13,\ a=26,\ B=30^\circ$。</p>
+        <details><summary>提示 1</summary>已知两边和其中一边的对角，先求 $\sin A$。</details>
+        <details><summary>提示 2</summary>$\sin A=\dfrac{a\sin B}{b}=1$，会有两解吗？</details>
+        <details><summary>完整解答</summary>$\sin A=\dfrac{26\times\frac12}{13}=1$，$A=90^\circ$（只有一解，对应上一页 $a=b\sin A$ 的“相切”情形），$C=60^\circ$，$c=b\cdot\dfrac{\sin C}{\sin B}=13\sqrt3$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在 $\triangle ABC$ 中，若 $A=60^\circ$，$a=\sqrt3$，则 $\dfrac{a+b+c}{\sin A+\sin B+\sin C}=$（　）<br>A. 2　B. $\frac12$　C. $\sqrt3$　D. $\frac{\sqrt3}2$</p>
+        <details><summary>提示 1</summary>三个比值都等于 $2R$，分子分母分别相加呢？</details>
+        <details><summary>完整解答</summary>$a=2R\sin A$ 等三式相加，所求 $=2R=\dfrac a{\sin A}=\dfrac{\sqrt3}{\frac{\sqrt3}2}=2$，选 <b>A</b>。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题是课本 p92 练习 1，第 2 题是练习 3(2)，第 3 题是 p94 练习 4。第 2 题正好是“一解”的分界情形，可回到探究页把 a 设为 b sin A 观察。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$\dfrac a{\sin A}=\dfrac b{\sin B}=\dfrac c{\sin C}=2R$</p>
+        <p class="recall" data-label="能解决的两类问题">(1) 两角和任一边；<br>(2) 两边和其中一边的对角（可能两解）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="推导">向量等式两边同乘一个垂直向量；或同一条高算两遍。</p>
+        <p class="method" data-label="应用">边角互化：$a=2R\sin A$；求角时用内角和、大边对大角检验取舍。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="分类讨论">已知两边一对角：无解、一解、两解，分界是 $b\sin A$ 与 $b$。</p>
+        <p class="recall" data-label="数形结合">以 $C$ 为圆心画弧，交点个数就是解的个数。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课 11.3：</b>把两个定理<b>一起</b>用——测量河对岸两点的距离、海上救援、力的合成，怎样把实际问题化成三角形？</p>
+  </div>
+  <p class="note">请学生对比两个定理：各自能解决哪两类问题？什么情况下两个都能用？课后作业建议：习题 11.2 第 1、2、3、5 题；第 7 题（面积公式 S = ½ab sin C）为下一课做准备。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

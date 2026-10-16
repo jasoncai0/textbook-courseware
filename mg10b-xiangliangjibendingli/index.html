@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>向量基本定理及坐标表示 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mvec.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fanchuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第9章 平面向量 · 9.3</p>
+    <h1 class="cover-title">向量基本定理及坐标表示</h1>
+    <p class="cover-q" data-step="1">风吹在帆上的力，一部分推船<b>向前</b>，一部分把船<b>推向侧面</b>；斜面上的木块，重力 $\boldsymbol G$ 也可以分解成垂直于斜面和平行于斜面的两个力。</p>
+    <p class="cover-q" data-step="2">一个向量能“拆”成两个方向上的向量。那么——<b>平面内任一向量，都能用两个不共线的向量来表示吗？</b>拆法唯一吗？</p>
+    <div class="chips" data-step="3"><span class="chip">平面向量基本定理</span><span class="chip">基底与分解</span><span class="chip">坐标表示与运算</span><span class="chip">平行 · 垂直的坐标条件</span></div>
+  </div>
+  <p class="note">课本 p24 引言：木块放在斜面上，G = F₁ + F₂（图 9-3-1），“平面内任一向量是否可以用两个不共线的向量来表示呢？”封面先让学生说说“一个力能不能拆成两个力”“拆法是不是只有一种”，答案留到第 4、5 页。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课会“合”，今天学“拆”，再给向量配上坐标</h2></div>
+  <div class="bd full">
+    <div class="grid2">
+      <div class="recall" data-label="9.2.1 加法 · 平行四边形法则" data-step="1">
+        <p>$\boldsymbol a,\boldsymbol b$ 共起点 $O$，以它们为邻边作平行四边形，以 $O$ 为起点的对角线就是 $\boldsymbol a+\boldsymbol b$。</p>
+        <span class="use">把 $\boldsymbol a$ 拆成 $\overrightarrow{OM}+\overrightarrow{ON}$，就是把平行四边形法则<b>倒过来</b>用。</span>
+      </div>
+      <div class="recall" data-label="9.2.2 数乘 · 向量共线定理" data-step="2">
+        <p>$\boldsymbol e\ne\boldsymbol 0$，$\boldsymbol b$ 与 $\boldsymbol e$ 共线 $\Leftrightarrow$ 有且只有一个实数 $\lambda$，使 $\boldsymbol b=\lambda\boldsymbol e$。</p>
+        <span class="use">$\overrightarrow{OM}$ 与 $\boldsymbol e_1$ 共线 ⇒ $\overrightarrow{OM}=\lambda_1\boldsymbol e_1$；三点共线、向量平行也靠它。</span>
+      </div>
+      <div class="recall" data-label="9.2.3 数量积" data-step="3">
+        <p>$\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos\theta$；$\boldsymbol a\perp\boldsymbol b\Leftrightarrow\boldsymbol a\cdot\boldsymbol b=0$；$\boldsymbol a^2=|\boldsymbol a|^2$。</p>
+        <span class="use">由 $\boldsymbol i\cdot\boldsymbol i=1$、$\boldsymbol i\cdot\boldsymbol j=0$ 推出数量积的坐标公式。</span>
+      </div>
+      <div class="recall" data-label="初中 · 平面直角坐标系；必修一 · 三角函数" data-step="4">
+        <p>平面内的点 $P$ 与有序实数对 $(x,y)$ 一一对应；$\cos60^\circ=\dfrac12$，$\sin60^\circ=\dfrac{\sqrt3}{2}$。</p>
+        <span class="use">向量也用一对有序实数 $(x,y)$ 表示；求坐标时用 $\cos$、$\sin$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>9.2 讲到哪里：</b>学完了加法、减法、数乘（共线定理）和数量积——都是“已知向量，算出新向量”。9.2 结尾留下的思考：两个<b>不共线</b>的向量，能表示平面内<b>任一</b>向量吗？今天回答它。</p>
+  </div>
+  <p class="note">每张卡先请学生口述再出“本课用在”。重点是前两张：平行四边形法则（今天倒过来用）和共线定理（“一个非零向量能表示与它共线的所有向量”，今天升级成“两个不共线向量能表示平面内所有向量”）。</p>
+</section>
+
+<!-- 3 ================= 提出问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>一个向量管一条直线，两个向量能管整个平面吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="slopeB" class="vb short"></div>
+      <p class="muted center small-t">图 9-3-1：$\boldsymbol G=\boldsymbol F_1+\boldsymbol F_2$（$\theta=30^\circ$，按比例作出）</p>
+      <p class="tip" data-step="1"><b>一维：</b>$\boldsymbol e\ne\boldsymbol 0$，与 $\boldsymbol e$ 共线的任一向量 $\boldsymbol a$，都<span class="think" data-step="2" data-ask="能怎样表示？">存在唯一的实数 $\lambda$，使 $\boldsymbol a=\lambda\boldsymbol e$（共线定理）。</span></p>
+      <p class="tip" data-step="3"><b>二维：</b>$\boldsymbol e_1,\boldsymbol e_2$ 不共线。正着做：任给 $\lambda_1,\lambda_2$，作 $\lambda_1\boldsymbol e_1+\lambda_2\boldsymbol e_2$——拖右边的滑块试试，<span class="think" data-step="4" data-ask="作得出来吗？">总能作出来：先数乘，再用平行四边形法则相加。</span></p>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>$\lambda_1=$<input type="range" id="fwdL1" min="-1.5" max="3" step="0.5" value="2"></div>
+      <div class="slider-row" data-noswipe>$\lambda_2=$<input type="range" id="fwdL2" min="-1" max="2.5" step="0.5" value="1.5"></div>
+      <div id="fwdB" class="vb"></div>
+      <p class="tip readline" id="fwdV"></p>
+      <p class="tip gold" data-step="5"><b>反过来：</b>对于平面内的<b>任一</b>向量 $\boldsymbol a$，是否存在实数 $\lambda_1,\lambda_2$，使 $\boldsymbol a=\lambda_1\boldsymbol e_1+\lambda_2\boldsymbol e_2$？</p>
+    </div>
+  </div>
+  <p class="note">课本 p24 图 9-3-1、9-3-2。左边重力的分解是物理里“正交分解”的原型（第 7 页例 2 会用到）。先复述共线定理（一维），再拖滑块：λ₁、λ₂ 取正、负、0 都能作出 λ₁e₁ + λ₂e₂。最后提出反问题——这是本课的核心问题，让学生先凭直觉回答“能 / 不能 / 不一定”。</p>
+</section>
+
+<!-- 4 ================= ★ 向量分解 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.3.1 动手拆</span><h2>过终点作两条平行线：把 $\boldsymbol a$ 拆成 $\lambda_1\boldsymbol e_1+\lambda_2\boldsymbol e_2$</h2></div>
+  <div class="bd wide-l">
+    <div class="col">
+      <div class="btns" id="splitBtns" data-noswipe>
+        <button class="btn solid" type="button" data-k="any">任意基底 e₁、e₂</button>
+        <button class="btn" type="button" data-k="col">让 e₂ ∥ e₁</button>
+        <button class="btn" type="button" data-k="ij">正交单位基底 i、j</button>
+      </div>
+      <div id="splitB" class="vb"></div>
+      <p class="tip readline small" id="splitV"></p>
+      <p class="muted center small-t">拖动橙色点：$\boldsymbol a$ 的终点 $C$，以及 $\boldsymbol e_1$、$\boldsymbol e_2$ 的终点</p>
+    </div>
+    <div class="col tight">
+      <p class="tip">如图 9-3-3，任取一点 $O$，作 $\overrightarrow{OA}=\boldsymbol e_1$，$\overrightarrow{OB}=\boldsymbol e_2$，$\overrightarrow{OC}=\boldsymbol a$。</p>
+      <div class="derive prose">
+        <div class="dl" data-step="1"><span>过 $C$ 作 $OB$ 的平行线，交直线 $OA$ 于 $M$；过 $C$ 作 $OA$ 的平行线，交直线 $OB$ 于 $N$</span><i class="why">$OMCN$ 两组对边分别平行，是平行四边形</i></div>
+        <div class="dl" data-step="2"><span>$\overrightarrow{OM}=\lambda_1\boldsymbol e_1$，$\overrightarrow{ON}=\lambda_2\boldsymbol e_2$</span><span class="think" data-step="3" data-ask="依据？">共线定理：$\overrightarrow{OM}\parallel\boldsymbol e_1$，$\overrightarrow{ON}\parallel\boldsymbol e_2$</span></div>
+        <div class="dl" data-step="4"><span>$\overrightarrow{OC}=\overrightarrow{OM}+\overrightarrow{ON}$</span><i class="why">平行四边形法则</i></div>
+        <div class="dl end" data-step="4"><span>所以</span><span>$\boldsymbol a=\lambda_1\boldsymbol e_1+\lambda_2\boldsymbol e_2$</span><i class="why">任一 $\boldsymbol a$ 都行</i></div>
+      </div>
+      <p class="tip" data-step="5">点“让 e₂ ∥ e₁”：还能拆吗？<span class="think" data-step="6" data-ask="能不能？">不能！找不到交点 $M$——<b>“不共线”不能少</b>。</span></p>
+      <p class="tip gold" data-step="7">点“正交单位基底 i、j”：$\lambda_1,\lambda_2$ 变成网格上<b>数得出的格数</b>——这就是 9.3.2 的“坐标”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p24–25 图 9-3-3。本页是全课核心：请学生上台拖 C 到任意位置（包括 e₁、e₂ 的“背后”），看 λ 变成负数时 M、N 跑到反向延长线上；拖动 e₁、e₂ 换一组基底，同一个 a 的 λ₁、λ₂ 随之改变——基底不唯一，但基底选定后 λ₁、λ₂ 唯一。读数是解二元一次方程组精确算出的（能化成分数就显示分数），并验算终点重合。把 e₂ 慢慢拖向 e₁ 的方向：平行四边形越来越细长、λ 越来越大，共线时彻底失败。</p>
+</section>
+
+<!-- 5 ================= 定理 · 基底 · 辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理</span><h2>平面向量基本定理：基底选好，拆法唯一</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>平面向量基本定理（课本 p25）</h4>如果 $\boldsymbol e_1,\boldsymbol e_2$ 是同一平面内两个<em>不共线</em>的向量，那么对于这一平面内的<em>任一</em>向量 $\boldsymbol a$，<em>有且只有</em>一对实数 $\lambda_1,\lambda_2$，使 $$\boldsymbol a=\lambda_1\boldsymbol e_1+\lambda_2\boldsymbol e_2.$$</div>
+      <p class="tip" data-step="2">不共线的 $\boldsymbol e_1,\boldsymbol e_2$ 叫作这个平面的一组<b>基底</b>；$\lambda_1\boldsymbol e_1+\lambda_2\boldsymbol e_2$ 叫作 $\boldsymbol a$ 的<b>分解</b>；$\boldsymbol e_1,\boldsymbol e_2$ 所在直线互相垂直时，叫作<b>正交分解</b>。</p>
+      <p class="tip" data-step="3">“有且只有”为什么成立？若还有 $\boldsymbol a=\mu_1\boldsymbol e_1+\mu_2\boldsymbol e_2$，<span class="think" data-step="4" data-ask="两式相减会怎样？">则 $(\lambda_1-\mu_1)\boldsymbol e_1=(\mu_2-\lambda_2)\boldsymbol e_2$；若 $\lambda_1\ne\mu_1$，$\boldsymbol e_1$ 就与 $\boldsymbol e_2$ 共线，矛盾。所以 $\lambda_1=\mu_1$，同理 $\lambda_2=\mu_2$。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5"><b>思考：</b>它和共线定理有什么区别和联系？<span class="think" data-step="6" data-ask="说说看">共线定理：<b>1 个</b>非零向量表示一条直线上的向量；基本定理：<b>2 个</b>不共线向量表示整个平面的向量。$\lambda_2=0$ 时就退回共线定理。</span></p>
+      <p class="tip" data-step="7"><b>辨一辨</b>（练习 2）$\boldsymbol e_1,\boldsymbol e_2$ 是一组基底，哪一组<b>不能</b>作为基底？</p>
+      <div class="judge2" data-step="7">
+        <div class="jcard">A. $\boldsymbol e_1+\boldsymbol e_2$ 和 $\boldsymbol e_1-\boldsymbol e_2$　<span class="think" data-step="8" data-ask="能吗？"><span class="verdict ok">能</span>不共线</span></div>
+        <div class="jcard">B. $3\boldsymbol e_1-2\boldsymbol e_2$ 和 $4\boldsymbol e_2-6\boldsymbol e_1$　<span class="think" data-step="8" data-ask="能吗？"><span class="verdict x">不能</span>后者 $=-2(3\boldsymbol e_1-2\boldsymbol e_2)$，共线</span></div>
+        <div class="jcard">C. $\boldsymbol e_1+3\boldsymbol e_2$ 和 $\boldsymbol e_2+3\boldsymbol e_1$　<span class="think" data-step="8" data-ask="能吗？"><span class="verdict ok">能</span>系数不成比例</span></div>
+        <div class="jcard">D. $\boldsymbol e_2$ 和 $\boldsymbol e_1+\boldsymbol e_2$　<span class="think" data-step="8" data-ask="能吗？"><span class="verdict ok">能</span>不共线</span></div>
+      </div>
+      <p class="warn" data-step="9">零向量与任何向量共线，所以基底里<b>不能有 $\boldsymbol 0$</b>；基底不唯一，但基底选定后，$\lambda_1,\lambda_2$ 唯一。</p>
+    </div>
+  </div>
+  <p class="note">课本 p25 定理、基底、正交分解与“思考”；唯一性的说明是课本“有且只有”的补充推理，可视学情选讲。辨一辨是课本 p27 练习第 2 题（答案 B）：判断方法是看两个向量能否写成 μ·(另一个)，即系数是否成比例。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>用基底 $\boldsymbol a,\boldsymbol b$ 表示平行四边形里的向量</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 9-3-4，$\square ABCD$ 的对角线 $AC$ 和 $BD$ 交于点 $M$，$\overrightarrow{AB}=\boldsymbol a$，$\overrightarrow{AD}=\boldsymbol b$，试用基底 $\boldsymbol a,\boldsymbol b$ 表示 $\overrightarrow{MC},\overrightarrow{MA},\overrightarrow{MB}$ 和 $\overrightarrow{MD}$。</p>
+      <div id="ex1B" class="vb short"></div>
+      <p class="tip" data-step="1"><b>分析</b>　先用 $\boldsymbol a,\boldsymbol b$ 表示哪条对角线？<span class="think" data-step="2" data-ask="想一想">$\overrightarrow{AC}=\overrightarrow{AB}+\overrightarrow{AD}$，再用 $\overrightarrow{MC}=\dfrac12\overrightarrow{AC}$。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$\overrightarrow{AC}$</span><span>$=\overrightarrow{AB}+\overrightarrow{AD}=\boldsymbol a+\boldsymbol b$</span><i class="why">平行四边形法则</i></div>
+        <div class="dl" data-step="2"><span>$\overrightarrow{MC}$</span><span>$=\dfrac12\overrightarrow{AC}=\dfrac12\boldsymbol a+\dfrac12\boldsymbol b$</span><i class="why">平行四边形的对角线互相平分</i></div>
+        <div class="dl" data-step="3"><span>$\overrightarrow{MA}$</span><span class="think" data-step="3" data-ask="和 MC 什么关系？">$=-\overrightarrow{MC}=-\dfrac12\boldsymbol a-\dfrac12\boldsymbol b$</span><i class="why">相反向量</i></div>
+        <div class="dl" data-step="4"><span>$\overrightarrow{MB}$</span><span>$=\dfrac12\overrightarrow{DB}=\dfrac12(\overrightarrow{AB}-\overrightarrow{AD})=\dfrac12\boldsymbol a-\dfrac12\boldsymbol b$</span><i class="why">$\overrightarrow{DB}$：共起点 $A$，指向被减</i></div>
+        <div class="dl end" data-step="5"><span>$\overrightarrow{MD}$</span><span>$=-\overrightarrow{MB}=\dfrac12\boldsymbol b-\dfrac12\boldsymbol a$</span><i class="why">相反向量</i></div>
+      </div>
+      <p class="method" data-step="6">用基底表示向量：把目标向量“走”成基底的<b>首尾相接</b>或<b>共起点作差</b>，再用数乘调长度。每个向量的表示都<b>唯一</b>——系数就是它在这组基底下的“身份证”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p25 例 1、图 9-3-4（图按坐标精确作出：每出一步，左图出现对应的向量）。MA、MD 只用“相反向量”一步就出来，提醒学生利用已求结果。可追问：换一组基底（如 AC、BD）呢？——表示式会变，但仍然唯一。</p>
+</section>
+
+<!-- 7 ================= 例 2 · 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>斜面上的摩擦力；用基底证三点共线</h2></div>
+  <div class="bd">
+    <div class="col tight">
+      <p class="tip">例 2　如图 9-3-5，质量为 $m$ 的物体静止地放在斜面上，斜面与水平面的夹角为 $\theta$，求斜面对物体的摩擦力 $\boldsymbol f$。</p>
+      <div id="fricB" class="vb short"></div>
+      <div class="derive prose">
+        <div class="dl" data-step="1"><span>$\boldsymbol G+\boldsymbol N+\boldsymbol f=\boldsymbol 0$</span><i class="why">物体静止，合力为零</i></div>
+        <div class="dl" data-step="2"><span>$(-\boldsymbol f)\cdot(-\boldsymbol f)$</span><span>$=(\boldsymbol G+\boldsymbol N)\cdot(-\boldsymbol f)=\boldsymbol G\cdot(-\boldsymbol f)$</span><span class="think" data-step="3" data-ask="N·(−f) 为什么没了？">$\boldsymbol N\perp\boldsymbol f$，数量积为 0</span></div>
+        <div class="dl" data-step="4"><span>$|-\boldsymbol f|^2$</span><span>$=|\boldsymbol G||-\boldsymbol f|\cos\left(\dfrac\pi2-\theta\right)$</span><i class="why">$\boldsymbol G$ 与 $-\boldsymbol f$ 的夹角是 $\dfrac\pi2-\theta$</i></div>
+        <div class="dl end" data-step="5"><span>$|\boldsymbol f|$</span><span>$=|\boldsymbol G|\sin\theta=mg\sin\theta$（N）</span><i class="why">方向与斜面平行向上</i></div>
+      </div>
+    </div>
+    <div class="col tight">
+      <p class="tip" data-step="6">例 3　设 $\boldsymbol e_1,\boldsymbol e_2$ 是平面内的一组基底，$\overrightarrow{AB}=3\boldsymbol e_1-2\boldsymbol e_2$，$\overrightarrow{BC}=4\boldsymbol e_1+\boldsymbol e_2$，$\overrightarrow{CD}=8\boldsymbol e_1-9\boldsymbol e_2$，求证：$A,B,D$ 三点共线。</p>
+      <p class="tip" data-step="7"><b>分析</b>　证三点共线，只需证<span class="think" data-step="8" data-ask="什么？">共起点的 $\overrightarrow{AB}$ 与 $\overrightarrow{AD}$ 共线，即 $\overrightarrow{AD}=\lambda\overrightarrow{AB}$。</span></p>
+      <div class="derive prose">
+        <div class="dl" data-step="9"><span>$\overrightarrow{AD}$</span><span>$=\overrightarrow{AB}+\overrightarrow{BC}+\overrightarrow{CD}$</span><i class="why">首尾相接</i></div>
+        <div class="dl" data-step="9"><span></span><span>$=15\boldsymbol e_1-10\boldsymbol e_2$</span><i class="why">合并同类项</i></div>
+        <div class="dl" data-step="10"><span></span><span class="think" data-step="11" data-ask="和 AB 什么关系？">$=5(3\boldsymbol e_1-2\boldsymbol e_2)=5\overrightarrow{AB}$</span><i class="why">共线定理</i></div>
+        <div class="dl end" data-step="12"><span>又</span><span>$\overrightarrow{AD}$ 与 $\overrightarrow{AB}$ 有公共起点 $A$</span><i class="why">所以 $A,B,D$ 三点共线</i></div>
+      </div>
+      <p class="warn" data-step="12">只有 $\overrightarrow{AD}\parallel\overrightarrow{AB}$ 还不够——两条线段可能平行而不共线，必须补上<b>“有公共点”</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p26 例 2（图 9-3-5 取 θ = 30° 精确作出）与例 3。例 2 的妙处是用数量积“消掉”与 f 垂直的 N；9.3.2 例 3 会用坐标再解一次（建立以 e₁、e₂ 为基底的直角坐标系，f = mg sinθ 一步得出），可在第 9 页后回顾。例 3 旁注：“能选择其他公共起点来证明吗？”——如证 BD 与 AB 共线（BD = 12e₁ − 8e₂ = 4AB）。</p>
+</section>
+
+<!-- 8 ================= 9.3.2 坐标表示 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.3.2 坐标</span><h2>选 $\boldsymbol i,\boldsymbol j$ 作基底：向量也能用一对有序实数表示</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="coordB" class="vb"></div>
+      <p class="tip readline" id="coordV"></p>
+      <p class="muted center small-t">拖动 $\boldsymbol a$ 的起点和终点（吸附到 0.5 格）；浅绿色是平移到原点的 $\overrightarrow{OA}$</p>
+    </div>
+    <div class="col">
+      <p class="tip">点 $P$ ↔ 有序实数对 $(x,y)$，向量呢？<span data-step="1">取与 $x$ 轴、$y$ 轴正方向相同的两个<b>单位向量</b> $\boldsymbol i,\boldsymbol j$ 作基底，由基本定理，<span class="think" data-step="2" data-ask="能得到什么？">有且只有一对有序实数 $(x,y)$，使 $\boldsymbol a=x\boldsymbol i+y\boldsymbol j$。</span></span></p>
+      <div class="def" data-step="3"><h4>向量的坐标（课本 p28）</h4>有序实数对 $(x,y)$ 称为向量 $\boldsymbol a$ 的（直角）<em>坐标</em>，记作 $\boldsymbol a=(x,y)$。</div>
+      <p class="tip" data-step="4">作 $\overrightarrow{OA}=\boldsymbol a$，则 <span class="think" data-step="5" data-ask="OA 的坐标与点 A 的坐标？">$\overrightarrow{OA}$ 的坐标就是终点 $A$ 的坐标，反之亦然。</span></p>
+      <p class="tip" data-step="6">例 1　$|\overrightarrow{OA}|=4\sqrt3$，$\angle xOA=60^\circ$，$A$ 在第一象限，求 $\overrightarrow{OA}$ 的坐标。<span class="think" data-step="7" data-ask="x、y 各是多少？">$x=4\sqrt3\cos60^\circ=2\sqrt3$，$y=4\sqrt3\sin60^\circ=6$，$\overrightarrow{OA}=(2\sqrt3,6)$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p28 图 9-3-6、9-3-7、9-3-8 与例 1。旁注“xi、yj 分别为向量 a 在向量 i、j 上的投影向量”——正是 9.2.3 学的投影向量。拖动起点平移 a：灰色的 xi、yj 和坐标都不变，说明坐标只由长度和方向决定，与起点无关（相等向量坐标相同）。</p>
+</section>
+
+<!-- 9 ================= 坐标线性运算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.3.2 运算</span><h2>和、差、数乘：坐标怎么算？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" id="opsBtns" data-noswipe>
+        <button class="btn solid" type="button" data-k="add">a + b</button>
+        <button class="btn" type="button" data-k="sub">a − b</button>
+        <button class="btn" type="button" data-k="mul">λa</button>
+      </div>
+      <div class="slider-row" data-noswipe>$\lambda=$<input type="range" id="opsK" min="-2" max="2" step="0.5" value="1.5"></div>
+      <div id="opsB" class="vb"></div>
+      <p class="tip readline small" id="opsV"></p>
+    </div>
+    <div class="col">
+      <p class="tip">设 $\boldsymbol a=(x_1,y_1)$，$\boldsymbol b=(x_2,y_2)$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\boldsymbol a+\boldsymbol b$</span><span>$=(x_1\boldsymbol i+y_1\boldsymbol j)+(x_2\boldsymbol i+y_2\boldsymbol j)$</span><i class="why">坐标的意义</i></div>
+        <div class="dl" data-step="2"><span></span><span class="think" data-step="3" data-ask="怎样合并？">$=(x_1+x_2)\boldsymbol i+(y_1+y_2)\boldsymbol j$</span><i class="why">线性运算的运算律</i></div>
+        <div class="dl" data-step="4"><span></span><span>$=(x_1+x_2,\ y_1+y_2)$</span><i class="why">坐标唯一</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>线性运算的坐标表示（课本 p29）</h4>$\boldsymbol a\pm\boldsymbol b=(x_1\pm x_2,\ y_1\pm y_2)$，$\lambda\boldsymbol a=(\lambda x_1,\ \lambda y_1)$。</div>
+      <p class="tip" data-step="6">若 $A(x_1,y_1)$，$B(x_2,y_2)$，则 $\overrightarrow{AB}=\overrightarrow{OB}-\overrightarrow{OA}=$<span class="think" data-step="7" data-ask="坐标是？">$(x_2-x_1,\ y_2-y_1)$——一个向量的坐标等于该向量<b>终点的坐标减去起点的坐标</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p28–29 与图 9-3-9。推导只用到“坐标就是 i、j 前的系数”和运算律。拖动 a、b 的终点，读数与图中终点坐标对照；切到 a − b，紫色的 BA 正是“终点 A 减起点 B”；切到 λa，拖滑块看坐标同时乘 λ。</p>
+</section>
+
+<!-- 10 ================= 例 2 · 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 4</span><h2>由点的坐标求向量；定比分点的坐标</h2></div>
+  <div class="bd">
+    <div class="col tight">
+      <p class="tip">例 2　如图 9-3-10，已知 $A(-1,3)$，$B(1,-3)$，$C(4,1)$，$D(3,4)$，求向量 $\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{AO},\overrightarrow{CD}$ 的坐标。</p>
+      <div id="ex2cB" class="vb short"></div>
+      <p class="tip" data-step="1"><span class="think" data-step="1" data-ask="写出坐标">$\overrightarrow{OA}=(-1,3)$，$\overrightarrow{OB}=(1,-3)$，$\overrightarrow{AO}=-\overrightarrow{OA}=(1,-3)$，$\overrightarrow{CD}=(3,4)-(4,1)=(-1,3)$。</span></p>
+      <p class="tip" data-step="2">旁注：四边形 $OCDA$ 是平行四边形吗？<span class="think" data-step="3" data-ask="怎样判断？">$\overrightarrow{OC}=(4,1)$，$\overrightarrow{AD}=(3-(-1),\ 4-3)=(4,1)$，$\overrightarrow{OC}=\overrightarrow{AD}$，是。</span></p>
+    </div>
+    <div class="col tight">
+      <p class="tip" data-step="4">例 4　已知 $P_1(x_1,y_1)$，$P_2(x_2,y_2)$，$P$ 是直线 $P_1P_2$ 上一点，且 $\overrightarrow{P_1P}=\lambda\overrightarrow{PP_2}\ (\lambda\ne-1)$，求点 $P$ 的坐标。</p>
+      <div class="derive prose">
+        <div class="dl" data-step="5"><span>设 $P(x,y)$</span><span>$\overrightarrow{P_1P}=(x-x_1,\ y-y_1)$，$\overrightarrow{PP_2}=(x_2-x,\ y_2-y)$</span><i class="why">终点减起点</i></div>
+        <div class="dl" data-step="6"><span>$\begin{cases}x-x_1=\lambda(x_2-x)\\y-y_1=\lambda(y_2-y)\end{cases}$</span><i class="why">两个向量相等 ⇔ 坐标分别相等</i></div>
+        <div class="dl key" data-step="7"><span>$x=\dfrac{x_1+\lambda x_2}{1+\lambda}$，$y=\dfrac{y_1+\lambda y_2}{1+\lambda}$</span><i class="why">$\lambda\ne-1$，可以除以 $1+\lambda$</i></div>
+        <div class="dl end" data-step="8"><span>$\lambda=1$ 时</span><span class="think" data-step="9" data-ask="得到什么？">$x=\dfrac{x_1+x_2}{2}$，$y=\dfrac{y_1+y_2}{2}$</span><i class="why">线段 $P_1P_2$ 的中点坐标公式</i></div>
+      </div>
+      <p class="method" data-step="10" data-label="线段定比分点坐标公式">与 9.2.2 例 4 的 $\overrightarrow{OC}=\dfrac{\overrightarrow{OA}+\lambda\overrightarrow{OB}}{1+\lambda}$ 对照：向量式写成坐标，就是这里的公式——<b>几何问题化成了代数计算</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p29 例 2、图 9-3-10（按坐标精确作出），p30 例 4 及旁注“试与 9.2.2 节的例 4 进行比较”。例 2 的 AO 让学生体会“相反向量，坐标互为相反数”。例 4 关键一步：两个向量相等，x、y 坐标分别相等——一个向量方程变成两个实数方程。</p>
+</section>
+
+<!-- 11 ================= 数量积的坐标表示 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.3.2 数量积</span><h2>$\boldsymbol a\cdot\boldsymbol b$ 用坐标怎么算？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">$\boldsymbol i,\boldsymbol j$ 是互相垂直的单位向量，所以 <span class="think" data-step="1" data-ask="i·i、j·j、i·j 各是多少？">$\boldsymbol i\cdot\boldsymbol i=1$，$\boldsymbol j\cdot\boldsymbol j=1$，$\boldsymbol i\cdot\boldsymbol j=\boldsymbol j\cdot\boldsymbol i=0$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$\boldsymbol a\cdot\boldsymbol b$</span><span>$=(x_1\boldsymbol i+y_1\boldsymbol j)\cdot(x_2\boldsymbol i+y_2\boldsymbol j)$</span><i class="why">坐标的意义</i></div>
+        <div class="dl" data-step="3"><span></span><span>$=x_1x_2\boldsymbol i^2+x_1y_2\boldsymbol i\cdot\boldsymbol j+x_2y_1\boldsymbol j\cdot\boldsymbol i+y_1y_2\boldsymbol j^2$</span><i class="why">分配律展开</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$=x_1x_2+y_1y_2$</span><i class="why">中间两项为 0</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>数量积的坐标表示（课本 p32）</h4>两个向量的数量积等于它们对应坐标的乘积的和：$\boldsymbol a\cdot\boldsymbol b=x_1x_2+y_1y_2$；特别地，$|\boldsymbol a|=\sqrt{x^2+y^2}$。</div>
+      <p class="tip" data-step="6"><b>思考：</b>两点 $A(x_1,y_1)$，$B(x_2,y_2)$ 间的距离？<span class="think" data-step="7" data-ask="用向量推一推">$AB=|\overrightarrow{AB}|=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$。</span></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="8"><h4>夹角与垂直（课本 p32）</h4>$$\cos\theta=\frac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol b|}=\frac{x_1x_2+y_1y_2}{\sqrt{x_1^2+y_1^2}\sqrt{x_2^2+y_2^2}}$$$\boldsymbol a\perp\boldsymbol b\Leftrightarrow x_1x_2+y_1y_2=0$（$\boldsymbol a,\boldsymbol b$ 非零）。</div>
+      <p class="tip" data-step="9">例 1　已知 $\boldsymbol a=(2,-1)$，$\boldsymbol b=(3,-2)$，求 $(3\boldsymbol a-\boldsymbol b)\cdot(\boldsymbol a-2\boldsymbol b)$</p>
+      <div class="derive prose">
+        <div class="dl" data-step="10"><span>先算 $\boldsymbol a\cdot\boldsymbol b=8$，$\boldsymbol a^2=5$，$\boldsymbol b^2=13$</span><i class="why">对应坐标乘积的和</i></div>
+        <div class="dl" data-step="11"><span>原式 <span class="think" data-step="12" data-ask="展开后代入">$=3\boldsymbol a^2-7\boldsymbol a\cdot\boldsymbol b+2\boldsymbol b^2=15-56+26=-15$</span></span><i class="why">像多项式一样展开</i></div>
+      </div>
+      <p class="method" data-step="13">另解：$3\boldsymbol a-\boldsymbol b=(3,-1)$，$\boldsymbol a-2\boldsymbol b=(-4,3)$，数量积 $=-12-3=-15$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p32–33 推导、两个结论框、“思考”与例 1。推导中只用了 9.2.3 的运算律和 i、j 的三个数量积。例 1 课本用展开法；“另一条路”是坐标运算法，让学生比较哪个更快。</p>
+</section>
+
+<!-- 12 ================= 例 2 · 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>用坐标求角、求距离；哪个角是直角？</h2></div>
+  <div class="bd">
+    <div class="col tight">
+      <p class="tip">例 2　已知点 $A(2,3)$，$B(4,-1)$，$C(-2,1)$，求：(1) $\overrightarrow{CA}\cdot\overrightarrow{CB}$；(2) $\angle ACB$；(3) 点 $A$ 到直线 $BC$ 的距离。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\overrightarrow{CA}=(4,2)$，$\overrightarrow{CB}=(6,-2)$</span><i class="why">终点减起点</i></div>
+        <div class="dl" data-step="2"><span>(1)</span><span>$\overrightarrow{CA}\cdot\overrightarrow{CB}=24-4=20$</span><i class="why">对应坐标乘积的和</i></div>
+        <div class="dl" data-step="3"><span>(2)</span><span class="think" data-step="4" data-ask="cos∠ACB = ?">$\cos\angle ACB=\dfrac{20}{\sqrt{20}\times\sqrt{40}}=\dfrac{\sqrt2}{2}$</span><i class="why">夹角公式</i></div>
+        <div class="dl" data-step="4"><span>所以</span><span>$\angle ACB=\dfrac\pi4$</span><i class="why"></i></div>
+        <div class="dl end" data-step="5"><span>(3)</span><span>$d=|\overrightarrow{CA}|\sin\angle ACB=\sqrt{10}$</span><i class="why">$\sqrt{20}\times\dfrac{\sqrt2}{2}$</i></div>
+      </div>
+      <div class="btns" id="rtBtns" data-noswipe data-step="12">
+        <span class="tip muted small-t">例 3 图示：</span><button class="btn" type="button" data-k="A">∠A</button><button class="btn" type="button" data-k="B">∠B</button><button class="btn" type="button" data-k="C1">∠C（+）</button><button class="btn" type="button" data-k="C2">∠C（−）</button>
+      </div>
+      <div class="rtwrap" data-step="12"><div id="rtB" class="vb tiny"></div><p class="tip readline small" id="rtV"></p></div>
+    </div>
+    <div class="col tight">
+      <p class="tip" data-step="6">例 3　设 $k$ 为实数，直角三角形 $ABC$ 中，$\overrightarrow{AB}=(2,3)$，$\overrightarrow{AC}=(1,k)$，求 $k$ 的值。</p>
+      <p class="tip" data-step="7"><b>分析</b>　题中没说哪个角是直角——<span class="think" data-step="8" data-ask="怎么办？"><b>分类讨论</b>：$\angle A$、$\angle B$、$\angle C$ 分别为直角。</span></p>
+      <div class="derive prose">
+        <div class="dl" data-step="9"><span>$\angle A=90^\circ$：$\overrightarrow{AB}\perp\overrightarrow{AC}$，$2\times1+3k=0$，$k=-\dfrac23$</span></div>
+        <div class="dl" data-step="10"><span>$\angle B=90^\circ$：$\overrightarrow{AB}\perp\overrightarrow{BC}$，$\overrightarrow{BC}=(-1,k-3)$，$-2+3(k-3)=0$，$k=\dfrac{11}{3}$</span></div>
+        <div class="dl" data-step="11"><span>$\angle C=90^\circ$：$\overrightarrow{AC}\perp\overrightarrow{BC}$，$-1+k(k-3)=0$，$k=\dfrac{3\pm\sqrt{13}}{2}$</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p33–34 例 2、例 3。例 2 旁注“你还有别的方法来求点 A 到直线 BC 的距离吗？”——可以用面积法或投影。例 3 先让学生自己找“漏掉的情况”，再点按钮看四个三角形（以 A 为原点精确作出），直角记号与读数中的数量积为 0 一一对应。综上 k = −2/3 或 11/3 或 (3 ± √13)/2。</p>
+</section>
+
+<!-- 13 ================= 9.3.3 平行的坐标表示 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.3.3 平行</span><h2>两个平行向量的坐标有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="parB" class="vb"></div>
+      <p class="tip readline small" id="parV"></p>
+      <p class="muted center small-t">拖动 $\boldsymbol a$、$\boldsymbol b$ 的终点（吸附到 0.5 格）：试着让 $\boldsymbol b$ 落在虚线上，或与 $\boldsymbol a$ 垂直</p>
+    </div>
+    <div class="col">
+      <p class="tip">由图 9-3-12，当 $x_1,x_2,y_1,y_2$ 均不为 0 时，${\boldsymbol a\parallel\boldsymbol b\Leftrightarrow\dfrac{x_1}{x_2}=\dfrac{y_1}{y_2}}$，<span class="think" data-step="1" data-ask="去分母得？">即 $x_1y_2-x_2y_1=0$。</span></p>
+      <div class="def" data-step="2"><h4>向量平行的坐标表示（课本 p35）</h4>设 $\boldsymbol a=(x_1,y_1)$，$\boldsymbol b=(x_2,y_2)\ (\boldsymbol a\ne\boldsymbol 0)$，则 $$\boldsymbol a\parallel\boldsymbol b\Leftrightarrow x_1y_2-x_2y_1=0.$$</div>
+      <div class="derive prose">
+        <div class="dl" data-step="3"><span>⇒</span><span>$\boldsymbol b=\lambda\boldsymbol a$，$x_2=\lambda x_1$，$y_2=\lambda y_1$，代入得 $x_1(\lambda y_1)-(\lambda x_1)y_1=0$</span><i class="why">共线定理</i></div>
+        <div class="dl" data-step="4"><span>⇐</span><span class="think" data-step="5" data-ask="怎样找到 λ？">不妨设 $x_1\ne0$，则 $y_2=\dfrac{x_2}{x_1}y_1$，令 $\lambda=\dfrac{x_2}{x_1}$，得 $\boldsymbol b=\lambda\boldsymbol a$</span><i class="why">$\boldsymbol a\ne\boldsymbol 0$，$x_1,y_1$ 不全为 0</i></div>
+      </div>
+      <p class="method" data-step="6">对照记忆：平行 $x_1y_2-x_2y_1=0$（<b>交叉相乘再相减</b>）；垂直 $x_1x_2+y_1y_2=0$（<b>对应相乘再相加</b>）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p35–36 图 9-3-12、结论框与证明。为什么不直接写 x₁/x₂ = y₁/y₂？因为坐标可能为 0（如 a = (1, 0)），交叉相乘的形式没有分母，永远可用。旁注：a = 0 时 x₁y₂ − x₂y₁ = 0 恒成立（0 与任意向量平行）。拖图时同时看两行读数：一行为 0 是平行（读数里给出 b = λa 的 λ），另一行为 0 是垂直。</p>
+</section>
+
+<!-- 14 ================= 9.3.3 例 1 · 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>用平行条件求参数、判断存在性</h2></div>
+  <div class="bd">
+    <div class="col tight">
+      <p class="tip">例 1　已知 $\boldsymbol a=(1,0)$，$\boldsymbol b=(2,1)$，当实数 $k$ 为何值时，向量 $k\boldsymbol a-\boldsymbol b$ 与 $\boldsymbol a+3\boldsymbol b$ 平行？并确定此时它们是同向还是反向。</p>
+      <div class="derive prose">
+        <div class="dl" data-step="1"><span>$k\boldsymbol a-\boldsymbol b=(k-2,-1)$，$\boldsymbol a+3\boldsymbol b=(7,3)$</span><i class="why">坐标运算</i></div>
+        <div class="dl" data-step="2"><span>$3(k-2)-(-1)\times7=0$，<span class="think" data-step="3" data-ask="k = ?">$k=-\dfrac13$</span></span><i class="why">平行条件</i></div>
+        <div class="dl end" data-step="4"><span>此时 $k\boldsymbol a-\boldsymbol b=\left(-\dfrac73,-1\right)=-\dfrac13(\boldsymbol a+3\boldsymbol b)$</span><i class="why">系数为负：<b>反向</b></i></div>
+      </div>
+      <div class="slider-row" data-noswipe data-step="5">$k$<input type="range" id="kS" min="-9" max="6" step="1" value="0"></div>
+      <div id="kB" class="vb tiny" data-step="5"></div>
+      <p class="tip readline small" id="kV" data-step="5"></p>
+    </div>
+    <div class="col tight">
+      <p class="tip" data-step="6">例 2　已知点 $O,A,B,C$ 的坐标分别为 $(0,0)$，$(3,4)$，$(-1,2)$，$(1,1)$，是否存在常数 $t$，使得 $\overrightarrow{OA}+t\overrightarrow{OB}=\overrightarrow{OC}$ 成立？</p>
+      <div class="derive prose">
+        <div class="dl" data-step="7"><span>若存在，则 $t\overrightarrow{OB}=\overrightarrow{OC}-\overrightarrow{OA}=\overrightarrow{AC}$</span><i class="why">移项</i></div>
+        <div class="dl" data-step="8"><span>$\overrightarrow{AC}=(-2,-3)$，$\overrightarrow{OB}=(-1,2)$</span><i class="why">$\overrightarrow{AC}$ 应与 $\overrightarrow{OB}$ 平行</i></div>
+        <div class="dl end" data-step="9"><span>$(-2)\times2-(-1)\times(-3)$<span class="think" data-step="10" data-ask="等于 0 吗？">$=-7\ne0$，不平行</span></span><i class="why">所以不存在这样的 $t$</i></div>
+      </div>
+      <div class="slider-row" data-noswipe data-step="11">$t$<input type="range" id="tS" min="-2.5" max="1" step="0.1" value="-1"></div>
+      <div id="tB" class="vb short" data-step="11"></div>
+      <p class="tip readline small" id="tV" data-step="11"></p>
+    </div>
+  </div>
+  <p class="note">课本 p36 例 1、例 2。例 1 滑块每格 1/3，拖到 k = −1/3 时两向量落在同一直线上且方向相反。例 2 用图说明“不存在”：OA + tOB 的终点 P 只能在过 A、平行于 OB 的虚线上滑动，C 不在这条线上（距离 7/√5），所以 t 找不到。</p>
+</section>
+
+<!-- 15 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 设 $k$ 为实数，若 $\boldsymbol e_1,\boldsymbol e_2$ 是两个不共线的向量，满足 $\boldsymbol e_1+k\boldsymbol e_2$ 与 $k\boldsymbol e_1+\boldsymbol e_2$ 共线，则 $k=$______。</p>
+        <details><summary>提示 1</summary>共线 ⇒ 存在 $\lambda$，使 $k\boldsymbol e_1+\boldsymbol e_2=\lambda(\boldsymbol e_1+k\boldsymbol e_2)$。</details>
+        <details><summary>提示 2</summary>基本定理：系数唯一，$\boldsymbol e_1,\boldsymbol e_2$ 前的系数分别相等。</details>
+        <details><summary>完整解答</summary>$k=\lambda$，$1=\lambda k$，所以 $k^2=1$，$k=\pm1$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知向量 $\boldsymbol a=(3,-2)$，$\boldsymbol b=(-2,1)$，$\boldsymbol c=(7,-4)$，试用 $\boldsymbol a,\boldsymbol b$ 作基底表示 $\boldsymbol c$。</p>
+        <details><summary>提示 1</summary>设 $\boldsymbol c=\lambda_1\boldsymbol a+\lambda_2\boldsymbol b$，写成坐标。</details>
+        <details><summary>提示 2</summary>$\begin{cases}3\lambda_1-2\lambda_2=7\\-2\lambda_1+\lambda_2=-4\end{cases}$——正是第 4 页画板里解的方程组。</details>
+        <details><summary>完整解答</summary>解得 $\lambda_1=1$，$\lambda_2=-2$，所以 $\boldsymbol c=\boldsymbol a-2\boldsymbol b$。验算：$(3,-2)-2(-2,1)=(7,-4)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 已知向量 $\boldsymbol a=(-3,4)$，求与向量 $\boldsymbol a$ 垂直的单位向量的坐标。</p>
+        <details><summary>提示 1</summary>设所求为 $(x,y)$：垂直 ⇒ $-3x+4y=0$；单位向量 ⇒ $x^2+y^2=1$。</details>
+        <details><summary>提示 2</summary>由第一式 $x=\dfrac43y$，代入第二式。</details>
+        <details><summary>完整解答</summary>$\dfrac{25}{9}y^2=1$，$y=\pm\dfrac35$，所以所求为 $\left(\dfrac45,\dfrac35\right)$ 或 $\left(-\dfrac45,-\dfrac35\right)$——有两个，方向相反。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题是课本 p27 练习 4，第 2 题是 p31 习题 9.3(2) 第 10 题，第 3 题是 p34 练习 7。第 2 题就是第 4 页画板背后的计算：画板读数正是解这样的二元一次方程组得到的。第 3 题最容易漏掉一个解。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">基本定理：$\boldsymbol e_1,\boldsymbol e_2$ 不共线 ⇒ 任一 $\boldsymbol a$ 有唯一一对 $\lambda_1,\lambda_2$，$\boldsymbol a=\lambda_1\boldsymbol e_1+\lambda_2\boldsymbol e_2$。</p>
+        <p class="recall" data-label="坐标表示">$\boldsymbol a=x\boldsymbol i+y\boldsymbol j=(x,y)$；$\overrightarrow{AB}$ = 终点 − 起点；$\boldsymbol a\pm\boldsymbol b$、$\lambda\boldsymbol a$ 对应坐标运算。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>坐标公式</h3>
+        <p class="def">$\boldsymbol a\cdot\boldsymbol b=x_1x_2+y_1y_2$，$|\boldsymbol a|=\sqrt{x^2+y^2}$<br>$\boldsymbol a\parallel\boldsymbol b\Leftrightarrow x_1y_2-x_2y_1=0$<br>$\boldsymbol a\perp\boldsymbol b\Leftrightarrow x_1x_2+y_1y_2=0$</p>
+        <p class="warn">基底必须<b>不共线</b>；平行条件对 $\boldsymbol 0$ 恒成立；直角三角形未指明直角要<b>分类讨论</b>。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>方法 · 思想</h3>
+        <p class="method" data-label="化归">任一向量 → 两个基底的线性组合 → 一对实数；向量方程 → 坐标方程组。</p>
+        <p class="recall" data-label="数形结合">过终点作平行线（形）⇔ 解二元一次方程组（数）；坐标让几何问题代数化。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>9.4 向量应用——向量是数形结合的桥梁：怎样用向量方法解决几何问题，以及力的合成与分解等物理问题？</p>
+  </div>
+  <p class="note">请学生先用自己的话说出“基底—分解—坐标—运算”这条线，再逐栏揭示。课后作业建议：习题 9.3(1) 第 1、2、4 题，9.3(2) 第 1、3、6、10 题，9.3(3) 第 1、5、7 题，9.3(4) 第 1、5、7 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mvec.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

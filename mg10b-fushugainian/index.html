@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>复数的概念 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/kaerdan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第12章 复数 · 12.1</p>
+    <h1 class="cover-title">复数的概念</h1>
+    <p class="cover-q" data-step="1">16 世纪，卡尔丹讨论：“将 10 分成两部分，使两者的乘积等于 40。”他把答案写成 $5+\sqrt{-15}$ 和 $5-\sqrt{-15}$。</p>
+    <p class="cover-q" data-step="2">和是 10，积是 $25-(-15)=40$——算得通！可是 $\sqrt{-15}$ <b>真的是无意义的、虚幻的吗？它能作为数吗？</b></p>
+    <div class="chips" data-step="3"><span class="chip">数系的扩充</span><span class="chip">虚数单位 i</span><span class="chip">实部与虚部</span><span class="chip">复数相等</span></div>
+  </div>
+  <p class="note">第 12 章引言（课本 p110）。先让学生验算卡尔丹的两个数：和为 10、积为 40（把 √−15 × √−15 当作 −15）。再问：用实数能把 10 分成积为 40 的两部分吗？（x(10 − x) = 40 即 x² − 10x + 40 = 0，Δ = −60 &lt; 0，无实数解。）制造“要不要承认它”的冲突。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>数集、方程、充要条件</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="必修第一册 第1章 · 集合" data-step="1">
+        <p>$\N$ 自然数集，$\Z$ 整数集，$\mathbf Q$ 有理数集，$\R$ 实数集；子集 $A\subseteq B$，交集 $A\cap B$。</p>
+        <span class="use">数集一步步扩充：$\N\subseteq\Z\subseteq\mathbf Q\subseteq\R\subseteq\ ?$</span>
+      </div>
+      <div class="recall" data-label="初中 · 平方根与一元二次方程" data-step="2">
+        <p>任何实数的平方都非负，所以负数没有平方根；$\Delta\lt0$ 时，方程<b>无实数根</b>。</p>
+        <span class="use">$x^2+1=0$ 在实数集中无解——这是扩充的起点。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 第2章 · 充分条件、必要条件" data-step="3">
+        <p>$p\Rightarrow q$：$p$ 是 $q$ 的充分条件；$p\Leftrightarrow q$：充要条件。</p>
+        <span class="use">“$a=0$ 是纯虚数的充分条件吗？”以及两个复数相等的充要条件。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>实数集怎样扩充，才能让负数也能开平方？</p>
+  </div>
+  <p class="note">第一张卡请学生默写四个数集的记号并说出包含关系；第二张卡用 x² + 1 = 0 回扣引言。本章是新的一章，前情回顾以必修第一册的集合、逻辑和初中方程为主。</p>
+</section>
+
+<!-- 3 ================= 数系扩充 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数系扩充</span><h2>每一次扩充，都是为了让一个方程有解</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 420 330" class="nest" aria-label="数集包含关系">
+        <g data-step="5"><rect x="4" y="4" width="412" height="322" rx="26" class="ns n5"/><text x="20" y="34" class="nl">复数集 C</text></g>
+        <g data-step="4"><rect x="24" y="48" width="372" height="270" rx="22" class="ns n4"/><text x="40" y="76" class="nl">实数集 R</text></g>
+        <g data-step="3"><rect x="44" y="90" width="332" height="220" rx="18" class="ns n3"/><text x="60" y="116" class="nl">有理数集 Q</text></g>
+        <g data-step="2"><rect x="64" y="130" width="292" height="172" rx="16" class="ns n2"/><text x="80" y="156" class="nl">整数集 Z</text></g>
+        <g data-step="1"><rect x="84" y="170" width="252" height="124" rx="14" class="ns n1"/><text x="100" y="196" class="nl">自然数集 N</text><text x="110" y="246" class="nx">0, 1, 2, 3, …</text></g>
+        <text data-step="2" x="250" y="156" class="nx">−4, −1</text>
+        <text data-step="3" x="270" y="116" class="nx">2/3</text>
+        <text data-step="4" x="300" y="76" class="nx">√2, π</text>
+        <text data-step="5" x="300" y="34" class="nx">i</text>
+      </svg>
+    </div>
+    <div class="col">
+      <table class="mtab ext">
+        <tr><th>在……中</th><th>运算受阻 / 方程无解</th><th>引入</th></tr>
+        <tr data-step="2"><td>$\N$</td><td>小数不能减大数：$x+4=0$</td><td>负数 → $\Z$</td></tr>
+        <tr data-step="3"><td>$\Z$</td><td>只能整除：$3x-2=0$</td><td>分数 → $\mathbf Q$</td></tr>
+        <tr data-step="4"><td>$\mathbf Q$</td><td>开方不一定是有理数：$x^2-2=0$</td><td>无理数 → $\R$</td></tr>
+        <tr data-step="5"><td>$\R$</td><td>负数不能开平方：$x^2+1=0$</td><td><span class="think" data-step="6" data-ask="引入什么？">新数 $\mathrm i$（$\mathrm i^2=-1$）→ $\mathbf C$</span></td></tr>
+      </table>
+      <p class="method" data-step="7" data-label="扩充的规则">新的数集都是在原来数集的基础上“添加”一种新的数；原有的运算及其性质仍然适用，同时解决了原来不能实施的运算。</p>
+    </div>
+  </div>
+  <p class="note">课本 p111。按 → 一层层展开：每一层先让学生说出“哪个方程在这里无解”，再揭示引入的新数。最后一层 x² + 1 = 0 是本课的起点。扩充的“规则”很重要——它决定了下一页 i 要怎样规定。</p>
+</section>
+
+<!-- 4 ================= 引入 i ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">引入新数</span><h2>虚数单位 $\mathrm i$：平方等于 $-1$</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>虚数单位（课本 p111）</h4>引入一个新数 $\mathrm i$，叫作<em>虚数单位</em>，并规定：(1) $\mathrm i^2=-1$；(2) 实数可以与 $\mathrm i$ 进行四则运算，进行四则运算时，原有的加法、乘法运算律仍然成立。</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2">$\mathrm i$ 与实数 $b$ 相乘，再与实数 $a$ 相加，结果写成什么样子？　<span class="think" data-step="3" data-ask="想一想">$a+b\mathrm i\ (a,b\in\R)$——由交换律，$\mathrm i b$、$b\mathrm i+a$ 都能整理成这个形式。</span></p>
+        <p class="tip" data-step="4">现在 $x^2+1=0$ 有解吗？　<span class="think" data-step="5" data-ask="试一试">$x=\mathrm i$ 和 $x=-\mathrm i$：$(-\mathrm i)^2=\mathrm i^2=-1$。</span></p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="6">回到卡尔丹：把 $\sqrt{-15}$ 写成 $\sqrt{15}\,\mathrm i$，</p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>和</span><span>$(5+\sqrt{15}\,\mathrm i)+(5-\sqrt{15}\,\mathrm i)=10$</span><i class="why">运算律</i></div>
+          <div class="dl" data-step="8"><span>积</span><span>$25-(\sqrt{15}\,\mathrm i)^2=25-15\mathrm i^2=40$</span><i class="why">平方差公式，$\mathrm i^2=-1$</i></div>
+        </div>
+        <p class="tip gold" data-step="9">$\sqrt{-15}$ 不再“无意义”：它是一种<b>新的数</b>。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p111 及旁注：虚数（imaginary）这个名称是笛卡儿在 1637 年的《几何》中给出的。强调“规定”的两条缺一不可：只有 i² = −1 而没有运算律，就无法和实数一起计算。</p>
+</section>
+
+<!-- 5 ================= 定义与分类 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>复数 $z=a+b\mathrm i$：实部、虚部与分类</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>复数（课本 p111–112）</h4>形如 $a+b\mathrm i\ (a,b\in\R)$ 的数叫作<em>复数</em>，全体复数所组成的集合叫作<em>复数集</em>，记作 $\mathbf C$。复数通常用字母 $z$ 表示，即 $z=a+b\mathrm i$，其中 $a$ 与 $b$ 分别叫作复数 $z$ 的<em>实部</em>与<em>虚部</em>。</div>
+    <div class="cols2">
+      <div class="col">
+        <div class="cls" data-step="2">
+          $$z=a+b\mathrm i\begin{cases}\text{实数}\ (b=0),\\[2pt]\text{虚数}\ (b\ne0)\ (\text{当 }a=0\text{ 时为纯虚数}).\end{cases}$$
+        </div>
+        <p class="warn" data-step="3">虚部是 $b$，<b>不是</b> $b\mathrm i$。例如 $2-3\mathrm i$ 的虚部是 $-3$。</p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="4">实数是复数吗？　<span class="think" data-step="5" data-ask="想一想">是。$b=0$ 时 $z=a$，所以 $\R\subseteq\mathbf C$——满足“扩充”的要求。</span></p>
+        <p class="tip" data-step="6">思考：$a=0$ 是 $z=a+b\mathrm i$ 为纯虚数的充分条件吗？　<span class="think" data-step="7" data-ask="举个例子">不是。$a=0,\ b=0$ 时 $z=0$ 是实数。$a=0$ 是<b>必要不充分</b>条件；纯虚数 ⇔ $a=0$ 且 $b\ne0$。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p111–112 定义与分类，旁注：本章如无特别说明，a、b、c、d 均表示实数。“思考”请学生用第 2 章的充分、必要条件语言回答，0 是最好的反例。</p>
+</section>
+
+<!-- 6 ================= 分类互动 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手分一分</span><h2>把每个数放进它所在的集合</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="chips sorter" id="chips" data-noswipe></div>
+      <p class="tip feedback" id="sortMsg">先点一个数，再点右图中它所在的区域。</p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="sortReset">重来</button><button class="btn" type="button" id="sortAll">全部放好</button></div>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 520 330" class="venn" id="venn" data-noswipe aria-label="复数集的分类">
+        <rect x="4" y="4" width="512" height="322" rx="20" class="vz" data-z="none"/>
+        <text x="20" y="32" class="vl">复数集 C</text>
+        <ellipse cx="118" cy="180" rx="98" ry="128" class="vz vr" data-z="real"/>
+        <text x="118" y="74" class="vl c">实数集 R</text>
+        <ellipse cx="372" cy="180" rx="136" ry="134" class="vz vi" data-z="imag"/>
+        <text x="372" y="66" class="vl c">虚数集</text>
+        <ellipse cx="372" cy="224" rx="88" ry="66" class="vz vp" data-z="pure"/>
+        <text x="372" y="186" class="vl c s">纯虚数集</text>
+        <g id="placed"></g>
+      </svg>
+    </div>
+  </div>
+  <p class="note">本课核心互动，数取自课本 p113 练习 1 和例 1，外加一个“陷阱”i²。先点数、再点区域；放错时会提示看实部还是虚部。最后让学生说：实数集与虚数集的交集是什么？（空集——习题 12.1 第 1 题③是假命题）</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>写出实部与虚部，并分类</h2></div>
+  <div class="bd full">
+    <p class="tip">写出复数 $4,\ 2-3\mathrm i,\ 0,\ -\dfrac12+\dfrac43\mathrm i,\ 5+\sqrt2\,\mathrm i,\ 6\mathrm i$ 的实部与虚部，并指出哪些是实数，哪些是虚数，哪些是纯虚数。</p>
+    <table class="mtab ex1">
+      <tr><th>复数</th><td>$4$</td><td>$2-3\mathrm i$</td><td>$0$</td><td>$-\frac12+\frac43\mathrm i$</td><td>$5+\sqrt2\,\mathrm i$</td><td>$6\mathrm i$</td></tr>
+      <tr data-step="1"><th>实部</th><td>$4$</td><td>$2$</td><td>$0$</td><td>$-\frac12$</td><td>$5$</td><td>$0$</td></tr>
+      <tr data-step="2"><th>虚部</th><td>$0$</td><td><span class="think" data-step="3" data-ask="?">$-3$</span></td><td>$0$</td><td>$\frac43$</td><td>$\sqrt2$</td><td>$6$</td></tr>
+      <tr data-step="4"><th>类别</th><td>实数</td><td>虚数</td><td>实数</td><td>虚数</td><td>虚数</td><td>纯虚数</td></tr>
+    </table>
+    <p class="tip" data-step="5"><b>解</b>　$4,0$ 是实数；$2-3\mathrm i,\ -\frac12+\frac43\mathrm i,\ 5+\sqrt2\,\mathrm i,\ 6\mathrm i$ 是虚数，其中 $6\mathrm i$ 是纯虚数。</p>
+    <p class="method" data-step="6" data-label="判断方法">先把复数整理成 $a+b\mathrm i$ 的标准形式，<b>只看虚部 $b$</b> 定实数 / 虚数，再看实部 $a$ 定是否纯虚数。</p>
+  </div>
+  <p class="note">课本 p112 例 1。“2 − 3i 的虚部”是全课最常见的错误（写成 −3i 或 3），专门停一下。纯虚数也是虚数——“其中”二字体现了包含关系。</p>
+</section>
+
+<!-- 8 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>参数 $m$ 取什么值，$z$ 是实数、虚数、纯虚数？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">实数 $m$ 取什么值时，复数 $z=m(m-1)+(m-1)\mathrm i$ 是：(1) 实数？(2) 虚数？(3) 纯虚数？</p>
+      <div class="slider-row" data-noswipe>$m=$<input type="range" id="mm" min="-2" max="3" step="0.25" value="2"><b id="mmV" class="v"></b></div>
+      <div class="readout2" id="mRead"></div>
+      <div id="mline" class="mlineb"></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1"><b>分析</b>　实部、虚部各是什么？　<span class="think" data-step="2" data-ask="写出来">实部 $m(m-1)$，虚部 $m-1$，都是实数（$m\in\R$）。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>(1) 实数</span><span>$m-1=0$，即 $m=1$</span><i class="why">虚部为 0</i></div>
+        <div class="dl" data-step="4"><span>(2) 虚数</span><span>$m-1\ne0$，即 $m\ne1$</span><i class="why">虚部不为 0</i></div>
+        <div class="dl key" data-step="5"><span>(3) 纯虚数</span><span>$m(m-1)=0$ 且 $m-1\ne0$，即 $m=0$</span><span class="think" data-step="6" data-ask="m = 1 为什么不行？">$m=1$ 时实部为 0，但虚部也为 0，$z=0$ 是实数</span></div>
+      </div>
+      <p class="warn" data-step="7">纯虚数要<b>两个条件同时</b>满足：实部 $=0$，虚部 $\ne0$。漏掉“虚部 $\ne0$”是最常见的错误。</p>
+    </div>
+  </div>
+  <p class="note">课本 p112 例 2。先拖动滑块到 m = 1、m = 0 两处，看实部、虚部怎么变，再写规范解答。数轴上标出 m 的三个“特殊值”帮助学生整体把握：m = 1 实数；m = 0 纯虚数；其余（m ≠ 1）都是虚数。</p>
+</section>
+
+<!-- 9 ================= 复数相等 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">复数相等</span><h2>两个复数相等：实部、虚部分别相等</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>复数相等（课本 p112）</h4>$$a+b\mathrm i=c+d\mathrm i\Leftrightarrow\begin{cases}a=c,\\b=d.\end{cases}$$两个复数相等的<em>充要条件</em>是它们的实部和虚部分别相等。</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">例 3　已知 $(x+y)+(x-2y)\mathrm i=(2x-5)+(3x+y)\mathrm i$，求实数 $x,y$ 的值。</p>
+        <div class="derive">
+          <div class="dl" data-step="2"><span>由相等条件</span><span>$\begin{cases}x+y=2x-5,\\x-2y=3x+y,\end{cases}$</span><i class="why">实部 = 实部，虚部 = 虚部（$x,y$ 为实数）</i></div>
+          <div class="dl end" data-step="3"><span>解得</span><span>$\begin{cases}x=3,\\y=-2.\end{cases}$</span><span class="think" data-step="4" data-ask="验算一下">左边 $=1+7\mathrm i$，右边 $=1+7\mathrm i$ ✓</span></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="5">为什么一定要说“$x,y$ 是实数”？　<span class="think" data-step="6" data-ask="反例？">若 $x,y\in\mathbf C$，比如 $x+y\mathrm i=1+\mathrm i$ 也可以是 $x=\mathrm i,\ y=-\mathrm i$（$\mathrm i+(-\mathrm i)\mathrm i=1+\mathrm i$），就不能“对号入座”了。</span></p>
+        <p class="tip" data-step="7">两个复数能比较大小吗？　<span class="think" data-step="8" data-ask="想一想">两个都是实数时可以；否则只能说相等或不相等（课本未定义虚数的大小）。</span></p>
+        <p class="method" data-step="9" data-label="复数问题实数化">一个复数等式 ⇔ 两个实数等式：这是解复数问题的基本方法（待定系数法）。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p112–113。第二个追问来自习题 12.1 第 6 题④（假命题），第三个追问对应第 6 题①：“任意两个复数都不能比较大小”是假命题——两个实数就能比。</p>
+</section>
+
+<!-- 10 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>真命题还是假命题？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>习题 12.1 第 1 题</b></p>
+        <div class="jcard" data-step="1"><p>① 自然数集是非负整数集　<span class="think" data-step="2" data-ask="真/假"><span class="verdict ok">真</span></span></p></div>
+        <div class="jcard" data-step="1"><p>② 实数集与复数集的交集为实数集　<span class="think" data-step="2" data-ask="真/假"><span class="verdict ok">真</span>$\R\subseteq\mathbf C$</span></p></div>
+        <div class="jcard" data-step="3"><p>③ 实数集与虚数集的交集是 $\{0\}$　<span class="think" data-step="4" data-ask="真/假"><span class="verdict x">假</span>0 是实数，不是虚数；交集是 $\varnothing$</span></p></div>
+        <div class="jcard" data-step="3"><p>④ 纯虚数集与实数集的交集为空集　<span class="think" data-step="4" data-ask="真/假"><span class="verdict ok">真</span></span></p></div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>习题 12.1 第 6 题</b></p>
+        <div class="jcard" data-step="5"><p>① 任意两个复数都不能比较大小　<span class="think" data-step="6" data-ask="真/假"><span class="verdict x">假</span>两个实数可以比较</span></p></div>
+        <div class="jcard" data-step="5"><p>② 若 $z=a+b\mathrm i$，则当且仅当 $a=0$ 且 $b=0$ 时，$z=0$　<span class="think" data-step="6" data-ask="真/假"><span class="verdict ok">真</span>复数相等</span></p></div>
+        <div class="jcard" data-step="7"><p>③ 若 $z_1,z_2\in\mathbf C$，且 $z_1^2+z_2^2=0$，则 $z_1=z_2=0$　<span class="think" data-step="8" data-ask="真/假"><span class="verdict x">假</span>$z_1=1,\ z_2=\mathrm i$</span></p></div>
+        <div class="jcard" data-step="7"><p>④ 若 $x+y\mathrm i=1+\mathrm i\ (x,y\in\mathbf C)$，则 $x=y=1$　<span class="think" data-step="9" data-ask="真/假"><span class="verdict x">假</span>$x,y$ 不一定是实数（上一页）</span></p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p113–114 习题 12.1 第 1、6 题。先让学生独立判断、举手表决，再逐条点开。第 6 题③说明：实数里“平方和为 0 ⇒ 都为 0”的结论，到复数集中不再成立——扩充以后，有些性质会丢失。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 实数 $m$ 取什么值时，复数 $z=(m+1)+(m-2)\mathrm i$ 是：(1) 实数？(2) 虚数？(3) 纯虚数？</p>
+        <details><summary>提示 1</summary>实部 $m+1$，虚部 $m-2$。</details>
+        <details><summary>提示 2</summary>纯虚数：实部 $=0$ 且虚部 $\ne0$。</details>
+        <details><summary>完整解答</summary>(1) $m-2=0$，$m=2$；(2) $m\ne2$；(3) $m+1=0$ 且 $m-2\ne0$，$m=-1$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 复数 $(m^2-3m-4)+(m^2-5m-6)\mathrm i$ 是虚数，求实数 $m$ 的取值范围。</p>
+        <details><summary>提示 1</summary>虚数只要求虚部 $\ne0$，实部不管。</details>
+        <details><summary>提示 2</summary>$m^2-5m-6=(m-6)(m+1)$。</details>
+        <details><summary>完整解答</summary>$m^2-5m-6\ne0$，即 $m\ne6$ 且 $m\ne-1$。取值范围是 $\{m\mid m\ne6\text{ 且 }m\ne-1\}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 求满足 $(x-3y)+(2x+3y)\mathrm i=5+\mathrm i$ 的实数 $x,y$ 的值。</p>
+        <details><summary>提示 1</summary>实部、虚部分别相等，列方程组。</details>
+        <details><summary>提示 2</summary>$\begin{cases}x-3y=5,\\2x+3y=1.\end{cases}$ 两式相加。</details>
+        <details><summary>完整解答</summary>相加得 $3x=6$，$x=2$；代入得 $y=-1$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p113 练习 3、4、6(1)。第 2 题容易多写“实部 ≠ 0”——提醒：虚数只看虚部。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$\mathrm i^2=-1$；$z=a+b\mathrm i\ (a,b\in\R)$，实部 $a$，虚部 $b$。</p>
+        <p class="recall" data-label="分类">$b=0$ 实数；$b\ne0$ 虚数；$a=0,\ b\ne0$ 纯虚数。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="分类判断">先化成 $a+b\mathrm i$，再看虚部、实部。</p>
+        <p class="method" data-label="复数相等">一个复数等式 → 两个实数等式（前提：$a,b,c,d$ 都是实数）。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数系扩充">添加新数，保留原有运算律，解决原来不能实施的运算。</p>
+        <p class="recall" data-label="转化">复数问题实数化。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课 12.2 复数的运算：</b>规定说“原有的加法、乘法运算律仍然成立”——那么 $(a+b\mathrm i)+(c+d\mathrm i)$、$(a+b\mathrm i)(c+d\mathrm i)$ 该等于什么？$\mathrm i^3,\mathrm i^4,\cdots$ 呢？</p>
+  </div>
+  <p class="note">课后作业建议：习题 12.1 第 2、3、4、5 题；第 8 题（集合对运算“封闭”）供学有余力的学生思考，它解释了“数系扩充”要满足什么。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

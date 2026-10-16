@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>命题、定理、定义 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/taolun.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第2章 常用逻辑用语 · 2.1</p>
+    <h1 class="cover-title">命题、定理、定义</h1>
+    <p class="cover-q" data-step="1">命题 1：两个偶数的和是偶数。<br>命题 2：和是偶数的两个数一定都是偶数。</p>
+    <p class="cover-q" data-step="2">哪个对，哪个错？你是<b>怎么知道</b>的——凭感觉，还是能说出道理？</p>
+    <div class="chips" data-step="3"><span class="chip">命题</span><span class="chip">条件 p · 结论 q</span><span class="chip">证明与反例</span><span class="chip">定理 · 定义</span></div>
+  </div>
+  <p class="note">第 2 章章首（课本 p24）。笛卡儿说：“要想获得真理和知识，唯有两件武器，那就是清晰的直觉和严格的演绎。”先让学生凭直觉表态，再追问“怎么知道的”，第 3 页给出严格的推理。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>初中学过的推理 + 第 1 章的集合语言</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 定义、命题与证明" data-step="1">
+        <p>判断一件事情的句子叫命题；正确的是真命题，错误的是假命题。说明假命题，举一个<b>反例</b>。</p>
+        <span class="use">今天把“命题”说得更精确，并统一成“若 $p$，则 $q$”。</span>
+      </div>
+      <div class="recall" data-label="初中 · 用字母表示数" data-step="2">
+        <p>偶数可以写成 $2m\ (m\in\mathbf Z)$，奇数可以写成 $2m+1\ (m\in\mathbf Z)$。</p>
+        <span class="use">第 3 页证明“两个偶数的和是偶数”。</span>
+      </div>
+      <div class="recall" data-label="第 1 章 · 集合" data-step="3">
+        <p>$\mathbf Z$、$\mathbf Q$、$\R$；$A\cap B$、$A\cup B$。</p>
+        <span class="use">习题“若 $x\in A\cap B$，则 $x\in A\cup B$”是真是假？</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">数学推理要用到一些基本用语：“如果”“那么”“因为”“所以”“任意的”“存在”……<b>这些用语的含义是什么？在推理过程中，怎样使用这些用语？</b>这就是第 2 章“常用逻辑用语”。</p>
+  </div>
+  <p class="note">第一张卡是初中“定义、命题与证明”的复述（以学生所用初中教材为准）。最后一句是课本 p24 提出的问题，统领整章：2.1 命题，2.2 充分条件与必要条件，2.3 全称量词与存在量词。</p>
+</section>
+
+<!-- 3 ================= 章首两个命题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推理</span><h2>换一种语言，判断两个命题的对错</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>命题 1</b>：如果 $a$ 是<b>任意的</b>偶数，$b$ 是任意的偶数，那么 $a+b$ 一定是偶数。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>因为</span><span>$a$ 是偶数，所以存在 $m\in\mathbf Z$，使 $a=2m$</span><i class="why">偶数的意义</i></div>
+        <div class="dl" data-step="2"><span>因为</span><span>$b$ 是偶数，所以存在 $n\in\mathbf Z$，使 $b=2n$</span><i class="why">换一个字母！</i></div>
+        <div class="dl" data-step="3"><span>所以</span><span class="think" data-step="4" data-ask="a+b 等于什么？">$a+b=2m+2n=2(m+n)$</span><i class="why">提公因数</i></div>
+        <div class="dl end" data-step="5"><span>因为</span><span>$m+n\in\mathbf Z$，所以 $a+b$ 为偶数</span><i class="why">整数的和仍是整数</i></div>
+      </div>
+      <p class="warn" data-step="6">若写成 $a=2m$，$b=2m$，就只证明了“$a=b$”这一种情形——两个偶数是<b>任意的</b>，要用不同字母。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>命题 2</b>：如果 $a+b$ 是偶数，那么 $a$ 和 $b$ 都是偶数。</p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>取</span><span class="think" data-step="8" data-ask="能找到不满足的例子吗？">$a=3,\ b=5$</span><i class="why"></i></div>
+        <div class="dl" data-step="8"><span>这时</span><span>$a+b=8$ 是偶数，但 3、5 都不是偶数</span><i class="why">一个反例就够</i></div>
+      </div>
+      <p class="def" data-step="9">结论：命题 1 是<b>正确的</b>，命题 2 是<b>错误的</b>。</p>
+      <p class="method" data-step="10" data-label="两种判断">说明“对”：要对<b>所有</b>情形进行推理（证明）；说明“错”：只需<b>一个</b>反例。</p>
+    </div>
+  </div>
+  <p class="note">课本 p24。命题 1 的证明是本章的“范本”：每一步用“因为……所以……”，写出依据。第 6 步的易错警示是学生最常犯的错，请学生说说为什么不对。命题 2 请学生自己找反例，答案不唯一（如 1 + 1）。</p>
+</section>
+
+<!-- 4 ================= 命题的定义 + 判真假 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>可判断真假的陈述句，叫作命题</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>命题（课本 p25）</h4>在数学中，我们将<em>可判断真假</em>的<em>陈述句</em>叫作<b>命题</b>（proposition）。</div>
+    <p class="tip" data-step="2">下面课本中的 6 个语句，先判断它是真还是假（点一下马上知道）：</p>
+    <div class="tf6" data-step="2">
+      <div><span>(1) 如果两条平行直线被第三条直线所截，那么同位角相等</span><div class="pick" data-ans="t"><button data-k="t">真</button><button data-k="f">假</button></div></div>
+      <div><span>(2) 有一个内角是 60° 的等腰三角形是正三角形</span><div class="pick" data-ans="t"><button data-k="t">真</button><button data-k="f">假</button></div></div>
+      <div><span>(3) 如果两个三角形的面积相等，那么这两个三角形全等</span><div class="pick" data-ans="f"><button data-k="t">真</button><button data-k="f">假</button><p class="pick-why">第 9 页拖一拖就知道。</p></div></div>
+      <div><span>(4) 对顶角相等</span><div class="pick" data-ans="t"><button data-k="t">真</button><button data-k="f">假</button></div></div>
+      <div><span>(5) 若 $x^2=1$，则 $x=1$</span><div class="pick" data-ans="f"><button data-k="t">真</button><button data-k="f">假</button><p class="pick-why">反例：$x=-1$。</p></div></div>
+      <div><span>(6) 若一个三角形是直角三角形，则这个三角形的两个锐角互余</span><div class="pick" data-ans="t"><button data-k="t">真</button><button data-k="f">假</button></div></div>
+    </div>
+    <p class="tip gold" data-step="3">(1)(2)(4)(6) 判断为真，(3)(5) 判断为假——<b>假的也是命题</b>，只要能判断真假。<span class="think" data-step="4" data-ask="“你喜欢数学吗？”“请把门关上。”是命题吗？">不是：疑问句、祈使句无所谓真假，不是陈述句。</span></p>
+  </div>
+  <p class="note">课本 p25。强调两点：①命题的关键是“能判断真假”，不是“一定为真”；②疑问句、祈使句、感叹句不是命题（第 4 步两句为补充举例）。</p>
+</section>
+
+<!-- 5 ================= 若 p 则 q ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">形式</span><h2>(1)(3)(5)(6) 具有怎样的表示形式？</h2></div>
+  <div class="bd full">
+    <div class="pq-list">
+      <div class="pq" data-step="1"><b>(1)</b> 如果 <span class="hp">两条平行直线被第三条直线所截</span>，那么 <span class="hq">同位角相等</span></div>
+      <div class="pq" data-step="2"><b>(3)</b> 如果 <span class="hp">两个三角形的面积相等</span>，那么 <span class="hq">这两个三角形全等</span></div>
+      <div class="pq" data-step="3"><b>(5)</b> 若 <span class="hp">$x^2=1$</span>，则 <span class="hq">$x=1$</span></div>
+      <div class="pq" data-step="4"><b>(6)</b> 若 <span class="hp">一个三角形是直角三角形</span>，则 <span class="hq">这个三角形的两个锐角互余</span></div>
+    </div>
+    <div class="def" data-step="5"><h4>条件与结论（课本 p25）</h4>数学中，许多命题可表示为“如果 $p$，那么 $q$”或“若 $p$，则 $q$”的形式，其中 <span class="hp">$p$ 叫作命题的<b>条件</b></span>，<span class="hq">$q$ 叫作命题的<b>结论</b></span>。</div>
+    <p class="tip" data-step="6">(2)(4) 没有“如果……那么……”，它们有条件和结论吗？<span class="think" data-step="7" data-ask="想一想">有，只是“藏”起来了——例 2 把它们改写出来。</span></p>
+  </div>
+  <p class="note">课本 p25。蓝色是条件 p，橙色是结论 q。请学生读的时候把“如果”“那么”重读。“若 p，则 q”是本章的核心句式，2.2 节的“p ⇒ q”就建立在它上面。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>指出下列命题中的条件 p 和结论 q</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1"><p>(1) 若 $ab=0$，则 $a=0$；</p><div class="think" data-step="2" data-ask="p 是？q 是？"><p><span class="hp">$p$：$ab=0$</span>，<span class="hq">$q$：$a=0$</span>。</p></div></div>
+      <div class="jcard" data-step="3"><p>(2) 若 $a\lt 0$，则 $|a|\gt 0$；</p><div class="think" data-step="4" data-ask="p 是？q 是？"><p><span class="hp">$p$：$a\lt 0$</span>，<span class="hq">$q$：$|a|\gt 0$</span>。</p></div></div>
+      <div class="jcard" data-step="5"><p>(3) 如果二次函数 $y=x^2+k$ 的图象经过坐标原点，那么 $k=0$；</p><div class="think" data-step="6" data-ask="p 是？q 是？"><p><span class="hp">$p$：二次函数 $y=x^2+k$ 的图象经过坐标原点</span>，<span class="hq">$q$：$k=0$</span>。</p></div></div>
+      <div class="jcard" data-step="7"><p>(4) 如果两个三角形的三边分别对应相等，那么这两个三角形全等。</p><div class="think" data-step="8" data-ask="p 是？q 是？"><p><span class="hp">$p$：两个三角形的三边分别对应相等</span>，<span class="hq">$q$：这两个三角形全等</span>。</p></div></div>
+    </div>
+    <p class="tip gold" data-step="9">顺便判断一下真假：(1) <span class="think" data-step="10" data-ask="真还是假？">假，反例 $a=1,\ b=0$；(2)(3)(4) 都是真命题。——<b>能指出条件、结论，与命题真假无关。</b></span></p>
+  </div>
+  <p class="note">课本 p25–26 例 1。第 9–10 步为补充追问：(1) 是假命题，但仍然有条件和结论；(3) 把原点 (0, 0) 代入得 k = 0。</p>
+</section>
+
+<!-- 7 ================= 例 2 改写 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>把“藏起来”的条件和结论找出来</h2></div>
+  <div class="bd full">
+    <p class="tip">将下列命题改写成“若 $p$，则 $q$”（或“如果 $p$，那么 $q$”）的形式：</p>
+    <div class="rw">
+      <div data-step="1"><span>(1) 有一个内角是 60° 的等腰三角形是正三角形</span><span class="think" data-step="2" data-ask="改写">若 <span class="hp">一个等腰三角形有一个内角是 60°</span>，则 <span class="hq">这个三角形是正三角形</span>。</span></div>
+      <div data-step="3"><span>(2) 对顶角相等</span><span class="think" data-step="4" data-ask="改写">若 <span class="hp">两个角是对顶角</span>，则 <span class="hq">这两个角相等</span>。</span></div>
+      <div data-step="5"><span>(3) 平行四边形的对角线互相平分</span><span class="think" data-step="6" data-ask="改写">如果 <span class="hp">一个四边形是平行四边形</span>，那么 <span class="hq">这个四边形的对角线互相平分</span>。</span></div>
+      <div data-step="7"><span>(4) 对角线互相平分的四边形是平行四边形</span><span class="think" data-step="8" data-ask="改写">如果 <span class="hp">一个四边形的对角线互相平分</span>，那么 <span class="hq">这个四边形是平行四边形</span>。</span></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="9" data-label="改写技巧">“……的 X 是 Y”：修饰语“……的 X”是条件，“是 Y”是结论；改写时补上主语（“一个四边形”“这个三角形”），句子才通顺完整。</p>
+      <p class="tip gold" data-step="10">(3) 与 (4) 的条件和结论正好<b>互换</b>——下一课会专门研究这种关系。</p>
+    </div>
+  </div>
+  <p class="note">课本 p26 例 2。重点是 (2)：“对顶角相等”只有五个字，学生容易写成“若是对顶角，则相等”，要补上“两个角”“这两个角”。(3)(4) 互换条件与结论，为 2.2 的“充要条件”和平行四边形的性质定理、判定定理埋下伏笔。</p>
+</section>
+
+<!-- 8 ================= 例 3 真假 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>判断真假：真要证明，假举反例</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="jcard" data-step="1"><p>(1) 若 $a=b$，则 $a^2=b^2$；</p><div class="think" data-step="2" data-ask="真还是假？凭什么？"><p><span class="verdict ok">真</span>当 $a=b$ 时，显然有 $a^2=b^2$。</p></div></div>
+      <div class="jcard" data-step="3"><p>(2) 若 $a^2=b^2$，则 $a=b$；</p><div class="think" data-step="4" data-ask="真还是假？凭什么？"><p><span class="verdict x">假</span>当 $a=1,\ b=-1$ 时，$a^2=b^2=1$，即由 $a^2=b^2$ 不能推出 $a=b$。</p></div></div>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="5"><p>(3) 全等三角形的面积相等；</p><div class="think" data-step="6" data-ask="真还是假？凭什么？"><p><span class="verdict ok">真</span>由全等三角形的定义可知，当两个三角形全等时，这两个三角形的面积一定相等。</p></div></div>
+      <div class="jcard" data-step="7"><p>(4) 面积相等的三角形全等。</p><div class="think" data-step="8" data-ask="真还是假？"><p><span class="verdict x">假</span>反例见下一页：同底等高的两个三角形。</p></div></div>
+    </div>
+    <p class="method span2" data-step="9" data-label="课本旁注">判断命题为真，需要进行证明；判断命题为假，只要举出一个满足条件、但结论不成立的<b>反例</b>。</p>
+  </div>
+  <p class="note">课本 p26 例 3 与旁注“判断命题为假，该怎样做？”。(1)(2) 一对、(3)(4) 一对，都是条件和结论互换：原命题真，互换后不一定真。</p>
+</section>
+
+<!-- 9 ================= 核心交互：拖顶点找反例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手找反例</span><h2>面积相等的三角形，一定全等吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 2-1-1：直角三角形 $ABC$ 与三角形 $A'BC$ <b>同底等高</b>。拖动 $A'$，让它沿着与 $BC$ 平行的直线移动。</p>
+      <div class="readout tri-read" id="triRead"></div>
+      <p class="tip feedback" id="triMsg"></p>
+      <p class="tip gold" data-step="1">$A'$ 走到正中（$A'B=A'C$，等腰）时，<span class="think" data-step="2" data-ask="面积？全等吗？">面积仍是 6，但三边是 $\sqrt{13},\sqrt{13},4$，与 $3,4,5$ 不同——两个三角形不全等。这就是课本的反例。</span></p>
+    </div>
+    <div class="col">
+      <div id="tri" class="tri"></div>
+      <p class="muted center small-t">拖动橙色点 $A'$（$BC=4$，高 $=3$）</p>
+    </div>
+  </div>
+  <p class="note">课本 p26 例 3(4)、图 2-1-1。请学生拖动 A′，观察：面积始终等于 ½ × 4 × 3 = 6，三边却在变。说明：A′ 正好走到 C 的正上方时，A′BC 与 ABC 恰好全等（翻折重合）——可见“面积相等”时偶尔会全等，但不是“一定”全等，所以命题为假。</p>
+</section>
+
+<!-- 10 ================= 定理与定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理 · 定义</span><h2>推理的依据从哪里来？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="def" data-step="1"><h4>定理（课本 p27）</h4>在数学中，有些已经被<em>证明为真</em>的命题可以作为推理的依据而直接使用，一般称之为<b>定理</b>（theorem）。</div>
+      <div class="def" data-step="2"><h4>定义（课本 p27）</h4>定义（definition）是对某些对象标明符号、指明称谓，或者揭示所研究问题中对象的内涵。</div>
+    </div>
+    <div class="defn" data-step="3">
+      <p>例如：“<span class="hq">两组对边分别平行</span>的<span class="hp">四边形</span>叫作<b>平行四边形</b>”。</p>
+      <p class="muted">定义的特点是<b>用已知的对象及关系来解释、刻画陌生的对象</b>，并加以区别：“平行四边形”是通过已知的“四边形”与两组“对边”分别“平行”来描述的。</p>
+    </div>
+    <div class="cols3">
+      <p class="tip" data-step="4">“对顶角相等”是定理吗？<span class="think" data-step="5" data-ask="想一想">是，初中已经证明过，可以直接用。</span></p>
+      <p class="tip" data-step="4">第 3 页“两个偶数的和是偶数”呢？<span class="think" data-step="6" data-ask="想一想">刚刚证明为真，以后也可以当作依据。</span></p>
+      <p class="tip" data-step="4">第 3 页的证明用到了什么定义？<span class="think" data-step="7" data-ask="想一想">偶数的定义：能写成 $2m\ (m\in\mathbf Z)$ 的数。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p27。命题、定理、定义的关系：定理是证明为真的命题；定义是约定，不需要证明，但证明时常常要“回到定义”（如第 3 页回到偶数的定义）。</p>
+</section>
+
+<!-- 11 ================= 找错 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">找一找</span><h2>1 = 2？这个推导错在哪一步？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">习题 2.1 第 4 题：考察下述推导过程，找出错误原因。点你认为出错的那一步。</p>
+      <div class="pick chain" data-ans="s4">
+        <button data-k="s1">若 $x=y$，则有 $xy=y^2$，</button>
+        <button data-k="s2">从而有 $x^2-xy=x^2-y^2$，</button>
+        <button data-k="s3">即有 $x(x-y)=(x+y)(x-y)$。</button>
+        <button data-k="s4">所以 $x=x+y$。</button>
+        <button data-k="s5">又因为 $x=y$，所以 $x=2x$。</button>
+        <button data-k="s6">所以 $1=2$。</button>
+        <p class="pick-why">由 $x=y$ 知 $x-y=0$，两边同时除以 $x-y$ 就是<b>除以 0</b>，这一步没有依据。</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">每一步都要问：<b>依据是什么？</b></p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$xy=y^2$</span><i class="why">等式两边同乘 $y$ ✓</i></div>
+        <div class="dl" data-step="3"><span>$x^2-xy=x^2-y^2$</span><i class="why">两边同乘 $-1$ 再加 $x^2$ ✓</i></div>
+        <div class="dl" data-step="4"><span>$x(x-y)=(x+y)(x-y)$</span><i class="why">因式分解 ✓</i></div>
+        <div class="dl key" data-step="5"><span>$x=x+y$</span><span class="think" data-step="6" data-ask="依据？">两边除以 $x-y$——但 $x-y=0$！✗</span></div>
+      </div>
+      <p class="warn" data-step="7">等式两边可以同除以一个<b>不为 0</b> 的数。用字母做除数前，先想想它会不会是 0。</p>
+    </div>
+  </div>
+  <p class="note">习题 2.1 第 4 题（探究·拓展）。先让学生自己找，再点。这一页呼应本课主题：推理的每一步都要有依据（定义、定理、运算性质）；一步没有依据，结论就不可信。</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 写出命题“若 $q\ge -1$，则方程 $x^2+2x-q=0$ 有实数解”的条件和结论，并判断真假。</p>
+        <details><summary>提示 1</summary>“若”后面是条件，“则”后面是结论。</details>
+        <details><summary>提示 2</summary>一元二次方程有实数解 ⇔ 判别式 $\Delta\ge 0$。</details>
+        <details><summary>完整解答</summary>$p$：$q\ge -1$；$q$：方程 $x^2+2x-q=0$ 有实数解。$\Delta=4+4q=4(q+1)\ge 0$，所以是真命题。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 把“绝对值相等的数也相等”改写成“若 $p$，则 $q$”的形式，并判断真假。</p>
+        <details><summary>提示 1</summary>“……的数”是条件，补上主语“两个数”。</details>
+        <details><summary>提示 2</summary>$|2|=|-2|$，$2=-2$ 吗？</details>
+        <details><summary>完整解答</summary>若两个数的绝对值相等，则这两个数相等。假命题，反例：$|2|=|-2|$，但 $2\ne-2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 判断真假：若一个整数的个位数字是 0，则这个数是 5 的倍数。</p>
+        <details><summary>提示 1</summary>个位数字是 0 的整数可以怎样用字母表示？</details>
+        <details><summary>提示 2</summary>设这个数为 $10k\ (k\in\mathbf Z)$。</details>
+        <details><summary>完整解答</summary>真命题。设这个数为 $10k\ (k\in\mathbf Z)$，则 $10k=5\cdot 2k$，$2k\in\mathbf Z$，所以它是 5 的倍数。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p27 练习 1(6)、练习 2(1)、练习 3(2)。第 3 题的证明格式模仿第 3 页“两个偶数的和是偶数”。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">命题：可判断真假的陈述句；“若 $p$，则 $q$”：$p$ 是条件，$q$ 是结论。</p>
+        <p class="recall" data-label="定理 · 定义">定理：已证明为真、可直接使用的命题；定义：用已知刻画陌生的对象。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断真假">真：证明（每步有依据）；假：举一个反例。</p>
+        <p class="method" data-label="改写">找出修饰语（条件）与判断（结论），补全主语。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="演绎推理">“清晰的直觉 + 严格的演绎”：直觉提出猜想，推理确认真假。</p>
+        <p class="recall" data-label="一般与特殊">“任意”要一般地证，反驳只要特殊的一例。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>2.2 充分条件、必要条件、充要条件——“若 $p$，则 $q$”为真时，记作 $p\Rightarrow q$。$p$ 与 $q$ 之间是什么关系？</p>
+  </div>
+  <p class="note">课后作业建议：习题 2.1 第 1、2、3 题。第 3(2) 题“若 x ∈ A ∩ B，则 x ∈ A ∪ B”把第 1 章的集合与本章联系起来。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

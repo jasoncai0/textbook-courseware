@@ -1,0 +1,19 @@
+/* 课本插件 · 实体着色立体图样式（配合 poly3d.js，在 math.css 之后加载） */
+.p3d { position: relative; min-height: 0; touch-action: none; }
+.p3d svg { display: block; width: 100%; height: 100%; overflow: visible; font-size: 16px; }
+.p3d svg.rot { cursor: grab; }
+.p3d svg.rot:active { cursor: grabbing; }
+.p3d :is(path, line, polygon, circle) { vector-effect: non-scaling-stroke; }
+.p3d .pf { fill: var(--pf, #e3f1fb); stroke: none; }
+.p3d .pf.sm { stroke: var(--pf, #e3f1fb); stroke-width: .8; } /* 光滑曲面的小面片：同色描边盖住接缝；颜色类只需改 --pf */
+.p3d .pe { stroke: var(--ink, #1f2d3a); stroke-width: 2.2; fill: none; stroke-linecap: round; }
+.p3d .pe.h { stroke: #8c9cab; stroke-width: 1.8; stroke-dasharray: 7 6; }
+.p3d .pe.cut { stroke: #c0392b; stroke-width: 3; }
+.p3d .pd { fill: var(--ink, #1f2d3a); }
+.p3d .pl { font-size: 1.5em; font-weight: bold; text-anchor: middle; fill: var(--ink, #1f2d3a); font-family: var(--serif); }
+.p3d .pt { font-size: 1.15em; fill: var(--ink, #1f2d3a); font-family: var(--serif); paint-order: stroke; stroke: rgba(255, 255, 255, .85); stroke-width: 4px; }
+.p3d .pf.in { filter: brightness(.86); }
+.p3d .sphere { fill: var(--pf, #e3f1fb); stroke: var(--ink, #1f2d3a); stroke-width: 2.2; }
+@media (max-width: 820px), (max-height: 520px) {
+  .p3d svg { height: auto; max-height: 62vh; }
+}

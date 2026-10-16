@@ -4907,19 +4907,31 @@ window.CATALOG = [
                 "no": "1.1",
                 "title": "集合的概念与表示",
                 "genre": "概念",
-                "kind": "集合"
+                "kind": "集合",
+                "dir": "mg10a-jihegainian",
+                "pages": 13,
+                "desc": "拖数入圈分拣，描述法逐个过筛",
+                "cover": "mg10a-jihegainian/assets/niaoqun.jpg"
               },
               {
                 "no": "1.2",
                 "title": "子集、全集、补集",
                 "genre": "概念",
-                "kind": "集合"
+                "kind": "集合",
+                "dir": "mg10a-zijibuji",
+                "pages": 13,
+                "desc": "选/不选枚举子集，生成树推出2ⁿ",
+                "cover": "mg10a-zijibuji/assets/shujia.jpg"
               },
               {
                 "no": "1.3",
                 "title": "交集、并集",
                 "genre": "概念",
-                "kind": "集合"
+                "kind": "集合",
+                "dir": "mg10a-jiaojibingji",
+                "pages": 13,
+                "desc": "数轴拖区间端点，实时求交与并",
+                "cover": "mg10a-jiaojibingji/assets/saichang.jpg"
               }
             ]
           },
@@ -4932,19 +4944,31 @@ window.CATALOG = [
                 "no": "2.1",
                 "title": "命题、定理、定义",
                 "genre": "概念",
-                "kind": "常用逻辑用语"
+                "kind": "常用逻辑用语",
+                "dir": "mg10a-mingti",
+                "pages": 13,
+                "desc": "拖顶点 A′ 找“等积不全等”反例",
+                "cover": "mg10a-mingti/assets/taolun.jpg"
               },
               {
                 "no": "2.2",
                 "title": "充分条件、必要条件、充要条件",
                 "genre": "推导",
-                "kind": "常用逻辑用语"
+                "kind": "常用逻辑用语",
+                "dir": "mg10a-chongyaotiaojian",
+                "pages": 13,
+                "desc": "拖动两个集合圈，判充分/必要/充要",
+                "cover": "mg10a-chongyaotiaojian/assets/dianlu.jpg"
               },
               {
                 "no": "2.3",
                 "title": "全称量词命题与存在量词命题",
                 "genre": "概念",
-                "kind": "常用逻辑用语"
+                "kind": "常用逻辑用语",
+                "dir": "mg10a-liangcimingti",
+                "pages": 12,
+                "desc": "换集合 M 看 ∀/∃ 判真变化",
+                "cover": "mg10a-liangcimingti/assets/shuizu.jpg"
               }
             ]
           },
@@ -5185,7 +5209,11 @@ window.CATALOG = [
                 "no": "9.3",
                 "title": "向量基本定理及坐标表示",
                 "genre": "推导",
-                "kind": "平面向量"
+                "kind": "平面向量",
+                "dir": "mg10b-xiangliangjibendingli",
+                "pages": 16,
+                "desc": "拖基底与终点，实时分解出 λ₁、λ₂ 与坐标",
+                "cover": "mg10b-xiangliangjibendingli/assets/fanchuan.jpg"
               },
               {
                 "no": "9.4",
@@ -5245,19 +5273,31 @@ window.CATALOG = [
                 "no": "11.1",
                 "title": "余弦定理",
                 "genre": "推导",
-                "kind": "解三角形"
+                "kind": "解三角形",
+                "dir": "mg10b-yuxiandingli",
+                "pages": 13,
+                "desc": "拖夹角看勾股缺口 −2bc·cosA",
+                "cover": "mg10b-yuxiandingli/assets/shuitang.jpg"
               },
               {
                 "no": "11.2",
                 "title": "正弦定理",
                 "genre": "推导",
-                "kind": "解三角形"
+                "kind": "解三角形",
+                "dir": "mg10b-zhengxiandingli",
+                "pages": 12,
+                "desc": "外接圆比值=2R；圆弧定 SSA 解数",
+                "cover": "mg10b-zhengxiandingli/assets/dengshan.jpg"
               },
               {
                 "no": "11.3",
                 "title": "余弦定理、正弦定理的应用",
                 "genre": "推导",
-                "kind": "解三角形"
+                "kind": "解三角形",
+                "dir": "mg10b-sanjiaoyingyong",
+                "pages": 12,
+                "desc": "河对岸测距模拟、救援时间轴",
+                "cover": "mg10b-sanjiaoyingyong/assets/jiuyuan.jpg"
               }
             ]
           },
@@ -5270,25 +5310,41 @@ window.CATALOG = [
                 "no": "12.1",
                 "title": "复数的概念",
                 "genre": "概念",
-                "kind": "复数"
+                "kind": "复数",
+                "dir": "mg10b-fushugainian",
+                "pages": 12,
+                "desc": "点数放进维恩图判类别",
+                "cover": "mg10b-fushugainian/assets/kaerdan.jpg"
               },
               {
                 "no": "12.2",
                 "title": "复数的运算",
                 "genre": "推导",
-                "kind": "复数"
+                "kind": "复数",
+                "dir": "mg10b-fushuyunsuan",
+                "pages": 12,
+                "desc": "乘法四格表、i 的乘方循环",
+                "cover": "mg10b-fushuyunsuan/assets/sishi.jpg"
               },
               {
                 "no": "12.3",
                 "title": "复数的几何意义",
                 "genre": "概念",
-                "kind": "复数"
+                "kind": "复数",
+                "dir": "mg10b-fushujiheyiyi",
+                "pages": 10,
+                "desc": "拖点作平行四边形、点集",
+                "cover": "mg10b-fushujiheyiyi/assets/hanghai.jpg"
               },
               {
                 "no": "12.4",
                 "title": "复数的三角形式",
                 "genre": "推导",
-                "kind": "复数"
+                "kind": "复数",
+                "dir": "mg10b-fushusanjiaoxingshi",
+                "pages": 12,
+                "desc": "乘法=旋转+伸缩演示、单位根",
+                "cover": "mg10b-fushusanjiaoxingshi/assets/motianlun.jpg"
               }
             ]
           },

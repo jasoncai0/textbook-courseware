@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>余弦定理、正弦定理的应用 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jiuyuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第11章 解三角形 · 11.3</p>
+    <h1 class="cover-title">余弦定理、正弦定理的应用</h1>
+    <p class="cover-q" data-step="1">渔轮遇险，正以 9 n mile/h 向小岛靠拢；舰艇在 10 n mile 外，速度 21 n mile/h。</p>
+    <p class="cover-q" data-step="2">舰艇该朝<b>哪个方向</b>开？<b>多久</b>能追上？——题目里没有现成的三角形，三角形要我们自己“搭”出来。</p>
+    <div class="chips" data-step="3"><span class="chip">建立数学模型</span><span class="chip">两个定理配合</span><span class="chip">测量问题</span><span class="chip">最值问题</span></div>
+  </div>
+  <p class="note">课本 p96–97 例 2 的情境。先让学生说说：哪些量是已知的？要求的是什么？“三角形在哪里？”——本课的主线就是“从实际问题里找出（构造出）三角形”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>两件主工具 + 三样辅助</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="11.1 · 余弦定理" data-step="1">
+        <p>$a^2=b^2+c^2-2bc\cos A$；$\cos A=\dfrac{b^2+c^2-a^2}{2bc}$</p>
+        <span class="use">已知两边夹角求第三边；已知三边求角（结果唯一）。</span>
+      </div>
+      <div class="recall" data-label="11.2 · 正弦定理（上一课）" data-step="2">
+        <p>$\dfrac a{\sin A}=\dfrac b{\sin B}=\dfrac c{\sin C}=2R$</p>
+        <span class="use">已知两角一边求边；已知两边一对角求角（注意两解）。</span>
+      </div>
+      <div class="recall" data-label="课本 p97 旁注 · 方位角；初中 · 仰角俯角" data-step="3">
+        <p><b>方位角</b>：从指北方向线<b>顺时针</b>转到目标方向线的角。仰角、俯角：视线与水平线的夹角。</p>
+        <span class="use">把航行、观测的文字条件翻译成三角形的角。</span>
+      </div>
+      <div class="recall" data-label="第 9 章 9.4 · 向量应用；第 10 章 10.1 · 两角和与差" data-step="4">
+        <p>力的合成用平行四边形法则；$\sin\alpha-\sqrt3\cos\alpha=2\sin\left(\alpha-\dfrac\pi3\right)$。</p>
+        <span class="use">例 3 力的平衡；例 4 把面积化成一个正弦型函数求最大值。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">前两张卡请学生口答“各能解决哪两类问题”，这决定了本课每道题“先解哪个三角形、用哪个定理”。第四张卡中的变形来自第 10 章两角差的正弦公式：2 sin(α − π/3) = 2(sin α cos π/3 − cos α sin π/3)。</p>
+</section>
+
+<!-- 3 ================= 一般步骤 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法</span><h2>解实际问题的三步，和“选哪个定理”</h2></div>
+  <div class="bd full">
+    <div class="steps3">
+      <div class="stp" data-step="1"><b>① 建模</b><p>根据题意画图，找出（或构造出）三角形，标出已知量与所求量。</p></div>
+      <div class="stp" data-step="2"><b>② 解三角形</b><p>选用余弦定理、正弦定理；一个三角形不够，就<b>接力</b>解几个。</p></div>
+      <div class="stp" data-step="3"><b>③ 检验</b><p>根据实际意义检验、取舍；按实际需要进行近似计算。</p></div>
+    </div>
+    <p class="tip">在一个三角形中，已知下列元素时，先用哪个定理？（先想，再点开）</p>
+    <div class="cols2">
+      <p class="tip" data-step="4">三边　<span class="think" data-step="5" data-ask="哪个？">余弦定理求角</span></p>
+      <p class="tip" data-step="4">两边和夹角　<span class="think" data-step="5" data-ask="哪个？">余弦定理求第三边</span></p>
+      <p class="tip" data-step="6">两角和一边　<span class="think" data-step="7" data-ask="哪个？">先求第三角，再用正弦定理</span></p>
+      <p class="tip" data-step="6">两边和其中一边的对角　<span class="think" data-step="7" data-ask="哪个？">正弦定理求另一对角（检验两解）；也可用余弦定理列方程求第三边</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p96 正文。“三步”请学生在练习本上抄下来，后面每道例题都按这三步复盘。最后一类“两边一对角”也可以用余弦定理：如 a² = b² + c² − 2bc cos A 看成关于 c 的一元二次方程，根的个数就是解的个数——与上一课的弧线图一致。</p>
+</section>
+
+<!-- 4 ================= 例 1 测量模拟 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 模拟测量</span><h2>河对岸两点 $A,B$ 都去不了，怎么量 $AB$？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="river" class="riverb"></div>
+      <label class="chk" data-noswipe><input type="checkbox" id="rvRound"> 测角仪只读到 $1^\circ$</label>
+    </div>
+    <div class="col">
+      <p class="tip">在这边岸上取点 $C,D$，量出 $CD$ 和四个角。拖动 $C$、$D$ 换个位置测——结果一样吗？</p>
+      <table class="mtab" id="rvTab"></table>
+      <p class="tip gold" id="rvRes"></p>
+      <p class="tip" data-step="1">要算 $AB$，需要 $\triangle ABC$ 中的哪些量？　<span class="think" data-step="2" data-ask="倒着想">$AC$、$BC$ 和夹角 $\angle ACB=\angle BCD-\angle ACD$——两边夹角，余弦定理。</span></p>
+      <p class="tip" data-step="3">$AC$、$BC$ 从哪来？　<span class="think" data-step="4" data-ask="倒着想">$\triangle ADC$、$\triangle BDC$ 中都已知 $CD$ 和两个角——正弦定理。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p96 例 1、图 11-3-1。默认位置就是课本数据（CD = 100 m，四个角 85°、60°、47°、72°）。先请学生拖动 C、D，观察：测量值变了，算出的 AB 不变——说明方法可靠。再勾选“只读到 1°”，结果会有零点几米的误差，引出“近似计算”和“检验”。最后用两个问题倒推出解题路线。</p>
+</section>
+
+<!-- 5 ================= 例 1 解答 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>正弦定理两次 → 余弦定理一次：接力解三角形</h2></div>
+  <div class="bd full">
+    <p class="tip">测得 $\angle ADC=85^\circ$，$\angle BDC=60^\circ$，$\angle ACD=47^\circ$，$\angle BCD=72^\circ$，$CD=100\text{ m}$，$A,B,C,D$ 在同一平面内，求 $A,B$ 两点之间的距离（精确到 1 m）。</p>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>$\triangle ADC$ 中</span><span>$\angle DAC=180^\circ-85^\circ-47^\circ=48^\circ$，$AC=\dfrac{DC\sin\angle ADC}{\sin\angle DAC}=\dfrac{100\sin85^\circ}{\sin48^\circ}\approx134.05$</span><i class="why">两角一边 → 正弦定理</i></div>
+      <div class="dl" data-step="2"><span>$\triangle BDC$ 中</span><span>$\angle DBC=180^\circ-60^\circ-72^\circ=48^\circ$，$BC=\dfrac{DC\sin\angle BDC}{\sin\angle DBC}=\dfrac{100\sin60^\circ}{\sin48^\circ}\approx116.54$</span><i class="why">两角一边 → 正弦定理</i></div>
+      <div class="dl key" data-step="3"><span>$\triangle ABC$ 中</span><span>$AB^2=134.05^2+116.54^2-2\times134.05\times116.54\cos(72^\circ-47^\circ)\approx3\,233.95$</span><i class="why">两边夹角 → 余弦定理</i></div>
+      <div class="dl end" data-step="4"><span>所以</span><span>$AB\approx57\text{ (m)}$</span><i class="why"></i></div>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="5"><b>答</b>　$A,B$ 两点之间的距离约为 57 m。</p>
+      <p class="method" data-step="6" data-label="接力">所求量所在的三角形条件不够时，先在<b>相邻</b>三角形里求出公共边，再“传”过去。</p>
+    </div>
+  </div>
+  <p class="note">课本 p96 例 1 解答。中间结果保留两位小数，最后再取整，避免误差累积。可以追问：只解 △ADC 和 △BDC 中的一个行不行？（不行，AC 与 BC 都要。）</p>
+</section>
+
+<!-- 6 ================= 例 2 救援 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>舰艇往哪开、多久追上？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sea" class="seab"></div>
+      <div class="slider-row" data-noswipe>时间<input type="range" id="seaT" min="0" max="60" step="1" value="0"><b id="seaTV" class="v"></b></div>
+      <p class="tip center muted small-t" id="seaInfo"></p>
+    </div>
+    <div class="col">
+      <p class="tip">舰艇在 $A$ 处测出渔轮在方位角 $45^\circ$、距离 10 n mile 的 $C$ 处，渔轮正沿方位角 $105^\circ$ 方向以 9 n mile/h 向小岛靠拢；舰艇以 21 n mile/h 前去营救。求航向和时间（角度精确到 $0.1^\circ$，时间精确到 1 min）。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设</span><span class="think" data-step="2" data-ask="未知数设什么？">$x$ h 后在 $B$ 处靠拢，$AB=21x$，$BC=9x$</span><i class="why">路程 = 速度 × 时间</i></div>
+        <div class="dl" data-step="3"><span>$\angle ACB$</span><span class="think" data-step="4" data-ask="怎么算？">$=45^\circ+(180^\circ-105^\circ)=120^\circ$</span><i class="why">方位角：由指北方向顺时针量</i></div>
+        <div class="dl" data-step="5"><span>$(21x)^2$</span><span>$=10^2+(9x)^2-2\times10\times9x\cos120^\circ$</span><i class="why">余弦定理</i></div>
+        <div class="dl" data-step="6"><span>化简</span><span>$36x^2-9x-10=0$，$x=\dfrac23$（负值舍去）</span><i class="why">$\frac23$ h $=40$ min</i></div>
+        <div class="dl" data-step="7"><span>$\sin\angle BAC$</span><span>$=\dfrac{9x\sin120^\circ}{21x}=\dfrac{3\sqrt3}{14}$，$\angle BAC\approx21.8^\circ$</span><i class="why">正弦定理；$BC\lt AB$，角为锐角</i></div>
+      </div>
+      <p class="tip" data-step="8"><b>答</b>　舰艇应沿方位角 $45^\circ+21.8^\circ=66.8^\circ$ 的方向航行，经过 40 min 就可靠拢渔轮。</p>
+    </div>
+  </div>
+  <p class="note">课本 p96–97 例 2、图 11-3-2。先不讲解法，拖动时间滑块：舰艇沿 66.8° 航行，40 min 时两船恰好在 B 点相遇——让学生明白“相遇点 B 是未知的，要用时间 x 把它表示出来”。∠ACB = 120° 的求法要画出 C 处的指北方向线讲清楚。</p>
+</section>
+
+<!-- 7 ================= 例 3 力 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>三个力平衡：力的三角形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="force" class="forceb"></div>
+      <p class="tip muted small-t center">按 $F_1=30$、$F_2=50$、夹角 $60^\circ$ 等比例画出（图 11-3-3）</p>
+    </div>
+    <div class="col">
+      <p class="tip">作用于同一点的三个力 $F_1,F_2,F_3$ 平衡。已知 $F_1=30\text{ N}$，$F_2=50\text{ N}$，$F_1$ 与 $F_2$ 之间的夹角是 $60^\circ$，求 $F_3$ 的大小与方向（精确到 $0.1^\circ$）。</p>
+      <p class="tip" data-step="1">平衡意味着什么？　<span class="think" data-step="2" data-ask="想一想">$F_3$ 与 $F_1,F_2$ 的合力 $F$ <b>大小相等、方向相反</b>。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$F$</span><span>$=\sqrt{30^2+50^2-2\times30\times50\cos120^\circ}$</span><span class="think" data-step="4" data-ask="为什么是 120°？">$\triangle OF_1F$ 中，$\angle OF_1F$ 与 $60^\circ$ 互补（平行四边形邻角）</span></div>
+        <div class="dl" data-step="4"><span></span><span>$=\sqrt{4\,900}=70\text{ (N)}$</span><i class="why">$\cos120^\circ=-\frac12$</i></div>
+        <div class="dl" data-step="5"><span>$\sin\angle F_1OF$</span><span>$=\dfrac{50\sin120^\circ}{70}=\dfrac{5\sqrt3}{14}$</span><i class="why">正弦定理</i></div>
+        <div class="dl end" data-step="6"><span></span><span>$\angle F_1OF\approx38.2^\circ$，$\angle F_1OF_3\approx141.8^\circ$</span><i class="why">$50\lt70$，所以 $\angle F_1OF$ 是锐角</i></div>
+      </div>
+      <p class="tip" data-step="7"><b>答</b>　$F_3$ 为 70 N，$F_3$ 和 $F_1$ 间的夹角为 $141.8^\circ$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p97–98 例 3。物理的力的合成与数学的解三角形在这里接上：平行四边形的一半就是三角形。由 sin 值求角时提醒检验：对着 50 的角小于对着 70 的角（120°），所以只能是锐角。</p>
+</section>
+
+<!-- 8 ================= 例 4 探究 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 先探究</span><h2>点 $B$ 在哪里，四边形 $OACB$ 面积最大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="semi4" class="semi4b"></div>
+      <p class="tip center muted small-t">拖动半圆上的点 $B$；$\triangle ABC$ 始终是等边三角形</p>
+    </div>
+    <div class="col">
+      <p class="tip">半圆 $O$ 的直径为 2，$A$ 为直径延长线上一点，$OA=2$，$B$ 为半圆上任意一点，以 $AB$ 为一边作等边 $\triangle ABC$。</p>
+      <div id="area4" class="area4b"></div>
+      <p class="tip gold" id="area4V"></p>
+      <p class="tip" data-step="1">面积由什么唯一确定？用什么作自变量？　<span class="think" data-step="2" data-ask="想一想">由 $B$ 的位置确定，设 $\angle AOB=\alpha\ (0\lt\alpha\lt\pi)$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p98 例 4、图 11-3-4。先让学生拖动 B 找“最大”的位置，右边的 S–α 图象同步描点。猜一猜：最大值在 α = π/2 吗？（不是！在 5π/6 附近。）下一页用余弦定理和三角恒等变换精确求出来。</p>
+</section>
+
+<!-- 9 ================= 例 4 解答 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>用 $\alpha$ 表示面积，再求最大值</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>$\triangle AOB$ 中</span><span>$AB^2=1^2+2^2-2\times1\times2\cos\alpha=5-4\cos\alpha$</span><i class="why">余弦定理</i></div>
+      <div class="dl" data-step="2"><span>$S$</span><span>$=S_{\triangle AOB}+S_{\triangle ABC}=\dfrac12OA\cdot OB\sin\alpha+\dfrac{\sqrt3}4AB^2$</span><i class="why">等边三角形面积 $\frac{\sqrt3}4\times$边长$^2$</i></div>
+      <div class="dl" data-step="3"><span></span><span>$=\dfrac12\times2\times1\times\sin\alpha+\dfrac{\sqrt3}4(5-4\cos\alpha)$</span><i class="why"></i></div>
+      <div class="dl key" data-step="4"><span></span><span>$=\sin\alpha-\sqrt3\cos\alpha+\dfrac54\sqrt3=2\sin\left(\alpha-\dfrac\pi3\right)+\dfrac54\sqrt3$</span><span class="think" data-step="5" data-ask="怎么合成一个正弦？">$\sin\alpha-\sqrt3\cos\alpha=2\left(\sin\alpha\cos\frac\pi3-\cos\alpha\sin\frac\pi3\right)$（第 10 章）</span></div>
+      <div class="dl end" data-step="6"><span>$0\lt\alpha\lt\pi$</span><span>当 $\alpha-\dfrac\pi3=\dfrac\pi2$，即 $\alpha=\dfrac{5\pi}6$ 时，$S$ 最大</span><i class="why">$\alpha-\frac\pi3\in\left(-\frac\pi3,\frac{2\pi}3\right)$，能取到 $\frac\pi2$</i></div>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="7">所以当 $\angle AOB=\dfrac{5\pi}6$ 时，四边形 $OACB$ 的面积最大，最大值为 $2+\dfrac54\sqrt3\approx4.17$。</p>
+      <p class="method" data-step="8" data-label="几何最值">选一个能<b>唯一确定</b>图形的量作自变量 → 用正、余弦定理表示所求量 → 化成函数求最值，注意自变量范围。</p>
+    </div>
+  </div>
+  <p class="note">课本 p98 例 4 解答（课本只答出位置，最大值 2 + 5√3/4 是顺带算出的，可与上一页图象的最高点对照）。学生常在第 4 行卡住，回顾第 10 章“辅助角”的变形。</p>
+</section>
+
+<!-- 10 ================= 测量问题归纳 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>测量中的几类基本问题（习题 11.3 第 10 题）</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1"><p><b>求距离 · 两点间不可达又不可视</b>（如水塘两端）</p><div class="think" data-step="2" data-ask="怎么求 AB？"><p>另选 $C$，测 $CA=b$、$CB=a$ 与 $\angle C$ → 余弦定理（11.1 例 2）。</p></div></div>
+      <div class="jcard" data-step="3"><p><b>求距离 · 可视但不可达</b>（如河对岸一点）</p><div class="think" data-step="4" data-ask="怎么求 AB？"><p>在岸上取基线 $BC=a$，测 $\angle B,\angle C$ → 两角一边，正弦定理（11.2 练习 2）。</p></div></div>
+      <div class="jcard" data-step="5"><p><b>求距离 · 两点都不可达</b></p><div class="think" data-step="6" data-ask="怎么求 AB？"><p>取基线 $CD=a$，测四个角 → 两次正弦定理 + 一次余弦定理（本课例 1）。</p></div></div>
+      <div class="jcard" data-step="7"><p><b>求高度 · 底部可达</b></p><div class="think" data-step="8" data-ask="怎么求 AB？"><p>量 $CB=a$ 与仰角 → 直角三角形 $AB=a\tan C$。</p></div></div>
+      <div class="jcard" data-step="9"><p><b>求高度 · 底部不可达</b></p><div class="think" data-step="10" data-ask="怎么求 AB？"><p>在同一直线上两处测仰角，间距 $CD=a$ → 先用正弦定理求斜边，再在直角三角形中求高（11.2 例 3、习题 11.2 第 3 题）。</p></div></div>
+      <div class="jcard" data-step="11"><p><b>它们的共同点</b></p><div class="think" data-step="12" data-ask="说一说"><p>都要在<b>能到达</b>的地方选一条可量的<b>基线</b>，再测角，把不可量的线段放进三角形里算。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p100 习题 11.3 第 10 题的表格。每张卡先请学生说方案再点开。最后一张是本课的思想总结：基线 + 测角。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某人在高出海面 600 m 的山上 $P$ 处，测得海面上的航标 $A$ 在正东方向，俯角为 $30^\circ$；航标 $B$ 在南偏东 $60^\circ$ 的方向上，俯角为 $45^\circ$，求两个航标间的距离。</p>
+        <details><summary>提示 1</summary>设山脚为 $C$（$PC=600$），先在两个直角三角形中求 $CA$、$CB$。</details>
+        <details><summary>提示 2</summary>$CA=600\sqrt3$，$CB=600$，$\angle ACB=90^\circ-60^\circ=30^\circ$。</details>
+        <details><summary>完整解答</summary>$AB^2=(600\sqrt3)^2+600^2-2\times600\sqrt3\times600\cos30^\circ=360\,000$，所以 $AB=600\text{ m}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 从 200 m 高的电视塔塔顶 $A$ 测得地面上某两点 $B,C$ 的俯角分别为 $30^\circ$ 和 $45^\circ$，$\angle BAC=45^\circ$，求这两个点之间的距离（精确到 0.1 m）。</p>
+        <details><summary>提示 1</summary>在两个直角三角形中先求斜线段 $AB$、$AC$。</details>
+        <details><summary>提示 2</summary>$AB=\dfrac{200}{\sin30^\circ}=400$，$AC=\dfrac{200}{\sin45^\circ}=200\sqrt2$。</details>
+        <details><summary>完整解答</summary>$BC^2=400^2+(200\sqrt2)^2-2\times400\times200\sqrt2\cos45^\circ=80\,000$，$BC=200\sqrt2\approx282.8\text{ m}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 把一根长为 30 cm 的木条锯成两段，分别作钝角三角形 $ABC$ 的两边 $AB$ 和 $BC$，且 $\angle ABC=120^\circ$。如何锯断木条，才能使第三条边 $AC$ 最短？</p>
+        <details><summary>提示 1</summary>设 $AB=x$，则 $BC=30-x$，用余弦定理表示 $AC^2$。</details>
+        <details><summary>提示 2</summary>$AC^2=x^2+(30-x)^2+x(30-x)=x^2-30x+900$。</details>
+        <details><summary>完整解答</summary>$AC^2=(x-15)^2+675$，当 $x=15$ 时 $AC$ 最短，为 $15\sqrt3$ cm——从中点锯断。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题是课本 p99 练习 4，第 2、3 题是习题 11.3 第 2、7 题。每题都先画图、标已知量（建模），再选定理。第 3 题与例 4 呼应：几何最值化成函数最值。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="recall" data-label="两个定理">余弦定理：三边 / 两边夹角；正弦定理：两角一边 / 两边一对角。</p>
+        <p class="recall" data-label="术语">方位角、仰角、俯角；基线。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="三步">建模 → 解三角形（必要时接力） → 检验、取舍、近似。</p>
+        <p class="method" data-label="最值">选自变量，用定理表示，化为函数求最值。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数学建模">实际问题 → 三角形 → 计算 → 回到实际。</p>
+        <p class="recall" data-label="转化">不可量的距离 → 可量的基线和角。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>延伸阅读：</b>课本 p101「问题与探究 · 海伦—秦九韶公式」——只知道三边，怎样直接算三角形的面积？$S=\sqrt{p(p-a)(p-b)(p-c)}$，$p=\frac12(a+b+c)$。</p>
+  </div>
+  <p class="note">请学生用本课任意一个例题说出“三步”分别做了什么。课后作业建议：习题 11.3 第 1、3、4、5 题；第 8 题（两人沿交成 60° 的直路行走，何时距离最短）与例 4 同类。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
