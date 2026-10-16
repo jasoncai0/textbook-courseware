@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全等图形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mfold.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fengye.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第1章 全等三角形 · 1.1</p>
+    <h1 class="cover-title">全等图形</h1>
+    <p class="cover-q" data-step="1">用同样大小的正方形纸片，按同样的步骤剪出一片片“枫叶”，再拼成一幅图案。</p>
+    <p class="cover-q" data-step="2">这些枫叶<b>形状一样、大小也一样</b>——把一片叠到另一片上，会发生什么？</p>
+    <div class="chips" data-step="3"><span class="chip">能完全重合</span><span class="chip">叠一叠来验证</span><span class="chip">平移 · 翻折 · 旋转</span><span class="chip">分割成全等图形</span></div>
+  </div>
+  <p class="note">课本 p5 章首“枫叶”情境。先问：两片枫叶有什么关系？学生一般会说“一模一样”。追问：“一模一样”在数学里怎样说得更准确？——引出“能完全重合”。本章的主线：全等图形 → 全等三角形 → 三角形全等的条件。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 5.2 · 图形的运动" data-step="1">
+        <p>图形的运动有三种：<b>平移</b>、<b>旋转</b>、<b>翻折</b>。</p>
+        <p>平移：沿某个方向移动一定距离；旋转：绕一个点转一个角度；翻折：沿一条直线翻过去。</p>
+        <p class="small-t"><a href="../mj7a-tuxingyundong/index.html">回看：七上 5.2 图形的运动</a></p>
+        <span class="use">把一个图形“搬”到另一个图形上，看能不能重合。</span>
+      </div>
+      <div class="recall" data-label="七下 7.3 · 图形的平移" data-step="2">
+        <p>平移<b>不改变</b>图形的形状和大小，只改变位置。</p>
+        <p>平移前后，对应线段相等，对应角相等。</p>
+        <p class="small-t"><a href="../mj7b-pingyi/index.html">回看：七下 7.3 图形的平移</a></p>
+        <span class="use">说明“位置变了，图形本身没变”。</span>
+      </div>
+      <div class="recall" data-label="小学 · 轴对称图形" data-step="3">
+        <p>把一个图形沿一条直线对折，两边<b>完全重合</b>，这个图形叫轴对称图形。</p>
+        <p>“完全重合”：每条边、每个角、每个点都叠在一起，不多也不少。</p>
+        <span class="use">本课的“全等”就用“能完全重合”来定义。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课问题：</b>两个图形“一模一样”，数学上怎样描述、怎样检验？</p>
+  </div>
+  <p class="note">三张卡片分别对应本课的三个关键词：运动（怎样叠）、不变（叠过去形状大小不变）、完全重合（判断标准）。第一张卡最重要，第 5 页要在点阵上用它。</p>
+</section>
+
+<!-- 3 ================= 观察 · 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 定义</span><h2>“一模一样”的图形，叠起来会怎样？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="leafBd" class="leaf-bd"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="leafGo">把右边那片叠上去</button><button class="btn" type="button" id="leafBack">还原</button></div>
+      <p class="tip feedback" id="leafMsg">两片“枫叶”由同样的正方形纸片剪成，右边那片被转了一个角度。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">课本 p6：奥运会吉祥物邮票、花边上的蝴蝶、两块“注意非机动车”交通标识——</p>
+      <p class="tip" data-step="2">它们的形状、大小分别相同吗？　<span class="think" data-step="3" data-ask="能叠在一起吗？">形状、大小分别相同，<b>分别能完全重合</b>。</span></p>
+      <div class="def" data-step="4"><h4>全等图形（课本 p6）</h4>能<em>完全重合</em>的图形叫做<b>全等图形</b>．两个图形全等，它们的形状、大小相同．</div>
+      <p class="warn" data-step="5" data-label="“完全重合”的意思">叠上去以后，<b>每一部分</b>都对齐：边对边、角对角，没有露出来的，也没有盖不住的。</p>
+      <p class="tip" data-step="6">生活中你还见过哪些全等图形？　<span class="think" data-step="7" data-ask="举几个例子">同一版印出的课本封面、同一张底片冲洗出的照片、同一型号的瓷砖、硬币的两枚……</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p6 的三组图片可以在课本上看。左边的叠合动画由坐标精确计算：右边那片先平移、再旋转，最后与左边那片完全重合（变成实心描边）。追问“形状相同就够了吗？”为第 6 页的辨析做准备。</p>
+</section>
+
+<!-- 4 ================= 交流：图 1-1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流 · 图 1-1</span><h2>找出全等图形：先猜，再叠一叠验证</h2></div>
+  <div class="bd">
+    <div class="col wide">
+      <div id="f11" class="f11" data-noswipe></div>
+      <p class="muted center small-t">先点一个图形，再点你认为和它全等的图形，第二个图形会被“搬”到第一个上面</p>
+    </div>
+    <div class="col narrow">
+      <p class="tip feedback" id="f11Msg">点两个图形试试。</p>
+      <div class="found" id="f11Found"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="f11Reset">全部还原</button></div>
+      <p class="method" data-step="1" data-label="检验的方法">把一个图形经过<b>平移、旋转、翻折</b>叠到另一个上面，看能否<b>完全重合</b>。</p>
+      <p class="tip" data-step="2">(5) 和 (8) 都由 4 个同样的小正方形组成，面积相等，它们全等吗？<span class="think" data-step="3" data-ask="叠一叠">不全等：上面那个小正方形的位置不同，形状不同。</span></p>
+      <p class="tip" data-step="4">(6) 和 (12) 呢？<span class="think" data-step="5" data-ask="叠一叠">形状相同，但大小不同，不全等。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p7 交流。先让学生口答“哪几对全等”，再请学生上台点选验证。全等的 4 对：(1)(11) 平移、(2)(9) 要翻折、(3)(10) 平移、(4)(7) 要旋转；(5)(8)、(6)(12) 叠不上。翻折那一对最容易被漏掉：镜像的图形也是全等图形。</p>
+</section>
+
+<!-- 5 ================= 操作：图 1-2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 图 1-2</span><h2>怎样改变位置，就能与另一个图形重合？</h2></div>
+  <div class="bd full top">
+    <div class="f12-top">
+      <div class="tabs" data-noswipe id="f12Tabs"><button class="btn solid" type="button" data-k="0">图 (1)</button><button class="btn" type="button" data-k="1">图 (2)</button><button class="btn" type="button" data-k="2">图 (3)</button></div>
+      <div class="btns" data-noswipe id="f12Ops"><button class="btn" type="button" data-op="T">平移</button><button class="btn" type="button" data-op="F">翻折</button><button class="btn" type="button" data-op="R">旋转</button><button class="btn solid" type="button" data-op="next">画出第 3、4 个</button><button class="btn" type="button" data-op="reset">还原</button></div>
+    </div>
+    <div id="f12" class="f12"></div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip feedback" id="f12Msg"></p>
+        <p class="def" data-step="7">图形经过<b>平移、翻折、旋转</b>，位置改变了，形状、大小不变——运动前后的两个图形<b>全等</b>。</p>
+      </div>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>图 (1)</span><span class="think" data-step="2" data-ask="怎样运动？">向右平移 7 格</span></div>
+        <div class="dl" data-step="3"><span>图 (2)</span><span class="think" data-step="4" data-ask="怎样运动？">沿两图中间的竖线翻折</span></div>
+        <div class="dl" data-step="5"><span>图 (3)</span><span class="think" data-step="6" data-ask="怎样运动？">绕公共的端点顺时针旋转 $90^\circ$</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p7 操作。三张图依次让学生先说运动方式，再点按钮验证（橙色是正在运动的图形）。有意思的是：图 (2) 点“旋转”（绕两图中间的点转 180°）也能重合，图 (3) 点“翻折”（沿 45° 的斜线）也能重合——因为这个图形本身上下对称。可以借此说明：使两个图形重合的运动方式不一定唯一。最后点“画出第 3、4 个”。</p>
+</section>
+
+<!-- 6 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <p>① 形状相同的两个图形是全等图形。</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>还要<b>大小</b>相同。图 1-1 的 (6)、(12) 形状相同、大小不同；放大镜下的三角形也一样。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>② 面积相等的两个图形是全等图形。</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>(5)、(8) 面积都是 4 个小正方形，但不能重合。再如长 6 宽 1 和长 3 宽 2 的长方形。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>③ 全等图形的周长相等、面积相等。</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict ok">✓</span>能完全重合，边界叠在一起、内部也叠在一起，所以周长、面积都相等。</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p>④ 一个图形翻折（或旋转）过去以后，和原来的图形不全等了。</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">✗</span>运动只改变位置，不改变形状、大小，运动前后的图形<b>全等</b>（图 1-1 的 (2)、(9)）。</p></div>
+      </div>
+    </div>
+    <div class="cols2" data-step="9">
+      <svg viewBox="0 0 520 120" class="rect-fig" aria-label="两个面积为 6 的长方形">
+        <g class="gridg"></g>
+        <rect x="20" y="70" width="240" height="40" class="rf"/>
+        <rect x="320" y="30" width="120" height="80" class="rf2"/>
+        <text x="140" y="60" class="fl s c">6 × 1</text><text x="380" y="22" class="fl s c">3 × 2</text>
+      </svg>
+      <p class="method" data-label="全等的两个要素">形状相同 <b>且</b> 大小相同 ⇔ 能完全重合；全等 ⇒ 周长相等、面积相等，反过来<b>不成立</b>。</p>
+    </div>
+  </div>
+  <p class="note">每张卡先举手表决再点开。②③ 是一对“互逆”的说法，要让学生体会：由全等能推出面积相等，由面积相等推不出全等。图中两个长方形面积都是 6，按同一比例画出（每格 40 像素）。</p>
+</section>
+
+<!-- 7 ================= 练习：分割成两个全等图形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · p8</span><h2>沿网格线把正方形分成两个全等的图形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cut" class="cut" data-noswipe></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="cutCheck">检验</button><button class="btn" type="button" id="cutDemo">看一种分法</button><button class="btn" type="button" id="cutClr">擦掉</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p8 练习 2：用<b>不同的方法</b>沿网格线把正方形分割成两个全等的图形．</p>
+      <p class="tip feedback" id="cutMsg">点网格线上的小段，画出“剪痕”（再点一次擦掉），画好后点“检验”。</p>
+      <p class="method" data-step="1" data-label="窍门">剪痕从边上出发、穿过正方形的<b>中心</b>，并且绕中心转 $180^\circ$ 后和自己重合——分出的两块转一转就能重合。</p>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1</b>　找出“六角星”图中的全等图形．</p>
+        <svg viewBox="0 0 200 180" class="star-fig" aria-label="两个正三角形叠成的六角星"><path id="starPath" class="star"/></svg>
+        <details><summary>提示</summary>六角星由两个大的正三角形叠成，角上露出 6 个小三角形，中间是一个六边形。</details>
+        <details><summary>答案</summary>两个大正三角形全等；角上的 6 个小正三角形全等。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p8 练习 1、2。第 2 题分法很多：直线对半分、阶梯形分法……请几位学生上台各画一种，系统会检查分成的两块是不是各 8 格、能不能经过平移、旋转、翻折重合。检验的算法：把一块图形分别转 0°、90°、180°、270° 并翻折，平移后与另一块比对。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 1.1</span><h2>分一分：分成全等的几部分</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用不同的方法把平行四边形分成 4 个全等的图形．</p>
+        <svg viewBox="0 0 320 130" class="split-fig" aria-label="平行四边形"><g id="pgSplit"></g></svg>
+        <div class="btns" data-noswipe id="pgBtns"><button class="btn" type="button" data-k="0">方法一</button><button class="btn" type="button" data-k="1">方法二</button><button class="btn" type="button" data-k="2">方法三</button></div>
+        <details><summary>提示</summary>先把每条边等分，连接对边上的等分点。</details>
+        <details><summary>说明</summary>方法一：两组对边中点相连，得 4 个小平行四边形；方法二：一组对边四等分，连对应点；方法三：另一组对边四等分。它们都可以由平移互相重合。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 把等边三角形分成 2 个、3 个、4 个全等图形．</p>
+        <svg viewBox="0 0 320 150" class="split-fig" aria-label="等边三角形"><g id="trSplit"></g></svg>
+        <div class="btns" data-noswipe id="trBtns"><button class="btn" type="button" data-k="0">2 个</button><button class="btn" type="button" data-k="1">3 个</button><button class="btn" type="button" data-k="2">4 个</button></div>
+        <details><summary>提示</summary>2 个：过一个顶点和对边中点；3 个：用三角形的中心；4 个：用三边中点。</details>
+        <details><summary>说明</summary>2 个：沿中线剪开，两块直角三角形翻折后重合；3 个：中心与三个顶点相连，三块绕中心旋转 $120^\circ$ 重合；4 个：连三边中点，得 4 个小等边三角形。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p8 习题 1.1 第 2、3 题（第 1 题在课本上直接找）。按钮显示的分法都是按坐标精确等分画的。先让学生在课本上画，再点按钮对照；鼓励说出“哪两块通过什么运动重合”。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一节</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">能完全重合的图形叫做<b>全等图形</b>；全等图形形状、大小都相同。</p>
+        <p class="warn" data-label="缺一不可">只是形状相同、只是面积相等，都不一定全等。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="叠合法">通过<b>平移、旋转、翻折</b>把一个图形叠到另一个上，看是否完全重合。</p>
+        <p class="method" data-label="分割">分成全等图形：利用中点、中心，让各部分能通过运动重合。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="运动与不变">图形运动时，位置在变，形状、大小不变——变中找不变。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b><a href="../mj8a-quandengsanjiaoxing/index.html">1.2 全等三角形</a>——两个三角形全等时，哪些边、哪些角“对上了”？怎样用符号写？</p>
+  </div>
+  <p class="note">请学生先用一句话说出“什么是全等图形、怎样检验”。作业：课本 p8 习题 1.1 第 1 题；收集生活中的全等图形。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mfold.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

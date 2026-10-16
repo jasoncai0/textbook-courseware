@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>勾股定理的简单应用 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xielaqiao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第3章 勾股定理 · 3.3</p>
+    <h1 class="cover-title">勾股定理的简单应用</h1>
+    <p class="cover-q" data-step="1">从远处看斜拉桥，可以发现有许多直角三角形．</p>
+    <p class="cover-q" data-step="2">已知桥面以上的索塔有多高，怎样不爬上去量，就算出每一根拉索的长？</p>
+    <div class="chips" data-step="3"><span class="chip">找直角三角形</span><span class="chip">折竹问题 · 列方程</span><span class="chip">逆定理 + 勾股定理</span><span class="chip">求面积</span></div>
+  </div>
+  <p class="note">课本 p86 情境（斜拉桥，图 3-9）。请学生在照片里找直角三角形：索塔垂直于桥面，拉索是斜边。本课主线：实际问题 → 找（或造）直角三角形 → 用勾股定理（必要时设未知数列方程）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的工具</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="八上 3.1 勾股定理" data-step="1">
+        <p>直角三角形中 $a^2+b^2=c^2$：已知两边，可求第三边（求斜边用加，求直角边用减）．</p>
+        <span class="use">第 3、4、7、8 页：求拉索、竹子、吊臂等的长．（<a href="../mj8a-gougudingli/index.html">回看 3.1</a>）</span>
+      </div>
+      <div class="recall" data-label="八上 3.2 勾股定理的逆定理（上一课）" data-step="2">
+        <p>三边满足 $a^2+b^2=c^2$ 的三角形是直角三角形；勾股数如 3，4，5；5，12，13．</p>
+        <span class="use">第 6 页例 2、第 7 页练习 1：先判断直角，再求边或面积．（<a href="../mj8a-gougunidingli/index.html">回看 3.2</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 第4章 一元一次方程" data-step="3">
+        <p>设未知数 → 找等量关系列方程 → 解方程 → 检验作答．</p>
+        <span class="use">第 4、5、9 页：一条边是“$10-x$”，用勾股定理列出方程．（<a href="../mj7a-jieyiyuanyici/index.html">回看 4.2</a>）</span>
+      </div>
+      <div class="recall" data-label="八上 2.4、2.5 轴对称" data-step="4">
+        <p>线段垂直平分线上的点到线段两端的距离相等；等腰三角形三线合一．</p>
+        <span class="use">第 6 页例 2、第 9 页习题 3．（<a href="../mj8a-xianduanjiao/index.html">回看 2.4</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一课</b>我们学会了“由数到形”判断直角．这一课把两个定理用到实际问题和几何计算中．</p>
+  </div>
+  <p class="note">第一张卡请学生口答：直角边 6、8，斜边多少？斜边 13、直角边 5，另一直角边多少？——快速热身。第三张卡的“列方程”是本课新的难点：当两条边都不知道、但知道它们的关系时，用勾股定理列方程。</p>
+</section>
+
+<!-- 3 ================= 斜拉桥 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>索塔 $AB$ 高 24 m，每根拉索有多长？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="bridge" class="big-b"></div>
+      <p class="muted small-t center">点一根拉索（或下面的按钮）；示意图中 $AB=24$ m，各锚点到塔脚 $B$ 的距离是举例数据</p>
+      <div class="btns" data-noswipe id="cableBtns"></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 3-9，已知桥面以上的索塔 $AB$ 的高，怎样计算拉索 $AC$、$AD$、$AE$、$AF$、$AG$ 的长？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>找直角</span><span class="think" data-step="2" data-ask="直角在哪？">索塔 $AB\perp$ 桥面，$\angle ABC=90^\circ$</span><i class="why">每根拉索都和 $AB$ 及桥面围成直角三角形</i></div>
+        <div class="dl" data-step="3"><span>定斜边</span><span class="think" data-step="4" data-ask="谁是斜边？">拉索是斜边</span><i class="why">直角所对的边</i></div>
+        <div class="dl" data-step="5"><span>列式</span><span>$AC^2=AB^2+BC^2$</span><i class="why">勾股定理</i></div>
+      </div>
+      <p class="tip feedback" id="cableMsg">点一根拉索看计算．</p>
+      <table class="mtab" id="cableTab"><tr><th>拉索</th><th>$AB$</th><th>锚点到 $B$</th><th>拉索长</th></tr></table>
+    </div>
+  </div>
+  <p class="note">课本 p86 交流、图 3-9。课本只问“怎样计算”，这里给出一组示意数据（AB = 24 m，锚点距 B 分别为 7、10、18、32、45 m），使每根拉索的长都是整数——因为平方根要到第 4 章才学。点一根拉索，它与 AB、桥面围成的直角三角形会高亮，右边给出计算。关键是“找直角三角形”：同一个 AB 被所有直角三角形共用。</p>
+</section>
+
+<!-- 4 ================= 折竹：试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 先试</span><h2>《九章算术》“折竹”：折断处离地面多高？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="bamboo" class="big-b"></div>
+      <div class="slider-row" data-noswipe>折断处高 $x$：<input type="range" id="bx" min="2" max="4.95" step="0.05" value="3"><b class="v" id="bxV"></b>尺</div>
+      <div class="readout r4"><span>$AC$</span><b class="v" id="bAC"></b><span>$AB$</span><b class="v" id="bAB"></b><span>$BC$</span><b class="v" id="bBC"></b><span></span><b></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">“今有竹高一丈，末折抵地，去根三尺，问折者高几何？”</p>
+      <p class="tip">题意：一根竹子原高 1 丈（1 丈 = 10 尺），中部有一处折断，竹梢触地面处离竹根 3 尺，试问折断处离地面多高？</p>
+      <p class="tip feedback" id="bMsg"></p>
+      <div class="method" data-step="1" data-label="先试一试"><span class="think" data-step="2" data-ask="拖滑块，让 BC = 3">$x$ 变大，竹梢落点 $BC$ 变近；$x$ 在 4.5 到 4.6 之间时 $BC$ 接近 3．能不能直接算出准确值？——下一页列方程．</span></div>
+    </div>
+  </div>
+  <p class="note">课本 p86 例 1、图 3-10。先拖滑块“试”：折断处越高，竹梢落地越近。注意不变量：AC + AB = 10（竹子总长不变），所以 AB = 10 − x。画板中竹子长度、落点都按勾股定理精确计算（BC² = AB² − AC²）。试到 BC ≈ 3 后，让学生体会“试”的局限，引出方程。</p>
+</section>
+
+<!-- 5 ================= 折竹：列方程 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 解</span><h2>两条边都不知道？设一个，表示另一个</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk310" class="gfig l"></div>
+      <p class="muted center small-t">图 3-10（按 $x=4.55$ 精确作出）</p>
+      <p class="recall" data-label="数学文化">《九章算术》是我国古代重要的数学著作，“勾股”章中有不少这样的问题．</p>
+    </div>
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>直角三角形</span><span>竹子在点 $A$ 处折断，竹梢点 $B$ 着地，$\triangle ABC$ 是直角三角形</span><i class="why">竹子与地面垂直</i></div>
+        <div class="dl" data-step="2"><span>设</span><span class="think" data-step="3" data-ask="AB 怎样表示？">$AC=x$ 尺，则 $AB=(10-x)$ 尺</span><i class="why">$AC+AB=10$</i></div>
+        <div class="dl key" data-step="4"><span>列方程</span><span>$x^2+3^2=(10-x)^2$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="5"><span>化简</span><span class="think" data-step="6" data-ask="展开后 x² 怎么了？">$x^2+9=100-20x+x^2$，$20x=91$</span><i class="why">完全平方公式；两边的 $x^2$ 抵消</i></div>
+        <div class="dl end" data-step="7"><span>解得</span><span>$x=4.55$</span><i class="why">∴ 折断处离地面 4.55 尺</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="方程思想">直角三角形中只知道一条边，但知道另两边的<b>关系</b>时：设一边为 $x$，用 $x$ 表示另一边，再用勾股定理列方程．</p>
+      <p class="tip" data-step="9">检验：$AC=4.55$，$AB=5.45$，$AB^2-AC^2=(5.45+4.55)(5.45-4.55)=10\times0.9=9=3^2$．✓</p>
+    </div>
+  </div>
+  <p class="note">课本 p86–87 例 1 的解法。展开后 x² 消掉，方程变成一元一次方程——这是这类问题的共同特点。最后的检验用了平方差，计算很简洁；也可以回到上一页把滑块拖到 4.55，BC 正好是 3。</p>
+</section>
+
+<!-- 6 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>先用逆定理找直角，再用垂直平分线</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk311" class="gfig l"></div>
+      <p class="muted center small-t">图 3-11（按题中数据精确作出）</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 3-11，$AD$ 是 $\triangle ABC$ 的中线，$AD=24$，$AB=26$，$BC=20$．求 $AC$．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>$AD$ 是 $\triangle ABC$ 的中线，且 $BC=20$，∴ $BD=\dfrac12BC=10$</span><i class="why">中线的定义</i></div>
+        <div class="dl" data-step="2"><span>∵</span><span class="think" data-step="3" data-ask="比一比">$AD^2+BD^2=576+100=676$，$AB^2=26^2=676$</span><i class="why"></i></div>
+        <div class="dl key" data-step="4"><span>∴</span><span>$AD^2+BD^2=AB^2$，$\angle ADB=90^\circ$</span><i class="why">勾股定理的逆定理</i></div>
+        <div class="dl" data-step="5"><span>∴</span><span class="think" data-step="6" data-ask="AD 和 BC 是什么关系？">$AD$ 垂直平分 $BC$</span><i class="why">$AD\perp BC$，$D$ 是 $BC$ 中点</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$AC=AB=26$</span><i class="why">线段垂直平分线上的点到线段两端的距离相等</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="思路">题中没说直角——先用<b>逆定理</b>“找”出直角，再接着推理．24，10，26 是勾股数 12，5，13 的 2 倍．</p>
+    </div>
+  </div>
+  <p class="note">课本 p87 例 2。难点在第一步：图里看着像直角，但题目没说，必须用逆定理证出来。接着用 2.4 的定理得 AC = AB（也可以再用一次勾股定理算 AC² = AD² + DC² = 676）。图中 ∠ADB 的直角记号是用坐标验证后画的。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>求面积：先找直角</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1（p87）</b>　计算图中四边形 $ABCD$ 的面积．（$\angle A=90^\circ$，$AD=12$，$AB=16$，$CD=15$，$BC=25$）</p>
+        <div id="q1" class="gfig l"></div>
+        <details><summary>提示 1</summary>连接 $BD$，在 $\text{Rt}\triangle ABD$ 中求 $BD$。</details>
+        <details><summary>提示 2</summary>$BD=20$；看 $\triangle BCD$ 的三边 15，20，25——是直角三角形吗？</details>
+        <details><summary>完整解答</summary>$BD^2=12^2+16^2=400$，$BD=20$．$15^2+20^2=625=25^2$，∴ $\angle BDC=90^\circ$（逆定理）．$S=\dfrac12\times12\times16+\dfrac12\times15\times20=96+150=246$．</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2（p87）</b>　一个三角形三边长的比为 $3:4:5$，它的周长是 60 cm．求这个三角形的面积．</p>
+        <details><summary>提示 1</summary>设三边为 $3k$、$4k$、$5k$，由周长求 $k$。</details>
+        <details><summary>提示 2</summary>$(3k)^2+(4k)^2=(5k)^2$，它是直角三角形吗？</details>
+        <details><summary>完整解答</summary>$3k+4k+5k=60$，$k=5$，三边为 15 cm、20 cm、25 cm．$15^2+20^2=25^2$，是直角三角形，面积 $=\dfrac12\times15\times20=150$（cm²）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 3.3 第 1 题</b>　如图，起重机吊运物体，$BC=7.5$ m，$AC=19.5$ m．求 $AB$ 的长．</p>
+        <div id="q3" class="gfig s"></div>
+        <details><summary>提示 1</summary>吊绳 $AB$ 竖直，$\angle ABC=90^\circ$；斜边是吊臂 $AC$。</details>
+        <details><summary>完整解答</summary>$AB^2=19.5^2-7.5^2=(19.5+7.5)(19.5-7.5)=27\times12=324$．因为 $18^2=324$，且 $AB\gt0$，所以 $AB=18$ m．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p87 练习 1、2，习题 3.3 第 1 题。练习 1 要自己添 BD 并用逆定理判断 ∠BDC 是直角——不能凭“看起来像”。起重机一题的计算用平方差最简便。三个图都按题中数据精确作出。</p>
+</section>
+
+<!-- 8 ================= 育苗棚 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>育苗棚顶部塑料薄膜的面积</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="shed" class="big-b"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="shedCut">看横截面</button></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>习题 3.3 第 2 题</b>　如图，育苗棚的顶部是矩形，求育苗棚顶部塑料薄膜的面积．（横截面是直角三角形，两直角边为 1.5 m、2 m；棚长 20 m）</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>横截面</span><span class="think" data-step="2" data-ask="斜边的平方？">斜边$^2=1.5^2+2^2=6.25$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span>斜边 $=2.5$ m</span><i class="why">$2.5^2=6.25$</i></div>
+        <div class="dl end" data-step="4"><span>面积</span><span>$2.5\times20=50$（m²）</span><i class="why">矩形：长 20 m，宽 2.5 m</i></div>
+      </div>
+      <p class="method" data-step="5" data-label="立体问题平面化">在立体图形里找一个平面（横截面），把要求的长度放进一个直角三角形里．1.5，2，2.5 是 3，4，5 的一半．</p>
+    </div>
+  </div>
+  <p class="note">习题 3.3 第 2 题。画板里的育苗棚是按斜二测画法画的示意图（横截面在正面，长度方向斜着画），点“看横截面”高亮直角三角形。关键是想清楚：塑料薄膜的宽就是横截面直角三角形的斜边。</p>
+</section>
+
+<!-- 9 ================= 习题 3：列方程 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>又一个“设 $x$、列方程”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="q5" class="gfig l"></div>
+      <p class="muted center small-t">按 $AC=12$，$BC=9$ 精确作出</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>习题 3.3 第 3 题</b>　如图，在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$AC=12$，$BC=9$，$AB$ 的垂直平分线分别交 $AB$、$AC$ 于点 $D$、$E$．求 $AE$、$EC$ 的长．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>连接 $BE$</span><span class="think" data-step="2" data-ask="BE 等于谁？">$BE=AE$</span><i class="why">线段垂直平分线上的点到线段两端的距离相等</i></div>
+        <div class="dl" data-step="3"><span>设</span><span>$AE=BE=x$，则 $EC=12-x$</span><i class="why"></i></div>
+        <div class="dl key" data-step="4"><span>在 $\text{Rt}\triangle BCE$ 中</span><span class="think" data-step="5" data-ask="列方程">$x^2=(12-x)^2+9^2$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="6"><span>化简</span><span>$x^2=144-24x+x^2+81$，$24x=225$</span><i class="why"></i></div>
+        <div class="dl end" data-step="7"><span>解得</span><span>$AE=x=9.375$，$EC=12-9.375=2.625$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="8" data-label="和例 1 比">都是“一边已知，另两边有关系”：例 1 是 $AC+AB=10$，这里是 $AE+EC=12$．</p>
+    </div>
+  </div>
+  <p class="note">习题 3.3 第 3 题。先用 2.4 的定理把 AE “搬”到 BE，再在 Rt△BCE 中列方程——与例 1 同一个套路。9.375 = 75/8，2.625 = 21/8，也可以用分数作答。图中 E、D 的位置是按坐标算出的，E 到 A、B 的距离相等。</p>
+</section>
+
+<!-- 10 ================= 半圆面积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>三个半圆的面积之间有什么关系？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="semi" class="big-b"></div>
+      <div class="readout r4"><span>$S_1$（$BC$ 上）</span><b class="v" id="s1"></b><span>$S_2$（$AC$ 上）</span><b class="v" id="s2"></b><span>$S_1+S_2$</span><b class="v" id="s12"></b><span>$S_3$（$AB$ 上）</span><b class="v" id="s3"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>习题 3.3 第 4 题</b>　如图，以 $\text{Rt}\triangle ABC$ 的三边为直径的 3 个半圆的面积之间有什么关系？请说明理由．</p>
+      <p class="tip">拖动点 $C$（它始终在以 $AB$ 为直径的半圆上，$\angle ACB=90^\circ$），看读数．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>半圆面积</span><span>$S=\dfrac12\pi\left(\dfrac d2\right)^2=\dfrac\pi8d^2$</span><i class="why">$d$ 为直径</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="S₁ + S₂ = ?">$S_1+S_2=\dfrac\pi8(BC^2+AC^2)=\dfrac\pi8AB^2=S_3$</span><i class="why">勾股定理</i></div>
+      </div>
+      <p class="method" data-step="4" data-label="推广">把勾股定理里的“正方形”换成半圆（或其他相似的图形），面积关系仍然成立．</p>
+    </div>
+  </div>
+  <p class="note">习题 3.3 第 4 题。读数中的面积由坐标算出（保留两位小数），S₁ + S₂ 与 S₃ 始终相等。可以联系 3.1 的“正方形面积”：那里三个正方形面积满足 S₁ + S₂ = S₃，这里每个面积都乘了同一个数 π/8。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>步骤</h3>
+        <p class="method" data-label="解决问题三步">① 找（或造）直角三角形；② 定斜边，标已知；③ 直接用勾股定理，或设 $x$ 列方程．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="方程思想">两边未知但有关系（和为定值、相等）时，设一边为 $x$．</p>
+        <p class="method" data-label="两个定理接力">逆定理判断直角 ⇄ 勾股定理求边．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">实际问题 → 直角三角形；立体 → 平面截面；不规则图形 → 拆成直角三角形．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一章：</b>起重机一题里我们找“哪个正数的平方是 324”．如果是 $x^2=2$ 呢？——第 4 章 4.1 平方根．（<a href="../mj8a-pingfanggen/index.html">去 4.1</a>）</p>
+  </div>
+  <p class="note">请学生选一道本课题目，说出“直角三角形在哪、斜边是谁、怎样列式”。课本 p88 阅读“勾股定理的证明”（欧几里得《原本》的证法）可作课后阅读，与 3.1 的拼图证法对比。作业建议：习题 3.3 第 1～4 题写完整过程。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

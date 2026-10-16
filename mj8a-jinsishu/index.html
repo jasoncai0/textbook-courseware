@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>近似数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tianping.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第4章 实数 · 4.4</p>
+    <h1 class="cover-title">近似数</h1>
+    <p class="cover-q" data-step="1">小亮用天平称得一个罐头的质量为 2.026 kg。</p>
+    <p class="cover-q" data-step="2">写成 2.03 kg、2.0 kg、2 kg 都对吗？<b>2.0 和 2 一样吗？</b></p>
+    <div class="chips" data-step="3"><span class="chip">准确数 · 近似数</span><span class="chip">四舍五入</span><span class="chip">精确到哪一位</span><span class="chip">0.1 与 0.10</span></div>
+  </div>
+  <p class="note">课本 p107–109。上一节计算器显示的 $\sqrt3\approx1.732\,050\,808$ 已经是近似数了。本课回答两个问题：怎样按要求取近似值；近似数的“精确度”怎样看——尤其是末尾的 0 为什么不能随便去掉。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="小学五上 · 求小数的近似数" data-step="1">
+        <p>用“四舍五入”法：保留到哪一位，就看它的<b>下一位</b>，小于 5 舍去，大于或等于 5 向前一位进 1。</p>
+        <span class="use">第 5 页：同样的方法，换一个说法——“精确到哪一位”。</span>
+      </div>
+      <div class="recall" data-label="七上 2.7 · 科学记数法" data-step="2">
+        <p>大于 10 的数记成 $a\times10^n$（$1\le|a|\lt10$，$n$ 是正整数），如 $150\,000\,000=1.5\times10^8$。</p>
+        <span class="use">第 8 页：把近似数写成科学记数法。（<a href="../mj7a-chengfang/index.html">回看 2.7</a>）</span>
+      </div>
+      <div class="recall" data-label="七下 8.3 · 负整数指数幂" data-step="3">
+        <p>$10^{-n}=\dfrac{1}{10^n}$，很小的数也能用科学记数法：$0.000\,08=8\times10^{-5}$。</p>
+        <span class="use">第 8 页例 2(3)。（<a href="../mj7b-tongdishumichu/index.html">回看 8.3</a>）</span>
+      </div>
+      <div class="recall" data-label="八上 4.3 · 实数" data-step="4">
+        <p>$\pi$、$\sqrt2$ 这样的无理数是无限不循环小数，计算器只能显示它们的前若干位。</p>
+        <span class="use">第 4、9 页：按要求取它们的近似值。（<a href="../mj8a-shishu/index.html">回看 4.3</a>）</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">小学已经会“保留两位小数”，本课换成“精确到 0.01（百分位）”的说法，并扩展到整数位（精确到千位、精确到 10 000 000）和科学记数法。</p>
+</section>
+
+<!-- 3 ================= 准确数与近似数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>有些数据是准确的，有些是近似的</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip" data-step="1">某班有 <b>54</b> 人——这里 54 是<span class="think" data-step="2" data-ask="准确的还是近似的？"><b>准确数</b>：一个一个数出来，不多不少</span>．</p>
+      <p class="tip" data-step="3">全球有 <b>40 亿</b>人收看了北京奥运会开幕式的电视转播——这里 40 亿是<span class="think" data-step="4" data-ask="准确的还是近似的？"><em>近似数</em>（approximate number）：不可能一个一个数清</span>．</p>
+      <p class="recall" data-step="5" data-label="交流（课本 p107）">生产、生活中的许多数据都是近似数：用度量工具测出的长度、质量、时间、速度……你能举出一些例子吗？</p>
+      <p class="tip" data-step="6">在数学中，对于像 $\pi$、$\sqrt2$、$\sqrt3$……这样的无理数，计算时应根据具体的要求取它们的近似值．</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习 1（课本 p108）</b> 下列数据中，哪些是准确的？哪些是近似的？</p>
+      <div class="exact-list">
+        <div class="ex-row"><span>(1) 某词典有 1 752 页</span><div class="pick" data-ans="z"><button data-k="z">准确</button><button data-k="j">近似</button><p class="pick-why">页数是一页一页数出来的。</p></div></div>
+        <div class="ex-row"><span>(2) 量杯里有水 50 mL</span><div class="pick" data-ans="j"><button data-k="z">准确</button><button data-k="j">近似</button><p class="pick-why">量杯量出的体积是测量值，有误差。</p></div></div>
+        <div class="ex-row"><span>(3) 女子短跑 100 m 世界纪录为 10.49 s</span><div class="pick" data-ans="j"><button data-k="z">准确</button><button data-k="j">近似</button><p class="pick-why">10.49 s 是计时器测量的结果（精确到 0.01 s）；100 m 也是测量的距离。</p></div></div>
+        <div class="ex-row"><span>(4) 世界人口为 61 亿</span><div class="pick" data-ans="j"><button data-k="z">准确</button><button data-k="j">近似</button><p class="pick-why">人口时刻在变，不可能数得一个不差。</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p107 开头与“交流”，p108–109 练习 1。判断的关键：这个数是“数”出来的（往往准确），还是“量”出来、“估”出来、“算”出来的（往往近似）。第 (3) 题可追问：计时器能测到 0.01 s，但真实时间还有更小的零头。</p>
+</section>
+
+<!-- 4 ================= 精确到哪一位 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>四舍五入到哪一位，就精确到哪一位</h2></div>
+  <div class="bd full">
+    <p class="def" data-step="1">取一个数的近似值有多种方法，四舍五入法是最常用的一种．用四舍五入法取一个数的近似值时，<b>四舍五入到哪一位，这个近似数就精确到哪一位</b>．</p>
+    <p class="tip" data-step="2">例如，取圆周率 $\pi=3.141\,592\,6\cdots$ 的近似值：</p>
+    <table class="mtab" data-step="2">
+      <tr><th>要求</th><th>看下一位</th><th>近似值</th></tr>
+      <tr><td>精确到 1（精确到个位）</td><td>十分位是 1，舍去</td><td><span class="think" data-step="3" data-ask="?">$\pi\approx3$</span></td></tr>
+      <tr><td>精确到 0.1（精确到十分位）</td><td>百分位是 4，舍去</td><td><span class="think" data-step="4" data-ask="?">$\pi\approx3.1$</span></td></tr>
+      <tr><td>精确到 0.01（精确到百分位）</td><td>千分位是 1，舍去</td><td><span class="think" data-step="5" data-ask="?">$\pi\approx3.14$</span></td></tr>
+      <tr><td>精确到 0.001（精确到千分位）</td><td>万分位是 5，进 1</td><td><span class="think" data-step="6" data-ask="?">$\pi\approx3.142$</span></td></tr>
+    </table>
+    <p class="warn" data-step="7" data-label="“精确到 0.01”和“保留两位小数”">对小数来说是一回事；但“精确到”还能用于整数位，如“精确到千位”“精确到 10 000 000”，比“保留几位小数”用途更广。</p>
+  </div>
+  <p class="note">课本 p107。第 4 行是易错点：3.141 5… 精确到千分位，要看万分位的 5，所以进 1 得 3.142，而不是 3.141。下一页用“取近似值机”反复练习“看下一位”。</p>
+</section>
+
+<!-- 5 ================= 核心：取近似值机 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手</span><h2>取近似值：看下一位，再看“能代表谁”</h2></div>
+  <div class="bd full top">
+    <div class="btns" data-noswipe id="numBtns"><span>数：</span>
+      <button class="btn" type="button" data-v="pi">$\pi$</button>
+      <button class="btn" type="button" data-v="can">2.026 kg</button>
+      <button class="btn" type="button" data-v="liang">43.95 kg</button>
+      <button class="btn" type="button" data-v="cbrt5">$\sqrt[3]5$</button>
+    </div>
+    <div class="digits" id="digits"></div>
+    <div class="btns" data-noswipe id="precBtns"><span>精确到：</span></div>
+    <p class="tip feedback" id="roundMsg"></p>
+    <div id="roundBoard" class="round-board"></div>
+  </div>
+  <p class="note">本课核心操作。先选数，再选“精确到”：红框是保留的最后一位，橙框是决定舍入的下一位。下方数轴按精确度放大（蓝色区间里的数四舍五入后都等于这个近似值，橙色点是原来的数）：近似值 3.14 代表的是 $3.135\le x\lt3.145$ 这一段里的所有数——精确到的位越低，这一段越短，近似值越“精确”。43.95 kg 精确到 0.1 kg 得 44.0 kg（不是 44），这为第 7 页的讨论埋伏笔。所有取舍都按十进制数字逐位计算，没有浮点误差。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>罐头的质量 2.026 kg，按要求取近似值</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 精确到 0.01 kg</span><span class="think" data-step="2" data-ask="?">$2.026\approx2.03$（kg）</span><i class="why">看千分位 6，进 1</i></div>
+        <div class="dl" data-step="3"><span>(2) 精确到 0.1 kg</span><span class="think" data-step="4" data-ask="?">$2.026\approx2.0$（kg）</span><i class="why">看百分位 2，舍去</i></div>
+        <div class="dl" data-step="5"><span>(3) 精确到 1 kg</span><span class="think" data-step="6" data-ask="?">$2.026\approx2$（kg）</span><i class="why">看十分位 0，舍去</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="warn" data-step="7" data-label="2.0 末尾的 0 不能去掉">(2) 的答案写 2.0，表示精确到 <b>0.1</b>；若写成 2，就变成了精确到 <b>1</b>，那是 (3) 的答案。</p>
+      <p class="method" data-step="8" data-label="取近似值三步">① 找到要精确到的那一位；② 看它的<b>下一位</b>：小于 5 舍去，大于或等于 5 进 1；③ 写结果，<b>保留</b>到这一位（末尾的 0 也要写）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p107 例 1。(2) 是关键：近似数 2.0 末尾的 0 表示精确度，不能“化简”。可让学生回到上一页，选 2.026 kg 分别精确到 0.1 和 1，对比两条数轴上蓝色区间的长短。</p>
+</section>
+
+<!-- 7 ================= 讨论：0.1 与 0.10 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>近似数 0.1 与 0.10 有区别吗？</h2></div>
+  <div class="bd full">
+    <div id="cmpBoard" class="cmp-board"></div>
+    <div class="cols2">
+      <p class="tip" data-step="1"><b>0.1</b> 精确到 <span class="think" data-step="2" data-ask="哪一位？">十分位：原数 $x$ 满足 $0.05\le x\lt0.15$（如 0.06、0.149 都可能）</span></p>
+      <p class="tip" data-step="3"><b>0.10</b> 精确到 <span class="think" data-step="4" data-ask="哪一位？">百分位：原数 $x$ 满足 $0.095\le x\lt0.105$，范围小得多</span></p>
+    </div>
+    <p class="method" data-step="5" data-label="结论">作为准确数，$0.1=0.10$；作为<b>近似数</b>，它们的精确度不同：0.10 比 0.1 更精确，末尾的 0 不能去掉。</p>
+  </div>
+  <p class="note">课本 p108“讨论”。上方数轴把两个范围画在一起（按实际数值精确作图）：蓝带是 0.1 能代表的数，橙带是 0.10 能代表的数，橙带只有蓝带的十分之一长。请学生举例说明：0.06 四舍五入到十分位是 0.1，但到百分位是 0.06，所以它“可能是 0.1”，却“不可能是 0.10”。</p>
+</section>
+
+<!-- 8 ================= 例 2 科学记数法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>取近似值，并用科学记数法表示</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>(1)</span><span>七大洲总面积约 $149\,480\,000\ \text{km}^2$（精确到 $10\,000\,000\ \text{km}^2$）</span><i class="why">精确到千万位</i></div>
+      <div class="dl" data-step="2"><span></span><span class="think" data-step="3" data-ask="?">$149\,480\,000\approx150\,000\,000=1.5\times10^8$（km²）</span><i class="why">看百万位 9，进 1：14→15</i></div>
+      <div class="dl" data-step="4"><span>(2)</span><span>某人一天饮水 $1\,890$ mL（精确到 $1\,000$ mL）</span><i class="why">精确到千位</i></div>
+      <div class="dl" data-step="5"><span></span><span class="think" data-step="6" data-ask="?">$1\,890\approx2\,000=2\times10^3$（mL）</span><i class="why">看百位 8，进 1</i></div>
+      <div class="dl" data-step="7"><span>(3)</span><span>红光的波长为 $0.000\,077$ cm（精确到 $0.000\,01$ cm）</span><i class="why">精确到 $10^{-5}$ 位</i></div>
+      <div class="dl" data-step="8"><span></span><span class="think" data-step="9" data-ask="?">$0.000\,077\approx0.000\,08=8\times10^{-5}$（cm）</span><i class="why">看下一位 7，进 1</i></div>
+    </div>
+    <p class="warn" data-step="10" data-label="为什么要用科学记数法？">$150\,000\,000$ 看不出精确到哪一位（末尾的 0 是“占位”还是“精确”？）；写成 $1.5\times10^8$，就清楚地表示精确到千万位。</p>
+  </div>
+  <p class="note">课本 p108 例 2。(1) 是难点：精确到 10 000 000（千万位），保留的是“14”，看下一位（百万位）9，进 1 成 15，后面补 0，再写成 $1.5\times10^8$。$1.5\times10^8$ 中 5 在千万位，正好表明精确度；若写成 $1.50\times10^8$，就表示精确到百万位了。</p>
+</section>
+
+<!-- 9 ================= 例 3 · 练习 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 练习</span><h2>用计算器计算（精确到 0.01）</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1)</span><span>$5\times\sqrt{10}-\sqrt2$</span><i class="why">显示 14.397 174 74</i></div>
+        <div class="dl" data-step="2"><span></span><span class="think" data-step="3" data-ask="精确到 0.01">$\approx14.40$</span><i class="why">千分位 7，进 1；末尾 0 保留</i></div>
+        <div class="dl" data-step="4"><span>(2)</span><span>$\sqrt[3]2-\dfrac13$</span><i class="why">显示 0.926 587 716</i></div>
+        <div class="dl" data-step="5"><span></span><span class="think" data-step="6" data-ask="精确到 0.01">$\approx0.93$</span><i class="why">千分位 6，进 1</i></div>
+      </div>
+      <p class="warn" data-step="7" data-label="14.40 不写成 14.4">要求精确到 0.01，结果就要写到百分位。</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 3（p109）</b> 如图，单杠高 $AC$ 为 2.55 m，拉索的底端 $B$ 与单杠底端 $C$ 的距离为 3 m．求拉索 $AB$ 的长（精确到 0.1 m）．</p>
+        <svg viewBox="0 0 320 170" class="pole-fig" id="poleFig" aria-label="单杠 AC 垂直于地面，拉索 AB"></svg>
+        <details><summary>提示 1</summary>$\triangle ABC$ 是直角三角形，$\angle C=90^\circ$，$AB$ 是斜边。</details>
+        <details><summary>提示 2</summary>$AB=\sqrt{2.55^2+3^2}=\sqrt{15.502\,5}$，用计算器算。</details>
+        <details><summary>完整解答</summary>$AB=\sqrt{2.55^2+3^2}=\sqrt{15.502\,5}\approx3.937\approx3.9$（m）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p108 例 3 与 p109 练习 3。例 3 先让学生自己按计算器，再统一取近似值。练习 3 把勾股定理、开平方、近似数串在一起，是本章的综合题；右侧示意图中 $AC$、$BC$ 按 2.55 : 3 的比例画出。</p>
+</section>
+
+<!-- 10 ================= 练习 · 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2</b> 小亮的体重为 43.95 kg，按下列要求取近似值：(1) 精确到 10 kg；(2) 精确到 1 kg；(3) 精确到 0.1 kg．</p>
+        <details><summary>提示</summary>(1) 看个位 3；(2) 看十分位 9；(3) 看百分位 5。</details>
+        <details><summary>完整解答</summary>(1) $\approx40$ kg；(2) $\approx44$ kg；(3) $\approx44.0$ kg（末尾 0 不能省）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2</b> 按要求分别取 $\sqrt[3]5$ 的近似值：精确到 0.1，0.01，0.001，0.000 1．</p>
+        <details><summary>提示</summary>计算器：$\sqrt[3]5=1.709\,975\,946\cdots$</details>
+        <details><summary>完整解答</summary>$1.7$；$1.71$；$1.710$；$1.710\,0$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 3</b> 指出下列近似数的精确度：(1) 1.59 m；(2) $6.4\times10^3$ km；(3) 0.2 mm；(4) $1.4\times10^{-8}$ cm．</p>
+        <details><summary>提示</summary>科学记数法先还原：$6.4\times10^3=6\,400$，4 在百位。</details>
+        <details><summary>完整解答</summary>(1) 精确到 0.01 m（百分位）；(2) 精确到百位（100 km）；(3) 精确到 0.1 mm（十分位）；(4) $1.4\times10^{-8}=0.000\,000\,014$，精确到 $0.000\,000\,001$ cm．</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 1</b> 用科学记数法表示近似数：1 g 水中约有 33 400 000 000 000 000 000 000 个分子（精确到 1 000 000 000 000 000 000 000 个）．</p>
+        <details><summary>提示</summary>原数 $=3.34\times10^{22}$；精确到 $10^{21}$，即保留到 $3.3$ 中的第二个 3。</details>
+        <details><summary>完整解答</summary>$\approx3.3\times10^{22}$（个）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4</b> 我国古代数学家曾先后分别用 $\dfrac{157}{50}$、$\dfrac{22}{7}$、$\dfrac{355}{113}$ 作为圆周率 $\pi$ 的近似值，请用计算器将它们化为小数．</p>
+        <details><summary>完整解答</summary>$\dfrac{157}{50}=3.14$；$\dfrac{22}{7}=3.142\,857\,142\cdots$；$\dfrac{355}{113}=3.141\,592\,920\cdots$（与 $\pi=3.141\,592\,653\cdots$ 前 7 位相同）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p109 练习 2、习题 4.4 第 1～4 题（习题 1(2)：$361\,000\,000\approx3.6\times10^8$ km²，留作作业）。习题 4 可补充数学文化：南北朝祖冲之以 $\frac{22}{7}$ 为“约率”、$\frac{355}{113}$ 为“密率”，密率与 $\pi$ 精确到 0.000 001 时相同（都是 3.141 593）。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>本课与第 4 章回顾</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">准确数与近似数；四舍五入到哪一位，就精确到哪一位。</p>
+        <p class="warn" data-label="末尾的 0">近似数末尾的 0 表示精确度，不能去掉：2.0 ≠ 2，0.10 ≠ 0.1。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="取近似值">找到那一位 → 看下一位（四舍五入）→ 写到那一位。</p>
+        <p class="method" data-label="大数、小数">先取近似值，再写成 $a\times10^n$，精确度一目了然。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>第 4 章</h3>
+        <p class="recall" data-label="一条线">平方根 → 立方根 → 无理数 → 实数（与数轴上的点一一对应）→ 近似数（实际计算）。</p>
+        <p class="recall" data-label="下一章">第 5 章 平面直角坐标系：一对实数确定平面上一个点。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">请学生先说出“近似数 2.0 与 2 的区别”，再逐栏揭示。第三栏可作为整章复习的提纲：由“已知平方/立方求底数”引出新数，扩充到实数；实际计算再用近似数。作业建议：习题 4.4 第 1～4 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

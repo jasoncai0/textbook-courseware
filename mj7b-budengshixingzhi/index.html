@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>不等式的基本性质 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xiongmei.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第11章 一元一次不等式 · 11.3</p>
+    <h1 class="cover-title">不等式的基本性质</h1>
+    <p class="cover-q" data-step="1">小明的年龄比小丽大．设今年小明 $a$ 岁，小丽 $b$ 岁，那么 $a\gt b$．</p>
+    <p class="cover-q" data-step="2">3 年后、3 年前，小明还比小丽大吗？——不等式两边<b>加上、减去</b>同一个数，会怎样？两边<b>乘</b>同一个数呢？</p>
+    <div class="chips" data-step="3"><span class="chip">类比等式的性质</span><span class="chip">性质 1：加减</span><span class="chip">性质 2：乘除</span><span class="chip">乘负数要变号</span></div>
+  </div>
+  <p class="note">课本 p124 情境。封面先让学生凭生活经验回答：3 年后、3 年前的年龄大小关系不变。第二问留悬念：乘一个数，大小关系还一定不变吗？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 4.2 · 等式的性质" data-step="1">
+        <p>等式两边都加上（或减去）同一个数或同一个整式，所得结果仍是等式；</p>
+        <p>等式两边都乘同一个数，或除以同一个不为 0 的数，所得结果仍是等式．</p>
+        <span class="use">类比它，猜想并验证不等式的性质．</span>
+      </div>
+      <div class="recall" data-label="七上 2.6 · 有理数的乘法" data-step="2">
+        <p>两数相乘，同号得正，异号得负：$5\times(-2)=-10$，$3\times(-2)=-6$．</p>
+        <span class="use">“做一做”中算 $5\times(-1)$、$3\times(-1)$……再比大小．</span>
+      </div>
+      <div class="recall" data-label="七上 2.3–2.4 · 数轴与大小比较" data-step="3">
+        <p>数轴上右边的点表示的数大；两个负数，绝对值大的反而小：$-10\lt -6$．</p>
+        <span class="use">在数轴上看“加减”是平移、“乘负数”是翻到原点另一侧．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>前面我们已经学过等式的性质．类似地，不等式具有什么性质呢？哪些和等式一样，哪些不一样？</p>
+  </div>
+  <p class="note">第一张卡请学生背出等式的两条性质（七上 4.2），本课处处与它对照。第三张卡里 −10 &lt; −6 是“乘负数变号”的伏笔。</p>
+</section>
+
+<!-- 3 ================= 性质 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>两边都加上（或减去）同一个数</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>今年</span><span>$a\gt b$</span><i class="why">小明比小丽大</i></div>
+        <div class="dl" data-step="2"><span>3 年后</span><span class="think" data-step="3" data-ask="怎样写？">$a+3\gt b+3$</span><i class="why">两人都长 3 岁</i></div>
+        <div class="dl" data-step="2"><span>3 年前</span><span class="think" data-step="3" data-ask="怎样写？">$a-3\gt b-3$</span><i class="why">两人都小 3 岁</i></div>
+        <div class="dl key" data-step="4"><span>一般地</span><span>$a+c\gt b+c$，$a-c\gt b-c$</span><i class="why">如果 $a\gt b$</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>不等式的基本性质 1（课本 p124）</h4>不等式的两边都加上（或减去）同一个数或同一个整式，不等号的方向<em>不变</em>．</div>
+    </div>
+    <div class="col">
+      <div id="shiftB" class="shiftb"></div>
+      <div class="slider-row" data-noswipe>两边都加 $c=$<input type="range" id="shC" min="-4" max="4" step="1" value="3"><b class="v" id="shCV"></b></div>
+      <p class="tip feedback" id="shMsg"></p>
+      <p class="muted center small-t">拖动橙色点改变 $a$、$b$（保持 $a\gt b$）；滑块改变 $c$（负数就是“减去”）</p>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p124。数轴上，“两边加上 c”就是把两个点向同一方向平移同样的距离：c &gt; 0 向右、c &lt; 0 向左，两点的左右顺序始终不变，所以不等号方向不变。性质里的“同一个整式”（如两边都减去 x）留到第 9、11 页用。</p>
+</section>
+
+<!-- 4 ================= 做一做 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做一做</span><h2>两边都乘同一个数：不等号方向会变吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">用不等号填空（点选）：</p>
+      <div class="mul-grid" id="mulGrid"></div>
+    </div>
+    <div class="col">
+      <p class="tip gold" data-step="1"><b>议一议：</b>不等式 $5\gt 3$ 的两边都乘同一个正数或负数时，不等号方向有没有变化？</p>
+      <p class="tip" data-step="2">乘正数：<span class="think" data-step="3" data-ask="变了吗？">方向<b>不变</b>：$5\times2=10\gt 3\times2=6$</span></p>
+      <p class="tip" data-step="2">乘负数：<span class="think" data-step="3" data-ask="变了吗？">方向<b>改变</b>：$5\times(-2)=-10\lt 3\times(-2)=-6$</span></p>
+      <p class="tip" data-step="4">为什么乘负数会变？<span class="think" data-step="5" data-ask="想一想">乘负数后都变成负数，原来大的数绝对值也大，而两个负数比较，<b>绝对值大的反而小</b>．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p124 做一做、p125 议一议。8 个空让学生口算后点选；做完后观察“上面 4 行”和“下面 4 行”的规律。第 5 步把“变号”的原因落到七上学过的负数比较大小，学生说完再点开。</p>
+</section>
+
+<!-- 5 ================= 乘法变换器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手观察</span><h2>两数同乘 $c$：上下两条数轴连一连</h2></div>
+  <button class="media-btn" hidden data-img="assets/chengfu.jpg" data-video="assets/chengfu.mp4" data-cap="乘 2：两点按同一比例远离原点，顺序不变；乘 −1：两点翻到原点另一侧，左右顺序对调">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div class="readout mu-read">
+        <span>$a=$</span><b class="v" id="muA"></b><span>$ac=$</span><b class="v" id="muAC"></b>
+        <span>$b=$</span><b class="v" id="muB"></b><span>$bc=$</span><b class="v" id="muBC"></b>
+      </div>
+      <p class="tip feedback" id="muMsg"></p>
+      <p class="tip" data-step="1">把 $c$ 从正数慢慢拖到负数，两条连线发生了什么？<span class="think" data-step="2" data-ask="观察">$c\gt 0$ 时两条连线不相交，左右顺序不变；$c\lt 0$ 时连线<b>交叉</b>，左右顺序对调；$c=0$ 时两点重合于 0．</span></p>
+    </div>
+    <div class="col">
+      <div id="mulB" class="mulb"></div>
+      <div class="slider-row" data-noswipe>乘数 $c=$<input type="range" id="muC" min="-3" max="3" step="0.5" value="2"><b class="v" id="muCV"></b></div>
+      <p class="muted center small-t">上轴：$a$、$b$（拖橙色点）；下轴：$ac$、$bc$．两轴刻度相同</p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。上轴的 a、b 与下轴的 ac、bc 用线连起来：乘正数，两点按同一比例伸缩，顺序不变；乘负数，两点都翻到原点另一侧，连线交叉，顺序对调，所以不等号方向要改变。特别停在 c = 0：ac = bc，“&gt;”变成了“=”，为想一想第 1 题埋伏笔。右上角“看动画”是 14 秒无声动画（c 从 1 连续变到 2，再经过 0 变到 −1）。</p>
+</section>
+
+<!-- 6 ================= 性质 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>不等式的基本性质 2</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>不等式的基本性质 2（课本 p125）</h4>不等式的两边都乘（或除以）同一个<em>正数</em>，不等号的方向<em>不变</em>；不等式的两边都乘（或除以）同一个<em>负数</em>，不等号的方向<em>改变</em>．</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2"><b>符号语言：</b>如果 $a\gt b$，并且 $c\gt 0$，那么 <span class="think" data-step="3" data-ask="填什么？">$ac\gt bc$，$\dfrac ac\gt\dfrac bc$</span>；</p>
+        <p class="tip" data-step="2">如果 $a\gt b$，并且 $c\lt 0$，那么 <span class="think" data-step="3" data-ask="填什么？">$ac\lt bc$，$\dfrac ac\lt\dfrac bc$</span>．</p>
+      </div>
+      <div class="col">
+        <p class="warn" data-step="4" data-label="用之前先问">乘（除以）的这个数是<b>正数还是负数</b>？是负数，不等号必须<b>改变方向</b>．</p>
+        <p class="warn" data-step="5" data-label="字母的符号">两边乘字母 $m$ 时，不知道 $m$ 的正负，就<b>不能</b>直接确定不等号方向．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p125 性质 2。文字语言、符号语言都要会。除以一个数等于乘它的倒数，倒数与原数同号，所以“除以”与“乘”的结论相同。第二条警示为 11.4 的“分清正负”做准备。</p>
+</section>
+
+<!-- 7 ================= 想一想 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>乘 0 呢？与等式的性质比一比</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>1.</b> 不等式的两边都乘 0，结果怎样？</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="试一试">$5\times0=0$，$3\times0=0$：两边<b>相等</b>了，$5\gt 3$ 变成了 $0=0$，不再是不等式．所以性质 2 只说“正数”“负数”，不包括 0．</span></p>
+      <p class="recall" data-step="3" data-label="回看第 5 页">把 $c$ 拖到 0：上轴两点不同，下轴两点重合在原点．</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>2.</b> 不等式的基本性质与等式的基本性质有什么相同点、不同点？</p>
+      <table class="mtab cmp" data-step="4">
+        <tr><th>两边同时……</th><th>等式</th><th>不等式</th></tr>
+        <tr><td>加（减）同一个数或整式</td><td>仍相等</td><td><span class="think" data-step="5" data-ask="?">方向不变</span></td></tr>
+        <tr><td>乘（除以）同一个正数</td><td>仍相等</td><td><span class="think" data-step="5" data-ask="?">方向不变</span></td></tr>
+        <tr><td>乘（除以）同一个负数</td><td>仍相等</td><td><span class="think" data-step="6" data-ask="?"><b class="flip">方向改变</b></span></td></tr>
+        <tr><td>乘 0</td><td>仍相等</td><td><span class="think" data-step="7" data-ask="?">变成相等，不再成立</span></td></tr>
+      </table>
+      <p class="method" data-step="8" data-label="一句话">只有“乘（除以）负数”这一条与等式不同——它是本章最容易出错的地方．</p>
+    </div>
+  </div>
+  <p class="note">课本 p125 想一想。表格逐格让学生先说再点开。强调：等式两边可以乘 0（仍是等式），但除以 0 没有意义；不等式两边乘 0 后不等关系就不存在了。</p>
+</section>
+
+<!-- 8 ================= 化成 x > a ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">应用</span><h2>把不等式化成 $x\gt a$ 或 $x\lt a$ 的形式</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+    <div class="col">
+      <p class="tip">根据不等式的基本性质，可以对不等式进行适当的变形，把它化为 $x\gt a\ (x\ge a)$ 或 $x\lt a\ (x\le a)$ 的形式——这就是解集．</p>
+      <div class="derive" data-step="1">
+        <div class="dl"><span>例</span><span>$x+1\lt 4$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>两边都减去 1</span><span>$x+1-1\lt 4-1$</span><i class="why">性质 1，方向不变</i></div>
+        <div class="dl end" data-step="3"><span>即</span><span>$x\lt 3$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="derive" data-step="4">
+        <div class="dl"><span>例</span><span>$-x\gt -6$</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span>两边都乘 $-1$</span><span class="think" data-step="6" data-ask="不等号朝哪？">$-x\times(-1)\lt -6\times(-1)$</span><i class="why">性质 2，乘负数，<b>方向改变</b></i></div>
+        <div class="dl end" data-step="7"><span>即</span><span>$x\lt 6$</span><i class="why"></i></div>
+      </div>
+      <p class="warn" data-step="8" data-label="常见错误">$-x\gt -6$ 两边乘 $-1$ 写成 $x\gt 6$——忘了变号．检验：$x=7$ 时 $-7\gt -6$ 吗？不成立！</p>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p125 两个例子。第二例在第 6 步停顿，让学生先说不等号朝哪；最后用“代一个数检验”的办法揭穿 x &gt; 6 的错误——这是检查变号的好习惯。</p>
+</section>
+
+<!-- 9 ================= 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>已知 $a\gt b$，用“&gt;”或“&lt;”填空</h2></div>
+  <div class="bd full top">
+    <div class="cols2 fill6">
+      <div class="qrow">(1) $a+2$ ＿ $b+2$ <div class="pick" data-ans="g"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">两边都加 2，性质 1，方向不变．</p></div></div>
+      <div class="qrow">(2) $a-5$ ＿ $b-5$ <div class="pick" data-ans="g"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">两边都减 5，性质 1，方向不变．</p></div></div>
+      <div class="qrow">(3) $4a$ ＿ $4b$ <div class="pick" data-ans="g"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">两边都乘正数 4，性质 2，方向不变．</p></div></div>
+      <div class="qrow">(4) $-a$ ＿ $-b$ <div class="pick" data-ans="l"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">两边都乘 $-1$（负数），性质 2，方向改变．</p></div></div>
+      <div class="qrow">(5) $4a-3$ ＿ $4b-3$ <div class="pick" data-ans="g"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">先乘 4（不变），再减 3（不变）．</p></div></div>
+      <div class="qrow">(6) $3-2a$ ＿ $3-2b$ <div class="pick" data-ans="l"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">先乘 $-2$：$-2a\lt -2b$（改变），再加 3：$3-2a\lt 3-2b$（不变）．</p></div></div>
+    </div>
+    <p class="method" data-label="分步走">复杂的式子（如 (6)）从 $a\gt b$ 出发一步一步变：每一步说清用了哪条性质、方向变没变．</p>
+  </div>
+  <p class="note">课本 p125 练一练第 1 题。(5)(6) 是两步变形，请学生口述每一步。可以用具体数检验，如 a = 2，b = 1：3 − 2a = −1，3 − 2b = 1，−1 &lt; 1。</p>
+</section>
+
+<!-- 10 ================= 练一练 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>说出下列不等式变形的依据</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard"><p>(1) 由 $x-1\gt 2$，得 $x\gt 3$</p>
+        <div class="pick" data-ans="a"><button data-k="a">性质 1</button><button data-k="b">性质 2（正数）</button><button data-k="c">性质 2（负数）</button><p class="pick-why">两边都加上 1，方向不变．</p></div></div>
+      <div class="jcard"><p>(2) 由 $-2x\gt -4$，得 $x\lt 2$</p>
+        <div class="pick" data-ans="c"><button data-k="a">性质 1</button><button data-k="b">性质 2（正数）</button><button data-k="c">性质 2（负数）</button><p class="pick-why">两边都除以 $-2$，不等号方向改变．</p></div></div>
+      <div class="jcard"><p>(3) 由 $-\dfrac12x\lt -1$，得 $x\gt 2$</p>
+        <div class="pick" data-ans="c"><button data-k="a">性质 1</button><button data-k="b">性质 2（正数）</button><button data-k="c">性质 2（负数）</button><p class="pick-why">两边都乘 $-2$，不等号方向改变．</p></div></div>
+      <div class="jcard"><p>(4) 由 $3x\lt x$，得 $2x\lt 0$</p>
+        <div class="pick" data-ans="a"><button data-k="a">性质 1</button><button data-k="b">性质 2（正数）</button><button data-k="c">性质 2（负数）</button><p class="pick-why">两边都减去<b>整式</b> $x$，方向不变．</p></div></div>
+    </div>
+    <p class="tip gold">说依据的完整格式：<b>根据不等式的基本性质 2，不等式的两边都除以 $-2$，不等号的方向改变．</b></p>
+  </div>
+  <p class="note">课本 p125 练一练第 2 题。点选后请学生用完整的话说出依据（见下方格式）。第 (4) 题用到性质 1 里的“同一个整式”。</p>
+</section>
+
+<!-- 11 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 11.3</span><h2>化成 $x\gt a$ 或 $x\lt a$ 的形式</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> (1) $x+2\gt 4$；　(2) $2x\lt x-3$．</p>
+        <details><summary>提示 1</summary>(1) 两边都减 2；(2) 两边都减去整式 $x$．</details>
+        <details><summary>完整解答</summary>(1) $x\gt 2$（性质 1）；<br>(2) $2x-x\lt x-3-x$，即 $x\lt -3$（性质 1）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> (3) $\dfrac13x\lt -\dfrac43$；　(4) $-6x\gt 8$．</p>
+        <details><summary>提示 1</summary>(3) 两边都乘 3；(4) 两边都除以 $-6$——是负数！</details>
+        <details><summary>完整解答</summary>(3) $x\lt -4$（性质 2，乘正数 3，方向不变）；<br>(4) $x\lt -\dfrac43$（性质 2，除以负数 $-6$，方向改变）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 小明到离家 6 km 的活动基地参加社会实践，早晨 7 时出发，要在 9 时前到达．如果他每小时走 $x$ km，可以得到怎样的不等式？指出所得不等式中 $x$ 的取值范围．</p>
+        <details><summary>提示 1</summary>7 时到 9 时共 2 h；2 h 内走过的路程要超过 6 km 才能在 9 时<b>前</b>到达．</details>
+        <details><summary>提示 2</summary>$2x\gt 6$，两边都除以 2．</details>
+        <details><summary>完整解答</summary>$2x\gt 6$，根据性质 2（两边都除以正数 2），得 $x\gt 3$．即小明的速度要大于 3 km/h．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p126 习题 11.3。第 2 题“9 时前到达”理解为恰好 9 时到不算（2x &gt; 6）；若学生写 2x ≥ 6 并说明“9 时整到也可以”，可以讨论题意，不必扣死。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def"><b>性质 1</b>：两边加（减）同一个数或整式，方向不变．</p>
+        <p class="def"><b>性质 2</b>：两边乘（除以）同一个正数，方向不变；乘（除以）同一个<b>负数</b>，方向<b>改变</b>．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="变形三问">加减还是乘除？乘除的数是正还是负？方向变不变？</p>
+        <p class="method" data-label="检验">变形后代入一个数，看原式和新式是否同时成立．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="类比">从等式的性质类比猜想，再用数值、数轴检验，发现“乘负数”这个不同点．</p>
+        <p class="recall" data-label="数形结合">加减 = 平移；乘负数 = 翻到原点另一侧，顺序对调．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>11.4 解一元一次不等式——用这两条性质，像解方程那样一步步解出 $14-2x\gt 6$．</p>
+  </div>
+  <p class="note">小结时请学生对着第 5 页的“连线图”复述性质 2。作业：习题 11.3 第 1、2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用一元一次不等式解决问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="../shared/ineq.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/dujuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第11章 一元一次不等式 · 11.5</p>
+    <h1 class="cover-title">用一元一次不等式解决问题</h1>
+    <p class="cover-q" data-step="1">某种杜鹃花适宜生长在平均气温为 <b>17℃ 到 20℃</b> 之间的山区．山脚的平均气温是 20℃，每上升 100 m，气温下降 0.6℃．</p>
+    <p class="cover-q" data-step="2">杜鹃花最多能种到比山脚高多少米的地方？——这类“<b>最多</b>”“<b>至少</b>”的问题，怎样用不等式来解决？</p>
+    <div class="chips" data-step="3"><span class="chip">搭火柴“小鱼”</span><span class="chip">设 · 列 · 解 · 答</span><span class="chip">结合实际取值</span><span class="chip">最多 · 至少</span></div>
+  </div>
+  <p class="note">课本 p131 问题 2 情境。封面只提出问题，第 6 页再解。请学生说说：“最多”“至少”这样的问题，答案是一个数还是一个范围？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 4.3 · 用方程解决问题" data-step="1">
+        <p>审题 → 设未知数 → 找<b>相等关系</b>列方程 → 解方程 → 检验 → 写答．</p>
+        <span class="use">步骤照搬，只是把“相等关系”换成“<b>不等关系</b>”．</span>
+      </div>
+      <div class="recall" data-label="11.1 · 关键词" data-step="2">
+        <p>不超过、至多 → $\le$；不少于、至少 → $\ge$；少于 → $\lt$；超过 → $\gt$．</p>
+        <span class="use">从题目里抓关键词，选对不等号．</span>
+      </div>
+      <div class="recall" data-label="11.4 · 解一元一次不等式" data-step="3">
+        <p>去分母、去括号、移项、合并同类项、系数化为 1（负数要变号）．</p>
+        <span class="use">列出不等式后求解集，再结合实际取值．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>实际问题 → 找不等关系 → 列不等式 → 解 → <b>结合实际</b>得出答案（往往要取整数）．</p>
+  </div>
+  <p class="note">第一张卡请学生复述“用方程解决问题”的步骤。本课最大的新问题在最后一步：解集是一个范围，而题目问的“最多几个”“至少几辆”要从范围里挑出一个合适的数。</p>
+</section>
+
+<!-- 3 ================= 议一议：小鱼（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>用少于 50 根火柴棒，最多可以搭多少条“小鱼”？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>搭 $n$ 条</span><span>$8+6(n-1)$ 根</span><i class="why">第 1 条 8 根，以后每条多 6 根</i></div>
+        <div class="dl" data-step="2"><span>不等关系</span><span class="think" data-step="3" data-ask="列不等式">$8+6(n-1)\lt 50$</span><i class="why">“少于 50 根”</i></div>
+        <div class="dl" data-step="4"><span>解得</span><span>$n\lt 8$</span><i class="why">$6n+2\lt 50$，$6n\lt 48$</i></div>
+        <div class="dl end" data-step="5"><span>答</span><span class="think" data-step="6" data-ask="最多几条？">最多搭 7 条</span><i class="why">$n$ 是正整数，$n\lt 8$ 中最大的是 7</i></div>
+      </div>
+      <p class="warn" data-step="7" data-label="为什么不是 8 条？">$n=8$ 要用 $8+6\times7=50$ 根，不是“少于 50”．</p>
+    </div>
+    <div class="col">
+      <div class="match" id="fishFig" aria-label="按图 11-9 搭小鱼"></div>
+      <div class="slider-row" data-noswipe>小鱼条数 $n=$<input type="range" id="fishN" min="1" max="9" step="1" value="3"><b class="v" id="fishNV"></b></div>
+      <div class="readout stick-read">
+        <span>火柴棒</span><div class="bar"><i id="fishBar"></i></div><b class="v" id="fishCnt"></b>
+      </div>
+      <p class="tip feedback" id="fishMsg"></p>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p131 议一议与图 11-9。右侧按课本搭法逐条画出小鱼（新的一条借用上一条的“鱼头”两根作“鱼尾”），根数实时统计，进度条的竖线是 50 根。先让学生拖到 7、8 两条，看哪一条刚好不满足“少于 50”。课本两个小人的对话就是左边的推导。</p>
+</section>
+
+<!-- 4 ================= 问题 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1</span><h2>这只纸箱内最多能装多少个苹果？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">一只纸箱质量为 1 kg，放入一些苹果后，纸箱和苹果的总质量不超过 10 kg．假设每个苹果的质量为 0.25 kg，这只纸箱内最多能装多少个苹果？</p>
+      <p class="tip" data-step="1"><b>章前填表：</b>先估一估（课本 p117）</p>
+      <table class="mtab" data-step="1">
+        <tr><th>苹果数</th><td>20</td><td>25</td><td>30</td><td>35</td></tr>
+        <tr><th>总质量/kg</th><td><span class="blank" data-ans="6" data-w="3"></span></td><td><span class="blank" data-ans="7.25" data-w="4"></span></td><td><span class="blank" data-ans="8.5" data-w="3"></span></td><td><span class="blank" data-ans="9.75" data-w="4"></span></td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="2"><span>解：设</span><span>这只纸箱内能装 $x$ 个苹果</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>根据题意，得</span><span class="think" data-step="4" data-ask="列不等式">$0.25x+1\le 10$</span><i class="why">苹果的质量 + 纸箱的质量 不超过 10</i></div>
+        <div class="dl" data-step="5"><span>解这个不等式，得</span><span>$x\le 36$</span><i class="why">$0.25x\le 9$</i></div>
+        <div class="dl end" data-step="6"><span>答：</span><span>这只纸箱内最多能装 36 个苹果．</span><i class="why">$x=36$ 时总质量恰好 10 kg，可以</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="对比议一议">“少于 50”没有等号，$n\lt 8$ 最多取 7；“不超过 10”有等号，$x\le 36$ 最多取 36．</p>
+    </div>
+  </div>
+  <p class="note">课本 p131 问题 1（呼应本章章前图 p117 的纸箱问题）。填表在格子里输入后回车判断。表格只能“估”，最多 35 个还是 36 个？列不等式才能准确回答。</p>
+</section>
+
+<!-- 5 ================= 问题 2：杜鹃花 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2</span><h2>杜鹃花应种在比山脚海拔最多高多少米的山坡上？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 400 260" class="mount" id="mount" aria-label="山坡海拔与气温"></svg>
+      <div class="slider-row" data-noswipe>比山脚高 $x=$<input type="range" id="altX" min="0" max="800" step="50" value="300"><b class="v" id="altV"></b>m</div>
+    </div>
+    <div class="col">
+      <p class="tip small-q">某种杜鹃花适宜生长在平均气温为 17℃ 到 20℃ 之间<sup>[注]</sup>的山区．已知某山区山脚下的平均气温为 20℃，并且每上升 100 m，气温下降 0.6℃，要在该山区种植这种杜鹃花，应种在比山脚的海拔最多高多少米的山坡上？<br><small>[注] “17℃ 到 20℃ 之间”表示大于等于 17℃，且小于等于 20℃．</small></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：设</span><span>种在比山脚高 $x$ m 的山坡上</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>那里的气温</span><span class="think" data-step="3" data-ask="怎样表示？">$\left(20-\dfrac{x}{100}\times0.6\right)$℃</span><i class="why">上升了 $\dfrac{x}{100}$ 个 100 m</i></div>
+        <div class="dl" data-step="4"><span>根据题意，得</span><span>$20-\dfrac{x}{100}\times0.6\ge 17$</span><i class="why">越往上越冷，只需不低于 17℃</i></div>
+        <div class="dl end" data-step="5"><span>解得</span><span>$x\le 500$</span><i class="why">$0.006x\le 3$</i></div>
+      </div>
+      <p class="tip" data-step="6"><b>答：</b>这种杜鹃花应种在比山脚的海拔最多高 500 m 的山坡上．</p>
+    </div>
+  </div>
+  <p class="note">课本 p131–132 问题 2。左图的山坡、海拔刻度与温度都由公式算出：气温 = 20 − 0.006x。拖到 500 m 正好 17℃，再往上就低于 17℃（红色）。为什么只列“≥ 17”一个不等式？——从山脚往上气温只会降低，不会超过 20℃，“≤ 20”自然满足。</p>
+</section>
+
+<!-- 6 ================= 数学实验室 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>搭一搭，算一算：用少于 50 根火柴棒最多可以搭多少个正方形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 11-10，用 4 根火柴棒可以搭 1 个正方形，用 7 根可以搭 2 个，用 10 根可以搭 3 个……照此搭法：</p>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 1.</b> 解答“数学实验室”中的问题．</p>
+        <details><summary>提示 1</summary>搭 $n$ 个正方形需要几根？第 1 个 4 根，以后每个多 3 根．</details>
+        <details><summary>提示 2</summary>$4+3(n-1)\lt 50$，即 $3n+1\lt 50$．</details>
+        <details><summary>完整解答</summary>设能搭 $n$ 个正方形，$3n+1\lt 50$，$n\lt \dfrac{49}{3}=16\dfrac13$．$n$ 是正整数，所以最多搭 16 个（用 49 根）．</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="match" id="sqFig" aria-label="按图 11-10 搭正方形"></div>
+      <div class="slider-row" data-noswipe>正方形个数 $n=$<input type="range" id="sqN" min="1" max="18" step="1" value="3"><b class="v" id="sqNV"></b></div>
+      <div class="readout stick-read">
+        <span>火柴棒</span><div class="bar"><i id="sqBar"></i></div><b class="v" id="sqCnt"></b>
+      </div>
+      <p class="tip feedback" id="sqMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p132 数学实验室与图 11-10、练一练第 1 题。和第 3 页的小鱼对照：同样“少于 50”，这里解出 n &lt; 16⅓，不是整数——取不大于它的最大正整数 16。拖到 16、17 验证。</p>
+</section>
+
+<!-- 7 ================= 练一练 2：河堤 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>此后平均每天至少要整修河堤多少米？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>2.</b> 某工程队计划在 10 天内整修河堤 600 m．施工 2 天修了 120 m 后，该工程需要比原计划提前 2 天完成，此后平均每天至少要整修河堤多少米？</p>
+      <svg viewBox="0 0 400 150" class="dike" id="dike" aria-label="天数与长度线段图"></svg>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q">先看线段图：还剩多少米？还剩几天？</p>
+        <details><summary>提示 1</summary>还剩 $600-120=480$（m）；原计划 10 天，提前 2 天就是 8 天完成，已用 2 天，还剩 $8-2=6$（天）．</details>
+        <details><summary>提示 2</summary>设此后平均每天修 $x$ m，6 天修的不能少于 480 m：$6x\ge 480$．</details>
+        <details><summary>完整解答</summary>$6x\ge 480$，$x\ge 80$．答：此后平均每天至少要整修河堤 80 m．</details>
+      </div>
+      <p class="method" data-step="1" data-label="线段图">数量关系复杂时，画线段图把“已修、未修、天数”标出来，再找不等关系．</p>
+    </div>
+  </div>
+  <p class="note">课本 p132 练一练第 2 题。线段图按比例画：上面一条是 600 m（120 m 已修），下面一条是 10 天（已用 2 天、剩余 6 天、提前 2 天）。“至少”对应 ≥。</p>
+</section>
+
+<!-- 8 ================= 问题 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3</span><h2>原来行驶的速度最大是多少？</h2></div>
+  <div class="bd full">
+    <p class="tip">某人骑一辆变速自行车，如果行驶速度增加 4 km/h，那么 2 h 所行驶的路程不少于以原来速度 2.5 h 所行驶的路程．原来行驶的速度最大是多少？</p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：设</span><span>原来行驶的速度是 $x$ km/h</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>根据题意，得</span><span class="think" data-step="3" data-ask="列不等式">$2(x+4)\ge 2.5x$</span><i class="why">新速度 2 h 的路程 不少于 原速度 2.5 h 的路程</i></div>
+        <div class="dl" data-step="4"><span>去括号、移项</span><span>$2x-2.5x\ge -8$</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span></span><span>$-0.5x\ge -8$</span><i class="why"></i></div>
+        <div class="dl end" data-step="6"><span>解得</span><span>$x\le 16$</span><i class="why">两边都除以 $-0.5$，方向改变</i></div>
+      </div>
+      <div class="col">
+        <table class="mtab" data-step="1">
+          <tr><th></th><th>速度/(km/h)</th><th>时间/h</th><th>路程/km</th></tr>
+          <tr><td>提速后</td><td>$x+4$</td><td>2</td><td>$2(x+4)$</td></tr>
+          <tr><td>原来</td><td>$x$</td><td>2.5</td><td>$2.5x$</td></tr>
+        </table>
+        <p class="tip" data-step="7"><b>答：</b>原来行驶的速度最大是 16 km/h．</p>
+        <p class="tip" data-step="8">检验：$x=16$ 时，$2\times20=40$，$2.5\times16=40$，$40\ge 40$ ✓；$x=17$ 时，$42\lt 42.5$ ✗．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p132–133 问题 3。列表整理“速度、时间、路程”三个量，是七上行程问题的老办法。这里速度不必是整数，所以“最大”就是 16。</p>
+</section>
+
+<!-- 9 ================= 问题 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 4</span><h2>小明可能有几枚 1 元的硬币？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+    <div class="col">
+      <p class="tip">小明有 1 元和 5 角的硬币共 13 枚，这些硬币的总币值小于 8.5 元．问小明可能有几枚 1 元的硬币？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：设</span><span>有 1 元的硬币 $x$ 枚</span><i class="why">5 角的有 $(13-x)$ 枚</i></div>
+        <div class="dl" data-step="2"><span>根据题意，得</span><span class="think" data-step="3" data-ask="列不等式">$x+0.5(13-x)\lt 8.5$</span><i class="why">5 角 = 0.5 元</i></div>
+        <div class="dl end" data-step="4"><span>解得</span><span>$x\lt 4$</span><i class="why">$0.5x\lt 2$</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5">$x\lt 4$ 中，哪些数符合题意？点数轴上的点选出来，再点“检查”．</p>
+      <div id="coinB" class="coinb" data-step="5"></div>
+      <div class="btns" data-noswipe data-step="5"><button class="btn solid" type="button" id="coinChk">检查</button><button class="btn" type="button" id="coinClr">清空</button></div>
+      <p class="tip feedback" id="coinMsg"></p>
+      <p class="tip" data-step="6"><b>答：</b>因为 $x$ 是自然数，所以 $x$ 可取 0，1，2，3．小明可能有 1 元硬币 0 枚，1 枚，2 枚，3 枚．</p>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p133 问题 4。解集 x &lt; 4 里有无数个数，但硬币枚数只能是自然数（0 也可以！）。数轴上可点的是 −2 到 6 的整数和两个小数（1.5、3.5），选出全部且只选对的才算对。</p>
+</section>
+
+<!-- 10 ================= 练一练 p133 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>导火线与足球赛</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某工地要实施爆破，导火线的燃烧速度是 0.8 cm/s，引爆人在点燃导火线后要跑到 200 m 以外的安全区域．如果引爆人跑步的速度是 5 m/s，那么导火线的长度应大于多少？</p>
+        <details><summary>提示 1</summary>人跑到安全区要 $200\div5=40$（s）．导火线烧完的时间要比 40 s 长．</details>
+        <details><summary>提示 2</summary>设导火线长 $x$ cm，烧完要 $\dfrac{x}{0.8}$ s：$\dfrac{x}{0.8}\gt 40$．</details>
+        <details><summary>完整解答</summary>$\dfrac{x}{0.8}\gt 40$，$x\gt 32$．答：导火线的长度应大于 32 cm．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 甲、乙两队进行足球对抗赛，比赛规则规定每队胜一场得 3 分，平一场得 1 分，负一场得 0 分．两队一共比赛了 10 场，甲队保持不败，得分超过 22 分．甲队至少胜了多少场？</p>
+        <details><summary>提示 1</summary>“保持不败”= 只有胜和平．设胜 $x$ 场，则平 $(10-x)$ 场．</details>
+        <details><summary>提示 2</summary>$3x+(10-x)\gt 22$．</details>
+        <details><summary>完整解答</summary>$2x\gt 12$，$x\gt 6$．$x$ 是整数，所以甲队至少胜了 7 场（胜 7 平 3 得 24 分；胜 6 平 4 只得 22 分，不超过 22）．</details>
+      </div>
+    </div>
+    <p class="warn" data-label="单位统一">第 1 题速度单位是 cm/s，距离单位是 m——先换算成同一单位（或只比较时间）．</p>
+  </div>
+  <p class="note">课本 p133 练一练。第 1 题的关键是“比较时间”：导火线燃烧的时间要比人跑到安全区的时间长。第 2 题“至少”：x &gt; 6 中最小的整数是 7。</p>
+</section>
+
+<!-- 11 ================= 方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法</span><h2>解集 → 答案：结合实际“取值”</h2></div>
+  <div class="bd full">
+    <table class="mtab ans" data-step="1">
+      <tr><th>问题</th><th>不等式</th><th>解集</th><th>未知数的实际意义</th><th>答案</th></tr>
+      <tr><td>小鱼</td><td>$8+6(n-1)\lt 50$</td><td>$n\lt 8$</td><td>正整数</td><td><span class="think" data-step="2" data-ask="?">最多 7 条</span></td></tr>
+      <tr><td>苹果</td><td>$0.25x+1\le 10$</td><td>$x\le 36$</td><td>正整数</td><td><span class="think" data-step="2" data-ask="?">最多 36 个</span></td></tr>
+      <tr><td>正方形</td><td>$3n+1\lt 50$</td><td>$n\lt 16\dfrac13$</td><td>正整数</td><td><span class="think" data-step="3" data-ask="?">最多 16 个</span></td></tr>
+      <tr><td>足球</td><td>$3x+(10-x)\gt 22$</td><td>$x\gt 6$</td><td>整数</td><td><span class="think" data-step="3" data-ask="?">至少 7 场</span></td></tr>
+      <tr><td>自行车</td><td>$2(x+4)\ge 2.5x$</td><td>$x\le 16$</td><td>正数</td><td><span class="think" data-step="4" data-ask="?">最大 16 km/h</span></td></tr>
+      <tr><td>硬币</td><td>$x+0.5(13-x)\lt 8.5$</td><td>$x\lt 4$</td><td>自然数</td><td><span class="think" data-step="4" data-ask="?">0，1，2，3 枚</span></td></tr>
+    </table>
+    <p class="method" data-step="5" data-label="一般步骤">① 审：找出不等关系（关键词）；② 设：设未知数；③ 列：列不等式；④ 解：求解集；⑤ 答：<b>结合未知数的实际意义</b>确定答案．</p>
+  </div>
+  <p class="note">把本课所有问题放在一起比较：同样是“&lt;”，小鱼取 7（n &lt; 8 不含 8），正方形取 16（16⅓ 向下取整）；“&gt;”的足球题要取比 6 大的最小整数 7。请学生说出每一行“为什么取这个数”。</p>
+</section>
+
+<!-- 12 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 11.5</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一个 $n$ 边形的内角和比它的外角和至少大 120°，$n$ 的最小值是多少？</p>
+        <details><summary>提示 1</summary>内角和 $(n-2)\cdot180^\circ$，外角和 $360^\circ$（7.5 节）．</details>
+        <details><summary>完整解答</summary>$(n-2)\times180-360\ge 120$，$180n\ge 840$，$n\ge 4\dfrac23$．$n$ 是整数，最小值是 5．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某茶叶商店销售一批袋装茶叶，第一个月以 50 元/袋的价格售出 80 袋，第二个月以 40 元/袋的价格将这批茶叶全部售出，销售收入不超过 8 000 元．这批茶叶最多有多少袋？</p>
+        <details><summary>提示 1</summary>设这批茶叶共 $x$ 袋，第二个月卖出 $(x-80)$ 袋．</details>
+        <details><summary>完整解答</summary>$50\times80+40(x-80)\le 8000$，$40x\le 7200$，$x\le 180$．最多有 180 袋．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 某校七年级 406 名师生外出春游，租用 44 座和 40 座的两种客车．如果 44 座的客车租用了 2 辆，那么 40 座的客车至少需租用多少辆？</p>
+        <details><summary>提示 1</summary>座位总数不少于人数：$44\times2+40x\ge 406$．</details>
+        <details><summary>完整解答</summary>$40x\ge 318$，$x\ge 7.95$．$x$ 是整数，至少需租用 8 辆．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 甲、乙两种糖果的价格分别为每千克 10 元和每千克 14 元，现将两种糖果共 20 千克混合，总价不超过 240 元，混合的糖果中甲种糖果最少多少千克？</p>
+        <details><summary>提示 1</summary>设甲种 $x$ kg，乙种 $(20-x)$ kg：$10x+14(20-x)\le 240$．</details>
+        <details><summary>完整解答</summary>$-4x\le -40$，$x\ge 10$（除以负数变号）．甲种糖果最少 10 千克．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p133 习题 11.5。第 1 题联系 7.5 多边形的内角和；第 3 题 7.95 要“向上取整”为 8（7 辆坐不下）；第 4 题解的过程中要除以 −4，注意变号。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">用一元一次不等式解决问题：<b>审 → 设 → 列 → 解 → 答</b>．</p>
+        <p class="warn" data-label="最后一步">解集是范围；答案要结合实际意义取值（整数、自然数、正数……）．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="找不等关系">抓关键词（不超过、至少、少于……）；列表、画线段图理清数量．</p>
+        <p class="method" data-label="检验">把答案和它旁边的数代回去，看是否“刚好满足”和“刚好不满足”．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="建模">实际问题 → 不等式模型 → 解集 → 回到实际．</p>
+        <p class="recall" data-label="类比">与列方程解应用题步骤相同，结论从“一个数”变成“一个范围”．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>11.6 一元一次不等式组——小丽要在 7:50 到 7:55 之间到校，速度要同时满足两个不等式，怎么办？</p>
+  </div>
+  <p class="note">课后可布置本章“数学活动：一元一次不等式问题的调查”（课本 p139）：找一个生活中能用一元一次不等式解决的问题，下节课交流。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="../shared/ineq.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

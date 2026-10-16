@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>解一元一次不等式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="../shared/ineq.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shuzhuo.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第11章 一元一次不等式 · 11.4</p>
+    <h1 class="cover-title">解一元一次不等式</h1>
+    <p class="cover-q" data-step="1">$x-3\gt 0$ 的解集一眼就能看出来．可是 $3x+70\gt 100$、$14-2x\gt 6$ 呢？</p>
+    <p class="cover-q" data-step="2">能不能像<b>解一元一次方程</b>那样，一步一步把它变成 $x\gt a$ 或 $x\lt a$？哪一步和解方程<b>不一样</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">一元一次不等式</span><span class="chip">移项 · 合并</span><span class="chip">系数化为 1：分清正负</span><span class="chip">去分母 · 去括号</span></div>
+  </div>
+  <p class="note">课本 p127。封面的两个不等式分别是本课的“议一议”和例 1。请学生先猜：解不等式的步骤会和解方程一样吗？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="11.3 · 不等式的基本性质" data-step="1">
+        <p><b>性质 1</b>：两边加（减）同一个数或整式，方向不变．</p>
+        <p><b>性质 2</b>：两边乘（除以）同一个正数，方向不变；同一个<b>负数</b>，方向<b>改变</b>．</p>
+        <span class="use">每一步变形的依据．</span>
+      </div>
+      <div class="recall" data-label="七上 4.2 · 解一元一次方程" data-step="2">
+        <p>去分母 → 去括号 → 移项 → 合并同类项 → 系数化为 1．</p>
+        <p>移项要<b>变号</b>；去分母时每一项都要乘．</p>
+        <span class="use">解不等式的步骤与它类似．</span>
+      </div>
+      <div class="recall" data-label="11.2 · 数轴表示解集" data-step="3">
+        <p>大于向右、小于向左；有等号画实心点，无等号画空心圈．</p>
+        <span class="use">每道例题最后把解集画在数轴上．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>怎样像解方程那样解不等式？哪一步要用性质 2 并<b>分清正负</b>？</p>
+  </div>
+  <p class="note">第二张卡请学生说出解方程的五个步骤，并举一个“移项不变号”或“去分母漏乘”的错误例子——这两类错误在解不等式时同样会出现。</p>
+</section>
+
+<!-- 3 ================= 一元一次不等式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>一元一次不等式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">不等式 $x\ge 2.9$、$x+2\lt 48$、$2x\lt x-3$、$\dfrac13y+4\ge 0$，它们有什么共同点？</p>
+      <div class="def" data-step="1"><h4>一元一次不等式（课本 p127）</h4>只含有<em>一个</em>未知数，并且未知数的次数都是 <em>1</em>，系数不等于 0．像这样的不等式，叫做<em>一元一次不等式</em>（linear inequality with one unknown）．</div>
+      <p class="recall" data-step="2" data-label="对比">一元一次方程：一个未知数、次数是 1；只是把“$=$”换成了不等号．</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="3">下列哪些是一元一次不等式？</p>
+      <div class="judge">
+        <div class="jcard" data-step="3">① $3-x\le 0$　<span class="think" data-step="4" data-ask="是吗？"><span class="verdict ok">是</span>一个未知数，次数 1</span></div>
+        <div class="jcard" data-step="3">② $x^2-1\gt 0$　<span class="think" data-step="4" data-ask="是吗？"><span class="verdict x">不是</span>$x$ 的次数是 2</span></div>
+        <div class="jcard" data-step="3">③ $x+y\gt 2$　<span class="think" data-step="4" data-ask="是吗？"><span class="verdict x">不是</span>含两个未知数</span></div>
+        <div class="jcard" data-step="3">④ $2x\lt x-3$　<span class="think" data-step="4" data-ask="是吗？"><span class="verdict ok">是</span>两边都有 $x$ 也没关系</span></div>
+        <div class="jcard" data-step="3">⑤ $-1\lt 0$　<span class="think" data-step="4" data-ask="是吗？"><span class="verdict x">不是</span>是不等式，但不含未知数</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p127 定义。判断题逐个表决再点开。④ 需要提醒：两边都含 x，移项合并后是 x &lt; −3，仍是一元一次不等式。</p>
+</section>
+
+<!-- 4 ================= 议一议 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>怎样求 $3x+70\gt 100$ 的解集？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="recall" data-label="课本里的两句提示">“与解方程类似，运用不等式的基本性质，将这个不等式变形．”<br>“这就是解不等式中的移项，与解方程中的移项类似．”</p>
+      <div id="f115" class="iq-fig" data-step="5"></div>
+      <p class="figcap" data-step="5">图 11-5　$x\gt 10$</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl"><span></span><span>$3x+70\gt 100$</span><i class="why"></i></div>
+        <div class="dl" data-step="1"><span>两边都减去 70</span><span class="think" data-step="2" data-ask="得到？">$3x\gt 100-70$</span><i class="why">性质 1（这就是<b>移项</b>）</i></div>
+        <div class="dl" data-step="3"><span>合并同类项</span><span>$3x\gt 30$</span><i class="why"></i></div>
+        <div class="dl end" data-step="4"><span>两边都除以 3</span><span class="think" data-step="4" data-ask="方向变吗？">$x\gt 10$</span><i class="why">性质 2，3 是正数，方向不变</i></div>
+      </div>
+      <p class="tip" data-step="6">检验：取 $x=11$，$3\times11+70=103\gt 100$ ✓；取 $x=10$，$3\times10+70=100$，$100\gt 100$ 不成立，所以 10 处画空心圈．</p>
+    </div>
+  </div>
+  <p class="note">课本 p127 议一议与图 11-5。第 1 步强调：“两边都减去 70”就是“把 70 从左边移到右边并变号”，与方程的移项一样。最后用两个数检验，既验证结果，也说明端点为什么是空心。</p>
+</section>
+
+<!-- 5 ================= 同解流水线（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 动手解</span><h2>每一步都“同解”吗？数轴来检验</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns q-tabs" data-noswipe id="plTabs"></div>
+      <div class="pl-steps" id="plSteps" data-noswipe></div>
+      <p class="tip feedback" id="plMsg"></p>
+    </div>
+    <div class="col">
+      <div id="plBoard" class="plb"></div>
+      <p class="muted center small-t">每一行是对应那一步的不等式的解集（由式子精确算出）；正确的变形，各行解集完全相同</p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。课本 p127–128 例 1（14 − 2x &gt; 6），另两题是 p128 练一练 (2)(4)。每一步有两个候选结果，其中一个是常见错误；选错时数轴上会出现红色虚线——它的解集和原不等式不一样，说明这一步“变错了”。重点在最后一步：除以负数不变号，红线会指向相反方向。可以让学生先口答，再请一人上来点。</p>
+</section>
+
+<!-- 6 ================= 例 1 书写 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>解不等式 $14-2x\gt 6$，并把解集在数轴上表示出来</h2></div>
+  <div class="bd full top">
+    <div class="cols2 wl">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：移项，得</span><span>$-2x\gt 6-14$</span><i class="why">14 移到右边变成 $-14$</i></div>
+        <div class="dl" data-step="2"><span>合并同类项，得</span><span>$-2x\gt -8$</span><i class="why"></i></div>
+        <div class="dl key" data-step="3"><span>两边都除以 $-2$，得</span><span class="think" data-step="4" data-ask="注意！">$x\lt 4$</span><i class="why">性质 2：因为 $-2\lt 0$，所以不等号的方向要改变</i></div>
+      </div>
+      <div id="f116" class="iq-fig" data-step="5"></div>
+      <p class="figcap" data-step="5">图 11-6　$x\lt 4$</p>
+    </div>
+    <div class="col">
+      <p class="warn" data-step="6" data-label="课本的提醒">“因为 $-2\lt 0$，所以不等号的方向要改变．”</p>
+      <p class="tip" data-step="7"><b>另一种做法：</b>先把 $-2x$ 移到右边，6 移到左边：$14-6\gt 2x$，即 $8\gt 2x$，$x\lt 4$．——系数为正，就不用变号了．</p>
+      <p class="tip gold" data-step="8"><b>练一练：</b>解下列不等式，并把它们的解集在数轴上表示出来：(1) $2+2a\gt 6$；(2) $5-x\lt 1$；(3) $4x\le 2x+3$；(4) $-\dfrac12x-1\gt 2$．<br><span class="think" data-step="9" data-ask="对答案">(1) $a\gt 2$；(2) $x\gt 4$；(3) $x\le \dfrac32$；(4) $x\lt -6$．</span></p>
+      <div id="fPr" class="iq-fig pr-fig" data-step="9"></div>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p128 例 1 的规范书写、图 11-6 和练一练。“另一种做法”给学有余力的学生：移项时让 x 的系数保持为正，可以避开变号。练一练答案的数轴（下方小图）四个解集用四种颜色从下到上排列：a &gt; 2、x &gt; 4、x ≤ 3/2、x &lt; −6。</p>
+</section>
+
+<!-- 7 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>解不等式 $2x-1\ge\dfrac{3x-1}{2}$</h2></div>
+  <div class="bd full top">
+    <div class="cols2 wl">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：两边都乘 2，得</span><span class="think" data-step="2" data-ask="怎样乘？">$2(2x-1)\ge 3x-1$</span><i class="why">性质 2，2 是正数，方向不变（<b>去分母</b>）</i></div>
+        <div class="dl" data-step="3"><span>去括号，得</span><span>$4x-2\ge 3x-1$</span><i class="why"></i></div>
+        <div class="dl" data-step="4"><span>移项，得</span><span>$4x-3x\ge -1+2$</span><i class="why">性质 1</i></div>
+        <div class="dl end" data-step="5"><span>合并同类项，得</span><span>$x\ge 1$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div id="f117" class="iq-fig" data-step="6"></div>
+      <p class="figcap" data-step="6">图 11-7　$x\ge 1$（1 处实心）</p>
+      <p class="warn" data-step="7" data-label="去分母两件事">① 不含分母的项（$2x-1$）也要乘 2，<b>别漏乘</b>；② 乘以后 $2x-1$ 是一个整体，要<b>加括号</b>．</p>
+      <p class="tip" data-step="8">检验端点：$x=1$ 时，左边 $2\times1-1=1$，右边 $\dfrac{3-1}2=1$，$1\ge 1$ 成立，所以画<b>实心点</b>．</p>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p128–129 例 2 与图 11-7。第 1 步课本旁注“这就是去分母”。乘的是正数 2，所以方向不变——去分母时乘的总是分母的最小公倍数（正数），这一步永远不变号。</p>
+</section>
+
+<!-- 8 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>解不等式 $1-\dfrac{x+6}{2}\lt\dfrac{2x+1}{3}$</h2></div>
+  <div class="bd full top">
+    <div class="cols2 wl">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：去分母，得</span><span class="think" data-step="2" data-ask="两边乘几？">$6-3(x+6)\lt 2(2x+1)$</span><i class="why">两边都乘 6（2 和 3 的最小公倍数）</i></div>
+        <div class="dl" data-step="3"><span>去括号，得</span><span>$6-3x-18\lt 4x+2$</span><i class="why">$-3$ 乘括号里每一项</i></div>
+        <div class="dl" data-step="4"><span>移项、合并同类项，得</span><span>$-7x\lt 14$</span><i class="why">$-3x-4x\lt 2-6+18$</i></div>
+        <div class="dl key" data-step="5"><span>两边都除以 $-7$，得</span><span class="think" data-step="6" data-ask="方向？">$x\gt -2$</span><i class="why">除以负数，方向改变</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div id="f118" class="iq-fig" data-step="7"></div>
+      <p class="figcap" data-step="7">图 11-8　$x\gt -2$</p>
+      <p class="warn" data-step="8" data-label="两处易错">① “$1$”不含分母，也要乘 6，变成 $6$；② $-3(x+6)=-3x-18$，括号前是负号，去括号后两项都变号．</p>
+      <p class="tip" data-step="9">检验：取 $x=0$：左边 $1-3=-2$，右边 $\dfrac13$，$-2\lt\dfrac13$ ✓；取 $x=-3$：左边 $1-\dfrac32=-\dfrac12$，右边 $-\dfrac53$，$-\dfrac12\lt-\dfrac53$ ✗．</p>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p129 例 3 与图 11-8。这是本课最完整的一题：去分母、去括号、移项、合并、系数化为 1 全部用上，最后一步除以负数要变号。检验两个数：一个在解集内，一个在解集外。</p>
+</section>
+
+<!-- 9 ================= 议一议：步骤 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>解一元一次不等式的一般步骤；与解方程比一比</h2></div>
+  <div class="bd full">
+    <table class="mtab steps" data-step="1">
+      <tr><th>步骤</th><th>解一元一次方程</th><th>解一元一次不等式</th><th>依据</th></tr>
+      <tr><td>去分母</td><td>两边乘最小公倍数</td><td>两边乘最小公倍数（正数），<b>方向不变</b></td><td>性质 2</td></tr>
+      <tr><td>去括号</td><td colspan="2">相同：按去括号法则</td><td>乘法分配律</td></tr>
+      <tr><td>移项</td><td colspan="2">相同：移项要变号</td><td>性质 1</td></tr>
+      <tr><td>合并同类项</td><td colspan="2">相同</td><td>合并法则</td></tr>
+      <tr class="hot"><td>系数化为 1</td><td>两边除以系数</td><td><span class="think" data-step="2" data-ask="不同在哪？">系数为正，方向不变；系数为<b>负</b>，方向<b>改变</b></span></td><td>性质 2</td></tr>
+    </table>
+    <div class="cols2">
+      <p class="def" data-step="3"><span><b>课本 p129：</b>解一元一次不等式的一般步骤与解一元一次方程类似．但是，在不等式两边都乘（或除以）同一个不等于 0 的数时，必须分清这个数是正数还是负数，正确地运用不等式的基本性质 2．特别要注意，在不等式两边都乘（或除以）同一个负数时，要改变不等号的方向．</span></p>
+      <p class="method" data-step="4" data-label="结果也不同">方程的解是一个数（$x=a$）；不等式的解是一个解集（$x\gt a$ 等），通常还要在数轴上表示出来．</p>
+    </div>
+  </div>
+  <p class="note">课本 p129 议一议。表格请学生先填“解方程”一列，再讨论不等式哪里不同。核心只有一句话：系数化为 1 时分清正负。</p>
+</section>
+
+<!-- 10 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这三位同学错在哪一步？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>解 $-3x+2\lt 8$：</p>
+        <p>$-3x\lt 6$，所以 $x\lt -2$．</p>
+        <div class="think" data-step="2" data-ask="错在哪？"><p><span class="verdict x">✗</span>除以 $-3$ 没有变号．应为 $x\gt -2$．检验 $x=0$：$2\lt 8$ 成立，但 $0\lt -2$ 不成立．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>解 $\dfrac x2-1\gt x$：</p>
+        <p>去分母得 $x-1\gt 2x$，所以 $x\lt -1$．</p>
+        <div class="think" data-step="4" data-ask="错在哪？"><p><span class="verdict x">✗</span>去分母时“$-1$”漏乘 2．应为 $x-2\gt 2x$，$-x\gt 2$，$x\lt -2$．</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>解 $5x-3\le 2x+6$：</p>
+        <p>$5x-2x\le 6-3$，所以 $x\le 1$．</p>
+        <div class="think" data-step="6" data-ask="错在哪？"><p><span class="verdict x">✗</span>移项 $-3$ 没变号．应为 $5x-2x\le 6+3$，$3x\le 9$，$x\le 3$．</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="自查三问">① 去分母每一项都乘了吗？② 移项变号了吗？③ 除以负数改变方向了吗？——最后<b>代一个数检验</b>．</p>
+  </div>
+  <p class="note">三张卡分别对应三类典型错误：系数为负不变号、去分母漏乘、移项不变号。先让学生找错，再点开。第一张卡用“代数检验”揭穿错误，养成检验习惯。</p>
+</section>
+
+<!-- 11 ================= 练一练 p130 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>解下列不等式，并把解集在数轴上表示出来</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q">(1) $2(x-2)\gt 4$；　(2) $10-3(x+6)\le 1$．</p>
+        <details><summary>提示 1</summary>(1) 先去括号；(2) $-3(x+6)=-3x-18$．</details>
+        <details><summary>提示 2</summary>(2) 化简得 $-3x-8\le 1$，$-3x\le 9$，两边除以 $-3$……</details>
+        <details><summary>完整解答</summary>(1) $2x-4\gt 4$，$2x\gt 8$，$x\gt 4$；<br>(2) $10-3x-18\le 1$，$-3x\le 9$，$x\ge -3$（除以负数，方向改变）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(3) $\dfrac{x+2}{2}\ge\dfrac{2x-1}{3}$；　(4) $\dfrac x3\gt 4-\dfrac{x-2}{2}$．</p>
+        <details><summary>提示 1</summary>两边都乘 6；分子是多项式的要加括号，“4”也要乘 6．</details>
+        <details><summary>提示 2</summary>(3) $3(x+2)\ge 2(2x-1)$；(4) $2x\gt 24-3(x-2)$．</details>
+        <details><summary>完整解答</summary>(3) $3x+6\ge 4x-2$，$-x\ge -8$，$x\le 8$；<br>(4) $2x\gt 24-3x+6$，$5x\gt 30$，$x\gt 6$．</details>
+      </div>
+    </div>
+    <div id="fP130" class="iq-fig p130" data-step="1"></div>
+    <p class="figcap" data-step="1">四个解集：$x\gt 4$（红）、$x\ge -3$（橙）、$x\le 8$（绿）、$x\gt 6$（黑），由下到上</p>
+  </div>
+  <p class="note">课本 p130 练一练。先独立做 4 分钟，卡住了逐级点提示。按 → 出示四个解集的数轴图，学生对照自己画的图：注意 (2) 的 −3 和 (3) 的 8 是实心点。</p>
+</section>
+
+<!-- 12 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 11.4</span><h2>正整数解；比较两个代数式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 求不等式 $2x-3\le 5$ 的正整数解．</p>
+        <details><summary>提示 1</summary>先求解集：$2x\le 8$，$x\le 4$．</details>
+        <details><summary>提示 2</summary>在 $x\le 4$ 里找正整数：从 1 开始数．</details>
+        <details><summary>完整解答</summary>解集是 $x\le 4$，正整数解是 1，2，3，4（4 也是，因为有等号）．</details>
+      </div>
+      <div id="fPos" class="iq-fig" data-step="1"></div>
+      <p class="figcap" data-step="1">$x\le 4$ 中的正整数：1、2、3、4（绿点）</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 当代数式 $\dfrac{x-4}{3}$ 的值小于代数式 $\dfrac{2x+1}{2}$ 的值时，求 $x$ 的取值范围．</p>
+        <details><summary>提示 1</summary>“小于”就列出不等式 $\dfrac{x-4}{3}\lt\dfrac{2x+1}{2}$．</details>
+        <details><summary>提示 2</summary>两边都乘 6：$2(x-4)\lt 3(2x+1)$．</details>
+        <details><summary>完整解答</summary>$2x-8\lt 6x+3$，$-4x\lt 11$，$x\gt -\dfrac{11}{4}$．</details>
+      </div>
+      <p class="tip">更多练习：习题 11.4 第 1、2 题（课本 p130）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p130 习题 11.4 第 3、4 题。第 3 题是“解集 → 特殊解”：先解出 x ≤ 4，再在解集里挑正整数，端点 4 有等号要算上。第 4 题先把文字翻译成不等式（11.1 的本领）。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">只含一个未知数、未知数的次数是 1、系数不为 0 的不等式叫<b>一元一次不等式</b>．</p>
+        <p class="def">一般步骤：去分母 → 去括号 → 移项 → 合并同类项 → 系数化为 1．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="warn" data-label="关键一步">乘（除以）负数，不等号<b>改变方向</b>．</p>
+        <p class="method" data-label="检验">解集内取一个数、端点取一个数，代回原不等式．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="类比">解不等式 ↔ 解方程：步骤相同，系数化为 1 不同．</p>
+        <p class="recall" data-label="化归">把复杂的不等式一步步化成 $x\gt a$ 或 $x\lt a$．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>11.5 用一元一次不等式解决问题——一只纸箱最多能装多少个苹果？用少于 50 根火柴棒最多能搭多少条“小鱼”？</p>
+  </div>
+  <p class="note">请学生口述“解一元一次不等式的步骤和要注意的地方”，再逐栏揭示。作业：习题 11.4 第 1、2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="../shared/ineq.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

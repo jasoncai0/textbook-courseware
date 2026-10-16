@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>平面直角坐标系 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/penquan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第5章 平面直角坐标系 · 5.2</p>
+    <h1 class="cover-title">平面直角坐标系</h1>
+    <p class="cover-q" data-step="1">小丽问：“音乐喷泉在哪里？”小明说：“在中山北路西边 50 m、北京西路北边 30 m 处．”</p>
+    <p class="cover-q" data-step="2">小丽能按小明的描述找到音乐喷泉吗？能不能把这句话写得更短、更准确？</p>
+    <div class="chips" data-step="3"><span class="chip">两条数轴</span><span class="chip">坐标 $(a,b)$</span><span class="chip">四个象限</span><span class="chip">翻折 · 平移的坐标</span><span class="chip">建立坐标系</span></div>
+  </div>
+  <p class="note">课本 p120 情境。先让学生用自己的话复述小明的描述——“西边 50 m”“北边 30 m”是两个数据，而且带方向。本课把两条马路“变成”两条数轴，内容较多，建议 2 课时：第 1 课时到第 8 页（坐标与象限），第 2 课时从第 9 页起（图形的运动与坐标、建立坐标系）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课讲到哪里了？</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="八上 5.1 位置的确定（上一课）" data-step="1">
+        <p>直线上的点，一个数据就能确定；平面内的点，一般需要<b>两个数据</b>，而且有<b>顺序</b>（经度和纬度、先纵后横）．</p>
+        <span class="use">第 4 页：用“有序实数对”表示平面内的点．（<a href="../mj8a-weizhi/index.html">回看 5.1</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 2.3 数轴" data-step="2">
+        <p>数轴的三要素：原点、正方向、单位长度．数轴上的点与实数一一对应（第 4 章 4.3）．</p>
+        <span class="use">第 3、4 页：把两条数轴互相垂直地放在一起．（<a href="../mj7a-shuzhou/index.html">回看 2.3</a>）</span>
+      </div>
+      <div class="recall" data-label="八上 第2章 轴对称" data-step="3">
+        <p>成轴对称的两个图形中，对应点的连线被对称轴垂直平分．</p>
+        <span class="use">第 9、10 页：关于 $x$ 轴、$y$ 轴对称的点的坐标．（<a href="../mj8a-xianduanjiao/index.html">回看 2.4</a>）</span>
+      </div>
+      <div class="recall" data-label="七下 7.3 图形的平移" data-step="4">
+        <p>平移不改变图形的形状和大小；对应点所连的线段平行（或在同一条直线上）且相等．</p>
+        <span class="use">第 11、12 页：平移后点的坐标怎样变化．（<a href="../mj7b-pingyi/index.html">回看 7.3</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5">上一课的围棋盘用“纵线、横线”给每个交叉点编了“地址”．这一课给<b>平面内的每一个点</b>都编上“地址”．</p>
+  </div>
+  <p class="note">第二张卡请学生画一条数轴并标出 −50 和 30——马上会用到。第 4 章刚学过实数，所以本课的坐标可以是任何实数（如 −2.5、1.5，甚至 2√2）。</p>
+</section>
+
+<!-- 3 ================= 情境：两条路 → 两条数轴 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>把两条马路看成两条数轴</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="road" class="big-b"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="roadAx">把两条路看成数轴</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">如果将南北向的中山路和东西向的北京路看成纵横两条互相垂直的数轴，十字路口为这两条数轴的公共原点（如图 5-3）：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>“中山北路西边 50 m”</span><span class="think" data-step="2" data-ask="用哪个数？">横轴上的 $-50$</span><i class="why">向东为正，西边为负</i></div>
+        <div class="dl" data-step="3"><span>“北京西路北边 30 m”</span><span class="think" data-step="4" data-ask="用哪个数？">纵轴上的 $+30$</span><i class="why">向北为正</i></div>
+        <div class="dl end" data-step="5"><span>音乐喷泉</span><span>有序实数对 $(-50,30)$</span><i class="why">先横后纵</i></div>
+      </div>
+      <p class="warn" data-step="6" data-label="顺序不能换">$(30,-50)$ 表示的是“东边 30 m、南边 50 m”——完全是另一个地方．</p>
+    </div>
+  </div>
+  <p class="note">课本 p120 图 5-3。点按钮，两条马路上出现刻度，变成两条数轴；喷泉的位置由两条虚线（到两条路的垂线）读出。强调“有序”：两个数的顺序代表不同含义。</p>
+</section>
+
+<!-- 4 ================= 定义：平面直角坐标系、坐标 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>平面直角坐标系；点的坐标</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="coordP" class="big-b"></div>
+      <div class="coord-in" data-noswipe>输入：$($<input type="text" id="inA" value="2" aria-label="横坐标">$,$<input type="text" id="inB" value="3" aria-label="纵坐标">$)$ <button class="btn" type="button" id="inGo">描出这个点</button></div>
+      <p class="tip feedback" id="cpMsg"></p>
+    </div>
+    <div class="col">
+      <div class="def small-def" data-step="1"><h4>平面直角坐标系（课本 p120）</h4>平面内两条互相垂直的数轴构成平面直角坐标系，简称为直角坐标系．水平的数轴称为 <b>$x$ 轴</b>或横轴，向右为正方向；铅直方向的数轴称为 <b>$y$ 轴</b>或纵轴，向上为正方向；两轴的交点 $O$ 是<b>原点</b>．</div>
+      <p class="tip" data-step="2"><b>由数找点：</b>过 $x$ 轴上表示 $a$ 的点画 $x$ 轴的垂线，过 $y$ 轴上表示 $b$ 的点画 $y$ 轴的垂线，两条垂线的交点即为点 $P$（图 5-4）．</p>
+      <p class="tip" data-step="3"><b>由点找数：</b>点 $Q$ 是坐标系中的一点，<span class="think" data-step="4" data-ask="怎样找到它的有序实数对？">过 $Q$ 分别画 $x$ 轴、$y$ 轴的垂线，垂足在两轴上表示的数 $m$、$n$，就得到 $(m,n)$．</span></p>
+      <div class="def small-def" data-step="5"><h4>坐标（课本 p121）</h4>一对有序实数可以确定一个点的位置；反过来，任意一点的位置都可以用一对有序实数来表示．这样的有序实数对叫做点的<b>坐标</b>．$P(a,b)$ 中，$a$ 称为点 $P$ 的<b>横坐标</b>，$b$ 称为<b>纵坐标</b>，横坐标写在纵坐标的前面．</div>
+    </div>
+  </div>
+  <p class="note">课本 p120–121 定义与图 5-4。左边的画板是本课的核心工具：拖动 P（吸附在整点上）或输入一对数，画板画出两条垂线，读出坐标——“由数找点”“由点找数”是一回事的两面。坐标与点一一对应，可以和“数轴上的点与实数一一对应”类比。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>由坐标画点</h2></div>
+  <div class="bd half">
+    <div class="col"><div id="ex1" class="big-b"></div></div>
+    <div class="col">
+      <p class="tip">在平面直角坐标系中，画出下列各点：</p>
+      <p class="tip big">$A(4,1)$，$B(-1,4)$，$C(-4,-2)$，$D(3,-2)$，$E(0,1)$，$F(-4,0)$．</p>
+      <p class="tip" data-step="1"><b>解：</b>如图 5-5，过 $x$ 轴上表示 4 的点画 $x$ 轴的垂线，过 $y$ 轴上表示 1 的点画 $y$ 轴的垂线，两垂线的交点为 $A(4,1)$．</p>
+      <p class="tip" data-step="2">同样地，可画出点 $B$、$C$、$D$（按 → 逐个出现）<span data-step="3"></span><span data-step="4"></span>．</p>
+      <p class="warn" data-step="5" data-label="特别的两个点">$E(0,1)$ 的横坐标是 0，它在 <span class="think" data-step="6" data-ask="哪条轴上？">$y$ 轴上</span>；$F(-4,0)$ 的纵坐标是 0，它在 <span class="think" data-step="7" data-ask="哪条轴上？">$x$ 轴上</span>．</p>
+    </div>
+  </div>
+  <p class="note">课本 p121 例 1、图 5-5。每按一次 →，画板上多画一个点和它的两条垂线。先请学生口述“先横后纵”的画法，再看画板验证。E、F 不需要画垂线——它们就在坐标轴上，为第 7 页“坐标轴上的点”做准备。</p>
+</section>
+
+<!-- 6 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>由点写坐标</h2></div>
+  <div class="bd half">
+    <div class="col"><div id="ex2" class="big-b"></div></div>
+    <div class="col">
+      <p class="tip">写出图 5-6 中点 $A$、$B$、$C$ 的坐标．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>点 $A$</span><span class="think" data-step="2" data-ask="横坐标、纵坐标？">$A(-4,3)$</span><i class="why">向 $x$ 轴作垂线得 $-4$，向 $y$ 轴作垂线得 $3$</i></div>
+        <div class="dl" data-step="3"><span>点 $B$</span><span class="think" data-step="4" data-ask="写出坐标">$B(-3,-2)$</span><i class="why"></i></div>
+        <div class="dl end" data-step="5"><span>点 $C$</span><span class="think" data-step="6" data-ask="写出坐标">$C(1,-3)$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="7" data-label="写坐标三步">① 过点向 $x$ 轴作垂线，读横坐标；② 向 $y$ 轴作垂线，读纵坐标；③ 按“横在前、纵在后”写成 $(\,,\,)$．</p>
+    </div>
+  </div>
+  <p class="note">课本 p122 例 2、图 5-6。每一步揭示时，画板上画出相应的两条垂线。易错：把纵坐标写在前面，或漏掉负号。</p>
+</section>
+
+<!-- 7 ================= 象限 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">象限 · 讨论</span><h2>四个象限里的点，坐标有什么特点？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="quad" class="big-b"></div>
+      <p class="tip feedback" id="qMsg"></p>
+    </div>
+    <div class="col">
+      <div class="def small-def"><h4>象限（课本 p122）</h4>两条坐标轴将平面分成的 4 个区域称为<b>象限</b>，按逆时针顺序分别记为第一、二、三、四象限．<b>坐标轴不属于任何象限．</b></div>
+      <p class="tip">拖动点 $P$ 到不同的象限和坐标轴上，填写下表：</p>
+      <table class="mtab">
+        <tr><th>位置</th><th>第一象限</th><th>第二象限</th><th>第三象限</th><th>第四象限</th></tr>
+        <tr><td>坐标符号</td><td><span class="think" data-step="1" data-ask="?">$(+,+)$</span></td><td><span class="think" data-step="2" data-ask="?">$(-,+)$</span></td><td><span class="think" data-step="3" data-ask="?">$(-,-)$</span></td><td><span class="think" data-step="4" data-ask="?">$(+,-)$</span></td></tr>
+      </table>
+      <p class="tip" data-step="5"><b>坐标轴上的点：</b><span class="think" data-step="6" data-ask="有什么特点？">$x$ 轴上的点纵坐标为 0，形如 $(a,0)$；$y$ 轴上的点横坐标为 0，形如 $(0,b)$；原点是 $(0,0)$．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p122 图 5-7 与讨论。拖动 P，所在象限高亮，读数显示坐标的正负；P 落在坐标轴上时提示“不属于任何象限”。“按逆时针顺序”可以让学生用手指在画板上比划一圈。反过来也成立：横、纵坐标都为正的点一定在第一象限……</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>填一填：回车判对错</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="pr1" class="big-b"></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习 1（p122）</b>　分别写出图中点 $A$、$B$、$C$ 的坐标．</p>
+      <p class="tip">$A($<span class="blank" data-ans="4"></span>$,$<span class="blank" data-ans="5"></span>$)$，$B($<span class="blank" data-ans="-5|−5" data-w="2"></span>$,$<span class="blank" data-ans="-3|−3" data-w="2"></span>$)$，$C($<span class="blank" data-ans="3"></span>$,$<span class="blank" data-ans="-4|−4" data-w="2"></span>$)$</p>
+      <p class="tip"><b>练习 2（p122）</b>　在平面直角坐标系中画出下列各点，并指出它们分别在第几象限．</p>
+      <p class="tip">$A(2,4)$ 在第<span class="blank" data-ans="一|1"></span>象限；$B(-2.5,3)$ 在第<span class="blank" data-ans="二|2"></span>象限；</p>
+      <p class="tip">$C(-3,-2)$ 在第<span class="blank" data-ans="三|3"></span>象限；$D(1.5,-3.5)$ 在第<span class="blank" data-ans="四|4"></span>象限．</p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="pr2Show">在左图中画出练习 2 的四个点</button></div>
+    </div>
+  </div>
+  <p class="note">课本 p122 练习。负号可以用键盘上的“-”输入。练习 2 先判断象限（只看符号），再点按钮在图中画出来验证——B、D 的坐标不是整数，要在两格中间找。</p>
+</section>
+
+<!-- 9 ================= 例 3 + 讨论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 讨论</span><h2>画等腰三角形；翻折、平移后的坐标</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="tri" class="big-b"></div>
+      <div class="btns" data-noswipe>
+        <button class="btn" type="button" id="trFold">沿 $y$ 轴翻折</button>
+        <button class="btn" type="button" id="trDown">再向下平移 3 个单位</button>
+        <button class="btn" type="button" id="trReset">还原</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 5-8，点 $B$、点 $C$ 在 $x$ 轴上，试在第一象限内画以 $BC$ 为底、面积为 10 的等腰三角形 $ABC$，并写出点 $A$、点 $B$、点 $C$ 的坐标．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>$B$、$C$</span><span>$B(1,0)$、$C(5,0)$，$BC=4$</span><i class="why">读图</i></div>
+        <div class="dl" data-step="2"><span>高</span><span class="think" data-step="3" data-ask="高是多少？">$\dfrac12\times4\times h=10$，$h=5$</span><i class="why">面积为 10</i></div>
+        <div class="dl end" data-step="4"><span>$A$</span><span class="think" data-step="5" data-ask="A 的横坐标？">$A$ 在 $BC$ 的垂直平分线上，横坐标为 3：$A(3,5)$</span><i class="why">等腰三角形三线合一（2.5）</i></div>
+      </div>
+      <p class="tip" data-step="6"><b>讨论（p123）</b>　把 $\triangle ABC$ 沿 $y$ 轴翻折得到 $\triangle A'B'C'$，再向下平移 3 个单位长度得到 $\triangle A''B''C''$．你能写出各顶点的坐标吗？</p>
+      <table class="mtab" id="trTab"></table>
+    </div>
+  </div>
+  <p class="note">课本 p123 例 3、图 5-8、5-9 与讨论。先完成例 3（用到 2.5 的三线合一），再点按钮演示翻折和平移，表格实时显示三个三角形的顶点坐标。请学生先写再看：A′(−3,5)、B′(−1,0)、C′(−5,0)；A″(−3,2)、B″(−1,−3)、C″(−5,−3)。观察规律：沿 y 轴翻折，横坐标变为相反数；向下平移 3，纵坐标减 3。</p>
+</section>
+
+<!-- 10 ================= 数学实验室：对称点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>连一连，看一看：关于坐标轴对称的点</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="lab" class="big-b"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="labNext">连下一个点</button><button class="btn" type="button" id="labAll">全部连完</button><button class="btn" type="button" id="labClr">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-p"><b>1.</b> 在图 5-10 中依次连接以下各点（最后一点不再与其他点连接）：$(0.5,4)$，$(0,0)$，$(1,3)$，$(2,3)$，$(3,2)$，$(3,0)$，$(1,-1)$，$(2,-1)$，$(1,-3)$，$(0,-1)$，$(-1,-3)$，$(-2,-1)$，$(-1,-1)$，$(-3,0)$，$(-3,2)$，$(-2,3)$，$(-1,3)$，$(0,0)$，$(-0.5,4)$．</p>
+      <p class="tip"><b>2.</b> 观察所画图形，填空：</p>
+      <p class="tip">(1) 点 $(1,-3)$ 关于 $x$ 轴对称的点：$($<span class="blank" data-ans="1"></span>$,$<span class="blank" data-ans="3"></span>$)$；关于 $y$ 轴对称的点：$($<span class="blank" data-ans="-1|−1" data-w="2"></span>$,$<span class="blank" data-ans="-3|−3" data-w="2"></span>$)$</p>
+      <p class="tip">(2) 点 $(-1,3)$ 关于 $x$ 轴对称的点：$($<span class="blank" data-ans="-1|−1" data-w="2"></span>$,$<span class="blank" data-ans="-3|−3" data-w="2"></span>$)$；关于 $y$ 轴对称的点：$($<span class="blank" data-ans="1"></span>$,$<span class="blank" data-ans="3"></span>$)$</p>
+      <div class="def small-def" data-step="1"><h4>一般地</h4>点 $P(a,b)$ 关于 $x$ 轴对称的点的坐标为 <span class="think" data-step="2" data-ask="?">$(a,-b)$</span>，关于 $y$ 轴对称的点的坐标为 <span class="think" data-step="3" data-ask="?">$(-a,b)$</span>．</div>
+    </div>
+  </div>
+  <p class="note">课本 p124 数学实验室 1、2。点“连下一个点”逐点连线，连完得到一个关于 y 轴对称的图形——左右两半的对应点正好是“横坐标互为相反数、纵坐标相同”。关于 x 轴对称的规律可以借画板上的点 (1, −3) 与 (1, 3) 说明（对称轴垂直平分对应点的连线）。</p>
+</section>
+
+<!-- 11 ================= 数学实验室：平移 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室 · 思考</span><h2>平移线段 $AB$：坐标怎样变？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="shift" class="big-b"></div>
+      <div class="slider-row" data-noswipe>向右平移<input type="range" id="shX" min="-7" max="7" step="1" value="0"><b class="v" id="shXV"></b>　向上平移<input type="range" id="shY" min="-5" max="4" step="1" value="0"><b class="v" id="shYV"></b></div>
+      <p class="tip feedback" id="shMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>3.</b> 在图 5-11 中，把线段 $AB$ 先向右平移 7 个单位长度，再向上平移 2 个单位长度，得到线段 $A'B'$．试分别写出点 $A$、$B$、$A'$、$B'$ 的坐标．</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="写出四个坐标">$A(-4,1)$，$B(-2,3)$，$A'(3,3)$，$B'(5,5)$．</span></p>
+      <p class="tip" data-step="3">(1) 点 $A$ 与点 $A'$、点 $B$ 与点 $B'$ 的坐标之间有什么关系？<span class="think" data-step="4" data-ask="说说规律">横坐标都加 7，纵坐标都加 2．</span></p>
+      <p class="tip" data-step="5">(2) 如果点 $C(m,n)$ 是线段 $AB$ 上的任意一点，那么当 $AB$ 平移到 $A'B'$ 后，与点 $C$ 对应的点 $C'$ 的坐标是 <span class="think" data-step="6" data-ask="?">$(m+7,n+2)$</span>．</p>
+      <p class="method" data-step="7" data-label="思考（p124）">纵坐标不变、横坐标改变：点<b>左右</b>平移（横坐标加几就向右移几）；横坐标不变、纵坐标改变：点<b>上下</b>平移．</p>
+    </div>
+  </div>
+  <p class="note">课本 p124 数学实验室 3 与思考。先把两个滑块拖到 7 和 2 验证，再随意拖动，观察读数的变化规律。线段 AB 上的中点 C 也一起画出，帮助理解“任意一点 C(m, n)”。</p>
+</section>
+
+<!-- 12 ================= 练习：图形的运动 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>图①经过怎样的运动得到图②③④？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="moves" class="big-b"></div>
+      <div class="btns" data-noswipe id="mvBtns">
+        <button class="btn solid" type="button" data-k="0">图①</button>
+        <button class="btn" type="button" data-k="1">图②</button>
+        <button class="btn" type="button" data-k="2">图③</button>
+        <button class="btn" type="button" data-k="3">图④</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习（p125）</b>　(1) 写出图①中点 $A$、$B$、$M$、$N$ 的坐标；(2) 指出图①经过怎样的运动可以得到图②、图③、图④，并分别写出这 3 个图中与点 $A$、$B$、$M$、$N$ 对应的点 $A'$、$B'$、$M'$、$N'$ 的坐标．</p>
+      <table class="mtab" id="mvTab"></table>
+      <p class="tip feedback" id="mvMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p125 练习（4 个图照课本）。M、N 分别是 OA、AB 的中点。点按钮，图①以动画方式运动到图②（向右平移 2 个单位）、图③（沿 x 轴翻折）、图④（绕点 O 顺时针旋转 90°，小学学过旋转）。先让学生口答运动方式和坐标，再点开验证。图④的规律 (x, y) → (y, −x) 不要求掌握。</p>
+</section>
+
+<!-- 13 ================= 建立坐标系 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 例 4</span><h2>坐标系由我们来建：怎样建更方便？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="sq" class="big-b"></div>
+      <div class="btns" data-noswipe id="sqBtns">
+        <button class="btn solid" type="button" data-k="0">以 $A$ 为原点</button>
+        <button class="btn" type="button" data-k="1">以中心为原点</button>
+        <button class="btn" type="button" data-k="2">对角线在坐标轴上</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip small-p"><b>思考（p125）</b>　机械手插元器件：在线路板上建立坐标系，输入焊孔的坐标，机械手就按“地址”插入（图 5-12、5-13）．</p>
+      <p class="tip"><b>例 4</b>　已知正方形 $ABCD$ 的边长为 4，建立适当的平面直角坐标系，分别写出各顶点的坐标．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>建系</span><span>以 $A$ 为原点，$AB$、$AD$ 所在直线为 $x$ 轴、$y$ 轴</span><i class="why">图 5-15</i></div>
+        <div class="dl" data-step="2"><span>∵ $AB=AD=4$</span><span class="think" data-step="3" data-ask="B、D 的坐标？">$A(0,0)$，$B(4,0)$，$D(0,4)$</span><i class="why"></i></div>
+        <div class="dl end" data-step="4"><span>∵ $DC=AB$，$BC=AD$</span><span class="think" data-step="5" data-ask="C 的坐标？">$C(4,4)$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="6" data-label="讨论（p127）">还能建立不同的坐标系（点左边按钮）．根据实际问题的需要，建立恰当的平面直角坐标系，可以使一些点的坐标较为简明，便于研究和解决问题．</p>
+    </div>
+  </div>
+  <p class="note">课本 p125–127 思考、例 4 与讨论。三种建系方式对应课本的三幅图：以 A 为原点（四个坐标都是 0 或 4，最简单）、以中心为原点（四个点关于两轴对称）、对角线在坐标轴上（坐标含 2√2，用到第 4 章的无理数）。图形没有变，变的是坐标系——坐标是“相对的”。课本 p126 “尝试”（旅游景点图）可让学生课后完成。</p>
+</section>
+
+<!-- 14 ================= 练习 + 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2（p127）</b>　在 $\triangle PAB$ 中，$PA=PB$，$AB=2$．建立适当的平面直角坐标系，分别写出 $\triangle PAB$ 是等边三角形、等腰直角三角形时各顶点的坐标．</p>
+        <details><summary>提示 1</summary>以 $AB$ 的中点为原点、$AB$ 所在直线为 $x$ 轴：$A(-1,0)$，$B(1,0)$，$P$ 在 $y$ 轴上（5.1 第 5 页）。</details>
+        <details><summary>提示 2</summary>等边：$PO=\sqrt3\,AO$；等腰直角：$PO=AO$。</details>
+        <details><summary>完整解答</summary>等边三角形：$A(-1,0)$，$B(1,0)$，$P(0,\sqrt3)$（或 $(0,-\sqrt3)$）；等腰直角三角形：$A(-1,0)$，$B(1,0)$，$P(0,1)$（或 $(0,-1)$）．</details>
+      </div>
+      <div class="col">
+        <p class="tip"><b>习题 5.2 第 2 题</b>　填空：</p>
+        <p class="tip">(1) 点 $M(4,0)$ 到点 $(-1,0)$ 的距离是<span class="blank" data-ans="5"></span>；</p>
+        <p class="tip">(2) 点 $P(-5,12)$ 到原点的距离是<span class="blank" data-ans="13" data-w="3"></span>；</p>
+        <p class="tip">(3) 点 $P(m,-2m)$ 是第二象限的点，则 $m$ 的取值范围是<span class="blank" data-ans="m<0|m＜0|m&lt;0" data-w="4"></span>．</p>
+        <details class="mini"><summary>(2) 的提示</summary>过 $P$ 作 $x$ 轴的垂线，得到直角边为 5、12 的直角三角形——勾股定理！</details>
+      </div>
+      <div class="col">
+        <p class="tip"><b>习题 5.2 第 4 题</b>　已知点 $P(x,y)$ 在第二象限，且点 $P$ 到 $x$ 轴、$y$ 轴的距离分别为 3、5．试写出点 $P$ 的坐标．</p>
+        <p class="tip">$P($<span class="blank" data-ans="-5|−5" data-w="2"></span>$,$<span class="blank" data-ans="3"></span>$)$</p>
+        <p class="warn" data-label="易错">到 $x$ 轴的距离是<b>纵坐标</b>的绝对值，到 $y$ 轴的距离是<b>横坐标</b>的绝对值．</p>
+        <p class="tip"><b>习题 5.2 第 5 题</b>　长方形 $ABCD$ 的顶点 $A$、$B$、$C$ 的坐标分别是 $(0,0)$、$(5,0)$、$(5,3)$．顶点 $D$ 的坐标是 $($<span class="blank" data-ans="0"></span>$,$<span class="blank" data-ans="3"></span>$)$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p127 练习 2，习题 5.2 第 2、4、5 题。练习 2 和上一课图 5-1 是同一个图形，现在用坐标表示。习题 2(2) 把坐标和勾股定理联系起来：(−5, 12) 到原点的距离 = 13（5，12，13 是勾股数）。习题 4 的易错点：距离与坐标“交叉对应”。</p>
+</section>
+
+<!-- 15 ================= 习题 7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>平行于坐标轴的直线上，点的坐标有什么共同之处？</h2></div>
+  <div class="bd half">
+    <div class="col"><div id="par" class="big-b"></div></div>
+    <div class="col">
+      <p class="tip"><b>习题 5.2 第 7 题</b>　在平面直角坐标系中，描点 $A(3,-2)$、$B(3,1)$、$C(3,4)$、$D(-2,3)$、$E(1,3)$、$F(4,3)$．</p>
+      <p class="tip" data-step="1">(1) 点 $A$、$B$、$C$ 在一条直线上吗？$AC$ 是否平行于一条坐标轴？<span class="think" data-step="2" data-ask="共同之处？">在一条直线上，$AC\parallel y$ 轴；它们的<b>横坐标都是 3</b>．</span></p>
+      <p class="tip" data-step="3">(2) 点 $D$、$E$、$F$ 在一条直线上吗？$DF$ 是否平行于一条坐标轴？<span class="think" data-step="4" data-ask="共同之处？">在一条直线上，$DF\parallel x$ 轴；它们的<b>纵坐标都是 3</b>．</span></p>
+      <p class="method" data-step="5" data-label="规律">平行于 $y$ 轴的直线上，各点的横坐标相同；平行于 $x$ 轴的直线上，各点的纵坐标相同．</p>
+    </div>
+  </div>
+  <p class="note">习题 5.2 第 7 题。每揭示一问，画板上画出对应的直线。这个规律与第 11 页“纵坐标不变，点左右移动”是一回事。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">平面直角坐标系：$x$ 轴、$y$ 轴、原点；点 ↔ 有序实数对（坐标）．</p>
+        <p class="def">象限符号：一 $(+,+)$、二 $(-,+)$、三 $(-,-)$、四 $(+,-)$；坐标轴上的点不属于任何象限．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="点与坐标">由点找数：作两轴的垂线；由数找点：过两轴上的点作垂线．</p>
+        <p class="method" data-label="运动与坐标">关于 $x$ 轴对称 $(a,-b)$，关于 $y$ 轴对称 $(-a,b)$；平移：左右改横坐标，上下改纵坐标．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">“形”（点、图形）有了“数”的地址，图形的运动就能用坐标的计算来描述．</p>
+        <p class="recall" data-label="读一读（p128、p130）">有趣的坐标系（预期寿命—人口增长率）；用方位角、距离描述位置．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一章：</b>6.1 函数——当一个量随另一个量变化时，每一对对应值都可以看成一个点的坐标，描出来就是函数的图像．（<a href="../mj8a-hanshu/index.html">去 6.1</a>）</p>
+  </div>
+  <p class="note">请学生用“一个点 ↔ 一对数”串起本课。课本 p128“有趣的坐标系”、p130“用方位角、距离描述物体的位置”可作课后阅读。作业建议：习题 5.2 第 1、3、6 题（第 1 题描点连线得到一幅图）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>立方根 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xianweijing.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第4章 实数 · 4.2</p>
+    <h1 class="cover-title">立方根</h1>
+    <p class="cover-q" data-step="1">某种植物细胞的形状可以近似地看作棱长为 1 的正方体。</p>
+    <p class="cover-q" data-step="2">当这样的一个细胞<b>体积增大 1 倍</b>时，它的“棱长”是多少？是 2 吗？</p>
+    <div class="chips" data-step="3"><span class="chip">$x^3=a$</span><span class="chip">立方根 $\sqrt[3]a$</span><span class="chip">负数也有立方根</span><span class="chip">与平方根对照</span></div>
+  </div>
+  <p class="note">课本 p99 情境。先让学生凭直觉回答“棱长变成 2 吗？”——很多人会说是。$2^3=8$，体积变成了 8 倍，说明棱长只要稍微大一点。本课结构与 4.1 平方根平行：由“已知立方求棱长”引出立方根，最后与平方根对照。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八上 4.1 · 平方根" data-step="1">
+        <p>$x^2=a\ (a\ge0)$，$x$ 叫 $a$ 的平方根，记作 $\pm\sqrt a$。</p>
+        <p>正数两个，0 是 0，<b>负数没有</b>。</p>
+        <span class="use">本课照着平方根的样子定义立方根，最后两者对照。（<a href="../mj8a-pingfanggen/index.html">回看 4.1</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 2.7 · 有理数的乘方" data-step="2">
+        <p>$3^3=27$，$(-3)^3=-27$：负数的<b>奇次幂是负数</b>，偶次幂是正数。</p>
+        <span class="use">第 5 页：为什么负数也有立方根，而且只有一个。（<a href="../mj7a-chengfang/index.html">回看 2.7</a>）</span>
+      </div>
+      <div class="recall" data-label="小学 · 正方体的体积" data-step="3">
+        <p>棱长为 $a$ 的正方体，体积 $V=a^3$。</p>
+        <p>棱长为 1 时，$V=1^3=1$。</p>
+        <span class="use">第 3 页：由体积反过来求棱长。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主角：</b>上一课是“已知平方求底数”，今天是“<b>已知立方</b>求底数”。</p>
+  </div>
+  <p class="note">第二张卡是本课的关键：平方根因为“平方不会是负数”而对负数无能为力；立方却能得到负数——这会让立方根的结论与平方根很不一样。</p>
+</section>
+
+<!-- 3 ================= 情境 · 正方体滑块 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题</span><h2>体积为 2 的正方体，棱长 $x$ 是多少？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="cube" class="cube-board"></div>
+      <div class="slider-row" data-noswipe>棱长 $x=$<input type="range" id="xIn" min="0.5" max="2" step="0.01" value="1.5"><b class="v" id="xV"></b></div>
+      <p class="muted center small-t">橙色：原来棱长为 1 的细胞；蓝色：棱长为 $x$ 的正方体。两个正方体按同一比例画出（向后的棱按课本画法画成一半长）</p>
+    </div>
+    <div class="col">
+      <div class="readout cube-read">
+        <span>$x^3$</span><b class="v" id="x3V"></b><span>与 2 比</span><b class="v" id="cmpV"></b>
+      </div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="tryRec">记下这一次</button><button class="btn" type="button" id="tryClr">清空</button></div>
+      <table class="mtab trytab" id="tryTab"><tr><th>棱长 $x$</th><th>体积 $x^3$</th><th>比 2</th></tr></table>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>棱长为 1</span><span>$V=1^3=1$</span><i class="why"></i></div>
+        <div class="dl key" data-step="2"><span>体积为 2</span><span class="think" data-step="3" data-ask="列出关于 x 的式子">$x^3=2$</span><i class="why">体积增大 1 倍：$1\times2=2$</i></div>
+      </div>
+      <p class="tip gold" data-step="4"><span class="think" data-step="5" data-ask="x 是多少？">$1.2^3=1.728\lt2$，$1.3^3=2.197\gt2$，$1.26^3\approx2.000\,4$：$x$ 大约是 1.26，但找不到一个有限小数正好使 $x^3=2$——又需要新记号了。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p99 情境与两个正方体图。先让学生拖滑块：$x=2$ 时体积是 8，远远超过 2！再请学生一步步缩小范围并“记下”：1.2 与 1.3 之间，1.25 与 1.26 之间……表格里的 $x^3$ 都按 $x$ 精确计算。体积为 2 的正方体棱长不是 2，而是大约 1.26——体积增大 1 倍，棱长只增大约 26%。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>立方根</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>立方根（课本 p99）</h4>一般地，如果 $x^3=a$，那么 $x$ 叫做 $a$ 的<em>立方根</em>（cube root），数 $a$ 的立方根记作“$\sqrt[3]a$”，读作“三次根号 $a$”．</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2">例如，$3^3=27$，3 是 27 的立方根，记作 <span class="think" data-step="3" data-ask="怎样写？">$\sqrt[3]{27}=3$</span>；又如，$x^3=2$，$x$ 是 2 的立方根，记作 <span class="think" data-step="4" data-ask="怎样写？">$x=\sqrt[3]2$</span>．</p>
+        <p class="def" data-step="5">求一个数的立方根的运算叫做<em>开立方</em>（extraction of cubic root）．开立方与立方互为逆运算．</p>
+      </div>
+      <div class="col">
+        <p class="warn" data-step="6" data-label="根指数 3 不能省">$\sqrt[3]a$ 左上角的小“3”叫<b>根指数</b>，必须写；省掉就成了 $\sqrt a$（算术平方根）。</p>
+        <p class="recall" data-step="7" data-label="与定义对照">平方根的定义写了“$a\ge0$”，立方根的定义里<b>没有</b>对 $a$ 的限制。<span class="think" data-step="8" data-ask="为什么？">因为任何数（正数、0、负数）都能当立方的结果：$(-3)^3=-27$，所以 $-27$ 也有立方根。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p99 定义与记号。板书 $\sqrt[3]{\ \ }$ 时强调根指数的位置。右下角是本课最重要的对照：定义里少了“$a\ge0$”这一句，不是课本漏写，而是立方根真的不需要这个条件——下一页验证。</p>
+</section>
+
+<!-- 5 ================= 交流 → 性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>下列各数有立方根吗？</h2></div>
+  <div class="bd full">
+    <p class="tip">如果有，请写出来；如果没有，请说明理由（课本 p100）：</p>
+    <table class="mtab">
+      <tr><th>$a$</th><td>$\dfrac{8}{27}$</td><td>$0.001$</td><td>$9$</td><td>$-3$</td><td>$-64$</td><td>$-\dfrac{125}{216}$</td><td>$0$</td></tr>
+      <tr><th>立方根</th>
+        <td><span class="think" data-step="1" data-ask="?">$\dfrac23$</span></td>
+        <td><span class="think" data-step="2" data-ask="?">$0.1$</span></td>
+        <td><span class="think" data-step="3" data-ask="?">$\sqrt[3]9$</span></td>
+        <td><span class="think" data-step="4" data-ask="?">$\sqrt[3]{-3}$</span></td>
+        <td><span class="think" data-step="5" data-ask="?">$-4$</span></td>
+        <td><span class="think" data-step="6" data-ask="?">$-\dfrac56$</span></td>
+        <td><span class="think" data-step="7" data-ask="?">$0$</span></td></tr>
+      <tr><th>验算</th><td>$\left(\dfrac23\right)^3=\dfrac8{27}$</td><td>$0.1^3=0.001$</td><td>—</td><td>—</td><td>$(-4)^3=-64$</td><td>$\left(-\dfrac56\right)^3=-\dfrac{125}{216}$</td><td>$0^3=0$</td></tr>
+    </table>
+    <div class="cols2">
+      <div class="def" data-step="8"><h4>立方根的性质（课本 p100）</h4>正数的立方根是正数；<br>负数的立方根是负数；<br>0 的立方根是 0．</div>
+      <p class="method" data-step="9" data-label="为什么每个数只有一个立方根？">正数的立方是正数，负数的立方是负数：要使 $x^3=-64$，$x$ 只能是负数，而负数中只有 $-4$ 的立方是 $-64$。所以<b>任何数都有且只有一个立方根</b>，它的符号与原数相同。</p>
+    </div>
+  </div>
+  <p class="note">课本 p100“交流”与性质框。重点追问两处：$-64$ 的立方根为什么不是 $\pm4$？（$4^3=64\ne-64$）；$-3$ 有没有立方根？（有，记作 $\sqrt[3]{-3}$，它是一个负数）。与 4.1 对照：平方根成对出现、负数没有；立方根“一个数一个”、负数也有。</p>
+</section>
+
+<!-- 6 ================= 例题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>求下列各数的立方根</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) $64$</span><span class="think" data-step="2" data-ask="立方根是？">$\sqrt[3]{64}$，即 $4$</span><i class="why">$4^3=64$</i></div>
+        <div class="dl" data-step="3"><span>(2) $-\dfrac{8}{125}$</span><span class="think" data-step="4" data-ask="立方根是？">$\sqrt[3]{-\dfrac{8}{125}}$，即 $-\dfrac25$</span><i class="why">$\left(-\dfrac25\right)^3=-\dfrac{8}{125}$</i></div>
+        <div class="dl" data-step="5"><span>(3) $9$</span><span class="think" data-step="6" data-ask="立方根是？">$\sqrt[3]9$</span><i class="why">没有有理数的立方等于 9</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="求立方根的思路">想：<b>谁的立方</b>等于它？先定符号（与原数相同），再求绝对值的立方根。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="8"><b>比一比：</b>$\sqrt[3]{-8}=$ <span class="think" data-step="9" data-ask="?">$-2$</span>，$-\sqrt[3]8=$ <span class="think" data-step="9" data-ask="?">$-2$</span>；<br>$\sqrt[3]{-27}=$ <span class="think" data-step="10" data-ask="?">$-3$</span>，$-\sqrt[3]{27}=$ <span class="think" data-step="10" data-ask="?">$-3$</span>．</p>
+      <p class="recall" data-step="11" data-label="发现">$\sqrt[3]{-a}=-\sqrt[3]a$：求负数的立方根，可以先求它的相反数的立方根，再取相反数。</p>
+      <p class="tip" data-step="12"><b>再比一比：</b>$(\sqrt[3]{-8})^3=$ <span class="think" data-step="13" data-ask="?">$-8$</span>，$\sqrt[3]{(-8)^3}=$ <span class="think" data-step="13" data-ask="?">$-8$</span>．<span class="think" data-step="14" data-ask="和平方根一样吗？">立方与开立方互逆，<b>符号不会丢</b>；而 $\sqrt{(-8)^2}=8$，平方会把负号“吃掉”。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p99 例题。(2) 先定符号：负数的立方根是负数，再算 $\sqrt[3]{\frac{8}{125}}=\frac25$。右边两组“比一比”是课本练习 2 的铺垫：开立方不受符号限制，所以 $(\sqrt[3]a)^3=a$、$\sqrt[3]{a^3}=a$ 对任何数都成立——这一点和平方根正好相反（$\sqrt{a^2}$ 是 $a$ 的绝对值）。</p>
+</section>
+
+<!-- 7 ================= 对照 · 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>平方根与立方根：对照着看</h2></div>
+  <div class="bd full">
+    <table class="mtab cmp" data-step="1">
+      <tr><th></th><th>平方根</th><th>立方根</th></tr>
+      <tr><td>定义</td><td>$x^2=a\ (a\ge0)$</td><td>$x^3=a$</td></tr>
+      <tr><td>记号</td><td>$\pm\sqrt a$（根指数 2 省略）</td><td>$\sqrt[3]a$（根指数 3 不能省）</td></tr>
+      <tr><td>正数</td><td>两个，互为相反数</td><td><span class="think" data-step="2" data-ask="?">一个，正数</span></td></tr>
+      <tr><td>0</td><td>$0$</td><td><span class="think" data-step="3" data-ask="?">$0$</span></td></tr>
+      <tr><td>负数</td><td>没有</td><td><span class="think" data-step="4" data-ask="?">一个，负数</span></td></tr>
+    </table>
+    <div class="cols3">
+      <div class="jcard" data-step="5">
+        <p>$-8$ 的立方根是 $\pm2$．</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>$2^3=8\ne-8$；立方根只有一个：$-2$。</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p>负数没有立方根．</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">✗</span>这是平方根的性质。$(-2)^3=-8$，负数有立方根，而且是负数。</p></div>
+      </div>
+      <div class="jcard" data-step="9">
+        <p>一个数的立方根等于它本身，这个数是 $0$ 或 $\pm1$．</p>
+        <div class="think" data-step="10" data-ask="对还是错？"><p><span class="verdict ok">✓</span>$0^3=0$，$1^3=1$，$(-1)^3=-1$。（平方根等于本身的只有 0。）</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">先让学生填表右栏，再判断三张卡。第三张可延伸：“算术平方根等于它本身的数是哪些？”（0 和 1）。对照表是本课的板书核心，建议学生抄在笔记里。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>课本 p100 练习：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 写出下列各数的立方根：<br>$-27$，$0.008$，$\dfrac{1}{125}$，$-1$，$0.064$，$4$．</p>
+        <details><summary>提示 1</summary>先定符号：负数的立方根是负数。</details>
+        <details><summary>提示 2</summary>$0.2^3=0.008$，$0.4^3=0.064$；4 不是立方数，直接用记号。</details>
+        <details><summary>完整解答</summary>$-3$；$0.2$；$\dfrac15$；$-1$；$0.4$；$\sqrt[3]4$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 填空：<br>(1) $(\sqrt[3]{-8})^3=$＿＿；(2) $(\sqrt[3]2)^3=$＿＿；<br>(3) $(\sqrt[3]{-3})^3=$＿＿；(4) $\sqrt[3]{(-3)^3}=$＿＿．</p>
+        <details><summary>提示</summary>立方与开立方互为逆运算，“先开后立”“先立后开”都回到原数。</details>
+        <details><summary>完整解答</summary>(1) $-8$；(2) $2$；(3) $-3$；(4) $-3$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 两个球形探空气球的体积分别约为 $5\,120\ \text{m}^3$ 和 $80\ \text{m}^3$，试计算它们的半径比（球的体积公式：$V_\text{球}=\dfrac43\pi R^3$，$R$ 为球的半径）．</p>
+        <details><summary>提示 1</summary>两个体积相比，$\dfrac43\pi$ 约掉：$\dfrac{R_1^3}{R_2^3}=\dfrac{5\,120}{80}$。</details>
+        <details><summary>提示 2</summary>$\dfrac{5\,120}{80}=64$，即 $\left(\dfrac{R_1}{R_2}\right)^3=64$。</details>
+        <details><summary>完整解答</summary>$\dfrac{R_1}{R_2}=\sqrt[3]{64}=4$，半径比为 $4:1$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p100 练习 1～3。第 3 题是本课的应用亮点：体积比是 64，半径比只有 4——和第 3 页“体积翻倍，棱长只增大约 26%”是同一个道理。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 4.2</span><h2>自己试试</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 求下列各式中的 $x$：<br>(1) $x^3=-0.125$；(2) $8x^3=27$；<br>(3) $x^3+3=2$；(4) $(x-1)^3=8$．</p>
+        <details><summary>提示 1</summary>先把式子变成“$x^3=$ 一个数”（或“$(\ )^3=$ 一个数”）。</details>
+        <details><summary>提示 2</summary>(2) $x^3=\dfrac{27}{8}$；(3) $x^3=-1$；(4) 把 $x-1$ 看成一个整体：$x-1=\sqrt[3]8=2$。</details>
+        <details><summary>完整解答</summary>(1) $x=-0.5$；(2) $x=\dfrac32$；(3) $x=-1$；(4) $x=3$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 如果一个正方体的体积扩大到原来的 64 倍，那么它的棱长扩大到原来的多少倍？</p>
+        <details><summary>提示</summary>设原棱长为 $a$，新棱长为 $b$：$b^3=64a^3=(4a)^3$。</details>
+        <details><summary>完整解答</summary>$b=\sqrt[3]{64a^3}=4a$，棱长扩大到原来的 4 倍．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 有一个球形容器，它的容积为 $36\pi\ \text{m}^3$，求这个球形容器的半径（壁厚忽略不计）．</p>
+        <details><summary>提示</summary>$\dfrac43\pi R^3=36\pi$，两边约去 $\pi$。</details>
+        <details><summary>完整解答</summary>$R^3=36\times\dfrac34=27$，$R=\sqrt[3]{27}=3$（m）．</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="解 x³ = a 型方程">整理成 $x^3=a$ → 开立方 $x=\sqrt[3]a$ → 只有<b>一个</b>解（对照 $x^2=a$ 有 $\pm$ 两个）。</p>
+  </div>
+  <p class="note">习题 4.2 第 3～5 题（第 1、2 题可作课后作业：$-0.001$ 的立方根是 $-0.1$，$1\,331$ 的立方根是 11；$-\sqrt[3]{-\frac18}=\frac12$）。第 3(4) 题“整体代换”是新方法，可请学生对比习题 4.1 的 $4x^2=81$ 说说两类方程解的个数为何不同。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$x^3=a$，$x$ 叫 $a$ 的立方根，记作 $\sqrt[3]a$；开立方与立方互为逆运算。</p>
+        <p class="warn" data-label="性质">正数的立方根是正数，负数的立方根是负数，0 的立方根是 0——每个数<b>只有一个</b>立方根。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="类比">仿照平方根学立方根：定义、记号、性质、运算一一对照，找相同、找不同。</p>
+        <p class="method" data-label="符号">$\sqrt[3]{-a}=-\sqrt[3]a$：先定符号，再开方。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">$\sqrt[3]a$ 是体积为 $a$ 的正方体的棱长。</p>
+        <p class="recall" data-label="逼近">$\sqrt[3]2\approx1.26$：一步步缩小范围逼近一个“写不完”的数。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>4.3 实数——$\sqrt2$、$\sqrt[3]2$、$\pi$ 这些“写不完”的数是什么数？它们能在数轴上找到准确的位置吗？</p>
+  </div>
+  <p class="note">请学生用对照表复述本课，再逐栏揭示。下一节将把有理数和这些新的无理数合在一起，组成“实数”。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

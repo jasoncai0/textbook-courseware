@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>不等式的解集 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="../shared/ineq.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/suidao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第11章 一元一次不等式 · 11.2</p>
+    <h1 class="cover-title">不等式的解集</h1>
+    <p class="cover-q" data-step="1">隧道入口处的汽车限高标识写着“<b>4.2 m</b>”。高度为 3 m、3.5 m、4 m、4.5 m 的汽车，可以通过这条隧道吗？</p>
+    <p class="cover-q" data-step="2">能通过的汽车高度可能是多少？——<b>能把它们全部写出来吗？</b>写不完的话，又该怎样表示？</p>
+    <div class="chips" data-step="3"><span class="chip">不等式的解</span><span class="chip">解集</span><span class="chip">数轴上表示解集</span><span class="chip">空心圈 · 实心点</span></div>
+  </div>
+  <p class="note">课本 p121 议一议（图 11-1 隧道限高标识）。先请学生逐个判断四种高度，再追问“能通过的高度一共有多少个”——引出“解有无数个，要用解集表示”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="11.1 · 不等式" data-step="1">
+        <p>用不等号表示不等关系的式子叫做不等式；“不超过”就是“$\le$”。</p>
+        <span class="use">把“能通过隧道”写成 $x\le 4.2$。</span>
+      </div>
+      <div class="recall" data-label="七上 4.1–4.2 · 方程的解" data-step="2">
+        <p>能使方程两边相等的未知数的值叫做方程的解：$x+1=3$ 的解是 $x=2$，只有一个。</p>
+        <span class="use">类比得出“不等式的解”，再比较两者的不同。</span>
+      </div>
+      <div class="recall" data-label="七上 2.3 · 数轴" data-step="3">
+        <p>规定了原点、正方向和单位长度的直线；每个数都能用数轴上的一个点表示，右边的点表示的数大。</p>
+        <span class="use">把无数个解“画”在数轴上——一段连续的部分。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>使不等式成立的数有多少个？怎样把它们<b>全部</b>表示出来？</p>
+  </div>
+  <p class="note">第二张卡是本课的类比对象：方程的解通常只有一个，不等式的解往往有无数个。第三张卡请学生复述数轴三要素。</p>
+</section>
+
+<!-- 3 ================= 议一议：隧道 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议</span><h2>哪些高度的汽车可以通过隧道？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 380 230" class="tunnel" id="tunnel" aria-label="隧道限高 4.2 m，汽车按比例画出"></svg>
+      <div class="btns" data-noswipe id="hBtns">
+        <button class="btn" type="button" data-h="3">3 m</button><button class="btn" type="button" data-h="3.5">3.5 m</button><button class="btn" type="button" data-h="4">4 m</button><button class="btn" type="button" data-h="4.2">4.2 m</button><button class="btn" type="button" data-h="4.5">4.5 m</button>
+      </div>
+      <p class="tip feedback" id="hMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">图 11-1 中的标识表示可以通过该隧道的汽车的高度不能超过 4.2 m．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设汽车高 $x$ m</span><span class="think" data-step="2" data-ask="不等式？">$x\le 4.2$</span><i class="why">“不能超过”= 小于或等于</i></div>
+        <div class="dl" data-step="3"><span>$x=3,\ 3.5,\ 4$</span><span class="think" data-step="4" data-ask="成立吗？">不等式成立</span><i class="why">这些汽车能通过</i></div>
+        <div class="dl" data-step="3"><span>$x=4.5$</span><span class="think" data-step="4" data-ask="成立吗？">不等式不成立</span><i class="why">$4.5\gt 4.2$，不能通过</i></div>
+      </div>
+      <p class="tip gold" data-step="5">除了 3、3.5、4，还有哪些 $x$ 也能使 $x\le 4.2$ 成立？<span class="think" data-step="6" data-ask="说几个">4.1、4.2、3.99、2……说也说不完。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p121。左图按同一比例画出隧道（净高 4.2 m）和汽车（点按钮换高度），汽车高于 4.2 m 时车顶会碰到隧道顶并变红。4.2 m 这一档专门用来讨论“恰好等于能不能通过”。</p>
+</section>
+
+<!-- 4 ================= 试一试：解的探测器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>解的探测器：哪些 $x$ 能使不等式成立？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="prTabs">
+        <button class="btn solid" type="button" data-q="0">(1) $x-3\gt 0$</button>
+        <button class="btn" type="button" data-q="1">(2) $x-4\le 0$</button>
+      </div>
+      <p class="tip">拖动橙色点选一个数，点“检验”；绿点 = 成立，红点 = 不成立．</p>
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" id="prTest">检验这个数</button>
+        <button class="btn" type="button" id="prMany">一口气检验 111 个数</button>
+        <button class="btn" type="button" id="prSet">画出全部的解</button>
+        <button class="btn" type="button" id="prClr">清空</button>
+      </div>
+      <p class="tip feedback" id="prMsg"></p>
+    </div>
+    <div class="col">
+      <div id="probe" class="probe"></div>
+      <p class="muted center small-t">数轴范围 $-3$～$8$；“一口气检验”每隔 0.1 取一个数（还没取到的数也都要检验，所以解有<b>无数个</b>）</p>
+      <p class="tip" data-step="1">课本例子：$x=3.5,\ 4,\ 5$ 都是 $x-3\gt 0$ 的解；$x=-1,\ 0,\ \dfrac12,\ 2,\ 3,\ 3.5,\ 4$ 都是 $x-4\le 0$ 的解．</p>
+      <p class="tip gold" data-step="2">$x=3$ 是 $x-3\gt 0$ 的解吗？$x=4$ 是 $x-4\le 0$ 的解吗？<span class="think" data-step="3" data-ask="先判断">$3-3=0$，$0\gt 0$ 不成立，3 <b>不是</b>；$4-4=0\le 0$ 成立，4 <b>是</b>．</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。课本 p121 试一试：先让学生自己说几个使不等式成立的 x，再用探测器逐个检验（右侧数轴上方的绿点 / 红点）。然后点“一口气检验”：绿点密密麻麻连成一片，说明解有无数个、而且挤在同一侧；最后“画出全部的解”，出现课本的画法。特别检验端点 3 和 4：一个不成立、一个成立——这就是下一页“空心 / 实心”的来源。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>不等式的解、解集、解不等式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>不等式的解（课本 p121）</h4>能使不等式成立的未知数的值叫做<em>不等式的解</em>（solution of inequality）．</div>
+      <div class="def" data-step="2"><h4>解集（课本 p122）</h4>一个含有未知数的不等式的<b>所有的解</b>，组成这个不等式的解的集合，简称这个不等式的<em>解集</em>（solution set）．</div>
+      <div class="def" data-step="3"><h4>解不等式</h4>求不等式解集的过程叫做<em>解不等式</em>（solving inequality）．</div>
+      <p class="tip" data-step="4">比 3 大的数都是 $x-3\gt 0$ 的解：解集是 <span class="think" data-step="5" data-ask="怎样写？">$x\gt 3$</span>；类似地，$x-4\le 0$ 的解集是 <span class="think" data-step="5" data-ask="怎样写？">$x\le 4$</span>．</p>
+    </div>
+    <div class="col">
+      <p class="tip gold" data-step="6"><b>想一想：</b>1. $x-3\gt 0$ 和 $x-4\le 0$ 的解各有多少个？　2. 不等式的解与方程的解有什么不同？</p>
+      <table class="mtab cmp" data-step="7">
+        <tr><th></th><th>方程 $x-3=0$</th><th>不等式 $x-3\gt 0$</th></tr>
+        <tr><th>解</th><td>$x=3$</td><td>$3.5$、$4$、$5$、$100$……</td></tr>
+        <tr><th>个数</th><td><span class="think" data-step="8" data-ask="几个？">只有 1 个</span></td><td><span class="think" data-step="8" data-ask="几个？">无数个</span></td></tr>
+        <tr><th>怎样表示</th><td>写出这个数</td><td><span class="think" data-step="9" data-ask="怎样表示？">写解集 $x\gt 3$，或在数轴上画出来</span></td></tr>
+      </table>
+      <p class="warn" data-step="10" data-label="分清">“解”是<b>一个</b>数（如 $x=5$）；“解集”是<b>所有</b>解组成的整体（如 $x\gt 3$）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p121–122 定义与想一想。用“班级里的一位同学”和“全班同学”类比“解”和“解集”。表格的“个数”一栏请学生回顾上一页“一口气检验”时的感受。</p>
+</section>
+
+<!-- 6 ================= 数轴上表示解集 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数轴表示</span><h2>把无数个解“画”在数轴上</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f112" class="iq-fig"></div>
+      <p class="figcap">图 11-2　$x\gt 3$</p>
+      <p class="tip" data-step="1">在表示 3 的点画<b>空心圆圈</b>，表示解集<b>不包含</b> 3 这个数；向<b>右</b>画，表示比 3 大的数．</p>
+      <div id="f113" class="iq-fig" data-step="2"></div>
+      <p class="figcap" data-step="2">图 11-3　$x\le 4$</p>
+      <p class="tip" data-step="3">在表示 4 的点画<b>实心圆点</b>，表示解集<b>包含</b> 4 这个数；向<b>左</b>画，表示比 4 小的数．</p>
+    </div>
+    <div class="col">
+      <table class="mtab rule" data-step="4">
+        <tr><th>解集</th><th>端点</th><th>方向</th></tr>
+        <tr><td>$x\gt a$</td><td>空心 ○</td><td>向右</td></tr>
+        <tr><td>$x\ge a$</td><td>实心 ●</td><td>向右</td></tr>
+        <tr><td>$x\lt a$</td><td>空心 ○</td><td>向左</td></tr>
+        <tr><td>$x\le a$</td><td>实心 ●</td><td>向左</td></tr>
+      </table>
+      <p class="method" data-step="5" data-label="口诀">“大于向右，小于向左；有等号画实心，无等号画空心。”</p>
+      <p class="tip gold" data-step="6"><b>议一议：</b>说出一个不等式，使它的解集在数轴上表示如下（图 11-4）：</p>
+      <div id="f114" class="iq-fig" data-step="6"></div>
+      <p class="tip" data-step="7"><span class="think" data-step="7" data-ask="说一个">解集是 $x\ge -3$：如 $x+3\ge 0$、$x-1\ge -4$……答案不唯一，只要解集是 $x\ge -3$ 就行．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p122 图 11-2、11-3、11-4（本页三幅图都按课本画法：在端点处竖起，再水平画向解集一侧）。图 11-4 端点是实心点、向右，所以解集是 x ≥ −3；鼓励学生说出不同的不等式。</p>
+</section>
+
+<!-- 7 ================= 画解集（核心二） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手画</span><h2>在数轴上表示下列不等式的解集</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns q-tabs" data-noswipe id="dTabs"></div>
+      <p class="tip">① 拖橙色点到端点位置；② 选空心 / 实心；③ 选方向；④ 点“检查”．</p>
+      <div class="btns" data-noswipe>
+        <button class="btn" type="button" id="dDot">端点：空心 ○</button>
+        <button class="btn" type="button" id="dDir">方向：向右 →</button>
+        <button class="btn solid" type="button" id="dChk">检查</button>
+      </div>
+      <p class="tip feedback" id="dMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip big-q" id="dQ"></p>
+      <div id="draw" class="drawb"></div>
+      <p class="muted center small-t">端点会吸附到 $\dfrac14$、$\dfrac13$ 的整数倍上（如 $\dfrac23$、$-\dfrac14$）</p>
+    </div>
+  </div>
+  <p class="note">课本 p123 练一练第 2 题 (1)–(4) 与习题 11.2 第 1 题 (1)–(4)，共 8 题，点上方编号切换。检查时分别判断“端点位置、空心实心、方向”三件事，哪件错了就提示哪件。分数端点（2/3、−1/4）先让学生说出它在哪两个整数之间、离哪个更近。</p>
+</section>
+
+<!-- 8 ================= 读图写解集 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 11.2</span><h2>写出数轴上所表示的不等式的解集</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col rd"><div id="r1" class="iq-fig"></div>
+        <div class="pick" data-ans="b"><span>(1)</span><button data-k="a">$x\le 3$</button><button data-k="b">$x\lt 3$</button><button data-k="c">$x\gt 3$</button><p class="pick-why">空心圈 → 不含 3；向左 → 比 3 小．</p></div></div>
+      <div class="col rd"><div id="r2" class="iq-fig"></div>
+        <div class="pick" data-ans="a"><span>(2)</span><button data-k="a">$x\gt \dfrac14$</button><button data-k="b">$x\ge \dfrac14$</button><button data-k="c">$x\lt \dfrac14$</button><p class="pick-why">空心圈 → 不含 $\dfrac14$；向右 → 比 $\dfrac14$ 大．</p></div></div>
+      <div class="col rd"><div id="r3" class="iq-fig"></div>
+        <div class="pick" data-ans="c"><span>(3)</span><button data-k="a">$x\gt -2$</button><button data-k="b">$x\le -2$</button><button data-k="c">$x\ge -2$</button><p class="pick-why">实心点 → 包含 $-2$；向右 → 比 $-2$ 大．</p></div></div>
+      <div class="col rd"><div id="r4" class="iq-fig"></div>
+        <div class="pick" data-ans="a"><span>(4)</span><button data-k="a">$x\le \dfrac13$</button><button data-k="b">$x\lt \dfrac13$</button><button data-k="c">$x\ge \dfrac13$</button><p class="pick-why">实心点 → 包含 $\dfrac13$；向左 → 比 $\dfrac13$ 小．</p></div></div>
+    </div>
+    <p class="warn" data-label="三处易错">① 空心、实心看清楚；② 方向看折线往哪边延伸，<b>不是</b>看端点在 0 的哪一边（如 (4) 端点在 0 右边，解集却向左）；③ 分数端点要标在正确位置．</p>
+  </div>
+  <p class="note">课本 p123 习题 11.2 第 2 题四幅图（按课本原图绘制）。先让学生口答，再点选；点错的按钮变红。第 (4) 题是易错题：端点在 0 的右边，但折线向左。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>是不是解？是不是解集？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>1.</b> 下列数值中，哪些是不等式 $x+2\gt 4$ 的解？（逐个点一点，看代入的结果）</p>
+      <div class="chips-q" id="solChips" data-noswipe></div>
+      <p class="tip feedback" id="solMsg"></p>
+      <p class="tip" data-step="1">这些解有什么共同点？<span class="think" data-step="2" data-ask="说一说">都比 2 大．$x+2\gt 4$ 的解集是 $x\gt 2$（2 本身不是解）．</span></p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> $x$ 取任意负数时，不等式 $x-2\lt 0$ 都成立，能说这个不等式的解集是 $x\lt 0$ 吗？</p>
+        <details><summary>提示 1</summary>$x=1$ 时，$1-2=-1\lt 0$ 成立吗？1 是负数吗？</details>
+        <details><summary>提示 2</summary>解集要包含<b>所有</b>的解，一个也不能漏，也不能多．</details>
+        <details><summary>完整解答</summary>不能．$x=1$ 也是解，但不在 $x\lt 0$ 里．$x-2\lt 0$ 的解集是 $x\lt 2$：比 2 小的数都是解，其他数都不是解．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 3.</b> 写出不等式 $2x+1\gt 3$ 的 5 个解，并比较它们与方程 $2x+1=3$ 的解的大小．</p>
+        <details><summary>提示 1</summary>先解方程 $2x+1=3$，得 $x=1$．</details>
+        <details><summary>提示 2</summary>试试 $x=2$：$2\times2+1=5\gt 3$ 吗？$x=1$ 呢？$x=0$ 呢？</details>
+        <details><summary>完整解答</summary>如 $x=1.5,\ 2,\ 3,\ 4,\ 10$（答案不唯一）．它们都<b>大于</b>方程的解 $x=1$；事实上 $2x+1\gt 3$ 的解集是 $x\gt 1$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p123 练一练第 1、3 题和习题 11.2 第 3 题。第 1 题的 11 个数逐个点开：2 正好是“分界点”（代入得 4 &gt; 4，不成立）。第 3 题是本课最重要的辨析：解集必须“不多不少”。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">使不等式成立的未知数的值叫做<b>不等式的解</b>；所有的解组成<b>解集</b>；求解集的过程叫<b>解不等式</b>．</p>
+        <p class="warn" data-label="对比方程">方程的解通常只有一个；不等式的解往往有无数个，要用解集表示．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="数轴表示解集">找端点 → 定空心（$\gt$、$\lt$）或实心（$\ge$、$\le$）→ 定方向（大于向右、小于向左）．</p>
+        <div id="sumFig" class="iq-fig sum-fig"></div>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">无数个解，在数轴上就是一段“看得见”的部分．</p>
+        <p class="recall" data-label="类比">从方程的解类比得到不等式的解；再比较两者的不同．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>11.3 不等式的基本性质——像 $x-3\gt 0$ 这样一眼看出解集的不等式还好办；$-2x+14\gt 6$ 呢？我们需要像等式的性质那样的“变形工具”．</p>
+  </div>
+  <p class="note">小结中间的图是 x ≥ −2 与 x &lt; 1 两个例子（分别用红、橙两色）请学生说出它们表示的解集。作业建议：习题 11.2 第 1、2 题书面完成。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="../shared/ineq.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

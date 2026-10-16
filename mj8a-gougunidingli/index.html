@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>勾股定理的逆定理 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shengjie.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第3章 勾股定理 · 3.2</p>
+    <h1 class="cover-title">勾股定理的逆定理</h1>
+    <p class="cover-q" data-step="1">把 12 段同样长的绳子连成环状，拉成三边分别是 3 段、4 段、5 段的三角形——据说古人就用这个办法得到直角．</p>
+    <p class="cover-q" data-step="2">上一课：直角三角形 ⇒ $a^2+b^2=c^2$．<b>反过来</b>：三边满足 $a^2+b^2=c^2$ ⇒ 一定是直角三角形吗？</p>
+    <div class="chips" data-step="3"><span class="chip">搭三角形 · 猜想</span><span class="chip">构造全等来证明</span><span class="chip">勾股数</span><span class="chip">“普林顿 322”泥板</span></div>
+  </div>
+  <p class="note">课本 p83 开头的问题与 p84 练习 1 的情境（绳子拉直角）。先请学生表态“一定是 / 不一定是”，并说说理由——本课用“先搭、再猜、后证”回答它。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课讲到哪里了？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八上 3.1 勾股定理（上一课）" data-step="1">
+        <p>直角三角形两条直角边 $a$、$b$ 的平方和等于斜边 $c$ 的平方：$a^2+b^2=c^2$．</p>
+        <p>上一课最后留下的问题：<b>反过来</b>成立吗？（第 4 页拖偏 $\angle C$ 时，等式就不成立．）</p>
+        <span class="use">第 4 页：画一个直角三角形，用勾股定理算它的斜边．（<a href="../mj8a-gougudingli/index.html">回看 3.1</a>）</span>
+      </div>
+      <div class="recall" data-label="八上 1.3 三角形全等的条件" data-step="2">
+        <p>三边分别相等的两个三角形全等（<b>SSS</b>）．</p>
+        <span class="use">第 4 页：证明两个三角形全等，从而“搬”来一个直角．（<a href="../mj8a-quandengtiaojian/index.html">回看 1.3</a>）</span>
+      </div>
+      <div class="recall" data-label="七下 12.3 互逆命题" data-step="3">
+        <p>两个命题中，一个命题的条件和结论分别是另一个命题的结论和条件，这两个命题叫做<b>互逆命题</b>．</p>
+        <p>原命题是真命题，逆命题不一定是真命题——要证明．</p>
+        <span class="use">第 5 页：勾股定理与它的逆定理是一对互逆定理．（<a href="../mj7b-hunimingti/index.html">回看 12.3</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">2.5 节我们见过：“等边对等角”反过来“等角对等边”也成立．今天对勾股定理也“倒过来想”一次．</p>
+  </div>
+  <p class="note">第一张卡请学生复述勾股定理，并回忆上一课格点板上把 ∠C 拖偏时 S₁ + S₂ ≠ S₃ 的现象——那说明“不是直角，等式就不成立”，与今天的逆定理是一回事的两面。第三张卡是七下学过的互逆命题，提醒“逆命题不一定真”，所以本课必须证明。</p>
+</section>
+
+<!-- 3 ================= 搭三角形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 猜想</span><h2>给三根小棒，搭出的三角形是直角三角形吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="sss" class="big-b"></div>
+      <div class="steppers" data-noswipe>
+        <span>$a=$<button class="btn st" type="button" data-s="a" data-d="-1">−</button><b class="v" id="sa"></b><button class="btn st" type="button" data-s="a" data-d="1">+</button></span>
+        <span>$b=$<button class="btn st" type="button" data-s="b" data-d="-1">−</button><b class="v" id="sb"></b><button class="btn st" type="button" data-s="b" data-d="1">+</button></span>
+        <span>$c=$<button class="btn st" type="button" data-s="c" data-d="-1">−</button><b class="v" id="sc"></b><button class="btn st" type="button" data-s="c" data-d="1">+</button></span>
+      </div>
+      <div class="btns presets" data-noswipe id="sssPre">
+        <button class="btn" type="button" data-p="3,4,5">3,4,5</button><button class="btn" type="button" data-p="6,8,10">6,8,10</button><button class="btn" type="button" data-p="5,12,13">5,12,13</button><button class="btn" type="button" data-p="8,15,17">8,15,17</button><button class="btn" type="button" data-p="4,5,6">4,5,6</button><button class="btn" type="button" data-p="2,3,4">2,3,4</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">三边长为 $a$、$b$、$c$ 的三角形（$c$ 是 $\angle C$ 的对边）．改变三边，看 $a^2+b^2$ 与 $c^2$ 的大小，再看 $\angle C$．</p>
+      <div class="readout r4">
+        <span>$a^2+b^2$</span><b class="v" id="sab"></b><span>$c^2$</span><b class="v" id="scc"></b>
+        <span>$\angle C$</span><b class="v" id="sC"></b><span></span><b></b>
+      </div>
+      <p class="tip feedback" id="sMsg"></p>
+      <table class="mtab" id="sTab"><tr><th>$a,b,c$</th><th>$a^2+b^2$</th><th>$c^2$</th><th>$\angle C$</th></tr></table>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="sRec">记下这一组</button><button class="btn" type="button" id="sClr">清空</button></div>
+      <div class="def" data-step="1"><h4>猜想</h4><span class="think" data-step="2" data-ask="说出你的猜想">如果三角形的三边满足 $a^2+b^2=c^2$，那么 $\angle C=90^\circ$，这个三角形是直角三角形．</span></div>
+    </div>
+  </div>
+  <p class="note">三角形按三边精确作出（SSS：三边确定，形状就确定）。先点 3,4,5、6,8,10、5,12,13，记下 ∠C 都是 90°；再试 4,5,6（a² + b² &gt; c²，∠C 是锐角）和 2,3,4（a² + b² &lt; c²，∠C 是钝角）。追问：试了几组都对，能说明所有三角形都对吗？——要证明（下一页）。三边不满足“两边之和大于第三边”时，画板会提示搭不成三角形。</p>
+</section>
+
+<!-- 4 ================= 证明 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>造一个直角三角形，和它比一比</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="prove" class="big-b"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="pvGo">把 $\text{Rt}\triangle A'B'C'$ 移过去</button><button class="btn" type="button" id="pvBack">放回</button></div>
+      <p class="muted small-t">图 3-7：(1) $\triangle ABC$ 中 $a^2+b^2=c^2$；(2) 画 $\text{Rt}\triangle A'B'C'$，$\angle C'=90^\circ$，$B'C'=a$，$A'C'=b$</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 3-7(1)，在 $\triangle ABC$ 中，$a^2+b^2=c^2$．$\triangle ABC$ 是否为直角三角形？</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>画</span><span>$\text{Rt}\triangle A'B'C'$，使 $\angle C'=90^\circ$，$B'C'=a$，$A'C'=b$</span><i class="why">构造一个“标准”的直角三角形</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="A′B′ 是多少？">$A'B'^2=a^2+b^2$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="4"><span>∵</span><span>$AB^2=c^2=a^2+b^2$</span><i class="why">已知</i></div>
+        <div class="dl" data-step="5"><span>∴</span><span>$A'B'^2=AB^2$，$A'B'=AB$</span><i class="why">边长为正数</i></div>
+        <div class="dl key" data-step="6"><span>∴</span><span class="think" data-step="7" data-ask="用哪条判定？">$\triangle ABC\cong\triangle A'B'C'$</span><i class="why">SSS</i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span>$\angle C=\angle C'=90^\circ$，$\triangle ABC$ 是直角三角形</span><i class="why">全等三角形对应角相等</i></div>
+      </div>
+      <p class="method" data-step="9" data-label="证明的妙处">我们不能直接“量”出 $\angle C=90^\circ$，就造一个确实有直角的 $\triangle A'B'C'$，证明两个三角形全等——直角就“搬”过来了．</p>
+    </div>
+  </div>
+  <p class="note">课本 p83 证明与图 3-7。这里勾股定理用来算 A′B′，全等判定用 SSS——两个旧工具接力。点“移过去”，Rt△A′B′C′ 平移到 △ABC 上，三个顶点完全重合（两个三角形都是按边长精确作出的）。“构造法”是本课最值得体会的思路。</p>
+</section>
+
+<!-- 5 ================= 定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理</span><h2>勾股定理的逆定理；勾股数</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>勾股定理的逆定理（课本 p83）</h4>如果三角形的三边长分别为 $a$、$b$、$c$，且 $a^2+b^2=c^2$，那么这个三角形是直角三角形．</div>
+    <div class="cols2">
+      <table class="mtab" data-step="2">
+        <tr><th></th><th>条件</th><th>结论</th><th>用途</th></tr>
+        <tr><td>勾股定理</td><td>直角三角形（$\angle C=90^\circ$）</td><td>$a^2+b^2=c^2$</td><td>由形到数：求边长</td></tr>
+        <tr><td>逆定理</td><td>$a^2+b^2=c^2$</td><td>直角三角形（$\angle C=90^\circ$）</td><td>由数到形：判断直角</td></tr>
+      </table>
+      <div class="col">
+        <p class="warn" data-step="3" data-label="哪个角是直角？">最长边 $c$ 所对的角是直角．如三边 $13$、$5$、$12$，$5^2+12^2=13^2$，直角是 $13$ 这条边所对的角．</p>
+        <div class="def" data-step="4"><h4>勾股数（课本 p83）</h4>满足关系 $a^2+b^2=c^2$ 的 3 个<b>正整数</b> $a$、$b$、$c$ 称为勾股数．<span class="small-p">如 3，4，5；5，12，13；8，15，17．</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p83 定理框与勾股数的定义。表格对比两个互逆定理的条件和结论：勾股定理“由形到数”，逆定理“由数到形”。警示：用逆定理时先找出最长边，它所对的角才是直角。勾股数必须是正整数，0.3，0.4，0.5 满足平方关系，但不叫勾股数。</p>
+</section>
+
+<!-- 6 ================= 普林顿 322 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学文化</span><h2>“普林顿 322”泥板上的秘密</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">美国哥伦比亚大学图书馆收藏着一块编号为“普林顿 322”的古巴比伦泥板．专家研究发现，表格中的两列数恰好分别是直角三角形的斜边和一条直角边的长；用勾股定理算得另一条直角边的长（左边一列），竟然也是整数！</p>
+      <p class="tip">点表格的任意一行，验算它是不是勾股数：</p>
+      <p class="tip feedback" id="plMsg">（点右边表格中的一行）</p>
+      <p class="recall" data-step="1" data-label="今天的结论">人们通过研究发现：<b>勾股数有无数多组</b>（第 9 页我们自己造一批）．</p>
+    </div>
+    <div class="col">
+      <table class="mtab pl" id="plTab" data-noswipe><tr><th>另一条直角边</th><th>直角边</th><th>斜边</th></tr></table>
+      <p class="muted small-t center">图 3-8 中的数（按课本抄录）</p>
+    </div>
+  </div>
+  <p class="note">课本 p84 阅读材料与图 3-8。泥板约有 3 800 年历史，比毕达哥拉斯早一千多年。让学生挑最“吓人”的一行（如 13 500，12 709，18 541）验算——计算由页面完成，重点体会：古人已经掌握了大量勾股数。所有 15 行都已逐一核对：两直角边的平方和都等于斜边的平方。</p>
+</section>
+
+<!-- 7 ================= 判断勾股数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>下列各组数是勾股数吗？为什么？</h2></div>
+  <div class="bd full">
+    <p class="tip"><b>练习 3（p85）</b>　先判断，再点开看理由．</p>
+    <div class="cols2">
+      <div class="jcard"><p>(1) 12，15，18</p><div class="pick" data-ans="n"><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">$12^2+15^2=144+225=369$，$18^2=324$，$369\ne324$．</p></div></div>
+      <div class="jcard"><p>(2) 11，60，61</p><div class="pick" data-ans="y"><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">$11^2+60^2=121+3600=3721=61^2$，且都是正整数．</p></div></div>
+      <div class="jcard"><p>(3) 15，36，39</p><div class="pick" data-ans="y"><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">$15^2+36^2=225+1296=1521=39^2$（就是 5，12，13 各乘 3）．</p></div></div>
+      <div class="jcard"><p>(4) 12，35，36</p><div class="pick" data-ans="n"><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">$12^2+35^2=144+1225=1369=37^2\ne36^2$．（12，35，<b>37</b> 才是．）</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="判断方法">① 都是正整数吗？② 找出<b>最大</b>的数 $c$；③ 算两个较小数的平方和，看是否等于 $c^2$．</p>
+  </div>
+  <p class="note">课本 p85 练习 3。点“是 / 不是”即时判对错，点对了显示理由。(4) 很有迷惑性：12，35，36 差一点——两个较小数的平方和是 37²。判断三角形是否直角三角形用的是同样的三步。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>用逆定理说理</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1（p84）</b>　如图，把 12 段同样长的绳子连成环状，拉直点 $B$ 到点 $C$ 之间的 5 段绳子，然后在点 $A$ 处将绳子拉紧，则 $\angle BAC$ 为直角．你能说明其中的道理吗？</p>
+        <div id="rope" class="gfig l"></div>
+        <details><summary>提示 1</summary>$BC=5$ 段，剩下 7 段分成 $AB$、$AC$。在 $A$ 处拉紧时，图中 $AC=4$，$AB=3$。</details>
+        <details><summary>完整解答</summary>$AB^2+AC^2=3^2+4^2=25=5^2=BC^2$，根据勾股定理的逆定理，$\triangle ABC$ 是直角三角形，$BC$ 所对的 $\angle BAC=90^\circ$．</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2（p85）</b>　如果 3 条线段的长分别为 $a$、$b$、$c$，且满足 $c^2=a^2-b^2$，那么由这 3 条线段组成的三角形是直角三角形吗？为什么？</p>
+        <details><summary>提示 1</summary>移项：$c^2=a^2-b^2$ 可以写成什么形式？</details>
+        <details><summary>提示 2</summary>$b^2+c^2=a^2$——谁是最长边？</details>
+        <details><summary>完整解答</summary>是．由 $c^2=a^2-b^2$ 得 $b^2+c^2=a^2$，根据勾股定理的逆定理，这个三角形是直角三角形，直角是边 $a$ 所对的角．</details>
+      </div>
+      <p class="warn" data-label="易错">字母 $c$ 不一定是斜边！谁的平方等于另两边的平方和，谁就是斜边．</p>
+    </div>
+  </div>
+  <p class="note">课本 p84–85 练习 1、2。练习 1 的绳结图按 3 : 4 : 5 精确画出，绳结就是 12 个等分点。练习 2 与上一课“斜边不一定叫 c”的警示呼应。</p>
+</section>
+
+<!-- 9 ================= 勾股数生成器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>勾股数有无数多组：自己造一批</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 3.2 第 1(1) 题</b>　3、4、5 是一组勾股数，把这 3 个数分别扩大 2 倍，所得的 3 个数还是勾股数吗？扩大 3 倍、4 倍和 $k$ 倍呢？证明你的结论．</p>
+        <details><summary>提示 1</summary>算 $(3k)^2+(4k)^2$，与 $(5k)^2$ 比较（$k$ 是正整数）。</details>
+        <details><summary>完整解答</summary>$(3k)^2+(4k)^2=9k^2+16k^2=25k^2=(5k)^2$，且 $3k$、$4k$、$5k$ 都是正整数，所以都是勾股数．</details>
+      </div>
+      <p class="tip"><b>习题 3.2 第 1(2) 题</b>　$\triangle ABC$ 的三边长分别是 $a=n^2-1$，$b=2n$，$c=n^2+1$（$n\gt1$），$\triangle ABC$ 是直角三角形吗？证明你的结论．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$a^2+b^2$</span><span>$=(n^2-1)^2+(2n)^2$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span></span><span class="think" data-step="3" data-ask="展开">$=n^4-2n^2+1+4n^2=n^4+2n^2+1$</span><i class="why">完全平方公式</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$=(n^2+1)^2=c^2$</span><i class="why">∴ 是直角三角形（逆定理）</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>$n=$<input type="range" id="gn" min="2" max="12" step="1" value="2"><b class="v" id="gnV"></b>　$k=$<input type="range" id="gk" min="1" max="5" step="1" value="1"><b class="v" id="gkV"></b></div>
+      <div id="gen" class="gen-b"></div>
+      <p class="tip feedback" id="gMsg"></p>
+      <p class="muted small-t">三角形按三边精确作出，并按比例缩小放进画板</p>
+    </div>
+  </div>
+  <p class="note">习题 3.2 第 1 题。左边先证明，右边用滑块“生产”勾股数：n 取 2，3，4，… 得到 3，4，5；8，6，10；15，8，17；24，10，26；…；再乘 k 又得到一批。n 每取一个整数就有一组，所以勾股数有无数多组。注意 n = 3 时 b = 6 比 a = 8 小，斜边始终是 c = n² + 1。</p>
+</section>
+
+<!-- 10 ================= 习题 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>先算，再判断：$\angle BAC$ 是直角吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk2" class="gfig l"></div>
+      <p class="muted center small-t">按 $CD=1$，$AD=2$，$BD=4$ 精确作出</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>习题 3.2 第 2 题</b>　如图，$AD\perp BC$，垂足为 $D$．如果 $CD=1$，$AD=2$，$BD=4$，那么 $\angle BAC$ 是直角吗？证明你的结论．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>在 $\text{Rt}\triangle ADC$ 中</span><span class="think" data-step="2" data-ask="AC² = ?">$AC^2=AD^2+CD^2=4+1=5$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="3"><span>在 $\text{Rt}\triangle ADB$ 中</span><span class="think" data-step="4" data-ask="AB² = ?">$AB^2=AD^2+BD^2=4+16=20$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="5"><span>又</span><span>$BC=CD+BD=5$，$BC^2=25$</span><i class="why"></i></div>
+        <div class="dl key" data-step="6"><span>∵</span><span class="think" data-step="7" data-ask="比一比">$AC^2+AB^2=5+20=25=BC^2$</span><i class="why"></i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span>$\triangle ABC$ 是直角三角形，$\angle BAC=90^\circ$</span><i class="why">勾股定理的逆定理</i></div>
+      </div>
+      <p class="method" data-step="9" data-label="两个定理接力">先用勾股定理（由形到数）算出 $AC^2$、$AB^2$，再用逆定理（由数到形）判断直角．</p>
+    </div>
+  </div>
+  <p class="note">习题 3.2 第 2 题。本题把两个互逆定理放在一起用：在两个小直角三角形里用勾股定理，在大三角形里用逆定理。不需要开平方：AC²、AB² 直接代入即可（平方根要到第 4 章才学）。图中 ∠BAC 的直角记号是按坐标验证后才画的。</p>
+</section>
+
+<!-- 11 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法，对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <p>$\triangle ABC$ 的三边 $a=13$，$b=5$，$c=12$，满足 $b^2+c^2=a^2$，所以 $\angle C=90^\circ$．</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>最长边是 $a$，直角是 $a$ 所对的角：$\angle A=90^\circ$．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>$0.3$，$0.4$，$0.5$ 是一组勾股数．</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>它们满足 $0.3^2+0.4^2=0.5^2$，能构成直角三角形，但勾股数必须是<b>正整数</b>．</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>三边长为 $4$，$5$，$6$ 的三角形是直角三角形，因为 $4+5\gt6$．</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>$4+5\gt6$ 只说明能搭成三角形．$4^2+5^2=41\ne36$，不是直角三角形（$41\gt36$，最大角是锐角，第 3 页试过）．</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p>若三角形三边满足 $(a+b)(a-b)=c^2$，则它是直角三角形．</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict ok">✓</span>$(a+b)(a-b)=a^2-b^2=c^2$，即 $b^2+c^2=a^2$，$\angle A=90^\circ$．</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">每张卡先举手表决，再点开。第 1、4 张练“找最长边”；第 2 张区分“能构成直角三角形”与“勾股数”；第 3 张区分“构成三角形”与“构成直角三角形”。第 4 张用到七下的平方差公式。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">三边满足 $a^2+b^2=c^2$ 的三角形是直角三角形，$c$ 所对的角是直角．</p>
+        <p class="def">勾股数：满足 $a^2+b^2=c^2$ 的 3 个正整数；有无数多组．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断直角三角形">找最长边 → 算较短两边的平方和 → 与最长边的平方比较．</p>
+        <p class="method" data-label="构造法">造一个 $\text{Rt}\triangle A'B'C'$，用 SSS 证全等，把直角“搬”过来．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="互逆">勾股定理（形 → 数）⇄ 逆定理（数 → 形）．</p>
+        <p class="recall" data-label="数形结合">一个等式 $a^2+b^2=c^2$ 就能确定一个直角．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>3.3 勾股定理的简单应用——用这两个定理解决实际问题：最短路线、折叠、测量……</p>
+  </div>
+  <p class="note">请学生用一句话说出“勾股定理”和“逆定理”分别什么时候用：要求边长用勾股定理；要判断是不是直角用逆定理。作业建议：习题 3.2 第 1、2 题（课堂已讨论，课后写完整）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

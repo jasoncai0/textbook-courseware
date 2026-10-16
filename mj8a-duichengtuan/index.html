@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>设计轴对称图案 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mfold.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jianzhi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第2章 轴对称图形 · 2.3</p>
+    <h1 class="cover-title">设计轴对称图案</h1>
+    <p class="cover-q" data-step="1">轴对称图形均衡、和谐，给人以美的享受——标志、窗花、灯笼，常常利用轴对称来设计。</p>
+    <p class="cover-q" data-step="2">只画<b>一半</b>，怎样得到整幅图案？颜色也能“对称”吗？今天当一回设计师。</p>
+    <div class="chips" data-step="3"><span class="chip">方格纸上画一半</span><span class="chip">颜色的对称</span><span class="chip">拼一拼</span><span class="chip">剪纸</span><span class="chip">琴键里的对称</span></div>
+  </div>
+  <p class="note">课本 p48–50。本课是“用”的一课：用 2.2 学的画对称点的方法设计图案。每个活动都让学生先设计，再说出“对称轴在哪、有几条”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>设计要用到的两件工具</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="2.1 · 轴对称图形" data-step="1">
+        <p>沿一条直线折叠，直线两旁的部分能够互相重合的图形，叫轴对称图形；一个图形可能有 0 条、1 条或多条对称轴。</p>
+        <p class="small-t"><a href="../mj8a-zhouduicheng/index.html">回看：2.1 轴对称与轴对称图形</a></p>
+        <span class="use">检验自己的设计：有几条对称轴？</span>
+      </div>
+      <div class="recall" data-label="2.2 · 画对称点" data-step="2">
+        <p>画一个图形关于直线的对称图形，关键是确定<b>某些点</b>的对称点：作垂线、截取等长，再连接。</p>
+        <p class="small-t"><a href="../mj8a-zhouduichengxingzhi/index.html">回看：2.2 轴对称的性质</a></p>
+        <span class="use">在方格纸上画出另一半；剪纸时对折，一次剪出两半。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="3"><b>本课问题：</b>怎样<b>只设计一半</b>，就得到一个轴对称图案？考虑颜色时，对称轴会变吗？</p>
+  </div>
+  <p class="note">课本 p48 开头欣赏的三个标志（绿色食品、中国环境、国家免检）请看课本，让学生说出它们的对称轴。</p>
+</section>
+
+<!-- 3 ================= 方格纸设计 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">设计 · 图 2-12</span><h2>在方格纸上画一半，另一半自动“长”出来</h2></div>
+  <div class="bd">
+    <div class="col wide">
+      <div id="pad" class="pad" data-noswipe></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="padNew">新的一笔</button><button class="btn" type="button" id="padUndo">撤销</button><button class="btn" type="button" id="padClr">清空</button><button class="btn solid" type="button" id="padDemo">看示例：盆花</button></div>
+    </div>
+    <div class="col narrow">
+      <p class="tip">正方形、菱形、三角形等网格纸为设计轴对称图案提供了方便（图 2-12 用菱形网格纸画了“盆花”）。</p>
+      <p class="tip feedback" id="padMsg">在蓝色虚线（对称轴）<b>左边</b>依次点格点画线，右边会同时画出它的对称图形。</p>
+      <p class="method" data-step="1" data-label="道理">每点一个格点，程序就画出它关于对称轴的对称点（到轴的格数相同、在同一行）——正是 2.2 的画法。</p>
+      <p class="tip small" data-step="2">如果点到了对称轴上，会怎样？<span class="think" data-step="3" data-ask="试试">对称轴上的点的对称点就是它自己，左右两笔在这里接上。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p48 图 2-12。请两三位学生上台各画一个图案（花、房子、蝴蝶……），只画左半边。示例“盆花”是按方格纸重新设计的（课本用的是菱形网格），各点坐标都是整格点。</p>
+</section>
+
+<!-- 4 ================= 颜色的对称 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 图 2-13</span><h2>考虑颜色时，对称轴还有几条？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="c3Pre"><button class="btn solid" type="button" data-k="0">图 2-13(1)</button><button class="btn" type="button" data-k="1">图 2-13(2)</button><button class="btn" type="button" data-k="2">空白</button></div>
+      <div id="c3" class="cgrid" data-noswipe></div>
+      <p class="tip feedback" id="c3Msg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">有些彩色图案，不仅是轴对称图形，而且颜色也“对称”．点小方格可以涂色（再点一次擦掉）。</p>
+      <p class="tip" data-step="1">图 2-13(1) 只有 2 条对称轴。只要再把哪些小方格涂红，就有 4 条？<span class="think" data-step="2" data-ask="涂一涂">左上方和右下方的小方格。</span></p>
+      <p class="tip" data-step="3">图 2-13(2) 只有 1 条对称轴。改变哪些小方格的颜色，就能有 4 条？<span class="think" data-step="4" data-ask="涂一涂">再把左边中间、下边中间的小方格涂红（四条边的中间格都涂上）。</span></p>
+      <p class="warn" data-step="5" data-label="颜色也要重合">考虑颜色时，翻折后不但形状要重合，<b>颜色也要对上</b>：红格必须落在红格上。</p>
+    </div>
+  </div>
+  <p class="note">课本 p48 图 2-13。正方形网格本身有 4 条对称轴（横、竖、两条对角线），涂色后程序逐条检验：把每个格子按这条轴翻折，颜色是否都对得上，对得上的轴用绿色虚线画出。答案不唯一时鼓励多种涂法。</p>
+</section>
+
+<!-- 5 ================= 数学实验室 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室 · 图 2-14、2-15</span><h2>四张相同的纸片，能拼出几种图案？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="tPre"><button class="btn solid" type="button" data-k="0">图 2-15(1)</button><button class="btn" type="button" data-k="1">图 2-15(2)</button><button class="btn" type="button" data-k="2">图 2-15(3)</button></div>
+      <div id="tiles" class="tiles" data-noswipe></div>
+      <p class="tip feedback" id="tMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">(1) 制作 4 张如图 2-14 的正方形纸片（紫色是一个“V”形）。(2) 拼成图 2-15(1)～(3)，它们是轴对称图形吗？如果是，画出对称轴．</p>
+      <p class="tip">点任意一张纸片，它会逆时针转 $90^\circ$。</p>
+      <p class="tip" data-step="1">(3) 你还能拼出其他图案吗？所得图案有几条对称轴？<span class="think" data-step="2" data-ask="拼拼看">能拼出很多种。最多只有 2 条对称轴（如上下两行“V”方向相反）：纸片本身只有一条对称轴，而且不在对角线方向，所以怎么拼都得不到斜的对称轴。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p49 数学实验室 1。纸片图案按课本图 2-14 的比例画（紫色六边形的顶点都在边的中点或角上）。点纸片旋转，程序检验横、竖、两条对角线四条候选轴，显示真正的对称轴和条数。图 2-15(1) 有 1 条（竖直），(2) 有 2 条（横、竖）；按课本图读出的 (3) 的摆法（左上朝上、右上朝右、左下朝左、右下朝下）不是轴对称图形，请对照课本核对。</p>
+</section>
+
+<!-- 6 ================= 剪纸 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室 · 图 2-16</span><h2>对折、画一半、剪下、展开</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cut" class="cutb" data-noswipe></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="cutUndo">撤销</button><button class="btn" type="button" id="cutClr">重来</button><button class="btn" type="button" id="cutDemo">示例：奖杯</button><button class="btn solid" type="button" id="cutGo">剪下 · 展开</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">人们在剪纸时，常常利用轴对称设计图案：把一张纸对折，画图（图 2-16(1)）并剪去阴影部分，把纸展开，涂色后就得“庆丰灯笼”．</p>
+      <p class="tip feedback" id="cutMsg">在折痕右边依次点格点，画出图案的<b>一半</b>轮廓（从折痕上出发，回到折痕上），再点“剪下 · 展开”。</p>
+      <p class="tip" data-step="1">请你利用轴对称，设计并剪出一幅奖杯图案。<span class="think" data-step="2" data-ask="想一想">轮廓的两端都要落在折痕上，否则展开后会断成两块。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p49 数学实验室 2。左边是对折后的纸（左边缘是折痕）。学生画出半个轮廓后点“剪下 · 展开”：另一半绕折痕翻转展开（翻折动画按对称变换精确计算），得到完整的轴对称剪纸。也可以先点“示例：奖杯”。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · p49–50</span><h2>4 × 4 网格涂三种颜色：恰好 2 条对称轴</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="c4Pal"><button class="btn solid pal r" type="button" data-c="r">红</button><button class="btn pal y" type="button" data-c="y">黄</button><button class="btn pal b" type="button" data-c="b">蓝</button><button class="btn" type="button" data-c="">橡皮</button><button class="btn" type="button" id="c4Clr">清空</button></div>
+      <div id="c4" class="cgrid" data-noswipe></div>
+      <p class="tip feedback" id="c4Msg"></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>3.</b> 在“4 × 4”网格中，将 8 个小方格分别涂成红、黄、蓝三色，使它成为有 2 条对称轴的彩色图案（颜色也成“对称”）．</p>
+      <p class="tip" data-step="1">提示：<span class="think" data-step="2" data-ask="从哪下手？">先定下两条对称轴（如横、竖中线），每涂一格，就把它关于两条轴的对称格涂成同样的颜色——一次涂 4 格，涂两组就是 8 格。</span></p>
+      <p class="tip small" data-step="3"><b>1.</b>“聪明的机器人”由 2 条线段、2 个圆、2 个三角形、2 个长方形组成，请你用这 8 个图形自己设计一幅轴对称图案．<span class="think" data-step="4" data-ask="提示">每种图形都是 2 个——成对地摆在对称轴两边，或者把同一种的两个都放在轴上。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p49 练习 1、p50 练习 3。右侧检验：已涂格数是否为 8，四条候选轴中颜色对得上的有几条。注意可能出现“涂了 8 格但有 4 条轴”的情况（如四色对称），这时要提醒学生“恰好 2 条”。</p>
+</section>
+
+<!-- 8 ================= 琴键 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 2.3 第 1 题</span><h2>琴键里的轴对称：哪几个连续的琴键组成轴对称图形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="piano" class="piano" data-noswipe></div>
+      <p class="tip feedback" id="pMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">电子琴上琴键的音名用英文字母标记．小明发现 $^\sharp$C、D、$^\flat$E 3 个连续的琴键组成轴对称图形．你能发现有哪几个连续的琴键也组成轴对称图形吗？</p>
+      <p class="tip">点一个琴键作为起点，再点一个琴键作为终点，程序检验这一段是不是轴对称图形。</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="找到几组？">例如 $^\sharp$F、G、$^\flat$A；$^\flat$A、A、$^\flat$B；E、F；还有 C、$^\sharp$C、D、$^\flat$E、E 等。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p50 习题 2.3 第 1 题。琴键按示意图画：黑键宽 0.6、正好骑在两个白键的分界线上（与课本图一致），所以检验结果只对这个示意图成立，真实钢琴的黑键位置略有偏移。程序把选中的琴键整体关于中线翻折，比较每个琴键的轮廓。第 2 题（补成轴对称图形）在课本方格图上完成。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>设计轴对称图案的方法</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>画</h3>
+        <p class="method" data-label="画一半">在网格纸上画一半，逐点画对称点，再连线。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>拼 · 涂</h3>
+        <p class="method" data-label="拼">相同的纸片转一转、拼一拼；检验横、竖、斜的对称轴。</p>
+        <p class="warn" data-label="颜色">考虑颜色时，颜色也要对称，对称轴可能变少。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>剪</h3>
+        <p class="method" data-label="对折剪">对折 → 画一半（两端在折痕上）→ 剪 → 展开。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b><a href="../mj8a-xianduanjiao/index.html">2.4 线段、角的轴对称性</a>——线段和角都是轴对称图形，它们的对称轴有什么特别的性质？</p>
+  </div>
+  <p class="note">课后：为学校设计一幅轴对称的校运动会会徽（习题 2.1 第 3 题）或一幅奖杯剪纸，下节课展示，并说出对称轴有几条。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mfold.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

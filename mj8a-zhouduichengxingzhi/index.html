@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>轴对称的性质 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mfold.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/daoying.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第2章 轴对称图形 · 2.2</p>
+    <h1 class="cover-title">轴对称的性质</h1>
+    <p class="cover-q" data-step="1">湖面上的亭子和它的倒影关于水面成轴对称——成轴对称的两个图形<b>全等</b>。</p>
+    <p class="cover-q" data-step="2">除了全等，轴对称还有什么性质？亭子尖和它的“倒影尖”的连线，与水面有什么关系？</p>
+    <div class="chips" data-step="3"><span class="chip">扎孔实验</span><span class="chip">垂直平分线</span><span class="chip">对应点连线被对称轴垂直平分</span><span class="chip">画对称点、对称图形</span></div>
+  </div>
+  <p class="note">课本 p43 开头：根据定义，成轴对称的两个图形能够完全重合，即全等。本课研究轴对称更深一层的性质，并学会画一个图形关于一条直线的对称图形。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="2.1 · 轴对称" data-step="1">
+        <p>一个图形沿某条直线翻折后与另一个图形重合，这两个图形成轴对称；重合的点是对称点。</p>
+        <p class="small-t"><a href="../mj8a-zhouduicheng/index.html">回看：2.1 轴对称与轴对称图形</a></p>
+        <span class="use">扎孔实验中 $A$、$A'$ 就是一对对称点。</span>
+      </div>
+      <div class="recall" data-label="1.2 · 全等三角形的性质" data-step="2">
+        <p>全等图形的对应线段相等、对应角相等。</p>
+        <p class="small-t"><a href="../mj8a-quandengsanjiaoxing/index.html">回看：1.2 全等三角形</a></p>
+        <span class="use">翻折后重合 ⇒ $OA=OA'$，两个角相等。</span>
+      </div>
+      <div class="recall" data-label="七上 6.5 · 垂直" data-step="3">
+        <p>两条直线相交成直角，就说它们互相垂直；平角等于 $180^\circ$。</p>
+        <p class="small-t"><a href="../mj7a-chuizhi/index.html">回看：七上 6.5 垂直</a></p>
+        <span class="use">平角被平分成两个相等的角，每个都是直角。</span>
+      </div>
+      <div class="recall" data-label="七下 7.1 · 平行的条件" data-step="4">
+        <p>在同一平面内，垂直于同一条直线的两条直线互相平行（同位角相等，两直线平行）。</p>
+        <p class="small-t"><a href="../mj7b-pingxingtiaojian/index.html">回看：七下 7.1 探索直线平行的条件</a></p>
+        <span class="use">练习：$AA'$ 与 $BB'$ 为什么平行。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 2、3 张卡就是课本 p43 两个小人的说理依据：一个用“重合 ⇒ 相等”，一个用“平角被平分 ⇒ 直角”。</p>
+</section>
+
+<!-- 3 ================= 扎孔实验 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 图 2-5</span><h2>折纸扎孔，展开：线段 AA′ 与折痕 l 有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="pin" class="pin" data-noswipe></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="pinGo">对折 · 扎孔 · 展开</button><button class="btn" type="button" id="pinClr">换一张纸</button></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="pinMsg">先在左半张纸上点一下，确定针扎的位置 $A$。</p>
+      <div class="readout" id="pinRead">
+        <span>$OA$</span><b class="v" id="pinOA">—</b><span></span>
+        <span>$OA'$</span><b class="v" id="pinOA2">—</b><span></span>
+        <span>$AA'$ 与 $l$ 的夹角</span><b class="v" id="pinAng">—</b><span></span>
+      </div>
+      <p class="tip" data-step="1">思考：线段 $AA'$ 与直线 $l$ 有什么关系？<span class="think" data-step="2" data-ask="先猜">$l$ 垂直于 $AA'$，并且平分 $AA'$。</span></p>
+      <div class="cols2" data-step="3">
+        <p class="recall" data-label="小人甲">把纸重新沿 $l$ 折叠后，点 $A$ 与点 $A'$ 重合，所以 $OA=OA'$。</p>
+        <p class="recall" data-label="小人乙">直线 $l$ 把平角 $\angle AOA'$ 分成的两个角相等，且都是直角。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p43 操作与思考。可以让学生在不同位置多扎几次（点“换一张纸”）：无论扎在哪里，OA 与 OA′ 都相等，夹角都是 90°。读数由坐标算出（单位：格）。两个小人的说理要让学生复述：①翻折重合 ⇒ 线段相等；②平角被分成两个相等的角 ⇒ 直角。</p>
+</section>
+
+<!-- 4 ================= 垂直平分线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义 · 图 2-6</span><h2>线段的垂直平分线</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f26" class="gfig l"></div>
+      <p class="muted center small-t">图 2-6：直线 $l$ 交线段 $AB$ 于点 $O$，$\angle 1=90^\circ$，$AO=BO$</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>垂直平分线（课本 p43）</h4>垂直并且平分一条线段的直线，叫做这条线段的<b>垂直平分线</b>．</div>
+      <p class="tip" data-step="2">两个条件<b>缺一不可</b>：<span class="think" data-step="3" data-ask="只满足一个行吗？">只“垂直”不“平分”（经过 $AB$ 上别的点），或只“平分”不“垂直”（斜着过中点），都不是垂直平分线。</span></p>
+      <p class="tip" data-step="4">用这个名词，扎孔实验的发现可以说成：<span class="think" data-step="5" data-ask="怎样说？">折痕 $l$ 是线段 $AA'$ 的垂直平分线。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p43 定义与图 2-6。图 2-6 中 ∠1 是直角、AO = BO 两个记号都要标。垂直平分线在 2.4 会进一步研究（线段的轴对称性），本课只要求会用定义。</p>
+</section>
+
+<!-- 5 ================= 基本性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质 · 图 2-7</span><h2>对应点的连线，都被对称轴垂直平分吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="prop" class="prop"></div>
+      <p class="muted center small-t">拖动 $A$、$B$、$C$；拖动对称轴 $l$ 两端的点还能把它斜过来</p>
+    </div>
+    <div class="col">
+      <table class="mtab" id="propTab"><tr><th>对应点</th><th>到 $l$ 的距离</th><th></th><th>连线与 $l$ 的夹角</th></tr></table>
+      <p class="tip" data-step="1">仿照扎孔，再扎 $B$、$C$ 两个孔（图 2-7）：线段 $BB'$、$CC'$ 与直线 $l$ 有什么关系？<span class="think" data-step="2" data-ask="看表格">也都被 $l$ 垂直平分。</span></p>
+      <div class="def" data-step="3"><h4>轴对称的基本性质（课本 p44）</h4>成轴对称的两个图形中，<b>对应点的连线被对称轴垂直平分</b>．</div>
+      <p class="tip small" data-step="4">反过来也可以用：对称轴是任意一对对应点连线的垂直平分线——找对称轴，只要找一对对应点，作连线的垂直平分线。</p>
+    </div>
+  </div>
+  <p class="note">课本 p43–44 图 2-7 与基本性质。表格里的距离、角度由坐标实时计算。可以故意把对称轴拖斜，说明性质与 l 的方向无关。最后一条“反过来用”是课本 p44 练习 1“画出对称轴”的方法。</p>
+</section>
+
+<!-- 6 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · p44</span><h2>用性质说理</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>2.</b> 如图，线段 $AB$ 与 $A'B'$ 关于直线 $l$ 对称．连接 $AA'$、$BB'$，设它们分别与 $l$ 相交于点 $P$、$Q$．</p>
+      <div id="x2" class="gfig l"></div>
+    </div>
+    <div class="col">
+      <p class="tip">(1) 在所画的图形中，相等的线段有：<span class="think" data-step="1" data-ask="写一写">$AB=A'B'$，$AP=A'P$，$BQ=B'Q$。</span></p>
+      <p class="tip">(2) $AA'$ 与 $BB'$ 平行吗？为什么？</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="2"><span>∵</span><span>$AA'\perp l$，$BB'\perp l$</span><i class="why">对应点的连线被对称轴垂直平分</i></div>
+        <div class="dl end" data-step="3"><span>∴</span><span>$AA'\parallel BB'$</span><i class="why">在同一平面内，垂直于同一条直线的两条直线平行</i></div>
+      </div>
+      <p class="tip small" data-step="4">练习 1：画出成轴对称的两只鸽子、两个手印的对称轴。<span class="think" data-step="5" data-ask="怎样画？">找一对对应点（如两个鸽子嘴尖），连线，作这条线段的垂直平分线。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p44 练习。第 (2) 问的依据学生容易写成“平行于同一直线”，要纠正为“垂直于同一直线”。图按 A、B 关于 l 的精确对称画出。</p>
+</section>
+
+<!-- 7 ================= 思考 图 2-8 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 图 2-8</span><h2>再找一个格点 D，使 A、B、C、D 组成轴对称图形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f28" class="f28" data-noswipe></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="f28All">显示所有答案</button><button class="btn" type="button" id="f28Clr">清除</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-8，点 $A$、$B$、$C$ 都在方格纸的格点上．点一个格点作为 $D$ 试试．</p>
+      <p class="tip feedback" id="f28Msg">先确定对称轴，再找对称点 $D$。</p>
+      <p class="method" data-step="1" data-label="思路">① 让 $A$、$B$ 成为一对对称点：对称轴是 $AB$ 的垂直平分线，$D$ 是 $C$ 的对称点；② 让 $B$、$C$ 成为对称点；③ 让对称轴经过其中两点……逐一考虑，不重不漏。</p>
+      <p class="tip small" data-step="2">共有几个答案？<span class="think" data-step="3" data-ask="数一数">4 个格点：$(1,5)$、$(7,7)$、$(7,1)$、$(5,1)$（以左下角为原点）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p45 思考（小人提示：先确定对称轴，再找对称点 D）。系统判断：对 A、B、C、D 四点，逐一检验“任两点连线的垂直平分线”和“任两点所在直线”作为对称轴，看四点关于它的对称点是否仍是这四点。AC 的垂直平分线、直线 AC 给出的 D 不在格点上，所以只有 4 个答案。</p>
+</section>
+
+<!-- 8 ================= 画对称点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">画法</span><h2>画点、线段、三角形关于直线 l 的对称图形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="draw" class="draw"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="drawPrev">上一步</button><button class="btn solid" type="button" id="drawNext">下一步</button></div>
+    </div>
+    <div class="col">
+      <div class="derive small-d">
+        <div class="dl"><span>1.</span><span>画 $AO\perp l$，垂足为 $O$</span></div>
+        <div class="dl"><span>2.</span><span>在 $AO$ 的延长线上截取 $OA'$，使 $OA'=AO$</span></div>
+        <div class="dl"><span></span><span>点 $A'$ 就是点 $A$ 关于直线 $l$ 的对称点</span></div>
+      </div>
+      <p class="tip feedback" id="drawMsg"></p>
+      <p class="method" data-step="1" data-label="关键（课本 p45）">画一个图形关于一条直线对称的图形，关键是确定<b>某些点</b>的对称点：线段只要画两个端点，三角形只要画三个顶点，再连起来。</p>
+    </div>
+  </div>
+  <p class="note">课本 p45 画法与操作（图 2-9、2-10，用三角尺画）。左边分步演示：先画 A 的对称点，再画 B、C，最后连成 △A′B′C′。每一步的垂足、截取长度都由坐标精确计算。可以先请学生在课本图上画，再对照。</p>
+</section>
+
+<!-- 9 ================= 讨论 图 2-11 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论 · 图 2-11</span><h2>两个四边形成轴对称，对角线交点 P 的对称点 Q 在哪？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f211" class="f211"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="f211Go">连接 EG、FH</button></div>
+      <p class="muted center small-t">拖动四边形 $ABCD$ 的顶点试试</p>
+    </div>
+    <div class="col">
+      <p class="tip">四边形 $ABCD$ 与四边形 $EFGH$ 关于直线 $l$ 对称．连接 $AC$、$BD$，交于点 $P$．怎样找出点 $P$ 关于 $l$ 的对称点 $Q$？</p>
+      <p class="tip" data-step="1">方法一：<span class="think" data-step="2" data-ask="用画法">过 $P$ 作 $l$ 的垂线，在垂线上截取，使 $Q$ 到 $l$ 的距离等于 $P$ 到 $l$ 的距离。</span></p>
+      <p class="tip" data-step="3">方法二：<span class="think" data-step="4" data-ask="不用量">连接对应的对角线 $EG$、$FH$，它们的交点就是 $Q$。</span></p>
+      <div class="def" data-step="5">成轴对称的两个图形的<b>任何对应部分也成轴对称</b>．（课本 p46）</div>
+      <p class="tip feedback" id="f211Msg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p46 讨论。方法二的道理：AC 与 EG 成轴对称、BD 与 FH 成轴对称，所以两组的交点也对称。点按钮画出 EG、FH，系统同时验证它们的交点就是 P 关于 l 的对称点（读数显示 PQ 被 l 垂直平分）。注意对应顶点：A↔E、B↔F、C↔G、D↔H。</p>
+</section>
+
+<!-- 10 ================= 练习 p46 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · p46</span><h2>画出 9 个点的对称点，连一连：得到什么图案？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="nine" class="nine"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="nineLeft">按 1～9 连线</button><button class="btn solid" type="button" id="nineGo">画对称点 1′～9′</button><button class="btn" type="button" id="nineClr">还原</button></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>1.</b> 画出图中编号为 1～9 的 9 个点关于直线 $l$ 对称的点，并相应地编号为 $1'$～$9'$，然后把两组点按各自的序号分别依次连接起来．你得到了一幅什么图案？</p>
+      <p class="tip" data-step="1">注意点 1 和点 9：<span class="think" data-step="2" data-ask="特别在哪？">点 1 在 $l$ 上，它的对称点就是它自己；点 9 在 $l$ 的右边，对称点在左边。</span></p>
+      <p class="tip"><b>2.</b> 线段 $AB$ 与 $A'B'$ 关于直线 $l$ 对称，$AA'$ 交 $l$ 于 $O$．(2) 因为 $\triangle OAB$ 与 $\triangle OA'B'$ 关于直线 $l$ <span class="think" data-step="3" data-ask="填空">对称</span>，所以 $\triangle OAB\cong\triangle OA'B'$，直线 $l$ 垂直平分线段 <span class="think" data-step="4" data-ask="填空">$AA'$</span>，$\angle ABO=\angle$<span class="think" data-step="5" data-ask="填空">$A'B'O$</span>，$\angle AOB'=\angle$<span class="think" data-step="6" data-ask="填空">$A'OB$</span>．</p>
+    </div>
+  </div>
+  <p class="note">课本 p46 练习 1、2。第 1 题 9 个点的坐标按课本方格图读取，对称点由程序计算后逐个出现。连出来是一个左右对称的图案（像一棵小树/烛台，鼓励学生自己说）。第 2 题的 ∠AOB′ = ∠A′OB：两个角都等于 ∠AOB 加（或减）同一个角，也可由“对应部分成轴对称”直接得出。</p>
+</section>
+
+<!-- 11 ================= 习题 第 5 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 2.2 第 5 题</span><h2>连续翻折三次：Ⅳ 与 Ⅰ 成轴对称吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="four" class="four"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="four2">画 Ⅱ（关于 l₂）</button><button class="btn" type="button" id="four3">画 Ⅲ（关于 l₁）</button><button class="btn" type="button" id="four4">画 Ⅳ（关于 l₂）</button><button class="btn" type="button" id="fourR">还原</button></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>5.</b> 三角形 Ⅰ 的 2 个顶点分别在直线 $l_1$ 和 $l_2$ 上，且 $l_1\perp l_2$．画三角形 Ⅱ，使它与 Ⅰ 关于 $l_2$ 对称；画 Ⅲ，使它与 Ⅱ 关于 $l_1$ 对称；画 Ⅳ，使它与 Ⅲ 关于 $l_2$ 对称．所画的三角形 Ⅳ 与三角形 Ⅰ 成轴对称吗？</p>
+      <p class="tip feedback" id="fourMsg"></p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="结论">成轴对称，对称轴是 $l_1$：Ⅳ 与 Ⅲ 关于 $l_2$ 对称、Ⅰ 与 Ⅱ 关于 $l_2$ 对称，而 Ⅲ 与 Ⅱ 关于 $l_1$ 对称，把整幅图关于 $l_2$ 翻折就能看出 Ⅳ 与 Ⅰ 关于 $l_1$ 对称。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p47 习题 2.2 第 5 题。三个按钮依次用翻折动画画出 Ⅱ、Ⅲ、Ⅳ，最后系统检验 Ⅳ 与 Ⅰ 关于 l₁ 的对称（顶点坐标逐一比对）。第 1～4 题（用三角尺画对称轴、画对称三角形、补成轴对称图形）在课本上完成。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一节</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">成轴对称的两个图形全等；对应点的连线被对称轴<b>垂直平分</b>。</p>
+        <p class="def">垂直并且平分一条线段的直线，叫做这条线段的垂直平分线。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="画对称图形">找关键点 → 作垂线、截等长得对称点 → 连接。</p>
+        <p class="method" data-label="找对称轴">连一对对应点，作连线的垂直平分线。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="从操作到说理">扎孔实验（操作）→ 重合得相等、平角得直角（说理）→ 性质（结论）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b><a href="../mj8a-duichengtuan/index.html">2.3 设计轴对称图案</a>——用今天学的画法，在方格纸上设计、剪出轴对称图案。</p>
+  </div>
+  <p class="note">作业：习题 2.2 第 1～4 题。第 3 题“把图补成轴对称图形”正是本课画法的应用。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mfold.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

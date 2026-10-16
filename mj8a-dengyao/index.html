@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>等腰三角形的轴对称性 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/liangjia.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第2章 轴对称图形 · 2.5</p>
+    <h1 class="cover-title">等腰三角形的轴对称性</h1>
+    <p class="cover-q" data-step="1">房屋的人字梁架中，$AB=AC$，顶角 $\angle BAC=110^\circ$，中柱 $AD\perp BC$．</p>
+    <p class="cover-q" data-step="2">不用量角器，你能说出 $\angle B$、$\angle C$、$\angle BAD$ 各是多少度吗？中柱 $AD$ 是不是正好立在 $BC$ 的正中间？</p>
+    <div class="chips" data-step="3"><span class="chip">等边对等角</span><span class="chip">三线合一</span><span class="chip">等角对等边</span><span class="chip">等边三角形</span><span class="chip">斜边上的中线</span></div>
+  </div>
+  <p class="note">课本 p62 练习 3 的情境。先请学生估一估，记下答案，到第 8 页再验证。本课内容多（性质、判定、等边三角形、直角三角形斜边上的中线），建议 2 课时：第 1 课时到第 8 页，第 2 课时从第 9 页起。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="小学 · 三角形的分类" data-step="1">
+        <p>两条边相等的三角形叫<b>等腰三角形</b>：相等的两边叫<b>腰</b>，另一边叫<b>底边</b>；两腰的夹角叫<b>顶角</b>，腰和底边的夹角叫<b>底角</b>。</p>
+        <span class="use">全课的研究对象；先认清“顶角”“底角”“底边”。</span>
+      </div>
+      <div class="recall" data-label="八上 2.4 线段、角的轴对称性（上一课）" data-step="2">
+        <p>线段、角都是轴对称图形；线段垂直平分线上的点到线段两端的距离相等，反过来也成立。</p>
+        <p>用直尺和圆规作线段的垂直平分线。</p>
+        <span class="use">第 3 页用“翻折”说理；第 6 页尺规作等腰三角形。（<a href="../mj8a-xianduanjiao/index.html">回看 2.4</a>）</span>
+      </div>
+      <div class="recall" data-label="八上 1.3 三角形全等的条件" data-step="3">
+        <p>SSS、SAS、ASA、AAS；直角三角形还有 HL。</p>
+        <span class="use">第 5 页用三种方法再证“等边对等角”；第 9 页证“等角对等边”。（<a href="../mj8a-quandengtiaojian/index.html">回看 1.3</a>）</span>
+      </div>
+      <div class="recall" data-label="七下 第7章 平面图形的认识（二）" data-step="4">
+        <p>三角形三个内角的和等于 $180^\circ$；三角形的一个外角等于与它不相邻的两个内角的和。</p>
+        <p>两直线平行，同位角相等、内错角相等。</p>
+        <span class="use">求角的度数（第 8 页）；例 1、例 2 的推理。（<a href="../mj7b-neijiaohe/index.html">回看 7.5</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一课</b>证明了：线段和角都是轴对称图形。<b>这一课</b>研究一种特殊的三角形——等腰三角形是不是轴对称图形？对称轴在哪里？由此能得到哪些相等的角和线段？</p>
+  </div>
+  <p class="note">每出一张卡，请学生先复述，再看“本课用在”。第一张卡的名称（顶角、底角）要让学生在黑板上的图中指一指，后面的定理表述全靠这几个词。</p>
+</section>
+
+<!-- 3 ================= 探索：沿顶角平分线折叠 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>把等腰三角形沿顶角平分线折叠</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="cols2 figpair">
+        <div><div id="sk229a" class="gfig l"></div><p class="muted center small-t">图 2-29(1)</p></div>
+        <div><div id="sk229b" class="gfig l"></div><p class="muted center small-t">图 2-29(2)</p></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-29(1)，在 $\triangle ABC$ 中，$AB=AC$．沿 $\angle BAC$ 的平分线 $AD$ 把 $\triangle ABD$ 翻折：</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵ $\angle BAD=\angle CAD$</span><span class="think" data-step="2" data-ask="于是？">∴ $AB$ 落在射线 $AC$ 上</span><i class="why">$AD$ 平分顶角</i></div>
+        <div class="dl" data-step="3"><span>∵ $AB=AC$</span><span class="think" data-step="4" data-ask="于是？">∴ 点 $B$ 与点 $C$ 重合</span><i class="why">两腰相等</i></div>
+        <div class="dl key" data-step="5"><span>∴</span><span>$\triangle ABD$ 与 $\triangle ACD$ 重合</span><i class="why">图 2-29(2)</i></div>
+      </div>
+      <p class="tip" data-step="6"><b>等腰三角形是轴对称图形，顶角平分线所在直线是它的对称轴．</b></p>
+      <p class="tip gold" data-step="7">由重合，能读出哪些相等？<span class="think" data-step="8" data-ask="说出三组">$\angle B=\angle C$；$\angle ADB=\angle ADC=90^\circ$；$BD=CD$．</span></p>
+      <div class="def" data-step="9"><h4>定理（课本 p60）</h4><b>等腰三角形的两底角相等</b>（简称“<b>等边对等角</b>”）．<br><b>等腰三角形底边上的高线、中线及顶角平分线重合．</b></div>
+    </div>
+  </div>
+  <p class="note">课本 p60 探索、图 2-29。让学生真的拿纸片折一折。由“重合”读出的三组相等，正好就是两条定理：∠B = ∠C 是第一条；∠ADB = 90° 说明 AD 是高，BD = CD 说明 AD 是中线，加上 AD 本来就是顶角平分线——三线合一。第二条定理常简称“三线合一”，但要强调是“底边上的”高线、中线和“顶角”平分线。</p>
+</section>
+
+<!-- 4 ================= 三线合一：拖顶点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手看</span><h2>三条线什么时候“合一”？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="three" class="big-b"></div>
+      <div class="btns" data-noswipe id="threeBtns">
+        <button class="btn solid" type="button" data-k="h">高线</button>
+        <button class="btn solid" type="button" data-k="m">中线</button>
+        <button class="btn solid" type="button" data-k="b">角平分线</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">拖动顶点 $A$．从 $A$ 出发画 $BC$ 边上的<span class="c-h">高线</span>、<span class="c-m">中线</span>和 $\angle BAC$ 的<span class="c-b">平分线</span>．</p>
+      <div class="readout r4">
+        <span>$AB$</span><b class="v" id="tAB"></b><span>$AC$</span><b class="v" id="tAC"></b>
+        <span>$\angle B$</span><b class="v" id="tB"></b><span>$\angle C$</span><b class="v" id="tC"></b>
+      </div>
+      <p class="tip feedback" id="tMsg"></p>
+      <div class="method" data-step="1" data-label="你发现了什么？"><span class="think" data-step="2" data-ask="先说再点">$AB\ne AC$ 时，三条线是三条不同的线段，$\angle B\ne\angle C$；只有当 $AB=AC$ 时，三条线<b>重合</b>，同时 $\angle B=\angle C$．</span></div>
+      <p class="warn" data-step="3" data-label="注意">“三线合一”说的是<b>底边上</b>的高线、中线和<b>顶角</b>平分线．腰上的高线、中线一般不重合．</p>
+    </div>
+  </div>
+  <p class="note">这是本课的核心操作。先把 A 拖到偏左或偏右的位置，三条线明显分开；再慢慢拖向正中，三条线逐渐靠拢，到 AB = AC 时（画板会吸附）合成一条，底角读数也正好相等。可以用按钮单独显示某一条线。学生容易以为“任何三角形的高、中线、角平分线都差不多”——画板上一偏就分开，印象深刻。</p>
+</section>
+
+<!-- 5 ================= 讨论：其他证法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>你还可以用什么方法证明上述定理？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <div id="pf1" class="gfig s"></div>
+        <p><b>作顶角的平分线 $AD$，用 SAS</b></p>
+        <div class="think" data-step="2" data-ask="说出三个条件"><p>$AB=AC$，$\angle BAD=\angle CAD$，$AD=AD$ ⇒ $\triangle ABD\cong\triangle ACD$（SAS）．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <div id="pf2" class="gfig s"></div>
+        <p><b>作底边上的中线 $AD$，用 SSS</b></p>
+        <div class="think" data-step="4" data-ask="说出三个条件"><p>$AB=AC$，$BD=CD$，$AD=AD$ ⇒ $\triangle ABD\cong\triangle ACD$（SSS）．</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <div id="pf3" class="gfig s"></div>
+        <p><b>作底边上的高 $AD$，用 HL</b></p>
+        <div class="think" data-step="6" data-ask="说出条件"><p>$\angle ADB=\angle ADC=90^\circ$，斜边 $AB=AC$，直角边 $AD=AD$ ⇒ $\text{Rt}\triangle ABD\cong\text{Rt}\triangle ACD$（HL）．</p></div>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="proof" data-step="7">
+        <p><span class="lead">以 SSS 为例写完整：</span>取 $BC$ 的中点 $D$，连接 $AD$．</p>
+        <p><span class="so">∵</span>$AB=AC$，$BD=CD$，$AD=AD$，</p>
+        <p><span class="so">∴</span>$\triangle ABD\cong\triangle ACD$（SSS）．</p>
+        <p><span class="so">∴</span>$\angle B=\angle C$，$\angle BAD=\angle CAD$，$\angle ADB=\angle ADC$（全等三角形的对应角相等）．</p>
+      </div>
+      <p class="method" data-step="8" data-label="还要补一步">$\angle ADB+\angle ADC=180^\circ$（平角），又 $\angle ADB=\angle ADC$，所以 $\angle ADB=90^\circ$，$AD\perp BC$——三线合一全部说清．</p>
+    </div>
+  </div>
+  <p class="note">课本 p60 讨论（三个小人的提示）。三种辅助线作法本质相同：都是把等腰三角形分成两个全等的三角形。可分组让学生各写一种，再全班对比。HL 的方法要先说明“作高”，并且只能证出 ∠B = ∠C，其他结论要再推。</p>
+</section>
+
+<!-- 6 ================= 尺规作等腰三角形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作</span><h2>已知底边 $a$ 和高 $h$，作等腰三角形</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="cons2" class="big-b"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="c2a" min="2" max="6" step="0.5" value="4"><b class="v" id="c2aV"></b>　$h=$<input type="range" id="c2h" min="1.5" max="5" step="0.5" value="3.5"><b class="v" id="c2hV"></b></div>
+      <div class="btns" data-noswipe id="c2Btns">
+        <button class="btn" type="button" data-k="1">1 作 $BC=a$</button>
+        <button class="btn" type="button" data-k="2">2 作垂直平分线 $MN$</button>
+        <button class="btn" type="button" data-k="3">3 截取 $DA=h$</button>
+        <button class="btn" type="button" data-k="4">4 连接 $AB$、$AC$</button>
+        <button class="btn" type="button" data-k="0">重来</button>
+      </div>
+    </div>
+    <div class="col">
+      <table class="mtab"><tr><th>作法（课本 p61）</th></tr>
+        <tr><td class="lft">1. 作线段 $BC=a$．<br>2. 作线段 $BC$ 的垂直平分线 $MN$，$MN$ 交 $BC$ 于点 $D$．<br>3. 在 $MN$ 上截取线段 $DA$，使 $DA=h$．<br>4. 连接 $AB$、$AC$．$\triangle ABC$ 就是所求作的等腰三角形．</td></tr></table>
+      <p class="tip feedback" id="c2Msg"></p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>为什么 $AB=AC$？</span><span class="think" data-step="2" data-ask="用哪条定理？">点 $A$ 在 $BC$ 的垂直平分线上</span><i class="why">线段垂直平分线上的点到线段两端的距离相等（2.4）</i></div>
+        <div class="dl" data-step="3"><span>为什么高是 $h$？</span><span class="think" data-step="4" data-ask="AD 和 BC 什么关系？">$AD\perp BC$，$AD=h$</span><i class="why">$MN\perp BC$，截取 $DA=h$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p61 操作。这是上一课“作垂直平分线”的直接应用：按 1～4 逐步作图，每一步请学生说出“为什么这样作”。拖动滑块改变 a、h，作出的三角形随之改变，但始终是等腰三角形；中点 D 既是垂足又是中点——又一次看到“三线合一”。作图按坐标精确计算。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>等边对等角，连用两次</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk230" class="gfig l"></div>
+      <p class="muted center small-t">图 2-30（按 $AB=AC$、$AD=BD$ 精确作出）</p>
+      <div class="think-flow" data-step="1">
+        <p class="tf-h"><span>怎么想 ↓</span><span>怎么写 ↑</span></p>
+        <p>要证 $\angle ADB=\angle BAC$，</p>
+        <p>由于 $\angle BAC=\angle1+\angle2$，$\angle ADB=\angle C+\angle2$，</p>
+        <p>只要证 $\angle1=\angle C$．</p>
+        <p>只要找与 $\angle1$ 相等且与 $\angle C$ 也相等的角．</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">已知：如图 2-30，在 $\triangle ABC$ 中，$AB=AC$，点 $D$ 在 $BC$ 上，且 $AD=BD$．求证：$\angle ADB=\angle BAC$．</p>
+      <div class="proof">
+        <p data-step="2"><span class="lead">证明：</span><span class="so">∵</span>$AB=AC$，$AD=BD$，</p>
+        <p data-step="3"><span class="so">∴</span>$\angle B=\angle C$，$\angle B=\angle1$（<button class="yj" data-k="dy-xz"></button>）．</p>
+        <p data-step="4"><span class="so">∴</span>$\angle C=\angle1$．</p>
+        <p data-step="5"><span class="so">∵</span>$\angle ADB$ 是 $\triangle ADC$ 的外角，</p>
+        <p data-step="6"><span class="so">∴</span>$\angle ADB=\angle C+\angle2$（<button class="yj" data-k="ext-angle"></button>）．</p>
+        <p data-step="7"><span class="so">∴</span>$\angle ADB=\angle1+\angle2=\angle BAC$．</p>
+      </div>
+      <p class="method" data-step="8" data-label="找“桥”">$\angle B$ 是桥：在 $\triangle ABC$ 中它等于 $\angle C$，在 $\triangle ABD$ 中它等于 $\angle1$——“等边对等角”要在<b>同一个三角形</b>里用．</p>
+    </div>
+  </div>
+  <p class="note">课本 p61 例 1 与“思考与表达”。先看左边的分析（从结论倒推），再看右边的书写（从条件顺推）。“等边对等角”用了两次，每次都要先找到“哪个三角形里的哪两条边相等”：△ABC 中 AB = AC，△ABD 中 AD = BD。图是精确作出的：∠B = ∠C = 30°，∠BAC = ∠ADB = 120°。</p>
+</section>
+
+<!-- 8 ================= 练习：算角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>填一填：回车判对错</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>练习 1（p61）</b>　在 $\triangle ABC$ 中，$AB=AC$，点 $D$ 在 $BC$ 上．如果 $\angle BAD=\angle CAD$，那么 $AD\perp BC$，$BD=CD$；</p>
+        <p class="tip">如果 $BD=CD$，那么 $\angle$<span class="blank" data-ans="BAD|CAD" data-w="3"></span>$=\angle$<span class="blank" data-ans="CAD|BAD" data-w="3"></span>，<span class="blank" data-ans="AD" data-w="2"></span>$\perp$<span class="blank" data-ans="BC|CB" data-w="2"></span>；</p>
+        <p class="tip">如果 $AD\perp BC$，那么 <span class="blank" data-ans="∠BAD=∠CAD|∠CAD=∠BAD|BAD=CAD|CAD=BAD|BD=CD|CD=BD" data-w="8"></span>，<span class="blank" data-ans="BD=CD|CD=BD|∠BAD=∠CAD|∠CAD=∠BAD|BAD=CAD|CAD=BAD" data-w="8"></span>．</p>
+        <div class="hint-ladder">
+          <p class="q"><b>练习 3（p62）</b>　人字梁架中，$AB=AC$，$\angle BAC=110^\circ$，$AD\perp BC$．求 $\angle B$、$\angle C$、$\angle BAD$、$\angle CAD$ 的度数．</p>
+          <div id="truss" class="gfig s"></div>
+          <details><summary>提示 1</summary>等边对等角：$\angle B=\angle C=\dfrac{180^\circ-110^\circ}{2}$。</details>
+          <details><summary>完整解答</summary>$\angle B=\angle C=35^\circ$；由三线合一，$AD$ 平分 $\angle BAC$，$\angle BAD=\angle CAD=55^\circ$．</details>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>练习 2（p61–62）</b>　在 $\triangle ABC$ 中，$AB=AC$．</p>
+        <p class="tip">(1) 如果 $\angle B=70^\circ$，那么 $\angle C=$<span class="blank" data-ans="70"></span>$^\circ$，$\angle A=$<span class="blank" data-ans="40"></span>$^\circ$；</p>
+        <p class="tip">(2) 如果 $\angle A=70^\circ$，那么 $\angle B=$<span class="blank" data-ans="55"></span>$^\circ$，$\angle C=$<span class="blank" data-ans="55"></span>$^\circ$；</p>
+        <p class="tip">(3) 如果有一个角等于 $120^\circ$，那么 $\angle A=$<span class="blank" data-ans="120" data-w="3"></span>$^\circ$，$\angle B=$<span class="blank" data-ans="30"></span>$^\circ$，$\angle C=$<span class="blank" data-ans="30"></span>$^\circ$；</p>
+        <div class="hint-ladder">
+          <p class="q">(4) 如果有一个角等于 $50^\circ$，那么另两个角等于多少度？</p>
+          <details><summary>提示 1</summary>$50^\circ$ 的角可能是顶角，也可能是底角——要分情况。</details>
+          <details><summary>完整解答</summary>① $50^\circ$ 是顶角：另两个角都是 $(180^\circ-50^\circ)\div2=65^\circ$；② $50^\circ$ 是底角：另一个底角也是 $50^\circ$，顶角是 $180^\circ-100^\circ=80^\circ$．</details>
+        </div>
+        <p class="warn" data-label="为什么 (3) 不用分情况？">$120^\circ$ 只能是顶角：若它是底角，两个底角和为 $240^\circ\gt180^\circ$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p61–62 练习。(3)(4) 对比是重点：同样“有一个角”，(3) 只有一种情况，(4) 有两种——先判断能不能当底角。封面的人字梁问题在左下（练习 3）：∠B = ∠C = 35°，∠BAD = 55°，中柱 AD 正好平分 BC。</p>
+</section>
+
+<!-- 9 ================= 交流：等角对等边 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流 · 倒过来想</span><h2>两底角相等的三角形，是等腰三角形吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk231" class="gfig l"></div>
+      <p class="muted center small-t">图 2-31</p>
+    </div>
+    <div class="col">
+      <p class="tip">试说出“等腰三角形的两底角相等”这个命题的逆命题，并判断它是真命题还是假命题．</p>
+      <p class="tip" data-step="1">逆命题：<span class="think" data-step="2" data-ask="条件和结论交换">如果一个三角形有两个角相等，那么这两个角所对的边也相等．</span></p>
+      <p class="tip" data-step="3">如图 2-31，在 $\triangle ABC$ 中，$\angle B=\angle C$．作 $\triangle ABC$ 的角平分线 $AD$．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="4"><span>∵</span><span>$\angle BAD=\angle CAD$，$\angle B=\angle C$，$AD=AD$</span><i class="why">角平分线；已知；公共边</i></div>
+        <div class="dl key" data-step="5"><span>∴</span><span class="think" data-step="6" data-ask="用哪条判定？">$\triangle ABD\cong\triangle ACD$（AAS）</span><i class="why">两角及其中一角的对边</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$AB=AC$</span><i class="why">全等三角形对应边相等</i></div>
+      </div>
+      <div class="def" data-step="8"><h4>定理（课本 p62）</h4><b>有两个角相等的三角形是等腰三角形</b>（简称“<b>等角对等边</b>”）．</div>
+      <p class="method" data-step="9" data-label="一对互逆">等边对等角（性质：知边求角）⇄ 等角对等边（判定：知角证边）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p62 交流、图 2-31。与上一课“倒过来想”呼应：交换条件和结论，得到逆命题，再证明。辅助线作角平分线后用 AAS（不能作“底边的垂直平分线”——那样无法保证它过点 A）。可以追问：能不能作高 AD？（可以，也用 AAS。）</p>
+</section>
+
+<!-- 10 ================= 等边三角形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>等边三角形：特殊的等腰三角形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="equi" class="gfig l"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="eqAx">画出所有对称轴</button></div>
+      <p class="tip">三边相等的三角形叫做<b>等边三角形</b>或<b>正三角形</b>．它除了具有等腰三角形的一切性质外，还有什么特殊的性质？</p>
+    </div>
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>对称轴</span><span class="think" data-step="2" data-ask="几条？">3 条</span><i class="why">把任意一边看作底边，都是等腰三角形</i></div>
+        <div class="dl" data-step="3"><span>角</span><span class="think" data-step="4" data-ask="怎样推？">$AB=AC$ ⇒ $\angle B=\angle C$；$BA=BC$ ⇒ $\angle C=\angle A$．∴ $\angle A=\angle B=\angle C=60^\circ$</span><i class="why">等边对等角；内角和 $180^\circ$</i></div>
+      </div>
+      <p class="tip" data-step="5"><b>思考 1：</b>三个角都相等的三角形是等边三角形吗？<span class="think" data-step="6" data-ask="倒过来想">是．由 $\angle A=\angle B$、$\angle B=\angle C$，等角对等边得 $AC=BC$、$AB=AC$．</span></p>
+      <p class="tip" data-step="7"><b>思考 2：</b>有一个角是 $60^\circ$ 的等腰三角形是等边三角形吗？<span class="think" data-step="8" data-ask="分情况">是．顶角是 $60^\circ$ 时，两底角各 $60^\circ$；底角是 $60^\circ$ 时，另一底角和顶角也都是 $60^\circ$．</span></p>
+      <div class="def" data-step="9"><h4>定理（课本 p63）</h4><b>等边三角形的各角都等于 $60^\circ$．<br>三个角都相等的三角形是等边三角形．<br>有一个角是 $60^\circ$ 的等腰三角形是等边三角形．</b></div>
+    </div>
+  </div>
+  <p class="note">课本 p62–63 讨论与两个思考。等边三角形的性质与判定都从等腰三角形“继承”而来：每一步都只用等边对等角、等角对等边和内角和。思考 2 要分顶角、底角两种情况，与第 8 页练习 (4) 的分类思路一致。注意“有一个角是 60° 的三角形”不一定是等边三角形，前提必须是等腰。</p>
+</section>
+
+<!-- 11 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>外角平分线平行于底边，三角形等腰吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk232" class="gfig l"></div>
+      <p class="muted center small-t">图 2-32</p>
+      <div class="think-flow" data-step="1">
+        <p class="tf-h"><span>怎么想 ↓</span><span>怎么写 ↑</span></p>
+        <p>要证 $AB=AC$，</p>
+        <p>只要证 $\angle B=\angle C$．</p>
+        <p>已知 $\angle EAD=\angle DAC$，</p>
+        <p>只要证 $\angle EAD=\angle B$，$\angle DAC=\angle C$．</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">已知：如图 2-32，$\angle EAC$ 是 $\triangle ABC$ 的外角，$AD$ 平分 $\angle EAC$，$AD\parallel BC$．求证：$AB=AC$．</p>
+      <div class="proof">
+        <p data-step="2"><span class="lead">证明：</span><span class="so">∵</span>$AD\parallel BC$，</p>
+        <p data-step="3"><span class="so">∴</span>$\angle EAD=\angle B$（<button class="yj" data-k="tw-xz"></button>），$\angle DAC=\angle C$（<button class="yj" data-k="nc-xz"></button>）．</p>
+        <p data-step="4"><span class="so">∵</span>$\angle EAD=\angle DAC$，</p>
+        <p data-step="5"><span class="so">∴</span>$\angle B=\angle C$．</p>
+        <p data-step="6"><span class="so">∴</span>$AB=AC$（<button class="yj" data-k="dy-pd"></button>）．</p>
+      </div>
+      <p class="tip gold" data-step="7"><b>思考（p64）：</b>在图 2-32 中，如果 $AB=AC$，$AD\parallel BC$，那么 $AD$ 平分 $\angle EAC$ 吗？<span class="think" data-step="8" data-ask="试证明">平分．$AB=AC$ ⇒ $\angle B=\angle C$；$AD\parallel BC$ ⇒ $\angle EAD=\angle B$，$\angle DAC=\angle C$；∴ $\angle EAD=\angle DAC$．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p64 例 2、思考与表达、思考。证明中平行线的性质（同位角、内错角）是七下学的，点括号可回看。最后的思考是例 2 的“逆向”版本：三个条件“AD 平分外角、AD ∥ BC、AB = AC”中任取两个，都能推出第三个——可以留给学生自己总结。</p>
+</section>
+
+<!-- 12 ================= 斜边上的中线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作</span><h2>直角三角形斜边上的中线</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="thales" class="big-b"></div>
+      <div class="readout r4">
+        <span>$\angle ACB$</span><b class="v" id="thC"></b><span>$CD$</span><b class="v" id="thCD"></b>
+        <span>$AD$</span><b class="v" id="thAD"></b><span>$BD$</span><b class="v" id="thBD"></b>
+      </div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="thCir">以 $D$ 为圆心、$DA$ 为半径画圆</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">剪一张直角三角形纸片，按图 2-33 折两次：两条折痕与斜边相交于同一点 $D$，且 $BD=CD=AD=\dfrac12AB$．</p>
+      <p class="tip">如图 2-34，在 $\text{Rt}\triangle ABC$ 中，$\angle ACB$ 是直角，$\angle B$ 是锐角．在 $\angle ACB$ 内作 $\angle BCD=\angle B$，$CD$ 与 $AB$ 相交于点 $D$：</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>$\angle BCD=\angle B$，<span class="think" data-step="2" data-ask="于是？">∴ $DB=DC$</span></span><i class="why">等角对等边</i></div>
+        <div class="dl" data-step="3"><span>∵</span><span>$\angle ACD=90^\circ-\angle BCD$，$\angle A=90^\circ-\angle B$，<span class="think" data-step="4" data-ask="于是？">∴ $\angle ACD=\angle A$，$DA=DC$</span></span><i class="why">等角的余角相等；等角对等边</i></div>
+        <div class="dl end" data-step="5"><span>∴</span><span>$DA=DB=DC$，$CD$ 是斜边上的中线，且 $CD=\dfrac12AB$</span><i class="why"></i></div>
+      </div>
+      <div class="def" data-step="6"><h4>定理（课本 p65）</h4><b>直角三角形斜边上的中线等于斜边的一半．</b></div>
+    </div>
+  </div>
+  <p class="note">课本 p65 操作、图 2-33、2-34。画板上 C 只能在以 AB 为直径的半圆上移动，所以 ∠ACB 始终是 90°（读数实时计算）；拖动 C，CD、AD、BD 三个读数始终相等。点按钮画出圆：A、B、C 都在以 D 为圆心的圆上——这是“斜边中线等于斜边一半”的直观样子（九年级会学“直径所对的圆周角是直角”）。证明的思路很巧：不是先取中点，而是先作 ∠BCD = ∠B，再说明 D 恰好是中点。</p>
+</section>
+
+<!-- 13 ================= 思考：30° ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>$\angle A=30^\circ$ 时，$BC$ 与 $AB$ 有怎样的数量关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk30" class="gfig l"></div>
+      <p class="muted center small-t">$\text{Rt}\triangle ABC$，$\angle ACB=90^\circ$，$\angle A=30^\circ$，$CD$ 是斜边上的中线</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1"><b>猜：</b>量一量或看左图，<span class="think" data-step="2" data-ask="BC 是 AB 的几分之几？">$BC=\dfrac12AB$．</span></p>
+      <div class="proof">
+        <p data-step="3"><span class="lead">证明：</span>取 $AB$ 的中点 $D$，连接 $CD$．</p>
+        <p data-step="4"><span class="so">∵</span>$\angle ACB=90^\circ$，$CD$ 是斜边 $AB$ 上的中线，</p>
+        <p data-step="5"><span class="so">∴</span>$CD=BD=\dfrac12AB$（<button class="yj" data-k="rt-mid"></button>）．</p>
+        <p data-step="6"><span class="so">∵</span>$\angle A=30^\circ$，<span class="so">∴</span>$\angle B=60^\circ$（<button class="yj" data-k="rt-acute"></button>）．</p>
+        <p data-step="7"><span class="so">∴</span>$\triangle BCD$ 是等边三角形（<button class="yj" data-k="eq-60"></button>）．</p>
+        <p data-step="8"><span class="so">∴</span>$BC=BD=\dfrac12AB$．</p>
+      </div>
+      <p class="recall" data-step="9" data-label="记住这个结论">在直角三角形中，$30^\circ$ 角所对的直角边等于斜边的一半．</p>
+    </div>
+  </div>
+  <p class="note">课本 p65 思考（课本只提问，结论由学生证明）。这是斜边中线定理的第一个应用，也把等边三角形的判定（有一个角是 60° 的等腰三角形）用上了。左图按 ∠A = 30° 精确作出，BC 正好是 AB 的一半。</p>
+</section>
+
+<!-- 14 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1（p66）</b>　如图，在 $\text{Rt}\triangle ABC$ 中，$CD$ 是斜边 $AB$ 上的中线，$DE\perp AC$，垂足为 $E$．(1) 如果 $CD=2.4$ cm，那么 $AB=$ ___ cm；(2) 写出图中相等的线段和角．</p>
+        <div id="q661" class="gfig s"></div>
+        <details><summary>提示 1</summary>斜边上的中线等于斜边的一半；$DA=DC$，$\triangle ADC$ 是等腰三角形，$DE$ 是它底边上的高。</details>
+        <details><summary>完整解答</summary>(1) $AB=2CD=4.8$ cm．(2) $AD=BD=CD$；$\angle A=\angle DCA$，$\angle B=\angle DCB$；由三线合一，$AE=CE$，$\angle ADE=\angle CDE$；$\angle DEA=\angle DEC=\angle ACB=90^\circ$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2（p66）</b>　已知：如图，在 $\triangle ABC$ 中，$AB=AC$，角平分线 $BD$、$CE$ 相交于点 $O$．求证：$OB=OC$．</p>
+        <div id="q662" class="gfig s"></div>
+        <details><summary>提示 1</summary>要证 $OB=OC$，只要证 $\triangle OBC$ 中 $\angle OBC=\angle OCB$。</details>
+        <details><summary>完整解答</summary>∵ $AB=AC$，∴ $\angle ABC=\angle ACB$（等边对等角）．∵ $BD$、$CE$ 分别平分 $\angle ABC$、$\angle ACB$，∴ $\angle OBC=\dfrac12\angle ABC=\dfrac12\angle ACB=\angle OCB$．∴ $OB=OC$（等角对等边）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2.5 第 1 题</b>　(1) 等腰三角形的周长为 10，底边长为 4，求腰长；(2) 周长为 10，腰长为 4，求底边长；(3) 周长为 12，一边长为 5，求另外两边的长．</p>
+        <details><summary>提示 1</summary>(3) 中 5 可能是腰，也可能是底边。</details>
+        <details><summary>提示 2</summary>求出后，用“两边之和大于第三边”检验能否构成三角形。</details>
+        <details><summary>完整解答</summary>(1) 腰长 $(10-4)\div2=3$；(2) 底边 $10-2\times4=2$；(3) 5 是腰：底边 $12-10=2$；5 是底边：腰长 $(12-5)\div2=3.5$．两种都满足三边关系，所以另两边是 5、2 或 3.5、3.5．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p66 练习 1、2 与习题 2.5 第 1 题。练习 2 先用“等边对等角”（性质）再用“等角对等边”（判定），是一正一反的典型。习题第 1 题 (3) 的分类和三边关系检验是易错点。</p>
+</section>
+
+<!-- 15 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法，对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <p>等腰三角形的高、中线、角平分线互相重合．</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>只有<b>底边上的</b>高线、中线和<b>顶角</b>平分线重合．腰上的高、中线，底角的平分线一般各不相同（第 4 页）．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>有一个角是 $60^\circ$ 的三角形是等边三角形．</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>缺少“<b>等腰</b>”．例如三个角是 $60^\circ$、$50^\circ$、$70^\circ$ 的三角形就不是．</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <div class="jrow"><div id="jgA" class="jfig"></div><p>如图，点 $D$ 在 $BC$ 上，$\angle1=\angle2$，所以 $AB=AC$．</p></div>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>$\angle1$、$\angle2$ 不是同一个三角形的两个内角．“等角对等边”必须在<b>同一个三角形</b>中用．</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p>等腰三角形的两边长分别为 4 和 8，它的周长是 16 或 20．</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">✗</span>腰为 4 时，$4+4=8$，构不成三角形．只能腰为 8：周长 $8+8+4=20$．</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">每张卡先举手表决，再点开。第 3 张的图中 ∠1、∠2 分别是两个不同三角形里的角（精确作出：∠1 = ∠2，但 AB ≠ AC），提醒“同一个三角形”这个前提。第 4 张把分类讨论和三边关系结合起来。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <table class="mtab sumtab" data-step="1">
+      <tr><th></th><th>性质（已知是…，得到…）</th><th>判定（怎样说明是…）</th></tr>
+      <tr><td><b>等腰三角形</b><br>对称轴：顶角平分线所在直线</td><td>等边对等角；底边上的高线、中线及顶角平分线重合（三线合一）</td><td>两边相等（定义）；等角对等边</td></tr>
+      <tr><td><b>等边三角形</b><br>3 条对称轴</td><td>各角都等于 $60^\circ$</td><td>三边相等（定义）；三个角都相等；有一个角是 $60^\circ$ 的等腰三角形</td></tr>
+      <tr><td><b>直角三角形</b></td><td colspan="2">斜边上的中线等于斜边的一半；$30^\circ$ 角所对的直角边等于斜边的一半</td></tr>
+    </table>
+    <div class="cols3 sum">
+      <div class="col" data-step="2"><h3>方法</h3><p class="method" data-label="添辅助线">作顶角平分线 / 底边中线 / 底边上的高，把等腰三角形分成两个全等三角形．</p></div>
+      <div class="col" data-step="3"><h3>思想</h3><p class="recall" data-label="分类讨论">“有一个角是 50°”“一边长为 5”：先想清是顶角还是底角、是腰还是底边．</p><p class="recall" data-label="倒过来想">等边对等角 ⇄ 等角对等边．</p></div>
+      <div class="col" data-step="4"><h3>下一章</h3><p class="recall" data-label="3.1 勾股定理">直角三角形的三条边之间还有一个漂亮的数量关系．（<a href="../mj8a-gougudingli/index.html">去 3.1</a>）</p></div>
+    </div>
+  </div>
+  <p class="note">请学生先说出“知道一个三角形是等腰三角形，能得到什么”（性质），再说“要说明一个三角形是等腰三角形，有什么办法”（判定）。课本 p68“阅读·等腰梯形”可作课后阅读：它的性质也是借等腰三角形的轴对称性得到的。作业建议：习题 2.5 第 3、5、7、8 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

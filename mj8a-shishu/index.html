@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>实数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/luoke.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第4章 实数 · 4.3</p>
+    <h1 class="cover-title">实数</h1>
+    <p class="cover-q" data-step="1">前两节出现了许多“写不完”的数：$\sqrt2$、$\sqrt{41}$、$\sqrt[3]2$……还有七年级就认识的 $\pi$。</p>
+    <p class="cover-q" data-step="2">它们和有理数合在一起，是一个什么样的“大家庭”？<b>能在数轴上找到它们准确的位置吗？</b></p>
+    <div class="chips" data-step="3"><span class="chip">勾股螺旋</span><span class="chip">无理数</span><span class="chip">实数的分类</span><span class="chip">圆规画 $\sqrt n$</span><span class="chip">估算与计算器</span></div>
+  </div>
+  <p class="note">课本 p101–106，本章的核心一节，内容多，可分两课时：第 1 课时到第 9 页（无理数、实数、数轴上的点），第 2 课时从第 10 页开始（实数的运算、估算、计算器、阅读）。本章章首语：“有理数、无理数组成了实数集合，实数与数轴上的点一一对应”——本课就是把这句话讲明白。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="七上 2.2 · 有理数与无理数" data-step="1">
+        <p>整数和分数统称<b>有理数</b>，都能化成有限小数或无限循环小数；<b>无限不循环小数</b>叫做无理数，如 $\pi$、面积为 2 的正方形的边长。</p>
+        <span class="use">第 5、6 页：给新出现的数分类。（<a href="../mj7a-youlishu/index.html">回看 2.2</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 2.3 · 数轴" data-step="2">
+        <p>用圆规把边长为 $a$ 的正方形的边“转”到数轴上，得到表示无理数 $a$ 的点；滚动直径为 1 的圆得到 $\pi$。</p>
+        <span class="use">第 7 页：用同样的“转一转”画出 $\sqrt3$、$\sqrt5$……（<a href="../mj7a-shuzhou/index.html">回看 2.3</a>）</span>
+      </div>
+      <div class="recall" data-label="八上 3.1 · 勾股定理" data-step="3">
+        <p>直角三角形中 $a^2+b^2=c^2$。</p>
+        <span class="use">第 3、4、7 页：用直角三角形“造”出长为 $\sqrt n$ 的线段。（<a href="../mj8a-gougudingli/index.html">回看 3.1</a>）</span>
+      </div>
+      <div class="recall" data-label="八上 4.1、4.2 · 平方根与立方根" data-step="4">
+        <p>$\sqrt a$（$a\ge0$）是 $a$ 的算术平方根；$\sqrt[3]a$ 是 $a$ 的立方根。</p>
+        <span class="use">贯穿全课：$\sqrt2$、$\sqrt[3]9$ 这些数到底是什么数？（<a href="../mj8a-pingfanggen/index.html">4.1</a> · <a href="../mj8a-lifanggen/index.html">4.2</a>）</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">七年级时学生已经“见过”无理数，但当时只认识 $\pi$ 和面积为 2 的正方形的边长；学了平方根、立方根，才有了一大批新的无理数。第二张卡的“圆规转一转”是本课第 7 页的核心方法。</p>
+</section>
+
+<!-- 3 ================= 尝试 1：勾股螺旋（图 4-3） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 1</span><h2>一个接一个的直角三角形：$a_1,a_2,a_3,\cdots$ 是多少？</h2></div>
+  <button class="media-btn" hidden data-img="assets/luoxuan.jpg" data-video="assets/luoxuan.mp4" data-cap="勾股螺旋：每个新三角形的斜边平方都比上一个多 1；再用圆规把 √2、√3 转到数轴上">▶ 看动画</button>
+  <div class="bd wide">
+    <div class="col">
+      <div id="spiral" class="spiral-board"></div>
+      <div class="slider-row" data-noswipe>三角形个数 $n=$<input type="range" id="nIn" min="1" max="8" step="1" value="5"><b class="v" id="nV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip small-p">如图 4-3，$OB=BA_1=A_1A_2=A_2A_3=A_3A_4=A_4A_5=\cdots=1$，$\angle A_1BO=\angle A_2A_1O=\angle A_3A_2O=\angle A_4A_3O=\angle A_5A_4O=\cdots=90^\circ$．试计算 $a_1^2,a_2^2,\cdots$，你能说出 $a_1,a_2,\cdots$ 的值吗？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$a_1^2$</span><span class="think" data-step="2" data-ask="?">$=1^2+1^2=2$，$a_1=\sqrt2$</span><i class="why">在 Rt$\triangle OBA_1$ 中用勾股定理</i></div>
+        <div class="dl" data-step="3"><span>$a_2^2$</span><span class="think" data-step="4" data-ask="?">$=a_1^2+1^2=3$，$a_2=\sqrt3$</span><i class="why">上一个三角形的斜边，是下一个的直角边</i></div>
+        <div class="dl" data-step="5"><span>$a_3^2$</span><span class="think" data-step="6" data-ask="?">$=3+1=4$，$a_3=2$</span><i class="why">这一个是整数！</i></div>
+        <div class="dl key" data-step="7"><span>$a_n^2$</span><span class="think" data-step="8" data-ask="规律？">$=n+1$，$a_n=\sqrt{n+1}$</span><i class="why">每多一个三角形，斜边的平方多 1</i></div>
+      </div>
+      <p class="tip gold" data-step="9">$a_1$～$a_8$ 中，哪些是有理数？<span class="think" data-step="10" data-ask="拖滑块找一找">$a_3=2$、$a_8=3$（被开方数 4、9 是完全平方数）；其余 $\sqrt2$、$\sqrt3$、$\sqrt5$、$\sqrt6$、$\sqrt7$、$\sqrt8$ 都是无理数。接着画下去，$a_{15}=4$ 又是整数。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p101 尝试 1 与图 4-3（本章章前图也是它）。图中每个三角形都由上一个三角形的斜边和长为 1 的垂线段精确计算出来，标出的长度就是 $\sqrt{n+1}$。滑块最多到 8（螺旋已转过约 253°）。橙色标出的 $a_3=2$、$a_8=3$ 是整数——其余斜边的平方不是完全平方数，长度是无理数。</p>
+</section>
+
+<!-- 4 ================= 尝试 2、3 → 无理数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 2 · 3</span><h2>画出长为 $\sqrt{10}$、$\sqrt{13}$、$\sqrt{29}$ 的线段</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="grid" class="grid-board"></div>
+      <div class="btns" data-noswipe id="gridTargets"><span>目标：</span>
+        <button class="btn" type="button" data-n="10">$\sqrt{10}$</button>
+        <button class="btn" type="button" data-n="13">$\sqrt{13}$</button>
+        <button class="btn" type="button" data-n="29">$\sqrt{29}$</button>
+      </div>
+      <p class="tip feedback" id="gridMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip small-p">拖动橙色点（在格点上，小方格边长 1 cm），让从 $O$ 出发的斜线段等于目标长度．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\sqrt{10}$</span><span class="think" data-step="2" data-ask="直角边？">直角边 1 cm、3 cm</span><i class="why">$1^2+3^2=10$</i></div>
+        <div class="dl" data-step="1"><span>$\sqrt{13}$</span><span class="think" data-step="3" data-ask="直角边？">直角边 2 cm、3 cm</span><i class="why">$2^2+3^2=13$</i></div>
+        <div class="dl" data-step="1"><span>$\sqrt{29}$</span><span class="think" data-step="4" data-ask="直角边？">直角边 2 cm、5 cm</span><i class="why">$2^2+5^2=29$</i></div>
+      </div>
+      <p class="tip" data-step="5"><b>尝试 3：</b>半径为 1 cm 的圆，周长 <span class="think" data-step="6" data-ask="?">$2\pi$ cm</span>，面积 <span class="think" data-step="6" data-ask="?">$\pi\ \text{cm}^2$</span>．</p>
+      <p class="def" data-step="7">像 $\sqrt2$、$\sqrt3$、$\sqrt5$、$\sqrt6$、$\sqrt{10}$、$\sqrt{13}$、$\pi$、$2\pi$ 等，这些数都是<em>无理数</em>．</p>
+    </div>
+  </div>
+  <p class="note">课本 p101 尝试 2、3。目标是“把 $n$ 拆成两个整数的平方和”：$10=1+9$，$13=4+9$，$29=4+25$。格点板上线段长度按坐标精确计算，命中目标时变绿。尝试 3 提醒学生：无理数不只来自开方，$\pi$ 也是。</p>
+</section>
+
+<!-- 5 ================= 实数的定义与分类 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>有理数和无理数统称为实数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="recall" data-label="计算器操作（课本 p102）" data-step="1">求 $\sqrt3$ 的近似值：依次按“$\sqrt{\ }$”“3”“=”“S⇔D”，显示 <b>1.732 050 808</b>．<span class="think" data-step="2" data-ask="显示到最后一位就结束了吗？">没有结束：$\sqrt3$ 是无限不循环小数，计算器只能显示它的前几位（近似值）。</span></p>
+      <div class="def big-def" data-step="3"><h4>实数（课本 p102）</h4>有理数和无理数统称为<em>实数</em>（real number）．</div>
+      <p class="warn" data-step="4" data-label="判断无理数，看本质">无理数 = <b>无限不循环小数</b>。常见三类：开方开不尽的数（$\sqrt3$、$\sqrt[3]9$）；含 $\pi$ 的数（$2\pi$、$\dfrac\pi3$）；构造的无限不循环小数（$0.101\,001\,000\,1\cdots$）。</p>
+    </div>
+    <div class="col">
+      <div class="tree" data-step="5">
+        <div class="tr-root">实数</div>
+        <div class="tr-kids">
+          <div class="tr-branch">
+            <div class="tr-mid">有理数</div>
+            <div class="tr-leaves"><span>正有理数</span><span>0</span><span>负有理数</span></div>
+            <div class="tr-note"><span class="think" data-step="6" data-ask="写成小数是？">有限小数或循环小数</span></div>
+          </div>
+          <div class="tr-branch">
+            <div class="tr-mid">无理数</div>
+            <div class="tr-leaves"><span>正无理数</span><span>负无理数</span></div>
+            <div class="tr-note"><span class="think" data-step="7" data-ask="写成小数是？">无限不循环小数</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="method" data-step="8" data-label="另一种分法">实数也可以按符号分：<b>正实数</b>、<b>0</b>、<b>负实数</b>（练习里会用到）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p102 计算器操作与实数分类。先让学生看计算器的结果并追问“这就是 $\sqrt3$ 吗？”——计算器显示的是近似值。分类图按课本画：先分有理数、无理数，再各自按正负分，右侧写出它们的小数形式。分类标准要统一，“正数、负数、有理数”混在一起分是常见错误。</p>
+</section>
+
+<!-- 6 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>是有理数还是无理数？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>带根号的数都是无理数．</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>$\sqrt4=2$，$\sqrt[3]{-8}=-2$ 都是有理数。<b>开得尽</b>的是有理数，开不尽的才是无理数。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>$\dfrac{22}{7}$ 是无理数，因为它约等于 $\pi$．</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>$\dfrac{22}{7}$ 是分数，是<b>有理数</b>（$3.\dot14285\dot7$，循环小数）；它只是 $\pi$ 的近似值。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>$\dfrac{\pi}{3}$ 是分数，所以是有理数．</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>分子 $\pi$ 不是整数，$\dfrac\pi3$ 不是“分数”，它是无限不循环小数，是<b>无理数</b>。</p></div>
+      </div>
+    </div>
+    <div class="cols3">
+      <div class="jcard" data-step="7">
+        <p>无限小数都是无理数．</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">✗</span>$0.\dot3=\dfrac13$ 是无限<b>循环</b>小数，是有理数。必须“无限”且“不循环”。</p></div>
+      </div>
+      <div class="jcard" data-step="9">
+        <p>无理数都是无限小数．</p>
+        <div class="think" data-step="10" data-ask="对还是错？"><p><span class="verdict ok">✓</span>无理数就是无限不循环小数，当然是无限小数。</p></div>
+      </div>
+      <div class="jcard" data-step="11">
+        <p>实数不是有理数就是无理数．</p>
+        <div class="think" data-step="12" data-ask="对还是错？"><p><span class="verdict ok">✓</span>这正是实数的定义：有理数和无理数统称实数，两类不重不漏。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">每张卡先举手表决再点开。最容易错的是第 1、3 张：只看“外形”（有没有根号、是不是写成分数的样子），不看“本质”（能不能化成分数、是不是无限不循环小数）。</p>
+</section>
+
+<!-- 7 ================= 数轴上的点（图 4-4） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数轴</span><h2>用圆规，把 $\sqrt n$ 画到数轴上</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="nl" class="nl-big"></div>
+      <div class="btns" data-noswipe id="nlTargets"><span>画出：</span>
+        <button class="btn" type="button" data-t="2">$\sqrt2$</button>
+        <button class="btn" type="button" data-t="3">$\sqrt3$</button>
+        <button class="btn" type="button" data-t="5">$\sqrt5$</button>
+        <button class="btn" type="button" data-t="6">$\sqrt6$</button>
+        <button class="btn" type="button" data-t="10">$\sqrt{10}$</button>
+        <button class="btn" type="button" data-t="13">$\sqrt{13}$</button>
+        <button class="btn" type="button" data-t="0">清空</button>
+      </div>
+      <p class="tip feedback" id="nlMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip small-p">无理数可以用数轴上的点表示．例如，在图 4-4 中，点 $A$ 表示 $\sqrt2$，点 $B$ 表示 $\sqrt3$．</p>
+      <ol class="steps">
+        <li data-step="1">在表示 1 的点处作垂直于数轴、长为 1 的线段．</li>
+        <li data-step="2">连接原点，斜边长 <span class="think" data-step="3" data-ask="多长？">$\sqrt{1^2+1^2}=\sqrt2$（勾股定理）</span></li>
+        <li data-step="4">以原点为圆心、斜边为半径画弧，交数轴正半轴于点 $A$，$OA=\sqrt2$．</li>
+        <li data-step="5">在 $A$ 处作长为 1 的垂线段，<span class="think" data-step="6" data-ask="斜边多长？">斜边 $\sqrt{(\sqrt2)^2+1^2}=\sqrt3$，画弧得点 $B$——上次的斜边作这次的直角边</span></li>
+      </ol>
+      <p class="tip gold" data-step="7"><b>探索：</b>在图 4-4 中画出表示 $\sqrt5$、$\sqrt6$ 的点．<span class="think" data-step="8" data-ask="怎样画？">$\sqrt5$：在 2 处作长为 1 的垂线段（$2^2+1^2=5$）；$\sqrt6$：再在 $\sqrt5$ 处作长为 1 的垂线段（$5+1=6$）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p102 图 4-4 与“探索”。点按钮会按步骤画出：垂线段 → 斜边 → 圆弧旋转到数轴。所有长度、圆弧半径都按 $\sqrt n$ 精确计算，弧的落点就是 $\sqrt n$ 的准确位置（可对照刻度：$\sqrt2\approx1.414$、$\sqrt3\approx1.732$）。$\sqrt{10}$、$\sqrt{13}$ 用上一页的直角边（3 与 1、3 与 2）一步画出。习题第 4 题 $\sqrt{17}$ 留给学生：$4^2+1^2=17$。</p>
+</section>
+
+<!-- 8 ================= 一一对应 · 练习分类 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳 · 练习</span><h2>实数与数轴上的点一一对应</h2></div>
+  <div class="bd full top">
+    <p class="def" data-step="1">每一个实数都可以用数轴上的一个点来表示；反过来，数轴上的每一个点都表示一个实数．<b>实数与数轴上的点一一对应</b>．</p>
+    <p class="tip" data-step="2"><b>练习（课本 p103）</b> 点一点：下列各数是有理数还是无理数？是正实数还是负实数？</p>
+    <div class="sortgrid" data-step="2">
+      <div class="sortcard"><p>$4\dfrac23$</p><div class="pick" data-ans="q"><button data-k="q">有理数</button><button data-k="i">无理数</button></div><div class="pick" data-ans="p"><button data-k="p">正</button><button data-k="n">负</button></div></div>
+      <div class="sortcard"><p>$-\sqrt[3]9$</p><div class="pick" data-ans="i"><button data-k="q">有理数</button><button data-k="i">无理数</button></div><div class="pick" data-ans="n"><button data-k="p">正</button><button data-k="n">负</button></div></div>
+      <div class="sortcard"><p>$0.\dot6$</p><div class="pick" data-ans="q"><button data-k="q">有理数</button><button data-k="i">无理数</button></div><div class="pick" data-ans="p"><button data-k="p">正</button><button data-k="n">负</button></div></div>
+      <div class="sortcard"><p>$\sqrt{0.25}$</p><div class="pick" data-ans="q"><button data-k="q">有理数</button><button data-k="i">无理数</button></div><div class="pick" data-ans="p"><button data-k="p">正</button><button data-k="n">负</button></div></div>
+      <div class="sortcard"><p>$\sqrt[3]{-125}$</p><div class="pick" data-ans="q"><button data-k="q">有理数</button><button data-k="i">无理数</button></div><div class="pick" data-ans="n"><button data-k="p">正</button><button data-k="n">负</button></div></div>
+      <div class="sortcard"><p>$\sqrt{27}$</p><div class="pick" data-ans="i"><button data-k="q">有理数</button><button data-k="i">无理数</button></div><div class="pick" data-ans="p"><button data-k="p">正</button><button data-k="n">负</button></div></div>
+      <div class="sortcard"><p>$\dfrac{\pi}{3}$</p><div class="pick" data-ans="i"><button data-k="q">有理数</button><button data-k="i">无理数</button></div><div class="pick" data-ans="p"><button data-k="p">正</button><button data-k="n">负</button></div></div>
+      <div class="sortcard"><p>$-\sqrt{\dfrac{16}{49}}$</p><div class="pick" data-ans="q"><button data-k="q">有理数</button><button data-k="i">无理数</button></div><div class="pick" data-ans="n"><button data-k="p">正</button><button data-k="n">负</button></div></div>
+      <div class="sortcard"><p>$0.010\,010\,001\,000\,01\cdots$</p><div class="pick" data-ans="i"><button data-k="q">有理数</button><button data-k="i">无理数</button></div><div class="pick" data-ans="p"><button data-k="p">正</button><button data-k="n">负</button></div></div>
+    </div>
+    <p class="method small-p" data-step="3" data-label="答案">有理数：$4\frac23$，$0.\dot6$，$\sqrt{0.25}$（$=0.5$），$\sqrt[3]{-125}$（$=-5$），$-\sqrt{\frac{16}{49}}$（$=-\frac47$）；无理数：$-\sqrt[3]9$，$\sqrt{27}$，$\frac\pi3$，$0.010\,010\,001\,000\,01\cdots$；负实数：$-\sqrt[3]9$，$\sqrt[3]{-125}$，$-\sqrt{\frac{16}{49}}$，其余是正实数。</p>
+  </div>
+  <p class="note">课本 p102 结论与 p103 练习。七年级时只能说“数轴上的点都表示有理数或无理数”，现在有了统一的名字：实数。练习中每个数点两次（有理/无理、正/负），点对了按钮变绿，点错了变红可再选。判断前先化简：$\sqrt{0.25}=0.5$，$\sqrt[3]{-125}=-5$。</p>
+</section>
+
+<!-- 9 ================= 实数的运算性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">运算</span><h2>有理数的那些规则，实数照样用</h2></div>
+  <div class="bd full">
+    <p class="def" data-step="1">有理数的绝对值、相反数、倒数的意义，有理数大小比较的方法，有理数的运算性质、运算律，在实数范围内都仍然适用．在实数范围内，不仅可以进行加、减、乘、除、乘方运算，而且可以进行<b>开立方</b>运算以及<b>非负实数的开平方</b>运算．</p>
+    <p class="tip" data-step="2"><b>习题 4.3 第 3 题</b> 填表：</p>
+    <table class="mtab small" data-step="2">
+      <tr><th>实数</th><th>相反数</th><th>绝对值</th><th>倒数</th></tr>
+      <tr><td>$\sqrt{2.5}$</td><td><span class="think" data-step="3" data-ask="?">$-\sqrt{2.5}$</span></td><td><span class="think" data-step="3" data-ask="?">$\sqrt{2.5}$</span></td><td><span class="think" data-step="3" data-ask="?">$\dfrac{1}{\sqrt{2.5}}$</span></td></tr>
+      <tr><td><span class="think" data-step="4" data-ask="?">$-\pi$</span></td><td><span class="think" data-step="4" data-ask="?">$\pi$</span></td><td><span class="think" data-step="4" data-ask="?">$\pi$</span></td><td>$-\dfrac1\pi$</td></tr>
+      <tr><td><span class="think" data-step="5" data-ask="?">$-\sqrt[3]{0.9}$</span></td><td>$\sqrt[3]{0.9}$</td><td><span class="think" data-step="5" data-ask="?">$\sqrt[3]{0.9}$</span></td><td><span class="think" data-step="5" data-ask="?">$-\dfrac{1}{\sqrt[3]{0.9}}$</span></td></tr>
+      <tr><td>$a\ (a\gt0)$</td><td><span class="think" data-step="6" data-ask="?">$-a$</span></td><td><span class="think" data-step="6" data-ask="?">$a$</span></td><td><span class="think" data-step="6" data-ask="?">$\dfrac1a$</span></td></tr>
+      <tr><td>$a\ (a\lt0)$</td><td><span class="think" data-step="7" data-ask="?">$-a$</span></td><td><span class="think" data-step="7" data-ask="?">$-a$</span></td><td><span class="think" data-step="7" data-ask="?">$\dfrac1a$</span></td></tr>
+    </table>
+    <p class="warn" data-step="8" data-label="开平方的限制还在">实数范围内，负数仍然<b>不能开平方</b>（$\sqrt{-4}$ 没有意义），但任何实数都能开立方。</p>
+  </div>
+  <p class="note">课本 p103 文字与习题 4.3 第 3 题（表中黑字是课本已给的格子）。第 2、3 行要“倒着想”：倒数是 $-\frac1\pi$，原数就是 $-\pi$；相反数是 $\sqrt[3]{0.9}$，原数就是 $-\sqrt[3]{0.9}$。最后两行用字母，强调 $a\lt0$ 时 $|a|=-a$——绝对值、相反数的意义和有理数完全一样。</p>
+</section>
+
+<!-- 10 ================= 例 1 比较大小 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>用计算器比较 $-\sqrt[3]9$ 与 $-\sqrt{4.326\,5}$ 的大小</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>按键</span><span>(−) SHIFT $\sqrt[3]{\ }$ 9 =</span><i class="why">显示 $-2.080\,083\,823$</i></div>
+        <div class="dl" data-step="2"><span>按键</span><span>(−) $\sqrt{\ }$ 4 . 3 2 6 5 =</span><i class="why">显示 $-2.080\,024\,038$</i></div>
+        <div class="dl key" data-step="3"><span>比较</span><span class="think" data-step="4" data-ask="谁大？">$-2.080\,083\,823\lt-2.080\,024\,038$</span><i class="why">两个负数，绝对值大的反而小</i></div>
+        <div class="dl end" data-step="5"><span>∴</span><span>$-\sqrt[3]9\lt-\sqrt{4.326\,5}$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div id="cmpBoard" class="nl-mid" data-step="6"></div>
+      <p class="muted center small-t" data-step="6">放大的数轴：两点只差约 0.000 06，左边的数小</p>
+      <p class="method" data-step="7" data-label="比较实数大小">有理数大小比较的方法照样用：正数大于 0，0 大于负数；两个负数，绝对值大的反而小；数轴上右边的点表示的数大。</p>
+    </div>
+  </div>
+  <p class="note">课本 p103 例 1。不同型号计算器按键顺序不同，以学生手中的计算器为准。两个数前 4 位都相同（$-2.080\cdots$），要看到第 5 位小数才分出大小——这就是用计算器的意义。右边放大的数轴按实际数值画出两点位置（刻度间隔 0.000 02）。</p>
+</section>
+
+<!-- 11 ================= 例 2 计算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>用计算器计算</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>(1)</span><span>$\sqrt5+\pi$</span><span class="think" data-step="2" data-ask="≈ ?">$\approx5.377\,660\,631$</span></div>
+      <div class="dl" data-step="3"><span>(2)</span><span>$3\times\sqrt2-\sqrt[3]2$</span><span class="think" data-step="4" data-ask="≈ ?">$\approx2.982\,719\,637$</span></div>
+      <div class="dl" data-step="5"><span>(3)</span><span>$\sqrt[3]5+3-(\sqrt5+\sqrt[3]5)$</span><i class="why">先别急着按键：能化简吗？</i></div>
+      <div class="dl" data-step="6"><span></span><span class="think" data-step="6" data-ask="去括号">$=\sqrt[3]5+3-\sqrt5-\sqrt[3]5$</span><i class="why">去括号</i></div>
+      <div class="dl" data-step="7"><span></span><span class="think" data-step="8" data-ask="合并">$=3-\sqrt5\approx0.763\,932\,022\,5$</span><i class="why">$\sqrt[3]5$ 与 $-\sqrt[3]5$ 互为相反数，和为 0</i></div>
+    </div>
+    <p class="method" data-step="9" data-label="先化简，再按键">有理数的去括号法则、运算律在实数中照样用：第 (3) 题先化简成 $3-\sqrt5$，按键更少、更不容易出错。</p>
+  </div>
+  <p class="note">课本 p104 例 2。第 (3) 题是本例重点：让学生先观察式子再动手，而不是一上来就按计算器。这正是上一页“运算律在实数范围内仍然适用”的应用。</p>
+</section>
+
+<!-- 12 ================= 交流：先估算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>先估算比较大小，再用计算器验证</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>(1)</b> $-\sqrt3$ 与 $-1.5$</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>估</span><span class="think" data-step="2" data-ask="√3 和 1.5 谁大？">$1.5^2=2.25\lt3$，所以 $\sqrt3\gt1.5$</span><i class="why">比较平方</i></div>
+        <div class="dl end" data-step="3"><span>∴</span><span class="think" data-step="4" data-ask="结论？">$-\sqrt3\lt-1.5$</span><i class="why">绝对值大的负数反而小</i></div>
+        <div class="dl" data-step="5"><span>验</span><span>$-\sqrt3\approx-1.732$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>(2)</b> $\dfrac{\sqrt5-1}{2}$ 与 $0.5$</p>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>估</span><span class="think" data-step="7" data-ask="√5 在哪两个整数之间？">$2^2=4\lt5\lt9=3^2$，所以 $2\lt\sqrt5\lt3$</span><i class="why"></i></div>
+        <div class="dl" data-step="8"><span></span><span class="think" data-step="9" data-ask="接着呢？">$\sqrt5-1\gt1$，$\dfrac{\sqrt5-1}{2}\gt\dfrac12$</span><i class="why">不等式两边同除以 2</i></div>
+        <div class="dl end" data-step="10"><span>∴</span><span>$\dfrac{\sqrt5-1}{2}\gt0.5$</span><i class="why"></i></div>
+        <div class="dl" data-step="11"><span>验</span><span>$\dfrac{\sqrt5-1}{2}\approx0.618$</span><i class="why">这就是“黄金分割数”</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="method" data-step="12" data-label="估算的办法">夹逼：找两个相邻的整数（或一位小数），它们的平方（立方）把被开方数夹在中间。</p>
+  <p class="note">课本 p104“交流”。先不要拿计算器，让学生说估算的理由：比较两个正数的平方就能比较它们的大小。第 (2) 题的结果 0.618… 是黄金分割数，九年级还会遇到。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>课本 p105 练习：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 估算（精确到个位）：<br>(1) $\sqrt{68}$；(2) $\sqrt[3]{120}$．</p>
+        <details><summary>提示 1</summary>$8^2=64$，$9^2=81$；$4^3=64$，$5^3=125$。</details>
+        <details><summary>提示 2</summary>68 离 64 近还是离 81 近？120 离 125 很近。</details>
+        <details><summary>完整解答</summary>(1) $\sqrt{68}\approx8$（$8.2\cdots$）；(2) $\sqrt[3]{120}\approx5$（$4.93\cdots$）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用计算器比较大小：<br>(1) $\sqrt[3]4$ 与 $\sqrt3$；(2) $\sqrt2$ 与 $\dfrac{1}{\sqrt2}$；(3) $\sqrt{0.04}$ 与 $\dfrac{1}{\sqrt{0.04}}$．</p>
+        <details><summary>提示</summary>$\sqrt[3]4\approx1.587$，$\sqrt3\approx1.732$；$\dfrac1{\sqrt2}\approx0.707$；$\sqrt{0.04}=0.2$。</details>
+        <details><summary>完整解答</summary>(1) $\sqrt[3]4\lt\sqrt3$；(2) $\sqrt2\gt\dfrac1{\sqrt2}$；(3) $\sqrt{0.04}\lt\dfrac1{\sqrt{0.04}}$（$0.2\lt5$）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 用计算器计算：<br>(1) $3\times\sqrt2-2\pi$；(2) $-2\times\sqrt5+5\times\sqrt[3]2$；(3) $\sqrt2-(\sqrt[3]5+\sqrt[3]2)$．</p>
+        <details><summary>提示</summary>注意运算顺序，负号别丢；第 (3) 题可先去括号。</details>
+        <details><summary>完整解答</summary>(1) $\approx-2.040\,544\,620$；(2) $\approx1.827\,469\,294$；(3) $\approx-1.555\,683\,434$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p105 练习 1～3。结果保留到计算器显示的位数即可（不同计算器末位可能差 1）。第 1 题强调“估算”不用计算器，用平方数、立方数夹逼。</p>
+</section>
+
+<!-- 14 ================= 阅读：√2 是无理数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">阅读</span><h2>证明 $\sqrt2$ 是无理数</h2></div>
+  <div class="bd full">
+    <p class="tip">七年级我们只是“相信” $\sqrt2$ 是无限不循环小数——计算器再多位也看不完。下面用推理说明它<b>一定</b>不是有理数（课本 p105 阅读）：</p>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>假设</span><span>$\sqrt2$ 是有理数，写成 $\sqrt2=\dfrac mn$</span><i class="why">$m$、$n$ 是正整数，且没有大于 1 的公约数</i></div>
+      <div class="dl" data-step="2"><span>平方</span><span class="think" data-step="3" data-ask="得到什么？">$\left(\dfrac mn\right)^2=2$，即 $2n^2=m^2$</span><i class="why">平方根的意义</i></div>
+      <div class="dl" data-step="4"><span>①</span><span class="think" data-step="5" data-ask="m 是奇数还是偶数？">左边是偶数，所以 $m^2$ 是偶数，从而 $m$ 是偶数</span><i class="why">奇数的平方是奇数</i></div>
+      <div class="dl" data-step="6"><span>②</span><span class="think" data-step="7" data-ask="代入后得到？">设 $m=2p$，代入得 $2n^2=4p^2$，即 $n^2=2p^2$</span><i class="why">$p$ 是正整数</i></div>
+      <div class="dl" data-step="8"><span>③</span><span class="think" data-step="9" data-ask="n 呢？">同理，$n$ 也是偶数</span><i class="why"></i></div>
+      <div class="dl key" data-step="10"><span>矛盾</span><span>$m$、$n$ 都是 2 的倍数</span><i class="why">与“没有大于 1 的公约数”矛盾</i></div>
+      <div class="dl end" data-step="11"><span>结论</span><span>$\sqrt2=\dfrac mn$ 不可能，$\sqrt2$ 不是有理数，它是无理数</span><i class="why"></i></div>
+    </div>
+  </div>
+  <p class="note">课本 p105 阅读材料。这种“先假设结论不成立，推出矛盾”的证法以后会正式学（反证法），这里重在让学生体会：靠计算器只能看到有限位，证明才能保证“永远不循环”。第 ① 步可以举例：$3^2=9$、$5^2=25$，奇数的平方都是奇数，所以 $m^2$ 是偶数时 $m$ 只能是偶数。</p>
+</section>
+
+<!-- 15 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 4.3</span><h2>自己试试</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 把下列各数分成有理数、无理数两类：<br>$3.141\,592\,6\cdots$，$\sqrt{64}$，$\sqrt[3]{-64}$，$0.212\,112\,111\,2\cdots$，$\sqrt[3]9$，$0.030\,303\cdots$，$-\sqrt{11}$，$\sqrt{\dfrac{25}{36}}$．</p>
+        <details><summary>提示 1</summary>先化简：$\sqrt{64}=8$，$\sqrt[3]{-64}=-4$，$\sqrt{\dfrac{25}{36}}=\dfrac56$。</details>
+        <details><summary>提示 2</summary>$0.030\,303\cdots$ 是循环小数；$3.141\,592\,6\cdots$ 是 $\pi$ 的前几位，不循环。</details>
+        <details><summary>完整解答</summary>有理数：$\sqrt{64}$，$\sqrt[3]{-64}$，$0.030\,303\cdots$，$\sqrt{\dfrac{25}{36}}$；<br>无理数：$3.141\,592\,6\cdots$，$0.212\,112\,111\,2\cdots$，$\sqrt[3]9$，$-\sqrt{11}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用计算器计算（结果精确到百分位）：<br>(1) $\sqrt7+\dfrac14-\pi$；(2) $\sqrt5-\sqrt6$；(3) $\pi-(\sqrt[3]3+\pi)$．</p>
+        <details><summary>提示</summary>(3) 先去括号化简：$\pi-\sqrt[3]3-\pi=-\sqrt[3]3$。</details>
+        <details><summary>完整解答</summary>(1) $\approx-0.25$；(2) $\approx-0.21$；(3) $\approx-1.44$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 在数轴上画出表示 $\sqrt{17}$ 的点．</p>
+        <details><summary>提示 1</summary>把 17 拆成两个整数的平方和：$17=16+1$。</details>
+        <details><summary>提示 2</summary>在数轴上表示 4 的点处作垂直于数轴、长为 1 的线段。</details>
+        <details><summary>完整解答</summary>在 4 处作长为 1 的垂线段，连接原点得斜边 $\sqrt{4^2+1^2}=\sqrt{17}$；以原点为圆心、斜边为半径画弧，交数轴正半轴的点即表示 $\sqrt{17}$（约 4.12）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 4.3 第 1、2、4 题（第 3 题已在第 9 页完成）。第 4 题可以回到第 7 页的作图板，让学生说出步骤后再自己用圆规画。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">有理数和无理数统称实数；无理数是无限不循环小数。</p>
+        <p class="def">实数与数轴上的点一一对应。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="作图">勾股定理造线段 $\sqrt{a^2+b^2}$，圆规转到数轴上。</p>
+        <p class="method" data-label="估算">用相邻的平方数、立方数夹逼；需要精确时用计算器。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">每个实数都有数轴上的“家”，$\sqrt n$ 也能准确画出。</p>
+        <p class="recall" data-label="类比扩充">数的范围扩充了，原来的运算法则、运算律照样适用。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>4.4 近似数——计算器显示的 $1.732\,050\,808$ 只是 $\sqrt3$ 的近似值。生活中 40 亿、2.03 kg 这些数，“精确到哪一位”又是什么意思？</p>
+  </div>
+  <p class="note">请学生先说出“实数大家庭”的成员和分类，再逐栏揭示。作业建议：习题 4.3 第 1～4 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

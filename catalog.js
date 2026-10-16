@@ -4230,37 +4230,61 @@ window.CATALOG = [
                 "no": "11.1",
                 "title": "生活中的不等式",
                 "genre": "概念",
-                "kind": "不等式"
+                "kind": "不等式",
+                "dir": "mj7b-shenghuobudengshi",
+                "pages": 10,
+                "desc": "关键词分拣台：把说法放进不等号盒",
+                "cover": "mj7b-shenghuobudengshi/assets/gaosu.jpg"
               },
               {
                 "no": "11.2",
                 "title": "不等式的解集",
                 "genre": "概念",
-                "kind": "不等式"
+                "kind": "不等式",
+                "dir": "mj7b-jieji",
+                "pages": 10,
+                "desc": "解的探测器＋拖端点画解集",
+                "cover": "mj7b-jieji/assets/suidao.jpg"
               },
               {
                 "no": "11.3",
                 "title": "不等式的基本性质",
                 "genre": "推导",
-                "kind": "不等式"
+                "kind": "不等式",
+                "dir": "mj7b-budengshixingzhi",
+                "pages": 12,
+                "desc": "上下数轴连线：乘负数连线交叉",
+                "cover": "mj7b-budengshixingzhi/assets/xiongmei.jpg"
               },
               {
                 "no": "11.4",
                 "title": "解一元一次不等式",
                 "genre": "推导",
-                "kind": "不等式"
+                "kind": "不等式",
+                "dir": "mj7b-jiebudengshi",
+                "pages": 13,
+                "desc": "同解流水线：选错一步数轴现红线",
+                "cover": "mj7b-jiebudengshi/assets/shuzhuo.jpg"
               },
               {
                 "no": "11.5",
                 "title": "用一元一次不等式解决问题",
                 "genre": "推导",
-                "kind": "不等式"
+                "kind": "不等式",
+                "dir": "mj7b-budengshijiejuewenti",
+                "pages": 13,
+                "desc": "按课本搭法画火柴小鱼并计数",
+                "cover": "mj7b-budengshijiejuewenti/assets/dujuan.jpg"
               },
               {
                 "no": "11.6",
                 "title": "一元一次不等式组",
                 "genre": "推导",
-                "kind": "不等式"
+                "kind": "不等式",
+                "dir": "mj7b-budengshizu",
+                "pages": 16,
+                "desc": "公共部分探测器：四种情况自动写解集",
+                "cover": "mj7b-budengshizu/assets/qiche.jpg"
               }
             ]
           },
@@ -4330,19 +4354,31 @@ window.CATALOG = [
                 "no": "1.1",
                 "title": "全等图形",
                 "genre": "概念",
-                "kind": "全等"
+                "kind": "全等",
+                "dir": "mj8a-quandengtuxing",
+                "pages": 9,
+                "desc": "点两图自动叠合验证；点阵上平移、翻折、旋转",
+                "cover": "mj8a-quandengtuxing/assets/fengye.jpg"
               },
               {
                 "no": "1.2",
                 "title": "全等三角形",
                 "genre": "概念",
-                "kind": "全等"
+                "kind": "全等",
+                "dir": "mj8a-quandengsanjiaoxing",
+                "pages": 10,
+                "desc": "点边或顶点，对应元素同时亮；拖动实时量边角",
+                "cover": "mj8a-quandengsanjiaoxing/assets/xinfeng.jpg"
               },
               {
                 "no": "1.3",
                 "title": "探索三角形全等的条件",
                 "genre": "推导",
-                "kind": "全等"
+                "kind": "全等",
+                "dir": "mj8a-quandengtiaojian",
+                "pages": 18,
+                "desc": "反例机；SAS/ASA/SSS 作图叠合；SSA 两解",
+                "cover": "mj8a-quandengtiaojian/assets/taidiao.jpg"
               }
             ]
           },
@@ -4355,31 +4391,51 @@ window.CATALOG = [
                 "no": "2.1",
                 "title": "轴对称与轴对称图形",
                 "genre": "概念",
-                "kind": "轴对称"
+                "kind": "轴对称",
+                "dir": "mj8a-zhouduicheng",
+                "pages": 9,
+                "desc": "墨水折纸；拖折痕翻折检验对称轴",
+                "cover": "mj8a-zhouduicheng/assets/paifang.jpg"
               },
               {
                 "no": "2.2",
                 "title": "轴对称的性质",
                 "genre": "推导",
-                "kind": "轴对称"
+                "kind": "轴对称",
+                "dir": "mj8a-zhouduichengxingzhi",
+                "pages": 12,
+                "desc": "扎孔展开测垂直平分；拖动对称轴验证性质",
+                "cover": "mj8a-zhouduichengxingzhi/assets/daoying.jpg"
               },
               {
                 "no": "2.3",
                 "title": "设计轴对称图案",
                 "genre": "概念",
-                "kind": "轴对称"
+                "kind": "轴对称",
+                "dir": "mj8a-duichengtuan",
+                "pages": 9,
+                "desc": "画一半自动对称；剪纸展开；琴键检验",
+                "cover": "mj8a-duichengtuan/assets/jianzhi.jpg"
               },
               {
                 "no": "2.4",
                 "title": "线段、角的轴对称性",
                 "genre": "推导",
-                "kind": "轴对称"
+                "kind": "轴对称",
+                "dir": "mj8a-xianduanjiao",
+                "pages": 17,
+                "desc": "拖点找等距点留轨迹；尺规作垂直平分线",
+                "cover": "mj8a-xianduanjiao/assets/cunlu.jpg"
               },
               {
                 "no": "2.5",
                 "title": "等腰三角形的轴对称性",
                 "genre": "推导",
-                "kind": "轴对称"
+                "kind": "轴对称",
+                "dir": "mj8a-dengyao",
+                "pages": 16,
+                "desc": "拖顶点看三线合一；斜边中线",
+                "cover": "mj8a-dengyao/assets/liangjia.jpg"
               }
             ]
           },
@@ -4402,13 +4458,21 @@ window.CATALOG = [
                 "no": "3.2",
                 "title": "勾股定理的逆定理",
                 "genre": "推导",
-                "kind": "勾股定理"
+                "kind": "勾股定理",
+                "dir": "mj8a-gougunidingli",
+                "pages": 12,
+                "desc": "三边搭三角形判直角；勾股数生成器",
+                "cover": "mj8a-gougunidingli/assets/shengjie.jpg"
               },
               {
                 "no": "3.3",
                 "title": "勾股定理的简单应用",
                 "genre": "推导",
-                "kind": "勾股定理"
+                "kind": "勾股定理",
+                "dir": "mj8a-gouguyingyong",
+                "pages": 11,
+                "desc": "拖折断高度解折竹题；点拉索算长",
+                "cover": "mj8a-gouguyingyong/assets/xielaqiao.jpg"
               }
             ]
           },
@@ -4421,25 +4485,41 @@ window.CATALOG = [
                 "no": "4.1",
                 "title": "平方根",
                 "genre": "概念",
-                "kind": "实数"
+                "kind": "实数",
+                "dir": "mj8a-pingfanggen",
+                "pages": 13,
+                "desc": "数轴上拖 x 画正方形，找 x²=a 的两个根",
+                "cover": "mj8a-pingfanggen/assets/haibian.jpg"
               },
               {
                 "no": "4.2",
                 "title": "立方根",
                 "genre": "概念",
-                "kind": "实数"
+                "kind": "实数",
+                "dir": "mj8a-lifanggen",
+                "pages": 10,
+                "desc": "拖正方体棱长，逼近体积为 2 的棱长",
+                "cover": "mj8a-lifanggen/assets/xianweijing.jpg"
               },
               {
                 "no": "4.3",
                 "title": "实数",
                 "genre": "概念",
-                "kind": "实数"
+                "kind": "实数",
+                "dir": "mj8a-shishu",
+                "pages": 16,
+                "desc": "勾股螺旋＋圆规把 √n 动画转到数轴上",
+                "cover": "mj8a-shishu/assets/luoke.jpg"
               },
               {
                 "no": "4.4",
                 "title": "近似数",
                 "genre": "概念",
-                "kind": "实数"
+                "kind": "实数",
+                "dir": "mj8a-jinsishu",
+                "pages": 11,
+                "desc": "四舍五入逐位高亮，数轴放大看代表区间",
+                "cover": "mj8a-jinsishu/assets/tianping.jpg"
               }
             ]
           },
@@ -4452,13 +4532,21 @@ window.CATALOG = [
                 "no": "5.1",
                 "title": "位置的确定",
                 "genre": "概念",
-                "kind": "坐标系"
+                "kind": "坐标系",
+                "dir": "mj8a-weizhi",
+                "pages": 9,
+                "desc": "按经纬度描台风路径；围棋盘找地址",
+                "cover": "mj8a-weizhi/assets/taifeng.jpg"
               },
               {
                 "no": "5.2",
                 "title": "平面直角坐标系",
                 "genre": "概念",
-                "kind": "坐标系"
+                "kind": "坐标系",
+                "dir": "mj8a-zuobiaoxi",
+                "pages": 16,
+                "desc": "拖点读坐标、象限；图形翻折平移旋转",
+                "cover": "mj8a-zuobiaoxi/assets/penquan.jpg"
               }
             ]
           },

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>位置的确定 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/taifeng.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第5章 平面直角坐标系 · 5.1</p>
+    <h1 class="cover-title">位置的确定</h1>
+    <p class="cover-q" data-step="1">气象台每隔 12 小时报一次台风中心的位置．只说“在太平洋上”够不够？要报<b>几个数</b>，才能让人在地图上准确找到它？</p>
+    <p class="cover-q" data-step="2">航行在茫茫大海上，海军舰艇编队又怎样随时向基地报告自己的准确位置？</p>
+    <div class="chips" data-step="3"><span class="chip">描台风路径</span><span class="chip">一个数 · 两个数</span><span class="chip">变化中的位置</span><span class="chip">围棋盘上的“地址”</span></div>
+  </div>
+  <p class="note">课本 p116 尝试、p117 思考的情境。先让学生说说生活中怎样描述位置（电影票、教室座位、门牌号……），引出本章主题：用“数”确定“位置”。本课是第 5 章的起始课，为下一课平面直角坐标系做准备。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们已经会用数表示位置了吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 2.3 数轴" data-step="1">
+        <p>规定了原点、正方向和单位长度的直线叫数轴．数轴上的每一个点都可以用<b>一个数</b>表示．</p>
+        <span class="use">第 5 页：直线上的点，一个数据就能确定位置．（<a href="../mj7a-shuzhou/index.html">回看 2.3</a>）</span>
+      </div>
+      <div class="recall" data-label="小学 · 用数对确定位置" data-step="2">
+        <p>先说第几列、再说第几行，如“第 3 列第 2 行”记作 $(3,2)$．</p>
+        <span class="use">第 3、7 页：经度和纬度、围棋盘的“纵线和横线”都是两个数据．</span>
+      </div>
+      <div class="recall" data-label="八上 2.4 线段的垂直平分线" data-step="3">
+        <p>线段垂直平分线上的点到线段两端的距离相等；等边三角形、等腰直角三角形的边角关系．</p>
+        <span class="use">第 5 页：点 $P$ 在 $AB$ 的垂直平分线上运动．（<a href="../mj8a-xianduanjiao/index.html">回看 2.4</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课要回答：</b>确定一个点的位置，需要几个数据？——在直线上？在平面上？</p>
+  </div>
+  <p class="note">经纬度在地理课上学过：经线指示南北方向，纬线指示东西方向；我国在东经、北纬范围内。数轴是本章的“老朋友”：下一课的平面直角坐标系就是两条互相垂直的数轴。</p>
+</section>
+
+<!-- 3 ================= 尝试：台风路径 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>根据数据，描出台风中心的移动路径</h2></div>
+  <div class="bd half wide-l">
+    <div class="col">
+      <div id="typhoon" class="map-b"></div>
+      <p class="tip feedback" id="tyMsg"></p>
+      <div class="btns" data-noswipe>
+        <button class="btn" type="button" id="tyAll">全部描出</button>
+        <button class="btn" type="button" id="tyClr">清空</button>
+        <button class="btn" type="button" id="tySet">换成习题 1 的台风</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip small-p">先在表中点一行，再在左图中点出这个位置（先找东经线，再找北纬线，两线的交点）．</p>
+      <table class="mtab ty" id="tyTab" data-noswipe></table>
+      <p class="method" data-step="1" data-label="怎样描点？">先画东经 $130.7^\circ$ 线，再画北纬 $19.6^\circ$ 线，两条线的<b>交点</b>就是台风中心的第一个位置；依次描出其余各点，再连起来．</p>
+    </div>
+  </div>
+  <p class="note">课本 p116 尝试（表格数据照课本），习题 5.1 第 1 题的数据可点“换成习题 1 的台风”。学生在图上点击，离正确位置不到 0.3° 就算对，点会自动落到准确位置。图中把经线、纬线画成互相垂直的方格，是示意图（真实地图上经纬线的间距随纬度变化）。路径从东南向西北再折向西南——台风先北上、后西进登陆。</p>
+</section>
+
+<!-- 4 ================= 思考：两个数据 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>报告位置，需要几个数据？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1"><p><b>海上的舰艇</b></p><p>只要报告舰艇所在位置的<span class="think" data-step="2" data-ask="报什么？">经度、纬度</span>．</p></div>
+      <div class="jcard" data-step="3"><p><b>电影院的座位</b></p><p>“8 排 12 号”：<span class="think" data-step="4" data-ask="几个数？">排数和号数，两个数</span>．</p></div>
+      <div class="jcard" data-step="5"><p><b>围棋盘上的棋子</b></p><p>“5，十”：<span class="think" data-step="6" data-ask="几个数？">纵线和横线，两个数</span>（第 7 页细说）．</p></div>
+    </div>
+    <div class="cols2">
+      <p class="warn" data-step="7" data-label="只给一个数行吗？">只说“东经 $130.7^\circ$”，台风可能在这条经线上的任何地方；只说“8 排”，可能是这一排的任何座位．</p>
+      <div class="def" data-step="8"><h4>结论</h4>在平面内，确定一个点的位置，一般需要<b>两个数据</b>；而且两个数据的<b>顺序</b>不能随便交换（“8 排 12 号”与“12 排 8 号”是两个座位）．</div>
+    </div>
+  </div>
+  <p class="note">课本 p117 思考。先请学生说出更多例子：教室座位（第几组第几个）、地图上的“B3 区”、Excel 表格的单元格……再追问：只给一个数据行不行？顺序能不能交换？为下一课“有序数对”“坐标”做铺垫。</p>
+</section>
+
+<!-- 5 ================= 图 5-1：直线上的点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学中的位置</span><h2>点 $P$ 在直线 $l$ 上：一个数据就够了</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="perp" class="big-b"></div>
+      <div class="readout r4"><span>$PO:AO$</span><b class="v" id="pRatio"></b><span>$\angle APB$</span><b class="v" id="pAng"></b></div>
+      <p class="tip feedback" id="pMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 5-1，点 $P$ 在线段 $AB$ 的垂直平分线 $l$ 上运动，无论点 $P$ 在什么位置（$AB$ 的中点 $O$ 除外），$\triangle PAB$ 总是等腰三角形．</p>
+      <p class="tip" data-step="1">当 $PO=\sqrt3\,AO$ 时，$\triangle PAB$ 是<span class="think" data-step="2" data-ask="什么三角形？">等边三角形</span>．</p>
+      <p class="tip" data-step="3">点 $P$ 在什么位置时，$\triangle PAB$ 是等腰直角三角形？<span class="think" data-step="4" data-ask="先拖一拖">取 $PO=AO$，这样的点有<b>两个</b>（$l$ 上 $O$ 的两侧各一个）．</span></p>
+      <p class="method" data-step="5" data-label="发现">点 $P$ 在直线 $l$ 上，确定了 $PO$ 的长度（再说清在 $O$ 的哪一侧），就可以确定点 $P$ 的位置——直线上的点，<b>一个数据</b>就够了，和数轴一样．</p>
+    </div>
+  </div>
+  <p class="note">课本 p117 图 5-1 与两个小人的提示。拖动 P：画板在 PO = AO、PO = √3·AO 附近会吸附。PO = AO 时 ∠APB = 90°（两个 45° 的等腰直角三角形拼成）；PO = √3·AO 时 PA = 2AO = AB，三边相等。注意“这样的点有两个”：只给长度不给方向还不够，正像数轴上到原点距离为 2 的点有两个。</p>
+</section>
+
+<!-- 6 ================= 交流：图 5-2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>点 $P$ 动，点 $Q$ 跟着动：$OQ$ 怎样变化？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="rect" class="mid-b"></div>
+      <div class="readout r4"><span>$OP$</span><b class="v" id="rOP"></b><span>$OQ$</span><b class="v" id="rOQ"></b></div>
+      <div id="graph" class="graph-b"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="rClr">清除记录</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 5-2，点 $P$ 在长方形 $OABC$ 的边 $OA$ 上，过点 $P$ 作 $BP$ 的垂线，交 $OC$ 于点 $Q$．</p>
+      <p class="tip" data-step="1">(1) 在点 $P$ 从点 $O$ 出发沿 $OA$ 方向运动到点 $A$ 的过程中，随着 $OP$ 长度不断变大，$OQ$ 的长度是如何变化的？<span class="think" data-step="2" data-ask="拖 P 看看">开始时 $OP$ 变大，$OQ$ 也随着变大；当 $OP$ 继续变大时，$OQ$ 反而随之变小．</span></p>
+      <p class="tip" data-step="3">(2) 你能发现并提出怎样的问题？<span class="think" data-step="4" data-ask="提一个问题">猜想：点 $P$ 运动到某个位置时，线段 $OQ$ 的长度最大．这个位置在哪里？最大值是多少？</span></p>
+      <p class="recall" data-step="5" data-label="以后会解决">在后续的学习中，我们可以确定点 $P$ 的位置，使线段 $OQ$ 的长度最大，并解决 $OQ$ 的最大值是多少等问题．</p>
+    </div>
+  </div>
+  <p class="note">课本 p117–118 交流、图 5-2。画板中长方形 OA = 6、OC = 4（示例数据），Q 由“PQ ⊥ BP”按坐标精确作出。下面的小图把每个位置记成一个点（横向是 OP，纵向是 OQ）：一个位置对应两个数，点连起来是一条先升后降的曲线——这就是下一课“坐标”的雏形，也是第 6 章“函数”的雏形。不必说出最大值的求法（本例中 OP = 3 时 OQ 最大），只让学生观察、猜想。</p>
+</section>
+
+<!-- 7 ================= 练习：围棋 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>围棋盘上，怎样准确描述棋子的位置？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="go" class="go-b"></div>
+    </div>
+    <div class="col">
+      <p class="tip small-p">围棋棋盘由纵、横各 19 条平行线相交成 361 个交叉点组成．纵线从左到右用阿拉伯数字编为第 1～19 路，横线自上而下用汉字编为第一至十九路，按<b>先纵后横</b>的次序描述棋子的位置．例如点 $A$ 记为：5，十；点 $B$ 记为：10，十一．</p>
+      <p class="tip feedback" id="goMsg">点棋盘上的任意交叉点，看它的“地址”．</p>
+      <div class="hint-ladder">
+        <p class="q">(1) 分别说出棋盘上点 $C$、$D$、$E$、$F$ 的位置；</p>
+        <details><summary>答案</summary>$C$：4，四；$D$：16，四；$E$：16，十六；$F$：4，十六．</details>
+      </div>
+      <p class="tip">(2) 试在图中画出点 $M$：7，六；点 $N$：13，十六．<span id="goTask" class="go-task">（在左边棋盘上点出来）</span></p>
+      <p class="warn" data-label="顺序">“5，十”与“10，五”是两个不同的点：先纵（数字）后横（汉字）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p118 练习。棋盘、棋子位置照课本图。点任意交叉点会显示“纵，横”；点出 M、N 后会显示对勾。可以请两名学生一人报位置、一人落子，体会“两个数据 + 约定顺序”就能准确确定位置。习题 5.1 第 2 题的象棋记谱法（如“炮一退六”）是同样的道理，可课后与同桌下一下。</p>
+</section>
+
+<!-- 8 ================= 习题 3：周长最小 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>点 $O$ 在直线 $l$ 上移动，$\triangle OPQ$ 的周长何时最小？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="mirror" class="big-b"></div>
+      <div class="readout r4"><span>周长</span><b class="v" id="mPer"></b><span>最小值</span><b class="v" id="mMin"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="mShow">作 $P$ 关于 $l$ 的对称点</button></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>习题 5.1 第 3 题</b>　如图，点 $P$、$Q$ 在直线 $l$ 外，在点 $O$ 沿直线 $l$ 从左向右运动的过程中，形成了无数个三角形：$\triangle O_1PQ$、$\triangle O_2PQ$、…、$\triangle O_nPQ$、$\triangle O_{n+1}PQ$……观察这些三角形的周长是如何变化的？有没有最小值？如果有，试确定点 $O$ 的位置．</p>
+      <p class="tip feedback" id="mMsg"></p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>周长</span><span>$OP+OQ+PQ$，其中 $PQ$ 不变</span><i class="why">只要 $OP+OQ$ 最小</i></div>
+        <div class="dl" data-step="2"><span>作对称点</span><span class="think" data-step="3" data-ask="OP 等于谁？">$P$ 关于 $l$ 的对称点 $P'$，$OP=OP'$</span><i class="why">$l$ 垂直平分 $PP'$（2.4）</i></div>
+        <div class="dl end" data-step="4"><span>∴</span><span class="think" data-step="5" data-ask="什么时候最小？">$OP+OQ=OP'+OQ\ge P'Q$，$O$ 在 $P'Q$ 与 $l$ 的交点时最小</span><i class="why">两点之间线段最短</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 5.1 第 3 题。先拖 O 观察：周长先变小、后变大，有最小值。再点按钮作 P 的对称点 P′，学生会看到最小位置正是 P′Q 与 l 的交点。周长读数按坐标计算；“最小值”由对称点直接算出，拖到那里两个读数相等。这是第 2 章轴对称的应用，也说明“位置”可以由几何条件确定。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">直线上的点：一个数据（如数轴上的数、$PO$ 的长及方向）．</p>
+        <p class="def">平面内的点：一般需要两个数据，且有顺序（经度和纬度、排和号、纵线和横线）．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="描点">先找第一个数据对应的线，再找第二个数据对应的线，两线的交点就是所求的点．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="读一读 · 心电图（p118）">心电图把电压随时间的变化画成曲线，建立了“数”与“形”的联系；气温变化、水位变化也都可以用图形描绘．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>5.2 平面直角坐标系——把两条数轴垂直放在一起，平面内的每一个点就都有了一对“地址”．</p>
+  </div>
+  <p class="note">请学生说出：确定位置时，直线上要几个数据？平面内呢？还举出了哪些例子？心电图的阅读材料提到心率的算法（相邻两个 R 峰相隔 0.75 s，心率 = 60 ÷ 0.75 = 80 次/分），可作为课后阅读。作业建议：习题 5.1 第 1、2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

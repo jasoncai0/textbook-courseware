@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>探索三角形全等的条件 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mfold.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/taidiao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第1章 全等三角形 · 1.3</p>
+    <h1 class="cover-title">探索三角形全等的条件</h1>
+    <p class="cover-q" data-step="1">两个三角形全等，那么 3 组对应边、3 组对应角都分别相等。</p>
+    <p class="cover-q" data-step="2">反过来，要<b>判定</b>两个三角形全等，一定要把 6 组边和角都量一遍吗？<b>至少</b>需要几个条件？哪几个？</p>
+    <div class="chips" data-step="3"><span class="chip">SAS</span><span class="chip">ASA</span><span class="chip">AAS</span><span class="chip">SSS</span><span class="chip">HL</span><span class="chip">尺规作图</span><span class="chip">三角形的稳定性</span></div>
+  </div>
+  <p class="note">课本 p13 开头。本课内容很多（课本 p13–32），建议分 4～5 课时：①反例与 SAS（第 2–8 页）；②ASA、AAS（第 9–12 页）；③SSS 与稳定性（第 13–14 页）；④尺规作角平分线、垂线（第 15–16 页）；⑤HL 与小结（第 17–18 页）。封面的塔吊用的是三角形的稳定性（第 13 页）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>证明全等时常用的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="1.2 · 全等三角形" data-step="1">
+        <p>全等三角形的<b>对应边相等，对应角相等</b>；对应顶点写在对应位置上。</p>
+        <p class="small-t"><a href="../mj8a-quandengsanjiaoxing/index.html">回看：1.2 全等三角形</a></p>
+        <span class="use">先证全等，再得出边相等、角相等。</span>
+      </div>
+      <div class="recall" data-label="七下 7.2 · 平行线的性质" data-step="2">
+        <p>两直线平行，<b>同位角</b>相等、<b>内错角</b>相等。</p>
+        <p class="small-t"><a href="../mj7b-pingxingxingzhi/index.html">回看：七下 7.2 探索平行线的性质</a></p>
+        <span class="use">例 3、例 4、例 6：由平行得到一组相等的角。</span>
+      </div>
+      <div class="recall" data-label="七上 6.3 · 对顶角" data-step="3">
+        <p>对顶角相等；线段的中点把线段分成相等的两段。</p>
+        <p class="small-t"><a href="../mj7a-yujiaobujiao/index.html">回看：七上 6.3 余角、补角、对顶角</a></p>
+        <span class="use">例 2、例 8：图中“藏着”的相等条件。</span>
+      </div>
+      <div class="recall" data-label="七下 7.5 · 内角和" data-step="4">
+        <p>三角形三个内角的和等于 $180^\circ$：两个角分别相等，第三个角也相等。</p>
+        <p class="small-t"><a href="../mj7b-neijiaohe/index.html">回看：七下 7.5 多边形的内角和与外角和</a></p>
+        <span class="use">由 ASA 推出 AAS。</span>
+      </div>
+      <div class="recall" data-label="七年级 · 尺规作图" data-step="5">
+        <p>用圆规可以截取一条线段等于已知线段；以一点为圆心、定长为半径画弧，弧上的点到圆心的距离都相等。</p>
+        <span class="use">按条件作三角形；作角平分线、作垂线。</span>
+      </div>
+      <div class="tip gold" data-step="6"><b>本课问题：</b>两个三角形的 3 组边、3 组角中，满足哪几个条件，就能<b>判定</b>它们全等？</div>
+    </div>
+  </div>
+  <p class="note">五张卡对应本课证明中最常用的五种“相等的来源”：已知、公共边（角）、对顶角、平行线、内角和。后面的例题会一一用到。</p>
+</section>
+
+<!-- 3 ================= 讨论：1 个、2 个条件 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论 · p13</span><h2>只有 1 个或 2 个条件相等，够不够？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="cxBtns"><button class="btn solid" type="button" data-k="0">1 条边</button><button class="btn" type="button" data-k="1">1 个角</button><button class="btn" type="button" data-k="2">2 条边</button><button class="btn" type="button" data-k="3">2 个角</button><button class="btn" type="button" data-k="4">1 边 1 角</button></div>
+      <div id="cx" class="cx"></div>
+      <p class="tip feedback" id="cxMsg">选一种情况，看看能不能画出两个满足条件、却<b>不全等</b>的三角形。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">1. 当两个三角形的 1 对边或角相等时，它们全等吗？　<span class="think" data-step="2" data-ask="举反例">不一定，左图就是反例。</span></p>
+      <p class="tip" data-step="3">2. 有 2 对边或角分别相等时呢？　<span class="think" data-step="4" data-ask="举反例">仍然不一定（2 边、2 角、1 边 1 角都有反例）。</span></p>
+      <p class="tip" data-step="5">3. 交流（图 1-6）：$\triangle ABC$ 中 $AB=1.5$，$\angle B=45^\circ$，$BC=3$；$\triangle DEF$ 中 $DE=1.5$，$\angle D=60^\circ$，$DF=3$；$\triangle MNP$ 中 $MN=3$，$\angle N=45^\circ$，$NP=1.5$．哪两个能完全重合？</p>
+      <p class="tip" data-step="6"><span class="think" data-step="7" data-ask="猜一猜">$\triangle ABC$ 与 $\triangle MNP$：两边都是 1.5 和 3，<b>夹角</b>都是 $45^\circ$；$\triangle DEF$ 的夹角是 $60^\circ$，不能重合。</span></p>
+      <p class="method" data-step="8" data-label="结论">1 个、2 个条件都不能保证全等——至少要 <b>3 个</b>条件。是哪 3 个？</p>
+    </div>
+  </div>
+  <p class="note">课本 p13 讨论与交流。用左边的“反例机”逐一展示：两个三角形满足所选条件（相等的边画同样的记号，相等的角标同样的度数），但明显不能重合。图中三角形都是按长度、角度精确作出的。最后过渡：3 个条件有 SSS、SAS、ASA、AAS、SSA、AAA 六种组合，逐一研究。</p>
+</section>
+
+<!-- 4 ================= SAS 作图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · SAS</span><h2>已知两边及其夹角，作出的三角形都一样吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="labS" class="lab"></div>
+      <div class="slider-row" data-noswipe>$\angle\alpha=$<input type="range" id="labSal" min="25" max="140" step="5" value="50"><b class="v" id="labSalV"></b>　$a=$<input type="range" id="labSa" min="2" max="5" step="0.5" value="4"><b class="v" id="labSaV"></b>　$b=$<input type="range" id="labSb" min="2" max="5" step="0.5" value="3"><b class="v" id="labSbV"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="labSNew">换一位同学</button><button class="btn solid" type="button" id="labSGo">叠一叠</button></div>
+      <p class="tip feedback" id="labSMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">用直尺和圆规作 $\triangle ABC$，使 $\angle A=\angle\alpha$，$AB=a$，$AC=b$：</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>1.</span><span>作 $\angle MAN=\angle\alpha$</span></div>
+        <div class="dl" data-step="2"><span>2.</span><span>在射线 $AM$、$AN$ 上分别作线段 $AB=a$，$AC=b$</span></div>
+        <div class="dl" data-step="3"><span>3.</span><span>连接 $BC$，$\triangle ABC$ 就是所求作的三角形</span></div>
+      </div>
+      <p class="tip" data-step="4">你作的三角形与其他同学作的能完全重合吗？<span class="think" data-step="5" data-ask="叠一叠">能。$\angle A$ 一定、两边长一定，$B$、$C$ 的位置就定了，$BC$ 也就定了。</span></p>
+      <div class="def" data-step="6"><h4>基本事实（课本 p14）</h4>两边及其夹角分别相等的两个三角形全等（可以简写成“<b>边角边</b>”或“<b>SAS</b>”）．</div>
+    </div>
+  </div>
+  <p class="note">课本 p13–14 作图与基本事实。左图左边是“我作的”三角形（灰色细线是作图痕迹），右边是“另一位同学”作的——摆放方向是随机的，可能还翻了个面。点“叠一叠”，它经过旋转、翻折、平移回到“我的”三角形上，完全重合。改变 α、a、b 再试。“基本事实”是从实践中总结、不再证明的结论，以后可以直接作为推理依据。</p>
+</section>
+
+<!-- 5 ================= 为什么是夹角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨析 · SSA</span><h2>如果相等的角不是两边的<b>夹角</b>呢？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ssa" class="ssa"></div>
+      <div class="slider-row" data-noswipe>$\angle A=$<input type="range" id="ssaA" min="25" max="60" step="1" value="35"><b class="v" id="ssaAV"></b>　$BC=$<input type="range" id="ssaa" min="1.6" max="4.8" step="0.1" value="2.8"><b class="v" id="ssaaV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">固定 $AB=4$、$\angle A$。以 $B$ 为圆心、$BC$ 的长为半径画弧，交射线 $AN$ 于点 $C$——</p>
+      <p class="tip feedback" id="ssaMsg"></p>
+      <p class="tip" data-step="1">$\triangle ABC_1$ 和 $\triangle ABC_2$ 中：$AB=AB$，$\angle A=\angle A$，$BC_1=BC_2$．它们全等吗？<span class="think" data-step="2" data-ask="看图判断">不全等：一个“胖”、一个“瘦”，$AC_1\ne AC_2$。</span></p>
+      <p class="warn" data-step="3" data-label="两边及其中一边的对角（SSA）">两边及<b>其中一边的对角</b>分别相等，两个三角形<b>不一定</b>全等。用 SAS 时，相等的角必须是两条边的<b>夹角</b>。</p>
+    </div>
+  </div>
+  <p class="note">本页对应课本 p13 讨论“2 对边及 1 对角”中“角不是夹角”的情形，是 SAS 的反例。拖 BC：圆弧与射线有两个交点时出现两个不全等的三角形；BC ≥ AB 时只剩一个交点（射线反方向的那个不算）；BC 太短时弧碰不到射线。所有点都由圆与直线的交点公式精确算出。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · SAS</span><h2>证明格式：在两个三角形中，列出三个条件</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">已知：如图 1-7，$AB=AD$，$\angle BAC=\angle DAC$．求证：$\triangle ABC\cong\triangle ADC$．</p>
+      <div id="e1" class="gfig l"></div>
+      <button class="btn" type="button" data-noswipe id="e1Go">沿 $AC$ 翻折看一看</button>
+      <p class="recall" data-step="5" data-label="读一读：图形的运动与“SAS”">把 $\triangle ABC$ 叠到 $\triangle A'B'C'$ 上，使 $BC$ 与 $B'C'$ 重合。因为 $\angle B=\angle B'$，射线 $BA$ 落在射线 $B'A'$ 上；又 $BA=B'A'$，点 $A$ 与 $A'$ 重合——两点确定一条直线，$AC$ 与 $A'C'$ 重合，两个三角形重合。</p>
+    </div>
+    <div class="col">
+      <div class="pf" data-step="1">
+        <p><b>证明：</b>在 $\triangle ABC$ 和 $\triangle ADC$ 中，</p>
+        <div class="brace">
+          <p>$AB=AD$（已知），</p>
+          <p>$\angle BAC=\angle DAC$（已知），</p>
+          <p><span class="think" data-step="2" data-ask="第三个条件从哪来？">$AC=AC$（公共边），</span></p>
+        </div>
+        <p>∴ $\triangle ABC\cong\triangle ADC$（SAS）．</p>
+      </div>
+      <p class="method" data-step="3" data-label="书写格式">① 指明在哪两个三角形中；② 大括号里按“边、角、边”的顺序列条件，每条写依据；③ 结论后括号注明判定方法。</p>
+      <p class="warn" data-step="4" data-label="隐含条件">公共边 $AC$ 不写在“已知”里，却是证明的关键——找全等时先看图中有没有<b>公共边、公共角、对顶角</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p14 例 1 与 p15“读一读”。证明前先让学生找：已知给了哪两个条件？还缺哪一个？（缺 AC，图中“共用”）。点按钮看 △ABC 沿 AC 翻折后与 △ADC 重合（课本小人：其中一个三角形沿 AC 翻折后能与另一个重合）。读一读里的说理就是 SAS 的“运动说明”，可以让学生仿照它说明例 1。</p>
+</section>
+
+<!-- 7 ================= 例 2、例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>先找“藏着”的条件，再用 SAS</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 2</b>　如图 1-8，$AB$、$CD$ 相交于点 $E$，且 $E$ 是 $AB$、$CD$ 的中点．求证：$\triangle AEC\cong\triangle BED$．</p>
+        <div id="e2" class="gfig s"></div>
+        <div class="pf small-pf" data-step="1">
+          <p>∵ $E$ 是 $AB$、$CD$ 的中点（已知），∴ $AE=BE$，$CE=DE$（线段中点的定义）．</p>
+          <p>在 $\triangle AEC$ 和 $\triangle BED$ 中，</p>
+          <div class="brace"><p>$AE=BE$（已证），</p><p><span class="think" data-step="2" data-ask="夹角？">$\angle AEC=\angle BED$（对顶角相等），</span></p><p>$CE=DE$（已证），</p></div>
+          <p>∴ $\triangle AEC\cong\triangle BED$（SAS）．</p>
+        </div>
+        <p class="tip small" data-step="3">讨论：能证明 $AC\parallel DB$ 吗？<span class="think" data-step="4" data-ask="想一想">由全等得 $\angle A=\angle B$（全等三角形的对应角相等），内错角相等，两直线平行。</span></p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 3</b>　如图 1-9，点 $E$、$F$ 在 $CD$ 上，且 $CE=DF$，$AE=BF$，$AE\parallel BF$．求证：$\triangle AEC\cong\triangle BFD$．</p>
+        <div id="e3" class="gfig s"></div>
+        <div class="pf small-pf" data-step="5">
+          <p>∵ $AE\parallel BF$（已知），∴ <span class="think" data-step="6" data-ask="哪对角相等？">$\angle AEC=\angle BFD$（两直线平行，内错角相等）</span>．</p>
+          <p>在 $\triangle AEC$ 和 $\triangle BFD$ 中，</p>
+          <div class="brace"><p>$AE=BF$（已知），</p><p>$\angle AEC=\angle BFD$（已证），</p><p>$CE=DF$（已知），</p></div>
+          <p>∴ $\triangle AEC\cong\triangle BFD$（SAS）．</p>
+        </div>
+        <button class="btn" type="button" data-noswipe id="e3Go">把 △AEC 绕 CD 的中点转 180°</button>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p15–16 例 2、例 3。例 2 的夹角来自对顶角，例 3 的夹角来自平行线——都不是直接给的。例 3 旁边课本小人问“能否改变图 1-9 中 △AEC 的位置得到图 1-8？”点按钮演示：△AEC 绕 CD 的中点旋转 180° 与 △BFD 重合（图按 E、F 关于 CD 中点对称精确画出）。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · p14、p16</span><h2>找全等三角形；补全证明</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>p14 练习 1</b>　找出图中的全等三角形，并说明理由．</p>
+        <div id="pk" class="pk"></div>
+        <p class="tip small"><span class="think" data-step="1" data-ask="哪几对？">① 与 ④（两边 5、4，夹角 $30^\circ$，SAS）；③ 与 ⑤（两边 4、6，夹角 $40^\circ$，SAS）。② 与 ⑥ 两边都是 4，但夹角 $40^\circ\ne30^\circ$。</span></p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>p16 练习 1</b>　已知：如图，$C$ 是 $AB$ 的中点，$AE=BD$，$\angle A=\angle B$．求证：$\angle E=\angle D$．</p>
+        <div id="pr1" class="gfig"></div>
+        <div class="pf small-pf">
+          <p>∵ $C$ 是 $AB$ 的中点（已知），∴ <span class="think" data-step="2" data-ask="填空">$AC=BC$（线段中点的定义）</span>．</p>
+          <p>在 $\triangle AEC$ 和 $\triangle BDC$ 中，</p>
+          <div class="brace"><p><span class="think" data-step="3" data-ask="填空">$AE=BD$（已知），</span></p><p><span class="think" data-step="4" data-ask="填空">$\angle A=\angle B$（已知），</span></p><p><span class="think" data-step="5" data-ask="填空">$AC=BC$（已证），</span></p></div>
+          <p>∴ $\triangle AEC\cong\triangle BDC$（<span class="think" data-step="6" data-ask="?">SAS</span>）．</p>
+          <p>∴ $\angle E=\angle D$（<span class="think" data-step="7" data-ask="依据？">全等三角形的对应角相等</span>）．</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p14 练习 1、p16 练习 1。左题按课本数据精确画出 6 个三角形（边长比例、角度都准确），先让学生找，再点开。右题是“先证全等、再用性质”的标准两步，填空时特别注意第二行要填的是“夹角” ∠A、∠B。</p>
+</section>
+
+<!-- 9 ================= ASA ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · ASA</span><h2>已知两角及其夹边，作出的三角形都一样吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="labA" class="lab"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="labAa" min="2.5" max="5" step="0.5" value="4"><b class="v" id="labAaV"></b>　$\angle\alpha=$<input type="range" id="labAal" min="25" max="100" step="5" value="50"><b class="v" id="labAalV"></b>　$\angle\beta=$<input type="range" id="labAbe" min="25" max="70" step="5" value="40"><b class="v" id="labAbeV"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="labANew">换一位同学</button><button class="btn solid" type="button" id="labAGo">叠一叠</button></div>
+      <p class="tip feedback" id="labAMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">讨论（图 1-10）：$\angle B=40^\circ$、$BC=2.5$、$\angle C=60^\circ$ 的 $\triangle ABC$，与 $\angle Q=40^\circ$、$QP=2.5$、$\angle R=60^\circ$ 的 $\triangle PQR$，$\angle D=40^\circ$、$DE=2.5$、$\angle E=60^\circ$ 的 $\triangle DEF$ 能完全重合吗？<span class="think" data-step="1" data-ask="哪个能？">$\triangle DEF$ 能：2.5 那条边夹在 $40^\circ$、$60^\circ$ 两角之间；$\triangle PQR$ 中 2.5 的边不是两角的夹边，不能重合。</span></p>
+      <div class="derive small-d">
+        <div class="dl" data-step="2"><span>作法</span><span>1. 作 $AB=a$；2. 在 $AB$ 同侧作 $\angle MAB=\angle\alpha$、$\angle NBA=\angle\beta$，$AM$、$BN$ 交于点 $C$</span></div>
+      </div>
+      <div class="def" data-step="3"><h4>基本事实（课本 p18）</h4>两角及其夹边分别相等的两个三角形全等（可以简写成“<b>角边角</b>”或“<b>ASA</b>”）．</div>
+    </div>
+  </div>
+  <p class="note">课本 p17–18 讨论、操作与基本事实。图 1-10 中 △PQR 的 2.5 在 ∠Q 与 ∠P 之间（∠P = 80°），所以与 △ABC 不能重合——这正是“夹边”的意义。左边作图板：两条射线的方向一定，交点 C 唯一，所以大家作的三角形都能重合。</p>
+</section>
+
+<!-- 10 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · ASA</span><h2>分析：要证线段相等，先找它们所在的全等三角形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 1-11，在 $\triangle ABC$ 中，$D$ 是 $BC$ 的中点，点 $E$、$F$ 分别在 $AB$、$AC$ 上，且 $DE\parallel AC$，$DF\parallel AB$．求证：$BE=DF$，$DE=CF$．</p>
+      <div id="e4" class="gfig l"></div>
+      <p class="method" data-step="1" data-label="分析（从结论往回想）">要证 $BE=DF$，$DE=CF$ ⟸ 只要证 $\triangle EBD\cong\triangle FDC$ ⟸ 已知 $BD=DC$，只要证 $\angle B=\angle FDC$，$\angle EDB=\angle C$．</p>
+    </div>
+    <div class="col">
+      <div class="pf small-pf" data-step="2">
+        <p><b>证明：</b>∵ $DE\parallel AC$，$DF\parallel AB$（已知），</p>
+        <p>∴ $\angle EDB=\angle C$，$\angle B=\angle FDC$（<span class="think" data-step="3" data-ask="依据？">两直线平行，同位角相等</span>）．</p>
+        <p>∵ $D$ 是 $BC$ 的中点（已知），∴ $BD=DC$（线段中点的定义）．</p>
+        <p>在 $\triangle EBD$ 和 $\triangle FDC$ 中，</p>
+        <div class="brace"><p>$\angle EDB=\angle C$（已证），</p><p>$BD=DC$（已证），</p><p>$\angle B=\angle FDC$（已证），</p></div>
+        <p>∴ $\triangle EBD\cong\triangle FDC$（ASA）．</p>
+        <p>∴ $BE=DF$，$DE=CF$（<span class="think" data-step="4" data-ask="依据？">全等三角形的对应边相等</span>）．</p>
+      </div>
+      <p class="tip small" data-step="5">练习（p19 第 2 题）：$AB$、$CD$ 交于 $O$，$O$ 是 $AB$ 中点，$AC\parallel BD$，求证 $O$ 是 $CD$ 中点。<span class="think" data-step="6" data-ask="思路">$\angle A=\angle B$（内错角），$OA=OB$，$\angle AOC=\angle BOD$（对顶角）⇒ ASA ⇒ $OC=OD$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p18 例 4（含“分析”）。“分析”是从结论往回推的思路（执果索因），“证明”是从已知往结论写（由因导果）。图中 E、F 由平行线精确作出：E 是 AB 的中点、F 是 AC 的中点（三角形中位线的结论以后会学，这里不讲）。</p>
+</section>
+
+<!-- 11 ================= AAS ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推论 · AAS</span><h2>两角和其中一角的<b>对边</b>相等，行不行？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">思考（图 1-12）：在 $\triangle ABC$ 和 $\triangle MNP$ 中，$\angle A=\angle M$，$\angle B=\angle N$，$BC=NP$．它们全等吗？</p>
+      <div id="f112" class="gfig s"></div>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>∵</span><span>$\angle A=\angle M$，$\angle B=\angle N$</span><i class="why">已知</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="第三个角呢？">$\angle C=\angle P$</span><i class="why">三角形内角和为 $180^\circ$：$\angle C=180^\circ-\angle A-\angle B$</i></div>
+        <div class="dl end" data-step="4"><span>∴</span><span>$\triangle ABC\cong\triangle MNP$</span><i class="why">$\angle B=\angle N$，$BC=NP$，$\angle C=\angle P$（ASA）</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>推论（课本 p20）</h4>两角分别相等且其中一组等角的对边相等的两个三角形全等（可以简写成“<b>角角边</b>”或“<b>AAS</b>”）．</div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 5</b>　如图 1-13，$\triangle ABC\cong\triangle A'B'C'$，$AD$、$A'D'$ 分别是 $\triangle ABC$ 和 $\triangle A'B'C'$ 的高．求证：$AD=A'D'$．</p>
+      <div id="e5" class="gfig s"></div>
+      <div class="pf small-pf" data-step="6">
+        <p>∵ $\triangle ABC\cong\triangle A'B'C'$，∴ $AB=A'B'$，$\angle B=\angle B'$（全等三角形的对应边、对应角相等）．</p>
+        <p>∵ $AD$、$A'D'$ 是高，∴ $\angle ADB=\angle A'D'B'=90^\circ$．</p>
+        <p>在 $\triangle ABD$ 和 $\triangle A'B'D'$ 中，</p>
+        <div class="brace"><p>$\angle B=\angle B'$，</p><p>$\angle ADB=\angle A'D'B'$，</p><p>$AB=A'B'$，</p></div>
+        <p>∴ $\triangle ABD\cong\triangle A'B'D'$（<span class="think" data-step="7" data-ask="哪种？">AAS</span>），∴ $AD=A'D'$．</p>
+      </div>
+      <p class="tip small" data-step="8">讨论：若 $AD$、$A'D'$ 是角平分线（或中线），$AD=A'D'$ 吗？<span class="think" data-step="9" data-ask="想一想">相等。角平分线：ASA；中线：SAS。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p19–20 思考、推论与例 5。AAS 是由 ASA 和内角和定理“推”出来的，所以叫推论，可以直接用。例 5 中 AB 不是 ∠B 与 ∠ADB 的夹边，而是 ∠ADB 的对边，所以用 AAS。例 5 的图：A′B′C′ 由 ABC 平移得到，高的垂足由坐标算出。</p>
+</section>
+
+<!-- 12 ================= 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6 · AAS</span><h2>结论不在三角形里？先把它“转化”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 1-16，点 $A$、$B$、$C$、$D$ 在一条直线上，$EA\parallel FB$，$EC\parallel FD$，$EA=FB$．求证：$AB=CD$．</p>
+      <div id="e6" class="gfig l"></div>
+      <p class="method" data-step="1" data-label="分析">要证 $AB=CD$，只要证 $AB+BC=CD+BC$，即 $AC=BD$——只要证 $\triangle EAC\cong\triangle FBD$．</p>
+      <button class="btn" type="button" data-noswipe id="e6Go">把 △EAC 沿直线平移到 △FBD</button>
+    </div>
+    <div class="col">
+      <div class="pf small-pf" data-step="2">
+        <p><b>证明：</b>∵ $EA\parallel FB$，$EC\parallel FD$（已知），</p>
+        <p>∴ $\angle A=\angle FBD$，$\angle ECA=\angle D$（两直线平行，同位角相等）．</p>
+        <p>在 $\triangle EAC$ 和 $\triangle FBD$ 中，</p>
+        <div class="brace"><p>$\angle A=\angle FBD$（已证），</p><p>$\angle ECA=\angle D$（已证），</p><p>$EA=FB$（已知），</p></div>
+        <p>∴ $\triangle EAC\cong\triangle FBD$（AAS）．∴ $AC=BD$，</p>
+        <p>即 $AB+BC=CD+BC$．∴ $AB=CD$（等式的性质）．</p>
+      </div>
+      <div class="arrow-pf" data-step="3">
+        <p class="small-t">用符号“⇒”简明地表述：</p>
+        <p>$\left.\begin{aligned}&EA\parallel FB\Rightarrow\angle A=\angle FBD\\&EC\parallel FD\Rightarrow\angle ECA=\angle D\\&EA=FB\end{aligned}\right\}\Rightarrow\triangle EAC\cong\triangle FBD\Rightarrow AC=BD\Rightarrow AB=CD$</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p21–22 例 6。关键一步是“转化”：AB、CD 不在两个可能全等的三角形里，但都加上公共部分 BC 后就是 AC、BD。“⇒”的表述把推理链条一目了然地串起来，适合在黑板上做思路分析。按钮演示 △EAC 沿直线平移后与 △FBD 重合（AB 就是平移的距离）。</p>
+</section>
+
+<!-- 13 ================= SSS ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · SSS</span><h2>已知三条边，作出的三角形都一样吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="labT" class="lab"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="labTa" min="2" max="5" step="0.5" value="4"><b class="v" id="labTaV"></b>　$b=$<input type="range" id="labTb" min="1" max="5" step="0.5" value="3"><b class="v" id="labTbV"></b>　$c=$<input type="range" id="labTc" min="1" max="5" step="0.5" value="2.5"><b class="v" id="labTcV"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="labTNew">换一位同学</button><button class="btn solid" type="button" id="labTGo">叠一叠</button></div>
+      <p class="tip feedback" id="labTMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>1.</span><span>作线段 $BC=a$</span></div>
+        <div class="dl" data-step="2"><span>2.</span><span>分别以 $B$、$C$ 为圆心，$c$、$b$ 的长为半径画弧，两弧交于点 $A$</span></div>
+        <div class="dl" data-step="3"><span>3.</span><span>连接 $AB$、$AC$，$\triangle ABC$ 就是所求作的三角形</span></div>
+      </div>
+      <div class="def" data-step="4"><h4>基本事实（课本 p23）</h4>三边分别相等的两个三角形全等（可以简写成“<b>边边边</b>”或“<b>SSS</b>”）．</div>
+      <p class="recall" data-step="5" data-label="三角形的稳定性">三角形三边的长度确定，它的形状和大小就完全确定——这个性质叫做<b>三角形的稳定性</b>（图 1-17，塔吊、空调架）。</p>
+      <div id="frame4" class="frame4" data-step="6"></div>
+      <p class="tip small" data-step="6">讨论：四边形有稳定性吗？拖一拖上面四根木条钉成的框架。<span class="think" data-step="7" data-ask="结论">没有：四边长度不变，形状却能改变。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p23–24 作图、基本事实、稳定性。左边作图板：两弧的交点由圆与圆的交点公式算出；把 b、c 调小，使 b + c ≤ a，两弧不再相交——三条线段围不成三角形（七下学过的三边关系）。右下的四边形框架：拖橙色点，四条边长度保持不变，形状在变（四点坐标由圆的交点实时算出）。</p>
+</section>
+
+<!-- 14 ================= 例 7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · SSS</span><h2>添辅助线，造出两个全等三角形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 1-18，在 $\triangle ABC$ 中，$AB=AC$．求证：$\angle B=\angle C$．</p>
+      <div id="e7" class="gfig l"></div>
+      <p class="method" data-step="1" data-label="分析">要证 $\angle B=\angle C$，只要设法使 $\angle B$、$\angle C$ 分别在两个三角形中，然后证明这两个三角形全等——作中线 $AD$．</p>
+    </div>
+    <div class="col">
+      <div class="pf small-pf" data-step="2">
+        <p><b>证明：</b>作 $\triangle ABC$ 的中线 $AD$．</p>
+        <p>在 $\triangle ABD$ 和 $\triangle ACD$ 中，</p>
+        <div class="brace"><p>$AB=AC$（已知），</p><p>$BD=CD$（<span class="think" data-step="3" data-ask="依据？">辅助线作法</span>），</p><p>$AD=AD$（公共边），</p></div>
+        <p>∴ $\triangle ABD\cong\triangle ACD$（SSS）．</p>
+        <p>∴ $\angle B=\angle C$（全等三角形的对应角相等）．</p>
+      </div>
+      <p class="tip small" data-step="4">思考：还有不同的方法证明 $\angle B=\angle C$ 吗？<span class="think" data-step="5" data-ask="提示">作 $\angle BAC$ 的平分线 $AD$，用 SAS。</span></p>
+      <p class="warn" data-step="6" data-label="练习 1：三对内角分别相等（AAA）">两个三角形三个角分别相等，<b>不一定</b>全等——一大一小、形状相同（第 3 页“2 个角”的反例）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p24 例 7、思考、练习 1。辅助线要写清“作法”，作出的条件依据写“辅助线作法”。到此为止，三个条件的六种组合都研究过了：SSS、SAS、ASA、AAS 可以；SSA、AAA 不行。</p>
+</section>
+
+<!-- 15 ================= 作角平分线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尺规作图</span><h2>用直尺和圆规作角的平分线——凭什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="bis" class="cons"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="bisPrev">上一步</button><button class="btn solid" type="button" id="bisNext">下一步</button></div>
+      <p class="muted center small-t">拖动点 $A$ 改变 $\angle AOB$ 的大小，作图步骤会重新计算</p>
+    </div>
+    <div class="col">
+      <p class="tip small">思考（图 1-19）：工人师傅在 $OA$、$OB$ 上取 $OC=OD$，移动角尺使两边相同刻度 $MC=MD$，射线 $OM$ 就平分 $\angle AOB$．<span class="think" data-step="1" data-ask="为什么？">$OC=OD$，$MC=MD$，$OM=OM$ ⇒ $\triangle OCM\cong\triangle ODM$（SSS）⇒ $\angle COM=\angle DOM$。</span></p>
+      <div class="derive small-d">
+        <div class="dl"><span>1.</span><span>以 $O$ 为圆心、任意长为半径作弧，分别交 $OA$、$OB$ 于点 $C$、$D$</span></div>
+        <div class="dl"><span>2.</span><span>分别以 $C$、$D$ 为圆心，大于 $\frac12CD$ 的长为半径作弧，两弧在 $\angle AOB$ 内部交于点 $M$</span></div>
+        <div class="dl"><span>3.</span><span>作射线 $OM$，$OM$ 就是 $\angle AOB$ 的平分线</span></div>
+      </div>
+      <p class="tip feedback" id="bisMsg"></p>
+      <p class="warn" data-step="2" data-label="为什么半径要“大于 ½CD”？">半径不大于 $\frac12CD$，以 $C$、$D$ 为圆心的两弧就不相交，找不到点 $M$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p25 思考与作法。作图板按步骤演示（每一步的弧、交点都由坐标精确计算），第 3 步后会显示 ∠COM 与 ∠DOM 的度数。说理的关键：作法第 1 步保证 OC = OD，第 2 步保证 CM = DM，再加公共边 OM，用 SSS。课本 p26 练习 1(1)“把 ∠MON 四等分”：先平分，再把两个半角各平分一次。</p>
+</section>
+
+<!-- 16 ================= 作垂线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尺规作图</span><h2>过直线外一点作已知直线的垂线</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="perp" class="cons"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="perpPrev">上一步</button><button class="btn solid" type="button" id="perpNext">下一步</button></div>
+      <p class="muted center small-t">拖动点 $P$ 换一个位置，作图步骤会重新计算</p>
+    </div>
+    <div class="col">
+      <p class="tip small">讨论（图 1-20）：$PC=PD$，$QC=QD$，$PQ$、$CD$ 交于 $E$．能证明 $PQ\perp CD$ 吗？<span class="think" data-step="1" data-ask="思路">$\triangle PCQ\cong\triangle PDQ$（SSS）⇒ $\angle CPE=\angle DPE$ ⇒ $\triangle PCE\cong\triangle PDE$（SAS）⇒ $\angle PEC=\angle PED=90^\circ$。</span></p>
+      <div class="derive small-d">
+        <div class="dl"><span>1.</span><span>以 $P$ 为圆心、适当的长为半径作弧，使它与 $AB$ 交于点 $C$、$D$</span></div>
+        <div class="dl"><span>2.</span><span>分别以 $C$、$D$ 为圆心，大于 $\frac12CD$ 的长为半径作弧，两弧交于点 $Q$</span></div>
+        <div class="dl"><span>3.</span><span>作直线 $PQ$，$PQ$ 就是经过点 $P$ 的 $AB$ 的垂线</span></div>
+      </div>
+      <p class="tip feedback" id="perpMsg"></p>
+      <p class="tip small" data-step="2">思考：点 $P$ 在直线 $AB$ 上时，怎样作垂线？<span class="think" data-step="3" data-ask="提示">以 $P$ 为圆心画弧交 $AB$ 于 $C$、$D$（$PC=PD$），再以 $C$、$D$ 为圆心、大于 $\frac12CD$ 为半径画弧交于 $Q$，直线 $PQ$ 即为所求——相当于作平角 $\angle CPD$ 的平分线。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p25–26 讨论与作法。演示中第 2 步的半径取 0.8·CD（大于 ½CD），两弧交点 Q 在 AB 的另一侧；第 3 步后显示 PQ 与 AB 的夹角，始终是 90°。讨论的证明要两次全等，适合作为“分析法”的练习。</p>
+</section>
+
+<!-- 17 ================= HL ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">直角三角形 · HL</span><h2>斜边和一条直角边相等，两个直角三角形全等吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="hl" class="hlb"></div>
+      <div class="slider-row" data-noswipe>直角边 $a=$<input type="range" id="hla" min="1.5" max="4" step="0.5" value="2.5"><b class="v" id="hlaV"></b>　斜边 $c=$<input type="range" id="hlc" min="2" max="5.5" step="0.5" value="4"><b class="v" id="hlcV"></b></div>
+      <p class="tip feedback" id="hlMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip small">作 Rt$\triangle ABC$，使 $\angle C=90^\circ$，$CB=a$，$AB=c$：1. 作 $\angle PCQ=90^\circ$；2. 在射线 $CP$ 上截取 $CB=a$；3. 以 $B$ 为圆心、$c$ 为半径作弧交射线 $CQ$ 于点 $A$；4. 连接 $AB$．<span class="think" data-step="1" data-ask="交点唯一吗？">斜边比直角边长，弧与射线 $CQ$ 只有一个交点，三角形唯一确定。</span></p>
+      <div class="def" data-step="2"><h4>定理（课本 p28）</h4>斜边和一条直角边分别相等的两个直角三角形全等（可以简写成“<b>斜边、直角边</b>”或“<b>HL</b>”）．</div>
+      <div class="pf small-pf" data-step="3">
+        <p><b>例 8</b>　如图 1-22，$AD$、$BC$ 交于 $O$，$AD=BC$，$\angle C=\angle D=90^\circ$．求证：$AO=BO$，$CO=DO$．</p>
+        <p>在 Rt$\triangle ABC$ 和 Rt$\triangle BAD$ 中，$\begin{cases}BC=AD\text{（已知），}\\AB=BA\text{（公共边），}\end{cases}$ ∴ Rt$\triangle ABC\cong$ Rt$\triangle BAD$（HL），∴ $AC=BD$．</p>
+        <p>在 $\triangle AOC$ 和 $\triangle BOD$ 中，$\angle C=\angle D$，$\angle AOC=\angle BOD$（对顶角），$AC=BD$ ⇒ $\triangle AOC\cong\triangle BOD$（<span class="think" data-step="4" data-ask="?">AAS</span>）⇒ $AO=BO$，$CO=DO$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p27–28 讨论、操作、定理与例 8。SSA 一般不能判定全等（第 5 页），但当那个角是<b>直角</b>时可以——这就是 HL。课本小人的说明：把两个直角三角形拼在一起（像例 7），可得 ∠B = ∠B′，再用 AAS。注意 HL 只适用于直角三角形，书写时写“Rt△”。</p>
+</section>
+
+<!-- 18 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>判定两个三角形全等：五种方法</h2></div>
+  <div class="bd full">
+    <table class="mtab sumtab" data-step="1">
+      <tr><th>方法</th><th>条件</th><th>注意</th></tr>
+      <tr><td>SAS</td><td>两边及其<b>夹角</b></td><td>角必须是两边的夹角（SSA 不行）</td></tr>
+      <tr><td>ASA</td><td>两角及其<b>夹边</b></td><td>边夹在两角之间</td></tr>
+      <tr><td>AAS</td><td>两角及其中一角的<b>对边</b></td><td>由 ASA 和内角和推出</td></tr>
+      <tr><td>SSS</td><td>三边</td><td>三角形的稳定性</td></tr>
+      <tr><td>HL</td><td>斜边和一条直角边</td><td>只用于直角三角形</td></tr>
+    </table>
+    <div class="cols3 sum">
+      <p class="warn" data-step="2" data-label="不能判定">SSA、AAA（第 3、5 页的反例）。</p>
+      <p class="method" data-step="3" data-label="找条件">已知；公共边/角；对顶角；平行线得角；中点得边；内角和得角；等量加减。</p>
+      <p class="recall" data-step="4" data-label="思路">分析法：要证 → 只要证 → 只要证；证明时由因导果，每步写依据。</p>
+    </div>
+    <div class="hint-ladder" data-step="5">
+      <p class="q"><b>习题 1.3 第 1 题</b>　①～⑥ 中：① Rt$\triangle MNP$，直角边 12、8；② $XY=14$，$XZ=8$，$\angle X=150^\circ$；③ $AB=12$，$\angle B=150^\circ$，$BC=8$；④ $SR=12$，$\angle R=150^\circ$，$RT=8$；⑤ $DE=14$，$\angle E=150^\circ$，$EF=8$；⑥ Rt$\triangle GHK$，直角边 12、8．指出全等三角形．</p>
+      <details><summary>答案</summary>① 与 ⑥、② 与 ⑤、③ 与 ④，理由都是 SAS（夹角分别是 $90^\circ$、$150^\circ$、$150^\circ$）。</details>
+    </div>
+    <p class="tip gold" data-step="6"><b>下一章：</b><a href="../mj8a-zhouduicheng/index.html">第 2 章 轴对称图形</a>——“翻折”带来的全等。课后挑战：习题 1.3 第 7 题（测河宽）、第 17 题（三角尺画角平分线）。</p>
+  </div>
+  <p class="note">小结先让学生默写五种判定方法再看表。习题 1.3 第 1 题用来检查“夹角”意识。下一章的 2.1 会从“翻折”出发认识轴对称，前后衔接。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mfold.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>平方根 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/haibian.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第4章 实数 · 4.1</p>
+    <h1 class="cover-title">平方根</h1>
+    <p class="cover-q" data-step="1">上一章我们会用勾股定理求斜边：$AB^2=25$，所以 $AB=5$。</p>
+    <p class="cover-q" data-step="2">可如果算出来 $A'B'^2=41$ 呢？<b>哪个数的平方等于 41？</b>这样的数有几个？</p>
+    <div class="chips" data-step="3"><span class="chip">$x^2=a$</span><span class="chip">平方根 $\pm\sqrt a$</span><span class="chip">算术平方根 $\sqrt a$</span><span class="chip">欲穷千里目</span></div>
+  </div>
+  <p class="note">课本 p94 开头：小丽算出 $A'B'^2=41$ 却卡住了。封面只抛问题“平方等于 41 的数是什么、有几个”，让学生先猜。本课主线：由“已知平方求底数”引出平方根，再从两个平方根中挑出“正的那个”——算术平方根。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八上 3.1 · 勾股定理" data-step="1">
+        <p>直角三角形中 $a^2+b^2=c^2$。</p>
+        <p>上一章求边长，题目数据都是“凑好的”：$c^2=169$，所以 $c=13$。</p>
+        <span class="use">第 3 页算图 4-1 的 $AB$、$A'B'$；第 10 页例 4 背后的道理。（<a href="../mj8a-gougudingli/index.html">回看 3.1</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 2.7 · 有理数的乘方" data-step="2">
+        <p>$2^2=4$，$(-2)^2=4$：<b>互为相反数</b>的两个数，平方相等。</p>
+        <p>正数、负数的平方都是正数，$0^2=0$——<b>任何数的平方都不是负数</b>。</p>
+        <span class="use">第 4、6 页：为什么正数有两个平方根、负数没有。（<a href="../mj7a-chengfang/index.html">回看 2.7</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 2.2 · 无理数" data-step="3">
+        <p>两个边长为 1 的正方形剪拼成一个大正方形，边长 $a$ 满足 $a^2=2$。</p>
+        <p>$a=1.414\,21\cdots$ 是无限不循环小数——<b>无理数</b>。</p>
+        <span class="use">第 5 页：这个 $a$ 终于有了自己的记号 $\sqrt2$。（<a href="../mj7a-youlishu/index.html">回看 2.2</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主角：</b>平方是“已知底数求平方”；今天反过来——<b>已知一个数的平方，求这个数</b>。</p>
+  </div>
+  <p class="note">每张卡先请学生口头答，再看“本课用在”。第二张卡最关键：“互为相反数的平方相等”决定了平方根成对出现，“平方不会是负数”决定了负数没有平方根——第 4 页的操作会让学生亲眼看到这两点。</p>
+</section>
+
+<!-- 3 ================= 问题引入（图 4-1） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题</span><h2>$A'B'^2=41$，$A'B'$ 是多少？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fig41" class="fig41"></div>
+      <p class="muted center small-t">图 4-1：小方格的边长为 1</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$AB$</span><span class="think" data-step="2" data-ask="怎样算？">$AB^2=3^2+4^2=25$，$AB=5$</span><i class="why">勾股定理；$5^2=25$</i></div>
+        <div class="dl key" data-step="3"><span>$A'B'$</span><span class="think" data-step="4" data-ask="能算出来吗？">$A'B'^2=4^2+5^2=41$，$A'B'=\ ?$</span><i class="why">找不到一个“熟悉”的数，它的平方等于 41</i></div>
+      </div>
+      <p class="tip" data-step="5">要解决小丽的问题，就要研究：当 $x^2=a$ 时，$x$ 是什么数？</p>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>$x^2=4$</span><span class="think" data-step="7" data-ask="x = ?">$2^2=4$，$(-2)^2=4$，所以 $x=\pm2$</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span>$x^2=100$</span><span class="think" data-step="8" data-ask="x = ?">$10^2=100$，$(-10)^2=100$，所以 $x=\pm10$</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span>$x^2=169$</span><span class="think" data-step="9" data-ask="x = ?">$13^2=169$，$(-13)^2=169$，所以 $x=\pm13$</span><i class="why"></i></div>
+      </div>
+      <p class="tip gold" data-step="10">发现：<span class="think" data-step="11" data-ask="你发现了什么？">使 $x^2=a$（$a\gt0$）成立的数有<b>两个</b>，它们<b>互为相反数</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p94 图 4-1 与三组“当 $x^2=\cdots$ 时”。图中两个长方形由代码按格点画出：左边 3×4，右边 4×5，对角线就是 $AB$、$A'B'$。$x=\pm2$ 的写法第一次出现，要解释“±”读作“正负”，表示 $+2$ 和 $-2$ 两个数。别急着回答 41——下一页先动手找。</p>
+</section>
+
+<!-- 4 ================= 动手：x² = a 寻根器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手找</span><h2>谁的平方等于 $a$？在数轴上找一找</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="rootBoard" class="root-board"></div>
+      <p class="muted center small-t">拖动数轴上的点 $x$：以 $0$ 到 $x$ 的线段为边画正方形，它的面积就是 $x^2$</p>
+    </div>
+    <div class="col">
+      <div class="btns targets" data-noswipe id="rootTargets">
+        <span>目标 $a=$</span>
+        <button class="btn" type="button" data-a="4">4</button>
+        <button class="btn" type="button" data-a="9">9</button>
+        <button class="btn" type="button" data-a="2">2</button>
+        <button class="btn" type="button" data-a="0">0</button>
+        <button class="btn" type="button" data-a="-4">−4</button>
+      </div>
+      <div class="readout root-read">
+        <span>$x$</span><b class="v" id="rootX"></b>
+        <span>$x^2$</span><b class="v" id="rootX2"></b>
+      </div>
+      <p class="tip feedback" id="rootMsg"></p>
+      <div class="method" data-step="1" data-label="把找到的结果说一说"><span class="think" data-step="2" data-ask="a 是正数、0、负数时，各找到几个？">$a$ 是<b>正数</b>：两个，互为相反数；$a=0$：只有 $0$；$a$ 是<b>负数</b>：一个也找不到——正方形的面积不可能是负数。</span></div>
+    </div>
+  </div>
+  <p class="note">本课核心操作。依次点 4、9、2、0、−4，每次让学生把点拖到正方形面积等于 $a$ 的位置；右边一个找到后提醒“左边还有吗？”。$a=2$ 时只能找到 $\pm1.41$ 附近（$1.41^2=1.988\,1$，$1.42^2=2.016\,4$），精确值要用新记号，下一页揭晓。$a=-4$ 时让学生拖遍整条数轴——面积永远不是负数，这就是“负数没有平方根”的直观理由。点的位置按 0.01 取整（靠近整数时吸附到整数），面积用坐标精确计算；$a=2$ 时 $x$ 落在 $\pm1.40$～$\pm1.43$ 就算找到，提示里只说“约 1.41”。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>平方根</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>平方根（课本 p94）</h4>如果 $x^2=a\ (a\ge0)$，那么 $x$ 叫做 $a$ 的<em>平方根</em>（square root），也称为<em>二次方根</em>．</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2"><b>记号：</b>正数 $a$ 的正的平方根记作 $\sqrt a$，负的平方根记作 $-\sqrt a$，两个平方根合起来记作 $\pm\sqrt a$，读作“正、负根号 $a$”．</p>
+        <p class="tip" data-step="3">例如，2 的平方根记作 <span class="think" data-step="4" data-ask="怎样写？">$\pm\sqrt2$</span>；$41$ 的平方根记作 <span class="think" data-step="5" data-ask="怎样写？">$\pm\sqrt{41}$</span>．</p>
+      </div>
+      <div class="col">
+        <p class="recall" data-label="回到图 4-1" data-step="6">$A'B'^2=41$，$A'B'$ 是 41 的<b>正</b>的平方根，记作 <span class="think" data-step="7" data-ask="为什么只取正的？">$A'B'=\sqrt{41}$——线段的长度是正数</span>．</p>
+        <p class="recall" data-label="回到七上 2.2" data-step="8">边长为 $a$ 的正方形面积为 2，$a^2=2$，$a$ 是 2 的正的平方根，记作 <span class="think" data-step="9" data-ask="怎样写？">$\sqrt2$（$\approx1.414$，无理数）</span>．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p94–95 定义与记号。“根号”是第一次见的新符号：板书时写清 $\sqrt{\ \ }$ 的样子，强调被开方数 $a\ge0$。$\sqrt{41}$、$\sqrt2$ 不是“没算完”，它们本身就是一个确定的数（就是上一页数轴上找到的那个点）。</p>
+</section>
+
+<!-- 6 ================= 交流 → 性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>下列各数有平方根吗？</h2></div>
+  <div class="bd full">
+    <p class="tip">如果有，请写出来；如果没有，请说明理由（课本 p95）：</p>
+    <table class="mtab">
+      <tr><th>$a$</th><td>$9$</td><td>$5$</td><td>$\dfrac{9}{25}$</td><td>$0$</td><td>$-\dfrac49$</td><td>$-8$</td><td>$-36$</td></tr>
+      <tr><th>平方根</th>
+        <td><span class="think" data-step="1" data-ask="?">$\pm3$</span></td>
+        <td><span class="think" data-step="2" data-ask="?">$\pm\sqrt5$</span></td>
+        <td><span class="think" data-step="3" data-ask="?">$\pm\dfrac35$</span></td>
+        <td><span class="think" data-step="4" data-ask="?">$0$</span></td>
+        <td><span class="think" data-step="5" data-ask="?">没有</span></td>
+        <td><span class="think" data-step="5" data-ask="?">没有</span></td>
+        <td><span class="think" data-step="5" data-ask="?">没有</span></td></tr>
+    </table>
+    <p class="warn" data-step="6" data-label="为什么负数没有平方根？">任何数的平方都不是负数：正数的平方是正数，负数的平方是正数，$0^2=0$。所以找不到一个数，使它的平方等于 $-8$。</p>
+    <div class="def" data-step="7"><h4>平方根的性质（课本 p95）</h4>一个正数有两个平方根，它们互为相反数；<br>0 的平方根是 0；<br>负数没有平方根．</div>
+  </div>
+  <p class="note">课本 p95“交流”。逐个让学生口答，再点开。$-\frac49$ 容易被答成 $\pm\frac23$——追问“$\frac23$ 的平方是多少？$-\frac23$ 呢？”。最后三行性质与第 4 页寻根器的三种情况一一对应。</p>
+</section>
+
+<!-- 7 ================= 开平方 · 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>开平方：求下列各数的平方根</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="def" data-step="1">求一个数的平方根的运算叫做<em>开平方</em>（extraction of square root）．开平方与平方<b>互为逆运算</b>．</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>(1) $25$</span><span class="think" data-step="3" data-ask="平方根是？">$\pm\sqrt{25}$，即 $\pm5$</span><i class="why">$(\pm5)^2=25$</i></div>
+        <div class="dl" data-step="4"><span>(2) $\dfrac{16}{81}$</span><span class="think" data-step="5" data-ask="平方根是？">$\pm\sqrt{\dfrac{16}{81}}$，即 $\pm\dfrac49$</span><i class="why">$\left(\pm\dfrac49\right)^2=\dfrac{16}{81}$</i></div>
+        <div class="dl" data-step="6"><span>(3) $15$</span><span class="think" data-step="7" data-ask="平方根是？">$\pm\sqrt{15}$</span><i class="why">没有有理数的平方等于 15，直接用记号</i></div>
+        <div class="dl" data-step="8"><span>(4) $0.09$</span><span class="think" data-step="9" data-ask="平方根是？">$\pm\sqrt{0.09}$，即 $\pm0.3$</span><i class="why">$0.3^2=0.09$（不是 $0.03$）</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="method" data-step="10" data-label="求平方根的思路">想：<b>谁的平方</b>等于它？找到一个正数，再添上它的相反数。<br>开不尽的就用记号 $\pm\sqrt a$ 表示。</p>
+      <div class="hint-ladder" data-step="11">
+        <p class="q"><b>练习（课本 p95）</b> 写出下列各数的平方根：<br>$81$，$289$，$0$，$2\dfrac14$，$2.56$，$0.81$．</p>
+        <details><summary>提示 1</summary>$17^2=289$；带分数先化成假分数：$2\dfrac14=\dfrac94$。</details>
+        <details><summary>提示 2</summary>$2.56=1.6^2$，$0.81=0.9^2$。</details>
+        <details><summary>完整解答</summary>$\pm9$；$\pm17$；$0$；$\pm\dfrac32$；$\pm1.6$；$\pm0.9$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p95 例 1 与练习。第 (3) 题是新情况：15 不是完全平方数，答案就写 $\pm\sqrt{15}$，不需要也不能写成小数。第 (4) 题常见错误是 $\pm0.03$，让学生用“平方回去”自查——开平方与平方互逆，这是检验答案的好办法。</p>
+</section>
+
+<!-- 8 ================= 算术平方根 · 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>算术平方根：两个平方根中“正的那个”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>算术平方根（课本 p96）</h4>正数 $a$ 的正的平方根 $\sqrt a$，叫做 $a$ 的<em>算术平方根</em>．<br>0 的平方根也叫做 0 的算术平方根，即 $\sqrt0=0$．</div>
+      <p class="tip" data-step="2">例如：4 的平方根是 $\pm\sqrt4$，即 $\pm2$，其中 <span class="think" data-step="3" data-ask="哪个是算术平方根？">2</span> 叫做 4 的算术平方根；2 的平方根是 $\pm\sqrt2$，其中 <span class="think" data-step="4" data-ask="哪个？">$\sqrt2$</span> 叫做 2 的算术平方根．</p>
+      <div class="derive" data-step="5">
+        <div class="dl"><span>例 2</span><span>求算术平方根</span><i class="why">课本 p96</i></div>
+        <div class="dl"><span>(1) $625$</span><span class="think" data-step="6" data-ask="?">$\sqrt{625}$，即 $25$</span><i class="why"></i></div>
+        <div class="dl"><span>(2) $0.008\,1$</span><span class="think" data-step="7" data-ask="?">$\sqrt{0.008\,1}$，即 $0.09$</span><i class="why"></i></div>
+        <div class="dl"><span>(3) $7$</span><span class="think" data-step="8" data-ask="?">$\sqrt7$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <table class="mtab cmp" data-step="9">
+        <tr><th></th><th>平方根</th><th>算术平方根</th></tr>
+        <tr><td>正数 $a$</td><td>两个：$\pm\sqrt a$</td><td>一个：$\sqrt a$</td></tr>
+        <tr><td>$0$</td><td>$0$</td><td>$0$</td></tr>
+        <tr><td>负数</td><td>没有</td><td>没有</td></tr>
+        <tr><td>联系</td><td colspan="2">算术平方根是平方根中<b>非负</b>的那一个</td></tr>
+      </table>
+      <p class="warn" data-step="10" data-label="√a 的两个“不负”">在 $\sqrt a$ 中：被开方数 $a\ge0$（负数没有平方根）；$\sqrt a$ 本身也 $\ge0$（它是算术平方根）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p96 算术平方根与例 2。强调：记号 $\sqrt a$ 专指算术平方根，所以“$\sqrt{16}=\pm4$”是错的，$\sqrt{16}=4$；要表示两个平方根必须写 $\pm\sqrt{16}$。例 2(2) 小数点位置易错：$0.09^2=0.008\,1$。右下“两个不负”是下一页例 3 的钥匙。</p>
+</section>
+
+<!-- 9 ================= 例 3 · 思考 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 思考</span><h2>$(\sqrt a)^2$ 与 $\sqrt{a^2}$ 一样吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">例 3（课本 p96）$(\sqrt3)^2$、$(\sqrt{-2})^2$、$\sqrt{(-5)^2}$ 有意义吗？如果有，求它的值．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$(\sqrt3)^2$</span><span class="think" data-step="2" data-ask="表示什么？">“3 的算术平方根的平方”，$=3$</span><i class="why">根据算术平方根的意义</i></div>
+        <div class="dl" data-step="3"><span>$(\sqrt{-2})^2$</span><span class="think" data-step="4" data-ask="有意义吗？">没有意义</span><i class="why">$\sqrt{-2}$ 没有意义：负数没有平方根</i></div>
+        <div class="dl" data-step="5"><span>$\sqrt{(-5)^2}$</span><span class="think" data-step="6" data-ask="等于多少？">$=\sqrt{25}=5$</span><i class="why">表示 $-5$ 的平方（即 25）的算术平方根</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7"><b>思考（课本 p97）</b><br>1. $(\sqrt{0.01})^2=$ <span class="think" data-step="8" data-ask="?">$0.01$</span>，$(\sqrt5)^2=$ <span class="think" data-step="8" data-ask="?">$5$</span>；<br>2. $\sqrt{16^2}=$ <span class="think" data-step="9" data-ask="?">$16$</span>，$\sqrt{(-16)^2}=$ <span class="think" data-step="9" data-ask="?">$16$</span>．</p>
+      <p class="method" data-step="10" data-label="归纳">$(\sqrt a)^2=a$（$a\ge0$，先开方再平方，回到原数）；<br>$\sqrt{a^2}$：先平方再开方，结果是 $a$ 的<b>绝对值</b>，一定不是负数——$\sqrt{(-16)^2}=16$，不是 $-16$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p96 例 3 与 p97 思考。两个式子的区别在运算顺序：$(\sqrt a)^2$ 先开方后平方，要求 $a\ge0$；$\sqrt{a^2}$ 先平方后开方，$a$ 可以是任意数，结果是 $|a|$。课本没有把 $\sqrt{a^2}=|a|$ 写成公式，这里用“绝对值”说清楚即可，不要求记公式。</p>
+</section>
+
+<!-- 10 ================= 例 4 欲穷千里目 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>“欲穷千里目，更上一层楼”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="earth" class="earth"></div>
+      <div class="slider-row" data-noswipe>眼睛离海面 $h=$<input type="range" id="hIn" min="0" max="1" step="0.001" value="0.434"><b class="v" id="hV"></b></div>
+      <div class="readout ex4-read">
+        <span>$d\approx\sqrt{2hR}$</span><b class="v" id="dV"></b>
+      </div>
+      <p class="muted small-t">示意图：为了看得清，$h$ 按比例放大了很多倍（真实的 20 m 与地球半径相比几乎看不出来）；读数按真实数据计算。</p>
+    </div>
+    <div class="col">
+      <p class="tip small-p">如图 4-2，观测点的高度为 $h$，观测者视线能达到的最远距离为 $d$，则 $d\approx\sqrt{2hR}$，其中 $R$ 是地球半径，约等于 6 400 km．小丽站在海边一块岩石上，眼睛离海平面的高度 $h$ 为 20 m，她观测到远处一艘船刚露出海平面，求此时 $d$ 的值．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>统一单位</span><span class="think" data-step="2" data-ask="h = ? km">$h=20\text{ m}=0.02\text{ km}$</span><i class="why">$R$ 的单位是 km</i></div>
+        <div class="dl end" data-step="3"><span>代入</span><span class="think" data-step="4" data-ask="d ≈ ?">$d\approx\sqrt{2\times0.02\times6\,400}=\sqrt{256}=16$（km）</span><i class="why">$16^2=256$，取算术平方根</i></div>
+      </div>
+      <p class="recall" data-step="5" data-label="公式从哪里来？">视线与地球相切，切点处半径与视线垂直：$(R+h)^2=R^2+d^2$（<b>勾股定理</b>），所以 $d^2=2hR+h^2$。$h$ 比 $R$ 小得多，$h^2$ 可以忽略，于是 $d\approx\sqrt{2hR}$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p96 例 4 与图 4-2。先完成课本解答（单位换算是关键），再拖滑块：站得越高，看得越远——但不是“高一倍、远一倍”，高度变成 4 倍，距离才变成 2 倍（$\sqrt{4}=2$）。右下“公式从哪里来”是联系上一章的拓展，学有余力的学生可讲：切线垂直于半径是九年级的知识，这里只作说明。图中的切线、直角按放大后的 $h$ 精确作出。</p>
+</section>
+
+<!-- 11 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>9 的平方根是 3．</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>漏了一个：9 的平方根是 $\pm3$；3 只是 9 的<b>算术平方根</b>。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>$\sqrt{16}$ 的平方根是 $\pm4$．</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>先算 $\sqrt{16}=4$，求的是 <b>4</b> 的平方根：$\pm2$。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>$-3$ 是 $(-3)^2$ 的一个平方根．</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict ok">✓</span>$(-3)^2=9$，9 的平方根是 $\pm3$，$-3$ 是其中一个。</p></div>
+      </div>
+    </div>
+    <div class="cols3">
+      <div class="jcard" data-step="7">
+        <p>$\sqrt{25}=\pm5$．</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">✗</span>$\sqrt{\ \ }$ 表示算术平方根，$\sqrt{25}=5$；$\pm\sqrt{25}=\pm5$。</p></div>
+      </div>
+      <div class="jcard" data-step="9">
+        <p>$-4$ 的平方根是 $-2$．</p>
+        <div class="think" data-step="10" data-ask="对还是错？"><p><span class="verdict x">✗</span>$(-2)^2=4\ne-4$。负数<b>没有</b>平方根。</p></div>
+      </div>
+      <div class="jcard" data-step="11">
+        <p>$0$ 没有平方根．</p>
+        <div class="think" data-step="12" data-ask="对还是错？"><p><span class="verdict x">✗</span>$0^2=0$，0 的平方根是 0，只有一个。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">每张卡先举手表决再点开。前两张是本课最典型的两种错误：“平方根”与“算术平方根”混淆；“$\sqrt{16}$ 的平方根”要先算出 $\sqrt{16}$。请答错的同学说说自己是怎么想的。</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1（p97）</b> 写出下列各数的算术平方根：<br>$0.01$，$\dfrac{25}{16}$，$0$，$10$，$\left(-\dfrac13\right)^2$．</p>
+        <details><summary>提示 1</summary>算术平方根只要“正的那个”（0 的是 0）。</details>
+        <details><summary>提示 2</summary>$\left(-\dfrac13\right)^2=\dfrac19$，先算出来再开方。</details>
+        <details><summary>完整解答</summary>$0.1$；$\dfrac54$；$0$；$\sqrt{10}$；$\dfrac13$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4.1 第 3 题</b> 求下列各式中的 $x$：<br>(1) $x^2=16$；(2) $x^2=\dfrac{25}{49}$；<br>(3) $x^2=15$；(4) $4x^2=81$．</p>
+        <details><summary>提示 1</summary>$x$ 就是右边那个数的<b>平方根</b>——别丢了负的。</details>
+        <details><summary>提示 2</summary>(4) 先两边同除以 4：$x^2=\dfrac{81}{4}$。</details>
+        <details><summary>完整解答</summary>(1) $x=\pm4$；(2) $x=\pm\dfrac57$；(3) $x=\pm\sqrt{15}$；(4) $x=\pm\dfrac92$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4.1 第 5 题</b> (1) 直角三角形两条直角边的长分别为 3 和 5，求斜边的长；(2) 直角三角形两边的长分别为 3 和 5，求第三边的长．</p>
+        <details><summary>提示 1</summary>(1) 斜边$^2=3^2+5^2$，长度取<b>算术平方根</b>。</details>
+        <details><summary>提示 2</summary>(2) 没说 5 是直角边还是斜边——要分两种情况。</details>
+        <details><summary>完整解答</summary>(1) $\sqrt{3^2+5^2}=\sqrt{34}$；<br>(2) 5 是直角边：第三边 $\sqrt{34}$；5 是斜边：第三边 $\sqrt{5^2-3^2}=4$．所以第三边长为 $\sqrt{34}$ 或 4．</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2（p97）</b> $(\sqrt4)^2$、$(\sqrt{-3})^2$、$\sqrt{\left(\dfrac34\right)^2}$、$\sqrt{(-2)^2}$ 有意义吗？如果有，求它的值．</p>
+        <details><summary>提示</summary>先看根号里面是不是负数。</details>
+        <details><summary>完整解答</summary>$4$；无意义；$\dfrac34$；$2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4.1 第 6(2) 题</b> 亚历山大灯塔的反光镜高于海平面 125 m，用 $d\approx\sqrt{2hR}$ 判断：它反射的光能照到离灯塔 35 km 的海面上吗？</p>
+        <details><summary>提示</summary>$h=0.125$ km，$R=6\,400$ km。</details>
+        <details><summary>完整解答</summary>$d\approx\sqrt{2\times0.125\times6\,400}=\sqrt{1\,600}=40$（km），$40\gt35$，说法正确．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p97 练习、习题 4.1 第 3、5、6 题（另可布置第 1、2、4 题为作业）。先独立做，卡住再逐级点开。第 5(2) 题是上一章“斜边不一定是 c”的延续；第 6(1) 泰山题可让学生课后算：$\sqrt{2\times1.532\,7\times6\,400}\approx140$ km $\lt230$ km，所以说法不正确。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$x^2=a\ (a\ge0)$，$x$ 叫 $a$ 的平方根，记作 $\pm\sqrt a$；正的那个 $\sqrt a$ 是算术平方根。</p>
+        <p class="warn" data-label="三种情况">正数两个（互为相反数）；0 是 0；负数没有。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="逆运算">开平方是平方的逆运算：求平方根就找“谁的平方是它”，算完平方回去检验。</p>
+        <p class="method" data-label="两个公式">$(\sqrt a)^2=a\ (a\ge0)$；$\sqrt{a^2}$ 等于 $a$ 的绝对值。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">$\sqrt a$ 就是面积为 $a$ 的正方形的边长；数轴上 $\pm\sqrt a$ 关于原点对称。</p>
+        <p class="recall" data-label="分类讨论">按 $a$ 正、零、负分类说平方根的个数。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>4.2 立方根——正方体的体积是 2，棱长是多少？$x^3=a$ 的 $x$ 有几个？负数有没有立方根？</p>
+  </div>
+  <p class="note">请学生先用自己的话说出“平方根与算术平方根的区别”，再逐栏揭示。作业建议：习题 4.1 第 1、2、4 题，第 6(1) 题。下一节对照着学：平方根有“正负一对”，立方根会怎样？</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

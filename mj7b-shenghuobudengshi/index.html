@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生活中的不等式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/gaosu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第11章 一元一次不等式 · 11.1</p>
+    <h1 class="cover-title">生活中的不等式</h1>
+    <p class="cover-q" data-step="1">高速公路某路段竖着一块交通标志：圆圈里写着“<b>100</b>”，表示汽车的最高时速<b>不得超过 100 km/h</b>。</p>
+    <p class="cover-q" data-step="2">一辆汽车的速度是 $a$ km/h。“$a$ 不超过 100”能不能像方程那样，用一个<b>数学式子</b>写出来？</p>
+    <div class="chips" data-step="3"><span class="chip">不等关系</span><span class="chip">不等号</span><span class="chip">不等式</span><span class="chip">关键词 → 不等号</span></div>
+  </div>
+  <p class="note">课本 p118 情境（限速标志）。本章第一课：先让学生说一说“不超过 100”是什么意思——等于 100 行不行？小于 100 行不行？大于 100 呢？不急着给式子。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 2.3–2.4 · 有理数的大小" data-step="1">
+        <p>数轴上右边的点表示的数总比左边的大；正数大于 0，负数小于 0；两个负数，绝对值大的反而小。</p>
+        <span class="use">习题 1 比较两个数的大小，填“&gt;”或“&lt;”。</span>
+      </div>
+      <div class="recall" data-label="七上 3.1–3.2 · 用字母表示数" data-step="2">
+        <p>“$x$ 与 5 的和”写作 $x+5$；“$x$ 的 2 倍与 5 的和”写作 $2x+5$；“$y$ 的三分之一”写作 $\dfrac13y$。</p>
+        <span class="use">先把文字里的数量写成代数式，再用不等号连接。</span>
+      </div>
+      <div class="recall" data-label="七上 4.1 · 方程" data-step="3">
+        <p>用“$=$”连接两个式子，表示<b>相等关系</b>，如 $x+2=48$。</p>
+        <span class="use">类比：<b>不等关系</b>也可以用符号连接两个式子来表示。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>生活中“比……大”“不超过……”“至少……”这样的<b>不等关系</b>，怎样用数学式子准确地表示出来？</p>
+  </div>
+  <p class="note">第三张卡是本课的类比线索：方程刻画相等关系，不等式刻画不等关系。请学生先口答每张卡里的例子，再看“本课用在”。</p>
+</section>
+
+<!-- 3 ================= 限速 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>“不得超过 100”：哪些速度可以？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 360 170" class="road-fig" id="roadFig" aria-label="限速 100 的标志和一辆汽车">
+        <rect x="0" y="118" width="360" height="40" fill="#cfd8df"/><line x1="0" y1="138" x2="360" y2="138" stroke="#fff" stroke-width="3" stroke-dasharray="18 14"/>
+        <line x1="300" y1="118" x2="300" y2="70" stroke="#7b8a97" stroke-width="4"/>
+        <circle cx="300" cy="42" r="32" fill="#fff" stroke="#c0392b" stroke-width="8"/>
+        <text x="300" y="52" text-anchor="middle" class="sign-n">100</text>
+        <g id="car"><rect x="-56" y="96" width="56" height="20" rx="6" fill="#1d6fa5"/><rect x="-46" y="84" width="34" height="16" rx="5" fill="#4f9bd0"/><circle cx="-44" cy="118" r="7" fill="#1f2d3a"/><circle cx="-12" cy="118" r="7" fill="#1f2d3a"/></g>
+      </svg>
+      <div class="slider-row" data-noswipe>车速 $a=$<input type="range" id="spd" min="60" max="140" step="5" value="80"><b class="v" id="spdV"></b>km/h</div>
+      <p class="tip feedback" id="spdMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">拖动滑块改变车速：$a=95$、$a=100$、$a=105$ 时，各是否符合要求？</p>
+      <div class="def" data-step="1"><h4>用式子表示（课本 p118）</h4>汽车的速度 $a$ km/h 与 100 之间的关系表示为 <span class="think" data-step="2" data-ask="怎样写？">$a\le 100$</span></div>
+      <p class="tip" data-step="3">“$\le$”读作“小于或等于”。$a=100$ 时 <span class="think" data-step="4" data-ask="符合吗？">符合（“不超过”包括等于）</span>；$a=105$ 时 <span class="think" data-step="4" data-ask="符合吗？">不符合</span>。</p>
+      <p class="method" data-step="5" data-label="同类量">长度与长度、质量与质量、速度与速度……<b>同类量</b>之间常常存在不等关系，可以用数学式子来表示。</p>
+    </div>
+  </div>
+  <p class="note">课本 p118。拖动滑块时，汽车会移动并显示是否“超速”。重点追问 a = 100：恰好 100 算不算超过？——不算，所以用“≤”而不是“&lt;”。</p>
+</section>
+
+<!-- 4 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>用数学式子表示下列数量之间的关系</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1"><p><b>(1)</b> 某种袋装牛奶中，每 100 g 牛奶所含的蛋白质（$x$ g）不少于 2.9 g，脂肪（$y$ g）不少于 3.1 g．</p>
+        <span class="think" data-step="2" data-ask="写出式子">$x\ge 2.9$，$y\ge 3.1$　（“不少于”就是“大于或等于”）</span></div>
+      <div class="jcard" data-step="3"><p><b>(2)</b> 一辆 48 座的旅游车载有游客 $x$ 人，途中上来 2 人后，车内仍有空座位．</p>
+        <span class="think" data-step="4" data-ask="写出式子">$x+2\lt 48$　（有空座位：人数比座位数少）</span></div>
+      <div class="jcard" data-step="5"><p><b>(3)</b> 边长为 $a$ m 的正方形桌面的面积大于 1 m²．</p>
+        <span class="think" data-step="6" data-ask="写出式子">$a^2\gt 1$　（先把面积写成代数式 $a^2$）</span></div>
+      <div class="jcard" data-step="7"><p><b>(4)</b> $m\ (m\ne 0)$ 的倒数不大于 5．</p>
+        <span class="think" data-step="8" data-ask="写出式子">$\dfrac1m\le 5$　（“不大于”就是“小于或等于”）</span></div>
+    </div>
+    <p class="method" data-step="9" data-label="两步走">① 先把要比较的量写成<b>代数式</b>（$x+2$、$a^2$、$\dfrac1m$）；② 再按关键词选<b>不等号</b>连接。</p>
+  </div>
+  <p class="note">课本 p118 试一试。每题先让学生在本子上写，再点开。第 (2) 题“仍有空座位”最难：要把它翻译成“人数 &lt; 座位数”。第 (4) 题括号里的 m ≠ 0 是因为 0 没有倒数。</p>
+</section>
+
+<!-- 5 ================= 不等式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>不等式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>不等式（课本 p119）</h4>像 $a\le 100$、$x\ge 2.9$、$y\ge 3.1$、$x+2\lt 48$、$a^2\gt 1$、$\dfrac1m\le 5$ 等，用<em>不等号</em>表示不等关系的式子叫做<em>不等式</em>（inequality）．</div>
+      <table class="mtab signs" data-step="2">
+        <tr><th>不等号</th><th>读作</th><th>常见说法</th></tr>
+        <tr><td>$\gt$</td><td>大于</td><td>超过、多于、高于</td></tr>
+        <tr><td>$\lt$</td><td>小于</td><td>少于、低于、不足</td></tr>
+        <tr><td>$\ge$</td><td>大于或等于</td><td>不小于、不少于、至少</td></tr>
+        <tr><td>$\le$</td><td>小于或等于</td><td>不大于、不超过、至多</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="3">下面哪些是不等式？先判断，再点开。</p>
+      <div class="cols2 judge">
+        <div class="jcard" data-step="3">① $-3\lt 0$　<span class="think" data-step="4" data-ask="是吗？"><span class="verdict ok">是</span>不含字母也是不等式</span></div>
+        <div class="jcard" data-step="3">② $x+5$　<span class="think" data-step="4" data-ask="是吗？"><span class="verdict x">不是</span>没有不等号，是代数式</span></div>
+        <div class="jcard" data-step="3">③ $2x-1=3$　<span class="think" data-step="4" data-ask="是吗？"><span class="verdict x">不是</span>用“=”连接，是等式（方程）</span></div>
+        <div class="jcard" data-step="3">④ $x-y\ge 0$　<span class="think" data-step="4" data-ask="是吗？"><span class="verdict ok">是</span>用“≥”连接</span></div>
+      </div>
+      <p class="warn" data-step="5" data-label="“≥”是一个符号">“$\ge$”表示“$\gt$ 或 $=$”，两者有一个成立它就成立：$5\ge 5$ 对，$6\ge 5$ 也对。</p>
+      <p class="tip gold" data-step="6"><b>议一议：</b>举出生活中具有不等关系的实例，并与同学交流．</p>
+    </div>
+  </div>
+  <p class="note">课本 p119 议一议与定义。表格第三列是本课的“翻译词典”，下一页的分拣台就用它。判断题 ① 提醒：不等式不一定含字母；③ 与方程对比。议一议请 3～4 名学生举例，并当场写成不等式。</p>
+</section>
+
+<!-- 6 ================= 分拣台（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手</span><h2>关键词分拣台：每句话该用哪个不等号？</h2></div>
+  <div class="bd full top">
+    <p class="tip">先点一张卡片，再点它该放进的不等号盒子。放对了卡片留在盒子里，放错了会提示原因。</p>
+    <div class="sorter" id="sorter" data-noswipe>
+      <div class="cards" id="sCards"></div>
+      <div class="bins" id="sBins"></div>
+    </div>
+    <p class="tip feedback" id="sMsg"></p>
+  </div>
+  <p class="note">本课核心交互。卡片里的句子都来自课本例子和练习。分拣完后请学生总结：带“不”字的（不超过、不少于）都含等号；“最高”“至多”对应 ≤，“最短”“至少”对应 ≥。可点“重新开始”请另一名学生再做一遍。</p>
+</section>
+
+<!-- 7 ================= 想一想 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>如何表示下列问题中的不等关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>1.</b> 某市某天的气温是 $t$℃，该市这天的最低气温是 $-2$℃，最高气温是 $6$℃．</p>
+      <svg viewBox="0 0 320 200" class="thermo" id="thermo" aria-label="温度计：-2℃ 到 6℃"></svg>
+      <div class="slider-row" data-noswipe>$t=$<input type="range" id="tmp" min="-6" max="10" step="1" value="2"><b class="v" id="tmpV"></b>℃</div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>最低 $-2$℃</span><span class="think" data-step="2" data-ask="不等式？">$t\ge -2$</span><i class="why">再冷也不低于 $-2$℃</i></div>
+        <div class="dl" data-step="1"><span>最高 $6$℃</span><span class="think" data-step="2" data-ask="不等式？">$t\le 6$</span><i class="why">再热也不高于 $6$℃</i></div>
+        <div class="dl key" data-step="3"><span>合起来</span><span>$-2\le t\le 6$</span><i class="why">$t$ 同时满足这两个不等关系</i></div>
+      </div>
+      <p class="tip" data-step="4"><b>2.</b> 小丽种了一棵高 70 cm 的小树，假设小树平均每周长高 3 cm，$x$ 周后这棵小树的高度不超过 100 cm．<br>
+        <span class="think" data-step="5" data-ask="先写 x 周后的高度">$x$ 周后高 $(70+3x)$ cm，所以 $70+3x\le 100$．</span></p>
+      <p class="recall" data-label="后面会学" data-step="6">像 $-2\le t\le 6$ 这样“夹在中间”的写法，到 11.6 不等式组还会再见到。</p>
+    </div>
+  </div>
+  <p class="note">课本 p119 想一想。温度计由代码绘制：红色液柱高度按 t 精确画出，-2℃～6℃ 之间的刻度区间用绿色标出；拖动滑块，t 落在区间内（含两端）提示“可能”，否则提示“不可能”。第 2 题先让学生写出“x 周后的高度”这个代数式。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用不等式表示（点选，即时判断）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1.</b>（口答）用不等式表示：</p>
+        <div class="qrow">(1) $a$ 是负数 <div class="pick" data-ans="b"><button data-k="a">$a\le 0$</button><button data-k="b">$a\lt 0$</button><button data-k="c">$a\gt 0$</button><p class="pick-why">负数比 0 小，0 不是负数，所以不带等号。</p></div></div>
+        <div class="qrow">(2) $x$ 与 5 的和大于 2 <div class="pick" data-ans="a"><button data-k="a">$x+5\gt 2$</button><button data-k="b">$5x\gt 2$</button><button data-k="c">$x+5\ge 2$</button><p class="pick-why">“和”是 $x+5$；“大于”用“&gt;”。</p></div></div>
+        <div class="qrow">(3) $x$ 与 $a$ 的差小于 2 <div class="pick" data-ans="c"><button data-k="a">$a-x\lt 2$</button><button data-k="b">$x-a\le 2$</button><button data-k="c">$x-a\lt 2$</button><p class="pick-why">“$x$ 与 $a$ 的差”是 $x-a$，顺序不能颠倒。</p></div></div>
+        <div class="qrow">(4) $x$ 与 $y$ 的差是非负数 <div class="pick" data-ans="b"><button data-k="a">$x-y\gt 0$</button><button data-k="b">$x-y\ge 0$</button><button data-k="c">$x-y\lt 0$</button><p class="pick-why">非负数 = 正数和 0，所以是“大于或等于 0”。</p></div></div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>2.</b> 根据下列含有“最”字的实例，写出不等式：</p>
+        <div class="qrow">(1) 火车提速后，速度（$v$）最高可达 350 km/h <div class="pick" data-ans="a"><button data-k="a">$v\le 350$</button><button data-k="b">$v\lt 350$</button><button data-k="c">$v\ge 350$</button><p class="pick-why">“最高可达”：能等于 350，但不会超过。</p></div></div>
+        <div class="qrow">(2) 某班学生的身高（$h$）最高为 1.74 m <div class="pick" data-ans="c"><button data-k="a">$h\ge 1.74$</button><button data-k="b">$h\lt 1.74$</button><button data-k="c">$h\le 1.74$</button><p class="pick-why">最高的那位恰好 1.74 m，其他人都不超过它。</p></div></div>
+        <div class="qrow">(3) 某班学生从家到校的路程（$s$）最短是 1 km <div class="pick" data-ans="b"><button data-k="a">$s\le 1$</button><button data-k="b">$s\ge 1$</button><button data-k="c">$s\gt 1$</button><p class="pick-why">“最短是 1”：每个人的路程都不少于 1 km。</p></div></div>
+        <p class="method" data-label="“最”字口诀">最高、最大、至多 → $\le$；最低、最小、至少 → $\ge$。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p119 练一练。点错了按钮会变红，可以再选；点对后显示理由。第 1(4) 题“非负数”和第 2 题“最”字是易错点，请学生说出为什么带等号。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 11.1</span><h2>比大小；把文字写成不等式</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="col">
+        <p class="tip"><b>1.</b> 用“&gt;”或“&lt;”号填空：</p>
+        <div class="qrow">(1) $0$ ＿ $-2$ <div class="pick" data-ans="g"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">0 大于一切负数。</p></div></div>
+        <div class="qrow">(2) $-1$ ＿ $-5$ <div class="pick" data-ans="g"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">两个负数，绝对值大的反而小：$|-5|\gt|-1|$。</p></div></div>
+        <div class="qrow">(3) $-4$ ＿ $2$ <div class="pick" data-ans="l"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">负数小于正数。</p></div></div>
+        <div class="qrow">(4) $\dfrac13$ ＿ $\dfrac12$ <div class="pick" data-ans="l"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">通分：$\dfrac26\lt\dfrac36$。</p></div></div>
+        <div class="qrow">(5) $-\dfrac23$ ＿ $-\dfrac34$ <div class="pick" data-ans="g"><button data-k="g">&gt;</button><button data-k="l">&lt;</button><p class="pick-why">$\dfrac23=\dfrac8{12}\lt\dfrac34=\dfrac9{12}$，绝对值小的负数反而大。</p></div></div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用不等式表示下列数量之间的关系：<br>(1) 某种小客车载有乘客 $x$ 人，它的最大载客量为 14 人；<br>(2) 小明今天锻炼身体用了 $t$ min，他每天锻炼身体的时间不少于 30 min；<br>(3) 小丽每天睡眠时间超过 8 h，昨天她的睡眠时间是 $t$ h；<br>(4) 某校男子跳高纪录是 1.75 m，小明的跳高成绩是 $h$ m，打破了该项纪录；<br>(5) 某校男子 100 m 跑的纪录是 12 s，小刚的成绩是 $t$ s，打破了该项纪录．</p>
+        <details><summary>提示 1</summary>找关键词：最大、不少于、超过……打破纪录对跳高是“更高”，对跑步呢？</details>
+        <details><summary>提示 2</summary>100 m 跑打破纪录是用时<b>更少</b>；“打破”不包括“平”纪录。</details>
+        <details><summary>完整解答</summary>(1) $x\le 14$；(2) $t\ge 30$；(3) $t\gt 8$；(4) $h\gt 1.75$；(5) $t\lt 12$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 用不等式表示：<br>(1) $x$ 与 6 的差大于 2；<br>(2) $x$ 的 2 倍与 5 的和是负数；<br>(3) $x$ 的 3 倍与 2 的差是正数；<br>(4) $y$ 的三分之一与 4 的和是非负数．</p>
+        <details><summary>提示 1</summary>先写代数式：$x-6$、$2x+5$、$3x-2$、$\dfrac13y+4$。</details>
+        <details><summary>提示 2</summary>负数 → $\lt 0$；正数 → $\gt 0$；非负数 → $\ge 0$。</details>
+        <details><summary>完整解答</summary>(1) $x-6\gt 2$；(2) $2x+5\lt 0$；(3) $3x-2\gt 0$；(4) $\dfrac13y+4\ge 0$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p119–120 习题 11.1。第 1 题复习七上有理数比较大小，为 11.2 在数轴上表示解集做准备。第 2(4)(5) 题对比：同样是“打破纪录”，跳高是 &gt;，跑步是 &lt;——要看量的实际意义，不能只背关键词。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">用不等号（$\gt$、$\lt$、$\ge$、$\le$）表示不等关系的式子叫做<b>不等式</b>。</p>
+        <p class="warn" data-label="等号要不要">“不超过、不少于、至多、至少、最高、最低、非负”都<b>带等号</b>。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="列不等式">① 找出要比较的两个量，写成代数式；② 抓关键词，选不等号；③ 想一想实际意义（如跑步“打破纪录”是用时更少）。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="类比">方程刻画相等关系，不等式刻画不等关系。</p>
+        <p class="recall" data-label="数学建模">不等式是刻画生活中不等关系的数学模型。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>11.2 不等式的解集——隧道限高 4.2 m，$x\le 4.2$ 成立的 $x$ 有多少个？怎样在数轴上把它们全部“画”出来？</p>
+  </div>
+  <p class="note">请学生先说“今天学会了把哪些话翻译成不等式”。课后作业建议：习题 11.1 第 2、3 题书面完成；章前问题（纸箱装苹果，p117）可先估一估，11.5 会正式解决。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

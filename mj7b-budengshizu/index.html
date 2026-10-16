@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一元一次不等式组 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="../shared/ineq.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/qiche.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第11章 一元一次不等式 · 11.6</p>
+    <h1 class="cover-title">一元一次不等式组</h1>
+    <p class="cover-q" data-step="1">小丽早晨 7 时 30 分骑自行车上学，要在 <b>7 时 50 分至 7 时 55 分之间</b>到达离家 3 400 m 的学校．</p>
+    <p class="cover-q" data-step="2">骑得太快会早到，太慢会迟到——她的速度应该在什么范围内？一个不等式够用吗？</p>
+    <div class="chips" data-step="3"><span class="chip">不等式组</span><span class="chip">公共部分</span><span class="chip">数轴确定解集</span><span class="chip">无解</span></div>
+  </div>
+  <p class="note">课本 p134 情境。请学生先估一估：20 分钟到和 25 分钟到，速度各是多少？引出“速度既不能太大、也不能太小”——需要两个不等式同时成立。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="11.2 · 数轴表示解集" data-step="1">
+        <p>大于向右、小于向左；有等号画实心点，无等号画空心圈．</p>
+        <span class="use">把两个解集画在同一条数轴上，找重叠的部分．</span>
+      </div>
+      <div class="recall" data-label="11.4 · 解一元一次不等式" data-step="2">
+        <p>去分母、去括号、移项、合并、系数化为 1（除以负数要变号）．</p>
+        <span class="use">先分别解出组里的每个不等式．</span>
+      </div>
+      <div class="recall" data-label="10.2 · 二元一次方程组" data-step="3">
+        <p>把两个方程用大括号“$\{$”联立起来，组成方程组；方程组的解要使<b>每个方程都成立</b>．</p>
+        <span class="use">类比：不等式组的解要使<b>每个不等式都成立</b>．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>几个不等式要<b>同时</b>成立时，未知数的取值范围是什么？怎样借助数轴找到它？</p>
+  </div>
+  <p class="note">第三张卡是类比的出发点：方程组的“解”是“公共解”，不等式组的解集也是各个解集的“公共部分”。</p>
+</section>
+
+<!-- 3 ================= 情境 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>小丽骑自行车的速度应在什么范围内？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 400 150" class="trip" id="trip" aria-label="出发时刻与到校时刻的时间轴"></svg>
+      <div class="slider-row" data-noswipe>速度 $x=$<input type="range" id="spd" min="120" max="200" step="2" value="150"><b class="v" id="spdV"></b>m/min</div>
+      <p class="tip feedback" id="spdMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设速度</span><span>$x$ m/min</span><i class="why">7:30 到 7:50 是 20 min，到 7:55 是 25 min</i></div>
+        <div class="dl" data-step="2"><span>7:50 以后才到</span><span class="think" data-step="3" data-ask="列不等式">$20x\le 3400$</span><i class="why">骑 20 min 还没超过 3 400 m</i></div>
+        <div class="dl" data-step="4"><span>7:55 以前要到</span><span class="think" data-step="5" data-ask="列不等式">$25x\ge 3400$</span><i class="why">骑 25 min 至少到达 3 400 m</i></div>
+      </div>
+      <p class="tip" data-step="6">这个问题的解必须使上面的两个不等式<b>都成立</b>，把它们联立在一起，可以记作 $\begin{cases}20x\le 3400,\\25x\ge 3400.\end{cases}$</p>
+    </div>
+  </div>
+  <p class="note">课本 p134。左边时间轴按比例画：拖动速度，看到达时刻落在 7:50～7:55（绿色）之内还是之外。先请学生找出“太快”和“太慢”的分界，再列出两个不等式。</p>
+</section>
+
+<!-- 4 ================= 不等式组 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>一元一次不等式组</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>一元一次不等式组（课本 p134）</h4>把几个含有<em>同一个未知数</em>的一次不等式联立在一起，就组成了一个<em>一元一次不等式组</em>（system of linear inequalities with one unknown）．</div>
+      <p class="tip gold" data-step="2"><b>议一议：</b>如何找出使 $20x\le 3400$ ① 与 $25x\ge 3400$ ② 都成立的未知数 $x$ 的值？</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解不等式①，得</span><span class="think" data-step="4" data-ask="解一解">$x\le 170$</span><i class="why">两边都除以 20</i></div>
+        <div class="dl" data-step="5"><span>解不等式②，得</span><span class="think" data-step="6" data-ask="解一解">$x\ge 136$</span><i class="why">两边都除以 25</i></div>
+      </div>
+      <p class="tip" data-step="7">$x$ 既要不大于 170，又要不小于 136．把两个解集画在<b>同一条</b>数轴上看一看 →</p>
+    </div>
+  </div>
+  <p class="note">课本 p134 定义与议一议。强调定义中的“同一个未知数”和“一次”。两个不等式分别解，结果是两个解集；下一页把它们画在同一条数轴上。</p>
+</section>
+
+<!-- 5 ================= 公共部分 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数轴</span><h2>两个解集的公共部分</h2></div>
+  <div class="bd full">
+    <div id="f1111" class="iq-fig big-fig"></div>
+    <p class="figcap">图 11-11　$x\le 170$ 与 $x\ge 136$（绿色是公共部分）</p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1">由图 11-11 可以看出，使不等式①和②都成立的未知数 $x$ 的值，应是这两个不等式解集的公共部分，即 <span class="think" data-step="2" data-ask="写出来">$136\le x\le 170$</span>．</p>
+        <p class="tip" data-step="3"><b>答：</b>小丽骑自行车的速度应在 136 m/min 至 170 m/min 之间．</p>
+      </div>
+      <div class="col">
+        <div class="def" data-step="4"><h4>不等式组的解集（课本 p135）</h4>不等式组中所有不等式的解集的<em>公共部分</em>叫做这个<em>不等式组的解集</em>．求不等式组解集的过程叫做<em>解不等式组</em>．</div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p135 图 11-11 与定义。注意两个解集画在不同高度，以免重叠看不清；两条折线“都盖住”的地方就是公共部分。“136 ≤ x ≤ 170”是连写的形式，读作“x 大于或等于 136 且小于或等于 170”。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>利用数轴确定不等式组 $\begin{cases}x\le -1,\\x\lt 2\end{cases}$ 的解集</h2></div>
+  <div class="bd full">
+    <div id="f1112" class="iq-fig big-fig" data-step="1"></div>
+    <p class="figcap" data-step="1">图 11-12　$x\le -1$（−1 处实心）与 $x\lt 2$（2 处空心）</p>
+    <div class="cols2">
+      <p class="tip" data-step="2"><b>解：</b>在数轴上表示不等式 $x\le -1$ 和 $x\lt 2$ 的解集．由图 11-12 可知，不等式组的解集是 <span class="think" data-step="3" data-ask="是什么？">$x\le -1$</span>．</p>
+      <p class="warn" data-step="4" data-label="想一想">$x=0$ 满足 $x\lt 2$，为什么不是解？——它不满足 $x\le -1$．解集里的数必须<b>两个都满足</b>．</p>
+    </div>
+  </div>
+  <p class="note">课本 p135 例 1。先让学生自己在数轴上画两个解集，再点开。公共部分是“两条折线都覆盖”的部分：都在 −1 的左边（含 −1）。</p>
+</section>
+
+<!-- 7 ================= 公共部分探测器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>公共部分探测器：两个解集，四种情况</h2></div>
+  <button class="media-btn" hidden data-img="assets/sizhong.jpg" data-video="assets/sizhong.mp4" data-cap="两个解集在数轴上的四种位置关系与公共部分（绿色）">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div class="btns ops" data-noswipe>
+        <span class="lab r1">①</span><button class="btn" type="button" id="op1"></button>
+        <span class="lab r2">②</span><button class="btn" type="button" id="op2"></button>
+      </div>
+      <p class="tip">拖动折线拐角处的橙色点改变端点，点按钮切换不等号．</p>
+      <p class="tip big-q" id="expQ"></p>
+      <p class="tip feedback" id="expMsg"></p>
+      <div class="btns presets" data-noswipe id="presets">
+        <button class="btn" type="button" data-p="0">同大</button><button class="btn" type="button" data-p="1">同小</button><button class="btn" type="button" data-p="2">一大一小·有交</button><button class="btn" type="button" data-p="3">一大一小·无交</button>
+      </div>
+    </div>
+    <div class="col">
+      <div id="exp" class="expb"></div>
+      <p class="method" data-step="1" data-label="四种情况（帮助记忆）"><span class="think" data-step="2" data-ask="自己总结">都是“大于”取较大的；都是“小于”取较小的；大于较小、小于较大，取中间；大于较大、小于较小，无解．</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。两个不等式的端点、方向、空实心都能改；绿色粗线是公共部分，右侧自动写出解集。先用四个预设按钮看四种典型情况，再让学生自由拖。特别试一试端点重合的情形：x ≥ 2 与 x ≤ 2 的公共部分只有一个数 2；x &gt; 2 与 x ≤ 2 则无解。总结用的话是帮助记忆的口诀，不是课本结论，理解时仍以“看数轴找公共部分”为准。右上角“看动画”是 16 秒无声动画（四种情况依次出现）。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>根据数轴写解集；利用数轴确定解集</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col rd"><p class="tip"><b>1.</b> 根据数轴上表示的不等式组中两个不等式的解集，写出不等式组的解集：</p>
+        <div id="p1a" class="iq-fig"></div>
+        <div class="pick" data-ans="b"><span>①</span><button data-k="a">$x\le 2$</button><button data-k="b">$-2\lt x\le 2$</button><button data-k="c">$-2\le x\lt 2$</button><p class="pick-why">−2 处空心（不含），2 处实心（含）．</p></div>
+        <div id="p1b" class="iq-fig"></div>
+        <div class="pick" data-ans="a"><span>②</span><button data-k="a">$x\le 3$</button><button data-k="b">$x\lt 5$</button><button data-k="c">$3\le x\lt 5$</button><p class="pick-why">两个都向左，取较小的：3 处实心．</p></div>
+      </div>
+      <div class="col"><p class="tip"><b>2.</b> 利用数轴确定下列不等式组的解集：</p>
+        <div class="qrow">(1) $\begin{cases}x\ge -3,\\x\gt 1;\end{cases}$ <div class="pick" data-ans="b"><button data-k="a">$x\ge -3$</button><button data-k="b">$x\gt 1$</button><button data-k="c">$-3\le x\lt 1$</button><p class="pick-why">都是“大于”，取较大的 1，且 1 处空心．</p></div></div>
+        <div class="qrow">(2) $\begin{cases}x\lt -1,\\x\ge -2;\end{cases}$ <div class="pick" data-ans="c"><button data-k="a">$x\lt -1$</button><button data-k="b">无解</button><button data-k="c">$-2\le x\lt -1$</button><p class="pick-why">大于 −2、小于 −1，取中间．</p></div></div>
+        <div class="qrow">(3) $\begin{cases}x\gt 0,\\x\le 4;\end{cases}$ <div class="pick" data-ans="a"><button data-k="a">$0\lt x\le 4$</button><button data-k="b">$0\le x\lt 4$</button><button data-k="c">$x\gt 0$</button><p class="pick-why">0 处空心，4 处实心．</p></div></div>
+        <div class="qrow">(4) $\begin{cases}x+2\lt 0,\\2x\le 0.\end{cases}$ <div class="pick" data-ans="b"><button data-k="a">$x\le 0$</button><button data-k="b">$x\lt -2$</button><button data-k="c">$-2\lt x\le 0$</button><p class="pick-why">先化简：$x\lt -2$，$x\le 0$；都是“小于”，取较小的．</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p135–136 练一练第 1、2 题。第 1 题两幅图按课本原图绘制。第 2 题可以回到第 7 页的探测器上验证；第 (4) 题要先把每个不等式化成 x 的范围。</p>
+</section>
+
+<!-- 9 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>解不等式组 $\begin{cases}3x-1\ge x+1,\\x+4\lt 4x-2.\end{cases}$</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：解不等式① $3x-1\ge x+1$，得</span><span class="think" data-step="2" data-ask="解①">$x\ge 1$</span><i class="why">$2x\ge 2$</i></div>
+        <div class="dl" data-step="3"><span>解不等式② $x+4\lt 4x-2$，得</span><span class="think" data-step="4" data-ask="解②">$x\gt 2$</span><i class="why">$-3x\lt -6$，除以 $-3$ 变号</i></div>
+        <div class="dl end" data-step="6"><span>不等式组的解集是</span><span class="think" data-step="7" data-ask="公共部分？">$x\gt 2$</span><i class="why">由图 11-13</i></div>
+      </div>
+      <div class="col">
+        <div id="f1113" class="iq-fig big-fig" data-step="5"></div>
+        <p class="figcap" data-step="5">图 11-13　在数轴上表示不等式①、②的解集</p>
+      </div>
+    </div>
+    <p class="warn" data-step="8" data-label="端点看清">$x=2$ 满足①（$5\ge 3$），但不满足②（$6\lt 6$ 不成立），所以 2 不在解集里，答案是 $x\gt 2$ 而不是 $x\ge 2$．</p>
+  </div>
+  <p class="note">课本 p136 例 2 与图 11-13。解②时 x + 4 &lt; 4x − 2 → −3x &lt; −6 → x &gt; 2，学生也可以移项成 6 &lt; 3x，避免除以负数。两个都是“大于”，公共部分在较大端点 2 的右边。</p>
+</section>
+
+<!-- 10 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>解不等式组 $\begin{cases}5x-2\lt 3(x-2),\\\dfrac12x-5\ge 1-\dfrac32x.\end{cases}$</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>解：解不等式①（上面一个），得</span><span class="think" data-step="2" data-ask="解①">$x\lt -2$</span><i class="why">$5x-2\lt 3x-6$，$2x\lt -4$</i></div>
+        <div class="dl" data-step="3"><span>解不等式②（下面一个），得</span><span class="think" data-step="4" data-ask="解②">$x\ge 3$</span><i class="why">$\dfrac12x+\dfrac32x\ge 6$，$2x\ge 6$</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span class="think" data-step="7" data-ask="公共部分？">不等式组无解</span><i class="why">两个解集没有公共部分</i></div>
+      </div>
+      <div class="col">
+        <div id="f1114" class="iq-fig big-fig" data-step="5"></div>
+        <p class="figcap" data-step="5">图 11-14　两个解集“背对背”</p>
+      </div>
+    </div>
+    <p class="tip" data-step="8">由图 11-14 可知，不等式①、②的解集没有公共部分，<b>不等式组无解</b>：找不到一个数既小于 $-2$ 又不小于 3．</p>
+  </div>
+  <p class="note">课本 p136–137 例 3 与图 11-14。“无解”也是一种结果，要写出来。可以问：把②改成 x ≥ −3，还无解吗？（回到第 7 页试一试：−3 ≤ x &lt; −2。）</p>
+</section>
+
+<!-- 11 ================= 一般步骤 · 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">议一议 · 试一试</span><h2>解一元一次不等式组的一般步骤</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip gold">解一元一次不等式组的一般步骤是什么？</p>
+      <ol class="steps-ol" data-step="1">
+        <li>分别求出不等式组中<b>各个不等式</b>的解集；</li>
+        <li>把它们表示在<b>同一条数轴</b>上；</li>
+        <li>利用数轴找出<b>公共部分</b>，写出不等式组的解集（没有公共部分就是无解）．</li>
+      </ol>
+      <p class="recall" data-step="2" data-label="课本 p139 小结">先求出不等式组中各个不等式的解集，再把它们分别表示在数轴上，然后利用数轴确定不等式组的解集．</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>试一试：</b>当代数式 $2x-1$ 的值大于 $-3$ 且小于 1 时，求 $x$ 的取值范围．</p>
+        <details><summary>提示 1</summary>“大于 −3 且小于 1”是两个不等式同时成立：$\begin{cases}2x-1\gt -3,\\2x-1\lt 1.\end{cases}$</details>
+        <details><summary>提示 2</summary>分别解得 $x\gt -1$，$x\lt 1$．</details>
+        <details><summary>完整解答</summary>公共部分是 $-1\lt x\lt 1$．也可以连写成 $-3\lt 2x-1\lt 1$ 来理解．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p137 议一议、试一试。三个步骤请学生对照例 2、例 3 说出来。试一试的关键是把“且”翻译成不等式组。</p>
+</section>
+
+<!-- 12 ================= 练一练 p137 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>解下列不等式组</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q">(1) $\begin{cases}2x+1\lt 0,\\3-x\ge 0;\end{cases}$</p>
+        <details><summary>提示</summary>$x\lt -\dfrac12$，$x\le 3$．都是“小于”．</details>
+        <details><summary>完整解答</summary>$x\lt -\dfrac12$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(2) $\begin{cases}-2x\le 0,\\4x+1\lt 5;\end{cases}$</p>
+        <details><summary>提示</summary>$x\ge 0$（除以 −2 变号），$x\lt 1$．</details>
+        <details><summary>完整解答</summary>$0\le x\lt 1$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(3) $\begin{cases}2(x+1)\gt 4,\\3x\le x+5;\end{cases}$</p>
+        <details><summary>提示</summary>$x\gt 1$，$x\le \dfrac52$．</details>
+        <details><summary>完整解答</summary>$1\lt x\le \dfrac52$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(4) $\begin{cases}x-2(x-1)\ge 1,\\\dfrac{1+x}{3}\lt x-1.\end{cases}$</p>
+        <details><summary>提示</summary>①：$-x+2\ge 1$，$x\le 1$；②：$1+x\lt 3x-3$，$x\gt 2$．</details>
+        <details><summary>完整解答</summary>没有公共部分，不等式组无解．</details>
+      </div>
+      <div class="hint-ladder span2">
+        <p class="q"><b>2.</b> 已知二元一次方程 $x+2y=-5$．当 $x$ 取什么值时，$y$ 的值是大于 $-1$ 的负数？</p>
+        <details><summary>提示 1</summary>用 $x$ 表示 $y$：$y=\dfrac{-5-x}{2}$．“大于 −1 的负数”：$-1\lt y\lt 0$．</details>
+        <details><summary>提示 2</summary>$\begin{cases}\dfrac{-5-x}{2}\gt -1,\\\dfrac{-5-x}{2}\lt 0.\end{cases}$</details>
+        <details><summary>完整解答</summary>①：$-5-x\gt -2$，$x\lt -3$；②：$-5-x\lt 0$，$x\gt -5$．所以 $-5\lt x\lt -3$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p137 练一练。第 1 题四小题先独立完成，再用提示核对；第 2 题联系第 10 章二元一次方程，先用 x 表示 y，再把“大于 −1 的负数”翻译成不等式组。</p>
+</section>
+
+<!-- 13 ================= 习题 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 11.6</span><h2>读图写解集；利用数轴确定解集</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col rd"><p class="tip"><b>1.</b> 根据数轴写出不等式组的解集：</p>
+        <div id="h1a" class="iq-fig"></div>
+        <div class="pick" data-ans="c"><span>①</span><button data-k="a">$-5\lt x\le -1$</button><button data-k="b">$x\lt -1$</button><button data-k="c">$-5\le x\lt -1$</button><p class="pick-why">−5 处实心，−1 处空心．</p></div>
+        <div id="h1b" class="iq-fig"></div>
+        <div class="pick" data-ans="b"><span>②</span><button data-k="a">$x\gt -4$</button><button data-k="b">$x\ge -2$</button><button data-k="c">$-4\lt x\le -2$</button><p class="pick-why">两个都向右，取较大的 −2（实心）．</p></div>
+      </div>
+      <div class="col"><p class="tip"><b>2.</b> 利用数轴确定下列不等式组的解集：</p>
+        <div class="qrow">(1) $\begin{cases}x\lt 0,\\x\ge -1;\end{cases}$ <div class="pick" data-ans="a"><button data-k="a">$-1\le x\lt 0$</button><button data-k="b">$x\lt 0$</button><button data-k="c">无解</button><p class="pick-why">大于等于 −1、小于 0，取中间．</p></div></div>
+        <div class="qrow">(2) $\begin{cases}x\ge -2,\\x\gt -1;\end{cases}$ <div class="pick" data-ans="c"><button data-k="a">$x\ge -2$</button><button data-k="b">$-2\le x\lt -1$</button><button data-k="c">$x\gt -1$</button><p class="pick-why">都向右，取较大的 −1（空心）．</p></div></div>
+        <div class="qrow">(3) $\begin{cases}x\le 3,\\x\lt 2;\end{cases}$ <div class="pick" data-ans="b"><button data-k="a">$x\le 3$</button><button data-k="b">$x\lt 2$</button><button data-k="c">$2\lt x\le 3$</button><p class="pick-why">都向左，取较小的 2（空心）．</p></div></div>
+        <div class="qrow">(4) $\begin{cases}x\gt 2,\\2x+5\le 1.\end{cases}$ <div class="pick" data-ans="c"><button data-k="a">$x\gt 2$</button><button data-k="b">$-2\le x\lt 2$</button><button data-k="c">无解</button><p class="pick-why">②化为 $x\le -2$；大于 2 与不大于 −2 没有公共部分．</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p137–138 习题 11.6 第 1、2 题。第 1 题两幅图按课本原图绘制（注意每幅图中哪个端点是空心）。</p>
+</section>
+
+<!-- 14 ================= 习题 3、4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 11.6</span><h2>解下列不等式组（第 3、4 题）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> (1) $\begin{cases}2x+4\gt 3,\\3x\lt 7+x;\end{cases}$　(2) $\begin{cases}5x-10\le 0,\\x+3\gt -2x;\end{cases}$</p>
+        <details><summary>提示</summary>(1) $x\gt -\dfrac12$，$x\lt \dfrac72$；(2) $x\le 2$，$x\gt -1$．</details>
+        <details><summary>完整解答</summary>(1) $-\dfrac12\lt x\lt \dfrac72$；(2) $-1\lt x\le 2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> (3) $\begin{cases}2x-1\gt -3,\\4-2x\lt x-2;\end{cases}$　(4) $\begin{cases}x-1\gt 2x,\\\dfrac12x+3\lt -1.\end{cases}$</p>
+        <details><summary>提示</summary>(3) $x\gt -1$，$x\gt 2$；(4) $x\lt -1$，$x\lt -8$．</details>
+        <details><summary>完整解答</summary>(3) $x\gt 2$；(4) $x\lt -8$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> (1) $\begin{cases}3x-2\lt x+2,\\5x+5\ge 2x-7;\end{cases}$　(2) $\begin{cases}2x-3\lt 9-x,\\2x-5\gt 10-3x;\end{cases}$</p>
+        <details><summary>提示</summary>(1) $x\lt 2$，$x\ge -4$；(2) $x\lt 4$，$x\gt 3$．</details>
+        <details><summary>完整解答</summary>(1) $-4\le x\lt 2$；(2) $3\lt x\lt 4$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> (3) $\begin{cases}2x-8\gt 5x+1,\\11-2x\lt 21-4x;\end{cases}$　(4) $\begin{cases}\dfrac25(3-x)+2\lt -2,\\-\dfrac23(x+5)-1\lt 3.\end{cases}$</p>
+        <details><summary>提示</summary>(3) $x\lt -3$，$x\lt 5$；(4) ①：$\dfrac25(3-x)\lt -4$，$3-x\lt -10$，$x\gt 13$；②：$-\dfrac23(x+5)\lt 4$，$x+5\gt -6$，$x\gt -11$．</details>
+        <details><summary>完整解答</summary>(3) $x\lt -3$；(4) $x\gt 13$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p138 习题 11.6 第 3、4 题。每题先写出两个不等式各自的解集（提示），再找公共部分。第 4(4) 题两次除以负数，最容易出错。</p>
+</section>
+
+<!-- 15 ================= 习题 5、6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 11.6</span><h2>不等式组解决几何问题</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 260 170" class="tri-fig" aria-label="等腰三角形 ABC，AB = AC，BC = 10 cm">
+        <path d="M30 150 H230 L130 25 Z" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2.5"/>
+        <text x="122" y="18" class="fl">A</text><text x="14" y="162" class="fl">B</text><text x="236" y="162" class="fl">C</text>
+        <text x="118" y="168" class="fl s">10 cm</text><text x="60" y="84" class="fl s">x</text><text x="190" y="84" class="fl s">x</text>
+      </svg>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 在 $\triangle ABC$ 中，$AB=AC$，$BC=10$ cm．设这个三角形的周长大于 34 cm 且小于 44 cm，求 $AB$ 的长度范围．</p>
+        <details><summary>提示 1</summary>设 $AB=x$ cm，周长 $2x+10$；“大于 34 且小于 44”是两个不等式．</details>
+        <details><summary>提示 2</summary>$\begin{cases}2x+10\gt 34,\\2x+10\lt 44.\end{cases}$</details>
+        <details><summary>完整解答</summary>$x\gt 12$ 且 $x\lt 17$，所以 $12\lt AB\lt 17$（cm）．此时 $2x\gt 10$，三边关系也满足．</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 已知一个钝角为 $(5x-35)^\circ$，求 $x$ 的取值范围．</p>
+        <details><summary>提示 1</summary>钝角：大于 $90^\circ$ 且小于 $180^\circ$．</details>
+        <details><summary>提示 2</summary>$\begin{cases}5x-35\gt 90,\\5x-35\lt 180.\end{cases}$</details>
+        <details><summary>完整解答</summary>$x\gt 25$ 且 $x\lt 43$，所以 $25\lt x\lt 43$．</details>
+      </div>
+      <div id="f6" class="iq-fig" data-step="1"></div>
+      <p class="figcap" data-step="1">第 6 题：$x\gt 25$ 与 $x\lt 43$ 的公共部分</p>
+      <p class="method" data-step="2" data-label="“且”与“之间”">“大于……且小于……”“在……之间”，都要列<b>不等式组</b>．</p>
+    </div>
+  </div>
+  <p class="note">课本 p138 习题 11.6 第 5、6 题。第 5 题联系 7.4 三角形三边关系：腰长要大于 5 cm，在 12 &lt; x &lt; 17 中已自动满足。第 6 题回到钝角的定义（七上第 6 章）。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想（第 11 章小结）</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">几个含同一个未知数的一次不等式联立 → <b>一元一次不等式组</b>；各解集的<b>公共部分</b> → 不等式组的解集；没有公共部分 → <b>无解</b>．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="三步">分别解 → 画在同一数轴上 → 找公共部分．</p>
+        <p class="warn" data-label="端点">公共部分的端点空心还是实心，看它来自哪个不等式．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">数轴把“同时成立”变成“看得见的重叠”．</p>
+        <p class="recall" data-label="章回顾">不等式 → 解集 → 性质 → 解法 → 应用 → 不等式组．</p>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder" data-step="4">
+        <p class="q"><b>小结与思考（课本 p139）：</b>你能解一元一次不等式组 $\begin{cases}x\le 5,\\x\lt 3,\\x\gt -2\end{cases}$ 吗？</p>
+        <details><summary>提示</summary>三个解集画在同一条数轴上，找三条折线都覆盖的部分．</details>
+        <details><summary>完整解答</summary>$-2\lt x\lt 3$．</details>
+      </div>
+      <p class="recall" data-step="5" data-label="阅读 · 利用不等式进行估算">课本 p138–139：建楼成本 $1400x+26000000\lt 4000x$，解得 $x\gt 10000$——建筑面积必须超过 10 000 m²．生活中常用不等式（组）进行估算．</p>
+    </div>
+  </div>
+  <p class="note">本章最后一课，小结兼顾全章。“小结与思考”的三个不等式组成的不等式组，方法完全一样。课后：数学活动“一元一次不等式问题的调查”（p139）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="../shared/ineq.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

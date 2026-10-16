@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全等三角形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mfold.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xinfeng.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第1章 全等三角形 · 1.2</p>
+    <h1 class="cover-title">全等三角形</h1>
+    <p class="cover-q" data-step="1">两只信封上盖着同一枚三角形纪念邮戳——这两个三角形能够<b>完全重合</b>。</p>
+    <p class="cover-q" data-step="2">重合的时候，哪个顶点和哪个顶点叠在一起？哪条边和哪条边叠在一起？怎样用符号把它<b>写清楚</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">符号 ≌</span><span class="chip">对应顶点 · 对应边 · 对应角</span><span class="chip">平移 · 翻折 · 旋转</span><span class="chip">对应边相等，对应角相等</span></div>
+  </div>
+  <p class="note">课本 p9 情境（信封上的三角形邮戳）。上一节研究的是一般的全等图形，这一节聚焦三角形：先学会“说清楚哪个对哪个”，这是后面所有证明的基础。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="1.1 · 全等图形" data-step="1">
+        <p>能<b>完全重合</b>的图形叫全等图形；平移、翻折、旋转前后的图形全等。</p>
+        <p class="small-t"><a href="../mj8a-quandengtuxing/index.html">回看：1.1 全等图形</a></p>
+        <span class="use">全等三角形就是“能完全重合的三角形”；用三种运动找到谁和谁重合。</span>
+      </div>
+      <div class="recall" data-label="七下 7.4 · 认识三角形" data-step="2">
+        <p>三角形 $ABC$ 记作 $\triangle ABC$；它有三个顶点、三条边 $AB$、$BC$、$CA$，三个内角 $\angle A$、$\angle B$、$\angle C$。</p>
+        <p class="small-t"><a href="../mj7b-sanjiaoxing/index.html">回看：七下 7.4 认识三角形</a></p>
+        <span class="use">说出两个三角形的边、角，一一配对。</span>
+      </div>
+      <div class="recall" data-label="七下 7.5 · 内角和" data-step="3">
+        <p>三角形三个内角的和等于 $180^\circ$。</p>
+        <p class="small-t"><a href="../mj7b-neijiaohe/index.html">回看：七下 7.5 多边形的内角和与外角和</a></p>
+        <span class="use">习题 3：已知两个角，求第三个角。</span>
+      </div>
+      <div class="recall" data-label="七上 6.3 · 对顶角" data-step="4">
+        <p>对顶角相等。两个三角形“顶对顶”时，对顶的两个角是一对对应角。</p>
+        <p class="small-t"><a href="../mj7a-yujiaobujiao/index.html">回看：七上 6.3 余角、补角、对顶角</a></p>
+        <span class="use">图 1-4(3)、习题 1：找对应角。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1、2 张卡最重要。提醒学生：“三角形 ABC”的三个字母顺序可以随便写，但学了今天的“≌”以后，字母顺序就有讲究了——这是本课的关键。</p>
+</section>
+
+<!-- 3 ================= 定义 · 对应元素 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念 · 图 1-3</span><h2>全等三角形：谁和谁“对应”？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="corr" class="corr"></div>
+      <p class="muted center small-t">点左边三角形的顶点或边，右边与它对应的部分会同时亮起来</p>
+      <p class="tip feedback" id="corrMsg">△A′B′C′ 是把 △ABC 转了一个角度、再平移得到的。</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>全等三角形（课本 p9）</h4>两个能完全重合的三角形叫做<b>全等三角形</b>．△$ABC$ 和 △$A'B'C'$ 全等，记作“$\triangle ABC\cong\triangle A'B'C'$”，读作“△$ABC$ 全等于 △$A'B'C'$”．</div>
+      <div class="derive small-d">
+        <div class="dl" data-step="2"><span>对应顶点</span><span class="think" data-step="3" data-ask="重合时叠在一起的顶点">$A$ 和 $A'$，$B$ 和 $B'$，$C$ 和 $C'$</span></div>
+        <div class="dl" data-step="4"><span>对应边</span><span class="think" data-step="5" data-ask="重合时叠在一起的边">$AB$ 和 $A'B'$，$BC$ 和 $B'C'$，$AC$ 和 $A'C'$</span></div>
+        <div class="dl" data-step="6"><span>对应角</span><span class="think" data-step="7" data-ask="重合时叠在一起的角">$\angle A$ 和 $\angle A'$，$\angle B$ 和 $\angle B'$，$\angle C$ 和 $\angle C'$</span></div>
+      </div>
+      <p class="warn" data-step="8" data-label="书写规范">表示两个三角形全等时，通常把<b>对应顶点的字母写在对应的位置上</b>：看到 $\triangle ABC\cong\triangle A'B'C'$，就能直接读出“第 1 个字母对第 1 个字母”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p9 图 1-3 与定义。先让学生在左图上点一点，说出“谁和谁对应”，再看右边的文字。强调“≌”由“∽”（形状相同）和“=”（大小相等）组成。书写规范是本课的重点：字母顺序一旦写对，对应关系就一目了然。</p>
+</section>
+
+<!-- 4 ================= 性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>拖动顶点：对应边、对应角始终相等吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="meas" class="meas"></div>
+      <p class="muted center small-t">拖动 △ABC 的橙色顶点；△A′B′C′ 始终是它经过旋转、平移得到的</p>
+    </div>
+    <div class="col">
+      <table class="mtab" id="measTab">
+        <tr><th>△ABC</th><th></th><th>△A′B′C′</th><th></th></tr>
+      </table>
+      <p class="tip" data-step="1">观察表格：对应边的长度、对应角的度数有什么关系？　<span class="think" data-step="2" data-ask="说出你的发现">总是分别相等。</span></p>
+      <p class="def" data-step="3"><b>全等三角形的对应边相等，对应角相等．</b>（课本 p9）</p>
+      <p class="tip" data-step="4"><b>符号语言：</b>∵ $\triangle ABC\cong\triangle A'B'C'$，<br>∴ $AB=A'B'$，$BC=B'C'$，$AC=A'C'$，$\angle A=\angle A'$，$\angle B=\angle B'$，$\angle C=\angle C'$（全等三角形的对应边相等、对应角相等）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p9 框中的性质。表格里的数据由坐标实时计算（长度以方格边长为单位）。让学生拖几次再说结论；追问“为什么一定相等？”——因为能完全重合，叠在一起的边一样长、叠在一起的角一样大。符号语言要求写依据，为 1.3 的证明书写做准备。</p>
+</section>
+
+<!-- 5 ================= 操作 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · p9–10</span><h2>三角形纸片动一动，写出全等式</h2></div>
+  <div class="bd full top">
+    <p class="tip">用硬纸片剪一个三角形，在白纸上画一个与它全等的 $\triangle ABC$，把纸片与 $\triangle ABC$ 叠在一起，然后——</p>
+    <div class="cols3">
+      <div class="col">
+        <div id="op0" class="opb"></div>
+        <button class="btn solid" type="button" data-noswipe id="op0Go">(1) 沿 AB 所在直线平移</button>
+        <p class="tip small"><span class="think" data-step="1" data-ask="写出全等式">$\triangle ABC\cong\triangle A'B'C'$</span></p>
+      </div>
+      <div class="col">
+        <div id="op1" class="opb"></div>
+        <button class="btn solid" type="button" data-noswipe id="op1Go">(2) 沿 AC 所在直线翻折</button>
+        <p class="tip small"><span class="think" data-step="2" data-ask="写出全等式">$\triangle ABC\cong\triangle AB'C$，$AC$ 是<b>公共边</b></span></p>
+      </div>
+      <div class="col">
+        <div id="op2" class="opb"></div>
+        <button class="btn solid" type="button" data-noswipe id="op2Go">(3) 绕点 A 旋转 180°</button>
+        <p class="tip small"><span class="think" data-step="3" data-ask="写出全等式">$\triangle ABC\cong\triangle AB'C'$，$\angle BAC$ 与 $\angle B'AC'$ 是<b>对顶角</b></span></p>
+      </div>
+    </div>
+    <p class="method" data-step="4" data-label="发现">运动前后的三角形全等；运动中<b>不动的点</b>（如 (2) 的 $A$、$C$，(3) 的 $A$）对应它自己——公共边、公共角、对顶角往往就是对应元素。</p>
+  </div>
+  <p class="note">课本 p9–10 操作。三个按钮分别演示三种运动（动画按坐标精确计算，翻折动画是纸片绕折痕翻过去的样子）。每做完一个，请学生写出全等式，注意字母顺序。</p>
+</section>
+
+<!-- 6 ================= 讨论：图 1-4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论 · 图 1-4</span><h2>怎样改变 △ABC 的位置，使它与另一个三角形重合？</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="col">
+        <div id="d0" class="opb"></div>
+        <p class="tip small">与 $\triangle DEF$ 重合？<span class="think" data-step="1" data-ask="怎样运动？">沿 $BC$ 方向平移（$B$ 移到 $E$）</span></p>
+        <button class="btn" type="button" data-noswipe id="d0Go">演示</button>
+      </div>
+      <div class="col">
+        <div id="d1" class="opb"></div>
+        <p class="tip small">与 $\triangle DBC$ 重合？<span class="think" data-step="2" data-ask="怎样运动？">沿 $BC$ 所在直线翻折</span></p>
+        <button class="btn" type="button" data-noswipe id="d1Go">演示</button>
+      </div>
+      <div class="col">
+        <div id="d2" class="opb"></div>
+        <p class="tip small">与 $\triangle DEC$ 重合？<span class="think" data-step="3" data-ask="怎样运动？">绕点 $C$ 旋转 $180^\circ$</span></p>
+        <button class="btn" type="button" data-noswipe id="d2Go">演示</button>
+      </div>
+    </div>
+    <div class="cols3" data-step="4">
+      <p class="tip small">$\triangle ABC\cong\triangle DEF$<br>$AB=DE$，$BC=EF$，$AC=DF$</p>
+      <p class="tip small">$\triangle ABC\cong\triangle DBC$<br>$AB=DB$，$AC=DC$，$BC$ 公共</p>
+      <p class="tip small">$\triangle ABC\cong\triangle DEC$<br>$\angle ACB=\angle DCE$（对顶角）</p>
+    </div>
+  </div>
+  <p class="note">课本 p10 讨论。每张图先让学生说运动方式，再点“演示”。第 4 步把全等式和对应元素一起写出来：图 (2) 有公共边 BC，图 (3) 有一对对顶角——这是找对应元素的两条线索，下一页总结。</p>
+</section>
+
+<!-- 7 ================= 找对应元素 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法 · 练习 1</span><h2>怎样快速找准对应边、对应角？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p10 练习 1：如图，$\triangle ABC\cong\triangle CDA$，写出图中相等的边和角．</p>
+      <div id="pg" class="gfig"></div>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>配对</span><span>$A\leftrightarrow C$，$B\leftrightarrow D$，$C\leftrightarrow A$</span></div>
+        <div class="dl" data-step="2"><span>等边</span><span class="think" data-step="3" data-ask="写出来">$AB=CD$，$BC=DA$，$AC=CA$</span></div>
+        <div class="dl" data-step="4"><span>等角</span><span class="think" data-step="5" data-ask="写出来">$\angle B=\angle D$，$\angle BAC=\angle DCA$，$\angle BCA=\angle DAC$</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="method" data-step="6" data-label="找对应元素的方法">
+        ① <b>按全等式的字母位置</b>：第几个字母对第几个字母，边、角都由此读出；<br>
+        ② <b>公共边</b>是对应边，<b>公共角</b>是对应角；<br>
+        ③ <b>对顶角</b>是对应角；<br>
+        ④ 对应边所对的角是对应角，对应角所对的边是对应边。</p>
+      <p class="warn" data-step="7" data-label="易错">$\triangle ABC\cong\triangle CDA$ 中，$\angle BAC$ 的对应角是 $\angle DCA$，<b>不是</b> $\angle DAC$——角也要按字母位置写，用三个字母表示才不会混。</p>
+    </div>
+  </div>
+  <p class="note">课本 p10 练习 1。先用方法 ① 机械地读出对应关系，再在图上验证（AC 是公共边）。易错点：图中 A 处有两个角，单写 ∠A 说不清是哪一个，必须用三个字母。</p>
+</section>
+
+<!-- 8 ================= 阅读：图形的运动 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">阅读 · p11</span><h2>图形的运动：说出它们是怎样重合的</h2></div>
+  <div class="bd full top">
+    <p class="tip">图形的运动（平移、翻折、旋转）只改变图形的位置，不改变形状、大小；一个图形经过多次运动，得到的图形与原图形仍然全等．下面每组中，一个三角形经过怎样的运动就与另一个重合？（点图看演示）</p>
+    <div class="cols3 six">
+      <div class="col"><div id="m0" class="mfig" data-noswipe></div><p class="tip small">图 (4)　<span class="think" data-step="1" data-ask="?">平移</span></p></div>
+      <div class="col"><div id="m1" class="mfig" data-noswipe></div><p class="tip small">图 (5)　<span class="think" data-step="2" data-ask="?">绕两底边重叠部分的中点旋转 $180^\circ$</span></p></div>
+      <div class="col"><div id="m2" class="mfig" data-noswipe></div><p class="tip small">图 (6)　<span class="think" data-step="3" data-ask="?">沿竖直的对称轴翻折</span></p></div>
+      <div class="col"><div id="m3" class="mfig" data-noswipe></div><p class="tip small">图 (7)　<span class="think" data-step="4" data-ask="?">沿过公共顶点的竖直线翻折</span></p></div>
+      <div class="col"><div id="m4" class="mfig" data-noswipe></div><p class="tip small">图 (8)　<span class="think" data-step="5" data-ask="?">绕公共顶点旋转 $90^\circ$</span></p></div>
+      <div class="col"><div id="m5" class="mfig" data-noswipe></div><p class="tip small">图 (9)　<span class="think" data-step="6" data-ask="?">沿竖直的对称轴翻折</span></p></div>
+    </div>
+  </div>
+  <p class="note">课本 p11 阅读“图形的运动”图 (4)～(9)（这里的图按坐标重画，与课本形状接近）。先让学生口答，再点图看演示：橙色三角形按所说的运动走到另一个三角形上。说法不唯一时（如图 (5) 也可以先翻折再平移）要肯定学生的合理说法。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 1.2</span><h2>写对应元素，用性质求角</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，$\triangle OMQ\cong\triangle OPN$，写出这两个三角形中的对应边和对应角．</p>
+        <div id="x1" class="gfig"></div>
+        <details><summary>提示</summary>按字母位置：$O\leftrightarrow O$，$M\leftrightarrow P$，$Q\leftrightarrow N$。</details>
+        <details><summary>答案</summary>对应边：$OM$ 与 $OP$，$MQ$ 与 $PN$，$OQ$ 与 $ON$；对应角：$\angle M$ 与 $\angle P$，$\angle Q$ 与 $\angle N$，$\angle MOQ$ 与 $\angle PON$（对顶角）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$\triangle BCE\cong\triangle CBD$，写出这两个三角形中的对应边和对应角．</p>
+        <div id="x2" class="gfig"></div>
+        <details><summary>提示</summary>$B\leftrightarrow C$，$C\leftrightarrow B$，$E\leftrightarrow D$；$BC$ 是公共边。</details>
+        <details><summary>答案</summary>对应边：$BC$ 与 $CB$，$CE$ 与 $BD$，$BE$ 与 $CD$；对应角：$\angle EBC$ 与 $\angle DCB$，$\angle BCE$ 与 $\angle CBD$，$\angle E$ 与 $\angle D$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 如图，$\triangle ABC\cong\triangle DBC$，$\angle A=45^\circ$，$\angle ACD=76^\circ$．求 $\triangle BCD$ 各内角的度数．</p>
+        <div id="x3" class="gfig"></div>
+        <details><summary>提示 1</summary>$\angle D$ 对应 $\angle A$；$\angle BCD$ 对应 $\angle BCA$，两者合起来是 $\angle ACD$。</details>
+        <details><summary>提示 2</summary>$\angle BCD=\angle BCA=\dfrac12\angle ACD$。</details>
+        <details><summary>完整解答</summary>∵ $\triangle ABC\cong\triangle DBC$，∴ $\angle D=\angle A=45^\circ$，$\angle BCD=\angle BCA$（全等三角形的对应角相等）．<br>∵ $\angle BCD+\angle BCA=\angle ACD=76^\circ$，∴ $\angle BCD=38^\circ$．<br>∴ $\angle CBD=180^\circ-45^\circ-38^\circ=97^\circ$（三角形内角和）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p12 习题 1.2。第 3 题的图按 ∠A = 45°、∠ACB = 38° 精确画出（B 处的角是 97°，所以 A、B、D 不在一条直线上，B 略微“凹”下去）。答完可以追问：∠ABD 是多少度？（360° − 2 × 97° = 166°。）</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一节</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">能完全重合的两个三角形叫做全等三角形，记作 $\triangle ABC\cong\triangle A'B'C'$。</p>
+        <p class="def">全等三角形的<b>对应边相等，对应角相等</b>。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="找对应">按字母位置；公共边、公共角、对顶角；对应边对着对应角。</p>
+        <p class="warn" data-label="书写">对应顶点的字母写在对应位置上。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="运动的观点">平移、翻折、旋转把一个三角形搬到另一个上——看清“谁动到了哪里”，对应关系就清楚了。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b><a href="../mj8a-quandengtiaojian/index.html">1.3 探索三角形全等的条件</a>——反过来，两个三角形满足哪几个条件，就能<b>判定</b>它们全等？要把 6 组边、角都量一遍吗？</p>
+  </div>
+  <p class="note">小结后布置：习题 1.2 第 1、2 题写在作业本上，要求字母顺序正确。下一节的问题可以先让学生猜：“至少要知道几个条件？”</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mfold.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

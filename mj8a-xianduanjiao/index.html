@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>线段、角的轴对称性 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/cunlu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第2章 轴对称图形 · 2.4</p>
+    <h1 class="cover-title">线段、角的轴对称性</h1>
+    <p class="cover-q" data-step="1">公路旁要建一个公共汽车站，要求 $A$、$B$ 两村到车站的<b>距离相等</b>。车站该建在哪里？</p>
+    <p class="cover-q" data-step="2">把一条线段对折、把一个角对折——折痕上的点，有什么共同的“本领”？</p>
+    <div class="chips" data-step="3"><span class="chip">翻折说理</span><span class="chip">找等距点</span><span class="chip">尺规作垂直平分线</span><span class="chip">倒过来想</span></div>
+  </div>
+  <p class="note">课本 p52 练习 2 的情境（公路旁设车站）。先请学生凭直觉指一指车站的位置，不评价对错，第 10 页再用本课的定理回答。本课内容多（两条性质定理、两条逆定理、尺规作图、三个例题），建议 2 课时：第 1 课时到第 10 页（线段），第 2 课时从第 11 页起（角）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="八上 2.2 轴对称的性质" data-step="1">
+        <p>垂直并且平分一条线段的直线，叫做这条线段的<b>垂直平分线</b>。</p>
+        <p>成轴对称的两个图形全等；对应点的连线被对称轴<b>垂直平分</b>。</p>
+        <span class="use">第 3、4 页：沿垂直平分线翻折，说明谁和谁重合。</span>
+      </div>
+      <div class="recall" data-label="八上 1.3 三角形全等的条件" data-step="2">
+        <p>两边及其夹角分别相等 → 全等（<b>SAS</b>）</p>
+        <p>斜边和一条直角边分别相等的两个直角三角形全等（<b>HL</b>）</p>
+        <span class="use">第 7、12 页：证明两条“倒过来”的定理。（<a href="../mj8a-quandengtiaojian/index.html">回看 1.3</a>）</span>
+      </div>
+      <div class="recall" data-label="七上 第6章 平面图形的认识（一）" data-step="3">
+        <p><b>两点确定一条直线</b>；过一点有且只有一条直线与已知直线垂直。</p>
+        <p>直线外一点到这条直线的<b>垂线段</b>的长度，叫做点到直线的距离。</p>
+        <span class="use">第 4、11 页：翻折后“线段重合”的依据；“到角两边的距离”指垂线段的长。（<a href="../mj7a-chuizhi/index.html">回看 6.5</a>）</span>
+      </div>
+      <div class="recall" data-label="七下 7.4 认识三角形" data-step="4">
+        <p>三角形任意两边之和<b>大于</b>第三边。</p>
+        <p>三角形的角平分线：顶点与对边上一点的连线，平分这个内角。</p>
+        <span class="use">第 5 页：说明垂直平分线外的点到两端距离不相等。（<a href="../mj7b-sanjiaoxing/index.html">回看 7.4</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一课（2.3）</b>我们设计了轴对称图案。今天换个角度：<b>线段</b>和<b>角</b>本身就是轴对称图形——它们的对称轴上的点有什么性质？反过来呢？</p>
+  </div>
+  <p class="note">每出一张卡，请学生先说出卡上的内容，再看“本课用在”。HL 是 1.3 末尾刚学的，提醒学生它只适用于直角三角形。“点到直线的距离”是七上的旧概念，第 11 页会反复用到：距离一定是垂线段的长度。</p>
+</section>
+
+<!-- 3 ================= 线段是轴对称图形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">折一折</span><h2>沿垂直平分线把线段对折</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="fold1" class="fold-b"></div>
+      <div class="slider-row" data-noswipe>翻折 $\triangle PAO$：<input type="range" id="fold1t" min="0" max="100" step="1" value="0"><b class="v" id="fold1tV"></b></div>
+      <div class="readout r2"><span>$PA$</span><b class="v" id="f1PA"></b><span>$PB$</span><b class="v" id="f1PB"></b></div>
+      <p class="muted small-t">拖动 $l$ 上的橙色点 $P$；拖滑块把 $\triangle PAO$ 沿 $l$ 翻过去</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-17，直线 $l$ 是线段 $AB$ 的垂直平分线，$l$ 交 $AB$ 于点 $O$．把 $OA$ 沿直线 $l$ 翻折：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>∵ $\angle1=\angle2=90^\circ$</span><span class="think" data-step="2" data-ask="于是？">∴ $OA$ 落在射线 $OB$ 上</span><i class="why">$l\perp AB$</i></div>
+        <div class="dl" data-step="3"><span>∵ $OA=OB$</span><span class="think" data-step="4" data-ask="于是？">∴ $OA$ 与 $OB$ 重合</span><i class="why">$l$ 平分 $AB$</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>结论（课本 p51）</h4>线段是轴对称图形，线段的<b>垂直平分线</b>是它的对称轴．</div>
+      <p class="tip gold" data-step="6"><b>思考：</b>点 $P$ 在 $l$ 上，$PA$ 与 $PB$ 相等吗？<span class="think" data-step="7" data-ask="先猜，再拖动 P 看读数">拖到哪里都相等！下一页说清“为什么”。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p51 图 2-17、2-18。先拖滑块演示“对折”：A 正好落到 B 上，说明线段是轴对称图形。再把 P 沿 l 上下拖，读数始终 PA = PB。注意：读数是“试”出来的，再多也只是验证，下一页要“证”。翻折动画是真实的空间翻转在平面上的投影（按坐标计算），翻到一半时三角形看起来变窄是正常的。</p>
+</section>
+
+<!-- 4 ================= 证明定理 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>为什么 $PA=PB$？用图形运动来说理</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk218" class="gfig l"></div>
+      <p class="muted center small-t">图 2-18：$l$ 垂直平分 $AB$，垂足 $O$，点 $P$ 在 $l$ 上</p>
+    </div>
+    <div class="col">
+      <p class="tip">把 $\triangle PAO$ 沿直线 $l$ 翻折（图 2-19）：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>∵</span><span>$\angle POA=\angle POB$</span><i class="why">都是 $90^\circ$</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="OA 落在哪？">$OA$ 落在射线 $OB$ 上</span><i class="why">两角相等，边就重叠</i></div>
+        <div class="dl" data-step="4"><span>∵</span><span>$OA=OB$</span><i class="why">$l$ 平分 $AB$</i></div>
+        <div class="dl" data-step="5"><span>∴</span><span>点 $A$ 与点 $B$ 重合</span><i class="why">同一条射线上截取等长</i></div>
+        <div class="dl end" data-step="6"><span>∴</span><span class="think" data-step="7" data-ask="依据是什么？">$PA$ 与 $PB$ 重合，$PA=PB$</span><i class="why">基本事实：两点确定一条直线</i></div>
+      </div>
+      <div class="def" data-step="8"><h4>定理（课本 p51）</h4><b>线段垂直平分线上的点到线段两端的距离相等．</b><br><span class="small-p">符号语言：∵ 点 $P$ 在线段 $AB$ 的垂直平分线上，∴ $PA=PB$．</span></div>
+      <p class="method" data-step="9" data-label="还能怎样证？">用全等：<span class="think" data-step="10" data-ask="哪两个三角形？什么条件？">$\triangle POA\cong\triangle POB$（SAS：$OA=OB$，直角，公共边 $PO$），∴ $PA=PB$．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p51 的证法是“图形运动”（翻折），每一步都要说出凭什么重合：角相等 → 边重叠；长度相等 → 端点重合；两点确定一条直线 → 线段重合。最后的“全等法”是补充，让学生体会两种说理方式都可以。强调定理的符号语言：括号里写依据“线段垂直平分线上的点到线段两端的距离相等”。</p>
+</section>
+
+<!-- 5 ================= 讨论：l 外的点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>不在垂直平分线上的点，行不行？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="outB" class="fold-b"></div>
+      <div class="readout r3"><span>$PA$</span><b class="v" id="oPA"></b><span>$PB$</span><b class="v" id="oPB"></b><span id="oSumL">$PQ+QB$</span><b class="v" id="oSum"></b></div>
+      <p class="tip feedback" id="oMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">线段的垂直平分线外的点到这条线段两端的距离相等吗？为什么？</p>
+      <p class="tip">如图 2-20，点 $P$ 在 $AB$ 的垂直平分线 $l$ 外，$PA$ 交 $l$ 于点 $Q$，连接 $QB$．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>点 $Q$ 在 $l$ 上</span><i class="why">$PA$ 与 $l$ 的交点</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="用刚学的定理">$QA=QB$</span><i class="why">线段垂直平分线上的点到线段两端的距离相等</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span>$PA=PQ+QA=PQ+QB$</span><i class="why">等量代换</i></div>
+        <div class="dl end" data-step="5"><span></span><span class="think" data-step="6" data-ask="和 PB 比一比">$PQ+QB\gt PB$</span><i class="why">$\triangle PQB$ 中，两边之和大于第三边</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="结论">垂直平分线外的点，到线段两端的距离<b>不相等</b>（离哪一端近，就在 $l$ 的哪一侧）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p52 讨论、图 2-20。先让学生把 P 拖到 l 外，观察 PA ≠ PB；拖到 l 上时读数又相等。追问：图中“PA 交 l 于 Q”为什么一定能交到？（P、A 在 l 的两侧。）P 拖到 A 那一侧时，图会自动改成连 PB，结论对称。这一页为下一页“倒过来想”做准备：等距的点只能在 l 上。</p>
+</section>
+
+<!-- 6 ================= 倒过来想：找等距点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">倒过来想</span><h2>到 $A$、$B$ 距离相等的点，都在哪里？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="hunt" class="fold-b"></div>
+      <div class="readout r3"><span>$QA$</span><b class="v" id="hQA"></b><span>$QB$</span><b class="v" id="hQB"></b><span>已找到</span><b class="v" id="hN"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="hShow">这些点在哪条线上？</button><button class="btn" type="button" id="hClr">清空</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">反过来：如果一个点到一条线段两端的距离相等，那么这个点在这条线段的垂直平分线上吗？</p>
+      <p class="tip">拖动橙色点 $Q$。当 $QA=QB$ 时，画板会<b>留下一个点</b>。多找几个（上面、下面、远处、近处）。</p>
+      <p class="tip feedback" id="hMsg"></p>
+      <div class="def" data-step="1"><h4>猜想</h4><span class="think" data-step="2" data-ask="说说你的发现">到线段两端距离相等的点，都在这条线段的垂直平分线上．</span></div>
+      <p class="recall" data-label="一句话概括" data-step="3">线段的垂直平分线上的点“都等距”（上一页），等距的点“都在线上”（这一页）——所以课本说：<b>线段的垂直平分线是到线段两端距离相等的点的集合．</b></p>
+    </div>
+  </div>
+  <p class="note">课本 p52 思考。让学生上台找点：每找到一个“等距点”，画板留下一个红点。找到 5 个以上再点“这些点在哪条线上”。提醒：画板会在 QA 与 QB 非常接近时把 Q 吸到等距的位置上，读数才会严格相等。“集合”一词课本 p53 原话，高一会正式学集合，这里理解为“所有满足条件的点组成的整体”。猜想要证明——下一页。</p>
+</section>
+
+<!-- 7 ================= 逆定理证明 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>到两端距离相等的点，在垂直平分线上</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk221a" class="gfig s"></div>
+      <p class="muted center small-t">图 2-21(1)：$Q$ 在线段 $AB$ 上</p>
+      <div id="sk221b" class="gfig"></div>
+      <p class="muted center small-t">图 2-21(2)：$Q$ 在线段 $AB$ 外</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1"><b>情况一：</b>点 $Q$ 在线段 $AB$ 上，且 $QA=QB$ → <span class="think" data-step="2" data-ask="Q 是什么点？">$Q$ 是 $AB$ 的中点，当然在 $AB$ 的垂直平分线上．</span></p>
+      <p class="tip" data-step="3"><b>情况二：</b>点 $Q$ 在线段 $AB$ 外，且 $QA=QB$．作 $QM\perp AB$，垂足为 $M$．</p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>∵</span><span>$\angle QMA=\angle QMB=90^\circ$</span><i class="why">$QM\perp AB$</i></div>
+        <div class="dl" data-step="5"><span></span><span>$QA=QB$，$QM=QM$</span><i class="why">已知；公共边</i></div>
+        <div class="dl key" data-step="6"><span>∴</span><span class="think" data-step="7" data-ask="用哪条判定？">$\text{Rt}\triangle QAM\cong\text{Rt}\triangle QBM$（HL）</span><i class="why">斜边、直角边</i></div>
+        <div class="dl" data-step="8"><span>∴</span><span>$AM=BM$</span><i class="why">全等三角形对应边相等</i></div>
+        <div class="dl end" data-step="9"><span>∴</span><span class="think" data-step="10" data-ask="为什么？">点 $Q$ 在线段 $AB$ 的垂直平分线上</span><i class="why">$QM$ 既垂直 $AB$，又过 $AB$ 中点</i></div>
+      </div>
+      <div class="def" data-step="11"><h4>定理（课本 p53）</h4><b>到线段两端距离相等的点在线段的垂直平分线上．</b><br><span class="small-p">符号语言：∵ $QA=QB$，∴ 点 $Q$ 在线段 $AB$ 的垂直平分线上．</span></div>
+    </div>
+  </div>
+  <p class="note">课本 p52–53。分类讨论是本页的思维要点：Q 在 AB 上、在 AB 外两种情况都要说到。第二种情况先作垂线（辅助线画成虚线），再用 HL——这是 1.3 刚学的判定，学生容易写成 SAS（其实只有一组直角、两组边，但直角不是两边的夹角）。和第 4 页对比：条件和结论正好交换，这两个定理“互逆”。</p>
+</section>
+
+<!-- 8 ================= 尺规作图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作</span><h2>用直尺和圆规作线段 $AB$ 的垂直平分线</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="cons" class="fold-b"></div>
+      <div class="slider-row" data-noswipe>圆规张开的半径 $r$：<input type="range" id="consR" min="2" max="5" step="0.25" value="4"><b class="v" id="consRV"></b>　（$AB=6$）</div>
+      <div class="btns" data-noswipe id="consBtns">
+        <button class="btn" type="button" data-k="1">① 以 $A$ 为圆心画弧</button>
+        <button class="btn" type="button" data-k="2">② 以 $B$ 为圆心画弧</button>
+        <button class="btn" type="button" data-k="3">③ 过 $C$、$D$ 作直线</button>
+        <button class="btn" type="button" data-k="0">重来</button>
+      </div>
+    </div>
+    <div class="col">
+      <table class="mtab"><tr><th>作法（课本 p53）</th></tr>
+        <tr><td class="lft">1. 分别以点 $A$、$B$ 为圆心，大于 $\dfrac12AB$ 的长为半径画弧，两弧相交于点 $C$、$D$．<br>2. 过 $C$、$D$ 两点作直线．<br>直线 $CD$ 就是线段 $AB$ 的垂直平分线．</td></tr></table>
+      <p class="tip feedback" id="consMsg"></p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>为什么</span><span class="think" data-step="2" data-ask="C 到 A、B 的距离？">$CA=CB=r$，$DA=DB=r$</span><i class="why">同一个半径画的弧</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span class="think" data-step="4" data-ask="用哪条定理？">$C$、$D$ 都在 $AB$ 的垂直平分线上</span><i class="why">到线段两端距离相等的点在线段的垂直平分线上</i></div>
+        <div class="dl end" data-step="5"><span>∴</span><span>直线 $CD$ 就是 $AB$ 的垂直平分线</span><i class="why">两点确定一条直线</i></div>
+      </div>
+      <p class="warn" data-step="6" data-label="半径为什么要大于 AB 的一半？">把 $r$ 拖到 $3$ 或更小：$r=3$ 时两弧只有一个公共点，$r\lt3$ 时两弧不相交．</p>
+    </div>
+  </div>
+  <p class="note">课本 p53 操作。先按 ①②③ 完整作一遍，再请学生说“凭什么 CD 就是垂直平分线”——用的正是上一页刚证的逆定理。然后把半径拖小，让学生自己发现“大于 ½AB”这个条件的必要性。作图是按坐标精确计算的：C、D 的位置由两圆方程求出。</p>
+</section>
+
+<!-- 9 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流 · 例 1</span><h2>三边的垂直平分线，交于一点吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="ex1" class="ex-b"></div>
+      <div class="readout r3"><span>$OA$</span><b class="v" id="e1A"></b><span>$OB$</span><b class="v" id="e1B"></b><span>$OC$</span><b class="v" id="e1C"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="e1L3">再作 $BC$ 的垂直平分线</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">拖动三个顶点，观察 $l_1$、$l_2$、$l_3$ 的位置关系．</p>
+      <p class="tip"><b>例 1</b>　已知：如图 2-22，在 $\triangle ABC$ 中，$AB$、$AC$ 的垂直平分线 $l_1$、$l_2$ 相交于点 $O$．<br>求证：点 $O$ 在 $BC$ 的垂直平分线上．</p>
+      <div class="proof">
+        <p data-step="1"><span class="lead">证明：</span>连接 $OA$、$OB$、$OC$．</p>
+        <p data-step="2"><span class="so">∵</span>点 $O$ 在 $AB$ 的垂直平分线 $l_1$ 上，</p>
+        <p data-step="3"><span class="so">∴</span>$OA=OB$（<button class="yj" data-k="pb-xz"></button>）．</p>
+        <p data-step="4"><span class="so"></span>同理 $OA=OC$．</p>
+        <p data-step="5"><span class="so">∴</span>$OB=OC$．</p>
+        <p data-step="6"><span class="so">∴</span>点 $O$ 在 $BC$ 的垂直平分线上（<button class="yj" data-k="pb-pd"></button>）．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p53 交流与例 1。先操作后证明：用画板验证“三条垂直平分线交于一点”，再看证明——证明里两条定理“一正一反”各用一次，点括号里的依据可弹出卡片。可以追问：O 到三个顶点距离相等，以 O 为圆心、OA 为半径画圆，会经过哪些点？（经过 A、B、C，九年级会学“外接圆”。）把三角形拖成钝角三角形，O 跑到三角形外面，结论不变。</p>
+</section>
+
+<!-- 10 ================= 用一用：车站 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">用一用</span><h2>车站建在哪？——在直线上找“等距点”</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="bus" class="ex-b"></div>
+      <div class="readout r2"><span>$PA$</span><b class="v" id="bPA"></b><span>$PB$</span><b class="v" id="bPB"></b></div>
+      <p class="tip feedback" id="bMsg"></p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2（p52）</b>　要在公路旁设一个公共汽车站，车站应设在什么地方，才能使 $A$、$B$ 两村到车站的距离相等？</p>
+        <details><summary>提示 1</summary>车站 $P$ 要满足 $PA=PB$——这样的点都在哪里？</details>
+        <details><summary>提示 2</summary>$P$ 既要在 $AB$ 的垂直平分线上，又要在公路上。</details>
+        <details><summary>完整解答</summary>作线段 $AB$ 的垂直平分线，它与公路的交点就是车站的位置（到线段两端距离相等的点在线段的垂直平分线上）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2（p54）</b>　直线 $l$ 外有点 $A$、$B$，若要在 $l$ 上找一点，使这点与点 $A$、$B$ 的距离相等，这样的点一定能找到吗？请你画图表示各种可能的情况．</p>
+        <details><summary>提示 1</summary>拖动画板上的 $A$、$B$：让 $AB$ 与 $l$ 垂直；再让 $A$、$B$ 关于 $l$ 对称。</details>
+        <details><summary>完整解答</summary>① 一般情况：$AB$ 的垂直平分线与 $l$ 有一个交点，找到<b>一个</b>；② $AB\perp l$ 时，垂直平分线与 $l$ 平行，<b>找不到</b>；③ $A$、$B$ 关于 $l$ 对称时，$l$ 就是 $AB$ 的垂直平分线，$l$ 上<b>每一点</b>都满足．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">回到封面的问题。画板里的水平线代表公路（直线 l），A、B 可以拖到 l 的两侧。拖动时画板会把“AB ⊥ l”和“A、B 关于 l 对称”两种特殊位置吸附到位，方便演示三种情况。分类讨论的意识比答案更重要：让学生先说“一定能找到吗”，再动手找反例。</p>
+</section>
+
+<!-- 11 ================= 角是轴对称图形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">折一折 · 操作</span><h2>沿角平分线把角对折</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="fold2" class="fold-b"></div>
+      <div class="slider-row" data-noswipe>翻折 $\triangle POC$：<input type="range" id="fold2t" min="0" max="100" step="1" value="0"><b class="v" id="fold2tV"></b></div>
+      <div class="readout r2"><span>$PC$</span><b class="v" id="f2C"></b><span>$PD$</span><b class="v" id="f2D"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-23，$OC$ 是 $\angle AOB$ 的平分线．把 $\angle1$ 沿 $OC$ 翻折，因为 $\angle1=\angle2$，所以射线 $OA$ 与射线 $OB$ 重合．<b>角是轴对称图形，角平分线所在的直线是它的对称轴．</b></p>
+      <p class="tip">在 $\angle AOB$ 的平分线上任意取一点 $P$，分别画点 $P$ 到 $OA$ 和 $OB$ 的垂线段 $PC$ 和 $PD$（图 2-24）．$PC$ 与 $PD$ 相等吗？</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>$\angle AOP=\angle BOP$</span><i class="why">$OP$ 平分 $\angle AOB$</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span>$OA$ 与 $OB$ 重合</span><i class="why">把 $\triangle POC$ 沿 $OP$ 翻折（图 2-25）</i></div>
+        <div class="dl key" data-step="3"><span>∵</span><span>$PC\perp OA$，$PD\perp OB$</span><i class="why">都是垂线段</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span class="think" data-step="5" data-ask="依据哪个基本事实？">$PC$ 与 $PD$ 重合，$PC=PD$</span><i class="why">过一点有且只有一条直线与已知直线垂直</i></div>
+      </div>
+      <div class="def" data-step="6"><h4>定理（课本 p54）</h4><b>角平分线上的点到角两边的距离相等．</b></div>
+    </div>
+  </div>
+  <p class="note">课本 p54 图 2-23～2-25。与第 4 页的翻折说理对照：那里靠“两点确定一条直线”，这里靠“过一点有且只有一条直线与已知直线垂直”——翻折后 PC 和 PD 都是过 P 垂直于同一条射线的线段，只能重合。拖滑块演示翻折，拖 P 改变位置，读数始终相等。</p>
+</section>
+
+<!-- 12 ================= 角：逆定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>到角两边距离相等的点，在角平分线上吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="hunt2" class="fold-b"></div>
+      <div class="readout r3"><span>$QC$</span><b class="v" id="h2C"></b><span>$QD$</span><b class="v" id="h2D"></b><span>已找到</span><b class="v" id="h2N"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="h2Show">这些点在哪条线上？</button><button class="btn" type="button" id="h2Clr">清空</button></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="h2Msg"></p>
+      <p class="tip">如图 2-26，点 $Q$ 在 $\angle AOB$ 内，且 $QC\perp OA$，$QD\perp OB$，垂足分别为 $C$、$D$，$QC=QD$，作射线 $OQ$．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>$\angle QCO=\angle QDO=90^\circ$</span><i class="why">已知垂直</i></div>
+        <div class="dl" data-step="2"><span></span><span>$QC=QD$，$OQ=OQ$</span><i class="why">已知；公共边</i></div>
+        <div class="dl key" data-step="3"><span>∴</span><span class="think" data-step="4" data-ask="哪两个三角形全等？">$\text{Rt}\triangle QCO\cong\text{Rt}\triangle QDO$（HL）</span><i class="why">斜边、直角边</i></div>
+        <div class="dl end" data-step="5"><span>∴</span><span>$\angle AOQ=\angle BOQ$，即 $Q$ 在 $\angle AOB$ 的平分线上</span><i class="why">全等三角形对应角相等</i></div>
+      </div>
+      <div class="def" data-step="6"><h4>定理（课本 p55）</h4><b>角的内部到角两边距离相等的点在角的平分线上．</b></div>
+    </div>
+  </div>
+  <p class="note">课本 p55 讨论、图 2-26。先用画板找“到两边距离相等”的点：拖 Q 在角内移动，读数接近时会吸附并留下红点，几个点连起来是角平分线。再证明（又是 HL）。“角的内部”四个字不能丢：角外也有到两边所在直线距离相等的点（第 15 页辨析）。</p>
+</section>
+
+<!-- 13 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流 · 例 2</span><h2>三条角平分线，交于一点吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="ex2" class="ex-b"></div>
+      <div class="readout r3"><span>$PF$</span><b class="v" id="e2F"></b><span>$PM$</span><b class="v" id="e2M"></b><span>$PN$</span><b class="v" id="e2N"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="e2C">再作 $\angle C$ 的平分线</button></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 2</b>　已知：如图 2-27，$\triangle ABC$ 的角平分线 $AD$、$BE$ 相交于点 $P$．求证：点 $P$ 在 $\angle C$ 的平分线上．</p>
+      <div class="proof">
+        <p data-step="1"><span class="lead">证明：</span>过点 $P$ 作 $PF\perp AB$，$PM\perp BC$，$PN\perp AC$，垂足分别为 $F$、$M$、$N$．</p>
+        <p data-step="2"><span class="so">∵</span>$AD$ 平分 $\angle BAC$，点 $P$ 在 $AD$ 上，</p>
+        <p data-step="3"><span class="so">∴</span>$PF=PN$（<button class="yj" data-k="ab-xz"></button>）．</p>
+        <p data-step="4"><span class="so"></span>同理 $PF=PM$．</p>
+        <p data-step="5"><span class="so">∴</span>$PM=PN$．</p>
+        <p data-step="6"><span class="so">∴</span>点 $P$ 在 $\angle C$ 的平分线上（<button class="yj" data-k="ab-pd"></button>）．</p>
+      </div>
+      <p class="method" data-step="7" data-label="和例 1 比一比">例 1：两条<b>垂直平分线</b>的交点到三个<b>顶点</b>距离相等；例 2：两条<b>角平分线</b>的交点到三条<b>边</b>距离相等．证法的结构完全一样：性质定理用两次，逆定理用一次．</p>
+    </div>
+  </div>
+  <p class="note">课本 p55–56 交流与例 2、图 2-27。辅助线“过 P 作三条垂线”是关键：要用“到角两边的距离”，就必须先把垂线段画出来。与例 1 对照，学生会发现同一个“套路”。拖动顶点：不论什么形状，三条角平分线都交于三角形内部一点。</p>
+</section>
+
+<!-- 14 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>两个定理接力：$AD$ 垂直平分 $EF$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sk228" class="gfig l"></div>
+      <p class="muted center small-t">图 2-28</p>
+      <div class="think-flow" data-step="1">
+        <p class="tf-h"><span>怎么想 ↓</span><span>怎么写 ↑</span></p>
+        <p>要证 $AD$ 垂直平分 $EF$，</p>
+        <p>只要证 $DE=DF$，$AE=AF$．</p>
+        <p>已知 $\angle1=\angle2$，$DE\perp AB$，$DF\perp AC$，</p>
+        <p>只要证 $\angle3=\angle4$．</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">已知：如图 2-28，$AD$ 是 $\triangle ABC$ 的角平分线，$DE\perp AB$，$DF\perp AC$，垂足分别为 $E$、$F$．求证：$AD$ 垂直平分 $EF$．</p>
+      <div class="proof">
+        <p data-step="2"><span class="lead">证明：</span><span class="so">∵</span>$DE\perp AB$，$DF\perp AC$，$\angle1=\angle2$，</p>
+        <p data-step="3"><span class="so">∴</span>$\angle3=\angle4$．<span class="gk think" data-step="4" data-ask="凭什么？">（$\angle3=90^\circ-\angle1$，$\angle4=90^\circ-\angle2$，等角的余角相等）</span></p>
+        <p data-step="5"><span class="so">∴</span>$DE=DF$，$AE=AF$（<button class="yj" data-k="ab-xz"></button>）．</p>
+        <p data-step="6"><span class="so">∴</span>点 $D$、$A$ 在 $EF$ 的垂直平分线上（<button class="yj" data-k="pb-pd"></button>）．</p>
+        <p data-step="7"><span class="so">∴</span>$AD$ 垂直平分 $EF$．<span class="gk think" data-step="8" data-ask="最后一步凭什么？">（两点确定一条直线）</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p56 例 3 与“思考与表达”。先看左边“怎么想”：从要证的结论往回推（分析法），推到已知条件为止；“怎么写”则从已知往结论顺着写（综合法）。AE = AF 课本直接写在同一行，它来自 Rt△ADE ≌ Rt△ADF（AAS 或 HL）或角是轴对称图形——可请学生补充说明。本题两条定理“接力”：先用角平分线的性质，再用垂直平分线的判定。</p>
+</section>
+
+<!-- 15 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法，对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <div class="jrow"><div id="jg1" class="jfig"></div><p>点 $P$ 在 $\angle AOB$ 的平分线上，点 $C$、$D$ 分别在 $OA$、$OB$ 上，所以 $PC=PD$．</p></div>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>“到角两边的<b>距离</b>”指<b>垂线段</b>的长．$C$、$D$ 随便取，$PC$、$PD$ 不一定相等．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <div class="jrow"><div id="jg2" class="jfig"></div><p>点 $Q$ 到 $\angle AOB$ 两边所在直线的距离相等，所以 $Q$ 在 $\angle AOB$ 的平分线上．</p></div>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>漏了“<b>角的内部</b>”．图中 $Q$ 在角外，$QC=QD$，却不在 $\angle AOB$ 的平分线上．</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>到线段 $AB$ 两端距离相等的点只有一个，就是 $AB$ 的中点．</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>有<b>无数个</b>：$AB$ 的垂直平分线上每一点都是（第 6 页找过）．中点只是其中之一．</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p>若 $PA=PB$，$QA=QB$（$P$、$Q$ 不重合），则直线 $PQ$ 垂直平分 $AB$．</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict ok">✓</span>$P$、$Q$ 都在 $AB$ 的垂直平分线上，两点确定一条直线．这正是尺规作图（第 8 页）和例 3 的道理．</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">每张卡先举手表决，再点开。前两张对应两个“容易丢的字”：距离（垂线段）、内部。第 2 张的图是精确作出来的：Q 在 ∠AOB 的外面、在它邻补角的平分线上，到 OA、OB 所在直线的距离相等。第 4 张是正确的，可作为“判定一条直线是线段的垂直平分线”的常用方法。</p>
+</section>
+
+<!-- 16 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2.4 第 1 题</b>　如图，在 $\triangle ABC$ 中，$BC=7$，$AB$ 的垂直平分线分别交 $AB$、$BC$ 于点 $D$、$E$，$AC$ 的垂直平分线分别交 $AC$、$BC$ 于点 $F$、$G$．求 $\triangle AEG$ 的周长．</p>
+        <div id="pr1" class="gfig s"></div>
+        <details><summary>提示 1</summary>$E$ 在 $AB$ 的垂直平分线上，$EA$ 等于哪条线段？$GA$ 呢？</details>
+        <details><summary>提示 2</summary>$EA=EB$，$GA=GC$，把周长里的 $EA$、$GA$ 换掉。</details>
+        <details><summary>完整解答</summary>∵ $E$、$G$ 分别在 $AB$、$AC$ 的垂直平分线上，∴ $EA=EB$，$GA=GC$．∴ $\triangle AEG$ 的周长 $=EA+EG+GA=EB+EG+GC=BC=7$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2.4 第 2 题</b>　如图，$AB$ 的垂直平分线分别交 $AB$、$AC$ 于点 $D$、$E$，$AC=9$，$AE:EC=2:1$．求点 $B$ 到点 $E$ 的距离．</p>
+        <div id="pr2" class="gfig s"></div>
+        <details><summary>提示 1</summary>先由 $AC=9$、$AE:EC=2:1$ 求出 $AE$。</details>
+        <details><summary>提示 2</summary>$E$ 在 $AB$ 的垂直平分线上，所以 $BE=AE$。</details>
+        <details><summary>完整解答</summary>$AE=9\times\dfrac23=6$．∵ 点 $E$ 在 $AB$ 的垂直平分线上，∴ $BE=AE=6$（线段垂直平分线上的点到线段两端的距离相等）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2.4 第 9 题</b>　如图，$BD$ 是 $\triangle ABC$ 的角平分线，$DE\perp AB$，垂足为 $E$．$\triangle ABC$ 的面积为 70，$AB=16$，$BC=12$．求 $DE$ 的长．</p>
+        <div id="pr3" class="gfig s"></div>
+        <details><summary>提示 1</summary>点 $D$ 到 $BC$ 的距离等于多少？</details>
+        <details><summary>提示 2</summary>把 $\triangle ABC$ 分成 $\triangle ABD$ 和 $\triangle CBD$，两个三角形的“高”相等。</details>
+        <details><summary>完整解答</summary>作 $DF\perp BC$ 于 $F$．∵ $BD$ 平分 $\angle ABC$，∴ $DF=DE$．$S_{\triangle ABC}=\dfrac12\times16\times DE+\dfrac12\times12\times DE=14\,DE=70$，∴ $DE=5$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p57–58 习题 2.4 第 1、2、9 题。第 1 题是“转化”：把要求的周长转化成已知的 BC；第 9 题要自己添辅助线 DF，体现“有角平分线，常作两边的垂线”。三道题的图都按题目条件精确作出（第 9 题的图按 AB = 16、BC = 12、面积 70 计算）。</p>
+</section>
+
+<!-- 17 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>两对“互逆”的定理</h2></div>
+  <div class="bd full">
+    <table class="mtab sumtab" data-step="1">
+      <tr><th></th><th>性质：点在线上 ⇒ 距离相等</th><th>判定：距离相等 ⇒ 点在线上</th><th>用在三角形里</th></tr>
+      <tr><td><b>线段</b><br>对称轴：垂直平分线</td><td>线段垂直平分线上的点到线段两端的距离相等</td><td>到线段两端距离相等的点在线段的垂直平分线上</td><td>三边的垂直平分线交于一点，它到三个顶点距离相等（例 1）</td></tr>
+      <tr><td><b>角</b><br>对称轴：角平分线所在直线</td><td>角平分线上的点到角两边的距离相等</td><td><b>角的内部</b>到角两边距离相等的点在角的平分线上</td><td>三条角平分线交于一点，它到三条边距离相等（例 2）</td></tr>
+    </table>
+    <div class="cols3 sum">
+      <div class="col" data-step="2"><h3>方法</h3><p class="method" data-label="说理">翻折（图形运动）或全等三角形（SAS、HL）．</p><p class="method" data-label="作图">尺规作垂直平分线：半径大于 $\frac12AB$．</p></div>
+      <div class="col" data-step="3"><h3>思想</h3><p class="recall" data-label="倒过来想（课本 p59）">把定理的条件和结论交换，得到新的命题，再去证明它——这叫逆向思考．</p></div>
+      <div class="col" data-step="4"><h3>下一课</h3><p class="recall" data-label="2.5 等腰三角形的轴对称性">等腰三角形也是轴对称图形，它的对称轴是什么？会带来哪些相等的角和线段？</p></div>
+    </div>
+  </div>
+  <p class="note">先请学生对照表格复述四条定理，特别说清“性质”和“判定”的区别：已知点在线上用性质，要证点在线上用判定。课本 p59 “读一读·倒过来想”（司马光砸缸）可布置为课后阅读。作业建议：习题 2.4 第 3、5、6、8 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
