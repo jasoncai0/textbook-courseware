@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>互斥事件和独立事件 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/sheji.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第15章 概率 · 15.3</p>
+    <h1 class="cover-title">互斥事件和独立事件</h1>
+    <p class="cover-q" data-step="1">甲、乙两人各射击一次，命中目标的概率<b>都是 0.6</b>，两人互不影响。</p>
+    <p class="cover-q" data-step="2">“至少一人命中”的概率是 $0.6+0.6=1.2$ 吗？——概率怎么会超过 1？“两人都命中”的概率又该怎么算？</p>
+    <div class="chips" data-step="3"><span class="chip">互斥与对立</span><span class="chip">加法公式</span><span class="chip">概率的面积模型</span><span class="chip">相互独立</span><span class="chip">乘法公式</span></div>
+  </div>
+  <p class="note">情境取自课本 p279 习题 15.3(2) 第 4 题。先让学生凭直觉说“至少一人命中”的概率：很多人会脱口而出 1.2，立刻发现荒谬——加法什么时候能用？乘法什么时候能用？这正是本课的两个主题。答案在第 15 页揭晓。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>15.1 和 15.2 讲到了哪里？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="15.1 随机事件和样本空间（p259–261）" data-step="1">
+        <p>样本空间 $\Omega$：全部样本点的集合；事件是 $\Omega$ 的子集。</p>
+        <p><b>和（并）</b> $A+B$：$A$、$B$ 至少有一个发生，即 $A\cup B$。</p>
+        <p><b>积（交）</b> $AB$：$A$、$B$ 同时发生，即 $A\cap B$。</p>
+        <span class="use">“互斥”就是 $AB=\varnothing$；“独立”研究 $P(AB)$ 怎么算。</span>
+      </div>
+      <div class="recall" data-label="15.2 随机事件的概率（p262–268）" data-step="2">
+        <p>两个基本性质：$0\le P(A)\le 1$；$P(\Omega)=1$，$P(\varnothing)=0$。</p>
+        <p>古典概型：$P(A)=\dfrac{m}{n}=\dfrac{A\text{ 包含的样本点数}}{\text{样本点总数}}$。</p>
+        <p>频率的稳定性：$n$ 很大时 $P(A)\approx\dfrac mn$（p266–267）。</p>
+        <span class="use">用古典概型“数样本点”，验证本课的每一个公式。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 1.3 · 交集、并集" data-step="3">
+        <p>$A\cap B=\varnothing$：两个集合没有公共元素。</p>
+        <p>数 $A\cup B$ 的元素：$A$、$B$ 有公共元素时，公共部分会被<b>数两次</b>。</p>
+        <span class="use">推导 $P(A+B)=P(A)+P(B)-P(AB)$ 时“减去重复的”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>15.2 讲到：</b>怎样求<b>一个</b>事件的概率。<b>本课要问：</b>知道了 $P(A)$、$P(B)$，能不能直接得到 $P(A+B)$ 和 $P(AB)$？</p>
+  </div>
+  <p class="note">15.2 开篇说 0 ≤ P(A) ≤ 1 和 P(Ω) = 1、P(∅) = 0 是“概率满足的第二个基本性质”，本课的加法公式就是课本 p271 说的“第三个基本性质”。请学生复述“和”“积”的含义，并说出对应的集合运算。</p>
+</section>
+
+<!-- 3 ================= 互斥与对立 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>不可能同时发生：互斥；必有一个发生：对立</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">抛掷一颗骰子：$A$ = “点数是偶数”，$B$ = “点数是 3”，$C$ = “点数是奇数”。</p>
+      <div id="dieRow" class="die-row"></div>
+      <div class="derive dv">
+        <div class="dl" data-step="1"><span>$A=\{\omega_2,\omega_4,\omega_6\}$，$B=\{\omega_3\}$</span><span class="think" data-step="2" data-ask="AB 等于什么？">$AB=\varnothing$：不可能同时发生</span></div>
+        <div class="dl" data-step="3"><span>$C=\{\omega_1,\omega_3,\omega_5\}$</span><span class="think" data-step="4" data-ask="AC、A+C 呢？">$AC=\varnothing$，$A+C=\Omega$：必有一个发生</span></div>
+      </div>
+      <div class="def" data-step="5"><h4>互斥事件 · 对立事件（课本 p271）</h4>$AB=\varnothing$，即 $A$ 与 $B$ 不可能同时发生，称 $A$，$B$ 为<em>互斥事件</em>。<br>互斥且 $A+C=\Omega$，称 $A$，$C$ 为<em>对立事件</em>，记作 $C=\overline A$ 或 $A=\overline C$。</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6"><b>辨一辨</b>（课本 p274 练习 1）：$A$ = “点数是 4，5，6”，$B$ = “1，2”，$C$ = “1，2，3”，$D$ = “1，2，3，4”。</p>
+      <div class="jcard" data-step="6"><p>(1) $A$ 与 $B$</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">互斥且对立</button><button type="button" data-k="b">互斥不对立</button><button type="button" data-k="c">不互斥</button><p class="pick-why">$AB=\varnothing$，但 $A+B=\{1,2,4,5,6\}\ne\Omega$：点数 3 两个都不是。</p></div></div>
+      <div class="jcard" data-step="6"><p>(2) $A$ 与 $C$</p>
+        <div class="pick" data-ans="a"><button type="button" data-k="a">互斥且对立</button><button type="button" data-k="b">互斥不对立</button><button type="button" data-k="c">不互斥</button><p class="pick-why">$AC=\varnothing$，$A+C=\Omega$，所以 $C=\overline A$。</p></div></div>
+      <div class="jcard" data-step="6"><p>(3) $A$ 与 $D$</p>
+        <div class="pick" data-ans="c"><button type="button" data-k="a">互斥且对立</button><button type="button" data-k="b">互斥不对立</button><button type="button" data-k="c">不互斥</button><p class="pick-why">$AD=\{4\}\ne\varnothing$：掷出 4 点时两个同时发生。</p></div></div>
+      <p class="method" data-step="7" data-label="关系">对立事件必为互斥事件，但反之不然。对立事件是<b>必有一个发生</b>的互斥事件。</p>
+    </div>
+  </div>
+  <p class="note">课本 p271。上方 6 格是骰子的 6 个样本点，按步骤给 A（蓝）、B（橙）、C（绿）上色，学生一眼看出“有没有公共格”“合起来是否占满”。右边三题让学生先举手再点选；第 (1) 题最典型：互斥但不对立，因为“3 点”被漏掉了。</p>
+</section>
+
+<!-- 4 ================= 加法公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">加法公式</span><h2>$A$、$B$ 互斥时，$P(A+B)$ 等于什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>互斥事件的概率加法公式（课本 p271）</h4>如果事件 $A$，$B$ 互斥，那么事件 $A+B$ 发生的概率，等于事件 $A$，$B$ 分别发生的概率的和，即 $$P(A+B)=P(A)+P(B).$$ <span class="muted">这是概率满足的第三个基本性质。</span></div>
+      <p class="tip" data-step="2">先验一验：骰子中 $A$ = 偶数，$B$ = 3 点，$A+B=\{2,3,4,6\}$。<br><span class="think" data-step="3" data-ask="两边分别是多少？">$P(A+B)=\dfrac46$；$P(A)+P(B)=\dfrac36+\dfrac16=\dfrac46$。相等！</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4"><b>思考：</b>利用古典概型验证上述加法公式。</p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>设</span><span>$\Omega$ 含 $n$ 个样本点，$A$ 含 $m$ 个，$B$ 含 $k$ 个</span><i class="why">古典概型：每个样本点等可能（15.2）</i></div>
+        <div class="dl" data-step="5"><span>因为</span><span>$AB=\varnothing$</span><span class="think" data-step="6" data-ask="这说明什么？">$A$ 与 $B$ 没有公共样本点（互斥的定义）</span></div>
+        <div class="dl key" data-step="7"><span>所以</span><span>$A+B$ 恰含 $m+k$ 个样本点</span><i class="why">并集的元素不重复、不遗漏</i></div>
+        <div class="dl end" data-step="8"><span>$P(A+B)$</span><span>$=\dfrac{m+k}{n}=\dfrac mn+\dfrac kn=P(A)+P(B)$</span><i class="why">古典概型公式 $P=\dfrac{m}{n}$</i></div>
+      </div>
+      <p class="method" data-step="10" data-label="推广（课本 p271）">$A_1,A_2,\cdots,A_n$ 中任何两个都互斥（<b>两两互斥</b>），则 $P(A_1+A_2+\cdots+A_n)=P(A_1)+P(A_2)+\cdots+P(A_n)$。</p>
+      <p class="warn" data-step="9">互斥是<b>前提</b>：$A$ = 偶数，$D$ = “1，2，3，4”，$P(A)+P(D)=\dfrac36+\dfrac46=\dfrac76\gt 1$——公共的 4 点被算了两次。</p>
+    </div>
+  </div>
+  <p class="note">课本 p271 定理与“思考”。关键在第 6 步：互斥 ⇔ 没有公共样本点，所以“数 A+B 的样本点”可以直接把两边个数相加。易错警示用反例说明：不互斥时直接相加会重复计数，甚至超过 1——这为下一页的面积模型和“减去 P(AB)”埋下伏笔。</p>
+</section>
+
+<!-- 5 ================= 面积模型①：互斥与一般 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">面积模型</span><h2>把概率画成面积：重叠了会怎样？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="uniBtns">
+        <button class="btn solid" type="button" data-m="excl">互斥（不许重叠）</button>
+        <button class="btn" type="button" data-m="free">一般（可以重叠）</button>
+      </div>
+      <div id="uni" class="area-b"></div>
+      <p class="muted center small-t">正方形面积为 1，代表 $\Omega$；拖上方蓝点改 $A$ 的右边界，拖下方两个橙点改 $B$ 的左右边界（每小格面积 0.01）</p>
+    </div>
+    <div class="col">
+      <table class="mtab rd" id="uniTab"></table>
+      <p class="tip feedback" id="uniMsg"></p>
+      <p class="tip" data-step="1">切到“一般”，让 $A$、$B$ 重叠。$P(A)+P(B)$ 把重叠部分 $AB$ 算了几次？<br><span class="think" data-step="2" data-ask="数一数">两次——多算了一次 $P(AB)$。</span></p>
+      <p class="def" data-step="3"><span class="think" data-step="4" data-ask="所以 P(A+B) 应该等于？">$P(A+B)=P(A)+P(B)-P(AB)$</span></p>
+      <p class="tip" data-step="5">在“互斥”下把 $B$ 拉满 $A$ 右边的全部，$B$ 就是 <span class="think" data-step="6" data-ask="谁？">$\overline A$，读出 $P(\overline A)=1-P(A)$。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。正方形 = Ω，面积 1；事件 = 区域，概率 = 面积，图形严格按比例绘制，每小格 0.01。先在“互斥”模式下拖动：两块挨着但不重叠，P(A+B) 永远等于 P(A)+P(B)。再切“一般”，请学生把 B 往左拖进 A：右侧表格中 P(A)+P(B) 开始大于 P(A+B)，差值恰好是紫色重叠部分的面积。最后回到互斥，把 B 拉满剩余部分，看见“对立”。下一页给出严格证明。</p>
+</section>
+
+<!-- 6 ================= 三条常用性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">常用性质</span><h2>图上看见了，再逐条证明</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col">
+        <p class="def"><b>(1)</b> $P(\overline A)=1-P(A)$</p>
+        <div class="derive dv">
+          <div class="dl" data-step="1"><span></span><span>$A+\overline A=\Omega$</span><i class="why">$A$ 与 $\overline A$ 必有一个发生，是必然事件</i></div>
+          <div class="dl" data-step="2"><span></span><span>$P(A+\overline A)=P(A)+P(\overline A)$</span><i class="why">$A$ 与 $\overline A$ 互斥，加法公式</i></div>
+          <div class="dl" data-step="3"><span></span><span>$P(A+\overline A)=1$</span><i class="why">$P(\Omega)=1$（15.2）</i></div>
+          <div class="dl end" data-step="4"><span></span><span>$P(\overline A)=1-P(A)$</span><i class="why">两式联立</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="def"><b>(2)</b> 当 $A\subseteq B$ 时，$P(A)\le P(B)$</p>
+        <div class="derive dv">
+          <div class="dl" data-step="5"><span></span><span>设 $A$ 含 $m_A$ 个、$B$ 含 $m_B$ 个样本点</span><i class="why">古典概型，$\Omega$ 含 $n$ 个</i></div>
+          <div class="dl" data-step="6"><span></span><span class="think" data-step="7" data-ask="m_A 与 m_B 谁大？">$m_A\le m_B$</span><i class="why">$A$ 的样本点都在 $B$ 中</i></div>
+          <div class="dl end" data-step="8"><span></span><span>$\dfrac{m_A}{n}\le\dfrac{m_B}{n}$</span><i class="why">即 $P(A)\le P(B)$</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="def"><b>(3)</b> $A,B$ 不互斥时，$P(A+B)=P(A)+P(B)-P(AB)$</p>
+        <div class="derive dv">
+          <div class="dl" data-step="9"><span></span><span>$m_A+m_B$ 把 $AB$ 的样本点数了两次</span><i class="why">$AB$ 中的点既在 $A$ 中又在 $B$ 中</i></div>
+          <div class="dl key" data-step="10"><span></span><span class="think" data-step="11" data-ask="A+B 含几个样本点？">$m_{A+B}=m_A+m_B-m_{AB}$</span><i class="why">减去多数的一次</i></div>
+          <div class="dl end" data-step="12"><span></span><span>两边同除以 $n$</span><i class="why">得 $P(A+B)=P(A)+P(B)-P(AB)$</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="13">(3) 包含了加法公式：$A$、$B$ 互斥时 $P(AB)=P(\varnothing)=0$，就回到 $P(A+B)=P(A)+P(B)$。<b>“正难则反”</b>：直接求 $P(A)$ 麻烦时，先求 $P(\overline A)$。</p>
+  </div>
+  <p class="note">课本 p271–272。(1) 是课本给出的证明，每一步的依据都来自已学内容；(2)(3) 课本留作习题 15.3(1) 第 9 题，这里用古典概型“数样本点”完成，与上一页面积模型一一对应：面积 = 样本点个数 ÷ n。证 (3) 时可以让学生回想第一册 1.3 并集的元素个数。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>互斥吗？对立吗？求 $P(C)$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">一只不透明的口袋内装有大小一样的 2 个白球和 2 个黑球，从中先后各摸出 1 个球，记“摸出 2 个白球”为事件 $A$，“摸出 1 个白球和 1 个黑球”为事件 $B$，“摸出 2 个球中至少有 1 个白球”为事件 $C$。问：$A$ 与 $B$ 是否为互斥事件？是否为对立事件？并求 $P(C)$。</p>
+      <div id="ex1grid" class="pgrid" data-step="1"></div>
+      <p class="legend" data-step="1"><i class="lg a"></i>$A$　<i class="lg b"></i>$B$　<i class="lg n"></i>两个黑球　<i class="lg x"></i>不可能（同一个球）</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\Omega$</span><span>共 $12$ 个样本点</span><i class="why">先后摸，$(W_1,B_1)$ 表示先 $W_1$ 后 $B_1$；不能两次摸同一个</i></div>
+        <div class="dl" data-step="2"><span>$A$</span><span>$\{(W_1,W_2),(W_2,W_1)\}$</span><i class="why">2 个</i></div>
+        <div class="dl" data-step="2"><span>$B$</span><span>一白一黑，共 $8$ 个</span><i class="why">先白后黑 4 个 + 先黑后白 4 个</i></div>
+        <div class="dl" data-step="3"><span>互斥？</span><span class="think" data-step="4" data-ask="AB 是什么？">$AB=\varnothing$，是互斥事件</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span>对立？</span><span class="think" data-step="6" data-ask="A+B 是 Ω 吗？">$A+B\ne\Omega$，不是对立事件</span><i class="why">漏了“两个黑球”</i></div>
+        <div class="dl end" data-step="7"><span>$P(C)$</span><span>$=P(A+B)=P(A)+P(B)=\dfrac{2}{12}+\dfrac{8}{12}=\dfrac56$</span><i class="why">$A+B=C$，且 $A$、$B$ 互斥</i></div>
+      </div>
+      <p class="tip gold" data-step="8">课本旁注：试利用 $P(C)=1-P(\overline C)$ 计算。<span class="think" data-step="9" data-ask="C 的对立事件是什么？">$\overline C$ = “两个都是黑球”，2 个样本点，$P(C)=1-\dfrac{2}{12}=\dfrac56$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p272 例 1。左图按“第 1 个球（横）× 第 2 个球（纵）”把 12 个样本点排成表，对角线灰格是不可能的（同一个球不能摸两次）。学生数格子即可看出 A、B 不重叠（互斥），合起来却没有占满（缺两个黑球的 2 格，不对立）。旁注的“正难则反”只需数 2 格。</p>
+</section>
+
+<!-- 8 ================= 例 2 / 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>把复杂事件拆成互斥的简单事件</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 2</b>　某人射击 1 次，命中 7～10 环的概率如下表（表 15-3-1）。(1) 求至少命中 7 环的概率；(2) 求命中不足 7 环的概率。</p>
+      <table class="mtab"><tr><th>命中环数</th><td>10 环</td><td>9 环</td><td>8 环</td><td>7 环</td></tr><tr><th>概率</th><td>0.12</td><td>0.18</td><td>0.28</td><td>0.32</td></tr></table>
+      <div class="derive dv">
+        <div class="dl" data-step="1"><span>记</span><span>“命中 $k$ 环”为 $A_k$</span><i class="why">射 1 次只有一个环数：$A_k$ 两两互斥</i></div>
+        <div class="dl" data-step="2"><span>(1) $P(A)$</span><span>$=P(A_{10}+A_9+A_8+A_7)$</span><i class="why">$A_{10},A_9,A_8,A_7$ 之一发生，$A$ 就发生</i></div>
+        <div class="dl" data-step="3"><span></span><span>$=0.12+0.18+0.28+0.32=0.9$</span><i class="why">两两互斥，概率相加</i></div>
+        <div class="dl end" data-step="4"><span>(2)</span><span class="think" data-step="5" data-ask="“不足 7 环”和 A 什么关系？">$P(\overline A)=1-P(A)=1-0.9=0.1$</span><i class="why">“不足 7 环”是 $A$ 的对立事件</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6"><b>例 3</b>　黄种人群中各血型所占比为：A 型 28%，B 型 29%，AB 型 8%，O 型 35%（表 15-3-2）。同血型可互相输血，O 型可输给任何血型，任何血型都可输给 AB 型，其他不能互相输血。小明是 B 型血。(1) 任找 1 人，其血可以输给小明的概率是多少？(2) 不能输给小明的概率是多少？</p>
+      <div class="blood" id="blood" data-step="6"></div>
+      <div class="derive dv">
+        <div class="dl" data-step="7"><span>(1)</span><span>$P(B'+D')=0.29+0.35=0.64$</span><i class="why">B 型、O 型可输给 B 型；$A',B',C',D'$ 两两互斥</i></div>
+        <div class="dl" data-step="8"><span>(2)</span><span>$P(A'+C')=0.28+0.08=0.36$</span><i class="why">A 型、AB 型不能输给 B 型</i></div>
+        <div class="dl end" data-step="9"><span>或</span><span>$P(\overline{B'+D'})=1-0.64=0.36$</span><i class="why">两问的事件互为对立</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="method" data-step="10">通过事件的运算，把较复杂的事件用简单事件表示，再根据概率的性质，把复杂事件的概率转化为简单事件的概率——这是求概率的基本方法（课本 p273）。</p>
+  <p class="note">课本 p272–273 例 2、例 3。例 2 先追问“为什么 A₁₀、A₉、A₈、A₇ 两两互斥”——射一次只有一个环数。例 3 的彩色条按百分比精确绘制，可以输血的两段（B、O）连起来正好 64%。A′、B′、C′、D′ 分别表示 A、B、AB、O 型，注意与血型字母区分。</p>
+</section>
+
+<!-- 9 ================= 练习（一） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>互斥、对立：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 小包装食品中，90～95 g 的有 40 袋，95～100 g 的有 30 袋，100～105 g 的有 10 袋。任取 1 袋，质量在 95～100 g 的概率为____，不足 100 g 的概率为____，不低于 95 g 的概率为____。</p>
+        <details><summary>提示 1</summary>一共 $40+30+10=80$ 袋；三个质量段两两互斥。</details>
+        <details><summary>提示 2</summary>“不足 100 g” = 90～95 g + 95～100 g；“不低于 95 g” = 95～100 g + 100～105 g。</details>
+        <details><summary>完整解答</summary>$\dfrac{30}{80}=0.375$；$\dfrac{40}{80}+\dfrac{30}{80}=0.875$；$\dfrac{30}{80}+\dfrac{10}{80}=0.5$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 甲、乙两个同学下棋，若甲获胜的概率为 0.2，甲、乙下成和棋的概率为 0.5，则甲不输的概率为____。</p>
+        <details><summary>提示 1</summary>“甲不输”包含哪几种情况？</details>
+        <details><summary>提示 2</summary>甲不输 = 甲胜 + 和棋，这两个事件互斥。</details>
+        <details><summary>完整解答</summary>$P=0.2+0.5=0.7$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 某人外出参加活动，乘火车、轮船、汽车、飞机去的概率分别为 0.3，0.2，0.4，0.1。求：(1) 他乘火车或乘飞机去的概率；(2) 他不乘轮船去的概率。</p>
+        <details><summary>提示 1</summary>只选一种交通工具，四个事件两两互斥。</details>
+        <details><summary>提示 2</summary>(2) “不乘轮船”是“乘轮船”的对立事件。</details>
+        <details><summary>完整解答</summary>(1) $0.3+0.1=0.4$；(2) $1-0.2=0.8$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p274 练习 2、3、5。先独立做 3 分钟，再按需逐级点开提示。第 3 题提醒学生：“甲不输”不是“甲胜”，“甲输”的概率是 1 − 0.7 = 0.3。课后作业建议：习题 15.3(1) 第 1、3、5、9 题（第 9 题就是上一节的性质 (2)(3)）。</p>
+</section>
+
+<!-- 10 ================= 独立：问题提出 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">独立事件</span><h2>$P(AB)$ 与 $P(A)$、$P(B)$ 有怎样的关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">先后抛掷两颗骰子。$A$：第一颗向上的点数是 1；$B$：第二颗向上的点数是 2。</p>
+      <div id="diceGrid" class="pgrid"></div>
+      <p class="legend"><i class="lg a"></i>$A$（第一颗是 1）　<i class="lg b"></i>$B$（第二颗是 2）　<i class="lg ab"></i>$AB$</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">从表面上看，$A$ 发生与否对 $B$ 发生的概率<b>没有影响</b>。果真如此吗？算一算：</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$P(A)$</span><span>$=\dfrac{6}{36}=\dfrac16$</span><i class="why">蓝色一列 6 格</i></div>
+        <div class="dl" data-step="2"><span>$P(B)$</span><span>$=\dfrac{6}{36}=\dfrac16$</span><i class="why">橙色一行 6 格</i></div>
+        <div class="dl" data-step="3"><span>$P(AB)$</span><span class="think" data-step="4" data-ask="AB 有几格？">$=\dfrac{1}{36}$</span><i class="why">$AB=\{(1,2)\}$</i></div>
+        <div class="dl key" data-step="5"><span>发现</span><span>$P(AB)=P(A)P(B)$</span><i class="why">$\dfrac1{36}=\dfrac16\times\dfrac16$</i></div>
+      </div>
+      <p class="tip" data-step="6">若 $A$ 发生（只看蓝列 6 格），$B$ 发生的概率为 <span class="think" data-step="7" data-ask="多少？">$\dfrac16$</span>；若 $A$ 不发生（其余 30 格），$B$ 发生的概率为 <span class="think" data-step="7" data-ask="多少？">$\dfrac{5}{30}=\dfrac16$</span>。</p>
+      <p class="tip gold" data-step="8">这表明：事件 $A$ 发生与否<b>不影响</b>事件 $B$ 发生的概率。</p>
+    </div>
+  </div>
+  <p class="note">课本 p275–276、图 15-3-1。为了和下一页的面积模型对应，这里把“第一颗”放在横向（列）、“第二颗”放在纵向（行），与课本图 15-3-1 行列互换，格子内容 (第一颗, 第二颗) 不变。第 6 步是理解“独立”的关键：只在蓝色列里看，B 占 1/6；在其余 30 格里看，B 也占 1/6——比例一样。</p>
+</section>
+
+<!-- 11 ================= 面积模型②：独立 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">面积模型</span><h2>竖条 × 横条：交叠面积为什么等于乘积？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="indBtns">
+        <button class="btn solid" type="button" data-m="ind">独立：$B$ 是横条</button>
+        <button class="btn" type="button" data-m="dep">不独立：两边高度不同</button>
+      </div>
+      <div id="ind" class="area-b"></div>
+      <div class="btns small-btns" data-noswipe id="indPre">
+        <button class="btn" type="button" data-p="dice">两颗骰子</button>
+        <button class="btn" type="button" data-p="ex1">例 1(2) 无放回</button>
+        <button class="btn" type="button" data-p="ex3">例 3 卡片</button>
+      </div>
+      <p class="tip" data-step="4">“不独立”时：<span class="think" data-step="5" data-ask="什么时候又相等？">只有当 $A$ 内、$A$ 外 $B$ 所占的高度一样（$A$ 发生与否不影响 $B$ 的比例）时，才有 $P(AB)=P(A)P(B)$。</span></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>相互独立事件（课本 p276）</h4>对于两个随机事件 $A$，$B$，如果 $P(AB)=P(A)P(B)$，那么称 $A$，$B$ 为<em>相互独立事件</em>。</div>
+      <table class="mtab rd" id="indTab"></table>
+      <p class="tip feedback" id="indMsg"></p>
+      <p class="tip" data-step="2">独立时 $B$ 是一整条横带，高 $q$：<span class="think" data-step="3" data-ask="为什么 P(AB)=P(A)P(B)？">$AB$ 是宽 $P(A)$、高 $q$ 的矩形，面积 $P(A)\cdot q$；而 $P(B)=1\cdot q$。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互（续）。A = 宽为 P(A) 的竖条（蓝），B = 橙色区域，红框 = AB。“独立”模式下 B 是整条横带，拖动任意橙点 B 整体升降：红框面积始终等于 P(A)·P(B)，可以数小格验证（如 0.3 × 0.4 = 12 格）。切到“不独立”，左右两个橙点分开拖：A 内、A 外 B 的高度不同，P(AB) ≠ P(A)P(B)。三个预设按钮：两颗骰子（1/6 × 1/6）、例 1(2) 无放回（A 内 1/2，A 外 1/4，不独立）、例 3 卡片（两边都是 2/3，独立——直观上看不出来）。</p>
+</section>
+
+<!-- 12 ================= Ā 与 B 独立 + 辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 辨析</span><h2>$A$、$B$ 独立，$\overline A$、$B$ 也独立吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">课本 p276 思考：尝试证明——若 $A$，$B$ 相互独立，则 $\overline A$，$B$ 相互独立。</p>
+      <div class="derive dv">
+        <div class="dl" data-step="1"><span></span><span>$B=AB+\overline AB$，且 $AB$、$\overline AB$ 互斥</span><span class="think" data-step="2" data-ask="为什么？">$B$ 发生时，$A$ 要么发生、要么不发生，二者不能同时</span></div>
+        <div class="dl" data-step="3"><span></span><span>$P(B)=P(AB)+P(\overline AB)$</span><i class="why">互斥事件的加法公式</i></div>
+        <div class="dl" data-step="4"><span>$P(\overline AB)$</span><span>$=P(B)-P(AB)=P(B)-P(A)P(B)$</span><i class="why">$A$、$B$ 相互独立</i></div>
+        <div class="dl key" data-step="5"><span></span><span>$=\left[1-P(A)\right]P(B)=P(\overline A)P(B)$</span><i class="why">提公因式；性质 $P(\overline A)=1-P(A)$</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$\overline A$，$B$ 相互独立</span><i class="why">同理 $A$ 与 $\overline B$、$\overline A$ 与 $\overline B$ 也相互独立</i></div>
+      </div>
+      <p class="tip muted" data-step="6">面积模型里：$\overline AB$ 是右边那块橙色，宽 $1-P(A)$、高 $q$。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7"><b>说法正确吗？</b>（课本 p278 练习 1）</p>
+      <div class="jcard" data-step="7"><p>(1) 甲、乙、丙三人轮流抛掷一枚硬币，甲、乙抛掷的结果都是正面，则丙抛掷的结果是正面的可能性很小。</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">✗</span>每次抛掷相互独立，前面的结果不影响丙：丙正面的概率仍是 $\dfrac12$。</p></div></div>
+      <div class="jcard" data-step="9"><p>(2) 若 $A$，$B$ 为互斥事件，则 $A$，$B$ 必为相互独立事件。</p>
+        <div class="think" data-step="10" data-ask="对还是错？"><p><span class="verdict x">✗</span>若 $P(A)\gt 0,P(B)\gt 0$ 且互斥，则 $P(AB)=0\ne P(A)P(B)$。面积模型里：互斥是两块<b>不重叠</b>，独立要求重叠面积<b>恰好等于乘积</b>。</p></div></div>
+      <p class="warn" data-step="11" data-label="别混淆">互斥：不能<b>同时</b>发生（$AB=\varnothing$），用于算 $P(A+B)$；独立：一个发生与否<b>不影响</b>另一个的概率，用于算 $P(AB)$。</p>
+    </div>
+  </div>
+  <p class="note">左边证明每一步都用到前面学过的结论：拆分 B（事件运算）、加法公式（互斥）、独立的定义、对立事件的概率。右边两题先表决再点开；第 (2) 题是本课最常见的误区，可以回到上一页面积模型对比：互斥时两块根本不重叠。</p>
+</section>
+
+<!-- 13 ================= 独立 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>有放回与无放回：独立吗？</h2></div>
+  <div class="bd">
+    <p class="tip span2">口袋内有红、黄、蓝 3 个球（号码记为 1，2，3）。$A$：第一次抽到红球；$B$：第二次抽到黄球。判断 (1) 有放回地抽取 2 个球；(2) 无放回地抽取 2 个球时，$A$，$B$ 是否相互独立。</p>
+    <div class="col">
+      <h3 class="sub">(1) 有放回</h3>
+      <div id="repGrid" class="pgrid sm"></div>
+      <div class="derive dv">
+        <div class="dl" data-step="1"><span>解法 1</span><span>$A$ 发生时 $B$ 的概率 $\tfrac13$；$A$ 不发生时 $\tfrac26=\tfrac13$</span><i class="why">一样</i></div>
+        <div class="dl end" data-step="2"><span>解法 2</span><span>$P(AB)=\dfrac19=\dfrac13\times\dfrac13=P(A)P(B)$</span><span class="think" data-step="3" data-ask="结论？">相互独立</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <h3 class="sub">(2) 无放回</h3>
+      <div id="norepGrid" class="pgrid sm"></div>
+      <div class="derive dv">
+        <div class="dl" data-step="4"><span>解法 1</span><span>$A$ 发生时 $B$ 的概率 $\tfrac12$；$A$ 不发生时 $\tfrac14$</span><i class="why">不一样</i></div>
+        <div class="dl end" data-step="5"><span>解法 2</span><span>$P(AB)=\dfrac16\ne\dfrac13\times\dfrac13=P(A)P(B)$</span><span class="think" data-step="6" data-ask="结论？">不相互独立</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p276–277 例 1，注意比较 (1)(2) 中的 Ω、A、B 的区别（课本旁注）。有放回：9 个样本点；无放回：对角线三格不可能，只剩 6 个。解法 1 看“比例变不变”，解法 2 用定义算——两种方法结论一致。可以回到第 11 页按“例 1(2) 无放回”预设，看 A 内、A 外 B 的高度 1/2 与 1/4。</p>
+</section>
+
+<!-- 14 ================= 独立 例 2 / 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>用乘法求概率；直觉判断独立靠不住</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 2</b>　甲坛子里装有 1 个白球、1 个黑球；乙坛子里装有 2 个白球、1 个黑球。从甲、乙两个坛子里分别摸出 1 个球，结果都是白球的概率是多少？</p>
+      <div class="derive dv">
+        <div class="dl" data-step="1"><span>$\Omega$</span><span>$2\times3=6$ 个样本点</span><i class="why">甲 $\{W_1,B_1\}$，乙 $\{W_2,W_3,B_2\}$</i></div>
+        <div class="dl" data-step="2"><span>$AB$</span><span>$\{(W_1,W_2),(W_1,W_3)\}$</span><i class="why">两个坛子都摸出白球</i></div>
+        <div class="dl end" data-step="3"><span>$P(AB)$</span><span>$=\dfrac26=\dfrac13$</span><i class="why">古典概型</i></div>
+        <div class="dl" data-step="4"><span>对照</span><span class="think" data-step="5" data-ask="用独立能更快吗？">$P(A)P(B)=\dfrac12\times\dfrac23=\dfrac13$</span><i class="why">两个坛子互不影响，结果一致</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 3</b>　口袋内有 9 张卡片，分别标有 1～9。$A$ = “卡片号为 1 或 4 或 7”，$B$ = “卡片号小于 7”。判断 $A$，$B$ 是否相互独立。</p>
+      <div id="cards" class="cards" data-step="6"></div>
+      <div class="derive dv">
+        <div class="dl" data-step="6"><span>$A$、$B$</span><span>$\{1,4,7\}$，$\{1,2,3,4,5,6\}$</span><i class="why">$AB=\{1,4\}$</i></div>
+        <div class="dl" data-step="7"><span>解法 2</span><span>$P(AB)=\dfrac29=\dfrac13\times\dfrac23=P(A)P(B)$</span><i class="why">解法 1：$A$ 发生时 $B$ 的概率 $\tfrac23$，不发生时 $\tfrac46=\tfrac23$</i></div>
+      </div>
+      <p class="tip gold" data-step="8"><b>所以 $A$，$B$ 相互独立</b>——“看起来”有关系，其实独立。$A$，$B$ 独立与否有时很难从直观上作出判断，唯有经过概率之间的关系才可以作出<b>理性而准确</b>的判断。</p>
+      <p class="def" data-step="9"><b>推广（课本 p278）</b>　$A_1,A_2,\cdots,A_n$ 相互独立 ⇒ $P(A_1A_2\cdots A_n)=P(A_1)P(A_2)\cdots P(A_n)$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p277–278 例 2、例 3。例 2 课本用列举法，这里补一行“对照”：两个坛子互不影响，用乘法公式更快，结果相同。例 3 是反直觉的例子：卡片 1～9 中，A 在“小于 7”和“不小于 7”两部分中所占的比例相同（2/6 与 1/3），所以独立；请学生先猜再算，体会“定义比直觉可靠”。</p>
+</section>
+
+<!-- 15 ================= 练习（二） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>独立事件：回到封面的射箭问题</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 元件 $X$、$Y$ 串联成系统 $S$，各元件是否正常工作互不影响，$X$、$Y$ 都正常工作时 $S$ 正常工作。已知 $X$、$Y$ 正常工作的概率分别为 0.8，0.9，求系统 $S$ 正常工作的概率。</p>
+        <details><summary>提示 1</summary>“$S$ 正常工作” = “$X$ 正常”与“$Y$ 正常”<b>同时</b>发生，是积事件。</details>
+        <details><summary>提示 2</summary>两个事件相互独立，用乘法公式。</details>
+        <details><summary>完整解答</summary>$P=0.8\times0.9=0.72$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 甲、乙两人独立地破译某个密码，甲译出密码的概率为 0.35，乙译出密码的概率为 0.25，求密码被破译的概率。</p>
+        <details><summary>提示 1</summary>“被破译” = 至少一人译出。正难则反：它的对立事件是什么？</details>
+        <details><summary>提示 2</summary>“都没译出”：$\overline A$、$\overline B$ 也相互独立，$P(\overline A\,\overline B)=0.65\times0.75$。</details>
+        <details><summary>完整解答</summary>$P=1-0.65\times0.75=1-0.4875=0.5125$。<br>或 $P(A+B)=0.35+0.25-0.35\times0.25=0.5125$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 甲、乙两人各进行一次射击，如果两人击中目标的概率都是 0.6，计算：(1) 其中恰有一人击中目标的概率；(2) 至少有一人击中目标的概率。</p>
+        <details><summary>提示 1</summary>(1) 恰有一人 = $A\overline B+\overline AB$，这两个事件互斥。</details>
+        <details><summary>提示 2</summary>(2) 对立事件是“两人都没击中”。</details>
+        <details><summary>完整解答</summary>(1) $0.6\times0.4+0.4\times0.6=0.48$；(2) $1-0.4\times0.4=0.84$。封面的 $1.2$ 错在 $A$、$B$ 不互斥：$0.6+0.6-0.6\times0.6=0.84$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p279 习题 15.3(2) 第 2、3、4 题。第 4 题回答封面问题：两人都命中的概率 0.6 × 0.6 = 0.36（独立 → 乘法）；至少一人命中 0.84（“1.2”错在 A、B 不互斥，必须减去 P(AB)）。第 3 题给出两种解法，第二种用到第 6 页的性质 (3)。课后作业建议：习题 15.3(2) 第 1、5、6 题。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">互斥：$AB=\varnothing$ ⇒ $P(A+B)=P(A)+P(B)$<br>对立：$P(\overline A)=1-P(A)$<br>一般：$P(A+B)=P(A)+P(B)-P(AB)$</p>
+        <p class="def">独立：$P(AB)=P(A)P(B)$；$A,B$ 独立 ⇒ $\overline A$ 与 $B$ 等也独立</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="拆">复杂事件 → 用简单事件的和、积表示</p>
+        <p class="method" data-label="算">和：先看是否<b>互斥</b>；积：先看是否<b>独立</b>；“至少”：考虑对立事件</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">面积模型：概率 = 面积；重叠 = 积事件；竖条 × 横条 = 独立</p>
+        <p class="recall" data-label="理性判断">独立与否靠概率之间的关系判断，不靠直觉</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p280「问题与探究 · 确定公平的规则」——只有一只质地不均匀的啤酒瓶盖，抛 2 次能定出公平的规则吗？<span class="think" data-step="5" data-ask="提示">设正面概率为 $p$，两次独立：“正反”与“反正”的概率都是 $p(1-p)$。</span>再完成 p282「本章回顾」，梳理整章知识。</p>
+  </div>
+  <p class="note">请学生先自己说“加法什么时候能用、乘法什么时候能用”，再揭示三栏。15.3 是第 15 章（也是必修第二册）的最后一节，下一步是“问题与探究”和本章回顾、本章测试。“确定公平的规则”正好用到本课的独立事件乘法公式，适合作为课后探究。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

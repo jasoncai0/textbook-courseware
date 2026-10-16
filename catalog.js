@@ -5093,25 +5093,41 @@ window.CATALOG = [
                 "no": "7.1",
                 "title": "角与弧度",
                 "genre": "概念",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mg10a-jiaoyuhudu",
+                "pages": 14,
+                "desc": "拖终边转任意角；同心圆 l/r 不变得 1 rad",
+                "cover": "mg10a-jiaoyuhudu/assets/motianlun.jpg"
               },
               {
                 "no": "7.2",
                 "title": "三角函数概念",
                 "genre": "概念",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mg10a-sanjiaogainian",
+                "pages": 16,
+                "desc": "单位圆拖 P 看函数值，切换诱导公式对称点",
+                "cover": "mg10a-sanjiaogainian/assets/shuiche.jpg"
               },
               {
                 "no": "7.3",
                 "title": "三角函数的图象和性质",
                 "genre": "推导",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mg10a-sanjiaotuxiang",
+                "pages": 15,
+                "desc": "拖单位圆把弧拉直，逐点描出正弦曲线",
+                "cover": "mg10a-sanjiaotuxiang/assets/hailang.jpg"
               },
               {
                 "no": "7.4",
                 "title": "三角函数应用",
                 "genre": "推导",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mg10a-sanjiaoyingyong",
+                "pages": 13,
+                "desc": "振子边振边描图；拖滑块拟合潮汐数据",
+                "cover": "mg10a-sanjiaoyingyong/assets/chaoxi.jpg"
               }
             ]
           },
@@ -5175,7 +5191,11 @@ window.CATALOG = [
                 "no": "9.4",
                 "title": "向量应用",
                 "genre": "推导",
-                "kind": "平面向量"
+                "kind": "平面向量",
+                "dir": "mg10b-xiangliangyingyong",
+                "pages": 13,
+                "desc": "拖夹角看提水拉力；拖三角形顶点验证垂心等式",
+                "cover": "mg10b-xiangliangyingyong/assets/tishui.jpg"
               }
             ]
           },
@@ -5188,7 +5208,11 @@ window.CATALOG = [
                 "no": "10.1",
                 "title": "两角和与差的三角函数",
                 "genre": "推导",
-                "kind": "三角恒等变换"
+                "kind": "三角恒等变换",
+                "dir": "mg10b-liangjiaohecha",
+                "pages": 16,
+                "desc": "单位圆拖 α、β，数量积两种算法实时相等",
+                "cover": "mg10b-liangjiaohecha/assets/motianlun.jpg"
               },
               {
                 "no": "10.2",
@@ -5204,7 +5228,11 @@ window.CATALOG = [
                 "no": "10.3",
                 "title": "几个三角恒等式",
                 "genre": "推导",
-                "kind": "三角恒等变换"
+                "kind": "三角恒等变换",
+                "dir": "mg10b-sanjiaohengdengshi",
+                "pages": 14,
+                "desc": "拖动点(a,b)看正弦余弦叠加成一列波",
+                "cover": "mg10b-sanjiaohengdengshi/assets/hailang.jpg"
               }
             ]
           },
@@ -5329,19 +5357,31 @@ window.CATALOG = [
                 "no": "15.1",
                 "title": "随机事件和样本空间",
                 "genre": "概念",
-                "kind": "概率"
+                "kind": "概率",
+                "dir": "mg10b-suijishijian",
+                "pages": 13,
+                "desc": "点选 6×6 样本点组成事件，即时算 A+B、AB",
+                "cover": "mg10b-suijishijian/assets/yingbi.jpg"
               },
               {
                 "no": "15.2",
                 "title": "随机事件的概率",
                 "genre": "推导",
-                "kind": "概率"
+                "kind": "概率",
+                "dir": "mg10b-suijigailv",
+                "pages": 15,
+                "desc": "真随机模拟摸球，频率折线逼近 3/10",
+                "cover": "mg10b-suijigailv/assets/moqiu.jpg"
               },
               {
                 "no": "15.3",
                 "title": "互斥事件和独立事件",
                 "genre": "推导",
-                "kind": "概率"
+                "kind": "概率",
+                "dir": "mg10b-huchiduli",
+                "pages": 16,
+                "desc": "拖面积模型：互斥不重叠，竖条×横条看独立",
+                "cover": "mg10b-huchiduli/assets/sheji.jpg"
               }
             ]
           }

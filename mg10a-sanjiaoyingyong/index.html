@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角函数应用 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chaoxi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第7章 三角函数 · 7.4</p>
+    <h1 class="cover-title">三角函数应用</h1>
+    <p class="cover-q" data-step="1">海水受日月引力，早潮叫潮，晚潮叫汐。船在涨潮时驶进航道，卸货后落潮时返回海洋。</p>
+    <p class="cover-q" data-step="2">港口的水深一天里<b>周而复始</b>地变化。一条吃水 4 m 的货船，<b>几点</b>能进港？卸货卸到几点必须离开？</p>
+    <div class="chips" data-step="3"><span class="chip">简谐运动</span><span class="chip">振幅·周期·频率·相位</span><span class="chip">边运动边描图</span><span class="chip">用数据表拟合 A、ω、φ</span></div>
+  </div>
+  <p class="note">课本 p200 节首语与 p204「应用与建模 · 港口水深的变化与三角函数」。封面只提问题，不急着算：先请学生说说“周期性运动”有哪些（钟摆、弹簧、水车、潮汐），本课最后回到港口问题。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>7.3 讲到了 $y=A\sin(\omega x+\varphi)$</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="7.3.3 摩天轮（课本 p192–193）" data-step="1">
+        <p>$H=40\sin\!\left(\dfrac{\pi}{15}t-\dfrac\pi2\right)+48$：$A$ 是半径，$\omega$ 是转动的速度，$\varphi$ 是初始位置所对应的角，48 是圆心高度。</p>
+        <span class="use">今天的单摆、弹簧、水轮、潮汐，都写成 $y=A\sin(\omega x+\varphi)+b$。</span>
+      </div>
+      <div class="recall" data-label="7.3.1 周期（p183）" data-step="2">
+        <p>$y=A\sin(\omega x+\varphi)$（$A\ne0,\ \omega\gt0$）的周期 $T=\dfrac{2\pi}{\omega}$。</p>
+        <span class="use">由“多久往复一次”求 $\omega=\dfrac{2\pi}{T}$。</span>
+      </div>
+      <div class="recall" data-label="7.3.2 最值（p187）" data-step="3">
+        <p>$-1\le\sin x\le1$；$y=A\sin(\omega x+\varphi)+b$ 的最大值 $b+A$，最小值 $b-A$（$A\gt0$）。</p>
+        <span class="use">由最高、最低值反求 $A=\dfrac{\max-\min}2$，$b=\dfrac{\max+\min}2$。</span>
+      </div>
+      <div class="recall" data-label="7.3.3 图象变换 · 例 7（p195–197）" data-step="4">
+        <p>$\varphi$ 管平移，$\omega$ 管横向伸缩，$A$ 管纵向伸缩；五点法“先定整体 $\omega x+\varphi$，再解 $x$”。</p>
+        <span class="use">用一个已知点（如 $t=0$ 时的位置）定出初相 $\varphi$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一节讲到哪：</b>7.3 研究了 $\sin x$、$\cos x$、$\tan x$ 的图象与性质，最后学会由 $y=\sin x$ 经过平移、伸缩得到 $y=A\sin(\omega x+\varphi)$ 的图象（课本 p182–199）。本节反过来：<b>从实际的周期运动出发，找出 $A$、$\omega$、$\varphi$</b>。</p>
+  </div>
+  <p class="note">四张卡依次出现，每张请学生先说出公式再看“本课用在”。上一节是“给参数画图象”，这一节是“给现象（图象、数据）求参数”——方向正好相反，这是建模的关键。</p>
+</section>
+
+<!-- 3 ================= 简谐运动 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">简谐运动</span><h2>单摆来回摆动：怎样用三角函数描述？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 320 300" class="pend-fig" aria-label="单摆示意图：D、O、C 三个位置">
+        <path d="M100 20 H220" stroke="#556575" stroke-width="4"/>
+        <path d="M110 20 l-8 -8 M125 20 l-8 -8 M140 20 l-8 -8 M155 20 l-8 -8 M170 20 l-8 -8 M185 20 l-8 -8 M200 20 l-8 -8 M215 20 l-8 -8" stroke="#556575" stroke-width="2"/>
+        <line x1="160" y1="20" x2="160" y2="250" stroke="#9fb0bf" stroke-width="2" stroke-dasharray="6 5"/>
+        <line x1="160" y1="20" x2="100" y2="242" stroke="#9fb0bf" stroke-width="2"/>
+        <line x1="160" y1="20" x2="220" y2="242" stroke="#1d6fa5" stroke-width="2.5"/>
+        <circle cx="100" cy="242" r="11" fill="#cfe0ee"/><circle cx="160" cy="250" r="11" fill="#cfe0ee"/><circle cx="220" cy="242" r="13" fill="#1d6fa5"/>
+        <text x="94" y="282" class="fl">D</text><text x="154" y="290" class="fl">O</text><text x="214" y="282" class="fl">C</text>
+        <path d="M110 268 Q160 290 210 268" fill="none" stroke="#d9711c" stroke-width="2" marker-end="url(#ar)"/>
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d9711c"/></marker></defs>
+      </svg>
+      <p class="tip">向右偏移为正：到 $C$ 时位移达最大值 $A$，到 $O$ 时为 0，到 $D$ 时为 $-A$……周而复始（图 7-4-1）。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">匀速圆周运动的点 $P$ 的纵坐标是 $y=A\sin(\omega t+\varphi)$。当物体做<b>简谐运动</b>（单摆、弹簧振子）时，<span class="think" data-step="2" data-ask="位移也能这样写吗？">也是一种周期运动，运动规律可以用 $y=A\sin(\omega x+\varphi)$ 表达。</span></p>
+      <table class="mtab terms" data-step="3">
+        <tr><th>$x$</th><td>时间</td><th>$y$</th><td>相对于平衡位置的偏离</td></tr>
+        <tr><th>振幅</th><td colspan="3">$A$：离开平衡位置的最大距离</td></tr>
+        <tr><th>周期</th><td colspan="3">$T=\dfrac{2\pi}{\omega}$：往复运动一次所需的时间</td></tr>
+        <tr><th>频率</th><td colspan="3"><span class="think" data-step="4" data-ask="频率和周期什么关系？">$f=\dfrac1T=\dfrac{\omega}{2\pi}$：单位时间内往复运动的次数</span></td></tr>
+        <tr><th>相位</th><td colspan="3">$\omega x+\varphi$；$x=0$ 时的相位 $\varphi$ 称为<b>初相</b></td></tr>
+      </table>
+      <p class="method" data-step="5" data-label="对照摩天轮">振幅 ↔ 半径，$\omega$ ↔ 转动的快慢，初相 ↔ 开始计时的位置。</p>
+    </div>
+  </div>
+  <p class="note">课本 p200 与图 7-4-1。旁注：圆周上点 P 的横坐标为 x = Acos(ωt + φ)——单摆的投影也可以看成圆周运动的“影子”。频率是本课新词，追问：“周期 2 s，1 s 里往复几次？”（0.5 次）。</p>
+</section>
+
+<!-- 4 ================= 核心交互：同步动画 + 描图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">边动边描</span><h2>振子一边振动，一边画出位移—时间图象</h2></div>
+  <div class="bd full top">
+  <div class="osc-wrap">
+    <div id="osc" class="osc"></div>
+    <div class="osc-side">
+      <div class="btns" data-noswipe id="oscPre">
+        <button class="btn solid" type="button" data-k="ex1">例 1：$A=3,\ T=3$，最远处开始</button>
+        <button class="btn" type="button" data-k="p4">练习 4：$A=5,\ T=4$，平衡位置开始</button>
+      </div>
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" id="oscPlay">▶ 播放</button>
+        <button class="btn" type="button" id="oscReset">⟲ 从 0 开始</button>
+      </div>
+      <div class="slider-row" data-noswipe>$t=$<input type="range" id="oscT" min="0" max="12" step="0.05" value="0"><b id="oscTV" class="v"></b></div>
+      <p class="tip feedback" id="oscMsg"></p>
+      <p class="muted small-t">振子画成竖直方向，向上为正（对应课本“向右为正”），这样它的位移与图象的纵坐标在同一高度。</p>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p200 例 1、p202 练习 4 的数据。先点“播放”看一遍：左边振子每到最高处，右边曲线就到波峰——虚线把同一时刻的位移“横着搬”过去。暂停后拖时间滑块，请学生读出 t = 5 s（例 1）的位移，与下一页的计算 −1.5 cm 对照；切换到练习 4，比较两次开始计时的位置不同，曲线的起点（初相）也不同。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>由振幅、周期和起始位置写出函数</h2></div>
+  <div class="bd full">
+    <p class="tip">点 $O$ 为做简谐运动的物体的平衡位置，取向右为正方向。已知振幅为 3 cm，周期为 3 s，且物体<b>向右运动到距平衡位置最远处时</b>开始计时。求：(1) 位移 $x$（cm）和时间 $t$（s）之间的函数关系；(2) 该物体在 $t=5$ s 时的位置。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设</span><span>$x=3\sin(\omega t+\varphi)$</span><i class="why">$\omega\gt0,\ 0\le\varphi\lt2\pi$；振幅 3</i></div>
+        <div class="dl" data-step="2"><span>$T=\dfrac{2\pi}{\omega}=3$</span><span class="think" data-step="3" data-ask="ω = ?">$\omega=\dfrac{2\pi}3$</span><i class="why">周期 3 s</i></div>
+        <div class="dl key" data-step="4"><span>$t=0$ 时 $x=3$</span><span class="think" data-step="5" data-ask="φ = ?">$3\sin\varphi=3$，$\sin\varphi=1$，$\varphi=\dfrac\pi2$</span><i class="why">从最远处开始计时；$0\le\varphi\lt2\pi$</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$x=3\sin\!\left(\dfrac{2\pi}3t+\dfrac\pi2\right)$，即 $x=3\cos\dfrac{2\pi}3t$</span><i class="why">诱导公式</i></div>
+        <div class="dl" data-step="7"><span>(2) 令 $t=5$</span><span class="think" data-step="8" data-ask="算一算">$x=3\cos\dfrac{10\pi}3=-1.5$</span><i class="why">$\cos\dfrac{10\pi}3=\cos\dfrac{4\pi}3=-\dfrac12$</i></div>
+        <div class="dl end" data-step="9"><span>答</span><span>在 $O$ 点的<b>左侧</b>且距 $O$ 点 1.5 cm 处</span><i class="why">负号表示在平衡位置左边</i></div>
+      </div>
+      <p class="method" data-step="10" data-label="三步定参数">振幅定 $A$ → 周期定 $\omega=\dfrac{2\pi}{T}$ → 起始位置定 $\varphi$（代入 $t=0$，注意 $\varphi$ 的范围）。</p>
+  </div>
+  <p class="note">课本 p200–201 例 1。φ 的取值：sinφ = 1 且 0 ≤ φ &lt; 2π，只有 π/2。回上一页把滑块拖到 t = 5，读数正是 −1.5。“即 x = 3cos(2π t/3)”用的是诱导公式 sin(α + π/2) = cos α。</p>
+</section>
+
+<!-- 6 ================= 例 2 水轮 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>水轮上的点 $P$：离水面多高？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">半径 3 m 的水轮，圆心 $O$ 距水面 2 m，每分钟逆时针转 4 圈；从 $P$ 浮出水面（$P_0$）时开始计时。(1) 求 $P$ 到水面的距离 $z$（m，水面下为负）关于 $t$（s）的函数；(2) $P$ 第一次到达最高点约要多久？</p>
+      <div id="wheel" class="wheel"></div>
+      <div class="slider-row" data-noswipe>$t=$<input type="range" id="wheelT" min="0" max="15" step="0.1" value="0"><b id="wheelV" class="v"></b></div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设初相</span><span>$\varphi\ \left(-\dfrac\pi2\lt\varphi\lt0\right)$</span><i class="why">以 $Ox$ 为始边、$OP_0$ 为终边的角</i></div>
+        <div class="dl" data-step="2"><span>$t$ s 转过</span><span class="think" data-step="3" data-ask="每秒转多少弧度？">$\dfrac{4\times2\pi}{60}t=\dfrac{2\pi}{15}t$</span><i class="why">每分钟 4 圈</i></div>
+        <div class="dl" data-step="4"><span>$z=$</span><span>$3\sin\!\left(\dfrac{2\pi}{15}t+\varphi\right)+2$</span><i class="why">纵坐标 + 圆心高度 2</i></div>
+        <div class="dl key" data-step="5"><span>$t=0,\ z=0$</span><span class="think" data-step="6" data-ask="φ ≈ ?">$\sin\varphi=-\dfrac23$，$\varphi\approx-0.73$</span><i class="why">$-\dfrac\pi2\lt\varphi\lt0$</i></div>
+        <div class="dl end" data-step="7"><span>所以</span><span>$z=3\sin\!\left(\dfrac{2\pi}{15}t-0.73\right)+2$</span><i class="why"></i></div>
+        <div class="dl" data-step="8"><span>(2) $z=5$</span><span class="think" data-step="9" data-ask="解出 t">$\dfrac{2\pi}{15}t-0.73=\dfrac\pi2$，$t\approx5.5$</span><i class="why">第一次到最高点：$\sin(\cdots)=1$</i></div>
+      </div>
+      <p class="tip gold" data-step="10">约需 <b>5.5 s</b>。拖动滑块验证：$t=5.5$ 时 $z$ 接近 5。</p>
+    </div>
+  </div>
+  <p class="note">课本 p201 例 2、图 7-4-3。“水面下为负”让 z 可以取到 −1（最低点）。φ 是负角：P₀ 在 x 轴下方、水面上（纵坐标 −2），所以 sinφ = −2/3。第 (2) 问要的是“第一次”，取相位等于 π/2 而不是 π/2 + 2kπ。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 函数 $y=\dfrac23\sin\!\left(\dfrac12x+\dfrac\pi3\right)$ 的振幅、周期、初相各是多少？</p>
+        <details><summary>提示 1</summary>对照 $y=A\sin(\omega x+\varphi)$：$A$、$\omega$、$\varphi$ 各是几？</details>
+        <details><summary>提示 2</summary>周期 $T=\dfrac{2\pi}{\omega}$，$\omega=\dfrac12$。</details>
+        <details><summary>完整解答</summary>振幅 $\dfrac23$，周期 $T=\dfrac{2\pi}{1/2}=4\pi$，初相 $\dfrac\pi3$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 单摆的角 $\theta=\dfrac12\sin\!\left(2t+\dfrac\pi2\right)$（$t$：s）。(1) $t=0$ 时 $\theta$ 是多少？(2) 频率是多少？(3) 完成 5 次完整摆动共需多长时间？</p>
+        <details><summary>提示 1</summary>(1) 代入 $t=0$；(2) 先求 $T=\dfrac{2\pi}{2}$，再 $f=\dfrac1T$。</details>
+        <details><summary>提示 2</summary>一次完整摆动的时间就是一个周期。</details>
+        <details><summary>完整解答</summary>(1) $\theta=\dfrac12\sin\dfrac\pi2=\dfrac12$；(2) $T=\pi$ s，$f=\dfrac1\pi$；(3) $5T=5\pi$ s $\approx15.7$ s。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 简谐运动的振幅为 5 cm，周期为 4 s，物体<b>向右运动到平衡位置时</b>开始计时。(1) 求 $x$ 与 $t$ 的函数关系；(2) 求 $t=7.5$ s 时的位置。</p>
+        <details><summary>提示 1</summary>$A=5$，$\omega=\dfrac{2\pi}4=\dfrac\pi2$；$t=0$ 时 $x=0$ 且正在向正方向运动。</details>
+        <details><summary>提示 2</summary>$\sin\varphi=0$，且接下来 $x$ 要增大，取 $\varphi=0$。</details>
+        <details><summary>完整解答</summary>(1) $x=5\sin\dfrac\pi2t$；(2) $x=5\sin\dfrac{15\pi}4=5\sin\!\left(-\dfrac\pi4\right)=-\dfrac{5\sqrt2}2\approx-3.54$，在 $O$ 点左侧约 3.54 cm 处。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p201–202 练习 1、2、4。第 3 题可回到第 4 页切换“练习 4”，把滑块拖到 7.5 s，读数 −3.54 正是答案。第 2 题的 θ 是角（弧度），“振幅”是 1/2 rad。</p>
+</section>
+
+<!-- 8 ================= 核心交互：数据拟合 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">应用与建模</span><h2>港口水深：从数据表“拟合”出函数</h2></div>
+  <div class="bd full top">
+  <div class="fit-wrap">
+    <div class="fit-left">
+      <div class="btns" data-noswipe id="fitSet">
+        <button class="btn solid" type="button" data-set="port">港口水深（p204）</button>
+        <button class="btn" type="button" data-set="day">白昼时间（习题 7.4 第 7 题）</button>
+      </div>
+      <div id="fitTable" class="fit-table"></div>
+      <div class="fit-steps">
+        <p data-step="1">① $b$：<span class="think" data-step="2" data-ask="怎么定？">$\frac{\max+\min}2$，曲线的“中线”</span></p>
+        <p data-step="1">② $A$：<span class="think" data-step="3" data-ask="怎么定？">$\frac{\max-\min}2$，中线到波峰的高度</span></p>
+        <p data-step="1">③ $T$：<span class="think" data-step="4" data-ask="怎么定？">相邻两个最高点的时间差，$\omega=\frac{2\pi}T$</span></p>
+        <p data-step="1">④ $\varphi$：<span class="think" data-step="5" data-ask="怎么定？">代入一个点：$x=0$ 时恰在中线且上升 ⇒ $\varphi=0$</span></p>
+      </div>
+      <div class="fit-sliders" data-noswipe>
+        <div class="slider-row">① $b$<input type="range" id="fb"><b id="fbV" class="v"></b><i id="fbOk" class="ok-mark"></i></div>
+        <div class="slider-row">② $A$<input type="range" id="fA"><b id="fAV" class="v"></b><i id="fAOk" class="ok-mark"></i></div>
+        <div class="slider-row">③ $T$<input type="range" id="fT"><b id="fTV" class="v"></b><i id="fTOk" class="ok-mark"></i></div>
+        <div class="slider-row">④ $\varphi$<input type="range" id="fP"><b id="fPV" class="v"></b><i id="fPOk" class="ok-mark"></i></div>
+      </div>
+    </div>
+    <div class="fit-right">
+      <div id="fit" class="fit"></div>
+      <p class="tip feedback" id="fitMsg"></p>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p204 表格。按 ①→④ 的顺序请学生<b>先说出理由再拖</b>：① b = (最大 + 最小)/2 = 5；② A = (最大 − 最小)/2 = 2.5；③ 相邻两次最高（3:00 与 15:00）相隔 T = 12，ω = 2π/T = π/6；④ 0:00 时水深 5（= b）且正在上涨，φ = 0。竖线是每个数据点到曲线的“残差”，绿色表示吻合（误差 ≤ 0.1）。课本答案 f(x) = 2.5sin(πx/6) + 5。切换到“白昼时间”是探究题：数据不再“整齐”，曲线不可能逐点吻合，只能让残差尽量小——这才是真实的拟合。</p>
+</section>
+
+<!-- 9 ================= 港口 (1)(2) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">港口 (1)(2)</span><h2>水深 $f(x)=2.5\sin\frac\pi6x+5$：货船何时能进港？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">(1) 整点时的水深（课本）：</p>
+      <table class="mtab small">
+        <tr><th>时刻</th><td>1, 5, 13, 17 时</td><td>2, 4, 14, 16 时</td></tr>
+        <tr><th>水深/m</th><td><span class="think" data-step="1" data-ask="?">6.3</span></td><td><span class="think" data-step="1" data-ask="?">7.2</span></td></tr>
+        <tr><th>时刻</th><td>7, 11, 19, 23 时</td><td>8, 10, 20, 22 时</td></tr>
+        <tr><th>水深/m</th><td><span class="think" data-step="1" data-ask="?">3.7</span></td><td><span class="think" data-step="1" data-ask="?">2.8</span></td></tr>
+      </table>
+      <p class="tip" data-step="2">(2) 吃水 4 m，安全间隙至少 1.5 m，水深要满足什么？<span class="think" data-step="3" data-ask="列不等式">$2.5\sin\dfrac\pi6x+5\ge4+1.5=5.5$</span></p>
+      <div class="derive two">
+        <div class="dl" data-step="4"><span>即</span><span>$\sin\dfrac\pi6x\ge0.2$</span><i class="why">画出 $y=\sin\frac\pi6x$ 与 $y=0.2$</i></div>
+        <div class="dl end" data-step="5"><span>由图象</span><span class="think" data-step="6" data-ask="读出区间">$0.4\le x\le5.6$ 或 $12.4\le x\le17.6$</span><i class="why"></i></div>
+      </div>
+      <p class="tip gold" data-step="7">该船在 <b>0:24 至 5:36</b> 和 <b>12:24 至 17:36</b> 期间可以进港。</p>
+    </div>
+    <div class="col">
+      <div id="port" class="port"></div>
+      <p class="tip feedback" id="portMsg"></p>
+      <p class="muted small-t">拖动曲线上的点读水深；浅绿色时段水深 ≥ 5.5 m</p>
+    </div>
+  </div>
+  <p class="note">课本 p204–205。(1) 请学生用计算器算几个整点再对照课本。(2) 是本课第一次用“图象解三角不等式”：sin(πx/6) = 0.2 的解 x = (6/π)·arcsin0.2 ≈ 0.38 ≈ 0.4，由对称性另一个是 6 − 0.4 = 5.6，再加周期 12。0.4 h = 24 min。</p>
+</section>
+
+<!-- 10 ================= 港口 (3) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">港口 (3)</span><h2>边卸货边变浅：几点必须驶离？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">船 2:00 开始卸货，吃水深度以每小时 0.3 m 的速度减少。什么时间必须停止卸货，驶向较深的水域？</p>
+      <div class="derive two">
+        <div class="dl" data-step="1"><span>$x$ 时吃水</span><span class="think" data-step="2" data-ask="h(x) = ?">$h(x)=4-0.3(x-2)$</span><i class="why">$2\le x\le24$</i></div>
+        <div class="dl" data-step="3"><span>安全要求</span><span>$f(x)\ge h(x)+1.5$</span><i class="why">水深 ≥ 吃水 + 安全间隙</i></div>
+        <div class="dl key" data-step="4"><span>化简</span><span class="think" data-step="5" data-ask="化成什么？">$\sin\dfrac\pi6x\ge0.44-0.12x$</span><i class="why">两边减 5 再除以 2.5</i></div>
+        <div class="dl end" data-step="6"><span>由图象</span><span>$x\approx6.7$，即 <b>6:42</b> 时必须停止卸货</span><i class="why">两图象第一次相交</i></div>
+      </div>
+      <p class="warn" data-step="7">交点之后水已不够深，必须在第一个交点前驶离，不能等 10 点后水深回升。</p>
+    </div>
+    <div class="col">
+      <div id="unload" class="unload"></div>
+      <div class="slider-row" data-noswipe>$x=$<input type="range" id="unX" min="2" max="12" step="0.05" value="4"><b id="unXV" class="v"></b></div>
+      <p class="tip feedback" id="unMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p205 (3)。右图用的是原始量：蓝线是水深 f(x)，橙线是“需要的水深” h(x) + 1.5 = 5.5 − 0.3(x − 2)。拖动 x 看两者之差：从正变为负的时刻约为 6.7 h，即 6:42（数值求得 x ≈ 6.715）。课本用的是化简后的 sin(πx/6) 与 0.44 − 0.12x 两条线，交点相同。</p>
+</section>
+
+<!-- 11 ================= 仿照练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">仿照练习</span><h2>换一个港口，自己建模</h2></div>
+  <div class="bd full top">
+    <p class="tip">某港口相邻两次高潮发生时间间隔 12 h 20 min，低潮时入口处水深 2.8 m，高潮时为 8.4 m，一次高潮发生在 10 月 3 日 2:00。（课本 p205）</p>
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>(1)</b> 从 10 月 3 日 0:00 开始计时，选用三角函数描述水深 $d$（m）与时间 $t$（h）的关系。</p>
+        <details><summary>提示 1</summary>$A=\dfrac{8.4-2.8}2$，$b=\dfrac{8.4+2.8}2$，$T=12\dfrac13=\dfrac{37}3$ h。</details>
+        <details><summary>提示 2</summary>$\omega=\dfrac{2\pi}T=\dfrac{6\pi}{37}$；$t=2$ 时最高：$\dfrac{6\pi}{37}\cdot2+\varphi=\dfrac\pi2$。</details>
+        <details><summary>完整解答</summary>$A=2.8$，$b=5.6$，$\varphi=\dfrac\pi2-\dfrac{12\pi}{37}=\dfrac{13\pi}{74}$，$d=2.8\sin\!\left(\dfrac{6\pi}{37}t+\dfrac{13\pi}{74}\right)+5.6$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>(2)</b> 求 10 月 3 日 4:00 水的深度。</p>
+        <details><summary>提示 1</summary>代入 $t=4$。</details>
+        <details><summary>提示 2</summary>相位 $\dfrac{24\pi}{37}+\dfrac{13\pi}{74}=\dfrac{61\pi}{74}$，$\sin\dfrac{61\pi}{74}=\sin\dfrac{13\pi}{74}$。</details>
+        <details><summary>完整解答</summary>$d=2.8\sin\dfrac{13\pi}{74}+5.6\approx2.8\times0.524+5.6\approx7.07$（m）。也可看出 4:00 与 0:00 关于高潮时刻 2:00 对称，水深相同。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>(3)</b> 求 10 月 3 日吃水深度为 5 m 的轮船能进入港口的时间。</p>
+        <details><summary>提示 1</summary>能进港即 $d\ge5$：$\sin\!\left(\dfrac{6\pi}{37}t+\dfrac{13\pi}{74}\right)\ge-\dfrac{3}{14}$。</details>
+        <details><summary>提示 2</summary>画出 $y=d(t)$ 与 $y=5$ 在 $[0,24]$ 上的图象，求交点（数值解）。</details>
+        <details><summary>完整解答</summary>交点约为 $t\approx5.51,\ 10.83,\ 17.84,\ 23.16$，所以约 0:00—5:30、10:50—17:50、23:10—24:00 可以进港（本题未规定安全间隙，按 $d\ge5$ 计算）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p205“仿照上述案例，尝试解决以下问题”，课本未给答案，以上为按题意计算的结果（第 (3) 问交点由数值计算得到）。可回到第 8 页的拟合器体会：已知高低潮与时间，就能直接写出 A、b、T、φ。</p>
+</section>
+
+<!-- 12 ================= 建模方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">建模</span><h2>用三角函数为周期现象建模的一般步骤</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div><b>① 收集数据</b><span>表格、图象、文字描述</span></div><i>→</i>
+      <div><b>② 画散点图</b><span>看是不是“周而复始”</span></div><i>→</i>
+      <div><b>③ 选模型</b><span>$y=A\sin(\omega x+\varphi)+b$</span></div><i>→</i>
+      <div><b>④ 求参数</b><span>$b,\ A,\ T\to\omega,\ \varphi$</span></div><i>→</i>
+      <div><b>⑤ 检验</b><span>逐点对比残差</span></div><i>→</i>
+      <div><b>⑥ 应用</b><span>预测、解不等式</span></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="2" data-label="求参数口诀">$b=\dfrac{\max+\min}2$，$A=\dfrac{\max-\min}2$，$\omega=\dfrac{2\pi}T$；初相由“已知时刻的位置”定，并注意 $\varphi$ 的范围与“正在上升还是下降”。</p>
+      <p class="warn" data-step="3">实际数据只是<b>近似</b>满足模型：白昼时间那组数据，任何参数都不能让 10 个点全部落在曲线上；模型给出的是估计值。</p>
+    </div>
+    <div class="hint-ladder" data-step="4">
+      <p class="q"><b>习题 7.4 第 3 题</b>　某城市 6 月份的月平均气温最高，为 29.45 ℃；12 月份最低，为 18.3 ℃。用三角函数描述月平均气温 $y$ 与月份数 $x$ 的关系。</p>
+      <details><summary>提示 1</summary>$A=\dfrac{29.45-18.3}2$，$b=\dfrac{29.45+18.3}2$，一年一个周期 $T=12$。</details>
+      <details><summary>提示 2</summary>$x=6$ 时最高：$\dfrac\pi6\cdot6+\varphi=\dfrac\pi2$。</details>
+      <details><summary>完整解答</summary>$A=5.575$，$b=23.875$，$\omega=\dfrac\pi6$，$\varphi=-\dfrac\pi2$：$y=5.575\sin\!\left(\dfrac\pi6x-\dfrac\pi2\right)+23.875$（$1\le x\le12$，$x\in\N$）。</details>
+    </div>
+  </div>
+  <p class="note">把今天的例题对号入座：例 1、例 2 是“文字描述 → 求参数”，港口是“数据表 → 拟合 → 解不等式”。习题第 3 题课本未给答案，以上为参考解；也可写成 y = −5.575cos(πx/6) + 23.875。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">简谐运动 $y=A\sin(\omega x+\varphi)$：振幅 $A$，周期 $T=\dfrac{2\pi}\omega$，频率 $f=\dfrac1T$，相位 $\omega x+\varphi$，初相 $\varphi$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="定参数">最值定 $A$、$b$；周期定 $\omega$；已知点定 $\varphi$。</p>
+        <p class="method" data-label="解决问题">列三角不等式 → 画图象找交点 → 换算成实际时间。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数学建模">现实问题 → 数学模型 → 求解 → 检验 → 回到现实。</p>
+        <p class="recall" data-label="数形结合">振子与图象同步；散点与曲线对比残差。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p207「本章回顾」——从周期现象出发，经过任意角与弧度、三角函数、同角关系、诱导公式、图象和性质，最后到应用。课后作业：习题 7.4 第 1、2、5、6 题；第 7 题（白昼时间）用第 8 页的拟合器试一试，再估计 7 月 8 日的白昼时间。</p>
+  </div>
+  <p class="note">请学生用一句话说出“怎样确定 A、ω、φ、b”，再逐栏揭示。本章回顾的结构图把第 7 章串起来：周期现象 → 任意角、弧度 → 三角函数 → 同角关系 / 诱导公式 / 图象和性质 → 三角函数的应用。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

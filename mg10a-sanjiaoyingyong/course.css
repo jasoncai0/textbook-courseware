@@ -1,0 +1,74 @@
+/* 高一上 7.4 三角函数应用 · 本课专属样式 */
+.recall p { margin: .2em 0; }
+.small-t { margin: 0; font-size: .7em; }
+.fl { font-size: 22px; font-style: italic; font-family: "Times New Roman", serif; fill: var(--ink); }
+
+.mtab { border-collapse: collapse; width: 100%; font-size: .9em; background: #fff; }
+.mtab th, .mtab td { border: 1px solid var(--line); padding: .2em .4em; text-align: center; }
+.mtab th { background: #e8f1f8; font-weight: normal; white-space: nowrap; }
+.mtab.small { font-size: .78em; }
+.mtab.terms td { text-align: left; }
+
+.pend-fig { width: 100%; max-height: 14em; }
+
+/* 作图板附加线型 */
+.mboard .faint { opacity: .55; }
+.mboard .thick { stroke-width: 5.5; stroke-linecap: round; }
+.mboard .dashed { stroke-dasharray: 7 6; }
+.mboard .trace { stroke-width: 4; }
+.mboard .eq { stroke: #6f8191; stroke-width: 1.6; stroke-dasharray: 8 5; }
+.mboard .ceil { stroke: #556575; stroke-width: 6; }
+.mboard .spring { stroke: #556575; stroke-width: 2.2; fill: none; }
+.mboard .block { fill: var(--orange); stroke: #a8550f; stroke-width: 2; }
+.mboard .water { fill: rgba(79, 155, 208, .22); stroke: #4f9bd0; stroke-width: 2; }
+.mboard .band { fill: rgba(47, 125, 107, .14); stroke: none; }
+.mboard .res { stroke-width: 3.5; }
+.mboard .res.ok { stroke: var(--jade); }
+.mboard .res.bad { stroke: #c0392b; }
+
+/* 核心 1：振子 + 描图 */
+.osc-wrap { display: grid; grid-template-columns: 1fr 19em; gap: 1em; align-items: center; min-height: 0; }
+.osc { height: 21em; }
+.osc-side { display: flex; flex-direction: column; gap: .5em; }
+.osc-side .btn { font-size: .78em; }
+.osc-side .feedback { font-size: .82em; }
+
+.wheel { height: 12em; }
+
+/* 核心 2：拟合 */
+.fit-wrap { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1em; min-height: 0; }
+.fit-left { display: flex; flex-direction: column; gap: .45em; min-width: 0; }
+.fit-left .btn { font-size: .76em; }
+.fit-table { overflow-x: auto; }
+.fit-table .mtab { font-size: .7em; }
+.fit-steps { display: grid; gap: .1em; font-size: .78em; }
+.fit-steps p { margin: 0; }
+.derive.two { grid-template-columns: max-content 1fr; }
+.derive.two .dl > :nth-child(3) { grid-column: 2; }
+.fit-sliders { display: flex; flex-direction: column; gap: .3em; }
+.fit-sliders .slider-row { font-size: .85em; }
+.fit-sliders .v { min-width: 6.5em; text-align: right; font-variant-numeric: tabular-nums; }
+.ok-mark { font-style: normal; color: var(--jade); font-weight: bold; width: 1em; }
+.fit-right { display: flex; flex-direction: column; gap: .4em; min-width: 0; }
+.fit { min-height: 0; }
+.fit-b { height: 13em; }
+.fit-right .feedback { font-size: .8em; }
+
+.port { height: 12em; }
+.unload { height: 12.5em; }
+
+/* 建模流程 */
+.flow { display: flex; align-items: stretch; gap: .3em; flex-wrap: wrap; margin-bottom: .6em; }
+.flow > div { flex: 1; min-width: 7em; background: #fff; border: 1px solid var(--line); border-top: .25em solid var(--red); border-radius: .4em; padding: .35em .5em; font-size: .85em; display: flex; flex-direction: column; gap: .2em; }
+.flow > div > span { color: var(--ink-2); font-size: .85em; }
+.flow > i { align-self: center; font-style: normal; color: var(--orange); }
+
+.sum h3 { margin: 0; color: var(--red); font-size: 1em; border-bottom: 2px solid var(--gold-l); }
+.sum .def, .sum .recall, .sum .method { font-size: .88em; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .osc-wrap, .fit-wrap { grid-template-columns: minmax(0, 1fr); }
+  .osc, .wheel, .fit-b, .port, .unload { height: auto; }
+  .flow > i { display: none; }
+  .flow > div { min-width: 40%; }
+}

@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角函数的图象和性质 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/hailang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第7章 三角函数 · 7.3</p>
+    <h1 class="cover-title">三角函数的图象和性质</h1>
+    <p class="cover-q" data-step="1">海浪一排接一排，涨了又落、落了又涨——这叫<b>周而复始</b>。</p>
+    <p class="cover-q" data-step="2">三角函数是刻画<b>圆周运动</b>的数学模型。圆上的点转一圈又回到原处，这种“周而复始”藏在三角函数的哪些性质里？它的图象长什么样？</p>
+    <div class="chips" data-step="3"><span class="chip">周期性</span><span class="chip">单位圆“展开”成正弦曲线</span><span class="chip">正弦·余弦·正切的性质</span><span class="chip">$y=A\sin(\omega x+\varphi)$</span></div>
+  </div>
+  <p class="note">课本 p182 节首语。先让学生举几个“周而复始”的例子（昼夜、四季、钟摆、摩天轮），再追问：这些现象和上一节单位圆上转动的点有什么共同点？本课分三块：7.3.1 周期性，7.3.2 图象与性质，7.3.3 函数 y = Asin(ωx + φ)。内容多，建议 2～3 课时。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>7.1、7.2 已经备好的四件工具</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="7.1.2 弧度制（课本 p162）" data-step="1">
+        <p>长度等于半径的弧所对的圆心角为 1 弧度；单位圆中，<b>角的弧度数 = 它所对弧的长</b>。$2\pi\text{ rad}=360^\circ$。</p>
+        <span class="use">横轴用弧度：单位圆上的弧“拉直”放到 $x$ 轴上，长度正好是 $x$。</span>
+      </div>
+      <div class="recall" data-label="7.2.1 单位圆与三角函数线（p170–172）" data-step="2">
+        <p>角 $\alpha$ 的终边交单位圆于 $P(\cos\alpha,\sin\alpha)$；有向线段 $MP$、$OM$、$AT$ 分别是正弦线、余弦线、正切线。</p>
+        <span class="use">把正弦线 $MP$“平移”到右边，逐点描出 $y=\sin x$。</span>
+      </div>
+      <div class="recall" data-label="7.2.3 诱导公式（p175–179）" data-step="3">
+        <p>$\sin(2k\pi+\alpha)=\sin\alpha$，$\cos(2k\pi+\alpha)=\cos\alpha$；$\sin\!\left(\alpha+\dfrac\pi2\right)=\cos\alpha$。</p>
+        <span class="use">前者就是“周期性”；后者让余弦曲线由正弦曲线平移得到。</span>
+      </div>
+      <div class="recall" data-label="第 5 章 · 函数的性质" data-step="4">
+        <p>单调性（5.3）、奇偶性（5.4）、最大（小）值；函数图象的平移。</p>
+        <span class="use">读图写出三角函数的定义域、值域、单调区间、奇偶性。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一节讲到哪：</b>7.2 用单位圆定义了任意角的三角函数，得到同角关系与诱导公式（课本 p166–181）。本节转向<b>函数</b>的视角：把 $x$ 看成自变量，研究 $y=\sin x$、$y=\cos x$、$y=\tan x$ 的图象和性质。</p>
+  </div>
+  <p class="note">四张卡依次出现，每张请学生口头复述，再读“本课用在”。第一张卡最关键：单位圆里“弧长 = 弧度数”，所以今天画图时横轴的 π 就是 3.14…个单位，和纵轴的 1 用同一把尺子量。</p>
+</section>
+
+<!-- 3 ================= 周期性 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">7.3.1 周期性</span><h2>“周而复始”用数学语言怎么说？</h2></div>
+  <div class="bd full">
+    <p class="tip" data-step="1">每当角增加（或减少）$2\pi$，终边回到原来的位置，所以 $\sin(2\pi+x)=\sin x$，$\cos(2\pi+x)=\cos x$。若记 $f(x)=\sin x$：<span class="think" data-step="2" data-ask="用 f 怎么写？">对任意 $x\in\R$，都有 $f(x+2\pi)=f(x)$。</span></p>
+    <div class="def" data-step="3"><h4>周期函数（课本 p182）</h4>设函数 $y=f(x)$ 的定义域为 $A$。如果存在一个<em>非零的常数 $T$</em>，使得对于<em>任意的</em> $x\in A$，都有 $x+T\in A$，并且 $f(x+T)=f(x)$，那么函数 $f(x)$ 就叫作<b>周期函数</b>，非零常数 $T$ 叫作这个函数的<b>周期</b>。</div>
+    <div class="cols3">
+      <p class="tip" data-step="4">一个周期函数有几个周期？<br><span class="think" data-step="5" data-ask="想一想">无数个：$2k\pi\ (k\in\Z,\ k\ne 0)$ 都是正弦、余弦函数的周期。</span></p>
+      <p class="tip" data-step="6">最小正周期是什么？<br><span class="think" data-step="7" data-ask="想一想">所有周期中<b>最小的正数</b>。正弦、余弦都是 $2\pi$；正切函数 $y=\tan x$ 的最小正周期是 $\pi$。</span></p>
+      <p class="warn" data-step="8">“任意”二字不能少：$\sin\!\left(\dfrac\pi6+\dfrac{2\pi}{3}\right)$ 与 $\sin\dfrac\pi6$ 恰好相等，但 $\dfrac{2\pi}3$ <b>不是</b> $\sin x$ 的周期——只有个别 $x$ 成立不算。</p>
+    </div>
+    <p class="method" data-step="9" data-label="链接：为什么最小是 2π（p184，反证法）">假设 $0\lt T\lt 2\pi$ 是周期，令 $x=0$ 得 $\sin T=0$，只能 $T=\pi$；但 $\sin\!\left(\dfrac\pi2+\pi\right)=-1\ne\sin\dfrac\pi2$，矛盾。</p>
+  </div>
+  <p class="note">课本 p182–184。第 8 步对应课本练习 1：x = π/3 时 sin(x + 2π/3) ≠ sin x，所以 2π/3 一定不是周期；x = 7π/6 时恰好相等，却不能说明 2π/3 是周期。这是“任意”与“存在”的区别，请学生自己举出 x = π/6 这样的反例。今后说“周期”，一般指最小正周期。</p>
+</section>
+
+<!-- 4 ================= 例 1 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>从图象读周期，从解析式算周期</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 1</b>　钟摆的高度 $h$（mm）与时间 $t$（s）的关系如图。(1) 求周期；(2) 求 $t=10$ s 时的高度。</p>
+      <div id="pend" class="pend"></div>
+      <div class="slider-row" data-noswipe>$t=$<input type="range" id="pendT" min="0" max="1.9" step="0.05" value="0.3"><b id="pendV" class="v"></b></div>
+      <p class="muted center small-t">示意图依课本图 7-3-1 的读数绘制（最高 50，最低 10，周期 1.5 s）</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 周期</span><span class="think" data-step="2" data-ask="从图上怎么看？">$1.5$ s</span><i class="why">相邻两个最高点间隔 1.5 s；拖动滑块，$t$ 与 $t+1.5$ 处一样高</i></div>
+        <div class="dl key" data-step="3"><span>(2) $f(10)$</span><span class="think" data-step="4" data-ask="10 怎样“退回”到图上读得到的地方？">$=f(1+6\times1.5)=f(1)=20$</span><i class="why">$10=1+6\times1.5$，周期性</i></div>
+      </div>
+      <p class="tip"><b>例 2</b>　求 $f(x)=\cos 2x$ 的周期。</p>
+      <div class="derive">
+        <div class="dl" data-step="5"><span>设周期为 $T$</span><span>$\cos2(x+T)=\cos2x$ 对任意 $x$ 成立</span><i class="why">定义</i></div>
+        <div class="dl" data-step="6"><span>令 $u=2x$</span><span class="think" data-step="7" data-ask="换元后变成什么？">$\cos(u+2T)=\cos u$ 对任意 $u$ 成立</span><i class="why">$y=\cos u$ 的周期是 $2\pi$</i></div>
+        <div class="dl end" data-step="8"><span>所以</span><span>$2T=2\pi$，$T=\pi$</span><i class="why">取最小正值</i></div>
+      </div>
+      <p class="def" data-step="9">一般地，$y=A\sin(\omega x+\varphi)$ 及 $y=A\cos(\omega x+\varphi)$（$A\ne0,\ \omega\gt0$）的周期为 $T=\dfrac{2\pi}{\omega}$；$y=A\tan(\omega x+\varphi)$ 的周期为 $\dfrac{\pi}{\omega}$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p183 例 1、例 2 及结论框。例 1 拖动滑块：橙点在 t，蓝点在 t + 1.5，两点始终等高——这就是 f(t + 1.5) = f(t)。例 2 的关键是换元 u = 2x：“x 走 T，u 就走 2T”。结论框后课本举例：g(x) = 2sin(x/2 − π/6) 的周期为 2π ÷ (1/2) = 4π。</p>
+</section>
+
+<!-- 5 ================= 核心：单位圆展开 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">7.3.2 作图</span><h2>把单位圆“展开”：一点一点描出 $y=\sin x$</h2></div>
+  <button class="media-btn" hidden data-img="assets/zhengxian.jpg" data-video="assets/zhengxian.mp4" data-cap="单位圆上的点匀速转一圈：正弦线平移到横坐标 x（= 弧长）处，描出一个周期的正弦曲线">▶ 看动画</button>
+  <div class="bd full top">
+  <div class="unroll-wrap">
+    <div id="unroll" class="unroll"></div>
+    <div class="unroll-side">
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" data-fn="sin">描 $\sin x$</button>
+        <button class="btn" type="button" data-fn="cos">描 $\cos x$</button>
+        <button class="btn" type="button" id="urPlay">▶ 转一圈</button>
+        <button class="btn" type="button" id="urTwelve">12 等分描点</button>
+        <button class="btn" type="button" id="urClear">清空</button>
+      </div>
+      <div class="slider-row" data-noswipe>$x=$<input type="range" id="urX" min="0" max="6.2832" step="0.01" value="1.0472"><b id="urXV" class="v"></b></div>
+      <p class="tip feedback" id="urMsg"></p>
+    </div>
+  </div>
+  <div class="cols3 unroll-steps">
+    <p class="tip" data-step="1">① 单位圆中 $\overset{\frown}{AP}$ 的长 $=x_0$（弧度制），正弦线 $MP=\sin x_0$。</p>
+    <p class="tip" data-step="2">② 把弧 $\overset{\frown}{AP}$ “拉直”放到 $x$ 轴上，终点就是 $x_0$；把 $MP$ 平移过去，端点 $S(x_0,\sin x_0)$。</p>
+    <p class="tip" data-step="3">③ 点 $P$ 转一圈，$S$ 描出 $[0,2\pi]$ 上的图象；再左右平移（每次 $2\pi$），得到整条<b>正弦曲线</b>。</p>
+  </div>
+  </div>
+  <p class="note">课本 p184–185、图 7-3-2、7-3-3。请学生上来拖动圆上的橙点 P（或拖滑块）：橙色的弧和 x 轴上的橙色线段始终一样长——横轴单位与纵轴单位相同，2π 就是单位圆的周长。先慢慢拖，让学生预测“转到正上方时 S 在哪”（π/2，高度 1）。点“12 等分描点”重现课本图 7-3-3。切换到 cos x：纵坐标改用余弦线 OM 的数量（第 6 页再说明它也能由正弦曲线平移得到）。右上角“看动画”是 16 秒无声动画。</p>
+</section>
+
+<!-- 6 ================= 五点法 + 余弦曲线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">五点法</span><h2>五个关键点定形状；余弦曲线 = 正弦曲线左移 $\frac\pi2$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1">$y=\sin x,\ x\in[0,2\pi]$ 图象上起关键作用的五个点：<br><span class="think" data-step="2" data-ask="是哪五个？">$(0,0)$，$\left(\dfrac\pi2,1\right)$，$(\pi,0)$，$\left(\dfrac{3\pi}2,-1\right)$，$(2\pi,0)$</span></p>
+      <p class="method" data-step="3" data-label="五点法">先描出这五个点，再用光滑的曲线连起来，就得到函数的<b>简图</b>（精确度要求不太高时常用）。</p>
+      <p class="tip" data-step="4">由 $\cos x=\sin\!\left(x+\dfrac\pi2\right)$，$y=\cos x$ 的图象可由 $y=\sin x$ 的图象<span class="think" data-step="5" data-ask="怎样平移？">向<b>左</b>平移 $\dfrac\pi2$ 个单位得到，叫作<b>余弦曲线</b>。</span></p>
+    </div>
+    <div class="col">
+      <div id="shift" class="shift"></div>
+      <div class="slider-row" data-noswipe>左移 $s=$<input type="range" id="shiftS" min="0" max="1.5708" step="0.01309" value="0"><b id="shiftV" class="v"></b></div>
+      <p class="tip feedback" id="shiftMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p186、图 7-3-5、7-3-6。先问五个关键点，学生往往漏掉 (2π, 0)。右图：蓝线是 y = sin(x + s)，虚线是 y = cos x。把滑块拖到 s = π/2，两条曲线完全重合。追问：为什么 sin(x + s) 是“左”移？——原来在 t 处的点，现在在 t − s 处。旁注思考：你能用余弦线作出余弦曲线吗？（上一页切换到 cos x 就是。）</p>
+</section>
+
+<!-- 7 ================= 正弦余弦的性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>看图说性质：正弦函数与余弦函数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="prop" class="prop"></div>
+      <div class="btns" data-noswipe id="propBtns">
+        <button class="btn solid" type="button" data-p="sin">$y=\sin x$</button>
+        <button class="btn" type="button" data-p="cos">$y=\cos x$</button>
+      </div>
+      <p class="tip feedback" id="propMsg"></p>
+    </div>
+    <div class="col">
+      <table class="mtab props">
+        <tr><th></th><th>$y=\sin x$</th><th>$y=\cos x$</th></tr>
+        <tr data-step="1"><th>定义域</th><td colspan="2">$\R$</td></tr>
+        <tr data-step="2"><th>值域</th><td colspan="2"><span class="think" data-step="3" data-ask="从图上看">$[-1,1]$</span></td></tr>
+        <tr data-step="4"><th>最大值 1</th><td><span class="think" data-step="5" data-ask="何时？">$x=\dfrac\pi2+2k\pi$</span></td><td><span class="think" data-step="5" data-ask="何时？">$x=2k\pi$</span></td></tr>
+        <tr data-step="4"><th>最小值 −1</th><td><span class="think" data-step="5" data-ask="何时？">$x=-\dfrac\pi2+2k\pi$</span></td><td><span class="think" data-step="5" data-ask="何时？">$x=(2k+1)\pi$</span></td></tr>
+        <tr data-step="6"><th>周期</th><td colspan="2">$2\pi$</td></tr>
+        <tr data-step="7"><th>奇偶性</th><td><span class="think" data-step="8" data-ask="?">奇函数，关于原点对称</span></td><td><span class="think" data-step="8" data-ask="?">偶函数，关于 $y$ 轴对称</span></td></tr>
+        <tr data-step="9"><th>增区间</th><td><span class="think" data-step="10" data-ask="?">$\left[-\dfrac\pi2+2k\pi,\dfrac\pi2+2k\pi\right]$</span></td><td><span class="think" data-step="12" data-ask="思考：自己写">$[-\pi+2k\pi,\,2k\pi]$</span></td></tr>
+        <tr data-step="9"><th>减区间</th><td><span class="think" data-step="11" data-ask="?">$\left[\dfrac\pi2+2k\pi,\dfrac{3\pi}2+2k\pi\right]$</span></td><td><span class="think" data-step="12" data-ask="思考：自己写">$[2k\pi,\,\pi+2k\pi]$</span></td></tr>
+      </table>
+      <p class="muted small-t">表中 $k\in\Z$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p186–188。拖动曲线上的橙点：读数会显示当前处在增区间还是减区间。先在 [−π/2, 3π/2] 这一段上看单调性（课本的表），再用周期性推广到每一个区间。余弦函数的单调性是课本 p188 的“思考”，让学生自己写出，再点开核对。</p>
+</section>
+
+<!-- 8 ================= 例 3 五点法作图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>五点法画 $y=2\cos x$ 与 $y=\sin 2x$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">(1) $y=2\cos x$</p>
+      <table class="mtab">
+        <tr><th>$x$</th><td>$0$</td><td>$\frac\pi2$</td><td>$\pi$</td><td>$\frac{3\pi}2$</td><td>$2\pi$</td></tr>
+        <tr><th>$\cos x$</th><td>1</td><td>0</td><td>−1</td><td>0</td><td>1</td></tr>
+        <tr><th>$2\cos x$</th><td><span class="think" data-step="1" data-ask="?">2</span></td><td><span class="think" data-step="1" data-ask="?">0</span></td><td><span class="think" data-step="1" data-ask="?">−2</span></td><td><span class="think" data-step="1" data-ask="?">0</span></td><td><span class="think" data-step="1" data-ask="?">2</span></td></tr>
+      </table>
+      <p class="tip">(2) $y=\sin 2x$：先让 $2x$ 取 $0,\frac\pi2,\pi,\frac{3\pi}2,2\pi$</p>
+      <table class="mtab">
+        <tr><th>$2x$</th><td>$0$</td><td>$\frac\pi2$</td><td>$\pi$</td><td>$\frac{3\pi}2$</td><td>$2\pi$</td></tr>
+        <tr><th>$x$</th><td><span class="think" data-step="3" data-ask="?">$0$</span></td><td><span class="think" data-step="3" data-ask="?">$\frac\pi4$</span></td><td><span class="think" data-step="3" data-ask="?">$\frac\pi2$</span></td><td><span class="think" data-step="3" data-ask="?">$\frac{3\pi}4$</span></td><td><span class="think" data-step="3" data-ask="?">$\pi$</span></td></tr>
+        <tr><th>$\sin 2x$</th><td>0</td><td>1</td><td>0</td><td>−1</td><td>0</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="ex3Btns">
+        <button class="btn solid" type="button" data-e="a">(1) $2\cos x$ 与 $\cos x$</button>
+        <button class="btn" type="button" data-e="b">(2) $\sin2x$ 与 $\sin x$</button>
+      </div>
+      <div id="ex3" class="ex3"></div>
+      <p class="tip gold" data-step="2">$y=2\cos x$ 与 $y=\cos x$ 有何联系？　<span class="think" data-step="5" data-ask="想一想">每个点的<b>纵坐标</b>变为 2 倍，横坐标不变；最大值变成 2。</span></p>
+      <p class="tip gold" data-step="4">$y=\sin2x$ 与 $y=\sin x$ 有何联系？　<span class="think" data-step="6" data-ask="想一想">每个点的<b>横坐标</b>缩为 $\frac12$；周期变成 $\pi$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p188 例 3、图 7-3-7、7-3-8。第 (2) 题的五个 x 是先定 2x 再反求出来的——这个“先定整体、再解 x”的做法在例 7 还会用到。旁注的两个问题是 7.3.3 图象变换的伏笔，此处让学生凭图说出即可。橙点是五点法的五个关键点。</p>
+</section>
+
+<!-- 9 ================= 例 4 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 例 5</span><h2>用性质求最值、比大小——把 $\omega x$ 看成一个整体</h2></div>
+  <div class="bd full">
+    <div class="cols2 ex45">
+      <div class="col">
+        <p class="tip"><b>例 4</b>　求最大值及取得最大值时 $x$ 的集合：(1) $y=\cos\dfrac x3$；(2) $y=2-\sin2x$。</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>(1) 令 $z=\dfrac x3$</span><span>$\cos z$ 最大值 1，此时 $z=2k\pi$</span><i class="why">$\{z\mid z=2k\pi,k\in\Z\}$</i></div>
+          <div class="dl end" data-step="2"><span>由 $\dfrac x3=2k\pi$</span><span class="think" data-step="3" data-ask="x 的集合？">$\{x\mid x=6k\pi,\ k\in\Z\}$，最大值为 1</span><i class="why"></i></div>
+          <div class="dl key" data-step="4"><span>(2) 最大值</span><span class="think" data-step="5" data-ask="sin2x 取什么时 y 最大？">$2-(-1)=3$</span><i class="why">$\sin2x$ 取<b>最小值</b> $-1$ 时</i></div>
+          <div class="dl end" data-step="6"><span>由 $2x=-\dfrac\pi2+2k\pi$</span><span>$\left\{x\,\middle|\,x=-\dfrac\pi4+k\pi,\ k\in\Z\right\}$</span><i class="why">令 $z=2x$</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 5</b>　不求值，比较大小：(1) $\sin\!\left(-\dfrac\pi7\right)$ 与 $\sin\!\left(-\dfrac\pi5\right)$；(2) $\cos\dfrac{4\pi}7$ 与 $\cos\dfrac{5\pi}8$。</p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>(1)</span><span class="think" data-step="8" data-ask="两个角落在哪个单调区间？">$y=\sin x$ 在 $\left[-\dfrac\pi2,0\right]$ 上是增函数</span><i class="why">且 $-\dfrac\pi7\gt-\dfrac\pi5$</i></div>
+          <div class="dl end" data-step="9"><span>所以</span><span>$\sin\!\left(-\dfrac\pi7\right)\gt\sin\!\left(-\dfrac\pi5\right)$</span><i class="why"></i></div>
+          <div class="dl" data-step="10"><span>(2)</span><span class="think" data-step="11" data-ask="单调区间？">$y=\cos x$ 在 $\left[\dfrac\pi2,\pi\right]$ 上是减函数</span><i class="why">且 $\dfrac{4\pi}7\lt\dfrac{5\pi}8$</i></div>
+          <div class="dl end" data-step="12"><span>所以</span><span>$\cos\dfrac{4\pi}7\gt\cos\dfrac{5\pi}8$</span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="13" data-label="方法提炼">求最值：把 $\omega x+\varphi$ 看成整体 $z$，先找 $\sin z$（$\cos z$）的最值点，再解出 $x$。比大小：把两个角放进<b>同一个单调区间</b>，用单调性。</p>
+  </div>
+  <p class="note">课本 p188–189 例 4、例 5。例 4(2) 是易错点：y = 2 − sin2x 最大时 sin2x 最小，学生容易写成 sin2x = 1。例 5 先请学生在上一页图上找两个角的位置，再说用哪段单调区间。</p>
+</section>
+
+<!-- 10 ================= 正切函数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">正切函数</span><h2>用正切线画 $y=\tan x$：一支一支、无限延伸</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="tan" class="tanb"></div>
+      <p class="tip feedback" id="tanMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">周期是 $\pi$，先画 $\left(-\frac\pi2,\frac\pi2\right)$ 内的一支：正切线 $AT$ 平移到横坐标 $x$ 处。$x\to\frac\pi2$ 时 $\tan x$ 怎样变化？<span class="think" data-step="2" data-ask="想一想">无限增大；虚线 $x=\frac\pi2+k\pi$ 是曲线无限接近、永不相交的直线。</span></p>
+      <ul class="plist" data-step="3">
+        <li>定义域：$\left\{x\,\middle|\,x\in\R\text{ 且 }x\ne\dfrac\pi2+k\pi,\ k\in\Z\right\}$</li>
+        <li>值域：<span class="think" data-step="4" data-ask="?">$\R$</span>　周期：$\pi$　奇偶性：<span class="think" data-step="4" data-ask="?">奇函数</span></li>
+        <li>单调性：每个开区间 $\left(-\dfrac\pi2+k\pi,\dfrac\pi2+k\pi\right)$ 都是增区间</li>
+      </ul>
+      <div class="derive" data-step="5">
+        <div class="dl"><span>例 6</span><span>求 $y=\tan\!\left(2x-\dfrac\pi4\right)$ 的定义域</span><i class="why">令 $z=2x-\frac\pi4$</i></div>
+        <div class="dl end"><span>$2x-\dfrac\pi4\ne\dfrac\pi2+k\pi$</span><span class="think" data-step="6" data-ask="解出 x">$\left\{x\,\middle|\,x\ne\dfrac{3\pi}8+\dfrac{k\pi}2,\ k\in\Z\right\}$</span><i class="why"></i></div>
+      </div>
+      <p class="warn" data-step="7">“在定义域上递增”是<b>错</b>的：$\frac\pi4\lt\frac{3\pi}4$，但 $\tan\frac\pi4=1\gt\tan\frac{3\pi}4=-1$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p190–191、图 7-3-9、7-3-10 与例 6。拖动左侧单位圆上的橙点：正切线 AT 的长度被平移到右边横坐标 x 处。转到接近竖直时 AT 迅速变长——这就是渐近线（课本旁注“图中的虚线与它有什么关系？”）。易错警示：正切函数在每一个开区间内递增，不能说在定义域内递增。</p>
+</section>
+
+<!-- 11 ================= 7.3.3 摩天轮 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">7.3.3 引入</span><h2>摩天轮上的点 $P$，离地多高？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">摩天轮半径 $r=40$ m，圆心 $O$ 离地 48 m，逆时针匀速转动，每 30 min 转一圈。点 $P$ 起始于最低点。求时刻 $t$（min）时 $P$ 离地的高度 $H$。</p>
+      <div id="wheel" class="wheel"></div>
+      <div class="slider-row" data-noswipe>$t=$<input type="range" id="wheelT" min="0" max="30" step="0.5" value="5"><b id="wheelV" class="v"></b></div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>以 $O$ 为原点</span><span>$H=y+48$</span><i class="why">图 7-3-14 的坐标系</i></div>
+        <div class="dl" data-step="2"><span>$y=$</span><span>$r\sin\alpha=40\sin\alpha$</span><i class="why">$\alpha$：时刻 $t$ 时 $OP$ 对应的角</i></div>
+        <div class="dl key" data-step="3"><span>$\alpha=$</span><span class="think" data-step="4" data-ask="每分钟转多少弧度？">$\dfrac{2\pi}{30}t+\varphi$</span><i class="why">30 min 转 $2\pi$</i></div>
+        <div class="dl" data-step="5"><span>$t=0$ 时最低</span><span class="think" data-step="6" data-ask="φ 取多少？">$\varphi=-\dfrac\pi2$</span><i class="why">起点在最低点</i></div>
+        <div class="dl end" data-step="7"><span>所以</span><span>$H=40\sin\!\left(\dfrac{\pi}{15}t-\dfrac\pi2\right)+48$</span><i class="why"></i></div>
+      </div>
+      <p class="def" data-step="8">形如 $y=A\sin(\omega x+\varphi)$（$A\gt0,\ \omega\gt0$）的函数：本题中 $A$ 是<em>半径</em>，$\omega$ 是<em>转动的速度</em>，$\varphi$ 是 $P$ 的<em>初始位置所对应的角</em>。</p>
+      <p class="tip gold" data-step="9"><b>问题：</b>$y=A\sin(\omega x+\varphi)$ 的图象与 $y=\sin x$ 的图象有什么关系？能否转化为 $y=\sin x$ 来研究？</p>
+    </div>
+  </div>
+  <p class="note">课本 p192–193、图 7-3-13、7-3-14。拖动滑块验证：t = 0 时 H = 8（最低点），t = 15 时 H = 88（最高点），t = 30 回到 8。三个参数的实际含义请学生自己对号入座，为下一页的探究做准备。</p>
+</section>
+
+<!-- 12 ================= A ω φ 探究 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探究</span><h2>$A$、$\omega$、$\varphi$ 各自怎样改变图象？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row" data-noswipe>$A$<input type="range" id="awA" min="0.5" max="3" step="0.5" value="1"><b id="awAV" class="v"></b></div>
+      <div class="slider-row" data-noswipe>$\omega$<input type="range" id="awW" min="0.5" max="3" step="0.5" value="1"><b id="awWV" class="v"></b></div>
+      <div class="slider-row" data-noswipe>$\varphi$<input type="range" id="awP" min="-3.1416" max="3.1416" step="0.01" value="0"><b id="awPV" class="v"></b></div>
+      <div class="btns" data-noswipe id="awPre">
+        <button class="btn" type="button" data-pre="1,1,1">$\sin(x+1)$</button>
+        <button class="btn" type="button" data-pre="3,1,0">$3\sin x$</button>
+        <button class="btn" type="button" data-pre="1,2,0">$\sin2x$</button>
+        <button class="btn" type="button" data-pre="1,2,1">$\sin(2x+1)$</button>
+        <button class="btn" type="button" data-pre="1,1,0">复原</button>
+      </div>
+      <p class="tip feedback" id="awMsg"></p>
+    </div>
+    <div class="col">
+      <div id="aw" class="aw"></div>
+      <div class="cols3 aw-rules">
+        <p class="tip" data-step="1"><b>$\varphi$</b>：<span class="think" data-step="2" data-ask="怎样变？">$\varphi\gt0$ 向左、$\varphi\lt0$ 向右平移 $|\varphi|$ 个单位</span></p>
+        <p class="tip" data-step="3"><b>$A$</b>：<span class="think" data-step="4" data-ask="怎样变？">纵坐标变为原来的 $A$ 倍（横坐标不变）</span></p>
+        <p class="tip" data-step="5"><b>$\omega$</b>：<span class="think" data-step="6" data-ask="怎样变？">横坐标变为原来的 $\dfrac1\omega$ 倍（纵坐标不变）</span></p>
+      </div>
+      <p class="warn" data-step="7">由 $y=\sin\omega x$ 到 $y=\sin(\omega x+\varphi)$，平移的是 $\left|\dfrac\varphi\omega\right|$ 而不是 $|\varphi|$：$\sin(2x+1)=\sin2\!\left(x+\dfrac12\right)$，左移 $\dfrac12$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p193–195、图 7-3-15～7-3-18。虚线是基准 y = sin x，蓝线是 y = Asin(ωx + φ)；橙点是基准曲线上的最高点 (π/2, 1)，绿点是它变换后的位置 ((π/2 − φ)/ω, A)，二者用箭头相连——读数随滑块实时计算。依次点四个预设：先只动 φ，再只动 A，再只动 ω，最后 ω、φ 同时动，看平移量是 1 还是 1/2。每改一个参数，先让学生预测再拖。</p>
+</section>
+
+<!-- 13 ================= 例 7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7</span><h2>画 $y=3\sin\!\left(2x-\frac\pi3\right)$：先伸缩还是先平移？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">方法 1 · 五点法：令 $2x-\dfrac\pi3=0,\dfrac\pi2,\pi,\dfrac{3\pi}2,2\pi$</p>
+      <table class="mtab">
+        <tr><th>$2x-\frac\pi3$</th><td>$0$</td><td>$\frac\pi2$</td><td>$\pi$</td><td>$\frac{3\pi}2$</td><td>$2\pi$</td></tr>
+        <tr><th>$x$</th><td><span class="think" data-step="1" data-ask="?">$\frac\pi6$</span></td><td><span class="think" data-step="1" data-ask="?">$\frac{5\pi}{12}$</span></td><td><span class="think" data-step="1" data-ask="?">$\frac{2\pi}3$</span></td><td><span class="think" data-step="1" data-ask="?">$\frac{11\pi}{12}$</span></td><td><span class="think" data-step="1" data-ask="?">$\frac{7\pi}6$</span></td></tr>
+        <tr><th>$y$</th><td>0</td><td>3</td><td>0</td><td>−3</td><td>0</td></tr>
+      </table>
+      <div class="btns" data-noswipe id="ex7Btns">
+        <button class="btn solid" type="button" data-m="2">方法 2：先伸缩后平移</button>
+        <button class="btn" type="button" data-m="3">方法 3：先平移后伸缩</button>
+        <button class="btn" type="button" id="ex7Next">下一步 ▸</button>
+      </div>
+      <p class="tip feedback" id="ex7Msg"></p>
+      <p class="tip" data-step="2">(2) 减区间：<span class="think" data-step="3" data-ask="从图上读">$\left[\dfrac{5}{12}\pi+k\pi,\ \dfrac{11}{12}\pi+k\pi\right]\ (k\in\Z)$</span></p>
+    </div>
+    <div class="col">
+      <div id="ex7" class="ex7"></div>
+      <p class="method" data-step="4" data-label="对照">方法 2：$\sin x\to\sin2x\xrightarrow{\text{右移}\frac\pi6}\sin\!\left(2x-\frac\pi3\right)\to3\sin\!\left(2x-\frac\pi3\right)$<br>方法 3：$\sin x\xrightarrow{\text{右移}\frac\pi3}\sin\!\left(x-\frac\pi3\right)\to\sin\!\left(2x-\frac\pi3\right)\to3\sin\!\left(2x-\frac\pi3\right)$</p>
+    </div>
+  </div>
+  <p class="note">课本 p195–197 例 7、图 7-3-19～7-3-21。点“下一步”逐步变换，动画过程中参数连续变化，橙点标出“上升零点”的位置。两种方法对比：先伸缩后，再平移只需 π/6（因为 sin2x 右移 π/6 得 sin2(x − π/6)）；先平移则要移 π/3。最终橙点都落在 π/6。课本旁注提醒：y = sin2x 右移 π/6 得 sin2(x − π/6)，而不是 sin(2x − π/6)。</p>
+</section>
+
+<!-- 14 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求下列函数的周期：(1) $y=2\cos3x$；(2) $y=\sin\dfrac x3$。</p>
+        <details><summary>提示 1</summary>用 $T=\dfrac{2\pi}{\omega}$，$\omega$ 是 $x$ 的系数。</details>
+        <details><summary>提示 2</summary>(2) 中 $\omega=\dfrac13$。</details>
+        <details><summary>完整解答</summary>(1) $T=\dfrac{2\pi}3$；(2) $T=\dfrac{2\pi}{1/3}=6\pi$。系数 $A=2$ 不影响周期。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 函数 $y=\sin x\ \left(\dfrac\pi6\le x\le\dfrac{2\pi}3\right)$ 的值域是（　）<br>A. $[-1,1]$　　B. $\left[\frac12,1\right]$<br>C. $\left[\frac12,\frac{\sqrt3}2\right]$　D. $\left[\frac{\sqrt3}2,1\right]$</p>
+        <details><summary>提示 1</summary>区间里含不含 $\dfrac\pi2$？含的话最大值是几？</details>
+        <details><summary>提示 2</summary>最小值在哪个端点取到？比较 $\sin\dfrac\pi6$ 与 $\sin\dfrac{2\pi}3$。</details>
+        <details><summary>完整解答</summary>$\dfrac\pi2\in\left[\dfrac\pi6,\dfrac{2\pi}3\right]$，最大值 1；$\sin\dfrac\pi6=\dfrac12\lt\sin\dfrac{2\pi}3=\dfrac{\sqrt3}2$，最小值 $\dfrac12$。选 <b>B</b>。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 要得到 $y=3\sin\!\left(2x+\dfrac\pi4\right)$ 的图象，只需将 $y=3\sin2x$ 的图象（　）<br>A. 左移 $\frac\pi4$　　B. 右移 $\frac\pi4$<br>C. 左移 $\frac\pi8$　D. 右移 $\frac\pi8$</p>
+        <details><summary>提示 1</summary>把 $2x+\dfrac\pi4$ 写成 $2(x+\square)$。</details>
+        <details><summary>提示 2</summary>$2x+\dfrac\pi4=2\left(x+\dfrac\pi8\right)$。</details>
+        <details><summary>完整解答</summary>$3\sin\!\left(2x+\dfrac\pi4\right)=3\sin2\!\left(x+\dfrac\pi8\right)$，向左平移 $\dfrac\pi8$ 个单位长度，选 <b>C</b>。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题是课本 p184 练习 2，第 2 题是 p190 练习 6，第 3 题是 p198 练习 4。第 3 题可回到第 12 页用滑块验证：A = 3、ω = 2、φ = π/4 时，最高点从 (π/4, 3) 移到了 (π/8, 3)。</p>
+</section>
+
+<!-- 15 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">周期函数、最小正周期；$\sin x,\cos x$ 周期 $2\pi$，$\tan x$ 周期 $\pi$；$A\sin(\omega x+\varphi)$ 周期 $\dfrac{2\pi}\omega$。</p>
+        <p class="recall" data-label="三种曲线">定义域、值域、最值、奇偶性、单调区间——都能从图上“读”出来。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="作图">三角函数线描点（单位圆展开）；五点法；图象变换（平移 $\varphi$ / 伸缩 $\omega$ / 伸缩 $A$）。</p>
+        <p class="method" data-label="整体代换">把 $\omega x+\varphi$ 看成 $z$：求周期、最值点、单调区间、定义域。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">依性作图，以图识性：周期性 → 画一个周期 → 读出性质。</p>
+        <p class="recall" data-label="转化">$y=A\sin(\omega x+\varphi)$ 转化为 $y=\sin x$ 来研究。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>7.4 三角函数应用（课本 p200）——单摆、弹簧振子、水轮、港口潮汐，用 $y=A\sin(\omega x+\varphi)+b$ 给周期运动建模，并学会从一张数据表里“拟合”出 $A$、$\omega$、$\varphi$。</p>
+  </div>
+  <p class="note">请学生先口头复述“周期性—图象—性质—变换”的顺序，再逐栏揭示。课后作业建议：习题 7.3 第 1、2、4、5、7、8 题；第 11 题（烟筒弯头的裁剪线）是探究题，裁剪线恰好是一条正弦型曲线，可作为兴趣作业。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

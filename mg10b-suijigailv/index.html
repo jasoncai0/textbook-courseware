@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>随机事件的概率 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/moqiu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第15章 概率 · 15.2</p>
+    <h1 class="cover-title">随机事件的概率</h1>
+    <p class="cover-q" data-step="1">不透明的袋中有大小相同的 3 个白球、2 个黑球。一次摸出 2 个球，<b>都是白球</b>的可能性有多大？</p>
+    <p class="cover-q" data-step="2">能不能<b>不摸</b>，直接算出来？算出来的数，真摸 1000 次<b>对得上</b>吗？</p>
+    <div class="chips" data-step="3"><span class="chip">概率的基本性质</span><span class="chip">古典概型 $P(A)=\frac mn$</span><span class="chip">随机模拟</span><span class="chip">频率的稳定性</span></div>
+  </div>
+  <p class="note">课本 p262 例 1 情境。先请学生凭直觉估一个数（一半？更小？），记在黑板上，第 5 页算出 3/10，第 11 页用模拟实验检验。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课讲到哪里？初中学过什么？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="15.1 随机事件和样本空间" data-step="1">
+        <p>样本点 $\omega$、样本空间 $\Omega$；事件是 $\Omega$ 的<b>子集</b>；$\Omega$ 必然事件，$\varnothing$ 不可能事件；和 $A+B$、积 $AB$。</p>
+        <p class="muted">留下的问题：“和为 2”只含 1 个样本点，“和为 6”含 5 个——可能性怎样<b>量化</b>？</p>
+        <span class="use">本课用“事件含几个样本点”来算概率。</span>
+      </div>
+      <div class="recall" data-label="15.1 · 写样本空间" data-step="2">
+        <p>列举（抛一颗骰子 6 个）、列表（两颗骰子 36 个）、树形图（有放回 9 个、不放回 6 个），做到不重不漏。</p>
+        <span class="use">求概率前先数清 $n$（样本点总数）和 $m$（$A$ 含的个数）。</span>
+      </div>
+      <div class="recall" data-label="初中 · 概率（九年级）" data-step="3">
+        <p>用 $P(A)$ 表示事件 $A$ 发生的概率；等可能情形下用列表法、树状图求概率；大量重复试验中，用频率估计概率。</p>
+        <span class="use">今天把“等可能”说清楚（古典概型），再看频率和概率的关系。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第一张卡请学生回忆：抛两颗骰子，“点数之和为 2”与“点数之和为 6”各包含哪些样本点？（{(1,1)} 与 5 个样本点）。这是本课例 3 的伏笔。</p>
+</section>
+
+<!-- 3 ================= 基本性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概率</span><h2>概率的两条基本性质</h2></div>
+  <div class="bd full">
+    <p class="tip">我们已经学习过用<b>概率</b>来量化一个事件在一次试验中发生的可能性的大小，用 $P(A)$ 表示事件 $A$ 发生的概率。</p>
+    <div class="cols2">
+      <div class="def" data-step="1"><h4>基本性质 1</h4><span class="think" data-step="2" data-ask="P(A) 的取值范围？">$$0\le P(A)\le 1.$$</span></div>
+      <div class="def" data-step="3"><h4>基本性质 2</h4>对于必然事件 $\Omega$ 和不可能事件 $\varnothing$，<span class="think" data-step="4" data-ask="P(Ω)、P(∅) 各是多少？">$$P(\Omega)=1,\quad P(\varnothing)=0.$$</span></div>
+    </div>
+    <div class="scale" data-step="5">
+      <div class="scale-bar"><i style="left:0">0<br><small>不可能事件</small></i><i style="left:50%">0.5</i><i style="left:100%">1<br><small>必然事件</small></i></div>
+      <p class="muted center small-t">随机事件的概率落在 0 与 1 之间，越接近 1 越可能发生</p>
+    </div>
+    <p class="tip gold" data-step="6"><b>问题：</b>怎样确定一个随机事件发生的概率呢？</p>
+  </div>
+  <p class="note">课本 p262。两条性质都来自生活直觉，不证明。追问：一个随机事件的概率可以等于 1 吗？在本课的有限样本空间里，概率为 1 的就是必然事件。</p>
+</section>
+
+<!-- 4 ================= 古典概型 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">古典概型</span><h2>样本点有限、每个都等可能</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">抛掷一颗骰子：$\Omega=\{\omega_1,\omega_2,\cdots,\omega_6\}$。</p>
+      <div class="dice6" data-step="1"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+      <p class="tip" data-step="1">这个试验有什么特点？</p>
+      <p class="tip" data-step="2">(1) <span class="think" data-step="3" data-ask="样本点有多少？">样本空间 $\Omega$ 只含有<b>有限个</b>样本点；</span><br>(2) <span class="think" data-step="4" data-ask="每个结果呢？">每个基本事件的发生都是<b>等可能</b>的。</span></p>
+      <p class="muted small-t" data-step="5">课本旁注：法国数学家拉普拉斯（Laplace）在 1812 年将 $P(A)=\frac mn$ 作为概率的一般定义，现通常称它为概率的古典定义。</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="5"><h4>古典概型（课本 p262）</h4>满足上述两个条件的随机试验的概率模型称为<em>古典概型</em>。<br>在古典概型中，如果 $\Omega=\{\omega_1,\omega_2,\cdots,\omega_n\}$，那么每一个基本事件 $\{\omega_k\}$ 发生的概率都是 $\dfrac1n$。如果事件 $A$ 中包含 $m$ 个样本点，那么 $$P(A)=\frac mn=\frac{A\text{ 包含的样本点数}}{\text{样本点总数}}.$$</div>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>点数是偶数</span><span>$A=\{\omega_2,\omega_4,\omega_6\}$</span><i class="why">$m=3$，$n=6$</i></div>
+        <div class="dl end" data-step="7"><span>$P(A)=$</span><span class="think" data-step="8" data-ask="算一算">$\dfrac36=\dfrac12$</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p262。“等可能”是古典概型的灵魂：骰子质地均匀，每个面朝上的机会一样。下一页专门辨析“不等可能”的情形。</p>
+</section>
+
+<!-- 5 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>能用 $\frac mn$ 吗？先看是不是古典概型</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>抛两颗骰子，有人把结果按“点数之和”分成 2，3，…，12 共 11 种，于是说 $P(\text{和为 }6)=\dfrac1{11}$。</p>
+        <div class="think" data-step="2" data-ask="对吗？"><p><span class="verdict x">✗</span>这 11 种结果<b>不等可能</b>：“和为 2”只有 $(1,1)$，“和为 6”有 5 种。应以 36 个等可能的样本点为 $\Omega$（例 3）。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>抛一枚图钉，结果只有“钉尖朝上”“钉尖朝下”两种，所以钉尖朝上的概率是 $\dfrac12$。</p>
+        <div class="think" data-step="4" data-ask="对吗？"><p><span class="verdict x">✗</span>图钉形状不对称，两种结果<b>不一定等可能</b>，不是古典概型。它的概率要靠大量试验去估计（习题 15.2 第 16 题）。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>从 1，2，…，100 这 100 张卡片中任取 1 张，取到 6 的倍数的概率是 $\dfrac{16}{100}$。</p>
+        <div class="think" data-step="6" data-ask="对吗？"><p><span class="verdict ok">✓</span>100 个样本点有限且等可能；6 的倍数 6，12，…，96 共 16 个，$P=\dfrac{16}{100}=\dfrac4{25}$（习题 15.2 第 5 题）。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="用古典概型之前">先检查两条：样本点<b>有限</b>吗？每个样本点<b>等可能</b>吗？再数 $n$ 和 $m$。</p>
+  </div>
+  <p class="note">第一张卡是学生最常见的错误，也正是 15.1 留下的问题的答案：“和为 2”与“和为 6”可能性不同，因为它们包含的等可能样本点个数不同。第二张卡为后面的“频率估计概率”埋下伏笔。</p>
+</section>
+
+<!-- 6 ================= 例 1 摸球：枚举 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>一次摸出 2 个球，都是白球的概率</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">一只不透明的口袋内装有大小相同的 5 个球，其中 3 个白球、2 个黑球，“从中一次摸出 2 个球，结果都是白球”记为事件 $A$，求 $P(A)$。</p>
+      <div class="bag"><span class="ball w">1</span><span class="ball w">2</span><span class="ball w">3</span><span class="ball k">4</span><span class="ball k">5</span></div>
+      <p class="tip" data-step="1"><b>分析</b>　可用枚举法找出所有的样本点。白球记 1，2，3 号，黑球记 4，5 号。</p>
+      <p class="tip" data-step="2">$(1,2)$ 与 $(2,1)$ 要算两个吗？　<span class="think" data-step="3" data-ask="想一想">不要：一次摸出 2 个球，没有先后之分，$(2,1)$ 即 $(1,2)$。</span></p>
+    </div>
+    <div class="col ex1">
+      <div class="pairs" id="pairs" data-step="4"></div>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>$n=$</span><span class="think" data-step="5" data-ask="一共几个样本点？">$10$</span><i class="why">按第一个号码从小到大列举，不重不漏</i></div>
+        <div class="dl hlA" data-step="6"><span>$A=$</span><span>$\{(1,2),(1,3),(2,3)\}$</span><i class="why">$m=3$</i></div>
+        <div class="dl end" data-step="7"><span>因此</span><span>$P(A)=\dfrac{3}{10}$</span><i class="why"></i></div>
+      </div>
+      <p class="tip gold" data-step="7">和你开课时的估计相比如何？$\dfrac3{10}$ 对不对，第 11 页<b>真摸 1000 次</b>来检验。</p>
+    </div>
+  </div>
+  <p class="note">课本 p262–263 例 1 与图 15-2-1。先请学生自己列举，再出现 10 个样本点；第 6 步高亮事件 A 的 3 个样本点（两个白球）。提醒“按顺序列举”是不漏的保证。</p>
+</section>
+
+<!-- 7 ================= 例 2 豌豆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>豌豆的颜色：第二子代为黄色的概率</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">豌豆的黄绿色性状由一对基因决定：黄色基因记为 D，绿色基因记为 d。杂交所得第一子代的一对基因为 Dd。若第二子代的 D，d 基因的遗传是等可能的，求第二子代为黄色的概率（只要有基因 D 就是黄色，只有两个基因全是 d 时，才显现绿色）。</p>
+    </div>
+    <div class="col">
+      <table class="mtab punnett" data-step="1">
+        <tr><th>父方配子＼母方配子</th><th>D</th><th>d</th></tr>
+        <tr><th>D</th><td class="y">DD</td><td class="y">Dd</td></tr>
+        <tr><th>d</th><td class="y">dD</td><td class="g">dd</td></tr>
+      </table>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$\Omega=$</span><span>$\{\text{DD},\text{Dd},\text{dD},\text{dd}\}$</span><i class="why">配子随机组合，4 种等可能</i></div>
+        <div class="dl" data-step="3"><span>$A=$</span><span class="think" data-step="4" data-ask="哪些是黄色？">$\{\text{DD},\text{Dd},\text{dD}\}$</span><i class="why">含 D 即为黄色</i></div>
+        <div class="dl end" data-step="5"><span>$P(A)=$</span><span>$\dfrac34=0.75$</span><i class="why"></i></div>
+      </div>
+      <p class="tip" data-step="6"><b>答</b>　第二子代为黄色的概率为 0.75。</p>
+    </div>
+  </div>
+  <p class="note">课本 p263 例 2 与图 15-2-2。为什么 Dd 和 dD 是两个样本点？——D 来自父方还是母方是不同的结果，这样 4 个样本点才等可能。课本“思考”：第二子代自花传粉得到的第三子代为黄色的概率，可作课后拓展。第 10 页孟德尔的试验数据会印证 0.75。</p>
+</section>
+
+<!-- 8 ================= 例 3 两颗骰子 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>同时抛掷两颗骰子：“和为 2”与“和为 6”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="sumgrid-wrap">
+        <div class="sum-y">第二颗骰子的点数</div>
+        <div id="sumGrid" class="sumgrid"></div>
+      </div>
+      <p class="muted center small-t">第一颗骰子的点数（格中数字为点数之和，依课本图 15-2-3）</p>
+    </div>
+    <div class="col">
+      <p class="tip">(1) 样本空间：第一颗 6 种结果，对每一种，第二颗又有 6 种，共 $6\times6=36$ 个样本点。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(2) 和为 2</span><span>$A=\{(1,1)\}$</span><span class="think" data-step="2" data-ask="P(A) = ？">$P(A)=\dfrac1{36}$</span></div>
+        <div class="dl" data-step="3"><span>(3) 和为 6</span><span>$B$ 含 5 个样本点</span><span class="think" data-step="4" data-ask="P(B) = ？">$P(B)=\dfrac5{36}$</span></div>
+        <div class="dl" data-step="5"><span>(4) 和为 3 的倍数</span><span>$C$ 含 12 个样本点</span><span class="think" data-step="6" data-ask="P(C) = ？">$P(C)=\dfrac{12}{36}=\dfrac13$</span></div>
+      </div>
+      <p class="tip" data-step="7"><b>思考 1</b>　能否将 $(1,2)$ 与 $(2,1)$ 视为同一样本点？<span class="think" data-step="8" data-ask="为什么？">不能：两颗骰子是可区分的，合并后“和为 3”与“和为 2”的结果不再等可能，不是古典概型。</span></p>
+      <p class="tip" data-step="9"><b>思考 2</b>　点数之和是 4 的倍数的结果有多少种？<span class="think" data-step="10" data-ask="数一数">和为 4、8、12：$3+5+1=9$ 种。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p263–264 例 3 与两个“思考”。左图逐步高亮：和为 2、和为 6、3 的倍数、4 的倍数。本题回答了第 15 章引言的问题：“和为 2”与“和为 6”可能性的本质区别，就是 1/36 与 5/36。</p>
+</section>
+
+<!-- 9 ================= 例 4 涂色 + 方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>给 2 个矩形涂色：颜色相同、不同的概率</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">用 3 种不同颜色给图 15-2-4 中 2 个矩形随机涂色，每个矩形只涂 1 种颜色，求：(1) 2 个矩形颜色相同的概率；(2) 2 个矩形颜色不同的概率。</p>
+      <div class="paint" id="paint" data-step="1"></div>
+      <p class="muted small-t center" data-step="1">颜色记为 1，2，3；$(1,3)$ 表示“第一个矩形涂 1 号色，第二个涂 3 号色”</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$n=$</span><span>$3\times 3=9$</span><i class="why">每个矩形 3 种颜色</i></div>
+        <div class="dl hlSame" data-step="3"><span>相同 $A=$</span><span>$\{(1,1),(2,2),(3,3)\}$</span><span class="think" data-step="4" data-ask="P(A)">$P(A)=\dfrac39=\dfrac13$</span></div>
+        <div class="dl" data-step="5"><span>不同 $B$</span><span>含 6 个样本点</span><span class="think" data-step="6" data-ask="P(B)">$P(B)=\dfrac69=\dfrac23$</span></div>
+      </div>
+      <p class="tip" data-step="7"><b>思考</b>　事件 $A,B$ 之间有怎样的关系？$P(A),P(B)$ 之间呢？<span class="think" data-step="8" data-ask="想一想">$AB=\varnothing$，$A+B=\Omega$；$P(A)+P(B)=1$。这样的关系 15.3 会专门研究。</span></p>
+      <p class="method" data-step="9" data-label="古典概型求概率">关键是弄清样本空间中样本点的总数 $n$，以及事件 $A$ 所包含的样本点的个数 $m$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p265 例 4 与思考。左图把 9 种涂法全部画出（第 4 步起颜色相同的一列高亮）。“思考”只要求学生观察，不展开——互斥、对立事件是 15.3 的内容。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>数清 $n$ 和 $m$：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某班准备到郊外野营，为此向商店订购了帐篷。如果下雨与不下雨是等可能的，能否准时收到帐篷也是等可能的，只要帐篷如期运到，他们就不会淋雨，那么下列说法中正确的是（　）<br>A. 一定不会淋雨　B. 淋雨机会为 $\frac34$　C. 淋雨机会为 $\frac12$　D. 淋雨机会为 $\frac14$</p>
+        <details><summary>提示 1</summary>两件事：下雨/不下雨，帐篷准时到/没准时到。一共几个等可能结果？</details>
+        <details><summary>提示 2</summary>只有“下雨且帐篷没准时到”才会淋雨。</details>
+        <details><summary>完整解答</summary>$\Omega$ 含 4 个等可能样本点，淋雨只有 1 个，概率为 $\frac14$，选 <b>D</b>。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 密码箱的密码由 5 个数字组成，每个数字可以是 0～9 中的任何一个。(1) 若忘了密码的所有数字，1 次就能把锁打开的概率为____；(2) 若只记得前 4 位数字，1 次就能打开的概率为____。</p>
+        <details><summary>提示 1</summary>(1) 5 位密码一共有多少种？</details>
+        <details><summary>提示 2</summary>每位 10 种，共 $10^5$ 种；(2) 只剩最后一位不确定。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac1{100\,000}$；(2) $\dfrac1{10}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 口袋中有形状、大小相同的 1 个白球和 1 个黑球，先摸出 1 个球，记下颜色后放回，再摸出 1 个球。(1) 一共可能出现多少种不同的结果？(2) 出现“1 个白球、1 个黑球”的结果有多少种？(3) 它的概率是多少？</p>
+        <details><summary>提示 1</summary>有放回，有先后：（白，白），（白，黑）……</details>
+        <details><summary>提示 2</summary>（白，黑）与（黑，白）是两个不同的样本点。</details>
+        <details><summary>完整解答</summary>(1) 4 种；(2) 2 种：（白，黑），（黑，白）；(3) $\dfrac24=\dfrac12$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p265–266 练习 1、2、4。另：练习 3 答案 0.9；练习 5 答案 1/10；练习 6：选 3 人有 4 种选法，甲被选中的有 3 种，概率 3/4。</p>
+</section>
+
+<!-- 11 ================= 频率：历史数据 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试验</span><h2>获得概率最直接的方法：试验或观察</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col" data-step="1">
+        <p class="tip"><b>表 15-2-1　孟德尔豌豆杂交试验结果</b>（$F_1$ 第一子代，$F_2$ 第二子代）</p>
+        <table class="mtab sm">
+          <tr><th>性状</th><th>$F_1$</th><th colspan="3">$F_2$ 的表现</th></tr>
+          <tr><td>种子形状</td><td>全部圆粒</td><td>圆粒 5 474</td><td>皱粒 1 850</td><td>≈ 2.96 : 1</td></tr>
+          <tr><td>子叶颜色</td><td>全部黄色</td><td>黄色 6 022</td><td>绿色 2 001</td><td>≈ 3.01 : 1</td></tr>
+        </table>
+        <p class="tip" data-step="2">第二子代黄色的频率 $\dfrac{6\,022}{8\,023}\approx$ <span class="think" data-step="3" data-ask="算一算">$0.751$——接近例 2 算出的 $0.75$！</span></p>
+      </div>
+      <div class="col" data-step="4">
+        <p class="tip"><b>表 15-2-2　历史上做过的抛掷硬币试验结果</b></p>
+        <table class="mtab sm">
+          <tr><th>实验者</th><th>抛掷次数 $n$</th><th>正面朝上次数 $m$</th><th>频率 $\frac mn$</th></tr>
+          <tr><td>德·摩根</td><td>2 048</td><td>1 061</td><td>0.518 1</td></tr>
+          <tr><td>布丰</td><td>4 040</td><td>2 048</td><td>0.506 9</td></tr>
+          <tr><td>费勒</td><td>10 000</td><td>4 979</td><td>0.497 9</td></tr>
+          <tr><td>皮尔逊</td><td>24 000</td><td>12 012</td><td>0.500 5</td></tr>
+          <tr><td>罗曼诺夫斯基</td><td>80 640</td><td>40 173</td><td>0.498 2</td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5">观察：频率 $\frac mn$ 每次都不一样，却都在 <span class="think" data-step="6" data-ask="哪个数附近？">$0.5$ 附近——而硬币正面向上的概率是 $0.5$。</span>次数越多会怎样？我们自己做模拟试验。</p>
+  </div>
+  <p class="note">课本 p266 表 15-2-1、15-2-2。孟德尔数据：黄色 6 022 / (6 022 + 2 001) ≈ 0.751，绿色 ≈ 0.249，正好对应课本说的“接近 0.75、接近 0.25”。课本图 15-2-5 是用 Excel 做的模拟，下一页我们在课件里做。</p>
+</section>
+
+<!-- 12 ================= 核心互动：随机模拟 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">模拟试验</span><h2>摸 1 次、10 次、1000 次：频率在哪里摆动？</h2></div>
+  <div class="bd sim-bd">
+    <div class="col" data-noswipe>
+      <div class="btns" id="simKind"></div>
+      <p class="tip sim-q" id="simQ"></p>
+      <div class="btns">
+        <button class="btn solid" type="button" data-n="1">做 1 次</button>
+        <button class="btn solid" type="button" data-n="10">10 次</button>
+        <button class="btn solid" type="button" data-n="100">100 次</button>
+        <button class="btn solid" type="button" data-n="1000">1000 次</button>
+        <button class="btn" type="button" id="simReset">重新开始</button>
+      </div>
+      <div class="sim-last" id="simLast"></div>
+      <div class="readout sim-read">
+        <span>试验次数 $n$</span><span></span><span class="v" id="simN">0</span>
+        <span>$A$ 发生次数 $m$</span><span></span><span class="v" id="simM">0</span>
+        <span>频率 $\frac mn$</span><span class="bar"><i id="simBar" style="background:var(--red)"></i></span><span class="v" id="simF">—</span>
+        <span>古典概型 $P(A)$</span><span class="bar"><i id="simPBar" style="background:var(--orange)"></i></span><span class="v" id="simP"></span>
+      </div>
+      <table class="mtab sm cp" id="simCp"></table>
+    </div>
+    <div class="col">
+      <div id="simB" class="simb"></div>
+      <p class="muted center small-t">蓝色折线：前 $n$ 次试验中 $A$ 发生的频率；橙色水平线：古典概型算出的 $P(A)$。横轴随次数自动放大。</p>
+    </div>
+  </div>
+  <p class="note">本课核心互动，每一次都是真实的随机抽取（浏览器 crypto 随机数）并如实计数。建议：先“做 1 次”点几下，频率大起大落；再连点“10 次”；最后点几次“1000 次”，折线贴近橙线并在附近小幅摆动。让学生说：次数少时频率可能离 0.3 很远；次数越多越稳定，但不会“正好等于”0.3。可以换硬币、两颗骰子再做一遍。</p>
+</section>
+
+<!-- 13 ================= 频率的稳定性 + 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">频率的稳定性</span><h2>次数很多时，用频率估计概率</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>频率的稳定性（课本 p267）</h4>一般地，对于给定的随机事件 $A$，在相同条件下，随着试验次数的增加，事件 $A$ 发生的频率会在随机事件 $A$ 发生的概率 $P(A)$ 的附近<em>摆动并趋于稳定</em>。我们将频率的这个性质称为<b>频率的稳定性</b>。</div>
+      <p class="tip" data-step="2">因此，若随机事件 $A$ 在 $n$ 次试验中发生了 $m$ 次，则当试验次数 $n$ 很大时，可以用频率 $\dfrac mn$ 来估计概率：$$P(A)\approx\frac mn.$$</p>
+      <p class="warn" data-step="3">频率随试验而变，是<b>试验值</b>；概率是一个<b>确定的数</b>。试验次数多，频率也只是“接近”概率，不保证相等。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 5</b>　某市 1999～2002 年新生儿出生数及其中男婴数（单位：人）：</p>
+      <table class="mtab sm">
+        <tr><th>时间/年</th><td>1999</td><td>2000</td><td>2001</td><td>2002</td></tr>
+        <tr><th>出生婴儿数</th><td>21 840</td><td>23 070</td><td>20 094</td><td>19 982</td></tr>
+        <tr><th>出生男婴数</th><td>11 453</td><td>12 031</td><td>10 297</td><td>10 242</td></tr>
+        <tr class="fr" data-step="5"><th>男婴频率</th><td>0.524</td><td>0.521</td><td>0.512</td><td>0.513</td></tr>
+      </table>
+      <p class="tip" data-step="4">(1) 1999 年男婴出生的频率：$\dfrac{11\,453}{21\,840}\approx$ <span class="think" data-step="5" data-ask="精确到 0.001">$0.524$，同理得其余三年。</span></p>
+      <p class="tip" data-step="6">(2) 该市男婴出生的概率约是多少？<span class="think" data-step="7" data-ask="估计">各年频率在 0.51 至 0.53 之间，故概率约为 $0.52$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p267 定义与例 5。把定义和上一页的折线对照着读：“附近摆动”“趋于稳定”。例 5 数据已核对：11 453/21 840 ≈ 0.524，12 031/23 070 ≈ 0.521，10 297/20 094 ≈ 0.512，10 242/19 982 ≈ 0.513。</p>
+</section>
+
+<!-- 14 ================= 例 6 + 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6 · 练习</span><h2>用频率比较可能性，读懂“概率”的含义</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 6</b>　某地近 50 年的 8 月 1 日和 9 月 1 日降雨情况（天）及降雨频率：</p>
+        <table class="mtab sm">
+          <tr><th>时间</th><td>近 10 年</td><td>近 20 年</td><td>近 30 年</td><td>近 40 年</td><td>近 50 年</td></tr>
+          <tr><th>8 月 1 日降雨</th><td>8</td><td>17</td><td>25</td><td>33</td><td>41</td></tr>
+          <tr><th>9 月 1 日降雨</th><td>3</td><td>7</td><td>9</td><td>13</td><td>16</td></tr>
+          <tr class="fr" data-step="1"><th>8 月 1 日频率</th><td>0.8</td><td>0.85</td><td>0.83</td><td>0.83</td><td>0.82</td></tr>
+          <tr class="fr" data-step="1"><th>9 月 1 日频率</th><td>0.3</td><td>0.35</td><td>0.3</td><td>0.33</td><td>0.32</td></tr>
+        </table>
+        <p class="tip" data-step="2">哪一天降雨的可能性大？<span class="think" data-step="3" data-ask="判断">8 月 1 日降雨的概率大约在 0.8 至 0.85 之间，9 月 1 日大约在 0.3 至 0.35 之间，8 月 1 日降雨可能性更大。</span></p>
+      </div>
+      <div class="col">
+        <div class="jcard"><p><b>1.</b> 某种彩票的中奖概率为 $\frac1{10\,000}$，这是指（　）</p>
+          <div class="pick" data-ans="d"><button type="button" data-k="a">A. 买 10 000 张一定能中奖</button><button type="button" data-k="b">B. 买 10 000 张中 1 次奖</button><button type="button" data-k="c">C. 买 9 999 张未中奖，则第 10 000 张必中</button><button type="button" data-k="d">D. 买 1 张中奖的可能性是 $\frac1{10\,000}$</button><p class="pick-why">概率刻画的是一次试验中发生的可能性大小，不是“多少次一定发生一次”。</p></div></div>
+        <div class="jcard"><p><b>2.</b> 天气预报“明天降水概率为 90%”，这是指（　）</p>
+          <div class="pick" data-ans="d"><button type="button" data-k="a">A. 约 90% 的地方会降水</button><button type="button" data-k="b">B. 约 90% 的时间会降水</button><button type="button" data-k="c">C. 90% 的专家认为会降水</button><button type="button" data-k="d">D. 明天该地区降水的可能性为 90%</button></div></div>
+        <div class="jcard"><p><b>3.</b> 某疾病的治愈率为 10%，前 9 个病人都没有治愈，第 10 个病人就一定能治愈吗？</p>
+          <div class="pick" data-ans="n"><button type="button" data-k="y">一定能</button><button type="button" data-k="n">不一定</button><p class="pick-why">每个病人治愈的可能性都是 10%，与前面的病人是否治愈无关。</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p267–268 例 6 与练习 1～3。练习 4：400/10 000 = 0.04。三道选择题针对同一个误解：“概率 1/n 就是 n 次里必有一次”——用模拟页的折线反驳：1000 次里 A 发生的次数也不正好是 300。</p>
+</section>
+
+<!-- 15 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>算出来的概率 · 试出来的频率</h2></div>
+  <div class="bd full">
+    <div class="evo">
+      <div class="evo-box" data-step="1"><h4>古典概型（算）</h4><p>样本点有限、等可能：$P(A)=\dfrac mn$。关键：数清 $n$ 与 $m$（列举、列表、树形图）。</p></div>
+      <div class="evo-arrow" data-step="2">大量重复试验<br>⟷<br>互相印证</div>
+      <div class="evo-box now" data-step="2"><h4>频率（试）</h4><p>频率 $\frac mn$ 在 $P(A)$ 附近摆动并趋于稳定；$n$ 很大时 $P(A)\approx\frac mn$。</p></div>
+    </div>
+    <div class="cols3">
+      <p class="recall" data-label="基本性质" data-step="3">$0\le P(A)\le 1$；$P(\Omega)=1$，$P(\varnothing)=0$。</p>
+      <p class="method" data-label="方法" data-step="4">先判是否古典概型，再求 $n,m$；不是古典概型（如图钉），用频率估计概率。</p>
+      <p class="recall" data-label="思想" data-step="5">随机现象单次不可预测，大量重复却有规律——概率论研究的正是随机现象的数量规律。</p>
+    </div>
+    <p class="tip gold" data-step="6"><b>下一课：</b>15.3 互斥事件和独立事件——例 4 中 $AB=\varnothing$、$P(A)+P(B)=1$ 不是巧合，事件之间的关系怎样影响概率？</p>
+  </div>
+  <p class="note">课后作业建议：习题 15.2 第 2、4、6、13、14 题；第 16 题（抛图钉）可分组操作；第 19 题与本课模拟页对照。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

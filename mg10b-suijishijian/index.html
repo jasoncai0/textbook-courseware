@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>随机事件和样本空间 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/yingbi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第15章 概率 · 15.1</p>
+    <h1 class="cover-title">随机事件和样本空间</h1>
+    <p class="cover-q" data-step="1">抛掷两颗骰子，向上的点数之和是多少？——<b>事先不能断定</b>。“点数之和为 6”可能发生，也可能不发生。</p>
+    <p class="cover-q" data-step="2">大量反复抛掷，“和为 2”与“和为 6”发生的可能性却有着<b>本质的区别</b>。</p>
+    <p class="cover-q" data-step="3">第一步：怎样用<b>数学语言</b>来刻画随机事件？</p>
+    <div class="chips" data-step="4"><span class="chip">随机现象</span><span class="chip">样本点与样本空间</span><span class="chip">事件 = 子集</span><span class="chip">包含 · 和 · 积</span></div>
+  </div>
+  <p class="note">第 15 章引言（课本 p258）。拉普拉斯：“概率论的诞生，虽然渊源于靠碰运气取胜的游戏，但在今天，却已成为人类知识的最重要的一部分。”引言提出两个问题：如何用数学语言刻画随机事件（本课 15.1）、用怎样的模型量化可能性（下一课 15.2）。先让学生猜：和为 2、和为 6，哪个更容易出现？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>初中的“概率初步” + 第一册的集合语言</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 概率初步（九年级）" data-step="1">
+        <p>必然事件：一定会发生；不可能事件：一定不会发生；随机事件：可能发生，也可能不发生。</p>
+        <p>概率 $P(A)$ 刻画事件 $A$ 发生的可能性大小。</p>
+        <span class="use">先复习三类事件；今天换成集合的说法，说得更精确。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 · 第1章 集合" data-step="2">
+        <p>子集 $B\subseteq A$；并集 $A\cup B$；交集 $A\cap B$；全集；空集 $\varnothing$；Venn 图。</p>
+        <span class="use">样本空间 $\Omega$ 是“全集”，事件是它的子集；包含、和、积就是 $\subseteq$、$\cup$、$\cap$。</span>
+      </div>
+      <div class="recall" data-label="初中 · 列表法与树状图" data-step="3">
+        <p>两步完成的试验，可以列表或画树状图，不重不漏地列出所有可能结果。</p>
+        <span class="use">写出“抛两颗骰子”的 36 个结果；习题 6 的树形图。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课目标：</b>把“随机事件”翻译成集合——会写样本空间，会用集合的关系描述事件之间的关系。</p>
+  </div>
+  <p class="note">第一张卡请学生举例：“太阳从东方升起”“抛硬币正面向上”……分别是哪类事件？第二张卡复习 Venn 图，它马上会被用来画事件之间的关系。本课不计算概率，概率的计算是下一课 15.2 的内容。</p>
+</section>
+
+<!-- 3 ================= 观察现象 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>这些现象各有什么特点？</h2></div>
+  <div class="bd full">
+    <div class="cols3 phen">
+      <div class="jcard"><p>(1) 在标准大气压下把水加热到 100 ℃，结果水沸腾；</p><div class="pick" data-ans="a"><button type="button" data-k="a">一定发生</button><button type="button" data-k="b">不可能发生</button><button type="button" data-k="c">可能发生，也可能不发生</button></div></div>
+      <div class="jcard"><p>(2) 向空中抛掷一块石头，结果石头落回地面；</p><div class="pick" data-ans="a"><button type="button" data-k="a">一定发生</button><button type="button" data-k="b">不可能发生</button><button type="button" data-k="c">可能发生，也可能不发生</button></div></div>
+      <div class="jcard"><p>(3) 同性电荷，互相吸引；</p><div class="pick" data-ans="b"><button type="button" data-k="a">一定发生</button><button type="button" data-k="b">不可能发生</button><button type="button" data-k="c">可能发生，也可能不发生</button></div></div>
+      <div class="jcard"><p>(4) 把实心铁块丢入水中，结果铁块浮起；</p><div class="pick" data-ans="b"><button type="button" data-k="a">一定发生</button><button type="button" data-k="b">不可能发生</button><button type="button" data-k="c">可能发生，也可能不发生</button></div></div>
+      <div class="jcard"><p>(5) 买一张福利彩票，结果中奖；</p><div class="pick" data-ans="c"><button type="button" data-k="a">一定发生</button><button type="button" data-k="b">不可能发生</button><button type="button" data-k="c">可能发生，也可能不发生</button></div></div>
+      <div class="jcard"><p>(6) 抛掷一枚硬币，结果正面向上。</p><div class="pick" data-ans="c"><button type="button" data-k="a">一定发生</button><button type="button" data-k="b">不可能发生</button><button type="button" data-k="c">可能发生，也可能不发生</button></div></div>
+    </div>
+    <div class="cols2">
+      <p class="def" data-step="1"><span class="think" data-step="2" data-ask="(1)~(4) 有什么共同点？">在一定条件下，<b>事先就能断定</b>发生或不发生某种结果——<em>确定性现象</em>。</span></p>
+      <p class="def" data-step="3"><span class="think" data-step="4" data-ask="(5)(6) 呢？">在一定条件下，某种结果可能发生，也可能不发生，<b>事先不能断定</b>出现哪种结果——<em>随机现象</em>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p259 六个现象。先让学生逐个点选（点错了可以再选），再归纳。(1)(2) 必然发生，(3)(4) 不可能发生，它们都是“事先能断定”的；(5)(6) 才是随机现象。追问：“同性电荷互相吸引”不可能发生，它是不是随机现象？——不是，它事先就能断定。</p>
+</section>
+
+<!-- 4 ================= 随机试验、样本空间 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>随机试验、样本点、样本空间</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>随机试验（课本 p259）</h4>对某随机现象进行的实验、观察称为<em>随机试验</em>，简称<em>试验</em>。</div>
+      <p class="tip" data-step="2">试验有三个特点：<br>① 在相同条件下可以<b>重复</b>进行；<br>② 结果有<b>多个</b>；<br>③ 全部可能结果在试验前是<b>明确</b>的，但不能确定会出现哪一个结果。</p>
+      <p class="tip" data-step="3">例如：抛掷一枚硬币，观察正、反面出现的情况。全部可能结果是？　<span class="think" data-step="4" data-ask="说一说">正面向上、反面向上——事先明确，但抛之前不知道是哪一个。</span></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="5"><h4>样本点 · 样本空间</h4>随机试验的每一个可能结果称为<em>样本点</em>，用 $\omega$ 表示；所有样本点组成的集合称为<em>样本空间</em>，用 $\Omega$ 表示。如果 $\Omega$ 是一个有限集合，则称 $\Omega$ 为<b>有限样本空间</b>。</div>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>抛一枚硬币</span><span class="think" data-step="7" data-ask="Ω = ？">$\Omega=\{\text{正面向上},\ \text{反面向上}\}$</span><i class="why">2 个样本点</i></div>
+        <div class="dl" data-step="8"><span>抛一颗骰子</span><span class="think" data-step="9" data-ask="Ω = ？">$\Omega=\{\omega_1,\omega_2,\omega_3,\omega_4,\omega_5,\omega_6\}$</span><i class="why">$\omega_k$：向上的点数是 $k$</i></div>
+        <div class="dl" data-step="10"><span>抛两颗骰子</span><span class="think" data-step="11" data-ask="有几个样本点？">$6\times 6=36$ 个</span><i class="why">$(i,j)$：第一颗 $i$ 点，第二颗 $j$ 点</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p259。三个特点逐条对照“抛硬币”。写样本空间的要点：每个可能结果都要写（不漏），每个只写一次（不重）。抛两颗骰子的 36 个样本点课本在 15.2 例 3 才列出，这里先说个数，后面互动页会全部画出来。</p>
+</section>
+
+<!-- 5 ================= 事件 = 子集 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>随机事件：样本空间的子集</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>随机事件（课本 p259）</h4>样本空间的子集称为<em>随机事件</em>，简称<em>事件</em>，一般用 $A,B,C$ 等大写英文字母表示。当一个事件仅包含单一样本点时，称该事件为<em>基本事件</em>。</div>
+      <p class="tip gold" data-step="2"><b>什么叫“事件 $A$ 发生”？</b>　<span class="think" data-step="3" data-ask="想一想">当一个试验的结果是 $A$ 的一个元素时，称事件 $A$ 发生。</span></p>
+      <p class="tip" data-step="4">$\Omega$（全集）是<b>必然事件</b>，$\varnothing$（空集）是<b>不可能事件</b>。<span class="think" data-step="5" data-ask="为什么？">每次试验的结果都属于 $\Omega$，所以 $\Omega$ 必然发生；没有结果属于 $\varnothing$，所以 $\varnothing$ 不可能发生。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6"><b>例 1</b>　“抛掷一颗骰子，结果向上的点数是偶数”记为事件 $A$，分别写出样本空间 $\Omega$ 及事件 $A$ 所包含的样本点。</p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>记</span><span>“向上的点数是 $k$”为 $\omega_k$</span><i class="why">$k=1,2,3,4,5,6$</i></div>
+        <div class="dl" data-step="8"><span>$\Omega=$</span><span>$\{\omega_1,\omega_2,\omega_3,\omega_4,\omega_5,\omega_6\}$</span><i class="why"></i></div>
+        <div class="dl end" data-step="9"><span>$A=$</span><span class="think" data-step="10" data-ask="A 包含哪些样本点？">$\{\omega_2,\omega_4,\omega_6\}$</span><i class="why">$A\subseteq\Omega$</i></div>
+      </div>
+      <p class="tip" data-step="11">掷出 4 点，事件 $A$ 发生了吗？<span class="think" data-step="12" data-ask="判断">发生了：$\omega_4\in A$。掷出 3 点，$\omega_3\notin A$，$A$ 不发生。</span></p>
+      <p class="muted small-t" data-step="12">事件的完整表述分两部分：试验的条件 + 试验的结果，如“抛掷一枚硬币，结果正面向上”，有时可略述为“抛掷一枚硬币，正面向上”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p259–260。这是本课的核心观点：事件就是样本空间的子集。“事件 A 发生”的含义来自课本旁注，务必让学生说清：不是“A 里的所有结果都出现”，而是“出现的那个结果在 A 里”。</p>
+</section>
+
+<!-- 6 ================= 例 2 包含 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>事件 $B$ 发生，事件 $A$ 一定发生吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 360 230" class="venn" aria-label="Venn 图：B 包含于 A">
+        <rect x="4" y="4" width="352" height="222" rx="10" class="v-om"/>
+        <text x="16" y="28" class="fl">Ω</text>
+        <ellipse cx="190" cy="118" rx="140" ry="84" class="v-a"/>
+        <circle cx="240" cy="118" r="44" class="v-b"/>
+        <text x="80" y="88" class="fl">A</text><text x="292" y="80" class="fl">B</text>
+        <text x="240" y="128" class="fl s c">ω₂</text>
+        <text x="120" y="128" class="fl s c">ω₄</text><text x="160" y="170" class="fl s c">ω₆</text>
+        <text x="26" y="206" class="fl s">ω₁</text><text x="180" y="218" class="fl s c">ω₃</text><text x="320" y="206" class="fl s">ω₅</text>
+      </svg>
+    </div>
+    <div class="col">
+      <p class="tip">“抛掷一颗骰子，结果向上的点数是偶数”记为事件 $A$，“……点数是 2”记为事件 $B$，分别写出 $A,B$ 所包含的样本点，并用集合的语言分析 $A,B$ 两者之间的关系。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$A=$</span><span>$\{\omega_2,\omega_4,\omega_6\}$</span><i class="why"></i></div>
+        <div class="dl" data-step="1"><span>$B=$</span><span>$\{\omega_2\}$</span><i class="why">$B$ 是基本事件</i></div>
+        <div class="dl key" data-step="2"><span>关系</span><span class="think" data-step="3" data-ask="集合 A、B 什么关系？">$B\subseteq A$</span><i class="why">$B$ 的元素都在 $A$ 里</i></div>
+      </div>
+      <p class="tip" data-step="4">翻译成“事件”的语言：<span class="think" data-step="5" data-ask="B 发生时 A 怎样？">掷出 2 点（$B$ 发生），点数一定是偶数（$A$ 发生）——<b>事件 $B$ 发生必导致事件 $A$ 发生</b>。</span></p>
+      <div class="def" data-step="6"><h4>包含</h4>这时，称事件 $A$ <em>包含</em>事件 $B$（或事件 $B$ 包含于事件 $A$），记作 $B\subseteq A$。</div>
+    </div>
+  </div>
+  <p class="note">课本 p260 例 2。Venn 图中把六个样本点都画出来：ω₂ 在 B 里（也在 A 里），ω₄、ω₆ 只在 A 里，奇数点在 A 外。反问：A 发生，B 一定发生吗？——不一定，掷出 4 点时 A 发生而 B 不发生。</p>
+</section>
+
+<!-- 7 ================= 例 3、例 4：和与积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 例 4</span><h2>“至少一个发生”与“同时发生”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 3</b>　抛一颗骰子：$A$“点数是偶数”，$B$“点数大于 4”，$C$“点数或为偶数或大于 4”。</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>$A,B$</span><span>$A=\{\omega_2,\omega_4,\omega_6\}$，$B=\{\omega_5,\omega_6\}$</span><i class="why"></i></div>
+          <div class="dl" data-step="2"><span>$C=$</span><span class="think" data-step="3" data-ask="C 包含哪些样本点？">$\{\omega_2,\omega_4,\omega_5,\omega_6\}$</span><i class="why"></i></div>
+          <div class="dl key" data-step="4"><span>关系</span><span>$C=A\cup B$</span><i class="why">$A$ 与 $B$ <b>至少有一个</b>发生，即 $C$ 发生</i></div>
+        </div>
+        <div class="vrow" data-step="4">
+          <svg viewBox="0 0 300 150" class="venn sm" aria-label="A 与 B 的并"><rect x="3" y="3" width="294" height="144" rx="8" class="v-om"/><text x="12" y="24" class="fl">Ω</text><g opacity=".22"><circle cx="120" cy="78" r="56" class="v-fill"/><circle cx="185" cy="78" r="56" class="v-fill"/></g><circle cx="120" cy="78" r="56" class="v-a"/><circle cx="185" cy="78" r="56" class="v-bo"/><text x="92" y="84" class="fl">A</text><text x="200" y="84" class="fl">B</text></svg>
+          <p class="def">称 $C$ 是 $A$ 与 $B$ 的<em>并</em>，也称 $C$ 是 $A$ 与 $B$ 的<em>和</em>，记作 $$C=A+B.$$</p>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 4</b>　抛一颗骰子：$A$“点数是偶数”，$B$“点数不小于 4”，$C$“点数是不小于 4 的偶数”。</p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span>$A,B$</span><span>$A=\{\omega_2,\omega_4,\omega_6\}$，$B=\{\omega_4,\omega_5,\omega_6\}$</span><i class="why"></i></div>
+          <div class="dl" data-step="6"><span>$C=$</span><span class="think" data-step="7" data-ask="C 包含哪些样本点？">$\{\omega_4,\omega_6\}$</span><i class="why"></i></div>
+          <div class="dl key" data-step="8"><span>关系</span><span>$C=A\cap B$</span><i class="why">$A$ 与 $B$ <b>同时</b>发生，即 $C$ 发生</i></div>
+        </div>
+        <div class="vrow" data-step="8">
+          <svg viewBox="0 0 300 150" class="venn sm" aria-label="A 与 B 的交"><defs><clipPath id="clipA"><circle cx="120" cy="78" r="56"/></clipPath></defs><rect x="3" y="3" width="294" height="144" rx="8" class="v-om"/><text x="12" y="24" class="fl">Ω</text><g opacity=".22"><circle cx="185" cy="78" r="56" class="v-fill" clip-path="url(#clipA)"/></g><circle cx="120" cy="78" r="56" class="v-a"/><circle cx="185" cy="78" r="56" class="v-bo"/><text x="92" y="84" class="fl">A</text><text x="200" y="84" class="fl">B</text></svg>
+          <p class="def">称 $C$ 是 $A$ 与 $B$ 的<em>交</em>，也称 $C$ 是 $A$ 与 $B$ 的<em>积</em>，记作 $$C=AB.$$</p>
+        </div>
+      </div>
+    </div>
+    <p class="muted small-t center" data-step="8">课本旁注：这里 $A,B,C$ 也可以写成 $A=\{2,4,6\}$，$B=\{4,5,6\}$，$C=\{4,6\}$。</p>
+  </div>
+  <p class="note">课本 p260–261 例 3、例 4。关键是把“或”“且”翻译成“至少有一个发生”“同时发生”。特别提醒：A + B 不是“A 和 B 都发生”，而是“至少一个发生”；“都发生”是积 AB。下一页用互动把这些关系“点”出来。</p>
+</section>
+
+<!-- 8 ================= 核心互动：点选样本点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手点一点</span><h2>点选样本点，组成事件 $A$、$B$</h2></div>
+  <div class="bd ev-bd">
+    <div class="col" data-noswipe>
+      <div class="btns" id="evSpace">
+        <button class="btn solid" type="button" data-space="two">抛两颗骰子（36 个样本点）</button>
+        <button class="btn" type="button" data-space="one">抛一颗骰子</button>
+      </div>
+      <div class="btns" id="evWho">
+        <span class="lbl">正在点选：</span>
+        <button class="btn solid evA" type="button" data-who="A">事件 A</button>
+        <button class="btn evB" type="button" data-who="B">事件 B</button>
+        <button class="btn" type="button" id="evClear">清空</button>
+      </div>
+      <div class="btns presets" id="evPre"></div>
+      <div id="evGrid" class="ev-grid"></div>
+      <p class="muted small-t center" id="evAxis"></p>
+    </div>
+    <div class="col">
+      <div class="ev-out" id="evOut"></div>
+      <div class="btns" data-noswipe>
+        <button class="btn" type="button" data-view="sum">高亮 $A+B$</button>
+        <button class="btn" type="button" data-view="prod">高亮 $AB$</button>
+        <button class="btn solid" type="button" id="evRoll">做一次试验</button>
+      </div>
+      <p class="tip feedback" id="evMsg">点“做一次试验”随机抛掷，看看哪些事件发生了。</p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。建议顺序：① 一颗骰子，用预设重现例 2（偶数、是 2：B ⊆ A）、例 3（偶数 + 大于 4）、例 4（偶数 · 不小于 4）；② 两颗骰子，让学生自己点出“点数之和为 6”（5 个样本点），再点预设核对；③ 点“和为 13”得到 ∅、“和不超过 12”得到 Ω；④ 做几次试验，强调“结果落在 A 里，A 才发生”。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>抛两颗骰子，$A$“点数之和为 2”，$B$“点数之和为 6”。有人说：“$A,B$ 都只是一种点数和，所以都是基本事件。”</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>$A=\{(1,1)\}$ 是基本事件；$B=\{(1,5),(2,4),(3,3),(4,2),(5,1)\}$ 含 5 个样本点，不是基本事件。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>抛一颗骰子，$A$“点数是偶数”，$B$“点数大于 4”。“$A+B$ 发生”就是“$A$、$B$ 都发生”。</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>$A+B$ 发生是 $A$、$B$ <b>至少有一个</b>发生：掷出 2 点，$B$ 不发生，$A+B$ 照样发生。“都发生”是积 $AB=\{\omega_6\}$。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>抛两颗骰子，“点数之和小于 13”是必然事件，“点数之和等于 13”是不可能事件。</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict ok">✓</span>点数之和最大是 12：“和小于 13”包含全部 36 个样本点，就是 $\Omega$；“和等于 13”不含任何样本点，就是 $\varnothing$。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="翻译表">事件 $A$ 发生 ⇔ 结果 $\omega\in A$；　$B\subseteq A$ ⇔ $B$ 发生必导致 $A$ 发生；　$A+B$（$A\cup B$）⇔ 至少一个发生；　$AB$（$A\cap B$）⇔ 同时发生；　$\Omega$ ⇔ 必然事件；　$\varnothing$ ⇔ 不可能事件。</p>
+  </div>
+  <p class="note">每张卡先举手表决再点开，可以回到上一页互动验证。第一张为下一课埋伏笔：A、B 都是“一个点数和”，但包含的样本点个数不同——这正是“和为 2”与“和为 6”可能性有本质区别的原因（15.2 例 3 会算出 1/36 与 5/36）。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>写样本点：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1.</b> “同时抛掷两枚硬币，结果一枚正面向上，一枚反面向上”记为事件 $A$，分别写出 $\Omega$ 及 $A$ 所包含的样本点。</p>
+        <details><summary>提示 1</summary>把两枚硬币区分开（第 1 枚、第 2 枚），用（正，反）这样的有序对表示结果。</details>
+        <details><summary>提示 2</summary>第 1 枚 2 种结果，每种下第 2 枚又有 2 种，共 $2\times 2=4$ 个样本点。</details>
+        <details><summary>完整解答</summary>$\Omega=\{(\text{正},\text{正}),(\text{正},\text{反}),(\text{反},\text{正}),(\text{反},\text{反})\}$，$A=\{(\text{正},\text{反}),(\text{反},\text{正})\}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2.</b> 抛一颗骰子，$A$“点数是偶数”，$B$“点数是奇数”。写出 $\Omega,A,B$ 所包含的样本点，并用集合的语言分析 $A,B$ 的关系。</p>
+        <details><summary>提示 1</summary>$A=\{\omega_2,\omega_4,\omega_6\}$，$B=\{\omega_1,\omega_3,\omega_5\}$。</details>
+        <details><summary>提示 2</summary>求 $AB$ 和 $A+B$ 各是什么。</details>
+        <details><summary>完整解答</summary>$\Omega=\{\omega_1,\cdots,\omega_6\}$。$AB=\varnothing$：$A,B$ 不可能同时发生；$A+B=\Omega$：$A,B$ 中必有一个发生。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 3.</b> 抛一颗骰子，$A$“点数大于 3”，$B$“点数小于 5”。分别写出 $A+B$ 与 $AB$ 所包含的样本点。</p>
+        <details><summary>提示 1</summary>$A=\{\omega_4,\omega_5,\omega_6\}$，$B=\{\omega_1,\omega_2,\omega_3,\omega_4\}$。</details>
+        <details><summary>提示 2</summary>和：至少在一个里；积：两个里都有。</details>
+        <details><summary>完整解答</summary>$A+B=\{\omega_1,\omega_2,\omega_3,\omega_4,\omega_5,\omega_6\}=\Omega$，$AB=\{\omega_4\}$。</details>
+      </div>
+    </div>
+    <p class="tip gold">做完可以回到第 8 页，用“抛一颗骰子”的预设核对练习 2 和习题 3。</p>
+  </div>
+  <p class="note">课本 p261 练习 1、2 与习题 15.1 第 3 题。练习 2 中 A、B 的关系（AB = ∅ 且 A + B = Ω）在 15.3 会有专门的名称，这里只要求用集合语言说清楚。</p>
+</section>
+
+<!-- 11 ================= 习题 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 15.1</span><h2>随机事件、必然事件，还是不可能事件？</h2></div>
+  <div class="bd full top">
+    <div class="cols2 hw">
+      <div class="col">
+        <p class="tip"><b>1.</b> 指出下列事件中，哪些是随机事件、必然事件或不可能事件：</p>
+        <div class="hw-row"><p>(1) 任取 3 条线段，这 3 条线段恰好能组成直角三角形；</p><div class="pick" data-ans="r"><button type="button" data-k="r">随机</button><button type="button" data-k="s">必然</button><button type="button" data-k="n">不可能</button></div></div>
+        <div class="hw-row"><p>(2) 任取 1 个正方体的 3 个顶点，这 3 个顶点不共面；</p><div class="pick" data-ans="n"><button type="button" data-k="r">随机</button><button type="button" data-k="s">必然</button><button type="button" data-k="n">不可能</button><p class="pick-why">任意 3 点一定共面。</p></div></div>
+        <div class="hw-row"><p>(3) 从 1 个三角形的 3 个顶点处各任画 1 条射线，这 3 条射线交于一点；</p><div class="pick" data-ans="r"><button type="button" data-k="r">随机</button><button type="button" data-k="s">必然</button><button type="button" data-k="n">不可能</button></div></div>
+        <div class="hw-row"><p>(4) 把 9 写成两个实数的和，其中一定有 1 个数小于 5；</p><div class="pick" data-ans="s"><button type="button" data-k="r">随机</button><button type="button" data-k="s">必然</button><button type="button" data-k="n">不可能</button><p class="pick-why">若两个数都不小于 5，和至少是 10。</p></div></div>
+        <div class="hw-row"><p>(5) 实数 $a,b$ 不都为 0，但 $a^2+b^2=0$；</p><div class="pick" data-ans="n"><button type="button" data-k="r">随机</button><button type="button" data-k="s">必然</button><button type="button" data-k="n">不可能</button><p class="pick-why">$a^2+b^2=0$ 当且仅当 $a=b=0$。</p></div></div>
+        <div class="hw-row"><p>(6) 汽车排放尾气会污染环境；</p><div class="pick" data-ans="s"><button type="button" data-k="r">随机</button><button type="button" data-k="s">必然</button><button type="button" data-k="n">不可能</button></div></div>
+        <div class="hw-row"><p>(7) 明天早晨有雾；</p><div class="pick" data-ans="r"><button type="button" data-k="r">随机</button><button type="button" data-k="s">必然</button><button type="button" data-k="n">不可能</button></div></div>
+        <div class="hw-row"><p>(8) 明年 7 月 28 日的最高气温高于今年 8 月 10 日的最高气温。</p><div class="pick" data-ans="r"><button type="button" data-k="r">随机</button><button type="button" data-k="s">必然</button><button type="button" data-k="n">不可能</button></div></div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 现有 10 个同类产品，其中 7 个是正品，3 个是次品。从这 10 个产品中任意抽取 4 个产品，① 4 个产品都是正品；② 至少有 1 个次品；③ 4 个产品都是次品；④ 至少有 1 个正品。其中随机事件为____，不可能事件为____，必然事件为____。</p>
+          <details><summary>提示 1</summary>次品只有 3 个，能抽出 4 个次品吗？</details>
+          <details><summary>提示 2</summary>4 个里如果没有正品，就全是次品——可能吗？</details>
+          <details><summary>完整解答</summary>随机事件为 ①②，不可能事件为 ③（次品只有 3 个），必然事件为 ④（4 个不可能全是次品，所以至少有 1 个正品）。</details>
+        </div>
+        <p class="method" data-label="判断方法">看“在给定条件下，这个结果事先能不能断定”：一定出现 → 必然；一定不出现 → 不可能；断定不了 → 随机。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 15.1 第 1、2 题。第 1 题 (2)(4)(5) 要讲道理：(2) 不共线的三点确定一个平面，正方体任意三个顶点不共线，必共面；(4) 用反证的想法；(5) 平方非负。(6)(7)(8) 可以让学生讨论，按常识判断即可。</p>
+</section>
+
+<!-- 12 ================= 树形图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 4 · 5 · 6</span><h2>树形图：有放回与不放回，样本空间不一样</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">一只不透明的口袋内装有大小相同的 3 个球，分别标有 1，2，3 三个号码，从袋中抽取 2 个球。</p>
+      <div class="btns" data-noswipe id="trMode">
+        <button class="btn solid" type="button" data-mode="put">有放回（习题 4）</button>
+        <button class="btn" type="button" data-mode="nop">不放回（习题 5）</button>
+      </div>
+      <div class="btns" data-noswipe id="trEv"></div>
+      <div class="tip feedback" id="trMsg"></div>
+    </div>
+    <div class="col">
+      <div class="tree-box"><svg id="tree" class="tree" viewBox="0 0 560 300" aria-label="抽球树形图"></svg></div>
+      <p class="muted small-t center">第 1 层：第一个球的号码；第 2 层：第二个球的号码。每条“根 → 叶”的路径是一个样本点。</p>
+    </div>
+  </div>
+  <p class="note">习题 15.1 第 4、5 题，用第 6 题（阅读题）介绍的树形图分析。先让学生预测：有放回时有几个样本点？不放回时呢？再点按钮看树形图——不放回时，每个分支下少了“和第一个相同的号码”。注意“第二个球的号码是 2”在两种抽法下包含的样本点不同。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>把“事件”翻译成“集合”</h2></div>
+  <div class="bd full">
+    <div class="tbl-wrap" data-step="1">
+      <table class="mtab dict">
+        <tr><th>概率的语言</th><td>样本空间</td><td>样本点</td><td>事件</td><td>必然事件</td><td>不可能事件</td><td>$B$ 发生必导致 $A$ 发生</td><td>至少一个发生</td><td>同时发生</td></tr>
+        <tr><th>集合的语言</th><td>全集 $\Omega$</td><td>元素 $\omega$</td><td>子集</td><td>$\Omega$</td><td>$\varnothing$</td><td>$B\subseteq A$</td><td>$A+B$（$A\cup B$）</td><td>$AB$（$A\cap B$）</td></tr>
+      </table>
+    </div>
+    <div class="cols3">
+      <p class="recall" data-label="知识" data-step="2">确定性现象与随机现象；随机试验；样本点、样本空间；随机事件、基本事件。</p>
+      <p class="method" data-label="方法" data-step="3">写样本空间：列举 / 列表 / 树形图，做到不重不漏；有序还是无序、有放回还是不放回要看清。</p>
+      <p class="recall" data-label="思想" data-step="4">用集合的语言刻画事件——把生活中的“或”“且”“一定”“不可能”变成精确的数学关系。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一课：</b>15.2 随机事件的概率——“和为 2”只含 1 个样本点，“和为 6”含 5 个，它们发生的可能性怎样<b>量化</b>？</p>
+  </div>
+  <p class="note">请学生先自己把“翻译表”补全再揭示。课后作业建议：习题 15.1 第 3、4、5 题；第 6 题阅读树形图，尝试用树形图写出“抛掷两枚硬币”的样本空间，与练习 1 对照。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>两角和与差的三角函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mvec.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/motianlun.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第10章 三角恒等变换 · 10.1</p>
+    <h1 class="cover-title">两角和与差的三角函数</h1>
+    <p class="cover-q" data-step="1">摩天轮的半径看作 1，两个座舱分别转过角 $\alpha$、$\beta$，位置就是单位圆上的 $(\cos\alpha,\sin\alpha)$、$(\cos\beta,\sin\beta)$。</p>
+    <p class="cover-q" data-step="2">两个座舱之间“差”了一个角 $\alpha-\beta$。$\cos(\alpha-\beta)$ 能用 $\alpha$、$\beta$ 的三角函数算出来吗？比如 $\cos15^\circ=\cos(45^\circ-30^\circ)$，<b>等于 $\cos45^\circ-\cos30^\circ$ 吗？</b></p>
+    <div class="chips" data-step="3"><span class="chip">用数量积推出 $\mathrm C_{(\alpha-\beta)}$</span><span class="chip">换元得到和角</span><span class="chip">正弦 · 正切</span><span class="chip">拆角 · 凑角</span></div>
+  </div>
+  <p class="note">第 10 章章首页（课本 p47–48）：Hardy 的话“数学家和画家、诗人一样，是模式的创造者”。封面先不讲答案，让学生凭直觉表态“cos(45°−30°) = cos45° − cos30° 对不对”，举手统计，第 4 页用数值实验揭晓。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>三角函数的定义 + 向量数量积的两种算法</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="必修第一册 7.2 三角函数概念" data-step="1">
+        <p>角 $\alpha$ 的终边与单位圆交于 $P$，则 $P(\cos\alpha,\sin\alpha)$。</p>
+        <p>同角关系：$\sin^2\alpha+\cos^2\alpha=1$，$\tan\alpha=\dfrac{\sin\alpha}{\cos\alpha}$。</p>
+        <span class="use">把角 $\alpha$、$\beta$ 变成单位圆上两个点（向量）；例题里由 $\sin\alpha$ 求 $\cos\alpha$。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 7.2 诱导公式" data-step="2">
+        <p>$\cos(-\alpha)=\cos\alpha$，<br>$\sin(-\alpha)=-\sin\alpha$；</p>
+        <p>$\cos(\alpha+2k\pi)=\cos\alpha$；$\cos\left(\dfrac\pi2-\alpha\right)=\sin\alpha$。</p>
+        <span class="use">“只需考虑 $0\le\alpha-\beta\le\pi$”的理由；由余弦公式推出正弦公式。</span>
+      </div>
+      <div class="recall" data-label="本册 9.2 · 9.3 数量积" data-step="3">
+        <p>定义：$\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos\theta$（$\theta\in[0,\pi]$ 为夹角）；</p>
+        <p>坐标：$\boldsymbol a=(x_1,y_1)$，$\boldsymbol b=(x_2,y_2)$ 时 $\boldsymbol a\cdot\boldsymbol b=x_1x_2+y_1y_2$。</p>
+        <span class="use">同一个数量积“算两次”，就得到 $\cos(\alpha-\beta)$ 的公式。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>第 9 章讲到哪里：</b>数量积既能用长度和夹角算，也能用坐标算。今天把这两种算法用到单位圆上——<b>向量成了研究三角函数的工具</b>。</p>
+  </div>
+  <p class="note">每出一张卡，请学生口头补全再看“本课用在”。第三张卡最关键：同一个 a·b 有两种算法，这正是本课推导 cos(α−β) 的“支点”。可追问：夹角 θ 的范围是什么？（[0, π]，第 5 页要用。）</p>
+</section>
+
+<!-- 3 ================= 提出问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>$\sin x+\cos x$ 也能写成“一个角”的三角函数吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <p class="tip">章引言（课本 p48）：两个匀速圆周运动叠加，得到 $\overrightarrow{OQ}=(\cos x-\sin x,\ \sin x+\cos x)$。猜想：$y=\sin x+\cos x$ 仍是一个简谐运动，能化成 $A\sin(\omega x+\varphi)$ 的形式。</p>
+      <p class="tip" data-step="1">把 $\cos x+\sin x$ 看成两个向量的数量积：<br><span class="think" data-step="2" data-ask="哪两个向量？">$\cos x+\sin x=(\cos x,\sin x)\cdot(1,1)$</span></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$(\cos x,\sin x)\cdot(1,1)$</span><span>$=\sqrt{\cos^2x+\sin^2x}\cdot\sqrt{1^2+1^2}\cdot\cos\theta$</span><i class="why">数量积定义：$|\boldsymbol a||\boldsymbol b|\cos\theta$</i></div>
+        <div class="dl" data-step="4"><span></span><span>$=\sqrt2\cos\theta$</span><i class="why">$\theta$ 为两向量的夹角</i></div>
+        <div class="dl end" data-step="5"><span>于是</span><span class="think" data-step="6" data-ask="θ 和 x 有什么关系？">$\cos x+\sin x=\sqrt2\cos\left(x-\dfrac\pi4\right)$</span><i class="why">$(1,1)$ 的方向角是 $\frac\pi4$</i></div>
+      </div>
+      <div class="cols2">
+        <p class="tip" data-step="7">这个等式还告诉我们：$\cos\left(x-\dfrac\pi4\right)$ 可以用 $x$ 的三角函数与 $\dfrac\pi4$ 的三角函数来表示。</p>
+        <p class="tip gold" data-step="8"><b>一般的问题：</b>$\cos(\alpha-\beta)$ 能否用 $\alpha$ 的三角函数与 $\beta$ 的三角函数来表示？</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p48–49。第 6 步停一下：夹角 θ 与 x 是什么关系？（x ∈ [π/4, 5π/4] 时 θ = x − π/4，其余情况靠余弦的周期性和偶函数性质——这个“细节”第 5、6 页会认真处理。）本页只要学生接受“数量积能把两个角联系起来”，并带着最后一个问题进入新课。</p>
+</section>
+
+<!-- 4 ================= 先猜 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">先猜</span><h2>$\cos(\alpha-\beta)=\cos\alpha-\cos\beta$ 吗？算一算</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>$\alpha,\ \beta$</th><th>$\cos(\alpha-\beta)$</th><th>$\cos\alpha-\cos\beta$</th></tr>
+        <tr><td>$60^\circ,\ 60^\circ$</td><td><span class="think" data-step="1" data-ask="算">$\cos0^\circ=1$</span></td><td><span class="think" data-step="1" data-ask="算">$0$</span></td></tr>
+        <tr><td>$90^\circ,\ 30^\circ$</td><td><span class="think" data-step="2" data-ask="算">$\cos60^\circ=\dfrac12$</span></td><td><span class="think" data-step="2" data-ask="算">$-\dfrac{\sqrt3}{2}$</span></td></tr>
+        <tr><td>$45^\circ,\ 30^\circ$</td><td><span class="think" data-step="3" data-ask="算">$\cos15^\circ\approx0.966$</span></td><td><span class="think" data-step="3" data-ask="算">$\approx-0.159$，是负数！</span></td></tr>
+      </table>
+      <p class="warn" data-step="4">$\cos(\alpha-\beta)\ne\cos\alpha-\cos\beta$：余弦<b>不能</b>像乘法分配律那样“拆开”。</p>
+    </div>
+    <div class="col" data-step="5">
+      <div class="slider-row" data-noswipe>$\alpha=$<input type="range" id="gA" min="0" max="180" step="5" value="45"><b id="gAV" class="v"></b></div>
+      <div class="slider-row" data-noswipe>$\beta=$<input type="range" id="gB" min="0" max="180" step="5" value="30"><b id="gBV" class="v"></b></div>
+      <div class="readout">
+        <span>$\cos(\alpha-\beta)$</span><span class="bar mid"><i id="gBar1" style="background:var(--red)"></i></span><span class="v" id="gV1"></span>
+        <span>$\cos\alpha-\cos\beta$</span><span class="bar mid"><i id="gBar2" style="background:#9fb0bf"></i></span><span class="v" id="gV2"></span>
+        <span data-step="6">$\cos\alpha\cos\beta+\sin\alpha\sin\beta$</span><span class="bar mid" data-step="6"><i id="gBar3" style="background:var(--orange)"></i></span><span class="v" id="gV3" data-step="6"></span>
+      </div>
+      <p class="tip" data-step="6">第三行是一个“猜测”：多拖几组，它和第一行<span class="think" data-step="7" data-ask="一样吗？">始终相等！——但拖得再多也只是验证，下一页给出<b>证明</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">先让学生口算三组特殊角，推翻“拆开”的想法（习题 10.1(1) 也常见此类错误）。拖滑块时柱子以 0 为中线，向右为正、向左为负。第三行先藏着，等学生“猜不出来”时再点出，强调：有限次数值实验只能“猜”，必须证明。</p>
+</section>
+
+<!-- 5 ================= 核心：单位圆上的数量积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">10.1.1 探究</span><h2>单位圆上，同一个数量积算两次</h2></div>
+  <button class="media-btn" hidden data-img="assets/chajiao.jpg" data-video="assets/chajiao.mp4" data-cap="α、β 的终边转动：OP₁·OP₂ 用夹角算、用坐标算，读数始终相等">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="ucB" class="ub"></div>
+      <div class="btns" id="ucBtns" data-noswipe>
+        <button class="btn solid" type="button" data-k="fig">图 10-1-1</button>
+        <button class="btn" type="button" data-k="neg">让 $\alpha\lt\beta$</button>
+        <button class="btn" type="button" data-k="big">让 $\alpha-\beta\gt180^\circ$</button>
+      </div>
+      <p class="tip center muted small-t">拖动橙色点 $P_1$、$P_2$（角度取整数度）</p>
+    </div>
+    <div class="col">
+      <p class="tip readline" id="ucAng"></p>
+      <div class="calc">
+        <div class="cl"><b>算法一</b>　$\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos\theta=1\times1\times\cos\theta$<span class="v" id="ucV1"></span></div>
+        <div class="cl"><b>算法二</b>　$\boldsymbol a\cdot\boldsymbol b=x_1x_2+y_1y_2=\cos\alpha\cos\beta+\sin\alpha\sin\beta$<span class="v" id="ucV2"></span></div>
+        <div class="cl sub" id="ucTerms"></div>
+        <div class="cl"><b>对照</b>　$\cos(\alpha-\beta)$<span class="v" id="ucV3"></span></div>
+        <div class="cl err"><b>误区</b>　$\cos\alpha-\cos\beta$<span class="v" id="ucV4"></span></div>
+      </div>
+      <p class="tip feedback" id="ucRel"></p>
+      <p class="tip gold" data-step="1">两种算法<b>永远相等</b>，而 $\cos\theta$ 又总等于 $\cos(\alpha-\beta)$——<span class="think" data-step="2" data-ask="于是得到什么？">$\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p49、图 10-1-1。设 a = OP₁ = (cos α, sin α)，b = OP₂ = (cos β, sin β)，两个都是单位向量。请学生上台拖：①先拖到 0 ≤ α − β ≤ 180°，看“θ = α − β”；②点“让 α &lt; β”，夹角变成 β − α，但 cos 是偶函数，值不变；③点“让 α − β &gt; 180°”，夹角 θ = 360° − (α − β)，周期 360° 保证 cos θ 仍等于 cos(α − β)。最后一行灰色的“误区”与上面几行对比，再次推翻 cos α − cos β。右上角“看动画”是 18 秒无声动画。</p>
+</section>
+
+<!-- 6 ================= 推导 C(α−β) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>两角差的余弦公式 $\mathrm C_{(\alpha-\beta)}$</h2></div>
+  <div class="bd full">
+    <p class="tip">如图 10-1-1，以 $Ox$ 为始边作角 $\alpha,\beta$，终边与单位圆交于 $P_1(\cos\alpha,\sin\alpha)$，$P_2(\cos\beta,\sin\beta)$。</p>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>先看</span><span>$0\le\alpha-\beta\le\pi$ 的情况</span><span class="think" data-step="2" data-ask="其他情况怎么办？">余弦函数是周期为 $2\pi$ 的<b>偶函数</b>：$\alpha-\beta$ 总可写成 $2k\pi\pm\theta$（$\theta\in[0,\pi]$），$\cos(\alpha-\beta)=\cos\theta$</span></div>
+      <div class="dl" data-step="3"><span>设</span><span>$\boldsymbol a=\overrightarrow{OP_1}=(\cos\alpha,\sin\alpha)$，$\boldsymbol b=\overrightarrow{OP_2}=(\cos\beta,\sin\beta)$</span><i class="why">单位向量：$|\boldsymbol a|=|\boldsymbol b|=1$</i></div>
+      <div class="dl key" data-step="4"><span>则</span><span>$\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos(\alpha-\beta)=\cos(\alpha-\beta)$</span><span class="think" data-step="5" data-ask="为什么夹角就是 α−β？">因为 $0\le\alpha-\beta\le\pi$，$\angle P_1OP_2=\alpha-\beta$ 就是向量 $\boldsymbol a,\boldsymbol b$ 的夹角</span></div>
+      <div class="dl" data-step="6"><span>另一方面</span><span>$\boldsymbol a\cdot\boldsymbol b=\cos\alpha\cos\beta+\sin\alpha\sin\beta$</span><i class="why">数量积的坐标表示（9.3）</i></div>
+    </div>
+    <div class="def big-f" data-step="7"><h4>两角差的余弦公式（课本 p49）</h4>$$\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta.\qquad(\mathrm C_{(\alpha-\beta)})$$</div>
+    <p class="method" data-step="8">思路：把 $\cos(\alpha-\beta)$ 看成<b>两个向量夹角的余弦</b>，用数量积的两种算法“算两次”。口诀：<b>余余正正，符号相反</b>（差角中间用“+”）。</p>
+  </div>
+  <p class="note">课本 p49。第 1 步先问“α − β 可以是任意角，图里只画了一种情况，怎么办？”让学生回忆第 5 页拖动时看到的三种情形，再点开理由。公式对任意角 α、β 都成立。“余余正正，符号相反”帮助记忆结构：cos 的差角公式里是 cos·cos 与 sin·sin，中间符号与角之间的符号相反。</p>
+</section>
+
+<!-- 7 ================= C(α+β) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">换元</span><h2>用 $-\beta$ 代替 $\beta$：两角和的余弦</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\cos(\alpha+\beta)$</span><span>$=\cos[\alpha-(-\beta)]$</span><i class="why">$\alpha+\beta=\alpha-(-\beta)$</i></div>
+        <div class="dl" data-step="2"><span></span><span>$=\cos\alpha\cos(-\beta)+\sin\alpha\sin(-\beta)$</span><i class="why">$\mathrm C_{(\alpha-\beta)}$ 对任意角成立</i></div>
+        <div class="dl" data-step="3"><span></span><span class="think" data-step="4" data-ask="用什么化简？">$=\cos\alpha\cos\beta-\sin\alpha\sin\beta$</span><i class="why">诱导公式 $\cos(-\beta)=\cos\beta$，$\sin(-\beta)=-\sin\beta$</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>两角和的余弦公式（课本 p50）</h4>$$\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta.\qquad(\mathrm C_{(\alpha+\beta)})$$</div>
+      <p class="tip" data-step="7"><b>探究</b>（图 10-1-2）：$P_3$ 为 $\alpha-\beta$ 终边与单位圆的交点，由 $|P_0P_3|=|P_2P_1|$ 也能推出公式。<span class="think" data-step="8" data-ask="两边平方后各是什么？">$|P_0P_3|^2=2-2\cos(\alpha-\beta)$，$|P_2P_1|^2=2-2(\cos\alpha\cos\beta+\sin\alpha\sin\beta)$。</span></p>
+    </div>
+    <div class="col">
+      <div id="sumB" class="ub short"></div>
+      <p class="tip readline" id="sumV"></p>
+      <p class="tip" data-step="6"><b>思考：</b>“用 $-\beta$ 代替 $\beta$”在图上是什么意思？<span class="think" data-step="6" data-ask="看图">$P_2$ 关于 $x$ 轴对称到 $P_2'(\cos\beta,-\sin\beta)$，$\angle P_1OP_2'$ 就是 $\alpha+\beta$（或差 $2\pi$ 的整数倍）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p50 “探究”与“思考”。右图拖动 P₁、P₂：灰色虚线 OP₂′ 是 OP₂ 关于 x 轴的对称，OP₁·OP₂′ 就直接给出了两角和的余弦——这就是“你能直接利用向量的数量积推出两角和的余弦公式吗”的答案（习题 10.1(1) 第 9 题）。“探究”的距离法可留作课后：两点间距离公式展开即可，不需要分情况讨论。</p>
+</section>
+
+<!-- 8 ================= C 的例 1、例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>诱导公式是特例；不查表求 $\cos75^\circ$、$\cos15^\circ$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">例 1　证明：(1) $\cos\left(\frac\pi2-\alpha\right)=\sin\alpha$；(2) $\sin\left(\frac\pi2-\alpha\right)=\cos\alpha$。</p>
+      <p class="tip" data-step="1">(1) 由 $\mathrm C_{(\alpha-\beta)}$：<span class="think" data-step="2" data-ask="展开">$\cos\left(\frac\pi2-\alpha\right)=\cos\frac\pi2\cos\alpha+\sin\frac\pi2\sin\alpha=\sin\alpha$。</span></p>
+      <p class="tip" data-step="3">(2) 在 (1) 中用 $\frac\pi2-\alpha$ 代换 $\alpha$：$\cos\left[\frac\pi2-\left(\frac\pi2-\alpha\right)\right]=\sin\left(\frac\pi2-\alpha\right)$，左边就是 $\cos\alpha$。</p>
+      <div id="t15B" class="ub tri" data-step="8"></div>
+      <p class="tip readline small" id="t15V" data-step="8"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4">例 2　求 $\cos75^\circ$，$\cos15^\circ$，$\sin15^\circ$，$\tan15^\circ$。<br>$75^\circ$、$15^\circ$ 怎样拆？<span class="think" data-step="5" data-ask="想一想">$75^\circ=45^\circ+30^\circ$，$15^\circ=45^\circ-30^\circ$</span></p>
+      <div class="derive sm">
+        <div class="dl" data-step="6"><span>$\cos75^\circ$</span><span>$=\cos45^\circ\cos30^\circ-\sin45^\circ\sin30^\circ=\frac{\sqrt6-\sqrt2}{4}$</span><i class="why">$\mathrm C_{(\alpha+\beta)}$</i></div>
+        <div class="dl" data-step="6"><span>$\cos15^\circ$</span><span>$=\cos45^\circ\cos30^\circ+\sin45^\circ\sin30^\circ=\frac{\sqrt6+\sqrt2}{4}$</span><i class="why">$\mathrm C_{(\alpha-\beta)}$</i></div>
+        <div class="dl" data-step="7"><span>$\sin15^\circ$</span><span>$=\cos(90^\circ-15^\circ)=\cos75^\circ=\frac{\sqrt6-\sqrt2}{4}$</span><i class="why">例 1</i></div>
+        <div class="dl end" data-step="7"><span>$\tan15^\circ$</span><span>$=\frac{\sin15^\circ}{\cos15^\circ}=\frac{\sqrt6-\sqrt2}{\sqrt6+\sqrt2}=2-\sqrt3$</span><i class="why">有理化</i></div>
+      </div>
+      <p class="tip" data-step="8">图 10-1-3（按比例精确作出）：$\cos15^\circ=\frac{AC}{AD}$，$\tan15^\circ=\frac{CD}{AC}$，可验证计算结果。</p>
+    </div>
+  </div>
+  <p class="note">课本 p50–51 例 1、例 2 及旁注“可用图 10-1-3 验证计算结果”。例 1 说明：第 7 章的许多诱导公式都是和（差）角公式的特例。图 10-1-3 中 ∠DBC = 30°，BD = 2，BC = √3，CD = 1；延长 CB 到 A 使 AB = BD = 2，则 ∠A = 15°，AD = √6 + √2。读数行给出图中线段比值与公式结果的数值对照。</p>
+</section>
+
+<!-- 9 ================= C 的例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>已知一个函数值，先求“缺的那个”，再代公式</h2></div>
+  <div class="bd full">
+    <p class="tip">已知 $\sin\alpha=\dfrac23$，$\alpha\in\left(\dfrac\pi2,\pi\right)$，$\cos\beta=-\dfrac35$，$\beta\in\left(\pi,\dfrac{3\pi}2\right)$，求 $\cos(\alpha+\beta)$ 的值。</p>
+    <p class="tip" data-step="1"><b>分析</b>　$\mathrm C_{(\alpha+\beta)}$ 需要哪四个值？还缺哪两个？<span class="think" data-step="2" data-ask="想一想">需要 $\cos\alpha,\cos\beta,\sin\alpha,\sin\beta$；缺 $\cos\alpha$ 和 $\sin\beta$。</span></p>
+    <div class="derive">
+      <div class="dl" data-step="3"><span>$\cos\alpha$</span><span class="think" data-step="4" data-ask="开方取正还是取负？">$=-\sqrt{1-\sin^2\alpha}=-\sqrt{1-\left(\frac23\right)^2}=-\frac{\sqrt5}{3}$</span><i class="why">$\alpha$ 在第二象限，$\cos\alpha\lt0$</i></div>
+      <div class="dl" data-step="5"><span>$\sin\beta$</span><span>$=-\sqrt{1-\cos^2\beta}=-\sqrt{1-\left(-\frac35\right)^2}=-\frac45$</span><i class="why">$\beta$ 在第三象限，$\sin\beta\lt0$</i></div>
+      <div class="dl key end" data-step="6"><span>$\cos(\alpha+\beta)$</span><span>$=\cos\alpha\cos\beta-\sin\alpha\sin\beta=\left(-\frac{\sqrt5}{3}\right)\times\left(-\frac35\right)-\frac23\times\left(-\frac45\right)=\dfrac{8+3\sqrt5}{15}$</span><i class="why">$\mathrm C_{(\alpha+\beta)}$</i></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="7">已知角的范围求另一个函数值：<b>先定象限，再定符号</b>，最后用 $\sin^2\alpha+\cos^2\alpha=1$ 开方。</p>
+      <p class="tip gold" data-step="8"><b>思考：</b>在上例中，你能求出 $\sin(\alpha+\beta)$ 的值吗？<span class="think" data-step="9" data-ask="缺什么？">需要一个<b>两角和的正弦</b>公式——这就是 10.1.2 要解决的问题。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p51 例 3。停顿点在第 4 步：开方前先问“正还是负？”，让学生说出依据。数值核对：cos α ≈ −0.745，sin β = −0.8，cos(α + β) ≈ 0.980，可用计算器验证。练习可布置 p51 练习 3（cos 105°）、5、6。</p>
+</section>
+
+<!-- 10 ================= S(α±β) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">10.1.2 正弦</span><h2>借诱导公式，把正弦“翻译”成余弦</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">例 2 中求 $\sin15^\circ$，是先转化为 $\cos75^\circ$。而 $\sin15^\circ=\sin(45^\circ-30^\circ)$——有没有两角和（差）的正弦公式？</p>
+      <div class="derive sm">
+        <div class="dl" data-step="1"><span>$\sin(\alpha+\beta)$</span><span>$=\cos\left[\frac\pi2-(\alpha+\beta)\right]=\cos\left[\left(\frac\pi2-\alpha\right)-\beta\right]$</span><i class="why">诱导公式</i></div>
+        <div class="dl" data-step="2"><span></span><span>$=\cos\left(\frac\pi2-\alpha\right)\cos\beta+\sin\left(\frac\pi2-\alpha\right)\sin\beta$</span><i class="why">$\mathrm C_{(\alpha-\beta)}$</i></div>
+        <div class="dl key" data-step="3"><span></span><span class="think" data-step="4" data-ask="再化回来">$=\sin\alpha\cos\beta+\cos\alpha\sin\beta$</span><i class="why">例 1 两个诱导公式</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>两角和、差的正弦公式（课本 p53）</h4>$\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$　$(\mathrm S_{(\alpha+\beta)})$<br>$\sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta$　$(\mathrm S_{(\alpha-\beta)})$</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6">$\mathrm S_{(\alpha-\beta)}$ 怎么来？<span class="think" data-step="7" data-ask="想一想">在 $\mathrm S_{(\alpha+\beta)}$ 中用 $-\beta$ 代替 $\beta$：$\sin\alpha\cos(-\beta)+\cos\alpha\sin(-\beta)$。</span></p>
+      <p class="method" data-step="8">结构对照：余弦“<b>余余正正，符号相反</b>”；正弦“<b>正余余正，符号相同</b>”。</p>
+      <p class="tip" data-step="9">回到例 3：$\sin(\alpha+\beta)=\dfrac23\times\left(-\dfrac35\right)+\left(-\dfrac{\sqrt5}{3}\right)\times\left(-\dfrac45\right)=$<span class="think" data-step="10" data-ask="算一算">$\dfrac{-6+4\sqrt5}{15}$（课本 p53 例 1）</span></p>
+      <p class="tip gold" data-step="11"><b>思考：</b>能不能用同角关系，从 $\mathrm C_{(\alpha+\beta)}$ 直接得到 $\mathrm S_{(\alpha+\beta)}$？<span class="think" data-step="12" data-ask="困难在哪？">$\sin(\alpha+\beta)=\pm\sqrt{1-\cos^2(\alpha+\beta)}$，要判断符号，而且开方后很难化成整齐的形式。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p52–53 及旁注“通过诱导公式可以实现正弦、余弦函数间的转化”。推导只用了两样东西：C(α−β) 和例 1 的诱导公式。例 1 的数据与上一页例 3 相同，顺手回答了上一页的“思考”。可让学生用 sin 15° = sin(45° − 30°) 再算一遍，与例 2 的结果对照。</p>
+</section>
+
+<!-- 11 ================= S 的例 2、例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>拆角：$\alpha=(\alpha+\beta)-\beta$；合并：化成一个角的正弦</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">例 2　已知 $\cos(\alpha+\beta)=\dfrac5{13}$，$\cos\beta=\dfrac45$，$\alpha,\beta$ 均为锐角，求 $\sin\alpha$ 的值。</p>
+      <p class="tip" data-step="1"><b>分析</b>　已知的是 $\alpha+\beta$ 与 $\beta$，所求是 $\alpha$——<span class="think" data-step="2" data-ask="α 怎样用已知角表示？">$\alpha=(\alpha+\beta)-\beta$，用 $\mathrm S_{(\alpha-\beta)}$。</span></p>
+      <div class="derive sm">
+        <div class="dl" data-step="3"><span>范围</span><span>$0^\circ\lt\alpha+\beta\lt180^\circ$</span><i class="why">$\sin\beta\gt0$，$\sin(\alpha+\beta)\gt0$</i></div>
+        <div class="dl" data-step="3"><span></span><span>$\sin(\alpha+\beta)=\frac{12}{13}$，$\sin\beta=\frac35$</span><i class="why">同角关系</i></div>
+        <div class="dl" data-step="4"><span>$\sin\alpha$</span><span>$=\sin(\alpha+\beta)\cos\beta-\cos(\alpha+\beta)\sin\beta$</span><i class="why">$\mathrm S_{(\alpha-\beta)}$</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$=\frac{12}{13}\times\frac45-\frac5{13}\times\frac35=\dfrac{33}{65}$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5">例 3　求函数 $y=\dfrac12\sin x+\dfrac{\sqrt3}{2}\cos x$ 的最大值。<span class="think" data-step="6" data-ask="½ 与 √3/2 像谁？">$\dfrac12=\cos\dfrac\pi3$，$\dfrac{\sqrt3}2=\sin\dfrac\pi3$：$y=\sin x\cos\dfrac\pi3+\cos x\sin\dfrac\pi3=\sin\left(x+\dfrac\pi3\right)$。</span></p>
+      <div id="auxB" class="ub graph" data-step="7"></div>
+      <p class="tip readline" id="auxV" data-step="7"></p>
+      <p class="tip" data-step="8">当 $x+\dfrac\pi3=\dfrac\pi2+2k\pi$，即 $x=\dfrac\pi6+2k\pi\ (k\in\mathbf Z)$ 时，$y$ 取得最大值 $1$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p53–54 例 2、例 3。例 2 关键是“拆角”与“定符号”：因为 α、β 都是锐角，α + β ∈ (0°, 180°)，sin(α + β) 取正。例 3 右图把 y = ½ sin x + (√3/2) cos x 精确画出，拖动曲线上的点：两种写法的读数始终相同，最高点在 x = π/6。旁注“本题还有其他解法吗？”——也可化为 cos(x − π/6)。p55 例 5（2cos10° − sin20°）/cos20° = √3 用同样的“凑角”思想（10° = 30° − 20°），可作课后阅读。</p>
+</section>
+
+<!-- 12 ================= T(α±β) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">10.1.3 正切</span><h2>能否由 $\tan45^\circ$、$\tan30^\circ$ 直接求 $\tan15^\circ$？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\tan(\alpha+\beta)$</span><span>$=\frac{\sin(\alpha+\beta)}{\cos(\alpha+\beta)}=\frac{\sin\alpha\cos\beta+\cos\alpha\sin\beta}{\cos\alpha\cos\beta-\sin\alpha\sin\beta}$</span><i class="why">$\mathrm S_{(\alpha+\beta)}$ 除以 $\mathrm C_{(\alpha+\beta)}$</i></div>
+        <div class="dl key" data-step="2"><span></span><span class="think" data-step="3" data-ask="怎样出现 tan？">$=\dfrac{\tan\alpha+\tan\beta}{1-\tan\alpha\tan\beta}$</span><i class="why">分子、分母同除以 $\cos\alpha\cos\beta$</i></div>
+        <div class="dl" data-step="4"><span>$\tan(\alpha-\beta)$</span><span>$=\dfrac{\tan\alpha-\tan\beta}{1+\tan\alpha\tan\beta}$</span><i class="why">用 $-\beta$ 代替 $\beta$，$\tan(-\beta)=-\tan\beta$</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>两角和（差）的正切公式（课本 p58）</h4>对使等式两边都有意义的 $\alpha$ 和 $\beta$，都有<br>$\tan(\alpha+\beta)=\dfrac{\tan\alpha+\tan\beta}{1-\tan\alpha\tan\beta}$　$(\mathrm T_{(\alpha+\beta)})$<br>$\tan(\alpha-\beta)=\dfrac{\tan\alpha-\tan\beta}{1+\tan\alpha\tan\beta}$　$(\mathrm T_{(\alpha-\beta)})$</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6"><b>思考：</b>结构上有什么特点？<span class="think" data-step="7" data-ask="说说看">分子与角之间同号，分母“1 减/加 积”与角之间<b>异号</b>；只含正切，不含正弦、余弦。</span></p>
+      <p class="tip" data-step="8">例 1　已知 $\tan\alpha,\tan\beta$ 是方程 $x^2+5x-6=0$ 的两根，求 $\tan(\alpha+\beta)$。</p>
+      <div class="derive sm">
+        <div class="dl" data-step="9"><span>解法 1</span><span>$\tan\alpha=-6,\tan\beta=1$（或交换）</span><i class="why">解方程，代公式</i></div>
+        <div class="dl" data-step="10"><span>解法 2</span><span class="think" data-step="11" data-ask="不解方程行吗？">$\tan\alpha+\tan\beta=-5$，$\tan\alpha\tan\beta=-6$</span><i class="why">根与系数的关系</i></div>
+        <div class="dl end" data-step="12"><span>所以</span><span>$\tan(\alpha+\beta)=\dfrac{-5}{1-(-6)}=-\dfrac57$</span><i class="why"></i></div>
+      </div>
+      <p class="tip" data-step="13">回答题目：$\tan15^\circ=\tan(45^\circ-30^\circ)=\dfrac{1-\frac{\sqrt3}3}{1+\frac{\sqrt3}3}=2-\sqrt3$，与例 2 相同。</p>
+    </div>
+  </div>
+  <p class="note">课本 p58–59。强调“对使等式两边都有意义的 α 和 β”：α、β、α ± β 都不能等于 π/2 + kπ，而且分母 1 ∓ tan α tan β ≠ 0。旁注：S(α+β)、C(α+β)、T(α+β) 统称和角公式，S(α−β)、C(α−β)、T(α−β) 统称差角公式。例 1 解法 2 体现“整体代入”，比解法 1 更简洁。</p>
+</section>
+
+<!-- 13 ================= T 的例 2、例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>“1”也是正切：$1=\tan45^\circ$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">例 2　证明：$\dfrac{1+\tan15^\circ}{1-\tan15^\circ}=\sqrt3$。</p>
+      <p class="tip" data-step="1">左边的结构像哪个公式？<span class="think" data-step="2" data-ask="想一想">把 $1$ 写成 $\tan45^\circ$，就是 $\mathrm T_{(\alpha+\beta)}$ 的右边！</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>证法 2</span><span>$\dfrac{1+\tan15^\circ}{1-\tan15^\circ}=\dfrac{\tan45^\circ+\tan15^\circ}{1-\tan45^\circ\tan15^\circ}$</span><i class="why">$1=\tan45^\circ$</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$=\tan(45^\circ+15^\circ)=\tan60^\circ=\sqrt3$</span><i class="why">逆用 $\mathrm T_{(\alpha+\beta)}$</i></div>
+      </div>
+      <p class="method" data-step="5">公式可以<b>正用</b>（展开），也可以<b>逆用</b>（合并）。课本还有证法 1（先求 $\tan15^\circ=2-\sqrt3$ 再代入）、证法 3（从 $\sqrt3=\tan(45^\circ+15^\circ)$ 出发）。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6">例 3　如图 10-1-4，有三个相同的正方形相接，求证：$\alpha+\beta=\dfrac\pi4$。</p>
+      <div id="sqB" class="ub sq" data-step="6"></div>
+      <p class="tip readline small center" id="sqV" data-step="6"></p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>由图</span><span>$\tan\alpha=\dfrac12$，$\tan\beta=\dfrac13$</span><i class="why">对边 1，邻边 2、3</i></div>
+        <div class="dl" data-step="8"><span></span><span>$\tan(\alpha+\beta)=\dfrac{\frac12+\frac13}{1-\frac12\times\frac13}=1$</span><i class="why">$\mathrm T_{(\alpha+\beta)}$</i></div>
+        <div class="dl end" data-step="9"><span>又</span><span>$\alpha+\beta\in(0,\pi)$</span><span class="think" data-step="10" data-ask="能直接得到 α+β=π/4 吗？">$\alpha,\beta\in\left(0,\frac\pi2\right)$；在 $(0,\pi)$ 内正切值为 1 的角只有 $\frac\pi4$，故 $\alpha+\beta=\frac\pi4$</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p59–60 例 2、例 3 及旁注“由 tan(α+β) = 1 能直接得到 α + β = π/4 吗？为什么？”——不能，正切值为 1 的角有无数个，必须先确定 α + β 的范围。右图三个正方形边长为 1，精确画出：读数给出 α、β 的度数，和恰为 45°。p60 例 4（斜三角形 tan A + tan B + tan C = tan A tan B tan C）与例 5（两楼间距 18 m）可作课后阅读。</p>
+</section>
+
+<!-- 14 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些“公式”，哪里错了？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <p>$\cos(\alpha+\beta)=\cos\alpha+\cos\beta$。</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>取 $\alpha=\beta=0$：左边 $=1$，右边 $=2$。三角函数<b>没有</b>“分配律”；正确的是 $\cos\alpha\cos\beta-\sin\alpha\sin\beta$。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>$\sin(\alpha-\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$。</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>正弦“符号相同”：差角中间是“$-$”。正确的是 $\sin\alpha\cos\beta-\cos\alpha\sin\beta$（练习第 1 题 D）。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>$\tan\left(\alpha+\dfrac\pi2\right)=\dfrac{\tan\alpha+\tan\frac\pi2}{1-\tan\alpha\tan\frac\pi2}$。</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>$\tan\dfrac\pi2$ 无意义，$\mathrm T_{(\alpha+\beta)}$ 不能用；应改用诱导公式：$\tan\left(\alpha+\dfrac\pi2\right)=-\dfrac{1}{\tan\alpha}$。</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p>$\sin13^\circ\cos17^\circ+\cos13^\circ\sin17^\circ=\dfrac12$。</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict ok">✓</span>逆用 $\mathrm S_{(\alpha+\beta)}$：$=\sin(13^\circ+17^\circ)=\sin30^\circ=\dfrac12$（p54 练习第 2 题，选 B）。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="9">记公式要看三处：<b>函数名</b>的排列、中间的<b>符号</b>、正切的<b>使用条件</b>（各个角的正切都有意义，且分母不为 0）。</p>
+  </div>
+  <p class="note">每张卡先让学生举手判断，再点开。第 2、4 张来自课本 p54 练习第 1、2 题。第 3 张呼应“对使等式两边都有意义的 α 和 β”这句话。可回到第 4 页的滑块，用数值再验证一次第 1 张卡。</p>
+</section>
+
+<!-- 15 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 利用两角和（差）的余弦公式，求 $\cos105^\circ$ 的值。</p>
+        <details><summary>提示 1</summary>$105^\circ$ 拆成哪两个特殊角的和？</details>
+        <details><summary>提示 2</summary>$105^\circ=60^\circ+45^\circ$，用 $\mathrm C_{(\alpha+\beta)}$。</details>
+        <details><summary>完整解答</summary>$\cos105^\circ=\cos60^\circ\cos45^\circ-\sin60^\circ\sin45^\circ=\dfrac12\times\dfrac{\sqrt2}2-\dfrac{\sqrt3}2\times\dfrac{\sqrt2}2=\dfrac{\sqrt2-\sqrt6}{4}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知 $\cos\theta=-\dfrac35$，$\theta\in\left(\dfrac\pi2,\pi\right)$，求 $\sin\left(\theta+\dfrac\pi3\right)$ 的值。</p>
+        <details><summary>提示 1</summary>先由象限定 $\sin\theta$ 的符号，求出 $\sin\theta$。</details>
+        <details><summary>提示 2</summary>$\sin\theta=\dfrac45$；再用 $\mathrm S_{(\alpha+\beta)}$ 展开。</details>
+        <details><summary>完整解答</summary>$\sin\left(\theta+\dfrac\pi3\right)=\sin\theta\cos\dfrac\pi3+\cos\theta\sin\dfrac\pi3=\dfrac45\times\dfrac12+\left(-\dfrac35\right)\times\dfrac{\sqrt3}2=\dfrac{4-3\sqrt3}{10}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> (1) 已知 $\tan\alpha=3$，求 $\tan\left(\alpha-\dfrac\pi4\right)$ 的值；(2) 已知 $\tan\alpha=-2$，$\tan\beta=5$，求 $\tan(\alpha+\beta)$ 的值。</p>
+        <details><summary>提示 1</summary>$\tan\dfrac\pi4=1$。</details>
+        <details><summary>提示 2</summary>(1) 用 $\mathrm T_{(\alpha-\beta)}$；(2) 用 $\mathrm T_{(\alpha+\beta)}$，分母是 $1-(-2)\times5$。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{3-1}{1+3\times1}=\dfrac12$；(2) $\dfrac{-2+5}{1-(-2)\times5}=\dfrac{3}{11}$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题是课本 p51 练习 3，第 2 题是 p54 练习 6，第 3 题是 p60 练习 1。三题分别对应余弦、正弦、正切三组公式。先独立做 3 分钟，再按需逐级点开提示。课后作业建议：习题 10.1(1) 第 1、2、3、7 题，10.1(2) 第 2、3、5、6 题，10.1(3) 第 1、2、10 题。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="chain" data-step="1">
+      <span class="node key">$\mathrm C_{(\alpha-\beta)}$<small>数量积算两次</small></span><i>$-\beta$ 代 $\beta$ →</i>
+      <span class="node">$\mathrm C_{(\alpha+\beta)}$</span><i>诱导公式 →</i>
+      <span class="node">$\mathrm S_{(\alpha\pm\beta)}$</span><i>相除 →</i>
+      <span class="node">$\mathrm T_{(\alpha\pm\beta)}$</span>
+    </div>
+    <div class="cols3 sum">
+      <div class="col" data-step="2">
+        <h3>知识</h3>
+        <p class="def">$\cos(\alpha\mp\beta)=\cos\alpha\cos\beta\pm\sin\alpha\sin\beta$<br>$\sin(\alpha\pm\beta)=\sin\alpha\cos\beta\pm\cos\alpha\sin\beta$<br>$\tan(\alpha\pm\beta)=\dfrac{\tan\alpha\pm\tan\beta}{1\mp\tan\alpha\tan\beta}$</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>方法</h3>
+        <p class="method" data-label="用公式">正用（展开）、逆用（合并，如 $\frac12\sin x+\frac{\sqrt3}2\cos x$）、拆角（$\alpha=(\alpha+\beta)-\beta$，$15^\circ=45^\circ-30^\circ$）；求值前先定象限、定符号。</p>
+      </div>
+      <div class="col" data-step="4">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">单位圆上的两个向量：夹角的余弦 = 坐标的数量积。</p>
+        <p class="recall" data-label="转化 · 换元">一个公式推出整个公式族：$-\beta$ 代 $\beta$，$\frac\pi2-\alpha$ 代 $\alpha$。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一课：</b>10.2 二倍角的三角函数——在 $\mathrm S_{(\alpha+\beta)}$、$\mathrm C_{(\alpha+\beta)}$、$\mathrm T_{(\alpha+\beta)}$ 中令 $\beta=\alpha$，会得到什么？先试着写出 $\sin2\alpha$。</p>
+  </div>
+  <p class="note">请学生先说出“六个公式是怎样一个接一个推出来的”，再逐栏揭示：整章的源头只有一个——C(α−β)，而它来自第 9 章的数量积。下一课 10.2（课本 p63）只需令 β = α。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mvec.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

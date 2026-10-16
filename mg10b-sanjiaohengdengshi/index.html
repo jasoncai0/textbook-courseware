@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>几个三角恒等式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mvec.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/hailang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第10章 三角恒等变换 · 10.3</p>
+    <h1 class="cover-title">几个三角恒等式</h1>
+    <p class="cover-q" data-step="1">海浪一层叠一层地涌来。两列波<b>叠加</b>在一起，得到的还是一列“规整”的波吗？</p>
+    <p class="cover-q" data-step="2">用式子说：$\sin x+\cos x$ 是两个函数的<b>和</b>，它能不能写成一个 $A\sin(x+\theta)$？</p>
+    <p class="cover-q" data-step="3">今天不学新的“基本公式”——只把 10.1、10.2 的公式<b>加一加、换一换、倒过来用</b>。</p>
+    <div class="chips" data-step="4"><span class="chip">积化和差</span><span class="chip">和差化积</span><span class="chip">半角公式</span><span class="chip">正弦与余弦的叠加</span></div>
+  </div>
+  <p class="note">课本 p68 起。封面只抛问题：让学生凭直觉猜“sin x + cos x 的图象长什么样、最大值是几”，把猜测写在黑板角上，第 12 页拖图验证。强调本课的定位：公式都由和差角公式、二倍角公式推出，课本旁注“本节公式不要求记忆”，要会的是<b>推</b>。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>本课的原料：三组学过的公式</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="10.1 两角和与差的三角函数" data-step="1">
+        <p>$\sin(\alpha\pm\beta)=\sin\alpha\cos\beta\pm\cos\alpha\sin\beta$</p>
+        <p>$\cos(\alpha\pm\beta)=\cos\alpha\cos\beta\mp\sin\alpha\sin\beta$</p>
+        <span class="use">四个式子相加减 → 积化和差；再换元 → 和差化积；倒过来读 → 叠加 $a\sin x+b\cos x$。</span>
+      </div>
+      <div class="recall" data-label="10.2 二倍角的三角函数" data-step="2">
+        <p>上一课讲到：$\sin2\alpha=2\sin\alpha\cos\alpha$，</p>
+        <p>$\cos2\alpha=1-2\sin^2\alpha=2\cos^2\alpha-1$，</p>
+        <p>$\tan2\alpha=\dfrac{2\tan\alpha}{1-\tan^2\alpha}$。</p>
+        <span class="use">把 $\alpha$ 换成 $\dfrac\alpha2$，“倒过来”用 → 半角公式、用 $\tan\dfrac\alpha2$ 表示 $\sin\alpha,\cos\alpha,\tan\alpha$。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 · 第7章 三角函数" data-step="3">
+        <p>$\sin^2\alpha+\cos^2\alpha=1$；象限与三角函数值的符号。</p>
+        <p>$y=A\sin(\omega x+\varphi)$：振幅 $A$，周期 $T=\dfrac{2\pi}{\omega}$。</p>
+        <span class="use">半角公式里“±”号怎么定；叠加后的振幅、周期、最大值。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>不引进新的基本公式，只对旧公式做“运算”——相加、相减、换元、倒用。</p>
+  </div>
+  <p class="note">每出一张卡，请学生口头背出公式（尤其 10.1 的四个，下一页要编号使用）。第三张卡里“象限与符号”来自必修第一册 7.2 三角函数概念，第 8 页判断 ± 号要用；y = A sin(ωx + φ) 来自 7.3，第 12、13 页要用。</p>
+</section>
+
+<!-- 3 ================= 尝试运算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试一下</span><h2>把四个公式加一加、减一减，能得到什么？</h2></div>
+  <div class="bd p3">
+    <div class="col">
+      <p class="tip">观察学过的两组公式：</p>
+      <div class="derive four">
+        <div class="dl"><span>$\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$</span><i class="why">①</i></div>
+        <div class="dl"><span>$\sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta$</span><i class="why">②</i></div>
+        <div class="dl"><span>$\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta$</span><i class="why">③</i></div>
+        <div class="dl"><span>$\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta$</span><i class="why">④</i></div>
+      </div>
+      <p class="tip" data-step="1">① 和 ② 右边哪些项一样、哪些项只差一个符号？　<span class="think" data-step="2" data-ask="观察">$\sin\alpha\cos\beta$ 相同，$\cos\alpha\sin\beta$ 只差符号——相加，后者<b>抵消</b>。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span>①+②</span><span>$\sin(\alpha+\beta)+\sin(\alpha-\beta)=2\sin\alpha\cos\beta$</span><i class="why">$\cos\alpha\sin\beta$ 抵消</i></div>
+        <div class="dl key" data-step="4"><span>所以</span><span>$\sin\alpha\cos\beta=\dfrac12[\sin(\alpha+\beta)+\sin(\alpha-\beta)]$</span><i class="why">两边除以 2</i></div>
+        <div class="dl" data-step="5"><span>①−②</span><span class="think" data-step="6" data-ask="你来推">$\cos\alpha\sin\beta=\dfrac12[\sin(\alpha+\beta)-\sin(\alpha-\beta)]$</span><i class="why">$\sin\alpha\cos\beta$ 抵消</i></div>
+        <div class="dl" data-step="7"><span>③+④</span><span class="think" data-step="8" data-ask="你来推">$\cos\alpha\cos\beta=\dfrac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)]$</span><i class="why">$\sin\alpha\sin\beta$ 抵消</i></div>
+        <div class="dl" data-step="9"><span>③−④</span><span class="think" data-step="10" data-ask="小心符号">$\sin\alpha\sin\beta=-\dfrac12[\cos(\alpha+\beta)-\cos(\alpha-\beta)]$</span><i class="why">$-2\sin\alpha\sin\beta$，前面有个<b>负号</b></i></div>
+      </div>
+      <p class="tip gold" data-step="11">看等号两边：左边是<b>乘积</b>，右边是<b>和或差</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p68“尝试一下”。① + ② 由教师示范，后三个请学生在草稿纸上推，再点开核对。③ − ④ 最容易错：cos(α+β) − cos(α−β) = −2 sin α sin β，左边整理时要除以 −2。</p>
+</section>
+
+<!-- 4 ================= 积化和差 + 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">积化和差</span><h2>乘积 → 和差：把“乘”变成“加”</h2></div>
+  <div class="bd p4">
+    <div class="col">
+      <div class="def" data-step="1"><h4>积化和差公式（课本 p68）</h4><p class="fm">$\sin\alpha\cos\beta=\dfrac12[\sin(\alpha+\beta)+\sin(\alpha-\beta)]$</p><p class="fm">$\cos\alpha\sin\beta=\dfrac12[\sin(\alpha+\beta)-\sin(\alpha-\beta)]$</p><p class="fm">$\cos\alpha\cos\beta=\dfrac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)]$</p><p class="fm">$\sin\alpha\sin\beta=-\dfrac12[\cos(\alpha+\beta)-\cos(\alpha-\beta)]$</p>
+      </div>
+      <p class="muted small-t" data-step="1">课本旁注：本节公式不要求记忆——记住“由 ①②③④ 加减得来”，随时能推。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 1</b>　求 $\sin\dfrac{5\pi}{12}\cos\dfrac{\pi}{12}$ 的值。</p>
+      <p class="tip" data-step="2">$\dfrac{5\pi}{12}$、$\dfrac{\pi}{12}$ 都不是特殊角，怎么办？　<span class="think" data-step="3" data-ask="想一想">它们的<b>和</b> $\dfrac\pi2$、<b>差</b> $\dfrac\pi3$ 是特殊角——化成和差。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>原式</span><span>$=\dfrac12\left[\sin\left(\dfrac{5\pi}{12}+\dfrac{\pi}{12}\right)+\sin\left(\dfrac{5\pi}{12}-\dfrac{\pi}{12}\right)\right]$</span><i class="why">第 1 式</i></div>
+        <div class="dl" data-step="5"><span></span><span>$=\dfrac12\left(\sin\dfrac\pi2+\sin\dfrac\pi3\right)=\dfrac12+\dfrac{\sqrt3}{4}$</span><i class="why">特殊角的值</i></div>
+      </div>
+      <p class="tip" data-step="6">验算：$\sin75^\circ\cos15^\circ\approx0.933$，$\frac12+\frac{\sqrt3}4\approx0.933$ ✓</p>
+      <p class="method" data-step="7">两个角不特殊，但它们的<b>和、差</b>特殊 → 用积化和差。</p>
+    </div>
+  </div>
+  <p class="note">课本 p69 例 1。停在第 2 步：先问“5π/12 是多少度？”（75°），再问“能不能直接算？”。学生可能想到 sin75° = cos15°，原式 = cos²15°，再用二倍角降幂——这也对，可以表扬，说明公式之间是相通的。</p>
+</section>
+
+<!-- 5 ================= 和差化积：换元 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">换个角度</span><h2>反过来：和差能不能化成积？</h2></div>
+  <div class="bd p5">
+    <div class="col">
+      <p class="tip">积化和差右边是 $\sin(\alpha+\beta)+\sin(\alpha-\beta)$。如果题目给的是 $\sin\theta+\sin\varphi$，该怎么用？</p>
+      <p class="tip" data-step="1">令 $\alpha+\beta=\theta$，$\alpha-\beta=\varphi$，解出 $\alpha,\beta$：<span class="think" data-step="2" data-ask="解这个方程组">$\alpha=\dfrac{\theta+\varphi}2$，$\beta=\dfrac{\theta-\varphi}2$</span></p>
+      <div class="derive" data-step="3">
+        <div class="dl"><span>$\sin\dfrac{\theta+\varphi}2\cos\dfrac{\theta-\varphi}2$</span><span>$=\dfrac12\left[\sin\theta+\sin\varphi\right]$</span><i class="why">代入第 1 式</i></div>
+        <div class="dl key" data-step="4"><span>所以</span><span>$\sin\theta+\sin\varphi=2\sin\dfrac{\theta+\varphi}2\cos\dfrac{\theta-\varphi}2$</span><i class="why">乘 2，交换两边</i></div>
+      </div>
+      <p class="tip" data-step="5">同样可得另外三个——<b>换元</b>是关键一步。</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="6"><h4>和差化积公式（课本 p69）</h4><p class="fm">$\sin\alpha+\sin\beta=2\sin\dfrac{\alpha+\beta}2\cos\dfrac{\alpha-\beta}2$</p><p class="fm">$\sin\alpha-\sin\beta=2\cos\dfrac{\alpha+\beta}2\sin\dfrac{\alpha-\beta}2$</p><p class="fm">$\cos\alpha+\cos\beta=2\cos\dfrac{\alpha+\beta}2\cos\dfrac{\alpha-\beta}2$</p><p class="fm">$\cos\alpha-\cos\beta=-2\sin\dfrac{\alpha+\beta}2\sin\dfrac{\alpha-\beta}2$</p>
+      </div>
+      <p class="warn" data-step="7">最后一个有<b>负号</b>；第二个是“cos 在前、sin 在后”。拿不准时，用积化和差倒推一遍，或代 $\alpha=\beta$ 检验（左边为 0）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p69。第 2 步停顿，让学生自己解二元一次方程组。推出 θ、φ 的式子后，课本说“把字母 θ、φ 换成 α、β”——字母只是名字。易错提示里的“代 α = β 检验”是实用技巧：sin α − sin β 在 α = β 时为 0，右边 sin 0 = 0 ✓。</p>
+</section>
+
+<!-- 6 ================= 例 2 + 链接 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>化为积的形式；乘积的图象长什么样？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 2</b>　把下列各式化为积的形式：<br>(1) $\sin114^\circ+\sin26^\circ$；　(2) $\cos\left(\alpha+\dfrac\pi4\right)+\cos\left(\alpha-\dfrac\pi4\right)$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 原式</span><span>$=2\sin\dfrac{114^\circ+26^\circ}2\cos\dfrac{114^\circ-26^\circ}2$</span><i class="why">和差化积第 1 式</i></div>
+        <div class="dl" data-step="2"><span></span><span>$=2\sin70^\circ\cos44^\circ$</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>(2) 原式</span><span>$=2\cos\dfrac{2\alpha}{2}\cos\dfrac{\pi/2}{2}$</span><span class="think" data-step="4" data-ask="和、差各是多少？">和 $=2\alpha$，差 $=\dfrac\pi2$</span></div>
+        <div class="dl" data-step="5"><span></span><span>$=2\cos\alpha\cos\dfrac\pi4=\sqrt2\cos\alpha$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="6">和差化积先看<b>函数名</b>（sin±sin，cos±cos），再算两角的<b>半和、半差</b>。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7"><b>链接（课本 p72）</b>　$f_3(x)=\cos2\pi x\cos16\pi x$ 是一个乘积，按积化和差，它等于 <span class="think" data-step="8" data-ask="化成和">$\dfrac12(\cos18\pi x+\cos14\pi x)$</span></p>
+      <div id="amB" class="amb" data-step="7"></div>
+      <p class="legend small-t" data-step="7"><i class="lg c1"></i>$f_1=\cos2\pi x$　<i class="lg c3"></i>$f_2=-\cos2\pi x$　<i class="lg c2"></i>$f_3=\cos2\pi x\cos16\pi x$</p>
+      <p class="tip gold" data-step="9">$f_3$ 的图象夹在 $f_1$、$f_2$ 之间——这正是收音机“调幅波”的样子。</p>
+    </div>
+  </div>
+  <p class="note">课本 p70 例 2、p72 链接与图 10-3-2（图由代码精确绘制）。第 (2) 题请学生先说“半和、半差”是多少再动笔。链接部分不必展开：点出“乘积 = 两个频率相近的余弦波之和”，物理课的振动、波会用到。</p>
+</section>
+
+<!-- 7 ================= 半角公式推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">半角公式</span><h2>已知 $\cos\alpha$，能求 $\sin\frac\alpha2$ 吗？</h2></div>
+  <div class="bd p5">
+    <div class="col">
+      <p class="tip">二倍角公式用 $\alpha$ 表示 $2\alpha$。反过来：<b>$\alpha$ 是 $\dfrac\alpha2$ 的二倍</b>。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>由</span><span>$\cos2\alpha=1-2\sin^2\alpha=2\cos^2\alpha-1$</span><i class="why">10.2 二倍角公式</i></div>
+        <div class="dl" data-step="2"><span>得</span><span class="think" data-step="3" data-ask="把 α 换成 α/2">$\cos\alpha=1-2\sin^2\dfrac\alpha2=2\cos^2\dfrac\alpha2-1$</span><i class="why">$\alpha$ 换成 $\dfrac\alpha2$</i></div>
+        <div class="dl key" data-step="4"><span>即</span><span>$2\sin^2\dfrac\alpha2=1-\cos\alpha$，$2\cos^2\dfrac\alpha2=1+\cos\alpha$</span><i class="why">移项</i></div>
+        <div class="dl" data-step="5"><span>所以</span><span>$\sin\dfrac\alpha2=\pm\sqrt{\dfrac{1-\cos\alpha}2}$</span><span class="think" data-step="6" data-ask="为什么有 ±？">开平方：平方等于同一个数的有正负两个</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="7"><h4>半角公式（课本 p71）</h4><p class="fm">$\sin\dfrac\alpha2=\pm\sqrt{\dfrac{1-\cos\alpha}2}$，　$\cos\dfrac\alpha2=\pm\sqrt{\dfrac{1+\cos\alpha}2}$，</p><p class="fm">$\tan\dfrac\alpha2=\pm\sqrt{\dfrac{1-\cos\alpha}{1+\cos\alpha}}$。</p>
+      </div>
+      <p class="tip" data-step="8">$\tan\dfrac\alpha2$ 怎么来的？　<span class="think" data-step="9" data-ask="想一想">前两式相除：$\tan\dfrac\alpha2=\dfrac{\sin\frac\alpha2}{\cos\frac\alpha2}$。</span></p>
+      <p class="warn" data-step="10" data-label="± 号怎么定">当 $\dfrac\alpha2$ 所在的象限能够确定时，根号前的符号可以确定；一般情况，应保留“±”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p70–71。核心是第 4 行：二倍角公式“降幂”的那一面（sin² 用 cos 表示）。第 6 步停顿：问“为什么会有正负两个？”——开平方本身就有两个。至于取哪个，要看 α/2 落在哪个象限，下一页用单位圆看清楚。</p>
+</section>
+
+<!-- 8 ================= 拖角看 ± 号 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">拖一拖</span><h2>同一个 $\cos\alpha$，为什么 $\sin\frac\alpha2$ 有两个？</h2></div>
+  <div class="bd ring">
+    <div class="col">
+      <div id="halfB" class="halfb"></div>
+      <p class="muted center small-t">拖动橙色点 $P$（角 $\alpha$ 的终边）；$Q_1$、$Q_2$ 是 $\dfrac\alpha2$ 可能的终边</p>
+    </div>
+    <div class="col">
+      <div class="readout2" id="halfV"></div>
+      <p class="tip" data-step="1">角 $\alpha$ 和 $\alpha+2\pi$ 终边相同，$\cos$ 值一样。它们的一半呢？　<span class="think" data-step="2" data-ask="差多少？">$\dfrac\alpha2$ 与 $\dfrac\alpha2+\pi$——相差半圈，终边<b>方向相反</b>，正好落在<b>相对的象限</b>。</span></p>
+      <p class="tip" data-step="3">所以只知道 $\cos\alpha$，$\sin\dfrac\alpha2$ 的值有两个，<b>互为相反数</b>；要定符号，必须知道 $\dfrac\alpha2$ 在哪个象限。</p>
+      <p class="tip gold" data-step="4">再看读数里的 $\tan\dfrac\alpha2$：$Q_1$、$Q_2$ 的值<b>一样</b>！　<span class="think" data-step="5" data-ask="为什么？">$\tan$ 的周期是 $\pi$，相差半圈的角正切值相同——下一页会推出一个<b>不带 ±</b> 的 $\tan\dfrac\alpha2$ 公式。</span></p>
+    </div>
+  </div>
+  <p class="note">本课的交互之一（单位圆按坐标精确绘制）。请学生拖动 P 一整圈，观察：①两个读数 sin(α/2) 永远互为相反数，绝对值等于 √((1−cos α)/2)；②Q₁、Q₂ 总在相对象限。追问：“如果题目告诉你 0 &lt; α &lt; 2π，选哪个？”——α/2 ∈ (0, π)，sin(α/2) &gt; 0，取 Q₁。补充：cos(−α) = cos α，所以只知道 cos α 时，α 本身也不唯一，结论相同。</p>
+</section>
+
+<!-- 9 ================= tan 半角 + 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>不带 ± 的 $\tan\frac\alpha2$，以及代入求值</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">分子分母同乘 $2\cos\dfrac\alpha2$ 或 $2\sin\dfrac\alpha2$：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\tan\dfrac\alpha2$</span><span>$=\dfrac{2\sin\frac\alpha2\cos\frac\alpha2}{2\cos^2\frac\alpha2}=\dfrac{\sin\alpha}{1+\cos\alpha}$</span><i class="why">$2\cos^2\frac\alpha2=1+\cos\alpha$</i></div>
+        <div class="dl" data-step="2"><span>$\tan\dfrac\alpha2$</span><span>$=\dfrac{2\sin^2\frac\alpha2}{2\sin\frac\alpha2\cos\frac\alpha2}=\dfrac{1-\cos\alpha}{\sin\alpha}$</span><i class="why">$2\sin^2\frac\alpha2=1-\cos\alpha$</i></div>
+      </div>
+      <div class="def" data-step="3"><h4>课本 p71</h4>$\tan\dfrac\alpha2=\dfrac{\sin\alpha}{1+\cos\alpha}=\dfrac{1-\cos\alpha}{\sin\alpha}$</div>
+      <p class="tip" data-step="4">没有“±”：<span class="think" data-step="5" data-ask="符号由谁决定？">符号由 $\sin\alpha$ 的符号决定（$1\pm\cos\alpha\ge0$），知道 $\sin\alpha$ 就够了。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 3</b>　已知 $\cos\alpha=\dfrac13$，求 $\sin\dfrac\alpha2$，$\cos\dfrac\alpha2$，$\tan\dfrac\alpha2$ 的值。</p>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>$\sin\dfrac\alpha2$</span><span>$=\pm\sqrt{\dfrac{1-\frac13}2}=\pm\dfrac{\sqrt3}3$</span><i class="why"></i></div>
+        <div class="dl" data-step="7"><span>$\cos\dfrac\alpha2$</span><span>$=\pm\sqrt{\dfrac{1+\frac13}2}=\pm\dfrac{\sqrt6}3$</span><i class="why"></i></div>
+        <div class="dl" data-step="8"><span>$\tan\dfrac\alpha2$</span><span>$=\pm\sqrt{\dfrac{1-\frac13}{1+\frac13}}=\pm\dfrac{\sqrt2}2$</span><i class="why"></i></div>
+      </div>
+      <p class="tip gold" data-step="9">为什么三个都保留 ±？　<span class="think" data-step="10" data-ask="想一想">题目没给 $\alpha$ 的范围，$\dfrac\alpha2$ 的象限定不下来（这里也不知道 $\sin\alpha$ 的符号）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p71 与例 3。上一页看到 tan(α/2) 在 Q₁、Q₂ 相同，这一页从代数上解释。例 3 停在第 9 步：问“如果加一个条件 0 &lt; α &lt; π/2，答案怎么变？”——全部取正。</p>
+</section>
+
+<!-- 10 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>只用一个 $t=\tan\frac\alpha2$，表示 $\alpha$ 的三个函数</h2></div>
+  <div class="bd ring">
+    <div class="col">
+      <div id="triB" class="trib"></div>
+      <div class="slider-row" data-noswipe>$t=$<input type="range" id="tS" min="0.05" max="0.75" step="0.01" value="0.5"><b id="tV" class="v"></b></div>
+      <div class="readout2" id="triV"></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 4</b>　设 $\tan\dfrac\alpha2=t$，求证：<br>$\sin\alpha=\dfrac{2t}{1+t^2}$，$\cos\alpha=\dfrac{1-t^2}{1+t^2}$，$\tan\alpha=\dfrac{2t}{1-t^2}$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\sin\alpha$</span><span>$=\dfrac{2\sin\frac\alpha2\cos\frac\alpha2}{\cos^2\frac\alpha2+\sin^2\frac\alpha2}=\dfrac{2\tan\frac\alpha2}{1+\tan^2\frac\alpha2}=\dfrac{2t}{1+t^2}$</span><span class="think" data-step="2" data-ask="分母的 1 哪去了？">$1=\cos^2\frac\alpha2+\sin^2\frac\alpha2$，再同除以 $\cos^2\frac\alpha2$</span></div>
+        <div class="dl" data-step="3"><span>$\tan\alpha$</span><span>$=\dfrac{2\tan\frac\alpha2}{1-\tan^2\frac\alpha2}=\dfrac{2t}{1-t^2}$</span><i class="why">二倍角正切公式</i></div>
+        <div class="dl" data-step="4"><span>$\cos\alpha$</span><span>$=\dfrac{\sin\alpha}{\tan\alpha}=\dfrac{1-t^2}{1+t^2}$</span><i class="why">同角三角函数关系</i></div>
+      </div>
+      <p class="tip gold" data-step="5">左图（课本图 10-3-1）：直角边 $1-t^2$、$2t$，斜边 $1+t^2$。<span class="think" data-step="6" data-ask="它真是直角三角形吗？">$(1-t^2)^2+(2t)^2=1+2t^2+t^4=(1+t^2)^2$ ✓，三个比值正好就是三个公式。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p71–72 例 4、图 10-3-1。第 2 步是技巧：“1 的代换”。拖动滑块改变 t，读数里的“∠α 实测值”与 2·arctan t 始终相等，说明这个三角形的锐角恰好是 α（图中 0 &lt; α &lt; π/2）。这组式子把 sin α、cos α、tan α 都化成同一个 t 的有理式，后续学习会用到。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求 $\sin105^\circ\cos75^\circ$ 的值。</p>
+        <details><summary>提示 1</summary>两个角不特殊，它们的和、差呢？</details>
+        <details><summary>提示 2</summary>和 $180^\circ$，差 $30^\circ$；用 $\sin\alpha\cos\beta=\dfrac12[\sin(\alpha+\beta)+\sin(\alpha-\beta)]$。</details>
+        <details><summary>完整解答</summary>原式 $=\dfrac12(\sin180^\circ+\sin30^\circ)=\dfrac12\left(0+\dfrac12\right)=\dfrac14$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 把 $\cos x+\cos3x$ 化成积的形式。</p>
+        <details><summary>提示 1</summary>cos + cos 型：$2\cos\dfrac{\alpha+\beta}2\cos\dfrac{\alpha-\beta}2$。</details>
+        <details><summary>提示 2</summary>半和 $=2x$，半差 $=-x$；$\cos(-x)=\cos x$。</details>
+        <details><summary>完整解答</summary>$\cos x+\cos3x=2\cos2x\cos(-x)=2\cos2x\cos x$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 已知 $\sin\theta=-\dfrac45$，且 $\theta$ 为第三象限角，求 $\sin\dfrac\theta2$，$\cos\dfrac\theta2$，$\tan\dfrac\theta2$ 的值。</p>
+        <details><summary>提示 1</summary>先求 $\cos\theta=-\dfrac35$。$\dfrac\theta2$ 在哪个象限？</details>
+        <details><summary>提示 2</summary>$\dfrac\theta2\in(90^\circ+k\cdot180^\circ,\ 135^\circ+k\cdot180^\circ)$：第二或第四象限。$\tan\dfrac\theta2$ 可用 $\dfrac{\sin\theta}{1+\cos\theta}$。</details>
+        <details><summary>完整解答</summary>$\tan\dfrac\theta2=\dfrac{-4/5}{1-3/5}=-2$。$\dfrac\theta2$ 在第二象限时 $\sin\dfrac\theta2=\dfrac{2\sqrt5}5$，$\cos\dfrac\theta2=-\dfrac{\sqrt5}5$；在第四象限时 $\sin\dfrac\theta2=-\dfrac{2\sqrt5}5$，$\cos\dfrac\theta2=\dfrac{\sqrt5}5$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1、2 题是课本 p70 练习 2(1)、4(3)，第 3 题是 p72 练习 2。第 3 题正好用上第 8 页的结论：θ 为第三象限角，θ/2 可能在第二或第四象限，sin、cos 要分两种情况，而 tan(θ/2) 唯一（= −2），可以回到第 8 页拖一拖验证。</p>
+</section>
+
+<!-- 12 ================= 叠加：拖动 (a, b) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题与探究</span><h2>$a\sin x+b\cos x$：两列波叠加，还是一列正弦波吗？</h2></div>
+  <div class="bd sup">
+    <div class="col">
+      <div id="abB" class="abb"></div>
+      <div class="btns" data-noswipe id="abBtns">
+        <button class="btn" type="button" data-ab="1,1">$\sin x+\cos x$</button>
+        <button class="btn" type="button" data-ab="1.7320508,1">$\sqrt3\sin x+\cos x$</button>
+        <button class="btn" type="button" data-ab="-1,1.7320508">$-\sin x+\sqrt3\cos x$</button>
+      </div>
+      <div class="readout2" id="abV"></div>
+    </div>
+    <div class="col">
+      <div id="waveB" class="waveb"></div>
+      <p class="legend small-t"><i class="lg c1"></i>$y=a\sin x$　<i class="lg c2"></i>$y=b\cos x$　<i class="lg c3"></i>两者之和　<i class="lg dk"></i>$y=\sqrt{a^2+b^2}\sin(x+\theta)$</p>
+      <p class="tip" data-step="1">拖动左图的点 $(a,b)$，看绿色的“和”：<span class="think" data-step="2" data-ask="它是什么样的曲线？">仍是一条周期为 $2\pi$ 的<b>正弦型曲线</b>，只是变高变矮、左右平移。</span></p>
+      <p class="tip gold" data-step="3">它的最大值和点 $(a,b)$ 有什么关系？　<span class="think" data-step="4" data-ask="对照读数猜一猜">最大值 $=\sqrt{a^2+b^2}$，正是点 $(a,b)$ 到原点的距离；平移量就是 $(a,b)$ 的方向角 $\theta$——黑色虚线与绿线<b>完全重合</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p75「问题与探究 正弦函数与余弦函数的叠加」。本课核心交互：所有曲线由代码按函数精确绘制，读数里的“最大偏差”是在 [0, 2π] 上逐点比较绿线与虚线得到的，始终为 0。先让学生点 sin x + cos x，核对封面的猜测（最大值 √2 ≈ 1.41，在 x = π/4 处）；再自由拖动，特别拖到第二、三象限，看 θ 怎样变。</p>
+</section>
+
+<!-- 13 ================= 叠加：推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推理</span><h2>为什么 $a\sin x+b\cos x=\sqrt{a^2+b^2}\sin(x+\theta)$？</h2></div>
+  <div class="bd full top">
+    <div class="derive">
+        <div class="dl" data-step="1"><span>本章开头：$\sin x+\cos x$</span><span>$=\sqrt2\left(\dfrac1{\sqrt2}\sin x+\dfrac1{\sqrt2}\cos x\right)$</span><span class="think" data-step="2" data-ask="为什么提出 √2？">让括号里的两个系数凑成 $\cos\dfrac\pi4$、$\sin\dfrac\pi4$</span></div>
+        <div class="dl" data-step="3"><span></span><span>$=\sqrt2\left(\sin x\cos\dfrac\pi4+\cos x\sin\dfrac\pi4\right)=\sqrt2\sin\left(x+\dfrac\pi4\right)$</span><i class="why">两角和的正弦，倒过来用</i></div>
+        <div class="dl" data-step="5"><span>一般地 $f(x)$</span><span>$=\sqrt{a^2+b^2}\left(\dfrac a{\sqrt{a^2+b^2}}\sin x+\dfrac b{\sqrt{a^2+b^2}}\cos x\right)$</span><i class="why">两个系数的平方和为 1</i></div>
+        <div class="dl key" data-step="6"><span></span><span>$=\sqrt{a^2+b^2}(\cos\theta\sin x+\sin\theta\cos x)=\sqrt{a^2+b^2}\sin(x+\theta)$</span><i class="why">令 $\cos\theta=\frac a{\sqrt{a^2+b^2}}$，$\sin\theta=\frac b{\sqrt{a^2+b^2}}$</i></div>
+    </div>
+    <div class="cols3 p13">
+      <div class="col">
+      <svg viewBox="0 0 300 200" class="fig1" aria-label="课本图 1：点 (a, b) 与角 θ" data-step="5">
+        <line x1="30" y1="170" x2="290" y2="170" stroke="#6f8191" stroke-width="1.6"/><line x1="40" y1="190" x2="40" y2="10" stroke="#6f8191" stroke-width="1.6"/>
+        <line x1="40" y1="170" x2="226" y2="51" stroke="#1d6fa5" stroke-width="3"/><line x1="226" y1="51" x2="226" y2="170" stroke="#9fb0bf" stroke-width="2" stroke-dasharray="6 5"/>
+        <path d="M90 170 A50 50 0 0 0 82.1 143.1" fill="none" stroke="#d9711c" stroke-width="2.5"/>
+        <circle cx="226" cy="51" r="5" fill="#1f2d3a"/>
+        <text x="232" y="44" class="fl">(a, b)</text><text x="96" y="160" class="fl c2t">θ</text><text x="22" y="186" class="fl">O</text>
+        <text x="96" y="98" class="fl s">√(a²+b²)</text>
+      </svg>
+      </div>
+      <div class="col">
+      <p class="tip" data-step="7">$\theta$ 怎么定？　<span class="think" data-step="8" data-ask="只看 tan θ = b/a 够吗？">要同时满足 $\cos\theta=\dfrac a{\sqrt{a^2+b^2}}$、$\sin\theta=\dfrac b{\sqrt{a^2+b^2}}$：$\theta$ 就是点 $(a,b)$ 的方向角（课本取 $\theta\in[0,2\pi)$），象限由 $a,b$ 的符号决定。</span></p>
+      </div>
+      <div class="col">
+      <div class="hint-ladder" data-step="9">
+        <p class="q">课本 p76 问题 (1)：求 $f(x)=\sqrt2\cos x+2\sin\left(x+\dfrac\pi4\right)$ 的振幅和周期。</p>
+        <details><summary>提示</summary>先把 $2\sin\left(x+\dfrac\pi4\right)$ 展开，整理成 $a\sin x+b\cos x$。</details>
+        <details><summary>完整解答</summary>$f(x)=\sqrt2\cos x+\sqrt2\sin x+\sqrt2\cos x=\sqrt2\sin x+2\sqrt2\cos x$，振幅 $\sqrt{2+8}=\sqrt{10}$，周期 $2\pi$。</details>
+      </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p75–76。先回顾本章开头的 sin x + cos x，再一般化；第 2 步停顿，问“为什么偏偏提出 √2？”——因为要让系数平方和等于 1，才能看成某个角的 cos 与 sin，这正是左下图（课本图 1）的意义。第 8 步易错：只用 tan θ = b/a 会丢掉象限信息，比如 (−1, √3) 的 θ 是 2π/3 而不是 −π/3，可回到上一页拖到第二象限验证。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>第 10 章：一张公式“家谱”</h2></div>
+  <div class="bd full">
+    <div class="tree">
+      <div class="tr-box root" data-step="1"><h4>10.1 两角和与差</h4><p>$C_{\alpha\pm\beta}$　$S_{\alpha\pm\beta}$　$T_{\alpha\pm\beta}$</p></div>
+      <div class="tr-arrow" data-step="2">令 $\beta=\alpha$ ⟶</div>
+      <div class="tr-box" data-step="2"><h4>10.2 二倍角</h4><p>$S_{2\alpha}$　$C_{2\alpha}$　$T_{2\alpha}$</p></div>
+      <div class="tr-col" data-step="3">
+        <div class="tr-box now"><h4>积化和差</h4><p>①②③④ 相加减</p></div>
+        <div class="tr-box now"><h4>和差化积</h4><p>再换元 $\alpha+\beta=\theta$，$\alpha-\beta=\varphi$</p></div>
+        <div class="tr-box now"><h4>叠加 $a\sin x+b\cos x$</h4><p>$S_{\alpha+\beta}$ 倒过来用 $=\sqrt{a^2+b^2}\sin(x+\theta)$</p></div>
+      </div>
+      <div class="tr-col" data-step="4">
+        <div class="tr-box now"><h4>半角公式</h4><p>$\alpha$ 换成 $\dfrac\alpha2$，倒用 $C_{2\alpha}$；± 看 $\dfrac\alpha2$ 的象限</p></div>
+        <div class="tr-box now"><h4>用 $t=\tan\dfrac\alpha2$ 表示</h4><p>$\sin\alpha=\dfrac{2t}{1+t^2}$ 等（例 4）</p></div>
+      </div>
+    </div>
+    <div class="cols3">
+      <p class="recall" data-label="方法" data-step="5">加减消项、换元、倒用公式、“1 的代换”；不必死记，会推。</p>
+      <p class="recall" data-label="思想" data-step="6">转化：积 ⇄ 和，二倍 ⇄ 一半；数形结合：单位圆定符号、点 $(a,b)$ 定振幅与相位。</p>
+      <p class="recall" data-label="易错" data-step="7">$\sin\alpha\sin\beta$、$\cos\alpha-\cos\beta$ 的负号；半角的 ±；$\theta$ 的象限。</p>
+    </div>
+    <p class="tip gold" data-step="8"><b>下一章：</b>第 11 章 解三角形——在 $\triangle ABC$ 中 $A+B+C=\pi$，这些恒等式将和余弦定理、正弦定理一起，帮我们研究三角形的边与角（如习题 10.3 第 7 题）。</p>
+  </div>
+  <p class="note">请学生先说出本课每个公式“从哪来”，再逐层揭示结构图。课后作业建议：习题 10.3 第 1、2、3、6 题；第 3(4) 题 sin x + cos x 化积，可与第 13 页的叠加对照（两种方法得 √2 cos(x − π/4) = √2 sin(x + π/4)）；第 7 题是通往第 11 章的桥。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mvec.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

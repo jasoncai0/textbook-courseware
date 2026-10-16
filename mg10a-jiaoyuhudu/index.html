@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>角与弧度 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/motianlun.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第7章 三角函数 · 7.1</p>
+    <h1 class="cover-title">角与弧度</h1>
+    <p class="cover-q" data-step="1">游乐园的摩天轮<b>旋转了两周半</b>。座舱上的一点 $P$ 绕圆心转过的，是一个多大的角？</p>
+    <p class="cover-q" data-step="2">初中的角最大到周角 $360^\circ$——“两周半”用一个角怎么写？顺时针转和逆时针转，又怎么区分？</p>
+    <div class="chips" data-step="3"><span class="chip">任意角</span><span class="chip">终边相同的角</span><span class="chip">1 弧度</span><span class="chip">弧长与扇形面积</span></div>
+  </div>
+  <p class="note">课本 p159 引言。让学生先说“两周半是多少度”——多数会说 900°，但追问“初中学过 900° 的角吗？”制造冲突。第 3 页再系统讨论。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>三件旧工具：角、坐标系、弧长公式</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 角的概念（七年级上册）" data-step="1">
+        <p>角可以看成一条射线绕端点从一个位置<b>旋转</b>到另一个位置所成的图形。</p>
+        <p>锐角、直角、钝角、平角 $180^\circ$、周角 $360^\circ$——都在 $0^\circ\sim360^\circ$ 之间。</p>
+        <span class="use">把“旋转”这个看法推广：转多少圈、往哪边转都算数。</span>
+      </div>
+      <div class="recall" data-label="初中 · 平面直角坐标系" data-step="2">
+        <svg viewBox="0 0 220 150" class="mini-fig" aria-label="四个象限">
+          <path d="M10 75 H210 M110 140 V8" stroke="#1f2d3a" stroke-width="2" fill="none"/>
+          <path d="M210 75 l-9 -4 v8z M110 8 l-4 9 h8z" fill="#1f2d3a"/>
+          <text x="160" y="45" class="fl s">第一象限</text><text x="20" y="45" class="fl s">第二象限</text>
+          <text x="20" y="115" class="fl s">第三象限</text><text x="160" y="115" class="fl s">第四象限</text>
+        </svg>
+        <span class="use">把角放进坐标系：终边落在第几象限，就叫第几象限角。</span>
+      </div>
+      <div class="recall" data-label="初中 · 弧长公式（九年级上册）" data-step="3">
+        <p>半径为 $r$ 的圆中，$n^\circ$ 的圆心角所对的弧长 $$l=\frac{n\pi r}{180}$$</p>
+        <p>扇形面积 $S=\dfrac{n\pi r^2}{360}=\dfrac12lr$。</p>
+        <span class="use">由它可以看出：$\dfrac lr=\dfrac{n\pi}{180}$ 只和角有关——这就是“弧度”的由来。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章引言（p158）：</b>圆周上一点 $P$ 周而复始地运动，可以用 $(r,\alpha)$、$(r,l)$ 或坐标 $(x,y)$ 表示。本节先把 <b>角 $\alpha$</b> 和 <b>弧长 $l$</b> 研究清楚。</p>
+  </div>
+  <p class="note">第三张卡是关键伏笔：请学生把 l = nπr/180 两边同除以 r，发现 l/r 与 r 无关，只由 n 决定。第 8 页会回到这一点。学生用的初中教材版本可能不同，册别以本校教材为准。</p>
+</section>
+
+<!-- 3 ================= 提出问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>只有 0°～360° 的角，够用吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p><b>①</b> 点 $P$ 绕圆心旋转一周半，转过的角是多少？</p>
+        <div class="think" data-step="2" data-ask="想一想"><p>$360^\circ+180^\circ=540^\circ$。可初中最大只有周角 $360^\circ$。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>②</b> 把手表时间调快 1 小时和调慢 1 小时，分针各转过多大的角？</p>
+        <div class="think" data-step="4" data-ask="两种转法有什么不同？"><p>都是转一整圈 $360^\circ$，但<b>方向相反</b>。只说“$360^\circ$”分不清。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>③</b> 摩天轮旋转两周半，转了怎样的一个角？</p>
+        <div class="think" data-step="6" data-ask="想一想"><p>$2\times360^\circ+180^\circ=900^\circ$。</p></div>
+      </div>
+    </div>
+    <p class="tip gold" data-step="7"><b>问题：</b>要刻画“转了多少”和“往哪边转”，角的概念必须推广——既要能<b>超过 $360^\circ$</b>，又要能<b>区分方向</b>。</p>
+  </div>
+  <p class="note">课本 p159。②是常见的引入：拨快拨慢，转的“量”相同而方向相反，联想到正负数表示相反意义的量。</p>
+</section>
+
+<!-- 4 ================= 任意角的定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">7.1.1 任意角</span><h2>用“旋转”定义角：正角、负角、零角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="defFig" class="def-fig"></div>
+      <p class="tip center muted small">图 7-1-3：$\alpha=420^\circ$（逆时针），$\beta=-150^\circ$（顺时针）</p>
+    </div>
+    <div class="col">
+      <p class="def" data-step="1">一个角可以看作平面内一条射线绕着它的端点从一个位置旋转到另一个位置所形成的图形。射线的端点称为角的<em>顶点</em>，射线旋转的开始位置和终止位置称为角的<em>始边</em>和<em>终边</em>。</p>
+      <p class="tip" data-step="2">怎样区分两个旋转方向？　<span class="think" data-step="3" data-ask="联想：怎样表示相反意义的量？">用正负数！</span></p>
+      <div class="def" data-step="4"><h4>规定（课本 p159）</h4>按逆时针方向旋转所形成的角叫作<em>正角</em>，按顺时针方向旋转所形成的角叫作<em>负角</em>。如果射线没有作任何旋转，那么也把它看成一个角，叫作<em>零角</em>。<br>这样就把角的概念推广到了<em>任意角</em>。</div>
+      <p class="tip" data-step="5">$361^\circ$：旋转一周后紧接着又旋转了 $1^\circ$；$720^\circ$：旋转两周；两周半：$900^\circ$。</p>
+      <p class="method" data-step="6" data-label="角的加减">把 $\alpha$ 的终边再旋转角 $\beta$，得到的角记作 $\alpha+\beta$。$\alpha$ 的<b>相反角</b>记为 $-\alpha$，于是 $\alpha-\beta=\alpha+(-\beta)$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p159–160。强调“角 = 旋转”，所以角有了“过程”：转了几圈、往哪转。旁注：约公元前 2000 年巴比伦人把圆周分为 360 度，这种度量方法沿用至今。</p>
+</section>
+
+<!-- 5 ================= 核心交互：转动终边 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手转一转</span><h2>拖动终边：转几圈、往哪转，角就是多少</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="spin" class="spin"></div>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="spinBtns">
+        <button type="button" class="btn" data-a="420">420°</button>
+        <button type="button" class="btn" data-a="-150">−150°</button>
+        <button type="button" class="btn" data-a="900">两周半</button>
+        <button type="button" class="btn" data-a="-300">−300°</button>
+        <button type="button" class="btn" data-d="360">再逆转一圈</button>
+        <button type="button" class="btn" data-d="-360">再顺转一圈</button>
+      </div>
+      <div class="spin-read">
+        <p class="big">$\alpha=$ <b id="spA" class="v"></b></p>
+        <p id="spDir" class="muted"></p>
+        <p>终边位置：<b id="spQ"></b></p>
+        <p>写成 $k\cdot360^\circ+\alpha_0\ (0^\circ\le\alpha_0\lt360^\circ)$：<br><b id="spK" class="hl"></b></p>
+        <p class="muted">终边相同的角：<span id="spSame"></span></p>
+      </div>
+      <p class="tip gold" data-step="1">试一试：从 $60^\circ$ 出发，点“再逆转一圈”“再顺转一圈”——终边位置变了吗？<span class="think" data-step="2" data-ask="发现了什么？">终边不动，角却相差 $360^\circ$ 的整数倍。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。请学生上台拖动橙色点：顺时针拖过始边，角变成负的；连续拖几圈，角超过 360°。右侧实时给出象限和“k·360° + α₀”的写法，为下一页的“终边相同的角”铺路。</p>
+</section>
+
+<!-- 6 ================= 象限角与终边相同的角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>象限角；终边相同的角有什么关系？</h2></div>
+  <div class="bd full">
+    <p class="def" data-step="1">今后常以角的顶点为坐标原点，角的始边为 $x$ 轴正半轴，建立平面直角坐标系。角的终边（除端点外）在第几象限，就说这个角是<em>第几象限角</em>。<span class="muted">如果角的终边在坐标轴上，称这个角为<em>轴线角</em>。</span></p>
+    <p class="tip" data-step="2"><b>思考 (1)</b>　$-300^\circ,\ -150^\circ,\ -60^\circ,\ 60^\circ,\ 210^\circ,\ 300^\circ,\ 420^\circ$ 角分别是第几象限角？其中哪些角的终边相同？</p>
+    <table class="mtab" data-step="2">
+      <tr><th>角</th><td>$-300^\circ$</td><td>$-150^\circ$</td><td>$-60^\circ$</td><td>$60^\circ$</td><td>$210^\circ$</td><td>$300^\circ$</td><td>$420^\circ$</td></tr>
+      <tr><th>象限</th><td><span class="think" data-step="3" data-ask="?">一</span></td><td><span class="think" data-step="3" data-ask="?">三</span></td><td><span class="think" data-step="3" data-ask="?">四</span></td><td><span class="think" data-step="3" data-ask="?">一</span></td><td><span class="think" data-step="3" data-ask="?">三</span></td><td><span class="think" data-step="3" data-ask="?">四</span></td><td><span class="think" data-step="3" data-ask="?">一</span></td></tr>
+    </table>
+    <p class="tip" data-step="4">终边相同的三组：<span class="think" data-step="5" data-ask="找一找"><b class="hl">$-300^\circ,\ 60^\circ,\ 420^\circ$</b>；<b class="hl2">$-150^\circ,\ 210^\circ$</b>；$-60^\circ,\ 300^\circ$——每组相差 $360^\circ$ 的整数倍。</span></p>
+    <div class="cols2">
+      <div class="def" data-step="6"><h4>终边相同的角（课本 p160）</h4>一般地，与角 $\alpha$ 终边相同的角的集合为 $$\{\beta\mid\beta=k\cdot360^\circ+\alpha,\ k\in\Z\}.$$</div>
+      <p class="warn" data-step="7">终边相同的角<b>不一定相等</b>，它们相差 $360^\circ$ 的整数倍；相等的角终边一定相同。</p>
+    </div>
+  </div>
+  <p class="note">课本 p160 思考与结论框。可回到上一页的转盘逐个验证。写集合时提醒 k ∈ Z 不能漏，k 取负数时对应顺时针多转几圈。</p>
+</section>
+
+<!-- 7 ================= 例 1、例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>化成 $k\cdot360^\circ+\alpha$，再判断象限</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 1</b>　在 $0^\circ$ 到 $360^\circ$ 的范围内，找出与下列各角终边相同的角，并分别判断它们是第几象限角：(1) $650^\circ$；(2) $-150^\circ$；(3) $-990^\circ15'$。</p>
+      <p class="tip" data-step="1"><b>分析</b>　<span class="think" data-step="2" data-ask="怎么下手？">只需将这些角表示成 $k\cdot360^\circ+\alpha\ (0^\circ\le\alpha\lt360^\circ)$ 的形式，然后根据 $\alpha$ 确定象限。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$650^\circ$</span><span>$=360^\circ+290^\circ$</span><i class="why">第四象限角</i></div>
+        <div class="dl" data-step="4"><span>$-150^\circ$</span><span>$=-360^\circ+210^\circ$</span><i class="why">第三象限角</i></div>
+        <div class="dl" data-step="5"><span>$-990^\circ15'$</span><span>$=-3\times360^\circ+89^\circ45'$</span><i class="why">第一象限角</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6"><b>例 2</b>　已知 $\alpha$ 与 $240^\circ$ 角的终边相同，判断 $\dfrac\alpha2$ 是第几象限角。</p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>$\dfrac\alpha2$</span><span>$=k\cdot180^\circ+120^\circ$</span><i class="why">由 $\alpha=k\cdot360^\circ+240^\circ\ (k\in\Z)$</i></div>
+        <div class="dl key" data-step="8"><span>？</span><span class="think" data-step="9" data-ask="k·180° 不是 360° 的倍数，怎么办？">对 $k$ 分<b>奇数、偶数</b>讨论</span><i class="why">$180^\circ$ 的偶数倍才是整圈</i></div>
+        <div class="dl" data-step="10"><span>$k=2n$</span><span>$\dfrac\alpha2=n\cdot360^\circ+120^\circ$</span><i class="why">第二象限角</i></div>
+        <div class="dl" data-step="10"><span>$k=2n+1$</span><span>$\dfrac\alpha2=n\cdot360^\circ+300^\circ$</span><i class="why">第四象限角</i></div>
+        <div class="dl end" data-step="11"><span>因此</span><span>$\dfrac\alpha2$ 是第二或第四象限角</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p160–161 例 1、例 2。例 1 (3) 注意 −990°15′ = −1080° + 89°45′，度分换算 1° = 60′。例 2 旁注追问：怎样判断 2α 是第几象限角？（2α = 2k·360° + 480°，与 120° 终边相同，第二象限角。）</p>
+</section>
+
+<!-- 8 ================= 弧度：核心交互 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">7.1.2 弧度制</span><h2>同一个圆心角，换不同的圆：$l/r$ 变不变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="rings" class="rings"></div>
+    </div>
+    <div class="col">
+      <table class="mtab" id="ringTab"></table>
+      <div class="btns" data-noswipe>
+        <button type="button" class="btn" id="ring1">让 $l=r$</button>
+        <button type="button" class="btn" id="ring2">让 $l=2r$</button>
+        <button type="button" class="btn" id="ring180">平角</button>
+      </div>
+      <p class="tip gold" id="ringMsg"></p>
+      <div class="def" data-step="1"><h4>1 弧度（课本 p161）</h4>把长度等于半径长的弧所对的圆心角叫作 <em>1 弧度</em>（radian）的角，记作 1 rad。</div>
+      <p class="tip" data-step="2">基本事实 $\frac{l_1}{r_1}=\frac{l_2}{r_2}$ 说明：<span class="think" data-step="3" data-ask="这说明什么？">角的弧度数由角的大小<b>唯一确定</b>，与半径无关。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p161–162 与图 7-1-5、7-1-6。先让学生拖半径：三个圆的 l/r 永远一样；再点“让 l = r”，三个圆上的弧都恰好等于各自的半径，此时的角就是 1 rad ≈ 57.30°。这里正是前情回顾第三张卡 l/r = nπ/180 的直观版。</p>
+</section>
+
+<!-- 9 ================= 弧度制：周角 2π ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">弧度制</span><h2>一个周角是多少弧度？</h2></div>
+  <button class="media-btn" hidden data-img="assets/hudu.jpg" data-video="assets/hudu.mp4" data-cap="把长为 r 的线段弯到圆周上：一段对 1 rad，一周约 6.28 段，周角 = 2π rad">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>弧度制</h4>用弧度作为角的单位来度量角的单位制称为<em>弧度制</em>。正角的弧度数是正数，负角的弧度数是负数，零角的弧度数为 0。$$|\alpha|=\frac lr$$<span class="muted">$l$ 与 $r$ 用相同的长度单位。</span></div>
+      <p class="tip" data-step="2">弧长 $l=2r$ 时，弧度数是 <span class="think" data-step="3" data-ask="?">$\frac{2r}{r}=2$，即 $2$ rad。</span></p>
+      <p class="tip" data-step="4">弧长 $l=2\pi r$（周角）时：<span class="think" data-step="5" data-ask="?">$\frac{2\pi r}{r}=2\pi$，即 $360^\circ=2\pi$ rad。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6">由 $360^\circ=2\pi$ rad，两边同除以 360 和 $2\pi$：</p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>$180^\circ$</span><span>$=\pi$ rad</span><i class="why">两边除以 2</i></div>
+        <div class="dl key" data-step="8"><span>$1^\circ$</span><span class="think" data-step="9" data-ask="1° 是多少弧度？">$=\dfrac{\pi}{180}$ rad $\approx0.017\,45$ rad</span><i class="why">两边除以 180</i></div>
+        <div class="dl key" data-step="10"><span>$1$ rad</span><span class="think" data-step="11" data-ask="1 rad 是多少度？">$=\left(\dfrac{180}{\pi}\right)^\circ\approx57.30^\circ$</span><i class="why">两边除以 $\pi$</i></div>
+      </div>
+      <p class="method" data-step="12" data-label="书写约定">用弧度表示角的大小时，只要不引起误解，可以省略单位。例如 1 rad、2 rad、$\pi$ rad 可分别写成 1、2、$\pi$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p162 与图 7-1-7、7-1-8。右上角“看动画”：把半径弯到圆周上，一段一段贴满一周，贴了约 6.28 段，直观得出周角 = 2π rad。先让学生猜“能贴几段”再播放。</p>
+</section>
+
+<!-- 10 ================= 换算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 例 4</span><h2>角度与弧度的互化</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="halfDial" class="half-dial"></div>
+      <p class="tip center muted small">图 7-1-9：常用角的弧度数与角度数（外圈弧度，内圈角度）</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 3</b>　把下列各角从弧度化为度：(1) $\dfrac{3\pi}{5}$；(2) $3.5$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1)</span><span>$\dfrac{3\pi}5$ rad $=\dfrac{3\pi}5\times\dfrac{180^\circ}{\pi}=108^\circ$</span><i class="why">乘 $\dfrac{180^\circ}{\pi}$</i></div>
+        <div class="dl" data-step="2"><span>(2)</span><span>$3.5$ rad $=3.5\times\dfrac{180^\circ}{\pi}\approx200.54^\circ$</span><i class="why"></i></div>
+      </div>
+      <p class="tip" data-step="3"><b>例 4</b>　把下列各角从度化为弧度：(1) $252^\circ$；(2) $11^\circ15'$。</p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>(1)</span><span>$252^\circ=252\times\dfrac{\pi}{180}$ rad $=\dfrac{7\pi}5$ rad</span><i class="why">乘 $\dfrac{\pi}{180}$</i></div>
+        <div class="dl" data-step="5"><span>(2)</span><span>$11^\circ15'=11.25^\circ=\dfrac{\pi}{16}$ rad</span><i class="why">先把 $15'$ 化成 $0.25^\circ$</i></div>
+      </div>
+      <p class="method" data-step="6">度 → 弧度：乘 $\dfrac{\pi}{180}$；弧度 → 度：乘 $\dfrac{180^\circ}{\pi}$。记住一句：<b>$\pi$ rad $=180^\circ$</b></p>
+    </div>
+  </div>
+  <p class="note">课本 p163 例 3、例 4 与图 7-1-9。左图是代码精确绘制的半圆量角器：每 15° 一格。请学生先口答几个：π/6、π/4、2π/3、5π/6 各是多少度。</p>
+</section>
+
+<!-- 11 ================= 弧长与扇形面积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">弧长与扇形</span><h2>弧度制下，公式变得多简洁</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">设长度为 $r$ 的线段 $OA$ 绕端点 $O$ 旋转形成角 $\alpha$（$\alpha$ 为任意角，单位为弧度），点 $A$ 经过的路径看成圆心角 $\alpha$ 所对的弧，弧长为 $l$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>弧长</span><span>$l=|\alpha|r$</span><i class="why">由 $|\alpha|=\dfrac lr$ 变形</i></div>
+        <div class="dl" data-step="2"><span>$r=1$ 时</span><span>$l=|\alpha|$</span><i class="why">单位圆上，弧长就是弧度数</i></div>
+        <div class="dl key" data-step="3"><span>扇形面积</span><span class="think" data-step="4" data-ask="扇形占整个圆的几分之几？">$S=\dfrac{|\alpha|}{2\pi}\cdot\pi r^2=\dfrac12 rl$</span><i class="why">$|\alpha|\le2\pi$，按圆心角占周角的比例</i></div>
+      </div>
+      <div class="col" data-step="5">
+        <p class="recall" data-label="角度制（初中）">$l=\dfrac{n\pi r}{180}$，$S=\dfrac{n\pi r^2}{360}$</p>
+        <p class="method" data-label="弧度制">$l=|\alpha|r$，$S=\dfrac12|\alpha|r^2=\dfrac12lr$</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6"><b>例 5</b>　已知扇形的周长为 8 cm，圆心角为 2 rad，求该扇形的面积。</p>
+      <p class="tip" data-step="7">周长由哪几部分组成？　<span class="think" data-step="8" data-ask="想一想">两条半径加一段弧：$2r+l$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="9"><span>设</span><span>$\begin{cases}2r+l=8,\\ l=2r,\end{cases}$</span><i class="why">半径 $r$、弧长 $l$；$l=|\alpha|r$</i></div>
+        <div class="dl" data-step="10"><span>解得</span><span>$r=2,\ l=4$</span><i class="why"></i></div>
+        <div class="dl end" data-step="11"><span>故</span><span>$S=\dfrac12rl=4\ (\text{cm}^2)$</span><i class="why"></i></div>
+      </div>
+      <div id="sector" class="sector" data-step="11"></div>
+    </div>
+  </div>
+  <p class="note">课本 p163–164 与例 5。对比两组公式，让学生体会弧度制“去掉了 π/180 这个系数”。例 5 的图按 r = 2、圆心角 2 rad 精确绘制，弧长 4 恰好是半径的 2 倍。</p>
+</section>
+
+<!-- 12 ================= 角与实数一一对应 + 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">弧度制的好处</span><h2>每一个角 ↔ 唯一一个实数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">取 $r=1$（单位圆）：$\theta$ 为正角时，弧度数就是弧长 $l$；为负角时，是 $l$ 的相反数；零角为 0。</p>
+      <svg viewBox="0 0 420 170" class="corr" aria-label="角的集合与实数集一一对应">
+        <ellipse cx="90" cy="80" rx="70" ry="72" fill="#eef5fb" stroke="#4f9bd0" stroke-width="2.5"/>
+        <ellipse cx="330" cy="80" rx="70" ry="72" fill="#eef5fb" stroke="#4f9bd0" stroke-width="2.5"/>
+        <text x="90" y="45" class="fl s c">正角</text><text x="90" y="85" class="fl s c">零角</text><text x="90" y="125" class="fl s c">负角</text>
+        <text x="330" y="45" class="fl s c">正实数</text><text x="330" y="85" class="fl s c">零</text><text x="330" y="125" class="fl s c">负实数</text>
+        <g stroke="#1d6fa5" stroke-width="2" marker-start="url(#ar)" marker-end="url(#ar)"><line x1="128" y1="40" x2="284" y2="40"/><line x1="128" y1="80" x2="300" y2="80"/><line x1="128" y1="120" x2="284" y2="120"/></g>
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1d6fa5"/></marker></defs>
+        <text x="90" y="168" class="fl s c">角的集合</text><text x="330" y="168" class="fl s c">实数集 R</text>
+      </svg>
+      <p class="def" data-step="1">在弧度制下，角的集合与实数集 $\R$ 之间建立起<em>一一对应</em>关系：每一个角都对应唯一的一个实数；反过来，每一个实数也都对应唯一的一个角。</p>
+      <p class="tip gold" data-step="2">所以可以写 $\alpha+\sin\alpha$ 这样的运算——下一课的三角函数，自变量就是<b>实数</b>。</p>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="3">
+        <p><b>练习（p165）7.</b> 若 $\alpha=-6$，则角 $\alpha$ 的终边在（　）</p>
+        <div class="pick" data-ans="a"><button type="button" data-k="a">A. 第一象限</button><button type="button" data-k="b">B. 第二象限</button><button type="button" data-k="c">C. 第三象限</button><button type="button" data-k="d">D. 第四象限</button>
+          <p class="pick-why">$-6=-2\pi+(2\pi-6)$，而 $0\lt2\pi-6\approx0.28\lt\dfrac\pi2$，所以 $-6$ 与 $0.28$ rad 的角终边相同，在<b>第一象限</b>。</p></div>
+      </div>
+      <div class="jcard" data-step="4">
+        <p><b>练习（p161）6.</b> 下列命题中正确的是（　）</p>
+        <div class="pick" data-ans="c"><button type="button" data-k="a">A. 第一象限角一定不是负角</button><button type="button" data-k="b">B. 小于 90° 的角一定是锐角</button><button type="button" data-k="c">C. 钝角一定是第二象限角</button><button type="button" data-k="d">D. 第一象限角一定是锐角</button>
+          <p class="pick-why">钝角在 $(90^\circ,180^\circ)$ 内，终边在第二象限。反例：$-300^\circ$ 是第一象限角却是负角（A 错）；$-30^\circ\lt90^\circ$ 不是锐角（B 错）；$420^\circ$ 是第一象限角但不是锐角（D 错）。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p164 与图 7-1-11、7-1-12。练习 7 是易错题：很多学生把 −6 当成 −6°。在弧度制下 −6 就是 −6 rad，顺时针转约 344°，离转满一圈只差约 0.28 rad。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p161 练习 7(1)）求出与 $1\,140^\circ$ 角终边相同的最小正角和最大负角。</p>
+        <details><summary>提示 1</summary>先写成 $k\cdot360^\circ+\alpha_0$，$0^\circ\le\alpha_0\lt360^\circ$。</details>
+        <details><summary>提示 2</summary>最大负角 = 最小正角 $-360^\circ$。</details>
+        <details><summary>完整解答</summary>$1\,140^\circ=3\times360^\circ+60^\circ$，最小正角为 $60^\circ$，最大负角为 $60^\circ-360^\circ=-300^\circ$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（p164 练习 3(2)(4)）把 $-210^\circ$、$22^\circ30'$ 化为弧度。</p>
+        <details><summary>提示 1</summary>度 → 弧度：乘 $\dfrac{\pi}{180}$；负角的弧度数是负数。</details>
+        <details><summary>提示 2</summary>$22^\circ30'=22.5^\circ$。</details>
+        <details><summary>完整解答</summary>$-210^\circ=-210\times\dfrac{\pi}{180}=-\dfrac{7\pi}6$；$22^\circ30'=22.5\times\dfrac{\pi}{180}=\dfrac{\pi}8$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（p165 练习 8）已知半径为 240 mm 的圆上，有一段弧的长是 500 mm，求此弧所对的圆心角的弧度数。</p>
+        <details><summary>提示 1</summary>弧度数的定义：$|\alpha|=\dfrac lr$。</details>
+        <details><summary>提示 2</summary>$l$ 与 $r$ 单位相同，可以直接相除。</details>
+        <details><summary>完整解答</summary>$\alpha=\dfrac{500}{240}=\dfrac{25}{12}$（rad），约 $119.4^\circ$。</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b>（p164 练习 5(2)）写出与 $\dfrac{5\pi}6$ 终边相同的角的集合。</p>
+        <details><summary>提示</summary>弧度制下，$360^\circ$ 要写成 $2\pi$，两种单位不要混用。</details>
+        <details><summary>完整解答</summary>$\left\{\beta\ \middle|\ \beta=\dfrac{5\pi}6+2k\pi,\ k\in\Z\right\}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b>（习题 7.1 第 8 题）已知扇形的半径为 10 cm，圆心角为 $60^\circ$，求扇形的弧长和面积。</p>
+        <details><summary>提示</summary>先把 $60^\circ$ 化成 $\dfrac\pi3$，再用 $l=|\alpha|r$、$S=\dfrac12lr$。</details>
+        <details><summary>完整解答</summary>$l=\dfrac\pi3\times10=\dfrac{10\pi}3$ cm，$S=\dfrac12\times\dfrac{10\pi}3\times10=\dfrac{50\pi}3$ cm²。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">题目取自课本 p161、p164–165 练习与习题 7.1。第 4 题强调“k·360° + π/4”这类角度、弧度混用的写法是错误的。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">任意角：正角（逆时针）、负角（顺时针）、零角；象限角。</p>
+        <p class="def">终边相同：$\{\beta\mid\beta=\alpha+2k\pi,\ k\in\Z\}$</p>
+        <p class="def">$1$ rad：弧长等于半径的弧所对的圆心角；$\pi$ rad $=180^\circ$；$l=|\alpha|r$，$S=\dfrac12lr$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断象限">化成 $k\cdot360^\circ+\alpha_0$（或 $2k\pi+\alpha_0$），看 $\alpha_0$；含 $\dfrac k2$ 时对 $k$ 分奇偶。</p>
+        <p class="method" data-label="互化">乘 $\dfrac{\pi}{180}$ 或 $\dfrac{180^\circ}{\pi}$。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="推广">静止的角 → 旋转的角；$0^\circ\sim360^\circ$ → 任意角。</p>
+        <p class="recall" data-label="对应">弧度制让“角”和“实数”一一对应。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课 7.2 三角函数概念：</b>点 $P$ 既可以用 $(r,\alpha)$ 表示，也可以用坐标 $(x,y)$ 表示——这两种表示之间有什么内在联系？</p>
+  </div>
+  <p class="note">课后作业建议：习题 7.1 第 1、3、4、6、8、9 题。第 9 题（飞轮）是弧度制的应用：每秒转 5 圈，即 10π rad，轮周一点 1 s 内经过 10π × 0.6 = 6π m。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

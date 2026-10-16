@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角函数概念 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shuiche.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第7章 三角函数 · 7.2</p>
+    <h1 class="cover-title">三角函数概念</h1>
+    <p class="cover-q" data-step="1">水车一圈圈地转。叶板边缘上的一点 $P$，转过的角是 $\alpha$——它此刻离水面多高、离转轴左右多远？</p>
+    <p class="cover-q" data-step="2">点 $P$ 既能用 $(r,\alpha)$ 表示，也能用坐标 $(x,y)$ 表示。<b>这两种表示之间，有什么内在联系？</b></p>
+    <div class="chips" data-step="3"><span class="chip">任意角的三角函数</span><span class="chip">单位圆与三角函数线</span><span class="chip">同角三角函数关系</span><span class="chip">诱导公式</span></div>
+  </div>
+  <p class="note">课本 p166 节首问题：用怎样的数学模型刻画 (x, y) 与 (r, α) 之间的关系？封面只抛问题，第 3 页从锐角情形出发。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>7.1 讲到了哪里？初中的锐角三角函数还记得吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="7.1 角与弧度" data-step="1">
+        <p>角 = 射线的旋转：正角、负角、零角，<b>任意角</b>。</p>
+        <p>象限角；终边相同的角 $\alpha+2k\pi\ (k\in\Z)$。</p>
+        <p><b>弧度制</b>：$\pi$ rad $=180^\circ$；角的集合与实数集 $\R$ 一一对应。</p>
+        <span class="use">三角函数的自变量就是（用弧度表示的）任意角，也就是实数。</span>
+      </div>
+      <div class="recall" data-label="初中 · 锐角三角函数（九年级下册）" data-step="2">
+        <svg viewBox="0 0 260 120" class="mini-fig" aria-label="直角三角形">
+          <path d="M20 105 H220 V25 Z" fill="none" stroke="#1f2d3a" stroke-width="2.5"/>
+          <path d="M208 105 v-12 h12" fill="none" stroke="#1d6fa5" stroke-width="2"/>
+          <text x="6" y="115" class="fl">A</text><text x="226" y="115" class="fl">C</text><text x="226" y="22" class="fl">B</text>
+          <text x="110" y="58" class="fl s">斜边</text><text x="228" y="70" class="fl s">对边</text><text x="100" y="118" class="fl s">邻边</text>
+        </svg>
+        <p>$\sin A$ = 对边 ÷ 斜边，$\cos A$ = 邻边 ÷ 斜边，$\tan A$ = 对边 ÷ 邻边</p>
+        <span class="use">锐角时恰好是 $\dfrac yr,\dfrac xr,\dfrac yx$——推广的起点。</span>
+      </div>
+      <div class="recall" data-label="初中 · 特殊角与相似" data-step="3">
+        <p>$\sin30^\circ=\dfrac12$，$\sin45^\circ=\dfrac{\sqrt2}2$，$\sin60^\circ=\dfrac{\sqrt3}2$。</p>
+        <p>30° 角所对的直角边等于斜边的一半；相似三角形对应边成比例。</p>
+        <span class="use">求 $\dfrac\pi6$ 等特殊角的值；说明比值与点 $P$ 的位置无关。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章引言（p158）：</b>圆周上的点 $P$ 可以用角、弧长、直角坐标来表示。7.1 研究了 $r,\alpha,l$ 的关系（$|\alpha|=\frac lr$）；本节研究 <b>$(x,y)$ 与 $(r,\alpha)$</b> 的关系。</p>
+  </div>
+  <p class="note">第一张卡请学生口答：−6 rad 在第几象限？（第一象限，上一课练习）。第二张卡强调初中定义只对锐角有效：钝角、负角没有“直角三角形”可用。学生用的初中教材版本可能不同，册别以本校教材为准。</p>
+</section>
+
+<!-- 3 ================= 从锐角到任意角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">7.2.1 任意角的三角函数</span><h2>锐角能用直角三角形，钝角、负角怎么办？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ratioFig" class="ratio-fig"></div>
+      <p class="tip center muted small">终边上任取两点 $P_1,P_2$：两个直角三角形相似</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1"><b>先看锐角</b>（图 7-2-1）：$P(x,y)$ 在终边上，$OP=r$，初中的定义就是 <span class="think" data-step="2" data-ask="写一写">$\sin\alpha=\dfrac yr,\ \cos\alpha=\dfrac xr,\ \tan\alpha=\dfrac yx$</span></p>
+      <p class="tip" data-step="3"><b>再看任意角</b>：没有直角三角形了，可坐标 $(x,y)$ 和距离 $r=\sqrt{x^2+y^2}$ <b>仍然都有</b>。</p>
+      <p class="tip" data-step="4">比值和 $P$ 在终边上的位置有关吗？　<span class="think" data-step="5" data-ask="想一想">无关：根据相似三角形，$\dfrac yr,\dfrac xr,\dfrac yx$ 只由 $\alpha$ 决定。</span></p>
+      <div class="def" data-step="6"><h4>定义（课本 p166–167）</h4>设 $\alpha$ 的终边上异于原点的任意一点 $P(x,y)$，$r=\sqrt{x^2+y^2}$。<br>(1) 比值 $\frac yr$ 叫作 $\alpha$ 的<em>正弦</em>，记作 $\sin\alpha$；<br>(2) 比值 $\frac xr$ 叫作 $\alpha$ 的<em>余弦</em>，记作 $\cos\alpha$；<br>(3) 比值 $\frac yx\ (x\ne0)$ 叫作 $\alpha$ 的<em>正切</em>，记作 $\tan\alpha$。</div>
+    </div>
+  </div>
+  <p class="note">课本 p166–167 与图 7-2-1、7-2-2 及旁注图。左图拖不动——请学生观察：P₁、P₂ 换位置，比值不变，这就是“定义合理”的依据。再强调 tan 的条件 x ≠ 0。</p>
+</section>
+
+<!-- 4 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>已知终边上一点，求三个三角函数值</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 1</b>　如图 7-2-3，已知角 $\alpha$ 的终边经过点 $P(2,-3)$，求 $\alpha$ 的正弦、余弦、正切值。</p>
+      <div id="ex1Fig" class="ex1-fig"></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">第一步算什么？　<span class="think" data-step="2" data-ask="想一想">先求 $r$：定义里三个比值都要用到 $x,y,r$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$r$</span><span>$=\sqrt{2^2+(-3)^2}=\sqrt{13}$</span><i class="why">$x=2,\ y=-3$</i></div>
+        <div class="dl" data-step="4"><span>$\sin\alpha$</span><span>$=\dfrac yr=\dfrac{-3}{\sqrt{13}}=-\dfrac{3\sqrt{13}}{13}$</span><i class="why">分母有理化</i></div>
+        <div class="dl" data-step="5"><span>$\cos\alpha$</span><span>$=\dfrac xr=\dfrac{2}{\sqrt{13}}=\dfrac{2\sqrt{13}}{13}$</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span>$\tan\alpha$</span><span>$=\dfrac yx=-\dfrac32$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="7">由于比值与 $P$ 在终边上的位置无关，可以选<b>特殊点</b>来算——最方便的是终边与<b>单位圆</b>的交点：这时 $r=1$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p167 例 1。sin α 为负，是因为 P 在第四象限，y &lt; 0——为第 8 页“符号”埋伏笔。</p>
+</section>
+
+<!-- 5 ================= 单位圆 + 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>取单位圆上的点：$\sin\alpha=y$，$\cos\alpha=x$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex2Fig" class="ex2-fig"></div>
+      <p class="tip center muted small">图 7-2-5：$P$ 与 $P'$ 关于 $y$ 轴对称</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 2</b>　(1) 当 $\alpha=\dfrac\pi6$ 时，求 $\sin\alpha,\cos\alpha,\tan\alpha$ 的值；(2) 当 $\alpha=\dfrac{5\pi}6$ 时，求它们的值。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) $y$</span><span>$=\dfrac12$</span><span class="think" data-step="2" data-ask="为什么？">直角三角形中锐角 $\frac\pi6$ 的对边是斜边（$=1$）的一半</span></div>
+        <div class="dl" data-step="3"><span>$x$</span><span>$=\dfrac{\sqrt3}2$</span><i class="why">勾股定理 $x^2+\left(\frac12\right)^2=1$，$x\gt0$</i></div>
+        <div class="dl key" data-step="4"><span>所以</span><span>$\sin\dfrac\pi6=\dfrac12,\ \cos\dfrac\pi6=\dfrac{\sqrt3}2,\ \tan\dfrac\pi6=\dfrac{\sqrt3}3$</span><i class="why">$r=1$</i></div>
+        <div class="dl" data-step="5"><span>(2) $P'$</span><span>$\left(-\dfrac{\sqrt3}2,\dfrac12\right)$</span><span class="think" data-step="6" data-ask="怎么找到 P′？">$P'$ 与 (1) 中的 $P$ 关于 $y$ 轴对称</span></div>
+        <div class="dl key" data-step="7"><span>所以</span><span>$\sin\dfrac{5\pi}6=\dfrac12,\ \cos\dfrac{5\pi}6=-\dfrac{\sqrt3}2,\ \tan\dfrac{5\pi}6=-\dfrac{\sqrt3}3$</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p167–168 例 2 与图 7-2-4、7-2-5。(2) 的“对称”思路正是诱导公式的雏形，第 12 页会系统研究。</p>
+</section>
+
+<!-- 6 ================= 核心交互：拖动 P ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>单位圆上拖动点 $P$：$\sin\alpha$、$\cos\alpha$、$\tan\alpha$ 怎样变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ucCoord" class="uc"></div>
+    </div>
+    <div class="col">
+      <div id="ucCoordR" class="uc-read"></div>
+      <p class="tip" data-step="1">拖着 $P$ 转一整圈：$\sin\alpha$ 的最大值、最小值是多少？<span class="think" data-step="2" data-ask="观察">$y$ 在 $-1$ 到 $1$ 之间：$-1\le\sin\alpha\le1$，$\cos\alpha$ 也一样。</span></p>
+      <p class="tip" data-step="3">$P$ 转到 $y$ 轴上时，$\tan\alpha$ 呢？<span class="think" data-step="4" data-ask="观察">$x=0$，$\dfrac yx$ 无意义：$\alpha=\dfrac\pi2+k\pi$ 时正切不存在。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。拖动时靠近 15° 的整数倍会自动吸附，读数给出精确值。请学生边拖边说：P 在第二象限时谁正谁负？为下一页的“对应”与第 8 页的“符号”作准备。</p>
+</section>
+
+<!-- 7 ================= 例 3 + 函数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 思考</span><h2>对于每一个实数 $\alpha$，都有唯一的 $\sin\alpha$</h2></div>
+  <div class="bd full">
+    <p class="tip"><b>例 3</b>　对于表中的角 $\alpha$，计算 $\sin\alpha$ 的值，并把 $(\alpha,\sin\alpha)$ 描在平面直角坐标系中。</p>
+    <div class="tab-wrap" data-noswipe>
+    <table class="mtab sin-tab">
+      <tr><th>$\alpha$</th><td>$0$</td><td>$\frac\pi6$</td><td>$\frac\pi3$</td><td>$\frac\pi2$</td><td>$\frac{2\pi}3$</td><td>$\frac{5\pi}6$</td><td>$\pi$</td><td>$\frac{7\pi}6$</td><td>$\frac{4\pi}3$</td><td>$\frac{3\pi}2$</td><td>$\frac{5\pi}3$</td><td>$\frac{11\pi}6$</td><td>$2\pi$</td></tr>
+      <tr><th>$\sin\alpha$</th><td><span class="think" data-step="1" data-ask="?">$0$</span></td><td><span class="think" data-step="1" data-ask="?">$\frac12$</span></td><td><span class="think" data-step="1" data-ask="?">$\frac{\sqrt3}2$</span></td><td><span class="think" data-step="1" data-ask="?">$1$</span></td><td><span class="think" data-step="2" data-ask="?">$\frac{\sqrt3}2$</span></td><td><span class="think" data-step="2" data-ask="?">$\frac12$</span></td><td><span class="think" data-step="2" data-ask="?">$0$</span></td><td><span class="think" data-step="3" data-ask="?">$-\frac12$</span></td><td><span class="think" data-step="3" data-ask="?">$-\frac{\sqrt3}2$</span></td><td><span class="think" data-step="3" data-ask="?">$-1$</span></td><td><span class="think" data-step="3" data-ask="?">$-\frac{\sqrt3}2$</span></td><td><span class="think" data-step="3" data-ask="?">$-\frac12$</span></td><td><span class="think" data-step="3" data-ask="?">$0$</span></td></tr>
+    </table>
+    </div>
+    <div class="cols2">
+      <div id="sinPts" class="sin-pts" data-step="4"></div>
+      <div class="col">
+        <p class="def" data-step="5">对于每一个实数 $\alpha$，都有唯一实数 $\sin\alpha$ 与之对应，故 $\sin\alpha$ 是 $\alpha$ 的函数。$\sin\alpha,\cos\alpha,\tan\alpha$ 分别叫作<em>正弦函数、余弦函数、正切函数</em>，都称为 $\alpha$ 的<em>三角函数</em>。</p>
+        <table class="mtab" data-step="6">
+          <tr><th>三角函数</th><th>定义域</th></tr>
+          <tr><td>$\sin\alpha$、$\cos\alpha$</td><td>$\R$</td></tr>
+          <tr><td>$\tan\alpha$</td><td>$\left\{\alpha\ \middle|\ \alpha\ne\dfrac\pi2+k\pi,\ k\in\Z\right\}$</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p168–169 例 3、图 7-2-6 与思考，定义域表见 p172。描点图横轴是弧度、横纵同比例（1 个单位一样长），可以看出 2π ≈ 6.28 比 1 长得多。正弦曲线的完整研究在 7.3。</p>
+</section>
+
+<!-- 8 ================= 符号 + 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">符号 · 例 4</span><h2>三角函数值的正负，看 $P$ 在哪个象限</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="signs" data-step="1">
+        <div><div id="sgSin" class="sg"></div><p>$\sin\alpha$（看 $y$）</p></div>
+        <div><div id="sgCos" class="sg"></div><p>$\cos\alpha$（看 $x$）</p></div>
+        <div><div id="sgTan" class="sg"></div><p>$\tan\alpha$（看 $\frac yx$）</p></div>
+      </div>
+      <p class="method" data-step="2">正弦值的符号与 $y$ 的符号相同，余弦值的符号与 $x$ 的符号相同；正切 $x,y$ <b>同号为正、异号为负</b>。</p>
+      <div class="jcard" data-step="6">
+        <p><b>练习（p170）6.</b> 已知 $\cos\alpha\lt0$，且 $\tan\alpha\lt0$，确定角 $\alpha$ 是第几象限角。</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">第一象限</button><button type="button" data-k="b">第二象限</button><button type="button" data-k="c">第三象限</button><button type="button" data-k="d">第四象限</button>
+          <p class="pick-why">$\cos\alpha\lt0$：$x\lt0$，第二、三象限（或 $x$ 轴负半轴）；$\tan\alpha\lt0$：第二、四象限。同时成立只有<b>第二象限</b>。</p></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 4</b>　确定下列三角函数值的符号：(1) $\sin\dfrac{7\pi}{12}$；(2) $\cos(-465^\circ)$；(3) $\tan\dfrac{11\pi}3$。</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>(1)</span><span>$\dfrac{7\pi}{12}$ 是第二象限角</span><i class="why">所以 $\sin\dfrac{7\pi}{12}\gt0$</i></div>
+        <div class="dl" data-step="4"><span>(2)</span><span>$-465^\circ=-2\times360^\circ+255^\circ$</span><i class="why">第三象限角，所以 $\cos(-465^\circ)\lt0$</i></div>
+        <div class="dl" data-step="5"><span>(3)</span><span>$\dfrac{11\pi}3=2\pi+\dfrac{5\pi}3$</span><i class="why">第四象限角，所以 $\tan\dfrac{11\pi}3\lt0$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p169 图 7-2-7 与例 4（旁注：正弦函数值的符号与 y 的符号相同，余弦函数值的符号与 x 的符号相同）。可回到第 6 页拖动 P 验证。</p>
+</section>
+
+<!-- 9 ================= 三角函数线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">三角函数线</span><h2>把 $\sin\alpha$、$\cos\alpha$、$\tan\alpha$ “画”成有向线段</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ucLines" class="uc"></div>
+      <p class="warn" data-step="7">终边在 $x$ 轴上时，正弦线、正切线变成一个点；终边在 $y$ 轴上时，余弦线变成一个点，<b>正切线不存在</b>。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">过 $P$ 作 $x$ 轴的垂线，垂足为 $M$，$OM$ 的长度是 $|x|$。<span class="think" data-step="2" data-ask="怎样去掉绝对值？">引入<b>有向线段</b>（规定了起点和终点的线段）。</span></p>
+      <p class="def" data-step="3">有向线段 $AB$ 在有向直线 $l$ 上或与 $l$ 平行，按方向相同或相反，把它的长度添上正号或负号，所得的数叫作<em>有向线段的数量</em>，记为 $AB$。</p>
+      <p class="tip" data-step="4">$\sin\alpha=MP$，$\cos\alpha=OM$：有向线段 $MP,OM$ 叫作<b>正弦线、余弦线</b>。</p>
+      <p class="tip" data-step="5">$\tan\alpha=AT$（正切线），$A(1,0)$，<span class="think" data-step="6" data-ask="T 在哪儿？">$T$ 是终边（或其反向延长线）与直线 $x=1$ 的交点。</span></p>
+      <div id="ucLinesR" class="uc-read small-read"></div>
+    </div>
+  </div>
+  <p class="note">课本 p170–172 与图 7-2-8～7-2-13。拖动 P 到四个象限，对照图 7-2-13：第二、三象限时 T 在终边的<b>反向延长线</b>上（虚线）。p172 思考：根据三角函数线探究值域与单调性——拖一拖即可回答 sin、cos 的值域是 [−1, 1]，tan 的值域是 R。</p>
+</section>
+
+<!-- 10 ================= 同角三角函数关系 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">7.2.2 同角三角函数关系</span><h2>同一个角的 sin、cos、tan 之间有何关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">设角 $\alpha$ 的终边与单位圆交于 $P$，则 $P$ 的坐标为 <span class="think" data-step="1" data-ask="?">$(\cos\alpha,\sin\alpha)$</span>。</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$\sin^2\alpha+\cos^2\alpha=1$</span><span></span><i class="why">$OP=1$，勾股定理（任意象限都成立）</i></div>
+        <div class="dl" data-step="3"><span>$\tan\alpha=\dfrac{\sin\alpha}{\cos\alpha}$</span><span></span><i class="why">正切的定义 $\frac yx$；$\alpha\ne\frac\pi2+k\pi\ (k\in\Z)$</i></div>
+      </div>
+      <p class="method" data-step="4" data-label="知一求二">已知一个三角函数值，用这两个关系式求另外两个；开方时<b>由象限定正负</b>。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5"><b>例 5</b>　已知 $\sin\alpha=\dfrac45$，且 $\alpha$ 是第二象限角，求 $\cos\alpha,\tan\alpha$ 的值。</p>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>$\cos^2\alpha$</span><span>$=1-\left(\dfrac45\right)^2=\dfrac9{25}$</span><i class="why">$\sin^2\alpha+\cos^2\alpha=1$</i></div>
+        <div class="dl" data-step="7"><span>$\cos\alpha$</span><span>$=-\dfrac35,\ \tan\alpha=-\dfrac43$</span><i class="why">第二象限 $\cos\alpha\lt0$</i></div>
+      </div>
+      <p class="tip" data-step="8"><b>例 6</b>　已知 $\tan\alpha=\dfrac{12}5$，求 $\sin\alpha,\cos\alpha$ 的值。</p>
+      <div class="derive">
+        <div class="dl" data-step="9"><span>$\cos^2\alpha$</span><span>$=\dfrac{25}{169}$</span><i class="why">$\sin\alpha=\frac{12}5\cos\alpha$ 代入 $\sin^2\alpha+\cos^2\alpha=1$</i></div>
+        <div class="dl key" data-step="10"><span>？</span><span class="think" data-step="11" data-ask="没给象限，怎么办？">$\tan\alpha\gt0$：第一或第三象限，<b>分两种情况</b></span><i class="why"></i></div>
+        <div class="dl" data-step="12"><span>第一象限</span><span>$\cos\alpha=\dfrac5{13},\ \sin\alpha=\dfrac{12}{13}$</span><i class="why"></i></div>
+        <div class="dl" data-step="12"><span>第三象限</span><span>$\cos\alpha=-\dfrac5{13},\ \sin\alpha=-\dfrac{12}{13}$</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p173–174。例 6 是易错点：只写一组答案就漏解。可让学生回到第 6 页，把 P 拖到 tan α = 12/5（约 67.4°）及其对径点（约 247.4°）验证。</p>
+</section>
+
+<!-- 11 ================= 例 7、例 8 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · 例 8</span><h2>化简与证明：用好 $\sin^2\alpha+\cos^2\alpha=1$</h2></div>
+  <div class="bd full top">
+    <div class="col">
+      <p class="tip"><b>例 7</b>　化简 $\tan\alpha\sqrt{\dfrac1{\sin^2\alpha}-1}$，其中 $\alpha$ 是第二象限角。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>原式</span><span>$=\tan\alpha\sqrt{\dfrac{1-\sin^2\alpha}{\sin^2\alpha}}=\tan\alpha\sqrt{\dfrac{\cos^2\alpha}{\sin^2\alpha}}$</span><i class="why">通分，$1-\sin^2\alpha=\cos^2\alpha$</i></div>
+        <div class="dl key" data-step="2"><span></span><span class="think" data-step="3" data-ask="开方后带绝对值，怎么去？">$=\dfrac{\sin\alpha}{\cos\alpha}\cdot\dfrac{|\cos\alpha|}{|\sin\alpha|}$</span><i class="why">$\sqrt{a^2}=|a|$</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$=\dfrac{\sin\alpha}{\cos\alpha}\cdot\dfrac{-\cos\alpha}{\sin\alpha}=-1$</span><i class="why">第二象限：$\sin\alpha\gt0,\ \cos\alpha\lt0$</i></div>
+      </div>
+      <p class="tip" data-step="5"><b>例 8</b>　求证：$\dfrac{\sin\alpha}{1+\cos\alpha}=\dfrac{1-\cos\alpha}{\sin\alpha}$。</p>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>证法 1</span><span>$\dfrac{\sin\alpha}{1+\cos\alpha}-\dfrac{1-\cos\alpha}{\sin\alpha}=\dfrac{\sin^2\alpha-(1-\cos^2\alpha)}{(1+\cos\alpha)\sin\alpha}=0$</span><i class="why">作差</i></div>
+        <div class="dl" data-step="7"><span>证法 2</span><span>$(1+\cos\alpha)(1-\cos\alpha)=1-\cos^2\alpha=\sin^2\alpha$</span><i class="why">又 $1+\cos\alpha\ne0$，$\sin\alpha\ne0$</i></div>
+      </div>
+      <p class="warn" data-step="8">本书中的三角恒等式，除特殊情况外，都是指等式两边都有意义情况下的恒等式。</p>
+    </div>
+  </div>
+  <p class="note">课本 p174 例 7、例 8。例 7 的关键是根据象限去绝对值；例 8 证法 2 是“比例式化为乘积式”。p174 探究：能用图 7-2-15（直径 AB 上的直角三角形）解释例 8 吗？可作为课后思考。</p>
+</section>
+
+<!-- 12 ================= 诱导公式：对称点交互 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">7.2.3 诱导公式</span><h2>终边对称的两个角，三角函数值有何关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ucSym" class="uc"></div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>公式一</h4>终边相同的角的同一三角函数值相等：$\sin(\alpha+2k\pi)=\sin\alpha$，$\cos(\alpha+2k\pi)=\cos\alpha$，$\tan(\alpha+2k\pi)=\tan\alpha\ (k\in\Z)$。</div>
+      <div class="btns" data-noswipe id="symBtns">
+        <button type="button" class="btn solid" data-k="neg">$-\alpha$</button>
+        <button type="button" class="btn" data-k="pim">$\pi-\alpha$</button>
+        <button type="button" class="btn" data-k="pip">$\pi+\alpha$</button>
+        <button type="button" class="btn" data-k="hm">$\frac\pi2-\alpha$</button>
+        <button type="button" class="btn" data-k="hp">$\frac\pi2+\alpha$</button>
+      </div>
+      <div id="ucSymR" class="uc-read"></div>
+      <p class="method" data-step="2">诱导公式实质是将终边对称的<b>图形关系</b>“翻译”成三角函数之间的<b>代数关系</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p175–178 与图 7-2-16～7-2-19。本页交互与第 6 页同一个单位圆：拖动 P（橙色），切换按钮看 P′（绿色）的位置与对称轴；右侧给出坐标关系与对应公式，并用当前数值验证。π/2 + α 没有单一的对称轴：它是 P 绕 O 逆时针转 90°，课本用公式二和公式五推出。</p>
+</section>
+
+<!-- 13 ================= 公式汇总 + 例 9 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">公式一～六 · 例 9</span><h2>把任意角化到 $\left[0,\frac\pi2\right]$ 内</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab formula-tab" data-step="1">
+        <tr><th></th><th>终边关系</th><th>$\sin$</th><th>$\cos$</th><th>$\tan$</th></tr>
+        <tr><td>二 $-\alpha$</td><td>关于 $x$ 轴对称</td><td>$-\sin\alpha$</td><td>$\cos\alpha$</td><td>$-\tan\alpha$</td></tr>
+        <tr><td>三 $\pi-\alpha$</td><td>关于 $y$ 轴对称</td><td>$\sin\alpha$</td><td>$-\cos\alpha$</td><td>$-\tan\alpha$</td></tr>
+        <tr><td>四 $\pi+\alpha$</td><td>关于原点对称</td><td>$-\sin\alpha$</td><td>$-\cos\alpha$</td><td>$\tan\alpha$</td></tr>
+        <tr><td>五 $\frac\pi2-\alpha$</td><td>关于 $y=x$ 对称</td><td>$\cos\alpha$</td><td>$\sin\alpha$</td><td></td></tr>
+        <tr><td>六 $\frac\pi2+\alpha$</td><td>由二、五推出</td><td>$\cos\alpha$</td><td>$-\sin\alpha$</td><td></td></tr>
+      </table>
+      <p class="method" data-step="2" data-label="记忆">先把 $\alpha$ <b>看成锐角</b>，判断左边的角在第几象限、原函数值的符号；公式二～四函数名不变，公式五、六正弦、余弦<b>互换</b>。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5"><b>例 9</b>　求值：(1) $\sin\dfrac{7\pi}6$；(2) $\cos\dfrac{11\pi}4$；(3) $\tan(-1\,560^\circ)$。</p>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>(1)</span><span>$\sin\left(\pi+\dfrac\pi6\right)=-\sin\dfrac\pi6=-\dfrac12$</span><i class="why">公式四</i></div>
+        <div class="dl" data-step="7"><span>(2)</span><span>$\cos\left(2\pi+\dfrac{3\pi}4\right)=\cos\left(\pi-\dfrac\pi4\right)=-\dfrac{\sqrt2}2$</span><i class="why">公式一、三</i></div>
+        <div class="dl" data-step="8"><span>(3)</span><span>$-\tan(4\times360^\circ+120^\circ)=-\tan120^\circ$</span><i class="why">公式二、一</i></div>
+        <div class="dl" data-step="8"><span></span><span>$=-\tan(180^\circ-60^\circ)=\tan60^\circ=\sqrt3$</span><i class="why">公式三</i></div>
+      </div>
+      <p class="method" data-step="9">负角 → 正角（公式二）→ $[0,2\pi)$ 内的角（公式一）→ 锐角（公式三、四）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p175–179 公式框与例 9。公式五、六课本只给出正弦、余弦；p179 思考：tan(π/2 + α)、tan(π/2 − α) 与 tan α 的关系留作课后探究（它们等于 −1/tan α 与 1/tan α）。“记忆”一栏是常用的归纳说法，以课本公式为准。p177 思考：由公式二、三推导公式四——sin(π+α) = sin[π−(−α)] = sin(−α) = −sin α，余弦、正切同理。</p>
+</section>
+
+<!-- 14 ================= 例 10～12 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 10 · 例 11 · 例 12</span><h2>诱导公式的三种用法</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col" data-step="1">
+        <p class="tip"><b>例 10</b>　判断奇偶性：(1) $f(x)=1-\cos x$；(2) $g(x)=x-\sin x$。</p>
+        <div class="think" data-step="2" data-ask="用哪个公式？"><p>定义域都是 $\R$。</p><p>$f(-x)=1-\cos(-x)=1-\cos x=f(x)$，偶函数；</p><p>$g(-x)=-x-\sin(-x)=-(x-\sin x)=-g(x)$，奇函数。</p><p class="muted">（公式二：余弦“偶”，正弦“奇”）</p></div>
+      </div>
+      <div class="col" data-step="3">
+        <p class="tip"><b>例 11</b>　求证：$\sin\left(\dfrac{3\pi}2+\alpha\right)=-\cos\alpha$，$\cos\left(\dfrac{3\pi}2+\alpha\right)=\sin\alpha$。</p>
+        <div class="think" data-step="4" data-ask="怎样拆 3π/2？"><p>$\sin\left[\pi+\left(\frac\pi2+\alpha\right)\right]=-\sin\left(\frac\pi2+\alpha\right)=-\cos\alpha$；</p><p>$\cos\left[\pi+\left(\frac\pi2+\alpha\right)\right]=-\cos\left(\frac\pi2+\alpha\right)=\sin\alpha$。</p><p class="muted">（公式四 + 公式六）</p></div>
+      </div>
+      <div class="col" data-step="5">
+        <p class="tip"><b>例 12</b>　已知 $\cos(75^\circ+\alpha)=\dfrac13$，且 $-180^\circ\lt\alpha\lt-90^\circ$，求 $\cos(15^\circ-\alpha)$ 的值。</p>
+        <div class="think" data-step="6" data-ask="两个角有什么关系？"><p>$(15^\circ-\alpha)+(75^\circ+\alpha)=90^\circ$，所以 $\cos(15^\circ-\alpha)=\sin(75^\circ+\alpha)$。</p><p>$-105^\circ\lt75^\circ+\alpha\lt-15^\circ$，$\sin(75^\circ+\alpha)\lt0$，</p><p>$\cos(15^\circ-\alpha)=-\sqrt{1-\frac19}=-\dfrac{2\sqrt2}3$。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7">遇到“两角和为 $90^\circ$（或 $180^\circ$）”，先想诱导公式把它们联系起来；开方时<b>由角的范围定正负</b>。</p>
+  </div>
+  <p class="note">课本 p177–179 例 10、例 11、例 12。每张卡先让学生说“用哪个公式”，再点开。例 12 的易错点是忘记由范围判断 sin(75° + α) 为负。</p>
+</section>
+
+<!-- 15 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p170 练习 1(2)）已知角 $\alpha$ 的终边经过点 $P(-3,4)$，求 $\alpha$ 的正弦、余弦、正切值。</p>
+        <details><summary>提示 1</summary>先求 $r=\sqrt{x^2+y^2}$。</details>
+        <details><summary>完整解答</summary>$r=5$，$\sin\alpha=\dfrac45$，$\cos\alpha=-\dfrac35$，$\tan\alpha=-\dfrac43$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（p175 练习 2）已知 $\cos\alpha=-\dfrac45$，且 $\alpha$ 为第三象限角，求 $\sin\alpha,\tan\alpha$ 的值。</p>
+        <details><summary>提示 1</summary>$\sin^2\alpha=1-\cos^2\alpha$；第三象限 $\sin\alpha$ 取什么号？</details>
+        <details><summary>完整解答</summary>$\sin^2\alpha=\dfrac9{25}$，第三象限 $\sin\alpha\lt0$，$\sin\alpha=-\dfrac35$，$\tan\alpha=\dfrac{\sin\alpha}{\cos\alpha}=\dfrac34$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（p178 练习 1(4)、2(4)）求值：$\sin225^\circ$；$\sin(-750^\circ)$。</p>
+        <details><summary>提示 1</summary>$225^\circ=180^\circ+45^\circ$；$-750^\circ$ 先用公式二变正角。</details>
+        <details><summary>完整解答</summary>$\sin225^\circ=-\sin45^\circ=-\dfrac{\sqrt2}2$；$\sin(-750^\circ)=-\sin(2\times360^\circ+30^\circ)=-\sin30^\circ=-\dfrac12$。</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b>（p179 练习 2）已知 $\sin53.13^\circ=0.8$，求 $\cos143.13^\circ$ 和 $\cos216.87^\circ$。</p>
+        <details><summary>提示</summary>$143.13^\circ=90^\circ+53.13^\circ$；$216.87^\circ=270^\circ-53.13^\circ$（例 11 的思路）。</details>
+        <details><summary>完整解答</summary>$\cos143.13^\circ=\cos(90^\circ+53.13^\circ)=-\sin53.13^\circ=-0.8$；$\cos216.87^\circ=\cos[180^\circ+(90^\circ-53.13^\circ)]=-\cos(90^\circ-53.13^\circ)=-\sin53.13^\circ=-0.8$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b>（p175 练习 4）已知 $\tan\theta=2$，求 $\sin\theta,\cos\theta$ 的值。</p>
+        <details><summary>提示</summary>仿例 6：$\sin\theta=2\cos\theta$ 代入平方关系；$\tan\theta\gt0$ 要分两种情况。</details>
+        <details><summary>完整解答</summary>$\cos^2\theta=\dfrac15$。第一象限：$\cos\theta=\dfrac{\sqrt5}5,\ \sin\theta=\dfrac{2\sqrt5}5$；第三象限：$\cos\theta=-\dfrac{\sqrt5}5,\ \sin\theta=-\dfrac{2\sqrt5}5$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">题目取自课本 p170、p175、p178–179 练习。第 5 题与例 6 呼应，检查是否漏解。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$\sin\alpha=\dfrac yr,\ \cos\alpha=\dfrac xr,\ \tan\alpha=\dfrac yx$；单位圆上 $P(\cos\alpha,\sin\alpha)$。</p>
+        <p class="def">$\sin^2\alpha+\cos^2\alpha=1$，$\tan\alpha=\dfrac{\sin\alpha}{\cos\alpha}$；诱导公式一～六。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="定号">看象限：sin 看 $y$，cos 看 $x$。</p>
+        <p class="method" data-label="知一求二 · 化锐角">平方关系开方定正负；负角 → 正角 → $[0,2\pi)$ → 锐角。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">三角函数线、单位圆上的对称点。</p>
+        <p class="recall" data-label="从特殊到一般">锐角三角函数 → 任意角三角函数。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课 7.3 三角函数的图象和性质：</b>三角函数是刻画圆周运动的数学模型，“周而复始”的特征必定蕴含在它的性质之中——从公式一出发，研究<b>周期性</b>，再画出正弦曲线。</p>
+  </div>
+  <p class="note">课后作业建议：习题 7.2 第 1、2、4、5、9、10 题；第 21 题（比较锐角 α 与 sin α、tan α 的大小）可用第 9 页的三角函数线完成。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

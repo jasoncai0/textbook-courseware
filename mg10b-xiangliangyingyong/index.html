@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>向量应用 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mvec.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tishui.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第9章 平面向量 · 9.4</p>
+    <h1 class="cover-title">向量应用</h1>
+    <p class="cover-q" data-step="1">两个同学一起提一桶水。两人的手臂<b>张得越开</b>，每个人是更省力，还是更费力？</p>
+    <p class="cover-q" data-step="2">“凭感觉”谁都会说。能不能<b>算出来</b>——每个人到底用多大的力？</p>
+    <div class="chips" data-step="3"><span class="chip">力的合成与平衡</span><span class="chip">用向量证垂直</span><span class="chip">直线上点的坐标条件</span><span class="chip">数形结合的桥梁</span></div>
+  </div>
+  <p class="note">课本 p38 引言：向量“既有代数特征，又有几何特征”，是“数形结合的桥梁”，也是解决物理问题的有力工具。封面先让学生表态（举手：省力 / 费力 / 一样），不揭晓，第 3 页拖动验证、第 4 页推出公式。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>前三课造好了工具，今天拿来用</h2></div>
+  <div class="bd full">
+    <div class="cols2 recall4">
+      <div class="recall" data-label="9.2 向量运算" data-step="1">
+        <p>加法：三角形法则、平行四边形法则。数量积 $\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos\theta$；$\boldsymbol a\perp\boldsymbol b\Leftrightarrow\boldsymbol a\cdot\boldsymbol b=0$；$\boldsymbol a^2=|\boldsymbol a|^2$。</p>
+        <span class="use">力的合成（提水、例 1）；例 2 和练习用数量积证垂直、算长度。</span>
+      </div>
+      <div class="recall" data-label="9.3 向量基本定理及坐标表示" data-step="2">
+        <p>$\boldsymbol a=(x_1,y_1)$，$\boldsymbol b=(x_2,y_2)$：</p>
+        <p>$\boldsymbol a\parallel\boldsymbol b\Leftrightarrow x_1y_2-x_2y_1=0$；　$\boldsymbol a\perp\boldsymbol b\Leftrightarrow x_1x_2+y_1y_2=0$。</p>
+        <span class="use">例 3 用共线的坐标条件写出直线上点满足的条件；练习 2 的坐标法。</span>
+      </div>
+      <div class="recall" data-label="初中 · 平面几何" data-step="3">
+        <p>三角形的三条高所在直线交于一点；勾股定理的逆定理（$3^2+4^2=5^2$）；平行四边形、矩形、菱形的判定。</p>
+        <span class="use">例 2 的“思考”；练习 6、7。</span>
+      </div>
+      <div class="recall" data-label="初中物理 · 力" data-step="4">
+        <p>重力 $G=mg$；几个力作用下物体静止（平衡），合力为零；两个力的合力按平行四边形作出。</p>
+        <span class="use">平衡写成向量等式 $\boldsymbol F_1+\boldsymbol F_2+\boldsymbol G=\boldsymbol 0$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本章讲到哪里：</b>9.1 向量是什么；9.2 向量怎么算（加、减、数乘、数量积）；9.3 用基底和坐标表示向量。今天 9.4：<b>用向量解决物理和几何问题。</b></p>
+  </div>
+  <p class="note">四张卡逐张出，请学生先口头说出公式再看“本课用在”。强调 9.2 的“a⊥b ⇔ a·b = 0”和 9.3 的两个坐标条件——今天的几何题几乎都要落到这两条上。</p>
+</section>
+
+<!-- 3 ================= 提水：拖动探究 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境 · 拖一拖</span><h2>两人提水：夹角变大，每人的力怎么变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">桶和水总重 $G$ 不变；两人拉力 $\boldsymbol F_1,\boldsymbol F_2$ 大小相等，夹角 $\theta$。</p>
+      <p class="tip" data-step="1">先猜：$\theta$ 从 $0^\circ$ 增大到 $140^\circ$，每人的拉力<span class="think" data-step="2" data-ask="变大？变小？不变？">一路<b>变大</b>——越张开越费力。</span></p>
+      <p class="tip" data-step="3">$\theta=$ 多少时，每人的拉力恰好等于 $G$？<span class="think" data-step="4" data-ask="拖到读数相等">$\theta=120^\circ$。</span></p>
+      <p class="tip" data-step="5">$\theta$ 能达到 $180^\circ$ 吗？<span class="think" data-step="6" data-ask="想一想">不能：两力都水平，合力在竖直方向没有分量，托不住桶——拉力会无限增大。</span></p>
+      <p class="tip gold" data-step="7">读数是怎么算出来的？下一页用<b>向量</b>推出公式。</p>
+    </div>
+    <div class="col">
+      <div class="btns center-btns" id="liftBtns" data-noswipe>
+        <button class="btn" type="button" data-k="0">0°</button>
+        <button class="btn" type="button" data-k="60">60°</button>
+        <button class="btn solid" type="button" data-k="90">90°</button>
+        <button class="btn" type="button" data-k="120">120°</button>
+        <button class="btn" type="button" data-k="140">140°</button>
+      </div>
+      <div id="liftB" class="vb"></div>
+      <div class="readout">
+        <span>$|\boldsymbol F_1|=|\boldsymbol F_2|$</span><span class="bar"><i id="barF" style="background:var(--red)"></i></span><span class="v" id="vF"></span>
+        <span>$|\boldsymbol G|$</span><span class="bar"><i id="barG" style="background:var(--jade)"></i></span><span class="v" id="vG"></span>
+      </div>
+      <p class="tip readline center" id="liftV"></p>
+      <p class="muted center small-t">拖动 $\boldsymbol F_2$ 的终点；灰色虚线为 $\boldsymbol F_1+\boldsymbol F_2$</p>
+    </div>
+  </div>
+  <p class="note">拖动 F₂ 的终点（橙色点）改变夹角，F₁ 对称跟着变；也可点上方按钮。G 取 4√2 N ≈ 5.66 N，这样 θ = 90° 时每根拉力恰为 4 N，正是课本习题 9.4 第 1 题的数据。图中箭头长度按 1 N 对应同一长度精确绘制；虚线是 F₁ + F₂，始终与 G 等长反向。</p>
+</section>
+
+<!-- 4 ================= 提水：推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>从“合力为零”推出每人拉力的公式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="rhombB" class="vb tall"></div>
+      <p class="muted center small-t">$\theta=100^\circ$ 时按比例画出；虚线为 $\boldsymbol F_1+\boldsymbol F_2$</p>
+      <p class="method" data-step="10" data-label="用向量解物理问题">① 把力（速度）<b>表示成向量</b>；② 由物理规律列<b>向量关系</b>（平衡：合力为 $\boldsymbol 0$）；③ <b>向量运算</b>（作平行四边形、数量积）；④ 回到<b>物理结论</b>。</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>平衡</span><span class="think" data-step="2" data-ask="三个力满足什么等式？">$\boldsymbol F_1+\boldsymbol F_2+\boldsymbol G=\boldsymbol 0$</span><i class="why">桶静止，合力为零</i></div>
+        <div class="dl" data-step="3"><span>所以</span><span>$\boldsymbol F_1+\boldsymbol F_2=-\boldsymbol G$</span><i class="why">合力与 $\boldsymbol G$ 等长、反向（竖直向上）</i></div>
+        <div class="dl key" data-step="4"><span>作图</span><span>$\square$ 是菱形</span><span class="think" data-step="5" data-ask="为什么是菱形？对角线有什么性质？">$|\boldsymbol F_1|=|\boldsymbol F_2|$，邻边相等；对角线<b>平分</b>夹角 $\theta$，且两条对角线互相垂直平分</span></div>
+        <div class="dl" data-step="6"><span>直角三角形中</span><span>$|\boldsymbol F|\cos\dfrac{\theta}{2}=\dfrac{|\boldsymbol G|}{2}$</span><i class="why">半条对角线 = 邻边 × 夹角（$\frac{\theta}{2}$）的余弦</i></div>
+        <div class="dl end" data-step="7"><span>所以</span><span>$|\boldsymbol F|=\dfrac{|\boldsymbol G|}{2\cos\frac{\theta}{2}}$</span><i class="why">$0^\circ\le\theta\lt180^\circ$；$\theta$ 增大，$\cos\frac{\theta}{2}$ 减小，$|\boldsymbol F|$ 增大</i></div>
+      </div>
+      <p class="tip" data-step="8"><b>验算：</b>$\theta=120^\circ$ 时 $\cos60^\circ=\frac12$，$|\boldsymbol F|=|\boldsymbol G|$；习题 9.4 第 1 题 $\theta=90^\circ$、每根 $4$ N：<span class="think" data-step="9" data-ask="重力是多少？">$|\boldsymbol G|=2\times4\cos45^\circ=4\sqrt2$（N）。</span></p>
+    </div>
+  </div>
+  <p class="note">停在第 2、5 步：先让学生说“平衡”的向量写法，再追问菱形对角线的性质（初中）。最后一行请学生用公式解释上一页的三个观察：越张越费力、120° 时等于 G、180° 不可能。习题 9.4 第 5 题（电线杆钢丝绳）是同一个模型，可留作课后。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>三根绳子，哪根受力最大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex1B" class="vb"></div>
+      <p class="tip readline small" id="ex1V"></p>
+      <p class="muted center small-t">拖动天花板上的点 $A$，改变绳 $OA$ 的方向（$OB$ 始终水平，$OB\perp OC$）</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 9-4-1，无弹性的细绳 $OA,OB$ 的一端分别固定在 $A,B$ 处，同样的细绳 $OC$ 下端系着一个称盘，且使得 $OB\perp OC$，试分析 $OA,OB,OC$ 三根绳子受力的大小，并判断哪根绳受力最大。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设力为 $\boldsymbol a,\boldsymbol b,\boldsymbol c$，</span><span>$\boldsymbol a+\boldsymbol b+\boldsymbol c=\boldsymbol 0$</span><i class="why">结点 $O$ 静止</i></div>
+        <div class="dl" data-step="2"><span>合力</span><span>$\boldsymbol c'=\boldsymbol a+\boldsymbol b$，$|\boldsymbol c|=|\boldsymbol c'|$</span><i class="why">$\boldsymbol c'=-\boldsymbol c$</i></div>
+        <div class="dl key" data-step="3"><span>在 $\square OB'C'A'$ 中</span><span>$\overrightarrow{OB'}\perp\overrightarrow{OC'}$，$\overrightarrow{B'C'}=\overrightarrow{OA'}$</span><span class="think" data-step="4" data-ask="谁是斜边？">斜边 $B'C'=OA'$</span></div>
+        <div class="dl" data-step="5"><span>所以</span><span>$|\boldsymbol a|\gt|\boldsymbol b|$，$|\boldsymbol a|\gt|\boldsymbol c|$</span><i class="why">斜边大于直角边</i></div>
+        <div class="dl end" data-step="6"><span>故</span><span>细绳 $OA$ 受力最大</span><i class="why">无论 $A$ 在哪里，结论都成立</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p38 例 1、图 9-4-1。先让学生凭直觉猜哪根绳最容易断，再拖动 A 观察读数：|a| 始终最大。称盘重取 10 N（c 的长度对应 10 N）。追问：A 越往左，OA、OB 的拉力怎样变？（φ 增大，|a| = 10/cos φ、|b| = 10 tan φ 都增大）。</p>
+</section>
+
+<!-- 6 ================= 例 2：拖动探究 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 拖一拖</span><h2>两个数量积为 0，第三个也为 0？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns center-btns" id="ex2Btns" data-noswipe>
+        <button class="btn solid" type="button" data-k="free">$O$ 任意放</button>
+        <button class="btn" type="button" data-k="H">让 $\overrightarrow{OA}\perp\overrightarrow{BC}$，$\overrightarrow{OB}\perp\overrightarrow{AC}$</button>
+      </div>
+      <div id="ex2B" class="vb tall"></div>
+      <p class="muted center small-t">拖动 $A,B,C,O$；同色的两条互相“配对”</p>
+    </div>
+    <div class="col">
+      <p class="tip">已知：$\overrightarrow{OA}\perp\overrightarrow{BC}$，$\overrightarrow{OB}\perp\overrightarrow{AC}$。求证：$\overrightarrow{OC}\perp\overrightarrow{AB}$。</p>
+      <table class="mtab dots">
+        <tr><td class="k1">$\overrightarrow{OA}\cdot\overrightarrow{BC}$</td><td id="d1"></td></tr>
+        <tr><td class="k2">$\overrightarrow{OB}\cdot\overrightarrow{AC}$</td><td id="d2"></td></tr>
+        <tr><td class="k3">$\overrightarrow{OC}\cdot\overrightarrow{AB}$</td><td id="d3"></td></tr>
+        <tr class="idr"><td>$\overrightarrow{OB}\cdot\overrightarrow{AC}-\overrightarrow{OA}\cdot\overrightarrow{BC}$</td><td id="d4"></td></tr>
+      </table>
+      <p class="tip" data-step="1">$O$ 任意放时，盯住后两行：<span class="think" data-step="2" data-ask="发现了什么？">第 3 行与第 4 行<b>永远相等</b>：$\overrightarrow{OC}\cdot\overrightarrow{AB}=\overrightarrow{OB}\cdot\overrightarrow{AC}-\overrightarrow{OA}\cdot\overrightarrow{BC}$。</span></p>
+      <p class="tip" data-step="3">点第二个按钮，再拖动 $A,B,C$：<span class="think" data-step="4" data-ask="第 3 行怎样？">前两行为 $0$，第 3 行也<b>始终为 $0$</b>——$O$ 正是三条高的交点。</span></p>
+      <p class="tip gold" data-step="5">这个“恒等式”从哪里来？下一页用向量运算把它<b>推出来</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p38–39 例 2。本页先“看”后“证”：读数是按点的坐标实时计算的数量积。第 1 步让学生自由拖 O，找规律（教师可提示：看后两行）；第 3 步切换后 O 被锁在“OA⊥BC 且 OB⊥AC”的位置，任意拖动三角形顶点，第三个数量积一直是 0。拖动 O 会回到“任意放”。</p>
+</section>
+
+<!-- 7 ================= 例 2：证明 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 证明</span><h2>把“垂直”翻译成“数量积为 0”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>因为</span><span>$\overrightarrow{OA}\cdot\overrightarrow{BC}=0$，$\overrightarrow{OB}\cdot\overrightarrow{AC}=0$</span><i class="why">垂直 ⇔ 数量积为 0（9.2）</i></div>
+        <div class="dl key" data-step="2"><span>即</span><span class="think" data-step="3" data-ask="BC、AC 怎样用 O 出发的向量表示？">$\overrightarrow{OA}\cdot(\overrightarrow{OC}-\overrightarrow{OB})=0$ ①<br>$\overrightarrow{OB}\cdot(\overrightarrow{OC}-\overrightarrow{OA})=0$ ②</span><i class="why">都换成以 $O$ 为起点：$\overrightarrow{BC}=\overrightarrow{OC}-\overrightarrow{OB}$</i></div>
+        <div class="dl" data-step="4"><span>② − ①，得</span><span class="think" data-step="5" data-ask="展开后哪两项抵消了？">$\overrightarrow{OC}\cdot(\overrightarrow{OB}-\overrightarrow{OA})=0$</span><i class="why">展开：$\overrightarrow{OB}\cdot\overrightarrow{OA}$ 与 $\overrightarrow{OA}\cdot\overrightarrow{OB}$ 相消（交换律、分配律）</i></div>
+        <div class="dl" data-step="6"><span>即</span><span>$\overrightarrow{OC}\cdot\overrightarrow{AB}=0$</span><i class="why">$\overrightarrow{OB}-\overrightarrow{OA}=\overrightarrow{AB}$</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$\overrightarrow{OC}\perp\overrightarrow{AB}$</span><i class="why">数量积为 0 ⇔ 垂直</i></div>
+      </div>
+      <p class="tip" data-step="7">上一页的恒等式就是“② 的左边 − ① 的左边”：对任意点 $O$ 都成立，所以才会一直相等。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="8"><b>思考</b>（课本 p39）：你能画一个几何图形来解释例 2 吗？</p>
+      <div class="think" data-step="9" data-ask="O 与 △ABC 是什么关系？">
+        <div id="orthoB" class="vb short"></div>
+        <p class="def"><b>三角形的三条高交于一点</b>（垂心）：$OA\perp BC$、$OB\perp AC$ 说明 $O$ 在两条高上，例 2 证明了 $O$ 也在第三条高上。</p>
+      </div>
+      <p class="method" data-step="10" data-label="用向量证几何">几何关系 → <b>向量关系</b>（垂直 ⇔ 数量积为 0，平行 ⇔ 共线）→ <b>向量运算</b>（统一起点、展开、相消）→ 翻译回<b>几何结论</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p38–39 例 2 证明与旁边的“思考”。第 3 步停顿：关键是“统一起点”，把所有向量都写成从 O 出发，才能相减消项。思考题让学生先自己画，再点开：这就是初中学过的“三角形三条高所在直线交于一点”，用向量给了一个简短的证明。</p>
+</section>
+
+<!-- 8 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>点 $P$ 在直线 $P_1P_2$ 上，坐标满足什么条件？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns center-btns" data-noswipe><button class="btn" type="button" id="ex3On">把 $P$ 放到 $l$ 上</button></div>
+      <div id="ex3B" class="vb"></div>
+      <p class="tip readline small" id="ex3V"></p>
+      <p class="muted center small-t">拖动 $P_1,P_2,P$（吸附到 0.5 格）</p>
+    </div>
+    <div class="col">
+      <p class="tip">已知直线 $l$ 经过点 $P_1(x_1,y_1)$ 和 $P_2(x_2,y_2)$，用向量的方法求直线 $l$ 上任意一点 $P(x,y)$ 的坐标 $x,y$ 满足的条件。</p>
+      <p class="tip" data-step="1"><b>分析</b>　“$P$ 在 $l$ 上”翻译成向量语言是什么？<span class="think" data-step="2" data-ask="想一想">$\overrightarrow{P_1P}$ 与 $\overrightarrow{P_1P_2}$ <b>共线</b>——用 9.3 共线的坐标条件。</span></p>
+      <p class="tip" data-step="3">坐标（终点 − 起点）：$\overrightarrow{P_1P_2}=(x_2-x_1,\ y_2-y_1)$，$\overrightarrow{P_1P}=(x-x_1,\ y-y_1)$。</p>
+      <p class="def" data-step="4">共线 ⇒ <span class="think" data-step="5" data-ask="用哪个坐标条件？写出来">$(x_2-x_1)(y-y_1)=(y_2-y_1)(x-x_1)$　(*)</span></p>
+      <p class="tip" data-step="6">这就是点 $P(x,y)$ 的坐标满足的条件。把（*）中的 $(x,y)$ 改为 $(x_3,y_3)$，就得到<b>证明三点共线</b>的一种方法。</p>
+      <p class="method" data-step="7" data-label="练习 5">直线 $l$ 过原点且与 $\boldsymbol a=(2,3)$ 垂直：$\overrightarrow{OP}\perp\boldsymbol a$，<span class="think" data-step="8" data-ask="条件是？">$2x+3y=0$。</span>　平行用共线条件，垂直用数量积。</p>
+    </div>
+  </div>
+  <p class="note">课本 p39 例 3 及旁注。拖动 P 时看读数：两边相等时 P 恰在直线上，不等时不在。追问：P 与 P₁ 重合时（*）成立吗？（成立，零向量与任意向量共线）。练习 5 是“垂直”版本，正好对照。以后学直线方程时，（*）就是“两点式”的来源。</p>
+</section>
+
+<!-- 9 ================= 练习 2：两种方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 2</span><h2>证 $DE\perp AF$：基底法与坐标法</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图，在正方形 $ABCD$ 中，$E,F$ 分别是边 $AB,BC$ 的中点，用向量的方法证明：$DE\perp AF$。</p>
+      <div id="sqB" class="vb short"></div>
+      <p class="tip" data-step="1">要证垂直，就要证<span class="think" data-step="2" data-ask="证什么？">$\overrightarrow{DE}\cdot\overrightarrow{AF}=0$。</span></p>
+      <p class="method" data-step="8">基底法：选两个<b>长度、夹角已知</b>的向量作基底；坐标法：图形规则（有直角）时建系，<b>运算更机械</b>。</p>
+      <p class="warn" data-step="9">设边长为 2 而不是 1，是为了让中点坐标是整数；写坐标前要先<b>说明怎样建系</b>。</p>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="3">
+        <p><b>方法一 · 基底法</b>　设 $\overrightarrow{AB}=\boldsymbol a$，$\overrightarrow{AD}=\boldsymbol b$，则 $|\boldsymbol a|=|\boldsymbol b|$，$\boldsymbol a\cdot\boldsymbol b=0$。</p>
+        <p>$\overrightarrow{DE}=\frac12\boldsymbol a-\boldsymbol b$，$\overrightarrow{AF}=\boldsymbol a+\frac12\boldsymbol b$。</p>
+        <div class="think" data-step="4" data-ask="展开数量积"><p>$\overrightarrow{DE}\cdot\overrightarrow{AF}=\frac12\boldsymbol a^2+\frac14\boldsymbol a\cdot\boldsymbol b-\boldsymbol a\cdot\boldsymbol b-\frac12\boldsymbol b^2=0$。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>方法二 · 坐标法</b>　以 $A$ 为原点、$AB$ 为 $x$ 轴建系，设边长为 2：$B(2,0)$，$D(0,2)$，$E(1,0)$，$F(2,1)$。</p>
+        <p>$\overrightarrow{DE}=(1,-2)$，$\overrightarrow{AF}=(2,1)$。</p>
+        <div class="think" data-step="6" data-ask="算数量积"><p>$\overrightarrow{DE}\cdot\overrightarrow{AF}=1\times2+(-2)\times1=0$。</p></div>
+      </div>
+      <p class="tip" data-step="7">所以 $\overrightarrow{DE}\perp\overrightarrow{AF}$，即 $DE\perp AF$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p39 练习第 2 题。两种方法让两组学生分别做，再对照：基底法的“已知”是 |a| = |b|、a·b = 0；坐标法把这两个条件藏进了坐标里。图按坐标精确绘制，DE 与 AF 的交点处是直角。</p>
+</section>
+
+<!-- 10 ================= 练习：物理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · 物理</span><h2>受力分析：画出向量，列平衡式</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>1.</b> 如图，一个三角形角铁支架 $ABC$ 安装在墙壁上，$AB:AC:BC=3:4:5$，在 $B$ 处挂一个 $6$ kg 的物体，求角铁 $AB$ 与 $BC$ 所受力的大小（取 $g=10\ \text{m/s}^2$）。</p>
+          <details><summary>提示 1</summary>$3^2+4^2=5^2$，$\angle BAC=90^\circ$：$AB$ 水平，$AC$ 竖直。$G=60$ N。</details>
+          <details><summary>提示 2</summary>$B$ 点平衡：$\boldsymbol F_{AB}+\boldsymbol F_{BC}+\boldsymbol G=\boldsymbol 0$，三个力首尾相接围成三角形，与 $\triangle ABC$ 三边分别平行。</details>
+          <details><summary>完整解答</summary>力三角形与 $\triangle ABC$ 相似，$\boldsymbol G$ 对应竖直边 $AC$：$|\boldsymbol F_{AB}|=60\times\frac34=45$（N），$|\boldsymbol F_{BC}|=60\times\frac54=75$（N）。</details>
+        </div>
+        <div id="pr1B" class="vb mini"></div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>6.</b> 如图，一根细绳穿过两个定滑轮 $P,P'$，且两端分别挂有质量为 $3$ kg，$4$ kg 的重物。现在两个滑轮之间的绳上挂一个质量为 $5$ kg 的重物，恰巧使得系统处于平衡状态，问：此时绳子形成的角 $\angle POP'$ 多大？</p>
+          <details><summary>提示 1</summary>绳 $OP$、$OP'$ 的拉力大小分别为 $30$ N、$40$ N，下方重物 $50$ N（取 $g=10$）。</details>
+          <details><summary>提示 2</summary>$\boldsymbol F_1+\boldsymbol F_2=-\boldsymbol G$，两边<b>平方</b>：$\boldsymbol F_1^2+2\boldsymbol F_1\cdot\boldsymbol F_2+\boldsymbol F_2^2=\boldsymbol G^2$。</details>
+          <details><summary>完整解答</summary>$900+2\boldsymbol F_1\cdot\boldsymbol F_2+1600=2500$，得 $\boldsymbol F_1\cdot\boldsymbol F_2=0$，所以 $\angle POP'=90^\circ$。</details>
+        </div>
+        <div id="pr6B" class="vb mini"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p39 练习第 1、6 题。第 1 题提醒：AB 受拉、BC 受压，题目只问大小。第 6 题的关键是“两边平方”——把长度条件变成数量积，这正是 9.2 中 a² = |a|² 的用法；图中角度按平衡位置精确画出，可让学生量一量。</p>
+</section>
+
+<!-- 11 ================= 练习：几何 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · 几何</span><h2>用向量证明几何结论</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 用向量的方法证明：在 $\triangle ABC$ 中，$BC^2=AB^2+AC^2-2AB\cdot AC\cos A$。</p>
+        <details><summary>提示 1</summary>以 $A$ 为起点：$\overrightarrow{BC}=\overrightarrow{AC}-\overrightarrow{AB}$。</details>
+        <details><summary>提示 2</summary>两边平方，$\overrightarrow{AB}\cdot\overrightarrow{AC}=|\overrightarrow{AB}||\overrightarrow{AC}|\cos A$。</details>
+        <details><summary>完整解答</summary>$\overrightarrow{BC}^2=(\overrightarrow{AC}-\overrightarrow{AB})^2=\overrightarrow{AC}^2-2\overrightarrow{AB}\cdot\overrightarrow{AC}+\overrightarrow{AB}^2$，即 $BC^2=AB^2+AC^2-2AB\cdot AC\cos A$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 用向量的方法证明：平行四边形两条对角线的平方和等于一组邻边平方和的两倍。</p>
+        <details><summary>提示 1</summary>设邻边 $\overrightarrow{AB}=\boldsymbol a$，$\overrightarrow{AD}=\boldsymbol b$，对角线为 $\boldsymbol a+\boldsymbol b$、$\boldsymbol a-\boldsymbol b$。</details>
+        <details><summary>提示 2</summary>分别平方再相加，$\pm2\boldsymbol a\cdot\boldsymbol b$ 抵消。</details>
+        <details><summary>完整解答</summary>$|\boldsymbol a+\boldsymbol b|^2+|\boldsymbol a-\boldsymbol b|^2=(\boldsymbol a^2+2\boldsymbol a\cdot\boldsymbol b+\boldsymbol b^2)+(\boldsymbol a^2-2\boldsymbol a\cdot\boldsymbol b+\boldsymbol b^2)=2(|\boldsymbol a|^2+|\boldsymbol b|^2)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>7.</b> 在四边形 $ABCD$ 中，$\overrightarrow{AB}+\overrightarrow{CD}=\boldsymbol 0$，$\overrightarrow{AB}\cdot\overrightarrow{BC}=0$，证明：四边形 $ABCD$ 是矩形。</p>
+        <details><summary>提示 1</summary>$\overrightarrow{AB}=-\overrightarrow{CD}=\overrightarrow{DC}$ 说明什么？</details>
+        <details><summary>提示 2</summary>一组对边平行且相等 → 平行四边形；再看一个角。</details>
+        <details><summary>完整解答</summary>由 $\overrightarrow{AB}=\overrightarrow{DC}$ 知 $AB\parallel DC$ 且 $AB=DC$，$ABCD$ 是平行四边形；由 $\overrightarrow{AB}\cdot\overrightarrow{BC}=0$ 知 $AB\perp BC$，所以 $ABCD$ 是矩形。</details>
+      </div>
+    </div>
+    <p class="warn">把向量结论翻译回几何时要说完整：$\overrightarrow{AB}=\overrightarrow{DC}$ 既给“平行”又给“相等”；$\overrightarrow{AB}\cdot\overrightarrow{BC}=0$ 推出垂直，前提是两个向量都<b>不是零向量</b>（四边形的边当然不是）。</p>
+  </div>
+  <p class="note">课本 p39–40 练习第 3、4、7 题。第 3 题就是余弦定理——第 11 章会正式学习，这里先用向量证出来。第 4 题与第 3 题同一招：“边 = 两个向量的差（和），长度平方 = 数量积”。先独立做，卡住再逐级点开。</p>
+</section>
+
+<!-- 12 ================= 拓展 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题与探究 · 阅读</span><h2>从平面到空间；向量源自力学</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col" data-step="1">
+        <p class="tip"><b>问题与探究</b>（课本 p41）：能否把向量从二维推广到三维，研究空间中的点、直线、平面？试着<b>类比</b>填出右列：</p>
+        <table class="mtab">
+          <tr><th></th><th>平面向量</th><th>空间向量</th></tr>
+          <tr><td>基本定理</td><td>$\boldsymbol a=x\boldsymbol e_1+y\boldsymbol e_2$</td><td><span class="think" data-step="2" data-ask="类比">$\boldsymbol a=x\boldsymbol e_1+y\boldsymbol e_2+z\boldsymbol e_3$（三个不共面的向量）</span></td></tr>
+          <tr><td>坐标</td><td>$(x,y)$</td><td><span class="think" data-step="3" data-ask="类比">$(x,y,z)$</span></td></tr>
+          <tr><td>数量积</td><td>$x_1x_2+y_1y_2$</td><td><span class="think" data-step="4" data-ask="类比">$x_1x_2+y_1y_2+z_1z_2$</span></td></tr>
+        </table>
+        <p class="muted small-t">课本留作独立研究：给出概念、运算、基本定理和坐标表示，并查阅资料完善。</p>
+      </div>
+      <div class="col" data-step="5">
+        <p class="tip"><b>阅读 · 向量源自力学</b>（课本 p41）</p>
+        <ul class="tl">
+          <li><b>1586</b> 斯蒂文《静力学原理》：两力互成直角时，引进力的三角形（平行四边形）法则。</li>
+          <li><b>牛顿</b>《自然哲学的数学原理》：作为运动定律的推论，明确提出力的合成与分解。</li>
+          <li><b>1788</b> 拉格朗日《分析力学》：把力放进空间直角坐标系，沿坐标轴分解成三个分力——力学方程变成关于分量的方程。</li>
+          <li><b>1844</b> 格拉斯曼：引入有向线段的记号，称为“向量”，并推广到 $n$ 维。</li>
+        </ul>
+        <p class="tip gold" data-step="6">今天的提水和例 1，正是向量的“老家”——力学。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p41。类比表先让学生自己填，再点开；“三个不共面的向量”可点到为止，选择性必修会系统学习。阅读材料只讲脉络：先有力的合成（物理），后有坐标化（拉格朗日），最后才有“向量”这个名字和一般理论（格拉斯曼）。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>第 9 章回顾 · 指向第 10 章</h2></div>
+  <div class="bd">
+    <div class="col" data-step="1">
+      <div class="chap">
+        <div class="cb">背景（位移、力、速度）</div><i>↓</i>
+        <div class="cb main">平面向量（9.1）</div><i>↓</i>
+        <div class="crow"><span>几何表示</span><span>符号表示</span><span>坐标表示（9.3）</span></div><i>↓</i>
+        <div class="cb main">向量的运算（9.2）</div><i>↓</i>
+        <div class="crow"><span>加法</span><span>减法</span><span>数乘</span><span>数量积</span></div><i>↓</i>
+        <div class="cb now">向量的应用（9.4）</div>
+      </div>
+      <p class="muted center small-t">依课本 p42「本章回顾」结构图</p>
+    </div>
+    <div class="col">
+      <p class="method" data-step="2" data-label="本课 · 方法">物理：力 → 向量 → 平衡 $\sum\boldsymbol F=\boldsymbol 0$ → 平行四边形 / 数量积。几何：垂直 ⇔ 数量积为 0，共线 ⇔ $x_1y_2-x_2y_1=0$；基底法、坐标法。</p>
+      <p class="recall" data-step="3" data-label="本课 · 思想">数形结合（向量是代数与几何的桥梁）；转化（几何、物理问题 → 向量运算）；类比（平面 → 空间）。</p>
+      <p class="tip gold" data-step="4"><b>下一步：</b>第 10 章 三角恒等变换，10.1 两角和与差的三角函数（课本 p49）。单位圆上取 $\overrightarrow{OA}=(\cos\alpha,\sin\alpha)$，$\overrightarrow{OB}=(\cos\beta,\sin\beta)$，用两种方法算 $\overrightarrow{OA}\cdot\overrightarrow{OB}$：<span class="think" data-step="5" data-ask="定义法 vs 坐标法，会得到什么？">定义：$1\times1\times\cos(\alpha-\beta)$；坐标：$\cos\alpha\cos\beta+\sin\alpha\sin\beta$——两角差的余弦公式就藏在这里！</span></p>
+    </div>
+  </div>
+  <p class="note">结构图依课本 p42 本章回顾，请学生说出每个方框对应哪一课、学了什么。最后的预告只让学生“算出两种结果”，不讲夹角的严格讨论（α − β 不一定是夹角，cos 值相同即可），留到 10.1 解决。课后作业建议：习题 9.4 第 1、3、4、5 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mvec.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
