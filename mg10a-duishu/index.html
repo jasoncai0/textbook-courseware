@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>对数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shiyanshi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第4章 指数与对数 · 4.2</p>
+    <h1 class="cover-title">对数</h1>
+    <p class="cover-q" data-step="1">1 个细胞分裂 $x$ 次后，细胞个数 $y=2^x$。知道分裂了几次，就能算出有多少个细胞。</p>
+    <p class="cover-q" data-step="2">反过来——显微镜下数出了 <b>10 个</b>细胞，它分裂了几次？$2^x=10$，$x$ 等于几？</p>
+    <div class="chips" data-step="3"><span class="chip">对数的概念</span><span class="chip">指对互化</span><span class="chip">运算性质</span><span class="chip">换底公式</span></div>
+  </div>
+  <p class="note">课本 p81 节首情境，接着 4.1 的细胞分裂。第 2 步停一下：先让学生试 x = 3（8 个）、x = 4（16 个），发现 10 夹在中间，“x 到底是几”说不出来——这就是本课要造的新工具。（10 个细胞在实际中不会出现，这里只是借它提出“已知幂求指数”的问题。）</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>4.1 讲到哪里了？今天要用的三件工具</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="4.1 指数 · 实数指数幂" data-step="1">
+        <p>指数从正整数一路拓展到负整数、分数（有理数），再到无理数：$a\gt 0$ 时，$a^x$ 对一切实数 $x$ 都有意义。</p>
+        <p class="muted">$2^{-3}=\dfrac18$，$4^{\frac12}=2$，$2^{\sqrt2}$ 也是一个确定的数。</p>
+        <span class="use">对数定义里“$a\gt 0$”和“指数 $b$ 可以是任意实数”都来自这里。</span>
+      </div>
+      <div class="recall" data-label="4.1 指数 · 运算性质" data-step="2">
+        <p class="rules3">$a^sa^t=a^{s+t}$<br>$\dfrac{a^s}{a^t}=a^{s-t}$<br>$(a^s)^t=a^{st}$</p>
+        <p class="muted">（$a\gt 0$，$s,t\in\R$）</p>
+        <span class="use">4.2.2 推导对数的运算性质：乘法变加法，正是从 $a^sa^t=a^{s+t}$ 来的。</span>
+      </div>
+      <div class="recall" data-label="初中 · 平方根" data-step="3">
+        <p>$x^2=2$ 的正数解存在，却写不成分数，于是给它起名 $\sqrt2$。</p>
+        <p class="muted">已知“平方的结果”，反求底数——用新符号表示。</p>
+        <span class="use">$2^x=10$ 的解也写不出来，我们同样给它起个名字：对数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的主角：</b>$a^b=N$ 里有三个量。4.1 是已知 $a,b$ 求 $N$；今天反过来，<b>已知 $a,N$ 求 $b$</b>。前情见 <a href="../mg10a-zhishu/index.html">4.1 指数</a>。</p>
+  </div>
+  <p class="note">4.1 已经讲完：根式、分数指数幂、有理数指数幂和无理数指数幂（实数指数幂），以及三条运算性质。每张卡先请学生口述再点开。第三张卡是“起名字”的先例：√2 不是算出来的小数，而是一个记号，对数也一样。</p>
+</section>
+
+<!-- 3 ================= 提出问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>$2^x=10$，$x$ 是几？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>$x$</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>10</td></tr>
+        <tr><th>$2^x$</th><td>2</td><td>4</td><td class="hi">8</td><td class="hi">16</td><td>32</td><td>1 024</td></tr>
+      </table>
+      <p class="tip" data-step="1">$2^x=8$，$x=$ <span class="think" data-step="2" data-ask="查表">$3$</span>；　$2^x=1\,024$，$x=$ <span class="think" data-step="2" data-ask="查表">$10$</span>。</p>
+      <p class="tip" data-step="3">$2^x=10$ 呢？表里找不到。</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="4"><span>$2^3=8\lt 10\lt 16=2^4$</span><span class="think" data-step="5" data-ask="x 在哪个范围？">$3\lt x\lt 4$</span><i class="why">底数 $2\gt 1$，指数越大幂越大</i></div>
+        <div class="dl" data-step="6"><span>$2^{3.3}\approx 9.849$，$2^{3.4}\approx 10.556$</span><span>$3.3\lt x\lt 3.4$</span><i class="why">用计算器再试</i></div>
+        <div class="dl" data-step="7"><span>$2^{3.32}\approx 9.987$，$2^{3.33}\approx 10.056$</span><span>$3.32\lt x\lt 3.33$</span><i class="why">还能一直试下去……</i></div>
+      </div>
+      <div class="tip gold" data-step="8"><p class="tight">$x$ 确实存在，而且唯一。它能写成分数或有限小数吗？</p><p class="tight think" data-step="9" data-ask="想一想">不能——和 $\sqrt2$ 一样，需要一个<b>新的记号</b>来表示“$2$ 的多少次方等于 $10$”。</p></div>
+      <p class="def" data-step="10"><span class="think" data-step="10" data-ask="把问题一般化">问题一般化：在 $a^b=N$ 中，<em>已知底数 $a$ 和幂 $N$，求指数 $b$</em>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p81“已知底数和幂的值求指数”。左边口答两题后，第 3 步停顿：让学生自己想办法“夹”出 x 的范围。第 6、7 步用计算器演示，强调：可以无限逼近，但永远写不完。最后一步把细胞问题一般化。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>对数：已知底数和幂，求指数</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>对数（课本 p81）</h4>如果 $a^b=N\ (a\gt 0,\ a\ne 1)$，那么就称 $b$ 是以 $a$ 为底 $N$ 的<b>对数</b>（logarithm），记作 $$\log_aN=b,$$ 其中，$a$ 叫作对数的<em>底数</em>，$N$ 叫作<em>真数</em>。</div>
+    <div class="cols2">
+      <div class="col">
+        <table class="mtab names" data-step="2">
+          <tr><th></th><th>$a$</th><th>$b$</th><th>$N$</th></tr>
+          <tr><th>指数式 $a^b=N$</th><td>底数</td><td>指数</td><td>幂</td></tr>
+          <tr><th>对数式 $\log_aN=b$</th><td>底数</td><td class="hi">对数</td><td class="hi">真数</td></tr>
+        </table>
+        <p class="tip" data-step="3">读法：$\log_aN$ 读作“以 $a$ 为底 $N$ 的对数”。</p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="4">$a^b=N$ 与 $b=\log_aN$ 表示的是 $a,b,N$ 这 3 个量之间的<b>同一个关系</b>：<br>$3^2=9\Leftrightarrow\log_39=2$，　$\log_42=\dfrac12\Leftrightarrow 4^{\frac12}=2$。</p>
+        <p class="tip gold" data-step="5">回到细胞：$2^x=y$ 的解就是 <span class="think" data-step="6" data-ask="用新记号写出来">$x=\log_2y$；数出 10 个细胞，$x=\log_210\approx 3.3219$。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p81 定义框。第 2 步的对照表是本页重点：三个量位置变了、名字变了，关系没变。强调 log 是“求指数”的记号，log₂10 就是一个数（约 3.3219），和 √2 ≈ 1.4142 一样。</p>
+</section>
+
+<!-- 5 ================= 指对互化转换器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手转一转</span><h2>指对互化转换器：同一个关系，两种写法</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 400 300" class="tri" id="cvTri" aria-label="a、b、N 三个量的关系">
+        <defs>
+          <marker id="cvArr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker>
+        </defs>
+        <line x1="170" y1="86" x2="95" y2="196" class="tri-ln"/><line x1="230" y1="86" x2="305" y2="196" class="tri-ln"/>
+        <rect x="125" y="10" width="150" height="76" rx="12" class="tri-node"/>
+        <text x="200" y="40" class="tri-t">底数 a</text><text x="200" y="72" class="tri-v" id="cvTa"></text>
+        <rect x="8" y="196" width="152" height="86" rx="12" class="tri-node" id="cvNodeB"/>
+        <text x="84" y="228" class="tri-t">指数 / 对数 b</text><text x="84" y="264" class="tri-v" id="cvTb"></text>
+        <rect x="240" y="196" width="152" height="86" rx="12" class="tri-node" id="cvNodeN"/>
+        <text x="316" y="228" class="tri-t">幂 / 真数 N</text><text x="316" y="264" class="tri-v" id="cvTN"></text>
+        <g id="cvArrPow" class="tri-arr"><path d="M164 222 H234" marker-end="url(#cvArr)"/><text x="200" y="212">乘方</text></g>
+        <g id="cvArrLog" class="tri-arr"><path d="M236 256 H166" marker-end="url(#cvArr)"/><text x="200" y="278">取对数</text></g>
+      </svg>
+      <p class="tip feedback" id="cvMsg"></p>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>底数 $a$<span class="btns" id="cvBases"></span></div>
+      <div class="slider-row" data-noswipe>拖 $b$<input type="range" id="cvB" min="-4" max="4" step="0.1" value="3"><b id="cvBV" class="v"></b></div>
+      <div class="slider-row" data-noswipe>输 $N$<input type="text" id="cvN" class="numin" inputmode="decimal" autocomplete="off" aria-label="输入真数 N"><span class="btns" id="cvPre"><button type="button" class="btn" data-n="10">10</button><button type="button" class="btn" data-n="1">1</button><button type="button" class="btn" data-n="a">$a$</button><button type="button" class="btn" data-n="0.25">0.25</button><button type="button" class="btn" data-n="-4">−4</button></span></div>
+      <div class="cv-show">
+        <div class="cv-line"><span class="cv-k">指数式</span><span id="cvExp"></span></div>
+        <div class="cv-eq">$\Updownarrow$</div>
+        <div class="cv-line"><span class="cv-k">对数式</span><span id="cvLog"></span></div>
+      </div>
+      <p class="method" data-step="1" data-label="指对互化">底数不变：<b>指数 ↔ 对数</b>，<b>幂 ↔ 真数</b>。已知 $a,b$ 求 $N$ 是乘方；已知 $a,N$ 求 $b$ 是取对数。</p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。建议顺序：① 底数 2，拖 b 到 3，看到 2³ = 8 ⇔ log₂8 = 3；② 点“10”，回答封面问题 log₂10 ≈ 3.3219；③ 点“1”和“a”，让学生先猜 log_a 1、log_a a；④ 点“−4”，让学生解释为什么没有对数（为下一页做铺垫）；⑤ 换底数 1/2，拖 b 看幂变小。三角形里亮起的箭头表示此刻在做哪种运算。</p>
+</section>
+
+<!-- 6 ================= 辨析：底数与真数的限制 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>为什么 $a\gt 0$，$a\ne 1$？真数为什么必须是正数？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p><b>底数能是负数吗？</b>比如 $a=-2$。</p>
+        <div class="think" data-step="2" data-ask="试一试 (−2) 的 ½ 次方"><p>$(-2)^{\frac12}$ 在实数范围内没有意义；4.1 规定实数指数幂的底数 $a\gt 0$。所以<b>底数 $a\gt 0$</b>。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>底数能是 1 吗？</b></p>
+        <div class="think" data-step="4" data-ask="1 的任何次方等于几？"><p>$1^b=1$ 恒成立：$\log_11$ 可以是任意数，不唯一；$\log_12$ 根本找不到。所以<b>底数 $a\ne 1$</b></p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>真数能是 0 或负数吗？</b>（刚才转换器里输入 $-4$）</p>
+        <div class="think" data-step="6" data-ask="aᵇ 可能 ≤ 0 吗？"><p>$a\gt 0$ 时，$a^b\gt 0$ 对一切实数 $b$ 成立，$N=a^b$ 永远是正数。所以<b>负数和 0 没有对数</b>，真数 $N\gt 0$。</p></div>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="def" data-step="7"><h4>两个特殊的对数（课本练习 1）</h4>$\log_a1=$ <span class="think" data-step="8" data-ask="想一想">$0$（因为 $a^0=1$）</span>，　$\log_aa=$ <span class="think" data-step="8" data-ask="想一想">$1$（因为 $a^1=a$）</span></div>
+      <div class="def" data-step="9"><h4>对数恒等式（课本练习 7）</h4><span class="think" data-step="10" data-ask="由定义直接推出">$\log_aa^b=b$：$a$ 的 $b$ 次方的指数就是 $b$；<br>$a^{\log_aN}=N$：$\log_aN$ 正是使 $a$ 的幂等于 $N$ 的那个指数。</span></div>
+    </div>
+  </div>
+  <p class="note">每张卡先让学生判断再点开。第 3 张可回到上一页转换器里点“−4”验证。练习 7 的两个恒等式，提醒学生把 log_a N 读成“a 的多少次方等于 N”，两个式子就是定义本身。练习 7(2) 的证明：设 log_a N = b，则 a^b = N，代回即得。</p>
+</section>
+
+<!-- 7 ================= 例 1 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>指数式与对数式互化</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 1</b>　将下列指数式改写成对数式：</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>(1) $2^4=16$</span><span class="think" data-step="2" data-ask="改写">$\log_216=4$</span><i class="why">底数 2，指数 4，幂 16</i></div>
+          <div class="dl" data-step="3"><span>(2) $3^{-3}=\dfrac1{27}$</span><span class="think" data-step="4" data-ask="改写">$\log_3\dfrac1{27}=-3$</span><i class="why">对数可以是负数</i></div>
+          <div class="dl" data-step="5"><span>(3) $5^a=20$</span><span class="think" data-step="6" data-ask="改写">$\log_520=a$</span><i class="why">指数是字母也一样</i></div>
+          <div class="dl" data-step="7"><span>(4) $\left(\dfrac12\right)^b=0.45$</span><span class="think" data-step="8" data-ask="改写">$\log_{\frac12}0.45=b$</span><i class="why">底数是 $\frac12$</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 2</b>　将下列对数式改写成指数式：</p>
+        <div class="derive">
+          <div class="dl" data-step="9"><span>(1) $\log_5125=3$</span><span class="think" data-step="10" data-ask="改写">$5^3=125$</span><i class="why">对数 3 回到指数位置</i></div>
+          <div class="dl" data-step="11"><span>(2) $\log_{\frac1{\sqrt3}}3=-2$</span><span class="think" data-step="12" data-ask="改写">$\left(\dfrac1{\sqrt3}\right)^{-2}=3$</span><i class="why">验算：$(\sqrt3)^2=3$</i></div>
+          <div class="dl" data-step="13"><span>(3) $\log_{10}a=-1.699$</span><span class="think" data-step="14" data-ask="改写">$10^{-1.699}=a$</span><i class="why">真数 $a$ 回到幂的位置</i></div>
+        </div>
+        <p class="method" data-step="15">互化只做一件事：<b>底数不动，指数与对数换位，幂与真数换位</b>。改写后用“$a$ 的几次方等于几”读一遍检验。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p81–82 例 1、例 2。每小题先让学生口答再点开。例 2(2) 是易错点：底数是 1/√3，负指数要先取倒数，可让学生验算 (1/√3)⁻² = (√3)² = 3。</p>
+</section>
+
+<!-- 8 ================= 例 3 + 常用对数、自然对数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>求对数的值：化成“同底的幂”</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 3</b>　求下列各式的值：(1) $\log_264$；(2) $\log_927$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1)</span><span class="think" data-step="2" data-ask="2 的几次方是 64？">由 $2^6=64$，得 $\log_264=6$</span><i class="why">直接用定义</i></div>
+        <div class="dl" data-step="3"><span>(2) 设</span><span>$x=\log_927$，则 $9^x=27$</span><i class="why">对数式 → 指数式</i></div>
+        <div class="dl key" data-step="4"><span>即</span><span class="think" data-step="5" data-ask="9 和 27 有什么共同点？">$3^{2x}=3^3$</span><i class="why">9 和 27 都是 3 的幂：化成同底</i></div>
+        <div class="dl" data-step="6"><span>得</span><span>$2x=3$，$x=\dfrac32$</span><i class="why">同底的幂相等，指数相等</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$\log_927=\dfrac32$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="7"><h4>常用对数</h4>以 10 为底的对数 $\log_{10}N$ 简记为 $\lg N$，如 $\log_{10}2$ 记为 $\lg2$。</div>
+      <div class="def" data-step="8"><h4>自然对数</h4>以 $\mathrm e$ 为底的对数 $\log_{\mathrm e}N$ 简记为 $\ln N$。$\mathrm e=2.718\,28\cdots$ 是一个无理数：$$\mathrm e=1+1+\frac1{1\times2}+\frac1{1\times2\times3}+\cdots$$</div>
+      <p class="tip" data-step="9">计算器上的 <b>lg</b>、<b>ln</b> 键（课本练习 6）：$\lg2\approx$ <span class="think" data-step="10" data-ask="按一按">$0.3010$</span>，$\lg5\approx$ <span class="think" data-step="10" data-ask="按一按">$0.6990$</span>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p82 例 3 与常用对数、自然对数。例 3(2) 的关键在第 4 步：让学生先想“9 和 27 有什么关系”，引出“化同底”。e 的级数写法是课本旁注，只作了解；lg 2 ≈ 0.3010、lg 3 ≈ 0.4771 后面例 5 还要用，可以让学生记一记。</p>
+</section>
+
+<!-- 9 ================= 练习 4.2.1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>填一填：输入答案后按回车</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1.</b> 根据对数的定义，写出下列各对数的值（$a\gt 0$，$a\ne 1$）：</p>
+        <div class="fills">
+          <span>$\log_{10}100=$ <span class="blank" data-ans="2"></span></span>
+          <span>$\log_{25}5=$ <span class="blank" data-ans="1/2|0.5" data-w="3"></span></span>
+          <span>$\log_2\dfrac12=$ <span class="blank" data-ans="-1"></span></span>
+          <span>$\log_51=$ <span class="blank" data-ans="0"></span></span>
+          <span>$\log_33=$ <span class="blank" data-ans="1"></span></span>
+          <span>$\log_{\frac13}3=$ <span class="blank" data-ans="-1"></span></span>
+          <span>$\log_a1=$ <span class="blank" data-ans="0"></span></span>
+          <span>$\log_aa=$ <span class="blank" data-ans="1"></span></span>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>5.</b> 求下列各式的值：</p>
+        <div class="fills">
+          <span>$\log_464=$ <span class="blank" data-ans="3"></span></span>
+          <span>$\log_7\sqrt7=$ <span class="blank" data-ans="1/2|0.5" data-w="3"></span></span>
+          <span>$\log_2\dfrac18=$ <span class="blank" data-ans="-3"></span></span>
+          <span>$\log_{\frac13}9=$ <span class="blank" data-ans="-2"></span></span>
+          <span>$\lg1\,000=$ <span class="blank" data-ans="3"></span></span>
+          <span>$\ln\dfrac1{\mathrm e^2}=$ <span class="blank" data-ans="-2"></span></span>
+        </div>
+        <div class="hint-ladder">
+          <p class="q">卡在 $\log_{\frac13}9$ 了？</p>
+          <details><summary>提示 1</summary>设 $x=\log_{\frac13}9$，改写成指数式：$\left(\dfrac13\right)^x=9$。</details>
+          <details><summary>提示 2</summary>化成同底：$\left(\dfrac13\right)^x=3^{-x}$，$9=3^2$。</details>
+          <details><summary>完整解答</summary>$3^{-x}=3^2$，$-x=2$，所以 $\log_{\frac13}9=-2$。</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p82 练习 1、p83 练习 5。分数答案可输入 1/2 或 0.5。先独立填 3 分钟，再集体核对；错得多的题回到“设 x、化指数式、化同底”的三步。练习 2、3、4（互化）可作课堂口答。</p>
+</section>
+
+<!-- 10 ================= 4.2.2 推导运算性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">4.2.2 推导</span><h2>指数有运算性质，对数呢？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">指数：$a^sa^t=a^{s+t}$。“乘法变成指数相加”——对数是指数，那么 $\log_a(MN)$ 会等于什么？</p>
+      <p class="tip" data-step="1">先猜：<span class="think" data-step="2" data-ask="你的猜想？">$\log_a(MN)=\log_aM+\log_aN$？</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>设</span><span>$M=a^s$，$N=a^t$</span><i class="why">把 $M,N$ 写成同底的幂</i></div>
+        <div class="dl" data-step="4"><span>于是</span><span class="think" data-step="5" data-ask="MN = ?">$MN=a^{s+t}$</span><i class="why">指数运算性质 $a^sa^t=a^{s+t}$</i></div>
+        <div class="dl" data-step="6"><span>由定义</span><span>$\log_aM=s$，$\log_aN=t$</span><i class="why">指数式 → 对数式</i></div>
+        <div class="dl" data-step="6"><span></span><span>$\log_a(MN)=s+t$</span><i class="why">$MN=a^{s+t}$ 改写</i></div>
+        <div class="dl end" data-step="7"><span>因此</span><span>$\log_a(MN)=\log_aM+\log_aN$</span><i class="why">把 $s,t$ 换回去</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="8"><h4>对数的运算性质（课本 p84）</h4>
+        <p class="rule">$\log_a(MN)=\log_aM+\log_aN$　①</p>
+        <p class="rule">$\log_a\dfrac MN=\log_aM-\log_aN$　②</p>
+        <p class="rule">$\log_aM^n=n\log_aM$　③</p>
+        其中 $a\gt 0$，$a\ne 1$，$M\gt 0$，$N\gt 0$，$n\in\R$。</div>
+      <p class="tip" data-step="9"><b>思考</b>　你能证明性质②和性质③吗？</p>
+      <div class="tip" data-step="10"><p class="tight">证明 ②：</p><p class="tight think" data-step="11" data-ask="仿照①">$\dfrac MN=\dfrac{a^s}{a^t}=a^{s-t}$，所以 $\log_a\dfrac MN=s-t=\log_aM-\log_aN$</p></div>
+      <div class="tip" data-step="10"><p class="tight">证明 ③：</p><p class="tight think" data-step="12" data-ask="仿照①">$M^n=(a^s)^n=a^{ns}$，所以 $\log_aM^n=ns=n\log_aM$。</p></div>
+    </div>
+  </div>
+  <p class="note">课本 p83–84。核心思路：“设 M = aˢ”把对数问题转化成指数问题，用指数性质算完再改写回对数。②③是课本“思考”，也是习题 4.2 第 9 题，请两位学生上台仿照①写出证明。提醒：性质成立的前提是 M、N 都为正数。</p>
+</section>
+
+<!-- 11 ================= 运算性质验证器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数值验证</span><h2>任取 $M$、$N$：性质对不对，算给你看</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row" data-noswipe>底数 $a$<span class="btns" id="vfBases"></span></div>
+      <div class="slider-row" data-noswipe>$M=$<input type="range" id="vfM" min="0.1" max="20" step="0.1" value="4"><b id="vfMV" class="v"></b></div>
+      <div class="slider-row" data-noswipe>$N=$<input type="range" id="vfN" min="0.1" max="20" step="0.1" value="8"><b id="vfNV" class="v"></b></div>
+      <div class="slider-row" data-noswipe>$n=$<input type="range" id="vfn" min="-3" max="4" step="0.5" value="3"><b id="vfnV" class="v"></b></div>
+      <p class="tip muted">数值保留 4 位小数；左右两边相差小于 $10^{-9}$ 判为相等。</p>
+      <p class="tip gold" data-step="3">试一试 $M=N=2$：<span class="think" data-step="4" data-ask="第 4 行会怎样？">$\log_a(2+2)=\log_a4=\log_a(2\times2)$，碰巧相等——因为 $2+2=2\times2$。<b>个别相等 ≠ 恒等</b>，一个反例就能推翻“性质”。</span></p>
+    </div>
+    <div class="col">
+      <h3 class="vf-h">运算性质</h3>
+      <div id="vfLaws" class="vf-rows"></div>
+      <h3 class="vf-h" data-step="1">辨一辨：下面两个“性质”对吗？</h3>
+      <div id="vfFakes" class="vf-rows" data-step="2"></div>
+      <p class="warn" data-step="2">$\log_a(M+N)\ne\log_aM+\log_aN$，$\log_a(MN)\ne\log_aM\cdot\log_aN$。对数把<b>乘、除、乘方</b>变成<b>加、减、乘</b>；和的对数没有公式。</p>
+    </div>
+  </div>
+  <p class="note">本课第二个互动。先拖 M、N、n 和换底数，让学生看到①②③三行始终“相等”（数值验证不是证明，证明在上一页）。第 1 步先让学生猜下面两个式子对不对，再出现数值；它们一般不相等，但在 M = N = 2 时第 4 行碰巧相等，正好讨论“验证几个例子 ≠ 证明，一个反例就能否定”。</p>
+</section>
+
+<!-- 12 ================= 例 4 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 例 5</span><h2>用运算性质化简、求值</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 4</b>　求下列各式的值：(1) $\log_2(2^3\times4^5)$；(2) $\log_5125$。</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>(1) 原式</span><span>$=\log_22^3+\log_24^5$</span><i class="why">性质①：积的对数 = 对数的和</i></div>
+          <div class="dl" data-step="2"><span></span><span>$=3+5\log_24$</span><span class="think" data-step="3" data-ask="依据？">$\log_22^3=3$（恒等式）；$\log_24^5=5\log_24$（性质③）</span></div>
+          <div class="dl end" data-step="4"><span></span><span>$=3+5\times2=13$</span><i class="why">$\log_24=2$</i></div>
+          <div class="dl" data-step="5"><span>(2) 原式</span><span class="think" data-step="6" data-ask="125 是 5 的几次方？">$=\log_55^3=3\log_55=3$</span><i class="why">性质③，$\log_55=1$</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 5</b>　已知 $\lg2\approx0.301\,0$，$\lg3\approx0.477\,1$，求下列各式的值（结果保留 4 位小数）：(1) $\lg12$；(2) $\lg\dfrac{27}{16}$。</p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>(1)</span><span class="think" data-step="8" data-ask="12 怎样用 2 和 3 表示？">$\lg12=\lg(2^2\times3)$</span><i class="why">把真数分解成 2、3 的幂的积</i></div>
+          <div class="dl" data-step="9"><span></span><span>$=2\lg2+\lg3\approx1.079\,1$</span><i class="why">性质①③</i></div>
+          <div class="dl" data-step="10"><span>(2)</span><span>$\lg\dfrac{27}{16}=\lg3^3-\lg2^4$</span><i class="why">性质②</i></div>
+          <div class="dl" data-step="11"><span></span><span>$=3\lg3-4\lg2\approx0.227\,3$</span><i class="why">性质③</i></div>
+        </div>
+        <p class="method" data-step="12">求值思路：把真数<b>拆成已知数的积、商、幂</b>，再用①②③“拆开”。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p84 例 4、例 5。例 5 课本旁注“用计算器检验”：计算器得 lg 12 = 1.07918… ≈ 1.0792，比 1.0791 多 0.0001，原因是 lg 2、lg 3 本身是近似值，误差被乘 2 后累加——可顺带讨论近似计算的误差。</p>
+</section>
+
+<!-- 13 ================= 换底公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">换底公式</span><h2>计算器只有 lg 和 ln，怎样求 $\log_35$？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 6</b>　试用常用对数表示 $\log_35$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设</span><span>$t=\log_35$，则 $3^t=5$</span><i class="why">对数式 → 指数式</i></div>
+        <div class="dl key" data-step="2"><span>两边取常用对数</span><span class="think" data-step="3" data-ask="怎样把 t 从指数上“拿下来”？">$\lg3^t=\lg5$</span><i class="why">相等的正数，常用对数相等</i></div>
+        <div class="dl" data-step="4"><span>即</span><span>$t\lg3=\lg5$</span><i class="why">性质③</i></div>
+        <div class="dl end" data-step="5"><span>故</span><span>$\log_35=\dfrac{\lg5}{\lg3}$</span><i class="why">$\lg3\ne0$</i></div>
+      </div>
+      <p class="tip" data-step="6"><b>例 7</b>　10 换成任意底数 $c$：设 $t=\log_aN$，则 $a^t=N$，两边取以 $c$ 为底的对数得 $t\log_ca=\log_cN$。</p>
+      <div class="def" data-step="7"><h4>换底公式（课本 p85）</h4>$\log_aN=\dfrac{\log_cN}{\log_ca}$，其中 $a\gt0,\ a\ne1,\ N\gt0,\ c\gt0,\ c\ne1$。</div>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>底数 $a$<span class="btns" id="cbA"></span></div>
+      <div class="slider-row" data-noswipe>换成 $c$<span class="btns" id="cbC"></span></div>
+      <div class="slider-row" data-noswipe>$N=$<input type="range" id="cbN" min="0.5" max="64" step="0.5" value="5"><b id="cbNV" class="v"></b></div>
+      <div class="cb-box">
+        <p><span class="cv-k">按定义</span>求 $b$ 使 <span id="cbDefQ"></span>（逐次折半逼近，不借助换底）：</p>
+        <p class="cb-big" id="cbL"></p>
+        <p><span class="cv-k">换底公式</span></p>
+        <p class="cb-big" id="cbR"></p>
+        <p class="cb-ok" id="cbOk"></p>
+      </div>
+      <p class="tip" data-step="8">课本旁注：$\log_ba\cdot\log_ax=$ <span class="think" data-step="9" data-ask="用换底公式">$\dfrac{\lg a}{\lg b}\cdot\dfrac{\lg x}{\lg a}=\log_bx$</span>；<br>$\log_ba\cdot\log_ab=$ <span class="think" data-step="9" data-ask="用换底公式">$1$</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p85 例 6、例 7 与换底公式。第 2 步停顿：t 在指数上，怎样“拿下来”？——两边取对数，再用性质③。右边验证器：左边按定义用二分法逐次逼近求 b（只用乘方），右边用换底公式计算，两者到第 4 位小数一致；换 c 为 10、e、2，结果都不变，说明换成哪个底都可以。旁注第二式就是习题 4.2 第 10(1) 题 log_a b = 1/log_b a。</p>
+</section>
+
+<!-- 14 ================= 例 8 例 9 例 10 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8 · 例 9</span><h2>换底公式的用处：化同底、解指数方程</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 8</b>　求 $\log_89\times\log_332$ 的值。</p>
+        <p class="tip" data-step="1">两个对数底数不同、真数也不同，怎么办？　<span class="think" data-step="2" data-ask="想一想">都换成常用对数（统一底数）。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>原式</span><span>$=\dfrac{\lg9}{\lg8}\times\dfrac{\lg32}{\lg3}$</span><i class="why">换底公式</i></div>
+          <div class="dl" data-step="4"><span></span><span>$=\dfrac{2\lg3}{3\lg2}\times\dfrac{5\lg2}{\lg3}=\dfrac{10}3$</span><i class="why">$9=3^2,\ 8=2^3,\ 32=2^5$，性质③后约分</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 9</b>　2000 年我国 GDP 为 89 442 亿元。如果年均增长 7.8%，经过多少年后 GDP 比 2000 年翻两番？</p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span>设 $x$ 年后</span><span>$89\,442\times(1+7.8\%)^x$<br>$=89\,442\times4$</span><i class="why">翻两番 = 原来的 4 倍</i></div>
+          <div class="dl" data-step="6"><span>即</span><span>$1.078^x=4$</span><i class="why">已知底数和幂，求指数</i></div>
+          <div class="dl end" data-step="7"><span>故</span><span>$x=\log_{1.078}4=\dfrac{\lg4}{\lg1.078}\approx18.5$</span><i class="why">换底后用计算器</i></div>
+        </div>
+        <p class="tip" data-step="8"><b>答</b>　约经过 19 年以后，GDP 就能实现比 2000 年翻两番的目标。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="9"><b>例 10</b>　古莲子 $^{14}\mathrm C$ 残余 87.9%：$0.879=0.999\,879^x$，$x=\frac{\lg0.879}{\lg0.999\,879}\approx1\,066$（年前）。</p>
+  </div>
+  <p class="note">课本 p85–86 例 8、例 9、例 10。例 9 的 18.5 年为什么答“约 19 年”？——第 18 年还没达到，要到第 19 年才实现，结合实际取整。例 10 可简述放射性碳法：每过 5 730 年 ¹⁴C 剩一半。几道应用题的共同点都是“已知底数和幂，求指数”，正好回应开头的细胞问题。</p>
+</section>
+
+<!-- 15 ================= 练习 4.2.2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：先填，卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <p class="tip"><b>p84 练习 2</b>　$\log_3(9\times27)=$ <span class="blank" data-ans="5"></span>　　$\lg25+\lg4=$ <span class="blank" data-ans="2"></span>　　$\log_{\frac13}27-\log_{\frac13}9=$ <span class="blank" data-ans="-1"></span></p>
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p84 练习 5(1)）不用计算器，求 $\lg\sqrt2+\lg\sqrt5$ 的值。</p>
+        <details><summary>提示 1</summary>两个对数相加，想到性质①：合成一个对数。</details>
+        <details><summary>提示 2</summary>$\sqrt2\times\sqrt5=\sqrt{10}=10^{\frac12}$。</details>
+        <details><summary>完整解答</summary>$\lg\sqrt2+\lg\sqrt5=\lg\sqrt{10}=\lg10^{\frac12}=\dfrac12$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（p86 练习 1(2)）计算 $\log_23\times\log_34\times\log_45\times\log_56\times\log_67\times\log_78$。</p>
+        <details><summary>提示 1</summary>底数各不相同，全部换成常用对数。</details>
+        <details><summary>提示 2</summary>$\dfrac{\lg3}{\lg2}\times\dfrac{\lg4}{\lg3}\times\cdots\times\dfrac{\lg8}{\lg7}$，相邻的分子分母能约掉。</details>
+        <details><summary>完整解答</summary>原式 $=\dfrac{\lg8}{\lg2}=\dfrac{3\lg2}{\lg2}=3$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（p86 练习 5）1999 年底我国人口约 13 亿，若年平均增长率为 1%，约经过多少年人口达到 18 亿？</p>
+        <details><summary>提示 1</summary>列方程：$13\times(1+1\%)^x=18$。</details>
+        <details><summary>提示 2</summary>$1.01^x=\dfrac{18}{13}$，$x=\log_{1.01}\dfrac{18}{13}$，再换底。</details>
+        <details><summary>完整解答</summary>$x=\dfrac{\lg\frac{18}{13}}{\lg1.01}\approx\dfrac{0.141\,3}{0.004\,3}\approx32.7$，约经过 33 年人口达到 18 亿。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p84 练习 2(1)(3)(4)、练习 5(1)，p86 练习 1(2)、练习 5。第 3 题与例 9 同型，答案按实际取整为 33 年。精确计算 lg(18/13)/lg 1.01 = 32.70…，结论不变。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$a^b=N\Leftrightarrow\log_aN=b$<br><span class="muted">$a\gt0,a\ne1$；负数和 0 没有对数；$\log_a1=0$，$\log_aa=1$</span></p>
+        <p class="def">①②③：$\log_a(MN)$、$\log_a\dfrac MN$、$\log_aM^n$<br>换底：$\log_aN=\dfrac{\log_cN}{\log_ca}$</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="求对数值">设 $x=\log_aN$ → 写成 $a^x=N$ → 化同底</p>
+        <p class="method" data-label="化简求值">拆真数（积、商、幂）；底不同先换底</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">对数问题 ⇄ 指数问题：性质、换底公式都是“设成指数式”推出来的。</p>
+        <p class="recall" data-label="化繁为简">对数把乘、除、乘方变成加、减、乘。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p89「问题与探究 · 秘诀在对数」——一个 35 位整数的 31 次方根是整数，怎样立刻说出它？之后在第 6 章 6.3 学习<b>对数函数</b> $y=\log_ax$。</p>
+  </div>
+  <p class="note">请学生先说出三栏，再逐栏揭示。课后作业建议：习题 4.2 第 1、3、5、6、10 题；第 12 题（阅读题）声强级 L = 10 lg(I/I₀)，I = 100 I₀ 时 L = 20 dB，可作为“对数把乘法变加法”的生活实例。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

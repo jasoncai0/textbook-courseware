@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>函数的单调性 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/dengshan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第5章 函数概念与性质 · 5.3</p>
+    <h1 class="cover-title">函数的单调性</h1>
+    <p class="cover-q" data-step="1">沿着登山步道走：从山脚到山顶，<b>越走越高</b>；翻过山顶，<b>越走越低</b>。</p>
+    <p class="cover-q" data-step="2">“越走越高”一眼就看得出来。可是，怎样用<b>数学语言</b>把它说清楚？只比较起点和终点的高度，够吗？</p>
+    <div class="chips" data-step="3"><span class="chip">增函数与减函数</span><span class="chip">任取两点</span><span class="chip">定义法证明</span><span class="chip">最大值与最小值</span></div>
+  </div>
+  <p class="note">课本 p110。封面只抛问题：请学生凭直觉回答“只比较起点和终点够不够”。多数人会说“够”，第 6 页的检验器会推翻它。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>从“看图说话”到“用式子说话”</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="初中 · 函数的增减" data-step="1">
+        <p>一次函数 $y=kx+b$：$k\gt 0$ 时，$y$ 随 $x$ 的增大而增大；二次函数图象在对称轴两侧，一侧上升、一侧下降。</p>
+        <span class="use">本课把“随 $x$ 的增大而增大”说成严格的数学语言。</span>
+      </div>
+      <div class="recall" data-label="高一上册 · 5.1 函数的概念和图象" data-step="2">
+        <p>气温 $\theta$ 是时间 $t$ 的函数 $\theta=f(t)$；图象是点集 $\{(x,f(x))\mid x\in A\}$。<a href="../mg10a-hanshugainian/index.html">回看 5.1</a></p>
+        <span class="use">本课开头就从 5.1 的气温图出发：“图象上升”换成“图象上两点比高低”。</span>
+      </div>
+      <div class="recall" data-label="高一上册 · 5.2 函数的表示方法" data-step="3">
+        <p>解析法、列表法、图象法；分段函数，如 $y=|x+1|=\begin{cases}x+1, & x\ge -1,\\-x-1, & x\lt -1.\end{cases}$　<a href="../mg10a-hanshubiaoshi/index.html">回看 5.2</a></p>
+        <span class="use">例 1、练习 2 先画图再看单调区间；分段函数是辨析里的反例。</span>
+      </div>
+      <div class="recall" data-label="高一上册 · 3.1 不等式的基本性质" data-step="4">
+        <p>作差比较：$a\gt b\Leftrightarrow a-b\gt 0$；两数之积、商：同号得正，异号得负。<a href="../mg10a-budengshixingzhi/index.html">回看 3.1</a></p>
+        <span class="use">定义法证明的“作差—变形—定号”三步，就是 3.1 的作差比较。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一课</b>（5.2）讲完了函数怎样表示；<b>从这一课起</b>研究函数的性质。第一个性质：函数值随自变量增大是“升”还是“降”。</p>
+  </div>
+  <p class="note">四张卡依次出现，每张先请学生口头复述。第一张是初中的“描述性”说法，它说不清“增大”是指哪两个值比较；第四张卡的作差比较是本课证明的核心工具。</p>
+</section>
+
+<!-- 3 ================= 情境：气温图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>气温在哪些时段升高，哪些时段下降？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">5.1 节开头的第三个问题中，气温 $\theta$ 是关于时间 $t$ 的函数，记为 $\theta=f(t)$。观察气温变化图：</p>
+      <div id="tempS" class="tempS"></div>
+      <p class="muted center small-t">依课本图 5-3-1 描点绘制</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">哪些时段气温逐渐<b>升高</b>？　<span class="think" data-step="2" data-ask="看图说一说">从 4 时到 14 时，图象呈<b>上升</b>趋势。</span></p>
+      <p class="tip" data-step="3">哪些时段气温逐渐<b>下降</b>？　<span class="think" data-step="4" data-ask="看图说一说">从 14 时到 24 时（还有 0 时到 4 时），图象呈<b>下降</b>趋势。</span></p>
+      <p class="tip gold" data-step="5"><b>问题：</b>怎样用数学语言刻画“随着时间的增加气温逐渐升高”这一特征？</p>
+      <p class="tip" data-step="6">“图象上升”，说的是图象上哪些点之间的关系？　<span class="think" data-step="7" data-ask="先想一想">时间靠后的点，比时间靠前的点<b>更高</b>——而且不论取哪两个点都这样。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p110 情境与图 5-3-1。先让学生指图说时段，再抛出课本问题。第 6 步追问“上升说的是哪些点之间的关系”，引出下一页“任取两点”。</p>
+</section>
+
+<!-- 4 ================= 观察：在气温图上任取两点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>在图象上任取两点 $P$、$Q$，比一比高低</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="tpBtns"></div>
+      <div id="tp" class="tp"></div>
+      <p class="tip feedback" id="tpMsg"></p>
+      <p class="muted center small-t">拖动橙色点 $P$、$Q$（只能在选中的时段里移动）</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>4～14 时</span><span class="think" data-step="2" data-ask="不管怎样取两点，总有什么？">$t_1\lt t_2$ 时，都有 $\theta_1\lt\theta_2$</span><i class="why">图象上升：靠右的点更高</i></div>
+        <div class="dl" data-step="3"><span>14～24 时</span><span class="think" data-step="4" data-ask="这一段呢？">$t_1\lt t_2$ 时，都有 $\theta_1\gt\theta_2$</span><i class="why">图象下降：靠右的点更低</i></div>
+        <div class="dl" data-step="5"><span>0～24 时</span><span class="think" data-step="6" data-ask="整天看呢？">有时 $\theta_1\lt\theta_2$，有时 $\theta_1\gt\theta_2$</span><i class="why">一整天既有升、又有降</i></div>
+      </div>
+      <p class="def" data-step="7">从 4 时到 14 时，对于这段图象上的<em>任意两点</em> $P(t_1,\theta_1)$、$Q(t_2,\theta_2)$，当 $t_1\lt t_2$ 时，都有 $\theta_1\lt\theta_2$。</p>
+      <p class="tip gold" data-step="8">“上升”是一段<b>区间</b>上的性质，说它要用到这段区间上的<b>任意</b>两个值。</p>
+    </div>
+  </div>
+  <p class="note">课本 p110 正文。请一位学生上台：先在 [4,14] 上拖 P、Q 几次，全班观察读数里的不等号始终是“&lt;”；再换 [14,24]、[0,24]。强调课本用词“任意两点”，为定义里的“任意两个值”做准备。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>增函数与减函数</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>单调性（课本 p110–111）</h4>设函数 $y=f(x)$ 的定义域为 $A$，区间 $I\subseteq A$。<br>如果对于区间 $I$ 内的<em>任意两个值</em> $x_1,x_2$，当 $x_1\lt x_2$ 时，都有 $f(x_1)\lt f(x_2)$，那么称 $y=f(x)$ 在区间 $I$ 上是<b>增函数</b>（也称在 $I$ 上单调递增），$I$ 称为 $y=f(x)$ 的<b>增区间</b>。<br>如果对于区间 $I$ 内的任意两个值 $x_1,x_2$，当 $x_1\lt x_2$ 时，都有 $f(x_1)\gt f(x_2)$，那么称 $y=f(x)$ 在区间 $I$ 上是<b>减函数</b>（也称在 $I$ 上单调递减），$I$ 称为 $y=f(x)$ 的<b>减区间</b>。<br>如果函数 $y=f(x)$ 在区间 $I$ 上是增函数或减函数，那么称函数 $y=f(x)$ 在区间 $I$ 上<b>具有单调性</b>。增区间和减区间统称为<b>单调区间</b>。</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">“<b>在区间 $I$ 上</b>”能省掉吗？<br><span class="think" data-step="3" data-ask="想一想">不能。单调性是函数在某个区间上的性质：气温在 $[4,14]$ 上升、在 $[14,24]$ 上下降。</span></p>
+      <p class="tip" data-step="4">“<b>任意</b>两个值”换成“某两个值”行吗？<br><span class="think" data-step="5" data-ask="想一想">不行。只验证几对，中间可能藏着“下降”的地方——下一页动手检验。</span></p>
+      <p class="tip" data-step="6">“$x_1\lt x_2$ 时 $f(x_1)\lt f(x_2)$”，用图象怎么说？<br><span class="think" data-step="7" data-ask="想一想">自变量大的点更高：从左往右看，图象<b>上升</b>；减函数则图象<b>下降</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p110–111 定义框与图 5-3-2。三个追问逐个停顿：区间、任意、x₁ &lt; x₂ 的顺序。可让学生把增函数定义改写成减函数定义，体会“只改一个不等号”。</p>
+</section>
+
+<!-- 6 ================= 核心交互：任取两点检验器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手检验</span><h2>“任意”两个字，到底有多重？</h2></div>
+  <div class="bd ck">
+    <div class="col">
+      <div class="btns ck-fn" data-noswipe id="ckFn"></div>
+      <div class="btns ck-i" data-noswipe id="ckI"></div>
+      <p class="tip ck-read" id="ckRead"></p>
+      <div class="btns" data-noswipe>
+        <button class="btn" type="button" id="ckEnds">只比较端点</button>
+        <button class="btn solid" type="button" id="ckRand">随机抽 100 对</button>
+      </div>
+      <p class="tip feedback" id="ckMsg"></p>
+    </div>
+    <div class="col">
+      <div id="ckBoards" class="ck-boards"></div>
+      <p class="muted center small-t">浅蓝色带 = 区间 $I$；拖动 $P$、$Q$，读数里 $x_1$ 总是较小的那个</p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。建议顺序：① x² 在 [0,3] 上抽 100 对全是“&lt;”，但系统说“不能断定”；换 [−2,3] 立刻抽到反例。② 三次函数在 [0,4] 上“只比较端点”得 f(0) &lt; f(4)，看似增函数，一抽就露馅（先增后减再增）。③ 分段函数端点同样骗人，把 Q 拖到 x=2 就看见跳跃。④ “像直线”的函数抽 100 对多半全通过，请学生把 P、Q 拖到 x₁=2.42、x₂=2.5，读数 2.21 &gt; 2.1——它在 x=2.5 附近有个小凹坑。结论：举反例只要一对；说“是增函数”必须对任意一对都成立，只能靠证明。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>画出函数图象，并写出单调区间</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip big">(1) $y=-x^2+2$</p>
+      <div id="ex1a" class="ex1"></div>
+      <p class="tip" data-step="1">增区间？减区间？　<span class="think" data-step="2" data-ask="看图写区间">增区间为 $(-\infty,0]$，减区间为 $[0,+\infty)$。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip big">(2) $y=\dfrac1x\ (x\ne 0)$</p>
+      <div id="ex1b" class="ex1"></div>
+      <p class="tip" data-step="3">单调区间？　<span class="think" data-step="4" data-ask="看图写区间">$(-\infty,0)$ 和 $(0,+\infty)$ 是两个减区间。</span></p>
+      <p class="warn" data-step="5">能说“$y=\dfrac1x$ 在 $(-\infty,0)\cup(0,+\infty)$ 上是减函数”吗？<span class="think" data-step="6" data-ask="找一对 x₁ < x₂ 试试">不能！取 $x_1=-1\lt x_2=1$，却有 $f(-1)=-1\lt f(1)=1$。两个减区间之间用“和”或逗号隔开，<b>不能</b>用“$\cup$”合并。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p111 例 1、图 5-3-3。蓝色部分上升、橙色部分下降。(1) 中 x=0 写进两个区间都可以（课本写 (−∞,0] 与 [0,+∞)）；(2) 中 0 不在定义域内，区间只能开。易错警示用图上标出的两点 (−1,−1)、(1,1) 当反例，正好用到上一页“一个反例就够”。</p>
+</section>
+
+<!-- 8 ================= 辨一辨：练习 8 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>练习 8：这些说法对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <p><b>(1)</b> 若定义在 $\R$ 上的函数 $f(x)$ 满足 $f(2)\gt f(1)$，则函数 $f(x)$ 是 $\R$ 上的增函数。</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>只有一对 $1\lt 2$，不是“任意”。反例：$f(x)=(x-1)^2$，$f(2)=1\gt f(1)=0$，但它在 $\R$ 上不是增函数。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>(2)</b> 若定义在 $\R$ 上的函数 $f(x)$ 满足 $f(2)\gt f(1)$，则函数 $f(x)$ 在 $\R$ 上不是减函数。</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict ok">✓</span>减函数要求 $1\lt 2$ 时 $f(1)\gt f(2)$；现在这一对就违反了。<b>一个反例</b>足以否定。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>(3)</b> 若 $f(x)$ 在区间 $(-\infty,0]$ 上单调递增，在区间 $[0,+\infty)$ 上也单调递增，则 $f(x)$ 在 $\R$ 上是增函数。</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict ok">✓</span>两段都含 0。若 $x_1\lt 0\lt x_2$，则 $f(x_1)\lt f(0)\lt f(x_2)$；两点在同一段时直接由单调性得到。</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p><b>(4)</b> 若 $f(x)$ 在区间 $(-\infty,0]$ 上单调递增，在区间 $(0,+\infty)$ 上也单调递增，则 $f(x)$ 在 $\R$ 上是增函数。</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><div class="ctr-row"><p><span class="verdict x">✗</span>反例：$f(x)=\begin{cases}x, & x\le 0,\\x-1, & x\gt 0.\end{cases}$ 取 $x_1=0\lt x_2=\frac12$，$f(0)=0\gt f(\frac12)=-\frac12$。</p><div id="ctr" class="ctr"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p114 练习 8。每题先举手表决再点开。(1)(2) 对照：“证明是”要任意，“否定是”一个反例。(3)(4) 只差一个 0：两段“接得上”才行；(4) 的反例在 x=0 处往下跳，与第 6 页的分段函数同理。</p>
+</section>
+
+<!-- 9 ================= 定义法证明：例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>用定义证明：$f(x)=-\frac1x-1$ 在 $(-\infty,0)$ 上是增函数</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span class="stp">① 取值</span><span>设 $x_1,x_2$ 为区间 $(-\infty,0)$ 上的任意两个值，且 $x_1\lt x_2$，</span><i class="why">“任意”就靠这一句：$x_1,x_2$ 不是具体数</i></div>
+      <div class="dl" data-step="2"><span></span><span>则 $x_1-x_2\lt 0$，$x_1x_2\gt 0$。</span><span class="think" data-step="3" data-ask="x₁x₂ > 0 的依据？">$x_1,x_2$ 都是负数，同号相乘得正</span></div>
+      <div class="dl" data-step="4"><span class="stp">② 作差</span><span>$f(x_1)-f(x_2)=\left(-\dfrac{1}{x_1}-1\right)-\left(-\dfrac{1}{x_2}-1\right)$</span><i class="why">比较大小看差（3.1 作差比较）</i></div>
+      <div class="dl key" data-step="5"><span class="stp">③ 变形</span><span>$=\dfrac{1}{x_2}-\dfrac{1}{x_1}=\dfrac{x_1-x_2}{x_1x_2}$，</span><span class="think" data-step="6" data-ask="为什么要通分？">化成<b>商</b>的形式，分子、分母的符号上面已经知道了</span></div>
+      <div class="dl" data-step="7"><span class="stp">④ 定号</span><span>所以 $f(x_1)-f(x_2)\lt 0$，即 $f(x_1)\lt f(x_2)$。</span><i class="why">分子 $\lt 0$，分母 $\gt 0$：异号得负</i></div>
+      <div class="dl end" data-step="8"><span class="stp">⑤ 结论</span><span>故 $f(x)=-\dfrac1x-1$ 在区间 $(-\infty,0)$ 上是增函数。</span><i class="why">符合增函数的定义</i></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="9" data-label="定义法证明单调性">取值（任意 $x_1\lt x_2$）→ 作差 $f(x_1)-f(x_2)$ → 变形（通分、因式分解、配方，化成积或商）→ 定号 → 结论。</p>
+      <p class="recall" data-label="课本旁注" data-step="10">记 $y_2-y_1=\Delta y$，$x_2-x_1=\Delta x$，函数的单调性与 $\dfrac{\Delta y}{\Delta x}$ 的符号有什么关系？<span class="think" data-step="11" data-ask="想一想">增函数：$\dfrac{\Delta y}{\Delta x}\gt 0$；减函数：$\dfrac{\Delta y}{\Delta x}\lt 0$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p111–112 例 2。开场一句：画图只能“看出来”，抽样只能“试出来”；要说明任意两个值都满足，只能用字母 x₁、x₂ 代表它们推理一遍。每行先问“依据是什么”。第 3 步：x₁x₂ &gt; 0 是因为区间 (−∞,0) 里都是负数——换成别的区间就不一定成立，这正是区间不能省的原因。第 6 步：变形的目标是“能看出符号”。旁注的 Δy/Δx 就是两点连线的斜率，为以后学导数埋下伏笔。</p>
+</section>
+
+<!-- 10 ================= 跟着证：练习 1、练习 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">跟着证</span><h2>照五步走一遍：变形要变到“能定号”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip big">练习 1：判断 $f(x)=x^2-1$ 在 $(0,+\infty)$ 上是增函数还是减函数。</p>
+      <div class="derive d2">
+        <div class="dl" data-step="1"><span>取值</span><span>设 $0\lt x_1\lt x_2$，</span><i class="why">任意两个值</i></div>
+        <div class="dl" data-step="2"><span>作差</span><span>$f(x_1)-f(x_2)=x_1^2-x_2^2$</span><i class="why">$-1$ 相互抵消</i></div>
+        <div class="dl key" data-step="3"><span>变形</span><span class="think" data-step="4" data-ask="化成积">$=(x_1-x_2)(x_1+x_2)$</span><i class="why">平方差公式</i></div>
+        <div class="dl" data-step="5"><span>定号</span><span class="think" data-step="6" data-ask="两个因式的符号？">$x_1-x_2\lt 0$，$x_1+x_2\gt 0$，积 $\lt 0$</span><i class="why">$x_1,x_2$ 都是正数</i></div>
+        <div class="dl end" data-step="7"><span>结论</span><span>$f(x_1)\lt f(x_2)$，$f(x)$ 在 $(0,+\infty)$ 上是<b>增函数</b>。</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip big">练习 6：证明 $f(x)=-2x+1$ 是减函数。</p>
+      <div class="derive d2">
+        <div class="dl" data-step="8"><span>取值</span><span>设 $x_1,x_2\in\R$，且 $x_1\lt x_2$，</span><i class="why">定义域是 $\R$</i></div>
+        <div class="dl key" data-step="9"><span>作差、变形</span><span class="think" data-step="10" data-ask="算一算">$f(x_1)-f(x_2)=-2x_1+2x_2=2(x_2-x_1)$</span><i class="why">提公因数</i></div>
+        <div class="dl" data-step="11"><span>定号</span><span>$x_2-x_1\gt 0$，所以 $f(x_1)-f(x_2)\gt 0$</span><i class="why"></i></div>
+        <div class="dl end" data-step="11"><span>结论</span><span>$f(x_1)\gt f(x_2)$，$f(x)$ 在 $\R$ 上是<b>减函数</b>。</span><i class="why"></i></div>
+      </div>
+      <p class="warn" data-step="12">不能写“取 $x_1=1,\ x_2=2$，$f(1)\lt f(2)$，所以是增函数”——那只是一对，证明的是“某两个”，不是“任意两个”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p113 练习 1、练习 6。请学生先在本子上写，教师逐行点开对照。第 1 题的关键是“变形到积”：x₁² − x₂² 本身看不出符号，因式分解后才能定号；同时注意“x₁ + x₂ &gt; 0”用到了区间 (0,+∞)——若换成 R 就推不下去，这与“x² 在 R 上不单调”一致。</p>
+</section>
+
+<!-- 11 ================= 最大值、最小值 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">最值</span><h2>“最高点”怎样用数学语言说？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">图 5-3-1 中，14 时的气温为全天最高，图象在这一点位置最高；图 5-3-3(1) 中，对任意 $x\in\R$，都有 $f(x)\le 2=f(0)$。</p>
+      <div class="def" data-step="1"><h4>最大值、最小值（课本 p112）</h4>设 $y=f(x)$ 的定义域为 $A$。如果<em>存在</em> $x_0\in A$，使得对于<em>任意</em>的 $x\in A$，都有 $f(x)\le f(x_0)$，那么称 $f(x_0)$ 为 $y=f(x)$ 的<b>最大值</b>，记为 $y_{\max}=f(x_0)$；<br>如果存在 $x_0\in A$，使得对于任意的 $x\in A$，都有 $f(x)\ge f(x_0)$，那么称 $f(x_0)$ 为 $y=f(x)$ 的<b>最小值</b>，记为 $y_{\min}=f(x_0)$。</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="2">$f(x)=-x^2+2$ 对任意 $x$ 都有 $f(x)\le 3$。3 是它的最大值吗？　<span class="think" data-step="3" data-ask="先判断，再拖下图的水平线">不是。找不到 $x_0$ 使 $f(x_0)=3$——“存在”这一条不满足。</span></p>
+      <div class="mx-row"><div id="mx" class="mx"></div><p class="tip feedback mx-msg" id="mxMsg"></p></div>
+      <p class="muted center small-t">拖动左侧橙色点，上下移动水平线 $y=M$</p>
+    </div>
+  </div>
+  <p class="note">课本 p112 定义框。把定义拆成两个条件：① 任意 x，f(x) ≤ M（M 是“天花板”）；② 存在 x₀ 使 f(x₀) = M（天花板“够得着”）。拖动水平线：M 大于 2 时只满足 ①，M 小于 2 时只满足 ②，只有 M = 2 两条都满足。</p>
+</section>
+
+<!-- 12 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>看图指出最大值、最小值及单调区间</h2></div>
+  <div class="bd full">
+    <p class="tip">图 5-3-4 为函数 $y=f(x)$，$x\in[-4,7]$ 的图象，指出它的最大值、最小值及单调区间。</p>
+    <div class="cols2 ex3-row">
+      <div class="col">
+        <div id="ex3" class="ex3"></div>
+        <p class="tip center" id="ex3V"></p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="1">图象上位置最高、最低的点？　<span class="think" data-step="2" data-ask="看图找点">最高点 $(3,3)$，最低点 $(-1.5,-2)$。</span></p>
+        <p class="tip" data-step="3">最值是多少？在哪里取得？　<span class="think" data-step="4" data-ask="写出来">当 $x=3$ 时取得最大值，$y_{\max}=3$；当 $x=-1.5$ 时取得最小值，$y_{\min}=-2$。</span></p>
+        <p class="tip" data-step="5">单调区间？　<span class="think" data-step="6" data-ask="沿图象从左往右走一遍">增区间为 $[-1.5,3]$，$[5,6]$；减区间为 $[-4,-1.5]$，$[3,5]$，$[6,7]$</span></p>
+        <p class="method" data-step="7" data-label="看图读性质">最值看“最高点、最低点”的<b>纵坐标</b>；单调区间看“上升、下降”的<b>横坐标</b>范围。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p112 例 3、图 5-3-4（依课本图描点绘制）。拖动曲线上的点从左走到右，读数会显示它所在的单调区间。提醒：(5, 0.9) 处虽然是一个“谷”，但不是最低点；(6, 1.7) 是“峰”但不是最高点——最值看整个定义域。</p>
+</section>
+
+<!-- 13 ================= 例 4 + 思考 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>求下列函数的最小值</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip big">(1) $y=x^2-2x$</p>
+      <div class="derive d2">
+        <div class="dl" data-step="1"><span>配方</span><span class="think" data-step="2" data-ask="怎样看出最小值？">$y=x^2-2x=(x-1)^2-1\ge -1$</span><i class="why">$(x-1)^2\ge 0$</i></div>
+        <div class="dl end" data-step="3"><span>取到</span><span>当 $x=1$ 时 $y=-1$，所以 $y_{\min}=-1$</span><i class="why">“存在 $x_0=1$”</i></div>
+      </div>
+      <div id="ex4a" class="ex4" data-step="3"></div>
+    </div>
+    <div class="col">
+      <p class="tip big">(2) $y=\dfrac1x,\ x\in[1,3]$</p>
+      <div class="derive d2">
+        <div class="dl" data-step="4"><span>放缩</span><span class="think" data-step="5" data-ask="x 越大，1/x 怎样？">对任意 $x\in[1,3]$，都有 $\dfrac1x\ge\dfrac13$</span><i class="why">$y=\frac1x$ 在 $[1,3]$ 上单调递减</i></div>
+        <div class="dl end" data-step="6"><span>取到</span><span>当 $x=3$ 时 $\dfrac1x=\dfrac13$，所以 $y_{\min}=\dfrac13$</span><i class="why"></i></div>
+      </div>
+      <div id="ex4b" class="ex4b" data-step="6"></div>
+      <p class="recall" data-label="思考" data-step="7">例 4 中的两个函数有无最大值？<span class="think" data-step="8" data-ask="想一想">(1) 没有：$x$ 离 1 越远，$y$ 越大，没有“天花板”。(2) 有：在 $[1,3]$ 上递减，$x=1$ 时取最大值 $y_{\max}=1$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p113 例 4 与“思考”。两个小题都要写两件事：“≥ 某数”与“某处取到”，对应上一页最值定义的两个条件。(2) 用单调性定最值，是下一页例 5 的铺垫。</p>
+</section>
+
+<!-- 14 ================= 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>先增后减，最大值在哪里？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">已知函数 $y=f(x)$ 的定义域是 $[a,b]$，$a\lt c\lt b$。在区间 $[a,c]$ 上，$f(x)$ 单调递增；在区间 $[c,b]$ 上，$f(x)$ 单调递减。试证明 $f(x)$ 在 $x=c$ 时取得最大值。</p>
+      <div id="ex5" class="ex5"></div>
+    </div>
+    <div class="col">
+      <div class="derive d2">
+        <div class="dl" data-step="1"><span>左段</span><span class="think" data-step="2" data-ask="为什么？">对于任意 $x\in[a,c]$，都有 $f(x)\le f(c)$</span><i class="why">$[a,c]$ 上单调递增，$x\le c$</i></div>
+        <div class="dl" data-step="3"><span>右段</span><span class="think" data-step="4" data-ask="为什么？">对于任意 $x\in[c,b]$，都有 $f(x)\le f(c)$</span><i class="why">$[c,b]$ 上单调递减，$x\ge c$</i></div>
+        <div class="dl end" data-step="5"><span>因此</span><span>对于任意 $x\in[a,b]$，都有 $f(x)\le f(c)$，</span><i class="why">两段合起来就是整个定义域</i></div>
+        <div class="dl end" data-step="5"><span>即</span><span>$f(x)$ 在 $x=c$ 时取得最大值。</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="6" data-label="用单调性求最值">先找单调区间：先增后减，“峰顶”处取最大值；先减后增，“谷底”处取最小值；在闭区间上单调，最值在两个端点取得。</p>
+    </div>
+  </div>
+  <p class="note">课本 p113 例 5。证明分两段，每段只用一次单调性；x = c 时 f(x) ≤ f(c) 取等号，不需要单独讨论。方法提炼里“闭区间上单调 → 端点取最值”，正好用于下一页练习 4。</p>
+</section>
+
+<!-- 15 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 画出函数 $f(x)=|x+1|$ 的图象，并根据图象写出 $f(x)$ 的单调区间。</p>
+        <details><summary>提示 1</summary>去掉绝对值：$x\ge -1$ 时 $f(x)=x+1$；$x\lt -1$ 时 $f(x)=-x-1$。</details>
+        <details><summary>提示 2</summary>图象是以 $(-1,0)$ 为顶点的“V”字形。</details>
+        <details><summary>完整解答</summary>减区间为 $(-\infty,-1]$，增区间为 $[-1,+\infty)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 求函数 $f(x)=-x^2+2x$ 在 $[0,10]$ 上的最大值和最小值。</p>
+        <details><summary>提示 1</summary>配方：$f(x)=-(x-1)^2+1$，对称轴 $x=1$。</details>
+        <details><summary>提示 2</summary>在 $[0,1]$ 上递增，在 $[1,10]$ 上递减——像例 5。最小值比较两个端点。</details>
+        <details><summary>完整解答</summary>$x=1$ 时取最大值 $f(1)=1$；$f(0)=0$，$f(10)=-80$，所以 $x=10$ 时取最小值 $-80$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 函数 $y=\dfrac1x$ 在区间 $(-2,-1]$ 上有最大值吗？有最小值吗？</p>
+        <details><summary>提示 1</summary>$y=\dfrac1x$ 在 $(-\infty,0)$ 上单调递减，所以在 $(-2,-1]$ 上也递减。</details>
+        <details><summary>提示 2</summary>递减：左端点处最大、右端点处最小。可左端点 $-2$ 取不到！</details>
+        <details><summary>完整解答</summary>最小值为 $f(-1)=-1$；当 $x$ 从右边接近 $-2$ 时，$y$ 越来越接近 $-\dfrac12$ 但取不到，所以<b>没有最大值</b>。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p113 练习 2、4、5。先独立做 3 分钟，卡住再逐级点开。第 5 题是“存在 x₀”的反面：开区间端点取不到，最值就可能不存在。课后可做练习 3、7 与习题 5.3 第 1、2、5 题。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">区间 $I$ 上任意 $x_1\lt x_2$：$f(x_1)\lt f(x_2)$ ⇔ 增函数；$f(x_1)\gt f(x_2)$ ⇔ 减函数。</p>
+        <p class="recall" data-label="最值">存在 $x_0$ + 对任意 $x$：$f(x)\le f(x_0)$（最大）或 $f(x)\ge f(x_0)$（最小）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="定义法证明">取值 → 作差 → 变形 → 定号 → 结论。</p>
+        <p class="method" data-label="判断与求最值">看图读单调区间；否定单调只需一个反例；先增后减取峰顶。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="从直观到严格">“图象上升” → “任取两点” → “任意 $x_1\lt x_2$” → 代数证明。</p>
+        <p class="recall" data-label="数形结合">图象看出单调区间、最高最低点；代数式证明它们。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b><a href="../mg10a-jiouxing/index.html">5.4 函数的奇偶性</a>——单调性看图象“从左往右”怎样变化；奇偶性看图象<b>左右两边</b>有什么对称关系。</p>
+  </div>
+  <p class="note">请学生先自己说出“增函数定义里最重要的两个字”（任意），再逐栏揭示。课后作业建议：习题 5.3 第 1、2、3、5 题；第 7 题证明 x + 1/x 在 [1,+∞) 上递增，正好回答 3.2 课“辨一辨”第 3 张卡留下的问题：t + 1/t（t ≥ √2）的最小值在 t = √2 处取得。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

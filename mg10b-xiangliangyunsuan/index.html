@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>向量运算 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mvec.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/duchuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第9章 平面向量 · 9.2</p>
+    <h1 class="cover-title">向量运算</h1>
+    <p class="cover-q" data-step="1">渡船想<b>垂直</b>开到对岸，江水却一直往东流。船头该朝哪儿开？</p>
+    <p class="cover-q" data-step="2">船自己的速度、水流的速度、船的实际速度——三个都是向量。它们之间是什么关系？<b>向量也能“加”吗？</b></p>
+    <div class="chips" data-step="3"><span class="chip">加法：三角形 · 平行四边形</span><span class="chip">减法</span><span class="chip">数乘与共线</span><span class="chip">数量积与投影</span></div>
+  </div>
+  <p class="note">课本 p9 引言用斜面上木块受 G、N、f 三个力为例：“求几个力的合力就可以看作是对几个向量实施某种运算”。封面先抛渡船问题（第 6 页的例 2），让学生凭直觉说船头朝哪：正对岸？偏上游？偏多少？留到第 6 页拖动验证。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课认识了向量，今天让向量“算”起来</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="9.1 向量概念" data-step="1">
+        <p>既有大小又有方向的量；用有向线段 $\overrightarrow{AB}$ 或 $\boldsymbol a$ 表示。</p>
+        <p><b>相等向量</b>：长度相等、方向相同——可以自由<b>平移</b>；<b>相反向量</b> $-\boldsymbol a$；零向量 $\boldsymbol 0$；共线（平行）向量。</p>
+        <span class="use">加法要把 $\boldsymbol b$ 平移到 $\boldsymbol a$ 的终点；数乘的结果与 $\boldsymbol a$ 共线。</span>
+      </div>
+      <div class="recall" data-label="初中物理 · 合成" data-step="2">
+        <p>位移的合成：先从 $O$ 走到 $A$，再从 $A$ 走到 $B$，总位移是 $O$ 指向 $B$。</p>
+        <p>力的合成：以两个力为邻边作平行四边形，对角线就是合力。</p>
+        <span class="use">向量加法的两种作法——三角形法则、平行四边形法则——就从这里来。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 第7章 三角函数" data-step="3">
+        <p>$\cos 0^\circ=1$，$\cos 90^\circ=0$，$\cos 180^\circ=-1$，$\cos 135^\circ=-\dfrac{\sqrt2}{2}$；</p>
+        <p>$\theta\in[0^\circ,90^\circ)$ 时 $\cos\theta\gt0$，$\theta\in(90^\circ,180^\circ]$ 时 $\cos\theta\lt0$。</p>
+        <span class="use">数量积 $|\boldsymbol a||\boldsymbol b|\cos\theta$ 的正负、计算都要用它。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>9.1 讲到哪里：</b>只研究了一个个向量“是什么”。今天的问题——<b>向量与实数一样，能进行运算吗？</b></p>
+  </div>
+  <p class="note">9.1 的关键是“向量可以平移”：长度方向不变，起点放在哪都是同一个向量。这是今天所有作图的前提，请学生先说一遍“相等向量”的含义再往下走。</p>
+</section>
+
+<!-- 3 ================= 加法：三角形法则 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.2.1 加法</span><h2>先走 $\boldsymbol a$，再走 $\boldsymbol b$：合起来是什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" id="addBtns" data-noswipe>
+        <button class="btn solid" type="button" data-k="tri">三角形法则（首尾相接）</button>
+        <button class="btn" type="button" data-k="par">平行四边形法则（共起点）</button>
+        <button class="btn" type="button" data-k="col">让 b ∥ a</button>
+      </div>
+      <div id="addB" class="vb"></div>
+      <p class="tip center muted small-t">拖动橙色点改变 $\boldsymbol a$、$\boldsymbol b$</p>
+      <p class="tip readline" id="addV"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">位移：从 $O$ 走到 $A$，再从 $A$ 走到 $B$，总效果相当于<span class="think" data-step="2" data-ask="从哪到哪？">直接从 $O$ 走到 $B$。</span></p>
+      <div class="def" data-step="3"><h4>向量的加法（课本 p9）</h4>已知向量 $\boldsymbol a$ 和 $\boldsymbol b$，在平面内任取一点 $O$，作 $\overrightarrow{OA}=\boldsymbol a$，$\overrightarrow{AB}=\boldsymbol b$，则向量 $\overrightarrow{OB}$ 叫作 $\boldsymbol a$ 与 $\boldsymbol b$ 的<em>和</em>，记作 $\boldsymbol a+\boldsymbol b$，即 $$\boldsymbol a+\boldsymbol b=\overrightarrow{OA}+\overrightarrow{AB}=\overrightarrow{OB}.$$</div>
+      <p class="method" data-step="4" data-label="三角形法则">把 $\boldsymbol b$ <b>平移</b>到 $\boldsymbol a$ 的终点，首尾相接；和从 $\boldsymbol a$ 的起点指向 $\boldsymbol b$ 的终点。</p>
+      <p class="tip" data-step="5">$\boldsymbol a\parallel\boldsymbol b$ 时还能作吗？点“让 b ∥ a”。<span class="think" data-step="6" data-ask="能不能？">照样首尾相接，三点共线；同向时 $|\boldsymbol a+\boldsymbol b|=|\boldsymbol a|+|\boldsymbol b|$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p9 定义与旁注“如果 a∥b，怎样作出 a+b？”。先请学生拖：无论怎么拖，绿色的和总是从 O 指向 B。再看读数：|a+b| 一般小于 |a|+|b|（三角形两边之和大于第三边），只有同向共线时相等——这正是习题 9.2(1) 第 2 题、第 14 题的答案，留个印象即可。也可以切到“平行四边形法则”，第 4 页再细讲。</p>
+</section>
+
+<!-- 4 ================= 平行四边形法则 + 运算律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.2.1 加法</span><h2>两条路，同一个终点：交换律与平行四边形法则</h2></div>
+  <button class="media-btn" hidden data-img="assets/jiafa.jpg" data-video="assets/jiafa.mp4" data-cap="三角形法则与平行四边形法则：两种作法，得到同一个 a + b">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" id="commBtns" data-noswipe>
+        <button class="btn" type="button" data-k="ab">先 a 后 b</button>
+        <button class="btn" type="button" data-k="ba">先 b 后 a</button>
+        <button class="btn solid" type="button" data-k="both">一起看</button>
+      </div>
+      <div id="commB" class="vb short"></div>
+      <p class="muted center small-t">图 9-2-3：$\square OABC$，$\overrightarrow{OA}=\boldsymbol a$，$\overrightarrow{OC}=\boldsymbol b$</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\overrightarrow{OB}$</span><span>$=\overrightarrow{OA}+\overrightarrow{AB}=\boldsymbol a+\boldsymbol b$</span><i class="why">$\overrightarrow{AB}=\overrightarrow{OC}=\boldsymbol b$（平行四边形对边平行且相等）</i></div>
+        <div class="dl" data-step="2"><span>$\overrightarrow{OB}$</span><span>$=\overrightarrow{OC}+\overrightarrow{CB}=\boldsymbol b+\boldsymbol a$</span><i class="why">$\overrightarrow{CB}=\overrightarrow{OA}=\boldsymbol a$</i></div>
+        <div class="dl end" data-step="3"><span>所以</span><span>$\boldsymbol a+\boldsymbol b=\boldsymbol b+\boldsymbol a$</span><i class="why">交换律</i></div>
+      </div>
+      <p class="method" data-step="4" data-label="平行四边形法则">不共线的 $\boldsymbol a,\boldsymbol b$ <b>共起点</b> $O$，以 $OA,OC$ 为邻边作 $\square OABC$，以 $O$ 为起点的对角线 $\overrightarrow{OB}$ 就是 $\boldsymbol a+\boldsymbol b$。</p>
+      <p class="tip" data-step="5">还有：$\boldsymbol a+(-\boldsymbol a)=\boldsymbol 0$，$\boldsymbol a+\boldsymbol 0=\boldsymbol a$，结合律 $(\boldsymbol a+\boldsymbol b)+\boldsymbol c=\boldsymbol a+(\boldsymbol b+\boldsymbol c)$（图 9-2-4）。</p>
+      <p class="tip gold" data-step="6"><b>思考：</b>$n$ 个向量依次首尾相连组成一条<b>封闭折线</b>，它们的和是什么？<span class="think" data-step="7" data-ask="想一想">回到了出发点：和为零向量 $\boldsymbol 0$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p10、图 9-2-3、9-2-4。按钮依次高亮两条路径：O→A→B 与 O→C→B 到达同一点 B，交换律一目了然；同一张图又说明了平行四边形法则（物理中力的合成就是这样作的）。右上角“看动画”是 15 秒无声动画，复习时可播放。“思考”可联系习题 9.2(1) 第 1 题 AB + BC + CA = 0。</p>
+</section>
+
+<!-- 5 ================= 例 1 正六边形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>在正六边形里作向量的和</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 9-2-5，$O$ 为正六边形 $ABCDEF$ 的中心，作出下列向量：<br>(1) $\overrightarrow{OA}+\overrightarrow{OC}$；　(2) $\overrightarrow{BC}+\overrightarrow{FE}$；　(3) $\overrightarrow{OA}+\overrightarrow{FE}$。</p>
+      <div class="btns" id="hexBtns" data-noswipe>
+        <button class="btn" type="button" data-k="1">作 (1)</button>
+        <button class="btn" type="button" data-k="2">作 (2)</button>
+        <button class="btn" type="button" data-k="3">作 (3)</button>
+      </div>
+      <p class="tip feedback" id="hexMsg">先想：用三角形法则还是平行四边形法则？再点按钮看作图。</p>
+      <p class="tip" data-step="1">(1) 两向量<b>共起点</b> $O$ → <span class="think" data-step="2" data-ask="结果？">平行四边形法则：$\overrightarrow{OA}+\overrightarrow{OC}=\overrightarrow{OB}$</span></p>
+      <p class="tip" data-step="3">(2) $\overrightarrow{BC}$ 与 $\overrightarrow{FE}$ 什么关系？<span class="think" data-step="4" data-ask="结果？">相等向量，和是 $2\overrightarrow{BC}$：$\overrightarrow{BC}+\overrightarrow{FE}=\overrightarrow{AD}$</span></p>
+      <p class="tip" data-step="5">(3) $\overrightarrow{OA}$ 与 $\overrightarrow{FE}$ 什么关系？<span class="think" data-step="6" data-ask="结果？">一对相反向量：$\overrightarrow{OA}+\overrightarrow{FE}=\boldsymbol 0$</span></p>
+    </div>
+    <div class="col">
+      <div id="hexB" class="vb"></div>
+    </div>
+  </div>
+  <p class="note">课本 p10 例 1。正六边形被中心分成 6 个正三角形，所以 OABC 是菱形、BC 与 FE 平行且相等、OA 与 FE 方向相反。每小题先让学生说出“用哪个法则”，再点按钮看精确作图：(2) 中灰色虚线是把 FE 平移到 C 的结果，两条绿色向量平行且等长，说明和“可用 AD 表示”。</p>
+</section>
+
+<!-- 6 ================= 例 2 渡船 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>渡船要垂直过江，船头朝哪？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ferryB" class="vb"></div>
+      <div class="slider-row" data-noswipe>航向北偏西<input type="range" id="ferryS" min="0" max="60" step="1" value="15"></div>
+      <p class="tip readline" id="ferryV"></p>
+    </div>
+    <div class="col tight">
+      <p class="tip">在长江南岸某渡口处，江水以 $12.5$ km/h 的速度向东流，渡船在静水中的速度为 $25$ km/h。渡船要垂直地渡过长江，其航向应如何确定？</p>
+      <p class="tip" data-step="1"><b>分析</b>　三个速度是什么关系？<span class="think" data-step="2" data-ask="想一想">水速 $\overrightarrow{AB}$ + 船的静水速度 $\overrightarrow{AD}$ = 实际速度 $\overrightarrow{AC}$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$\overrightarrow{AB}+\overrightarrow{AD}=\overrightarrow{AC}$</span><span>⇒ $ABCD$ 为平行四边形</span><i class="why">平行四边形法则</i></div>
+        <div class="dl" data-step="4"><span>$\text{Rt}\triangle ACD$ 中</span><span>$|\overrightarrow{DC}|=12.5$，$|\overrightarrow{AD}|=25$</span><i class="why">$\angle ACD=90^\circ$，$DC=AB$</i></div>
+        <div class="dl end" data-step="5"><span>所以</span><span class="think" data-step="6" data-ask="∠CAD 等于多少？">$\angle CAD=30^\circ$</span><i class="why">对边 $12.5$ 是斜边 $25$ 的一半</i></div>
+      </div>
+      <p class="tip gold" data-step="7"><b>答</b>　渡船要垂直地渡过长江，其航向应为<b>北偏西 $30^\circ$</b>。拖滑块到 $30^\circ$ 验证。</p>
+    </div>
+  </div>
+  <p class="note">课本 p11 例 2、图 9-2-6（图中 1 格 = 5 km/h，按比例精确作出）。先让学生拖滑块“找”垂直过江的航向：偏小了船被冲向下游（东），偏大了反而往上游（西）。找到 30° 后再用直角三角形说明为什么。追问：此时实际速度多大？（25cos30° ≈ 21.65 km/h，读数可见。）</p>
+</section>
+
+<!-- 7 ================= 减法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.2.1 减法</span><h2>减法是加法的逆运算：$\boldsymbol a-\boldsymbol b$ 怎么作？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>向量的减法（课本 p12）</h4>若 $\boldsymbol b+\boldsymbol x=\boldsymbol a$，则向量 $\boldsymbol x$ 叫作 $\boldsymbol a$ 与 $\boldsymbol b$ 的<em>差</em>，记为 $\boldsymbol a-\boldsymbol b$。</div>
+      <p class="tip" data-step="2">例 3：作 $\overrightarrow{OA}=\boldsymbol a$，$\overrightarrow{OB}=\boldsymbol b$。要找 $\boldsymbol x$ 使 $\boldsymbol b+\boldsymbol x=\boldsymbol a$——从 $B$ 出发，到哪里？<span class="think" data-step="3" data-ask="想一想">到 $A$：$\overrightarrow{OB}+\overrightarrow{BA}=\overrightarrow{OA}$，所以 $\overrightarrow{BA}=\boldsymbol a-\boldsymbol b$。</span></p>
+      <p class="method" data-step="4" data-label="作差">$\boldsymbol a,\boldsymbol b$ <b>起点相同</b>时，从 $\boldsymbol b$ 的终点指向 $\boldsymbol a$ 的终点的向量就是 $\boldsymbol a-\boldsymbol b$。<br>口诀：共起点，连终点，<b>指向被减</b>。</p>
+      <p class="tip" data-step="5">由结合律：$[\boldsymbol a+(-\boldsymbol b)]+\boldsymbol b=\boldsymbol a$，所以 <span class="think" data-step="6" data-ask="得到什么？">$\boldsymbol a-\boldsymbol b=\boldsymbol a+(-\boldsymbol b)$——减去一个向量等于加上它的相反向量。</span></p>
+    </div>
+    <div class="col">
+      <div id="subB" class="vb"></div>
+      <div class="btns center-btns" data-noswipe><button class="btn" type="button" id="subNeg">画出 a + (−b)</button><span class="tip readline inline" id="subV"></span></div>
+      <p class="muted center small-t">拖动 $A$、$B$；紫色 $\boldsymbol a-\boldsymbol b$ 始终从 $B$ 指向 $A$</p>
+    </div>
+  </div>
+  <p class="note">课本 p12 定义与例 3、图 9-2-7。最容易错的是方向：让学生拖动后说“谁指向谁”，强化“指向被减向量的终点”。点“画出 a + (−b)”：从 A 接上 −b，得到的紫色向量与 BA 平行且相等——这就是课本“思考：你能画图说明 a − b = a + (−b) 吗？”的答案。</p>
+</section>
+
+<!-- 8 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>证明向量等式：分析法找路，综合法写路</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 9-2-8，点 $O$ 是 $\square ABCD$ 的两条对角线的交点，$\overrightarrow{AB}=\boldsymbol a$，$\overrightarrow{DA}=\boldsymbol b$，$\overrightarrow{OC}=\boldsymbol c$，求证：$\boldsymbol b+\boldsymbol c-\boldsymbol a=\overrightarrow{OA}$。</p>
+      <div id="parB" class="vb short"></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1"><b>分析</b>　含减号不好直接算，怎样转化？<span class="think" data-step="2" data-ask="只要证什么？">要证 $\boldsymbol b+\boldsymbol c-\boldsymbol a=\overrightarrow{OA}$，只要证 $\boldsymbol b+\boldsymbol c=\overrightarrow{OA}+\boldsymbol a$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>因为</span><span>$\overrightarrow{DA}=\overrightarrow{CB}$</span><i class="why">$ABCD$ 是平行四边形</i></div>
+        <div class="dl" data-step="4"><span>$\boldsymbol b+\boldsymbol c$</span><span>$=\overrightarrow{DA}+\overrightarrow{OC}=\overrightarrow{OC}+\overrightarrow{CB}$</span><i class="why">交换律，$\overrightarrow{DA}$ 换成 $\overrightarrow{CB}$</i></div>
+        <div class="dl" data-step="4"><span></span><span>$=\overrightarrow{OB}$</span><i class="why">三角形法则</i></div>
+        <div class="dl" data-step="5"><span>$\overrightarrow{OA}+\boldsymbol a$</span><span>$=\overrightarrow{OA}+\overrightarrow{AB}=\overrightarrow{OB}$</span><i class="why">三角形法则</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$\boldsymbol b+\boldsymbol c=\overrightarrow{OA}+\boldsymbol a$</span><i class="why">两边都等于 $\overrightarrow{OB}$，即 $\boldsymbol b+\boldsymbol c-\boldsymbol a=\overrightarrow{OA}$</i></div>
+      </div>
+      <p class="method" data-step="7">向量等式的常用路子：把各向量化成<b>首尾相接</b>（可用三角形法则）或<b>共起点</b>（可作差）的形式。课本还给出 $\overrightarrow{OA}=\overrightarrow{OC}+\overrightarrow{CB}+\overrightarrow{CD}$ 等证法，你还能找到别的吗？</p>
+    </div>
+  </div>
+  <p class="note">课本 p12–13 例 4。分析法“要证……只要证……”在必修第一册 3.2 基本不等式中学过。关键是第 4 行把 DA 换成和它相等的 CB，让 OC、CB 首尾相接。课后可让学生按课本另两条思路各写一遍。</p>
+</section>
+
+<!-- 9 ================= 数乘 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.2.2 数乘</span><h2>$\boldsymbol a+\boldsymbol a+\boldsymbol a$ 记作 $3\boldsymbol a$——那 $\lambda\boldsymbol a$ 呢？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">质点做匀速直线运动，1 s 的位移是 $\boldsymbol a$，同方向上 3 s 的位移怎样表示？<span class="think" data-step="1" data-ask="想一想">$\boldsymbol a+\boldsymbol a+\boldsymbol a=3\boldsymbol a$：长度是 $|\boldsymbol a|$ 的 3 倍，方向与 $\boldsymbol a$ 相同。</span></p>
+      <div class="def" data-step="2"><h4>向量的数乘（课本 p15）</h4>实数 $\lambda$ 与向量 $\boldsymbol a$ 的积是一个<em>向量</em>，记作 $\lambda\boldsymbol a$：<br>(1) $|\lambda\boldsymbol a|=|\lambda||\boldsymbol a|$；<br>(2) 若 $\boldsymbol a\ne\boldsymbol 0$，当 $\lambda\gt0$ 时 $\lambda\boldsymbol a$ 与 $\boldsymbol a$ 方向相同，当 $\lambda\lt0$ 时方向相反。<br>特别地，$0\boldsymbol a=\boldsymbol 0$，$\lambda\boldsymbol 0=\boldsymbol 0$。</div>
+      <p class="tip" data-step="3">运算律：$\lambda(\mu\boldsymbol a)=(\lambda\mu)\boldsymbol a$；$(\lambda+\mu)\boldsymbol a=\lambda\boldsymbol a+\mu\boldsymbol a$；$\lambda(\boldsymbol a+\boldsymbol b)=\lambda\boldsymbol a+\lambda\boldsymbol b$。加、减、数乘统称<b>线性运算</b>。</p>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>$\lambda=$<input type="range" id="mulS" min="-3" max="3" step="0.5" value="2"></div>
+      <div id="mulB" class="vb"></div>
+      <p class="tip readline" id="mulV"></p>
+      <p class="muted center small-t">拖动 $\boldsymbol a$ 的终点；橙色 $\lambda\boldsymbol a$ 上的小点每隔 $|\boldsymbol a|$ 一个</p>
+    </div>
+  </div>
+  <p class="note">课本 p15、图 9-2-9、9-2-10。先由 a + a + a 得到 3a，再问“−a + (−a) 呢？”引出负数。拖滑块时请学生盯两件事：长度（数小点）和方向（λ 过 0 时翻转）；λ = 0 时只剩一个点——是零向量，不是数 0。λa 画在 a 旁边平移了一点，只是为了不重叠（相等向量可平移）。</p>
+</section>
+
+<!-- 10 ================= 数乘例题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>作图与计算：像多项式一样“合并同类项”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">例 1　如图 9-2-11(1)，已知向量 $\boldsymbol a$ 和向量 $\boldsymbol b$，求作向量 $-2.5\boldsymbol a$ 和向量 $2\boldsymbol a-3\boldsymbol b$。</p>
+      <div id="ex1mB" class="vb short"></div>
+      <p class="tip" data-step="2">以 $O$ 为起点，分别作 $\overrightarrow{OA}=2\boldsymbol a$，$\overrightarrow{OB}=3\boldsymbol b$，连接 $BA$，则 <span class="think" data-step="3" data-ask="BA 是什么？">$\overrightarrow{BA}=\overrightarrow{OA}-\overrightarrow{OB}=2\boldsymbol a-3\boldsymbol b$。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">$-2.5\boldsymbol a$：长度是 $|\boldsymbol a|$ 的 $2.5$ 倍，方向与 $\boldsymbol a$ <b>相反</b>。</p>
+      <p class="tip" data-step="4">例 2　计算：(1) $3(\boldsymbol a-\boldsymbol b)-2(\boldsymbol a+2\boldsymbol b)$；(2) $2(2\boldsymbol a+6\boldsymbol b-3\boldsymbol c)-3(-3\boldsymbol a+4\boldsymbol b-2\boldsymbol c)$。</p>
+      <div class="derive">
+        <div class="dl" data-step="5"><span>(1) 原式</span><span class="think" data-step="6" data-ask="展开、合并">$=3\boldsymbol a-3\boldsymbol b-2\boldsymbol a-4\boldsymbol b=\boldsymbol a-7\boldsymbol b$</span><i class="why">合并</i></div>
+        <div class="dl" data-step="7"><span>(2) 原式</span><span class="think" data-step="8" data-ask="展开">$=4\boldsymbol a+12\boldsymbol b-6\boldsymbol c+9\boldsymbol a-12\boldsymbol b+6\boldsymbol c$</span><i class="why">分配律</i></div>
+        <div class="dl" data-step="8"><span></span><span>$=13\boldsymbol a$</span><i class="why">$\boldsymbol b$、$\boldsymbol c$ 恰好消去</i></div>
+      </div>
+      <p class="tip gold" data-step="9"><b>思考：</b>向量的数乘与实数的乘法有哪些相同点和不同点？<span class="think" data-step="9" data-ask="说说看">运算律形式相同；但 $\lambda\boldsymbol a$ 的结果是<b>向量</b>，有方向。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p15–16 例 1、例 2。作图按课本图 9-2-11 的比例精确画出：先出 −2.5a，再出 2a、3b，最后连 BA。提醒“连 BA 而不是 AB”——用的正是上一页“指向被减”。例 2 让学生口算，体会线性运算的运算律与多项式运算一致。</p>
+</section>
+
+<!-- 11 ================= 共线定理 + 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">共线定理</span><h2>$\boldsymbol b=\lambda\boldsymbol a$ ⇔ 共线；直线上的点怎样用向量表示？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>向量共线定理（课本 p17）</h4>设 $\boldsymbol a$ 为非零向量，如果有一个实数 $\lambda$，使 $\boldsymbol b=\lambda\boldsymbol a$，那么 $\boldsymbol b$ 与 $\boldsymbol a$ 是共线向量；反之，如果 $\boldsymbol b$ 与 $\boldsymbol a$ 是共线向量，那么有且只有一个实数 $\lambda$，使 $\boldsymbol b=\lambda\boldsymbol a$。</div>
+      <p class="tip" data-step="2">例 3：$D,E$ 是 $AB,AC$ 中点 ⇒ $DE\parallel BC$，$DE=\frac12BC$ 且同向，<span class="think" data-step="3" data-ask="所以？">所以 $\overrightarrow{DE}=\dfrac12\overrightarrow{BC}$。</span></p>
+      <div id="ratioB" class="vb short" data-step="8"></div>
+    </div>
+    <div class="col">
+      <p class="tip">例 4　$O$ 为直线 $AB$ 外一点，点 $C$ 在直线 $AB$ 上，且 $\overrightarrow{AC}=\lambda\overrightarrow{CB}\ (\lambda\ne-1)$。求证：$\overrightarrow{OC}=\dfrac{\overrightarrow{OA}+\lambda\overrightarrow{OB}}{1+\lambda}$。</p>
+      <div class="derive">
+        <div class="dl" data-step="5"><span>$\overrightarrow{OC}-\overrightarrow{OA}$</span><span>$=\lambda(\overrightarrow{OB}-\overrightarrow{OC})$</span><i class="why">$\overrightarrow{AC}=\overrightarrow{OC}-\overrightarrow{OA}$，$\overrightarrow{CB}=\overrightarrow{OB}-\overrightarrow{OC}$</i></div>
+        <div class="dl" data-step="6"><span>$(1+\lambda)\overrightarrow{OC}$</span><span>$=\overrightarrow{OA}+\lambda\overrightarrow{OB}$</span><i class="why">移项，合并</i></div>
+        <div class="dl end" data-step="7"><span>$\overrightarrow{OC}$</span><span>$=\dfrac{\overrightarrow{OA}+\lambda\overrightarrow{OB}}{1+\lambda}$</span><i class="why">$\lambda\ne-1$，可以除以 $1+\lambda$</i></div>
+      </div>
+      <p class="tip readline" id="ratioV" data-step="8"></p>
+    </div>
+  </div>
+  <p class="note">课本 p17–18 例 3、共线定理、例 4。追问“为什么要求 a ≠ 0”：若 a = 0，b ≠ 0 时找不到 λ，b = 0 时 λ 又不唯一。定理的“有且只有一个”可简述课本证明：同向取 λ = |b|/|a|，反向取 −|b|/|a|。例 4 证完后让学生拖动 C（只能在直线 AB 上动），看 λ 的正负与 C 的位置：线段内 λ &gt; 0，延长线上 λ &lt; 0，与 A 重合 λ = 0，C 永远到不了“λ = −1”。旁注追问：λ = 1 时得 OC = (OA + OB)/2——中点公式。</p>
+</section>
+
+<!-- 12 ================= 数量积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">9.2.3 数量积</span><h2>力做的功：两个向量“相乘”得到一个数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">力 $\boldsymbol F$ 与位移 $\boldsymbol s$ 的夹角为 $\theta$，功 $W=$<span class="think" data-step="1" data-ask="物理公式？">$|\boldsymbol F||\boldsymbol s|\cos\theta$——结果是一个<b>数量</b>，与长度和夹角都有关。</span></p>
+      <div class="def" data-step="2"><h4>数量积（课本 p20）</h4>已知两个非零向量 $\boldsymbol a$ 和 $\boldsymbol b$，它们的夹角是 $\theta$，我们把数量 $|\boldsymbol a||\boldsymbol b|\cos\theta$ 叫作向量 $\boldsymbol a$ 和 $\boldsymbol b$ 的<em>数量积</em>，记作 $\boldsymbol a\cdot\boldsymbol b$，即 $\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos\theta$。规定：零向量与任一向量的数量积为 0。</div>
+      <p class="tip" data-step="3">由定义：$\boldsymbol a\perp\boldsymbol b\Leftrightarrow\boldsymbol a\cdot\boldsymbol b=0$；$\boldsymbol a\cdot\boldsymbol a=|\boldsymbol a|^2$；$\cos\theta=\dfrac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol b|}$。</p>
+      <p class="method" data-step="4" data-label="投影向量">过 $A$ 作 $OB$ 所在直线的垂线，垂足 $A_1$：$\overrightarrow{OA_1}=(|\boldsymbol a|\cos\theta)\dfrac{\boldsymbol b}{|\boldsymbol b|}$，且 $\boldsymbol a\cdot\boldsymbol b=\overrightarrow{OA_1}\cdot\boldsymbol b$。</p>
+    </div>
+    <div class="col">
+      <div id="dotB" class="vb"></div>
+      <p class="tip readline small" id="dotV"></p>
+      <p class="muted center small-t">拖动 $\boldsymbol a$、$\boldsymbol b$ 的终点；绿色是 $\boldsymbol a$ 在 $\boldsymbol b$ 上的投影向量</p>
+    </div>
+  </div>
+  <p class="note">课本 p20–21、图 9-2-14、9-2-15。先从功的公式引出“新运算”，强调结果是数不是向量（课本旁注：a·0 = 0 是数 0，0a = 0 是零向量）。拖动时观察：θ 锐角时投影与 b 同向、数量积为正；θ = 90° 投影缩成一点、数量积为 0；钝角时投影反向、数量积为负。运算律 (a+b)·c = a·c + b·c 课本用投影证明（图 9-2-16），可作课后阅读。</p>
+</section>
+
+<!-- 13 ================= 数量积例题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>算数量积，用数量积证垂直</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">例 1　已知向量 $\boldsymbol a$ 与 $\boldsymbol b$ 的夹角为 $\theta$，$|\boldsymbol a|=2$，$|\boldsymbol b|=3$，分别在下列条件下求 $\boldsymbol a\cdot\boldsymbol b$：(1) $\theta=135^\circ$；(2) $\boldsymbol a\parallel\boldsymbol b$；(3) $\boldsymbol a\perp\boldsymbol b$。</p>
+      <div class="btns" id="ex1dBtns" data-noswipe>
+        <button class="btn" type="button" data-k="135">(1) 135°</button>
+        <button class="btn" type="button" data-k="0">(2) 0°</button>
+        <button class="btn" type="button" data-k="180">(2) 180°</button>
+        <button class="btn" type="button" data-k="90">(3) 90°</button>
+      </div>
+      <div id="ex1dB" class="vb short"></div>
+      <p class="tip readline" id="ex1dV"></p>
+      <p class="warn" data-step="1">$\boldsymbol a\parallel\boldsymbol b$ 有<b>两种</b>情况：$\theta=0^\circ$ 时 $\boldsymbol a\cdot\boldsymbol b=6$，$\theta=180^\circ$ 时 $\boldsymbol a\cdot\boldsymbol b=-6$。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="2">例 2　已知 $\boldsymbol e_1,\boldsymbol e_2$ 是夹角为 $60^\circ$ 的两个单位向量，$\boldsymbol a=\boldsymbol e_1+2\boldsymbol e_2$，$\boldsymbol b=5\boldsymbol e_1-4\boldsymbol e_2$。求证：$\boldsymbol a\perp\boldsymbol b$。</p>
+      <p class="tip" data-step="3"><b>分析</b>　证垂直，只需证<span class="think" data-step="4" data-ask="什么？">$\boldsymbol a\cdot\boldsymbol b=0$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="5"><span>依题意</span><span>$\boldsymbol e_1^2=\boldsymbol e_2^2=1$</span><i class="why">单位向量</i></div>
+        <div class="dl" data-step="5"><span></span><span>$\boldsymbol e_1\cdot\boldsymbol e_2=1\times1\times\cos60^\circ=\dfrac12$</span><i class="why">夹角 $60^\circ$</i></div>
+        <div class="dl" data-step="6"><span>$\boldsymbol a\cdot\boldsymbol b$</span><span>$=(\boldsymbol e_1+2\boldsymbol e_2)\cdot(5\boldsymbol e_1-4\boldsymbol e_2)$</span><i class="why">分配律展开</i></div>
+        <div class="dl" data-step="7"><span></span><span class="think" data-step="8" data-ask="展开后等于多少？">$=5\boldsymbol e_1^2-8\boldsymbol e_2^2+6\boldsymbol e_1\cdot\boldsymbol e_2$</span><i class="why">$-4\boldsymbol e_1\cdot\boldsymbol e_2+10\boldsymbol e_2\cdot\boldsymbol e_1$</i></div>
+        <div class="dl" data-step="8"><span></span><span>$=5-8+6\times\dfrac12=0$</span><i class="why">代入</i></div>
+        <div class="dl end" data-step="9"><span>所以</span><span>$\boldsymbol a\perp\boldsymbol b$</span><i class="why">$\boldsymbol a,\boldsymbol b$ 均非零</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p20–22 例 1、例 2。例 1 点四个按钮看夹角和结果，第 (2) 题最容易漏掉 180° 的情况。例 2 体会“把未知的数量积转化为已知的 e₁²、e₂²、e₁·e₂”，展开方法与多项式乘法相同。</p>
+</section>
+
+<!-- 14 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>数量积能照搬实数乘法的规律吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>若 $\boldsymbol a\cdot\boldsymbol c=\boldsymbol b\cdot\boldsymbol c$（$\boldsymbol c\ne\boldsymbol 0$），则 $\boldsymbol a=\boldsymbol b$。</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>只要 $\boldsymbol a,\boldsymbol b$ 在 $\boldsymbol c$ 上的投影向量相同，两边就相等。例如 $\boldsymbol a,\boldsymbol b$ 都与 $\boldsymbol c$ 垂直但不相等。<b>数量积没有消去律。</b></p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>$(\boldsymbol a\cdot\boldsymbol b)\boldsymbol c=\boldsymbol a(\boldsymbol b\cdot\boldsymbol c)$。</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>左边是与 $\boldsymbol c$ 共线的向量，右边是与 $\boldsymbol a$ 共线的向量，一般不相等。<b>数量积不满足结合律。</b></p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>若 $\boldsymbol a\cdot\boldsymbol b\lt0$，则 $\boldsymbol a$ 与 $\boldsymbol b$ 的夹角是钝角。</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>$\cos\theta\lt0$ 时 $\theta\in(90^\circ,180^\circ]$，还可能是 $180^\circ$（$\boldsymbol a,\boldsymbol b$ 反向）。</p></div>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="jcard" data-step="7">
+        <p>若 $\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|$，则 $\boldsymbol a\parallel\boldsymbol b$。（练习第 8(1) 题）</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict ok">✓</span>$\cos\theta=1$，$\theta=0^\circ$，同向，当然平行。</p></div>
+      </div>
+      <p class="method" data-step="9">数量积满足交换律、数乘结合律 $(\lambda\boldsymbol a)\cdot\boldsymbol b=\lambda(\boldsymbol a\cdot\boldsymbol b)$、分配律；但<b>不能约分（消去）</b>，三个向量之间<b>没有结合律</b>。</p>
+    </div>
+  </div>
+  <p class="note">第 1、4 张卡是课本 p23 练习第 8 题，第 2 张是 p21 旁注“向量的数量积满足结合律吗？”。每张先让学生举手判断再点开。第 1 张可回到第 12 页拖图演示：保持 c 不动，让 a、b 的终点在同一条垂线上移动，数量积不变。</p>
+</section>
+
+<!-- 15 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 已知点 $O$ 是 $\square ABCD$ 两条对角线的交点，下面结论中正确的是（　）<br>A. $\overrightarrow{AB}+\overrightarrow{CB}=\overrightarrow{AC}$　B. $\overrightarrow{AB}+\overrightarrow{AD}=\overrightarrow{AC}$<br>C. $\overrightarrow{AD}+\overrightarrow{CD}\ne\overrightarrow{BD}$　D. $\overrightarrow{AO}+\overrightarrow{CO}+\overrightarrow{OB}+\overrightarrow{OD}\ne\boldsymbol 0$</p>
+        <details><summary>提示 1</summary>B：共起点 $A$，用平行四边形法则。</details>
+        <details><summary>提示 2</summary>A 中 $\overrightarrow{CB}=\overrightarrow{DA}$，不是 $\overrightarrow{BC}$；D 中 $\overrightarrow{AO}$ 与 $\overrightarrow{CO}$ 是相反向量。</details>
+        <details><summary>完整解答</summary>A：$\overrightarrow{AB}+\overrightarrow{CB}=\overrightarrow{AB}+\overrightarrow{DA}=\overrightarrow{DB}$，错；B 对；C：$\overrightarrow{AD}+\overrightarrow{CD}=\overrightarrow{AD}+\overrightarrow{BA}=\overrightarrow{BD}$，错；D：$(\overrightarrow{AO}+\overrightarrow{CO})+(\overrightarrow{OB}+\overrightarrow{OD})=\boldsymbol 0$，错。选 <b>B</b>。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知 $\boldsymbol e_1,\boldsymbol e_2$ 是两个不共线的向量，$\boldsymbol a=\boldsymbol e_1+2\boldsymbol e_2$，$\boldsymbol b=3\boldsymbol e_1-5\boldsymbol e_2$，求 $4\boldsymbol a-3\boldsymbol b$（用 $\boldsymbol e_1,\boldsymbol e_2$ 表示）。</p>
+        <details><summary>提示 1</summary>代入后像多项式一样展开、合并。</details>
+        <details><summary>提示 2</summary>$4\boldsymbol a=4\boldsymbol e_1+8\boldsymbol e_2$，$3\boldsymbol b=9\boldsymbol e_1-15\boldsymbol e_2$。</details>
+        <details><summary>完整解答</summary>$4\boldsymbol a-3\boldsymbol b=4\boldsymbol e_1+8\boldsymbol e_2-9\boldsymbol e_1+15\boldsymbol e_2=-5\boldsymbol e_1+23\boldsymbol e_2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 已知 $|\boldsymbol a|=1$，$|\boldsymbol b|=2$，且 $\boldsymbol a$ 与 $\boldsymbol b$ 的夹角 $\theta$ 为 $60^\circ$，求：(1) $(\boldsymbol a+\boldsymbol b)^2$；(2) $|\boldsymbol a-\boldsymbol b|$。</p>
+        <details><summary>提示 1</summary>先算 $\boldsymbol a\cdot\boldsymbol b=1\times2\times\cos60^\circ$。</details>
+        <details><summary>提示 2</summary>$(\boldsymbol a+\boldsymbol b)^2=\boldsymbol a^2+2\boldsymbol a\cdot\boldsymbol b+\boldsymbol b^2$；$|\boldsymbol a-\boldsymbol b|=\sqrt{(\boldsymbol a-\boldsymbol b)^2}$。</details>
+        <details><summary>完整解答</summary>$\boldsymbol a\cdot\boldsymbol b=1$。(1) $(\boldsymbol a+\boldsymbol b)^2=1+2\times1+4=7$；(2) $(\boldsymbol a-\boldsymbol b)^2=1-2+4=3$，所以 $|\boldsymbol a-\boldsymbol b|=\sqrt3$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题是课本 p11 练习 3，第 2 题是 p16 练习 5，第 3 题是 p23 练习 7（第 6 题的公式 (a+b)² = a² + 2a·b + b² 在这里用上）。先独立做 3 分钟，再按需逐级点开提示。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="recall" data-label="线性运算（结果是向量）">加法：三角形法则（首尾相接）、平行四边形法则（共起点）；减法：共起点，指向被减；数乘 $\lambda\boldsymbol a$：长度 $|\lambda||\boldsymbol a|$，方向看 $\lambda$ 的正负。</p>
+        <p class="def">共线定理：$\boldsymbol a\ne\boldsymbol 0$，$\boldsymbol b\parallel\boldsymbol a\Leftrightarrow$ 有唯一 $\lambda$ 使 $\boldsymbol b=\lambda\boldsymbol a$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>数量积（结果是数）</h3>
+        <p class="def">$\boldsymbol a\cdot\boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos\theta$；$\boldsymbol a\perp\boldsymbol b\Leftrightarrow\boldsymbol a\cdot\boldsymbol b=0$；$|\boldsymbol a|=\sqrt{\boldsymbol a\cdot\boldsymbol a}$。</p>
+        <p class="warn">没有消去律，没有三个向量的结合律。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>方法 · 思想</h3>
+        <p class="method" data-label="类比">与实数运算类比：运算律相同的放心用，不同的要警惕。</p>
+        <p class="recall" data-label="数形结合">每个运算都有几何作图：渡船航向、投影向量。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>9.3 向量基本定理及坐标表示——课本 p18 的思考：两个不共线的向量 $\overrightarrow{OA},\overrightarrow{OB}$，能表示平面内<b>任一</b>向量吗？</p>
+  </div>
+  <p class="note">请学生先说出四种运算各自“结果是什么、怎么作图”，再逐栏揭示。课后作业建议：习题 9.2(1) 第 1、3、6 题，9.2(2) 第 1、5、9 题，9.2(3) 第 1、2、7 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mvec.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

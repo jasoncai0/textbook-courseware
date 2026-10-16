@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>指数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面：细胞分裂 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xibao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第4章 指数与对数 · 4.1</p>
+    <h1 class="cover-title">指数</h1>
+    <p class="cover-q" data-step="1">某种细胞分裂时，1 个分裂成 2 个，2 个分裂成 4 个，4 个分裂成 8 个……分裂一次需要 10 min。1 个细胞 1 h 后分裂成<b>多少个</b>？</p>
+    <p class="cover-q" data-step="2">细胞个数 $y=2^x$，$x$ 是分裂次数。$2^x$ 中的 $x$ 能取<b>分数</b>，甚至<b>无理数</b>吗？</p>
+    <div class="chips" data-step="3"><span class="chip">n 次方根与根式</span><span class="chip">分数指数幂</span><span class="chip">指数的“填空”</span><span class="chip">无理数指数幂</span></div>
+  </div>
+  <p class="note">课本 p75 情境。先让学生口算 1 h 后有多少个细胞（6 次分裂，64 个），再抛出第二个问题：“分裂半次”说不通，但作为一个数，$2^{\frac12}$ 有没有意义？不急着回答，留到第 8 页。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>指数从哪里来？先清点三件旧工具</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 平方根与立方根（实数）" data-step="1">
+        <p>$x^2=a$ ⇒ $x$ 是 $a$ 的平方根：正数有两个 $\pm\sqrt a$，$0$ 的平方根是 $0$，负数没有平方根。</p>
+        <p>$x^3=a$ ⇒ $x=\sqrt[3]{a}$：每个数只有一个立方根，如 $\sqrt[3]{-8}=-2$。</p>
+        <span class="use">4.1.1 把“二次、三次”推广到 $n$ 次方根。</span>
+      </div>
+      <div class="recall" data-label="初中 · 整数指数幂" data-step="2">
+        <p>$a^ma^n=a^{m+n}$，$(a^m)^n=a^{mn}$，$(ab)^n=a^nb^n$</p>
+        <p>$a^0=1$，$a^{-n}=\dfrac{1}{a^n}$　$(a\ne 0,\ n\in\N^*)$</p>
+        <span class="use">指数推广到分数时，让这些运算法则<b>保持不变</b>，由此定出 $a^{\frac12}$ 的意义。</span>
+      </div>
+      <div class="recall" data-label="第3章 · 3.2 基本不等式" data-step="3">
+        <p>证明 $\sqrt{ab}\le\dfrac{a+b}{2}$ 时用过：$a\gt 0$ 时 $a=(\sqrt a)^2$，$\sqrt{ab}=\sqrt a\cdot\sqrt b$。</p>
+        <p><a href="../mg10a-jibenbudengshi/index.html">↗ 回看 3.2 基本不等式</a></p>
+        <span class="use">例 1 求 $(\sqrt5)^2$；例 3 把 $a^2\sqrt a$ 写成一个幂。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>指数的扩张史：</b>正整数指数 → <b>整数</b>指数（规定 $a^0$、$a^{-n}$，初中）→ <b>有理数</b>指数 → <b>实数</b>指数（本课）。</p>
+  </div>
+  <p class="note">本课是第 4 章第一课。第二张卡请学生举例口算（如 $2^{-3}=\frac18$），并追问：初中为什么要规定 $a^0=1$？——为了让 $a^m\div a^n=a^{m-n}$ 在 $m=n$ 时仍然成立。这正是本课推广指数的思路：<b>新规定要让旧法则继续成立</b>（课本 p74 章引言）。</p>
+</section>
+
+<!-- 3 ================= 情境 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>细胞分裂：$2^x$ 中的 $x$ 能取哪些数？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>分裂次数 $x$</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+        <tr><th>细胞个数 $y$</th><td>1</td><td>2</td><td>4</td><td>8</td><td><span class="think" data-step="1" data-ask="?">16</span></td><td><span class="think" data-step="1" data-ask="?">32</span></td><td><span class="think" data-step="1" data-ask="?">64</span></td></tr>
+      </table>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>关系</span><span>$y=2^x$</span><i class="why">每分裂一次，个数乘 2</i></div>
+        <div class="dl" data-step="3"><span>1 h 分裂</span><span>$x=60\div 10=6$ 次</span><i class="why">分裂一次 10 min</i></div>
+        <div class="dl end" data-step="4"><span>所以</span><span>$y=2^6=64$</span><i class="why">1 个细胞 1 h 后分裂成 64 个</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5">在这个例子里，$x$ 只能取什么数？　<span class="think" data-step="6" data-ask="想一想">正整数（分裂次数）。</span></p>
+      <p class="tip" data-step="7">初中已经规定 $2^0=1$，$2^{-x}=\dfrac{1}{2^x}$，于是 $2^x$ 对 $x$ 取 0 和负整数也有意义，例如 $2^{-3}=$ <span class="think" data-step="8" data-ask="算一算">$\dfrac18$</span>。</p>
+      <p class="tip gold" data-step="9"><b>问题：</b>$2^x$ 中的 $x$ 能取<b>分数</b>甚至<b>无理数</b>吗？$2^{\frac12}$ 等于多少？$2^{\sqrt2}$ 呢？</p>
+      <p class="tip" data-step="10">要回答它，先得认识一种新的“开方”：<b>$n$ 次方根</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p75。表格最后三格请学生抢答。第 9 步的问题是本课主线，可以写在黑板一角，下课前回来逐一回答：$2^{\frac12}$ 在第 8 页，$2^{\sqrt2}$ 在第 12 页。</p>
+</section>
+
+<!-- 4 ================= n 次方根：奇偶情形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">4.1.1 根式</span><h2>$x^n=a$ 有几个实数解？——$n$ 次方根</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" id="rootN" data-noswipe></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="rootA" min="-9" max="9" step="0.5" value="-8"><b id="rootAV" class="v"></b></div>
+      <div id="rootB" class="rootb"></div>
+      <p class="tip feedback" id="rootMsg"></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>n 次方根（课本 p75）</h4>一般地，如果 $x^n=a\ (n\gt 1,\ n\in\N^*)$，那么称 $x$ 为 $a$ 的 <em>$n$ 次方根</em>。</div>
+      <p class="tip" data-step="2">图上看：$x^n=a$ 的实数解 = 曲线 $y=x^n$ 与水平线 $y=a$ 交点的横坐标。换几个 $n$、拖一拖 $a$，你发现了什么？</p>
+      <div class="cases" data-step="3">
+        <div class="case"><h4>$n$ 为奇数</h4><span class="think" data-step="4" data-ask="几个交点？">正数的 $n$ 次方根是正数，负数的 $n$ 次方根是负数；只有<b>一个</b>，记为 $x=\sqrt[n]{a}$。</span></div>
+        <div class="case"><h4>$n$ 为偶数</h4><span class="think" data-step="5" data-ask="a>0、a<0 各几个？">正数的 $n$ 次方根有<b>两个</b>，互为相反数，记为 $\pm\sqrt[n]{a}\ (a\gt 0)$；负数没有偶次方根（交点为 0 个）。</span></div>
+      </div>
+      <p class="tip gold" data-step="6">需要注意的是，<b>$0$ 的 $n$ 次方根等于 $0$</b>（把 $a$ 拖到 0 看看）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p75。先选 $n=2$、$n=3$ 让学生对照初中的平方根、立方根，再请学生自己换 $n=4,5,6$、把 $a$ 拖到负数。第 4、5 步停顿：让学生先根据图说“几个交点”，再点开。“负数没有偶次方根”课本没有单独写出，可由图直接读出：偶次幂 $x^n\ge 0$，水平线 $y=a\lt 0$ 碰不到曲线。</p>
+</section>
+
+<!-- 5 ================= 根式 + 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">根式</span><h2>根式 $\sqrt[n]{a}$ 与例 1</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>根式</h4>式子 $\sqrt[n]{a}$ 叫作<em>根式</em>，其中 $n$ 叫作<b>根指数</b>，$a$ 叫作<b>被开方数</b>。</div>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$3^3=27$</span><span>$\Rightarrow 3=\sqrt[3]{27}$</span><i class="why">奇次：只有一个</i></div>
+        <div class="dl" data-step="2"><span>$(-2)^3=-8$</span><span>$\Rightarrow -2=\sqrt[3]{-8}$</span><i class="why">负数的奇次方根是负数</i></div>
+        <div class="dl" data-step="3"><span>$x^4=6$</span><span>$\Rightarrow x=\pm\sqrt[4]{6}$</span><i class="why">偶次：两个值，即 $\sqrt[4]6$ 和 $-\sqrt[4]6$</i></div>
+        <div class="dl" data-step="3"><span>$x^2=3$</span><span>$\Rightarrow x=\pm\sqrt3$</span><i class="why">平方根是 $n=2$ 的情形，根指数 2 省略不写</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 1</b>　求下列各式的值：</p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>(1) $(\sqrt5)^2$</span><span class="think" data-step="5" data-ask="?">$=5$</span><i class="why">$\sqrt5$ 就是平方等于 5 的正数</i></div>
+        <div class="dl" data-step="4"><span>(2) $(\sqrt[3]{-2})^3$</span><span class="think" data-step="5" data-ask="?">$=-2$</span><i class="why">先开方再乘方，回到原数</i></div>
+        <div class="dl key" data-step="6"><span>(3) $\sqrt[4]{(-2)^4}$</span><span class="think" data-step="7" data-ask="是 −2 吗？">$=\sqrt[4]{2^4}=2$</span><i class="why">$(-2)^4=16$，16 的正的 4 次方根是 2</i></div>
+        <div class="dl key" data-step="8"><span>(4) $\sqrt{(3-\pi)^2}$</span><span class="think" data-step="9" data-ask="是 3−π 吗？">$=\sqrt{(\pi-3)^2}=\pi-3$</span><i class="why">$3-\pi\lt 0$，而 $\sqrt{\ }$ 的结果不能是负数</i></div>
+      </div>
+      <p class="warn" data-step="10">(3)(4) 都是“先乘方再开偶次方”：结果一定<b>非负</b>，不能直接“抵消”成原来的数。下一页找规律。</p>
+    </div>
+  </div>
+  <p class="note">课本 p75–76 根式概念与例 1。(3)(4) 是本页的重点，先让学生独立写答案，很多人会写 $-2$ 和 $3-\pi$——让他们回到上一页的图：16 的 4 次方根是 $\pm2$，而记号 $\sqrt[4]{16}$ 只表示正的那个。</p>
+</section>
+
+<!-- 6 ================= 观察 ⁿ√(aⁿ) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察发现</span><h2>$\sqrt[n]{a^n}$ 一定等于 $a$ 吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab obs">
+        <tr><th>$n$</th><th>$a=2$ 或 $3$</th><th>$a=-2$ 或 $-3$</th></tr>
+        <tr data-step="1"><td>2</td><td>$\sqrt{2^2}=2$</td><td>$\sqrt{(-2)^2}=$ <span class="think" data-step="2" data-ask="?">$2=\lvert -2\rvert$</span></td></tr>
+        <tr data-step="1"><td>4</td><td>$\sqrt[4]{2^4}=2$</td><td>$\sqrt[4]{(-2)^4}=$ <span class="think" data-step="2" data-ask="?">$2=\lvert -2\rvert$</span></td></tr>
+        <tr data-step="1"><td>6</td><td>$\sqrt[6]{2^6}=2$</td><td>$\sqrt[6]{(-2)^6}=$ <span class="think" data-step="2" data-ask="?">$2=\lvert -2\rvert$</span></td></tr>
+        <tr data-step="3"><td>3</td><td>$\sqrt[3]{3^3}=3$</td><td>$\sqrt[3]{(-3)^3}=$ <span class="think" data-step="4" data-ask="?">$-3$</span></td></tr>
+        <tr data-step="3"><td>5</td><td>$\sqrt[5]{3^5}=3$</td><td>$\sqrt[5]{(-3)^5}=$ <span class="think" data-step="4" data-ask="?">$-3$</span></td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <div class="def" data-step="5"><h4>可以发现（课本 p76）</h4>对于 $n\in\N^*$，$n\gt 1$，<br>当 $n$ 为<em>奇数</em>时，$\sqrt[n]{a^n}=a$；<br>当 $n$ 为<em>偶数</em>时，$\sqrt[n]{a^n}=|a|=\begin{cases}a, & a\ge 0,\\-a, & a\lt 0.\end{cases}$</div>
+      <p class="tip" data-step="6">为什么偶数时要加绝对值？　<span class="think" data-step="7" data-ask="想一想">偶次方根 $\sqrt[n]{\ }$ 只取<b>正的</b>那个（或 0），而 $a$ 可能是负数。</span></p>
+      <div class="cols2">
+        <p class="recall" data-label="对照" data-step="8">$(\sqrt[n]{a})^n=a$：先开方再乘方，只要 $\sqrt[n]{a}$ 有意义就成立（例 1(1)(2)）。</p>
+        <p class="warn" data-step="9">$\sqrt[n]{a^n}$：先乘方再开方，偶数时等于 $|a|$。<br>如 $\sqrt{(a-4)^2}=|a-4|$，要看 $a$ 的范围才能去掉绝对值。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p76“观察下列各式”。先出左列（a 为正），学生会觉得“开方与乘方抵消”；再出右列，偶数行的结果都是正的，冲突出现。让学生用自己的话总结，再点开定义框。最后对照 $(\sqrt[n]a)^n$ 与 $\sqrt[n]{a^n}$ 的运算顺序，为练习第 3 题化简做准备。</p>
+</section>
+
+<!-- 7 ================= 练习 4.1.1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>根式：算一算、化一化</h2></div>
+  <div class="bd full top">
+    <p class="tip quick"><b>1.</b> 计算（填数，回车判断）：　$\sqrt{25}=$ <span class="blank" data-ans="5"></span>　$\sqrt[3]{\dfrac{8}{27}}=$ <span class="blank" data-ans="2/3" data-w="3"></span>　$\sqrt[5]{32}=$ <span class="blank" data-ans="2"></span>　$\sqrt[4]{\dfrac{1}{16}}=$ <span class="blank" data-ans="1/2" data-w="3"></span></p>
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2(1).</b> 求 $\sqrt{(\sqrt2-2)^2}$ 的值。</p>
+        <details><summary>提示 1</summary>这是 $\sqrt{a^2}=|a|$ 的形式。</details>
+        <details><summary>提示 2</summary>$\sqrt2\approx1.414$，$\sqrt2-2$ 是正还是负？</details>
+        <details><summary>完整解答</summary>$\sqrt{(\sqrt2-2)^2}=|\sqrt2-2|=2-\sqrt2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2(3).</b> 求 $\sqrt{3-2\sqrt2}$ 的值。</p>
+        <details><summary>提示 1</summary>能不能把 $3-2\sqrt2$ 写成一个完全平方？</details>
+        <details><summary>提示 2</summary>$(\sqrt2)^2+1^2-2\cdot\sqrt2\cdot1=3-2\sqrt2$。</details>
+        <details><summary>完整解答</summary>$\sqrt{3-2\sqrt2}=\sqrt{(\sqrt2-1)^2}=|\sqrt2-1|=\sqrt2-1$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3(4).</b> 化简 $\sqrt{(a-1)^2}+\sqrt[3]{a^3}\ (a\lt 1)$。</p>
+        <details><summary>提示 1</summary>一个是偶次方根，一个是奇次方根，规律不同。</details>
+        <details><summary>提示 2</summary>$\sqrt{(a-1)^2}=|a-1|$，$a\lt 1$ 时 $a-1\lt 0$。</details>
+        <details><summary>完整解答</summary>原式 $=|a-1|+a=(1-a)+a=1$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p76 练习 1、2(1)(3)、3(4)。第 1 题全班口答后请学生在投影上输入；第 2、3 题先独立做 3 分钟，卡住再逐级点开提示。第 2(3) 题“凑完全平方”与 3.2 基本不等式证法 1 的变形如出一辙。</p>
+</section>
+
+<!-- 8 ================= 分数指数幂的意义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">4.1.2 指数幂的拓展</span><h2>$2^{\frac12}$ 应该等于多少？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">观察下面的变形：</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$(2^5)^2=2^{10}$</span><span>$\Rightarrow\sqrt{2^{10}}=2^5$</span><i class="why">$2^5$ 是 $2^{10}$ 的正的平方根</i></div>
+        <div class="dl key" data-step="2"><span>又 $5=\dfrac{10}{2}$</span><span class="think" data-step="3" data-ask="于是？">$\Rightarrow\sqrt{2^{10}}=2^{\frac{10}{2}}$</span><i class="why">根指数 2 跑到了指数的分母上</i></div>
+        <div class="dl" data-step="4"><span>类似地</span><span>$\sqrt[3]{3^{12}}=3^{\frac{12}{3}}$</span><i class="why">$(3^4)^3=3^{12}$</i></div>
+        <div class="dl" data-step="4"><span></span><span>$\sqrt[5]{3^{15}}=3^{\frac{15}{5}}$</span><i class="why">$(3^3)^5=3^{15}$</i></div>
+        <div class="dl end" data-step="5"><span>$m$ 被 $n$ 整除时</span><span>$\sqrt[n]{a^m}=a^{\frac mn}$</span><i class="why">$a\gt 0$，$m,n$ 均为正整数</i></div>
+      </div>
+      <p class="tip" data-step="6">换个角度（章引言 p74）：若 $a^ma^n=a^{m+n}$ 对分数也成立，则 $a^{\frac12}\cdot a^{\frac12}=a^{\frac12+\frac12}=a$，所以 $a^{\frac12}$ 应是 $a$ 的<span class="think" data-step="7" data-ask="什么？">平方根</span>。</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="8"><h4>分数指数幂（课本 p77）</h4>一般地，我们规定 $$a^{\frac mn}=\sqrt[n]{a^m}\quad(a\gt 0,\ m,n\text{ 均为正整数}),$$ $$a^{-\frac mn}=\frac{1}{a^{\frac mn}}\quad(a\gt 0,\ m,n\text{ 均为正整数}).$$ 且 <em>0 的正分数指数幂为 0，0 的负分数指数幂没有意义</em>。</div>
+      <p class="tip gold" data-step="9">由此 $2^{\frac12}=\sqrt2$。指数从<b>整数</b>推广到了<b>有理数</b>。</p>
+      <p class="warn" data-label="为什么要求 a > 0" data-step="10">若允许 $a=-8$：按规定 $(-8)^{\frac13}=\sqrt[3]{-8}=-2$；可 $\dfrac13=\dfrac26$，$(-8)^{\frac26}=\sqrt[6]{(-8)^2}=\sqrt[6]{64}=2$。<span class="think" data-step="11" data-ask="矛盾在哪？">同一个数算出两个值！底数取正数，就不会出现这种矛盾。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p76–77 与 p74 章引言。第 3 步停顿让学生说出 $5$ 和 $\frac{10}{2}$ 的关系。两条思路殊途同归：“根式写成幂”和“让运算法则不变”。最后的易错卡是补充辨析（非课本例题）：说明规定里“$a\gt 0$”不是可有可无的。</p>
+</section>
+
+<!-- 9 ================= 核心交互：指数的填空 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手填一填</span><h2>指数的“填空”：$y=2^x$ 的点越来越密</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fillB" class="fillb"></div>
+      <p class="muted center small-t">拖动横轴上的橙色点，看每一个已填的点是几</p>
+    </div>
+    <div class="col">
+      <div class="btns lv-btns" id="fillBtns" data-noswipe>
+        <button type="button" class="btn solid" data-lv="0">① $x$ 取整数</button>
+        <button type="button" class="btn" data-lv="1">② 加入 $\tfrac12$ 的倍数</button>
+        <button type="button" class="btn" data-lv="2">③ 加入 $\tfrac14$ 的倍数</button>
+        <button type="button" class="btn" data-lv="3">④ 加入 $\tfrac1{16}$ 的倍数</button>
+      </div>
+      <p class="tip feedback" id="fillMsg"></p>
+      <p class="tip" data-step="1">每加一层，新的点落在哪？　<span class="think" data-step="2" data-ask="先猜，再按按钮">都落在前面那些点连成的“光滑曲线”上，例如 $2^{\frac12}=\sqrt2\approx1.414$ 恰好在 $2^0$ 与 $2^1$ 之间。</span></p>
+      <p class="tip" data-step="3">一直加下去，所有<b>有理数</b> $x$ 都能填上。曲线就“填满”了吗？　<span class="think" data-step="4" data-ask="想一想">没有！数轴上还有<b>无理数</b>，如 $x=\sqrt2$ 处仍是空的——$2^{\sqrt2}$ 是多少？</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。请学生上台依次按 ①②③④：每按一次先问“新点会落在哪”，再按。拖动橙色点读出 $2^{\frac34}=\sqrt[4]{2^3}\approx1.682$ 等，复习刚学的定义。第 4 步是悬念：点再密也只是有理数，$x=\sqrt2$ 的“空”要到第 12 页才填上。</p>
+</section>
+
+<!-- 10 ================= 运算性质 + 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">运算性质</span><h2>有理数指数幂：法则“保持不变”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def rules" data-step="1"><h4>有理数指数幂的运算性质（课本 p77）</h4>
+        <p>$a^sa^t=a^{s+t}$　①</p>
+        <p>$(a^s)^t=a^{st}$　②</p>
+        <p>$(ab)^t=a^tb^t$　③</p>
+        <p>其中 $s,t\in\mathbf Q$，$a\gt 0$，$b\gt 0$。</p>
+      </div>
+      <p class="tip muted" data-step="1">在本书中，若无特殊说明，底数中的字母均为正数。</p>
+      <p class="tip" data-step="2">验一验 ①：$8^{\frac13}\cdot8^{\frac13}=2\times2=4$，而 $8^{\frac23}=\sqrt[3]{8^2}=$ <span class="think" data-step="3" data-ask="算一算">$\sqrt[3]{64}=4$ ✓</span></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 2</b>　求下列各式的值：</p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>(1) $100^{\frac12}$</span><span class="think" data-step="5" data-ask="100 是谁的幂？">$=(10^2)^{\frac12}=10^{2\times\frac12}=10$</span><i class="why">性质 ②</i></div>
+        <div class="dl" data-step="6"><span>(2) $8^{\frac23}$</span><span class="think" data-step="7" data-ask="8 是谁的幂？">$=(2^3)^{\frac23}=2^{3\times\frac23}=2^2=4$</span><i class="why">性质 ②</i></div>
+        <div class="dl" data-step="8"><span>(3) $9^{-\frac32}$</span><span class="think" data-step="9" data-ask="?">$=(3^2)^{-\frac32}=3^{-3}=\dfrac{1}{27}$</span><i class="why">负指数 → 倒数</i></div>
+        <div class="dl" data-step="10"><span>(4) $\left(\dfrac1{81}\right)^{-\frac34}$</span><span class="think" data-step="11" data-ask="?">$=(3^{-4})^{-\frac34}=3^3=27$</span><i class="why">$\dfrac1{81}=3^{-4}$</i></div>
+      </div>
+      <p class="method" data-step="12">求值：先把底数写成“<b>某个数的幂</b>”，再用性质 ② 让指数相乘，凑出整数指数。</p>
+    </div>
+  </div>
+  <p class="note">课本 p77 运算性质与例 2。先用一组具体数验证性质 ①，让学生体会“新规定没有破坏旧法则”。例 2 每题停在“底数是谁的幂”：100 = 10²、8 = 2³、9 = 3²、1/81 = 3⁻⁴。</p>
+</section>
+
+<!-- 11 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>根式化成分数指数幂</h2></div>
+  <div class="bd full">
+    <p class="tip">用分数指数幂的形式表示下列各式 $(a\gt 0)$：(1) $a^2\sqrt a$；　(2) $\dfrac{1}{\sqrt{a^3}}$；　(3) $\sqrt{a\sqrt a}$。</p>
+    <p class="tip" data-step="1">思路：<span class="think" data-step="2" data-ask="第一步做什么？">先把每个根号都改写成分数指数，再用运算性质合并成<b>一个</b>幂。</span></p>
+    <div class="cols3">
+      <div class="jcard steps">
+        <p data-step="3">(1) $a^2\sqrt a=a^2a^{\frac12}$</p>
+        <p data-step="4">$=a^{2+\frac12}=a^{\frac52}$ <i class="why">性质 ①</i></p>
+      </div>
+      <div class="jcard steps">
+        <p data-step="5">(2) $\dfrac{1}{\sqrt{a^3}}=\dfrac{1}{a^{\frac32}}$</p>
+        <p data-step="6">$=a^{-\frac32}$ <i class="why">负分数指数幂</i></p>
+      </div>
+      <div class="jcard steps">
+        <p data-step="7">(3) $\sqrt{a\sqrt a}=(a\sqrt a)^{\frac12}$</p>
+        <p data-step="8">$=(aa^{\frac12})^{\frac12}=(a^{\frac32})^{\frac12}$ <i class="why">性质 ①</i></p>
+        <p data-step="9">$=a^{\frac34}$ <i class="why">性质 ②</i></p>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="10">根式 ⇄ 分数指数：$\sqrt[n]{a^m}=a^{\frac mn}$——<b>根指数做分母，被开方数的指数做分子</b>。化成幂以后，乘、除、开方都变成指数的加、减、乘。</p>
+      <p class="tip" data-step="11">(3) 有两层根号，从<b>里层</b>开始改写。验一验：取 $a=16$，$\sqrt{16\sqrt{16}}=\sqrt{64}=8$，$16^{\frac34}=$ <span class="think" data-step="12" data-ask="算一算">$(2^4)^{\frac34}=2^3=8$ ✓</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p78 例 3。三道题分别对应性质 ①、负分数指数、性质 ①②连用。最后用 $a=16$ 代入验算，提醒学生：化简结果可以随手取一个特殊值检验。</p>
+</section>
+
+<!-- 12 ================= 无理数指数幂：夹逼 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">无理数指数幂</span><h2>填上 $x=\sqrt2$ 的空：$2^{\sqrt2}$ 有意义吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row" data-noswipe>精确到 $10^{-k}$，$k=$<input type="range" id="sqK" min="0" max="6" step="1" value="1"><b id="sqKV" class="v"></b></div>
+      <div id="sqB" class="sqb"></div>
+      <p class="tip center small-t" id="sqMsg"></p>
+    </div>
+    <div class="col">
+      <table class="mtab sqtab">
+        <thead><tr><th>$\sqrt2$ 的不足近似 $x$</th><th>$2^x$</th><th>$\sqrt2$ 的过剩近似 $x$</th><th>$2^x$</th></tr></thead>
+        <tbody id="sqRows"></tbody>
+      </table>
+      <p class="tip" data-step="1">随着 $x$ 越来越接近 $\sqrt2$，$2^x$ 怎样变化？　<span class="think" data-step="2" data-ask="看表说一说">两列 $2^x$ 从两边越夹越紧，越来越接近于一个实数，我们把这个实数记为 $2^{\sqrt2}$（$\approx 2.665\,144\,142\cdots$）。</span></p>
+      <div class="def" data-step="3"><h4>实数指数幂（课本 p78）</h4>一般地，当 $a\gt 0$ 且 $x$ 是一个无理数时，$a^x$ 也是一个确定的实数。有理数指数幂的运算性质对无理数指数幂同样适用。这样，指数幂的概念从有理指数幂推广到<em>实数指数幂</em>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p78 表 4-1-1（课本只列不足近似，这里补上过剩近似，数值由 Math.pow 计算、截取 9 位小数，与课本表格一致）。拖动滑块逐级加一位小数：左图橙色竖带是 $x$ 的范围，蓝色横带是 $2^x$ 的范围，两条带子一起变窄。到 $k=3$ 以后带子细得看不见了，就看右表。这就是第 9 页留下的“空”被填上的方式：用有理数从两边逼近无理数。</p>
+</section>
+
+<!-- 13 ================= 练习 4.1.2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>分数指数幂：求值与化简</h2></div>
+  <div class="bd full top">
+    <p class="tip quick"><b>3.</b> 求值（填数，回车判断）：　$25^{\frac12}=$ <span class="blank" data-ans="5"></span>　$64^{\frac13}=$ <span class="blank" data-ans="4"></span>　$32^{-\frac15}=$ <span class="blank" data-ans="1/2|0.5" data-w="3"></span>　$27^{\frac23}=$ <span class="blank" data-ans="9"></span></p>
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3(6).</b> 求 $\left(\dfrac{25}{4}\right)^{-\frac32}$ 的值。</p>
+        <details><summary>提示 1</summary>$\dfrac{25}{4}$ 是谁的平方？</details>
+        <details><summary>提示 2</summary>$\left(\dfrac{25}{4}\right)^{-\frac32}=\left[\left(\dfrac52\right)^2\right]^{-\frac32}=\left(\dfrac52\right)^{-3}$</details>
+        <details><summary>完整解答</summary>原式 $=\left(\dfrac52\right)^{-3}=\left(\dfrac25\right)^3=\dfrac{8}{125}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3(8).</b> 求 $2\sqrt3\times\sqrt[3]{1.5}\times\sqrt[6]{12}$ 的值。</p>
+        <details><summary>提示 1</summary>三个根指数不同，先都化成分数指数幂；底数拆成 2 和 3 的乘积。</details>
+        <details><summary>提示 2</summary>$1.5=\dfrac32=3\times2^{-1}$，$12=3\times2^2$。</details>
+        <details><summary>完整解答</summary>原式 $=2\times3^{\frac12}\times3^{\frac13}\times2^{-\frac13}\times3^{\frac16}\times2^{\frac13}$<br>$=2^{1-\frac13+\frac13}\times3^{\frac12+\frac13+\frac16}=2\times3=6$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4(7).</b> 化简 $\left(a^{-\frac23}b^{\frac13}\right)^{-\frac32}\ (a\gt 0,\ b\gt 0)$。</p>
+        <details><summary>提示 1</summary>先用性质 ③ 把括号拆开。</details>
+        <details><summary>提示 2</summary>再用性质 ②：$\left(a^{-\frac23}\right)^{-\frac32}=a^{(-\frac23)\times(-\frac32)}$。</details>
+        <details><summary>完整解答</summary>原式 $=a^{(-\frac23)\times(-\frac32)}\,b^{\frac13\times(-\frac32)}=ab^{-\frac12}=\dfrac{a}{\sqrt b}$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p79 练习 3(1)(2)(4)(7)、3(6)(8)、4(7)。第 3(8) 题是本课综合性最强的一题：根指数不同的根式相乘，化成分数指数后只需做指数加法。可以让学生用计算器验证结果是 6。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="ladder" data-step="1">
+      <div><h4>正整数指数</h4><p>$a^n$：$n$ 个 $a$ 相乘</p></div><i>⟶</i>
+      <div><h4>整数指数</h4><p>$a^0=1$，$a^{-n}=\dfrac1{a^n}$</p></div><i>⟶</i>
+      <div><h4>有理数指数</h4><p>$a^{\frac mn}=\sqrt[n]{a^m}$</p></div><i>⟶</i>
+      <div class="now"><h4>实数指数</h4><p>有理数逼近 $a^{\sqrt2}$</p></div>
+    </div>
+    <div class="cols3 sum">
+      <div class="col" data-step="2">
+        <h3>知识</h3>
+        <p class="def">$n$ 次方根与根式：奇次一个，偶次（正数）两个；$\sqrt[n]{a^n}$ 奇数为 $a$、偶数为 $|a|$。</p>
+        <p class="def">运算性质 $a^sa^t=a^{s+t}$，$(a^s)^t=a^{st}$，$(ab)^t=a^tb^t$。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>方法</h3>
+        <p class="method" data-label="互化">根指数做分母，被开方数的指数做分子。</p>
+        <p class="method" data-label="求值化简">底数写成幂，根式化成分数指数，再用运算性质。</p>
+      </div>
+      <div class="col" data-step="4">
+        <h3>思想</h3>
+        <p class="recall" data-label="推广">每一次扩张都让<b>运算法则保持不变</b>。</p>
+        <p class="recall" data-label="逼近">用有理数从两边夹逼，定义无理数指数幂。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一课：</b>课本 p78 说：当 $a\gt 0,a\ne 1,N\gt 0$ 时，一定有唯一的实数 $x$ 满足 $a^x=N$。比如 $2^x=3$ 的 $x$ 是多少？——这就是 <a href="../mg10a-duishu/index.html">4.2 对数</a>。</p>
+  </div>
+  <p class="note">请学生先自己说出“指数扩张了几次、每次靠什么”，再揭示扩张链。课后作业建议：习题 4.1 第 1、2、3、5 题；第 6 题（两个代数式是否恒等）可作为对运算性质的辨析讨论。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

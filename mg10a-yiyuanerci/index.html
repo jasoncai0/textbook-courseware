@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>从函数观点看一元二次方程和一元二次不等式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/penquan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第3章 不等式 · 3.3</p>
+    <h1 class="cover-title">从函数观点看<br>一元二次方程和<br>一元二次不等式</h1>
+    <p class="cover-q" data-step="1">喷泉的水柱划出一道道<b>抛物线</b>。水柱什么时候落回水面（高度 $=0$）？什么时候在水面之上（高度 $\gt 0$）？</p>
+    <p class="cover-q" data-step="2">把“高度”换成二次函数 $y=ax^2+bx+c$ 的函数值：方程 $ax^2+bx+c=0$、不等式 $ax^2+bx+c\gt 0$，能不能<b>从图象上读出来</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">二次函数的零点</span><span class="chip">判别式的三种情形</span><span class="chip">一元二次不等式</span><span class="chip">实际问题</span></div>
+  </div>
+  <p class="note">封面喷泉是情境引入（课本没有）：水柱高度随水平位置变化，“落回水面”对应函数值为 0，“在水面之上”对应函数值大于 0。先让学生说说直觉，本课就是把这两件事用二次函数的图象说清楚。课本 3.3 从 p58 开始，到 p65 习题 3.3 结束。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要把三样旧东西“串”起来</h2></div>
+  <div class="bd full">
+    <div class="cols2 recall4">
+      <div class="recall" data-label="初中 · 二次函数的图象" data-step="1">
+        <p>$y=ax^2+bx+c\ (a\ne 0)$ 的图象是抛物线；$a\gt 0$ 开口向上。对称轴 $x=-\dfrac{b}{2a}$，顶点纵坐标 $\dfrac{4ac-b^2}{4a}$。</p>
+        <span class="use">看图象在 $x$ 轴上方还是下方，读出不等式的解集。</span>
+      </div>
+      <div class="recall" data-label="初中 · 一元二次方程" data-step="2">
+        <p>求根公式 $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$；判别式 $\Delta=b^2-4ac$：$\Delta\gt 0$ 两个不等实根，$\Delta=0$ 两个相等实根，$\Delta\lt 0$ 没有实根。</p>
+        <span class="use">$\Delta$ 决定抛物线与 $x$ 轴有几个交点（表 3-3-1、3-3-2 的三列）。</span>
+      </div>
+      <div class="recall" data-label="初中 · 一次函数与方程、不等式" data-step="3">
+        <p>$y=2x-3$ 的图象与 $x$ 轴交于 $\left(\frac32,0\right)$：交点左侧 $y\lt 0$，右侧 $y\gt 0$。</p>
+        <span class="use">课本引言：同样的“看图解题”搬到二次函数上（第 3 页）。</span>
+      </div>
+      <div class="recall" data-label="3.1 · 3.2 本章前两课" data-step="4">
+        <p><a href="../mg10a-budengshixingzhi/index.html">3.1 不等式的基本性质</a>：两边同乘一个负数，不等号<b>改变方向</b>。<a href="../mg10a-jibenbudengshi/index.html">3.2 基本不等式</a>：和定积最大。</p>
+        <span class="use">$a\lt 0$ 时先乘 $-1$ 化成 $a\gt 0$；例 2 的最大面积也可用基本不等式求。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一课</b>用 $\sqrt{ab}\le\dfrac{a+b}{2}$ 解决了求最值问题；<b>这一课</b>换一个角度——用<b>函数</b>的眼光看方程和不等式。</p>
+  </div>
+  <p class="note">四张卡逐张出，每张先让学生口头复述再点开“本课用在”。第二张最关键：Δ 的三种情况学生初中就会，今天要把它“画”出来——Δ 的符号对应抛物线与 x 轴交点的个数。卡片里的链接可以直接打开 3.1、3.2 课件。</p>
+</section>
+
+<!-- 3 ================= 引言：一次函数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">引言</span><h2>一次函数的图象，帮我们解一次方程和不等式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="lin" class="lin"></div>
+      <p class="tip center muted small">$y=2x-3$：橙色 $y\gt 0$，绿色 $y\lt 0$</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$2x-3=0$</span><span>$\Leftrightarrow$</span><span class="think" data-step="2" data-ask="在图象上是什么？">图象与 $x$ 轴交点的横坐标：$x=\dfrac32$</span></div>
+        <div class="dl" data-step="3"><span>$2x-3\gt 0$</span><span>$\Leftrightarrow$</span><span class="think" data-step="4" data-ask="在图象上是哪一部分？">图象在 $x$ 轴<b>上方</b>的部分：$x\gt\dfrac32$</span></div>
+        <div class="dl" data-step="5"><span>$2x-3\lt 0$</span><span>$\Leftrightarrow$</span><span class="think" data-step="6" data-ask="在图象上是哪一部分？">图象在 $x$ 轴<b>下方</b>的部分：$x\lt\dfrac32$</span></div>
+      </div>
+      <p class="method" data-step="7" data-label="函数观点">方程 $f(x)=0$ 看<b>交点</b>，不等式 $f(x)\gt 0$ 看<b>上方</b>，$f(x)\lt 0$ 看<b>下方</b>。反过来，解方程、不等式也能帮我们了解函数的性质。</p>
+      <p class="tip gold" data-step="8"><b>课本之问：</b>怎样从函数观点进一步解决方程、不等式的问题？——换成二次函数试试。</p>
+    </div>
+  </div>
+  <p class="note">课本 p58 引言。三处停顿：先让学生说出“方程的解在图象上是什么”，再问不等式。强调交点 x=3/2 本身让 y=0，既不属于 &gt;0 也不属于 &lt;0，所以图上画成空心圈。</p>
+</section>
+
+<!-- 4 ================= 3.3.1 零点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">3.3.1</span><h2>方程的根 = 图象与 $x$ 轴交点的横坐标</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="zero" class="zero"></div>
+      <p class="tip center muted small">$y=x^2-2x-3$</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">方程 $x^2-2x-3=0$ 的根是多少？在图上是什么？　<span class="think" data-step="2" data-ask="先解再看图">$(x+1)(x-3)=0$，$x_1=-1$，$x_2=3$——正是图象与 $x$ 轴交点的横坐标。</span></p>
+      <p class="tip" data-step="3">换成函数的说法：　<span class="think" data-step="4" data-ask="函数值是多少时？">$-1$ 和 $3$ 是函数值<b>取零</b>时自变量 $x$ 的值。</span></p>
+      <div class="def" data-step="5"><h4>定义（课本 p58）</h4>一元二次方程 $ax^2+bx+c=0\ (a\ne0)$ 的根就是二次函数 $y=ax^2+bx+c\ (a\ne0)$ 当函数值取零时自变量 $x$ 的值，即二次函数的图象与 $x$ 轴交点的横坐标，也称为<em>二次函数 $y=ax^2+bx+c\ (a\ne0)$ 的零点</em>。</div>
+      <p class="warn" data-step="6">零点是一个<b>实数</b>，不是一个点：$y=x^2-2x-3$ 的零点是 $-1$ 和 $3$，不能写成 $(-1,0)$、$(3,0)$。</p>
+      <p class="method" data-step="7">方程有实根 $\Leftrightarrow$ 图象与 $x$ 轴有交点 $\Leftrightarrow$ 函数有零点。</p>
+    </div>
+  </div>
+  <p class="note">课本 p58。第 2 步、第 4 步各停一下。“零点”名字里有“点”，学生最容易写成坐标，这里专门辨析：零点是交点的横坐标，是数。</p>
+</section>
+
+<!-- 5 ================= 表 3-3-1：可拖的抛物线（零点） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手</span><h2>$\Delta$ 决定零点的个数（$a\gt 0$，表 3-3-1）</h2></div>
+  <div class="bd pw-bd pwork" data-mode="zero">
+    <div class="col">
+      <div class="pboard"></div>
+      <p class="tip center muted small">拖动橙色<b>顶点</b>，或拉动下面的滑块</p>
+      <div class="sliders" data-noswipe>
+        <div class="slider-row">$a=$<input type="range" data-p="a" min="0.5" max="2" step="0.5" value="1"><b class="v" data-v="a"></b></div>
+        <div class="slider-row">$b=$<input type="range" data-p="b" min="-6" max="6" step="0.5" value="-2"><b class="v" data-v="b"></b></div>
+        <div class="slider-row">$c=$<input type="range" data-p="c" min="-5" max="6" step="0.25" value="-3"><b class="v" data-v="c"></b></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-read readout-box"></div>
+      <div class="tab-wrap">
+        <table class="mtab ptab">
+          <tr><th>判别式 $\Delta=b^2-4ac$</th><th data-col="0">$\Delta\gt 0$</th><th data-col="1">$\Delta=0$</th><th data-col="2">$\Delta\lt 0$</th></tr>
+          <tr><th>方程 $ax^2+bx+c=0$ 的根</th><td data-col="0">有两个相异的实数根<br>$x_{1,2}=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$</td><td data-col="1">有两个相等的实数根<br>$x_1=x_2=-\dfrac{b}{2a}$</td><td data-col="2">没有实数根</td></tr>
+          <tr><th>二次函数的零点</th><td data-col="0">有两个零点</td><td data-col="1">有一个零点 $x=-\dfrac{b}{2a}$</td><td data-col="2">无零点</td></tr>
+        </table>
+      </div>
+      <p class="tip gold" data-step="1">把顶点往上拖：<span class="think" data-step="2" data-ask="零点会怎样变化？先猜">两个零点越靠越近 → 顶点碰到 $x$ 轴时合成一个（$\Delta=0$）→ 顶点离开 $x$ 轴后零点消失（$\Delta\lt 0$）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p58 表 3-3-1。先请学生预测“顶点往上拖时零点怎样变”，再请一位学生上来拖。注意右边当前情形那一列会自动高亮。可以再试：只改 a（开口大小），零点个数变不变？——Δ 的符号才是关键。</p>
+</section>
+
+<!-- 6 ================= 3.3.1 例 1、例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>判断零点：算 $\Delta$，或者直接求根</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 1</b>　求证：二次函数 $y=2x^2+3x-7$ 有两个零点。</p>
+        <p class="tip" data-step="1"><b>分析</b>　<span class="think" data-step="2" data-ask="要证什么？转化成什么？">要证明二次函数有两个零点，只需证明一元二次方程 $2x^2+3x-7=0$ 有两个不相等的实数根即可。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>因为</span><span>$\Delta=3^2-4\times2\times(-7)=65\gt 0$</span><i class="why">$a=2,\ b=3,\ c=-7$</i></div>
+          <div class="dl" data-step="4"><span>所以</span><span>方程有两个不相等的实数根</span><i class="why">$\Delta\gt 0$</i></div>
+          <div class="dl end" data-step="5"><span>因此</span><span>二次函数 $y=2x^2+3x-7$ 有两个零点</span><i class="why">根 ⇔ 零点</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 2</b>　判断二次函数 $y=x^2-2x-1$ 在区间 $(2,3)$ 上是否存在零点。</p>
+        <div class="derive">
+          <div class="dl" data-step="6"><span>求根</span><span class="think" data-step="7" data-ask="用求根公式">$x_1=1+\sqrt2,\ x_2=1-\sqrt2$</span><i class="why">$\Delta=8$</i></div>
+          <div class="dl" data-step="8"><span>因为</span><span>$1\lt\sqrt2\lt 2$</span><i class="why">$1\lt 2\lt 4$</i></div>
+          <div class="dl" data-step="8"><span>所以</span><span>$2\lt 1+\sqrt2\lt 3$</span><i class="why">各加 1</i></div>
+          <div class="dl end" data-step="9"><span>因此</span><span>在 $(2,3)$ 上存在零点</span><i class="why"></i></div>
+        </div>
+        <div id="ex2" class="ex2" data-step="9"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p59 例 1、例 2。例 1 的“分析”是典型的转化：函数问题 → 方程问题。例 2 课本旁注“可以作出函数图象进行直观判断”：图中阴影是区间 (2, 3)，零点 1+√2≈2.41 落在其中；还可以看到 x=2 时 y=−1&lt;0、x=3 时 y=2&gt;0，图象从下方穿到上方——这正是第 8 章“二分法”的伏笔。</p>
+</section>
+
+<!-- 7 ================= 3.3.1 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>$a\lt 0$ 时呢？自己填表（练习 1）</h2></div>
+  <div class="bd full top">
+    <div class="tab-wrap">
+      <table class="mtab negtab">
+        <tr><th>判别式 $\Delta=b^2-4ac$</th><th>$\Delta\gt 0$</th><th>$\Delta=0$</th><th>$\Delta\lt 0$</th></tr>
+        <tr><th>方程 $ax^2+bx+c=0$ 的根</th><td><span class="think" data-step="1" data-ask="填一填">两个相异实根 $x_{1,2}=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$</span></td><td><span class="think" data-step="1" data-ask="填一填">两个相等实根 $x_1=x_2=-\dfrac{b}{2a}$</span></td><td><span class="think" data-step="1" data-ask="填一填">没有实数根</span></td></tr>
+        <tr><th>二次函数 $y=ax^2+bx+c$ 的图象</th><td><div class="think" data-step="2" data-ask="画一画：开口朝哪？"><div id="neg0" class="negb"></div></div></td><td><div class="think" data-step="2" data-ask="画一画"><div id="neg1" class="negb"></div></div></td><td><div class="think" data-step="2" data-ask="画一画"><div id="neg2" class="negb"></div></div></td></tr>
+        <tr><th>零点</th><td><span class="think" data-step="3" data-ask="填一填">两个零点</span></td><td><span class="think" data-step="3" data-ask="填一填">一个零点 $x=-\dfrac{b}{2a}$</span></td><td><span class="think" data-step="3" data-ask="填一填">无零点</span></td></tr>
+      </table>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 画出二次函数 $y=x^2-x-2$ 的图象，并指出该函数的零点。</p>
+        <details><summary>提示 1</summary>先解 $x^2-x-2=0$：能因式分解吗？</details>
+        <details><summary>完整解答</summary>$(x+1)(x-2)=0$，零点是 $-1$ 和 $2$；图象开口向上，对称轴 $x=\frac12$，与 $x$ 轴交于 $(-1,0)$、$(2,0)$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 求零点：(1) $y=(x+1)(x-1)$；(2) $y=x^2-4x$；(3) $y=-3x^2-9$；(4) $y=-x^2+2x-1$。</p>
+        <details><summary>提示 1</summary>令 $y=0$ 解方程；(3) 先看 $-3x^2-9$ 能不能等于 0。</details>
+        <details><summary>完整解答</summary>(1) $\pm1$；(2) $0,\ 4$；(3) $-3x^2-9\le -9\lt 0$，<b>无零点</b>；(4) $-(x-1)^2=0$，零点 $1$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p59 练习 1–3。表格里的示意图用 y=−x²+2x+3、y=−x²+2x−1、y=−x²+2x−2 画出：a&lt;0 只是开口朝下，Δ 与零点个数的对应关系完全不变。第 3(3) 题提醒：没有零点也是一种答案。</p>
+</section>
+
+<!-- 8 ================= 3.3.2 情境：杂志定价 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">3.3.2 情境</span><h2>杂志怎样定价，收入才能超过 22.4 万元？</h2></div>
+  <div class="bd full">
+    <p class="tip">某杂志以每册 2 元的价格发行时，发行量为 10 万册。经过调查，若单册价格每提高 0.2 元，则发行量就减少 5 000 册。要使杂志社的销售收入大于 22.4 万元，每册杂志的价格应定在怎样的范围内？</p>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>设每册提高 $x$ 元</span><span>发行量减少 <span class="think" data-step="2" data-ask="减少多少万册？">$0.5\times\dfrac{x}{0.2}=\dfrac{5x}{2}$ 万册</span></span><i class="why">提高了 $\frac{x}{0.2}$ 个 0.2 元，每个减少 0.5 万册</i></div>
+      <div class="dl" data-step="3"><span>销售收入</span><span>$(2+x)\left(10-\dfrac{5x}{2}\right)$ 万元</span><i class="why">单价 × 发行量</i></div>
+      <div class="dl" data-step="4"><span>根据题意</span><span>$(2+x)\left(10-\dfrac{5x}{2}\right)\gt 22.4$</span><i class="why">收入大于 22.4 万元</i></div>
+      <div class="dl key" data-step="5"><span>化简得</span><span class="think" data-step="6" data-ask="展开、移项，再乘 −2 试试">$5x^2-10x+4.8\lt 0$</span><i class="why">展开得 $-2.5x^2+5x+20\gt 22.4$，两边乘 $-2$，不等号<b>反向</b></i></div>
+    </div>
+    <div class="def" data-step="7"><h4>定义（课本 p60）</h4>像这样只含有一个未知数，并且未知数最高次数是 2 的整式不等式叫作<em>一元二次不等式</em>。</div>
+    <p class="tip gold" data-step="8"><b>课本之问：</b>一元二次不等式和相应的二次函数，是否也有内在的联系？</p>
+  </div>
+  <p class="note">课本 p60。第 2 步停一下：“0.5 × x/0.2”里 0.5 是 5 000 册 = 0.5 万册，x/0.2 是提价了几个 0.2 元。化简时“乘 −2 反向”用到 3.1 不等式性质。这个不等式先放着，第 13 页回来解。</p>
+</section>
+
+<!-- 9 ================= 观察：何时为正、为负 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>$y=x^2-2x-3$：哪些 $x$ 让 $y\gt 0$？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="signs" class="zero"></div>
+      <p class="tip center muted small">橙色 $y\gt 0$　绿色 $y\lt 0$　空心圈：$y=0$</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">$x^2-2x-3\gt 0$ 就是 $y\gt 0$，在图上是哪部分？　<span class="think" data-step="2" data-ask="上方还是下方？">图象在 $x$ 轴<b>上方</b>：零点 $-1$ 的左边、$3$ 的右边。</span></p>
+      <p class="def" data-step="2">$x^2-2x-3\gt 0$ 的解集：$\{x\mid x\lt -1\text{ 或 }x\gt 3\}=(-\infty,-1)\cup(3,+\infty)$</p>
+      <p class="tip" data-step="3">$x^2-2x-3\lt 0$ 呢？　<span class="think" data-step="4" data-ask="想一想">图象在 $x$ 轴<b>下方</b>：两个零点之间，解集为 $(-1,3)$。</span></p>
+      <p class="tip" data-step="5">$x=-1$ 算不算在解集里？如果改成 $\ge 0$ 呢？　<span class="think" data-step="6" data-ask="想一想">$x=-1$ 时 $y=0$，不满足 $\gt 0$；改成 $\ge 0$ 就要把零点算进去：$(-\infty,-1]\cup[3,+\infty)$。</span></p>
+      <p class="method" data-step="7">解一元二次不等式，关键是两件事：<b>零点在哪</b>（解方程），<b>开口朝哪</b>（看 $a$）。</p>
+    </div>
+  </div>
+  <p class="note">先让学生对着图说，再揭示。第 5 步的追问引出“端点开闭”：严格不等号画空心圈、用圆括号；带等号画实心点、用方括号。这一页的结论下一页推广到一般情形。</p>
+</section>
+
+<!-- 10 ================= 核心交互：表 3-3-2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手</span><h2>拖动抛物线，看解集怎样变（$a\gt 0$，表 3-3-2）</h2></div>
+  <button class="media-btn" hidden data-img="assets/paowuxian.jpg" data-video="assets/paowuxian.mp4" data-cap="y = x² − 2x + c 随 c 增大向上平移：Δ>0 → Δ=0 → Δ<0，x 轴上同步画出 y>0 的解集">▶ 看动画</button>
+  <div class="bd pw-bd pwork" data-mode="ineq">
+    <div class="col">
+      <div class="pboard"></div>
+      <div class="signs" data-noswipe>
+        <button type="button" class="btn solid" data-sign="gt">$\gt 0$</button><button type="button" class="btn" data-sign="ge">$\ge 0$</button><button type="button" class="btn" data-sign="lt">$\lt 0$</button><button type="button" class="btn" data-sign="le">$\le 0$</button>
+      </div>
+      <div class="sliders" data-noswipe>
+        <div class="slider-row">$a=$<input type="range" data-p="a" min="0.5" max="2" step="0.5" value="1"><b class="v" data-v="a"></b></div>
+        <div class="slider-row">$b=$<input type="range" data-p="b" min="-6" max="6" step="0.5" value="-2"><b class="v" data-v="b"></b></div>
+        <div class="slider-row">$c=$<input type="range" data-p="c" min="-5" max="6" step="0.25" value="-3"><b class="v" data-v="c"></b></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-read readout-box"></div>
+      <div class="tab-wrap">
+        <table class="mtab ptab">
+          <tr><th>判别式 $\Delta$</th><th data-col="0">$\Delta\gt 0$</th><th data-col="1">$\Delta=0$</th><th data-col="2">$\Delta\lt 0$</th></tr>
+          <tr><th>方程的根</th><td data-col="0">$x_1,\ x_2\ (x_1\lt x_2)$</td><td data-col="1">$x_1=x_2=-\frac{b}{2a}$</td><td data-col="2">没有实数根</td></tr>
+          <tr data-row="gt"><th>$ax^2+bx+c\gt 0$ 的解集</th><td data-col="0">$(-\infty,x_1)\cup(x_2,+\infty)$</td><td data-col="1">$\left(-\infty,-\frac{b}{2a}\right)\cup\left(-\frac{b}{2a},+\infty\right)$</td><td data-col="2">$\mathbf{R}$</td></tr>
+          <tr data-row="lt"><th>$ax^2+bx+c\lt 0$ 的解集</th><td data-col="0">$(x_1,x_2)$</td><td data-col="1">$\varnothing$</td><td data-col="2">$\varnothing$</td></tr>
+        </table>
+      </div>
+      <p class="tip gold small" data-step="1">表里只有 $\gt 0$、$\lt 0$。$\ge 0$、$\le 0$ 怎么办？　<span class="think" data-step="2" data-ask="点上面的按钮试试">在 $\gt 0$（或 $\lt 0$）的解集里<b>补上零点</b>：端点变实心，圆括号变方括号。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p60 表 3-3-2，本课核心。建议顺序：① 保持 &gt;0，把顶点从下往上拖，看三列依次高亮、x 轴橙色解集怎样变化；② 停在 Δ=0（如 c=1），问“&gt;0 的解集为什么是挖掉一个点？”；③ 切换到 &lt;0、≥0、≤0 再拖一遍，特别看 Δ=0 时 ≤0 的解集只剩一个数。右上角“看动画”是 15 秒无声动画（y=x²−2x+c 随 c 增大平移），可用于复习。</p>
+</section>
+
+<!-- 11 ================= 方法 + 辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>三个解法，错在哪？</h2></div>
+  <div class="bd full">
+    <p class="method" data-label="解一元二次不等式">① <b>化正</b>：二次项系数为负时，两边同乘 $-1$，不等号反向；　② <b>求根</b>：算 $\Delta$，解方程；　③ <b>画图读集</b>：画开口向上的草图，按“上方 / 下方”写解集，注意端点开闭。</p>
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>解不等式 $-x^2+x+2\gt 0$。</p>
+        <p class="muted">解：方程 $-x^2+x+2=0$ 的根为 $-1,\ 2$，所以解集为 $\{x\mid x\lt -1\text{ 或 }x\gt 2\}$。</p>
+        <div class="think" data-step="2" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>$a=-1\lt 0$，开口向下，大于 0 的部分在两根<b>之间</b>。先化正：$x^2-x-2\lt 0$，解集 $\{x\mid -1\lt x\lt 2\}$。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>解不等式 $x^2-2x+1\gt 0$。</p>
+        <p class="muted">解：$\Delta=4-4=0$，方程只有一个根 $x=1$，图象与 $x$ 轴只有一个交点，所以解集为 $\varnothing$。</p>
+        <div class="think" data-step="4" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>平方数只在 $x=1$ 时等于 0，其余都大于 0。$\Delta=0$，解集为 $\{x\mid x\ne 1\}=(-\infty,1)\cup(1,+\infty)$。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>解不等式 $x^2+x+1\lt 0$。</p>
+        <p class="muted">解：$\Delta=1-4\lt 0$，方程没有实数根，所以不等式对一切实数成立，解集为 $\mathbf R$。</p>
+        <div class="think" data-step="6" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>没有零点、开口向上，图象<b>整个在 $x$ 轴上方</b>，$y$ 永远大于 0，所以 $\lt 0$ 的解集是 $\varnothing$。“无实根”不等于“解集为 $\mathbf R$”。</p></div>
+      </div>
+    </div>
+    <p class="warn" data-step="7">别背“大于取两边、小于取中间”——它只对 $a\gt 0$、$\Delta\gt 0$ 成立。<b>画个草图</b>永远不会错。</p>
+  </div>
+  <p class="note">方法框对应课本 p61 旁注“对于二次项系数为负数的不等式，可以先把二次项系数化成正数，然后再求解”。三张判断卡是自编的典型错误（不是课本题号）：每张先让学生举手判断对错，再请判“错”的同学说理由，最后点开。</p>
+</section>
+
+<!-- 12 ================= 3.3.2 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>解下列不等式（图 3-3-1）</h2></div>
+  <div class="bd full">
+    <div class="cols4">
+      <div class="ex1card">
+        <p class="q">(1) $x^2-7x+12\gt 0$</p>
+        <div id="e1g0" class="e1g"></div>
+        <p data-step="1">根：$x_1=3,\ x_2=4$</p>
+        <p data-step="2" class="ans">$\{x\mid x\lt 3\text{ 或 }x\gt 4\}$</p>
+      </div>
+      <div class="ex1card">
+        <p class="q">(2) $-x^2-2x+3\ge 0$</p>
+        <div id="e1g1" class="e1g"></div>
+        <p data-step="3">乘 $-1$：$x^2+2x-3\le 0$，根 $-3,\ 1$</p>
+        <p data-step="4" class="ans">$\{x\mid -3\le x\le 1\}$</p>
+      </div>
+      <div class="ex1card">
+        <p class="q">(3) $x^2-2x+1\lt 0$</p>
+        <div id="e1g2" class="e1g"></div>
+        <p data-step="5">$x_1=x_2=1$，图象与 $x$ 轴只碰一下</p>
+        <p data-step="6" class="ans">$\varnothing$</p>
+      </div>
+      <div class="ex1card">
+        <p class="q">(4) $x^2-2x+2\gt 0$</p>
+        <div id="e1g3" class="e1g"></div>
+        <p data-step="7">$\Delta=4-8\lt 0$，无实数解</p>
+        <p data-step="8" class="ans">$\mathbf R$</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="8">四题恰好走遍了表 3-3-2：<b>两根</b>（1）（2）、<b>一根</b>（3）、<b>无根</b>（4）。第 (2) 题带等号，端点 $-3$、$1$ 画实心。</p>
+  </div>
+  <p class="note">课本 p61 例 1 与图 3-3-1。每题先让学生说“根是多少、开口朝哪”，再看 x 轴上的橙色解集。第 (2) 题对应课本旁注：二次项系数为负，先化成正数。第 (3) 题空心圈表示 x=1 时 y=0，不满足 &lt;0。</p>
+</section>
+
+<!-- 13 ================= 回到杂志 + 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">应用</span><h2>回到杂志定价；再围一个矩形（例 2）</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>回到第 8 页：</b>解 $5x^2-10x+4.8\lt 0$。</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>$\Delta$</span><span>$=100-96=4\gt 0$</span><i class="why">$a=5,\ b=-10,\ c=4.8$</i></div>
+          <div class="dl" data-step="2"><span>两根</span><span class="think" data-step="3" data-ask="求根公式">$x=\dfrac{10\pm2}{10}$，即 $0.8$ 和 $1.2$</span><i class="why"></i></div>
+          <div class="dl key" data-step="4"><span>解集</span><span>$0.8\lt x\lt 1.2$</span><i class="why">取两根之间</i></div>
+        </div>
+        <p class="tip" data-step="5"><b>答</b>　价格 $2+x$ 应定在 <b>2.8 元到 3.2 元之间</b>（不含端点）。</p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 2</b>　用一根长为 100 m 的绳子能围成一个面积大于 600 m² 的矩形吗？当长、宽分别为多少米时，所围成的矩形的面积最大？</p>
+        <div class="derive">
+          <div class="dl" data-step="6"><span>设一边长 $x$ m</span><span>另一边 $(50-x)$ m，$0\lt x\lt 50$</span><i class="why">周长 100</i></div>
+          <div class="dl" data-step="7"><span>由题意</span><span>$x(50-x)\gt 600$，即 $x^2-50x+600\lt 0$</span><i class="why">移项</i></div>
+          <div class="dl key" data-step="8"><span>解得</span><span class="think" data-step="9" data-ask="能因式分解吗？">$(x-20)(x-30)\lt 0$，$20\lt x\lt 30$</span><i class="why"></i></div>
+          <div class="dl" data-step="10"><span>面积</span><span>$S=x(50-x)=-(x-25)^2+625$</span><i class="why">配方</i></div>
+        </div>
+        <p class="tip" data-step="11"><b>答</b>　能；一边长在 20 m 至 30 m 之间时面积大于 600 m²。长、宽都为 25 m 时面积最大。<span class="muted">（旁注：也可用基本不等式 $x(50-x)\le\left(\frac{50}{2}\right)^2$）</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">左栏：课本 p60 杂志问题的完整解答（课本在习题 3.3 第 15 题里给出了 0.8&lt;x&lt;1.2），最后别忘了回答“价格”而不是 x。右栏：课本 p62 例 2，旁注问“你能用基本不等式来求 x(50−x) 的最大值吗？”——和 3.2 例 3（和定积最大）是同一题型，可以让学生对照。</p>
+</section>
+
+<!-- 14 ================= 例 3、例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 例 4</span><h2>利润有多少？车有没有超速？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 3</b>　某小型服装厂生产一种风衣，日销货量 $x$ 件（$x\in\mathbf N^*$）与货价 $p$ 元/件之间的关系为 $p=160-2x$，生产 $x$ 件所需成本为 $C=500+30x$ 元。问：该厂日产量多大时，日获利不少于 1 300 元？</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>由题意</span><span>$(160-2x)x-(500+30x)\ge 1300$</span><i class="why">“不少于”即 $\ge$</i></div>
+          <div class="dl" data-step="2"><span>化简</span><span>$x^2-65x+900\le 0$</span><i class="why">除以 $-2$，反向</i></div>
+          <div class="dl key" data-step="3"><span>解得</span><span class="think" data-step="4" data-ask="两根是多少？">$(x-20)(x-45)\le 0$，$20\le x\le 45$</span><i class="why">$\Delta=625$</i></div>
+        </div>
+        <p class="tip" data-step="5"><b>答</b>　日产量在 20 件至 45 件时，日获利不少于 1 300 元。</p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 4</b>　限速 40 km/h 的弯道上，甲、乙两车相向而行，同时刹车但还是相碰。甲车刹车距离小于 12 m，乙车略超过 10 m。已知 $s_{\text{甲}}=0.1x+0.01x^2$，$s_{\text{乙}}=0.05x+0.005x^2$（$s$：m，$x$：km/h）。问两车有无超速？</p>
+        <div class="derive">
+          <div class="dl" data-step="6"><span>甲</span><span>$0.1x+0.01x^2\lt 12$，即 $x^2+10x-1200\lt 0$</span><i class="why">乘 100</i></div>
+          <div class="dl" data-step="7"><span>解得</span><span>$-40\lt x\lt 30$</span><i class="why">未超速</i></div>
+          <div class="dl" data-step="8"><span>乙</span><span>$0.05x+0.005x^2\gt 10$，即 $x^2+10x-2000\gt 0$</span><i class="why">乘 200</i></div>
+          <div class="dl" data-step="9"><span>解得</span><span class="think" data-step="10" data-ask="x<−50 要不要？">$x\gt 40$ 或 $x\lt -50$（不合实际意义，舍去）</span><i class="why">超速</i></div>
+        </div>
+        <p class="tip" data-step="11"><b>答</b>　甲车未超过规定限速，乙车超过规定限速。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p62–63 例 3、例 4。例 3 的两根可以让学生用因式分解：20×45=900，20+45=65。例 4 分析：“根据汽车的刹车距离可以估计汽车的车速”；第 10 步停一下：解出来的负数解要结合实际舍去——这是应用题最容易漏写的一句。</p>
+</section>
+
+<!-- 15 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：先选，再做</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1(1)</b>　不等式 $(x-1)(x-3)\gt 0$ 的解集为（　）</p>
+        <div class="pick" data-ans="c">
+          <button type="button" data-k="a">A. $\{x\mid x\lt 1\}$</button><button type="button" data-k="b">B. $\{x\mid x\gt 3\}$</button><button type="button" data-k="c">C. $\{x\mid x\lt 1\text{ 或 }x\gt 3\}$</button><button type="button" data-k="d">D. $\{x\mid 1\lt x\lt 3\}$</button>
+          <p class="pick-why">零点 1、3，开口向上，大于 0 在两根外侧。</p>
+        </div>
+        <p class="tip"><b>1(2)</b>　不等式 $-x^2+2x-4\gt 0$ 的解集为（　）</p>
+        <div class="pick" data-ans="b">
+          <button type="button" data-k="a">A. $\mathbf R$</button><button type="button" data-k="b">B. $\varnothing$</button><button type="button" data-k="c">C. $\{x\mid x\gt 0,\ x\in\mathbf R\}$</button><button type="button" data-k="d">D. $\{x\mid x\lt 0,\ x\in\mathbf R\}$</button>
+          <p class="pick-why">化正：$x^2-2x+4\lt 0$，$\Delta=4-16\lt 0$，图象全在 $x$ 轴上方，无解。</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>2(3)</b>　解不等式 $2x^2-5x+3\lt 0$。</p>
+          <details><summary>提示 1</summary>因式分解：$2x^2-5x+3=(x-1)(2x-3)$。</details>
+          <details><summary>完整解答</summary>两根 $1,\ \frac32$，开口向上，小于 0 取中间：$\left\{x\,\middle|\,1\lt x\lt\frac32\right\}$。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>4</b>　当 $x$ 是什么实数时，函数 $y=-x^2+5x+14$ 的值是：(1) 0？(2) 正数？(3) 负数？</p>
+          <details><summary>提示 1</summary>先求零点：$-x^2+5x+14=0\Leftrightarrow x^2-5x-14=0$。</details>
+          <details><summary>完整解答</summary>零点 $-2,\ 7$。(1) $x=-2$ 或 $7$；(2) $-2\lt x\lt 7$；(3) $x\lt -2$ 或 $x\gt 7$（开口向下）。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>5(1)</b>　已知 $M=\{x\mid -4\le x\le 7\}$，$N=\{x\mid x^2-x-6\gt 0\}$，求 $M\cap N$。</p>
+          <details><summary>提示 1</summary>先解 $x^2-x-6\gt 0$，再在数轴上和 $M$ 取公共部分。</details>
+          <details><summary>完整解答</summary>$N=\{x\mid x\lt -2\text{ 或 }x\gt 3\}$，$M\cap N=\{x\mid -4\le x\lt -2\text{ 或 }3\lt x\le 7\}$。</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p61–62 练习 1、2(3)、4、5(1)。选择题点错会变红，可以再选；点对后显示理由。第 5(1) 题回到第 1 章集合，提醒端点：−2、3 取不到（N 是严格不等号），−4、7 取得到。课后：练习 2 其余小题、练习 3。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">零点：方程 $ax^2+bx+c=0$ 的根 = 图象与 $x$ 轴交点的横坐标。</p>
+        <p class="recall" data-label="表 3-3-2（a>0）">$\Delta\gt0$：$\gt0$ 取两根外，$\lt0$ 取两根间；$\Delta=0$：$\gt0$ 挖去 $-\frac{b}{2a}$，$\lt0$ 为 $\varnothing$；$\Delta\lt0$：$\gt0$ 为 $\mathbf R$，$\lt0$ 为 $\varnothing$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="解一元二次不等式">化正 → 求根（看 $\Delta$）→ 画草图读解集 → 端点开闭看等号。</p>
+        <p class="method" data-label="应用题">设元 → 列不等式 → 解 → <b>结合实际取舍</b> → 作答。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="函数观点">方程、不等式都是函数的“局部”：$=0$ 看交点，$\gt0$ 看上方，$\lt0$ 看下方。</p>
+        <p class="recall" data-label="数形结合 · 分类讨论">按 $\Delta$ 的符号分三类，每一类配一幅图。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>习题 3.3 第 15 题（阅读题）用“符号法则”把 $5x^2-10x+4.8\lt 0$ 化成两个一次不等式组，可试解 $\dfrac{x-1}{x+3}\lt 0$。“零点”还会在第 8 章<a href="../mg10a-erfenfa/index.html">二分法</a>里再见面；下一章是<a href="../mg10a-zhishu/index.html">第 4 章 指数</a>。</p>
+  </div>
+  <p class="note">请学生先用自己的话说出“三种情形各是什么图”，再逐栏揭示。课后作业建议：习题 3.3 第 1、2、5、6、9 题；学有余力做第 11、12 题（含参数）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

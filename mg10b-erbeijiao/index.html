@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二倍角的三角函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zhonglou.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第10章 三角恒等变换 · 10.2</p>
+    <h1 class="cover-title">二倍角的三角函数</h1>
+    <p class="cover-q" data-step="1">钟面是一个圆。指针 $OP$ 从“3 点”方向转过角 $2\alpha$；站在“9 点”的位置 $A$ 看指针尖 $P$，视线与水平直径的夹角恰好是 <b>$\alpha$</b>。</p>
+    <p class="cover-q" data-step="2">已知 $\sin\alpha$、$\cos\alpha$，能算出 $\sin 2\alpha$ 吗？——会不会就是 <b>$2\sin\alpha$</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">令 β = α</span><span class="chip">倍角公式</span><span class="chip">单位圆里看见 2sinαcosα</span><span class="chip">升幂与降幂</span></div>
+  </div>
+  <p class="note">课本 p63 引入。封面只抛问题：让学生凭直觉表态“sin 2α = 2sin α 吗？”，举手统计，第 3 页用一个具体角当场检验。“从圆上一点看直径另一端，夹角是圆心角的一半”就是初中的圆周角定理，第 5 页会用它把公式“画出来”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课的和角公式 + 两件老工具</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="10.1 两角和与差的三角函数" data-step="1">
+        <p>$\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$</p>
+        <p>$\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta$</p>
+        <p>$\tan(\alpha+\beta)=\dfrac{\tan\alpha+\tan\beta}{1-\tan\alpha\tan\beta}$</p>
+        <span class="use">上一课用 $\alpha,\beta$ 的三角函数表示了 $\alpha+\beta$ 的三角函数；本课令 $\beta=\alpha$，直接得到倍角公式。</span>
+      </div>
+      <div class="recall" data-label="必修第一册 · 第7章 同角关系" data-step="2">
+        <p class="big">$\sin^2\alpha+\cos^2\alpha=1$</p>
+        <p>$\tan\alpha=\dfrac{\sin\alpha}{\cos\alpha}$；单位圆上，角 $\theta$ 终边与圆的交点是 $(\cos\theta,\sin\theta)$。</p>
+        <span class="use">把 $\cos^2\alpha-\sin^2\alpha$ 变成只含 $\cos\alpha$ 或只含 $\sin\alpha$ 的两种形式；第 5 页用单位圆读出 $\sin2\alpha$。</span>
+      </div>
+      <div class="recall" data-label="初中 · 圆周角定理" data-step="3">
+        <svg viewBox="0 0 300 140" class="mini-fig" aria-label="圆周角与圆心角">
+          <path d="M30 120 A120 120 0 0 1 270 120 Z" fill="none" stroke="#9fb0bf" stroke-width="2"/>
+          <path d="M30 120 L210 22 L270 120 M150 120 L210 22" fill="none" stroke="#1f2d3a" stroke-width="2.5"/>
+          <text x="14" y="134" class="fl">A</text><text x="274" y="134" class="fl">B</text><text x="144" y="137" class="fl">O</text><text x="212" y="16" class="fl">P</text>
+        </svg>
+        <p>同弧所对的圆周角等于圆心角的一半：$\angle PAB=\frac12\angle POB$；直径所对的圆周角是直角。</p>
+        <span class="use">第 5 页：$\angle PAB=\alpha$ 时，$\angle POB=2\alpha$，$\angle APB=90^\circ$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>上一课讲到：</b>$S_{(\alpha\pm\beta)}$、$C_{(\alpha\pm\beta)}$、$T_{(\alpha\pm\beta)}$ 对任意角都成立。那么两个角<b>相等</b>时，会得到什么？</p>
+  </div>
+  <p class="note">每张卡请学生先口头复述，再看“本课用在”。第一张卡可以请学生默写，检查 10.1 是否掌握；第三张图里 P 在圆上，学生只要能说出“圆周角是圆心角的一半”“直径所对圆周角是直角”就够了。</p>
+</section>
+
+<!-- 3 ================= 提出问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>$\sin 2\alpha$ 是 $2\sin\alpha$ 吗？先拿一个角试试</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>$\alpha$</th><th>$\sin 2\alpha$</th><th>$2\sin\alpha$</th></tr>
+        <tr><td>$30^\circ$</td><td><span class="think" data-step="1" data-ask="算一算">$\sin60^\circ=\dfrac{\sqrt3}{2}\approx0.87$</span></td><td><span class="think" data-step="1" data-ask="算一算">$2\times\dfrac12=1$</span></td></tr>
+        <tr><td>$45^\circ$</td><td><span class="think" data-step="2" data-ask="算一算">$\sin90^\circ=1$</span></td><td><span class="think" data-step="2" data-ask="算一算">$\sqrt2\approx1.41$</span></td></tr>
+        <tr><td>$60^\circ$</td><td><span class="think" data-step="3" data-ask="算一算">$\sin120^\circ=\dfrac{\sqrt3}{2}$</span></td><td><span class="think" data-step="3" data-ask="算一算">$\sqrt3\approx1.73$</span></td></tr>
+      </table>
+      <p class="warn" data-step="4">“$\sin 2\alpha=2\sin\alpha$”<b>不成立</b>：$\sin$ 不是乘法，不能把 2 “提出来”。何况 $2\sin\alpha$ 可以大于 1，而 $\sin2\alpha$ 永远不超过 1。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5">那 $\sin 2\alpha$ 到底能不能用 $\alpha$ 的三角函数表示？　<span class="think" data-step="6" data-ask="2α 能看成两个什么角的和？">$2\alpha=\alpha+\alpha$——这是和角 $\alpha+\beta$ 在 $\beta=\alpha$ 时的特殊情形！</span></p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>$\sin(\alpha+\beta)$</span><span>$=\sin\alpha\cos\beta+\cos\alpha\sin\beta$</span><i class="why">$S_{(\alpha+\beta)}$，对任意 $\alpha,\beta$ 成立</i></div>
+        <div class="dl key" data-step="8"><span>令 $\beta=\alpha$：</span><span class="think" data-step="9" data-ask="代进去，合并">$\sin2\alpha=2\sin\alpha\cos\alpha$</span><i class="why">$\sin\alpha\cos\alpha+\cos\alpha\sin\alpha$，两项相同，合并</i></div>
+      </div>
+      <p class="tip gold" data-step="10">检验 $\alpha=30^\circ$：$2\sin30^\circ\cos30^\circ=2\times\dfrac12\times\dfrac{\sqrt3}{2}=\dfrac{\sqrt3}{2}=\sin60^\circ$。✓</p>
+    </div>
+  </div>
+  <p class="note">课本 p63 开头的问题“sin 2α 能否用 α 的三角函数来表示？”。表格让学生分组口算，暴露“提 2”的错误。第 6 步停顿：请学生自己说出“2α = α + α”，这是本课唯一的“想法”，后面都是计算。</p>
+</section>
+
+<!-- 4 ================= 推导倍角公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>令 $\beta=\alpha$：三个公式，一次得到</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\sin2\alpha$</span><span>$=2\sin\alpha\cos\alpha$</span><i class="why">$S_{(\alpha+\beta)}$ 中令 $\beta=\alpha$</i></div>
+        <div class="dl" data-step="2"><span>$\cos2\alpha$</span><span class="think" data-step="3" data-ask="由 C(α+β) 得？">$=\cos^2\alpha-\sin^2\alpha$</span><i class="why">$C_{(\alpha+\beta)}$ 中令 $\beta=\alpha$：$\cos\alpha\cos\alpha-\sin\alpha\sin\alpha$</i></div>
+        <div class="dl" data-step="4"><span>$\tan2\alpha$</span><span class="think" data-step="5" data-ask="由 T(α+β) 得？">$=\dfrac{2\tan\alpha}{1-\tan^2\alpha}$</span><i class="why">$T_{(\alpha+\beta)}$ 中令 $\beta=\alpha$：$\dfrac{\tan\alpha+\tan\alpha}{1-\tan\alpha\tan\alpha}$</i></div>
+      </div>
+      <p class="tip" data-step="6">$\cos^2\alpha-\sin^2\alpha$ 里同时有 $\sin$ 和 $\cos$。能只留一种吗？　<span class="think" data-step="7" data-ask="用哪个关系式？">用 $\sin^2\alpha+\cos^2\alpha=1$ 消去其中一个。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="8"><span>$\cos2\alpha$</span><span>$=2\cos^2\alpha-1$</span><i class="why">$\sin^2\alpha$ 换成 $1-\cos^2\alpha$</i></div>
+        <div class="dl" data-step="9"><span>$\cos2\alpha$</span><span>$=1-2\sin^2\alpha$</span><i class="why">$\cos^2\alpha$ 换成 $1-\sin^2\alpha$</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="10"><h4>倍角公式（课本 p63）</h4>
+        $\sin2\alpha=2\sin\alpha\cos\alpha$；　$(S_{2\alpha})$<br>
+        $\cos2\alpha=\cos^2\alpha-\sin^2\alpha=2\cos^2\alpha-1=1-2\sin^2\alpha$；　$(C_{2\alpha})$<br>
+        $\tan2\alpha=\dfrac{2\tan\alpha}{1-\tan^2\alpha}$．　$(T_{2\alpha})$<br>
+        <span class="muted">以上这些公式都叫作<em>倍角公式</em>。倍角公式是和角公式的特例。</span>
+      </div>
+      <p class="warn" data-step="11">$T_{2\alpha}$ 有条件：$\tan\alpha$、$\tan2\alpha$ 都要有意义，且分母 $1-\tan^2\alpha\ne0$。例如 $\alpha=45^\circ$ 时 $\tan2\alpha=\tan90^\circ$ 不存在，公式不能用。</p>
+      <p class="tip" data-step="12">“倍”是相对的：$4\alpha$ 是 $2\alpha$ 的二倍，$\alpha$ 是 $\dfrac\alpha2$ 的二倍。<span class="think" data-step="13" data-ask="sin α 可以写成？">$\sin\alpha=2\sin\dfrac\alpha2\cos\dfrac\alpha2$，$\cos4\alpha=1-2\sin^22\alpha$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p63 公式框与旁注（“倍角”专指“二倍角”，遇到“三倍角”“三”字不能省）。三条公式请学生自己代入写出，教师只点开核对。C₂α 的三种形式要求学生能互相推出，不必死记。最后一条强调“二倍”是两个角之间的关系，不一定是 2α 和 α。</p>
+</section>
+
+<!-- 5 ================= 核心交互：单位圆中的二倍角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">几何直观</span><h2>在单位圆里“看见” $\sin2\alpha=2\sin\alpha\cos\alpha$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="dbl" class="dbl"></div>
+      <p class="muted center small-t">拖动橙色点 $P$：圆周角 $\alpha$ 与圆心角 $2\alpha$ 一起变；表中左列从图上的点量出，右列用公式算</p>
+      <table class="mtab rd" id="dblTab"></table>
+    </div>
+    <div class="col">
+      <p class="tip">单位圆 $O$ 中，$AB$ 为直径（$AB=2$），$P$ 在圆上，$\angle PAB=\alpha$，$PH\perp AB$ 于 $H$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$P$</span><span class="think" data-step="2" data-ask="P 的坐标是什么？">$(\cos2\alpha,\ \sin2\alpha)$</span><i class="why">圆周角定理：$\angle POB=2\alpha$；单位圆上的点</i></div>
+        <div class="dl" data-step="3"><span>$AP=$</span><span>$2\cos\alpha$，$PB=2\sin\alpha$</span><i class="why">$\angle APB=90^\circ$，$\text{Rt}\triangle APB$ 中 $AB=2$</i></div>
+        <div class="dl key" data-step="4"><span>$PH=$</span><span class="think" data-step="5" data-ask="在 Rt△APH 中算 PH">$AP\sin\alpha=2\sin\alpha\cos\alpha$</span><i class="why">又 $PH=\sin2\alpha$ ⇒ $\sin2\alpha=2\sin\alpha\cos\alpha$</i></div>
+        <div class="dl" data-step="6"><span>$x_H=$</span><span class="think" data-step="7" data-ask="从 A 量过去">$-1+AH=-1+AP\cos\alpha=2\cos^2\alpha-1$</span><i class="why">又 $x_H=\cos2\alpha$ ⇒ $\cos2\alpha=2\cos^2\alpha-1$</i></div>
+        <div class="dl" data-step="8"><span>$x_H=$</span><span class="think" data-step="9" data-ask="从 B 量过来">$1-HB=1-PB\sin\alpha=1-2\sin^2\alpha$</span><i class="why">⇒ $\cos2\alpha=1-2\sin^2\alpha$</i></div>
+      </div>
+      <p class="tip gold" data-step="10">把 $\alpha$ 拖过 $45^\circ$：$H$ 跑到 $O$ 左边，$x_H\lt0$，$\cos2\alpha\lt0$——等式照样成立。</p>
+    </div>
+  </div>
+  <p class="note">本课核心互动（图中所有线段由坐标精确算出：A(−1,0)、B(1,0)、P(cos2α, sin2α)）。先请学生拖 P，观察左下表中两列数值始终相等；再逐行追问依据。第 2 步停顿：为什么 P 的坐标是 (cos2α, sin2α)？——∠POB 是 2α。第 10 步请学生把 α 拖到 45°（P 在正上方，H 与 O 重合，cos 90° = 0），再拖过去。这里只是 0° &lt; α &lt; 90° 的直观，公式对任意角成立靠的是上一页的推导。</p>
+</section>
+
+<!-- 6 ================= 图象检验 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>哪条曲线和 $y=\sin2x$ 完全重合？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="cmpBtns"></div>
+      <div id="cmp" class="cmp"></div>
+      <p class="muted center small-t">蓝色实线 $y=\sin2x$；橙色虚线是所选的式子。拖动横轴上的橙色点看同一个 $x$ 处的两个值。</p>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="cmpMsg"></p>
+      <p class="tip" data-step="1">$y=2\sin x$ 为什么不重合？　<span class="think" data-step="2" data-ask="看最高点">$2\sin x$ 最大到 2，周期是 $2\pi$；$\sin2x$ 最大是 1，周期是 $\pi$——连形状都不同。</span></p>
+      <p class="tip" data-step="3">$y=\sin x\cos x$ 呢？　<span class="think" data-step="4" data-ask="差几倍？">处处是 $\sin2x$ 的一半：$\sin x\cos x=\dfrac12\sin2x$——这正是倍角公式的“逆用”。</span></p>
+      <p class="method" data-step="5" data-label="恒等式">$\sin2x=2\sin x\cos x$ 对<b>每一个</b> $x$ 都成立，所以两个函数的图象<b>完全重合</b>；只在几个点上相等不够（$2\sin x$ 与 $\sin2x$ 在 $x=0,\pi$ 处也相等）。</p>
+    </div>
+  </div>
+  <p class="note">四条候选：2sin x cos x（重合）、2sin x（误区）、sin x cos x（差 2 倍）、cos²x − sin²x（那是 cos 2x）。程序在 [0, 2π] 上取 721 个点算最大偏差，偏差为 0 才判“重合”。先让学生预测再点按钮。第 5 步强调：恒等式 = 对定义域内所有 x 成立；只验证几个特殊值只能“猜”，不能“证”。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>已知 $\sin\alpha$，求二倍角的三个函数值</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">已知 $\sin\alpha=\dfrac{12}{13}$，$\alpha\in\left(\dfrac\pi2,\pi\right)$，求 $\sin2\alpha$，$\cos2\alpha$，$\tan2\alpha$ 的值。</p>
+      <p class="tip" data-step="1">$\sin2\alpha=2\sin\alpha\cos\alpha$，还缺什么？　<span class="think" data-step="2" data-ask="想一想">缺 $\cos\alpha$；而且要判断符号：$\alpha$ 在第二象限，$\cos\alpha\lt0$。</span></p>
+      <p class="tip" data-step="3">$\cos2\alpha$ 选哪种形式最省事？　<span class="think" data-step="4" data-ask="想一想">已知 $\sin\alpha$，选 $1-2\sin^2\alpha$，一步到位。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="5"><span>$\cos\alpha$</span><span>$=-\sqrt{1-\sin^2\alpha}=-\sqrt{1-\left(\dfrac{12}{13}\right)^2}=-\dfrac5{13}$</span><i class="why">$\alpha\in\left(\frac\pi2,\pi\right)$，取负</i></div>
+        <div class="dl" data-step="6"><span>$\sin2\alpha$</span><span>$=2\sin\alpha\cos\alpha=2\times\dfrac{12}{13}\times\left(-\dfrac5{13}\right)=-\dfrac{120}{169}$</span><i class="why">$S_{2\alpha}$</i></div>
+        <div class="dl" data-step="7"><span>$\cos2\alpha$</span><span>$=1-2\sin^2\alpha=1-2\times\left(\dfrac{12}{13}\right)^2=-\dfrac{119}{169}$</span><i class="why">$C_{2\alpha}$</i></div>
+        <div class="dl end" data-step="8"><span>$\tan2\alpha$</span><span>$=\dfrac{\sin2\alpha}{\cos2\alpha}=\left(-\dfrac{120}{169}\right)\times\left(-\dfrac{169}{119}\right)=\dfrac{120}{119}$</span><i class="why">同角关系，不必再求 $\tan\alpha$</i></div>
+      </div>
+      <p class="method" data-step="9">已知一个三角函数值求二倍角：先用平方关系补齐另一个（<b>由象限定符号</b>），再选最合适的倍角公式；$\tan2\alpha$ 可直接由 $\dfrac{\sin2\alpha}{\cos2\alpha}$ 得到。</p>
+    </div>
+  </div>
+  <p class="note">课本 p63 例 1。停顿两处：①cos α 的符号（第二象限）；②cos 2α 用哪种形式。可以追问：用 T₂α 求 tan 2α 行不行？tan α = −12/5，2·(−12/5)/(1 − 144/25) = 120/119，结果相同，但多一步。</p>
+</section>
+
+<!-- 8 ================= 正用 · 逆用 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>倒过来用：认出“二倍角”的样子</h2></div>
+  <div class="bd full">
+    <p class="tip">课本 p64 练习 1：利用倍角公式求值。先看式子像哪个公式的<b>右边</b>，再把它写回左边。</p>
+    <div class="cols3 quick">
+      <p class="jcard" data-step="1">(1) $\sin\dfrac\pi8\cos\dfrac\pi8$<br><span class="think" data-step="2" data-ask="缺了什么？">$=\dfrac12\sin\dfrac\pi4=\dfrac{\sqrt2}{4}$（补一个 $\frac12$）</span></p>
+      <p class="jcard" data-step="1">(2) $\cos^2\dfrac\pi8-\sin^2\dfrac\pi8$<br><span class="think" data-step="2" data-ask="像谁？">$=\cos\dfrac\pi4=\dfrac{\sqrt2}{2}$</span></p>
+      <p class="jcard" data-step="1">(3) $1-2\sin^215^\circ$<br><span class="think" data-step="2" data-ask="像谁？">$=\cos30^\circ=\dfrac{\sqrt3}{2}$</span></p>
+      <p class="jcard" data-step="3">(4) $\dfrac{2\tan15^\circ}{1-\tan^215^\circ}$<br><span class="think" data-step="4" data-ask="像谁？">$=\tan30^\circ=\dfrac{\sqrt3}{3}$</span></p>
+      <p class="jcard" data-step="3">(5) $(\sin15^\circ-\cos15^\circ)^2$<br><span class="think" data-step="4" data-ask="先展开">$=1-2\sin15^\circ\cos15^\circ$<br>$=1-\sin30^\circ=\dfrac12$</span></p>
+      <p class="jcard" data-step="3">(6) $2\sin20^\circ\cos20^\circ-2\cos^225^\circ$<br><span class="think" data-step="4" data-ask="两部分各像谁？">$=\sin40^\circ-(1+\cos50^\circ)$<br>$=-1$（因为 $\cos50^\circ=\sin40^\circ$）</span></p>
+    </div>
+    <p class="method" data-step="5">倍角公式三种用法：<b>正用</b>（拆开 $\sin2\alpha$）、<b>逆用</b>（把 $2\sin\alpha\cos\alpha$ 合成 $\sin2\alpha$）、<b>变形用</b>（$1+\cos2\alpha=2\cos^2\alpha$，$1-\cos2\alpha=2\sin^2\alpha$，$1\pm\sin2\alpha=(\sin\alpha\pm\cos\alpha)^2$）。</p>
+  </div>
+  <p class="note">课本 p64 练习 1 的六个小题，前三题全班抢答，后三题给 1 分钟。第 (6) 题两处变形：2cos²25° = 1 + cos 50°（变形用），cos 50° = sin 40°（诱导公式）。方法提炼里的“变形用”就是下一页例 2 的关键。</p>
+</section>
+
+<!-- 9 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>化角为单角：消去“1”的妙用</h2></div>
+  <div class="bd full">
+    <p class="tip big">证明：$\dfrac{1+\sin2\theta-\cos2\theta}{1+\sin2\theta+\cos2\theta}=\tan\theta$．</p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1"><b>分析</b>　左边繁、右边简，从左边化简；左边是 $2\theta$，右边是 $\theta$——<span class="think" data-step="2" data-ask="目标是什么？">把 $2\theta$ 的三角函数化成 $\theta$ 的三角函数。</span></p>
+        <p class="tip" data-step="3">分子 $1-\cos2\theta$、分母 $1+\cos2\theta$，$\cos2\theta$ 各选哪种形式？　<span class="think" data-step="4" data-ask="想让“1”消失">分子用 $1-2\sin^2\theta$，分母用 $2\cos^2\theta-1$：$1$ 正好抵消。</span></p>
+      </div>
+      <div class="col">
+        <div class="derive">
+          <div class="dl" data-step="5"><span>左边</span><span>$=\dfrac{1+2\sin\theta\cos\theta-(1-2\sin^2\theta)}{1+2\sin\theta\cos\theta+(2\cos^2\theta-1)}$</span><i class="why">倍角公式</i></div>
+          <div class="dl key" data-step="6"><span></span><span>$=\dfrac{2\sin\theta(\cos\theta+\sin\theta)}{2\cos\theta(\cos\theta+\sin\theta)}$</span><i class="why">“1”抵消，提公因式</i></div>
+          <div class="dl end" data-step="7"><span></span><span>$=\dfrac{\sin\theta}{\cos\theta}=\tan\theta=$ 右边</span><i class="why">约分；因此等式成立</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="8" data-label="升幂">$1-\cos2\theta=2\sin^2\theta$，$1+\cos2\theta=2\cos^2\theta$：<b>角减半，次数升高</b>，常用来消去式子里的“1”、去根号。</p>
+  </div>
+  <p class="note">课本 p64 例 2。第 4 步是关键：cos 2θ 有三种形式，选哪一种由“想让 1 消失”决定——让学生体会“形式选择由目标决定”。可以顺带指出：分子分母同约去 cos θ + sin θ，要求它不为 0（等式在两边都有意义时成立）。</p>
+</section>
+
+<!-- 10 ================= 降幂 + 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>降幂：平方变一次，角翻一倍</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">化简 $\sin^2\left(\alpha-\dfrac\pi6\right)+\sin^2\left(\alpha+\dfrac\pi6\right)-\sin^2\alpha$</p>
+      <p class="tip" data-step="1">三个平方，角各不相同。怎样去掉平方？　<span class="think" data-step="2" data-ask="由 cos 2α = 1 − 2sin²α 得？">$\sin^2\alpha=\dfrac{1-\cos2\alpha}{2}$——平方没了，代价是角变成二倍。</span></p>
+      <div id="sq" class="sq" data-step="2"></div>
+      <p class="muted center small-t" data-step="2">蓝：$y=\sin^2x$　橙虚线：$y=\dfrac{1-\cos2x}{2}$<br><b id="sqV"></b></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span>原式</span><span>$=\dfrac{1-\cos\left(2\alpha-\frac\pi3\right)}{2}+\dfrac{1-\cos\left(2\alpha+\frac\pi3\right)}{2}-\dfrac{1-\cos2\alpha}{2}$</span><i class="why">解法 1：降幂</i></div>
+        <div class="dl" data-step="4"><span></span><span>$=\dfrac12-\dfrac12\left[\cos\left(2\alpha-\frac\pi3\right)+\cos\left(2\alpha+\frac\pi3\right)-\cos2\alpha\right]$</span><i class="why">整理</i></div>
+        <div class="dl end" data-step="5"><span></span><span>$=\dfrac12-\dfrac12\left(2\cos2\alpha\cos\dfrac\pi3-\cos2\alpha\right)=\dfrac12$</span><i class="why">$C_{(\alpha\pm\beta)}$ 展开相加，$\cos\frac\pi3=\frac12$</i></div>
+      </div>
+      <p class="tip" data-step="6"><b>解法 2</b>　<span class="think" data-step="7" data-ask="不降幂，直接展开呢？">$=\left(\dfrac{\sqrt3}{2}\sin\alpha-\dfrac12\cos\alpha\right)^2+\left(\dfrac{\sqrt3}{2}\sin\alpha+\dfrac12\cos\alpha\right)^2-\sin^2\alpha=\dfrac32\sin^2\alpha+\dfrac12\cos^2\alpha-\sin^2\alpha=\dfrac12$</span></p>
+      <p class="method" data-step="8" data-label="降幂公式">$\sin^2\alpha=\dfrac{1-\cos2\alpha}{2}$，$\cos^2\alpha=\dfrac{1+\cos2\alpha}{2}$，$\tan^2\alpha=\dfrac{1-\cos2\alpha}{1+\cos2\alpha}$，都由倍角公式变形得到。</p>
+    </div>
+  </div>
+  <p class="note">课本 p64–65 例 3 与旁注公式。左图两条曲线完全重合：sin²x 原来也是一条“余弦型”曲线，在 1/2 上下摆动、周期为 π——这正是习题 10.2 第 11 题（y = sin 2x 与 y = sin²x 的图象关系）的线索。“降幂”与上一页“升幂”是同一组公式的两个方向。</p>
+</section>
+
+<!-- 11 ================= 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>半圆钢板截矩形：面积什么时候最大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">在半圆形钢板上截取一块矩形材料，使矩形的一边落在半圆的直径上，怎样截取能使这个矩形的面积最大？</p>
+      <div id="steel" class="steel"></div>
+      <p class="tip center" id="steelV"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">用什么作变量最方便？　<span class="think" data-step="2" data-ask="想一想">设 $\angle AOB=\theta$（$\theta$ 为锐角），半径为 $R$：长、宽都能用 $\theta$ 表示。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$AB$</span><span>$=R\sin\theta$，$DA=2OA=2R\cos\theta$</span><i class="why">$\text{Rt}\triangle AOB$ 中 $OB=R$；$B,C$ 都在圆上，$OD=OA$</i></div>
+        <div class="dl key" data-step="4"><span>$S_{\text{矩形}ABCD}$</span><span class="think" data-step="5" data-ask="合成一个角">$=R\sin\theta\cdot2R\cos\theta=R^2\sin2\theta$</span><i class="why">逆用 $S_{2\alpha}$</i></div>
+        <div class="dl end" data-step="6"><span>当</span><span>$\sin2\theta=1$，即 $\theta=45^\circ$ 时</span><i class="why">$S$ 最大为 $R^2$，此时 $OA=\dfrac{\sqrt2}{2}R$</i></div>
+      </div>
+      <p class="tip gold" data-step="7"><b>答</b>　当矩形在直径上的两个顶点到圆心的距离都是半径的 $\dfrac{\sqrt2}{2}$ 倍时，截得的矩形面积最大。</p>
+    </div>
+  </div>
+  <p class="note">课本 p65–66 例 5、图 10-2-1。先请学生拖动 B 找“最大”，读数显示 S 在 θ = 45° 时等于 R²。追问：面积最大的矩形为什么一定内接于半圆（顶点 B、C 在圆上）？——不在圆上就还能“撑大”。课本“思考”：在一个圆的所有内接矩形中，怎样的矩形面积最大？（正方形，留给学生课后想。）</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 已知 $\sin\alpha=0.8$，$\alpha\in\left(0,\dfrac\pi2\right)$，求 $\sin2\alpha$，$\cos2\alpha$ 的值。</p>
+        <details><summary>提示 1</summary>像例 1：先求 $\cos\alpha$，注意符号。</details>
+        <details><summary>提示 2</summary>$\cos\alpha=\sqrt{1-0.64}=0.6$；$\cos2\alpha$ 用 $1-2\sin^2\alpha$。</details>
+        <details><summary>完整解答</summary>$\sin2\alpha=2\times0.8\times0.6=0.96$；$\cos2\alpha=1-2\times0.64=-0.28$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知 $\tan\alpha=\dfrac{1}{7}$，$\tan\beta=\dfrac13$，且 $\alpha,\beta$ 都是锐角，求 $\alpha+2\beta$ 的值。</p>
+        <details><summary>提示 1</summary>先用 $T_{2\alpha}$ 求 $\tan2\beta$，再用 $T_{(\alpha+\beta)}$ 求 $\tan(\alpha+2\beta)$。</details>
+        <details><summary>提示 2</summary>$\tan2\beta=\dfrac34$。别忘了确定 $\alpha+2\beta$ 的范围。</details>
+        <details><summary>完整解答</summary>$\tan(\alpha+2\beta)=\dfrac{\frac17+\frac34}{1-\frac17\cdot\frac34}=1$。由 $0\lt\tan\alpha\lt\tan\beta=\frac13\lt\frac{\sqrt3}{3}$ 知 $0\lt\alpha,\beta\lt\frac\pi6$，故 $0\lt\alpha+2\beta\lt\frac\pi2$，所以 $\alpha+2\beta=\dfrac\pi4$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（例 4）证明：$\sin50^\circ(1+\sqrt3\tan10^\circ)=1$。</p>
+        <details><summary>提示 1</summary>切化弦：$1+\sqrt3\tan10^\circ=\dfrac{\cos10^\circ+\sqrt3\sin10^\circ}{\cos10^\circ}$。</details>
+        <details><summary>提示 2</summary>$\cos10^\circ+\sqrt3\sin10^\circ=2\left(\frac12\cos10^\circ+\frac{\sqrt3}{2}\sin10^\circ\right)=2\cos(60^\circ-10^\circ)$。</details>
+        <details><summary>完整解答</summary>左边 $=\dfrac{2\sin50^\circ\cos50^\circ}{\cos10^\circ}=\dfrac{\sin100^\circ}{\cos10^\circ}=\dfrac{\sin(90^\circ+10^\circ)}{\cos10^\circ}=\dfrac{\cos10^\circ}{\cos10^\circ}=1=$ 右边。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 题是课本 p64 练习 2，第 2 题是 p66 练习 3，第 3 题是 p65 例 4（可作为例题讲，也可让学有余力的学生先试）。第 2 题的易错点是角的范围：只由 tan = 1 不能断定是 π/4，要先估计 α + 2β 落在 (0, π/2) 内。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$\sin2\alpha=2\sin\alpha\cos\alpha$<br>$\cos2\alpha=\cos^2\alpha-\sin^2\alpha$<br>$\phantom{\cos2\alpha}=2\cos^2\alpha-1=1-2\sin^2\alpha$<br>$\tan2\alpha=\dfrac{2\tan\alpha}{1-\tan^2\alpha}$</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="三种用法">正用、逆用（$\sin\alpha\cos\alpha=\frac12\sin2\alpha$）、变形用。</p>
+        <p class="method" data-label="升幂 · 降幂">$1\pm\cos2\alpha$ 升幂消“1”；$\sin^2\alpha,\cos^2\alpha$ 降幂去平方。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="特殊化">一般的和角公式 $\xrightarrow{\ \beta=\alpha\ }$ 特殊的倍角公式。</p>
+        <p class="recall" data-label="数形结合">单位圆中 $PH=\sin2\alpha=AP\sin\alpha$；图象完全重合 ⇔ 恒等。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>10.3 几个三角恒等式——把降幂公式里的 $\alpha$ 换成 $\dfrac\alpha2$，能得到 $\sin\dfrac\alpha2$、$\cos\dfrac\alpha2$ 怎样用 $\cos\alpha$ 表示？先自己写一写。</p>
+  </div>
+  <p class="note">请学生先说：倍角公式从哪里来（令 β = α）？三种用法各举一例。课后作业建议：习题 10.2 第 1、2、3、6 题；第 11 题（y = sin 2x 与 y = sin²x 的关系）可结合本课第 6、10 页的图象思考。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

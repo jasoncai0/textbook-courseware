@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>函数的奇偶性 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/daoying.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第5章 函数概念与性质 · 5.4</p>
+    <h1 class="cover-title">函数的奇偶性</h1>
+    <p class="cover-q" data-step="1">蝴蝶的翅膀、盛开的花朵、六角形的雪花、有倒影的山水——处处是<b>对称</b>。</p>
+    <p class="cover-q" data-step="2">函数的图象也会对称。可是“对称”是眼睛看出来的，能不能用<b>式子</b>把它说清楚、算出来？</p>
+    <div class="chips" data-step="3"><span class="chip">关于 y 轴对称 ⇔ 偶函数</span><span class="chip">关于原点对称 ⇔ 奇函数</span><span class="chip">定义域关于原点对称</span><span class="chip">判定奇偶性</span></div>
+  </div>
+  <p class="note">课本 p116 引言（配图正是山水倒影）。先请学生说说“倒影为什么叫对称”：山上一点和水中的像，到水面的距离相等。今天要把这种直观的“对称”翻译成函数语言 f(−x) = ±f(x)。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>对称点的坐标 + 函数的图象 + 上一课的单调性</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中 · 轴对称与中心对称" data-step="1">
+        <p>点 $P(x,y)$ 关于 <b>$y$ 轴</b>的对称点：<span class="think" data-step="2" data-ask="坐标是？">$(-x,\ y)$</span></p>
+        <p>点 $P(x,y)$ 关于<b>原点</b>的对称点：<span class="think" data-step="3" data-ask="坐标是？">$(-x,\ -y)$</span></p>
+        <p class="muted small-t">关于 $y$ 轴：纵坐标不变，横坐标变号；关于原点：两个坐标都变号。</p>
+        <span class="use">把“图象对称”翻译成 $f(-x)=f(x)$ 或 $f(-x)=-f(x)$。</span>
+      </div>
+      <div class="recall" data-label="5.1 函数的概念和图象" data-step="4">
+        <p>函数 $y=f(x),\ x\in A$ 的图象，是点集 $\{(x,f(x))\mid x\in A\}$。</p>
+        <p>定义域 $A$ 是函数的要素之一。</p>
+        <span class="use">图象对称 ⇔ 每个点 $(x,f(x))$ 的对称点也在图象上；还要看定义域。</span>
+        <a class="lk" href="../mg10a-hanshugainian/index.html">回看 5.1 →</a>
+      </div>
+      <div class="recall" data-label="5.3 函数的单调性（上一课）" data-step="5">
+        <p>上一课讲到：增函数、减函数与单调区间，再用单调性求函数的<b>最大值、最小值</b>（例 4、例 5）。</p>
+        <p>单调性看的是函数在某个<b>区间上</b>的变化——是<b>局部</b>性质。</p>
+        <span class="use">今天换一个角度：看整个图象的对称——奇偶性是<b>整体</b>性质。</span>
+        <a class="lk" href="../mg10a-dandiaoxing/index.html">回看 5.3 →</a>
+      </div>
+    </div>
+  </div>
+  <p class="note">第一张卡是本课的“钥匙”，请学生在练习本上画一个点 (2, 3)，自己找出它关于 y 轴、原点的对称点再点开。第三张卡说清 5.3 讲到了“最大值、最小值”，本课从“区间上怎么变”转向“整体是否对称”。</p>
+</section>
+
+<!-- 3 ================= 观察图象 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>这两个函数的图象，各有怎样的对称性？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip center">(1) $f(x)=x^2$</p>
+      <div id="obsEven" class="obs"></div>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="关于什么对称？">关于 <b>$y$ 轴</b>对称：点 $(x_0,x_0^2)$ 与 $(-x_0,x_0^2)$ 都在图象上。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip center">(2) $f(x)=-\dfrac1x\ (x\ne 0)$</p>
+      <div id="obsOdd" class="obs"></div>
+      <p class="tip" data-step="3"><span class="think" data-step="4" data-ask="关于什么对称？">关于<b>原点</b>对称：点 $\left(x_0,-\dfrac1{x_0}\right)$ 与 $\left(-x_0,\dfrac1{x_0}\right)$ 都在图象上。</span></p>
+    </div>
+  </div>
+  <p class="tip gold" data-step="5"><b>问题：</b>怎样用<b>数量关系</b>来刻画函数图象的这种对称性？</p>
+  <p class="note">课本 p116、图 5-4-1（图中取 x₀ = 1.5 与 x₀ = 2，按函数值精确描点）。先让学生凭直觉说对称轴/对称中心，再追问：左右两个标出的点，坐标之间有什么关系？——这正是前情回顾第一张卡。</p>
+</section>
+
+<!-- 4 ================= 数量刻画 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数量刻画</span><h2>自变量取一对相反数，函数值有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <h3 class="sub">$f(x)=x^2$</h3>
+      <table class="mtab">
+        <tr><th>$x$</th><th>$f(-x)$</th><th>$f(x)$</th></tr>
+        <tr><td>$2$</td><td><span class="think" data-step="1" data-ask="算">$f(-2)=4$</span></td><td>$f(2)=4$</td></tr>
+        <tr><td>$1$</td><td><span class="think" data-step="1" data-ask="算">$f(-1)=1$</span></td><td>$f(1)=1$</td></tr>
+        <tr><td>$\dfrac12$</td><td><span class="think" data-step="1" data-ask="算">$f\left(-\dfrac12\right)=\dfrac14$</span></td><td>$f\left(\dfrac12\right)=\dfrac14$</td></tr>
+      </table>
+      <p class="tip" data-step="2">发现：<span class="think" data-step="3" data-ask="函数值的关系？">函数值<b>相等</b>。</span></p>
+      <p class="def" data-step="4">对定义域 $\R$ 内<em>任意一个</em> $x$，都有 $f(-x)=(-x)^2=x^2=f(x)$。<br>称 $f(x)=x^2$ 为<b>偶函数</b>。</p>
+    </div>
+    <div class="col">
+      <h3 class="sub">$f(x)=-\dfrac1x\ (x\ne 0)$</h3>
+      <table class="mtab">
+        <tr><th>$x$</th><th>$f(-x)$</th><th>$f(x)$</th></tr>
+        <tr><td>$2$</td><td><span class="think" data-step="5" data-ask="算">$f(-2)=\dfrac12$</span></td><td>$f(2)=-\dfrac12$</td></tr>
+        <tr><td>$1$</td><td><span class="think" data-step="5" data-ask="算">$f(-1)=1$</span></td><td>$f(1)=-1$</td></tr>
+        <tr><td>$\dfrac13$</td><td><span class="think" data-step="5" data-ask="算">$f\left(-\dfrac13\right)=3$</span></td><td>$f\left(\dfrac13\right)=-3$</td></tr>
+      </table>
+      <p class="tip" data-step="6">发现：<span class="think" data-step="7" data-ask="函数值的关系？">函数值<b>互为相反数</b>：$f(-x)=-f(x)$。</span></p>
+      <p class="def" data-step="8">对定义域 $\{x\mid x\in\R,\ x\ne 0\}$ 内<em>任意一个</em> $x$，都有 $f(-x)=\dfrac1x=-f(x)$。<br>称 $f(x)=-\dfrac1x\ (x\ne 0)$ 为<b>奇函数</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p116–117。表格逐行让学生口算，特别注意 f(−2) = −1/(−2) = 1/2 的符号。两张定义卡里都强调“任意一个 x”：三组数只能让我们猜，代入字母 −x 才是对“任意”的验证。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>偶函数与奇函数</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>奇偶性（课本 p117）</h4>设函数 $y=f(x)$ 的定义域为 $A$．<br>
+      如果对于任意的 $x\in A$，都有 $-x\in A$，并且 $f(-x)=f(x)$，那么称函数 $y=f(x)$ 是<b>偶函数</b>（even function）；<br>
+      如果对于任意的 $x\in A$，都有 $-x\in A$，并且 $f(-x)=-f(x)$，那么称函数 $y=f(x)$ 是<b>奇函数</b>（odd function）．<br>
+      如果函数 $f(x)$ 是奇函数或偶函数，那么我们称函数 $f(x)$ 具有<em>奇偶性</em>．</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">“都有 $-x\in A$”是什么意思？<br><span class="think" data-step="3" data-ask="想一想">$x$ 在定义域里，它的相反数也必须在——否则 $f(-x)$ 根本无意义。</span></p>
+      <p class="tip" data-step="4">“<b>任意的</b> $x$”能换成“某些 $x$”吗？<br><span class="think" data-step="5" data-ask="想一想">不能。奇偶性是函数的<b>整体性质</b>：每一对 $x$、$-x$ 都要满足。</span></p>
+      <p class="tip" data-step="6">和图象有什么关系？<br><span class="think" data-step="7" data-ask="想一想">偶函数的图象关于 <b>$y$ 轴</b>对称；奇函数的图象关于<b>原点</b>对称。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p117 定义框与旁注“奇偶性是函数的整体性质”。逐个关键词追问。和 5.3 对比：单调性说的是“在某区间上”，奇偶性说的是“对定义域内任意 x”。图象对称的结论下一页用“折一折、转一转”亲眼验证。</p>
+</section>
+
+<!-- 6 ================= 核心交互：折一折、转一转 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">折一折 · 转一转</span><h2>把右半边图象折过去、转过去，能重合吗？</h2></div>
+  <button class="media-btn" hidden data-img="assets/jiouxing.jpg" data-video="assets/jiouxing.mp4" data-cap="x² 的图象沿 y 轴对折重合；−1/x 的图象绕原点旋转 180° 重合">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div class="btns fn-btns" id="ffBtns" data-noswipe></div>
+      <div id="ff" class="ff"></div>
+      <p class="muted center small-t">拖动横轴上的橙色点改变 $x_0$；橙色曲线是 $y$ 轴右边的图象</p>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" id="ffFold">沿 y 轴对折</button>
+        <button class="btn solid" type="button" id="ffTurn">绕原点旋转 180°</button>
+        <button class="btn" type="button" id="ffReset">复原</button>
+      </div>
+      <div class="readout ff-read" id="ffRead"></div>
+      <p class="tip feedback" id="ffMsg"></p>
+      <p class="method" data-step="1" data-label="看图判奇偶">对折后与左半边<b>重合</b> ⇔ 关于 $y$ 轴对称 ⇔ 偶函数；旋转 180° 后<b>重合</b> ⇔ 关于原点对称 ⇔ 奇函数。</p>
+    </div>
+  </div>
+  <p class="note">课本 p116 配图（把画着图象的纸沿 y 轴对折）的动态版。顺序建议：x² 对折（重合）→ −1/x 旋转（重合）→ x³ 两种都试 → x² + x（都不重合：f(−1)=0，f(1)=2）→ 最后一个定义域 [−1, 2] 的反例（右半边折过去“伸出去了”，左边没有图象接住）。每次按按钮前先让学生预测。右上角“看动画”是 18 秒无声动画。</p>
+</section>
+
+<!-- 7 ================= 探究：定义域 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探究</span><h2>具有奇偶性的函数，其定义域有怎样的特点？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">先看一个例子：$f(x)=x^2,\ x\in[-1,2]$，它是偶函数吗？</p>
+      <p class="tip" data-step="1">取 $x=2$：<span class="think" data-step="2" data-ask="−x 在定义域里吗？">$-x=-2\notin[-1,2]$，$f(-2)$ 没有意义。</span></p>
+      <p class="tip" data-step="3"><b>结论：</b>不满足“对任意 $x\in A$，都有 $-x\in A$”，所以它<b>既不是偶函数，也不是奇函数</b>。</p>
+      <div id="domEx" class="dom-ex" data-step="1"></div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="4"><h4>结论</h4><span class="think" data-step="5" data-ask="定义域有什么特点？">具有奇偶性的函数，定义域<em>关于原点对称</em>：数轴上 $x$ 与 $-x$ 总是同时在定义域内。</span></div>
+      <p class="tip" data-step="6">判断下列定义域是否关于原点对称：</p>
+      <div class="cols2" data-step="6">
+        <p class="jcard">$\R$　<span class="think" data-step="7" data-ask="?">✓</span></p>
+        <p class="jcard">$\{x\mid x\ne 0\}$　<span class="think" data-step="7" data-ask="?">✓</span></p>
+        <p class="jcard">$[-3,3)$　<span class="think" data-step="7" data-ask="?">✗（$3$ 不在，$-3$ 在）</span></p>
+        <p class="jcard">$\{x\mid x\ne 1\}$　<span class="think" data-step="7" data-ask="?">✗（$-1$ 在，$1$ 不在）</span></p>
+      </div>
+      <p class="warn" data-step="8">判断奇偶性<b>第一步</b>：先求定义域，看它是否关于原点对称。不对称，直接下结论“既不是奇函数也不是偶函数”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p118“探究”。例子 x ∈ [−1, 2] 是自编辨析，不是课本题。图中蓝色是图象，虚线是它关于 y 轴的“镜像”——镜像在 [−2, −1) 上没有图象接住，与上一页最后一个反例呼应。</p>
+</section>
+
+<!-- 8 ================= 辨一辨：练习 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>练习 4：对于定义在 $\R$ 上的函数 $f(x)$，下列判断是否正确？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <p><b>(1)</b> 若 $f(x)$ 是偶函数，则 $f(-2)=f(2)$；</p>
+        <div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict ok">正确</span>偶函数对<b>任意</b> $x$ 都有 $f(-x)=f(x)$，取 $x=2$ 即可。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>(2)</b> 若 $f(-2)=f(2)$，则函数 $f(x)$ 是偶函数；</p>
+        <div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">错误</span>一对数相等不代表任意一对都相等。反例：$f(x)=x^3-4x$，$f(-2)=f(2)=0$，但 $f(-1)=3\ne f(1)=-3$。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>(3)</b> 若 $f(-2)\ne f(2)$，则函数 $f(x)$ 不是偶函数；</p>
+        <div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict ok">正确</span>找到一个 $x$ 不满足 $f(-x)=f(x)$，就能否定“任意”。</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p><b>(4)</b> 若 $f(-2)=f(2)$，则函数 $f(x)$ 不是奇函数．</p>
+        <div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">错误</span>还是 $f(x)=x^3-4x$：它是奇函数（$f(-x)=-x^3+4x=-f(x)$），而 $f(-2)=f(2)=0$。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="9" data-label="肯定与否定">要<b>肯定</b>奇偶性，必须对任意 $x$ 证明；要<b>否定</b>，举出一个反例就够了。</p>
+  </div>
+  <p class="note">课本 p118–119 练习 4。每题先举手表决再点开。反例 x³ − 4x 是自编的：f(2) = f(−2) = 0 恰好既“相等”又“互为相反数”，一个反例同时推翻 (2)(4)。方法提炼为例 1(4) 的“举反例”做准备。</p>
+</section>
+
+<!-- 9 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>判定下列函数是否为偶函数或奇函数</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <p><b>(1)</b> $f(x)=x^2-1$</p>
+        <div class="think" data-step="2" data-ask="先说定义域，再算 f(−x)"><p>定义域是 $\R$，对任意 $x\in\R$，都有 $-x\in\R$，且 $f(-x)=(-x)^2-1=x^2-1=f(x)$，所以是<span class="verdict ok">偶函数</span>。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>(2)</b> $f(x)=2x$</p>
+        <div class="think" data-step="4" data-ask="先说定义域，再算 f(−x)"><p>定义域是 $\R$，对任意 $x\in\R$，都有 $-x\in\R$，且 $f(-x)=2(-x)=-2x=-f(x)$，所以是<span class="verdict ok">奇函数</span>。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>(3)</b> $f(x)=2|x|$</p>
+        <div class="think" data-step="6" data-ask="先说定义域，再算 f(−x)"><p>定义域是 $\R$，对任意 $x\in\R$，都有 $-x\in\R$，且 $f(-x)=2|-x|=2|x|=f(x)$，所以是<span class="verdict ok">偶函数</span>。</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p><b>(4)</b> $f(x)=(x-1)^2$</p>
+        <div class="think" data-step="8" data-ask="能证明 f(−x)=±f(x) 吗？"><p>定义域是 $\R$。因为 $f(1)=0$，$f(-1)=4$，所以 $f(1)\ne f(-1)$，$f(1)\ne -f(-1)$，<span class="verdict x">既不是奇函数，也不是偶函数</span>。</p></div>
+      </div>
+    </div>
+    <p class="tip gold" data-step="9">(4) 的图象是把 $y=x^2$ 向右平移 1 个单位，对称轴是 $x=1$，不是 $y$ 轴——用“折一折”页的 $x^2+x$ 也能看到同样的现象。</p>
+  </div>
+  <p class="note">课本 p117–118 例 1。前三题请学生口述完整过程，强调书写顺序：定义域 → −x ∈ A → 算 f(−x) 与 f(x) 比较。第 (4) 题先让学生试着化简 f(−x) = (x+1)²，发现既不等于 f(x) 也不等于 −f(x)，但“化简不出来”不是证明，课本用一组具体反例否定。</p>
+</section>
+
+<!-- 10 ================= 例 2 + 步骤 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>判断函数 $f(x)=x^3+5x$ 是否具有奇偶性</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>定义域</span><span>$\R$</span><i class="why">第一步：定义域关于原点对称</i></div>
+        <div class="dl" data-step="2"><span>$f(-x)$</span><span class="think" data-step="3" data-ask="代入 −x">$=(-x)^3+5(-x)$</span><i class="why">把 $x$ 整体换成 $-x$</i></div>
+        <div class="dl key" data-step="4"><span></span><span>$=-(x^3+5x)$</span><span class="think" data-step="5" data-ask="为什么要提出负号？">$(-x)^3=-x^3$；提出 $-1$，是为了和 $f(x)$ 比较</span></div>
+        <div class="dl" data-step="6"><span></span><span>$=-f(x)$</span><i class="why"></i></div>
+        <div class="dl end" data-step="7"><span>所以</span><span>$y=f(x)$ 为奇函数</span><i class="why">对任意 $x\in\R$ 成立</i></div>
+      </div>
+      <div id="ex2" class="ex2b" data-step="7"></div>
+    </div>
+    <div class="col">
+      <p class="method" data-step="8" data-label="判定奇偶性的步骤">① 求定义域，看是否关于原点对称（不对称 ⇒ 非奇非偶）；<br>② 化简 $f(-x)$，与 $f(x)$ 比较；<br>③ $f(-x)=f(x)$ ⇒ 偶；$f(-x)=-f(x)$ ⇒ 奇；<br>　 都不成立 ⇒ 举一个反例说明非奇非偶。</p>
+      <p class="tip" data-step="9">想一想：有没有<b>既是奇函数又是偶函数</b>的函数？<br><span class="think" data-step="10" data-ask="想一想">要同时满足 $f(-x)=f(x)$ 与 $f(-x)=-f(x)$，得 $f(x)=0$。例如 $f(x)=0,\ x\in\R$（练习 1 的选项 C 就问到它）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p118 例 2。第 4 行是关键：提出负号后出现 f(x) 的原式。左下图象可以让学生用“转一转”的眼光检验：绕原点转半圈后与自身重合。方法提炼请学生自己总结后再揭示。</p>
+</section>
+
+<!-- 11 ================= 练习 3：补全图象 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">画一画</span><h2>练习 3：已知 $y$ 轴右边的图象，补出左边</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">(1) 若 $f(x)$ 是<b>偶函数</b>，画出 $y$ 轴左边的图象：</p>
+      <div id="p3e" class="p3"></div>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="怎么画？">把右边的每个点 $(x,y)$ 换成 $(-x,y)$——沿 $y$ 轴<b>翻折</b>。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">(2) 若 $f(x)$ 是<b>奇函数</b>，画出 $y$ 轴左边的图象：</p>
+      <div id="p3o" class="p3"></div>
+      <p class="tip" data-step="3"><span class="think" data-step="4" data-ask="怎么画？">把右边的每个点 $(x,y)$ 换成 $(-x,-y)$——绕原点<b>旋转 180°</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p118 练习 3。蓝色曲线依课本题图描绘（示意）。请学生先在练习本上画，再按 → 出现橙色答案（第 2、4 步）。追问：奇函数的图象在左右两边的“山峰”变成了什么？——变成“山谷”。</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 函数 $f(x)=\sqrt{x^2+5}$（　）<br>A. 是奇函数但不是偶函数<br>B. 是偶函数但不是奇函数<br>C. 既是奇函数又是偶函数<br>D. 既不是奇函数也不是偶函数</p>
+        <details><summary>提示 1</summary>定义域是什么？关于原点对称吗？</details>
+        <details><summary>提示 2</summary>$f(-x)=\sqrt{(-x)^2+5}=?$</details>
+        <details><summary>完整解答</summary>定义域为 $\R$，$f(-x)=\sqrt{x^2+5}=f(x)$，是偶函数；又 $f(x)\gt 0$，$f(-x)\ne -f(x)$，不是奇函数。选 <b>B</b>。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 函数 $f(x)=x^2+2x$ 的图象是否关于某条直线对称？它是否为偶函数？</p>
+        <details><summary>提示 1</summary>配方：$x^2+2x=(x+1)^2-1$。</details>
+        <details><summary>提示 2</summary>偶函数要求关于哪条直线对称？比较 $f(1)$ 与 $f(-1)$。</details>
+        <details><summary>完整解答</summary>图象是抛物线，关于直线 $x=-1$ 对称。但 $f(1)=3$，$f(-1)=-1$，$f(-1)\ne f(1)$，所以<b>不是</b>偶函数（对称轴不是 $y$ 轴）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6(2).</b> 判断函数 $f(x)=\dfrac{x^4-1}{x^2}$ 的奇偶性。</p>
+        <details><summary>提示 1</summary>定义域：分母 $x^2\ne 0$。</details>
+        <details><summary>提示 2</summary>$\{x\mid x\ne 0\}$ 关于原点对称；再算 $f(-x)$。</details>
+        <details><summary>完整解答</summary>定义域 $\{x\mid x\ne 0\}$ 关于原点对称，且 $f(-x)=\dfrac{(-x)^4-1}{(-x)^2}=\dfrac{x^4-1}{x^2}=f(x)$，所以是<b>偶函数</b>。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p118 练习 1、2，p119 练习 6(2)。先独立做 3 分钟。第 2 题提醒：“图象有对称轴”不等于“偶函数”，对称轴必须是 y 轴。6(1) x + 1/x（奇）、6(3) 2|x| − 3（偶）可作课堂补充。</p>
+</section>
+
+<!-- 13 ================= 思考·运用 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 运用</span><h2>用奇偶性求参数、求解析式</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 5.</b> 证明函数 $f(x)=x^3-x$ 在 $\R$ 上是奇函数。</p>
+        <details><summary>提示 1</summary>照例 2 的格式：定义域 → 化简 $f(-x)$。</details>
+        <details><summary>提示 2</summary>$(-x)^3-(-x)=-x^3+x$，提出负号。</details>
+        <details><summary>完整解答</summary>定义域为 $\R$，对任意 $x\in\R$，$-x\in\R$，且 $f(-x)=(-x)^3-(-x)=-(x^3-x)=-f(x)$，所以 $f(x)$ 是奇函数。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 5.</b> 设 $m$ 为实数，函数 $f(x)=x^2+mx+1$ 是偶函数，求 $m$ 的值。</p>
+        <details><summary>提示 1</summary>偶函数：对<b>任意</b> $x$，$f(-x)=f(x)$。</details>
+        <details><summary>提示 2</summary>$x^2-mx+1=x^2+mx+1$ 对任意 $x$ 成立，即 $2mx=0$ 对任意 $x$ 成立。</details>
+        <details><summary>完整解答</summary>由 $f(-x)=f(x)$ 得 $2mx=0$ 对任意 $x\in\R$ 成立，所以 $m=0$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 7.</b> 已知 $y=f(x)$ 是 $\R$ 上的奇函数，且当 $x\gt 0$ 时 $f(x)=1$，求 $y=f(x)$ 的表达式。</p>
+        <details><summary>提示 1</summary>$x\lt 0$ 时，$-x\gt 0$，$f(x)=-f(-x)=?$</details>
+        <details><summary>提示 2</summary>别忘了 $x=0$：$f(-0)=-f(0)$ 说明什么？</details>
+        <details><summary>完整解答</summary>$x\lt 0$ 时 $f(x)=-f(-x)=-1$；$x=0$ 时 $f(0)=-f(0)$，得 $f(0)=0$。所以 $f(x)=\begin{cases}1,&x\gt 0,\\0,&x=0,\\-1,&x\lt 0.\end{cases}$</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p119 练习 5 与习题 5.4 第 5、7 题。习题 5 的关键词是“对任意 x 成立”，所以系数 2m 必须为 0；习题 7 的易错点是漏掉 x = 0：定义在 R 上的奇函数一定有 f(0) = 0。习题 8（任意函数可写成奇函数与偶函数之和）留作课后思考。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <table class="mtab">
+          <tr><th></th><th>偶函数</th><th>奇函数</th></tr>
+          <tr><th>定义域</th><td colspan="2">关于原点对称</td></tr>
+          <tr><th>数量</th><td>$f(-x)=f(x)$</td><td>$f(-x)=-f(x)$</td></tr>
+          <tr><th>图象</th><td>关于 $y$ 轴对称</td><td>关于原点对称</td></tr>
+        </table>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判定">先看定义域，再化简 $f(-x)$ 与 $f(x)$ 比较；肯定要证“任意”，否定举一个反例。</p>
+        <p class="method" data-label="作图">已知半边图象：偶函数翻折，奇函数旋转 180°。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">图象的对称 ⇔ 点的坐标 $(-x,\pm y)$ ⇔ 等式 $f(-x)=\pm f(x)$。</p>
+        <p class="recall" data-label="整体与局部">单调性看区间（局部），奇偶性看定义域上任意 $x$（整体）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>第 5 章到此学完了函数的概念、表示、单调性与奇偶性（课本 p120「链接 · 映射的概念」可选读）。第 6 章 <a href="../mg10a-mihanshu/index.html">6.1 幂函数</a>，就要用这些性质研究 $y=x,\ y=x^2,\ y=x^3,\ y=x^{-1},\ y=x^{\frac12}$ 的图象。</p>
+  </div>
+  <p class="note">请学生先口述三个层次再揭示。课后作业建议：习题 5.4 第 1、2、3、4 题；第 6 题（f(−2) = −1 求 f(2)）可以提示“ax³ − bx 是奇函数部分”；第 9 题探究 f(a−x) = f(a+x) 的对称性，是本课的推广。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

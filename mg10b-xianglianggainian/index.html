@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>向量概念 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mvec.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huaxue.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一下册 · 第9章 平面向量 · 9.1</p>
+    <h1 class="cover-title">向量概念</h1>
+    <p class="cover-q" data-step="1">大雪过后，穿上滑雪板站在平滑的斜坡上，你会感到有一个力<b>拉着你向下</b>滑行；斜坡越陡，这个力<b>越大</b>。</p>
+    <p class="cover-q" data-step="2">这个力，光说“有多大”够不够？还得说清楚——<b>朝哪儿</b>。这样的量，数学上用什么来刻画？</p>
+    <div class="chips" data-step="3"><span class="chip">向量与有向线段</span><span class="chip">模 · 零向量 · 单位向量</span><span class="chip">平行（共线）· 相等 · 相反</span><span class="chip">向量的平移</span></div>
+  </div>
+  <p class="note">第 9 章章首页（课本 p4）：滑雪与斜面上的木块。章首页的三个问题——“这些运动中含有哪些物理量？用怎样的数学模型刻画这些物理量？怎样运用这样的数学模型去解决问题？”——本课回答前两个，第三个贯穿整章。先让学生说：滑雪时受到哪些力？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>第 9 章第一课：从物理和初中几何里借三样东西</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="高中物理 必修第一册 · 位移与路程" data-step="1">
+        <p>从 A 走到 B：<b>路程</b>是走过的轨迹长度，只有大小；<b>位移</b>是从 A 指向 B 的有向线段，既有大小又有方向。</p>
+        <p class="muted">物理上：有方向的量叫矢量，只有大小的叫标量。</p>
+        <span class="use">第 3 页把“既有大小又有方向的量”抽象成向量。</span>
+      </div>
+      <div class="recall" data-label="初中物理 八年级下册 · 力的示意图" data-step="2">
+        <svg viewBox="0 0 300 110" class="mini-fig" aria-label="用带箭头的线段表示力">
+          <rect x="30" y="40" width="60" height="40" fill="#d3e6f4" stroke="#1d6fa5" stroke-width="2"/>
+          <line x1="90" y1="60" x2="250" y2="60" stroke="#d9711c" stroke-width="4"/><path d="M262 60 l-16 -8 v16z" fill="#d9711c"/>
+          <text x="160" y="48" class="fl">F</text><circle cx="90" cy="60" r="4" fill="#1f2d3a"/>
+        </svg>
+        <p>力的三要素：大小、方向、作用点。用一条<b>带箭头的线段</b>表示力：长短表示大小，箭头表示方向。</p>
+        <span class="use">向量就用这种“有向线段”来表示。</span>
+      </div>
+      <div class="recall" data-label="初中数学 · 平行线与平行四边形" data-step="3">
+        <p>平行于同一条直线的两条直线互相平行。</p>
+        <p>平行四边形的对边<b>平行且相等</b>；一组对边平行且相等的四边形是平行四边形。</p>
+        <span class="use">判断两个向量相等、共线（第 5、6 页），以及“平移”为什么不改变向量。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章路线：</b>9.1 向量概念（今天）→ 9.2 向量运算 → 9.3 向量基本定理及坐标表示 → 9.4 向量应用。今天先回答：向量是什么？两个向量之间有哪几种关系？</p>
+  </div>
+  <p class="note">本课是第 9 章第一课，没有本章上一课可接。位移是学生在高一上学期物理刚学过的，最好由学生自己说出“位移和路程的区别”。第三张卡在第 5 页（平行四边形 ABCD 中 AB = DC）直接用到。</p>
+</section>
+
+<!-- 3 ================= 情境：有方向的量 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>力、速度、加速度、位移有什么共同特征？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="incline" class="incline"></div>
+      <p class="muted center small-t">图 9-1-1　斜面上的木块：重力 $\boldsymbol G$ 竖直向下，支持力 $\boldsymbol N$ 与斜面垂直</p>
+    </div>
+    <div class="col">
+      <p class="tip">把木块放在光滑的斜面上，木块受到重力 $\boldsymbol G$ 与支持力 $\boldsymbol N$ 的作用，沿斜面向下滑动，产生位置的变化——物理上用“位移”刻画。</p>
+      <p class="tip" data-step="1">要说清楚重力 $\boldsymbol G$，需要交代哪几件事？　<span class="think" data-step="2" data-ask="想一想">有多大（大小），朝哪儿（方向：竖直向下）。</span></p>
+      <div class="sort" data-step="3">
+        <div class="sort-box"><h4>只有大小</h4><p class="think" data-step="4" data-ask="把下面的量分一分">距离、身高、质量</p></div>
+        <div class="sort-box now"><h4>既有大小又有方向</h4><p class="think" data-step="4" data-ask="把下面的量分一分">力、速度、加速度、位移</p></div>
+      </div>
+      <p class="muted center small-t" data-step="3">距离　身高　力　质量　速度　加速度　位移</p>
+      <p class="tip gold" data-step="5">力、速度、加速度、位移的共同特征：<b>既有大小，又有方向</b>。数学上要给这类量一个统一的模型。</p>
+    </div>
+  </div>
+  <p class="note">课本 p5 开头与图 9-1-1。图中 N 与斜面垂直、G 竖直向下，角度按 30° 斜面精确绘制。先让学生把 7 个量分两类，再点开；可追问“温度、时间属于哪一类？”（只有大小）。</p>
+</section>
+
+<!-- 4 ================= 向量的定义与表示 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>向量：既有大小又有方向的量</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>向量（课本 p5）</h4>我们把既有大小又有方向的量叫作<em>向量</em>（vector）。</div>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>表示</span><span>有向线段</span><i class="why">线段的<b>长度</b>表示向量的大小，<b>箭头所指</b>的方向表示向量的方向</i></div>
+        <div class="dl" data-step="3"><span>记法</span><span>$\overrightarrow{AB}$；$\boldsymbol a,\boldsymbol b,\boldsymbol c$</span><i class="why">$A$ 为起点、$B$ 为终点；印刷用粗体 $\boldsymbol a$，书写用 $\vec a$</i></div>
+        <div class="dl" data-step="4"><span>模</span><span>$|\overrightarrow{AB}|$</span><i class="why">向量 $\overrightarrow{AB}$ 的大小，称为向量的<b>长度</b>（或称为<b>模</b>）</i></div>
+        <div class="dl key" data-step="5"><span>零向量</span><span>$\boldsymbol 0$</span><i class="why">长度为 0 的向量；零向量的<b>方向是任意的</b></i></div>
+        <div class="dl key" data-step="6"><span>单位向量</span><span>$|\boldsymbol e|=1$</span><i class="why">长度等于 1 个单位长度的向量</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7"><b>思考</b>　平面上起点在定点 $O$ 的单位向量，其终点的集合是什么图形？<br><span class="muted">先猜，再拖动终点转一圈。</span></p>
+      <div id="unit" class="unit" data-step="7"></div>
+      <p class="tip feedback" id="unitMsg" data-step="7"></p>
+      <p class="def" data-step="8"><span class="think" data-step="9" data-ask="答案是？">以 $O$ 为圆心、半径为 1 的<em>圆</em>：长度都是 1，方向可以任意。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p5 定义、图 9-1-2 与“思考”。强调两点：①书写时一定要加箭头 a⃗，否则就是一个数；②零向量方向任意，后面多处“特殊情况”都出在它身上。思考题请学生先猜，再请一位学生拖动终点：终点被约束在长度 1，拖一圈后留下的轨迹就是单位圆。</p>
+</section>
+
+<!-- 5 ================= 平行向量、相等向量 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">两种关系</span><h2>什么时候说两个向量平行？什么时候说它们相等？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>平行向量（课本 p5）</h4>方向<em>相同或相反</em>的非零向量叫作<b>平行向量</b>。向量 $\boldsymbol a$ 与 $\boldsymbol b$ 平行，记作 $\boldsymbol a\parallel\boldsymbol b$。规定：<em>零向量与任一向量平行</em>。</div>
+      <div class="def" data-step="3"><h4>相等向量（课本 p5–6）</h4>所有长度相等且方向相同的向量都看作相同的向量，而<em>不管它们的起点位置如何</em>。向量 $\boldsymbol a$ 与 $\boldsymbol b$ 是相同的向量，也称 $\boldsymbol a$ 与 $\boldsymbol b$ 相等，记作 $\boldsymbol a=\boldsymbol b$。</div>
+      <p class="tip" data-step="4">在 $\square ABCD$ 中，$\overrightarrow{AB}$ 与 $\overrightarrow{DC}$ 相等吗？　<span class="think" data-step="5" data-ask="依据是什么？">相等：平行四边形对边<b>平行且相等</b>，所以长度相等，方向相同，$\overrightarrow{AB}=\overrightarrow{DC}$。</span></p>
+    </div>
+    <div class="col">
+      <div id="par" class="par"></div>
+      <p class="muted center small-t">左：图 9-1-3，$\boldsymbol a,\boldsymbol b,\boldsymbol c$ 是一组平行向量；右：图 9-1-4，$\square ABCD$</p>
+      <p class="tip" data-step="2">$\boldsymbol a$ 与 $\boldsymbol b$ 方向<b>相反</b>、长度也不同，为什么还算平行？　<span class="think" data-step="2" data-ask="对照定义">“平行”只看方向：相同或相反都行，不管长短。</span></p>
+      <p class="tip gold" data-step="6">相等 = <b>等长</b> + <b>同向</b>，与起点无关。所以本章的向量是<b>自由向量</b>：可以随意平移。</p>
+    </div>
+  </div>
+  <p class="note">课本 p5–6、图 9-1-3、图 9-1-4 及旁注“本章学习的向量都是平面内的自由向量，它们仅由方向和大小确定，与起点位置无关”。第 4 步用上前情回顾里的平行四边形性质。追问：AB 与 CD 相等吗？（不相等，方向相反——为第 8 页相反向量埋伏笔）</p>
+</section>
+
+<!-- 6 ================= 共线向量 + 夹角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">共线 · 夹角</span><h2>平行向量为什么又叫“共线向量”？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="col" class="colb"></div>
+      <div class="slider-row" data-noswipe>平移 <input type="range" id="colT" min="0" max="1" step="0.01" value="0"><b id="colV" class="v"></b></div>
+      <p class="muted center small-t">图 9-1-5（每个小正方形边长为 1）：拖滑块，把 $\boldsymbol a,\boldsymbol b$ 沿水平方向平移</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">$\boldsymbol a,\boldsymbol b,\boldsymbol c$ 两两平行。平移后，它们能落在同一条直线上吗？　<span class="think" data-step="2" data-ask="先猜，再拖滑块">能：平移不改变向量，而三者方向相同或相反，可以平移到同一条直线上。</span></p>
+      <div class="def" data-step="3"><h4>共线向量（课本 p6）</h4>任意一组平行向量都可以平移到同一条直线上，因此平行向量又称为<em>共线向量</em>。</div>
+      <div class="def" data-step="4"><h4>夹角（课本 p6）</h4>对于两个非零向量 $\boldsymbol a$ 和 $\boldsymbol b$，在平面内任取一点 $O$，作 $\overrightarrow{OA}=\boldsymbol a$，$\overrightarrow{OB}=\boldsymbol b$，$\angle AOB=\theta\ (0^\circ\le\theta\le 180^\circ)$ 叫作向量 $\boldsymbol a$ 与 $\boldsymbol b$ 的<em>夹角</em>。</div>
+      <div class="cols3 mini3" data-step="5">
+        <p class="tip">$\theta=0^\circ$<br>$\boldsymbol a$ 与 $\boldsymbol b$ <b>同向</b></p>
+        <p class="tip">$\theta=180^\circ$<br>$\boldsymbol a$ 与 $\boldsymbol b$ <b>反向</b></p>
+        <p class="tip">$\theta=90^\circ$<br>垂直，$\boldsymbol a\perp\boldsymbol b$</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p6、图 9-1-5、图 9-1-6。滑块把 a、b 水平平移到 c 所在直线 y = 2x − 4 上（a 右移 3 格，b 右移 1.5 格），图中读数可核对端点仍在这条直线上。注意“共线”说的是“能平移到同一直线上”，不是“本来就在同一直线上”。作夹角时要把两个向量的<b>起点</b>移到一起。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>正六边形里找共线、找相等</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">已知 $O$ 为正六边形 $ABCDEF$ 的中心，在图 9-1-7 所标出的向量中：</p>
+      <div id="hex" class="hex"></div>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="1"><p><b>(1)</b> 试找出与 $\overrightarrow{FE}$ 共线的向量；</p><div class="think" data-step="2" data-ask="先找，再点开"><p>$\overrightarrow{BC}$ 和 $\overrightarrow{OA}$。（$\overrightarrow{OC}$ 是水平的，与 $\overrightarrow{FE}$ 不平行）</p></div></div>
+      <div class="jcard" data-step="3"><p><b>(2)</b> 确定与 $\overrightarrow{FE}$ 相等的向量；</p><div class="think" data-step="4" data-ask="先找，再点开"><p>$\overrightarrow{BC}$ 与 $\overrightarrow{FE}$ 长度相等且方向相同，则 $\overrightarrow{BC}=\overrightarrow{FE}$。</p></div></div>
+      <div class="jcard" data-step="5"><p><b>(3)</b> $\overrightarrow{OA}$ 与 $\overrightarrow{BC}$ 相等吗？</p><div class="think" data-step="6" data-ask="相等吗？"><p><span class="verdict x">不相等</span>虽然 $\overrightarrow{OA}\parallel\overrightarrow{BC}$，且 $|\overrightarrow{OA}|=|\overrightarrow{BC}|$，但它们<b>方向相反</b>。</p></div></div>
+      <p class="method" data-step="7" data-label="判断顺序">先看方向（平行吗？同向还是反向？），再看长度——<b>等长且同向</b>才相等。</p>
+    </div>
+  </div>
+  <p class="note">课本 p6 例 1、图 9-1-7。正六边形的边长等于外接圆半径，所以 |OA| = |BC|。(1) 中学生容易把 OC 也算进来，让他们用直尺比一比方向。依据可以追问：正六边形被中心 O 分成 6 个正三角形，四边形 AOEF 是菱形，所以 AO 与 FE 等长同向，OA 与 FE 等长反向；正六边形对边 BC ∥ FE 且相等。第 (3) 题直接引出下一页的“相反向量”。</p>
+</section>
+
+<!-- 8 ================= 相反向量 + 零向量辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">相反向量</span><h2>等长、反向：$\overrightarrow{OA}$ 与 $\overrightarrow{BC}$ 是什么关系？</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>相反向量（课本 p6）</h4>我们把与向量 $\boldsymbol a$ <em>长度相等，方向相反</em>的向量叫作 $\boldsymbol a$ 的<b>相反向量</b>，记作 $-\boldsymbol a$，$\boldsymbol a$ 与 $-\boldsymbol a$ 互为相反向量。并且规定<em>零向量的相反向量仍是零向量</em>。于是，对任意一个向量 $\boldsymbol a$，总有 $$-(-\boldsymbol a)=\boldsymbol a.$$</div>
+    <p class="tip" data-step="2">零向量处处是“例外”。用它检验下面三种说法（习题 9.1 第 6 题）：</p>
+    <div class="cols3">
+      <div class="jcard" data-step="3"><p><b>(1)</b> 若 $\boldsymbol a\parallel\boldsymbol b$，$\boldsymbol b\parallel\boldsymbol c$，则 $\boldsymbol a\parallel\boldsymbol c$。</p><div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>取 $\boldsymbol b=\boldsymbol 0$：零向量与任一向量平行，$\boldsymbol a,\boldsymbol c$ 却可以不平行。（$\boldsymbol b\ne\boldsymbol 0$ 时才成立）</p></div></div>
+      <div class="jcard" data-step="5"><p><b>(2)</b> 单位向量均相等。</p><div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>单位向量只是长度都为 1，方向可以不同（想想第 4 页的单位圆）。</p></div></div>
+      <div class="jcard" data-step="7"><p><b>(3)</b> 任一向量与它的相反向量不相等。</p><div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict x">✗</span>零向量的相反向量仍是零向量：$-\boldsymbol 0=\boldsymbol 0$。</p></div></div>
+    </div>
+    <p class="warn" data-step="9">说到“平行”“相反”“方向”，先问一句：<b>有没有零向量？</b>零向量长度为 0、方向任意，与任一向量平行。</p>
+  </div>
+  <p class="note">课本 p6 相反向量定义；三道判断取自 p8 习题 9.1 第 6 题。每题先表决再点开，让学生自己举出反例。(1) 题说明：向量的“平行”没有传递性，原因只有零向量；这与初中“平行于同一直线的两直线平行”形成对照。</p>
+</section>
+
+<!-- 9 ================= 核心交互：向量的平移 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手平移</span><h2>拖动向量 $\boldsymbol b$：它和 $\boldsymbol a$ 是什么关系？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="shift" class="shift"></div>
+      <p class="muted center small-t">拖<b class="c-start">绿点</b>（起点）：整体平移，长度方向不变；拖<b class="c-end">橙点</b>（终点）：改变大小和方向。端点吸附在格点上</p>
+      <div class="btns" data-noswipe>
+        <button class="btn" type="button" id="shGhost">把 $\boldsymbol a$ 平移到 $\boldsymbol b$ 的起点</button>
+        <button class="btn" type="button" id="shNext">换一个 $\boldsymbol a$</button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="readout2" id="shRead"></div>
+      <p class="tip feedback" id="shMsg"></p>
+      <div class="tasks" id="shTasks"></div>
+    </div>
+  </div>
+  <p class="note">本课核心交互。先请学生只拖绿点：b 走到哪儿，读数（模、方向角）都不变——“平移后的向量与原向量是相同的向量”（课本 p6）。再按右下任务逐个完成：b = a、b = −a、平行但不相等、垂直、单位向量、零向量。方向角是“从水平向右方向逆时针转到该向量”的角，便于比较方向；课本定义的夹角 θ 在 0°～180° 之间。“把 a 平移到 b 的起点”的灰色虚线正是作夹角的方法。</p>
+</section>
+
+<!-- 10 ================= 例 2：方格纸 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>4×5 方格纸上，与 $\overrightarrow{AB}$ 相等的向量有几个？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-t">在图 9-1-8(1) 中的 4×5 方格纸中有一个向量 $\overrightarrow{AB}$，分别以图中的格点为起点和终点作向量，其中与 $\overrightarrow{AB}$ 相等的向量有多少个？与 $\overrightarrow{AB}$ 长度相等的共线向量有多少个（$\overrightarrow{AB}$ 除外）？</p>
+      <div id="grid" class="gridb"></div>
+      <p class="muted center small-t">先点一个格点作起点，再点一个格点作终点</p>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="gMsg"></p>
+      <p class="tip" id="gCount"></p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="gShow">显示所有符合的起点（图 9-1-8(2)）</button><button class="btn" type="button" id="gClear">清空</button></div>
+      <p class="tip" data-step="1"><b>分析</b>　相等 =“等长且同向”，关键是<span class="think" data-step="2" data-ask="先确定什么？">先确定这些向量的<b>起点</b>：终点 = 起点向右 2 格、向上 3 格，还要留在方格纸内。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>相等</span><span>起点共 8 个格点</span><i class="why">横坐标 0～3、纵坐标 0～1；除去 $A$，还有 <b>7</b> 个向量与 $\overrightarrow{AB}$ 相等</i></div>
+        <div class="dl" data-step="4"><span>反向等长</span><span>同理也有 8 个</span><i class="why">终点 = 起点向左 2 格、向下 3 格（含 $\overrightarrow{BA}$）</i></div>
+        <div class="dl end" data-step="5"><span>共线等长</span><span>$7\times 2+1=15$（个）</span><i class="why">同向 7 个 + 反向 8 个（$\overrightarrow{AB}$ 除外）</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p6–7 例 2、图 9-1-8。先让学生在格纸上画、数，教师不急着给答案；交互里每找到一个，就会留在图上并计数。最后点“显示所有符合的起点”对照课本图 9-1-8(2) 中圈出的 8 个格点。15 的算法：反向的 8 个里包含 BA，所以写成 7×2+1。</p>
+</section>
+
+<!-- 11 ================= 练习 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>辨一辨：哪些命题是正确的？</h2></div>
+  <div class="bd full">
+    <p class="tip">练习 1　在下列命题中，哪些是正确的？</p>
+    <div class="cols3">
+      <div class="jcard" data-step="1"><p><b>(1)</b> 若两个向量相等，则它们的起点和终点分别重合；</p><div class="think" data-step="2" data-ask="对还是错？"><p><span class="verdict x">✗</span>相等只要求等长同向，与起点无关（例 2 中 7 个向量都等于 $\overrightarrow{AB}$）。</p></div></div>
+      <div class="jcard" data-step="3"><p><b>(2)</b> 模相等的两个平行向量是相同的向量；</p><div class="think" data-step="4" data-ask="对还是错？"><p><span class="verdict x">✗</span>还可能方向相反，如例 1 中 $\overrightarrow{OA}$ 与 $\overrightarrow{BC}$。</p></div></div>
+      <div class="jcard" data-step="5"><p><b>(3)</b> 若 $\boldsymbol a$ 和 $\boldsymbol b$ 都是单位向量，则 $\boldsymbol a=\boldsymbol b$；</p><div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>方向可以不同。</p></div></div>
+      <div class="jcard" data-step="7"><p><b>(4)</b> 两个相同的向量的模相等；</p><div class="think" data-step="8" data-ask="对还是错？"><p><span class="verdict ok">✓</span>相同的向量长度相等且方向相同。</p></div></div>
+      <div class="jcard" data-step="9"><p><b>(5)</b> 若 $\boldsymbol a\parallel\boldsymbol b$，则 $\boldsymbol a$ 与 $\boldsymbol b$ 的夹角是 $0^\circ$。</p><div class="think" data-step="10" data-ask="对还是错？"><p><span class="verdict x">✗</span>平行包括反向，反向时夹角是 $180^\circ$。</p></div></div>
+      <div class="jcard" data-step="11"><p><b>练习 2</b>　设点 $O$ 是正三角形 $ABC$ 的中心，则向量 $\overrightarrow{AO},\overrightarrow{BO},\overrightarrow{CO}$ 是（　）<br>A. 相同的向量　B. 模相等的向量　C. 共线向量　D. 共起点的向量</p><div class="think" data-step="12" data-ask="选哪个？"><p><b>B</b>。中心到三个顶点距离相等，但三个向量方向两两不同。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p7 练习 1、2。只有 (4) 正确。每题请学生说出“错在哪”，最好能举出具体反例，并指出用的是哪条定义。</p>
+</section>
+
+<!-- 12 ================= 练习 3、4、5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>读图：长度、平行、垂直</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 写出图中所示各向量的长度（小正方形的边长为 1）。</p>
+        <div id="pr3" class="pr3"></div>
+        <details><summary>提示 1</summary>数出每个向量“横走几格、竖走几格”。</details>
+        <details><summary>提示 2</summary>横 $m$ 格、竖 $n$ 格，长度 $=\sqrt{m^2+n^2}$（勾股定理）。</details>
+        <details><summary>完整解答</summary>$|\overrightarrow{AB}|=\sqrt{3^2+3^2}=3\sqrt2$，$|\overrightarrow{CD}|=\sqrt{3^2+2^2}=\sqrt{13}$，$|\overrightarrow{EF}|=\sqrt{1^2+3^2}=\sqrt{10}$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 如图，在直线 $l$ 上，找出与 $\overrightarrow{AB}$ 平行的向量。</p>
+        <svg viewBox="0 0 320 70" class="mini-fig" aria-label="直线 l 上的 A B C D">
+          <line x1="20" y1="30" x2="300" y2="30" stroke="#1d6fa5" stroke-width="3"/>
+          <path d="M110 30 l-14 -6 v12z M200 30 l-14 -6 v12z M296 30 l-14 -6 v12z" fill="#1d6fa5"/>
+          <text x="14" y="58" class="fl">A</text><text x="104" y="58" class="fl">B</text><text x="194" y="58" class="fl">C</text><text x="284" y="58" class="fl">D</text><text x="196" y="20" class="fl">l</text>
+        </svg>
+        <details><summary>提示 1</summary>平行 = 方向相同或相反。直线 $l$ 上的向量方向有几种？</details>
+        <details><summary>提示 2</summary>只有“向右”“向左”两种。</details>
+        <details><summary>完整解答</summary>图中的 $\overrightarrow{BC}$，$\overrightarrow{CD}$ 都与 $\overrightarrow{AB}$ 平行；以 $A,B,C,D$ 中任意两点为起点和终点的向量（如 $\overrightarrow{AC}$，$\overrightarrow{BD}$，$\overrightarrow{DA}$）也都与 $\overrightarrow{AB}$ 平行。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 如图，四边形 $ABCD$ 是正方形，找出与 $\overrightarrow{AB}$ 垂直的向量。</p>
+        <svg viewBox="0 0 200 150" class="mini-fig sq" aria-label="正方形 ABCD">
+          <path d="M50 125 H150 V25 H50 Z" fill="none" stroke="#1d6fa5" stroke-width="3"/>
+          <path d="M150 125 l-13 -6 v12z M50 25 l-6 13 h12z M150 25 l-13 -6 v12z M150 125 l-6 -13 h12z" fill="#1d6fa5"/>
+          <text x="30" y="145" class="fl">A</text><text x="156" y="145" class="fl">B</text><text x="156" y="22" class="fl">C</text><text x="28" y="22" class="fl">D</text>
+        </svg>
+        <details><summary>提示 1</summary>图中画出了 $\overrightarrow{AB},\overrightarrow{AD},\overrightarrow{DC},\overrightarrow{CB}$。</details>
+        <details><summary>提示 2</summary>把起点移到一起，看夹角是不是 $90^\circ$。</details>
+        <details><summary>完整解答</summary>$\overrightarrow{AD}$ 和 $\overrightarrow{CB}$（正方形邻边互相垂直，$\overrightarrow{DC}$ 与 $\overrightarrow{AB}$ 同向）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p7 练习 3、4、5，图按课本坐标重画（第 3 题：A(0,1)→B(3,4)，C(2,0)→D(5,2)，E(5,4)→F(6,1)）。第 3 题复习“长度”，第 4 题复习“平行”，第 5 题复习“垂直”（夹角 90°）。</p>
+</section>
+
+<!-- 13 ================= 习题 7：点两个向量比一比 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 运用</span><h2>方格图里，哪些向量共线、相反、相等、模相等？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-t">习题 9.1 第 7 题　在如图所示的向量 $\boldsymbol a,\boldsymbol b,\boldsymbol c,\boldsymbol d,\boldsymbol e$ 中（小正方形的边长为 1），是否存在：(1) 共线向量？(2) 相反向量？(3) 相同的向量？(4) 模相等的向量？若存在，分别写出这些向量。</p>
+      <div id="ex7" class="ex7"></div>
+    </div>
+    <div class="col">
+      <div class="btns pick" data-noswipe id="e7Btns"></div>
+      <p class="tip feedback" id="e7Msg"></p>
+      <div class="hint-ladder">
+        <details><summary>提示</summary>把每个向量写成“横走几格、竖走几格”：$\boldsymbol a$ 右 1 上 2，$\boldsymbol b$ 右 1 上 1，……</details>
+        <details><summary>完整解答</summary>(1) 共线：$\boldsymbol a$ 与 $\boldsymbol d$，$\boldsymbol b$ 与 $\boldsymbol e$；(2) 相反：$\boldsymbol a$ 与 $\boldsymbol d$；(3) 相同的向量：不存在；(4) 模相等：$\boldsymbol a,\boldsymbol c,\boldsymbol d$（模都是 $\sqrt5$）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p8 习题 9.1 第 7 题，图按课本坐标重画：a (0,0)→(1,2)，b (1,2)→(2,3)，c (1,2)→(2,0)，d (3,3)→(2,1)，e (4,2)→(2,0)。先让学生小组讨论 2 分钟，再点任意两个向量让系统判定。注意 b 与 e 共线但不等长、不是相反向量。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">向量：既有大小又有方向；用有向线段表示；模 $|\boldsymbol a|$；零向量 $\boldsymbol 0$、单位向量。</p>
+        <p class="recall" data-label="三种关系">平行（共线）：同向或反向<br>相等：等长且同向<br>相反：等长且反向</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断两个向量的关系">先看方向（同向 / 反向 / 都不是），再看长度；方格中数“横几格、竖几格”。</p>
+        <p class="method" data-label="找相等向量">先定起点，再“照着走”同样的格数。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="抽象">从力、速度、位移中抽象出“向量”。</p>
+        <p class="recall" data-label="自由向量 · 平移">向量与起点无关，可以平移——作夹角、判共线都靠它。</p>
+        <p class="warn" data-label="特殊情况">零向量：方向任意，与任一向量平行，$-\boldsymbol 0=\boldsymbol 0$。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>9.2 向量运算——斜面上木块受到的重力 $\boldsymbol G$ 与支持力 $\boldsymbol N$ 的合力，就是对向量做“加法”。向量能像数一样加、减、乘吗？</p>
+  </div>
+  <p class="note">请学生先说出三种关系的区别，再揭示。课后作业建议：习题 9.1 第 1、3、4、5 题；探究·拓展第 9 题（1×3 方格纸中有多少种不同的模、多少种不同的方向）可作为选做，用本课的方格交互思路去数。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mvec.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

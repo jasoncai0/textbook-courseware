@@ -145,7 +145,7 @@ function lessonCard(l) {
   const inner = `
     <div class="cover" ${l.cover ? `style="background-image:url('thumbs/${esc(l.dir)}.jpg')"` : ''}></div>
     <div class="body">
-      <div class="row1"><span class="num">${typeof l.no === 'number' ? `第 ${l.no} 课` : esc(l.no)}</span><span class="title">${esc(l.title)}</span>${l.skim ? '<span class="skim">略读</span>' : ''}</div>
+      <div class="row1"><span class="num">${typeof l.no === 'number' ? `第 ${l.no} 课` : esc(l.no)}</span><span class="title">${esc(l.title)}</span>${l.skim ? '<span class="skim">略读</span>' : ''}${l.optional ? '<span class="skim">选学</span>' : ''}</div>
       <div class="tags"><span>${esc(l.kind)}</span><span>·</span><span>${g.label}</span>${l.pages ? `<span>·</span><span>${l.pages} 页</span>` : ''}</div>
       ${l.desc ? `<div class="desc">${esc(l.desc)}</div>` : ''}
       <div class="go">${isReady(l) ? '打开课件 →' : '待制作'}</div>

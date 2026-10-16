@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>不等式的基本性质 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面：跷跷板 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/qiaoqiaoban.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">高一上册 · 第3章 不等式 · 3.1</p>
+    <h1 class="cover-title">不等式的基本性质</h1>
+    <p class="cover-q" data-step="1">跷跷板一端低、一端高：低的一端更重，记作 $a\gt b$。两端各添上<b>同样重</b>的东西，还是原来那一端低吗？</p>
+    <p class="cover-q" data-step="2">换成数：已知 $a\gt b$，那么 $a+5$ 与 $b+5$、$2a$ 与 $2b$、$-2a$ 与 $-2b$，谁大？——<b>凭什么</b>这样说？</p>
+    <div class="chips" data-step="3"><span class="chip">作差比较大小</span><span class="chip">类比等式的性质</span><span class="chip">性质 1–6 的证明</span><span class="chip">数轴变换器</span></div>
+  </div>
+  <p class="note">课本 p47。先让学生凭直觉回答三个“谁大”，大多数人会说对，但第三个常有人犹豫。追问“凭什么”——初中是由例子归纳出来的，今天要用一条基本事实把它们一一<b>证明</b>出来。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用的三件旧工具</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="初中七年级 · 等式的性质" data-step="1">
+        <p>(1) 若 $a=b$ 且 $b=c$，则 $a=c$；</p>
+        <p>(2) 若 $a=b$，则 $a\pm c=b\pm c$；</p>
+        <p>(3) 若 $a=b$，则 $ac=bc$，<br>$\dfrac ac=\dfrac bc\ (c\ne 0)$。</p>
+        <span class="use">第 4 页类比：等式这样变，不等式会怎样？</span>
+      </div>
+      <div class="recall" data-label="初中七年级下册 · 不等式的性质" data-step="2">
+        <p>两边加（减）同一个数，不等号方向<b>不变</b>；</p>
+        <p>两边乘（除以）同一个<b>正数</b>，方向不变；</p>
+        <p>两边乘（除以）同一个<b>负数</b>，方向<b>改变</b>。</p>
+        <span class="use">初中靠举例归纳得到；今天给出证明（性质 3、4）。</span>
+      </div>
+      <div class="recall" data-label="实数 · 正负运算" data-step="3">
+        <p>正数 + 正数 = 正数；正数的相反数是负数；</p>
+        <p>正数 × 正数 = 正数；正数 × 负数 = 负数。</p>
+        <span class="use">每个证明的最后一步：判断“差”的正负。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章第一课。</b>本节建立的性质是第 3 章的“地基”：下一课 <a href="../mg10a-jibenbudengshi/index.html">3.2 基本不等式</a> 的三种证法、求最值，步步都要用到它们。</p>
+  </div>
+  <p class="note">每出一张卡，请学生先口头复述。第二张卡要追问：“初中是怎么知道这些性质的？”——是从几个具体的数试出来的。试再多组，也不能保证对所有实数都成立，所以要证明。</p>
+</section>
+
+<!-- 3 ================= 基本事实：作差 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">基本事实</span><h2>两个实数谁大？看它们的差</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">任给一个实数，它只可能是正数、零、负数<b>中的一种</b>。那么任意两个实数 $a,b$ 的差 $a-b$ 呢？</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="差也只有几种可能？">$a-b$ 也是实数，同样只能是正数、零、负数中的一种。</span></p>
+      <div id="fact" class="fact-b" data-step="3"></div>
+      <p class="tip center muted" data-step="3">数轴上 $a$ 在 $b$ 的右边 ⇔ $a-b\gt 0$</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="4"><span>当 $a-b$ 为正数时，</span><span>称 $a\gt b$；</span><i class="why"></i></div>
+        <div class="dl" data-step="4"><span>当 $a-b$ 为零时，</span><span>称 $a=b$；</span><i class="why"></i></div>
+        <div class="dl" data-step="4"><span>当 $a-b$ 为负数时，</span><span>称 $a\lt b$。</span><i class="why"></i></div>
+      </div>
+      <div class="def" data-step="5"><h4>基本事实（课本 p47）</h4>$$a\gt b\Leftrightarrow a-b\gt 0,\qquad a=b\Leftrightarrow a-b=0,\qquad a\lt b\Leftrightarrow a-b\lt 0.$$</div>
+      <p class="method" data-step="6">比较两个实数的大小 → 判断它们<b>差的符号</b>（作差法）。比较大小这件“形”的事，变成了判断正负这件“数”的事。</p>
+      <p class="tip gold" data-step="7"><b>问题：</b>不等式有哪些基本性质？——用这条基本事实，就可以把它们<b>证明</b>出来。</p>
+    </div>
+  </div>
+  <p class="note">课本 p47 开头。第 2 步停一下，让学生说出“差也只有三种可能”。强调“⇔”：左右两边可以互相推出，所以证明 a &gt; b，只要证 a − b &gt; 0——这是今天每个证明的出发点。</p>
+</section>
+
+<!-- 4 ================= 类比猜想 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">类比猜想</span><h2>等式有这些性质，不等式呢？</h2></div>
+  <div class="bd full">
+    <table class="mtab ana">
+      <tr><th>等式的性质</th><th>换成不等式，你猜……</th></tr>
+      <tr data-step="1"><td>若 $a=b$，则 $b=a$</td><td><span class="think" data-step="2" data-ask="猜一猜">若 $a\gt b$，则 $b\lt a$</span></td></tr>
+      <tr data-step="1"><td>若 $a=b$ 且 $b=c$，则 $a=c$</td><td><span class="think" data-step="2" data-ask="猜一猜">若 $a\gt b$，$b\gt c$，则 $a\gt c$</span></td></tr>
+      <tr data-step="3"><td>若 $a=b$，则 $a+c=b+c$</td><td><span class="think" data-step="4" data-ask="猜一猜">若 $a\gt b$，则 $a+c\gt b+c$</span></td></tr>
+      <tr data-step="3"><td>若 $a=b$，则 $ac=bc$</td><td><span class="think" data-step="4" data-ask="能照搬吗？">若 $a\gt b$，则 $ac\ ?\ bc$——要看 $c$ 的<b>正负</b>！</span></td></tr>
+    </table>
+    <div class="def" data-step="5"><h4>不等式的基本性质（课本 p47）</h4>
+      <div class="props">
+        <span>性质 1</span><span>若 $a\gt b$，则 $b\lt a$。</span>
+        <span>性质 2</span><span>若 $a\gt b$，$b\gt c$，则 $a\gt c$。</span>
+        <span>性质 3</span><span>若 $a\gt b$，则 $a+c\gt b+c$。</span>
+        <span>性质 4</span><span>若 $a\gt b$，$c\gt 0$，则 $ac\gt bc$；若 $a\gt b$，$c\lt 0$，则 $ac\lt bc$。</span>
+        <span>性质 5</span><span>若 $a\gt b$，$c\gt d$，则 $a+c\gt b+d$。</span>
+        <span>性质 6</span><span>若 $a\gt b\gt 0$，$c\gt d\gt 0$，则 $ac\gt bd$。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p47 等式性质与性质框。前四行先让学生口头猜，再点开。第四行是关键冲突：等式两边乘任何数都还相等，不等式却不行——留给第 6 页的“数轴变换器”去看个明白。性质 5、6 是新的：两个不等式“合起来”用。</p>
+</section>
+
+<!-- 5 ================= 性质 1、2 的证明 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>性质 1、2：只要证差的符号</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>性质 1</b>　若 $a\gt b$，则 $b\lt a$。</p>
+        <p class="tip" data-step="1"><b>分析</b>　要证 $b\lt a$，只要证 <span class="think" data-step="2" data-ask="只要证什么？">$b-a\lt 0$。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>因为 $a\gt b$，</span><span>所以 $a-b\gt 0$。</span><i class="why">基本事实</i></div>
+          <div class="dl key" data-step="4"><span>又</span><span>$-(a-b)\lt 0$，</span><i class="why">正数的相反数是负数</i></div>
+          <div class="dl" data-step="5"><span>即</span><span>$b-a\lt 0$。</span><i class="why">去括号</i></div>
+          <div class="dl end" data-step="5"><span>所以</span><span>$b\lt a$。</span><i class="why">基本事实</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>性质 2</b>　若 $a\gt b$，$b\gt c$，则 $a\gt c$。</p>
+        <p class="tip" data-step="6"><b>分析</b>　要证 $a\gt c$，只要证 <span class="think" data-step="7" data-ask="只要证什么？">$a-c\gt 0$。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="8"><span>因为 $a\gt b$，$b\gt c$，</span><span>所以 $a-b\gt 0$，$b-c\gt 0$。</span><i class="why">基本事实</i></div>
+          <div class="dl key" data-step="9"><span></span><span class="think" data-step="10" data-ask="怎样凑出 a − c？">$(a-b)+(b-c)\gt 0$，</span><i class="why">两个正数的和是正数</i></div>
+          <div class="dl" data-step="11"><span>即</span><span>$a-c\gt 0$。</span><i class="why">$-b$ 与 $+b$ 抵消</i></div>
+          <div class="dl end" data-step="11"><span>因此</span><span>$a\gt c$。</span><i class="why">基本事实</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="12">证明的“套路”：<b>要证大小 → 只要证差的符号 → 用已知的正负运算判断</b>。性质 2 的妙处是 $a-c=(a-b)+(b-c)$：把要判断的差，拆成已知符号的差。</p>
+  </div>
+  <p class="note">课本 p47–48。每个“分析”先让学生说“只要证什么”。性质 2 的第 10 步停一下：手里有 a − b、b − c，怎样得到 a − c？学生能想到“相加”就抓住了作差法的精髓。性质 2 叫不等式的传递性。</p>
+</section>
+
+<!-- 6 ================= 数轴变换器（本课核心交互） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>数轴变换器：两边同加、同乘，不等号会翻吗？</h2></div>
+  <div class="bd full">
+    <div class="tf-ctrl" data-noswipe>
+      <div class="btns" id="tfOps">
+        <button class="btn solid" type="button" data-op="add">两边加 $c$</button>
+        <button class="btn" type="button" data-op="mul">两边乘 $c$</button>
+        <button class="btn" type="button" id="tfPlay">▶ 再演示一遍</button>
+      </div>
+      <div class="slider-row">$c=$<input type="range" id="tfC" min="-2.5" max="2.5" step="0.5" value="2"><b id="tfCV" class="v"></b></div>
+    </div>
+    <div id="tf" class="tf-board"></div>
+    <div class="tf-read">
+      <p class="tip" id="tfBefore"></p>
+      <p class="tip feedback" id="tfAfter"></p>
+    </div>
+    <div class="cols3">
+      <p class="tip" data-step="1">加 $c$：两点<span class="think" data-step="2" data-ask="怎样动？">一起<b>平移</b> $c$ 个单位，左右位置不变——方向不变。</span></p>
+      <p class="tip" data-step="3">乘正数 $c$：<span class="think" data-step="4" data-ask="怎样动？">两点到原点的距离同时变为 $c$ 倍，仍在原点同侧排序不变——方向不变。</span></p>
+      <p class="tip" data-step="5">乘负数 $c$：<span class="think" data-step="6" data-ask="怎样动？">两点同时<b>翻到原点另一侧</b>，左右颠倒——方向<b>改变</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p48 性质 3、4 的直观。拖动上面数轴的两个橙点改 a、b（总保持 a &gt; b），再选运算、拖 c。请学生先预测下面的箭头会怎样走，再点“再演示一遍”。重点演示：c 从正拖到负的瞬间，两点“翻转”过原点；c = 0 时两点重合到原点——乘 0 后变成相等（练习 1(1) 会用到）。</p>
+</section>
+
+<!-- 7 ================= 性质 3、4 的证明 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>性质 3、4：看到的现象，用作差说清楚</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>性质 3</b>　若 $a\gt b$，则 $a+c\gt b+c$。</p>
+        <p class="tip" data-step="1"><b>分析</b>　只要证 $(a+c)-(b+c)\gt 0$，即 <span class="think" data-step="2" data-ask="化简后是什么？">$a-b\gt 0$。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>因为 $a\gt b$，</span><span>所以 $a-b\gt 0$。</span><i class="why">基本事实</i></div>
+          <div class="dl key" data-step="4"><span>又因为</span><span>$(a+c)-(b+c)=a-b$，</span><i class="why">去括号，$c$ 抵消</i></div>
+          <div class="dl" data-step="5"><span>所以</span><span>$(a+c)-(b+c)\gt 0$。</span><i class="why">等量代换</i></div>
+          <div class="dl end" data-step="5"><span>故</span><span>$a+c\gt b+c$。</span><i class="why">基本事实</i></div>
+        </div>
+        <p class="method" data-step="6" data-label="移项">两边都加上（或减去）同一个实数，方向不变。由此可把某一项<b>变号</b>后移到另一边：$a+b\gt c\Leftrightarrow a\gt c-b$。</p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>性质 4</b>　若 $a\gt b$，$c\gt 0$，则 $ac\gt bc$；若 $a\gt b$，$c\lt 0$，则 $ac\lt bc$。</p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>作差</span><span>$ac-bc=(a-b)c$。</span><i class="why">提公因式</i></div>
+          <div class="dl" data-step="8"><span>因为 $a\gt b$，</span><span>所以 $a-b\gt 0$。</span><i class="why">基本事实</i></div>
+          <div class="dl key" data-step="9"><span>当 $c\gt 0$ 时，</span><span class="think" data-step="10" data-ask="(a − b)c 的符号？">$(a-b)c\gt 0$，从而 $ac\gt bc$；</span><i class="why">正 × 正 = 正</i></div>
+          <div class="dl key" data-step="11"><span>当 $c\lt 0$ 时，</span><span class="think" data-step="12" data-ask="(a − b)c 的符号？">$(a-b)c\lt 0$，从而 $ac\lt bc$。</span><i class="why">正 × 负 = 负</i></div>
+        </div>
+        <p class="warn" data-step="13" data-label="三种情况">乘<b>正数</b>，方向不变；乘<b>负数</b>，方向改变；乘 $0$ 呢？$ac=bc=0$，变成了<b>相等</b>。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p48。对照上一页：性质 3 的证明里 c 被抵消了——所以 c 是正是负都无所谓，正是“平移”；性质 4 的差 (a − b)c 里 c 留了下来，它的符号决定了差的符号——正是“伸缩 / 翻转”。性质 4 没有写 c = 0，提醒学生自己补上这一种情况。</p>
+</section>
+
+<!-- 8 ================= 性质 5、6 的证明 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>性质 5、6：两个不等式“合起来”用</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>性质 5</b>　若 $a\gt b$，$c\gt d$，则 $a+c\gt b+d$。</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>由 $a\gt b$，</span><span>得 $a+c\gt b+c$。</span><i class="why">性质 3（两边加 $c$）</i></div>
+          <div class="dl" data-step="2"><span>又由 $c\gt d$，</span><span>得 $b+c\gt b+d$。</span><i class="why">性质 3（两边加 $b$）</i></div>
+          <div class="dl end" data-step="3"><span>于是</span><span>$a+c\gt b+d$。</span><i class="why">性质 2（传递）</i></div>
+        </div>
+        <p class="tip" data-step="4">还有其他证法吗？　<span class="think" data-step="5" data-ask="试试作差">$(a+c)-(b+d)=(a-b)+(c-d)\gt 0$，两个正数之和为正。</span></p>
+        <p class="method" data-step="6" data-label="同向可加">两个同向不等式两边分别相加，所得的不等式和原不等式同向。</p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>性质 6</b>　若 $a\gt b\gt 0$，$c\gt d\gt 0$，则 $ac\gt bd$。</p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>因为 $a\gt b$，$c\gt 0$，</span><span>得 $ac\gt bc$。</span><i class="why">性质 4（两边乘正数 $c$）</i></div>
+          <div class="dl" data-step="8"><span>因为 $c\gt d$，$b\gt 0$，</span><span>得 $bc\gt bd$。</span><i class="why">性质 4（两边乘正数 $b$）</i></div>
+          <div class="dl end" data-step="9"><span>由性质 2，</span><span>得 $ac\gt bd$。</span><i class="why">传递</i></div>
+        </div>
+        <p class="tip" data-step="10">特别地，当 $a=c$，$b=d$ 时，<span class="think" data-step="11" data-ask="得到什么？">$a^2\gt b^2$。以后可用数学归纳法证明：若 $a\gt b\gt 0$，则 $a^n\gt b^n\ (n\in\mathbf N^*)$。</span></p>
+        <p class="method" data-step="12" data-label="同向正数可乘">两边都是正数的同向不等式两边分别相乘，所得的不等式和原不等式同向。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="13">性质 5、6 也可以看成前面性质的<b>推论</b>。以上性质是求解和证明不等式的基础。<b>想一想：</b>性质 6 里的“$\gt 0$”能去掉吗？</p>
+  </div>
+  <p class="note">课本 p48–49。性质 5 旁注“还有其他证法吗？”——请学生用作差法另证。性质 6 的证明用了两次性质 4，每次都要检查“乘的那个数是正数”：这正是条件 b &gt; 0、c &gt; 0 的用处。最后的问题留给下一页用反例检验。</p>
+</section>
+
+<!-- 9 ================= 辨析：反例检验器 + 练习 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>同向不等式：能加、能减、能乘吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">练习 1（课本 p49）：由 $a\gt b$，$c\gt d$——</p>
+      <div class="ce-btns btns" data-noswipe>
+        <button class="btn" type="button" data-ce="pos">都是正数</button>
+        <button class="btn" type="button" data-ce="neg">有负数</button>
+        <button class="btn" type="button" data-ce="zero">$c=0$</button>
+        <button class="btn solid" type="button" id="ceRand">🎲 随机一组</button>
+      </div>
+      <p class="tip center ce-now" id="ceNow"></p>
+      <table class="mtab ce" id="ceTab"></table>
+      <p class="tip muted ce-tally" id="ceTally"></p>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="1"><p>(1) 由 $a\gt b$，能否得到 $ac^2\gt bc^2$？</p><div class="think" data-step="2" data-ask="能不能？找反例"><p><span class="verdict x">不能</span>当 $c=0$ 时，$ac^2=bc^2=0$。（$c\ne 0$ 时 $c^2\gt 0$，才能用性质 4。）</p></div></div>
+      <div class="jcard" data-step="3"><p>(2) 由 $a\gt b$，$c\gt d$，能否得到 $a-c\gt b-d$？</p><div class="think" data-step="4" data-ask="能不能？找反例"><p><span class="verdict x">不能</span>如 $a=5,b=2,c=4,d=1$：$a-c=1=b-d$。同向不等式<b>不能相减</b>。</p></div></div>
+      <div class="jcard" data-step="5"><p>(3) 由 $a\gt b$，$c\gt d$，能否得到 $ac\gt bd$？</p><div class="think" data-step="6" data-ask="能不能？找反例"><p><span class="verdict x">不能</span>如 $a=1,b=-2,c=-1,d=-3$：$ac=-1\lt bd=6$。性质 6 要求各数为<b>正</b>。</p></div></div>
+      <p class="warn" data-step="7">一个反例就能否定一个命题；但举再多正例，也证明不了它——要用性质推出来。</p>
+    </div>
+  </div>
+  <p class="note">课本 p49 练习 1。先让学生凭感觉判断三问，再用左边的检验器：点预设或掷“随机一组”（整数，保证 a &gt; b、c &gt; d），看哪一行出现 ✗。累计统计里，“a + c 与 b + d”永远不会出 ✗——那是性质 5，已被证明；其他三行都能找到反例。</p>
+</section>
+
+<!-- 10 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>解不等式，每一步说出用了哪条性质</h2></div>
+  <div class="bd full">
+    <p class="tip big">求解不等式 $90-\dfrac{10}{3}t\ge 80$，并用不等式的性质说明理由。</p>
+    <p class="tip" data-step="1">思路：<span class="think" data-step="2" data-ask="先做什么？">先去分母（乘 3），再移项，最后把 $t$ 的系数化为 1——和初中解一元一次不等式一样，只是每步都要<b>写依据</b>。</span></p>
+    <div class="derive">
+      <div class="dl" data-step="3"><span>两边同乘以 $3$，得</span><span>$270-10t\ge 240$。</span><i class="why">不等式性质 4（乘正数，方向不变）</i></div>
+      <div class="dl" data-step="4"><span>两边同加上 $-270$，得</span><span>$-10t\ge 240-270$，</span><i class="why">不等式性质 3</i></div>
+      <div class="dl" data-step="5"><span>即</span><span>$-10t\ge -30$。</span><i class="why"></i></div>
+      <div class="dl key" data-step="6"><span>两边同乘以 $-\dfrac{1}{10}$，得</span><span class="think" data-step="7" data-ask="不等号朝哪边？">$t\le 3$。</span><i class="why">不等式性质 4（乘负数，方向<b>改变</b>）</i></div>
+    </div>
+    <p class="method" data-step="8">解不等式就是对不等式不断做“同加”“同乘”：同加、同乘正数照抄不等号；<b>同乘负数，不等号一定要反向</b>。</p>
+  </div>
+  <p class="note">课本 p49 例 1。第 7 步停顿：请学生说出不等号朝哪边、为什么，最常见的错误是写成 t ≥ 3。可以回到第 6 页的数轴变换器，取 c = −0.5 看两点翻转。说明：性质对“≥”同样成立（性质中的 &gt; 换成 ≥ 证明完全一样）。</p>
+</section>
+
+<!-- 11 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>同一个结论，两条路</h2></div>
+  <div class="bd full">
+    <p class="tip big">已知 $a\gt b$，$c\lt d$，求证：$a-c\gt b-d$。</p>
+    <p class="tip" data-step="1">上一页说同向不等式不能相减——这里 $c\lt d$ 与 $a\gt b$ <b>异向</b>。怎么用？</p>
+    <div class="cols2">
+      <div class="col">
+        <h3 class="sub-h" data-step="2">证法 1 · 作差</h3>
+        <div class="derive">
+          <div class="dl" data-step="2"><span>由 $a\gt b$，</span><span>得 $a-b\gt 0$；</span><i class="why">基本事实</i></div>
+          <div class="dl" data-step="2"><span>由 $c\lt d$，</span><span>得 $d-c\gt 0$。</span><i class="why">基本事实</i></div>
+          <div class="dl key" data-step="3"><span>因为</span><span class="think" data-step="4" data-ask="怎样把差拆开？">$(a-c)-(b-d)=(a-b)+(d-c)\gt 0$，</span><i class="why">两个正数之和为正</i></div>
+          <div class="dl end" data-step="5"><span>所以</span><span>$a-c\gt b-d$。</span><i class="why">基本事实</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <h3 class="sub-h" data-step="6">证法 2 · 用性质</h3>
+        <div class="derive">
+          <div class="dl key" data-step="6"><span>因为 $c\lt d$，</span><span class="think" data-step="7" data-ask="怎样变成同向？">所以 $-c\gt -d$。</span><i class="why">性质 4（两边乘 $-1$，方向改变）</i></div>
+          <div class="dl" data-step="8"><span>又因为 $a\gt b$，</span><span>所以 $a+(-c)\gt b+(-d)$，</span><i class="why">性质 5（同向相加）</i></div>
+          <div class="dl end" data-step="9"><span>即</span><span>$a-c\gt b-d$。</span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="10">异向不等式可以相减：先乘 $-1$ 化为同向，再相加。“大减小 ＞ 小减大”。</p>
+  </div>
+  <p class="note">课本 p49 例 2。两种证法对照：证法 1 回到基本事实，万能但要会拆差；证法 2 用已证的性质，简洁但每步都要找对性质。追问：为什么证法 2 第一步要乘 −1？——把异向化成同向，才能用性质 5。</p>
+</section>
+
+<!-- 12 ================= 例 3 + 练习 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>比较两数 $(a^2+1)^2$ 与 $a^4+a^2+1$ 的大小</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>作差</span><span>$(a^2+1)^2-(a^4+a^2+1)=a^4+2a^2+1-a^4-a^2-1$</span><i class="why">完全平方展开、去括号</i></div>
+      <div class="dl key" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="化简得什么？">$a^2$。</span><i class="why">合并同类项</i></div>
+      <div class="dl" data-step="4"><span>当 $a=0$ 时，</span><span>$a^2=0$，所以 $(a^2+1)^2=a^4+a^2+1$；</span><i class="why">差为零 ⇒ 相等</i></div>
+      <div class="dl end" data-step="4"><span>当 $a\ne 0$ 时，</span><span>$a^2\gt 0$，所以 $(a^2+1)^2\gt a^4+a^2+1$。</span><i class="why">差为正 ⇒ 前者大；符号不唯一，要分类</i></div>
+    </div>
+    <div class="cols2 ex3-foot">
+      <p class="method" data-step="5">作差法三步：<b>作差 → 变形</b>（展开合并、因式分解、配方）<b>→ 判断符号</b>（符号不确定时要分类讨论）。</p>
+      <div class="hint-ladder" data-step="6">
+        <p class="q"><b>跟着练（练习 3）</b>　比较两数 $(x+1)(x^2-x+1)$ 与 $(x-1)(x^2+x+1)$ 的大小。</p>
+        <details><summary>提示 1</summary>作差，先把两个乘积分别展开。</details>
+        <details><summary>提示 2</summary>$(x+1)(x^2-x+1)=x^3+1$，$(x-1)(x^2+x+1)=x^3-1$。</details>
+        <details><summary>完整解答</summary>$(x+1)(x^2-x+1)-(x-1)(x^2+x+1)=(x^3+1)-(x^3-1)=2\gt 0$，所以 $(x+1)(x^2-x+1)\gt(x-1)(x^2+x+1)$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p49 例 3、p50 练习 3。例 3 的关键是最后的分类：差是 a²，只能说 ≥ 0，所以要分 a = 0 与 a ≠ 0 两种情况写结论。练习 3 差恰好是常数 2，不用分类——对比两题，体会“变形到能看出符号为止”。</p>
+</section>
+
+<!-- 13 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 解不等式 $10-\dfrac52x\ge 3$，并用不等式的性质说明理由。</p>
+        <details><summary>提示 1</summary>仿照例 1：先两边同乘以 2 去分母。</details>
+        <details><summary>提示 2</summary>$20-5x\ge 6$，再两边同加上 $-20$；最后乘 $-\dfrac15$，注意方向。</details>
+        <details><summary>完整解答</summary>两边同乘以 2，得 $20-5x\ge 6$（性质 4）；两边同加上 $-20$，得 $-5x\ge -14$（性质 3）；两边同乘以 $-\dfrac15$，得 $x\le\dfrac{14}{5}$（性质 4，方向改变）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 已知 $a\lt b\lt 0$，求证：$a^2\gt b^2$。</p>
+        <details><summary>提示 1</summary>$a,b$ 是负数，不能直接用性质 6。能把它们变成正数吗？</details>
+        <details><summary>提示 2</summary>两边乘 $-1$：$-a\gt -b\gt 0$。</details>
+        <details><summary>完整解答</summary>由 $a\lt b\lt 0$，得 $-a\gt -b\gt 0$（性质 4，乘 $-1$ 方向改变）。由性质 6（取 $-a,-b$ 自乘），得 $(-a)^2\gt(-b)^2$，即 $a^2\gt b^2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 已知 $a\ge b\gt 0$，求证：$b\le\dfrac{a+b}{2}\le a$</p>
+        <details><summary>提示 1</summary>拆成两个不等式，分别作差。</details>
+        <details><summary>提示 2</summary>$\dfrac{a+b}{2}-b=\dfrac{a-b}{2}$，$a-\dfrac{a+b}{2}=\dfrac{a-b}{2}$。</details>
+        <details><summary>完整解答</summary>因为 $a\ge b$，所以 $a-b\ge 0$。于是 $\dfrac{a+b}{2}-b=\dfrac{a-b}{2}\ge 0$，$a-\dfrac{a+b}{2}=\dfrac{a-b}{2}\ge 0$，所以 $b\le\dfrac{a+b}{2}\le a$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p50 练习 2、4、5。先独立做 3 分钟，卡住再逐级点开。第 4 题是性质 6 “各数为正”的反面用法：负数先乘 −1 变正。第 5 题说明两个正数的“平均数”夹在它们之间——下一课还要拿 (a + b)/2 和另一种平均数比较。习题 3.1 第 8 题（a &lt; b &lt; 0 ⇒ a⁴ &gt; b⁴）是第 4 题的推广。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">基本事实：$a\gt b\Leftrightarrow a-b\gt 0$（等、小于同理）。</p>
+        <p class="recall" data-label="性质 1–6">对称 · 传递 · 可加 · 可乘（看 $c$ 的正负）· 同向可加 · 同向正数可乘</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="作差法">作差 → 变形 → 判断符号（必要时分类）。</p>
+        <p class="method" data-label="用性质">解不等式、证不等式，每步都写依据；乘负数变号，相减、相乘先查条件。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="类比">由等式的性质猜不等式的性质，再严格证明。</p>
+        <p class="recall" data-label="数形结合 · 转化">数轴上平移、伸缩、翻转；比较大小 → 判断差的符号。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b><a href="../mg10a-jibenbudengshi/index.html">3.2 基本不等式</a>——两个正数的算术平均数 $\dfrac{a+b}{2}$ 与几何平均数 $\sqrt{ab}$，谁大？三种证法里的“作差”“只要证”“两边同乘正数”，全是今天的性质。</p>
+  </div>
+  <p class="note">请学生先用自己的话说出六条性质各管什么，再逐栏揭示。特别强调两条“红线”：乘负数要变号；同向不等式不能相减，相乘要求都为正。课后作业建议：习题 3.1 第 1、2、3、4、9 题；第 11 题（糖水变甜）可作为探究。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
