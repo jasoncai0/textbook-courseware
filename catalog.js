@@ -2743,6 +2743,407 @@ window.CATALOG = [
     "subject": "数学",
     "books": [
       {
+        "name": "五年级下册",
+        "edition": "义务教育教科书 · 数学 · 江苏凤凰教育出版社（苏教版）",
+        "units": [
+          {
+            "no": "一 简易方程",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "一",
+                "title": "简易方程",
+                "genre": "概念",
+                "kind": "方程"
+              }
+            ]
+          },
+          {
+            "no": "二 折线统计图",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "二",
+                "title": "折线统计图",
+                "genre": "概念",
+                "kind": "统计"
+              }
+            ]
+          },
+          {
+            "no": "三 因数与倍数",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "三",
+                "title": "因数与倍数",
+                "genre": "概念",
+                "kind": "数论"
+              }
+            ]
+          },
+          {
+            "no": "四 分数的意义和性质",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "四",
+                "title": "分数的意义和性质",
+                "genre": "概念",
+                "kind": "分数"
+              }
+            ]
+          },
+          {
+            "no": "五 分数加法和减法",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "五",
+                "title": "分数加法和减法",
+                "genre": "推导",
+                "kind": "分数"
+              }
+            ]
+          },
+          {
+            "no": "六 圆",
+            "motto": "化曲为直，转化出新公式",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "例1–3",
+                "title": "圆的认识",
+                "genre": "概念",
+                "kind": "圆"
+              },
+              {
+                "no": "例4–6",
+                "title": "圆的周长",
+                "genre": "推导",
+                "kind": "圆"
+              },
+              {
+                "no": "例7–9",
+                "title": "圆的面积",
+                "genre": "推导",
+                "kind": "圆",
+                "dir": "mp5b-yuanmianji",
+                "cover": "mp5b-yuanmianji/assets/penshui.jpg",
+                "desc": "切拼成近似长方形 · 8→64 份越分越像",
+                "pages": 11
+              }
+            ]
+          },
+          {
+            "no": "七 解决问题的策略",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "七",
+                "title": "解决问题的策略",
+                "genre": "推导",
+                "kind": "策略"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "六年级上册",
+        "edition": "义务教育教科书 · 数学 · 江苏凤凰教育出版社（苏教版）",
+        "units": [
+          {
+            "no": "一 长方体和正方体",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "一",
+                "title": "长方体和正方体",
+                "genre": "概念",
+                "kind": "立体图形"
+              }
+            ]
+          },
+          {
+            "no": "二 分数乘法",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "二",
+                "title": "分数乘法",
+                "genre": "推导",
+                "kind": "分数"
+              }
+            ]
+          },
+          {
+            "no": "三 分数除法",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "例1–6",
+                "title": "分数除法",
+                "genre": "推导",
+                "kind": "分数"
+              },
+              {
+                "no": "比",
+                "title": "比的意义",
+                "genre": "概念",
+                "kind": "比",
+                "dir": "mp6a-bideyiyi",
+                "cover": "mp6a-bideyiyi/assets/zaocan.jpg",
+                "desc": "配比滑块：比相同，味道就相同",
+                "pages": 11
+              }
+            ]
+          },
+          {
+            "no": "四 解决问题的策略",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "四",
+                "title": "解决问题的策略",
+                "genre": "推导",
+                "kind": "策略"
+              }
+            ]
+          },
+          {
+            "no": "五 分数四则混合运算",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "五",
+                "title": "分数四则混合运算",
+                "genre": "推导",
+                "kind": "分数"
+              }
+            ]
+          },
+          {
+            "no": "六 百分数",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "六",
+                "title": "百分数",
+                "genre": "概念",
+                "kind": "百分数"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "八年级上册",
+        "edition": "义务教育教科书 · 数学 · 江苏凤凰科学技术出版社（苏科版）",
+        "units": [
+          {
+            "no": "第1章 全等三角形",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "1.1",
+                "title": "全等图形",
+                "genre": "概念",
+                "kind": "全等"
+              },
+              {
+                "no": "1.2",
+                "title": "全等三角形",
+                "genre": "概念",
+                "kind": "全等"
+              },
+              {
+                "no": "1.3",
+                "title": "探索三角形全等的条件",
+                "genre": "推导",
+                "kind": "全等"
+              }
+            ]
+          },
+          {
+            "no": "第2章 轴对称图形",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "2.1",
+                "title": "轴对称与轴对称图形",
+                "genre": "概念",
+                "kind": "轴对称"
+              },
+              {
+                "no": "2.2",
+                "title": "轴对称的性质",
+                "genre": "推导",
+                "kind": "轴对称"
+              },
+              {
+                "no": "2.3",
+                "title": "设计轴对称图案",
+                "genre": "概念",
+                "kind": "轴对称"
+              },
+              {
+                "no": "2.4",
+                "title": "线段、角的轴对称性",
+                "genre": "推导",
+                "kind": "轴对称"
+              },
+              {
+                "no": "2.5",
+                "title": "等腰三角形的轴对称性",
+                "genre": "推导",
+                "kind": "轴对称"
+              }
+            ]
+          },
+          {
+            "no": "第3章 勾股定理",
+            "motto": "数形结合，用面积证明",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "3.1",
+                "title": "勾股定理",
+                "genre": "推导",
+                "kind": "勾股定理",
+                "dir": "mj8a-gougudingli",
+                "cover": "mj8a-gougudingli/assets/xiantu.jpg",
+                "desc": "格点板拖出直角 · 拼图与赵爽弦图证明",
+                "pages": 12
+              },
+              {
+                "no": "3.2",
+                "title": "勾股定理的逆定理",
+                "genre": "推导",
+                "kind": "勾股定理"
+              },
+              {
+                "no": "3.3",
+                "title": "勾股定理的简单应用",
+                "genre": "推导",
+                "kind": "勾股定理"
+              }
+            ]
+          },
+          {
+            "no": "第4章 实数",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "4.1",
+                "title": "平方根",
+                "genre": "概念",
+                "kind": "实数"
+              },
+              {
+                "no": "4.2",
+                "title": "立方根",
+                "genre": "概念",
+                "kind": "实数"
+              },
+              {
+                "no": "4.3",
+                "title": "实数",
+                "genre": "概念",
+                "kind": "实数"
+              },
+              {
+                "no": "4.4",
+                "title": "近似数",
+                "genre": "概念",
+                "kind": "实数"
+              }
+            ]
+          },
+          {
+            "no": "第5章 平面直角坐标系",
+            "motto": "",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "5.1",
+                "title": "位置的确定",
+                "genre": "概念",
+                "kind": "坐标"
+              },
+              {
+                "no": "5.2",
+                "title": "平面直角坐标系",
+                "genre": "概念",
+                "kind": "坐标"
+              }
+            ]
+          },
+          {
+            "no": "第6章 一次函数",
+            "motto": "用变化的眼光看数量关系",
+            "goals": [],
+            "lessons": [
+              {
+                "no": "6.1",
+                "title": "函数",
+                "genre": "概念",
+                "kind": "函数",
+                "dir": "mj8a-hanshu",
+                "cover": "mj8a-hanshu/assets/lieche-cover.jpg",
+                "desc": "变化观察器：表格·式子·图象同步",
+                "pages": 13
+              },
+              {
+                "no": "6.2",
+                "title": "一次函数",
+                "genre": "概念",
+                "kind": "函数"
+              },
+              {
+                "no": "6.3",
+                "title": "一次函数的图像",
+                "genre": "推导",
+                "kind": "函数"
+              },
+              {
+                "no": "6.4",
+                "title": "用一次函数解决问题",
+                "genre": "推导",
+                "kind": "函数"
+              },
+              {
+                "no": "6.5",
+                "title": "一次函数与二元一次方程",
+                "genre": "推导",
+                "kind": "函数"
+              },
+              {
+                "no": "6.6",
+                "title": "一次函数、一元一次方程和一元一次不等式",
+                "genre": "推导",
+                "kind": "函数"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "name": "高一上册",
         "edition": "普通高中教科书 · 数学必修第一册 · 江苏凤凰教育出版社（苏教版）",
         "units": [

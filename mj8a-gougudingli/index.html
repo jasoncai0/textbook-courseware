@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>勾股定理 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shufang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第3章 勾股定理 · 3.1</p>
+    <h1 class="cover-title">勾股定理</h1>
+    <p class="cover-q" data-step="1">1955 年希腊发行了一枚纪念邮票，图案是一个直角三角形，三条边上各“长”出一个由小方格拼成的正方形。</p>
+    <p class="cover-q" data-step="2">数一数三个正方形里的小方格：<b>9、16、25</b>。这只是巧合吗？换一个直角三角形，还会这样吗？</p>
+    <div class="chips" data-step="3"><span class="chip">数格子 · 猜想</span><span class="chip">拼图证明</span><span class="chip">赵爽弦图</span><span class="chip">已知两边求第三边</span></div>
+  </div>
+  <p class="note">课本 p78 情境（邮票图案）。封面只提问题：9 + 16 = 25 是巧合还是规律？让学生先表态，不急着下结论——本课的主线就是“观察 → 猜想 → 证明 → 应用”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的三件“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七年级 · 直角三角形" data-step="1">
+        <svg viewBox="0 0 260 120" class="mini-fig" aria-label="直角三角形">
+          <path d="M30 100 H220 L30 20 Z" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2.5"/>
+          <path d="M30 88 h12 v12" fill="none" stroke="#1d6fa5" stroke-width="2"/>
+          <text x="14" y="112" class="fl">C</text><text x="226" y="112" class="fl">A</text><text x="14" y="22" class="fl">B</text>
+          <text x="10" y="66" class="fl s">a</text><text x="120" y="118" class="fl s">b</text><text x="132" y="54" class="fl s c1">c</text>
+        </svg>
+        <p>夹直角的两边叫<b>直角边</b>，直角所对的边叫<b>斜边</b>。</p>
+        <p>直角三角形的两个锐角<b>互余</b>；平角等于 $180^\circ$。</p>
+        <span class="use">说明拼出来的四边形的每个角都是直角。</span>
+      </div>
+      <div class="recall" data-label="小学 · 面积" data-step="2">
+        <p>边长为 $a$ 的正方形：$S=a^2$</p>
+        <p>两条直角边为 $a$、$b$ 的直角三角形：$S=\dfrac12ab$</p>
+        <p>斜着放的图形，可以“<b>补</b>”成大图形再减，也可以“<b>割</b>”成小块再加。</p>
+        <span class="use">算斜放正方形的面积；同一个图形用两种方法算面积。</span>
+      </div>
+      <div class="recall" data-label="七年级 · 乘法公式" data-step="3">
+        <p>$(a+b)^2=a^2+2ab+b^2$</p>
+        <p>$(b-a)^2=b^2-2ab+a^2$</p>
+        <span class="use">把“面积等式”展开、化简，得到三边的关系。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主角：</b>直角三角形的三条边 $a$、$b$、$c$ 之间，有没有一个确定的数量关系？</p>
+  </div>
+  <p class="note">每出一张卡，先请学生口头复述，再看“本课用在”。第二张卡里的“补”“割”是本课的方法线索：第 3 页用它数面积，第 5、6 页它会变成两种证明。</p>
+</section>
+
+<!-- 3 ================= 数一数（图 3-1） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>斜着的正方形，面积怎么数？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fig31" class="fig31"></div>
+      <div class="btns" data-noswipe id="f31Btns">
+        <button class="btn" type="button" data-mode="bu">用“补”的方法</button>
+        <button class="btn" type="button" data-mode="ge">用“割”的方法</button>
+        <button class="btn" type="button" data-mode="">还原</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 3-1，每个小方格的面积看作 1，$\angle C=90^\circ$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>以 $BC$ 为边</span><span class="think" data-step="2" data-ask="数一数">$S_1=9$</span><i class="why">$BC=3$，$3^2=9$</i></div>
+        <div class="dl" data-step="1"><span>以 $AC$ 为边</span><span class="think" data-step="2" data-ask="数一数">$S_2=16$</span><i class="why">$AC=4$，$4^2=16$</i></div>
+        <div class="dl key" data-step="3"><span>以 $AB$ 为边</span><span>$S_3=\ ?$</span><i class="why">正方形斜放，不能直接数——点左边的按钮试试</i></div>
+        <div class="dl" data-step="4"><span>补</span><span class="think" data-step="5" data-ask="怎样算？">$7^2-4\times\dfrac12\times3\times4=49-24=25$</span><i class="why">外面补成 $7\times7$ 的大正方形，再减去 4 个直角三角形</i></div>
+        <div class="dl" data-step="6"><span>割</span><span class="think" data-step="7" data-ask="怎样算？">$4\times\dfrac12\times3\times4+1^2=24+1=25$</span><i class="why">割成 4 个直角三角形和 1 个小正方形</i></div>
+      </div>
+      <p class="tip gold" data-step="8">三个面积之间有什么关系？　<span class="think" data-step="9" data-ask="说说你的发现">$9+16=25$，即 $S_1+S_2=S_3$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p78 图 3-1 和两个小人的提示（“补”“割”）。先让学生数 S₁、S₂，再问“S₃ 为什么不能直接数”，请两名学生分别上来点“补”“割”并口述算式。两种方法得数一样，是因为算的是同一个图形的面积——这正是后面证明的核心想法。</p>
+</section>
+
+<!-- 4 ================= 操作 · 猜想 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 猜想</span><h2>换一个直角三角形，还成立吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="lab" class="lab"></div>
+      <p class="muted center small-t">拖动橙色点 $A$、$B$（都在格点上）；把 $B$ 左右拖，$\angle C$ 就不再是直角</p>
+    </div>
+    <div class="col">
+      <div class="readout lab-read">
+        <span>$S_1$（$BC$ 上）</span><b class="v" id="labS1"></b>
+        <span>$S_2$（$AC$ 上）</span><b class="v" id="labS2"></b>
+        <span>$S_3$（$AB$ 上）</span><b class="v" id="labS3"></b>
+        <span>$\angle C$</span><b class="v" id="labC"></b>
+      </div>
+      <p class="tip feedback" id="labMsg"></p>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="labRec">记下这一组</button><button class="btn" type="button" id="labClr">清空记录</button></div>
+      <table class="mtab" id="labTab"><tr><th>$\angle C$</th><th>$S_1$</th><th>$S_2$</th><th>$S_1+S_2$</th><th>$S_3$</th></tr></table>
+      <div class="def" data-step="1"><h4>猜想</h4><span class="think" data-step="2" data-ask="用自己的话说出猜想">直角三角形两条直角边上的正方形面积之和，等于斜边上的正方形面积，即 $a^2+b^2=c^2$。</span></div>
+    </div>
+  </div>
+  <p class="note">课本 p78“操作”：在方格纸上任画顶点在格点的直角三角形。先让学生自己拖出 3～4 组直角三角形并“记下”，再故意把 B 拖偏，让 ∠C 变成锐角或钝角，看等式还成不成立（对应课本 p80 练习 3）。追问：“试了 5 组都对，能说明所有直角三角形都对吗？”——不能，要证明。数据里的面积都是用坐标算出来的，与“补”法数格子的结果一致。</p>
+</section>
+
+<!-- 5 ================= 拼图证明（图 3-3） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明 · 拼图一</span><h2>四张纸片拼成大正方形：面积算两遍</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="pz1" class="pz"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="pz1a" min="1" max="3" step="0.5" value="2"><b class="v" id="pz1aV"></b>　$b=$<input type="range" id="pz1b" min="2.5" max="4" step="0.5" value="3.5"><b class="v" id="pz1bV"></b></div>
+      <p class="tip feedback" id="pz1Msg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">四个全等的直角三角形（直角边 $a$、$b$，斜边 $c$）拼成图 3-3，外框是边长为 $a+b$ 的正方形。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>中间的四边形</span><span class="think" data-step="2" data-ask="为什么是正方形？">四边都是 $c$，四个角都是直角</span><i class="why">四个三角形全等，斜边都是 $c$；每个角 $=180^\circ-90^\circ=90^\circ$（两锐角互余，平角 $180^\circ$）</i></div>
+        <div class="dl" data-step="3"><span>方法一</span><span>$S=(a+b)^2$</span><i class="why">看作一个大正方形</i></div>
+        <div class="dl" data-step="4"><span>方法二</span><span class="think" data-step="5" data-ask="怎样分块？">$S=4\times\dfrac12ab+c^2$</span><i class="why">4 个直角三角形 + 中间的正方形</i></div>
+        <div class="dl key" data-step="6"><span>∴</span><span>$(a+b)^2=4\times\dfrac12ab+c^2$</span><i class="why">同一个图形的面积相等</i></div>
+        <div class="dl" data-step="7"><span>即</span><span>$a^2+2ab+b^2=2ab+c^2$</span><i class="why">完全平方公式展开</i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span>$a^2+b^2=c^2$</span><i class="why">等式两边同时减去 $2ab$（等式的性质）</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p80–81 数学实验室 1、2 与图 3-3。先让学生把四张纸片拖进外框（全部拼好会提示）；拖动 a、b 换一组纸片再拼——字母 a、b 代表“任意”的直角三角形，这正是“证明”比“试几组”强的地方。第 1 行最容易被跳过：要先说清中间是正方形，才能用 c² 表示它的面积。</p>
+</section>
+
+<!-- 6 ================= 赵爽弦图（图 3-4） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明 · 拼图二</span><h2>赵爽弦图：拼成边长为 $c$ 的正方形</h2></div>
+  <button class="media-btn" hidden data-img="assets/xiantu.jpg" data-video="assets/xiantu.mp4" data-cap="赵爽弦图：四个直角三角形围成边长为 c 的正方形，中间留出边长 b − a 的小正方形">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="pz2" class="pz"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="pz2a" min="1" max="3" step="0.5" value="2"><b class="v" id="pz2aV"></b>　$b=$<input type="range" id="pz2b" min="2.5" max="4" step="0.5" value="3.5"><b class="v" id="pz2bV"></b></div>
+      <p class="tip feedback" id="pz2Msg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">把这 4 张纸片拼成一个边长为 $c$ 的正方形（图 3-4），它的面积是 $c^2$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>中间的小正方形</span><span class="think" data-step="2" data-ask="边长是多少？">边长 $b-a$</span><i class="why">长直角边 $b$ 减去短直角边 $a$</i></div>
+        <div class="dl" data-step="3"><span>另一种算法</span><span class="think" data-step="4" data-ask="大正方形面积还能怎样算？">$4\times\dfrac12ab+(b-a)^2$</span><i class="why">4 个直角三角形 + 中间小正方形</i></div>
+        <div class="dl key" data-step="5"><span>∴</span><span>$c^2=4\times\dfrac12ab+(b-a)^2$</span><i class="why">同一个图形的面积相等</i></div>
+        <div class="dl" data-step="6"><span></span><span>$=2ab+b^2-2ab+a^2$</span><i class="why">完全平方公式展开</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$a^2+b^2=c^2$</span><i class="why">合并同类项</i></div>
+      </div>
+      <p class="recall" data-label="数学文化" data-step="8">公元 3 世纪，我国数学家<b>赵爽</b>用这个图验证了勾股定理，称为“弦图”。2002 年国际数学家大会在北京召开，会标的中心图案就是弦图。</p>
+    </div>
+  </div>
+  <p class="note">课本 p81 数学实验室 3、图 3-4、3-5。对照上一页：上一页是“补”（大正方形边长 a + b），这一页是“割”（大正方形边长 c）——正好对应第 3 页数格子的两种方法。试着把 a、b 拖成相等：中间的小正方形消失了，等式仍然成立。右上角“看动画”是 15 秒无声动画，可用于复述证明。</p>
+</section>
+
+<!-- 7 ================= 勾股定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理</span><h2>勾股定理</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>勾股定理（课本 p79）</h4>直角三角形两条直角边 $a$、$b$ 的平方和等于斜边 $c$ 的平方．$$a^2+b^2=c^2$$</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2"><b>符号语言：</b>在 $\text{Rt}\triangle ABC$ 中，<br>∵ $\angle C=90^\circ$，<br>∴ $\underline{\quad\quad}$　<span class="think" data-step="3" data-ask="怎样写？">$BC^2+AC^2=AB^2$（勾股定理）</span></p>
+        <p class="recall" data-label="名字的由来" data-step="4">我国古代把直角三角形较短的直角边称为“勾”，较长的直角边称为“股”，斜边称为“弦”。据《周髀算经》记载，公元前 1 000 多年就发现了“勾三股四弦五”的结论：<span class="think" data-step="5" data-ask="验算一下">$3^2+4^2=9+16=25=5^2$</span>。</p>
+      </div>
+      <div class="col">
+        <p class="warn" data-step="6" data-label="条件：必须是直角三角形">第 4 页把 $\angle C$ 拖偏时，$S_1+S_2\ne S_3$。定理的前提“<b>直角三角形</b>”不能丢：锐角、钝角三角形不满足 $a^2+b^2=c^2$。</p>
+        <p class="warn" data-step="7" data-label="易错：斜边不一定叫 c">“平方和”的两边是<b>直角边</b>，等号另一边是<b>斜边</b>——要看哪个角是直角，不能只看字母。<span class="think" data-step="8" data-ask="若 ∠B = 90°，该怎样写？">$\angle B=90^\circ$ 时，斜边是 $AC$（即 $b$），应写成 $a^2+c^2=b^2$。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p79 定理框与“勾股弦”的介绍。定理的文字、符号两种语言都要会说、会写：符号语言后面括号里注明依据“勾股定理”，这是本学期几何书写的统一要求。两条警示分别对应“条件”和“对应关系”，下一页辨析专门练。</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这三种说法，对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>在 $\triangle ABC$ 中，$a=2$，$b=3$，那么 $c^2=a^2+b^2=13$。</p>
+        <div class="think" data-step="2" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>没说 $\triangle ABC$ 是直角三角形，勾股定理<b>用不了</b>，$c$ 无法确定。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>在 $\text{Rt}\triangle ABC$ 中，$a=3$，$b=5$，那么 $c^2=3^2+5^2=34$。</p>
+        <div class="think" data-step="4" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>没说哪个角是直角。若 $\angle C=90^\circ$，$c^2=34$；若 $\angle B=90^\circ$，$b$ 是斜边，$c^2=5^2-3^2=16$。要<b>分情况</b>。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>直角三角形两条直角边分别为 6 和 8，那么斜边为 $6+8=14$。</p>
+        <div class="think" data-step="6" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>是<b>平方</b>的关系，不是边长相加：$c^2=36+64=100$，斜边为 10。（两边之和本来就大于第三边。）</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="用勾股定理前，先问两句">① 是不是<b>直角三角形</b>？　② 哪条边是<b>斜边</b>（直角所对的边）？——答清楚了再列式。</p>
+  </div>
+  <p class="note">每张卡先举手表决“对/错”，再点开。第 2 张最容易错：字母 c 不一定是斜边。第 3 张可以追问：“为什么斜边一定小于两直角边之和？”（三角形三边关系），学生会发现“相加”从一开始就不可能对。</p>
+</section>
+
+<!-- 9 ================= 求边长：示范 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>已知两边，求第三边</h2></div>
+  <div class="bd full">
+    <p class="tip">课本 p79 练习 1：求下列直角三角形中未知边的长．</p>
+    <div class="cols3">
+      <div class="col" data-step="1">
+        <svg viewBox="0 0 240 120" class="tri-fig" aria-label="直角边 5 和 12，斜边 x">
+          <path d="M40 100 H220 L40 25 Z" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2.5"/><path d="M40 88 h12 v12" fill="none" stroke="#1d6fa5" stroke-width="2"/>
+          <text x="22" y="68" class="fl s">5</text><text x="120" y="118" class="fl s">12</text><text x="135" y="56" class="fl">x</text>
+        </svg>
+        <div class="derive small-d">
+          <div class="dl" data-step="2"><span>∵</span><span>直角边为 5、12</span><i class="why">看直角符号</i></div>
+          <div class="dl" data-step="3"><span>∴</span><span>$x^2=5^2+12^2=169$</span><i class="why">勾股定理</i></div>
+          <div class="dl end" data-step="4"><span>∴</span><span>$x=13$</span><span class="think" data-step="5" data-ask="为什么是 13？">$13^2=169$，且边长 $x\gt 0$</span></div>
+        </div>
+      </div>
+      <div class="col" data-step="6">
+        <svg viewBox="0 0 240 120" class="tri-fig" aria-label="直角边 8 和 x，斜边 17">
+          <path d="M40 100 H220 L40 20 Z" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2.5"/><path d="M40 88 h12 v12" fill="none" stroke="#1d6fa5" stroke-width="2"/>
+          <text x="22" y="66" class="fl s">8</text><text x="125" y="118" class="fl">x</text><text x="135" y="52" class="fl s">17</text>
+        </svg>
+        <p class="tip">哪条是斜边？<span class="think" data-step="7" data-ask="先找斜边">17 是斜边，$x$ 是直角边：$x^2=17^2-8^2=289-64=225$，$x=15$。</span></p>
+      </div>
+      <div class="col" data-step="8">
+        <svg viewBox="0 0 240 120" class="tri-fig" aria-label="直角在上方，直角边 16 和 x，斜边 20">
+          <path d="M20 100 H230 L148 36 Z" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2.5"/><path d="M139 43 l8 -9 l9 7" fill="none" stroke="#1d6fa5" stroke-width="2"/>
+          <text x="70" y="60" class="fl s">16</text><text x="196" y="62" class="fl">x</text><text x="118" y="118" class="fl s">20</text>
+        </svg>
+        <p class="tip">这次直角在哪？<span class="think" data-step="9" data-ask="小心！">直角在上方，底边 20 才是斜边：$x^2=20^2-16^2=144$，$x=12$。</span></p>
+      </div>
+    </div>
+    <p class="method" data-step="10" data-label="书写格式">找直角 → 定斜边 → 列式（斜边$^2$ = 直角边$^2$ + 直角边$^2$，求直角边就用减）→ 括号写依据 → 由“边长为正数”得结果。</p>
+  </div>
+  <p class="note">课本 p79 练习 1。第 ① 题老师示范完整书写；②③ 让学生先说“哪条是斜边”再点开。我们还没学平方根（第 4 章），这里只用“哪个正数的平方等于 169”来确定边长，题目的数据都是完全平方数。第 ③ 题故意把直角放在上方，与上一页“斜边不一定叫 c”呼应。</p>
+</section>
+
+<!-- 10 ================= 练习：提示阶梯 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$．<br>(1) $BC=9$，$AC=12$，求 $AB$；<br>(2) $AB=61$，$BC=11$，求 $AC$．</p>
+        <details><summary>提示 1</summary>$\angle C=90^\circ$，斜边是 $C$ 的对边 $AB$。</details>
+        <details><summary>提示 2</summary>(1) 求斜边用加；(2) 求直角边用减：$AC^2=AB^2-BC^2$。</details>
+        <details><summary>完整解答</summary>(1) $AB^2=9^2+12^2=225$，$AB=15$；<br>(2) $AC^2=61^2-11^2=3721-121=3600$，$AC=60$。（勾股定理）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 长 2.5 m 的梯子靠在墙上，梯子的底端离墙脚线的距离为 1.5 m．求梯子顶端的高度 $h$．</p>
+        <svg viewBox="0 0 200 120" class="ladder-fig" aria-label="梯子靠墙">
+          <rect x="30" y="10" width="22" height="100" fill="#f1d9cf" stroke="#c9a597"/><line x1="52" y1="12" x2="130" y2="110" stroke="#9a6b3c" stroke-width="5"/>
+          <line x1="20" y1="110" x2="190" y2="110" stroke="#1f2d3a" stroke-width="2"/><path d="M52 98 h12 v12" fill="none" stroke="#1d6fa5" stroke-width="2"/>
+          <text x="98" y="58" class="fl s">2.5</text><text x="82" y="106" class="fl s">1.5</text><text x="12" y="64" class="fl">h</text>
+        </svg>
+        <details><summary>提示 1</summary>墙、地面、梯子围成直角三角形，直角在墙脚。</details>
+        <details><summary>提示 2</summary>梯子 2.5 是斜边：$h^2=2.5^2-1.5^2$。</details>
+        <details><summary>完整解答</summary>$h^2=2.5^2-1.5^2=6.25-2.25=4$，且 $h\gt 0$，所以 $h=2$（m）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 小方格的面积为 1，在方格纸上画一条以格点为端点、长度为 5 的<b>斜</b>线段．</p>
+        <details><summary>提示 1</summary>把线段看成直角三角形的斜边，两条直角边沿着格线。</details>
+        <details><summary>提示 2</summary>找两个正整数 $m$、$n$，使 $m^2+n^2=5^2=25$。</details>
+        <details><summary>完整解答</summary>$3^2+4^2=25$：从一个格点出发，向右 3 格、向上 4 格（或向右 4 格、向上 3 格），连接起点和终点即可。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p82 练习 (1)(4)、习题 3.1 第 2、3 题。先独立做 3 分钟，卡住再逐级点开。第 3 题是“逆用”：已知斜边找直角边，可让学生回到第 4 页的格点板上验证。</p>
+</section>
+
+<!-- 11 ================= 拓展 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索 · 拓展</span><h2>再证一次；“勾股数”有多少组？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>探索（课本 p81）</b> 把一个直立的火柴盒放倒（图 3-6）．你能用不同的方法计算梯形 $ABCD$ 的面积，再次验证勾股定理吗？</p>
+        <svg viewBox="0 0 300 150" class="box-fig" aria-label="火柴盒放倒，梯形 ABCD">
+          <rect x="30" y="20" width="45" height="110" fill="none" stroke="#7b8a97" stroke-width="2" stroke-dasharray="6 5"/>
+          <rect x="75" y="85" width="110" height="45" fill="none" stroke="#1f2d3a" stroke-width="2"/>
+          <path d="M30 20 L75 130 L185 85 Z" fill="rgba(217,113,28,.12)" stroke="#d9711c" stroke-width="2"/>
+          <path d="M30 20 L185 85" stroke="#1f2d3a" stroke-width="2"/>
+          <text x="14" y="20" class="fl">A</text><text x="14" y="146" class="fl">B</text><text x="190" y="146" class="fl">C</text><text x="190" y="88" class="fl">D</text><text x="70" y="146" class="fl">E</text>
+          <text x="14" y="80" class="fl s">b</text><text x="44" y="146" class="fl s">a</text><text x="122" y="146" class="fl s">b</text><text x="190" y="114" class="fl s">a</text>
+        </svg>
+        <details><summary>提示 1</summary>梯形 $ABCD$ 的上底 $a$、下底 $b$、高 $a+b$，面积是多少？</details>
+        <details><summary>提示 2</summary>它又被分成 3 个直角三角形：两个直角边为 $a$、$b$，一个直角边为 $c$、$c$（$\angle AED=90^\circ$）。</details>
+        <details><summary>完整解答</summary>$\dfrac12(a+b)(a+b)=2\times\dfrac12ab+\dfrac12c^2$，两边乘 2 并展开：$a^2+2ab+b^2=2ab+c^2$，所以 $a^2+b^2=c^2$。</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">“勾三股四弦五”中的 3、4、5 都是正整数。还有这样的三个正整数吗？</p>
+      <table class="mtab" data-step="2">
+        <tr><th>$a$</th><th>$b$</th><th>$c$</th><th>验算</th></tr>
+        <tr><td>3</td><td>4</td><td>5</td><td>$9+16=25$</td></tr>
+        <tr><td>5</td><td>12</td><td><span class="think" data-step="3" data-ask="?">13</span></td><td>$25+144=169$</td></tr>
+        <tr><td>8</td><td>15</td><td><span class="think" data-step="4" data-ask="?">17</span></td><td>$64+225=289$</td></tr>
+        <tr><td>7</td><td>24</td><td><span class="think" data-step="5" data-ask="?">25</span></td><td>$49+576=625$</td></tr>
+        <tr><td>6</td><td>8</td><td><span class="think" data-step="6" data-ask="?">10</span></td><td>$3,4,5$ 都乘 2</td></tr>
+      </table>
+      <p class="recall" data-label="下一节会学" data-step="7">满足 $a^2+b^2=c^2$ 的 3 个正整数 $a$、$b$、$c$ 称为<b>勾股数</b>（课本 p83）。</p>
+    </div>
+  </div>
+  <p class="note">左边是课本 p81“探索”（美国总统伽菲尔德的证法），适合学有余力的学生课后完成；关键是说明 ∠AED = 90°：∠AEB + ∠DEC = 90°（两锐角互余，两三角形全等），所以 ∠AED = 180° − 90° = 90°。右边“勾股数”是 3.2 的内容，这里只做预告：让学生观察 3,4,5 → 6,8,10，猜一猜“都乘同一个数还是勾股数吗”。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">直角三角形两直角边的平方和等于斜边的平方：$a^2+b^2=c^2$。</p>
+        <p class="warn" data-label="两个前提">必须是直角三角形；分清哪条是斜边。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="面积法">同一个图形，用两种方法算面积，列出等式（补：$(a+b)^2$；割：$c^2$）。</p>
+        <p class="method" data-label="求边长">找直角 → 定斜边 → 列式 → 写依据。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">正方形的面积 ↔ 边长的平方；拼图把“数”的关系变成“形”看得见。</p>
+        <p class="recall" data-label="从特殊到一般">数格子得猜想（特殊）→ 用字母 $a,b,c$ 拼图证明（一般）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>3.2 勾股定理的逆定理——反过来，如果一个三角形的三边满足 $a^2+b^2=c^2$，它一定是直角三角形吗？（回忆第 4 页：$\angle C$ 不是直角时，等式就不成立。）</p>
+  </div>
+  <p class="note">请学生先用自己的话说出“这节课是怎样发现、怎样证明勾股定理的”，再逐栏揭示。课后作业建议：习题 3.1 第 1、4 题（第 4 题又是一种拼图证法）；课题学习“关于勾股定理的研究”（课本 p171）可作为长作业。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

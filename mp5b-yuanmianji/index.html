@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆的面积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面：喷水器 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/penshui.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第六单元 圆 · 圆的面积</p>
+    <h1 class="cover-title">圆的面积</h1>
+    <p class="cover-q" data-step="1">草地上有一个<b>自动旋转喷水器</b>，最远能喷到 5 米远。</p>
+    <p class="cover-q" data-step="2">它转一圈，浇到的草地是什么形状？这块草地<b>有多大</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">数一数</span><span class="chip">剪一剪、拼一拼</span><span class="chip">找到公式</span><span class="chip">用公式解决问题</span></div>
+  </div>
+  <p class="note">课本 p98 例 9 的情境，先抛出来不解答。让学生说一说：浇到的地方是一个圆，“有多大”问的是圆的面积。我们会过面积公式的长方形、正方形、平行四边形、三角形，可圆的边是弯的，怎么办？带着问题进入新课，第 7 页回来解决。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们手里已经有哪些“法宝”？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三年级 · 面积" data-step="1">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="长方形里铺满小方格">
+          <g class="sq-grid"><rect x="30" y="10" width="180" height="100" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/>
+          <path d="M66 10V110M102 10V110M138 10V110M174 10V110M30 43.3H210M30 76.6H210" stroke="#1d6fa5" stroke-width="1.5"/></g>
+        </svg>
+        <p>面积就是图形占地方的大小。数一数里面有<b>几个 1 平方厘米</b>的小方格：$5\times3=15$ 个。</p>
+        <span class="use">先用数方格的办法，估一估圆的面积。</span>
+      </div>
+      <div class="recall" data-label="五上 · 平行四边形的面积" data-step="2">
+        <svg viewBox="0 0 260 128" class="mini-fig px-fig" aria-label="平行四边形剪拼成长方形">
+          <path d="M60 15H230L190 105H20Z" fill="none" stroke="#d9711c" stroke-width="2" stroke-dasharray="6 4"/>
+          <path d="M60 15H230L190 105H60Z" fill="#fbe7c9" stroke="#d9711c" stroke-width="3"/>
+          <path d="M60 15V105" stroke="#d9711c" stroke-width="2" stroke-dasharray="5 4"/>
+          <path d="M60 15L20 105H60Z" class="px-cut" fill="#f4a6c4" stroke="#c0392b" stroke-width="2.5"/>
+          <text x="66" y="66" class="fl s">高</text><text x="114" y="125" class="fl s">底</text>
+        </svg>
+        <p>沿着高剪下一个三角形，<b>平移</b>到右边，拼成长方形：长 = 底，宽 = 高。</p>
+        <p class="big">平行四边形的面积 = 底 × 高</p>
+        <span class="use">圆能不能也剪一剪、拼一拼，变成学过的图形？</span>
+      </div>
+      <div class="recall" data-label="本单元 · 圆的周长" data-step="3">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="圆的半径和周长">
+          <circle cx="120" cy="60" r="52" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="4"/>
+          <path d="M120 60H172" stroke="#d9711c" stroke-width="3.5"/><circle cx="120" cy="60" r="4" fill="#1f2d3a"/>
+          <text x="140" y="54" class="fl c2">r</text><text x="184" y="30" class="fl c1">C</text>
+        </svg>
+        <p class="big">$C=2\pi r$　（$C=\pi d$）</p>
+        <p>圆周率 $\pi\approx3.14$；<b>半个圆周</b>的长是 $\pi r$。</p>
+        <span class="use">拼成的新图形，它的“长”和圆周有关。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>圆是由<b>弯弯的曲线</b>围成的，它的面积怎样计算？</p>
+  </div>
+  <p class="note">第 2 张卡出来后，让学生先说“平行四边形的面积公式是怎样推导出来的”，再看动画（三角形平移过去）。重点说出“剪、移、拼”和“转化”：把没学过的图形变成学过的图形，面积不变。这是本课推导的关键思路。</p>
+</section>
+
+<!-- 3 ================= 例 7 数方格 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · 数一数</span><h2>用数方格的方法，估一估圆的面积</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns center-btns" id="gridR" data-noswipe>
+        <button type="button" class="btn solid" data-r="4">圆 1　r = 4 cm</button>
+        <button type="button" class="btn" data-r="5">圆 2　r = 5 cm</button>
+        <button type="button" class="btn" data-r="6">圆 3　r = 6 cm</button>
+      </div>
+      <svg id="gridFig" class="grid-fig" viewBox="0 0 460 460" aria-label="圆和右上角的方格"></svg>
+      <p class="tip center muted small-t">每个小方格表示 1 平方厘米</p>
+    </div>
+    <div class="col">
+      <p class="tip">圆太大，不用全数。先数出 <b>$\dfrac14$ 个圆</b>的面积，再乘 4。</p>
+      <div class="btns" data-noswipe>
+        <button type="button" class="btn" id="showFull">① 数整格</button>
+        <button type="button" class="btn" id="showPart">② 不满整格的</button>
+      </div>
+      <div class="count-box">
+        <p>整格：<b id="nFull" class="cnt">?</b> 个</p>
+        <p>不满整格：超过半格的 <b id="nBig" class="cnt">?</b> 个（看成整格），不到半格的 <b id="nSmall" class="cnt">?</b> 个（不算）</p>
+      </div>
+      <p class="tip" data-step="1">$\dfrac14$ 个圆大约是 <span class="blank" id="bQuarter" data-ans="13"></span> 平方厘米，<br>整个圆大约是 <span class="blank" id="bWhole" data-ans="52" data-w="3"></span> 平方厘米。</p>
+      <p class="tip gold" data-step="2">换另外两个圆，用同样的方法再数一数，把结果记下来。</p>
+    </div>
+  </div>
+  <p class="note">课本 p96 例 7 和后面两个圆（课本图中半径分别是 4、5、6 格）。先请学生说“准备怎样数”，引出“先数 1/4 个圆”。不满整格的处理按课本小精灵的提示：特别接近整格的看成整格；演示里统一用“超过半格算 1 格，不到半格不算”。学生自己在课本上数，结果可能差一两格，都是合理的估计。</p>
+</section>
+
+<!-- 4 ================= 例 7 填表 + 发现 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · 找规律</span><h2>圆的面积大约是正方形面积的几倍？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 300 300" class="sq-fig" aria-label="以半径为边长的正方形">
+        <circle cx="150" cy="150" r="120" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/>
+        <rect x="150" y="30" width="120" height="120" fill="rgba(217,113,28,.18)" stroke="#d9711c" stroke-width="3"/>
+        <path d="M150 150H270" stroke="#d9711c" stroke-width="4"/><circle cx="150" cy="150" r="4" fill="#1f2d3a"/>
+        <text x="200" y="176" class="fl c2">r</text><text x="122" y="170" class="fl">O</text>
+      </svg>
+      <p class="tip center small-t">橙色正方形：边长是<b>半径</b>，<br>面积 = $r\times r$ = $r^2$</p>
+    </div>
+    <div class="col">
+      <table class="mtab">
+        <tr><th>正方形的面积/cm²</th><th>圆的半径/cm</th><th>圆的面积/cm²</th><th>圆面积大约是正方形面积的几倍<br><small>（精确到十分位）</small></th></tr>
+        <tr><td><span class="blank" data-ans="16"></span></td><td>4</td><td>52</td><td><span class="blank" data-ans="3.3"></span></td></tr>
+        <tr><td><span class="blank" data-ans="25"></span></td><td>5</td><td>80</td><td><span class="blank" data-ans="3.2"></span></td></tr>
+        <tr><td><span class="blank" data-ans="36"></span></td><td>6</td><td>112</td><td><span class="blank" data-ans="3.1"></span></td></tr>
+      </table>
+      <p class="tip" data-step="1">你能发现圆的面积与它的半径有什么关系吗？和同桌说一说。</p>
+      <div class="def" data-step="2"><h4>我们的发现</h4><span class="think" data-step="3" data-ask="说出你的发现，再点开">圆的面积是它<b>半径平方的 3 倍多一些</b>，大约等于“半径 × 半径 × 3”。</span></div>
+      <p class="tip gold" data-step="4">数格子只能<b>估</b>，而且很麻烦。能不能找到一个<b>准确</b>的计算方法？</p>
+    </div>
+  </div>
+  <p class="note">表中圆的面积用的是上一页数出来的结果（按“超过半格算 1 格”）：52 ÷ 16 = 3.25 ≈ 3.3，80 ÷ 25 = 3.2，112 ÷ 36 ≈ 3.1。各组数的结果可能略有不同，但都是“3 倍多一些”。追问：为什么都是 3 倍多一些，而不是正好 3 倍？留着这个问题，第 6 页揭晓（3.14 倍）。</p>
+</section>
+
+<!-- 5 ================= 例 8 剪拼（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8 · 剪一剪、拼一拼</span><h2>把圆剪开，能拼成什么图形？</h2></div>
+  <button class="media-btn" hidden data-img="assets/qiepin.jpg" data-video="assets/qiepin.mp4" data-cap="把圆平均分成 8、16、32、64 份，拼成的图形越来越接近长方形">▶ 看动画</button>
+  <div class="bd full top">
+    <p class="tip">像平行四边形那样<b>转化</b>：把圆平均分成若干份（像切蛋糕），剪开，再一正一反地拼起来。</p>
+    <div class="qp-ctrl" data-noswipe>
+      <span>平均分成</span>
+      <span class="btns" id="qpN"><button type="button" class="btn" data-n="8">8 份</button><button type="button" class="btn solid" data-n="16">16 份</button><button type="button" class="btn" data-n="32">32 份</button><button type="button" class="btn" data-n="64">64 份</button></span>
+      <button type="button" class="btn solid go" id="qpGo">拼一拼 ▶</button>
+    </div>
+    <svg id="qpFig" class="qp-fig" viewBox="0 0 1000 330" aria-label="把圆剪开拼成近似长方形" data-noswipe></svg>
+    <div class="cols2">
+      <p class="tip" data-step="1">平均分成 16 份，拼成了一个什么图形？　<span class="think" data-step="2" data-ask="先拼一拼，再说">一个<b>近似的平行四边形</b>（上下两边是弯弯的）。</span></p>
+      <p class="tip" data-step="3">分成 32 份、64 份……拼成的图形有什么变化？　<span class="think" data-step="4" data-ask="先拼一拼，再说">平均分的份数越多，边越直，拼成的图形<b>越接近长方形</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p97 例 8。课本让学生把 p117 的圆剪下来、按 16 等份剪开拼一拼——有条件先动手剪，再用这一页演示 32、64 份。操作顺序：选“16 份”→“拼一拼”，停下来问；再选 32、64 份。右上角“看动画”是 18 秒无声动画（8→16→32→64 份），可复习时播放。</p>
+</section>
+
+<!-- 6 ================= 例 8 推导公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8 · 想一想</span><h2>拼成的长方形和原来的圆有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="relFig" class="rel-fig" viewBox="0 0 520 250" aria-label="拼成的长方形：长是周长的一半，宽是半径"></svg>
+      <div class="rel-list">
+        <p data-step="1">① 面积：<span class="think" data-step="2" data-ask="变了吗？">长方形的面积<b>等于</b>圆的面积（只是换了位置）。</span></p>
+        <p data-step="3">② 宽：<span class="think" data-step="4" data-ask="宽是圆的什么？">长方形的宽是圆的<b class="o">半径 $r$</b>（右边那条边就是一条半径）。</span></p>
+        <p data-step="5">③ 长：<span class="think" data-step="6" data-ask="长是圆的什么？">长方形的长是<b class="b">圆周长的一半</b>：$2\pi r\div2=\pi r$。</span></p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="derive word-derive">
+        <div class="dl" data-step="7"><span>长方形的面积</span><span>= 长 × 宽</span><i class="why">学过的公式</i></div>
+        <div class="dl key" data-step="8"><span>圆的面积</span><span>$=\ \pi r\ \times\ r$</span><i class="why">长换成 $\pi r$，宽换成 $r$</i></div>
+        <div class="dl" data-step="9"><span></span><span>$=\ \pi r^2$</span><i class="why">$r\times r$ 写成 $r^2$</i></div>
+      </div>
+      <div class="def" data-step="10"><h4>圆的面积公式</h4>如果用 $S$ 表示圆的面积，那么<p class="formula">$S=\pi r^2$</p></div>
+      <p class="tip gold" data-step="11">回头看例 7：$\pi r^2\approx3.14\times r^2$——难怪圆的面积是半径平方的“<b>3 倍多一些</b>”！</p>
+    </div>
+  </div>
+  <p class="note">课本 p97 下半页。三个关系逐一让学生在左图上指一指：宽对着半径（橙色），上面一条长边由一半的圆周（蓝色弧）拼成。“长 = 周长的一半”是难点，可以问：圆周被分成了两半，一半在上，一半在哪？先用文字公式“长方形的面积 = 长 × 宽”，再一格一格替换成字母，最后写成 S = πr²。</p>
+</section>
+
+<!-- 7 ================= 例 9 喷水器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 9 · 用公式</span><h2>喷水器转一周，喷灌的面积有多大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="photo" data-bg="assets/penshui.jpg"></div>
+      <p class="tip">一个自动旋转喷水器的最远喷水距离大约是 <b>5 米</b>。它旋转一周喷灌的面积大约是多少平方米？</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">喷灌的地方是一个圆，5 米是这个圆的什么？　<span class="think" data-step="2" data-ask="想一想">是<b>半径</b>：$r=5$ 米。</span></p>
+      <div class="calc" data-step="3">
+        <p>$3.14\times5^2$</p>
+        <p>$=3.14\times$ <span class="blank" data-ans="25" data-label="5 的平方"></span></p>
+        <p>$=$ <span class="blank" data-ans="78.5" data-w="4"></span>（平方米）</p>
+      </div>
+      <p class="warn" data-step="4">要先算 $5^2$：$5^2=5\times5=25$，<b>不是</b> $5\times2=10$。</p>
+      <p class="tip" data-step="5">也可以这样写：$S=\pi r^2=\pi\times5^2=25\pi$（平方米）。</p>
+      <p class="tip gold" data-step="6"><b>答：</b>喷灌的面积大约是 <span class="think" data-step="7" data-ask="填一填">78.5</span> 平方米。</p>
+    </div>
+  </div>
+  <p class="note">课本 p98 例 9，回应封面的问题。先让学生在空格里填 25 和 78.5（回车判对错）；填错时先别急着讲，看是不是把 5² 算成了 10。“要先算 5² 是多少”是课本小精灵的提示，也是本课最常见的错误。</p>
+</section>
+
+<!-- 8 ================= 例 10 已知周长求面积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 10 · 绕个弯</span><h2>只知道周长，能求面积吗？</h2></div>
+  <div class="bd full top">
+    <p class="tip">李庄小学有一个圆形花圃，它的周长是 <b>25.12 米</b>，面积是多少平方米？</p>
+    <p class="tip" data-step="1">要求花圃的面积，先要求出什么？　<span class="think" data-step="2" data-ask="想一想">先求出<b>半径</b>——面积公式里要用的是 $r$。</span></p>
+    <div class="path" data-step="3">
+      <span class="node">周长 $C$</span><i>÷ π</i><span class="node">直径 $d$</span><i>÷ 2</i><span class="node">半径 $r$</span><i>$\pi r^2$</i><span class="node hot">面积 $S$</span>
+    </div>
+    <div class="cols2">
+      <div class="calc" data-step="4">
+        <p>花圃的半径：$25.12\div3.14\div2=$ <span class="blank" data-ans="4"></span>（米）</p>
+        <p>花圃的面积：$3.14\times4^2=$ <span class="blank" data-ans="50.24" data-w="5"></span>（平方米）</p>
+        <p class="muted" data-step="6">答：面积是 50.24 平方米。</p>
+      </div>
+      <div class="hint-ladder" data-step="5">
+        <p class="q">半径还可以怎样求？</p>
+        <details><summary>提示 1</summary>周长 $C=2\pi r$，用 $C$ 除以谁，就直接得到 $r$？</details>
+        <details><summary>完整解答</summary>$r=25.12\div(2\times3.14)=25.12\div6.28=4$（米）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p98 例 10。关键是“先要求出什么”：从问题倒着想——要面积，就要半径；要半径，就要从周长算回去。路线图让学生说一遍再出现。两种求半径的方法（先求直径再除以 2 / 直接除以 2π）都可以。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这样算对吗？先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p>圆的半径是 3 厘米，求面积。</p>
+        <p class="muted">$3.14\times3\times2=18.84$（平方厘米）</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>$r^2$ 不是 $r\times2$！</b>$3.14\times3\times2$ 算的是<b>周长</b>。应该是 $3.14\times3^2=28.26$（平方厘米）。</p></div>
+      </div>
+      <div class="jcard">
+        <p>圆的直径是 6 分米，求面积。</p>
+        <p class="muted">$3.14\times6^2=113.04$（平方分米）</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>把直径当成了半径。</b>先求 $r=6\div2=3$（分米），$3.14\times3^2=28.26$（平方分米）。</p></div>
+      </div>
+      <div class="jcard">
+        <p>圆的周长是 6.28 米，求面积。</p>
+        <p class="muted">$r=6.28\div3.14\div2=1$（米）<br>$3.14\times1^2=3.14$（平方米）</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>完全正确。</b>先由周长求出半径，再用 $S=\pi r^2$。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="求圆的面积">不管已知半径、直径还是周长，都要<b>先找到半径 $r$</b>，再算 $\pi r^2$；记得先算 $r^2$，面积单位是“平方……”。</p>
+  </div>
+  <p class="note">三道题的数据取自课本练一练（p99 第 1 题）。先让全班举手表决“对 / 错”，再请学生上来点。第 1 题是最典型的错误：r² 和 2r 混淆，而且 3.14 × 3 × 2 恰好是周长公式——借机对比 C = 2πr 与 S = πr²。</p>
+</section>
+
+<!-- 10 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>自己算一算：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算下面各圆的面积。</p>
+        <p class="q small-q">$r=1$ cm：<span class="blank" data-ans="3.14" data-w="4"></span> cm²<br>$r=1.5$ cm：<span class="blank" data-ans="7.065" data-w="5"></span> cm²<br>$d=0.8$ m：<span class="blank" data-ans="0.5024" data-w="5"></span> m²</p>
+        <details><summary>提示 1</summary>第三个圆给的是<b>直径</b>，先求半径：$0.8\div2=0.4$（米）。</details>
+        <details><summary>提示 2</summary>$1.5^2=2.25$，$0.4^2=0.16$。</details>
+        <details><summary>完整解答</summary>$3.14\times1^2=3.14$；$3.14\times1.5^2=7.065$；$3.14\times0.4^2=0.5024$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一个圆形电子元件薄片，直径是 16 厘米。这个薄片的面积是多少平方厘米？</p>
+        <p class="q small-q">面积：<span class="blank" data-ans="200.96" data-w="5"></span> 平方厘米</p>
+        <details><summary>提示 1</summary>直径 16 厘米，半径是多少？</details>
+        <details><summary>完整解答</summary>$r=16\div2=8$（厘米），$3.14\times8^2=3.14\times64=200.96$（平方厘米）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 龙湖小区有一个圆形花坛，量得花坛周围的篱笆长是 18.84 米。这个花坛的占地面积是多少平方米？</p>
+        <p class="q small-q">面积：<span class="blank" data-ans="28.26" data-w="5"></span> 平方米</p>
+        <details><summary>提示 1</summary>篱笆长就是花坛的<b>周长</b>。像例 10 一样，先求什么？</details>
+        <details><summary>提示 2</summary>$r=18.84\div3.14\div2=3$（米）</details>
+        <details><summary>完整解答</summary>$3.14\times3^2=28.26$（平方米）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1、2 题是课本 p98 练一练，第 3 题是 p99 练一练第 2 题。先独立做 3 分钟，在空格里填答案、回车自查；错了再按需点提示。提醒：面积单位要写“平方……”。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>我们是怎样找到圆的面积公式的？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><svg id="sumCircle" viewBox="0 0 80 80" aria-label="平均分成 8 份的圆"></svg><b>圆</b><small>曲线围成，新图形</small></div>
+      <i>剪开、拼一拼<br><small>化曲为直</small></i>
+      <div class="fbox"><svg id="sumStrip" viewBox="0 0 120 80" aria-label="8 份拼成的图形"></svg><b>近似长方形</b><small>学过的图形</small></div>
+      <i>长 = $\pi r$<br>宽 = $r$</i>
+      <div class="fbox hot"><b class="formula">$S=\pi r^2$</b><small>圆的面积</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="转化：化新为旧" data-step="2">平行四边形 → 长方形；三角形 → 平行四边形；<b>圆 → 长方形</b>。把没学过的图形，变成学过的图形，面积不变。</p>
+      <div class="method" data-label="用公式" data-step="3"><ul class="use-list"><li>已知半径 $r$：直接算 $\pi r^2$</li><li>已知直径 $d$：先 $d\div2$ 求半径</li><li>已知周长 $C$：先 $C\div\pi\div2$ 求半径</li><li>先算 $r^2$，不要算成 $r\times2$</li></ul></div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p99 例 11——一个圆环形铁片，外圆半径 10 厘米，内圆半径 6 厘米，它的面积怎样求？</p>
+  </div>
+  <p class="note">请学生用自己的话说一说公式是怎么来的：先数格子估计（3 倍多），再剪拼转化（长 = πr，宽 = r），最后得到 S = πr²。课后作业建议：练习十五第 1、2、3、4 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

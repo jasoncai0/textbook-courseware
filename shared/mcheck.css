@@ -1,0 +1,31 @@
+/* 课本插件 · 即时判对错样式（配合 mcheck.js；在 math.css 之后加载） */
+.blank { display: inline-flex; align-items: center; gap: .15em; vertical-align: baseline; }
+.blank input {
+  font: inherit; font-size: 1em; text-align: center; color: var(--red-d); font-weight: bold;
+  border: none; border-bottom: 2px solid var(--red); background: #f5f9fc; border-radius: .2em .2em 0 0; padding: 0 .2em; line-height: 1.4;
+}
+.blank input:focus { outline: none; background: #e3f1fb; }
+.blank::after { content: ""; display: inline-block; font-weight: bold; }
+.blank.ok::after, .blank.no::after { min-width: 1em; }
+.blank.ok input { border-color: var(--jade); background: #eef6f2; color: var(--jade); }
+.blank.ok::after { content: "✓"; color: var(--jade); }
+.blank.no input { border-color: #c0392b; background: #fbe9e7; color: #c0392b; animation: mshake .35s; }
+.blank.no::after { content: "✗"; color: #c0392b; }
+@keyframes mshake { 25% { transform: translateX(-.15em); } 75% { transform: translateX(.15em); } }
+
+.pick { display: flex; flex-wrap: wrap; gap: .5em; align-items: center; }
+.pick > button[data-k] {
+  font: inherit; font-size: .92em; cursor: pointer; padding: .2em .9em; border-radius: .5em;
+  border: 2px solid var(--line); background: #fff; color: var(--ink);
+}
+.pick > button[data-k]:hover { border-color: var(--red); }
+.pick > button.ok { border-color: var(--jade); background: #eef6f2; color: var(--jade); font-weight: bold; }
+.pick > button.ok::before { content: "✓ "; }
+.pick > button.no { border-color: #c0392b; background: #fbe9e7; color: #c0392b; }
+.pick > button.no::before { content: "✗ "; }
+.pick .pick-why { flex-basis: 100%; margin: .2em 0 0; display: none; font-size: .9em; line-height: 1.55; color: var(--ink-2); }
+.pick.done .pick-why { display: block; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .blank input { font-size: 16px; } /* iOS 小于 16px 会自动放大页面 */
+}

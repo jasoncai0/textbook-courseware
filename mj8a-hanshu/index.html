@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/lieche-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第6章 一次函数 · 6.1</p>
+    <h1 class="cover-title">函　数</h1>
+    <p class="cover-q" data-step="1">列车从甲地驶往乙地。16:17 时车厢屏幕显示“200 km/h”，16:22 时还是“200 km/h”。</p>
+    <p class="cover-q" data-step="2">这 5 分钟里，<b>哪些量没有变化？哪些量在不断变化？</b>变化的量之间，又有什么联系？</p>
+    <div class="chips" data-step="3"><span class="chip">常量与变量</span><span class="chip">谁随谁变</span><span class="chip">函数的概念</span><span class="chip">表格 · 式子 · 图像</span></div>
+  </div>
+  <p class="note">课本 p136 情境。封面只抛问题：请学生先各说出一个“没变的量”和一个“在变的量”，第 3 页再系统整理。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="第 5 章 · 平面直角坐标系" data-step="1">
+        <p>平面内的点 ↔ 有序数对 $(x,y)$：横坐标在前，纵坐标在后。</p>
+        <span class="use">把“一对对应的值”描成点，画出函数的图像。</span>
+      </div>
+      <div class="recall" data-label="七年级 · 代数式求值" data-step="2">
+        <p>$S=8+6(n-1)$，当 $n=3$ 时，$S=8+6\times(3-1)=20$。</p>
+        <span class="use">给定一个量的值，算出另一个量的值——而且只算得出<b>一个</b>。</span>
+      </div>
+      <div class="recall" data-label="生活中的变化" data-step="3">
+        <p>气温随时间变化；汽车行驶的路程随时间变化；身高随年龄变化……</p>
+        <span class="use">本课要从这些例子里，抽出它们共同的数学结构。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>一个量变，另一个量跟着变——“跟着变”到底是什么意思？怎样用数学语言说清楚？</p>
+  </div>
+  <p class="note">第二张卡请学生口算，强调“代入一个 n，S 只有一个结果”——这是后面“唯一”的伏笔。第一张卡提醒：横坐标、纵坐标的顺序不能颠倒，图像就靠它画。</p>
+</section>
+
+<!-- 3 ================= 常量与变量 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>常量与变量</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">列车在 16:17 到 16:22 这个时段行驶过程中，下列各量是变还是不变？</p>
+      <div class="sort">
+        <p data-step="1">列车行驶的速度 <span class="think" data-step="2" data-ask="变？不变？"><b class="k">不变</b>（一直是 200 km/h）</span></p>
+        <p data-step="1">甲、乙两地间的路程 <span class="think" data-step="2" data-ask="变？不变？"><b class="k">不变</b></span></p>
+        <p data-step="3">列车行驶的时间 <span class="think" data-step="4" data-ask="变？不变？"><b class="v2">变</b></span></p>
+        <p data-step="3">列车离甲地的路程 <span class="think" data-step="4" data-ask="变？不变？"><b class="v2">变</b>（越来越远）</span></p>
+        <p data-step="3">列车离乙地的路程 <span class="think" data-step="4" data-ask="变？不变？"><b class="v2">变</b>（越来越近）</span></p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="5"><h4>常量与变量（课本 p136）</h4>在某一变化过程中，数值保持不变的量叫做<em>常量</em>（constant），可以取不同数值的量叫做<em>变量</em>（variable）．</div>
+      <p class="tip" data-step="6">圆的面积公式 $S=\pi r^2$ 中，哪些是常量，哪些是变量？<br><span class="think" data-step="7" data-ask="想一想">$\pi$ 是常量；圆的大小在变时，$r$ 和 $S$ 是变量。</span></p>
+      <p class="warn" data-step="8" data-label="注意“某一变化过程”">同一个量，换一个过程可能就变了身份：如果研究的是列车<b>加速出站</b>的过程，速度就是变量。</p>
+    </div>
+  </div>
+  <p class="note">课本 p136。先让学生口头判断再点开。最后一张卡强调定义里的“在某一变化过程中”：常量、变量是相对于所研究的过程而言的。</p>
+</section>
+
+<!-- 4 ================= 三个实例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>三个变化过程，有什么共同点？</h2></div>
+  <div class="bd full">
+    <div class="cols3 sit">
+      <div class="col" data-step="1">
+        <h3>① 水库：水位与蓄水量</h3>
+        <table class="mtab small">
+          <tr><th>水位/m</th><td>106</td><td>120</td><td>133</td><td>135</td></tr>
+          <tr><th>蓄水量/m³</th><td>$2.30\times10^7$</td><td>$7.09\times10^7$</td><td>$1.18\times10^8$</td><td>$1.23\times10^8$</td></tr>
+        </table>
+        <p class="small-p">水位确定时，蓄水量也随着确定。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>② 搭“小鱼”：条数 $n$ 与火柴棒根数 $S$</h3>
+        <svg class="fish-fig" id="fishStatic" aria-label="搭 3 条小鱼的火柴棒"></svg>
+        <p class="small-p">搭 1 条要 8 根，每多搭 1 条增加 6 根：$S=8+6(n-1)$。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>③ 水波：半径 $r$ 与面积 $S$</h3>
+        <svg viewBox="0 0 220 110" class="ripple" aria-label="水波纹扩展的圆">
+          <circle cx="110" cy="55" r="16" fill="none" stroke="#4f9bd0" stroke-width="2"/><circle cx="110" cy="55" r="32" fill="none" stroke="#4f9bd0" stroke-width="2" opacity=".7"/><circle cx="110" cy="55" r="48" fill="none" stroke="#4f9bd0" stroke-width="2" opacity=".4"/>
+          <line x1="110" y1="55" x2="158" y2="55" stroke="#d9711c" stroke-width="2.5"/><text x="128" y="50" class="fl">r</text>
+        </svg>
+        <p class="small-p">面积随半径变化而变化，随半径确定而确定：$S=\pi r^2$。</p>
+      </div>
+    </div>
+    <div class="cols3">
+      <p class="tip" data-step="4">谁随谁变？<span class="think" data-step="5" data-ask="说一说">蓄水量随水位变</span></p>
+      <p class="tip" data-step="4">谁随谁变？<span class="think" data-step="5" data-ask="说一说">根数 $S$ 随条数 $n$ 变</span></p>
+      <p class="tip" data-step="4">谁随谁变？<span class="think" data-step="5" data-ask="说一说">面积 $S$ 随半径 $r$ 变</span></p>
+    </div>
+    <p class="def" data-step="6"><span class="think" data-step="7" data-ask="共同点是什么？">每个变化过程中都有<em>两个变量</em>，并且其中一个变量变化时，另一个变量也随着变化；一个变量<em>确定</em>时，另一个变量也随着确定。</span></p>
+  </div>
+  <p class="note">课本 p136–137 三个实例与图 6-1、6-2。三个例子分别用表格、式子、文字描述给出：函数关系不一定有公式。第 7 步先让学生自己概括，再点开课本原句。课本“尝试”：请学生再举一个类似的实例。</p>
+</section>
+
+<!-- 5 ================= 变化观察器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手观察</span><h2>拖一个量，看另一个量怎样跟着变</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="obsTabs"></div>
+      <div class="obs-scene" id="obsScene"></div>
+      <table class="mtab obs-tab" id="obsTab"></table>
+      <p class="tip obs-f" id="obsF"></p>
+    </div>
+    <div class="col">
+      <div id="obsBoard" class="obs-board"></div>
+      <p class="muted center small-t" id="obsHint"></p>
+      <p class="tip" data-step="1">谁随谁变？<span class="think" data-step="2" data-ask="说一说">拖动的是自变量，另一个量随着它变化。</span></p>
+      <p class="tip gold" data-step="3">拖到任何一个位置，另一个量有几个值？<span class="think" data-step="4" data-ask="数一数">只有<b>一个</b>：表格里只有一格亮、式子只算出一个数、图上只有一个点。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。依次切换三个例子：拖动图像上的橙色点（或左边的滑块），表格对应列、式子代入结果、图像上的点同时变化。请学生回答两问：“谁随谁变？”“拖到任何位置，另一个量是不是只有一个值？”。小鱼的例子中 n 只能取正整数，图像是一个个孤立的点——为后面的“自变量取值范围”埋伏笔。</p>
+</section>
+
+<!-- 6 ================= 函数的定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>函数</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>函数（课本 p137）</h4>一般地，在一个<em>变化过程</em>中的两个变量 $x$ 和 $y$，如果对于 $x$ 的<em>每一个</em>值，$y$ 都有<em>唯一</em>的值与它对应，那么我们称 $y$ 是 $x$ 的<b>函数</b>（function），$x$ 是<b>自变量</b>．</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">“<b>每一个</b>”是说？<br><span class="think" data-step="3" data-ask="想一想">$x$ 取（允许取的）任何一个值，$y$ 都要有值与它对应，不能有“落空”的 $x$。</span></p>
+      <p class="tip" data-step="4">“<b>唯一</b>”是说？<br><span class="think" data-step="5" data-ask="想一想">一个 $x$ 只对应<b>一个</b> $y$；但不同的 $x$ 可以对应同一个 $y$。</span></p>
+      <p class="tip" data-step="6">谁是谁的函数？<br><span class="think" data-step="7" data-ask="说一说">蓄水量是水位的函数；根数 $S$ 是条数 $n$ 的函数；圆面积是半径的函数。</span></p>
+    </div>
+    <p class="method" data-step="8" data-label="判断“y 是不是 x 的函数”">三看：① 是不是两个变量？② $x$ 取每一个值，$y$ 都有值吗？③ 这个值是不是<b>唯一</b>？</p>
+  </div>
+  <p class="note">课本 p137。请学生圈出三个关键词：变化过程、每一个、唯一。说法要规范：“y 是 x 的函数”，自变量写在“的”前面。【前后联系】这里是“变量说”；到高一（必修第一册 5.1）会用集合与“对应”重新定义函数（对应说），那时“每一个”“唯一”两个关键词原样保留，所以今天要把这两个词讲透。</p>
+</section>
+
+<!-- 7 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>是不是函数？说出理由</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="jcard" data-step="1">
+        <p><b>(1)</b> 用一根长 2 m 的铁丝围成一个长方形．宽为 0.1 m 时长为 <span class="think" data-step="2" data-ask="?">0.9 m</span>，宽为 0.2 m 时长为 <span class="think" data-step="2" data-ask="?">0.8 m</span>．长方形的长是宽的函数吗？</p>
+        <div class="think" data-step="3" data-ask="是不是？理由？"><p><span class="verdict ok">是</span>长 $=1-$ 宽：宽每取一个值，长都有唯一的值。</p></div>
+      </div>
+      <div class="jcard" data-step="4">
+        <p><b>(2)</b> 按“输入 $x$ → $+2$ → $\times5$ → $-4$ → 输出 $y$”的程序，每输入一个实数 $x$，便输出一个 $y$．$y$ 是 $x$ 的函数吗？</p>
+        <div class="think" data-step="5" data-ask="是不是？理由？"><p><span class="verdict ok">是</span>$y=5(x+2)-4$：每个 $x$ 只算出一个 $y$。</p></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="6">
+        <p><b>(3)</b> 变量 $x$、$y$ 满足 $y^2=x$．$y$ 是 $x$ 的函数吗？</p>
+        <div class="btns" data-noswipe id="sqBtns"></div>
+        <p class="tip feedback" id="sqMsg"></p>
+        <div class="think" data-step="7" data-ask="是不是？理由？"><p><span class="verdict x">不是</span>$x=4$ 时，$y=2$ 或 $y=-2$，一个 $x$ 对应<b>两个</b> $y$，违反“唯一”。</p></div>
+      </div>
+      <div id="sqBoard" class="sq-board" data-step="6"></div>
+      <p class="tip" data-step="8">反过来，$x$ 是 $y$ 的函数吗？<span class="think" data-step="9" data-ask="想一想">是：$x=y^2$，每个 $y$ 只对应一个 $x$。</span></p>
+    </div>
+  </div>
+  <p class="note">(1) 是课本 p137“交流”，(2) 是 p138 练习 2；(3) 是补充的反例：点按钮取 x = 0、1、4、9，看图上有几个点。只用完全平方数，因为平方根还没学。最后一问说明：“谁是谁的函数”有方向，不能随便颠倒。</p>
+</section>
+
+<!-- 8 ================= 三种表示 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">表示</span><h2>同一个函数，三种说法</h2></div>
+  <div class="bd full">
+    <p class="tip">汽车以 100 km/h 的速度匀速行驶，行驶的时间为 $t$（h），行驶的路程为 $y$（km）．怎样表示 $y$ 与 $t$ 的关系？</p>
+    <div class="cols3">
+      <div class="col" data-step="1">
+        <h3 class="h3">列表</h3>
+        <table class="mtab"><tr><th>$t$/h</th><td>1</td><td>2</td><td>3</td><td>4</td><td>…</td></tr><tr><th>$y$/km</th><td>100</td><td>200</td><td>300</td><td>400</td><td>…</td></tr></table>
+        <p class="tip small-p" data-step="4">优点？<span class="think" data-step="5" data-ask="想一想">对应的值一目了然，不用计算；但列不完。</span></p>
+      </div>
+      <div class="col" data-step="2">
+        <h3 class="h3">图像</h3>
+        <div id="carBoard" class="car-board"></div>
+        <p class="tip small-p" data-step="4">优点？<span class="think" data-step="6" data-ask="想一想">变化趋势看得清（这条线一直往上）；读数不够精确。</span></p>
+      </div>
+      <div class="col" data-step="3">
+        <h3 class="h3">函数表达式</h3>
+        <p class="big center">$y=100t$</p>
+        <p class="tip small-p" data-step="4">优点？<span class="think" data-step="7" data-ask="想一想">任何一个 $t$ 都能精确算出 $y$；但不够直观。</span></p>
+      </div>
+    </div>
+    <p class="def" data-step="8">像 $y=100t$、$S=8+6(n-1)$ 等表示两个变量之间函数关系的式子称为<em>函数表达式</em>．</p>
+  </div>
+  <p class="note">课本 p138“交流”与图 6-3。三种表示是课本三个小人分别说出的。优缺点不是课本原文，是让学生对比后自己总结的；第 5 页观察器里三种表示是同步变化的，可以回去再拖一次。</p>
+</section>
+
+<!-- 9 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>写出函数表达式，并想想自变量能取哪些值</h2></div>
+  <div class="bd full">
+    <p class="tip">汽车油箱内有油 40 L，每行驶 100 km 耗油 10 L，求行驶过程中油箱内剩余油量 $Q$（L）与行驶路程 $s$（km）的函数表达式．</p>
+    <div class="cols2">
+      <div class="col">
+        <div class="derive">
+          <div class="dl" data-step="1"><span>每 1 km 耗油</span><span class="think" data-step="2" data-ask="算一算">$\dfrac{10}{100}$ L</span><i class="why">100 km 耗油 10 L</i></div>
+          <div class="dl" data-step="3"><span>行驶 $s$ km 耗油</span><span>$10\cdot\dfrac{s}{100}$ L</span><i class="why">路程 × 每千米耗油</i></div>
+          <div class="dl key" data-step="4"><span>剩余油量</span><span>$Q=40-10\cdot\dfrac{s}{100}$</span><i class="why">原有油量 − 耗油量</i></div>
+          <div class="dl end" data-step="5"><span>即</span><span>$Q=40-\dfrac{s}{10}$</span><i class="why">化简</i></div>
+        </div>
+        <p class="tip" data-step="6"><b>思考：</b>行驶 250 km 时，油箱里还有多少油？<span class="think" data-step="7" data-ask="算一算">$Q=40-\dfrac{250}{10}=15$（L）</span></p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="8">$s$ 能取 500 吗？<span class="think" data-step="9" data-ask="算一算">$Q=40-50=-10$，剩余油量不可能是负数。</span></p>
+        <div class="derive" data-step="10">
+          <div class="dl"><span>$Q\ge 0$</span><span>$40-\dfrac{s}{10}\ge 0$</span><i class="why">油量不能为负</i></div>
+          <div class="dl"><span>∴</span><span>$s\le 400$</span><i class="why">解一元一次不等式</i></div>
+          <div class="dl end"><span>又 $s\ge 0$</span><span>$0\le s\le 400$</span><i class="why">路程不能为负</i></div>
+        </div>
+        <p class="method" data-step="11" data-label="自变量的取值范围">在实际问题中，自变量的取值通常有一定的范围（课本 p140）：要使实际问题<b>有意义</b>。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p139 例 1、“思考”，p140 关于取值范围的说明（例 1 中 0 ≤ s ≤ 400）。取值范围课本只给结论，这里用“s 能取 500 吗？”引出，并用七年级下学过的一元一次不等式说明 400 从哪里来。回到观察器：小鱼条数 n 只能取正整数，也是取值范围。</p>
+</section>
+
+<!-- 10 ================= 函数的图像 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">图像</span><h2>没有式子，也能是函数：看图读值</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">图 6-4 是我国某海港某天的实时潮位图（潮位 $y$/m，时间 $t$/h）。</p>
+      <div id="tideBoard" class="tide-board"></div>
+      <p class="tip feedback" id="tideMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">拖动橙色点：任意给一个时刻 $t$，潮位 $y$ 有几个值？<span class="think" data-step="2" data-ask="试一试">只有一个——所以潮位 $y$ 是时间 $t$ 的函数，虽然写不出式子。</span></p>
+      <div class="def" data-step="3"><h4>函数的图像（课本 p139）</h4>在平面直角坐标系中，以函数的自变量的值为横坐标、对应的函数值为纵坐标的点所组成的图形叫做这个函数的<em>图像</em>（graph）．</div>
+      <p class="tip gold" data-step="4">图像上每一个点 $(t,y)$：<span class="think" data-step="5" data-ask="横坐标、纵坐标各表示什么？">横坐标是自变量的一个值，纵坐标是它对应的函数值。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p139 图 6-4 与图像的定义。曲线按课本图 6-4 逐小时读点后连成光滑曲线（0 时约 2.1 m；约 5 时、17.5 时两次低潮，约 12 时高潮约 2.0 m），读数都是“约”值。强调：表格、式子、图像都可以给出函数，图像最适合看“变化趋势”。</p>
+</section>
+
+<!-- 11 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>从函数图像中读出信息</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">小明骑自行车从甲地到乙地，图 6-5 中的折线表示小明行驶的路程 $s$（km）与所用时间 $t$（h）之间的函数关系．</p>
+      <div id="rideBoard" class="ride-board"></div>
+      <p class="tip feedback" id="rideMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 从甲地到乙地用了多少时间？</span><span class="think" data-step="2" data-ask="看哪里？">7 h</span><i class="why">折线终点的横坐标是 7</i></div>
+        <div class="dl" data-step="3"><span>(2) 出发 5 h 时距甲地多远？</span><span class="think" data-step="4" data-ask="看哪里？">30 km</span><i class="why">$t=5$ 时 $s=30$，即点 $P(5,30)$</i></div>
+        <div class="dl" data-step="5"><span>(3) 平行于 $t$ 轴的线段表示什么？</span><span class="think" data-step="6" data-ask="想一想">途中滞留了 2 h</span><i class="why">$t$ 从 2 变到 4 时，$s$ 一直是 20，不变</i></div>
+      </div>
+      <p class="tip" data-step="7">自变量 $t$ 的取值范围：<span class="think" data-step="8" data-ask="是多少？">$0\le t\le 7$</span></p>
+      <p class="method" data-step="9" data-label="读图像">先看横轴、纵轴各表示什么量（带单位）；读一个点，就是读一对对应的值；“平”表示不变，“升”表示增大。</p>
+    </div>
+  </div>
+  <p class="note">课本 p139–140 例 2。请学生拖动橙色点沿折线走一遍，边走边讲小明的行程故事：前 2 h 骑了 20 km，停了 2 h，后 3 h 又骑了 30 km。第 (3) 问的“滞留”学生最容易说成“速度为 20”，要追问“s 表示什么”。</p>
+</section>
+
+<!-- 12 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 商店有 100 支铅笔．如果卖出 $x$ 支，还剩 $y$ 支，那么 $y=$ ____；当 $x$ 的值越来越大时，$y$ 的值会发生什么变化？</p>
+        <details><summary>提示 1</summary>剩下的 = 原有的 − 卖出的。</details>
+        <details><summary>提示 2</summary>$x$ 每多 1，$y$ 就少几？</details>
+        <details><summary>完整解答</summary>$y=100-x$；$x$ 越来越大时，$y$ 越来越小。（$x$ 只能取 $0\sim100$ 的整数。）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 甲、乙两人出门散步，用 20 min 走了 900 m 后，甲随即按原速返回；乙遇到一位朋友，交谈了 10 min 后，用 15 min 回到家里．下面哪个图像表示甲、哪个表示乙离家的路程 $s$（m）与时间 $t$（min）的关系？</p>
+        <div class="walk4" id="walk4"></div>
+        <details><summary>提示 1</summary>甲：去 20 min，原速返回也要 20 min，共几分钟到家？</details>
+        <details><summary>提示 2</summary>乙：交谈的 10 min 里离家路程变不变？图像是什么样子？</details>
+        <details><summary>完整解答</summary>甲是图 ②（第 40 min 回到家）；乙是图 ④（20～30 min 是水平线段，第 45 min 回到家）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 声音在常温空气中的传播速度是 340 m/s．写出传播距离 $l$（m）与传播时间 $t$（s）之间的函数表达式．如果听到雷声比看到闪电延迟了 7 s，那么雷电大约发生在离观察者多远的高空？</p>
+        <details><summary>提示 1</summary>路程 = 速度 × 时间。</details>
+        <details><summary>提示 2</summary>闪电的光几乎瞬间到达，延迟的 7 s 可看作声音传播的时间。</details>
+        <details><summary>完整解答</summary>$l=340t$；当 $t=7$ 时，$l=340\times7=2\,380$，雷电大约发生在离观察者 2 380 m 的高空。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1、2 题是课本 p140 练习 1、2，第 3 题是习题 6.1 第 2 题。第 2 题四个图都按课本数据画出，先让学生排除：② 和 ④ 都在 20 min 到达 900 m，区别在“交谈”的水平线段。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 前后联系</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">在一个变化过程中，对于 $x$ 的<em>每一个</em>值，$y$ 都有<em>唯一</em>的值与它对应 → $y$ 是 $x$ 的函数，$x$ 是自变量。</p>
+        <p class="recall" data-label="相关概念">常量、变量；函数表达式；函数的图像；自变量的取值范围。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断函数">找两个变量 → 看“每一个” → 看“唯一”。</p>
+        <p class="method" data-label="三种表示">列表、图像、函数表达式，各有长处，可以互相转化。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>阅读 · 函数小史</h3>
+        <p class="recall" data-label="课本 p141">我国清代数学家李善兰在翻译《代数学》时把 “function” 译成“函数”，书中说：“凡此变数中函彼变数，则此为彼之函数。”“函”是包含的意思。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.2 一次函数——像 $y=100t$、$Q=40-\dfrac{s}{10}$、$y=100-x$ 这样的函数，有什么共同特点？</p>
+  </div>
+  <p class="note">请学生先说出“函数定义里最重要的两个词”，再逐栏揭示。课后作业建议：习题 6.1 第 1、3、5 题。前后联系：高一会用集合语言（对应说）重新定义函数，那时的定义域、值域就是今天的“自变量取值范围”和“函数值的范围”。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

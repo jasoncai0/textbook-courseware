@@ -120,7 +120,16 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
 let subjectIdx = 0;
 // 选中的册用书名记（如“五年级上册”），也写进地址栏 #五年级上册，课件里的“目录”按钮据此跳回原册
-let bookName = decodeURIComponent(location.hash.slice(1));
+// 地址栏可带学科：#数学/八年级上册（各学科有同名册时用）；不带学科的 #五年级上册 照旧可用
+let hashSubject = '';
+let bookName = '';
+function readHash() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  const i = h.indexOf('/');
+  hashSubject = i > 0 ? h.slice(0, i) : '';
+  bookName = i > 0 ? h.slice(i + 1) : h;
+}
+readHash();
 if (!bookName) { try { bookName = localStorage.getItem('catalog-book-name') || ''; } catch (e) { /* 无痕模式下不可用，用默认值 */ } }
 // 书名形如“五年级上册”“高一上册”：去掉末尾“上册/下册”是年级，剩下的是学期
 const gradeOf = (name) => name.replace(/[上下]册$/, '');
@@ -175,6 +184,8 @@ function bookHtml(book) {
 function render() {
   const subjects = window.CATALOG;
   // 地址栏指定的册属于哪个学科，就切到那个学科（课件“目录”按钮带 #书名 回来）
+  const named = subjects.findIndex((s) => s.subject === hashSubject);
+  if (named >= 0) { subjectIdx = named; hashSubject = ''; }
   const owner = subjects.findIndex((s) => s.books.some((b) => b.name === bookName));
   if (owner >= 0 && !subjects[subjectIdx].books.some((b) => b.name === bookName)) subjectIdx = owner;
   if (!genresOf(subjects[subjectIdx].books).includes(filter) && !['all', 'ready'].includes(filter)) filter = 'all';
@@ -200,7 +211,8 @@ function render() {
 function selectBook(name) {
   bookName = name;
   try { localStorage.setItem('catalog-book-name', name); } catch (err) { /* 存不了就只在本次生效 */ }
-  history.replaceState(null, '', `#${encodeURIComponent(name)}`);
+  const subj = window.CATALOG[subjectIdx].subject;
+  history.replaceState(null, '', `#${subjectIdx > 0 ? encodeURIComponent(subj) + '/' : ''}${encodeURIComponent(name)}`);
   render();
 }
 
@@ -224,7 +236,7 @@ document.addEventListener('click', (e) => {
   if (bk) selectBook(bk.dataset.b);
 });
 
-window.addEventListener('hashchange', () => { bookName = decodeURIComponent(location.hash.slice(1)); render(); });
+window.addEventListener('hashchange', () => { readHash(); render(); });
 
 render();
 </script>

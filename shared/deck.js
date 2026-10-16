@@ -131,7 +131,9 @@ function prev() { if (step > 0) { step -= 1; render(); } else if (cur > 0) go(cu
 // 每课都放在目录页的下一级（<课目录>/index.html），左下角给一个回目录的入口；
 // 封面写着“五年级上册 · …”，回目录时带上 #五年级上册，直接落在这一册
 const BOOK = ((document.querySelector('.cover-unit') || document.querySelector('.hd .tag') || {}).textContent || '').split('·')[0].trim();
-const HOME = /(年级|高[一二三])[上下]册$/.test(BOOK) ? `../#${encodeURIComponent(BOOK)}` : '../';
+// 非语文学科在页面里写 <meta name="subject" content="数学">，回目录时带上学科（各学科有同名册）
+const SUBJECT = (document.querySelector('meta[name="subject"]') || {}).content;
+const HOME = /(年级|高[一二三])[上下]册$/.test(BOOK) ? `../#${SUBJECT ? encodeURIComponent(SUBJECT) + '/' : ''}${encodeURIComponent(BOOK)}` : '../';
 function addHomeLink() {
   const ctrl = document.querySelector('.ctrl');
   ctrl.insertAdjacentHTML('afterbegin', '<a class="nav home" href="' + HOME + '" title="返回目录（H）" aria-label="返回目录">目录</a>');
