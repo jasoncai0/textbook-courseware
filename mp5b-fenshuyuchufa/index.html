@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分数与除法 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fenbing.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第四单元 分数的意义和性质 · 分数与除法</p>
+    <h1 class="cover-title">分数与除法</h1>
+    <p class="cover-q" data-step="1">把 <b>3 块饼</b>平均分给 <b>4 个小朋友</b>，每人分得多少块？</p>
+    <p class="cover-q" data-step="2">列式是 $3\div4$。可是每人分不到 1 块——商该怎样表示？</p>
+    <div class="chips" data-step="3"><span class="chip">分一分</span><span class="chip">商用分数表示</span><span class="chip">$a\div b=\dfrac ab$</span></div>
+  </div>
+  <p class="note">课本 p53 例 3 的情境，先抛出来不解答。学生可能说“0.75 块”（五上学过小数除法），肯定这个想法，再问：能不能用分数说？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>分饼之前，先想想这三件事</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="二年级 · 平均分与除法" data-step="1">
+        <p class="big center">$6\div3=2$（块）</p>
+        <p>求每份是多少，用<b>除法</b>：总数 ÷ 份数 = 每份数。</p>
+        <span class="use">“平均分给 4 个小朋友”就用 ÷ 4。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 分数的意义" data-step="2">
+        <svg id="rcPie" class="mini-fig" viewBox="0 0 240 100" aria-label="一个圆平均分成 4 份，涂 3 份"></svg>
+        <p>$\dfrac34$ 里有 3 个 $\dfrac14$；单位“1”可以是一个物体，也可以是一个整体。</p>
+        <span class="use">说清“3 个 $\dfrac14$ 块”和“3 块的 $\dfrac14$”。</span>
+      </div>
+      <div class="recall" data-label="五上 · 小数除法" data-step="3">
+        <p class="big center">$3\div4=0.75$</p>
+        <p>整数除法的商不一定是整数，可以用小数表示。</p>
+        <span class="use">今天再学一种表示商的方法——分数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">分数是“平均分”出来的，除法也是“平均分”——它们之间会有什么关系？</p>
+  </div>
+  <p class="note">第 2 张卡是上一课的内容，请学生说出“3/4 的分数单位是 1/4，有 3 个”。第 3 张卡说明 3÷4 可以算出小数，但今天关注的是用分数表示商。</p>
+</section>
+
+<!-- 3 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>把 1 块饼平均分给 4 个小朋友，每人分得多少块？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="e2" class="e2-fig" viewBox="0 0 520 240" aria-label="一块饼平均分成 4 份，每人 1 份"></svg>
+      <div class="ctrlrow" data-noswipe><button type="button" class="btn solid" id="e2Go">分一分 ▶</button></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">求每人分得多少块，用什么方法计算？　<span class="think" data-step="2" data-ask="想一想">用<b>除法</b>：$1\div4$。</span></p>
+      <p class="tip" data-step="3">每人分得的不满 1 块，可以怎样表示？　<span class="think" data-step="4" data-ask="看图说">每人分得这块饼的 $\dfrac14$，是 $\dfrac14$ 块。</span></p>
+      <p class="tip readout-big" data-step="5">$1\div4=$ <span class="blank" data-ans="1/4" data-exact data-w="3"></span>（块）</p>
+    </div>
+  </div>
+  <p class="note">课本 p53 例 2。三个小精灵的话按顺序出示：分得的不满 1 块 → 可以用分数 → 求每人分得多少用除法。最后把两种说法接起来：1 ÷ 4 的商可以用分数 1/4 表示。</p>
+</section>
+
+<!-- 4 ================= 核心：分饼 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 分一分</span><h2>把 3 块饼平均分给 4 个小朋友，每人分得多少块？</h2></div>
+  <div class="bd full top">
+    <div class="ctrlrow" data-noswipe>
+      <span>饼</span><span class="stepper"><button type="button" class="btn" data-d="a-">−</button><b id="dvA">3</b><button type="button" class="btn" data-d="a+">＋</button></span><span>块</span>
+      <span>平均分给</span><span class="stepper"><button type="button" class="btn" data-d="b-">−</button><b id="dvB">4</b><button type="button" class="btn" data-d="b+">＋</button></span><span>人</span>
+      <button type="button" class="btn solid" id="dvOne">方法一：一块一块地分 ▶</button>
+      <button type="button" class="btn solid" id="dvAll">方法二：叠起来一起分 ▶</button>
+    </div>
+    <svg id="dv" class="dv-fig" viewBox="0 0 1000 400" aria-label="分饼动画：饼被平均分到每个盘子里" data-noswipe></svg>
+    <p class="tip feedback center" id="dvMsg"></p>
+  </div>
+  <p class="note">本课核心操作（课本 p53 例 3 的两种想法）。先按“方法一”：每次分 1 块，每块切成 4 份，每人拿 1 份，分 3 次，每人得到 3 个 1/4 块，拼起来是 3/4 块。再按“方法二”：3 块叠在一起切成 4 份，每人分得 3 块的 1/4，也是 3/4 块。两种方法结果一样。可以再改成 3 块分给 5 人（下一页）、5 块分给 4 人（每人超过 1 块，为“假分数”埋伏笔）。盘子里的饼块按真实大小拼合。</p>
+</section>
+
+<!-- 5 ================= 观察三个等式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察发现</span><h2>分数与除法有什么关系？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="calc">
+        <p>例 2：$1\div4=\dfrac14$（块）</p>
+        <p>例 3：$3\div4=$ <span class="blank" data-ans="3/4" data-exact data-w="3"></span>（块）</p>
+        <p>3 块饼平均分给 5 人：$3\div5=$ <span class="blank" data-ans="3/5" data-exact data-w="3"></span>（块）</p>
+      </div>
+      <table class="mtab">
+        <tr><th>除法</th><th>被除数</th><th>除数</th><th>商（分数）</th><th>分子</th><th>分母</th></tr>
+        <tr><td>$1\div4$</td><td>1</td><td>4</td><td>$\dfrac14$</td><td>1</td><td>4</td></tr>
+        <tr><td>$3\div4$</td><td>3</td><td>4</td><td>$\dfrac34$</td><td><span class="blank" data-ans="3"></span></td><td><span class="blank" data-ans="4"></span></td></tr>
+        <tr><td>$3\div5$</td><td>3</td><td>5</td><td>$\dfrac35$</td><td><span class="blank" data-ans="3"></span></td><td><span class="blank" data-ans="5"></span></td></tr>
+      </table>
+    </div>
+    <p class="tip" data-step="1">比一比每一行，你发现了什么？和同桌说一说。</p>
+    <div class="trio" data-step="2">
+      <div class="tbox"><h4>被除数 ÷ 除数</h4><p class="big">$3\div5$</p></div><i>＝</i>
+      <div class="tbox"><h4>分子 / 分母</h4><p class="big">$\dfrac35$</p></div>
+    </div>
+    <p class="def" data-step="3"><span class="think" data-step="3" data-ask="说出你的发现，再点开">被除数相当于分数的<b>分子</b>，除数相当于分数的<b>分母</b>：被除数 ÷ 除数 = <span class="hfrac"><span>被除数</span><span>除数</span></span>。</span></p>
+  </div>
+  <p class="note">课本 p54 上半页。3 ÷ 5 可以先用上一页的分饼工具分一分（改成 3 块、5 人）再填。对照表让学生自己说“被除数对着分子，除数对着分母”，再出示文字。</p>
+</section>
+
+<!-- 6 ================= 用字母表示 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>用字母表示分数与除法的关系</h2></div>
+  <div class="bd full">
+    <p class="tip">如果用 $a$ 表示被除数，$b$ 表示除数，可以写成：</p>
+    <div class="def center big-def" data-step="1"><p class="formula">$a\div b=\dfrac ab$</p></div>
+    <p class="tip" data-step="2">$b$ 可以是 0 吗？　<span class="think" data-step="3" data-ask="想一想">不可以。除法里<b>除数不能是 0</b>，分数的<b>分母也不能是 0</b>，所以 $b\ne0$。</span></p>
+    <p class="method" data-step="4" data-label="什么时候用分数表示商">两个数相除，如果<b>不能用整数表示商</b>，可以用分数表示。如 $2\div3=\dfrac23$（2 ÷ 3 用小数除不尽）。</p>
+    <div class="cols2" data-step="5">
+      <p class="recall" data-label="联系">分数可以看作两个数相除；除法算式可以写成分数。</p>
+      <p class="warn" data-label="区别">除法是一种<b>运算</b>，分数是一个<b>数</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p54 中部，番茄精灵“b 可以是 0 吗？”让学生回忆“0 不能作除数”。茄子精灵的话（不能用整数表示商时用分数）是本课的用法总结。2 ÷ 3 是补充的例子，说明有时用分数比用小数更准确。</p>
+</section>
+
+<!-- 7 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>低级单位的数改写成高级单位的数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="ruler" class="ruler-fig" viewBox="0 0 560 140" aria-label="1 米平均分成 10 分米，涂出 7 分米"></svg>
+      <p class="tip">1 米 = 10 分米。7 分米是 1 米的几分之几？</p>
+      <p class="tip readout-big">7 分米 $=7\div10=$ <span class="blank" data-ans="7/10" data-exact data-w="3"></span> 米</p>
+    </div>
+    <div class="col">
+      <svg id="clock" class="clock-fig" viewBox="0 0 220 220" aria-label="钟面上 23 分的扇形"></svg>
+      <p class="tip">1 时 = 60 分。23 分是 1 时的几分之几？</p>
+      <p class="tip readout-big">23 分 $=23\div60=$ <span class="blank" data-ans="23/60" data-exact data-w="4"></span> 时</p>
+      <p class="method" data-step="1" data-label="方法">低级单位 ÷ 进率 = 高级单位的分数：把 1 米、1 时看作单位“1”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p54 试一试。左图 1 米按 10 分米画出刻度，涂出 7 分米；右图钟面上从 12 开始的 23 分（23/60 圈）精确画出。</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>“$\dfrac34$ 块”和“3 块的 $\dfrac14$”</h2></div>
+  <div class="bd full">
+    <svg id="cmp" class="cmp-fig" viewBox="0 0 900 190" aria-label="1 米的四分之三和 3 米的四分之一一样长"></svg>
+    <p class="tip" data-step="1">1 米的 $\dfrac34$ 和 3 米的 $\dfrac14$，哪个长？　<span class="think" data-step="2" data-ask="看图比一比">一样长，都是 $\dfrac34$ 米（$3\div4=\dfrac34$）。</span></p>
+    <div class="cols3" data-step="3">
+      <div class="jcard"><p>把 2 千克糖果平均分给 5 人，每人分得这袋糖的 $\dfrac25$。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">平均分给 5 人，每人分得这袋糖的 $\dfrac15$；是 $2\div5=\dfrac25$ <b>千克</b>。</p></div></div>
+      <div class="jcard"><p>$\dfrac57=5\div7$。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">分子是被除数，分母是除数。</p></div></div>
+      <div class="jcard"><p>$a\div b=\dfrac ab$ 中，$b$ 可以是任何数。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">$b$ 是除数（分母），<b>不能是 0</b>。</p></div></div>
+    </div>
+  </div>
+  <p class="note">第 1 题对应练习八第 7 题，是最常见的混淆：“分得这袋糖的几分之几”（单位“1”是这袋糖，看份数）与“分得几千克”（用除法算具体数量）。图中两条线段的长度按比例精确画出。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用分数表示商</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 把 1 公顷地平均分成 5 份，每一份是多少公顷？</p>
+        <p class="q small-q"><span class="blank" data-ans="1"></span> ÷ <span class="blank" data-ans="5"></span> = <span class="blank" data-ans="1/5" data-exact data-w="3"></span>（公顷）</p>
+        <details><summary>提示 1</summary>平均分，用除法：总数 ÷ 份数。</details>
+        <details><summary>完整解答</summary>$1\div5=\dfrac15$（公顷）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 填一填。</p>
+        <p class="q small-q">$7\div12=$ <span class="blank" data-ans="7/12" data-exact data-w="3"></span>　$5\div8=$ <span class="blank" data-ans="5/8" data-exact data-w="3"></span><br>$\dfrac59=$ <span class="blank" data-ans="5"></span> ÷ <span class="blank" data-ans="9"></span>　$\dfrac3{11}=$ <span class="blank" data-ans="3"></span> ÷ <span class="blank" data-ans="11"></span></p>
+        <details><summary>提示 1</summary>被除数 ↔ 分子，除数 ↔ 分母。</details>
+        <details><summary>完整解答</summary>$\dfrac7{12}$，$\dfrac58$，$5\div9$，$3\div11$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 填分数。</p>
+        <p class="q small-q">3 克 = <span class="blank" data-ans="3/1000" data-exact data-w="4"></span> 千克<br>9 厘米 = <span class="blank" data-ans="9/100" data-exact data-w="4"></span> 米<br>47 秒 = <span class="blank" data-ans="47/60" data-exact data-w="4"></span> 分</p>
+        <details><summary>提示 1</summary>1 千克 = 1000 克，1 米 = 100 厘米，1 分 = 60 秒。</details>
+        <details><summary>完整解答</summary>$3\div1000=\dfrac3{1000}$；$9\div100=\dfrac9{100}$；$47\div60=\dfrac{47}{60}$</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p54 练一练 1–3。先独立填，回车自查。第 3 题先说进率再列除法。</p>
+</section>
+
+<!-- 10 ================= 练习八 6、7、8 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习八</span><h2>分绳子、分糖果、分花坛</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard">
+        <svg id="rope" class="rope-fig" viewBox="0 0 520 150" aria-label="1 米绳子和 2 根 1 米绳子，都平均分成 3 份"></svg>
+        <p class="small-q"><b>6.</b>(1) 把 1 米长的绳子平均分成 3 份，每份长 <span class="blank" data-ans="1/3" data-exact data-w="3"></span> 米。<br>(2) 把 2 根 1 米长的绳子平均分成 3 份，每份有 2 个 <span class="blank" data-ans="1/3" data-exact data-w="3"></span> 米，是 <span class="blank" data-ans="2/3" data-exact data-w="3"></span> 米。</p>
+      </div>
+      <div class="col">
+        <div class="jcard"><p class="small-q"><b>7.</b> 把一袋重 2 千克的糖果平均分给 5 个小朋友，每人分得这袋糖果的 <span class="blank" data-ans="1/5" data-exact data-w="3"></span>，是 <span class="blank" data-ans="2/5" data-exact data-w="3"></span> 千克。</p></div>
+        <div class="jcard"><p class="small-q"><b>8.</b> 一个花坛有 4 平方米，种了 7 种花。平均每种花占地多少平方米？<br>$4\div7=$ <span class="blank" data-ans="4/7" data-exact data-w="3"></span>（平方米）</p></div>
+        <p class="warn" data-step="1">第 7 题的两个空不一样：“这袋糖果的几分之几”看<b>平均分成几份</b>；“多少千克”用<b>除法</b> $2\div5$。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p56 练习八第 6 题、p57 第 7、8 题。第 6(2) 题看图：两根绳子各平均分成 3 份，每份有 2 个 1/3 米。对照方法一“每次分 1 块”。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>分数与除法，是怎样联系起来的？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>平均分</b><small>3 块饼分给 4 人</small></div>
+      <i>用除法算</i>
+      <div class="fbox"><b>$3\div4$</b><small>商不是整数</small></div>
+      <i>用分数表示</i>
+      <div class="fbox hot"><b>$\dfrac34$ 块</b><small>3 个 $\dfrac14$ 块 = 3 块的 $\dfrac14$</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="关系" data-step="2">$a\div b=\dfrac ab\ (b\ne0)$：被除数相当于分子，除数相当于分母。</p>
+      <p class="method" data-label="用处" data-step="3">商不是整数时用分数表示；低级单位改写成高级单位，用“÷ 进率”写成分数。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p55 例 4——黄彩带的长是红彩带的几分之几？“求一个数是另一个数的几分之几”也能用除法算。</p>
+  </div>
+  <p class="note">请学生说一说两种分饼方法为什么结果一样。课后作业建议：练习八第 15、16 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

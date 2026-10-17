@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>球的反弹高度 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fantan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第四单元 分数的意义和性质 · 综合与实践 球的反弹高度</p>
+    <h1 class="cover-title">球的反弹高度</h1>
+    <p class="cover-q" data-step="1">篮球、足球、皮球从高处落地后都会<b>反弹</b>。</p>
+    <p class="cover-q" data-step="2">球的反弹高度大约是下落高度的<b>几分之几</b>？不同的球反弹的情况相同吗？</p>
+    <div class="chips" data-step="3"><span class="chip">做实验</span><span class="chip">记录数据</span><span class="chip">用分数表示</span><span class="chip">比一比</span></div>
+  </div>
+  <p class="note">课本 p78“综合与实践”。这是一节实践活动课，建议分组在靠墙的平地上真实测量；课件里的模拟实验用来讲方法、示范记录和计算，<b>结论以学生自己测得的数据为准</b>。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这次活动要用到本单元的哪些知识？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 几分之几" data-step="1">
+        <p class="big center">反弹高度 ÷ 下落高度</p>
+        <p>求一个数是另一个数的几分之几，用除法；“下落高度”是单位“1”。</p>
+        <span class="use">算出每次反弹是下落的几分之几。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 约分" data-step="2">
+        <p class="big center">$\dfrac{60}{100}=\dfrac35$</p>
+        <p>结果通常约成最简分数。</p>
+        <span class="use">把记录的数据写成最简分数。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 比较分数大小" data-step="3">
+        <p class="big center">$\dfrac35=0.6$，$\dfrac23\approx0.667$</p>
+        <p>化成小数或通分后比较。</p>
+        <span class="use">比较不同的球谁弹得更高。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">三张卡分别对应“求几分之几”“约分”“通分与比较大小”三课。</p>
+</section>
+
+<!-- 3 ================= 实验方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验探究</span><h2>怎样测出球的反弹高度？</h2></div>
+  <div class="bd full">
+    <div class="steps4">
+      <div class="jcard" data-step="1"><b>①</b> 选一块靠墙的平地，在墙上<b>量出一个高度</b>并做上标记。</div>
+      <div class="jcard" data-step="2"><b>②</b> 选择一个球，让它从这个高度<b>自由落下</b>（松手，不要往下扔）。</div>
+      <div class="jcard" data-step="3"><b>③</b> 球弹起到最高点时，在墙上<b>标出反弹高度</b>。</div>
+      <div class="jcard" data-step="4"><b>④</b> <b>量出结果</b>并记录下来。</div>
+    </div>
+    <p class="method" data-step="5" data-label="小组分工">一人放球、一人蹲下平视看最高点并标记、一人测量、一人记录。</p>
+    <p class="warn" data-step="6">每次都要从<b>球的底部</b>量起；眼睛要和球的最高点<b>一样高</b>，看得才准。同一个高度可以多做几次。</p>
+  </div>
+  <p class="note">课本 p78 下半页的四幅图。请学生说说每一步要注意什么，再补充分工和测量要点。“认真实验才可能得到准确的数据”（p79 精灵的话）。</p>
+</section>
+
+<!-- 4 ================= 模拟实验 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">模拟实验</span><h2>先看一次“模拟实验”，学会记录和计算</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="wall" class="wall-fig" viewBox="0 0 360 400" aria-label="墙上的刻度和下落、反弹的球"></svg>
+    </div>
+    <div class="col">
+      <div class="ctrlrow" data-noswipe><span>球</span><span class="btns" id="bBall"><button type="button" class="btn solid" data-b="lan">篮球</button><button type="button" class="btn" data-b="zu">足球</button><button type="button" class="btn" data-b="pi">皮球</button></span></div>
+      <div class="ctrlrow" data-noswipe><span>下落高度</span><span class="btns" id="bH"><button type="button" class="btn" data-h="60">60</button><button type="button" class="btn" data-h="80">80</button><button type="button" class="btn solid" data-h="100">100</button><button type="button" class="btn" data-h="120">120</button><button type="button" class="btn" data-h="150">150</button></span><span>cm</span></div>
+      <div class="ctrlrow" data-noswipe><button type="button" class="btn solid" id="bGo">松手 ▶</button><button type="button" class="btn" id="bClear">清空记录</button></div>
+      <table class="mtab sim-tab" id="bTab"><tr><th>球</th><th>下落/cm</th><th>反弹/cm</th><th>反弹是下落的几分之几</th></tr></table>
+      <p class="tiny muted">模拟用的是假设的弹性，每次会有一点误差；真实结果以你们的实验为准。</p>
+    </div>
+  </div>
+  <p class="note">模拟实验：三种球各设定了一个假设的反弹比例（篮球约 7/10，足球约 3/5，皮球约 1/2），每次再加上 ±2 cm 的随机测量误差，所以每次结果略有不同——和真实实验一样。下落按自由落体的时间比例播放。记录表自动算出“反弹 ÷ 下落”的最简分数和小数，让学生核对自己的计算。</p>
+</section>
+
+<!-- 5 ================= 记录表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验记录</span><h2>把你们小组测得的数据填进来</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="rec" data-noswipe>
+        <p class="rec-h"><input type="text" class="rec-name" value="篮球" aria-label="球的名称"> 球</p>
+        <table class="mtab rec-tab"><tr><th></th><th>第一次</th><th>第二次</th><th>第三次</th></tr>
+          <tr><th>下落高度/cm</th><td><input type="number" class="rin" data-r="d" data-i="0" min="1"></td><td><input type="number" class="rin" data-r="d" data-i="1" min="1"></td><td><input type="number" class="rin" data-r="d" data-i="2" min="1"></td></tr>
+          <tr><th>反弹高度/cm</th><td><input type="number" class="rin" data-r="u" data-i="0" min="0"></td><td><input type="number" class="rin" data-r="u" data-i="1" min="0"></td><td><input type="number" class="rin" data-r="u" data-i="2" min="0"></td></tr>
+          <tr><th>反弹是下落的几分之几</th><td class="rout" data-i="0"></td><td class="rout" data-i="1"></td><td class="rout" data-i="2"></td></tr>
+        </table>
+      </div>
+      <div class="rec" data-noswipe>
+        <p class="rec-h"><input type="text" class="rec-name" value="皮球" aria-label="球的名称"> 球</p>
+        <table class="mtab rec-tab"><tr><th></th><th>第一次</th><th>第二次</th><th>第三次</th></tr>
+          <tr><th>下落高度/cm</th><td><input type="number" class="rin" data-r="d" data-i="0" min="1"></td><td><input type="number" class="rin" data-r="d" data-i="1" min="1"></td><td><input type="number" class="rin" data-r="d" data-i="2" min="1"></td></tr>
+          <tr><th>反弹高度/cm</th><td><input type="number" class="rin" data-r="u" data-i="0" min="0"></td><td><input type="number" class="rin" data-r="u" data-i="1" min="0"></td><td><input type="number" class="rin" data-r="u" data-i="2" min="0"></td></tr>
+          <tr><th>反弹是下落的几分之几</th><td class="rout" data-i="0"></td><td class="rout" data-i="1"></td><td class="rout" data-i="2"></td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="tip small-t">选择不同的高度做三次实验；输入后自动算出“反弹 ÷ 下落”（约成最简分数，并写出约等于几位小数），先自己算，再对一对。</p>
+  </div>
+  <p class="note">课本 p79 的两张记录表。课堂上可以把各组数据输进来对比。数据只在本页面临时计算，刷新后清空。</p>
+</section>
+
+<!-- 6 ================= 发现 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流发现</span><h2>你发现了什么？</h2></div>
+  <div class="bd full">
+    <p class="tip">用同一个球做实验，你发现了什么？　<span class="think" data-step="1" data-ask="看看记录表">从不同高度落下，反弹高度不同，但反弹高度<b>大约都是下落高度的几分之几</b>——这个分数差不多。</span></p>
+    <p class="tip" data-step="2">用不同的球做实验，你发现了什么？　<span class="think" data-step="3" data-ask="比一比">不同的球，这个分数<b>不一样</b>：分数大的球弹性好，弹得高。</span></p>
+    <p class="method" data-step="4" data-label="怎样比">几个分数分母不同，可以<b>通分</b>，也可以<b>化成小数</b>再比较，如 $\dfrac{69}{100}=0.69$，$\dfrac{29}{60}\approx0.483$。</p>
+    <p class="warn" data-step="5">每次测量会有误差，所以说“<b>大约</b>是几分之几”：$\dfrac{69}{100}$ 很接近 $\dfrac7{10}$。数据收集得越多，越容易发现规律。</p>
+  </div>
+  <p class="note">课本 p79 两个精灵的问题。让各组汇报自己的分数，教师在黑板上按“球”分类排列。</p>
+</section>
+
+<!-- 7 ================= 你知道吗 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">你知道吗</span><h2>比赛用的篮球，弹性有规定</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="rule" class="rule-fig" viewBox="0 0 300 360" aria-label="1.8 米落下，反弹在 1.2 米到 1.4 米之间"></svg>
+    </div>
+    <div class="col">
+      <p class="tip">比赛用的篮球，从 <b>1.8 米</b>的高度自由落下后，第一次反弹的高度应大于 <b>1.2 米</b>、小于 <b>1.4 米</b>。</p>
+      <p class="tip" data-step="1">反弹高度在下落高度的几分之几到几分之几之间？（填最简分数）</p>
+      <div class="calc big-calc" data-step="1">
+        <p>$1.2\div1.8=\dfrac{12}{18}=$ <span class="blank" data-ans="2/3" data-exact data-w="3"></span></p>
+        <p>$1.4\div1.8=\dfrac{14}{18}=$ <span class="blank" data-ans="7/9" data-exact data-w="3"></span></p>
+      </div>
+      <p class="tip" data-step="2">所以比赛用篮球的反弹高度，在下落高度的 $\dfrac23$ 到 $\dfrac79$ 之间。你们测的篮球合格吗？</p>
+    </div>
+  </div>
+  <p class="note">课本 p79“你知道吗”。1.2 ÷ 1.8 可以先把两个数都乘 10 变成 12 ÷ 18（商不变），再约分。左图按 1.8 米、1.2 米、1.4 米的比例精确画出。</p>
+</section>
+
+<!-- 8 ================= 回顾反思 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾反思</span><h2>通过这次活动，你有什么收获？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <p class="recall" data-label="收获 1" data-step="1">日常生活中有很多有趣的数学问题。</p>
+      <p class="recall" data-label="收获 2" data-step="2">认真实验才可能得到准确的数据。</p>
+      <p class="recall" data-label="收获 3" data-step="3">收集的数据越多，越容易发现规律。</p>
+    </div>
+    <div class="flow" data-step="4">
+      <div class="fbox"><b>提出问题</b><small>反弹是下落的几分之几？</small></div>
+      <i>做实验</i>
+      <div class="fbox"><b>收集数据</b><small>测量、记录</small></div>
+      <i>用分数表示</i>
+      <div class="fbox hot"><b>分析比较</b><small>约分、通分、化小数</small></div>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一步：</b>第五单元“分数加法和减法”。</p>
+  </div>
+  <p class="note">课本 p79“回顾反思”三个精灵的话。可以布置课后延伸：用乒乓球、网球再做实验，比一比。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

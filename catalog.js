@@ -3061,13 +3061,21 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "用列举的策略解决问题（一）",
                 "genre": "推导",
-                "kind": "策略"
+                "kind": "策略",
+                "dir": "mp5a-liejuyi",
+                "pages": 11,
+                "desc": "22 根木条围花圃，拖卡片有序列举，自动查重查漏",
+                "cover": "mp5a-liejuyi/assets/huapu.jpg"
               },
               {
                 "no": "例2",
                 "title": "用列举的策略解决问题（二）",
                 "genre": "推导",
-                "kind": "策略"
+                "kind": "策略",
+                "dir": "mp5a-liejuer",
+                "pages": 11,
+                "desc": "点两队连线列举比赛，重复连线即时提醒",
+                "cover": "mp5a-liejuer/assets/zuqiu.jpg"
               }
             ]
           },
@@ -3080,26 +3088,42 @@ window.CATALOG = [
                 "no": "例1–3",
                 "title": "用字母表示数",
                 "genre": "概念",
-                "kind": "代数式"
+                "kind": "代数式",
+                "dir": "mp5a-zimubiaoshishu",
+                "pages": 10,
+                "desc": "摆三角形从具体数到 a×3，年龄条差 28 岁不变",
+                "cover": "mp5a-zimubiaoshishu/assets/gonglu.jpg"
               },
               {
                 "no": "例4–5",
                 "title": "含有字母的式子的化简",
                 "genre": "推导",
-                "kind": "代数式"
+                "kind": "代数式",
+                "dir": "mp5a-zimushihuajian",
+                "pages": 10,
+                "desc": "倒橙汁让式子随倒随长，连着摆三角形分色计数",
+                "cover": "mp5a-zimushihuajian/assets/chengzhi.jpg"
               },
               {
                 "no": "例6–7",
                 "title": "求含有字母的式子的值",
                 "genre": "推导",
-                "kind": "代数式"
+                "kind": "代数式",
+                "dir": "mp5a-zimushiqiuzhi",
+                "pages": 10,
+                "desc": "小棒两种分组数法，验证 3a+4a=7a",
+                "cover": "mp5a-zimushiqiuzhi/assets/baibang.jpg"
               },
               {
                 "no": "综合与实践",
                 "title": "钉子板上的多边形",
                 "genre": "推导",
                 "kind": "代数式",
-                "optional": true
+                "optional": true,
+                "dir": "mp5a-dingziban",
+                "pages": 10,
+                "desc": "可点击钉子板，自动算面积和边上、内部钉子数",
+                "cover": "mp5a-dingziban/assets/hezuo.jpg"
               }
             ]
           }
@@ -3118,31 +3142,51 @@ window.CATALOG = [
                 "no": "例1–2",
                 "title": "等式与方程",
                 "genre": "概念",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mp5b-dengshifangcheng",
+                "pages": 10,
+                "desc": "放砝码称神秘木块，平衡才是等式",
+                "cover": "mp5b-dengshifangcheng/assets/tianping.jpg"
               },
               {
                 "no": "例3–4",
                 "title": "等式的性质（一）与解方程",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mp5b-dengshixingzhiyi",
+                "pages": 10,
+                "desc": "天平两边加减砝码，看平衡怎么变",
+                "cover": "mp5b-dengshixingzhiyi/assets/jiama.jpg"
               },
               {
                 "no": "例5–6",
                 "title": "等式的性质（二）与解方程",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mp5b-dengshixingzhier",
+                "pages": 10,
+                "desc": "倍数天平：两边同乘同除仍平衡",
+                "cover": "mp5b-dengshixingzhier/assets/shiyantian.jpg"
               },
               {
                 "no": "例7–8",
                 "title": "列方程解决实际问题",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mp5b-liefangcheng",
+                "pages": 11,
+                "desc": "拖动线段图，看清“2倍少22米”",
+                "cover": "mp5b-liefangcheng/assets/dayanta.jpg"
               },
               {
                 "no": "例9–10",
                 "title": "列方程解决稍复杂的实际问题",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mp5b-fuzaliefangcheng",
+                "pages": 10,
+                "desc": "调货车速度，看相遇动画",
+                "cover": "mp5b-fuzaliefangcheng/assets/yiheyuan.jpg"
               }
             ]
           },
@@ -3155,20 +3199,32 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "单式折线统计图",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mp5b-danshizhexian",
+                "pages": 9,
+                "desc": "照表描点连线，即时判对错",
+                "cover": "mp5b-danshizhexian/assets/shengao.jpg"
               },
               {
                 "no": "例2",
                 "title": "复式折线统计图",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mp5b-fushizhexian",
+                "pages": 10,
+                "desc": "接着描点补全两条折线",
+                "cover": "mp5b-fushizhexian/assets/baowenbei.jpg"
               },
               {
                 "no": "综合与实践",
                 "title": "蒜叶的生长",
                 "genre": "推导",
                 "kind": "统计",
-                "optional": true
+                "optional": true,
+                "dir": "mp5b-suanye",
+                "pages": 9,
+                "desc": "录入记录表，统计图随填随画并显示差",
+                "cover": "mp5b-suanye/assets/suanye.jpg"
               }
             ]
           },
@@ -3237,56 +3293,92 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "分数的意义",
                 "genre": "概念",
-                "kind": "分数"
+                "kind": "分数",
+                "dir": "mp5b-fenshuyiyi",
+                "pages": 11,
+                "desc": "单位“1”工作台：选整体、平均分、点涂色",
+                "cover": "mp5b-fenshuyiyi/assets/yuebing.jpg"
               },
               {
                 "no": "例2–3",
                 "title": "分数与除法",
                 "genre": "推导",
-                "kind": "分数"
+                "kind": "分数",
+                "dir": "mp5b-fenshuyuchufa",
+                "pages": 11,
+                "desc": "分饼动画两种分法，饼数、人数可调",
+                "cover": "mp5b-fenshuyuchufa/assets/fenbing.jpg"
               },
               {
                 "no": "例4",
                 "title": "求一个数是另一个数的几分之几",
                 "genre": "推导",
-                "kind": "分数"
+                "kind": "分数",
+                "dir": "mp5b-jifenzhiji",
+                "pages": 11,
+                "desc": "拖动蓝彩带，改红彩带长，读几分之几",
+                "cover": "mp5b-jifenzhiji/assets/caidai.jpg"
               },
               {
                 "no": "例5–8",
                 "title": "真分数和假分数",
                 "genre": "概念",
-                "kind": "分数"
+                "kind": "分数",
+                "dir": "mp5b-zhenjiafenshu",
+                "pages": 12,
+                "desc": "分数单位累加器，圆和数轴同步",
+                "cover": "mp5b-zhenjiafenshu/assets/bisa.jpg"
               },
               {
                 "no": "例9–10",
                 "title": "分数和小数的互化",
                 "genre": "推导",
-                "kind": "分数"
+                "kind": "分数",
+                "dir": "mp5b-fenshuxiaoshu",
+                "pages": 11,
+                "desc": "双刻度数轴拖点，看出能否除尽",
+                "cover": "mp5b-fenshuxiaoshu/assets/zhongguojie.jpg"
               },
               {
                 "no": "例11–12",
                 "title": "分数的基本性质",
                 "genre": "推导",
-                "kind": "分数"
+                "kind": "分数",
+                "dir": "mp5b-fenshuxingzhi",
+                "pages": 11,
+                "desc": "同一张纸连续对折，涂色不变；分数墙",
+                "cover": "mp5b-fenshuxingzhi/assets/zhezhi.jpg"
               },
               {
                 "no": "例13",
                 "title": "约分",
                 "genre": "推导",
-                "kind": "分数"
+                "kind": "分数",
+                "dir": "mp5b-yuefen",
+                "pages": 11,
+                "desc": "同时除以公因数，小格合成大格",
+                "cover": "mp5b-yuefen/assets/youpiao.jpg"
               },
               {
                 "no": "例14–15",
                 "title": "通分与分数大小比较",
                 "genre": "推导",
-                "kind": "分数"
+                "kind": "分数",
+                "dir": "mp5b-tongfen",
+                "pages": 11,
+                "desc": "两纸条切同份数，粗线对齐才可通分",
+                "cover": "mp5b-tongfen/assets/gushishu.jpg"
               },
               {
                 "no": "综合与实践",
                 "title": "球的反弹高度",
                 "genre": "推导",
                 "kind": "分数",
-                "optional": true
+                "optional": true,
+                "dir": "mp5b-qiufantan",
+                "pages": 8,
+                "desc": "模拟落球加课堂实验记录表自动算分数",
+                "cover": "mp5b-qiufantan/assets/fantan.jpg"
               }
             ]
           },

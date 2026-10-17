@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>求一个数是另一个数的几分之几 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/caidai.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第四单元 分数的意义和性质 · 求一个数是另一个数的几分之几</p>
+    <h1 class="cover-title">几分之几</h1>
+    <p class="cover-q" data-step="1">手工课上有一条<b>红彩带</b>和一条<b>黄彩带</b>，黄彩带比红彩带短得多。</p>
+    <p class="cover-q" data-step="2">黄彩带的长是红彩带的<b>几分之几</b>？怎样想，怎样算？</p>
+    <div class="chips" data-step="3"><span class="chip">比一比</span><span class="chip">找单位“1”</span><span class="chip">用除法计算</span></div>
+  </div>
+  <p class="note">课本 p55 例 4 的情境。本课题目是“求一个数是另一个数的几分之几”，封面标题用简称。先让学生猜：黄彩带是红彩带的几分之几？怎么知道？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>学新本领之前，先想想这三件事</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三年级 · 求几倍" data-step="1">
+        <p>12 是 3 的几倍？</p>
+        <p class="big center">$12\div3=4$</p>
+        <p>求一个数是另一个数的几倍，用<b>除法</b>。</p>
+        <span class="use">商不是整数时，就是“几分之几”。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 分数的意义" data-step="2">
+        <svg id="rcBar" class="mini-fig" viewBox="0 0 240 70" aria-label="长条平均分成 4 份，涂 1 份"></svg>
+        <p>把单位“1”平均分成 4 份，表示其中 1 份是 $\dfrac14$。</p>
+        <span class="use">把红彩带看作单位“1”。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 分数与除法" data-step="3">
+        <p class="big center">$a\div b=\dfrac ab\ (b\ne0)$</p>
+        <p>两个数相除，商可以用分数表示。</p>
+        <span class="use">“几分之几”直接用除法算出来。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">“几倍”和“几分之几”，说的都是<b>两个数之间的倍数关系</b>。</p>
+  </div>
+  <p class="note">第 1 张卡请学生口算并说出“谁 ÷ 谁”。今天的问题和它很像，只是商不是整数。</p>
+</section>
+
+<!-- 3 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>黄彩带的长是红彩带的几分之几？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="e4" class="e4-fig" viewBox="0 0 560 170" aria-label="红彩带平均分成 4 份，黄彩带和其中 1 份一样长"></svg>
+      <div class="ctrlrow" data-noswipe><button type="button" class="btn solid" id="e4Go">把红彩带平均分一分 ▶</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">黄彩带的长是红彩带的 <span class="blank" data-ans="1/4" data-exact data-w="3"></span>。</p>
+      <p class="tip" data-step="1">你是怎样想的？　<span class="think" data-step="2" data-ask="说一说">把红彩带<b>平均分成 4 份</b>，黄彩带的长相当于这样的 <b>1 份</b>。</span></p>
+      <p class="tip" data-step="3">根据分数与除法的关系，也可以用除法计算：</p>
+      <p class="tip readout-big" data-step="3">$1\div4=$ <span class="blank" data-ans="1/4" data-exact data-w="3"></span></p>
+      <p class="tip" data-step="4">这里把谁看作单位“1”？　<span class="think" data-step="5" data-ask="想一想">把<b>红彩带</b>的长看作单位“1”（“是红彩带的……”）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p55 例 4。课本没有给出彩带的长度，“1 ÷ 4”中的 1 和 4 指的是份数：黄彩带 1 份、红彩带 4 份。点按钮在红彩带上画出 4 等分的刻度，并把黄彩带移到红彩带下面比一比。</p>
+</section>
+
+<!-- 4 ================= 核心：彩带比一比 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手比一比</span><h2>拖一拖蓝彩带，它是红彩带的几分之几？</h2></div>
+  <div class="bd full top">
+    <div class="ctrlrow" data-noswipe>
+      <span>红彩带长</span><span class="stepper"><button type="button" class="btn" id="rbMinus">−</button><b id="rbB">4</b><button type="button" class="btn" id="rbPlus">＋</button></span><span>米</span>
+      <span class="muted small-t">（拖动蓝彩带右端的圆点，改变它的长度）</span>
+    </div>
+    <svg id="rb" class="rb-fig" viewBox="0 0 1000 250" aria-label="红彩带和可拖动长度的蓝彩带" data-noswipe></svg>
+    <p class="tip feedback center" id="rbMsg"></p>
+    <p class="tip" data-step="1">红彩带的长度变了，蓝彩带也是 3 米，分数还一样吗？　<span class="think" data-step="2" data-ask="改一改红彩带再说">不一样！单位“1”（红彩带）变了，同样长的蓝彩带，是它的几分之几也变了：$3\div4=\dfrac34$，$3\div5=\dfrac35$……</span></p>
+  </div>
+  <p class="note">本课核心操作，从课本 p55 试一试（蓝彩带 3 米、红彩带 4 米）长出来。红彩带按 1 米一格画刻度，蓝彩带的长度只能取整米。先摆出 3 米和 4 米，读出 3/4；再把红彩带改成 5 米、6 米，说明“单位‘1’变了，分数也变”。把蓝彩带拖得比红彩带长，分数比 1 大——这样的分数下一课学习。</p>
+</section>
+
+<!-- 5 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>蓝彩带的长是红彩带的几分之几？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="tr" class="tr-fig" viewBox="0 0 560 190" aria-label="红彩带 4 米，蓝彩带 3 米"></svg>
+      <p class="tip readout-big">$3\div4=$ <span class="blank" data-ans="3/4" data-exact data-w="3"></span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">算式里的“3”表示什么？“4”呢？　<span class="think" data-step="2" data-ask="说一说">3 是<b>蓝彩带</b>的长（3 米），4 是<b>红彩带</b>的长（4 米）。</span></p>
+      <p class="tip" data-step="3">也可以这样想：　<span class="think" data-step="4" data-ask="用分数的意义想">把红彩带平均分成 4 份（每份 1 米），蓝彩带有这样的 3 份，是红彩带的 $\dfrac34$。</span></p>
+      <div class="method" data-step="5" data-label="怎样列式">
+        <p>A 是 B 的几分之几：$A\div B$</p>
+        <p class="small-t">“的”前面的 B 是单位“1”，作除数（分母）。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p55 试一试。两条彩带按“1 米 = 100 像素”精确画出。重点问：算式中的 4 是谁？——是单位“1”，所以作除数。</p>
+</section>
+
+<!-- 6 ================= 找单位“1” ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">找一找</span><h2>谁是单位“1”？谁作除数？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p>公鸡的只数是母鸡的几分之几？</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">公鸡</button><button type="button" data-k="b">母鸡</button>
+          <p class="pick-why">“是<b>母鸡</b>的几分之几”：母鸡的只数是单位“1”，列式 公鸡 ÷ 母鸡。</p></div>
+      </div>
+      <div class="jcard">
+        <p>五年级获奖作品是六年级的几分之几？</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">五年级</button><button type="button" data-k="b">六年级</button>
+          <p class="pick-why">“是六年级的……”：六年级获奖件数是单位“1”。</p></div>
+      </div>
+      <div class="jcard">
+        <p>睡眠时间占全天的几分之几？</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">睡眠时间</button><button type="button" data-k="b">全天时间</button>
+          <p class="pick-why">“占全天的……”：全天 24 小时是单位“1”，列式 $9\div24$。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="小窍门">找“<b>是谁的</b>”“<b>占谁的</b>”：“的”字前面的量是单位“1”，写在除号后面、分数线下面。</p>
+  </div>
+  <p class="note">三道题都来自练习八第 11 题和练一练第 2 题，先只找单位“1”，下一页再算。请学生读题时把“的”前面的量圈出来。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>写一写，算一算</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="ct" class="ct-fig" viewBox="0 0 560 110" aria-label="5 个圆和 11 个三角形"></svg>
+      <p class="tip"><b>1.</b> ● 的个数是 ▲ 的 <span class="blank" data-ans="5/11" data-exact data-w="4"></span>。</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 小英家养了 4 只公鸡，9 只母鸡。公鸡的只数是母鸡的几分之几？</p>
+        <p class="q small-q"><span class="blank" data-ans="4"></span> ÷ <span class="blank" data-ans="9"></span> = <span class="blank" data-ans="4/9" data-exact data-w="3"></span></p>
+        <details><summary>提示 1</summary>“是母鸡的……”，谁是单位“1”？</details>
+        <details><summary>完整解答</summary>$4\div9=\dfrac49$。答：公鸡的只数是母鸡的 $\dfrac49$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p55 练一练。第 1 题按课本：5 个圆、11 个三角形。学生容易写成 5/16（把总数当单位“1”），提醒“是三角形的几分之几”。</p>
+</section>
+
+<!-- 8 ================= 练习八 10、11 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习八</span><h2>先找单位“1”，再列除法</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard">
+        <svg id="tree" class="tree-fig" viewBox="0 0 560 120" aria-label="松树 8 棵，杨树 11 棵；平行四边形高 7 厘米，底 10 厘米"></svg>
+        <p class="small-q"><b>10.</b> 松树的棵数是杨树的 <span class="blank" data-ans="8/11" data-exact data-w="3"></span>；平行四边形的高是底的 <span class="blank" data-ans="7/10" data-exact data-w="3"></span>。</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>11.</b> 根据分数与除法的关系列式计算。</p>
+        <p class="q small-q">(1) 五年级 7 件作品获奖，六年级 12 件。五年级是六年级的 <span class="blank" data-ans="7/12" data-exact data-w="3"></span>。<br>(2) 小芳每天睡 9 小时，睡眠时间占全天的 <span class="blank" data-ans="9/24|3/8" data-w="3"></span>。<br>(3) 11 只白兔，19 只灰兔。白兔是灰兔的 <span class="blank" data-ans="11/19" data-exact data-w="3"></span>，白兔占总数的 <span class="blank" data-ans="11/30" data-exact data-w="3"></span>。</p>
+        <details><summary>提示 1</summary>(2) 全天是 24 小时。(3) 总数是 $11+19=30$ 只。</details>
+        <details><summary>完整解答</summary>(1) $7\div12=\dfrac7{12}$；(2) $9\div24=\dfrac9{24}$；(3) $11\div19=\dfrac{11}{19}$，$11\div30=\dfrac{11}{30}$。</details>
+      </div>
+    </div>
+    <p class="warn" data-step="1">第 11(3) 题两问的单位“1”不同：一个是<b>灰兔</b>，一个是<b>总数</b>。</p>
+  </div>
+  <p class="note">课本 p57 练习八第 10、11 题。第 11(2) 题写 9/24 或 3/8 都算对（约分在后面学）。</p>
+</section>
+
+<!-- 9 ================= 练习八 13、14 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习八</span><h2>看图想一想</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard">
+        <p class="small-q"><b>13.</b> 有 12 支铅笔，平均分给 2 个同学。<br>每支铅笔是铅笔总数的 <span class="blank" data-ans="1/12" data-exact data-w="3"></span>，<br>每人分得的铅笔是总数的 <span class="blank" data-ans="1/2" data-w="3"></span>。</p>
+        <svg id="pen" class="pen-fig" viewBox="0 0 300 90" aria-label="12 支铅笔平均分成 2 份"></svg>
+      </div>
+      <div class="jcard">
+        <svg id="apple" class="ex-fig" viewBox="0 0 300 130" aria-label="10 个苹果平均分成 5 份"></svg>
+        <p class="small-q"><b>14.</b> 梨的个数是苹果的 $\dfrac15$，梨有 <span class="blank" data-ans="2"></span> 个。</p>
+      </div>
+      <div class="jcard">
+        <svg id="hen" class="ex-fig" viewBox="0 0 300 130" aria-label="12 只鸡平均分成 4 份"></svg>
+        <p class="small-q">鸭的只数是鸡的 $\dfrac34$，鸭有 <span class="blank" data-ans="9"></span> 只。</p>
+      </div>
+    </div>
+    <p class="tip" data-step="1">第 14 题为什么先看苹果、鸡？　<span class="think" data-step="2" data-ask="想一想">“是苹果的 $\dfrac15$”——苹果是单位“1”：10 个平均分成 5 份，1 份是 2 个；鸡 12 只平均分成 4 份，每份 3 只，3 份是 9 只。</span></p>
+  </div>
+  <p class="note">课本 p57 第 13 题、p58 第 14 题（图按课本：10 个苹果分成 5 份；12 只鸡分成 4 份）。第 14 题是反过来想：已知分数，求数量。只要求说思路，不要求列式。</p>
+</section>
+
+<!-- 10 ================= 练习八 17、18 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习八</span><h2>“几分之几”和“多少米”，不一样</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard">
+        <svg id="wood" class="wood-fig" viewBox="0 0 560 100" aria-label="3 米长的木料平均锯成 4 段"></svg>
+        <p class="small-q"><b>17.</b> 一根木料长 3 米，把它平均锯成 4 段。<br>每段是这根木料的 <span class="blank" data-ans="1/4" data-exact data-w="3"></span>；每段长 <span class="blank" data-ans="3/4" data-exact data-w="3"></span> 米。</p>
+      </div>
+      <div class="jcard">
+        <svg id="coal" class="wood-fig" viewBox="0 0 560 100" aria-label="一堆煤平均分成 10 天烧完"></svg>
+        <p class="small-q"><b>18.</b> 一堆煤共烧了 10 天，平均每天烧这堆煤的 <span class="blank" data-ans="1/10" data-exact data-w="3"></span>；3 天烧这堆煤的 <span class="blank" data-ans="3/10" data-exact data-w="3"></span>。</p>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="分清两种问题">问“是这根木料的几分之几”：看<b>平均分成几份</b>，$1\div4$；问“每段长几米”：用<b>总长 ÷ 段数</b>，$3\div4$。</p>
+  </div>
+  <p class="note">课本 p58 练习八第 17、18 题。第 17 题是本课最容易错的题：两个空答案不同。木料图按 3 米长画，每米一个浅刻度、平均分成 4 段的锯口用红线，可以看出每段是 3/4 米。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>求一个数是另一个数的几分之几</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>读题</b><small>A 是 B 的几分之几？</small></div>
+      <i>找“的”前面</i>
+      <div class="fbox"><b>单位“1”是 B</b><small>B 作除数（分母）</small></div>
+      <i>用除法</i>
+      <div class="fbox hot"><b>$A\div B=\dfrac AB$</b><small>商用分数表示</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="和“几倍”一样" data-step="2">求一个数是另一个数的几倍、几分之几，都用除法；单位“1”不同，结果也不同。</p>
+      <p class="method" data-label="想一想" data-step="3">蓝彩带比红彩带长时，比如 6 米是 4 米的 $\dfrac64$，分子比分母大——这是什么样的分数？</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p59 例 5、例 6——分子比分母小、分子比分母大的分数，叫什么分数？</p>
+  </div>
+  <p class="note">课后作业建议：练习八第 12 题（在直线上描点）、第 16 题。p58 “动手做”的分数条可以在“分数的基本性质”一课再用。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

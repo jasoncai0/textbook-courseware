@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>含有字母的式子的化简 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chengzhi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第八单元 用字母表示数 · 含有字母的式子的化简</p>
+    <h1 class="cover-title">$1100-x-x-x$ 还能更短吗？</h1>
+    <p class="cover-q" data-step="1">冷水壶里有 <b>1100 毫升</b>橙汁，倒满了 <b>3 杯</b>，每杯 <b>$x$ 毫升</b>。</p>
+    <p class="cover-q" data-step="2">冷水壶里还剩多少毫升？你能用一个<b>简单</b>的式子表示吗？</p>
+    <div class="chips" data-step="3"><span class="chip">$3+2a$</span><span class="chip">$x+x+x=3x$</span><span class="chip">$1100-3x$</span><span class="chip">求值</span></div>
+  </div>
+  <p class="note">课本 p101 例 5 的情境，先抛出问题。本课两件事：用含有字母的式子表示数量（例 4、例 5），把式子写得更简单（$x+x+x=3x$），并会代入求值。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课，我们学会了什么？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 例 1" data-step="1">
+        <svg id="sepTri" class="mini" viewBox="0 0 260 60" aria-label="分开摆的三个三角形"></svg>
+        <p>分开摆 $a$ 个三角形，用 $a\times3$，也就是 $3a$ 根小棒。</p>
+        <span class="use">例 4 改成“连着摆”，规律变了。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 写法规定" data-step="2">
+        <p class="center big">$a\times4=4a$　$1\times a=a$</p>
+        <p>数和字母相乘，乘号可以省略，数写在前面。</p>
+        <span class="use">把 $2\times a$ 写成 $2a$，$3\times x$ 写成 $3x$。</span>
+      </div>
+      <div class="recall" data-label="二上 · 乘法的含义" data-step="3">
+        <p class="center big">$5+5+5=3\times5$</p>
+        <p>3 个相同的加数相加，可以用乘法表示。</p>
+        <span class="use">例 5：$x+x+x$ 能写成 $3x$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">今天的问题里，字母会和数<b>一起</b>出现在式子里，还要把式子<b>写简单</b>、<b>算出值</b>。</p>
+  </div>
+  <p class="note">第 1 张卡用分开摆的三角形回顾上一课（3 个三角形 9 根），为例 4“连着摆”做对比。第 3 张卡是例 5 化简的依据。</p>
+</section>
+
+<!-- 3 ================= 例 4 连着摆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 动手摆</span><h2>三角形连着摆，要用多少根小棒？</h2></div>
+  <div class="bd full top">
+    <svg id="row" class="rowtri" viewBox="0 0 700 120" aria-label="连着摆的三角形" data-noswipe></svg>
+    <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="rowAdd">＋ 增加 1 个三角形</button><button type="button" class="btn" id="rowSub">－ 拿走 1 个</button><span class="row-read" id="rowRead"></span></div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">摆 1 个三角形用 3 根小棒，增加 1 个三角形，多用 2 根小棒……可以怎样表示共用小棒的根数？先填写下表。</p>
+        <table class="mtab">
+          <tr><th>增加的三角形个数</th><td>1</td><td>2</td><td>3</td></tr>
+          <tr><th>共用小棒的根数</th><td>$3+2$</td><td>$3+2\times2$</td><td>$3+2\times$ <span class="blank" data-ans="3"></span></td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="1">为什么增加 1 个只多用 2 根？　<span class="think" data-step="2" data-ask="看图找一找">新三角形的一条边和前一个三角形<b>共用</b>，只要再添 2 根。</span></p>
+        <p class="recall" data-label="小精灵 1" data-step="3">每增加 1 个三角形，就要增加 2 根小棒。</p>
+        <p class="recall" data-label="小精灵 2" data-step="4">增加几个三角形，共用小棒的根数就是 3 加几个 2 的和。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p101 例 4。三角形按课本的样子一正一倒连着摆，相邻两个共用一根小棒。第一个三角形的 3 根画成绿色，之后每次新增的 2 根画成橙色，学生一眼看出“3 + 几个 2”。</p>
+</section>
+
+<!-- 4 ================= 例 4 字母式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 用字母</span><h2>增加 a 个三角形，共用多少根小棒？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="def" data-step="1">如果用 $a$ 表示增加的三角形个数，共用小棒的根数是<br><span class="center-line">$3+2\times$ <span class="blank" data-ans="a" data-w="2"></span>，也可以写成 $3+2a$。</span></p>
+        <p class="tip" data-step="2">如果 $a=8$，共用 <span class="blank" data-ans="19"></span> 根小棒；如果 $a=15$ 呢？<span class="blank" data-ans="33"></span> 根。</p>
+        <p class="tip small-t" data-step="3">$a=8$ 时：$3+2\times8=3+16=19$（根）。</p>
+      </div>
+      <div class="col">
+        <div class="jcard" data-step="4">
+          <p>想一想：增加 8 个三角形，一共摆了几个三角形？</p>
+          <div class="pick" data-ans="b"><button type="button" data-k="a">8 个</button><button type="button" data-k="b">9 个</button>
+            <p class="pick-why">还有最开始的 1 个！$a$ 表示<b>增加</b>的个数，一共摆了 $a+1$ 个。读题时要看清字母表示什么。</p></div>
+        </div>
+        <p class="warn" data-step="5" data-label="比一比">分开摆：每个三角形 3 根，共 $3a$ 根。<br>连着摆：先 3 根，每增加 1 个添 2 根，共 $3+2a$ 根。<br>摆法不同，式子不同。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p101 例 4 下半部分。$a=8$、$a=15$ 两问请学生代入口算，回到上一页拖到增加 8 个验证（共 9 个三角形、19 根）。</p>
+</section>
+
+<!-- 5 ================= 核心：倒橙汁 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 倒一倒</span><h2>倒出 3 杯，冷水壶里还剩多少毫升？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="jug" class="jug" viewBox="0 0 420 300" aria-label="冷水壶和三只杯子" data-noswipe></svg>
+      <div class="slider-row" data-noswipe><span>每杯 $x$</span><input type="range" id="xSl" min="50" max="360" step="10" value="250" aria-label="每杯的毫升数 x"><b id="xOut"></b></div>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="pour">倒一杯</button><button type="button" class="btn" id="pourReset">重新装满</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">(1) 用式子表示冷水壶里还剩多少毫升橙汁。</p>
+      <p class="expr" id="expr"></p>
+      <svg id="barModel" class="barmodel" viewBox="0 0 600 90" aria-label="1100 毫升的线段图"></svg>
+      <p class="tip feedback" id="pourMsg"></p>
+    </div>
+  </div>
+  <p class="note">本课核心活动。先用滑块定每杯的毫升数 $x$，再一杯一杯地倒：每倒一杯，式子后面多一个“$-x$”。右下线段图按毫升数精确画出（总长 1100），倒出的三段一样长。倒完 3 杯后追问：减了 3 个 $x$，能不能写得短一点？改变 $x$ 再倒一次，式子的样子不变。</p>
+</section>
+
+<!-- 6 ================= 例 5 化简 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 (1)</span><h2>两个式子，哪个更简单？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="小精灵 1" data-step="1"><p class="center big">$1100-x-x-x$</p><p>一杯一杯地减。</p></div>
+      <div class="recall" data-label="小精灵 2" data-step="2"><p class="center big">$1100-3x$</p><p>3 杯一共 $3x$ 毫升，一次减去。</p></div>
+    </div>
+    <div class="derive" data-step="3">
+      <div class="dl"><span>$x+x+x$</span><span>$=3\times x$</span><i class="why">3 个相同的加数相加，用乘法</i></div>
+      <div class="dl"><span></span><span>$=3x$</span><i class="why">省略乘号，数写在前面</i></div>
+    </div>
+    <p class="tip" data-step="4">所以，减去 3 个 $x$ 就是减去 <span class="blank" data-ans="3x" data-w="3"></span>：$1100-x-x-x=1100-3x$。</p>
+    <p class="method" data-step="5" data-label="化简">把含有字母的式子写成<b>更简单</b>的形式，叫作化简。$1100-3x$ 更简明，算起来也更方便。</p>
+  </div>
+  <p class="note">课本 p101 例 5(1) 两个小精灵的式子。两个式子都对，第二个更简单。推导链每一步右边写依据。“化简”一词课本此处未出现定义，这里作为口头说法，只要求学生知道 $x+x+x=3x$。</p>
+</section>
+
+<!-- 7 ================= 例 5 求值 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 (2)</span><h2>当 x = 250 时，冷水壶里还剩多少毫升？</h2></div>
+  <div class="bd full top">
+    <p class="tip">根据 $1100-3x$ 这个式子，求 $x=250$ 时，冷水壶里还剩多少毫升橙汁。</p>
+    <div class="cols2">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>当 $x=250$ 时，</span><i class="why">先写清楚 $x$ 等于几</i></div>
+        <div class="dl" data-step="2"><span>$1100-3x$</span><span>$=1100-3\times250$</span><i class="why">把 250 代入，<b>乘号要写回来</b></i></div>
+        <div class="dl" data-step="3"><span></span><span>$=1100-$ <span class="blank" data-ans="750"></span></span><i class="why">先算乘法</i></div>
+        <div class="dl" data-step="4"><span></span><span>$=$ <span class="blank" data-ans="350"></span></span><i class="why">再算减法</i></div>
+      </div>
+      <p class="tip" data-step="5">答：还剩 350 毫升橙汁。</p>
+    </div>
+    <div class="col">
+      <p class="warn" data-step="6" data-label="易错">把 $x=250$ 代入 $3x$，不能写成 $3250$！$3x$ 表示 $3\times x$，代入后要写成 $3\times250$。</p>
+      <p class="tip" data-step="7">回到上一页，把滑块拖到 250 倒 3 杯，验证一下：剩下的是不是 350 毫升？</p>
+      <p class="tip gold" data-step="8">如果 $x=300$，还剩 <span class="blank" data-ans="200"></span> 毫升。</p>
+    </div>
+    </div>
+  </div>
+  <p class="note">课本 p101 例 5(2) 的书写格式：“当 $x=250$ 时，”换行写式子，等号对齐。这是第一次学“求含有字母的式子的值”，书写格式要规范。</p>
+</section>
+
+<!-- 8 ================= 练习十八 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十八</span><h2>用含有字母的式子表示数量</h2></div>
+  <div class="bd full top">
+    <div class="jcard">
+      <p><b>1.</b> 笔记本的单价是 $a$ 元/本。</p>
+      <table class="mtab">
+        <tr><th>数量/本</th><td>4</td><td>7</td><td>10</td><td>18</td><td>$b$</td></tr>
+        <tr><th>总价/元</th><td>$4a$</td><td><span class="blank" data-ans="7a" data-w="3"></span></td><td><span class="blank" data-ans="10a" data-w="3"></span></td><td><span class="blank" data-ans="18a" data-w="3"></span></td><td><span class="blank" data-ans="ab|ba" data-w="3"></span></td></tr>
+      </table>
+    </div>
+    <div class="jcard">
+      <p><b>2.</b></p>
+      <div class="scrollx"><svg id="line2" class="line2" viewBox="0 0 800 80" aria-label="小华家、小军家、学校、小丽家的线段图"></svg></div>
+      <p>(1) 小华家到学校的路程是 <span class="blank" data-ans="800+x|x+800" data-w="5"></span> 米。　(2) 小军家到小丽家的路程是 <span class="blank" data-ans="x+y|y+x" data-w="4"></span> 米。</p>
+      <p>(3) 从家到学校，小丽比小军要多走 <span class="blank" data-ans="y-x|y−x" data-w="4"></span> 米。</p>
+      <p class="muted tiny">减号输入“-”即可</p>
+    </div>
+  </div>
+  <p class="note">课本 p103 练习十八第 1、2 题。第 2 题线段图照课本画（$x$、$y$ 是字母，线段长度只示意顺序，不表示具体长短）。第(3)问：小丽到学校走 $y$ 米，小军走 $x$ 米。</p>
+</section>
+
+<!-- 9 ================= 练习十八 3–5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十八</span><h2>在括号里填含有字母的式子</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> (1) 果园有桃树 $a$ 棵，苹果树的棵数是桃树的 2 倍，苹果树有 <span class="blank" data-ans="2a" data-w="3"></span> 棵；梨树比桃树少 28 棵，梨树有 <span class="blank" data-ans="a-28|a−28" data-w="4"></span> 棵。</p>
+        <p class="q">(2) 公共汽车上原来有 35 人，到站下车 $x$ 人，又上车 $y$ 人。现在车上有 <span class="blank" data-ans="35-x+y|35−x+y" data-w="6"></span> 人。</p>
+        <details><summary>提示 1</summary>“是……的 2 倍”用乘法；“少 28”用减法；下车减、上车加。</details>
+        <details><summary>完整解答</summary>$2a$；$a-28$；$35-x+y$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b></p>
+        <svg id="tape4" class="tape4" viewBox="0 0 560 90" aria-label="四段 a 厘米和一段 15 厘米"></svg>
+        <p class="q">全长 <span class="blank" data-ans="4a+15|15+4a" data-w="5"></span> 厘米</p>
+        <details><summary>提示 1</summary>4 个 $a$ 相加是多少？</details>
+        <details><summary>完整解答</summary>$a+a+a+a+15=4a+15$（厘米）。</details>
+      </div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q"><b>5.</b> (1) 小玲买了 1 支钢笔和 4 本笔记本，每支钢笔 7 元，每本笔记本 $a$ 元。她一共付出 <span class="blank" data-ans="7+4a|4a+7" data-w="5"></span> 元。</p>
+      <p class="q">(2) 食堂运进 $a$ 袋大米，每袋 50 千克，已经吃掉 $x$ 千克，还剩 <span class="blank" data-ans="50a-x|50a−x" data-w="5"></span> 千克。</p>
+      <p class="q">(3) 买 6 面小鼓用去 $a$ 元，买 1 面大鼓用去 $b$ 元。1 面小鼓比 1 面大鼓便宜 <span class="blank" data-ans="b-a÷6|b−a÷6|b-a/6" data-w="6"></span> 元。</p>
+      <details><summary>提示 1</summary>(3) 先求 1 面小鼓多少元：$a\div6$。</details>
+      <details><summary>完整解答</summary>(1) $7+4a$；(2) $50a-x$；(3) $b-a\div6$。</details>
+    </div>
+  </div>
+  <p class="note">课本 p103 练习十八第 3、4、5 题。第 4 题图照课本：四段 $a$ 厘米、一段 15 厘米。第 5(3) 题容易写成 $a-b$，提醒先求 1 面小鼓的价钱。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>用式子表示，化简，再求值</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><h4>表示</h4><small>连着摆：$3+2a$<br>倒橙汁：$1100-x-x-x$</small></div><i>→</i>
+      <div class="fbox"><h4>化简</h4><small>$x+x+x=3x$<br>$1100-3x$</small></div><i>→</i>
+      <div class="fbox"><h4>求值</h4><small>当 $x=250$ 时<br>$1100-3\times250=350$</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="方法" data-step="2">先弄清<b>字母表示什么</b>，再找数量关系写式子；能化简的先化简；代入时把乘号写回来。</p>
+      <p class="method" data-label="思想" data-step="3">一个含有字母的式子，代表了<b>许多情况</b>；字母换成具体的数，就得到这种情况的结果。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>先写出公式，再代入求值；$3a+4a$ 能不能也合并成一项？</p>
+  </div>
+  <p class="note">课后作业建议：练习十八第 7、8 题（说出式子的意义、用字母表示角的度数）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用字母表示数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/gonglu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第八单元 用字母表示数 · 用字母表示数</p>
+    <h1 class="cover-title">一个字母，代表一类数</h1>
+    <p class="cover-q" data-step="1">摆 1 个三角形用 3 根小棒，摆 2 个用 6 根……</p>
+    <p class="cover-q" data-step="2">摆 100 个呢？摆<b>任意多个</b>呢？能不能用<b>一个式子</b>全部说清楚？</p>
+    <div class="chips" data-step="3"><span class="chip">字母表示数</span><span class="chip">含有字母的式子</span><span class="chip">省略乘号</span><span class="chip">$a^2$</span></div>
+  </div>
+  <p class="note">课本 p99 例 1 的引入。“任意多个”是本课的关键：一个一个写算式写不完，需要一种能代表“所有可能的个数”的写法——字母。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这些老知识，今天都会用到</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="二上 · 乘法的含义" data-step="1">
+        <p class="center big">$3+3+3+3=4\times3$</p>
+        <p>求<b>几个相同加数的和</b>，用乘法。</p>
+        <span class="use">例 1：几个三角形，就有几个 3 根。</span>
+      </div>
+      <div class="recall" data-label="三上 · 正方形的周长" data-step="2">
+        <p class="center">周长 = 边长 × 4</p>
+        <span class="use">例 3：用字母写出周长公式。</span>
+      </div>
+      <div class="recall" data-label="三下 · 正方形的面积" data-step="3">
+        <p class="center">面积 = 边长 × 边长</p>
+        <span class="use">例 3：用字母写出面积公式。</span>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="以前见过" data-step="4">用 □、○ 表示要填的数：<span class="boxq">□ + 5 = 12</span>，□ = 7。<br>今天的字母，比 □ 能做的事更多。</p>
+      <p class="recall" data-label="上一单元 · 有序列举" data-step="5">按顺序一个一个列出来，就能<b>发现规律</b>。<br>今天先列一列，再用一个式子说出规律。</p>
+    </div>
+  </div>
+  <p class="note">第 1 张卡最重要：“几个 3 相加 = 几 × 3”是例 1 的依据。第 4 张卡把字母与学生熟悉的 □ 联系起来：□ 通常只代表一个要求的数，而字母可以代表一类数，还能参与写公式。</p>
+</section>
+
+<!-- 3 ================= 例 1 摆三角形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 动手摆</span><h2>摆三角形，小棒的根数怎样变化？</h2></div>
+  <div class="bd full top">
+    <svg id="tri" class="tri" viewBox="0 0 700 110" aria-label="一个一个分开摆的三角形" data-noswipe></svg>
+    <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="triAdd">＋ 再摆 1 个</button><button type="button" class="btn" id="triSub">－ 拿走 1 个</button><span class="tri-read" id="triRead"></span></div>
+    <div class="cols2">
+      <div class="calc">
+        <p>摆 1 个三角形用 3 根小棒；</p>
+        <p>摆 2 个三角形用小棒的根数是 $2\times3$；</p>
+        <p>摆 3 个三角形用小棒的根数是 <span class="blank" data-ans="3"></span> $\times\,3$；</p>
+        <p>摆 4 个三角形用小棒的根数是 <span class="blank" data-ans="4"></span> $\times\,3$；</p>
+        <p>……</p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="1">三角形的个数和小棒的根数有什么关系？</p>
+        <p class="recall" data-label="小精灵 1" data-step="2">摆几个三角形，小棒根数就有几个 3。</p>
+        <p class="recall" data-label="小精灵 2" data-step="3">小棒的根数总是三角形个数的 3 倍。</p>
+        <p class="recall" data-label="小精灵 3" data-step="4">可以用“三角形的个数 × 3”表示小棒的根数。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p99 例 1。点“再摆 1 个”，每个三角形的 3 根小棒都单独画出（同一个三角形同一种颜色），根数由代码数出来。先让学生摆、数、填空，再说关系。三个小精灵的说法从“几个 3”到“3 倍”到“个数 × 3”，一步比一步概括。</p>
+</section>
+
+<!-- 4 ================= 例 1 用字母 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 用字母</span><h2>摆 a 个三角形，要用多少根小棒？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="ladder" id="ladder">
+        <p><span>1 个</span><b>$1\times3$</b></p>
+        <p><span>2 个</span><b>$2\times3$</b></p>
+        <p><span>10 个</span><b>$10\times3$</b></p>
+        <p><span>100 个</span><b>$100\times3$</b></p>
+        <p class="lad-a" data-step="2"><span>$a$ 个</span><b>$a\times3$</b></p>
+      </div>
+      <div class="slider-row" data-noswipe><span>$a$</span><input type="range" id="aSl" min="1" max="30" step="1" value="5" aria-label="三角形的个数 a"></div>
+      <p class="tip center" id="aOut"></p>
+    </div>
+    <div class="col">
+      <p class="tip">“三角形的个数 × 3”写起来太长，还能更简单吗？</p>
+      <p class="def" data-step="1">如果用 $a$ 表示三角形的个数，小棒的根数是 <span class="blank" data-ans="a" data-w="2"></span> × <span class="blank" data-ans="3"></span>。</p>
+      <p class="tip" data-step="3">$a\times3$ 这一个式子，就把 1 个、2 个、100 个……<b>所有情况</b>都说清楚了。拖动滑块，$a$ 是几，小棒就是几个 3。</p>
+      <div class="jcard" data-step="4">
+        <p>这里的 $a$ 可以表示哪些数？$a$ 可以是 $2.5$ 吗？</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">可以</button><button type="button" data-k="n">不可以</button>
+          <p class="pick-why">$a$ 表示三角形的<b>个数</b>，只能是 1、2、3……这样的整数，不能是 2.5。字母能表示什么数，要看它在<b>题目里表示什么</b>。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p99 例 1 下半部分。“数的阶梯”从具体数一级一级走到字母：前四行都是“个数 × 3”，第五行把个数换成 a。滑块拖到任何数，右边按 a × 3 实时算出根数。追问 a 可以表示哪些数——要联系实际意义。</p>
+</section>
+
+<!-- 5 ================= 例 2 汽车 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>行驶了一段路程后，还剩多少千米？</h2></div>
+  <div class="bd full top">
+    <p class="tip">甲、乙两地之间的公路长 280 千米，一辆汽车从甲地开往乙地。你能用式子表示行驶了一段路程后剩下的千米数吗？</p>
+    <div class="road" data-noswipe>
+      <div class="scrollx"><svg id="road" viewBox="0 0 1000 130" aria-label="甲乙两地之间 280 千米的公路"></svg></div>
+      <div class="slider-row"><span>已行驶</span><input type="range" id="bSl" min="0" max="280" step="0.5" value="50" aria-label="已行驶的千米数 b"><b id="bOut"></b></div>
+      <div class="btns center-btns"><button type="button" class="btn" data-b="50">50</button><button type="button" class="btn" data-b="74.5">74.5</button><button type="button" class="btn" data-b="120">120</button><button type="button" class="btn" data-b="200">200</button></div>
+    </div>
+    <div class="cols2">
+      <div class="calc">
+        <p>已经行驶了 50 千米，剩下的千米数是 $280-50$；</p>
+        <p>已经行驶了 74.5 千米，剩下的千米数是 $280-$ <span class="blank" data-ans="74.5" data-w="4"></span>；</p>
+        <p>已经行驶了 $b$ 千米，剩下的千米数是 <span class="blank" data-ans="280" data-w="3"></span> $-$ <span class="blank" data-ans="b" data-w="2"></span>。</p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="1">这里的 $b$ 可以表示哪些数？　<span class="think" data-step="2" data-ask="想一想">$b$ 是已经行驶的路程，可以是整数也可以是小数，但<b>不能超过 280</b>。</span></p>
+        <p class="tip" data-step="3">如果 $b=120$，剩下 <span class="blank" data-ans="160"></span> 千米；如果 $b=200$，剩下 <span class="blank" data-ans="80"></span> 千米。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p99 例 2。公路按 280 千米等比例画出，滑块每格 0.5 千米，汽车位置和“剩下”的长度都按比例计算。点 74.5 按钮可直接看课本第二行的情况。b 的取值范围是本例的新意：字母表示的数可以有范围。</p>
+</section>
+
+<!-- 6 ================= 例 3 正方形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>用字母写出正方形的周长和面积公式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sqBoard" class="sqboard"></div>
+      <p class="tip center small-t">每个小方格的边长是 1 厘米</p>
+      <div class="slider-row" data-noswipe><span>边长 $a$</span><input type="range" id="sqSl" min="1" max="6" step="0.5" value="3" aria-label="正方形边长 a"><b id="sqOut"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">如果用 $a$ 表示正方形的边长，$C$ 表示周长，$S$ 表示面积，你能写出正方形的周长和面积公式吗？</p>
+      <p class="readout2" id="sqRead"></p>
+      <div class="cols2">
+        <div class="def" data-step="1"><h4>正方形周长公式</h4><p class="formula">$C=a\times4$</p></div>
+        <div class="def" data-step="2"><h4>正方形面积公式</h4><p class="formula">$S=a\times a$</p></div>
+      </div>
+      <p class="tip gold" data-step="3">比一比：“周长 = 边长 × 4”和“$C=a\times4$”，哪个更<b>简明</b>？</p>
+    </div>
+  </div>
+  <p class="note">课本 p100 例 3。左边是 1 厘米方格纸，正方形按边长精确画出（每格 1 厘米）。拖动边长，右边按公式实时算出周长和面积，学生可以数格子验证面积。</p>
+</section>
+
+<!-- 7 ================= 简写规则 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">写法规定</span><h2>含有字母的式子，可以写得更简单</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="rulecard" data-step="1">
+        <p class="rr">$a\times4$　和　$4\times a$</p>
+        <p class="arrow">↓ 通常可以写成</p>
+        <p class="rr hl2">$4\cdot a$　或　$4a$</p>
+        <p class="small-t">数字写在字母<b>前面</b>，乘号可以写成“·”或省略。</p>
+      </div>
+      <div class="rulecard" data-step="2">
+        <p class="rr">$a\times a$</p>
+        <p class="arrow">↓ 可以写成</p>
+        <p class="rr hl2">$a\cdot a$　也可以写成　$a^2$</p>
+        <p class="small-t">$a^2$ 读作“$a$ 的<b>平方</b>”，表示两个 $a$ 相乘。</p>
+      </div>
+    </div>
+    <p class="tip" data-step="3">$a$ 与 1 相乘，一般写作 <span class="blank" data-ans="a" data-w="2"></span>。　所以正方形的公式还可以写成 $C=4a$，$S=a^2$。</p>
+    <div class="cols2" data-step="4">
+      <div class="warn" data-label="易错">$a^2$ 和 $2a$ 一样吗？当 $a=3$ 时：<br>$a^2=3\times3=$ <span class="blank" data-ans="9"></span>，$2a=2\times3=$ <span class="blank" data-ans="6"></span>。</div>
+      <p class="tip" data-step="5">$a^2$ 是两个 $a$ <b>相乘</b>，$2a$ 是两个 $a$ <b>相加</b>（$a+a$）。只有 $a=2$ 时两个结果才碰巧相等。</p>
+    </div>
+  </div>
+  <p class="note">课本 p100 例 3 下方的写法规定和小精灵提示“a 与 1 相乘，一般写作 a”。a² 与 2a 的混淆是本课最常见错误，用 a = 3 代入比较。注意：只有数和字母、字母和字母相乘时才能省略乘号，数和数相乘（如 4 × 5）不能省略。</p>
+</section>
+
+<!-- 8 ================= 练一练 1 / 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>省略乘号，写出下面各式</h2></div>
+  <div class="bd full top">
+    <div class="jcard rule-q">
+      <p><b>1.</b>　$4\times b=$ <span class="blank" data-ans="4b" data-w="3"></span>　　$x\times5=$ <span class="blank" data-ans="5x" data-w="3"></span>　　$a\times c=$ <span class="blank" data-ans="ac" data-w="3"></span>　　$1\times x=$ <span class="blank" data-ans="x" data-w="2"></span>　　$x\times x=$ <span class="blank" data-ans="x²|x^2" data-w="3"></span></p>
+      <p class="muted tiny">平方可以输入 x^2</p>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 用 $S$ 表示长方形的面积，长是 $a$，宽是 $b$。写出长方形的面积公式：</p>
+        <p class="q center">$S=$ <span class="blank" data-ans="ab|a×b|a·b|ba" data-w="3"></span></p>
+        <details><summary>提示 1</summary>长方形面积 = 长 × 宽。</details>
+        <details><summary>完整解答</summary>$S=a\times b$，省略乘号写成 $S=ab$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">判断：$x\times5$ 省略乘号写成 $x5$。</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button>
+          <p class="pick-why">数字要写在字母<b>前面</b>：$x\times5=5x$。</p></div>
+        <p class="q">判断：$4\times5$ 也可以写成 $45$。</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button>
+          <p class="pick-why">数和数相乘<b>不能</b>省略乘号，$4\times5=20$，写成 45 就变成另一个数了。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p100 练一练第 1、3 题，外加两道判断（课本写法规定的反面）。填空回车判对错。</p>
+</section>
+
+<!-- 9 ================= 练一练 2 年龄 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 2</span><h2>妈妈比玲玲大 28 岁</h2></div>
+  <div class="bd full top">
+    <div class="scrollx" data-noswipe><svg id="age" class="age" viewBox="0 0 900 200" aria-label="玲玲和妈妈的年龄条"></svg></div>
+    <div class="slider-row" data-noswipe><span>玲玲的年龄</span><input type="range" id="ageSl" min="1" max="12" step="1" value="1" aria-label="玲玲的年龄"><b id="ageOut"></b></div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">根据“妈妈比玲玲大 28 岁”填写下表。</p>
+        <table class="mtab age-tab">
+          <tr><th>玲玲/岁</th><td>1</td><td>2</td><td>3</td><td>4</td><td>…</td><td>$a$</td></tr>
+          <tr><th>妈妈/岁</th><td>1 + 28</td><td><span class="blank" data-ans="2+28|30" data-w="4"></span></td><td><span class="blank" data-ans="3+28|31" data-w="4"></span></td><td><span class="blank" data-ans="4+28|32" data-w="4"></span></td><td>…</td><td><span class="blank" data-ans="a+28|28+a" data-w="4"></span></td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="1">玲玲长大了，妈妈也长大了，什么<b>没有变</b>？　<span class="think" data-step="2" data-ask="看年龄条">两人相差的 <b>28 岁</b>始终不变。</span></p>
+        <p class="tip gold" data-step="3">$a+28$ 既表示妈妈的年龄，也表示了“妈妈比玲玲大 28 岁”这个<b>关系</b>。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p100 练一练第 2 题。年龄条按岁数等比例画出，两条之间的“28 岁”差距永远一样长。拖动滑块从 1 岁到 12 岁，让学生体会：a + 28 一个式子就代表了每一年妈妈的岁数。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>用字母表示数，简明又概括</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><h4>具体的数</h4><small>$2\times3$、$4\times3$<br>$280-50$</small></div><i>→</i>
+      <div class="fbox"><h4>文字式子</h4><small>三角形个数 × 3<br>边长 × 4</small></div><i>→</i>
+      <div class="fbox"><h4>字母式子</h4><small>$3a$、$280-b$<br>$C=4a$，$S=a^2$</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="知识" data-step="2">字母可以表示<b>任意一个</b>符合条件的数；含有字母的式子能表示数量和数量关系。写法：$4a$、$a^2$、$1\times a=a$。</p>
+      <p class="method" data-label="你知道吗" data-step="3">最早有意识地系统使用字母表示数的人，是法国数学家<b>韦达</b>。从那以后，引出了大量的数学发现。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>三角形不分开摆，而是<b>连着</b>摆，共用一些小棒——根数又该怎样用字母表示？</p>
+  </div>
+  <p class="note">课本 p100“你知道吗”介绍韦达。请学生说：用字母表示数有什么好处？（简明；一个式子代表许多情况。）课后作业建议：练习十八第 1、3 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>真分数和假分数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/numline.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/bisa.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第四单元 分数的意义和性质 · 真分数和假分数</p>
+    <h1 class="cover-title">真分数和假分数</h1>
+    <p class="cover-q" data-step="1">每个披萨都平均切成 4 块。拿走 1 块，是 $\dfrac14$ 个；拿走 4 块呢？拿走 5 块呢？</p>
+    <p class="cover-q" data-step="2">5 块是 5 个 $\dfrac14$ 个，写成 $\dfrac54$——分子比分母还大，这也是分数吗？</p>
+    <div class="chips" data-step="3"><span class="chip">真分数</span><span class="chip">假分数</span><span class="chip">带分数</span><span class="chip">假分数化整数或带分数</span></div>
+  </div>
+  <p class="note">课本 p59 例 5 的情境换成学生熟悉的披萨。让学生猜：5/4 个披萨是比 1 个多还是少？带着问题进入新课。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的三件“法宝”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 分数单位" data-step="1">
+        <svg id="rcUnit" class="mini-fig" viewBox="0 0 240 90" aria-label="3/4 有 3 个 1/4"></svg>
+        <p>$\dfrac34$ 的分数单位是 $\dfrac14$，有 <b>3 个</b>这样的单位。</p>
+        <span class="use">数一数每个分数里有几个分数单位。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 分数与除法" data-step="2">
+        <p class="big center">$a\div b=\dfrac ab\ (b\ne0)$</p>
+        <p>分数可以看作分子除以分母。</p>
+        <span class="use">例 8 用除法把假分数化成带分数。</span>
+      </div>
+      <div class="recall" data-label="二年级 · 有余数的除法" data-step="3">
+        <p class="big center">$11\div4=2\cdots\cdots3$</p>
+        <p>11 里面有 2 个 4，还余 3。</p>
+        <span class="use">商是整数部分，余数是分子。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">上节课的彩带比一比里出现过 $\dfrac64$ 这样“分子比分母大”的分数。今天就来研究它。</p>
+  </div>
+  <p class="note">第 3 张卡请学生口算并读出“商 2 余 3”。这三件事在例 5、例 6、例 8 分别用到。</p>
+</section>
+
+<!-- 3 ================= 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>涂色表示每个圆右边的分数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-t"><b>(1)</b> 点一份涂色。</p>
+      <svg id="e5a" class="e5-fig clickable" viewBox="0 0 600 170" aria-label="三个圆各平均分成 4 份，分别涂出 1/4、3/4、4/4" data-noswipe></svg>
+      <p class="tip feedback small-t" id="e5aMsg">分别涂出 $\dfrac14$、$\dfrac34$、$\dfrac44$。</p>
+    </div>
+    <div class="col">
+      <p class="tip small-t"><b>(2)</b> 在下图中涂色表示 5 个 $\dfrac14$。</p>
+      <svg id="e5b" class="e5-fig clickable" viewBox="0 0 420 170" aria-label="两个圆各平均分成 4 份" data-noswipe></svg>
+      <p class="tip feedback small-t" id="e5bMsg">5 个 $\dfrac14$ 是 <span class="blank" data-ans="5/4" data-exact data-w="3"></span>。</p>
+      <p class="tip" data-step="1">每个分数里各有几个 $\dfrac14$？　<span class="think" data-step="2" data-ask="数一数">$\dfrac14$ 有 1 个，$\dfrac34$ 有 3 个，$\dfrac44$ 有 4 个，$\dfrac54$ 有 5 个。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p59 例 5。第 (2) 题一个圆只有 4 份，不够涂 5 份，必须再用一个圆——这正是 5/4 比 1 大的直观原因。请学生说说：4/4 正好涂满一个圆，就是 1。</p>
+</section>
+
+<!-- 4 ================= 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6</span><h2>在图形中涂色表示它下面的分数</h2></div>
+  <div class="bd full top">
+    <svg id="e6" class="e6-fig clickable" viewBox="0 0 1000 220" aria-label="1 个、2 个、3 个平均分成 5 份的圆" data-noswipe></svg>
+    <p class="tip feedback center" id="e6Msg">分别涂出 $\dfrac25$、$\dfrac{10}5$、$\dfrac{13}5$。</p>
+    <p class="tip" data-step="1">每个分数里各有几个 $\dfrac15$？　<span class="think" data-step="2" data-ask="数一数">$\dfrac25$ 有 2 个，$\dfrac{10}5$ 有 10 个，$\dfrac{13}5$ 有 13 个。</span></p>
+  </div>
+  <p class="note">课本 p59 例 6。10/5 正好涂满 2 个圆，13/5 涂满 2 个圆还多 3 份。圆的份数和位置都由代码精确画出。</p>
+</section>
+
+<!-- 5 ================= 核心：分数单位累加器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">一个一个加</span><h2>分数单位一个一个加上去，会发生什么？</h2></div>
+  <div class="bd full top">
+    <div class="ctrlrow" data-noswipe>
+      <span>分数单位</span>
+      <span class="btns" id="acN"><button type="button" class="btn" data-n="2">$\frac12$</button><button type="button" class="btn" data-n="3">$\frac13$</button><button type="button" class="btn solid" data-n="4">$\frac14$</button><button type="button" class="btn" data-n="5">$\frac15$</button><button type="button" class="btn" data-n="6">$\frac16$</button></span>
+      <button type="button" class="btn" id="acMinus">− 1 个</button>
+      <button type="button" class="btn solid" id="acPlus">＋ 1 个</button>
+    </div>
+    <svg id="ac" class="ac-fig" viewBox="0 0 1000 360" aria-label="分数单位累加：圆和数轴同步" data-noswipe></svg>
+    <p class="tip feedback center" id="acMsg"></p>
+  </div>
+  <p class="note">本课核心操作。选 1/4，一下一下点“＋1 个”：1/4、2/4、3/4 时圆没涂满、数轴上的点在 1 的左边；4/4 正好涂满、点落在 1 上；5/4 开始要用第二个圆，点跑到 1 的右边。请学生边点边说“分子比分母小 / 相等 / 大”。再换 1/3、1/5 重复，归纳出分类标准。</p>
+</section>
+
+<!-- 6 ================= 分类 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分一分</span><h2>真分数和假分数</h2></div>
+  <div class="bd full">
+    <p class="tip">比较例 5、例 6 中每个分数分子和分母的大小，可以把这些分数分成几类？</p>
+    <div class="def" data-step="1"><h4>真分数和假分数</h4>分子比分母小的分数叫作<em>真分数</em>，分子比分母大或者分子和分母相等的分数叫作<em>假分数</em>。</div>
+    <div class="cols2" data-step="2">
+      <p class="recall" data-label="真分数">如 $\dfrac14,\ \dfrac34,\ \dfrac25$：<b>小于 1</b>。</p>
+      <p class="recall" data-label="假分数">如 $\dfrac44,\ \dfrac54,\ \dfrac{13}5$：<b>等于 1 或大于 1</b>。</p>
+    </div>
+    <p class="tip" data-step="3"><b>练一练 2.</b> 哪些是真分数，哪些是假分数？</p>
+    <div class="sort" data-step="3">
+      <div class="scard"><p>$\dfrac12$</p><div class="pick" data-ans="z"><button type="button" data-k="z">真</button><button type="button" data-k="j">假</button></div></div>
+      <div class="scard"><p>$\dfrac35$</p><div class="pick" data-ans="z"><button type="button" data-k="z">真</button><button type="button" data-k="j">假</button></div></div>
+      <div class="scard"><p>$\dfrac73$</p><div class="pick" data-ans="j"><button type="button" data-k="z">真</button><button type="button" data-k="j">假</button></div></div>
+      <div class="scard"><p>$\dfrac88$</p><div class="pick" data-ans="j"><button type="button" data-k="z">真</button><button type="button" data-k="j">假</button></div></div>
+      <div class="scard"><p>$\dfrac6{11}$</p><div class="pick" data-ans="z"><button type="button" data-k="z">真</button><button type="button" data-k="j">假</button></div></div>
+      <div class="scard"><p>$\dfrac{17}{15}$</p><div class="pick" data-ans="j"><button type="button" data-k="z">真</button><button type="button" data-k="j">假</button></div></div>
+      <div class="scard"><p>$\dfrac{12}2$</p><div class="pick" data-ans="j"><button type="button" data-k="z">真</button><button type="button" data-k="j">假</button></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p59 底部的定义和 p60 练一练第 2 题。8/8 是最容易判错的：分子和分母相等，也是假分数。</p>
+</section>
+
+<!-- 7 ================= 例 7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7</span><h2>把下面的假分数化成整数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="calc big-calc">
+        <p>$\dfrac44=$ <span class="blank" data-ans="1"></span></p>
+        <p>$\dfrac{10}5=$ <span class="blank" data-ans="2"></span></p>
+        <p>$\dfrac{28}7=$ <span class="blank" data-ans="4"></span></p>
+      </div>
+      <svg id="e7" class="e7-fig" viewBox="0 0 420 110" aria-label="10/5：两个圆都涂满"></svg>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">你是怎样想的？　<span class="think" data-step="2" data-ask="说一说">$\dfrac{10}5$ 有 10 个 $\dfrac15$，5 个 $\dfrac15$ 是 1，10 个就是 2；也可以用除法：$10\div5=2$。</span></p>
+      <p class="tip" data-step="3">能化成整数的假分数，分子与分母有什么关系？</p>
+      <p class="def" data-step="4"><span class="think" data-step="4" data-ask="说出你的发现">能化成整数的假分数，分子都是分母的<b>倍数</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p60 例 7。先让学生说想法：数分数单位或用除法。分子是分母的倍数——用到第三单元“因数与倍数”的知识。</p>
+</section>
+
+<!-- 8 ================= 带分数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">带分数</span><h2>分子不是分母倍数的假分数，怎样写？</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>带分数</h4>分子不是分母倍数的假分数，可以写成整数和真分数合成的数。这样的假分数通常叫作<em>带分数</em>。</div>
+    <div class="cols2">
+      <div class="col">
+        <svg id="mix" class="mix-fig" viewBox="0 0 420 120" aria-label="4/3：一个整圆和 1/3 个圆"></svg>
+        <p class="tip center">$\dfrac43$ 可以看作 $\dfrac33$（就是 1）和 $\dfrac13$ 合成的数</p>
+      </div>
+      <div class="col">
+        <p class="readout-big" data-step="2">写作 $1\dfrac13$，读作“一又三分之一”。</p>
+        <div id="nlMix" class="nl-board nl-mix" data-step="3"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p61 上半页。数轴按课本画：0、1、2，每段平均分成 3 份，4/3 与 1又1/3 是同一个点。强调“又”字：整数部分和分数部分合在一起。</p>
+</section>
+
+<!-- 9 ================= 例 8 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8</span><h2>怎样把 $\dfrac{11}4$ 化成带分数？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="e8" class="e8-fig" viewBox="0 0 520 170" aria-label="11 个 1/4 正方形，涂满 2 个还多 3 个 1/4"></svg>
+      <div class="ctrlrow" data-noswipe><button type="button" class="btn solid" id="e8Go">4 个 4 个地数 ▶</button></div>
+      <p class="tip center small-t" id="e8Msg">11 个 $\dfrac14$</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\dfrac{11}4$</span><span>里有 11 个 $\dfrac14$</span><i class="why">分数单位</i></div>
+        <div class="dl" data-step="2"><span>8 个 $\dfrac14$</span><span>是 2</span><i class="why">4 个 $\dfrac14$ 是 1</i></div>
+        <div class="dl" data-step="3"><span>3 个 $\dfrac14$</span><span>是 $\dfrac34$</span><i class="why">剩下的</i></div>
+        <div class="dl key" data-step="4"><span>$\dfrac{11}4$</span><span>$=2\dfrac34$</span><i class="why">2 和 $\dfrac34$ 合起来</i></div>
+      </div>
+      <p class="method" data-step="5" data-label="直接用除法">$\dfrac{11}4=11\div4=2\dfrac34$：<b>商</b>作整数部分，<b>余数</b>作分子，分母不变。</p>
+    </div>
+  </div>
+  <p class="note">课本 p61 例 8。左边先画图：每个正方形平均分成 4 份，11 份涂满 2 个正方形，还多 3 份。右边两种想法都要说：数分数单位、用除法（11 ÷ 4 = 2……3）。</p>
+</section>
+
+<!-- 10 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>先写假分数，再改写成带分数</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard">
+        <svg id="pTri" class="ex-fig" viewBox="0 0 420 120" aria-label="3 个三角形各平均分成 3 份，共涂 7 份"></svg>
+        <p class="small-q center"><span class="blank" data-ans="7/3" data-exact data-w="3"></span> ＝ <span class="blank" data-ans="2"></span> 又 <span class="blank" data-ans="1/3" data-exact data-w="3"></span></p>
+      </div>
+      <div class="jcard">
+        <svg id="pHex" class="ex-fig" viewBox="0 0 420 120" aria-label="2 个六边形各平均分成 6 份，共涂 11 份"></svg>
+        <p class="small-q center"><span class="blank" data-ans="11/6" data-exact data-w="3"></span> ＝ <span class="blank" data-ans="1"></span> 又 <span class="blank" data-ans="5/6" data-exact data-w="3"></span></p>
+      </div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q"><b>2.</b> 把 $\dfrac{12}3$、$\dfrac{30}6$、$\dfrac85$、$\dfrac83$ 化成整数或带分数。</p>
+      <p class="q small-q">$\dfrac{12}3=$ <span class="blank" data-ans="4"></span>　$\dfrac{30}6=$ <span class="blank" data-ans="5"></span>　$\dfrac85=$ <span class="blank" data-ans="1"></span> 又 <span class="blank" data-ans="3/5" data-exact data-w="3"></span>　$\dfrac83=$ <span class="blank" data-ans="2"></span> 又 <span class="blank" data-ans="2/3" data-exact data-w="3"></span></p>
+      <details><summary>提示 1</summary>分子 ÷ 分母：整除就是整数；有余数时，商作整数部分，余数作分子。</details>
+      <details><summary>完整解答</summary>$4$；$5$；$8\div5=1\cdots\cdots3$，$1\dfrac35$；$8\div3=2\cdots\cdots2$，$2\dfrac23$。</details>
+    </div>
+  </div>
+  <p class="note">课本 p61 练一练（图按课本：三个三角形各分成 3 份，涂 3+3+1=7 份；两个六边形各分成 6 份，涂 6+5=11 份）。带分数分成“整数”和“分数”两个空来填。</p>
+</section>
+
+<!-- 11 ================= 比大小 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习九</span><h2>和 1 比一比，填“&gt;”“&lt;”或“=”</h2></div>
+  <div class="bd full">
+    <div class="cols3 cmp-grid">
+      <div class="jcard"><p>$\dfrac56$ ○ $\dfrac76$</p><div class="pick" data-ans="lt"><button type="button" data-k="gt">&gt;</button><button type="button" data-k="lt">&lt;</button><button type="button" data-k="eq">=</button><p class="pick-why">真分数 &lt; 1 &lt; 假分数 $\dfrac76$。</p></div></div>
+      <div class="jcard"><p>$2$ ○ $\dfrac63$</p><div class="pick" data-ans="eq"><button type="button" data-k="gt">&gt;</button><button type="button" data-k="lt">&lt;</button><button type="button" data-k="eq">=</button><p class="pick-why">$\dfrac63=6\div3=2$。</p></div></div>
+      <div class="jcard"><p>$\dfrac9{10}$ ○ $1$</p><div class="pick" data-ans="lt"><button type="button" data-k="gt">&gt;</button><button type="button" data-k="lt">&lt;</button><button type="button" data-k="eq">=</button><p class="pick-why">真分数都比 1 小。</p></div></div>
+      <div class="jcard"><p>$\dfrac{16}{16}$ ○ $1$</p><div class="pick" data-ans="eq"><button type="button" data-k="gt">&gt;</button><button type="button" data-k="lt">&lt;</button><button type="button" data-k="eq">=</button><p class="pick-why">分子和分母相等的假分数等于 1。</p></div></div>
+      <div class="jcard"><p>$3$ ○ $\dfrac{13}4$</p><div class="pick" data-ans="lt"><button type="button" data-k="gt">&gt;</button><button type="button" data-k="lt">&lt;</button><button type="button" data-k="eq">=</button><p class="pick-why">$\dfrac{13}4=3\dfrac14$，比 3 大。</p></div></div>
+      <div class="jcard"><p>$\dfrac32$ ○ $\dfrac23$</p><div class="pick" data-ans="gt"><button type="button" data-k="gt">&gt;</button><button type="button" data-k="lt">&lt;</button><button type="button" data-k="eq">=</button><p class="pick-why">$\dfrac32&gt;1$，$\dfrac23&lt;1$。</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="用 1 作桥梁">真分数 &lt; 1；假分数 ≥ 1。一个真分数和一个假分数比，不用算就知道。</p>
+  </div>
+  <p class="note">课本 p64 练习九第 9 题。先让学生说“这两个数分别和 1 比，怎么样？”再点选。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>分数“家族”的新成员</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>真分数</b><small>分子 &lt; 分母，小于 1</small></div>
+      <i>分子 = 分母<br>或分子 &gt; 分母</i>
+      <div class="fbox"><b>假分数</b><small>大于或等于 1</small></div>
+      <i>分子 ÷ 分母</i>
+      <div class="fbox hot"><b>整数 或 带分数</b><small>商作整数部分，余数作分子</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="化整数" data-step="2">分子是分母的倍数：$\dfrac{28}7=4$。</p>
+      <p class="recall" data-label="化带分数" data-step="3">分子不是分母的倍数：$\dfrac{11}4=2\dfrac34$。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p62 例 9——0.5 米和 $\dfrac34$ 米，哪个长？分数和小数怎样互相改写？</p>
+  </div>
+  <p class="note">课后作业建议：练习九第 1、2、4、7、8 题（第 7 题在直线上填假分数和带分数，可以用本课的累加器验证）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/numline.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

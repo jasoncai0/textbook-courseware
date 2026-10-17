@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分数和小数的互化 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zhongguojie.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第四单元 分数的意义和性质 · 分数和小数的互化</p>
+    <h1 class="cover-title">分数和小数的互化</h1>
+    <p class="cover-q" data-step="1">李娟和张玲用彩带各做了一个中国结。李娟用了 <b>0.5 米</b>，张玲用了 <b>$\dfrac34$ 米</b>。</p>
+    <p class="cover-q" data-step="2">谁用的彩带长？一个是小数、一个是分数，怎样比？</p>
+    <div class="chips" data-step="3"><span class="chip">估一估</span><span class="chip">分数化小数</span><span class="chip">小数化分数</span><span class="chip">数轴上看</span></div>
+  </div>
+  <p class="note">课本 p62 例 9 的情境。先让学生凭感觉说，再问“怎样才能比得清楚”：要么都变成小数，要么都变成分数。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>分数和小数，我们早就见过“亲戚关系”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="五上 · 小数的意义" data-step="1">
+        <svg id="rcDec" class="mini-fig" viewBox="0 0 240 90" aria-label="1 平均分成 10 份，取 3 份是 0.3"></svg>
+        <p>$0.3=\dfrac3{10}$，$0.13=\dfrac{13}{100}$：小数就是<b>十分之几、百分之几……</b></p>
+        <span class="use">例 10：小数化成分数。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 分数与除法" data-step="2">
+        <p class="big center">$\dfrac34=3\div4$</p>
+        <p>分数可以看作分子除以分母。</p>
+        <span class="use">例 9：分数化成小数。</span>
+      </div>
+      <div class="recall" data-label="五上 · 小数除法" data-step="3">
+        <p class="big center">$3\div4=0.75$</p>
+        <p>除到被除数末尾有余数时，添 0 继续除；除不尽时按要求取近似值。</p>
+        <span class="use">$\dfrac56$ 除不尽，保留三位小数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">把这两条“桥”连起来：分数 ⇄ 除法 ⇄ 小数。</p>
+  </div>
+  <p class="note">第 1 张卡：五上“小数的意义和性质”。第 3 张卡：五上“小数乘法和除法”。请学生口算 3 ÷ 4。</p>
+</section>
+
+<!-- 3 ================= 例 9 估一估 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 9 · 估一估</span><h2>谁用的彩带长？先估一估，再在直线上找一找</h2></div>
+  <div class="bd full top">
+    <p class="tip">0.5 米是 1 米的一半，$\dfrac34$ 米呢？　<span class="think" data-step="1" data-ask="想一想">$\dfrac34$ 米是把 1 米平均分成 4 份取 3 份，<b>超过了 1 米的一半</b>。</span></p>
+    <svg id="e9" class="e9-fig" viewBox="0 0 1000 200" aria-label="0 到 1 的直线上，0.5 和 3/4 两个点" data-step="2"></svg>
+    <p class="tip center" data-step="2">在直线上，$\dfrac34$ 在 0.5 的<b>右边</b>，所以 0.5 ○ $\dfrac34$：</p>
+    <div class="pick center-pick" data-ans="lt" data-step="2"><button type="button" data-k="gt">&gt;</button><button type="button" data-k="lt">&lt;</button><button type="button" data-k="eq">=</button><p class="pick-why">$0.5&lt;\dfrac34$，<b>张玲</b>用的彩带长。</p></div>
+  </div>
+  <p class="note">课本 p62 例 9 萝卜精灵“先估一估，再比较”和下方的直线。直线上 0 到 1 按十分之一画小刻度，同时把 1 平均分成 4 份的位置画出来——3/4 正好落在 0.75 处。</p>
+</section>
+
+<!-- 4 ================= 例 9 化小数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 9 · 算一算</span><h2>把 $\dfrac34$ 化成小数，再比较</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$\dfrac34$</span><span>$=3\div4$</span><i class="why">分数与除法的关系</i></div>
+        <div class="dl key" data-step="2"><span></span><span>$=$ <span class="blank" data-ans="0.75" data-w="4"></span></span><i class="why">小数除法</i></div>
+      </div>
+      <p class="tip" data-step="3">$0.75$ ○ $0.5$：<span class="think" data-step="4" data-ask="比一比">$0.75&gt;0.5$，所以 $\dfrac34&gt;0.5$。</span></p>
+      <p class="tip gold" data-step="5">答：<b>张玲</b>用的彩带长。</p>
+    </div>
+    <div class="col">
+      <div class="calc longdiv" data-step="1">
+        <h4>竖式：$3\div4$</h4>
+        <pre class="ldv">    0.7 5
+  ┌──────
+4 │ 3.0 0
+    2 8
+    ───
+      2 0
+      2 0
+      ───
+        0</pre>
+      </div>
+      <p class="method" data-step="5" data-label="分数化小数">用分子除以分母。</p>
+    </div>
+  </div>
+  <p class="note">课本 p62 例 9 番茄精灵的方法。竖式请学生在练习本上做，屏幕上的竖式用来核对。3 除以 4 不够商 1，商 0 点上小数点，在 3 后面添 0 继续除。</p>
+</section>
+
+<!-- 5 ================= 核心：数轴放大镜 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数轴上看</span><h2>拖动点，看看分数和小数是同一个点</h2></div>
+  <div class="bd full top">
+    <div class="ctrlrow" data-noswipe>
+      <span>把 1 平均分成</span>
+      <span class="btns" id="dlN"><button type="button" class="btn" data-n="2">2 份</button><button type="button" class="btn solid" data-n="4">4 份</button><button type="button" class="btn" data-n="5">5 份</button><button type="button" class="btn" data-n="8">8 份</button><button type="button" class="btn" data-n="10">10 份</button><button type="button" class="btn" data-n="3">3 份</button><button type="button" class="btn" data-n="6">6 份</button></span>
+    </div>
+    <svg id="dl" class="dl-fig" viewBox="0 0 1000 250" aria-label="上面是分数刻度，下面是小数刻度，拖动橙色点" data-noswipe></svg>
+    <p class="tip feedback center" id="dlMsg"></p>
+  </div>
+  <p class="note">本课核心操作。直线上方按所选份数画分数刻度，下方按 0.1、0.01 画小数刻度，两套刻度是同一条线。拖动橙色点（只能停在分数刻度上）：分母是 2、4、5、8、10 时，点正好落在有限小数上；选 3 份、6 份，点落在两个小数刻度之间，怎么除也除不尽——只能取近似值（保留三位小数）。</p>
+</section>
+
+<!-- 6 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>把 $\dfrac9{25}$、$\dfrac56$ 化成小数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="calc big-calc">
+        <p>$\dfrac9{25}=9\div25=$ <span class="blank" data-ans="0.36" data-w="4"></span></p>
+        <p>$\dfrac56=5\div6\approx$ <span class="blank" data-ans="0.833" data-w="5"></span></p>
+      </div>
+      <p class="tiny muted">（除不尽的保留三位小数）</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">$5\div6$ 为什么除不尽？　<span class="think" data-step="2" data-ask="算一算">$5\div6=0.8333\cdots\cdots$，余数总是 2，3 一直重复，所以只能取近似值。</span></p>
+      <p class="warn" data-step="3">保留三位小数，要看<b>第四位</b>四舍五入：$0.8333\cdots\approx0.833$。写近似值用“≈”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p62 试一试。9/25 可以除尽，5/6 除不尽。和上一页数轴对照：分成 6 份时，5/6 的点在 0.83 和 0.84 之间。</p>
+</section>
+
+<!-- 7 ================= 例 10 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 10</span><h2>把 0.3、0.13、0.213 化成分数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="ctrlrow" data-noswipe><span>涂出</span><span class="btns" id="hgPick"><button type="button" class="btn solid" data-v="30">0.3</button><button type="button" class="btn" data-v="13">0.13</button></span></div>
+      <svg id="hg" class="hg-fig" viewBox="0 0 240 240" aria-label="百格图，1 平均分成 100 份"></svg>
+      <p class="tip center small-t" id="hgMsg"></p>
+    </div>
+    <div class="col">
+      <div class="calc big-calc">
+        <p>$0.3=\dfrac3{10}$</p>
+        <p>$0.13=$ <span class="blank" data-ans="13/100" data-exact data-w="4"></span></p>
+        <p>$0.213=$ <span class="blank" data-ans="213/1000" data-exact data-w="5"></span></p>
+      </div>
+      <p class="method" data-step="1" data-label="小数化分数">一位小数 → 十分之几；两位小数 → 百分之几；三位小数 → <b>千分之几</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p62 例 10。百格图把 1 平均分成 100 份：0.3 是 30 格，也就是 3 列（3 个十分之一）；0.13 是 13 格（13 个百分之一）。0.213 需要“千格图”，让学生类推。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>化一化</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 把 $\dfrac7{10}$、$\dfrac49$、$\dfrac23$ 化成小数。（除不尽的保留三位小数）</p>
+        <p class="q small-q">$\dfrac7{10}=$ <span class="blank" data-ans="0.7" data-w="4"></span>　$\dfrac49\approx$ <span class="blank" data-ans="0.444" data-w="4"></span>　$\dfrac23\approx$ <span class="blank" data-ans="0.667" data-w="4"></span></p>
+        <details><summary>提示 1</summary>分子 ÷ 分母。$\dfrac7{10}$ 是十分之七，可以直接写。</details>
+        <details><summary>完整解答</summary>$0.7$；$4\div9=0.444\cdots\approx0.444$；$2\div3=0.666\cdots\approx0.667$（第四位是 6，进一）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 把 0.9、0.47、0.63 化成分数。</p>
+        <p class="q small-q">$0.9=$ <span class="blank" data-ans="9/10" data-exact data-w="3"></span>　$0.47=$ <span class="blank" data-ans="47/100" data-exact data-w="4"></span>　$0.63=$ <span class="blank" data-ans="63/100" data-exact data-w="4"></span></p>
+        <details><summary>提示 1</summary>几位小数，分母就是 1 后面添几个 0。</details>
+        <details><summary>完整解答</summary>$\dfrac9{10}$，$\dfrac{47}{100}$，$\dfrac{63}{100}$</details>
+      </div>
+    </div>
+    <p class="warn" data-step="1">$\dfrac23\approx0.667$，不是 $0.666$：保留三位小数要<b>四舍五入</b>。</p>
+  </div>
+  <p class="note">课本 p62 练一练。2/3 是最常见的错误点（写成 0.666）。</p>
+</section>
+
+<!-- 9 ================= 练习九 11–13 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习九</span><h2>数一数，化一化</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>11.</b></p>
+        <p class="small-q">0.9 里有 <span class="blank" data-ans="9"></span> 个十分之一，是 <span class="blank" data-ans="9/10" data-exact data-w="3"></span>。<br>0.21 里有 <span class="blank" data-ans="21"></span> 个百分之一，是 <span class="blank" data-ans="21/100" data-exact data-w="4"></span>。<br>0.037 里有 <span class="blank" data-ans="37"></span> 个千分之一，是 <span class="blank" data-ans="37/1000" data-exact data-w="5"></span>。</p>
+      </div>
+      <div class="jcard">
+        <p><b>12.</b> 小数化分数。</p>
+        <p class="small-q">0.7 = <span class="blank" data-ans="7/10" data-exact data-w="3"></span>　0.19 = <span class="blank" data-ans="19/100" data-exact data-w="4"></span><br>0.83 = <span class="blank" data-ans="83/100" data-exact data-w="4"></span>　0.07 = <span class="blank" data-ans="7/100" data-exact data-w="4"></span><br>0.123 = <span class="blank" data-ans="123/1000" data-exact data-w="5"></span></p>
+      </div>
+      <div class="jcard">
+        <p><b>13.</b> 分数化小数（除不尽的保留三位小数）。</p>
+        <p class="small-q">$\dfrac23\approx$ <span class="blank" data-ans="0.667" data-w="4"></span>　$\dfrac35=$ <span class="blank" data-ans="0.6" data-w="3"></span>　$\dfrac52=$ <span class="blank" data-ans="2.5" data-w="3"></span><br>$\dfrac78=$ <span class="blank" data-ans="0.875" data-w="4"></span>　$\dfrac{11}9\approx$ <span class="blank" data-ans="1.222" data-w="4"></span>　$\dfrac9{16}\approx$ <span class="blank" data-ans="0.563" data-w="4"></span></p>
+      </div>
+    </div>
+    <p class="tip" data-step="1">0.07 化成分数，分母为什么是 100 而不是 10？　<span class="think" data-step="2" data-ask="想一想">0.07 是<b>两位小数</b>，表示 7 个百分之一。看小数的位数，不看末尾的数字。</span></p>
+  </div>
+  <p class="note">课本 p65 练习九第 11、12、13 题。9/16 = 0.5625，保留三位小数是 0.563。</p>
+</section>
+
+<!-- 10 ================= 练习九 15、16 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习九</span><h2>比一比，说说你是怎样比的</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>15.</b> 小麦地的面积是 $\dfrac7{10}$ 公顷，棉花地的面积是 0.4 公顷。哪块地的面积大一些？</p>
+        <div class="pick" data-ans="m"><button type="button" data-k="m">小麦地</button><button type="button" data-k="c">棉花地</button>
+          <p class="pick-why">$\dfrac7{10}=0.7$，$0.7&gt;0.4$，小麦地大一些。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>16.</b> 小军做完用了 1.1 小时，小兰用了 $\dfrac65$ 小时。谁做得快一些？</p>
+        <div class="pick" data-ans="j"><button type="button" data-k="j">小军</button><button type="button" data-k="l">小兰</button>
+          <p class="pick-why">$\dfrac65=6\div5=1.2$，$1.1&lt;1.2$：小军<b>用的时间少</b>，做得快一些。</p></div>
+      </div>
+    </div>
+    <div class="jcard" data-step="1">
+      <p><b>想一想</b>（p65）：$a$ 和 $b$ 都是大于 0 的整数，</p>
+      <p class="small-q">当 $b$ <span class="think" data-step="2" data-ask="？">&lt; $a$</span> 时，$\dfrac ba$ 是真分数；当 $b$ <span class="think" data-step="3" data-ask="？">≥ $a$</span> 时，$\dfrac ba$ 是假分数；当 $b$ <span class="think" data-step="4" data-ask="？">是 $a$ 的倍数</span> 时，$\dfrac ba$ 能化成整数。</p>
+    </div>
+  </div>
+  <p class="note">课本 p65 练习九第 15、16 题和“想一想”。第 16 题易错：用时多的反而慢。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>分数和小数，怎样互相改写？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>分数</b><small>$\dfrac34$</small></div>
+      <i>分子 ÷ 分母</i>
+      <div class="fbox hot"><b>小数</b><small>0.75（除不尽取近似值）</small></div>
+      <i>看位数写分母<br>10、100、1000</i>
+      <div class="fbox"><b>分数</b><small>$0.13=\dfrac{13}{100}$</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="比大小" data-step="2">分数和小数比大小，通常先把分数化成小数。</p>
+      <p class="method" data-label="想一想" data-step="3">$0.75=\dfrac{75}{100}$，又等于 $\dfrac34$——分子、分母都变了，大小却没变，为什么？</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p66 例 11、例 12——分数的分子、分母怎样变化，分数的大小不变？</p>
+  </div>
+  <p class="note">最后一个“想一想”为下一课“分数的基本性质”埋伏笔。课后作业建议：练习九第 14 题（在直线上填分数和小数）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>等式的性质（二）与解方程 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mbalance.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shiyantian.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第一单元 简易方程 · 等式的性质（二）与解方程</p>
+    <h1 class="cover-title">等式的性质（二）</h1>
+    <p class="cover-q" data-step="1">花园小学有一块长方形试验田，面积是 <b>960 平方米</b>，长 <b>40 米</b>。试验田的宽是多少米？</p>
+    <p class="cover-q" data-step="2">如果列方程 $40x=960$，两边同时<b>减去</b>什么都没法让左边只剩下 $x$——该怎么办？</p>
+    <div class="chips" data-step="3"><span class="chip">两边同时乘</span><span class="chip">两边同时除以</span><span class="chip">不能除以 0</span><span class="chip">解方程</span></div>
+  </div>
+  <p class="note">课本 p5 例 6 的情境，先抛出不解答。追问：上节课学的“两边同时加减同一个数”能不能把 40x 变成 x？（不能。）引出今天的新本领。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 等式的性质（一）" data-step="1">
+        <p>等式两边同时<b>加上或减去同一个数</b>，所得结果仍然是等式。</p>
+        <p class="center">$x+10-10=50-10$</p>
+        <span class="use">猜一猜：乘、除可不可以？</span>
+      </div>
+      <div class="recall" data-label="三四年级 · 乘除法的关系" data-step="2">
+        <p class="big center">$40\times24=960$</p>
+        <p>一个因数 = 积 ÷ 另一个因数：$960\div40=24$</p>
+        <span class="use">例 6 小精灵的第一种想法。</span>
+      </div>
+      <div class="recall" data-label="三下 · 长方形的面积" data-step="3">
+        <p class="big center">长方形的面积 = 长 × 宽</p>
+        <span class="use">例 6 的等量关系：$40\times x=960$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">$40x$ 是 40 个 $x$，要想只剩 1 个 $x$，该对它做什么运算？</p>
+  </div>
+  <p class="note">每张卡请学生先说再出示。第 4 步的问题是本课的出发点：加减不能把“40 个 x”变成“1 个 x”，要用乘除。</p>
+</section>
+
+<!-- 3 ================= 例 5 核心：倍数天平 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>天平两边都变成原来的几倍，还平衡吗？</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <svg id="balM" aria-label="左盘若干个 x 克木块，右盘同样多个 20 g 砝码"></svg>
+      <div class="btns center" id="opsM" data-noswipe>
+        <button type="button" class="btn solid" data-op="m2">两边都 ×2</button>
+        <button type="button" class="btn solid" data-op="m3">两边都 ×3</button>
+        <button type="button" class="btn solid" data-op="d">两边都 ÷ 份数</button>
+        <button type="button" class="btn" data-op="L2">只有左边 ×2</button>
+        <button type="button" class="btn" data-op="r">还原</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip big center expr" id="exprM"></p>
+      <p class="tip feedback" id="msgM"></p>
+      <div class="calc" data-step="1">
+        <p>$x=20$ → $2x$ <span class="blank" data-ans="=" data-w="1"></span> $20\times$ <span class="blank" data-ans="2"></span></p>
+        <p>$3x$ <span class="blank" data-ans="=" data-w="1"></span> $60$ → $3x\div3$ <span class="blank" data-ans="=" data-w="1"></span> $60\div$ <span class="blank" data-ans="3"></span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p4 例 5。木块重 20 克（x = 20）。点“两边都 ×2”：左边 2 个木块、右边 2 个 20 g 砝码，仍平衡，写成 2x = 20 × 2。再从 3x = 60（点“×3”）出发，点“两边都 ÷ 份数”：两边都平均分成 3 份，只留 1 份，回到 x = 20。最后点“只有左边 ×2”对比。空格里填“=”和数。</p>
+</section>
+
+<!-- 4 ================= 等式的性质（二） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">等式的性质</span><h2>乘、除也可以——但是有一个数不行</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <p class="tip" data-step="1">等式两边同时<b>乘</b>同一个数，得到的结果仍然是等式。</p>
+      <p class="tip" data-step="1">等式两边同时<b>除以</b>同一个数，得到的结果仍然是等式。</p>
+    </div>
+    <div class="jcard" data-step="2"><p>等式两边可以同时除以 0 吗？</p>
+      <div class="pick" data-ans="n"><button type="button" data-k="y">可以</button><button type="button" data-k="n">不可以</button><p class="pick-why"><b>0 不能作除数。</b>（同时乘 0 虽然还是等式，例如 $3x\times0=60\times0$，但得到 $0=0$，$x$ 就不见了，对解方程没有用。）</p></div></div>
+    <div class="def" data-step="3"><h4>等式的性质</h4>等式两边同时<b>乘或除以同一个不是 0 的数</b>，所得结果仍然是等式。</div>
+    <div class="cols2" data-step="4">
+      <div class="calc"><h4>试一试</h4><p>$x\div6=18$</p><p>$x\div6$<span class="hl">$\times6$</span>$=18$ <span class="blank circ" data-ans="×|x|*|X" data-w="1"></span> <span class="blank sqb" data-ans="6"></span>　$x=$ <span class="blank" data-ans="108"></span></p></div>
+      <div class="calc"><h4>试一试</h4><p>$0.7x=3.5$</p><p>$0.7x$<span class="hl">$\div0.7$</span>$=3.5$ <span class="blank circ" data-ans="÷|/" data-w="1"></span> <span class="blank sqb" data-ans="0.7"></span>　$x=$ <span class="blank" data-ans="5"></span></p></div>
+    </div>
+  </div>
+  <p class="note">课本 p4 下半页和 p5 试一试。“可以同时除以 0 吗”是课本小精灵的问题，让学生联系“0 不能作除数”。圆圈里乘号可以输入 ×、x 或 *，除号输入 ÷ 或 /。</p>
+</section>
+
+<!-- 5 ================= 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6</span><h2>求试验田的宽</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <svg id="field" class="field" viewBox="0 0 520 360" aria-label="长 40 米的长方形试验田，宽 x 米"></svg>
+      <div class="slider-row" data-noswipe><span>试一试 宽 =</span><input type="range" id="fieldW" min="10" max="30" step="1" value="16"><b id="fieldWv">16</b><span>米</span></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">你打算怎样做？　<span class="think" data-step="2" data-ask="说一说">长方形的面积 ÷ 长 = 宽，用 $960\div40$；或者“长 × 宽 = 长方形的面积”，可以列方程解答。</span></p>
+      <p class="tip" data-step="3">解：设试验田的宽是 $x$ 米。</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span></span><span>$40x=960$</span><i class="why">长 × 宽 = 面积</i></div>
+        <div class="dl" data-step="4"><span></span><span>$40x\div40=960\div40$</span><i class="why">两边都除以 40，左边只剩 $x$</i></div>
+        <div class="dl key" data-step="5"><span></span><span>$x=$ <span class="blank" data-ans="24"></span></span><i class="why">$960\div40=24$</i></div>
+      </div>
+      <p class="tip" data-step="6">检验：$40\times24=960$ ✓　<b>答：</b>试验田的宽是 24 米。</p>
+    </div>
+  </div>
+  <p class="note">课本 p5 例 6。左图长方形按比例画（每米同样长）。拖动滑块试宽：面积 = 40 × 宽，只有宽 24 米时面积正好是 960 平方米。方程两边为什么都要除以 40？——40x 表示 40 个 x，除以 40 正好剩 1 个 x。</p>
+</section>
+
+<!-- 6 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>解方程 x ÷ 0.2 = 0.8</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <div class="sol big-sol">
+        <p class="r">$x\div0.2=0.8$</p>
+        <p>解：$x\div0.2$ <span class="blank circ" data-ans="×|x|*|X" data-w="1"></span> <span class="blank" data-ans="0.2"></span> $=0.8$ <span class="blank circ" data-ans="×|x|*|X" data-w="1"></span> <span class="blank" data-ans="0.2"></span></p>
+        <p class="r">$x=$ <span class="blank" data-ans="0.16" data-w="4"></span></p>
+      </div>
+      <div class="hint-ladder">
+        <details><summary>提示 1</summary>$x$ 被除以了 0.2，两边同时怎样，左边才只剩 $x$？</details>
+        <details><summary>提示 2</summary>$0.8\times0.2=0.16$</details>
+        <details><summary>完整解答</summary>解：$x\div0.2\times0.2=0.8\times0.2$，$x=0.16$。检验：$0.16\div0.2=0.8$ ✓</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="warn" data-step="1">常见错误：$x=0.8\div0.2=4$。$x$ 是被<b>除以</b>了 0.2，要两边同时<b>乘</b> 0.2，不是除以！</p>
+      <p class="tip" data-step="2">检验一下：把 $x=4$ 代入，$4\div0.2=$ <span class="think" data-step="3" data-ask="算一算">$20$，不等于 0.8，所以 $x=4$ <b>不是</b>方程的解。</span></p>
+      <p class="method" data-step="4" data-label="检验的好处">解完方程代入原方程算一算，算错了马上就能发现。</p>
+    </div>
+  </div>
+  <p class="note">课本 p5 练一练。这题最常见的错误就是把“两边同时乘 0.2”做成“除以 0.2”。用检验来发现错误，比老师直接指出更有说服力。</p>
+</section>
+
+<!-- 7 ================= 选运算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习一 · 4、6</span><h2>两边同时做什么运算？再写出 x 的值</h2></div>
+  <div class="bd full top">
+    <div class="ops8" id="ops8"></div>
+    <p class="method" data-step="1" data-label="怎样选">看 $x$ 被怎样“处理”了，两边就做<b>相反</b>的运算：加了几就减几，减了几就加几，乘了几就除以几，除以几就乘几。</p>
+  </div>
+  <p class="note">课本 p6 练习一第 4、6 题（共 8 个方程，按课本顺序）。先点两边同时做的运算（点对显示理由），再在空格里填 x 的值，回车判对错。x + 3.5 = 3.5 的解是 0，学生容易犹豫。</p>
+</section>
+
+<!-- 8 ================= 看图列方程 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习一 · 1、2</span><h2>看图列方程，再求出 x</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard"><svg id="seg1" class="seg" viewBox="0 0 440 104" aria-label="x 和 22 合起来是 84"></svg>
+        <p>方程：<span class="think" data-ask="先说再看">$x+22=84$</span>　$x=$ <span class="blank" data-ans="62"></span></p></div>
+      <div class="jcard"><svg id="seg2" class="seg" viewBox="0 0 440 104" aria-label="3 个 x 合起来是 96"></svg>
+        <p>方程：<span class="think" data-ask="先说再看">$3x=96$</span>　$x=$ <span class="blank" data-ans="32"></span></p></div>
+    </div>
+    <div class="cols3">
+      <div class="jcard"><p>电视机原价 $x$ 元，优惠 112 元，现价 988 元。</p>
+        <p>方程：<span class="think" data-ask="先说再看">$x-112=988$</span><br>$x=$ <span class="blank" data-ans="1100" data-w="4"></span></p></div>
+      <div class="jcard"><p>3 杯果汁每杯 $x$ 毫升，一共 480 毫升。</p>
+        <p>方程：<span class="think" data-ask="先说再看">$3x=480$</span><br>$x=$ <span class="blank" data-ans="160"></span></p></div>
+      <div class="jcard"><p>小树 $x$ 米，大树 7.3 米，大树比小树高 6.4 米。</p>
+        <p>方程：<span class="think" data-ask="先说再看">$x+6.4=7.3$</span><br>$x=$ <span class="blank" data-ans="0.9"></span></p></div>
+    </div>
+  </div>
+  <p class="note">课本 p6 练习一第 1、2 题。线段图按比例画（84 和 96 的总长用同一比例）。先让学生说出方程再点开；第 2 题小树还可以列 7.3 − x = 6.4，同样得 0.9。</p>
+</section>
+
+<!-- 9 ================= 图形与口答 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习一 · 7、10、13</span><h2>用学过的公式找相等关系</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard"><svg class="shp" viewBox="0 0 260 150" id="shpP" aria-label="平行四边形，面积 450 平方米，底 18 米，高 x 米"></svg>
+        <p>方程：<span class="think" data-ask="先说再看">$18x=450$</span>　$x=$ <span class="blank" data-ans="25"></span></p></div>
+      <div class="jcard"><svg class="shp" viewBox="0 0 260 150" id="shpR" aria-label="长方形面积 5.6 平方米，宽 1.6 米，长 x 米"></svg>
+        <p>方程：<span class="think" data-ask="先说再看">$1.6x=5.6$</span>　$x=$ <span class="blank" data-ans="3.5"></span></p></div>
+      <div class="jcard"><svg class="shp" viewBox="0 0 260 150" id="shpS" aria-label="正方形周长 10 米，边长 x 米"></svg>
+        <p>方程：<span class="think" data-ask="先说再看">$4x=10$</span>　$x=$ <span class="blank" data-ans="2.5"></span></p></div>
+    </div>
+    <div class="cols2">
+      <div class="jcard"><svg id="balN" class="bal-n" aria-label="左盘 1 本练习本和 3 支铅笔，右盘 8 支铅笔"></svg></div>
+      <div class="jcard"><p><b>13.</b> 吴伟兵买了 1 本练习本和 3 支铅笔，张欣兰买了 8 支同样的铅笔，两人用去的钱同样多。一本练习本的价钱等于多少支铅笔的价钱？</p>
+        <p>等于 <span class="blank" data-ans="5"></span> 支铅笔的价钱。<button type="button" class="btn" id="takePen" data-noswipe>两边各去掉 3 支铅笔</button></p></div>
+    </div>
+  </div>
+  <p class="note">课本 p6 第 7 题（平行四边形：底 18 m，高 x m），p7 第 10、13 题。第 13 题用天平表示“钱同样多”：两边都去掉 3 支铅笔，就是等式的性质（一）。图形按题中数据比例画。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>等式的性质，合起来说</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>等式的性质</h4>等式两边同时<b>加上或减去同一个数</b>，所得结果仍然是等式；等式两边同时<b>乘或除以同一个不是 0 的数</b>，所得结果仍然是等式。</div>
+    <table class="mtab op-tab" data-step="2">
+      <tr><th>方程的样子</th><td>$x+a=b$</td><td>$x-a=b$</td><td>$ax=b$</td><td>$x\div a=b$</td></tr>
+      <tr><th>两边同时</th><td>减去 $a$</td><td>加上 $a$</td><td>除以 $a$</td><td>乘 $a$</td></tr>
+    </table>
+    <p class="method" data-step="3" data-label="解方程的目标">让方程的一边只剩下 $x$；写“解：”，等号对齐，记得检验。</p>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p8 例 7——小红今年 36 千克，比去年增加了 2.5 千克。怎样<b>列方程</b>解决实际问题？</p>
+  </div>
+  <p class="note">表格中的 a 都不是 0。请学生说一说“为什么不能除以 0”。课后作业建议：练习一第 8、9、11、12 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mbalance.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

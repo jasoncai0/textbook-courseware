@@ -161,11 +161,12 @@ const MCube = (() => {
     return () => { alive = false; };
   }
 
-  /** 折叠演示器：MCube.foldView(el, { net: () => ({ polys, root, color(i), label(i) }), slider, w, h, scale, yaw, pitch, onChange })
+  /** 折叠演示器：MCube.foldView(el, { net: () => ({ polys, root, color(i), label(i) }), slider, w, h, scale, scaleFolded, yaw, pitch, onChange })
+   *  scale 是摊平时的比例，scaleFolded 是折好时的比例（折叠过程中平滑过渡，折好的盒子不会显得太小）
    *  平铺时画出折痕（虚线）；api.play(to) 动画折叠 / 展开；api.st.check 为折完后的检查结果 */
   function foldView(el, o = {}) {
     const st = { t: o.t ?? 0, faces: [], check: null, center: [0, 0, 0], polys: [] };
-    const v = Poly3D.view(el, { w: o.w || 560, h: o.h || 420, scale: o.scale || 60, yaw: o.yaw ?? -24, pitch: o.pitch ?? 18, center: () => st.center });
+    const v = Poly3D.view(el, { w: o.w || 560, h: o.h || 420, scale: () => { const s0 = o.scale || 60; return s0 + ((o.scaleFolded || s0) - s0) * st.t; }, yaw: o.yaw ?? -24, pitch: o.pitch ?? 18, center: () => st.center });
     let cur = null;
     const recompute = () => {
       cur = o.net();

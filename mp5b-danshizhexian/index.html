@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>单式折线统计图 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mzhexian.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shengao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第二单元 折线统计图 · 单式折线统计图</p>
+    <h1 class="cover-title">单式折线统计图</h1>
+    <p class="cover-q" data-step="1">张小楠把自己 6～12 岁<b>每年生日</b>测得的身高记了下来。</p>
+    <p class="cover-q" data-step="2">她的身高是怎样变化的？哪一年长得<b>最快</b>？13 岁时大约多高？——换一种统计图，一眼就能看出来！</p>
+    <div class="chips" data-step="3"><span class="chip">描点</span><span class="chip">连线</span><span class="chip">看变化</span><span class="chip">做预测</span></div>
+  </div>
+  <p class="note">课本 p21 例 1 的情境。先问学生：你记得自己每年长高了多少吗？用什么办法能看清身高的变化？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们学过的统计表和统计图</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="四上 · 统计表和条形统计图（一）" data-step="1">
+        <p><b>统计表</b>：把数据整理在表格里，每个数是多少一清二楚。</p>
+        <span class="use">例 1 先看统计表。</span>
+      </div>
+      <div class="recall" data-label="五上 · 条形统计图" data-step="2">
+        <svg viewBox="0 0 220 90" class="mini" aria-label="条形统计图示意"><path d="M20 10V80H210" class="ax"/><rect x="40" y="50" width="22" height="30" class="bar"/><rect x="85" y="30" width="22" height="50" class="bar"/><rect x="130" y="40" width="22" height="40" class="bar"/><rect x="175" y="20" width="22" height="60" class="bar"/></svg>
+        <p>用直条的<b>长短</b>表示数量的多少，便于比较。</p>
+        <span class="use">和今天的折线统计图对比。</span>
+      </div>
+      <div class="recall" data-label="统计图 · 一格表示多少" data-step="3">
+        <p>先看纵轴上<b>一格表示多少</b>，再描点、读数。</p>
+        <p>数据都比较大时，纵轴下面可以画<b>折断号</b>“≈”，省去 0 到 110 这一段。</p>
+        <span class="use">读、画例 1 的统计图。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>怎样才能更清楚地看出一个数量<b>变化</b>的情况？</p>
+  </div>
+  <p class="note">第 3 张卡里的折断号在后面第 5 页还会专门比较。请学生回忆：画条形统计图时，一格表示多少是怎样确定的？</p>
+</section>
+
+<!-- 3 ================= 例 1 表与条形图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>张小楠 6～12 岁身高情况</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <p class="cap">张小楠 6～12 岁身高情况统计表　<small>2012 年 6 月</small></p>
+      <table class="mtab ht">
+        <tr><th>年　龄</th><td>6 岁</td><td>7 岁</td><td>8 岁</td><td>9 岁</td><td>10 岁</td><td>11 岁</td><td>12 岁</td></tr>
+        <tr><th>身高/cm</th><td>116</td><td>118</td><td>121</td><td>126</td><td>132</td><td>141</td><td>144</td></tr>
+      </table>
+      <svg id="barChart" aria-label="同样数据的条形统计图"></svg>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">从统计表里，能一眼看出身高是怎样<b>变化</b>的吗？　<span class="think" data-step="2" data-ask="说一说">要一个一个数去比，不太容易看出来。</span></p>
+      <p class="tip" data-step="3">画成条形统计图呢？　<span class="think" data-step="4" data-ask="看一看">能看出每年有多高，直条越来越长；可是每年长了<b>多少</b>、哪年长得快，还是不够清楚。</span></p>
+      <p class="tip gold" data-step="5">想一想：如果只在每个直条的<b>顶端</b>点一个点，再把这些点<b>连起来</b>，会怎样？</p>
+    </div>
+  </div>
+  <p class="note">课本 p21 例 1 的统计表。左下条形统计图是用同样数据画的（课本没有，用来过渡），纵轴同样从 110 开始、下端有折断号。最后一个问题引出“描点、连线”。</p>
+</section>
+
+<!-- 4 ================= 核心：描点连线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手画</span><h2>根据统计表描点，再连线</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <svg id="drawChart" aria-label="空白折线统计图，可以点击描点"></svg>
+    </div>
+    <div class="col">
+      <table class="mtab ht sm">
+        <tr><th>年龄</th><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        <tr><th>cm</th><td>116</td><td>118</td><td>121</td><td>126</td><td>132</td><td>141</td><td>144</td></tr>
+      </table>
+      <p class="tip">在每个年龄的竖线上<b>点一下</b>（可以上下拖），把身高的点描出来。纵轴每一小格表示 <b>1 cm</b>。</p>
+      <p class="tip feedback" id="drawMsg"></p>
+      <div class="btns center" data-noswipe><button type="button" class="btn" id="drawClear">清空</button><button type="button" class="btn" id="drawShow">看正确答案</button></div>
+      <p class="method" data-step="1" data-label="画折线统计图">① 根据数据<b>描点</b>；② 在点的旁边<b>注明数据</b>；③ 按顺序把各点用线段<b>连起来</b>。</p>
+    </div>
+  </div>
+  <p class="note">本课核心活动。请学生上来描点：点在某个年龄的竖线附近，点会落在最近的整厘米上（纵轴主格 5 cm、细格 1 cm）。描对的点绿色描边，描错的红色描边。相邻两个点都描好了才自动连线。描完再说一说画折线统计图的步骤。</p>
+</section>
+
+<!-- 5 ================= 认识折线统计图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">认识</span><h2>折线统计图：点表示多少，线表示变化</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <p class="cap">张小楠 6～12 岁身高情况统计图　<small>2012 年 6 月</small></p>
+      <svg id="fullChart" aria-label="张小楠身高折线统计图"></svg>
+      <div class="btns center" data-noswipe><button type="button" class="btn solid" id="brkOn">有折断号（从 110 起）</button><button type="button" class="btn" id="brkOff">没有折断号（从 0 起）</button></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">图上的<b>点</b>表示什么？　<span class="think" data-step="2" data-ask="想一想">每个点表示那一年的身高是<b>多少</b>。</span></p>
+      <p class="tip" data-step="3">点和点之间的<b>线段</b>呢？　<span class="think" data-step="4" data-ask="想一想">线段往上斜，表示身高在<b>增加</b>；越陡，增加得越<b>快</b>。</span></p>
+      <p class="tip" data-step="5">点两个按钮比一比：为什么纵轴要用折断号？　<span class="think" data-step="6" data-ask="比一比">数据都在 110 以上，从 0 画起，折线挤在上面，起伏看不清；用折断号省去 0～110，变化就<b>放大</b>了。</span></p>
+      <div class="def" data-step="7"><h4>折线统计图</h4>用点表示数量的多少，用线段把各点按顺序连起来，既能看出数量的<b>多少</b>，又能清楚地看出数量<b>增减变化</b>的情况。</div>
+    </div>
+  </div>
+  <p class="note">课本 p21 的折线统计图按课本数据和刻度画（纵轴 110～145，每大格 5 cm，下端折断号）。“没有折断号”的图是为了对比专门画的，纵轴从 0 到 150。定义是根据课本“想一想”概括的说法。</p>
+</section>
+
+<!-- 6 ================= 问题 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">看图讨论</span><h2>从几岁到几岁，身高增长得最快？</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <svg id="segChart" aria-label="点击线段显示增长了多少厘米"></svg>
+      <p class="tip center small-t">点一点每一条线段，看看这一年长高了多少。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>(1)</b> 随着年龄的增长，张小楠的身高是怎样变化的？从 6 岁到 12 岁，她一共长高了 <span class="blank" data-ans="28"></span> 厘米。</p>
+      <p class="tip"><b>(2)</b> 从几岁到几岁增长得最快？</p>
+      <div class="pick" data-ans="c"><button type="button" data-k="a">9～10 岁</button><button type="button" data-k="c">10～11 岁</button><button type="button" data-k="d">11～12 岁</button>
+        <p class="pick-why">10～11 岁这条线段<b>最陡</b>，长高了 $141-132=9$（厘米），是增长最多的一年。</p></div>
+      <p class="method" data-step="1" data-label="怎样看出来">不用一个一个去算：线段越<b>陡</b>，增长得越<b>快</b>；线段越平缓，增长得越慢。</p>
+    </div>
+  </div>
+  <p class="note">课本 p21 问题 (1)(2)。先让学生凭眼睛判断“最陡的一段”，再点线段验证（显示的增长量由数据算出：2、3、5、6、9、3 cm）。144 − 116 = 28。</p>
+</section>
+
+<!-- 7 ================= 问题 3 预测 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">估一估</span><h2>张小楠 13 岁生日时的身高大约是多少厘米？</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <svg id="predChart" aria-label="在 13 岁的竖线上拖动估计身高"></svg>
+    </div>
+    <div class="col">
+      <p class="tip">在 13 岁的竖线上点一下（可以拖），估一估。</p>
+      <p class="tip feedback" id="predMsg"></p>
+      <p class="tip" data-step="1">你是怎样估计的？　<span class="think" data-step="2" data-ask="说一说">看最后一段的走势：11～12 岁长了 3 cm，估计 13 岁也再长几厘米，大约 <b>146～150 cm</b> 比较合理。</span></p>
+      <p class="warn" data-step="3">估计只是<b>大约</b>，不一定准确；而且身高不会一直这样长下去，不能用这张图估计 30 岁的身高！</p>
+    </div>
+  </div>
+  <p class="note">课本 p21 问题 (3)，答案不唯一。估计 145～150 cm 都算合理（虚线段表示“估计”，不是测量的数据）。引导学生说出依据：根据前面几年的变化趋势。</p>
+</section>
+
+<!-- 8 ================= 想一想 + 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>你上小学后身高是怎样变化的？</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <p class="cap"><span class="uline"></span>一～五年级身高情况统计图</p>
+      <svg id="myChart" aria-label="我的身高折线统计图"></svg>
+    </div>
+    <div class="col">
+      <p class="tip small-t">填上你每年体检的身高（厘米），统计图马上画出来：</p>
+      <div class="my-in" data-noswipe>
+        <label>一<input type="number" data-i="0" value="120"></label><label>二<input type="number" data-i="1" value="126"></label><label>三<input type="number" data-i="2" value="131"></label><label>四<input type="number" data-i="3" value="137"></label><label>五<input type="number" data-i="4" value="143"></label>
+      </div>
+      <p class="tip feedback" id="myMsg"></p>
+      <p class="tip" data-step="1"><b>想一想：</b>折线统计图和统计表相比，哪个能更清楚地看出身高的变化情况？　<span class="think" data-step="2" data-ask="说一说">折线统计图。统计表能看出每个数据是多少，折线统计图还能看出变化的<b>趋势</b>和<b>快慢</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p22 想一想和练一练。默认数据只是示例，请学生课前收集自己的体检数据，现场输入。纵轴与课本一样从 100 到 170（每格 10 cm，下端折断号）。讨论：全班同学谁长得最快？长得最快的时间大多在几年级到几年级？</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>折线统计图告诉我们什么？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>统计表</b><small>每个数据是多少</small></div>
+      <i>描点、标数、连线</i>
+      <div class="fbox hot"><b>折线统计图</b><small>点：多少　线：增减变化</small></div>
+      <i>看走势</i>
+      <div class="fbox"><b>分析、预测</b><small>哪段最快？以后大约多少？</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="看图" data-step="2">线段上升表示增加，下降表示减少；越陡变化越快。数据都较大时，纵轴可以用折断号。</p>
+      <p class="method" data-label="条形图 vs 折线图" data-step="3">比较各项<b>多少</b>，用条形统计图；看一个量随时间的<b>变化</b>，用折线统计图。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p23 例 2——不锈钢保温杯和陶瓷保温杯，哪个保温性能好？把<b>两条</b>折线画在一张图上比一比。</p>
+  </div>
+  <p class="note">课后作业建议：练习四第 1 题（某病人体温变化统计图）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mzhexian.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

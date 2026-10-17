@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>等式与方程 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mbalance.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tianping.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第一单元 简易方程 · 等式与方程</p>
+    <h1 class="cover-title">等式与方程</h1>
+    <p class="cover-q" data-step="1">天平的两个托盘<b>一样高</b>，说明了什么？</p>
+    <p class="cover-q" data-step="2">一边放着一块不知道多重的木块，我们能不能用一个<b>式子</b>把天平的样子“写”下来？</p>
+    <div class="chips" data-step="3"><span class="chip">看天平</span><span class="chip">写式子</span><span class="chip">等式</span><span class="chip">方程</span></div>
+  </div>
+  <p class="note">课本 p1 单元导入。先请学生说说天平怎么用：两边一样重时横梁平衡（指针指在正中间），哪边重哪边就往下沉。今天就用天平来认识两个新朋友——等式和方程。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>学方程之前，先想想这三件事</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="一年级起 · 比大小" data-step="1">
+        <p class="big center">$7+2\ =\ 9$<br>$7+2\ >\ 8$　$7+2\ <\ 10$</p>
+        <p>两边一样大用“$=$”，不一样大用“$>$”或“$<$”。</p>
+        <span class="use">看天平，判断两边是“$=$”还是“$>$”“$<$”。</span>
+      </div>
+      <div class="recall" data-label="五上 · 用字母表示数" data-step="2">
+        <p>不知道是多少的数，可以用<b>字母</b>表示，如 $x$。</p>
+        <p class="big center">$x+50$　　$2x$</p>
+        <p>$2x$ 就是 $2\times x$，乘号可以省略。</p>
+        <span class="use">木块的质量不知道，写成 $x$ 克。</span>
+      </div>
+      <div class="recall" data-label="三上 · 千克和克" data-step="3">
+        <svg class="mini-bal" id="recallBal" aria-label="平衡的天平"></svg>
+        <p>天平<b>平衡</b>：两边物体的质量<b>相等</b>。</p>
+        <span class="use">用天平平衡表示“相等”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>怎样用式子表示天平两边的关系？哪些式子叫<b>等式</b>，哪些叫<b>方程</b>？</p>
+  </div>
+  <p class="note">第 2 张卡的“用字母表示数”是五上第八单元学的，请学生举例说说 2x 是什么意思（2 个 x 相加，也就是 2×x）。第 3 张卡的天平是代码画的，两边各放一个 50 g 砝码。</p>
+</section>
+
+<!-- 3 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>你能看图写出一个等式吗？</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <svg id="bal1" aria-label="左盘一个 50 克的鸡蛋和一个 50 g 砝码，右盘一个 100 g 砝码，天平平衡"></svg>
+      <p class="tip center small-t">左边：50 克的鸡蛋和 50 g 砝码　右边：100 g 砝码</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">天平怎么样？说明了什么？　<span class="think" data-step="2" data-ask="说一说">天平<b>平衡</b>，左右两边物体的质量<b>相等</b>。</span></p>
+      <p class="tip big center" data-step="3"><span class="blank" data-ans="50+50" data-w="5" data-label="左边"></span> $=$ <span class="blank" data-ans="100" data-label="右边"></span></p>
+      <div class="def" data-step="4"><h4>等式</h4>像 $50+50=100$ 这样，用等号“$=$”连接，表示<b>左右两边相等</b>的式子，叫作等式。</div>
+      <p class="tip" data-step="5">左边的“$50+50$”就像天平的<b>左盘</b>，右边的“$100$”就像<b>右盘</b>，等号就像平平的<b>横梁</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p1 例 1。先让学生说出左右两边各是多少克，再在空格里填式子（回车判对错）。“等式”在课本里没有单独加粗定义，这里用学生的话概括：用等号连接、左右相等。把等号比作天平的横梁，为后面学“等式的性质”铺路。</p>
+</section>
+
+<!-- 4 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>用式子表示天平两边物体质量的大小关系</h2></div>
+  <div class="bd full top">
+    <div class="cols2 bal4">
+      <div class="jcard">
+        <svg class="bal-s" id="bal2a" aria-label="左：x 克木块和 50 g；右：100 g；左边重"></svg>
+        <p class="center">$x+50$ <span class="pick sym" data-ans="gt"><button type="button" data-k="gt">＞</button><button type="button" data-k="eq">＝</button><button type="button" data-k="lt">＜</button></span> $100$</p>
+      </div>
+      <div class="jcard">
+        <svg class="bal-s" id="bal2b" aria-label="左：x 克木块和 50 g；右：100 g 和 50 g；平衡"></svg>
+        <p class="center"><span class="blank" data-ans="x+50|50+x" data-w="5"></span> <span class="pick sym" data-ans="eq"><button type="button" data-k="gt">＞</button><button type="button" data-k="eq">＝</button><button type="button" data-k="lt">＜</button></span> $150$</p>
+      </div>
+      <div class="jcard">
+        <svg class="bal-s" id="bal2c" aria-label="左：x 克木块和 50 g；右：200 g；右边重"></svg>
+        <p class="center"><span class="blank" data-ans="x+50|50+x" data-w="5"></span> <span class="pick sym" data-ans="lt"><button type="button" data-k="gt">＞</button><button type="button" data-k="eq">＝</button><button type="button" data-k="lt">＜</button></span> <span class="blank" data-ans="200"></span></p>
+      </div>
+      <div class="jcard">
+        <svg class="bal-s" id="bal2d" aria-label="左：两个 x 克木块；右：200 g；平衡"></svg>
+        <p class="center"><span class="blank" data-ans="2x|2×x|x+x|2*x" data-w="4"></span> <span class="pick sym" data-ans="eq"><button type="button" data-k="gt">＞</button><button type="button" data-k="eq">＝</button><button type="button" data-k="lt">＜</button></span> <span class="blank" data-ans="200"></span></p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="1">这些式子中，哪些是等式？　<span class="think" data-step="2" data-ask="找一找">$x+50=150$ 和 $2x=200$ 是等式（天平平衡）；另外两个用“$>$”“$<$”连接，<b>不是等式</b>。</span></p>
+  </div>
+  <p class="note">课本 p1 例 2。四架天平按课本的图用代码画出：哪边重，哪边的托盘就往下沉。先看天平点选符号（点对了按钮变绿），再填式子。2 个 x 克的木块写成 2x（也可以写 x+x）。最后问“哪些是等式”，引出方程。</p>
+</section>
+
+<!-- 5 ================= 核心互动：神秘木块 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手称一称</span><h2>神秘木块有多重？让天平告诉你</h2></div>
+  <div class="bd wl">
+    <div class="col">
+      <svg id="balX" aria-label="左盘神秘木块，右盘是你放的砝码"></svg>
+      <div class="wbtns" data-noswipe>
+        <span>右盘放：</span>
+        <button type="button" class="btn" data-g="10">10 g</button><button type="button" class="btn" data-g="20">20 g</button><button type="button" class="btn" data-g="50">50 g</button><button type="button" class="btn" data-g="100">100 g</button>
+        <button type="button" class="btn" id="xUndo">拿走一个</button><button type="button" class="btn" id="xNew">换一块木块</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip big center" id="xExpr"></p>
+      <p class="tip feedback" id="xMsg"></p>
+      <div class="found"><h4>写过的式子</h4><p id="xLog" class="muted">还没有，先放砝码试一试！</p></div>
+      <p class="tip" data-step="1">同一块木块，写出的式子都一样吗？哪一个最特别？　<span class="think" data-step="2" data-ask="说一说">只有天平<b>平衡</b>时写出的才是<b>等式</b>，而且里面有不知道的 $x$——它有一个新名字。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心活动。木块的质量藏在代码里（10 的倍数），学生轮流上来放砝码：太轻、太重时写出的是用“＞”“＜”连接的式子，平衡时写出“x = …”的等式。可以让学生先猜木块大约多重再放。“写过的式子”会把每次的式子按“不是等式 / 等式”记下来，最后引出：含有未知数的等式叫方程。</p>
+</section>
+
+<!-- 6 ================= 方程的意义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方程</span><h2>什么样的式子叫方程？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>方程</h4>像 $x+50=150$、$2x=200$ 这样<b>含有未知数的等式</b>是方程。</div>
+      <p class="tip" data-step="2">判断是不是方程，要看两点：　<span class="think" data-step="3" data-ask="是哪两点？">① 是不是<b>等式</b>；② 有没有<b>未知数</b>。两点都满足，才是方程。</span></p>
+      <p class="tip" data-step="4">例 1 中的等式 $50+50=100$ 是方程吗？　<span class="think" data-step="5" data-ask="想一想">不是。它是等式，但<b>没有未知数</b>。</span></p>
+      <p class="tip gold" data-step="6">等式和方程有什么关系？　<span class="think" data-step="7" data-ask="看右图说一说">方程<b>都是</b>等式；等式<b>不一定</b>是方程。</span></p>
+    </div>
+    <div class="col">
+      <svg id="venn" class="venn" viewBox="0 0 520 330" aria-label="等式和方程的关系图：方程在等式里面">
+        <ellipse cx="260" cy="170" rx="250" ry="150" class="v-out"/>
+        <ellipse cx="260" cy="205" rx="140" ry="80" class="v-in"/>
+        <text x="260" y="62" class="v-lb">等　式</text>
+        <text x="260" y="160" class="v-lb in">方　程</text>
+        <g class="v-items" data-step="6">
+          <text x="260" y="104" class="v-it">50 + 50 = 100</text>
+          <text x="260" y="203" class="v-it m">x + 50 = 150</text>
+          <text x="260" y="243" class="v-it m">2x = 200</text>
+        </g>
+      </svg>
+      <p class="tip center small-t" data-step="6">$x+50>100$、$x+50<200$ 不是等式，放在大圈外面。</p>
+    </div>
+  </div>
+  <p class="note">课本 p1 方程的意义和关系图。定义里两个关键词“含有未知数”“等式”请学生圈出来。关系图：大圈是所有的等式，小圈是方程，方程在等式里面。再追问“x+50>100 放在哪里”，它不是等式，放在两个圈外面。</p>
+</section>
+
+<!-- 7 ================= 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 1</span><h2>下面的式子哪些是等式？哪些是方程？</h2></div>
+  <div class="bd full top">
+    <p class="tip small-t">每个式子点一个答案：<b>方程</b>（含有未知数的等式）／<b>等式，不是方程</b>／<b>不是等式</b>。</p>
+    <div class="sort8" id="sort8"></div>
+    <p class="method" data-step="1" data-label="判断方法">先看有没有“$=$”（是不是等式），再看有没有未知数（是不是方程）。$8+x$ 有未知数，但<b>没有等号</b>，不是方程。</p>
+  </div>
+  <p class="note">课本 p2 练一练第 1 题，8 个式子按课本顺序排列。点对了按钮变绿并显示理由，点错了可以再选。容易错的是“8+x”（有未知数但不是等式）和“x+4&lt;14”（有未知数但用“&lt;”连接）。</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法对吗？先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard"><p><b>1.</b> 方程都是等式。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">方程是“含有未知数的<b>等式</b>”，所以方程一定是等式。</p></div></div>
+      <div class="jcard"><p><b>2.</b> 等式都是方程。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">$36-7=29$ 是等式，但没有未知数，<b>不是方程</b>。</p></div></div>
+      <div class="jcard"><p><b>3.</b> 含有未知数的式子就是方程。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">$8+x$、$x+4<14$ 都含有未知数，可它们<b>不是等式</b>，所以不是方程。</p></div></div>
+      <div class="jcard"><p><b>4.</b> $x=5$ 是方程。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">$x=5$ 是等式，又含有未知数 $x$，是方程（最简单的方程）。</p></div></div>
+    </div>
+    <p class="warn" data-step="1">方程必须<b>同时</b>满足两个条件：是等式、含有未知数。缺一不可！</p>
+  </div>
+  <p class="note">课本 p1 小精灵的问题“等式与方程有什么关系”的巩固。可以让学生举手表决再点。第 4 题学生可能犹豫，告诉他们：后面解方程的最后一步就会写成“x = …”的样子。</p>
+</section>
+
+<!-- 9 ================= 练一练 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 2</span><h2>把图形表示的未知数改写成字母</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard center"><p class="big">$3+$<span class="shape tri">▲</span>$=10$</p><p>改写成：<span class="blank" data-ans="3+x=10" data-w="6"></span></p></div>
+      <div class="jcard center"><p class="big"><span class="shape sq">■</span>$\times6=48$</p><p>改写成：<span class="blank" data-ans="x×6=48|6x=48|x*6=48|6×x=48" data-w="6"></span></p></div>
+      <div class="jcard center"><p class="big">$240\div$<span class="shape ci">●</span>$=8$</p><p>改写成：<span class="blank" data-ans="240÷x=8|240/x=8" data-w="7"></span></p></div>
+    </div>
+    <p class="tip" data-step="1">改写后的三个式子都是方程吗？为什么？　<span class="think" data-step="2" data-ask="想一想">都是。它们都是等式，又都含有未知数 $x$。</span></p>
+    <div class="cols2" data-step="3">
+      <div class="jcard"><svg class="bal-s" id="bal9a" aria-label="左：3 个 x 克木块；右：100 g、50 g、20 g、10 g；平衡"></svg>
+        <p class="center">看天平写方程：<span class="blank" data-ans="3x=180|x+x+x=180|3×x=180" data-w="6"></span></p></div>
+      <div class="jcard"><svg class="bal-s" id="bal9b" aria-label="左：x 克木块和 20 g；右：100 g；平衡"></svg>
+        <p class="center">看天平写方程：<span class="blank" data-ans="x+20=100|20+x=100" data-w="6"></span></p></div>
+    </div>
+  </div>
+  <p class="note">上面三题是课本 p2 练一练第 2 题（▲、■、● 都改写成 x）。下面两架天平是补充题：输入时乘号可以用“×”或省略写成 3x，等号前后不要加空格也可以。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>今天认识了哪两个新朋友？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>天平平衡</b><small>两边质量相等</small></div>
+      <i>用式子写下来</i>
+      <div class="fbox"><b>等式</b><small>用“=”连接，左右相等</small></div>
+      <i>含有未知数</i>
+      <div class="fbox hot"><b>方程</b><small>如 $x+50=150$</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="关系" data-step="2">方程都是等式，等式不一定是方程。判断方程：① 是等式；② 含有未知数。</p>
+      <p class="method" data-label="想一想" data-step="3">天平平衡 ⇔ 等式成立。如果在天平两边<b>同时</b>加上或拿走同样重的砝码，天平还会平衡吗？</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p2 例 3——怎样在天平两边增加砝码，使天平仍然保持平衡？由此发现<b>等式的性质</b>，学会求方程里的 $x$。</p>
+  </div>
+  <p class="note">请学生用自己的话说出等式和方程的区别与联系。课后作业建议：课本 p2 练一练全部完成。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mbalance.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

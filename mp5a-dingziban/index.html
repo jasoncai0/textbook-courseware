@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>钉子板上的多边形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/hezuo.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第八单元 用字母表示数 · 钉子板上的多边形</p>
+    <h1 class="cover-title">钉子板上的多边形</h1>
+    <p class="cover-q" data-step="1">在钉子板上用橡皮筋围一个多边形，数一数它<b>边上的钉子</b>有几枚。</p>
+    <p class="cover-q" data-step="2">多边形的<b>面积</b>和<b>边上的钉子数</b>之间，藏着什么规律？能用字母写出来吗？</p>
+    <div class="chips" data-step="3"><span class="chip">围一围</span><span class="chip">数一数</span><span class="chip">找规律</span><span class="chip">$S=n\div2$</span></div>
+  </div>
+  <p class="note">课本 p108–109 综合与实践。本课是一节探索课：先算、先数、填表，再观察比较、提出猜想，最后用含有字母的式子表示规律并验证。小组合作进行。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>探索之前，先备好这些本领</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本册第二单元 · 多边形的面积" data-step="1">
+        <p>三角形 $S=ah\div2$<br>梯形 $S=(a+b)h\div2$<br>平行四边形 $S=ah$</p>
+        <span class="use">算出钉子板上每个多边形的面积。</span>
+      </div>
+      <div class="recall" data-label="本册第二单元 · 割补与数格子" data-step="2">
+        <p>不规则图形可以<b>分割</b>成几个学过的图形，或用大长方形<b>减去</b>多出的部分。</p>
+        <span class="use">图形③ 是 4 个方格去掉半个。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 用字母表示数" data-step="3">
+        <p>用含有字母的式子，可以把规律<b>简明</b>地写出来，如 $3+2a$。</p>
+        <span class="use">用 $n$ 表示边上钉子数，写出 $S$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">钉子板上，相邻两枚钉子相距 <b>1 厘米</b>，所以每个小方格的面积是 <b>1 平方厘米</b>。</p>
+  </div>
+  <p class="note">第 2 张卡：割补法在算图形③（五边形）时用得上。</p>
+</section>
+
+<!-- 3 ================= 认识钉子 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">认一认</span><h2>“边上的钉子”和“图形内的钉子”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="demo" class="nail" viewBox="0 0 300 240" aria-label="一个三角形，标出边上和内部的钉子"></svg>
+      <p class="tip center small-t"><span class="dot o"></span> 边上的钉子　<span class="dot g"></span> 图形内的钉子</p>
+    </div>
+    <div class="col">
+      <p class="tip">橡皮筋<b>碰到</b>的钉子，叫“边上的钉子”：顶点上的、边中间经过的，都算。</p>
+      <p class="tip">被围在<b>里面</b>、没碰到橡皮筋的钉子，叫“图形内的钉子”。</p>
+      <p class="tip" data-step="1">左图这个三角形：边上有 <span class="blank" data-ans="4"></span> 枚钉子，图形内有 <span class="blank" data-ans="1"></span> 枚。</p>
+      <p class="warn" data-step="2" data-label="小心">底边中间那枚钉子也在边上！数的时候按顺序沿着边走一圈，不重复、不遗漏——用上了第七单元的列举本领。</p>
+    </div>
+  </div>
+  <p class="note">左图就是课本的图形①（底 2 厘米、高 2 厘米的三角形）。边上 4 枚：3 个顶点 + 底边中点。</p>
+</section>
+
+<!-- 4 ================= 课本四个图形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数一数 · 算一算</span><h2>面积各是多少？边上的钉子各有多少枚？</h2></div>
+  <div class="bd full top">
+    <svg id="four" class="nail wide" viewBox="0 0 640 220" aria-label="课本的四个多边形" data-noswipe></svg>
+    <p class="tip center small-t">相邻两枚钉子相距 1 cm。点一个图形，边上的钉子会亮起来，帮你数。</p>
+    <table class="mtab">
+      <tr><th>图形编号</th><th>多边形的面积/平方厘米</th><th>多边形边上的钉子数/枚</th></tr>
+      <tr><td>①</td><td><span class="blank" data-ans="2"></span></td><td><span class="blank" data-ans="4"></span></td></tr>
+      <tr><td>②</td><td><span class="blank" data-ans="3"></span></td><td><span class="blank" data-ans="6"></span></td></tr>
+      <tr><td>③</td><td><span class="blank" data-ans="3.5" data-w="3"></span></td><td><span class="blank" data-ans="7"></span></td></tr>
+      <tr><td>④</td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="8"></span></td></tr>
+    </table>
+  </div>
+  <p class="note">课本 p108 的四个图形，钉子位置完全照课本：①三角形（底 2、高 2）；②梯形（上底 1、下底 2、高 2）；③五边形（2 × 2 的正方形切去一个角，面积 4 − 0.5 = 3.5）；④平行四边形（底 2、高 2）。</p>
+</section>
+
+<!-- 5 ================= 发现规律 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">找规律</span><h2>面积和边上的钉子数，有什么关系？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <p class="recall" data-label="小精灵 1" data-step="1">这些多边形，边上的钉子数越多，面积就越大。</p>
+      <p class="recall" data-label="小精灵 2" data-step="2">图形①边上钉子数是 4，面积是 2 平方厘米；图形②……</p>
+      <p class="recall" data-label="小精灵 3" data-step="3">这些多边形面积的平方厘米数是它们边上钉子数的一半。</p>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="4">这些图形还有什么共同特点？　<span class="think" data-step="5" data-ask="看图找一找">图形内都<b>只有 1 枚</b>钉子。</span></p>
+      <div class="def" data-step="6"><h4>用字母表示</h4>当多边形内只有 1 枚钉子时，用 $n$ 表示多边形边上的钉子数，用 $S$ 表示多边形的面积，那么<p class="formula">$S=$ <span class="blank" data-ans="n÷2|n/2|0.5n|1/2n" data-w="4"></span></p></div>
+    </div>
+  </div>
+  <p class="note">课本 p108 下半部分。小精灵 1 的说法只是现象；小精灵 3 的“一半”才是数量关系。注意规律的前提：图形内只有 1 枚钉子。÷ 可以输入“/”。</p>
+</section>
+
+<!-- 6 ================= 核心：钉子板 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">围一围</span><h2>在钉子板上围多边形，系统帮你数、帮你算</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="geo1" class="nail geo" viewBox="0 0 380 300" aria-label="可以点击的钉子板" data-noswipe></svg>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" data-act="undo">撤销</button><button type="button" class="btn" data-act="clear">清空</button><button type="button" class="btn solid" data-act="rec">记入表格</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-t">依次点钉子作顶点，最后点回<b>第一个顶点</b>就围好了。</p>
+      <p class="tip feedback" id="geo1Msg"></p>
+      <table class="mtab rec" id="geo1Tab"><tr><th>内部钉子/枚</th><th>边上钉子数 $n$/枚</th><th>面积 $S$/平方厘米</th><th>$n\div2$</th></tr></table>
+      <p class="tip" data-step="1">围几个<b>内部只有 1 枚钉子</b>的图形，验证 $S=n\div2$；再围内部有 <b>2 枚</b>钉子的，看看还成立吗？</p>
+    </div>
+  </div>
+  <p class="note">本课核心活动。边上钉子数按每条边两端坐标差的最大公因数精确计算（边中间经过的钉子也算），面积用坐标精确计算，图形内的钉子逐个判断。边交叉的图形不是多边形，系统会提示。表格最后一列给出 n ÷ 2，方便和面积比较。</p>
+</section>
+
+<!-- 7 ================= 内部 2 枚 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">再探索</span><h2>如果多边形内有 2 枚钉子呢？</h2></div>
+  <div class="bd full top">
+    <svg id="two" class="nail wide" viewBox="0 0 640 170" aria-label="三个内部有 2 枚钉子的多边形"></svg>
+    <table class="mtab">
+      <tr><th>图形编号</th><th>多边形内的钉子数/枚</th><th>多边形边上的钉子数/枚</th><th>多边形的面积/平方厘米</th></tr>
+      <tr><td>①</td><td>2</td><td><span class="blank" data-ans="10"></span></td><td><span class="blank" data-ans="6"></span></td></tr>
+      <tr><td>②</td><td>2</td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="3"></span></td></tr>
+      <tr><td>③</td><td>2</td><td><span class="blank" data-ans="8"></span></td><td><span class="blank" data-ans="5"></span></td></tr>
+    </table>
+    <div class="cols2">
+      <p class="tip" data-step="1">你们小组有什么发现？　<span class="think" data-step="2" data-ask="和 n ÷ 2 比一比">面积都比边上钉子数的一半<b>多 1</b>：$10\div2+1=6$，$4\div2+1=3$，$8\div2+1=5$。</span></p>
+      <div class="def" data-step="3">当多边形内有 2 枚钉子时，<span class="formula-in">$S=$ <span class="blank" data-ans="n÷2+1|n/2+1|0.5n+1|1+n÷2" data-w="6"></span></span></div>
+    </div>
+  </div>
+  <p class="note">课本 p109 上半部分要求小组自己围 3 个内部有 2 枚钉子的图形。这里给出三个示例（长方形、三角形、五边形，数据已用坐标核对），也可以让学生用上一页的钉子板自己围。</p>
+</section>
+
+<!-- 8 ================= 猜想与验证 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">猜一猜 · 验一验</span><h2>内有 3 枚、4 枚……没有钉子呢？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="geo2" class="nail geo" viewBox="0 0 380 300" aria-label="验证用的钉子板" data-noswipe></svg>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" data-act="undo">撤销</button><button type="button" class="btn" data-act="clear">清空</button></div>
+    </div>
+    <div class="col">
+      <table class="mtab guess">
+        <tr><th>图形内的钉子</th><th>猜一猜：$S=$</th></tr>
+        <tr><td>1 枚</td><td>$n\div2$</td></tr>
+        <tr><td>2 枚</td><td>$n\div2+1$</td></tr>
+        <tr><td>3 枚</td><td><span class="blank" data-ans="n÷2+2|n/2+2|0.5n+2" data-w="6"></span></td></tr>
+        <tr><td>4 枚</td><td><span class="blank" data-ans="n÷2+3|n/2+3|0.5n+3" data-w="6"></span></td></tr>
+        <tr><td>0 枚</td><td><span class="blank" data-ans="n÷2-1|n/2-1|n÷2−1|n/2−1|0.5n-1" data-w="6"></span></td></tr>
+      </table>
+      <p class="tip feedback" id="geo2Msg"></p>
+      <p class="tip" data-step="1">先在小组里说说自己的想法，再<b>围一围、算一算</b>进行验证。</p>
+    </div>
+  </div>
+  <p class="note">课本 p109 小精灵的问题。先让学生从 1 枚、2 枚的规律猜：每多 1 枚内部钉子，面积多 1 平方厘米。左边钉子板围好后，会显示内部钉子数、n 和 S，学生自己代入猜想验证。0 枚的情况可以围一个 1 × 1 的小正方形：n = 4，S = 1 = 4 ÷ 2 − 1。（这就是“皮克定理”，不必告诉学生名字。）</p>
+</section>
+
+<!-- 9 ================= 回顾体会 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾</span><h2>回顾探索和发现规律的过程，你有什么体会？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <p class="recall" data-label="体会 1" data-step="1">要善于从不同的多边形中找到它们的<b>相同点</b>。</p>
+      <p class="recall" data-label="体会 2" data-step="2">用含有字母的式子表示规律，<b>简明易记</b>。</p>
+      <p class="recall" data-label="体会 3" data-step="3">探索规律时，要认真观察、反复比较，发现规律后要<b>验证</b>。</p>
+    </div>
+    <div class="flow" data-step="4">
+      <div class="fbox"><h4>算一算 数一数</h4><small>面积、边上钉子</small></div><i>→</i>
+      <div class="fbox"><h4>比较 猜想</h4><small>面积是 $n$ 的一半</small></div><i>→</i>
+      <div class="fbox"><h4>字母表示</h4><small>$S=n\div2$</small></div><i>→</i>
+      <div class="fbox"><h4>验证 推广</h4><small>内部 2 枚、3 枚……</small></div>
+    </div>
+  </div>
+  <p class="note">课本 p109 下方三条体会。流程图就是“探索规律”的一般步骤，以后学习中会反复用到。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>第八单元，我们学会了用字母说话</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <p class="recall" data-label="今天的发现" data-step="1">多边形内有 1 枚钉子：$S=n\div2$；有 2 枚：$S=n\div2+1$。<br>每多 1 枚内部钉子，面积就多 1 平方厘米。</p>
+      <p class="method" data-label="本单元回顾" data-step="2">字母可以表示数（$a$ 个三角形用 $3a$ 根小棒）、表示关系（妈妈 $a+28$ 岁）、表示公式（$C=4a$，$S=a^2$）、表示规律（$S=n\div2$）。</p>
+    </div>
+    <p class="tip gold" data-step="3"><b>课后挑战：</b>用钉子板围一个内部有 0 枚钉子的多边形，验证你的猜想 $S=n\div2-1$。</p>
+  </div>
+  <p class="note">请学生用自己的话说出本单元学了哪几种“用字母说话”的方式。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>复式折线统计图 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mzhexian.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/baowenbei.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第二单元 折线统计图 · 复式折线统计图</p>
+    <h1 class="cover-title">复式折线统计图</h1>
+    <p class="cover-q" data-step="1">李小洁用<b>不锈钢保温杯</b>和<b>陶瓷保温杯</b>做了一次对比实验：倒进同样热的水，每隔 30 分钟测一次水温。</p>
+    <p class="cover-q" data-step="2">哪种杯子的保温性能好一些？把<b>两条折线画在同一张图</b>上，比一比就知道！</p>
+    <div class="chips" data-step="3"><span class="chip">图例</span><span class="chip">两条折线</span><span class="chip">比较变化</span><span class="chip">相差多少</span></div>
+  </div>
+  <p class="note">课本 p23 例 2 的情境。先请学生猜：哪种杯子的水凉得慢？说说理由。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>从“单式”到“复式”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 单式折线统计图" data-step="1">
+        <p>点表示数量的<b>多少</b>，线段表示<b>增减变化</b>；线段越陡，变化越快。</p>
+        <span class="use">读每一条折线。</span>
+      </div>
+      <div class="recall" data-label="五上 · 复式统计表" data-step="2">
+        <p>把两组相关的数据合在一张表里，便于<b>对照比较</b>。</p>
+        <span class="use">例 2 的实验数据表。</span>
+      </div>
+      <div class="recall" data-label="五上 · 复式条形统计图" data-step="3">
+        <p>两组直条用不同颜色，右上角用<b>图例</b>说明哪种颜色表示哪一组。</p>
+        <span class="use">复式折线统计图也要有图例。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">今天：把<b>两组</b>数据的变化画在一张折线统计图上。</p>
+  </div>
+  <p class="note">复式统计表、复式条形统计图都是五上第六单元学的。请学生说说复式条形统计图的图例有什么用。</p>
+</section>
+
+<!-- 3 ================= 例 2 核心：接着画 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>你能根据表中的数据，接着完成折线统计图吗？</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <p class="cap">不锈钢和陶瓷保温杯水温变化情况统计图　<small>2012 年 8 月</small></p>
+      <svg id="cupDraw" aria-label="已画到第 60 分钟的复式折线统计图，可以接着描点"></svg>
+    </div>
+    <div class="col">
+      <table class="mtab ct">
+        <tr><th>时间/分</th><td>0</td><td>30</td><td>60</td><td>90</td><td>120</td><td>150</td></tr>
+        <tr><th>不锈钢杯/℃</th><td>95</td><td>90</td><td>84</td><td>78</td><td>72</td><td>68</td></tr>
+        <tr><th>陶瓷杯/℃</th><td>95</td><td>74</td><td>58</td><td>50</td><td>45</td><td>41</td></tr>
+      </table>
+      <div class="btns center" data-noswipe>
+        <span class="small-t">现在画：</span><button type="button" class="btn solid" id="drawS">不锈钢杯（实线）</button><button type="button" class="btn" id="drawC">陶瓷杯（虚线）</button>
+      </div>
+      <p class="tip feedback" id="cupMsg"></p>
+      <div class="btns center" data-noswipe><button type="button" class="btn" id="cupShow">看完整的图</button><button type="button" class="btn" id="cupReset">重画</button></div>
+    </div>
+  </div>
+  <p class="note">课本 p23 例 2：课本图已经画到第 60 分钟，请学生接着画 90、120、150 分钟的点。先选“现在画哪一种杯子”，再在对应时间的竖线上点（可以拖），纵轴每小格 2 ℃，点会落在整数上。描对绿圈、描错红圈。注意不锈钢杯用实线、陶瓷杯用虚线。</p>
+</section>
+
+<!-- 4 ================= 认识复式折线统计图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">认识</span><h2>与单式折线统计图比较，复式折线统计图有哪些特点？</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <svg id="cupFull" aria-label="完整的复式折线统计图"></svg>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">图的右上角是什么？　<span class="think" data-step="2" data-ask="找一找">是<b>图例</b>：实线表示不锈钢杯，虚线表示陶瓷杯。</span></p>
+      <p class="tip" data-step="3">两条折线有什么相同？有什么不同？　<span class="think" data-step="4" data-ask="说一说">都在<b>下降</b>（水在慢慢变凉）；陶瓷杯的折线下降得<b>更陡</b>，水凉得更快。</span></p>
+      <div class="def" data-step="5"><h4>复式折线统计图</h4>用两种（或几种）不同的线表示两组（几组）数据，要用<b>图例</b>说明。它不但能看出每组数据的变化，还便于<b>比较</b>两组数据的变化情况。</div>
+    </div>
+  </div>
+  <p class="note">课本 p23 小精灵的问题“与单式折线统计图比较，复式折线统计图有哪些特点”。定义是根据课本概括的说法。</p>
+</section>
+
+<!-- 5 ================= 问题 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">看图讨论</span><h2>相差多少？什么时候降到 70 ℃？</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <svg id="cupRead" aria-label="可移动的竖线和横线读图"></svg>
+      <div class="slider-row" data-noswipe><span>竖线：第</span><input type="range" id="rt" min="0" max="150" step="30" value="60"><b id="rtv">60</b><span>分</span></div>
+      <div class="slider-row" data-noswipe><span>横线：</span><input type="range" id="rh" min="40" max="94" step="1" value="70"><b id="rhv">70</b><span>℃</span></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="readMsg"></p>
+      <p class="tip"><b>(1)</b> 第 60 分钟，两个杯中的水温相差 <span class="blank" data-ans="26"></span> ℃；第 120 分钟相差 <span class="blank" data-ans="27"></span> ℃。</p>
+      <p class="tip"><b>(2)</b> 不锈钢保温杯中的水温下降到 70 ℃ 大约经过多少分钟？陶瓷保温杯呢？　<span class="think" data-step="1" data-ask="看横线说一说">不锈钢杯在 120 和 150 分钟之间，大约 <b>135 分钟</b>；陶瓷杯在 30 和 60 分钟之间，大约 <b>35～40 分钟</b>。</span></p>
+      <p class="warn" data-step="2">两个测量时刻之间的水温是“估”出来的（看线段），所以说“大约”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p23 问题 (1)(2)。竖线停在第 60 分钟时读出 84 和 58，相差 26；拖到 120 分钟读出 72 和 45，相差 27。横线放在 70 ℃，看它和两条折线的交点在哪两次测量之间（右边的读数按线段估算，四舍五入到整分钟）。</p>
+</section>
+
+<!-- 6 ================= 问题 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">看图讨论</span><h2>哪种保温杯的保温性能好一些？</h2></div>
+  <div class="bd full">
+    <div class="jcard"><p><b>(3)</b> 哪种保温杯的保温性能好一些？</p>
+      <div class="pick" data-ans="s"><button type="button" data-k="s">不锈钢保温杯</button><button type="button" data-k="c">陶瓷保温杯</button><p class="pick-why">同样经过 150 分钟，不锈钢杯的水温降了 $95-68=27$ ℃，陶瓷杯降了 $95-41=54$ ℃。不锈钢杯的折线<b>更平缓</b>，水温下降得慢。</p></div></div>
+    <p class="tip" data-step="1">从图中你还能知道些什么？　<span class="think" data-step="2" data-ask="和同桌说一说">如：陶瓷杯前 30 分钟降得最快（降了 21 ℃），后来越降越慢；不锈钢杯每 30 分钟大约降 4～6 ℃，比较均匀；两杯水温的差先变大，后来变化不大……</span></p>
+    <p class="method" data-step="3" data-label="比较两组数据">看两条折线的<b>陡缓</b>比变化快慢；看同一时刻两点的<b>上下距离</b>比相差多少。</p>
+  </div>
+  <p class="note">课本 p23 问题 (3)。“还能知道什么”是开放题，鼓励学生用图上的数据说话。</p>
+</section>
+
+<!-- 7 ================= 练习四 2 风信子 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四 · 2</span><h2>风信子芽和根的生长变化</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <svg id="hyac" aria-label="风信子芽和根的长度复式折线统计图"></svg>
+    </div>
+    <div class="col">
+      <p class="tip small-t">小明在装满水的玻璃瓶口放上风信子，每两天观察一次，测量芽和根的长度。</p>
+      <p class="tip"><b>(1)</b> 小明是第 <span class="blank" data-ans="6"></span> 天开始看到根、第 <span class="blank" data-ans="8"></span> 天开始看到芽的。</p>
+      <p class="tip"><b>(2)</b> 说说风信子芽和根的生长变化情况。　<span class="think" data-step="1" data-ask="说一说">根先长出来，长得比芽快，一直比芽长；第 20 天根长 118 mm，芽长 75 mm。两种都越长越快。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p25 练习四第 2 题，图按课本数据画（根：0、0、15、30、40、52、65、80、96、118；芽从第 6 天起：0、3、10、20、32、47、58、75）。第 6 天根是 15 mm，第 4 天还是 0，所以是第 6 天看到根。</p>
+</section>
+
+<!-- 8 ================= 练习四 5 飞机 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四 · 5</span><h2>两架模型飞机的飞行时间和高度</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <svg id="plane" aria-label="甲乙两架飞机飞行高度复式折线统计图"></svg>
+    </div>
+    <div class="col">
+      <p class="tip"><b>(1)</b> 甲飞机飞行了 <span class="blank" data-ans="35"></span> 秒，乙飞机飞行了 <span class="blank" data-ans="40"></span> 秒。<span class="pick inl" data-ans="b"><button type="button" data-k="a">甲</button><button type="button" data-k="b">乙</button></span> 飞机飞行的时间长一些。</p>
+      <p class="tip"><b>(2)</b> 起飞后第 10 秒，甲飞机的高度是 <span class="blank" data-ans="20"></span> 米，乙飞机是 <span class="blank" data-ans="16"></span> 米。第 <span class="blank" data-ans="15"></span> 秒两架飞机处于同一高度。</p>
+      <p class="method" data-step="1" data-label="读图">两条折线<b>相交</b>的点，表示这一时刻两组数据<b>相等</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p26 练习四第 5 题，图按课本数据画（甲：0、12、20、24、24、20、8、0；乙：0、10、16、24、28、25、27、15、0，每 5 秒一次）。第 0 秒两架飞机都在地面，也是“同一高度”，可以顺便讨论。</p>
+</section>
+
+<!-- 9 ================= 练习四 6 上海悉尼 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四 · 6</span><h2>上海和悉尼各月平均气温</h2></div>
+  <div class="bd wl2">
+    <div class="col">
+      <svg id="city" aria-label="2011 年上海市、悉尼市各月平均气温统计图"></svg>
+      <div class="btns center" data-noswipe><button type="button" class="btn" id="cityNext">画下一个月 ▶</button><button type="button" class="btn" id="cityAll">全部画出</button><button type="button" class="btn" id="cityReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>(1)</b> 上海的最高月平均气温出现在 <span class="blank" data-ans="7|七"></span> 月，最低在 <span class="blank" data-ans="1|一"></span> 月；悉尼最高在 <span class="blank" data-ans="1、2|1,2|一、二|1和2|1、2月" data-w="4"></span> 月，最低在 <span class="blank" data-ans="7|七"></span> 月。</p>
+      <p class="tip" data-step="1">两条折线的走势有什么不同？　<span class="think" data-step="2" data-ask="说一说">上海是“中间高、两头低”，悉尼是“中间低、两头高”，正好相反。</span></p>
+      <p class="recall" data-step="3" data-label="你知道吗">上海位于北半球，悉尼位于南半球，所以上海的夏季和冬季与悉尼正好相反。</p>
+    </div>
+  </div>
+  <p class="note">课本 p27 练习四第 6 题，数据照课本表格（上海：2、6、9、16、22、24、30、28、24、19、7、7；悉尼：25、25、23、19、15、14、13、15、17、18、22、19），纵轴 0～35 ℃。可以一个月一个月地画，让学生边看边说。“你知道吗”取自课本 p27。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>复式折线统计图，比的是什么？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>复式统计表</b><small>两组数据</small></div>
+      <i>不同的线 + 图例</i>
+      <div class="fbox hot"><b>复式折线统计图</b><small>两条折线画在一起</small></div>
+      <i>比较</i>
+      <div class="fbox"><b>变化快慢、相差多少</b><small>陡缓、上下距离、交点</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="画图" data-step="2">两组数据用实线和虚线（或不同颜色）区分，一定要画<b>图例</b>、写<b>标题</b>和<b>日期</b>。</p>
+      <p class="method" data-label="读图" data-step="3">每条线看自己的变化；两条线一起看：谁变得快、同一时刻相差多少、什么时候相等。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>综合与实践《蒜叶的生长》——自己种蒜、测量、记录，画出属于你们小组的折线统计图！</p>
+  </div>
+  <p class="note">课本 p24 练一练（陶瓷杯和陶瓷碗的水温实验）可以安排为课后小组实验。课后作业建议：练习四第 4 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mzhexian.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
