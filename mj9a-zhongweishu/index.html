@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中位数与众数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/juankuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第3章 数据的集中趋势和离散程度 · 3.2</p>
+    <h1 class="cover-title">中位数与众数</h1>
+    <p class="cover-q" data-step="1">“献爱心”捐款，11 名同学平均每人捐了 12 元。</p>
+    <p class="cover-q" data-step="2">可是 11 人里，捐款高于 12 元的只有 <b>1</b> 人。“12 元”还能代表这组同学吗？</p>
+    <div class="chips" data-step="3"><span class="chip">平均数的短处</span><span class="chip">中位数</span><span class="chip">众数</span><span class="chip">怎样选用</span></div>
+  </div>
+  <p class="note">课本 p104 问题 1。封面只抛矛盾：平均数 12 元，却几乎所有人都“低于平均”。请学生猜一猜原因。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="3.1 · 平均数" data-step="1">
+        <p>$\bar x=\dfrac{x_1+x_2+\cdots+x_n}{n}$；它和组里<b>每一个</b>数据都有关。</p>
+        <span class="use">第 3、4 页：一个特别大（或特别小）的数，会把平均数“拉走”。</span>
+      </div>
+      <div class="recall" data-label="3.1 · 平衡点" data-step="2">
+        <p>平均数是数据的“平衡点”：多出的部分正好补上不足的部分。</p>
+        <span class="use">第 4 页：把 80 拖得更远，平衡点会怎样？</span>
+      </div>
+      <div class="recall" data-label="八年级下册 7.3 · 划记与频数" data-step="3">
+        <p>用“正”字划记，数出每个数据出现的次数（频数）。</p>
+        <span class="use">第 6 页：找出现次数最多的衬衫尺码。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>平均数什么时候“失灵”？还有哪些数也能描述一组数据的集中趋势？</p>
+  </div>
+  <p class="note">第二张卡呼应 3.1 第 3 页的平衡点交互。本课第 4 页会把它和“中位数”放在同一个图里对比。</p>
+</section>
+
+<!-- 3 ================= 平均数失灵 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1 · 问题 2</span><h2>平均数能较好地反映“集中趋势”吗？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <h3 class="h3">问题 1　11 名同学的捐款数（元）</h3>
+        <p class="tip small-p">4，4，2，3，3，5，7，6，8，10，80</p>
+        <p class="tip small-p" data-step="1">平均每人捐款 $\dfrac{132}{11}=12$（元）．高于 12 元的有 <span class="think" data-step="2" data-ask="数一数">1 人</span>，低于 12 元的有 <span class="think" data-step="2" data-ask="数一数">10 人</span>．</p>
+        <p class="tip small-p" data-step="3">“12”不能较好地反映该组同学捐款数的集中趋势；大多数同学的捐款都在 <b>5 元</b>左右．</p>
+      </div>
+      <div class="col">
+        <h3 class="h3">问题 2　奥运会 50 m 步枪 3×40 决赛（环）</h3>
+        <table class="mtab small shoot">
+          <tr><th></th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><th>总环数</th></tr>
+          <tr><th>甲</th><td>9.4</td><td>10.1</td><td>10.4</td><td>8.4</td><td>8.7</td><td>9.9</td><td>9.9</td><td>8.8</td><td>7.8</td><td>10.1</td><td>93.5</td></tr>
+          <tr><th>乙</th><td>9.4</td><td>10.4</td><td>9.3</td><td>10.4</td><td>9.5</td><td>10.1</td><td>9.9</td><td>9.4</td><td>10.0</td><td class="hot">0</td><td>88.4</td></tr>
+        </table>
+        <p class="tip small-p" data-step="4">乙第 10 次脱靶，平均 8.84 环：高于 8.84 的有 <span class="think" data-step="5" data-ask="数一数">9 次</span>，低于的只有 <span class="think" data-step="5" data-ask="数一数">1 次</span>．</p>
+        <p class="tip small-p" data-step="6">甲平均 9.35 环：高于的有 6 次，低于的有 4 次——“9.35”能较好地反映甲的集中趋势．</p>
+      </div>
+    </div>
+    <p class="def" data-step="7">如果一组数据中所有数据的大小差异不大，平均数就能较好地反映这组数据的集中趋势；如果个别数据与其他数据的大小差异<em>很大</em>（如问题 1 中的“80”，问题 2 中的“0”），平均数就不能较好地反映这组数据的集中趋势．</p>
+  </div>
+  <p class="note">课本 p104–105。“数一数”请学生对着数据数，答案已用代码核对。问题 2 的数据就是章首 p97 的那张表。</p>
+</section>
+
+<!-- 4 ================= 拖动极端值（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手观察</span><h2>把“80”拖来拖去：谁被拉走了，谁没动？</h2></div>
+  <div class="bd full top">
+    <p class="muted small-t">问题 1 的 11 个捐款数（元），每个点是一名同学；拖动任一个点（▼ 中位数，▲ 平均数）</p>
+    <div id="exBoard" class="ex-board"></div>
+    <div class="cols3">
+      <div class="col">
+        <div class="readout stat-read">
+          <span class="mk m">▲ 平均数</span><span></span><span class="v" id="exMean"></span>
+          <span class="mk md">▼ 中位数</span><span></span><span class="v" id="exMed"></span>
+          <span class="mk mo">众数</span><span></span><span class="v" id="exMode"></span>
+        </div>
+        <p class="tip feedback" id="exMsg"></p>
+        <div class="btns" data-noswipe><button type="button" class="btn" id="exReset">恢复课本数据</button></div>
+      </div>
+      <p class="tip" data-step="1">把最右边的点（80）往左拖到 10，再拖到 100：<span class="think" data-step="2" data-ask="谁变了？">平均数跟着大幅移动；排在正中间的数一直是 5，纹丝不动。</span></p>
+      <p class="tip gold" data-step="3">“排在正中间的数”有什么好处？<span class="think" data-step="4" data-ask="想一想">它只看<b>位置</b>，不看两头的数有多大，不受个别极端数据的影响。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心交互之一。点按数据精确叠放；平均数、中位数、众数都由代码实时计算。注意这组数据里 3 和 4 都出现 2 次，众数有两个——第 6 页学了众数后可以回来看。把 80 拖到 2 附近时，中位数会变成 4：中位数也会变，但只在“排位”变化时才变。</p>
+</section>
+
+<!-- 5 ================= 中位数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>排一排，找中间：中位数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="sortTabs"><button type="button" class="btn solid" data-k="don">问题 1（11 个数）</button><button type="button" class="btn" data-k="yi">乙运动员（10 个数）</button></div>
+      <div class="sort-row" id="sortRow"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="sortGo">从小到大排一排</button></div>
+      <p class="tip feedback" id="sortMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">11 个捐款数排好后，比 5 小的有 5 个，比 5 大的有 5 个，处于中间位置的数是 <span class="think" data-step="2" data-ask="是几？">5</span>．</p>
+      <p class="tip" data-step="3">乙的 10 个环数排好后，处于中间位置的是 9.5 和 9.9，用 <span class="think" data-step="4" data-ask="用哪个数？">它们的平均数 9.7</span> 来描述．</p>
+      <div class="def" data-step="5"><h4>中位数（课本 p105）</h4>一般地，将一组数据按大小顺序排列，如果数据的个数是奇数，那么处于中间位置的数叫做这组数据的<em>中位数</em>（median）；如果数据的个数是偶数，那么处于中间位置的两个数的平均数叫做这组数据的中位数．</div>
+      <p class="method" data-step="6" data-label="课本">当一组数据中个别数据与其他数据的大小差异很大时，通常用中位数来描述这组数据的集中趋势．</p>
+    </div>
+  </div>
+  <p class="note">课本 p105。左边先点“排一排”，卡片按大小移动到位，再高亮中间位置；切换到乙的 10 个数，演示“个数是偶数”的情形。请学生说出：n 个数排好后，n 为奇数时中位数是第 (n+1)/2 个，n 为偶数时是第 n/2 个与第 n/2+1 个的平均数（这一句是课件补充）。</p>
+</section>
+
+<!-- 6 ================= 众数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3</span><h2>商店应多采购哪种尺码的衬衫？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-p">小明在校内抽样调查了 30 名男同学的衬衫尺码（领口大小，单位：cm）：</p>
+      <table class="mtab" id="shirtTab"></table>
+      <div id="shirtBoard" class="shirt-board" data-step="1"></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">你认为应多采购哪种尺码？<span class="think" data-step="2" data-ask="说说理由">39 cm：穿这种尺码的人数最多（14 人）．</span></p>
+      <div class="def" data-step="3"><h4>众数（课本 p105–106）</h4>一组数据中出现次数最多的数据叫做这组数据的<em>众数</em>（mode）．例如，问题 3 中数据“39”出现的次数最多，“39”是这组数据的众数．</div>
+      <p class="method" data-step="4" data-label="课本">当一组数据中有较多的重复数据时，常用众数来描述这组数据的集中趋势．</p>
+      <p class="warn" data-step="5" data-label="易错">众数是那个<b>数据</b>（39），不是它出现的<b>次数</b>（14）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p105–106 问题 3。划记用“正”字按 3、6、14、5、1、1 精确生成；条形图同一组数据。对这个问题，平均数约 38.9 cm（不是任何一种尺码），对商店没有用——这是众数的用处。</p>
+</section>
+
+<!-- 7 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1"><p><b>(1)</b> 数据 3，9，1，7，5 的中位数是 1（它排在正中间）．</p><div class="think" data-step="2" data-ask="对吗？"><p><span class="verdict x">错</span>要先按大小排序：1，3，5，7，9，中位数是 5．“正中间”指的是<b>排序后</b>的中间位置．</p></div></div>
+      <div class="jcard" data-step="3"><p><b>(2)</b> 数据 2，4，6，8 的中位数是 4 或 6．</p><div class="think" data-step="4" data-ask="对吗？"><p><span class="verdict x">错</span>个数是偶数，中位数是中间两数的平均数 $\dfrac{4+6}{2}=5$，它可以不是这组数据中的数．</p></div></div>
+      <div class="jcard" data-step="5"><p><b>(3)</b> 问题 1 中的捐款数 4，4，2，3，3，5，7，6，8，10，80 的众数是 4．</p><div class="think" data-step="6" data-ask="对吗？"><p><span class="verdict x">不全对</span>3 和 4 都出现了 2 次，次数并列最多，众数是 3 和 4——一组数据的众数可以不止一个．</p></div></div>
+      <div class="jcard" data-step="7"><p><b>(4)</b> 平均数、中位数、众数中，只有平均数和每一个数据都有关．</p><div class="think" data-step="8" data-ask="对吗？"><p><span class="verdict ok">对</span>中位数只与排在中间的数有关，众数只与出现最多的数有关．所以平均数“信息最全”，但也最容易被极端数据拉偏．</p></div></div>
+    </div>
+  </div>
+  <p class="note">这一页是补充的辨析题（非课本原题），对应三个易错点：先排序、偶数个取平均、众数可不唯一。第 (3) 题的数据就是问题 1，回第 4 页可看到众数显示“3 和 4”。</p>
+</section>
+
+<!-- 8 ================= 练习 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>求平均数、中位数和众数</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某校九年级 8 个班级向“希望工程”捐献图书的册数：</p>
+        <table class="mtab small"><tr><th>班级</th><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td><td>七</td><td>八</td></tr><tr><th>册数</th><td>50</td><td>96</td><td>100</td><td>90</td><td>90</td><td>120</td><td>500</td><td>90</td></tr></table>
+        <p class="q">(1) 求平均每个班级所捐图书的册数；(2) 求所捐图书册数的中位数和众数．</p>
+        <details><summary>提示 1</summary>先排序：50，90，90，90，96，100，120，500．</details>
+        <details><summary>提示 2</summary>8 个数，中位数是第 4、5 个数的平均数．</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{1\,136}{8}=142$（册）；(2) 中位数 $\dfrac{90+96}{2}=93$（册），众数 90 册．（500 让平均数偏大了．）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某射击小组 20 人某次射击训练的成绩如图所示：(1) 求平均成绩；(2) 求中位数和众数．</p>
+        <div id="p2Board" class="p2-board"></div>
+        <details><summary>提示 1</summary>人数分别是 1，2，7，6，3，1，共 20 人．</details>
+        <details><summary>提示 2</summary>中位数是第 10、11 个人的成绩：前 3 环（5、6）共 3 人，到 7 环累计 10 人．</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{5\times1+6\times2+7\times7+8\times6+9\times3+10\times1}{20}=\dfrac{151}{20}=7.55$（环）；(2) 中位数 $\dfrac{7+8}{2}=7.5$（环），众数 7 环．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p106 练习 1、2，答案用代码核对。第 2 题条形高度按课本 1、2、7、6、3、1 人绘制。</p>
+</section>
+
+<!-- 9 ================= 尝试与交流：月工资 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试与交流</span><h2>同一组工资，三个“代表”，你关注哪一个？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab small sal">
+        <tr><th>月工资/元</th><td>20 000</td><td>12 000</td><td>8 000</td><td>6 000</td><td>3 000</td><td>2 000</td><td>1 800</td><td>1 500</td><td>1 200</td></tr>
+        <tr><th>人数</th><td>1</td><td>2</td><td>5</td><td>10</td><td>17</td><td>23</td><td>28</td><td>10</td><td>4</td></tr>
+      </table>
+      <div id="salBoard" class="sal-board"></div>
+      <p class="legend"><span><i style="background:var(--orange)"></i>平均数 3 112</span><span><i style="background:var(--red)"></i>中位数 2 000</span><span><i style="background:#2f7d6b"></i>众数 1 800</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">平均数 <b>3 112</b> 元，中位数 <b>2 000</b> 元，众数 <b>1 800</b> 元．如果你是该公司的一员，会更关注哪一个？</p>
+      <div class="jcard" data-step="2"><b>普通职工：</b>关注自己的收入在职工群体中的位置——<span class="think" data-step="3" data-ask="哪个数？">中位数</span></div>
+      <div class="jcard" data-step="2"><b>工会主席：</b>关注多数职工利益——<span class="think" data-step="3" data-ask="哪个数？">众数</span></div>
+      <div class="jcard" data-step="2"><b>总经理：</b>关注职工月工资总额——<span class="think" data-step="3" data-ask="哪个数？">平均数</span></div>
+      <p class="method" data-step="4" data-label="课本 p107">平均数、中位数、众数都能刻画数据的集中趋势，在实际应用中，应根据需要恰当地进行选择．</p>
+    </div>
+  </div>
+  <p class="note">课本 p106–107“尝试与交流”。100 人的平均数 3 112、中位数 2 000（第 50、51 人都是 2 000）、众数 1 800 都已用代码核对；条形图上三条竖线分别标出三个数。请学生说说为什么平均数比 70% 以上职工的工资都高（高于 3 112 元的只有 18 人）。</p>
+</section>
+
+<!-- 10 ================= 练习 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>各说各的“8 年”：数字会说话，也会“说谎”</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 甲、乙、丙三个厂家的同一种产品，各抽取 8 件，使用寿命（单位：年）：<br>甲：3，4，5，6，8，8，8，10；<br>乙：4，6，6，6，8，9，12，13；<br>丙：3，3，4，7，9，10，11，12．<br>(1) 三个厂家在广告中都称自己产品的使用寿命是 8 年，请分析他们各自的理由；(2) 你认为哪个厂家的产品使用寿命更长一些？</p>
+        <details><summary>提示 1</summary>分别求出三组数据的平均数、中位数、众数．</details>
+        <details><summary>提示 2</summary>甲：平均 6.5、中位数 7、众数 8；乙：平均 8、中位数 7、众数 6；丙：平均 7.375、中位数 8、众数 3．</details>
+        <details><summary>完整解答</summary>(1) 甲用的是众数 8，乙用的是平均数 8，丙用的是中位数 8．(2) 答案不唯一，要说明理由：如乙的平均寿命最长（8 年），且一半以上产品寿命不少于 8 年……</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某公司职工的月工资：经理 1 人，12 000 元；副经理 1 人，8 000 元；职员 18 人，2 000 元．(1) 求月工资的平均数、中位数和众数；(2) 用哪一个描述该公司职工月工资的“集中趋势”较为合适？</p>
+        <details><summary>提示 1</summary>共 20 人，平均数 $=\dfrac{12\,000+8\,000+2\,000\times18}{20}$．</details>
+        <details><summary>完整解答</summary>(1) 平均数 2 800 元，中位数 2 000 元，众数 2 000 元；(2) 用中位数或众数较合适：18 名职员都是 2 000 元，平均数被经理、副经理的高工资拉高了．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p107 练习 1、2。各统计量已用代码核对。第 1 题第 (2) 问课本是开放题，重点是“说理由”。</p>
+</section>
+
+<!-- 11 ================= 习题选讲 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 3.2</span><h2>选做：选哪个数？</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 30 位女生所穿鞋子的尺码：33 码 7 人，34 码 6 人，35 码 15 人，36 码 1 人，37 码 1 人．在平均数、中位数和众数中，鞋厂最感兴趣的是哪一个？</p>
+        <details><summary>提示 1</summary>鞋厂关心“哪种尺码卖得最多”．</details>
+        <details><summary>完整解答</summary>众数（35 码）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某市 2 月 5 日～14 日每天的最低气温如图（单位：℃）．求这 10 天最低气温的众数和中位数．</p>
+        <div id="tempBoard" class="temp-board"></div>
+        <details><summary>提示 1</summary>从图上读出：7，6，8，10，11，7，9，6，7，8．</details>
+        <details><summary>完整解答</summary>排序：6，6，7，7，7，8，8，9，10，11．众数 7 ℃，中位数 $\dfrac{7+8}{2}=7.5$（℃）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 25 名营销人员某月销售量：600 件 1 人，500 件 4 人，400 件 4 人，350 件 6 人，300 件 7 人，200 件 3 人．(1) 求平均数、中位数和众数；(2) 你认为应怎样制定月销售量指标？</p>
+        <details><summary>提示 1</summary>25 个数，中位数是第 13 个（从大到小数）．</details>
+        <details><summary>完整解答</summary>(1) 平均数 360 件，中位数 350 件，众数 300 件；(2) 如定为 350 件（中位数），约一半人能完成，有激励作用；答案不唯一，说出理由即可．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 3.2 第 1、2、4 题，答案用代码核对。第 2 题折线图按课本数据绘制（纵轴课本有折断号，从 6 ℃ 附近起），其余习题（3、5、6）留作业。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>三个“代表”，各有所长</h2></div>
+  <div class="bd full">
+    <table class="mtab cmp" data-step="1">
+      <tr><th></th><th>平均数</th><th>中位数</th><th>众数</th></tr>
+      <tr><th>怎样得到</th><td>所有数据的和 ÷ 个数</td><td>排序后取中间（偶数个取中间两数的平均数）</td><td>出现次数最多的数据</td></tr>
+      <tr><th>和哪些数据有关</th><td>每一个数据</td><td>排在中间的数</td><td>出现最多的数</td></tr>
+      <tr><th>什么时候用</th><td>数据大小差异不大</td><td>个别数据差异很大</td><td>重复数据较多</td></tr>
+    </table>
+    <div class="cols2">
+      <p class="method" data-step="2" data-label="方法">先看数据有没有“极端值”、有没有大量重复，再根据实际需要选择．</p>
+      <p class="recall" data-step="3" data-label="思想">一组数据的“集中趋势”可以用不同的数来刻画，选哪个，取决于你想回答什么问题．</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>3.3 用计算器求平均数——数据很多时，怎样又快又准地算出平均数？</p>
+  </div>
+  <p class="note">表格的三行请学生先口答再揭示。作业建议：习题 3.2 第 3、5、6 题；第 6 题可在小组内调查完成。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -4730,31 +4730,51 @@ window.CATALOG = [
                 "no": "9.1",
                 "title": "图形的旋转",
                 "genre": "概念",
-                "kind": "四边形"
+                "kind": "四边形",
+                "dir": "mj8b-xuanzhuan",
+                "pages": 10,
+                "desc": "拖中心转图形，拖点作旋转判对错",
+                "cover": "mj8b-xuanzhuan/assets/motianlun.jpg"
               },
               {
                 "no": "9.2",
                 "title": "中心对称与中心对称图形",
                 "genre": "概念",
-                "kind": "四边形"
+                "kind": "四边形",
+                "dir": "mj8b-zhongxinduicheng",
+                "pages": 12,
+                "desc": "拖 O 找对称中心；方格点选画对称形",
+                "cover": "mj8b-zhongxinduicheng/assets/fengche.jpg"
               },
               {
                 "no": "9.3",
                 "title": "平行四边形",
                 "genre": "推导",
-                "kind": "四边形"
+                "kind": "四边形",
+                "dir": "mj8b-pingxingsibianxing",
+                "pages": 17,
+                "desc": "条件检验台：按条件作图，辨真假判定",
+                "cover": "mj8b-pingxingsibianxing/assets/louti.jpg"
               },
               {
                 "no": "9.4",
                 "title": "矩形、菱形、正方形",
                 "genre": "推导",
-                "kind": "四边形"
+                "kind": "四边形",
+                "dir": "mj8b-juxinglingxing",
+                "pages": 18,
+                "desc": "扭框成矩形、平移成菱形；加条件变身",
+                "cover": "mj8b-juxinglingxing/assets/chuanghu.jpg"
               },
               {
                 "no": "9.5",
                 "title": "三角形的中位线",
                 "genre": "推导",
-                "kind": "四边形"
+                "kind": "四边形",
+                "dir": "mj8b-zhongweixian",
+                "pages": 9,
+                "desc": "剪拼转180°成平行四边形；中点四边形",
+                "cover": "mj8b-zhongweixian/assets/chitang.jpg"
               }
             ]
           },
@@ -4894,13 +4914,21 @@ window.CATALOG = [
                 "no": "1.1",
                 "title": "一元二次方程",
                 "genre": "概念",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj9a-yiyuanerci",
+                "pages": 10,
+                "desc": "花圃滑块试根、一般形式逐步整理器",
+                "cover": "mj9a-yiyuanerci/assets/huapu.jpg"
               },
               {
                 "no": "1.2",
                 "title": "一元二次方程的解法",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj9a-ercijiefa",
+                "pages": 18,
+                "desc": "配方割补拼图动画、判别式数轴实验",
+                "cover": "mj9a-ercijiefa/assets/shuzhuo.jpg"
               },
               {
                 "no": "1.3",
@@ -4913,7 +4941,11 @@ window.CATALOG = [
                 "no": "1.4",
                 "title": "用一元二次方程解决问题",
                 "genre": "推导",
-                "kind": "方程"
+                "kind": "方程",
+                "dir": "mj9a-erciwenti",
+                "pages": 13,
+                "desc": "矩形动点播放求面积、缉私艇追及",
+                "cover": "mj9a-erciwenti/assets/lvyou.jpg"
               }
             ]
           },
@@ -4926,49 +4958,81 @@ window.CATALOG = [
                 "no": "2.1",
                 "title": "圆",
                 "genre": "概念",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mj9a-yuan",
+                "pages": 12,
+                "desc": "拖点判圆内外、撒点集合、弦弧联动",
+                "cover": "mj9a-yuan/assets/chelun.jpg"
               },
               {
                 "no": "2.2",
                 "title": "圆的对称性",
                 "genre": "推导",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mj9a-yuanduichengxing",
+                "pages": 12,
+                "desc": "两圆叠合旋转、沿直径翻折验证垂径",
+                "cover": "mj9a-yuanduichengxing/assets/danche.jpg"
               },
               {
                 "no": "2.3",
                 "title": "确定圆的条件",
                 "genre": "推导",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mj9a-quedingyuan",
+                "pages": 9,
+                "desc": "拖三点找外心、尺规作外接圆分步演示",
+                "cover": "mj9a-quedingyuan/assets/canpian.jpg"
               },
               {
                 "no": "2.4",
                 "title": "圆周角",
                 "genre": "推导",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mj9a-yuanzhoujiao",
+                "pages": 15,
+                "desc": "拖动顶点看圆周角不变，三种情形自动判别",
+                "cover": "mj9a-yuanzhoujiao/assets/juchang.jpg"
               },
               {
                 "no": "2.5",
                 "title": "直线与圆的位置关系",
                 "genre": "推导",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mj9a-zhixianyuyuan",
+                "pages": 18,
+                "desc": "平移直线比 d 与 r，剪最大圆，切线长翻折",
+                "cover": "mj9a-zhixianyuyuan/assets/richu.jpg"
               },
               {
                 "no": "2.6",
                 "title": "正多边形与圆",
                 "genre": "概念",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mj9a-zhengduobianxing",
+                "pages": 11,
+                "desc": "n 等分圆周对比随手取点，尺规作正六边形",
+                "cover": "mj9a-zhengduobianxing/assets/fengchao.jpg"
               },
               {
                 "no": "2.7",
                 "title": "弧长及扇形的面积",
                 "genre": "推导",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mj9a-huchang",
+                "pages": 10,
+                "desc": "把弧拉直比周长，扇形切片重拼成平行四边形",
+                "cover": "mj9a-huchang/assets/zheshan.jpg"
               },
               {
                 "no": "2.8",
                 "title": "圆锥的侧面积",
                 "genre": "推导",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mj9a-yuanzhui",
+                "pages": 9,
+                "desc": "扇形纸片逐步卷成圆锥，弧长等于底面周长",
+                "cover": "mj9a-yuanzhui/assets/douli.jpg"
               }
             ]
           },
@@ -4981,31 +5045,51 @@ window.CATALOG = [
                 "no": "3.1",
                 "title": "平均数",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mj9a-pingjunshu",
+                "pages": 12,
+                "desc": "拖身高点找平衡点；滑块调权看名次变化",
+                "cover": "mj9a-pingjunshu/assets/shengao.jpg"
               },
               {
                 "no": "3.2",
                 "title": "中位数与众数",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mj9a-zhongweishu",
+                "pages": 12,
+                "desc": "拖动极端值：平均数被拉走、中位数不动",
+                "cover": "mj9a-zhongweishu/assets/juankuan.jpg"
               },
               {
                 "no": "3.3",
                 "title": "用计算器求平均数",
                 "genre": "推导",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mj9a-jisuanqipingjun",
+                "pages": 8,
+                "desc": "仿真计算器逐键演示；漏输频数的对比",
+                "cover": "mj9a-jisuanqipingjun/assets/shangxue.jpg"
               },
               {
                 "no": "3.4",
                 "title": "方差",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mj9a-fangcha",
+                "pages": 12,
+                "desc": "把每个偏差画成正方形，拖点看方差变化",
+                "cover": "mj9a-fangcha/assets/pingpang.jpg"
               },
               {
                 "no": "3.5",
                 "title": "用计算器求方差",
                 "genre": "推导",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mj9a-jisuanqifangcha",
+                "pages": 9,
+                "desc": "仿真计算器求 x̄ 与 s²；表格式分列录入",
+                "cover": "mj9a-jisuanqifangcha/assets/shejian.jpg"
               }
             ]
           },
@@ -5018,19 +5102,31 @@ window.CATALOG = [
                 "no": "4.1",
                 "title": "等可能性",
                 "genre": "概念",
-                "kind": "概率"
+                "kind": "概率",
+                "dir": "mj9a-dengkenengxing",
+                "pages": 9,
+                "desc": "真随机摸球千次看频率齐平；十二面体点选事件",
+                "cover": "mj9a-dengkenengxing/assets/moqiu-cover.jpg"
               },
               {
                 "no": "4.2",
                 "title": "等可能条件下的概率（一）",
                 "genre": "推导",
-                "kind": "概率"
+                "kind": "概率",
+                "dir": "mj9a-gailvyi",
+                "pages": 14,
+                "desc": "逐层展开可点选树状图、点格列表法、掷骰实验",
+                "cover": "mj9a-gailvyi/assets/touzi-cover.jpg"
               },
               {
                 "no": "4.3",
                 "title": "等可能条件下的概率（二）",
                 "genre": "推导",
-                "kind": "概率"
+                "kind": "概率",
+                "dir": "mj9a-gailver",
+                "pages": 10,
+                "desc": "真随机转盘、设计转盘、投点算面积比",
+                "cover": "mj9a-gailver/assets/zhuanpan-cover.jpg"
               }
             ]
           },

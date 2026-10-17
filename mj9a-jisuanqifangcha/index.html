@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用计算器求方差 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcalc.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shejian.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第3章 数据的集中趋势和离散程度 · 3.5</p>
+    <h1 class="cover-title">用计算器求方差</h1>
+    <p class="cover-q" data-step="1">甲、乙两人在相同条件下各射击 10 次，平均成绩都是 8 环。</p>
+    <p class="cover-q" data-step="2">谁的成绩更稳定？要比方差——10 个差、10 个平方……能不能让计算器一次算出平均数<b>和</b>方差？</p>
+    <div class="chips" data-step="3"><span class="chip">方法一：statx 模式</span><span class="chip">ALPHA × = 求方差</span><span class="chip">方法二：表格录入</span><span class="chip">比较稳定性</span></div>
+  </div>
+  <p class="note">课本 p118 情境。本课按课本介绍的两种计算器操作演示；课件里的计算器是示意面板，结果由程序按录入数据精确计算。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="3.4 · 方差" data-step="1">
+        <p>$s^2=\dfrac{1}{n}\left[(x_1-\bar x)^2+(x_2-\bar x)^2+\cdots+(x_n-\bar x)^2\right]$；方差越小，数据越稳定．</p>
+        <span class="use">第 3 页先笔算一次，体会计算量；第 5 页用它比较甲、乙．</span>
+      </div>
+      <div class="recall" data-label="3.3 · 用计算器求平均数" data-step="2">
+        <p>MODE 1 进入 statx 模式 → ALPHA M+ 录入（$x$ ▼ FRQ ▼）→ ALPHA M+ 退出 → ALPHA 4 = 得 $\bar x$．</p>
+        <span class="use">求方差只多一步：ALPHA × =（× 键上方标着方差）．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="3"><b>本课主线：</b>录入一次数据，平均数、方差都能读出来；再用方差比较稳定性．</p>
+  </div>
+  <p class="note">上一课的按键顺序请一名学生口述。说明：本课计算器 × 键上方的方差符号，课本印作 δx²，表示的就是 3.4 学的方差 s²。</p>
+</section>
+
+<!-- 3 ================= 先笔算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">先笔算</span><h2>甲的方差：用公式算一遍</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <p class="tip">甲：10，7，8，8，8，8，8，8，9，6</p>
+      <p class="tip">乙：8，8，8，8，5，8，8，9，9，9</p>
+    </div>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>$\bar x_{\text{甲}}$</span><span>$=\dfrac{10+7+8\times6+9+6}{10}=8$</span><i class="why">8 出现 6 次</i></div>
+      <div class="dl" data-step="2"><span>$s_{\text{甲}}^2$</span><span>$=\dfrac{(10-8)^2+(7-8)^2+6\times(8-8)^2+(9-8)^2+(6-8)^2}{10}$</span><i class="why">差的平方的平均数</i></div>
+      <div class="dl end" data-step="3"><span></span><span class="think" data-step="3" data-ask="算一算">$=\dfrac{4+1+0+1+4}{10}=1$</span><i class="why">数据少、都是整数，还好算</i></div>
+    </div>
+    <p class="warn" data-step="4" data-label="如果……">数据有几十个、还带小数（如 3.4 的乒乓球直径、习题里的股价），笔算方差既慢又容易错——交给计算器．</p>
+  </div>
+  <p class="note">课本 p118 的数据。先笔算甲，留乙给学生课后验证（第 5 页用计算器）。这一步也给下一页计算器的结果提供检验依据。</p>
+</section>
+
+<!-- 4 ================= 方法一（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法一</span><h2>statx 模式：录入一次，读出 $\bar x$ 和 $s^2$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="calc1" class="calc-host"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="c1Step">按下一键</button><button type="button" class="btn solid" id="c1Play">自动演示</button></div>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="c1Tabs"><button type="button" class="btn solid" data-k="jia">甲的数据</button><button type="button" class="btn" data-k="yi">乙的数据</button></div>
+      <div class="mc-strip" id="c1Strip"></div>
+      <div class="cols2 m1-row">
+        <table class="mc-rows" id="c1Rows"></table>
+        <div>
+          <p class="tip feedback" id="c1Msg"></p>
+          <p class="tip small-p" data-step="1">甲：$\bar x=8$，$s^2=1$；乙：$\bar x=8$，<span class="think" data-step="2" data-ask="乙的方差？">$s^2=1.2$</span>．</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">本课核心交互。按键序列照课本 p118：甲为 MODE 1 ALPHA M+ 10 ▼▼ 7 ▼▼ 8 ▼ 6 ▼ 9 ▼▼ 6 ▼ ALPHA M+，再 ALPHA 4 =（平均数），ALPHA × =（方差）。乙为 … 8 ▼ 4 ▼ 5 ▼▼ 8 ▼ 2 ▼ 9 ▼ 3 ▼ ALPHA M+。屏幕结果由程序按录入数据计算。“▼▼”是输入 x 后不改频数（默认 1）直接跳到下一个数据。</p>
+</section>
+
+<!-- 5 ================= 讨论与结论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>乙的“8”分两次输入，可以吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1">课本给乙录入时，按的是 8 ▼ 4 ▼ 5 ▼ ▼ 8 ▼ 2 ▼ 9 ▼ 3 ▼——8 录了两次（频数 4 和 2）．结果会错吗？</p>
+        <p class="tip" data-step="2"><span class="think" data-step="3" data-ask="会不会？">不会．计算器把所有行合起来算 $\dfrac{\sum x_if_i}{\sum f_i}$，“8 有 4 个”加“8 有 2 个”就是“8 有 6 个”；照原始顺序 8，8，8，8，5，8，8，9，9，9 录入，正好不用重新整理数据．</span></p>
+        <p class="tip small-p" data-step="4">检验：$s_{\text{乙}}^2=\dfrac{6\times0^2+(5-8)^2+3\times(9-8)^2}{10}=\dfrac{12}{10}=1.2$，和计算器一致．</p>
+      </div>
+      <div class="col">
+        <table class="mtab" data-step="5">
+          <tr><th></th><th>平均数 $\bar x$</th><th>方差 $s^2$</th></tr>
+          <tr><th>甲</th><td>8</td><td>1</td></tr>
+          <tr><th>乙</th><td>8</td><td>1.2</td></tr>
+        </table>
+        <p class="def" data-step="6">这两组数据的平均数相同，但第一组数据的方差小于第二组数据的方差，说明<span class="think" data-step="7" data-ask="谁更稳定？">甲射击成绩比乙稳定．</span></p>
+        <p class="warn" data-step="8" data-label="易错">每组数据开始前都要重新按 MODE 1，清掉上一组的数据；否则两组数据会混在一起．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p119 结论句。“分两次录入”是本页补充的讨论，课本按键本身就是这样做的。最后一条易错：课本两次录入前都按了 MODE 1，课件的计算器也是按 MODE 1 清空数据。</p>
+</section>
+
+<!-- 6 ================= 方法二 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法二</span><h2>另一种计算器：先填 x 列，再填频数列</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="t2Tabs"><button type="button" class="btn solid" data-k="jia">甲</button><button type="button" class="btn" data-k="yi">乙</button></div>
+      <div class="t2-screen" id="t2Screen"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="t2Step">按下一键</button><button type="button" class="btn solid" id="t2Play">自动演示</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-p">按菜单键显示主菜单，选择统计图标，按 = 设定为统计模式；再按 1（单变量统计），在设置中把“频数”设为 1（开），然后依次按键：</p>
+      <div class="mc-strip" id="t2Strip"></div>
+      <p class="tip feedback" id="t2Msg"></p>
+      <p class="method" data-step="1" data-label="两种方法比一比">方法一：一行一行录入（$x$，FRQ，下一个 $x$……）；方法二：先录完整列 $x$，再录整列频数．算的都是 $\bar x$ 与 $s^2$（屏幕上记作 $\sigma^2x$）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p119 方法二（新型计算器的表格录入）。甲：x 列 10、7、8、9、6，频数列 1、1、6、1、1；乙：x 列 8、5、9，频数列 6、1、3。最后 AC、OPTN、2（单变量计算）显示结果；屏幕上的 σ²x 就是方差 s²。课件按键条省略了进入菜单的几步，结果由程序计算。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己按：平均数、方差，比稳定性</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="calc3" class="calc-host"></div>
+      <table class="mc-rows" id="c3Rows"></table>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 甲、乙两家水果店 1～6 月份某种水果的销售情况（单位：kg）：<br>甲店：520，490，530，470，630，600；乙店：530，510，520，540，570，570．<br>分别计算月销售量的平均数、方差（精确到 1 kg）．</p>
+        <details><summary>提示 1</summary>每组 6 个数据，各出现 1 次：输入后按 ▼▼．</details>
+        <details><summary>完整解答</summary>甲店：$\bar x=540$ kg，$s^2\approx3\,267$；乙店：$\bar x=540$ kg，$s^2\approx533$．乙店的月销售量比较稳定．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 甲、乙两台包装机包装标准质量为 400 g 的袋装食品，各抽 10 袋（单位：g）：<br>甲：401，400，408，406，410，409，400，393，394，394；<br>乙：403，404，402，396，399，401，405，397，402，399．<br>(1) 分别计算平均数、方差；(2) 比较包装质量的稳定性．</p>
+        <details><summary>提示 1</summary>甲中 400 和 394 都出现 2 次，可以用频数 2 录入．</details>
+        <details><summary>完整解答</summary>(1) 甲：$\bar x=401.5$ g，$s^2=38.05$；乙：$\bar x=400.8$ g，$s^2=7.96$；(2) 乙包装机包装质量比较稳定．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p119 练习 1、2。左边计算器可以直接按（记得先 MODE 1，录入后 ALPHA 4 = 求平均数、ALPHA × = 求方差）。答案已用代码核对：3 266.67→3 267，533.33→533，38.05，7.96。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 3.5</span><h2>选做：数据多、小数多——计算器的用武之地</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 甲、乙两只股票某时段 16 个交易日的收盘价格（单位：元）：</p>
+        <table class="mtab small">
+          <tr><th>甲</th><td>14.11</td><td>14.59</td><td>14.27</td><td>14.25</td><td>14.62</td><td>14.55</td><td>14.39</td><td>14.93</td></tr>
+          <tr><th></th><td>14.93</td><td>14.97</td><td>14.89</td><td>14.59</td><td>14.76</td><td>15.03</td><td>15.12</td><td>14.87</td></tr>
+          <tr><th>乙</th><td>15.49</td><td>15.53</td><td>15.51</td><td>16.07</td><td>15.88</td><td>15.98</td><td>16.67</td><td>16.80</td></tr>
+          <tr><th></th><td>16.61</td><td>16.60</td><td>16.41</td><td>16.31</td><td>16.39</td><td>16.04</td><td>16.15</td><td>16.17</td></tr>
+        </table>
+        <p class="q">分别计算这两只股票在该时段收盘价格的平均数、极差、方差．</p>
+        <details><summary>提示 1</summary>极差直接找最大、最小值；平均数、方差用计算器．</details>
+        <details><summary>完整解答</summary>甲：$\bar x\approx14.68$ 元，极差 1.01 元，$s^2\approx0.088$；乙：$\bar x\approx16.16$ 元，极差 1.31 元，$s^2\approx0.163$．甲股票价格波动较小．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 抛掷一枚质地均匀的硬币，“正面朝上的频率”：<br>序号 1～10：0.400，0.400，0.533，0.475，0.560，0.567，0.571，0.550，0.556，0.520；<br>序号 11～20：0.491，0.467，0.462，0.493，0.493，0.506，0.494，0.500，0.495，0.505．<br>(1) 分别计算两组频率的极差、方差（精确到 0.000 1）；(2) 比较它们的稳定性．</p>
+        <details><summary>提示 1</summary>1～10 组的极差 $0.571-0.400$．</details>
+        <details><summary>完整解答</summary>(1) 1～10：极差 0.171，方差 $\approx0.003\,9$；11～20：极差 0.044，方差 $\approx0.000\,2$．(2) 11～20（抛掷次数多）的频率更稳定，都在 0.5 附近——呼应八年级下册“频率稳定于概率”．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 3.5 第 1、2 题（第 2 题的抛掷次数、频数见课本 p120 表格，这里只列出要计算的频率）。结果均已用代码核对：甲股票方差 0.088 16，乙 0.162 83；硬币两组方差 0.003 91、0.000 20。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>本章回顾：看平均，也看波动</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>本课</h3>
+        <p class="method" data-label="计算器求方差">statx 模式录入 → ALPHA 4 = 得 $\bar x$ → ALPHA × = 得 $s^2$．每组数据前按 MODE 1 清空．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>集中趋势</h3>
+        <p class="def">平均数（含加权平均数）、中位数、众数——用一个数代表一组数据．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>离散程度</h3>
+        <p class="def">极差、方差、标准差——描述数据的波动大小；方差越小越稳定．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一章：</b>第 4 章 等可能条件下的概率——从数据的统计走向可能性的计算．</p>
+  </div>
+  <p class="note">本课是第 3 章最后一节，小结兼作全章回顾。作业：用计算器完成习题 3.4 第 2 题（18 个零件直径的方差 0.02 mm²），并与笔算对照。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcalc.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

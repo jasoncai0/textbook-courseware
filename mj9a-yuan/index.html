@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chelun.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第2章 对称图形——圆 · 2.1</p>
+    <h1 class="cover-title">圆</h1>
+    <p class="cover-q" data-step="1">战国时期数学家墨子撰写的《墨经》中，就有“<b>圆，一中同长也</b>”的记载。</p>
+    <p class="cover-q" data-step="2">“一中”是什么？“同长”又是什么？车轮为什么要做成圆的？今天用数学的语言重新认识圆。</p>
+    <div class="chips" data-step="3"><span class="chip">圆的定义</span><span class="chip">点与圆的位置关系</span><span class="chip">弦 · 弧 · 圆心角</span><span class="chip">同心圆 · 等圆 · 等弧</span></div>
+  </div>
+  <p class="note">课本 p38 章首情境（墨经与车马图）。先请学生用自己的话解释“一中同长”：一个中心，到中心一样长。车轮的轴在圆心，轮缘上每一点到轴的距离都相等，车子才平稳——第 3 页的动态画圆正好说明这一点。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="小学 · 圆的认识" data-step="1">
+        <p>圆心 $O$、半径 $r$、直径 $d$；同一个圆中，所有半径都相等，$d=2r$。</p>
+        <span class="use">本课用“线段旋转”“点的集合”重新定义圆。</span>
+      </div>
+      <div class="recall" data-label="七上 · 线段的长短比较" data-step="2">
+        <p>两点之间线段的长度叫做两点间的距离；比较两条线段的长短：$d&lt;r$、$d=r$、$d&gt;r$。</p>
+        <span class="use">用“点到圆心的距离 $d$ 与半径 $r$ 的大小”判断点与圆的位置。</span>
+      </div>
+      <div class="recall" data-label="八上 第1章 · 全等三角形" data-step="3">
+        <p>两边及其夹角分别相等的两个三角形全等（SAS）；全等三角形的对应角相等。</p>
+        <span class="use">例题：证明 $\angle C=\angle D$。</span>
+      </div>
+      <div class="recall" data-label="八上 2.5 · 等腰三角形" data-step="4">
+        <p>等边对等角；三角形的一个外角等于与它不相邻的两个内角的和。</p>
+        <span class="use">思考与探索：求 $\angle BOE$（半径相等 ⇒ 等腰三角形）。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>圆的定义 → 点与圆的位置关系 → 与圆有关的概念（弦、弧、圆心角……）→ 用“半径相等”推理。</p>
+  </div>
+  <p class="note">第 3、4 张卡是本课推理题的工具：圆里“半径都相等”，常常提供全等的条件或等腰三角形。</p>
+</section>
+
+<!-- 3 ================= 圆的定义（动态画圆） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>线段 $OP$ 绕点 $O$ 旋转一周</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="draw" class="draw"></div>
+      <div class="slider-row" data-noswipe>半径 $OP=$<input type="range" id="drR" min="1" max="3" step="0.5" value="2"><b class="v" id="drRV"></b>　<button class="btn" type="button" id="drReset">重画</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">拖动橙色的点 $P$，让线段 $OP$ 绕端点 $O$ 转一周，看看 $P$ 留下的痕迹．</p>
+      <p class="tip feedback" id="drMsg"></p>
+      <div class="def" data-step="1"><h4>圆（课本 p38）</h4>如图 2-1，在平面内把线段 $OP$ 绕着端点 $O$ 旋转 1 周，端点 $P$ 运动所形成的图形叫做<em>圆</em>（circle）．其中，点 $O$ 叫做<b>圆心</b>，线段 $OP$ 叫做<b>半径</b>．以点 $O$ 为圆心的圆，记作“$\odot O$”，读作“圆 $O$”．</div>
+      <p class="recall" data-label="一中同长" data-step="2">“一中”：一个圆心；“同长”：圆上每一点到圆心的距离都等于半径。<span class="think" data-step="3" data-ask="确定一个圆要几个条件？">两个：<b>圆心</b>确定位置，<b>半径</b>确定大小。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p38 图 2-1。请一名学生上来拖动 P 转一周（不管转得快慢、中途停不停，P 到 O 的距离始终不变）。再拖半径滑块：圆心不变、半径变了，得到另一个圆——为第 8 页的“同心圆”做铺垫。</p>
+</section>
+
+<!-- 4 ================= 点与圆的位置关系（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作与思考</span><h2>点与圆有几种位置关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="pos" class="pos"></div>
+      <div class="slider-row" data-noswipe>半径 $r=$<input type="range" id="posR" min="1" max="3" step="0.5" value="2"><b class="v" id="posRV"></b>　<button class="btn" type="button" id="posDots">撒 400 个点</button></div>
+    </div>
+    <div class="col">
+      <div class="readout pos-read">
+        <span>点 $P$ 到圆心的距离 $d$</span><b class="v" id="posD"></b>
+        <span>半径 $r$</span><b class="v" id="posRr"></b>
+      </div>
+      <p class="tip feedback" id="posMsg"></p>
+      <p class="tip" data-step="1">圆上的点、圆内的点、圆外的点，到圆心的距离各有什么特点？<span class="think" data-step="2" data-ask="拖一拖再回答">圆上 $d=r$；圆内 $d&lt;r$；圆外 $d&gt;r$。反过来也成立。</span></p>
+      <div class="def" data-step="3"><h4>点与圆的位置关系（课本 p39）</h4>如果 $\odot O$ 的半径为 $r$，点 $P$ 到圆心 $O$ 的距离为 $d$，那么<br>点 $P$ 在圆内 $\Leftrightarrow d&lt;r$；点 $P$ 在圆上 $\Leftrightarrow d=r$；点 $P$ 在圆外 $\Leftrightarrow d&gt;r$．</div>
+      <p class="recall" data-label="符号 ⇔" data-step="4">读作“等价于”，表示从左端可以推出右端，从右端也可以推出左端。</p>
+    </div>
+  </div>
+  <p class="note">课本 p38–39 操作与思考、图 2-2 与方框结论。拖动点 P 跨过圆周，读数和颜色同时变化（距离由坐标精确计算，吸附到 0.1）。再点“撒 400 个点”：每个点按 d 与 r 的大小着色——圆是到圆心的距离等于半径的点的集合；圆的内部是 d &lt; r 的点的集合；外部是 d &gt; r 的点的集合（课本原话）。</p>
+</section>
+
+<!-- 5 ================= 尝试与交流 图2-3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试与交流</span><h2>用“点的集合”画图</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="set" class="set"></div>
+      <div class="btns" data-noswipe id="setBtns">
+        <button class="btn" type="button" data-k="1">(1) 画两个集合</button>
+        <button class="btn" type="button" data-k="2">(2) 找公共点</button>
+        <button class="btn" type="button" data-k="3">(3) 画出区域</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-3，线段 $PQ=2$ cm．</p>
+      <p class="tip" data-step="1">(1) 画出：到点 $P$ 的距离等于 1 cm 的点的集合；到点 $Q$ 的距离等于 1.5 cm 的点的集合．<span class="think" data-step="2" data-ask="是什么图形？">以 $P$ 为圆心、1 cm 为半径的圆；以 $Q$ 为圆心、1.5 cm 为半径的圆。</span></p>
+      <p class="tip" data-step="3">(2) 到点 $P$ 的距离等于 1 cm，且到点 $Q$ 的距离等于 1.5 cm 的点有几个？<span class="think" data-step="4" data-ask="数一数">两个圆的交点，有 <b>2</b> 个。</span></p>
+      <p class="tip" data-step="5">(3) 到点 $P$ 的距离小于或等于 1 cm，且到点 $Q$ 的距离大于或等于 1.5 cm 的点的集合是怎样的图形？<span class="think" data-step="6" data-ask="想一想">$\odot P$ 及其内部，去掉 $\odot Q$ 内部的部分（像一弯“月牙”），边界都包括在内。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p39 尝试与交流。依次点三个按钮。两个交点由两圆方程精确求出：它们到 PQ 的距离约为 0.73 cm。第 (3) 问是“且”：两个条件同时满足，所以是两个集合的公共部分；“小于或等于”“大于或等于”说明边界上的点也算。</p>
+</section>
+
+<!-- 6 ================= 练习 p40 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>点与圆的位置关系（课本 p40）</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="pk">
+        <p class="tip"><b>1.</b> 已知 $\odot O$ 的半径为 4 cm．点 $P$ 到圆心 $O$ 的距离为：</p>
+        <p>$d=4.5$ cm</p>
+        <div class="pick" data-ans="out"><button data-k="in">圆内</button><button data-k="on">圆上</button><button data-k="out">圆外</button><p class="pick-why">$4.5&gt;4$，即 $d&gt;r$。</p></div>
+        <p>$d=4$ cm</p>
+        <div class="pick" data-ans="on"><button data-k="in">圆内</button><button data-k="on">圆上</button><button data-k="out">圆外</button><p class="pick-why">$d=r$。</p></div>
+        <p>$d=3$ cm</p>
+        <div class="pick" data-ans="in"><button data-k="in">圆内</button><button data-k="on">圆上</button><button data-k="out">圆外</button><p class="pick-why">$3&lt;4$，即 $d&lt;r$。</p></div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 用图形表示到点 $A$ 的距离小于或等于 2 cm 的点的集合．</p>
+          <details><summary>提示</summary>“等于 2 cm”的点组成什么图形？“小于 2 cm”的点在哪里？</details>
+          <details><summary>答案</summary>以点 $A$ 为圆心、2 cm 为半径的圆及其内部（画圆后把内部涂上阴影，圆周画实线）。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>3.</b> 已知矩形 $ABCD$ 的对角线 $AC$、$BD$ 相交于点 $O$．点 $A$、$B$、$C$、$D$ 是否在以点 $O$ 为圆心的同一个圆上？为什么？</p>
+          <details><summary>提示</summary>矩形的对角线有什么性质（八下 9.4）？</details>
+          <details><summary>答案</summary>在．矩形的对角线相等且互相平分，所以 $OA=OB=OC=OD$，四个点到点 $O$ 的距离相等，都在以 $O$ 为圆心、$OA$ 为半径的圆上．</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p40 练习。第 1 题点选即时反馈；第 3 题的说理要落到“到圆心的距离等于半径”这一判断依据上。</p>
+</section>
+
+<!-- 7 ================= 弦、弧 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>弦、直径、弧、半圆</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="arc" class="arcb"></div>
+      <p class="muted small-t center">拖动圆上的点 $C$、$D$</p>
+      <div class="readout arc-read">
+        <span>圆心角 $\angle COD$</span><b class="v" id="arcAng"></b>
+        <span>劣弧（橙）</span><b class="v" id="arcMin"></b>
+        <span>优弧（蓝）</span><b class="v" id="arcMaj"></b>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="arcMsg"></p>
+      <div class="def" data-step="1"><h4>弦与直径（课本 p40）</h4>连接圆上任意两点的线段叫做<em>弦</em>（chord）．经过圆心的弦叫做<em>直径</em>（diameter）．</div>
+      <div class="def" data-step="2"><h4>弧（课本 p40）</h4>圆上任意两点间的部分叫做圆弧，简称<em>弧</em>（arc），用符号“$\frown$”表示．以 $C$、$D$ 为端点的弧，记作 $\overset{\frown}{CD}$，读作“弧 $CD$”．</div>
+      <div class="def" data-step="3"><h4>半圆、优弧、劣弧</h4>圆的任意一条直径的两个端点把圆分成两条弧，每条弧都叫做<em>半圆</em>．大于半圆的弧叫做<em>优弧</em>（major arc），小于半圆的弧叫做<em>劣弧</em>（minor arc）．</div>
+      <p class="warn" data-step="4" data-label="优弧用三个字母表示">一条弦对着两条弧：劣弧记作 $\overset{\frown}{CD}$；优弧要在中间加一个点，如图 2-5 中的 $\overset{\frown}{BAC}$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p40 图 2-4、2-5。拖动 C、D：弦的长度、两条弧的度数实时变化；把 D 拖到 C 的正对面（会自动吸附），弦经过圆心成为直径，两条弧都是半圆。追问：直径是弦吗？（是，最长的弦。）弦是直径吗？（不一定。）半圆是弧吗？（是。）</p>
+</section>
+
+<!-- 8 ================= 圆心角、同心圆、等圆、等弧 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>圆心角、同心圆、等圆、等弧</h2></div>
+  <div class="bd full">
+    <div class="cols3 c4">
+      <div class="def" data-step="1"><h4>圆心角</h4>顶点在圆心的角叫做<em>圆心角</em>（central angle）．如图 2-6，$\angle AOB$ 是圆心角．
+        <svg viewBox="0 0 160 120" class="cfig" aria-label="圆心角 AOB"><circle cx="70" cy="60" r="50" fill="none" stroke="#1f2d3a" stroke-width="2"/><path d="M70 60 L120 60 M70 60 L105.4 24.6" stroke="#1d6fa5" stroke-width="2.5"/><path d="M84 60 A14 14 0 0 0 79.9 50.1" fill="none" stroke="#d9711c" stroke-width="2"/><circle cx="70" cy="60" r="2.5"/><text x="58" y="75" class="fl">O</text><text x="124" y="64" class="fl">A</text><text x="106" y="20" class="fl">B</text></svg>
+      </div>
+      <div class="def" data-step="2"><h4>同心圆与等圆</h4>圆心相同、半径不相等的两个圆叫做<em>同心圆</em>；能够互相重合的两个圆叫做<em>等圆</em>．
+        <svg viewBox="0 0 160 120" class="cfig" aria-label="同心圆与等圆"><circle cx="40" cy="60" r="18" fill="none" stroke="#1d6fa5" stroke-width="2"/><circle cx="40" cy="60" r="32" fill="none" stroke="#1d6fa5" stroke-width="2"/><circle cx="40" cy="60" r="2.5"/><circle cx="108" cy="40" r="22" fill="none" stroke="#2f7d6b" stroke-width="2"/><circle cx="132" cy="86" r="22" fill="none" stroke="#2f7d6b" stroke-width="2"/></svg>
+      </div>
+      <div class="def" data-step="3"><h4>等弧</h4>能够互相重合的弧叫做<em>等弧</em>（equal arc）．
+        <svg viewBox="0 0 160 120" class="cfig" aria-label="长度相等但半径不同的两条弧"><path id="arcSmall"/><path id="arcBig"/></svg>
+        <span class="small-p">两条弧<b>长度相等</b>，却不能重合——不是等弧。</span>
+      </div>
+    </div>
+    <p class="def big-def center" data-step="4">同圆或等圆的半径相等．（课本 p40）</p>
+    <p class="warn" data-step="5" data-label="辨一辨">“长度相等的弧是等弧”✗：等弧一定在同圆或等圆中，要能完全重合（上面两条弧长度相等，弯曲程度不同）。</p>
+  </div>
+  <p class="note">课本 p40。第三张图是按“弧长相等”精确画的：小弧半径 40、圆心角 90°，大弧半径 80、圆心角 45°，弧长都是 20π，但弯曲程度不同，不能重合。最后一句“同圆或等圆的半径相等”是本节推理最常用的依据。</p>
+</section>
+
+<!-- 9 ================= 例 图2-7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>同心圆中的全等三角形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex1" class="exfig"></div>
+      <p class="tip">如图 2-7，点 $A$、$B$ 和点 $C$、$D$ 分别在以点 $O$ 为圆心的两个同心圆上，且 $\angle AOB=\angle COD$．$\angle C$ 与 $\angle D$ 相等吗？为什么？</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">分析：$\angle C$、$\angle D$ 分别在哪两个三角形里？<span class="think" data-step="2" data-ask="找一找">$\triangle BOC$ 与 $\triangle AOD$——证它们全等。</span></p>
+      <div class="proof">
+        <p data-step="3"><span class="lead">解：</span>$\angle C$ 与 $\angle D$ 相等．</p>
+        <p data-step="4"><span class="so">∵</span>$\angle AOB=\angle COD$（<button class="yj" data-k="known"></button>），</p>
+        <p data-step="5"><span class="so">∴</span>$\angle AOB+\angle AOC=\angle COD+\angle AOC$，即 $\angle BOC=\angle AOD$（<button class="yj" data-k="eq-prop"></button>）．</p>
+        <p data-step="6"><span class="so">又∵</span>$OB=OA$，$OC=OD$（<button class="yj" data-k="same-r"></button>），</p>
+        <p data-step="7"><span class="so">∴</span>$\triangle BOC\cong\triangle AOD$（<button class="yj" data-k="sas"></button>）．</p>
+        <p data-step="8"><span class="so">∴</span>$\angle C=\angle D$（<button class="yj" data-k="cong-ang"></button>）．</p>
+      </div>
+      <p class="method" data-step="9" data-label="圆中的等量">同圆（同心圆）的半径相等，常常直接提供全等的条件。</p>
+    </div>
+  </div>
+  <p class="note">课本 p41 例。课本写“∴ ∠BOC = ∠AOD”一步带过，这里补出“同加 ∠AOC”。点开括号里的依据可以看完整内容。图是精确作出的：∠AOB = ∠COD = 80°，∠BOC = ∠AOD = 130°。</p>
+</section>
+
+<!-- 10 ================= 思考与探索 图2-8 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>半径相等 ⇒ 等腰三角形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex2" class="exfig"></div>
+      <p class="tip">如图 2-8，$AB$ 是 $\odot O$ 的直径，$C$ 是 $BA$ 延长线上一点，点 $D$ 在 $\odot O$ 上，且 $CD=OA$，$CD$ 的延长线交 $\odot O$ 于点 $E$．若 $\angle C=20^\circ$，求 $\angle BOE$ 的度数．</p>
+    </div>
+    <div class="col">
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>连接 $OD$</span><span class="think" data-step="2" data-ask="为什么连 OD？">$OD=OA=CD$</span><i class="why">同圆的半径相等；已知 $CD=OA$</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span>$\angle DOC=\angle C=20^\circ$</span><i class="why">等边对等角（$\triangle CDO$）</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span>$\angle ODE=\angle C+\angle DOC=40^\circ$</span><i class="why">三角形的外角</i></div>
+        <div class="dl" data-step="5"><span>∵</span><span>$OD=OE$</span><i class="why">同圆的半径相等</i></div>
+        <div class="dl" data-step="6"><span>∴</span><span>$\angle E=\angle ODE=40^\circ$</span><i class="why">等边对等角（$\triangle ODE$）</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span class="think" data-step="8" data-ask="最后一步？">$\angle BOE=\angle C+\angle E=60^\circ$</span><i class="why">$\angle BOE$ 是 $\triangle COE$ 的外角</i></div>
+      </div>
+      <p class="method" data-step="9" data-label="添辅助线">见到圆上的点，常连半径，造出等腰三角形。</p>
+    </div>
+  </div>
+  <p class="note">课本 p41 思考与探索、图 2-8。图是按 ∠C = 20°、CD = OA 精确作出的（C 到 O 的距离 = 2cos 20° × 半径），量出来 ∠BOE 恰为 60°。本题是“∠BOE = 3∠C”的特例，学有余力的学生可推广。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>课本 p41–42 练习与习题</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1.</b> 点 $A$、$B$、$C$、$D$ 在 $\odot O$ 上．画出以这 4 点中的 2 点为端点的弦，这样的弦共有几条？是哪几条？</p>
+        <details><summary>提示</summary>每两个点连一条弦，按顺序数：从 $A$ 出发，再从 $B$ 出发……</details>
+        <details><summary>答案</summary>6 条：$AB$、$AC$、$AD$、$BC$、$BD$、$CD$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2.</b> 在 $\odot O$ 中，画出两条直径，依次连接这两条直径的端点，得到一个四边形．判断这个四边形的形状，并说明理由．</p>
+        <details><summary>提示</summary>两条直径互相平分（交点是圆心），而且相等（都等于 $2r$）。</details>
+        <details><summary>答案</summary>矩形．对角线互相平分且相等的四边形是矩形（若两条直径互相垂直，则是正方形）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 3.</b> $AB$ 是 $\odot O$ 的弦，点 $C$、$D$ 在 $AB$ 上，且 $AC=BD$．判断 $\triangle OCD$ 的形状，并说明理由．</p>
+        <details><summary>提示</summary>$OA=OB$，所以 $\angle A=\angle B$；再看 $\triangle OAC$ 与 $\triangle OBD$。</details>
+        <details><summary>答案</summary>等腰三角形．$OA=OB$ ⇒ $\angle A=\angle B$；又 $AC=BD$，∴ $\triangle OAC\cong\triangle OBD$（SAS），∴ $OC=OD$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 5.</b> $AB$ 是 $\odot O$ 的直径，点 $C$ 在 $\odot O$ 上，且 $CD\perp AB$，垂足为 $D$，$CD=4$，$OD=3$．求 $AB$ 的长．</p>
+        <details><summary>提示</summary>连接 $OC$，在 $\text{Rt}\triangle OCD$ 中用勾股定理求半径。</details>
+        <details><summary>答案</summary>$OC=\sqrt{3^2+4^2}=5$，所以 $AB=2OC=10$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p41–42 练习 1–3 与习题 2.1 第 5 题。习题第 5 题又一次用到“连半径”。其余习题（第 1–4、6–8 题）可作课后作业；第 8 题 EF = OD = 2（矩形对角线相等）。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">圆：线段绕端点旋转一周；到定点的距离等于定长的点的集合．</p>
+        <p class="def">弦、直径、弧、半圆、优弧、劣弧、圆心角、同心圆、等圆、等弧．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="位置关系">比较 $d$ 与 $r$：$d&lt;r$ 内，$d=r$ 上，$d&gt;r$ 外。</p>
+        <p class="method" data-label="连半径">同圆的半径相等 ⇒ 等腰三角形、全等三角形。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="集合的观点">圆、圆内、圆外都是“满足条件的点的集合”。</p>
+        <p class="recall" data-label="数形结合">位置关系 ⇔ 数量关系（$d$ 与 $r$）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.2 圆的对称性——圆绕圆心旋转任何角度都和自己重合；沿任何一条直径对折，两边完全重合。由此能推出哪些相等的线段、相等的弧？</p>
+  </div>
+  <p class="note">课后作业：习题 2.1 第 1–4、6–8 题。下一节用“旋转”“折叠”研究圆的对称性。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

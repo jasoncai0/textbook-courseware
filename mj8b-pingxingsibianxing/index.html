@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>平行四边形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/louti.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第9章 中心对称图形——平行四边形 · 9.3</p>
+    <h1 class="cover-title">平行四边形</h1>
+    <p class="cover-q" data-step="1">楼梯的扶手和竖杆、可以伸缩的衣帽架……上面的图片中有你熟悉的图形吗？</p>
+    <p class="cover-q" data-step="2">上一课我们发现：三角形和它关于一边中点的对称图形，拼成了一个<b>平行四边形</b>。平行四边形是中心对称图形吗？它的边、角、对角线有什么性质？怎样判定一个四边形是平行四边形？</p>
+    <div class="chips" data-step="3"><span class="chip">定义</span><span class="chip">中心对称性</span><span class="chip">性质定理</span><span class="chip">判定定理</span><span class="chip">反证法</span></div>
+  </div>
+  <p class="note">课本 p64 情境（楼梯扶手、伸缩衣帽架）。本课内容多：性质（第 3–8 页）、判定（第 9–13 页）、反证法（第 14 页）、练习与小结。可分两课时：第一课时到第 8 页，第二课时从第 9 页起。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="七下 7.1–7.2 · 平行线" data-step="1">
+        <p>两直线平行 ⇔ 内错角相等 ⇔ 同位角相等 ⇔ 同旁内角互补。</p>
+        <span class="use">由“平行”得角相等（性质），由角相等得“平行”（判定）。</span>
+      </div>
+      <div class="recall" data-label="八上 1.2–1.3 · 全等三角形" data-step="2">
+        <p>判定：SAS、ASA、AAS、SSS；全等三角形的对应边相等、对应角相等。</p>
+        <span class="use">连一条对角线，把四边形分成两个三角形来证。</span>
+      </div>
+      <div class="recall" data-label="9.2 · 中心对称" data-step="3">
+        <p>成中心对称的两个图形中，对应点的连线经过对称中心，且被对称中心平分。</p>
+        <span class="use">证明平行四边形是中心对称图形，再“读出”它的性质。</span>
+      </div>
+      <div class="recall" data-label="七下 7.5 · 多边形的内角和" data-step="4">
+        <p>四边形的内角和等于 $360^\circ$。</p>
+        <span class="use">已知平行四边形的一个角，求其他三个角。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一课讲到：</b>中心对称图形绕对称中心转 $180^\circ$ 与自身重合。<b>本课：</b>用“中心对称”和“全等三角形”两把钥匙，打开平行四边形的性质与判定。</p>
+  </div>
+  <p class="note">每张卡请学生先说出要点，再看“本课用在”。第一张卡的“性质”和“判定”方向相反，是本课最容易混淆的地方——整节课都要追问“这一步是由平行推角，还是由角推平行？”</p>
+</section>
+
+<!-- 3 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>什么样的四边形叫平行四边形？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="defq" class="brd-l"></div>
+      <p class="muted center small-t">拖动四个顶点（都在格点上）</p>
+    </div>
+    <div class="col">
+      <div class="readout r2"><span>$AB$ 与 $DC$</span><b class="v wide" id="dq1"></b><span>$AD$ 与 $BC$</span><b class="v wide" id="dq2"></b></div>
+      <p class="tip feedback" id="dqMsg"></p>
+      <div class="def" data-step="1"><h4>平行四边形（课本 p64）</h4>两组对边分别平行的四边形叫做<em>平行四边形</em>（parallelogram）．</div>
+      <p class="tip" data-step="2">图 9-10 中的四边形 $ABCD$ 是平行四边形，记作“▱$ABCD$”，读作“平行四边形 $ABCD$”．</p>
+      <p class="method" data-step="3" data-label="定义的两种用法">判定：$AB\parallel DC$，$AD\parallel BC$ ⇒ 四边形 $ABCD$ 是平行四边形；<br>性质：四边形 $ABCD$ 是平行四边形 ⇒ $AB\parallel DC$，$AD\parallel BC$．</p>
+    </div>
+  </div>
+  <p class="note">课本 p64 定义与记号。开始时 AD∥BC 但 AB 与 DC 不平行（梯形），请学生只拖一个点把它变成平行四边形，并说出“为什么现在是了”。平行用格点坐标精确判断（方向向量成比例）。强调记号“▱ABCD”的字母要按顺序（顺时针或逆时针）书写。</p>
+</section>
+
+<!-- 4 ================= 尝试：转 180° ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>▱$ABCD$ 绕对角线 $AC$ 的中点转 $180^\circ$</h2></div>
+  <button class="media-btn" hidden data-img="assets/zhuanban.jpg" data-video="assets/zhuanban.mp4" data-cap="▱ABCD 绕 AC 的中点 O 旋转 180°：A、C 互换，AB 落到射线 CD 上，CB 落到射线 AD 上，B、D 互换">▶ 看动画</button>
+  <div class="bd half">
+    <div class="col">
+      <div id="spin" class="brd-l"></div>
+      <div class="slider-row" data-noswipe>透明纸转过 <input type="range" id="spinT" min="0" max="180" step="1" value="0"><b class="v" id="spinTV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p64：$O$ 是▱$ABCD$ 对角线 $AC$ 的中点．用透明纸覆盖在图 9-11 上，描出▱$ABCD$，再用大头针钉在点 $O$ 处，将透明纸上的▱$ABCD$ 旋转 $180^\circ$．你有什么发现？</p>
+      <p class="tip feedback" id="spinMsg"></p>
+      <p class="tip" data-step="1">猜想：<span class="think" data-step="2" data-ask="你的猜想">▱$ABCD$ 绕点 $O$ 旋转 $180^\circ$ 后，与原来的图形重合——平行四边形是中心对称图形。</span></p>
+      <p class="warn" data-step="3" data-label="追问">转一次重合了，能说明<b>所有</b>平行四边形都这样吗？“看起来重合”可靠吗？——需要用定义和学过的定理来<b>证实</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p64 尝试。拖滑块转到 180° 重合。然后追问：凭什么 B 恰好落在 D 上？下一页按课本的思路一步步说理（右上角“看动画”是这段说理的 15 秒动画）。</p>
+</section>
+
+<!-- 5 ================= 证实：中心对称 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>证实：平行四边形是中心对称图形</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="prf" class="brd-l"></div>
+    </div>
+    <div class="col">
+      <p class="tip">把图 9-12（1）中的▱$ABCD$ 绕点 $O$ 旋转 $180^\circ$：</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>①</span><span>点 $A$ 与点 $C$ 重合，点 $C$ 与点 $A$ 重合</span><i class="why">$O$ 是 $AC$ 的中点</i></div>
+        <div class="dl" data-step="2"><span>②</span><span class="think" data-step="3" data-ask="AB 落在哪里？">$\angle1=\angle2$，所以 $AB$ 落在射线 $CD$ 上</span><i class="why">$AB\parallel CD$，内错角相等</i></div>
+        <div class="dl" data-step="4"><span>③</span><span class="think" data-step="5" data-ask="CB 落在哪里？">$\angle3=\angle4$，所以 $CB$ 落在射线 $AD$ 上</span><i class="why">$AD\parallel BC$，内错角相等</i></div>
+        <div class="dl" data-step="6"><span>④</span><span class="think" data-step="7" data-ask="B 落在哪里？">$B$ 与 $D$ 重合；同理 $D$ 与 $B$ 重合</span><i class="why">两条直线相交只有一个交点：$AB$、$CB$ 的交点 $B$ 落到 $CD$、$AD$ 的交点 $D$</i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span>▱$ABCD$ 是中心对称图形</span><i class="why">转 $180^\circ$ 与自身重合</i></div>
+      </div>
+      <div class="def" data-step="9"><h4>结论（课本 p65）</h4>平行四边形是中心对称图形，对角线的交点是它的对称中心．</div>
+    </div>
+  </div>
+  <p class="note">课本 p64–65 的说理与图 9-12。按 → 逐步：左图依次显示 A、C 互换，∠1、∠2 与射线 CD，∠3、∠4 与射线 AD，最后 B、D 互换。第④步是关键：B 是直线 AB 与 CB 的交点，转过去后这两条线分别落在 CD、AD 上，交点只能是 D。最后连接 BD：B、D 关于 O 对称，所以 BD 经过 O 且被 O 平分（图 9-12（2））。</p>
+</section>
+
+<!-- 6 ================= 交流：性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流 · 性质</span><h2>从中心对称“读出”平行四边形的性质</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="prop" class="brd-l"></div>
+      <p class="muted center small-t">拖动 $A$、$B$、$C$（$D$ 随之确定，始终是平行四边形）</p>
+    </div>
+    <div class="col">
+      <table class="mtab sm" id="propTab">
+        <tr><th>边</th><th></th><th>角</th><th></th><th>对角线</th><th></th></tr>
+        <tr><td>$AB$</td><td id="pAB"></td><td>$\angle DAB$</td><td id="pA"></td><td>$OA$</td><td id="pOA"></td></tr>
+        <tr><td>$CD$</td><td id="pCD"></td><td>$\angle BCD$</td><td id="pC"></td><td>$OC$</td><td id="pOC"></td></tr>
+        <tr><td>$BC$</td><td id="pBC"></td><td>$\angle ABC$</td><td id="pB"></td><td>$OB$</td><td id="pOB"></td></tr>
+        <tr><td>$DA$</td><td id="pDA"></td><td>$\angle CDA$</td><td id="pD"></td><td>$OD$</td><td id="pOD"></td></tr>
+      </table>
+      <p class="tip" data-step="1">从证实的过程中，你发现平行四边形还有哪些性质？<span class="think" data-step="2" data-ask="边">$AB$ 转到 $CD$：$AB=CD$，$BC=DA$；</span><span class="think" data-step="3" data-ask="角">$\angle DAB$ 转到 $\angle BCD$：$\angle DAB=\angle BCD$，$\angle ABC=\angle CDA$；</span><span class="think" data-step="4" data-ask="对角线">$A$、$C$ 对称：$OA=OC$，$OB=OD$。</span></p>
+      <div class="def" data-step="5"><h4>定理（课本 p65）</h4>平行四边形的对边相等，对角相等，对角线互相平分．</div>
+      <p class="warn" data-step="6" data-label="别漏">“对角线互相平分”说的是 $OA=OC$ 且 $OB=OD$，不是 $AC=BD$——拖一拖，两条对角线一般并不相等。</p>
+    </div>
+  </div>
+  <p class="note">课本 p65 交流与性质定理。三位同学的发现正好对应边、角、对角线三类。表中数据由坐标实时计算；把平行四边形拖“歪”，对边、对角、OA 与 OC 始终相等，但 AC 与 BD 一般不等。性质定理也可以连对角线、用全等三角形证明（课后思考）。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>由三组平行，证明三个中点</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="ex1" class="brd-m"></div>
+      <div class="think-flow" data-step="1">
+        <p class="tf-h"><span>证明的途径</span></p>
+        <p>由 $AB\parallel DE$、$BC\parallel EF$、$CA\parallel FD$，可知四边形 $ABCE$、$AFBC$ 都是平行四边形．所以 $AE=BC$，$AF=BC$．从而 $AE=AF$．</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">已知：如图 9-13，点 $A$、$B$、$C$ 分别在 $\triangle EFD$ 的各边上，且 $AB\parallel DE$，$BC\parallel EF$，$CA\parallel FD$．求证：$A$、$B$、$C$ 分别是 $\triangle DEF$ 各边的中点．</p>
+      <div class="proof">
+        <p data-step="2"><span class="lead">证明：</span><span class="so">∵</span>$AB\parallel DE$，$BC\parallel EF$，</p>
+        <p data-step="2"><span class="so">∴</span>四边形 $ABCE$ 是平行四边形（<button class="yj" data-k="px-def"></button>）．</p>
+        <p data-step="3"><span class="so">∴</span>$AE=BC$（<button class="yj" data-k="px-db"></button>）．</p>
+        <p data-step="4"><span class="so">∵</span>$CA\parallel FD$，$BC\parallel EF$，</p>
+        <p data-step="4"><span class="so">∴</span>四边形 $AFBC$ 是平行四边形（<button class="yj" data-k="px-def"></button>）．</p>
+        <p data-step="5"><span class="so">∴</span>$AF=BC$（<button class="yj" data-k="px-db"></button>）．</p>
+        <p data-step="6"><span class="so">∴</span>$AE=AF$．同理 $BD=BF$，$CD=CE$．</p>
+        <p data-step="7"><span class="so">∴</span>$A$、$B$、$C$ 分别是 $\triangle DEF$ 各边的中点．</p>
+      </div>
+      <p class="tip" data-step="8">讨论：$\triangle ABC$ 与 $\triangle DEF$ 的内角分别相等吗？<span class="think" data-step="9" data-ask="为什么？">相等。如 ▱$ABCE$ 中 $\angle ABC=\angle E$（对角相等）；同理 $\angle BCA=\angle F$，$\angle CAB=\angle D$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p65–66 例 1 与讨论。按 → 时左图依次高亮▱ABCE（橙）和▱AFBC（绿），两个平行四边形共用边 BC——这是“AE = AF”的桥梁。括号里的依据可以点开看。证明的书写格式：先由定义判定平行四边形，再用性质得到边相等。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>用性质求角、求周长</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="q-t"><b>1.</b> 如图，在▱$ABCD$ 中，$\angle B=50^\circ$．求这个四边形的其他内角的度数．</p>
+        <div id="pr1" class="brd-s"></div>
+        <p class="ans">$\angle A=$ <span class="blank" data-ans="130"></span>$^\circ$，$\angle C=$ <span class="blank" data-ans="50"></span>$^\circ$，$\angle D=$ <span class="blank" data-ans="130"></span>$^\circ$</p>
+        <div class="hint-ladder">
+          <details><summary>提示</summary>$AD\parallel BC$，$\angle A$ 与 $\angle B$ 是什么关系？对角呢？</details>
+          <details><summary>完整解答</summary>∵ $AD\parallel BC$，∴ $\angle A=180^\circ-\angle B=130^\circ$（两直线平行，同旁内角互补）；$\angle C=\angle B=50^\circ$，$\angle D=\angle A=130^\circ$（平行四边形的对角相等）。</details>
+        </div>
+      </div>
+      <div class="col">
+        <p class="q-t"><b>2.</b> 如图，▱$ABCD$ 的对角线相交于点 $O$，$BC=7$ cm，$BD=10$ cm，$AC=6$ cm．求 $\triangle AOD$ 的周长．</p>
+        <div id="pr2" class="brd-s"></div>
+        <p class="ans">$\triangle AOD$ 的周长 $=$ <span class="blank" data-ans="15"></span> cm</p>
+        <div class="hint-ladder">
+          <details><summary>提示</summary>$OA$、$OD$ 分别是哪条对角线的一半？$AD$ 等于哪条边？</details>
+          <details><summary>完整解答</summary>$OA=\dfrac12AC=3$，$OD=\dfrac12BD=5$（对角线互相平分），$AD=BC=7$（对边相等），周长 $=3+5+7=15$（cm）。</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p66 练习 1、2。先在空格里填答案（回车判对错），再看提示。第 2 题的图按 OA = 3、OD = 5、AD = 7 精确绘制（由三边求出∠AOD，再画出整个平行四边形）。</p>
+</section>
+
+<!-- 9 ================= 判定 1：搭积木 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 判定</span><h2>一组对边平行且相等，就是平行四边形？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="jd1" class="brd-s"></div>
+      <p class="tip">课本 p66 思考：在方格纸上画两条互相平行并且相等的线段 $AD$、$BC$，连接 $AB$、$DC$．你能证明所画四边形 $ABCD$ 是平行四边形吗？</p>
+      <p class="tip">已知：如图 9-14，在四边形 $ABCD$ 中，$AD\parallel BC$，$AD=BC$．求证：四边形 $ABCD$ 是平行四边形．</p>
+
+      <div class="def" data-step="1"><h4>定理（课本 p67）</h4>一组对边平行且相等的四边形是平行四边形．</div>
+    </div>
+    <div class="col">
+      <div class="pblocks sm-pb" data-done="全部放对了！思路：连对角线 AC 造出两个三角形 → 全等 → 内错角相等 → 另一组对边也平行。">
+        <div class="proof">
+          <p><span class="lead">证明：</span>连接 $AC$．<span class="so">∵</span>$AD\parallel BC$，</p>
+          <p><span class="so">∴</span>$\angle BCA=\angle DAC$（<button class="slot" data-ans="nc-xz" data-hint="已知平行，要得到角相等，用平行线的“性质”。"></button>）．</p>
+          <p>在 $\triangle BCA$ 和 $\triangle DAC$ 中，$CB=AD$，$\angle BCA=\angle DAC$，$CA=AC$，</p>
+          <p><span class="so">∴</span>$\triangle BCA\cong\triangle DAC$（<button class="slot" data-ans="sas" data-hint="两边和它们的夹角对应相等。"></button>）．</p>
+          <p><span class="so">∴</span>$\angle BAC=\angle DCA$（<button class="slot" data-ans="qd-dj"></button>）．</p>
+          <p><span class="so">∴</span>$AB\parallel CD$（<button class="slot" data-ans="nc-pd" data-hint="由角相等得到平行，用平行线的“判定”。"></button>）．</p>
+          <p><span class="so">∴</span>四边形 $ABCD$ 是平行四边形（<button class="slot" data-ans="px-def"></button>）．</p>
+        </div>
+        <div class="pb-bank">
+          <button class="tile" data-k="nc-xz"></button><button class="tile" data-k="nc-pd"></button><button class="tile" data-k="sas">SAS</button><button class="tile" data-k="sss">SSS</button><button class="tile" data-k="qd-dj"></button><button class="tile" data-k="qd-dy"></button><button class="tile" data-k="px-def"></button><button class="tile" data-k="px-db"></button>
+        </div>
+        <div class="pb-row"><p class="pb-msg"></p><button class="btn pb-reset" type="button">重来</button></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p66–67 思考与证明（图 9-14）。左图是方格纸上的实例：拖动 B 改变线段 BC 的位置，AD 始终与 BC 平行且相等，四边形总是平行四边形。右边“证明搭积木”：把依据拖进空槽（也可以先点积木再点空槽），最容易混的是第 1 格（性质）和第 4 格（判定）。</p>
+</section>
+
+<!-- 10 ================= 判定 2、3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流 · 尝试</span><h2>两组对边分别相等？对角线互相平分？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div id="jd2" class="brd-xs"></div>
+        <p class="tip">在四边形 $ABCD$ 中，$AB=CD$，$AD=BC$．四边形 $ABCD$ 是平行四边形吗？证明你的结论．</p>
+        <div class="proof sm-pf">
+          <p data-step="1">连接 $AC$．在 $\triangle ABC$ 和 $\triangle CDA$ 中，$AB=CD$，$BC=DA$，$AC=CA$，</p>
+          <p data-step="2"><span class="so">∴</span>$\triangle ABC\cong\triangle CDA$（<button class="yj" data-k="sss">SSS</button>）．</p>
+          <p data-step="3"><span class="so">∴</span>$\angle1=\angle2$，<span class="so">∴</span>$AB\parallel CD$（<button class="yj" data-k="nc-pd"></button>）．</p>
+          <p data-step="4"><span class="so">∴</span>四边形 $ABCD$ 是平行四边形（<button class="yj" data-k="pd-1"></button>）．</p>
+        </div>
+        <div class="def" data-step="5"><h4>定理（课本 p67）</h4>两组对边分别相等的四边形是平行四边形．</div>
+      </div>
+      <div class="col">
+        <div id="jd3" class="brd-xs"></div>
+        <p class="tip">已知：如图 9-16，直线 $AC$、$BD$ 相交于点 $O$，$OA=OC$，$OB=OD$．求证：四边形 $ABCD$ 是平行四边形．</p>
+        <div class="proof sm-pf">
+          <p data-step="6">在 $\triangle AOB$ 和 $\triangle COD$ 中，$OA=OC$，$\angle AOB=\angle COD$（<button class="yj" data-k="vert"></button>），$OB=OD$，</p>
+          <p data-step="7"><span class="so">∴</span>$\triangle AOB\cong\triangle COD$（<button class="yj" data-k="sas">SAS</button>）．<span class="so">∴</span>$AB=CD$．同理 $AD=CB$．</p>
+          <p data-step="8"><span class="so">∴</span>四边形 $ABCD$ 是平行四边形（<button class="yj" data-k="pd-2"></button>）．</p>
+        </div>
+        <div class="def" data-step="9"><h4>定理（课本 p69）</h4>对角线互相平分的四边形是平行四边形．</div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p67 交流、p68–69 尝试。两个定理的证明都是“连对角线 / 用对角线分出的三角形 → 全等”。注意证明链条：判定 2 用到判定 1（AB∥CD 且 AB = CD），判定 3 又用到判定 2——新定理建立在已证定理上。左图 ∠1、∠2 标在 AC 两侧。</p>
+</section>
+
+<!-- 11 ================= 条件检验台 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探究 · 辨析</span><h2>条件检验台：满足这个条件，一定是平行四边形吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="lab" class="brd-l"></div>
+      <div class="slider-row" data-noswipe>改变形状 <input type="range" id="labU" min="0" max="1" step="0.01" value="0.3"></div>
+    </div>
+    <div class="col">
+      <div class="btns sm" data-noswipe id="labBtns">
+        <button class="btn solid" type="button" data-k="a">两组对边分别平行</button>
+        <button class="btn" type="button" data-k="b">两组对边分别相等</button>
+        <button class="btn" type="button" data-k="c">一组对边平行且相等</button>
+        <button class="btn" type="button" data-k="d">对角线互相平分</button>
+        <button class="btn" type="button" data-k="f">一组对边平行，一组对角相等</button>
+        <button class="btn" type="button" data-k="g">两组对角分别相等</button>
+        <button class="btn" type="button" data-k="e">一组对边平行，另一组对边相等</button>
+        <button class="btn" type="button" data-k="i">两条对角线相等</button>
+      </div>
+      <p class="tip feedback" id="labRead"></p>
+      <p class="tip feedback" id="labMsg"></p>
+      <p class="method" data-step="1" data-label="怎样回答“是不是”">说“是”，要<b>证明</b>（用定义或定理）；说“不是”，只要举出<b>一个反例</b>。</p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。每个条件都按条件本身作图（如“两组对边分别相等”用两圆交点定 D，“一组对边平行、一组对角相等”用数值求解定 D），而不是直接画平行四边形；拖滑块改变形状，看是否始终是平行四边形。前四个是定义和判定定理；“一组对边平行、一组对角相等”是课本 p68 练习 1，“两组对角分别相等”是习题 9.3 第 5 题——都能证明；最后两个是反例：等腰梯形（课本 p68 练习 2）、对角线相等的一般四边形。</p>
+</section>
+
+<!-- 12 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>截去相等的两段，还是平行四边形</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="ex2" class="brd-m"></div>
+      <div class="slider-row" data-noswipe>$AE=CF=$ <input type="range" id="ex2U" min="0.3" max="3.2" step="0.1" value="1.4"><b class="v" id="ex2UV"></b></div>
+      <div class="think-flow" data-step="1"><p class="tf-h"><span>证明的途径</span></p><p>由▱$ABCD$、$AE=CF$，可证 $DE=BF$、$DE\parallel BF$，于是四边形 $BFDE$ 是平行四边形．</p></div>
+    </div>
+    <div class="col">
+      <p class="tip">已知：如图 9-15，在▱$ABCD$ 中，点 $E$、$F$ 分别在 $AD$、$BC$ 上，且 $AE=CF$．求证：四边形 $BFDE$ 是平行四边形．</p>
+      <div class="proof">
+        <p data-step="2"><span class="lead">证明：</span><span class="so">∵</span>四边形 $ABCD$ 是平行四边形，</p>
+        <p data-step="3"><span class="so">∴</span>$AD=BC$，$AD\parallel BC$（<button class="yj" data-k="px-db2">平行四边形的对边平行且相等</button>）．</p>
+        <p data-step="4"><span class="so">∵</span>$AE=CF$，<span class="so">∴</span>$AD-AE=BC-CF$，即 $DE=BF$．</p>
+        <p data-step="5"><span class="so">∴</span>四边形 $BFDE$ 是平行四边形（<button class="yj" data-k="pd-1"></button>）．</p>
+      </div>
+      <p class="tip" data-step="6">思考：还有其他方法证明例 2 的结论吗？<span class="think" data-step="7" data-ask="想一想">如：证 $\triangle ABE\cong\triangle CDF$（SAS）得 $BE=DF$，又 $DE=BF$，由“两组对边分别相等”得证。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p68 例 2 与思考。拖滑块改变 AE = CF 的长度，BFDE 始终是平行四边形（橙色）。注意“DE∥BF”来自 AD∥BC（E、F 分别在 AD、BC 上），课本把它合在“平行四边形的对边平行且相等”里一起写。</p>
+</section>
+
+<!-- 13 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>在对角线上截取相等的两段</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="ex3" class="brd-m"></div>
+      <div class="slider-row" data-noswipe>$AE=CF=$ <input type="range" id="ex3U" min="0.2" max="2.4" step="0.1" value="1"><b class="v" id="ex3UV"></b></div>
+      <div class="think-flow" data-step="1"><p class="tf-h"><span>证明的途径</span></p><p>由▱$ABCD$、$AE=CF$，可证 $OB=OD$，$OE=OF$，于是四边形 $EBFD$ 是平行四边形．</p></div>
+    </div>
+    <div class="col">
+      <p class="tip">已知：如图 9-17，在▱$ABCD$ 中，点 $E$、$F$ 在 $AC$ 上，且 $AE=CF$．求证：四边形 $EBFD$ 是平行四边形．</p>
+      <div class="proof">
+        <p data-step="2"><span class="lead">证明：</span>连接 $BD$，$BD$ 交 $AC$ 于点 $O$．<span class="so">∵</span>四边形 $ABCD$ 是平行四边形，</p>
+        <p data-step="3"><span class="so">∴</span>$OA=OC$，$OB=OD$（<button class="yj" data-k="px-djx"></button>）．</p>
+        <p data-step="4"><span class="so">∵</span>$AE=CF$，<span class="so">∴</span>$OA-AE=OC-CF$，即 $OE=OF$．</p>
+        <p data-step="5"><span class="so">∴</span>四边形 $EBFD$ 是平行四边形（<button class="yj" data-k="pd-3"></button>）．</p>
+      </div>
+      <p class="warn" data-step="6" data-label="拖到底看看">$AE$ 超过 $OA$ 时，$E$、$F$ 跑到 $O$ 的另一侧，“$OA-AE$”就不对了——此时 $OE=AE-OA$，结论仍成立，但证明要改写。课本的图默认 $AE\lt OA$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p69 例 3 与思考（还可以证 △ABE ≌ △CDF 得 BE = DF，再证 △ADE ≌ △CBF 得 DE = BF）。拖滑块：AE 由小变大，四边形 EBFD 从“瘦”变“胖”；当 AE = OA 时 E、F 都与 O 重合，四边形退化成线段 BD；再拖大，E、F 交换位置。这是图形“位置”对证明书写的影响，学有余力的学生可以讨论。</p>
+</section>
+
+<!-- 14 ================= 反证法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论 · 反证法</span><h2>如果 $OA=OC$，$OB\ne OD$，还是平行四边形吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="fz" class="brd-m"></div>
+      <div class="slider-row" data-noswipe>$OD=$ <input type="range" id="fzU" min="0.8" max="3.6" step="0.1" value="1.6"><b class="v" id="fzUV"></b>　（$OB=2.4$）</div>
+      <p class="tip feedback" id="fzMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 9-18，如果 $OA=OC$，$OB\ne OD$，那么四边形 $ABCD$ 不是平行四边形．试证明这个结论．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>假设</span><span>四边形 $ABCD$ 是平行四边形</span><i class="why">提出与结论相反的假设</i></div>
+        <div class="dl" data-step="2"><span>那么</span><span class="think" data-step="3" data-ask="推出什么？">$OA=OC$，$OB=OD$</span><i class="why">平行四边形的对角线互相平分</i></div>
+        <div class="dl key" data-step="4"><span>矛盾</span><span>$OB=OD$ 与已知条件 $OB\ne OD$ 矛盾</span><i class="why"></i></div>
+        <div class="dl end" data-step="5"><span>所以</span><span>四边形 $ABCD$ 不是平行四边形</span><i class="why">假设不成立</i></div>
+      </div>
+      <div class="def" data-step="6"><h4>反证法（课本 p70）</h4>不是从已知条件出发直接证明命题的结论成立，而是先提出与结论相反的假设，然后由这个“假设”出发推导出矛盾的结果，说明假设是错误的，因而命题的结论成立．这种证明的方法称为<em>反证法</em>（reduction to absurdity）．</div>
+    </div>
+  </div>
+  <p class="note">课本 p69–70 讨论、反证法定义与“读一读”。拖滑块改变 OD：只有 OD = OB = 2.4 时才是平行四边形，其余情况 AB 与 CD 不平行。反证法三步：假设 → 推出矛盾 → 结论成立。课本 p70 还指出：七下第 7 章“读一读”证实“两直线平行，同位角相等”用的就是反证法（假设 ∠1 ≠ ∠2，过 O 作 GH 使 ∠EOH = ∠2，则过一点有两条直线与 CD 平行，与平行公理矛盾）。课本 p71“趣谈反证法”（判断“昨晚下过雨”、红球黄球）可留作课后阅读：生活中的这类推理不一定严谨，数学中从假设推出矛盾的每一步都必须有依据。</p>
+</section>
+
+<!-- 15 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>选哪一个判定定理？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，$AD$ 是 $\triangle ABC$ 的中线．(1) 画图：延长 $AD$ 到点 $E$，使 $DE=AD$，连接 $BE$、$CE$；(2) 四边形 $ABEC$ 是平行四边形吗？证明你的结论．</p>
+        <div id="lx1" class="brd-s"></div>
+        <details><summary>提示 1</summary>$AE$、$BC$ 是四边形 $ABEC$ 的什么线？它们的交点是 $D$。</details>
+        <details><summary>提示 2</summary>$BD=CD$（中线），$AD=ED$（作图），哪个判定定理正好用得上？</details>
+        <details><summary>完整解答</summary>是。∵ $AD$ 是中线，∴ $BD=CD$；又 $AD=ED$，∴ 四边形 $ABEC$ 的对角线 $AE$、$BC$ 互相平分，∴ 四边形 $ABEC$ 是平行四边形（对角线互相平分的四边形是平行四边形）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知：在▱$ABCD$ 中，对角线 $AC$、$BD$ 相交于点 $O$，$E$、$F$、$G$、$H$ 分别是 $OA$、$OB$、$OC$、$OD$ 的中点．求证：四边形 $EFGH$ 是平行四边形．</p>
+        <div id="lx2" class="brd-s"></div>
+        <details><summary>提示 1</summary>由▱$ABCD$ 先得到什么？（$OA=OC$，$OB=OD$）</details>
+        <details><summary>提示 2</summary>$OE=\dfrac12OA$，$OG=\dfrac12OC$，所以 $OE$ 与 $OG$ 什么关系？</details>
+        <details><summary>完整解答</summary>∵ 四边形 $ABCD$ 是平行四边形，∴ $OA=OC$，$OB=OD$。∵ $E$、$G$ 分别是 $OA$、$OC$ 的中点，∴ $OE=OG$；同理 $OF=OH$。∴ 四边形 $EFGH$ 是平行四边形（对角线互相平分的四边形是平行四边形）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p70 练习 1、p71 练习 2。两题都用“对角线互相平分”。第 1 题的作法“倍长中线”以后还会常用：它把三角形补成平行四边形。</p>
+</section>
+
+<!-- 16 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 9.3</span><h2>综合运用性质与判定</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> ▱$ABCD$ 的对角线 $AC$、$BD$ 相交于点 $O$．你能在图中找出几对全等的三角形？</p>
+        <details><summary>提示</summary>先找“对顶”的两对小三角形，再找被一条对角线分成的两对大三角形。</details>
+        <details><summary>完整解答</summary>4 对：$\triangle AOB\cong\triangle COD$，$\triangle AOD\cong\triangle COB$（SAS 或 SSS），$\triangle ABC\cong\triangle CDA$，$\triangle ABD\cong\triangle CDB$（SSS）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在▱$ABCD$ 中，$\angle ABC$、$\angle ADC$ 的平分线分别交 $AD$、$BC$ 于点 $E$、$F$．求证：$BE\parallel DF$．</p>
+        <details><summary>提示 1</summary>$\angle ABC=\angle ADC$，所以它们的一半 $\angle EBF$ 与 $\angle EDF$ 相等。</details>
+        <details><summary>提示 2</summary>$AD\parallel BC$ ⇒ $\angle AEB=\angle EBF$……能证出四边形 $BFDE$ 是平行四边形吗？</details>
+        <details><summary>完整解答</summary>∵ $AD\parallel BC$，∴ $\angle AEB=\angle EBF$。∵ $\angle EBF=\frac12\angle ABC=\frac12\angle ADC=\angle EDF$，∴ $\angle AEB=\angle EDF$，∴ $BE\parallel DF$（同位角相等，两直线平行）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 在四边形 $ABCD$ 中，$\angle A=\angle C$，$\angle B=\angle D$．四边形 $ABCD$ 是平行四边形吗？证明你的结论．</p>
+        <details><summary>提示</summary>四边形内角和是 $360^\circ$，所以 $\angle A+\angle B=?$</details>
+        <details><summary>完整解答</summary>是。$2\angle A+2\angle B=360^\circ$，∴ $\angle A+\angle B=180^\circ$，∴ $AD\parallel BC$（同旁内角互补，两直线平行）；同理 $\angle A+\angle D=180^\circ$，$AB\parallel DC$。∴ 四边形 $ABCD$ 是平行四边形（定义）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 在▱$ABCD$ 中，点 $E$、$F$ 分别在 $BC$、$AD$ 上，且 $BE=DF$．求证：$AC$、$EF$ 互相平分．</p>
+        <details><summary>提示</summary>要证两条线段互相平分，可以证明以它们为对角线的四边形 $AECF$ 是平行四边形。</details>
+        <details><summary>完整解答</summary>∵ $AD=BC$，$AD\parallel BC$，$BE=DF$，∴ $AF=CE$，$AF\parallel CE$，∴ 四边形 $AECF$ 是平行四边形（一组对边平行且相等），∴ $AC$、$EF$ 互相平分（平行四边形的对角线互相平分）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>7.</b> 在▱$ABCD$ 中，$AE\perp BD$，$CF\perp BD$，垂足分别为 $E$、$F$．求证：四边形 $AECF$ 是平行四边形．</p>
+        <details><summary>提示</summary>$AE\parallel CF$（都垂直于 $BD$）；再证 $AE=CF$：看 $\triangle ABE$ 与 $\triangle CDF$。</details>
+        <details><summary>完整解答</summary>$AE\parallel CF$。∵ $AB=CD$，$\angle ABE=\angle CDF$（$AB\parallel CD$），$\angle AEB=\angle CFD=90^\circ$，∴ $\triangle ABE\cong\triangle CDF$（AAS），∴ $AE=CF$，∴ 四边形 $AECF$ 是平行四边形（一组对边平行且相等）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>8.</b> 画▱$ABCD$，使 $AB=2$ cm，$BC=3$ cm，$AC=4$ cm．画出 $\triangle ABC$ 后，你能用哪些方法确定点 $D$ 的位置？</p>
+        <details><summary>完整解答</summary>任选一个判定定理都行：① 以 $A$ 为圆心 3 cm、以 $C$ 为圆心 2 cm 画弧，交点为 $D$（两组对边分别相等）；② 过 $A$ 作 $BC$ 的平行线，截取 $AD=3$ cm（一组对边平行且相等）；③ 取 $AC$ 中点 $O$，延长 $BO$ 到 $D$ 使 $OD=OB$（对角线互相平分）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p72–73 习题 9.3 第 1、2、5、6、7、8 题（第 3、4、9 题留作业）。第 8 题很好地串起三个判定定理：每种作图方法对应一个定理。</p>
+</section>
+
+<!-- 17 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>性质与判定：方向相反的两张表</h2></div>
+  <div class="bd full">
+    <table class="mtab big-t" data-step="1">
+      <tr><th></th><th>性质（▱ ⇒ …）</th><th>判定（… ⇒ ▱）</th></tr>
+      <tr><td>边</td><td>对边平行；对边相等</td><td>两组对边分别平行（定义）；两组对边分别相等；一组对边平行且相等</td></tr>
+      <tr><td>角</td><td>对角相等</td><td>（两组对角分别相等——习题 5）</td></tr>
+      <tr><td>对角线</td><td>对角线互相平分</td><td>对角线互相平分</td></tr>
+      <tr><td>对称性</td><td colspan="2">中心对称图形，对角线的交点是对称中心</td></tr>
+    </table>
+    <div class="cols3 sum">
+      <p class="method" data-step="2" data-label="方法">连对角线，化成三角形全等；已知▱时先用性质，要证▱时选判定。</p>
+      <p class="recall" data-step="3" data-label="思想">运动（中心对称）中找不变量；反证法：假设—矛盾—结论。</p>
+      <p class="tip gold" data-step="4"><b>下一节：</b>9.4 矩形、菱形、正方形——平行四边形“多一个条件”（一个直角、一组邻边相等）会变成什么？</p>
+    </div>
+  </div>
+  <p class="note">请学生先口述两张表再揭示：性质是“由▱出发”，判定是“到▱为止”。作业建议：习题 9.3 第 3、4、9 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

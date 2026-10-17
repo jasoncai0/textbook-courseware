@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中心对称与中心对称图形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fengche.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第9章 中心对称图形——平行四边形 · 9.2</p>
+    <h1 class="cover-title">中心对称与中心对称图形</h1>
+    <p class="cover-q" data-step="1">“双鱼”剪纸由两个形状、大小完全相同的图案组成。这两个图案的位置有怎样的特殊关系？</p>
+    <p class="cover-q" data-step="2">怎样改变其中一个图案的位置，可以使它与另一个图案重合？——不是翻折，而是<b>绕一个点转半圈</b>。</p>
+    <div class="chips" data-step="3"><span class="chip">旋转 180°</span><span class="chip">中心对称</span><span class="chip">对称中心</span><span class="chip">中心对称图形</span></div>
+  </div>
+  <p class="note">课本 p59 情境（“双鱼”剪纸）。请学生先猜：把一条鱼沿某条直线翻折能与另一条重合吗？（不能，两条鱼都“头朝顺时针方向”。）再引出：绕两条鱼中间的一个点转 180° 就能重合——这是 9.1 旋转的特例。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="9.1 · 图形的旋转" data-step="1">
+        <p>对应点到旋转中心的距离相等；</p>
+        <p>对应点与旋转中心连线所成的角等于旋转角。</p>
+        <span class="use">旋转角取 $180^\circ$：得到 $OA=OA'$、$\angle AOA'=180^\circ$。</span>
+      </div>
+      <div class="recall" data-label="七上 6.2 · 平角" data-step="2">
+        <p>终边和始边成一条直线的角叫平角，平角等于 $180^\circ$。</p>
+        <span class="use">$\angle AOA'=180^\circ$ 说明 $A$、$O$、$A'$ 在<b>同一条直线</b>上。</span>
+      </div>
+      <div class="recall" data-label="八上 2.1–2.2 · 轴对称" data-step="3">
+        <p>“两个图形成轴对称”与“轴对称图形”：一个说两个图形，一个说一个图形。</p>
+        <p>对称轴垂直平分对应点的连线。</p>
+        <span class="use">类比：中心对称也分“两个图形”和“一个图形”两种说法。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>上一课讲到：</b>旋转由旋转中心、方向、旋转角决定。<b>本课：</b>旋转角恰好是 $180^\circ$ 时，会出现哪些特殊的结论？</p>
+  </div>
+  <p class="note">第三张卡是本课的“类比模板”：八上学轴对称时先学“两个图形成轴对称”，再学“轴对称图形”；本课完全照这个顺序，最后用表格把四个概念放在一起比较。</p>
+</section>
+
+<!-- 3 ================= 操作：转 180° ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作</span><h2>把四边形 $ABCD$ 绕点 $O$ 旋转 $180^\circ$</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="turn" class="brd-l"></div>
+      <div class="slider-row" data-noswipe>透明纸转过 <input type="range" id="turnT" min="0" max="180" step="1" value="0"><b class="v" id="turnTV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p59：用透明纸描出四边形 $ABCD$，用大头针钉在点 $O$ 处，把它绕点 $O$ 旋转 $180^\circ$，你发现了什么？</p>
+      <p class="tip feedback" id="turnMsg"></p>
+      <div class="def" data-step="1"><h4>中心对称（课本 p59）</h4>一个图形绕着某一点旋转 $180^\circ$，如果它能够与另一个图形重合，那么称这两个图形关于这点对称，也称这两个图形成<em>中心对称</em>（central symmetry）．这个点叫做<em>对称中心</em>（symmetric centre）．</div>
+      <p class="method" data-step="2" data-label="联系">图 9-4 中两个四边形关于点 $O$ 对称。旋转 $180^\circ$ 是一种特殊的旋转，成中心对称的两个图形具有图形旋转的一切性质。</p>
+    </div>
+  </div>
+  <p class="note">课本 p59 操作与定义。拖滑块模拟“透明纸绕大头针转”：转到 90° 时让学生说“还没重合”，转到 180° 恰好与 A′B′C′D′ 重合（提示变绿）。图中所有点都按 A′ = 2O − A 精确计算。</p>
+</section>
+
+<!-- 4 ================= 思考：对应点连线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>连接对应点 $AA'$，你发现了什么？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="pair" class="brd-l"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="pairAll">连接 $AA'$、$BB'$、$CC'$、$DD'$</button></div>
+      <p class="muted center small-t">拖动橙色点 $A$ 或对称中心 $O$</p>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p60 思考：1. 点 $A$ 与点 $A'$ 关于点 $O$ 对称，连接 $AA'$，你能发现什么？2. 在图 9-4 中连接 $AA'$、$BB'$、$CC'$、$DD'$ 呢？</p>
+      <div class="readout r2"><span>$OA$</span><b class="v" id="pOA"></b><span>$OA'$</span><b class="v" id="pOA2"></b><span>$\angle AOA'$</span><b class="v" id="pAng"></b></div>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>$A$ 绕 $O$ 旋转 $180^\circ$ 后与 $A'$ 重合</span><i class="why">中心对称的定义</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="角是多少？">$\angle AOA'=180^\circ$，$A$、$O$、$A'$ 在同一直线上</span><i class="why">旋转角 $180^\circ$ 是平角</i></div>
+        <div class="dl" data-step="4"><span>且</span><span class="think" data-step="5" data-ask="距离呢？">$OA=OA'$，$O$ 是 $AA'$ 的中点</span><i class="why">对应点到旋转中心距离相等</i></div>
+      </div>
+      <div class="def" data-step="6"><h4>中心对称的性质（课本 p60）</h4>成中心对称的两个图形中，对应点的连线经过对称中心，且被对称中心平分．</div>
+    </div>
+  </div>
+  <p class="note">课本 p60 思考 1、2 与性质框。先拖 A 看 OA = OA′、∠AOA′ 始终 180°，再点按钮连出四条对应点连线——它们都经过 O 且被 O 平分。说理只用到 9.1 旋转的两条性质，学生能自己说出依据。</p>
+</section>
+
+<!-- 5 ================= 操作：画关于 O 对称的图形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 你来画</span><h2>在方格纸上画出 $\triangle ABC$ 关于点 $O$ 对称的三角形</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="grid" class="brd-l"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="gridHelp">显示作法</button><button class="btn" type="button" id="gridReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p60 操作：1. 画点 $A$ 关于点 $O$ 对称的点；2. 画线段 $AB$ 关于点 $O$ 对称的线段；3. 画 $\triangle ABC$ 关于点 $O$ 对称的三角形．</p>
+      <p class="tip">依次点击格点，放下 <b id="gridNext">$A'$</b>（点错了会提示）。</p>
+      <p class="tip feedback" id="gridMsg"></p>
+      <div class="method" data-step="1" data-label="作法">连接 $AO$，延长 $AO$ 到 $A'$，使 $OA'=OA$，点 $A'$ 就是点 $A$ 关于点 $O$ 对称的点．<span class="think" data-step="2" data-ask="方格纸上怎样数？">从 $A$ 到 $O$ 是“右 $m$ 格、下 $n$ 格”，从 $O$ 再“右 $m$ 格、下 $n$ 格”就到 $A'$。</span></div>
+      <p class="tip" data-step="3">画线段、三角形：<span class="think" data-step="4" data-ask="关键？">只要画出各端点、顶点的对称点，再连接。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p60 操作 1–3（图 9-6～9-8）。学生点格点放 A′、B′、C′：放对了点变成橙色并连线，放错时提示“O 应是 AA′ 的中点”。“显示作法”画出延长线和等长标记。方格纸上数格子的方法正是性质“被对称中心平分”的直接应用。</p>
+</section>
+
+<!-- 6 ================= 中心对称图形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论 · 概念</span><h2>一个图形自己转 $180^\circ$：找找它的对称中心</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="find" class="brd-l"></div>
+      <div class="btns sm" data-noswipe id="findBtns">
+        <button class="btn solid" type="button" data-k="0">螺旋桨</button><button class="btn" type="button" data-k="1">闪电</button><button class="btn" type="button" data-k="2">平行四边形</button><button class="btn" type="button" data-k="3">正六边形</button><button class="btn" type="button" data-k="4">等边三角形</button><button class="btn" type="button" data-k="5">五角星</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">图 9-9 中的图案有什么共同特征？拖动橙色点 $O$：虚线是图形绕 $O$ 旋转 $180^\circ$ 后的样子。能找到一个点，使转后的图形与原图形<b>自己重合</b>吗？</p>
+      <p class="tip feedback" id="findMsg"></p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="findGive">找不到？看答案</button></div>
+      <div class="def" data-step="1"><h4>中心对称图形（课本 p61）</h4>把一个图形绕某一点旋转 $180^\circ$，如果旋转后的图形能够与原来的图形互相重合，那么这个图形叫做<em>中心对称图形</em>（central symmetric figure）．这个点就是它的对称中心．</div>
+    </div>
+  </div>
+  <p class="note">课本 p61 讨论（图 9-9）与定义。每个图形都让学生先估计对称中心再拖 O：中心对称图形只有一个位置能重合（拖近会吸附并变绿）；等边三角形、五角星怎么拖都不重合——它们是轴对称图形，却不是中心对称图形。请学生再举生活中的例子（扑克牌的某些牌面、风车、汽车标志……）。</p>
+</section>
+
+<!-- 7 ================= 比一比 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 比较</span><h2>四个概念放在一起比一比</h2></div>
+  <div class="bd full">
+    <table class="mtab big-t">
+      <tr><th></th><th>中心对称</th><th>中心对称图形</th><th>轴对称</th><th>轴对称图形</th></tr>
+      <tr><td>研究对象</td><td>两个图形</td><td><span class="think" data-step="1" data-ask="?">一个图形</span></td><td>两个图形</td><td>一个图形</td></tr>
+      <tr><td>怎样运动</td><td>绕一点旋转 $180^\circ$</td><td><span class="think" data-step="2" data-ask="?">绕一点旋转 $180^\circ$</span></td><td>沿一条直线翻折</td><td>沿一条直线翻折</td></tr>
+      <tr><td>与谁重合</td><td>与另一个图形重合</td><td><span class="think" data-step="3" data-ask="?">与自身重合</span></td><td>与另一个图形重合</td><td>与自身重合</td></tr>
+      <tr><td>对应点</td><td colspan="2"><span class="think" data-step="4" data-ask="?">连线经过对称中心，且被对称中心平分</span></td><td colspan="2">连线被对称轴垂直平分</td></tr>
+    </table>
+    <div class="cols2">
+      <p class="method" data-step="5" data-label="联系">把中心对称图形中能转 $180^\circ$ 重合的两部分看成两个图形，它们就成中心对称；反过来，把成中心对称的两个图形看成一个整体，它就是中心对称图形。</p>
+      <p class="warn" data-step="6" data-label="别混">“$\triangle ABC$ 与 $\triangle A'B'C'$ 关于点 $O$ 对称”说的是<b>两个</b>图形的位置关系；“平行四边形是中心对称图形”说的是<b>一个</b>图形的形状特征。</p>
+    </div>
+  </div>
+  <p class="note">课本 p61 思考：“轴对称与轴对称图形既有联系又有区别，类似的，中心对称与中心对称图形有怎样的联系和区别呢？”先让学生填空再揭示；“联系”一栏可回到第 6 页：螺旋桨的两片桨叶就成中心对称。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>画一画、判一判</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在 $\triangle ABC$ 中，$O$ 是 $AC$ 的中点，画 $\triangle ABC$ 关于点 $O$ 对称的 $\triangle A'B'C'$．</p>
+        <div id="ex1" class="brd-s"></div>
+        <details><summary>提示 1</summary>$O$ 是 $AC$ 的中点，所以 $A$ 关于 $O$ 的对称点是谁？</details>
+        <details><summary>提示 2</summary>$A'$ 就是 $C$，$C'$ 就是 $A$；只需画出 $B'$：延长 $BO$ 到 $B'$，使 $OB'=OB$。</details>
+        <details><summary>完整解答</summary>$\triangle A'B'C'$ 即 $\triangle CB'A$（图中橙色）。观察四边形 $ABCB'$——下一节会知道，它是平行四边形。<button class="btn" type="button" id="ex1Show">在图中画出</button></details>
+      </div>
+      <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 线段是中心对称图形吗？如果是，说出它的对称中心．</p>
+        <details><summary>提示</summary>线段 $AB$ 绕哪一点转 $180^\circ$，$A$、$B$ 正好对调？</details>
+        <details><summary>完整解答</summary>是。线段的中点就是它的对称中心：绕中点 $M$ 旋转 $180^\circ$，$MA=MB$，$A$ 与 $B$ 互换位置，线段与自身重合。（线段也是轴对称图形，对称轴是它的垂直平分线。）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 3.</b>（1）圆是中心对称图形吗？（2）$P$ 是圆 $O$ 外的一个定点，怎样画圆 $O$ 关于点 $P$ 对称的圆 $O_1$？</p>
+        <details><summary>提示</summary>圆绕圆心转 $180^\circ$ 会怎样？要画圆 $O_1$，先找哪个点？</details>
+        <details><summary>完整解答</summary>(1) 是，圆心是对称中心。(2) 连接 $OP$ 并延长到 $O_1$，使 $PO_1=PO$；以 $O_1$ 为圆心、圆 $O$ 的半径为半径画圆即可。</details>
+      </div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在正方形的 4 个角上剪去 4 个相同的小正方形，剩余部分是中心对称图形吗？如果是，画出它的对称中心．</p>
+        <div id="ex3" class="brd-s"></div>
+        <details><summary>提示</summary>正方形本身是中心对称图形吗？剪掉的 4 个小正方形，转 $180^\circ$ 后落在哪里？</details>
+        <details><summary>完整解答</summary>是。对称中心是原正方形两条对角线的交点 $O$：绕 $O$ 旋转 $180^\circ$，每个剪去的角都落到对角处的剪去的角上，剩余部分与自身重合。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p61 练习 1–3。第 1 题有“意外”：A′ 就是 C、C′ 就是 A，原三角形和像拼成一个四边形——为 9.3“平行四边形是中心对称图形”埋伏笔。第 3 题的图按精确坐标画出，对称中心用对角线（虚线）找。</p>
+</section>
+
+<!-- 9 ================= 习题 9.2 第 1 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 9.2</span><h2>哪些是中心对称图形？哪些是轴对称图形？</h2></div>
+  <div class="bd full top">
+    <p class="tip">课本 p62 习题 9.2 第 1 题：下列图形中，哪些是中心对称图形？哪些是轴对称图形？请画出它们的对称中心或对称轴．（先判断，再点“画出来”核对）</p>
+    <div class="five" id="five">
+      <div class="fcard"><div class="ffig" id="f1"></div><p class="fno">①</p>
+        <div class="pick" data-ans="y"><span class="pl">中心对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button></div>
+        <div class="pick" data-ans="y"><span class="pl">轴对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">4 条对称轴</p></div></div>
+      <div class="fcard"><div class="ffig" id="f2"></div><p class="fno">②</p>
+        <div class="pick" data-ans="y"><span class="pl">中心对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button></div>
+        <div class="pick" data-ans="y"><span class="pl">轴对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">6 条对称轴</p></div></div>
+      <div class="fcard"><div class="ffig" id="f3"></div><p class="fno">③</p>
+        <div class="pick" data-ans="y"><span class="pl">中心对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button></div>
+        <div class="pick" data-ans="y"><span class="pl">轴对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">4 条对称轴</p></div></div>
+      <div class="fcard"><div class="ffig" id="f4"></div><p class="fno">④</p>
+        <div class="pick" data-ans="y"><span class="pl">中心对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button></div>
+        <div class="pick" data-ans="n"><span class="pl">轴对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">找不到对称轴：翻折后叶片的弯向反了</p></div></div>
+      <div class="fcard"><div class="ffig" id="f5"></div><p class="fno">⑤</p>
+        <div class="pick" data-ans="y"><span class="pl">中心对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button></div>
+        <div class="pick" data-ans="n"><span class="pl">轴对称？</span><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">像风车一样“转着排”，没有对称轴</p></div></div>
+    </div>
+    <div class="btns" data-noswipe><button class="btn solid" type="button" id="fiveDraw">画出对称中心和对称轴</button><button class="btn" type="button" id="fiveRot">都转 $180^\circ$ 看看</button></div>
+    <p class="warn" data-step="1" data-label="发现">5 个图形<b>都是</b>中心对称图形，但 ④⑤ 不是轴对称图形——“中心对称”和“轴对称”是两回事，要分别检验。</p>
+  </div>
+  <p class="note">课本 p62 习题 9.2 第 1 题。每个图形分别判断两次。“都转 180° 看看”会让 5 个图形同时绕中心转半圈（动画），转完与原图重合；“画出对称中心和对称轴”给出红色中心点与紫色对称轴。④⑤ 最容易误判为轴对称：可以请学生拿手比一比“翻折”后是否重合。</p>
+</section>
+
+<!-- 10 ================= 习题：说理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 9.2</span><h2>两次轴对称，变成了中心对称？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="two" class="brd-l"></div>
+      <p class="muted center small-t">拖动橙色点 $A$</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>5.</b> 如图，直线 $l_1\perp l_2$，垂足为 $O$，点 $A_1$ 与点 $A$ 关于直线 $l_1$ 对称，点 $A_2$ 与点 $A$ 关于直线 $l_2$ 对称．点 $A_1$ 与点 $A_2$ 有怎样的对称关系？你能说明理由吗？</p>
+      <div class="readout r2"><span>$OA_1$</span><b class="v" id="tOA1"></b><span>$OA_2$</span><b class="v" id="tOA2"></b><span>$\angle A_1OA_2$</span><b class="v" id="tAng"></b></div>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>$l_1$ 垂直平分 $AA_1$，$l_2$ 垂直平分 $AA_2$</span><i class="why">轴对称的性质</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="距离">$OA_1=OA=OA_2$</span><i class="why">线段垂直平分线上的点到两端距离相等</i></div>
+        <div class="dl" data-step="4"><span>且</span><span class="think" data-step="5" data-ask="角">$\angle A_1OA_2=2\angle1+2\angle2=2\times90^\circ=180^\circ$</span><i class="why">$\angle1$、$\angle2$ 是 $OA$ 与 $l_1$、$l_2$ 的夹角，$\angle1+\angle2=90^\circ$</i></div>
+        <div class="dl end" data-step="6"><span>∴</span><span>$A_1$ 与 $A_2$ 关于点 $O$ 对称</span><i class="why">$A_1$、$O$、$A_2$ 共线且 $O$ 是中点</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p62 习题 9.2 第 5 题。拖 A 到各个象限，读数始终 OA₁ = OA₂、∠A₁OA₂ = 180°。说理用到八上 2.4“线段垂直平分线上的点到线段两端的距离相等”和轴对称“对应角相等”。结论：关于两条互相垂直的直线连续作两次轴对称，相当于关于交点作一次中心对称。</p>
+</section>
+
+<!-- 11 ================= 读一读：雪花曲线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">读一读</span><h2>分形与中心对称图形：雪花曲线</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="koch" class="brd-l"></div>
+      <div class="slider-row" data-noswipe>第 <input type="range" id="kochN" min="0" max="4" step="1" value="0"><b class="v" id="kochNV"></b> 次</div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="kochRot">绕中心转 $180^\circ$</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">画 1 个等边三角形，将它的 3 条边三等分，各取中间的一段，并以此为边分别在原三角形外作 3 个小等边三角形……依照这个方法不断画下去，图形外缘越来越精细，像一片理想的雪花，所以被称为<b>雪花曲线</b>。</p>
+      <div class="readout r2"><span>边数</span><b class="v" id="kochE"></b><span>周长（原来的几倍）</span><b class="v" id="kochP"></b></div>
+      <p class="tip" data-step="1">图 (1) 等边三角形是中心对称图形吗？<span class="think" data-step="2" data-ask="?">不是。</span>　从图 (2) 起呢？<span class="think" data-step="3" data-ask="?">是——六角星、雪花曲线都能绕中心转 $180^\circ$ 与自身重合。</span></p>
+      <p class="recall" data-label="数学文化" data-step="4">像雪花曲线这样，局部与整体的形状相同的图形，数学家芒德勃罗（B. B. Mandelbrot）称之为“分形”（fractal）。雪花曲线是分形中的中心对称图形。</p>
+    </div>
+  </div>
+  <p class="note">课本 p63 读一读。拖滑块看第 0～4 次的雪花曲线（按坐标逐次精确生成：每段三等分、中间段向外作等边三角形）。边数每次乘 4，周长每次乘 4/3。点“绕中心转 180°”：第 0 次（三角形）转后不重合，第 1 次起都重合。这一页可作为课堂结尾的欣赏或课后阅读。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">两个图形绕一点转 $180^\circ$ 能重合：成中心对称；一个图形绕一点转 $180^\circ$ 与自身重合：中心对称图形。</p>
+        <p class="def">性质：对应点的连线经过对称中心，且被对称中心平分。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="画对称点">连接 $AO$ 并延长到 $A'$，使 $OA'=OA$。</p>
+        <p class="method" data-label="找对称中心">连接一对对应点，取中点；或连接两对对应点，找交点。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="特殊化">中心对称 = 旋转角为 $180^\circ$ 的旋转。</p>
+        <p class="recall" data-label="类比">仿照“轴对称—轴对称图形”学习“中心对称—中心对称图形”。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>9.3 平行四边形——练习第 1 题拼出的四边形 $ABCB'$ 是平行四边形。平行四边形是中心对称图形吗？对称中心在哪里？由此它还有哪些性质？</p>
+  </div>
+  <p class="note">请学生用自己的话说出“中心对称”和“中心对称图形”的区别。作业建议：习题 9.2 第 2、4 题（第 4 题：等边三角形不是中心对称图形，绕圆心转 180° 再补一个三角形，可补成六角星）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

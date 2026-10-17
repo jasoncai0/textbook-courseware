@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一元二次方程 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huapu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第1章 一元二次方程 · 1.1</p>
+    <h1 class="cover-title">一元二次方程</h1>
+    <p class="cover-q" data-step="1">靠墙围一个矩形花圃，另外三面栅栏总长 <b>19 m</b>，要让花圃面积恰好是 <b>24 m²</b>。</p>
+    <p class="cover-q" data-step="2">设花圃的宽为 $x$ m，列出的方程里出现了 $x^2$——这是一种<b>新的方程</b>。它长什么样？和一元一次方程有什么不同？</p>
+    <div class="chips" data-step="3"><span class="chip">列方程</span><span class="chip">花圃实验</span><span class="chip">一元二次方程的定义</span><span class="chip">一般形式 $ax^2+bx+c=0$</span></div>
+  </div>
+  <p class="note">课本 p6 图 1-1 情境。封面只抛问题，不列方程：请学生先估一估“宽取多少合适”，第 3、4 页再列方程、做实验。本章章首语是“降次：二次化一次”，本课先认识方程，下一课学解法。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 第4章 · 一元一次方程" data-step="1">
+        <p>只含有<b>一个</b>未知数，并且未知数的次数都是 <b>1</b> 的方程，叫做一元一次方程，如 $2x+3=7$。</p>
+        <p>“元”指未知数，“次”指未知数的次数。</p>
+        <span class="use">类比它，给今天的新方程下定义、起名字。</span>
+      </div>
+      <div class="recall" data-label="七上 第3章 · 整式的次数" data-step="2">
+        <p>多项式里<b>次数最高的项</b>的次数，就是这个多项式的次数：$-2x^2+19x-24$ 是二次三项式。</p>
+        <span class="use">判断方程中未知数的“最高次数”。</span>
+      </div>
+      <div class="recall" data-label="七下 第9章 · 整式乘法" data-step="3">
+        <p>$x(19-2x)=19x-2x^2$；</p>
+        <p>$(1+x)^2=1+2x+x^2$，$(x-1)^2=x^2-2x+1$。</p>
+        <span class="use">把方程展开、移项、合并，化成“一般形式”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>从实际问题列出方程 → 找出这些方程的共同特征 → 给它下定义 → 统一写成一般形式。</p>
+  </div>
+  <p class="note">第一张卡请学生复述“一元一次”四个字分别指什么，本课的定义完全仿照它。第三张卡请学生口算展开，第 6 页整理一般形式全靠它。</p>
+</section>
+
+<!-- 3 ================= 列方程 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>用方程描述数量关系</h2></div>
+  <div class="bd full">
+    <div class="cols2 sit4">
+      <div class="scard" data-step="1">
+        <h3>① 正方形桌面</h3>
+        <p>面积是 $2\text{ m}^2$，设边长为 $x$ m：</p>
+        <p class="eq"><span class="think" data-step="2" data-ask="列方程">$x^2=2$</span></p>
+      </div>
+      <div class="scard" data-step="3">
+        <h3>② 靠墙的花圃（图 1-1）</h3>
+        <div class="scard-row">
+          <svg viewBox="0 0 230 92" class="mini-fig" aria-label="靠墙的矩形花圃，宽 x，长 19−2x">
+            <line x1="10" y1="14" x2="220" y2="14" stroke="#1f2d3a" stroke-width="2.5"/>
+            <g stroke="#1f2d3a" stroke-width="1.5"><path d="M20 14 l-8 -8 M40 14 l-8 -8 M60 14 l-8 -8 M80 14 l-8 -8 M100 14 l-8 -8 M120 14 l-8 -8 M140 14 l-8 -8 M160 14 l-8 -8 M180 14 l-8 -8 M200 14 l-8 -8 M220 14 l-8 -8"/></g>
+            <path d="M40 14 V62 H172 V14" fill="#eef6f2" stroke="#d9711c" stroke-width="3"/>
+            <text x="178" y="44" class="fl">x</text><text x="70" y="84" class="fl s">(19−2x) m</text>
+          </svg>
+          <p>栅栏总长 19 m，面积 $24\text{ m}^2$，设宽为 $x$ m：</p>
+        </div>
+        <p class="eq"><span class="think" data-step="4" data-ask="长是多少？列方程">长 $(19-2x)$ m，$x(19-2x)=24$</span></p>
+      </div>
+      <div class="scard" data-step="5">
+        <h3>③ 图书馆藏书</h3>
+        <p>两年内从 5 万册增加到 9.8 万册，设平均每年增长的百分率是 $x$：</p>
+        <p class="eq"><span class="think" data-step="6" data-ask="一年后？两年后？">一年后 $5(1+x)$，两年后 $5(1+x)(1+x)$：$5(1+x)^2=9.8$</span></p>
+      </div>
+      <div class="scard" data-step="7">
+        <h3>④ 梯子（思考与探索，图 1-2）</h3>
+        <div class="scard-row">
+          <svg viewBox="0 0 140 92" class="mini-fig sm" aria-label="梯子斜靠在墙上">
+            <path d="M24 8 V80 H130" fill="none" stroke="#1f2d3a" stroke-width="2.5"/>
+            <line x1="24" y1="17.6" x2="106.4" y2="80" stroke="#c0392b" stroke-width="3"/>
+            <path d="M24 72 h8 v8" fill="none" stroke="#1d6fa5" stroke-width="1.6"/>
+            <text x="2" y="54" class="fl s">x−1</text><text x="60" y="44" class="fl s">5</text><text x="60" y="92" class="fl">x</text>
+          </svg>
+          <p>梯子长 5 m，底端到墙比顶端到地面多 1 m，设底端到墙 $x$ m：</p>
+        </div>
+        <p class="eq"><span class="think" data-step="8" data-ask="用什么定理？">勾股定理：$x^2+(x-1)^2=25$</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p6 四个情境。每张卡先让学生自己设、自己列，再点开。② 要追问“长为什么是 19 − 2x”：靠墙一面不用栅栏，两条宽各 x。③ 是“连续增长”模型，1.4 节问题 2 还会用。④ 用到八上 3.1 勾股定理（图是按 x = 4 精确画的：3² + 4² = 5²）。</p>
+</section>
+
+<!-- 4 ================= 花圃实验（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手实验</span><h2>花圃的宽取多少，面积恰好是 24 m²？</h2></div>
+  <div class="bd wide-l">
+    <div class="col">
+      <div id="garden" class="garden"></div>
+      <div class="slider-row" data-noswipe>宽 $x=$<input type="range" id="gx" min="0.5" max="9" step="0.5" value="3"><b class="v" id="gxV"></b> m　<span class="muted small-t">（也可以拖花圃右下角）</span></div>
+    </div>
+    <div class="col">
+      <div class="readout g-read">
+        <span>宽 $x$</span><b class="v" id="gW"></b>
+        <span>长 $19-2x$</span><b class="v" id="gL"></b>
+        <span>面积 $x(19-2x)$</span><b class="v" id="gS"></b>
+      </div>
+      <p class="tip feedback" id="gMsg"></p>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="gRec">记下这一组</button><button class="btn" type="button" id="gClr">清空</button></div>
+      <table class="mtab" id="gTab"><tr><th>宽 $x$</th><th>长</th><th>面积</th></tr></table>
+      <p class="tip" data-step="1">面积恰好是 24 的宽有几个？<span class="think" data-step="2" data-ask="试出来了吗？">两个：$x=1.5$（长 16）和 $x=8$（长 3）。方程 $x(19-2x)=24$ 有<b>两个</b>解。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心实验。请学生拖动滑块“试根”，把面积 = 24 的那一组记下来。大多数学生只会找到一个，提醒“再往大里试”——一元一次方程只有一个解，而这个方程有两个解，这是新方程的第一个新特点。追问：x 能取 10 吗？（19 − 2x 要大于 0，所以 x < 9.5。）花圃按比例精确绘制：栅栏三段长之和始终是 19。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>这些方程有什么共同特征？</h2></div>
+  <div class="bd full">
+    <p class="tip">尝试与交流：方程 $x^2=2$，$x(19-2x)=24$，$5(1+x)^2=9.8$，$x^2+(x-1)^2=25$ 有哪些共同的特征？</p>
+    <div class="cols2">
+      <p class="tip" data-step="1">未知数有几个？<span class="think" data-step="2" data-ask="数一数">都只含有<b>一个</b>未知数 $x$——“一元”。</span></p>
+      <p class="tip" data-step="3">未知数的最高次数是几？<span class="think" data-step="4" data-ask="展开看看">展开后都有 $x^2$ 项，最高次数是 <b>2</b>——“二次”。</span></p>
+    </div>
+    <div class="def big-def" data-step="5"><h4>一元二次方程（课本 p7）</h4>方程 $x^2=2$、$x(19-2x)=24$、$5(1+x)^2=9.8$、$x^2+(x-1)^2=25$，它们都只含有<em>一个未知数</em>，并且未知数的<em>最高次数是 2</em>．像这样的方程叫做<b>一元二次方程</b>（quadratic equation with one unknown）．</div>
+    <div class="cols2">
+      <p class="recall" data-label="和一元一次方程比一比" data-step="6">一元一次：一个未知数，次数是 1，如 $2x+3=7$，只有一个解；<br>一元二次：一个未知数，最高次数是 2，如 $x(19-2x)=24$，第 4 页试出了<b>两个</b>解。</p>
+      <p class="warn" data-step="7" data-label="先整理，再判断">“最高次数”要看<b>整理后</b>的方程：$x^2-x(x+1)=3$ 看起来有 $x^2$，展开后 $x^2$ 抵消，变成 $-x=3$，是一元一次方程。</p>
+    </div>
+  </div>
+  <p class="note">课本 p7 尝试与交流和定义。先让学生自己归纳“共同特征”，再给课本的定义，并对照一元一次方程的定义说出“一元”“二次”的含义。最后一张警示卡为第 7 页辨析做铺垫：判断前先展开、移项、合并。</p>
+</section>
+
+<!-- 6 ================= 一般形式（整理器） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">一般形式</span><h2>统一写成 $ax^2+bx+c=0$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>一般形式（课本 p7）</h4>关于 $x$ 的一元二次方程的一般形式是<br>$$ax^2+bx+c=0\ (a,b,c\text{ 是常数},\ a\ne0)$$其中 $ax^2$、$bx$、$c$ 分别叫做<b>二次项</b>、<b>一次项</b>和<b>常数项</b>，$a$、$b$ 分别叫做<b>二次项系数</b>、<b>一次项系数</b>．</div>
+      <p class="tip" data-step="2">为什么要求 $a\ne0$？<span class="think" data-step="3" data-ask="想一想">如果 $a=0$，方程变成 $bx+c=0$，就不是一元二次方程了。</span></p>
+      <p class="warn" data-step="4" data-label="系数连同符号">$-2x^2+19x-24=0$ 的二次项系数是 $-2$，常数项是 $-24$——<b>符号是系数的一部分</b>。</p>
+    </div>
+    <div class="col">
+      <p class="tip">选一个方程，一步一步化成一般形式：</p>
+      <div class="btns" data-noswipe id="nfPick"></div>
+      <div class="derive nf-chain" id="nfChain"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="nfNext">下一步 ▸</button><button class="btn" type="button" id="nfReset">重来</button></div>
+      <div class="abc" id="nfAbc"></div>
+    </div>
+  </div>
+  <p class="note">课本 p7 一般形式与例子“x(19 − 2x) = 24 整理成 −2x² + 19x − 24 = 0，二次项系数、一次项系数和常数项分别为 −2、19、−24”。右边整理器依次点四个情境方程：每步写出依据（去括号、移项、合并），最后三色标出 a、b、c。也可以把 −2x² + 19x − 24 = 0 两边乘 −1，得 2x² − 19x + 24 = 0，同样是一般形式——课本例子保留了原来的符号。</p>
+</section>
+
+<!-- 7 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>下面哪些是一元二次方程？</h2></div>
+  <div class="bd full">
+    <div class="cols3 judge3">
+      <div class="jcard" data-step="1"><p>① $(x+1)^2=4$</p><div class="think" data-step="2" data-ask="是不是？"><p><span class="verdict ok">✓ 是</span>整理得 $x^2+2x-3=0$。</p></div></div>
+      <div class="jcard" data-step="1"><p>② $x^2-x(x+1)=3$</p><div class="think" data-step="2" data-ask="是不是？"><p><span class="verdict x">✗ 不是</span>展开后 $x^2$ 抵消：$-x=3$，是一元一次方程。</p></div></div>
+      <div class="jcard" data-step="1"><p>③ $x^2+2y=1$</p><div class="think" data-step="2" data-ask="是不是？"><p><span class="verdict x">✗ 不是</span>含有两个未知数 $x$、$y$。</p></div></div>
+      <div class="jcard" data-step="3"><p>④ $3x^2=0$</p><div class="think" data-step="4" data-ask="是不是？"><p><span class="verdict ok">✓ 是</span>$a=3$，$b=0$，$c=0$。$b$、$c$ 可以是 0，只有 $a$ 不能是 0。</p></div></div>
+      <div class="jcard" data-step="3"><p>⑤ $\dfrac{1}{x^2}+x=2$</p><div class="think" data-step="4" data-ask="是不是？"><p><span class="verdict x">✗ 不是</span>未知数在<b>分母</b>里，是分式方程（八下第 10 章），不是整式方程。</p></div></div>
+      <div class="jcard" data-step="3"><p>⑥ 关于 $x$ 的方程 $ax^2+bx+c=0$</p><div class="think" data-step="4" data-ask="一定是吗？"><p><span class="verdict x">✗ 不一定</span>没说 $a\ne0$；$a=0$ 时就不是一元二次方程。</p></div></div>
+    </div>
+    <p class="method" data-step="5" data-label="判断三步">① 两边都是整式吗？② 整理（去分母、去括号、移项、合并）后只有一个未知数吗？③ 未知数的最高次数是 2 吗？——三个“是”，才是一元二次方程。</p>
+  </div>
+  <p class="note">每组卡片先举手表决，再点开。② 是本页重点：不整理就判断，十有八九会错。⑤ 课本定义里的例子都是整式方程，这里说明“分母里有未知数”的方程是分式方程（八下学过），不叫一元二次方程。⑥ 为第 6 页“a ≠ 0”再加一个反例。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>列方程，化一般形式（回车判对错）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>1(1)</b> 一张面积是 $240\text{ cm}^2$ 的长方形彩纸，长比宽多 8 cm．设它的宽为 $x$ cm，可得方程______．</p>
+          <details><summary>提示</summary>长是 $(x+8)$ cm，长 × 宽 = 面积。</details>
+          <details><summary>答案</summary>$x(x+8)=240$，即 $x^2+8x-240=0$。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>1(2)</b> 一枚圆形古钱币中间是一个边长为 1 cm 的正方形孔，已知正方形面积是圆面积的 $\dfrac19$．设圆的半径为 $x$ cm，可得方程______．</p>
+          <details><summary>提示</summary>正方形面积是 1，圆面积是 $\pi x^2$：$1=\dfrac19\cdot\pi x^2$。</details>
+          <details><summary>答案</summary>$\pi x^2=9$（或 $\dfrac19\pi x^2=1$）。</details>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>2.</b> 化成一般形式（使二次项系数为正），并写出各项系数（负数用“-”号）：</p>
+        <table class="mtab abc-tab">
+          <tr><th>方程</th><th>一般形式</th><th>$a$</th><th>$b$</th><th>$c$</th></tr>
+          <tr><td>(1) $x^2-x=2$</td><td>$x^2-x-2=0$</td><td><span class="blank" data-ans="1" data-w="2"></span></td><td><span class="blank" data-ans="-1|−1" data-w="2"></span></td><td><span class="blank" data-ans="-2|−2" data-w="2"></span></td></tr>
+          <tr><td>(2) $4x+1=x^2$</td><td><span class="think" data-ask="先整理">$x^2-4x-1=0$</span></td><td><span class="blank" data-ans="1" data-w="2"></span></td><td><span class="blank" data-ans="-4|−4" data-w="2"></span></td><td><span class="blank" data-ans="-1|−1" data-w="2"></span></td></tr>
+          <tr><td>(3) $2x^2=-3x+1$</td><td><span class="think" data-ask="先整理">$2x^2+3x-1=0$</span></td><td><span class="blank" data-ans="2" data-w="2"></span></td><td><span class="blank" data-ans="3" data-w="2"></span></td><td><span class="blank" data-ans="-1|−1" data-w="2"></span></td></tr>
+          <tr><td>(4) $x(x+3)=-2$</td><td><span class="think" data-ask="先整理">$x^2+3x+2=0$</span></td><td><span class="blank" data-ans="1" data-w="2"></span></td><td><span class="blank" data-ans="3" data-w="2"></span></td><td><span class="blank" data-ans="2" data-w="2"></span></td></tr>
+        </table>
+        <p class="muted small-t">先自己整理，再点“先整理”核对一般形式。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p7 练习 1、2。第 2 题课本没有限定符号，为了能统一判对错，这里约定“二次项系数为正”；若学生写成 −x² + 4x + 1 = 0，也是正确的一般形式，系数是 −1、4、1，课堂上要予以肯定。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 1.1</span><h2>用方程描述数量关系</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1(1)</b> 一个正方体的表面积是 $150\text{ cm}^2$．设棱长为 $x$ cm．</p>
+        <details><summary>提示</summary>正方体有 6 个面，每个面面积 $x^2$。</details>
+        <details><summary>答案</summary>$6x^2=150$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1(2)</b> 长方形操场面积 $7\,200\text{ m}^2$，长是宽的 2 倍．设宽为 $x$ m．</p>
+        <details><summary>提示</summary>长是 $2x$ m。</details>
+        <details><summary>答案</summary>$2x\cdot x=7\,200$，即 $2x^2=7\,200$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1(3)</b> 两个连续奇数的积为 323，设其中的一个奇数为 $x$．</p>
+        <details><summary>提示</summary>相邻两个奇数相差 2：另一个是 $x+2$（或 $x-2$）。</details>
+        <details><summary>答案</summary>$x(x+2)=323$（或 $x(x-2)=323$）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1(4)</b> 两年时间产量从每年 14 400 台提高到 16 900 台，设平均每年增长的百分率为 $x$．</p>
+        <details><summary>提示</summary>和第 3 页“藏书”一样：一年后 $14\,400(1+x)$，两年后再乘 $(1+x)$。</details>
+        <details><summary>答案</summary>$14\,400(1+x)^2=16\,900$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 你能找到第 1(1) 题所列方程的解吗？试一试．</p>
+        <details><summary>提示 1</summary>$6x^2=150$，两边除以 6：$x^2=25$。</details>
+        <details><summary>提示 2</summary>哪些数的平方等于 25？棱长能是负数吗？</details>
+        <details><summary>答案</summary>$x^2=25$ 的解是 $x=5$ 或 $x=-5$；棱长为正，所以棱长是 5 cm。</details>
+      </div>
+      <p class="recall" data-label="先留个问题">第 2 题用的是“平方根”的意义。$x(19-2x)=24$ 这样的方程怎么解？——下一节专门研究。</p>
+    </div>
+  </div>
+  <p class="note">课本 p8 习题 1.1。第 1 题只要求列方程；第 2 题让学生“试一试”解方程，正好引出下一课第一种解法“直接开平方法”。提醒：方程的解有两个，但实际问题要看是否符合题意。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">只含有一个未知数、未知数的最高次数是 2 的（整式）方程叫做一元二次方程．</p>
+        <p class="def">一般形式：$ax^2+bx+c=0\ (a\ne0)$；二次项 $ax^2$、一次项 $bx$、常数项 $c$．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断">先整理，再看“元”和“次”；别忘了 $a\ne0$。</p>
+        <p class="method" data-label="找系数">先化成一般形式，系数<b>连同符号</b>一起写。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="方程模型">面积、增长率、勾股定理……不同的实际问题，抽象出同一类方程。</p>
+        <p class="recall" data-label="类比">仿照“一元一次方程”的定义来认识“一元二次方程”。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>1.2 一元二次方程的解法——第 4 页我们靠“试”找到了 $x=1.5$ 和 $x=8$，能不能像解一元一次方程那样<b>算</b>出来？关键是“降次”：把二次方程化成一次方程。</p>
+  </div>
+  <p class="note">请学生先口述本课收获，再逐栏揭示。课后作业：习题 1.1 第 1、2 题。下一课第一种方法“直接开平方法”就用到第 9 页第 2 题的思路。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

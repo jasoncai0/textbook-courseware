@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图形的旋转 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mangle.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/motianlun.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第9章 中心对称图形——平行四边形 · 9.1</p>
+    <h1 class="cover-title">图形的旋转</h1>
+    <p class="cover-q" data-step="1">摩天轮缓缓转动，座舱绕着轮轴画出一个大圆；钟摆来回摆动，钟面上的指针一圈圈地走。</p>
+    <p class="cover-q" data-step="2">它们和七年级学过的<b>平移</b>不一样：不是“沿直线挪过去”，而是<b>绕着一个点转</b>。转的时候，什么变了？什么没变？</p>
+    <div class="chips" data-step="3"><span class="chip">旋转中心 · 旋转角</span><span class="chip">对应点</span><span class="chip">旋转的性质</span><span class="chip">画旋转后的图形</span></div>
+  </div>
+  <p class="note">课本 p56 情境（摩天轮、钟摆）。先请学生再举两个生活中“绕点转”的例子（风扇叶片、方向盘、拧瓶盖……），并说说它和“平移”的区别——本课是第 9 章的起点，第 9.2 节的“中心对称”就是“转 180°”这一特殊旋转。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的三件“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七下 7.3 · 图形的平移" data-step="1">
+        <p>图形沿某个方向移动一定的距离，形状、大小不变。</p>
+        <p>对应点的连线<b>平行（或在同一直线上）且相等</b>。</p>
+        <span class="use">和旋转对比：平移“定方向、定距离”，旋转“定中心、定角度”。</span>
+      </div>
+      <div class="recall" data-label="八上 1.1 · 全等图形" data-step="2">
+        <p>能够完全重合的两个图形叫做全等图形。</p>
+        <p>全等图形的对应边相等、对应角相等。</p>
+        <span class="use">旋转前后的两个图形全等，所以 $AB=A'B'$、$\angle A=\angle A'$……</span>
+      </div>
+      <div class="recall" data-label="七上 6.2 · 角" data-step="3">
+        <p>用量角器可以画出指定度数的角；角的大小与边的长短无关。</p>
+        <p>在射线上可以截取一条线段等于已知线段。</p>
+        <span class="use">画旋转后的点：先画出旋转角，再在角的边上截取等长线段。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>旋转由哪几件事决定？图形转过去以后，对应点、对应线段、对应角之间有什么关系？怎样把旋转后的图形画出来？</p>
+  </div>
+  <p class="note">每张卡请学生先口头复述，再看“本课用在”。第一张卡是对比的“参照物”：第 5 页会把平移和旋转放在一起比；第三张卡是第 6、7 页作图要用的两个基本操作。</p>
+</section>
+
+<!-- 3 ================= 尝试：三角尺旋转 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>三角尺绕点 $C$ 转一转</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="ruler" class="brd-m"></div>
+      <div class="slider-row" data-noswipe>转过的角度 <input type="range" id="rulerT" min="0" max="80" step="1" value="35"><b class="v" id="rulerTV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">将三角尺 $ABC$ 绕点 $C$ 按逆时针方向旋转到 $DEC$ 的位置（图 9-1）．$\angle ACD$ 与 $\angle BCE$ 相等吗？</p>
+      <div class="readout r2"><span>$\angle ACD$</span><b class="v" id="rulerA"></b><span>$\angle BCE$</span><b class="v" id="rulerB"></b></div>
+      <p class="tip" data-step="1">拖动滑块，两个角<span class="think" data-step="2" data-ask="总是怎样？">始终相等——都等于三角尺“转过的角度”。</span></p>
+      <div class="def" data-step="3"><h4>图形的旋转（课本 p56）</h4>将图形绕一个定点转动一定的角度，这样的图形运动称为图形的<em>旋转</em>（circumgyration）．旋转不改变图形的形状、大小．</div>
+      <div class="derive" data-step="4">
+        <div class="dl"><span>点 $C$</span><span>旋转中心</span><i class="why">绕着它转的那个定点</i></div>
+        <div class="dl"><span>$A$ 与 $D$</span><span>对应点</span><i class="why">点 $A$ 绕点 $C$ 旋转到点 $D$；同样 $B$ 与 $E$ 也是对应点</i></div>
+        <div class="dl"><span>$\angle ACD$</span><span>旋转角</span><i class="why">对应点与旋转中心连线所成的角；$\angle BCE$ 也是旋转角</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p56“尝试”与旋转的定义。先让学生猜 ∠ACD 与 ∠BCE 是否相等，再拖滑块验证；追问“为什么？”——三角尺上每个点都绕 C 转过了同样多的角度。注意“旋转角”是“对应点—中心—对应点”构成的角，不是三角尺上的角。</p>
+</section>
+
+<!-- 4 ================= 讨论：旋转实验台 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论 · 探究</span><h2>旋转实验台：转过去以后，什么相等？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="lab" class="brd-l"></div>
+      <p class="muted center small-t">拖动橙色点 $O$ 移动旋转中心；拖动 $A'$ 绕 $O$ 转动（逆时针为正）</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 9-2，$\triangle ABC$ 绕点 $O$ 旋转到 $\triangle A'B'C'$．图中还有哪些相等的线段、相等的角？</p>
+      <table class="mtab sm" id="labTab">
+        <tr><th>到中心的距离</th><th>原图</th><th>旋转后</th><th>旋转角</th><th>度数</th></tr>
+        <tr><td>$A$</td><td id="lOA"></td><td id="lOA2"></td><td>$\angle AOA'$</td><td id="lAA"></td></tr>
+        <tr><td>$B$</td><td id="lOB"></td><td id="lOB2"></td><td>$\angle BOB'$</td><td id="lBB"></td></tr>
+        <tr><td>$C$</td><td id="lOC"></td><td id="lOC2"></td><td>$\angle COC'$</td><td id="lCC"></td></tr>
+      </table>
+      <p class="tip feedback" id="labMsg"></p>
+      <p class="tip" data-step="1">发现：<span class="think" data-step="2" data-ask="距离"> $OA=OA'$，$OB=OB'$，$OC=OC'$；</span><span class="think" data-step="3" data-ask="角">$\angle AOA'=\angle BOB'=\angle COC'$。</span></p>
+      <div class="def" data-step="4"><h4>旋转的性质（课本 p57）</h4>一个图形和它经过旋转所得到的图形中，对应点到旋转中心距离相等，两组对应点分别与旋转中心连线所成的角相等．</div>
+    </div>
+  </div>
+  <p class="note">课本 p56“讨论”、p57 性质框。先自由拖：把 O 拖到三角形里面、边上、外面，把 A′ 转到各种位置，让学生读表说规律。再追问：O 拖到 A 上会怎样？（A 与 A′ 重合，OA = 0——旋转中心是唯一“不动”的点。）表中长度、角度都由坐标实时计算。</p>
+</section>
+
+<!-- 5 ================= 辨一辨：三要素、与平移对比 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>说清一次旋转，要交代哪几件事？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="tri3" class="brd-m"></div>
+      <div class="btns" data-noswipe id="tri3Btns">
+        <button class="btn solid" type="button" data-k="a">绕 $O$ 逆时针 $90^\circ$</button>
+        <button class="btn" type="button" data-k="b">绕 $O$ 顺时针 $90^\circ$</button>
+        <button class="btn" type="button" data-k="c">绕 $P$ 逆时针 $90^\circ$</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">同一个三角形，换中心、换方向，转到的位置都不同。所以描述一次旋转要说清：<span class="think" data-step="2" data-ask="三件事">绕<b>哪一点</b>（旋转中心）、往<b>哪个方向</b>（顺时针 / 逆时针）、转<b>多少度</b>（旋转角）。</span></p>
+      <table class="mtab cmp" data-step="3">
+        <tr><th></th><th>平移</th><th>旋转</th></tr>
+        <tr><td>由什么决定</td><td>方向、距离</td><td><span class="think" data-step="4" data-ask="?">旋转中心、方向、旋转角</span></td></tr>
+        <tr><td>形状、大小</td><td>不变</td><td><span class="think" data-step="4" data-ask="?">不变</span></td></tr>
+        <tr><td>对应点</td><td>连线平行（或共线）且相等</td><td><span class="think" data-step="5" data-ask="?">到中心距离相等；与中心连线的夹角都等于旋转角</span></td></tr>
+        <tr><td>图形的方向</td><td>不变</td><td><span class="think" data-step="5" data-ask="?">一般会改变（转 $360^\circ$ 的整数倍时回到原处）</span></td></tr>
+      </table>
+      <p class="warn" data-step="6" data-label="易错">旋转角是“对应点—中心—对应点”所成的角，比如 $\angle AOA'$；不是 $\angle AOB$ 这样同一图形上的角。</p>
+    </div>
+  </div>
+  <p class="note">左边三个按钮：同一个 △ABC，(1)(2) 中心相同但方向相反，(3) 方向、角度相同但中心不同——三次结果全不一样，所以“三要素”缺一不可。右表让学生先口答再揭示，重点是对应点的规律不同：平移看“连线”，旋转看“到中心的距离和角”。</p>
+</section>
+
+<!-- 6 ================= 尝试：画旋转后的点、线段 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 作图</span><h2>怎样画出点 $A$ 绕点 $O$ 逆时针旋转 $100^\circ$ 后的点？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="cons" class="brd-m"></div>
+      <div class="btns" data-noswipe id="consBtns"><button class="btn solid" type="button" data-k="pt">画点 $A'$</button><button class="btn" type="button" data-k="seg">画线段 $A'B'$</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p57 尝试：1. 画出点 $A$ 绕点 $O$ 按逆时针方向旋转 $100^\circ$ 所得到的点 $A'$；2. 画出线段 $AB$ 绕点 $O$ 按逆时针方向旋转 $100^\circ$ 所得到的线段 $A'B'$．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>①</span><span>连接 $OA$</span><i class="why">旋转角的一边</i></div>
+        <div class="dl" data-step="2"><span>②</span><span>以 $O$ 为顶点、$OA$ 为一边，画 $\angle AOC=100^\circ$</span><i class="why">逆时针方向量 $100^\circ$（用量角器）</i></div>
+        <div class="dl" data-step="3"><span>③</span><span>在射线 $OC$ 上截取 $OA'=OA$</span><i class="why">性质：对应点到中心距离相等</i></div>
+        <div class="dl key" data-step="4"><span>④</span><span>点 $A'$ 就是所要画的点</span><i class="why"></i></div>
+      </div>
+      <p class="tip" data-step="5">线段 $AB$ 怎样转？<span class="think" data-step="6" data-ask="关键是什么？">只要分别画出端点 $A$、$B$ 旋转后的点 $A'$、$B'$，再连接 $A'B'$。</span></p>
+      <p class="method" data-step="7" data-label="方法提炼">画一个图形绕一个点旋转后所得到的图形，关键是确定某些点（如顶点、端点）绕这个点旋转后所得到的对应点．</p>
+    </div>
+  </div>
+  <p class="note">课本 p57。按 → 逐步作图：左图跟着右边的步骤一步步出现（量角器、截取用的圆弧都按精确角度、长度画出）。点“画线段 A′B′”切换到第 2 题：两个端点分别按同样的三步作图。强调第 ③ 步的依据就是上一页的性质。</p>
+</section>
+
+<!-- 7 ================= 操作：你来画 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 你来画</span><h2>把 $\triangle ABC$ 绕点 $C$ 顺时针旋转 $120^\circ$</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="put" class="brd-m"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="putHelp">显示作图痕迹</button><button class="btn" type="button" id="putReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p57 操作：在图 9-3 中，画出将 $\triangle ABC$ 绕点 $C$ 按顺时针方向旋转 $120^\circ$ 后得到的三角形．</p>
+      <p class="tip">把两个橙色点拖到你认为的 $A'$、$B'$ 的位置（$C$ 是旋转中心，它的对应点就是它自己）。</p>
+      <div class="readout r2">
+        <span>$CA'$ ／ $CA$</span><b class="v" id="putA1"></b><span>$\angle ACA'$</span><b class="v" id="putA2"></b>
+        <span>$CB'$ ／ $CB$</span><b class="v" id="putB1"></b><span>$\angle BCB'$</span><b class="v" id="putB2"></b>
+      </div>
+      <p class="tip feedback" id="putMsg"></p>
+      <p class="warn" data-step="1" data-label="想一想">为什么不用画 $C'$？<span class="think" data-step="2" data-ask="?">旋转中心绕自己转，位置不变：$C'$ 就是 $C$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p57“操作”。让学生先想好作图步骤再拖点：两个条件（到 C 的距离、顺时针 120°）都满足才算放对，放对时自动吸附到精确位置；方向放反会提示“这是逆时针”。“显示作图痕迹”给出量角、截取的过程，供讲评。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>找旋转中心，量旋转角</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="sq" class="brd-m"></div>
+      <div class="btns" data-noswipe id="sqBtns"><button class="btn" type="button" id="sqProt">放上量角器</button><button class="btn" type="button" id="sqOff">收起量角器</button></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>1.</b> 如图，正方形 $A'B'C'D'$ 是正方形 $ABCD$ 按顺时针方向旋转一定的角度而得到的．请指出图中的哪一点是旋转中心，并度量旋转角的度数．</p>
+      <div class="pickrow" data-noswipe id="sqPick"><span>旋转中心是：</span><button class="btn" type="button" data-k="A">$A$</button><button class="btn" type="button" data-k="B">$B$</button><button class="btn" type="button" data-k="D">$D$</button><button class="btn" type="button" data-k="C2">$C'$</button></div>
+      <p class="tip feedback" id="sqMsg">先点选旋转中心。</p>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$D$ 是 $AC$ 的中点，画出 $\triangle ABC$ 绕点 $A$ 按逆时针方向旋转 $90^\circ$ 所得到的三角形，以及点 $D$ 的对应点 $D'$．</p>
+        <details><summary>提示 1</summary>$A$ 是旋转中心，不动；分别画 $B$、$C$ 的对应点：$\angle BAB'=\angle CAC'=90^\circ$，$AB'=AB$，$AC'=AC$。</details>
+        <details><summary>提示 2</summary>$D'$ 不用另外量：$D$ 是 $AC$ 的中点，它的对应点就是 $AC'$ 的中点。</details>
+        <details><summary>完整解答</summary><span id="sq2Fig" class="mini-b"></span>如图，$\triangle AB'C'$ 即为所求，$D'$ 是 $AC'$ 的中点（$AD'=AD$，$\angle DAD'=90^\circ$）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p57–58 练习 1、2。第 1 题：哪个点和自己的对应点重合，哪个点就是旋转中心（A 与 A′ 重合）。量角器可以拖动中心、拖右端把手旋转，量 ∠BAB′ 或 ∠DAD′，都是 45°（本图按 45° 精确绘制）。第 2 题的完整解答里附有精确作出的图。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 9.1</span><h2>转多少度能重合？连着做两次运动</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 菊花图案绕旋转中心旋转多少度后能与原来的图案互相重合？</p>
+        <div id="flower" class="brd-s"></div>
+        <div class="slider-row" data-noswipe>转 <input type="range" id="flowerT" min="0" max="180" step="1" value="0"><b class="v" id="flowerTV"></b></div>
+        <details><summary>提示</summary>8 片花瓣均匀排开，相邻两片之间相差几度？</details>
+        <details><summary>完整解答</summary>$360^\circ\div8=45^\circ$。旋转 $45^\circ$ 或它的整数倍（$90^\circ$、$135^\circ$、……）都能重合。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在正方形 $ABCD$ 中，点 $E$、$G$ 分别在 $BC$、$AB$ 上，$\triangle ABE$ 经过旋转后得到 $\triangle ADF$．(1) 旋转中心是哪一点？(2) 旋转角为多少度？(3) 画出点 $G$ 的对应点 $G'$．</p>
+        <div id="ex2" class="brd-s"></div>
+        <div class="slider-row" data-noswipe>转 <input type="range" id="ex2T" min="0" max="90" step="1" value="0"><b class="v" id="ex2TV"></b></div>
+        <details><summary>提示</summary>哪个顶点在 $\triangle ABE$、$\triangle ADF$ 里都出现，而且是对应点？</details>
+        <details><summary>完整解答</summary>(1) 点 $A$；(2) $\angle BAD=90^\circ$（逆时针）；(3) 在 $AD$ 上截取 $AG'=AG$，$G'$ 即为所求（拖动滑块看 $G$ 转到哪里）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在方格纸中画图：$\triangle ABC$ 向右平移 11 格得到 $\triangle A_1B_1C_1$；$\triangle A_1B_1C_1$ 绕点 $O$ 逆时针旋转 $90^\circ$ 得到 $\triangle A_2B_2C_2$．</p>
+        <div id="grid3" class="brd-s"></div>
+        <div class="btns" data-noswipe id="grid3Btns"><button class="btn" type="button" data-k="1">平移</button><button class="btn" type="button" data-k="2">再旋转</button><button class="btn" type="button" data-k="0">还原</button></div>
+        <details><summary>提示</summary>旋转 $90^\circ$ 在方格纸上好画：从 $O$ 到某点“右 $m$ 上 $n$”，转后就变成“左 $n$ 上 $m$”。</details>
+        <details><summary>完整解答</summary>以 $O$ 为原点数格：$A_1$ 在 $O$ 的“右 1 下 5”，转后 $A_2$ 在“右 5 上 1”；同理画出 $B_2$、$C_2$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p58 习题 9.1 第 1–3 题。第 1 题拖滑块：只有转到 45° 的整数倍时花瓣才重合（重合时提示）。第 2 题拖滑块看 △ABE 绕 A 转到 △ADF，G 随之转到 AD 上。第 3 题点按钮依次演示平移和旋转，格点位置都是精确的。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">绕一个定点转动一定的角度——旋转。三要素：旋转中心、旋转方向、旋转角。</p>
+        <p class="def">性质：对应点到旋转中心距离相等；对应点与中心连线所成的角都等于旋转角；形状、大小不变。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="画旋转后的点">连 $OA$ → 画旋转角 → 截取 $OA'=OA$。</p>
+        <p class="method" data-label="画旋转后的图形">先画关键点（顶点、端点）的对应点，再依次连接。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="运动中找不变">图形在动，距离和角度不变——这些“不变量”就是性质。</p>
+        <p class="recall" data-label="类比">平移看方向和距离，旋转看中心和角度。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>9.2 中心对称与中心对称图形——如果旋转角恰好是 $180^\circ$，对应点 $A$、$O$、$A'$ 会有什么特殊的位置关系？（回第 4 页把 $A'$ 转到 $180^\circ$ 看一看。）</p>
+  </div>
+  <p class="note">请学生先说“这节课学会了画什么、发现了什么”，再逐栏揭示。课后作业建议：习题 9.1 第 2、3 题书面完成。最后一问为 9.2 埋伏笔：旋转 180° 时 A、O、A′ 在同一直线上，且 O 是 AA′ 的中点。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mangle.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

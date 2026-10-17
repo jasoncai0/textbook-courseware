@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>直线与圆的位置关系 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/richu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第2章 对称图形——圆 · 2.5</p>
+    <h1 class="cover-title">直线与圆的位置关系</h1>
+    <p class="cover-q" data-step="1">巴金在《海上日出》里写太阳“一纵一纵地使劲儿向上升”：先露出小半边脸，再贴着海面，最后完全跳出海面。</p>
+    <p class="cover-q" data-step="2">把海平线看作一条直线、太阳看作一个圆——直线与圆有几种位置关系？能不能用一个<b>数量</b>来判断？</p>
+    <div class="chips" data-step="3"><span class="chip">平移直尺看 $d$ 与 $r$</span><span class="chip">切线的判定与性质</span><span class="chip">三角形的内切圆</span><span class="chip">切线长定理</span></div>
+  </div>
+  <p class="note">课本 p63 章节情境（海上日出）。先让学生用自己的话描述三幅画面里太阳与海平线的关系，再引出本课问题。本课内容多，建议 2～3 课时：第 1 课时到第 11 页（位置关系、切线判定与性质），第 2 课时内切圆，第 3 课时切线长。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc">
+      <div class="recall" data-label="九上 2.1 圆 · 点与圆的位置关系" data-step="1">
+        <p>$\odot O$ 的半径为 $r$，点 $P$ 到圆心的距离为 $d$：点 $P$ 在圆内 $\Leftrightarrow d&lt;r$；在圆上 $\Leftrightarrow d=r$；在圆外 $\Leftrightarrow d&gt;r$。</p>
+        <span class="use">直线与圆的三种关系，正是“垂足 $D$ 与圆”的三种关系。</span>
+      </div>
+      <div class="recall" data-label="七上 6.5 垂直 · 点到直线的距离" data-step="2">
+        <p>直线外一点到这条直线的<b>垂线段</b>的长度，叫做点到直线的距离；垂线段最短。</p>
+        <span class="use">圆心到直线的距离 $d$；反证法证明“切线垂直于半径”。</span>
+      </div>
+      <div class="recall" data-label="八上 2.4 线段、角的轴对称性" data-step="3">
+        <p>角平分线上的点到角两边的距离相等；角的内部到角两边距离相等的点在角的平分线上。</p>
+        <span class="use">找三角形内切圆的圆心（内心）。</span>
+      </div>
+      <div class="recall" data-label="九上 2.4 圆周角 · 八上 1.3 全等" data-step="4">
+        <p>直径所对的圆周角是直角；两个直角三角形斜边、直角边对应相等则全等（HL）。</p>
+        <span class="use">判定切线（例 2）；证明切线长相等。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>上一课（2.4）</b>研究了圆中的角；本课把目光移到圆<b>外</b>：一条直线和一个圆，会有几种位置关系？</p>
+  </div>
+  <p class="note">第 1 张卡是本课的“模板”：点与圆的位置关系用 d 与 r 比较，本课直线与圆的关系也用 d 与 r 比较，只是 d 换成了“圆心到直线的距离”。</p>
+</section>
+
+<!-- 3 ================= 操作：平移直尺 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 思考</span><h2>平移直尺：公共点个数怎样变化？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sl" class="bigb"></div>
+      <div class="slider-row" data-noswipe>平移直线：<input type="range" id="slD" min="0" max="3.6" step="0.01" value="1.2"><span class="muted">半径 $r$：</span><input type="range" id="slR" min="1.2" max="2.6" step="0.1" value="2"></div>
+    </div>
+    <div class="col">
+      <p class="tip">先在纸上画一个圆，再将一把直尺在纸上平移．把直尺的边缘看作一条直线 $l$．</p>
+      <div class="readout r4">
+        <span>圆心到 $l$ 的距离 $d$</span><b class="v" id="slDv"></b>
+        <span>半径 $r$</span><b class="v" id="slRv"></b>
+        <span>公共点个数</span><b class="v" id="slN"></b>
+        <span>$d$ 与 $r$</span><b class="v" id="slCmp"></b>
+      </div>
+      <p class="tip feedback" id="slMsg"></p>
+      <div class="btns" data-noswipe id="slBtns"><button class="btn" type="button" data-d="0.9">相交</button><button class="btn" type="button" data-d="r">相切</button><button class="btn" type="button" data-d="3.2">相离</button></div>
+      <p class="tip gold" data-step="1">小明：直线与圆的<b>公共点的个数</b>有变化．小丽：<b>圆心到直线的距离</b>也有变化．<span class="think" data-step="2" data-ask="两者有什么联系？">$d$ 越来越大，公共点从 2 个变成 1 个，再变成 0 个；恰好 1 个时，$d=r$．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p63 操作与思考。拖滑块让直线从穿过圆心一直平移到圆外，学生观察两个量：公共点个数（几何）和 d（数量）。拖到 d 与 r 很接近时会自动吸附到 d = r（只有一个公共点）。再改半径 r 重复，说明结论与 r 的具体大小无关。</p>
+</section>
+
+<!-- 4 ================= 定义与结论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念 · 结论</span><h2>相交、相切、相离</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>定义（课本 p64）</h4>直线与圆有两个公共点时，叫做直线与圆<b>相交</b>；有唯一公共点时，叫做直线与圆<b>相切</b>，这条直线叫做<b>圆的切线</b>，这个公共点叫做<b>切点</b>；没有公共点时，叫做直线与圆<b>相离</b>．</div>
+    <div class="cols3 f237" data-step="2">
+      <div><div id="f237a" class="gfig"></div><p class="center small-t">（1）相交：$OD&lt;r$</p></div>
+      <div><div id="f237b" class="gfig"></div><p class="center small-t">（2）相切：$OD=r$</p></div>
+      <div><div id="f237c" class="gfig"></div><p class="center small-t">（3）相离：$OD&gt;r$</p></div>
+    </div>
+    <div class="cols2">
+      <div class="def" data-step="3"><h4>结论</h4>如果 $\odot O$ 的半径为 $r$，圆心 $O$ 到直线 $l$ 的距离为 $d$，那么<br>直线 $l$ 与 $\odot O$ 相交 $\Leftrightarrow d&lt;r$；<br>直线 $l$ 与 $\odot O$ 相切 $\Leftrightarrow d=r$；<br>直线 $l$ 与 $\odot O$ 相离 $\Leftrightarrow d&gt;r$．</div>
+      <p class="recall" data-step="4" data-label="思考与探索（p64）：和点与圆有什么联系？"><span class="think" data-step="5" data-ask="看垂足 D">直线 $l$ 与 $\odot O$ 的三种位置关系，实质上就是垂足 $D$ 与 $\odot O$ 的三种位置关系：$D$ 在圆内、圆上、圆外．</span>“$\Leftrightarrow$”表示从左边可以推出右边，从右边也可以推出左边．</p>
+    </div>
+  </div>
+  <p class="note">课本 p64 定义、图 2-37 与结论框。两种判断方法：数公共点（定义）、比较 d 与 r（数量）。强调 d 是“圆心到直线的距离”，要先作垂线段。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>先求 $d$，再和 $r$ 比</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex1" class="bigb"></div>
+      <div class="btns" data-noswipe id="ex1Btns"><button class="btn solid" type="button" data-r="2">$r=2$</button><button class="btn" type="button" data-r="2.8284271247461903">$r=2\sqrt2$</button><button class="btn" type="button" data-r="3">$r=3$</button></div>
+      <p class="tip feedback" id="ex1Msg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">已知 $\angle BAC=45^\circ$，点 $O$ 在 $AC$ 上，且 $AO=4$，以点 $O$ 为圆心、$r$ 为半径画圆．根据下列 $r$ 的值，判断 $AB$ 所在直线与 $\odot O$ 的位置关系：（1）$r=2$；（2）$r=2\sqrt2$；（3）$r=3$．</p>
+      <div class="proof sm">
+        <p data-step="1"><span class="lead">解：</span>过点 $O$ 作 $OD\perp AB$，垂足为 $D$．在 $\text{Rt}\triangle AOD$ 中，</p>
+        <p data-step="2"><span class="so">∵</span>$\angle A=45^\circ$，<span class="so">∴</span>$\angle AOD=\angle A$，$OD=AD$．</p>
+        <p data-step="3">又<span class="so">∵</span>$OD^2+AD^2=AO^2$，$AO=4$，<span class="so">∴</span>$2OD^2=16$，$OD=2\sqrt2$，</p>
+        <p data-step="4">即圆心 $O$ 到 $AB$ 所在直线的距离 $d=2\sqrt2$．</p>
+        <p data-step="5">（1）当 $r=2$ 时，<span class="think" data-step="6" data-ask="d 与 r？">$d&gt;r$，$AB$ 所在直线与 $\odot O$ 相离；</span></p>
+        <p data-step="7">（2）当 $r=2\sqrt2$ 时，<span class="think" data-step="8" data-ask="d 与 r？">$d=r$，$AB$ 所在直线与 $\odot O$ 相切；</span></p>
+        <p data-step="9">（3）当 $r=3$ 时，<span class="think" data-step="10" data-ask="d 与 r？">$d&lt;r$，$AB$ 所在直线与 $\odot O$ 相交．</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p65 例 1、图 2-38。解题顺序：作垂线段 → 求 d（等腰直角三角形 + 勾股定理）→ 比较 d 与 r。$2\sqrt2\approx2.83$，所以 2 &lt; 2√2 &lt; 3。左图按 AO = 4、∠A = 45° 精确作出，点按钮切换三个 r。</p>
+</section>
+
+<!-- 6 ================= 练习：填表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>填一填：回车判对错</h2></div>
+  <div class="bd full top">
+    <p class="tip"><b>练习 1（p65）</b>　填表（“$d$ 与 $r$ 的关系”填 &lt;、= 或 &gt;）：</p>
+    <table class="mtab ftab">
+      <tr><th>位置关系</th><th>图形</th><th>公共点个数</th><th>直线的名称</th><th>公共点名称</th><th>$d$ 与 $r$ 的关系</th></tr>
+      <tr><td>相交</td><td><div id="t1" class="tfig"></div></td><td><span class="blank" data-ans="2|两|两个|2个"></span></td><td class="na">——</td><td class="na">——</td><td>$d$<span class="blank" data-ans="&lt;|＜" data-w="2"></span>$r$</td></tr>
+      <tr><td>相切</td><td><div id="t2" class="tfig"></div></td><td><span class="blank" data-ans="1|一|一个|1个"></span></td><td><span class="blank" data-ans="切线" data-w="3"></span></td><td><span class="blank" data-ans="切点" data-w="3"></span></td><td>$d$<span class="blank" data-ans="=|＝" data-w="2"></span>$r$</td></tr>
+      <tr><td>相离</td><td><div id="t3" class="tfig"></div></td><td><span class="blank" data-ans="0|零|0个"></span></td><td class="na">——</td><td class="na">——</td><td>$d$<span class="blank" data-ans="&gt;|＞" data-w="2"></span>$r$</td></tr>
+    </table>
+    <p class="tip"><b>练习 2（p65）</b>　已知 $\odot O$ 的直径为 8，圆心 $O$ 到直线 $l$ 的距离为 5，直线 $l$ 与 $\odot O$ 有怎样的位置关系？距离为 4 或 3 呢？</p>
+    <div class="cols3">
+      <div class="pick" data-ans="x"><b>$d=5$：</b><button data-k="j">相交</button><button data-k="q">相切</button><button data-k="x">相离</button><p class="pick-why">半径 $r=4$（直径的一半！），$5&gt;4$．</p></div>
+      <div class="pick" data-ans="q"><b>$d=4$：</b><button data-k="j">相交</button><button data-k="q">相切</button><button data-k="x">相离</button><p class="pick-why">$d=r=4$．</p></div>
+      <div class="pick" data-ans="j"><b>$d=3$：</b><button data-k="j">相交</button><button data-k="q">相切</button><button data-k="x">相离</button><p class="pick-why">$3&lt;4$．</p></div>
+    </div>
+  </div>
+  <p class="note">课本 p65 练习 1、2。表格里“直线的名称”“公共点名称”只有相切时有专门名称（切线、切点）。练习 2 的陷阱是“直径为 8”——先求半径 r = 4 再比较。</p>
+</section>
+
+<!-- 7 ================= 切线的判定 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 判定</span><h2>过半径外端的直线，何时是切线？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="tg" class="bigb"></div>
+      <p class="muted center small-t">拖动橙色点，让直线 $l$ 绕点 $D$ 旋转（$D$ 是半径 $OD$ 的外端）</p>
+    </div>
+    <div class="col">
+      <div class="readout r4">
+        <span>$l$ 与 $OD$ 的夹角</span><b class="v" id="tgA"></b>
+        <span>公共点个数</span><b class="v" id="tgN"></b>
+        <span>圆心到 $l$ 的距离 $d$</span><b class="v" id="tgD"></b>
+        <span>半径 $r$</span><b class="v">2</b>
+      </div>
+      <p class="tip feedback" id="tgMsg"></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>∵</span><span>$l\perp OD$</span><i class="why">作图</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="d 等于什么？">圆心 $O$ 到 $l$ 的距离 $d=OD=r$</span><i class="why">点到直线的距离</i></div>
+        <div class="dl end" data-step="4"><span>∴</span><span>直线 $l$ 与 $\odot O$ 相切</span><i class="why">$d=r\Rightarrow$ 相切</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>结论（课本 p66）</h4>经过半径的外端并且垂直于这条半径的直线是圆的切线．</div>
+    </div>
+  </div>
+  <p class="note">课本 p66 操作与思考、图 2-39、2-40。先问：过 D 能画多少条直线？哪一条与圆只有一个公共点？拖动观察：只有 l ⊥ OD 时 d = r，公共点只有 D 一个；稍偏一点就有两个公共点。判定的两个条件“经过半径外端”“垂直于这条半径”缺一不可。</p>
+</section>
+
+<!-- 8 ================= 切线的性质（反证法） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索 · 性质</span><h2>切线一定垂直于半径吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f242" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-42：假设 $l$ 与 $OD$ 不垂直，过 $O$ 作 $OD'\perp l$（示意：$D'$ 是假设出来的点）</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-41，直线 $l$ 是 $\odot O$ 的切线，切点为 $D$．直线 $l$ 与半径 $OD$ 有怎样的位置关系？我们用<b>反证法</b>证明 $l\perp OD$．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>假设</span><span>直线 $l$ 与 $OD$ 不垂直，过圆心 $O$ 作 $OD'\perp l$，垂足为 $D'$．</span><i class="why">反设结论不成立</i></div>
+        <div class="dl" data-step="2"><span>推理</span><span class="think" data-step="3" data-ask="OD′ 等于什么？">因为 $l$ 与 $\odot O$ 相切，圆心 $O$ 到 $l$ 的距离 $OD'$ 等于半径，点 $D'$ 在 $\odot O$ 上．</span><i class="why">相切 $\Rightarrow d=r$</i></div>
+        <div class="dl" data-step="4"><span>矛盾</span><span class="think" data-step="5" data-ask="和什么矛盾？">这样，直线 $l$ 与 $\odot O$ 有两个公共点 $D$、$D'$，与“直线 $l$ 与 $\odot O$ 相切”矛盾．</span><i class="why">相切只有一个公共点</i></div>
+        <div class="dl end" data-step="6"><span>结论</span><span>所以 $l\perp OD$．</span><i class="why">假设不成立</i></div>
+      </div>
+      <div class="def" data-step="7"><h4>结论（课本 p67）</h4>圆的切线垂直于经过切点的半径．</div>
+    </div>
+  </div>
+  <p class="note">课本 p66–67 思考与探索、图 2-41、2-42。反证法三步：反设 → 推出矛盾 → 肯定结论。图 2-42 是“假设”画出来的示意图，实际上 D′ 不存在——这正是要推出的矛盾。对比上一页：上一页“垂直 ⇒ 切线”（判定），这一页“切线 ⇒ 垂直”（性质）。</p>
+</section>
+
+<!-- 9 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>判定切线：证垂直</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f243" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-43</p>
+      <p class="method" data-step="1" data-label="怎么想">$A$ 已经是半径 $OA$ 的外端，<span class="think" data-step="2" data-ask="还差什么？">只要证 $AD\perp AB$，即 $\angle CAD+\angle BAC=90^\circ$．</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-43，$\triangle ABC$ 是 $\odot O$ 的内接三角形，$AB$ 是 $\odot O$ 的直径，$\angle CAD=\angle ABC$．判断直线 $AD$ 与 $\odot O$ 的位置关系，并说明理由．</p>
+      <div class="proof">
+        <p data-step="3"><span class="lead">解：</span>直线 $AD$ 与 $\odot O$ 相切．</p>
+        <p data-step="4"><span class="so">∵</span>$AB$ 是 $\odot O$ 的直径，<span class="so">∴</span>$\angle ACB=90^\circ$（<button class="yj" data-k="zj-90"></button>）．</p>
+        <p data-step="5"><span class="so">∴</span>$\angle ABC+\angle BAC=90^\circ$．</p>
+        <p data-step="6">又<span class="so">∵</span>$\angle CAD=\angle ABC$，<span class="so">∴</span>$\angle CAD+\angle BAC=90^\circ$，</p>
+        <p data-step="7">即 $AD\perp AB$．</p>
+        <p data-step="8"><span class="so">∴</span>直线 $AD$ 与 $\odot O$ 相切（<button class="yj" data-k="qx-pd"></button>）．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p67 例 2。用判定定理要检查两个条件：经过半径外端（A 在圆上，OA 是半径）+ 垂直于这条半径。图按 ∠CAD = ∠ABC 精确作出（AD 竖直、AB 水平）。</p>
+</section>
+
+<!-- 10 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>已知切线：连半径得垂直</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f244" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-44（按 $\angle BAC=70^\circ$、$AD$ 平分 $\angle BAC$ 精确作出）</p>
+      <p class="method" data-step="1" data-label="见切点，连半径">已知 $DE$ 是切线，切点 $D$——<span class="think" data-step="2" data-ask="先做什么？">连接 $OD$，得 $DE\perp OD$；再证 $OD\parallel AC$．</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-44，$AB$ 是 $\odot O$ 的直径，弦 $AD$ 平分 $\angle BAC$，过点 $D$ 的切线交 $AC$ 于点 $E$．$DE$ 与 $AC$ 有怎样的位置关系？为什么？</p>
+      <div class="proof sm">
+        <p data-step="3"><span class="lead">解：</span>$DE$ 与 $AC$ 互相垂直．连接 $OD$．</p>
+        <p data-step="4"><span class="so">∵</span>$OD=OA$，<span class="so">∴</span>$\angle ODA=\angle OAD$（<button class="yj" data-k="dy-xz"></button>）．</p>
+        <p data-step="5">又<span class="so">∵</span>$\angle OAD=\angle CAD$，<span class="so">∴</span>$\angle ODA=\angle CAD$．</p>
+        <p data-step="6"><span class="so">∴</span>$OD\parallel AC$（<button class="yj" data-k="nc-pd"></button>）．</p>
+        <p data-step="7"><span class="so">∵</span>$DE$ 是 $\odot O$ 的切线，</p>
+        <p data-step="8"><span class="so">∴</span>$DE\perp OD$（<button class="yj" data-k="qx-xz"></button>），即 $\angle ODE=90^\circ$．</p>
+        <p data-step="9">于是，$\angle DEA=90^\circ$，$DE\perp AC$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p67 例 3。最后一步由 OD ∥ AC 得 ∠DEA = 180° − ∠ODE = 90°（两直线平行，同旁内角互补）。对比例 2：例 2 是“证切线”（用判定），例 3 是“已知切线”（用性质）。常用辅助线：见切点，连半径。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>切线的判定与性质：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p68）点 $P$ 在 $\odot O$ 上，过点 $P$ 画 $\odot O$ 的切线．</p>
+        <div id="p1" class="hfig"></div>
+        <details><summary>提示 1</summary>切线要经过半径的外端，并且垂直于这条半径．</details>
+        <details><summary>提示 2</summary>先连接 $OP$．</details>
+        <details><summary>完整解答</summary>连接 $OP$，过点 $P$ 作 $OP$ 的垂线 $l$，$l$ 就是所求的切线（经过半径的外端并且垂直于这条半径的直线是圆的切线）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（p68）在 $\triangle ABC$ 中，$\angle ABC=45^\circ$，$AB=AC$．直线 $AC$ 与以 $AB$ 为直径的 $\odot O$ 有怎样的位置关系？为什么？</p>
+        <div id="p2" class="hfig"></div>
+        <details><summary>提示 1</summary>$AB=AC$，$\angle C=\angle ABC=45^\circ$，$\angle BAC=?$</details>
+        <details><summary>提示 2</summary>$\angle BAC=90^\circ$，且 $A$ 是半径 $OA$ 的外端．</details>
+        <details><summary>完整解答</summary>相切．$\because AB=AC$，$\therefore\angle C=\angle ABC=45^\circ$，$\angle BAC=90^\circ$，即 $AC\perp AB$．又 $OA$ 是半径，$\therefore$ 直线 $AC$ 与 $\odot O$ 相切．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>*3.</b>（p68）以点 $O$ 为圆心的两个同心圆中，大圆的弦 $AB$ 切小圆于点 $P$．$PA$ 与 $PB$ 相等吗？为什么？</p>
+        <div id="p3" class="hfig"></div>
+        <details><summary>提示 1</summary>连接 $OP$，切线垂直于经过切点的半径．</details>
+        <details><summary>提示 2</summary>$OP\perp AB$，在大圆中用垂径定理（2.2）．</details>
+        <details><summary>完整解答</summary>相等．连接 $OP$，$\because AB$ 切小圆于 $P$，$\therefore OP\perp AB$；在大圆中，$OP$ 垂直于弦 $AB$，$\therefore PA=PB$（垂径定理）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p68 练习 1、2、*3。第 3 题带 * 号，供学有余力的学生选做。习题 2.5 第 1、3 题可作当堂补充。</p>
+</section>
+
+<!-- 12 ================= 尝试：剪最大的圆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试与交流</span><h2>从三角形铁皮上剪一个最大的圆</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cut" class="bigb"></div>
+      <p class="muted center small-t">拖动圆心 $P$：圆总是取“不超出三角形”的最大半径（$P$ 到三边距离的最小值）</p>
+    </div>
+    <div class="col">
+      <p class="tip">要从一块三角形铁皮余料中剪一个圆，如何使剪得的圆面积最大？</p>
+      <div class="readout r4">
+        <span>到 $BC$</span><b class="v" id="cutA"></b><span>到 $CA$</span><b class="v" id="cutB"></b>
+        <span>到 $AB$</span><b class="v" id="cutC"></b><span>圆的半径</span><b class="v" id="cutR"></b>
+      </div>
+      <p class="tip feedback" id="cutMsg"></p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="cutBest">找到最大的圆</button></div>
+      <p class="def" data-step="1">观察图 2-45 可以发现：<span class="think" data-step="2" data-ask="最大的圆有什么特点？">要使剪得的圆面积最大，这个圆应与三角形的<b>各边都相切</b>——圆心到三边的距离都相等．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p68 尝试与交流、图 2-45。让学生拖动圆心：圆只碰到一条边或两条边时，总还能往“空”的方向挪一挪变大；只有三条边都碰到时才不能再大。读数是 P 到三边的距离（坐标计算）。“找到最大的圆”把 P 放到三条角平分线的交点。</p>
+</section>
+
+<!-- 13 ================= 作内切圆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索 · 作图</span><h2>作三角形的内切圆</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ic" class="bigb"></div>
+      <div class="btns" data-noswipe id="icBtns"><button class="btn" type="button" data-k="1">1. 作两条角平分线</button><button class="btn" type="button" data-k="2">2. 作 $OD\perp BC$</button><button class="btn" type="button" data-k="3">3. 画 $\odot O$</button></div>
+      <p class="muted center small-t">三个顶点都能拖动；作图结果随之更新</p>
+    </div>
+    <div class="col">
+      <p class="tip">小明：圆心到三角形的三边的距离相等．小丽：圆心在三角形的内角平分线上．</p>
+      <ol class="steps">
+        <li data-step="1">分别作 $\angle ABC$、$\angle ACB$ 的平分线 $BM$、$CN$，$BM$ 与 $CN$ 的交点为 $O$．</li>
+        <li data-step="2">过点 $O$，作 $OD\perp BC$，垂足为 $D$．</li>
+        <li data-step="3">以点 $O$ 为圆心，$OD$ 为半径作 $\odot O$．$\odot O$ 就是所求作的圆．</li>
+      </ol>
+      <div class="def" data-step="4"><h4>定义（课本 p69）</h4>与三角形各边都相切的圆叫做<b>三角形的内切圆</b>．内切圆的圆心叫做<b>三角形的内心</b>，这个三角形叫做圆的<b>外切三角形</b>．</div>
+      <p class="warn" data-step="5" data-label="内心 vs 外心">内心：三条<b>角平分线</b>的交点，到三<b>边</b>距离相等；外心（2.3）：三边<b>垂直平分线</b>的交点，到三<b>顶点</b>距离相等．</p>
+    </div>
+  </div>
+  <p class="note">课本 p69 作法表与图 2-46。为什么只作两条角平分线？O 在 ∠B 的平分线上，到 AB、BC 距离相等；在 ∠C 的平分线上，到 BC、CA 距离相等——所以到三边距离都相等，也就在 ∠A 的平分线上。拖动顶点验证：O 永远在三角形内部。</p>
+</section>
+
+<!-- 14 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>内切圆与角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f247" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-47（按 $\angle B=60^\circ$、$\angle C=70^\circ$ 精确作出）</p>
+      <p class="method" data-step="1" data-label="思路">$\angle EDF$ 是 $\odot O$ 的圆周角，<span class="think" data-step="2" data-ask="对应哪个圆心角？">它等于圆心角 $\angle EOF$ 的一半；$\angle EOF$ 在四边形 $AFOE$ 中求．</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-47，$\odot O$ 是 $\triangle ABC$ 的内切圆，切点分别为 $D$、$E$、$F$，$\angle B=60^\circ$，$\angle C=70^\circ$．求 $\angle EDF$ 的度数．</p>
+      <div class="proof sm">
+        <p data-step="3"><span class="lead">解：</span>连接 $OE$、$OF$．在 $\triangle ABC$ 中，</p>
+        <p data-step="4">$\angle A=180^\circ-(\angle B+\angle C)=180^\circ-(60^\circ+70^\circ)=50^\circ$．</p>
+        <p data-step="5"><span class="so">∵</span>$\odot O$ 是 $\triangle ABC$ 的内切圆，</p>
+        <p data-step="6"><span class="so">∴</span>$AB\perp OF$，$AC\perp OE$（<button class="yj" data-k="qx-xz"></button>）．</p>
+        <p data-step="7">在四边形 $AFOE$ 中，$\angle EOF=360^\circ-(\angle A+\angle AFO+\angle AEO)$</p>
+        <p data-step="8">$\qquad\qquad\ \ =360^\circ-(50^\circ+90^\circ+90^\circ)=130^\circ$，</p>
+        <p data-step="9"><span class="so">∴</span>$\angle EDF=\dfrac12\angle EOF=65^\circ$（<button class="yj" data-k="yzj"></button>）．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p69–70 例 4。综合了三课的知识：三角形内角和、切线的性质、圆周角定理。规律：∠EDF = 90° − ½∠A，可让学生换一组角验证。</p>
+</section>
+
+<!-- 15 ================= 练习：内心 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>内心与角平分线</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>练习 1（p70）</b>　点 $O$ 是 $\triangle ABC$ 的内心．根据下列条件，求 $\angle BOC$ 的度数：</p>
+      <div id="p70" class="gfig l"></div>
+      <p class="tip">（1）$\angle ABC=50^\circ$，$\angle ACB=60^\circ$：$\angle BOC=$<span class="blank" data-ans="125|125°" data-w="4"></span>$^\circ$</p>
+      <p class="tip">（2）$\angle A=50^\circ$：$\angle BOC=$<span class="blank" data-ans="115|115°" data-w="4"></span>$^\circ$</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q">卡住了？</p>
+        <details><summary>提示 1</summary>内心是三条角平分线的交点：$\angle OBC=\dfrac12\angle ABC$，$\angle OCB=\dfrac12\angle ACB$．</details>
+        <details><summary>提示 2</summary>（2）不知道 $\angle ABC$、$\angle ACB$ 各是多少，但知道它们的和 $=180^\circ-50^\circ=130^\circ$．</details>
+        <details><summary>完整解答</summary>（1）$\angle BOC=180^\circ-25^\circ-30^\circ=125^\circ$；<br>（2）$\angle OBC+\angle OCB=\dfrac12\times130^\circ=65^\circ$，$\angle BOC=180^\circ-65^\circ=115^\circ$．<br>一般地，$\angle BOC=90^\circ+\dfrac12\angle A$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2（p70）</b>　点 $C$、$D$ 分别在射线 $OA$、$OB$ 上．求作 $\odot P$，使它与 $OA$、$OB$、$CD$ 都相切．</p>
+        <details><summary>提示</summary>与三条直线都相切，圆心到三条直线距离相等——就是 $\triangle OCD$ 的内切圆．</details>
+        <details><summary>完整解答</summary>作 $\angle DOC$ 与 $\angle OCD$ 的平分线交于 $P$，过 $P$ 作 $PE\perp OA$ 于 $E$，以 $P$ 为圆心、$PE$ 为半径作圆即可．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p70 练习 1、2。填空回车判对错。练习 1（2）是“整体代入”：只知道两个角的和也能求。规律 ∠BOC = 90° + ½∠A 不要求记忆，能推导即可。</p>
+</section>
+
+<!-- 16 ================= 切线长 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试与交流 · 定理</span><h2>从圆外一点画两条切线：$PA=PB$ 吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="tl" class="bigb"></div>
+      <div class="slider-row" data-noswipe>沿直线 $OP$ 翻折：<input type="range" id="tlF" min="0" max="1" step="0.01" value="0"></div>
+    </div>
+    <div class="col">
+      <div class="readout r4"><span>$PA$</span><b class="v" id="tlA"></b><span>$PB$</span><b class="v" id="tlB"></b></div>
+      <div class="proof sm">
+        <p data-step="1"><span class="lead">证明：</span>连接 $OA$、$OB$、$OP$（图 2-49）．<span class="so">∵</span>$PA$、$PB$ 是 $\odot O$ 的切线，</p>
+        <p data-step="2"><span class="so">∴</span>$PA\perp OA$，$PB\perp OB$（<button class="yj" data-k="qx-xz"></button>），即 $\triangle POA$、$\triangle POB$ 是直角三角形．</p>
+        <p data-step="3">又<span class="so">∵</span>$OA=OB$，$OP=OP$，<span class="so">∴</span>$\triangle POA\cong\triangle POB$（<button class="yj" data-k="hl"></button>）．<span class="so">∴</span>$PA=PB$．</p>
+      </div>
+      <p class="recall" data-step="4" data-label="图形运动的方法（图 2-50）">$O$ 到 $PA$、$PB$ 距离相等，所以 $O$ 在 $\angle APB$ 的平分线上．把图沿直线 $OP$ 翻折，射线 $PB$ 与 $PA$ 重合，$OB$ 与 $OA$ 重合，点 $B$ 与点 $A$ 重合．</p>
+      <div class="def" data-step="5"><h4>切线长（课本 p71）</h4>在经过圆外一点的圆的切线上，这点与切点之间的线段的长，叫做这点到圆的<b>切线长</b>．<br><b>*定理：</b>过圆外一点所画的圆的两条切线长相等．</div>
+    </div>
+  </div>
+  <p class="note">课本 p70–71 尝试与交流、图 2-48～2-50。先拖动 P（切点 A、B 由坐标精确算出），读数始终 PA = PB；再拖“翻折”滑块，看下半部分沿 OP 翻上来与上半部分重合（课本的“图形运动”证法）。两种证法各有优点：全等证法严谨，翻折证法直观。</p>
+</section>
+
+<!-- 17 ================= 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 练习</span><h2>切线长定理的应用</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f251" class="gfig xl"></div>
+      <p class="tip">如图 2-51，在以点 $O$ 为圆心的两个同心圆中，大圆的弦 $AB$、$AC$ 分别与小圆相切于点 $D$、$E$．$AB$ 与 $AC$ 相等吗？为什么？</p>
+    </div>
+    <div class="col">
+      <div class="proof sm">
+        <p data-step="1"><span class="lead">解：</span>$AB$ 与 $AC$ 相等．连接 $OD$、$OE$．</p>
+        <p data-step="2"><span class="so">∵</span>$AB$、$AC$ 是小圆的两条切线，切点分别为 $D$、$E$，</p>
+        <p data-step="3"><span class="so">∴</span>$AD=AE$（<button class="yj" data-k="qxc"></button>），$AB\perp OD$，$AC\perp OE$（<button class="yj" data-k="qx-xz"></button>）．</p>
+        <p data-step="4">又<span class="so">∵</span>$AB$、$AC$ 是大圆的弦，$OD\perp AB$，$OE\perp AC$，</p>
+        <p data-step="5"><span class="so">∴</span>$AB=2AD$，$AC=2AE$（<button class="yj" data-k="cj"></button>）．<span class="so">∴</span>$AB=AC$．</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>*练习 1（p72）</b>　$AB$、$AC$、$BD$ 是 $\odot O$ 的切线，切点分别为 $P$、$C$、$D$．若 $AB=5$，$AC=3$，求 $BD$ 的长．</p>
+        <details><summary>提示</summary>从 $A$ 出发的两条切线长：$AP=AC$；从 $B$ 出发的：$BP=BD$．</details>
+        <details><summary>完整解答</summary>$AP=AC=3$，$BP=AB-AP=5-3=2$，$BD=BP=2$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p72 例 5、练习 *1。例 5 同时用了切线长定理和垂径定理。“拓展与延伸”：连接 DE、BC，DE ∥ BC 且 DE = ½BC（三角形中位线），可作课后思考。</p>
+</section>
+
+<!-- 18 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">相交 $\Leftrightarrow d&lt;r$；相切 $\Leftrightarrow d=r$；相离 $\Leftrightarrow d&gt;r$。</p>
+        <p class="def">切线：判定（过半径外端且垂直于半径）、性质（垂直于过切点的半径）、切线长相等；内切圆、内心。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="证切线">有公共点：连半径，证垂直；没给公共点：作垂线，证 $d=r$。</p>
+        <p class="method" data-label="见切线">见切点，连半径，得直角。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">用数量 $d$ 与 $r$ 的大小刻画“形”的位置关系。</p>
+        <p class="recall" data-label="类比 · 反证">类比点与圆的位置关系；用反证法证明切线的性质。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.6 正多边形与圆——把圆周 $n$ 等分，依次连接各分点，会得到什么样的多边形？</p>
+  </div>
+  <p class="note">请学生先口述“判断直线与圆位置关系的两种方法”和“证明切线的两种思路”。作业：习题 2.5（p73–76）选做。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

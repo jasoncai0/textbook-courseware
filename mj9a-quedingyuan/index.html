@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>确定圆的条件 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/canpian.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第2章 对称图形——圆 · 2.3</p>
+    <h1 class="cover-title">确定圆的条件</h1>
+    <p class="cover-q" data-step="1">考古现场出土了一块圆形陶盘的残片，只剩下一段<b>圆弧</b>。</p>
+    <p class="cover-q" data-step="2">能不能找回它的圆心和半径，把整个盘子“画”回来？——先研究：经过几个点，才能确定一个圆？</p>
+    <div class="chips" data-step="3"><span class="chip">过一点 · 过两点</span><span class="chip">过三点作圆</span><span class="chip">不在同一直线上的三点确定一个圆</span><span class="chip">外接圆与外心</span></div>
+  </div>
+  <p class="note">封面情境（课本 p52 练习 1“已知弧，确定圆心”的生活版）。上节课已经知道：圆心确定位置、半径确定大小。本节问的是：给出圆上的几个点，圆能不能唯一确定。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="八上 2.4 · 线段的垂直平分线" data-step="1">
+        <p>线段垂直平分线上的点到线段两端的距离相等；<b>到线段两端距离相等的点，在线段的垂直平分线上</b>。</p>
+        <span class="use">找到 $A$、$B$ 的距离相等的点——圆心的位置。</span>
+      </div>
+      <div class="recall" data-label="八上 2.4 · 尺规作图" data-step="2">
+        <p>作线段 $AB$ 的垂直平分线：分别以 $A$、$B$ 为圆心、大于 $\frac12AB$ 的长为半径画弧，两弧交于两点，过这两点作直线。</p>
+        <span class="use">用直尺和圆规作三角形的外接圆。</span>
+      </div>
+      <div class="recall" data-label="2.1 · 圆" data-step="3">
+        <p>圆是到定点（圆心）的距离等于定长（半径）的点的集合；<b>圆心</b>确定位置，<b>半径</b>确定大小。</p>
+        <span class="use">“确定一个圆” = 圆心和半径都确定。</span>
+      </div>
+      <div class="recall" data-label="2.2 · 垂径定理" data-step="4">
+        <p>垂直于弦的直径平分弦：弦的垂直平分线经过圆心。</p>
+        <span class="use">已知一段弧，用两条弦的垂直平分线找圆心。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>过一点 → 过两点 → 过三点：圆心的位置受到越来越多的限制，直到唯一确定。</p>
+  </div>
+  <p class="note">第一张卡的“逆定理”（到两端距离相等的点在垂直平分线上）是本课推理的核心依据，请学生先复述。</p>
+</section>
+
+<!-- 3 ================= 过一点 · 过两点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作与思考</span><h2>过一点、过两点，能作多少个圆？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="few" class="few"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="fewOne">过点 $A$</button><button class="btn" type="button" id="fewTwo">过点 $A$、$B$</button><button class="btn" type="button" id="fewKeep">留下这个圆</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">拖动橙色的圆心 $O$，作经过已知点的圆；点“留下这个圆”，再换个位置作一个．</p>
+      <p class="tip feedback" id="fewMsg"></p>
+      <p class="tip" data-step="1"><b>1.</b> 怎样作一个圆，使它经过已知点 $A$？这样的圆可以作多少个？<span class="think" data-step="2" data-ask="试一试">在平面内任取一点为圆心，以它到点 $A$ 的距离为半径作圆——可以作<b>无数个</b>。</span></p>
+      <p class="tip" data-step="3"><b>2.</b> 怎样作一个圆，使它经过已知点 $A$、$B$？这样的圆可以作多少个？<span class="think" data-step="4" data-ask="圆心在哪里？">圆心到 $A$、$B$ 的距离相等，所以圆心在线段 $AB$ 的<b>垂直平分线</b>上；在这条直线上任取一点为圆心都可以——也有<b>无数个</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p50 操作与思考 1、2。第一种模式圆心可以拖到任何地方；切换到“过点 A、B”后，圆心被限制在 AB 的垂直平分线上（拖动时自动投影到这条线上）。多留下几个圆，学生会看到：过两点的圆，圆心排成一条直线。</p>
+</section>
+
+<!-- 4 ================= 过三点（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作与思考</span><h2>能否作一个圆，经过 $A$、$B$、$C$ 三点？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="tri" class="tri"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="triLine">把 $C$ 放到直线 $AB$ 上</button><button class="btn" type="button" id="triBack">还原</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">拖动 $A$、$B$、$C$．$l_1$、$l_2$ 分别是线段 $AB$、$BC$ 的垂直平分线．</p>
+      <div class="readout tri-read">
+        <span>$OA$ / $OB$ / $OC$</span><b class="v" id="triR"></b>
+        <span>$\triangle ABC$ 的最大角</span><b class="v" id="triAng"></b>
+      </div>
+      <p class="tip feedback" id="triMsg"></p>
+      <p class="tip" data-step="1">经过 $A$、$B$、$C$ 三点作圆，圆心应在哪里？<span class="think" data-step="2" data-ask="想一想">既在 $AB$ 的垂直平分线 $l_1$ 上，又在 $BC$ 的垂直平分线 $l_2$ 上——就是 $l_1$ 与 $l_2$ 的交点。</span></p>
+      <p class="tip" data-step="3">$l_1$ 与 $l_2$ 一定相交吗？<span class="think" data-step="4" data-ask="按左边的按钮试试">可能平行，也可能相交：$A$、$B$、$C$ 在一条直线上时，$l_1\parallel l_2$，没有交点，<b>不能</b>作出经过三点的圆（图 2-18）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p50–51 操作与思考 3、图 2-18、2-19、2-20。拖动三个顶点，交点 O 与圆由坐标精确计算，OA、OB、OC 三个读数始终相等。按“把 C 放到直线 AB 上”：l₁ ∥ l₂，圆消失。读数里的“最大角”为练习 p52 第 2 题（外心的位置）做准备：锐角三角形 O 在内部，直角三角形 O 在斜边中点，钝角三角形 O 在外部。</p>
+</section>
+
+<!-- 5 ================= 定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理</span><h2>不在同一条直线上的三点确定一个圆</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="thm" class="thm"></div>
+    </div>
+    <div class="col">
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>设</span><span>$l_1$ 与 $l_2$ 的交点为 $O$（图 2-20）</span><i class="why">$A$、$B$、$C$ 不在同一条直线上，$l_1$ 与 $l_2$ 相交</i></div>
+        <div class="dl" data-step="2"><span>∵</span><span>$O$ 在 $l_1$ 上，∴ $OA=OB$</span><i class="why">线段垂直平分线上的点到线段两端的距离相等</i></div>
+        <div class="dl" data-step="3"><span>∵</span><span>$O$ 在 $l_2$ 上，∴ $OB=OC$</span><i class="why">同上</i></div>
+        <div class="dl key" data-step="4"><span>∴</span><span>$OA=OB=OC$</span><i class="why">以 $O$ 为圆心、$OA$ 为半径的圆经过 $A$、$B$、$C$（存在）</i></div>
+        <div class="dl end" data-step="5"><span>又</span><span>$l_1$ 与 $l_2$ 只有一个交点</span><i class="why">圆心只有一个，半径 $OA$ 也确定（唯一）</i></div>
+      </div>
+      <div class="def big-def" data-step="6"><h4>课本 p51</h4>不在同一条直线上的三点确定一个圆．</div>
+      <p class="warn" data-step="7" data-label="“确定”的含义">“确定”= <b>有</b>且<b>只有</b>一个。两个条件缺一不可：“不在同一条直线上”。过一点、过两点的圆都有无数个，“不能确定”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p51。推理分两半：第 2–4 行说明“有”（存在），第 5 行说明“只有一个”（唯一）。追问：经过四个点一定能作圆吗？（不一定，要第四个点恰好在前三点确定的圆上——2.4 节“圆内接四边形”会再遇到。）</p>
+</section>
+
+<!-- 6 ================= 外接圆 · 尺规作图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试与交流</span><h2>用直尺和圆规作 △ABC 的外接圆</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cons" class="cons"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="consPrev">◂ 上一步</button><button class="btn solid" type="button" id="consNext">下一步 ▸</button></div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>课本 p51</h4>三角形的三个顶点确定一个圆，这个圆叫做<em>三角形的外接圆</em>（circumcircle of triangle），外接圆的圆心叫做<em>三角形的外心</em>（circumcenter of triangle），这个三角形叫做<em>圆的内接三角形</em>．</div>
+      <ol class="cons-steps" id="consSteps">
+        <li>已知 $\triangle ABC$．</li>
+        <li>以 $A$、$B$ 为圆心，大于 $\frac12AB$ 的长为半径画弧，两弧交于两点．</li>
+        <li>过这两点作直线 $l_1$：$AB$ 的垂直平分线．</li>
+        <li>同样作 $BC$ 的垂直平分线 $l_2$．</li>
+        <li>$l_1$ 与 $l_2$ 交于点 $O$．</li>
+        <li>以 $O$ 为圆心、$OA$ 为半径作圆，$\odot O$ 就是所求作的圆．</li>
+      </ol>
+      <p class="recall" data-label="外心的性质" data-step="2">外心是三角形三边垂直平分线的交点，到三个顶点的距离相等（第三条边 $AC$ 的垂直平分线也经过 $O$）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p51 尝试与交流的作法表格。点“下一步”逐步作图：圆规的弧、垂直平分线、交点、外接圆都按坐标精确作出。请学生在本子上同步用尺规作图。作法只需两条垂直平分线；追问第三条为什么也一定过 O（OA = OC）。</p>
+</section>
+
+<!-- 7 ================= 练习 p52 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>找圆心；外心在哪里？（课本 p52）</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="arcc" class="arcc"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="arccGo">作图找圆心</button></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>1.</b> 如图，已知 $\overset{\frown}{AB}$．试确定 $\overset{\frown}{AB}$ 所在圆的圆心．</p>
+      <p class="tip" data-step="1">怎样作？<span class="think" data-step="2" data-ask="想一想">在弧上再取一点 $C$，连接 $AC$、$BC$（两条弦），分别作它们的垂直平分线，交点就是圆心——就是“过 $A$、$C$、$B$ 三点作圆”。</span></p>
+      <p class="tip"><b>2.</b> 锐角三角形的外心 $O$ 在三角形的内部．当 $\triangle ABC$ 是直角三角形、钝角三角形时，外心 $O$ 在什么位置？</p>
+      <p class="tip" data-step="3">直角三角形：<span class="think" data-step="4" data-ask="猜一猜">在<b>斜边的中点</b>（斜边是外接圆的直径）．</span></p>
+      <p class="tip" data-step="5">钝角三角形：<span class="think" data-step="6" data-ask="猜一猜">在三角形的<b>外部</b>（钝角所对边的另一侧）．</span></p>
+      <p class="muted small-t">验证：回到第 4 页拖动三角形，看读数“最大角”与外心的位置。</p>
+    </div>
+  </div>
+  <p class="note">课本 p52 练习。第 1 题左图：给定的弧按半径 2、圆心角 110° 画出，点“作图找圆心”后取弧的中点 C，作 AC、BC 的垂直平分线，交点恰在真正的圆心——正好回答封面上的“残片复原”问题。第 2 题“验证你的猜想”在第 4 页的拖动实验中完成。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 2.3</span><h2>作图与说理</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在围成新月形的两条弧（$\overset{\frown}{AmB}$ 和 $\overset{\frown}{AnB}$）中，哪一条弧的半径较大？分别作出它们所在的圆，验证你的猜想．</p>
+        <details><summary>提示</summary>两条弧有相同的弦 $AB$；弯得越“平”，半径越大。各取弧上一点，作两条弦的垂直平分线找圆心。</details>
+        <details><summary>答案</summary>内侧的弧 $\overset{\frown}{AnB}$ 较平，半径较大；外侧的 $\overset{\frown}{AmB}$ 弯得更厉害，半径较小（两个圆心都在 $AB$ 的垂直平分线上，作图量一量即可验证）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知 $AB=4$ cm，作半径为 3 cm 的圆，使它经过 $A$、$B$ 两点，这样的圆能作多少个？如果半径为 2 cm 呢？</p>
+        <details><summary>提示</summary>圆心在 $AB$ 的垂直平分线上，且到 $A$ 的距离为半径：以 $A$ 为圆心、半径为半径画弧，与垂直平分线交于几点？</details>
+        <details><summary>答案</summary>半径 3 cm：$3&gt;2$，弧与垂直平分线交于 2 点，能作 2 个；半径 2 cm：圆心只能是 $AB$ 的中点（$AB$ 是直径），只能作 1 个．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在四边形 $ABCD$ 中，$\angle A=\angle C=90^\circ$．经过 $A$、$B$、$D$ 三点作 $\odot O$，点 $C$ 在 $\odot O$ 上吗？试说明理由．</p>
+        <details><summary>提示</summary>$\triangle ABD$ 是直角三角形，外心在斜边 $BD$ 的中点 $O$；再看 $\triangle CBD$。</details>
+        <details><summary>答案</summary>在．取 $BD$ 的中点 $O$．在 $\text{Rt}\triangle ABD$ 和 $\text{Rt}\triangle CBD$ 中，$OA=\frac12BD$，$OC=\frac12BD$（直角三角形斜边上的中线等于斜边的一半），所以 $OA=OB=OC=OD$，点 $C$ 在 $\odot O$ 上．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p52 习题 2.3。第 2 题是本节“过两点的圆心在垂直平分线上”与“圆心到点的距离等于半径”的综合；第 3 题用到八上 2.5“直角三角形斜边上的中线等于斜边的一半”，与练习第 2 题“直角三角形的外心在斜边中点”是同一回事。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">不在同一条直线上的三点确定一个圆．</p>
+        <p class="def">三角形的外接圆、外心（三边垂直平分线的交点）、圆的内接三角形．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="找圆心">作两条弦的垂直平分线，交点就是圆心。</p>
+        <p class="method" data-label="外心位置">锐角——内部；直角——斜边中点；钝角——外部。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="集合的交">圆心既在 $l_1$ 上、又在 $l_2$ 上 ⇒ 交点。</p>
+        <p class="recall" data-label="从特殊到一般">一点 → 两点 → 三点，条件越多，圆越确定。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.4 圆周角——顶点在圆上的角，和圆心角有什么关系？</p>
+  </div>
+  <p class="note">课后作业：习题 2.3 第 1–3 题。封面问题的答案：在残片的弧上任取三点，作两条弦的垂直平分线，交点就是陶盘的圆心，量出半径即可复原。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正多边形与圆 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fengchao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第2章 对称图形——圆 · 2.6</p>
+    <h1 class="cover-title">正多边形与圆</h1>
+    <p class="cover-q" data-step="1">蜂巢的蜂房、螺帽的边缘、霓虹灯的边框……生活中处处有“各边相等、各角也相等”的多边形。</p>
+    <p class="cover-q" data-step="2">怎样又快又准地画出一个正五边形、正六边形？它和圆有什么关系？</p>
+    <div class="chips" data-step="3"><span class="chip">什么是正多边形</span><span class="chip">$n$ 等分圆周</span><span class="chip">中心与半径</span><span class="chip">尺规作正六边形</span></div>
+  </div>
+  <p class="note">课本 p77 图 2-52（霓虹灯边框、螺帽）。本课是概念课：先明确“正多边形”的定义，再借助圆来作正多边形、研究它的性质。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc">
+      <div class="recall" data-label="七年级 · 等边三角形与正方形" data-step="1">
+        <p>正三角形（等边三角形）、正方形（正四边形）：<b>各边相等，各角也相等</b>。</p>
+        <span class="use">从熟悉的“正三角形、正四边形”推广到“正 $n$ 边形”。</span>
+      </div>
+      <div class="recall" data-label="九上 2.2 圆的对称性" data-step="2">
+        <p>在同圆或等圆中，相等的圆心角所对的弧相等，所对的弦相等；圆心角的度数与它所对的弧的度数相等。</p>
+        <span class="use">等分圆周 ⇒ 各边（弦）相等。</span>
+      </div>
+      <div class="recall" data-label="九上 2.4 圆周角" data-step="3">
+        <p>同弧或等弧所对的圆周角相等。</p>
+        <span class="use">等分圆周 ⇒ 各角（圆周角）相等。</span>
+      </div>
+      <div class="recall" data-label="八上 · 八下 · 轴对称与中心对称" data-step="4">
+        <p>轴对称图形沿对称轴折叠能重合；中心对称图形绕对称中心旋转 $180^\circ$ 能与自身重合。勾股定理（八上 3.1）。</p>
+        <span class="use">研究正多边形的对称性；计算正六边形的面积。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 2、3 张卡分别负责“边相等”和“角相等”——这正是证明“等分圆周得到正多边形”的两步。上一课 2.5 学了直线与圆，本课回到圆内部：圆与多边形。</p>
+</section>
+
+<!-- 3 ================= 定义 · 辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念 · 辨析</span><h2>什么叫正多边形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>定义（课本 p77）</h4>各边相等、各角也相等的多边形叫做<b>正多边形</b>．</div>
+      <p class="tip" data-step="2"><b>思考与探索：</b>三边相等的三角形是正三角形，三角相等的三角形也是正三角形．能否说各边相等的多边形是正多边形？或者说各角相等的多边形是正多边形？试举例说明．</p>
+      <div id="cx" class="cxb" data-step="3"></div>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="3">
+        <div class="pick" data-ans="n"><span>① 各边相等的多边形是正多边形．</span><button data-k="y">对</button><button data-k="n">不对</button><p class="pick-why">反例：<b>菱形</b>四条边相等，但四个角不都相等（左图蓝色）．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <div class="pick" data-ans="n"><span>② 各角相等的多边形是正多边形．</span><button data-k="y">对</button><button data-k="n">不对</button><p class="pick-why">反例：<b>矩形</b>四个角都是直角，但四条边不都相等（左图绿色）．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <div class="pick" data-ans="y"><span>③ 三条边相等的三角形是正三角形．</span><button data-k="y">对</button><button data-k="n">不对</button><p class="pick-why">三角形三边相等就能推出三角相等（等边对等角）．</p></div>
+      </div>
+      <p class="method" data-step="4" data-label="定义里的两个条件">边数大于 3 时，“<b>各边相等</b>”“<b>各角相等</b>”缺一不可．（课本 p81“读一读”：三角形具有稳定性，四边形以上没有．）</p>
+    </div>
+  </div>
+  <p class="note">课本 p77 定义与思考与探索、p81 读一读。左图：菱形的边长与矩形的角由坐标确定（菱形内角 60°/120°，矩形 2:1），让学生说出“哪个条件满足、哪个不满足”。</p>
+</section>
+
+<!-- 4 ================= 操作：n 等分圆周 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作与思考</span><h2>把圆 $n$ 等分，依次连接各分点</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="nd" class="bigb"></div>
+      <div class="slider-row" data-noswipe>$n=$<input type="range" id="ndN" min="3" max="12" step="1" value="5"><b class="v" id="ndNv"></b><button class="btn" type="button" id="ndRand">随手取 $n$ 个点</button><button class="btn" type="button" id="ndEq">等分</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-53，用量角器把 $\odot O$ $n$ 等分：每份圆心角 $=\dfrac{360^\circ}{n}$．依次连接各等分点．</p>
+      <table class="mtab" id="ndTab"><tr><th>每份圆心角</th><th>最短边 : 最长边</th><th>最小角</th><th>最大角</th></tr><tr><td id="ndC"></td><td id="ndS"></td><td id="ndA1"></td><td id="ndA2"></td></tr></table>
+      <p class="tip feedback" id="ndMsg"></p>
+      <p class="def" data-step="1">一般地，只要用量角器把一个圆 $n(n\ge3)$ 等分，<span class="think" data-step="2" data-ask="会得到什么？">依次连接各等分点就能得到这个圆的<b>内接正 $n$ 边形</b>，这个圆是这个正 $n$ 边形的<b>外接圆</b>．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p77 操作与思考、p78 一般结论。先 n = 5，读出各边、各角都相等；再点“随手取 n 个点”——点虽然都在圆上，但边、角不相等，不是正多边形。“等分”是关键。读数由坐标实时算出（边长比 = 1 即相等）。</p>
+</section>
+
+<!-- 5 ================= 证明：正五边形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">说理</span><h2>为什么五等分圆周得到的是正五边形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f254" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-54：点 $A$、$B$、$C$、$D$、$E$ 把 $\odot O$ 五等分</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>∵</span><span>$\overset{\frown}{AB}=\overset{\frown}{BC}=\overset{\frown}{CD}=\overset{\frown}{DE}=\overset{\frown}{EA}$</span><i class="why">五等分</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="边？">$AB=BC=CD=DE=EA$</span><i class="why">等弧所对的弦相等（2.2）</i></div>
+        <div class="dl" data-step="4"><span></span><span class="think" data-step="5" data-ask="∠A 对哪条弧？">$\overset{\frown}{BCE}=\overset{\frown}{CDA}$</span><i class="why">都是 3 份弧</i></div>
+        <div class="dl" data-step="6"><span>∴</span><span>$\angle A=\angle B$</span><i class="why">等弧所对的圆周角相等（2.4）</i></div>
+        <div class="dl" data-step="7"><span></span><span>同理 $\angle B=\angle C=\angle D=\angle E$</span><i class="why"></i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span>五边形 $ABCDE$ 是正五边形</span><i class="why">正多边形的定义</i></div>
+      </div>
+      <p class="method" data-step="9" data-label="边靠弦，角靠圆周角">各边是相等的弦；每个内角都是圆周角，所对的弧都是“$n-2$ 份”，所以也相等．</p>
+    </div>
+  </div>
+  <p class="note">课本 p77 说理过程。∠A = ∠EAB 所对的弧是 BCE（不含 A 的那条），由 3 份组成，度数 3 × 72° = 216°，所以 ∠A = 108°。可以让学生用这个方法算正 n 边形的内角：½ × (n − 2) × 360°/n = (n − 2)·180°/n。</p>
+</section>
+
+<!-- 6 ================= 数学实验室：旋转 60° ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>把正六边形绕中心旋转，会怎样？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="rt" class="bigb"></div>
+      <div class="slider-row" data-noswipe>旋转角：<input type="range" id="rtA" min="0" max="360" step="1" value="0"><b class="v" id="rtAv"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-55，点 $A$、$B$、$C$、$D$、$E$、$F$ 把 $\odot O$ 六等分．在透明纸上画一个同样的图形，叠在一起，绕点 $O$ 旋转 $60^\circ$、再旋转 $60^\circ$……</p>
+      <p class="tip feedback" id="rtMsg"></p>
+      <p class="tip" data-step="1">你能用图形运动的方法证实六边形 $ABCDEF$ 是正六边形吗？<span class="think" data-step="2" data-ask="说说理由">旋转 $60^\circ$ 后图形与自身重合：$A\to B$，$B\to C$……所以 $AB$ 与 $BC$ 重合、$\angle A$ 与 $\angle B$ 重合，各边相等，各角相等．</span></p>
+      <div class="def" data-step="3"><h4>中心与半径（课本 p78）</h4>正多边形的外接圆的圆心叫做<b>正多边形的中心</b>，外接圆的半径叫做<b>正多边形的半径</b>．</div>
+    </div>
+  </div>
+  <p class="note">课本 p78 数学实验室、图 2-55。拖动旋转角：每到 60° 的整数倍（吸附）就与原图重合并提示重合后 A 落在哪个点上。这是用“旋转”证明正多边形的思路，比上一页的“弦—圆周角”更直观。</p>
+</section>
+
+<!-- 7 ================= 例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>正六边形的周长和面积</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f256" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-56（半径 4，按比例精确作出）</p>
+      <p class="method" data-step="1" data-label="化归为三角形">作半径 $OA$、$OB$：正六边形被分成 6 个<span class="think" data-step="2" data-ask="什么三角形？">全等的等边三角形</span>．</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-56，正六边形 $ABCDEF$ 的半径为 4．求这个正六边形的周长和面积．</p>
+      <div class="proof-l">
+        <p data-step="3"><b class="lead">解：</b>作半径 $OA$、$OB$．根据题意，得 $\angle AOB=\dfrac{360^\circ}{6}=60^\circ$．</p>
+        <p data-step="4">∵ $OA=OB$，∴ $\triangle OAB$ 为等边三角形，$AB=OA=4$．</p>
+        <p data-step="5">正六边形的周长 $l=4\times6=24$．</p>
+        <p data-step="6">过点 $O$ 作 $OG\perp AB$，垂足为 $G$．在 $\text{Rt}\triangle OAG$ 中，</p>
+        <p data-step="7">∵ $OA=4$，$AG=\dfrac12AB=2$，∴ $OG=\sqrt{OA^2-AG^2}=\sqrt{4^2-2^2}=2\sqrt3$．</p>
+        <p data-step="8">正六边形的面积 $S=\dfrac12\times4\times2\sqrt3\times6=24\sqrt3$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p78 例。关键结论：正六边形的边长等于它的半径（60° 的等腰三角形是等边三角形）。面积 = 6 个三角形面积之和，OG 用勾股定理求。24√3 ≈ 41.6。</p>
+</section>
+
+<!-- 8 ================= 对称性 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试与交流</span><h2>正多边形的对称性</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sy" class="bigb"></div>
+      <div class="btns" data-noswipe id="syBtns"><button class="btn" type="button" data-n="3">3</button><button class="btn" type="button" data-n="4">4</button><button class="btn" type="button" data-n="5">5</button><button class="btn solid" type="button" data-n="6">6</button><button class="btn" type="button" data-n="8">8</button><button class="btn" type="button" id="syRot">绕中心转 $180^\circ$</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">图 2-57 中的正多边形，哪些是轴对称图形？哪些是中心对称图形？画出对称轴、找出对称中心．</p>
+      <div class="readout r4"><span>对称轴条数</span><b class="v" id="syAx"></b><span>中心对称？</span><b class="v" id="syC"></b></div>
+      <p class="tip feedback" id="syMsg"></p>
+      <div class="def" data-step="1"><h4>结论（课本 p79）</h4><span class="think" data-step="2" data-ask="先说出你的结论">正多边形都是轴对称图形，一个正 $n$ 边形共有 $n$ 条对称轴，每条对称轴都经过正 $n$ 边形的中心．一个正多边形，如果有偶数条边，那么它又是中心对称图形，对称中心就是这个正多边形的中心．</span></div>
+    </div>
+  </div>
+  <p class="note">课本 p79 尝试与交流、图 2-57。依次点 3、4、5、6、8，数对称轴；再点“绕中心转 180°”：奇数边时转后的图（橙色虚线）与原图不重合，偶数边时重合。追问：n 为奇数时对称轴经过什么？（一个顶点和对边中点）n 为偶数呢？</p>
+</section>
+
+<!-- 9 ================= 尺规作图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作与思考</span><h2>用直尺和圆规作正方形、正六边形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cs" class="bigb"></div>
+      <div class="btns" data-noswipe id="csBtns"><button class="btn solid" type="button" data-m="4">正方形</button><button class="btn" type="button" data-m="6">正六边形</button><button class="btn" type="button" id="csNext">下一步 ▶</button><button class="btn" type="button" id="csReset">重来</button></div>
+    </div>
+    <div class="col">
+      <ol class="steps" id="csSteps"></ol>
+      <p class="tip" data-step="1">如何作正八边形？<span class="think" data-step="2" data-ask="想一想">作出正方形后，再作两条直径平分四个直角（或作正方形各边的垂直平分线），与圆的交点就把圆八等分．</span></p>
+      <p class="tip" data-step="3">如何作正三角形、正十二边形？<span class="think" data-step="4" data-ask="想一想">由正六边形的 6 个分点隔一个连一个，得正三角形；平分每段 $60^\circ$ 的弧（作边的垂直平分线），得十二等分点．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p80 两张作法表。点“下一步”逐步作图：正六边形的关键是“以 A、D 为圆心、圆的半径为半径作弧”——因为正六边形的边长等于半径。所有交点都由坐标求出，不是近似描绘。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p79）求半径为 $r$ 的圆内接正方形的边长和面积．</p>
+        <details><summary>提示 1</summary>正方形的两条对角线都是直径，长 $2r$，且互相垂直．</details>
+        <details><summary>提示 2</summary>相邻两个顶点与圆心组成等腰直角三角形，两条直角边都是 $r$．</details>
+        <details><summary>完整解答</summary>边长 $=\sqrt{r^2+r^2}=\sqrt2r$，面积 $=(\sqrt2r)^2=2r^2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（p79）正六边形 $ABCDEF$ 的边长为 5，求对角线 $AD$、$AC$ 的长．</p>
+        <div id="q2" class="hfig"></div>
+        <details><summary>提示 1</summary>半径等于边长 5，$AD$ 是外接圆的直径．</details>
+        <details><summary>提示 2</summary>$\angle ACD$ 是直径所对的圆周角，$=90^\circ$．</details>
+        <details><summary>完整解答</summary>$AD=2\times5=10$；$\angle ACD=90^\circ$，$CD=5$，$AC=\sqrt{10^2-5^2}=5\sqrt3$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（p80）将一个正十二边形绕它的中心至少旋转多少度，就能与它自身重合？正五边形呢？</p>
+        <details><summary>提示</summary>旋转一个“中心角”$\dfrac{360^\circ}{n}$，每个顶点就转到相邻顶点．</details>
+        <details><summary>完整解答</summary>正十二边形：$\dfrac{360^\circ}{12}=30^\circ$；正五边形：$\dfrac{360^\circ}{5}=72^\circ$．</details>
+      </div>
+    </div>
+    <div class="hint-ladder wide">
+      <p class="q"><b>4.</b>（习题 2.6 第 3 题）用长 24 m 的木栅栏围成正三角形或正方形或正六边形的绿地．哪一种围成的绿地面积最大？</p>
+      <details><summary>提示</summary>三种图形的边长分别是 8 m、6 m、4 m；正三角形和正六边形都可以分成等边三角形计算．</details>
+      <details><summary>完整解答</summary>正三角形 $\dfrac{\sqrt3}{4}\times8^2=16\sqrt3\approx27.7$（m²）；正方形 $6^2=36$（m²）；正六边形 $6\times\dfrac{\sqrt3}{4}\times4^2=24\sqrt3\approx41.6$（m²）．正六边形面积最大．（周长一定时，边数越多越接近圆，面积越大．）</details>
+    </div>
+  </div>
+  <p class="note">课本 p79 练习 1、2，p80 练习 1，习题 2.6 第 3 题。第 4 题的结论可以和蜂巢呼应：同样多的蜂蜡，正六边形的蜂房装得最多（还能无缝拼满平面）。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">各边相等、各角也相等的多边形叫正多边形；$n$ 等分圆周得内接正 $n$ 边形；中心、半径。</p>
+        <p class="def">正 $n$ 边形有 $n$ 条对称轴；边数为偶数时又是中心对称图形。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="作正多边形">等分圆周：量角器（每份 $\frac{360^\circ}{n}$），或尺规（正方形、正六边形……）。</p>
+        <p class="method" data-label="算正多边形">连半径、作垂线，化成直角三角形计算。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">正多边形问题 → 圆的问题 → 三角形问题。</p>
+        <p class="recall" data-label="读一读（p81）">三角形有稳定性，所以正三角形只需“三边相等”；边数大于 3 时两个条件都要。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.7 弧长及扇形的面积——圆心角为 $n^\circ$ 的弧有多长？扇形的面积怎样计算？</p>
+  </div>
+  <p class="note">作业：习题 2.6 第 1、2、4 题。第 4 题“用等分圆周的方法画图案”可作为美术结合的课后作品。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

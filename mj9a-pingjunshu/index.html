@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>平均数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shengao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第3章 数据的集中趋势和离散程度 · 3.1</p>
+    <h1 class="cover-title">平均数</h1>
+    <p class="cover-q" data-step="1">A 组 12 名同学、B 组 10 名同学量了身高。哪一组“整体上”更高一些？</p>
+    <p class="cover-q" data-step="2">人数不一样，一个个比不了。用<b>一个数</b>代表一组数据——选哪个数？怎样算得又快又准？</p>
+    <div class="chips" data-step="3"><span class="chip">算术平均数</span><span class="chip">平衡点</span><span class="chip">简便算法</span><span class="chip">权与加权平均数</span></div>
+  </div>
+  <p class="note">课本 p98“尝试与交流”情境。本章章首（p97）是两名射击运动员的成绩，3.2 再用。封面请学生先说直觉：“比平均身高”，引出本课。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="小学 · 平均数" data-step="1">
+        <p>平均数 $=$ 总数 $\div$ 份数；“移多补少”后每份一样多。</p>
+        <span class="use">第 3 页：把“移多补少”看成“找平衡点”。</span>
+      </div>
+      <div class="recall" data-label="八年级下册 7.3 · 频数" data-step="2">
+        <p>用“正”字划记，数出每个数据出现的次数——<b>频数</b>，列成频数分布表。</p>
+        <span class="use">第 4 页：小明先列频数分布表，再算平均数。</span>
+      </div>
+      <div class="recall" data-label="八年级下册 7.2 · 条形统计图" data-step="3">
+        <p>条形的高度表示各类别的数量（人数、场数……）。</p>
+        <span class="use">第 7 页：从条形图读出“天数—人数”。</span>
+      </div>
+      <div class="recall" data-label="六年级上册 · 按比分配" data-step="4">
+        <p>按 $5:2:3$ 分配，各部分分别占总量的 $\dfrac{5}{10}$、$\dfrac{2}{10}$、$\dfrac{3}{10}$。</p>
+        <span class="use">第 8 页：三项成绩按 $5:2:3$ 计算总评。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>平均数怎样定义？数据多、数据大时怎样算得简便？各数据“重要程度”不同时又怎样算？</p>
+  </div>
+  <p class="note">四张卡都请学生先举个小例子再点开。第二张卡回顾“频数”这个词，本课马上要用；第四张卡为“权”做准备。</p>
+</section>
+
+<!-- 3 ================= 定义 + 平衡点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>算术平均数：一组数据的“平衡点”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>算术平均数（课本 p98）</h4>一般地，如果有 $n$ 个数 $x_1,x_2,\cdots,x_n$，那么
+        $$\bar x=\frac{x_1+x_2+\cdots+x_n}{n}$$叫做这 $n$ 个数的<em>算术平均数</em>（arithmetic mean），简称为平均数．“$\bar x$”读作“$x$ 拔”．</div>
+      <p class="tip" data-step="2">通常，平均数可以用来表示一组数据的“<b>集中趋势</b>”．</p>
+      <p class="tip gold" data-step="3">拖动右图中的任一个点：平衡点 $\bar x$ 怎样移动？右侧的“左右偏差”总和是多少？<span class="think" data-step="4" data-ask="试一试再说">总是 $0$：比平均数多出的部分，正好补上比平均数少的部分——这就是小学的“移多补少”。</span></p>
+    </div>
+    <div class="col">
+      <p class="muted small-t">A 组 12 名同学的身高（cm），每个点是一名同学；▲ 是支点（平均数）</p>
+      <div id="balBoard" class="bal-board"></div>
+      <div class="readout bal-read">
+        <span>平均数 $\bar x$</span><span class="muted" id="balSum"></span><span class="v" id="balMean"></span>
+        <span>右边偏差和</span><span class="bar"><i id="balR" style="background:var(--orange)"></i></span><span class="v" id="balRv"></span>
+        <span>左边偏差和</span><span class="bar"><i id="balL" style="background:var(--red)"></i></span><span class="v" id="balLv"></span>
+      </div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="balReset">恢复课本数据</button></div>
+    </div>
+  </div>
+  <p class="note">课本 p98 的定义。右图按 A 组 12 个原始数据精确绘制：拖一个点，平均数（支点）和两侧偏差和都由代码实时计算，左右偏差和始终相等（Σ(x−x̄)=0）。请学生把 171 拖到 180，观察支点只移动了 (180−171)/12=0.75 cm——一个数据变，平均数跟着变，但被“摊薄”了。</p>
+</section>
+
+<!-- 4 ================= 尝试与交流：两种算法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试与交流</span><h2>A 组、B 组的平均身高：两种巧算</h2></div>
+  <div class="bd full top">
+    <div class="cols2 two-ways">
+      <div class="col">
+        <p class="tip small-p"><b>A 组：</b>164，168，171，166，170，168，166，164，169，170，166，168</p>
+        <h3 class="h3" data-step="1">小明：先整理数据，列频数分布表</h3>
+        <table class="mtab" data-step="1"><tr><th>身高/cm</th><td>164</td><td>166</td><td>168</td><td>169</td><td>170</td><td>171</td></tr><tr><th>频数</th><td>2</td><td>3</td><td>3</td><td>1</td><td>2</td><td>1</td></tr></table>
+        <div class="fx" data-step="2">$\bar x_A=\dfrac{164\times2+166\times3+168\times3+169\times1+170\times2+171\times1}{2+3+3+1+2+1}$</div>
+        <div class="fx" data-step="3">$=\dfrac{2\,010}{12}=$ <span class="think" data-step="3" data-ask="算一算">$167.5$（cm）</span></div>
+        <p class="why2" data-step="2">相同的数用“数 × 频数”一次算出；分母是总人数 12．</p>
+      </div>
+      <div class="col">
+        <p class="tip small-p"><b>B 组：</b>166，172，170，162，164，169，170，165，167，168</p>
+        <h3 class="h3" data-step="4">小丽：各数据同时减去 165</h3>
+        <p class="tip small-p" data-step="4">得到新数据：$1,\ 7,\ 5,\ -3,\ -1,\ 4,\ 5,\ 0,\ 2,\ 3$</p>
+        <div class="fx" data-step="5">$\overline{x'}=\dfrac{1}{10}(1+7+5-3-1+4+5+0+2+3)=2.3$</div>
+        <div class="fx" data-step="6">$\bar x_B=\overline{x'}+165=$ <span class="think" data-step="6" data-ask="怎样还原？">$167.3$（cm）</span></div>
+        <p class="why2" data-step="5">每个数都减了 165，平均数也就减了 165，最后再加回去．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p98–99。先让学生自己算 2 分钟，再看两位同学的方法。小明算法的分子 164×2+166×3+168×3+169+170×2+171=2 010，课件已用代码核对。小丽的方法里，“为什么平均数也减了 165”可以用第 3 页的平衡点解释：所有点一起左移 165，支点也左移 165。</p>
+</section>
+
+<!-- 5 ================= 思考与探索 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>两种方法各有什么特点？能断定谁高吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="method" data-step="1" data-label="小明的方法：频数法">当一组数据中的某些数据<b>重复出现</b>时，可用这种方法计算：$\bar x=\dfrac{x_1f_1+x_2f_2+\cdots+x_kf_k}{f_1+f_2+\cdots+f_k}$．</div>
+      <div class="method" data-step="2" data-label="小丽的方法：减去同一个数">当一组数据中的每个数据都<b>较大</b>，并且都接近于某一个数 $a$ 时，可用这种方法：$\bar x=\overline{x'}+a$．</div>
+    </div>
+    <p class="tip" data-step="3"><b>拓展延伸：</b>由 $\bar x_A>\bar x_B$ 可以断定小明比小丽高吗？为什么？</p>
+    <div class="cols2">
+      <p class="warn" data-step="4" data-label="不能！"><span class="think" data-step="4" data-ask="说说理由">平均数描述的是<b>一组数据整体</b>的集中趋势，不代表组里每一个人。A 组最矮 164 cm，B 组最高 172 cm——B 组里就有人比 A 组所有人都高。</span></p>
+      <p class="tip gold" data-step="5">能说的是：<span class="think" data-step="6" data-ask="怎么说才准确？">“A 组同学的身高<b>总体上</b>比 B 组略高一些”。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p99“思考与探索”“拓展延伸”。两位卡通人物的话是课本原意；拓展延伸的数据（164、172）取自课本的两组原始数据。</p>
+</section>
+
+<!-- 6 ================= 练习 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 小丽某周每天的睡眠时间如下（单位：h）：8，9，7，9，7，8，8．求小丽该周每天的平均睡眠时间．</p>
+        <details><summary>提示 1</summary>一共几天？总时间是多少？</details>
+        <details><summary>提示 2</summary>也可以都减去 8：$0,1,-1,1,-1,0,0$．</details>
+        <details><summary>完整解答</summary>$\bar x=\dfrac{8+9+7+9+7+8+8}{7}=\dfrac{56}{7}=8$（h）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知一组数据 85、80、$x$、90 的平均数为 85，求 $x$ 的值．</p>
+        <details><summary>提示 1</summary>平均数 × 个数 = 总和．</details>
+        <details><summary>提示 2</summary>$85+80+x+90=85\times4$．</details>
+        <details><summary>完整解答</summary>$255+x=340$，$x=85$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 某舞蹈队 20 名队员的身高如下（单位：cm）：172，170，169，172，162，167，168，165，172，170，160，175，168，165，171，169，167，174，170，164．求这些队员的平均身高（精确到 1 cm）．</p>
+        <details><summary>提示 1</summary>数据都接近 170：先都减去 170．</details>
+        <details><summary>提示 2</summary>新数据的和是 $-30$．</details>
+        <details><summary>完整解答</summary>$\overline{x'}=\dfrac{-30}{20}=-1.5$，$\bar x=170-1.5=168.5\approx169$（cm）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p99 练习 1–3。第 3 题正好用小丽的方法；答案 168.5 已用代码核对，精确到 1 cm 为 169 cm（按四舍五入）。</p>
+</section>
+
+<!-- 7 ================= 问题 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1</span><h2>200 名学生平均参加了几天活动？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-p">抽样调查某市 200 名九年级学生上学期参加“综合与实践”活动的天数，绘制成条形统计图（图 3-1）．</p>
+      <div id="q1Board" class="q1-board"></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">两种算法，哪一个正确？</p>
+      <div class="jcard" data-step="1"><b>算法甲：</b>$\dfrac{2+3+4+5+6}{5}=4$（天）</div>
+      <div class="jcard" data-step="1"><b>算法乙：</b>$\dfrac{2\times10+3\times30+4\times60+5\times50+6\times50}{200}=4.5$（天）</div>
+      <p class="tip gold" data-step="2"><span class="think" data-step="3" data-ask="哪个对？为什么？">算法乙正确。平均天数不仅与参加活动的<b>天数</b>有关，还与相应的<b>人数</b>有关：参加 2 天的只有 10 人，参加 4 天的有 60 人，它们在平均数里的“分量”不同。</span></p>
+      <p class="warn" data-step="4" data-label="易错">算法甲只把 5 个“天数”平均，相当于假设每种天数的人数都一样多。</p>
+    </div>
+  </div>
+  <p class="note">课本 p99–100 问题 1、图 3-1。条形高度按课本 10、30、60、50、50 人精确绘制，合计 200 人。请学生先举手表决，再讲道理。</p>
+</section>
+
+<!-- 8 ================= 问题 2：权（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2</span><h2>调一调“重要程度”：谁的平均成绩最高？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab small">
+        <tr><th></th><th>采访写作</th><th>计算机操作</th><th>创意设计</th></tr>
+        <tr><th>甲</th><td>70</td><td>60</td><td>86</td></tr>
+        <tr><th>乙</th><td>90</td><td>75</td><td>51</td></tr>
+        <tr><th>丙</th><td>60</td><td>84</td><td>78</td></tr>
+      </table>
+      <div class="w-sliders" data-noswipe>
+        <div class="slider-row">采访写作<input type="range" id="w0" min="0" max="10" step="1" value="5"><b id="w0v" class="v"></b></div>
+        <div class="slider-row">计算机操作<input type="range" id="w1" min="0" max="10" step="1" value="2"><b id="w1v" class="v"></b></div>
+        <div class="slider-row">创意设计<input type="range" id="w2" min="0" max="10" step="1" value="3"><b id="w2v" class="v"></b></div>
+      </div>
+      <div class="btns" data-noswipe id="wPresets"><button type="button" class="btn" data-w="5,2,3">5 : 2 : 3</button><button type="button" class="btn" data-w="4,2,4">4 : 2 : 4</button><button type="button" class="btn" data-w="1,1,1">1 : 1 : 1</button></div>
+    </div>
+    <div class="col">
+      <div id="wBoard" class="w-board"></div>
+      <p class="tip feedback" id="wMsg"></p>
+      <p class="tip" data-step="1">按 $5:2:3$ 计算：甲 72.8 分，乙 75.3 分，丙 70.2 分，<span class="think" data-step="2" data-ask="谁最高？">乙最高</span>；按 $4:2:4$：<span class="think" data-step="3" data-ask="谁最高？">甲 74.4、乙 71.4、丙 72，甲最高</span>．</p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。课本 p100–101 问题 2。三项“比”用滑块调；甲、乙、丙的得分=Σ(成绩×比)/Σ比，由代码精确计算并画成条形。先点 5:2:3（乙第一），再点 4:2:4（甲第一）：同样的成绩，“重要程度”一变，名次就变——引出“权”。也可以让学生找一找：怎样的比能让丙第一？（如 2:5:3：丙 77.4，甲 69.8，乙 70.8。）</p>
+</section>
+
+<!-- 9 ================= 权与加权平均数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>权与加权平均数</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>甲的得分</span><span>$=70\times\dfrac{5}{5+2+3}+60\times\dfrac{2}{5+2+3}+86\times\dfrac{3}{5+2+3}$</span><i class="why">三项分别占总成绩的 $\frac{5}{10}$、$\frac{2}{10}$、$\frac{3}{10}$</i></div>
+      <div class="dl end" data-step="2"><span></span><span>$=\dfrac{70\times5+60\times2+86\times3}{5+2+3}=72.8$（分）</span><i class="why">通分合并</i></div>
+    </div>
+    <div class="def" data-step="3"><h4>权（课本 p101）</h4>一组数据的平均数，不仅与这组数据中各个数据的值有关，而且与各个数据的“重要程度”有关．我们把衡量各个数据“重要程度”的数值叫做<em>权</em>（weight）．</div>
+    <div class="cols2">
+      <p class="tip" data-step="4">问题 1 中的人数 10、30、60、50、50 分别是天数 2、3、4、5、6 的“权”；4.5 是这组天数的<b>加权平均数</b>．</p>
+      <p class="tip" data-step="5">问题 2 中的 $\frac{5}{5+2+3}$、$\frac{2}{5+2+3}$、$\frac{3}{5+2+3}$ 是三项成绩的“权”；72.8 是 70、60、86 按 $5:2:3$ 计算所得的加权平均数．</p>
+    </div>
+    <p class="method" data-step="6" data-label="想一想：算术平均数和加权平均数是什么关系？"><span class="think" data-step="7" data-ask="说一说">当各数据的权都相等（如按 $1:1:1$）时，加权平均数就是算术平均数；第 4 页小明的“频数”，其实就是权。</span></p>
+  </div>
+  <p class="note">课本 p101 关于“权”“加权平均数”的叙述。最后一问不是课本原文，用来把两种平均数串起来：回第 8 页点 1:1:1 验证。</p>
+</section>
+
+<!-- 10 ================= 练习 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>用“权”算平均：先找权，再列式</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 小明统计了 15 天同一时段通过某路口的汽车流量：</p>
+        <table class="mtab small"><tr><th>流量/辆</th><td>142</td><td>145</td><td>157</td><td>156</td></tr><tr><th>天数</th><td>2</td><td>2</td><td>5</td><td>6</td></tr></table>
+        <p class="q">求这 15 天在这个时段通过该路口的汽车平均流量．</p>
+        <details><summary>提示 1</summary>“天数”是权．</details>
+        <details><summary>完整解答</summary>$\dfrac{142\times2+145\times2+157\times5+156\times6}{15}=\dfrac{2\,295}{15}=153$（辆）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某校食堂销售三种午餐盒饭：5 元的占 25%，6 元的占 60%，8 元的占 15%．求午餐盒饭的平均价格．</p>
+        <div id="lunchPie" class="lunch-pie"></div>
+        <details><summary>提示 1</summary>百分比就是权，权的和是 100%．</details>
+        <details><summary>完整解答</summary>$5\times25\%+6\times60\%+8\times15\%=1.25+3.6+1.2=6.05$（元）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 某风景区 5 个景点调价（单位：元/人；日平均游客数：千人）：</p>
+        <table class="mtab small"><tr><th>景点</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td></tr><tr><th>原价</th><td>40</td><td>40</td><td>60</td><td>80</td><td>100</td></tr><tr><th>现价</th><td>30</td><td>30</td><td>60</td><td>90</td><td>110</td></tr><tr><th>游客</th><td>1</td><td>1</td><td>2</td><td>3</td><td>3</td></tr></table>
+        <p class="q">管理部门：平均价格不变，没有增加收入；游客：日平均收入实际增加了约 5.4%．你赞成哪种说法？</p>
+        <details><summary>提示 1</summary>两种说法分别用了算术平均数和加权平均数．</details>
+        <details><summary>提示 2</summary>算出调价前后每天的门票收入．</details>
+        <details><summary>完整解答</summary>算术平均：调价前后都是 64 元；但按游客数加权，日收入由 $40+40+120+240+300=740$（千元）变为 $30+30+120+270+330=780$（千元），增加 $\frac{40}{740}\approx5.4\%$．游客的说法更合理——游客多的景点涨了价．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p101–102 练习 1–3，答案均已用代码核对（153 辆、6.05 元、740→780 千元、约 5.4%）。第 2 题扇形按 25%、60%、15% 精确绘制。</p>
+</section>
+
+<!-- 11 ================= 习题选讲 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 3.1</span><h2>选做：平均数的应用</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某校九年级甲班 40 名学生中，5 人 13 岁，30 人 14 岁，5 人 15 岁．求这个班级学生的平均年龄．</p>
+        <details><summary>提示 1</summary>人数是权；也可都减去 14．</details>
+        <details><summary>完整解答</summary>$\dfrac{13\times5+14\times30+15\times5}{40}=\dfrac{560}{40}=14$（岁）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 5 根钢材的平均长度为 3.21 m，在每根上分别截下相同长度的一段后，余下部分的长度（单位：m）分别为 0.30，0.25，0.15，0.10，0.20．求截下部分的长度．</p>
+        <details><summary>提示 1</summary>每根都减去同一个数，平均数也减去这个数．</details>
+        <details><summary>提示 2</summary>余下部分的平均长度是 0.20 m．</details>
+        <details><summary>完整解答</summary>截下部分长 $3.21-0.20=3.01$（m）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 招聘英语翻译，甲：听 90、说 80、读 85、写 78；乙：听 78、说 82、读 85、写 88．按 $3:3:2:2$ 计算，谁的平均成绩最高？按 $2:2:3:3$ 呢？</p>
+        <details><summary>提示 1</summary>分母都是 $3+3+2+2=10$．</details>
+        <details><summary>完整解答</summary>$3:3:2:2$：甲 83.6，乙 82.6，甲高；$2:2:3:3$：甲 82.9，乙 83.9，乙高．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 3.1 第 1、4、6 题，答案已用代码核对。第 4 题正是“小丽的方法”反过来用；第 6 题与问题 2 同理，可回第 8 页的滑块类比。其余习题（2、3、5、7、8）留作课后作业。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">算术平均数 $\bar x=\dfrac{x_1+x_2+\cdots+x_n}{n}$；衡量数据“重要程度”的数值叫做权，按权算出的是加权平均数．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="简便计算">重复多 → 频数（权）法；数据大且接近 $a$ → 先减 $a$ 再加回．</p>
+        <p class="method" data-label="平衡点">比平均数多出的，正好补上比平均数少的：偏差和为 0．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="用一个数代表一组数">平均数刻画“集中趋势”，说的是整体，不是个体．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>3.2 中位数与众数——如果一组数据里有一个特别大的数（如捐款中的 80 元），平均数还能代表大多数人吗？</p>
+  </div>
+  <p class="note">请学生用一句话说出“权”是什么。作业建议：习题 3.1 第 2、3、7、8 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

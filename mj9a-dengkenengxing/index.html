@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>等可能性 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/moqiu-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第4章 等可能条件下的概率 · 4.1</p>
+    <h1 class="cover-title">等可能性</h1>
+    <p class="cover-q" data-step="1">一只不透明的袋子里装有标号为 0、1、2、…、9 的 10 个小球，这些球除标号外都相同．搅匀后任意摸出 1 个球．</p>
+    <p class="cover-q" data-step="2"><b>会有哪些可能的结果？这些结果出现的可能性相同吗？</b></p>
+    <div class="chips" data-step="3"><span class="chip">列举所有结果</span><span class="chip">机会均等</span><span class="chip">等可能性</span><span class="chip">动手摸球 1000 次</span></div>
+  </div>
+  <p class="note">课本 p128“尝试·交流”与图 4-1。封面只抛问题：请学生先口头说“有几种结果”“摸到 7 号和摸到 0 号，哪个更容易？”第 3 页再用摸球实验检验。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>八年级下册“认识概率”学过什么</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八下 8.1 · 确定事件与随机事件" data-step="1">
+        <p>在一定条件下，<b>可能发生也可能不发生</b>的事件叫做随机事件．</p>
+        <span class="use">“摸到 7 号球”就是随机事件：本课的每一个“结果”都是随机事件。</span>
+        <a class="lk" href="../mj8b-suijishijian/index.html">回看 8.1</a>
+      </div>
+      <div class="recall" data-label="八下 8.2 · 可能性的大小" data-step="2">
+        <p>袋中红球多、白球少，摸到红球的可能性就大．</p>
+        <span class="use">例 2 小明、小丽的争论：到底“红球可能性大”，还是“红、白一样”？</span>
+        <a class="lk" href="../mj8b-kenengxing/index.html">回看 8.2</a>
+      </div>
+      <div class="recall" data-label="八下 8.3 · 频率与概率" data-step="3">
+        <p>大量重复试验中，事件发生的<b>频率</b>会稳定在某个常数附近——用它估计概率．</p>
+        <span class="use">第 3 页用“摸 1000 次”的频率，检验各个结果是不是机会均等。</span>
+        <a class="lk" href="../mj8b-pinlvgailv/index.html">回看 8.3</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章主线：</b>八下靠<b>做大量试验</b>估计概率；第 4 章要找一类特殊的试验——不必做试验，<b>列举结果</b>就能算出概率．本课先认识这类试验的特点：等可能性．</p>
+  </div>
+  <p class="note">三张卡请学生先回忆再点开。第三张卡最关键：频率“稳定”是本课摸球实验的观察依据，也是 4.2 用公式算概率的合理性来源。</p>
+</section>
+
+<!-- 3 ================= 摸球实验（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>10 个小球，摸到每个号码的机会一样吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1">会有哪些可能的结果？<span class="think" data-step="2" data-ask="列一列">摸到 0 号、1 号、2 号……9 号，共 <b>10</b> 种．</span></p>
+      <p class="tip" data-step="3">每次摸球会同时出现两种结果吗？<span class="think" data-step="4" data-ask="想一想">不会：每次<b>有且只有</b>其中一个结果出现．</span></p>
+      <p class="tip" data-step="5">10 种结果出现的可能性相同吗？先猜，再摸 1000 次看看．<span class="think" data-step="6" data-ask="说说理由">相同：球除标号外都相同、又已搅匀，每个球被摸到的<b>机会均等</b>．试验中每个号码的频率都在 $\frac{1}{10}=0.1$ 附近摆动．</span></p>
+    </div>
+    <div class="col">
+      <div id="sim10" class="sim"></div>
+    </div>
+  </div>
+  <p class="note">本课核心互动，结果用浏览器的真随机数产生，每次都不一样。先点“摸 1 次”几下，让学生看到单次结果不可预测；再点“摸 100 次”“摸 1000 次”，看 10 根条形逐渐“齐平”于 0.1 的虚线。追问：摸 10 次时为什么不齐？——次数少时频率波动大（八下 8.3）。</p>
+</section>
+
+<!-- 4 ================= 定义 + 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>什么样的试验结果“具有等可能性”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="recall" data-label="抛掷硬币试验" data-step="1">假设硬币的质地是均匀的，出现“正面朝上”与出现“反面朝上”的机会均等，试验的结果就具有等可能性．</div>
+      <div class="def" data-step="2"><h4>等可能性（课本 p128）</h4>一般地，设一个试验的所有可能发生的结果有 $n$ 个，它们都是随机事件，每次试验<em>有且只有</em>其中的一个结果出现．如果每个结果出现的<em>机会均等</em>，那么我们说这 $n$ 个事件的发生是等可能的，也称这个试验的结果具有<b>等可能性</b>．</div>
+    </div>
+    <div class="col">
+      <p class="method" data-step="3" data-label="判断等可能性：三看">① 结果能<b>一一列举</b>吗（有限个）？② 每次<b>有且只有</b>一个结果出现吗？③ 每个结果出现的<b>机会均等</b>吗？</p>
+      <div class="jcard" data-step="4">
+        <p><b>例 1</b> 在 3 张相同的小纸条上分别标上 1、2、3 这 3 个号码，做成 3 支签，放在一个盒子中，搅匀后从中任意抽出 1 支签，会有哪些可能的结果？这些结果的出现是等可能的吗？为什么？</p>
+        <div class="think" data-step="5" data-ask="先自己答"><p><b>解：</b>会出现 3 种可能的结果：抽到 1 号签，抽到 2 号签，抽到 3 号签．由于每支签被抽到的机会都相同，因此这 3 种结果的出现是等可能的．</p></div>
+      </div>
+      <p class="warn" data-step="6" data-label="“相同的小纸条”不能省">如果 3 号签做得特别大，或者没有搅匀，各结果的机会就不再均等——“除标号外都相同”“搅匀”正是等可能的保证．</p>
+    </div>
+  </div>
+  <p class="note">课本 p128 定义与例 1。请学生圈出定义里的两个关键短语：“有且只有一个”“机会均等”。第 3 步的“三看”是对定义的拆解，其中“有限个”是课本隐含的条件（结果有 n 个），4.3 会遇到结果有无数个的情形。</p>
+</section>
+
+<!-- 5 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>1 个白球、2 个红球：谁说得对？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip sm">一只不透明的袋子中装有 1 个白球和 2 个红球，这些球除颜色外都相同，搅匀后从中任意摸出 1 个球．摸到白球与摸到红球是等可能的吗？</p>
+      <div class="says">
+        <p class="say" data-step="1"><b>小明：</b>摸到的球不是白球就是红球，所以摸到白球与摸到红球是等可能的．</p>
+        <p class="say" data-step="1"><b>小丽：</b>摸到每一个球的可能性相同，而红球有 2 个，白球只有 1 个，摸到红球的可能性大．</p>
+      </div>
+      <p class="tip sm" data-step="2">你支持谁？先在右边摸 1000 次，看看“白”“红”的频率．</p>
+      <div class="derive" data-step="3">
+        <div class="dl"><span>把红球编号</span><span>红球 1、红球 2</span><i class="why">让 3 个球都“看得见”</i></div>
+        <div class="dl"><span>等可能的结果</span><span class="think" data-step="4" data-ask="几种？">白、红 1、红 2，共 3 种</span><i class="why">每个球被摸到的机会均等</i></div>
+        <div class="dl end"><span>结论</span><span class="think" data-step="5" data-ask="谁对？">摸到红球的可能性大，<b>小丽</b>正确</span><i class="why">“红”占 2 种结果，“白”只占 1 种</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div id="sim3" class="sim"></div>
+      <p class="warn" data-step="6" data-label="小明错在哪">“白”与“红”虽然是仅有的两种<b>颜色</b>，但它们背后的球数不同，机会并不均等．判断等可能，要落到“每一个球”上．</p>
+    </div>
+  </div>
+  <p class="note">课本 p128–129 例 2。先让学生举手站队，再摸 1000 次：按颜色统计，白约 1/3、红约 2/3；按每个球统计，三根条都在 1/3 附近——这就是“编号”的意义：把不等可能的“颜色结果”拆成等可能的“每一个球”。为 4.2 “m/n”埋伏笔（红球占 3 种中的 2 种）。</p>
+</section>
+
+<!-- 6 ================= 正十二面体 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>抛掷正十二面体：比一比两个事件</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">图 4-2 是一个质地均匀的正十二面体，12 个面上分别标有 1～12 这 12 个整数，抛掷 1 次．</p>
+      <svg id="dode" class="dode" aria-label="正十二面体（面朝向读者，标有 1～6 的面可见）"></svg>
+      <p class="tip" data-step="1">(1) 会有哪些可能的结果？是等可能的吗？<span class="think" data-step="2" data-ask="想一想">朝上一面的数是 1，2，…，12，共 12 种；质地均匀，是等可能的．</span></p>
+    </div>
+    <div class="col">
+      <div class="btns ev-btns" data-noswipe id="evBtns"></div>
+      <div class="tiles" id="tiles"></div>
+      <p class="tip feedback" id="evMsg">点上面的按钮，看哪些面使事件发生．</p>
+      <div class="jcard" data-step="3"><p>(2) “朝上的数是奇数”与“朝上的数是偶数”等可能吗？</p>
+        <div class="pick" data-ans="y"><button data-k="y">等可能</button><button data-k="n">不等可能</button><p class="pick-why">奇数 1、3、5、7、9、11 和偶数 2、4、6、8、10、12 <b>各有 6 种</b>结果，机会相同．</p></div></div>
+      <div class="jcard" data-step="4"><p>(3) “朝上的数是 4 的倍数”与“朝上的数是 6 的倍数”等可能吗？</p>
+        <div class="pick" data-ans="n"><button data-k="y">等可能</button><button data-k="n">不等可能</button><p class="pick-why">4 的倍数有 4、8、12 共 <b>3</b> 种，6 的倍数只有 6、12 共 <b>2</b> 种，“4 的倍数”的可能性大．</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p129“思考·探索”。正十二面体按“面朝向读者”的正投影精确绘制（外轮廓是正十边形，前后两层顶点的半径比为黄金比）。点按钮让被选中的数亮起来再数个数；注意 12 同时是 4 和 6 的倍数，两个事件可以同时发生——这里比的是“各含几个等可能结果”。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>是不是等可能？先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> A、B 两地之间的电缆有一处断点，断点出现在电缆的各个位置的可能性相同吗？</p>
+        <svg class="cable" viewBox="0 0 300 60" aria-label="A、B 两地间的电缆"><line x1="24" y1="30" x2="276" y2="30" stroke="#1d6fa5" stroke-width="5"/><circle cx="24" cy="30" r="7" fill="#163a5a"/><circle cx="276" cy="30" r="7" fill="#163a5a"/><text x="12" y="58" font-size="16">A</text><text x="270" y="58" font-size="16">B</text></svg>
+        <div class="pick" data-ans="y"><button data-k="y">相同</button><button data-k="n">不相同</button><p class="pick-why">相同：电缆各处没有区别，断点落在每个位置的机会均等．注意：位置有<b>无数个</b>，没法一一列举——4.3 会专门研究这种情况．</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 把 C、H、I、N、A 这 5 个字母分别写在 5 张相同的小纸条上，放在一个盒子中，搅匀后从中任意摸出 1 张纸条，会有哪些可能的结果？是等可能的吗？</p>
+        <div class="letters"><span>C</span><span>H</span><span>I</span><span>N</span><span>A</span></div>
+        <div class="pick" data-ans="y"><button data-k="y">等可能</button><button data-k="n">不等可能</button><p class="pick-why">结果：摸到 C、H、I、N、A，共 5 种；纸条相同且搅匀，每张被摸到的机会均等．</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 一只不透明的袋子中装有 7 个红球和 3 个白球，这些球除颜色外都相同，搅匀后从中任意摸出 1 个球，会有哪些可能的结果？是等可能的吗？</p>
+        <svg class="balls10" id="balls73" aria-label="7 个红球和 3 个白球"></svg>
+        <div class="pick" data-ans="n"><button data-k="y">“红”“白”等可能</button><button data-k="n">“红”“白”不等可能</button><p class="pick-why">按颜色只有“红”“白”两种结果，但红球 7 个、白球 3 个，摸到红球的可能性大．若把 10 个球编号，则摸到每个球的 10 种结果是等可能的．</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="先问一句">“结果”是按什么来描述的？按颜色、按性别描述时，要看每一类背后有几个“个体”；按每一个球、每一张纸条描述，才是等可能的．</p>
+  </div>
+  <p class="note">课本 p129 练习 1–3。点错了按钮会变红，可以再选。第 1 题故意留一个“悬念”：结果有无数个时还能谈等可能吗？——留到 4.3 转盘与面积。第 3 题与例 2 同型，要求学生说出“怎样描述结果才是等可能的”。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 4.1</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一套书共有上、中、下三册，将它们任意摆放到书架的同一层上，按从左向右的顺序列出所有可能摆放的结果，这些结果的出现是等可能的吗？</p>
+        <details><summary>提示 1</summary>先定最左边放哪一册（3 种），再定中间（剩 2 种），最后一册只剩 1 种．</details>
+        <details><summary>完整解答</summary>共 6 种：上中下、上下中、中上下、中下上、下上中、下中上．任意摆放，每种结果的机会均等，是等可能的．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 从一名男生和两名女生中任选一名去学校图书馆帮助整理图书，会有哪些可能的结果？这些结果的出现是等可能的吗？</p>
+        <details><summary>提示 1</summary>像例 2 那样给两名女生编号．</details>
+        <details><summary>完整解答</summary>选到男生、女生 1、女生 2，共 3 种结果，是等可能的．（若只说“选到男生”“选到女生”两种，则不是等可能的．）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 将课本图中 2～10 这 9 张牌背面朝上，洗匀后从中任意抽取 1 张．(1) 会有哪些可能的结果？是等可能的吗？(2) 抽到牌面是奇数的牌与抽到牌面是偶数的牌是等可能的吗？为什么？</p>
+        <div class="cards" id="cards9"></div>
+        <details><summary>提示 1</summary>(2) 数一数：奇数牌有几张？偶数牌有几张？</details>
+        <details><summary>完整解答</summary>(1) 抽到 2，3，…，10，共 9 种，是等可能的．(2) 奇数牌 3、5、7、9 共 4 张，偶数牌 2、4、6、8、10 共 5 张，不是等可能的，抽到偶数牌的可能性大．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 一只不透明的袋子中装有 3 个白球和 2 个红球，这些球除颜色外都相同，搅匀后从中任意摸出 1 个球．摸到哪种颜色的球的可能性大？为什么？</p>
+        <details><summary>提示 1</summary>编号后，5 种结果等可能；“白”占几种，“红”占几种？</details>
+        <details><summary>完整解答</summary>摸到白球的可能性大：5 个球被摸到的机会均等，白球有 3 个，红球只有 2 个．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p130 习题 4.1 第 1–4 题。第 1 题要求“按从左向右的顺序”有条理地列举——这是 4.2 树状图的前奏，可以让学生上黑板画出“先定左边”的分叉。第 3 题牌面按课本图用代码画出 9 张红桃牌。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">试验的所有可能结果有 $n$ 个，每次<em>有且只有</em>一个出现，且每个结果出现的<em>机会均等</em> → 这个试验的结果具有<b>等可能性</b>．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="列举">有条理地列出所有可能的结果，不重复、不遗漏．</p>
+        <p class="method" data-label="编号">颜色相同的球、性别相同的人……编上号，把“不等可能”的结果拆成“等可能”的结果．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="试验 ↔ 推理">摸 1000 次，频率在 0.1 附近摆动（试验）；“球都相同、已搅匀”推出机会均等（推理）．两者互相印证．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>4.2 等可能条件下的概率（一）——例 2 中红球占 3 种等可能结果中的 2 种，摸到红球的概率能不能直接写成 $\dfrac{2}{3}$？</p>
+  </div>
+  <p class="note">先请学生说出“等可能”定义里的两个关键短语，再逐栏揭示。课后作业建议：习题 4.1 第 1–4 题书面完成。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

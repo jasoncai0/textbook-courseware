@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角形的中位线 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chitang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第9章 中心对称图形——平行四边形 · 9.5</p>
+    <h1 class="cover-title">三角形的中位线</h1>
+    <p class="cover-q" data-step="1">池塘两端 $A$、$B$ 之间隔着水，没法直接用尺量。能不能在岸上量另一条线段，算出 $AB$？</p>
+    <p class="cover-q" data-step="2">先做一个小实验：怎样将一张三角形纸片<b>剪成两部分</b>，使这两部分能<b>拼成一个平行四边形</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">剪一刀 · 转 180°</span><span class="chip">中位线定理</span><span class="chip">中点四边形</span><span class="chip">测距离</span></div>
+  </div>
+  <p class="note">课本 p86 问题导入；池塘测距对应课本 p87 练习 2。请学生先动手（或想象）剪拼，说说剪在哪里、怎么拼。本课把 9.2 的中心对称、9.3 的平行四边形判定用到三角形上。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="9.2 · 中心对称" data-step="1">
+        <p>图形绕一点旋转 $180^\circ$；对应点的连线经过对称中心，且被对称中心平分。</p>
+        <span class="use">把 $\triangle ADE$ 绕 $E$ 转 $180^\circ$，$A$ 恰好落到 $C$。</span>
+      </div>
+      <div class="recall" data-label="八上 1.3 · 全等三角形" data-step="2">
+        <p>SAS：两边及其夹角分别相等的两个三角形全等；对顶角相等。</p>
+        <span class="use">证明 $\triangle ADE\cong\triangle CFE$。</span>
+      </div>
+      <div class="recall" data-label="9.3 · 平行四边形" data-step="3">
+        <p>判定：一组对边平行且相等的四边形是平行四边形。</p>
+        <p>性质：平行四边形的对边平行且相等。</p>
+        <span class="use">证出 $BCFD$ 是平行四边形，再“读出” $DE$ 与 $BC$ 的关系。</span>
+      </div>
+      <div class="recall" data-label="9.4 · 菱形、矩形" data-step="4">
+        <p>四边相等的四边形是菱形；有一个角是直角的平行四边形是矩形。</p>
+        <span class="use">例题与讨论：中点四边形什么时候是菱形、矩形。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">四张卡依次对应本课的四个环节：剪拼（中心对称）→ 证明（全等 + 平行四边形判定）→ 定理 → 应用（中点四边形）。</p>
+</section>
+
+<!-- 3 ================= 操作：剪拼 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作</span><h2>沿中点连线剪开，绕 $E$ 转 $180^\circ$</h2></div>
+  <button class="media-btn" hidden data-img="assets/jianpin.jpg" data-video="assets/jianpin.mp4" data-cap="沿 DE 剪开，把 △ADE 绕点 E 顺时针旋转 180° 到 △CFE，拼成平行四边形 BCFD：DE ∥ BC，DE = ½BC">▶ 看动画</button>
+  <div class="bd half">
+    <div class="col">
+      <div id="cut" class="brd-l"></div>
+      <div class="slider-row" data-noswipe>绕 $E$ 顺时针转 <input type="range" id="cutT" min="0" max="180" step="1" value="0"><b class="v" id="cutTV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本 p86 操作：(1) 剪一张三角形纸片，记为 $\triangle ABC$；(2) 分别取 $AB$、$AC$ 的中点 $D$、$E$，连接 $DE$；(3) 沿 $DE$ 将 $\triangle ABC$ 剪成两部分，并将 $\triangle ADE$ 绕点 $E$ 按顺时针方向旋转 $180^\circ$ 到 $\triangle CFE$ 的位置（图 9-31）．</p>
+      <p class="tip feedback" id="cutMsg"></p>
+      <p class="tip" data-step="1">思考：点 $E$ 在线段 $DF$ 上吗？<span class="think" data-step="2" data-ask="?">在：$D$ 绕 $E$ 转 $180^\circ$ 到 $F$，$D$、$E$、$F$ 共线，且 $DE=EF$。</span></p>
+      <p class="tip" data-step="3">四边形 $BCFD$ 是平行四边形吗？$DE$ 与 $BC$ 有怎样的位置关系和数量关系？<span class="think" data-step="4" data-ask="猜一猜">是平行四边形；$DE\parallel BC$，$DE=\dfrac12BC$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p86 操作与思考（图 9-31）。拖滑块转 △ADE；也可以拖动 A、B、C 换一个三角形再转——无论什么三角形，转到 180° 都拼成平行四边形（提示变绿）。右上角“看动画”是 15 秒的剪拼动画。猜想要靠下一页的证明来确认。</p>
+</section>
+
+<!-- 4 ================= 证明 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>倍长 $DE$：把“转”变成“证”</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="prf" class="brd-m"></div>
+      <div class="think-flow" data-step="1"><p class="tf-h"><span>思路</span></p><p>剪拼中“转过去的三角形”，在证明里用“延长 $DE$ 到 $F$，使 $EF=DE$”来构造——再证它与 $\triangle ADE$ 全等。</p></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 9-32，点 $D$、$E$ 分别是 $AB$、$AC$ 的中点，延长 $DE$ 到点 $F$，使 $EF=DE$，连接 $CF$．</p>
+      <div class="proof">
+        <p data-step="2">在 $\triangle ADE$ 和 $\triangle CFE$ 中，$ED=EF$，$\angle AED=\angle CEF$（<button class="yj" data-k="vert"></button>），$AE=CE$，</p>
+        <p data-step="3"><span class="so">∴</span>$\triangle ADE\cong\triangle CFE$（<button class="yj" data-k="sas">SAS</button>）．</p>
+        <p data-step="4"><span class="so">∴</span>$AD=CF$，$\angle ADE=\angle F$．<span class="so">∴</span>$BD\parallel CF$（<button class="yj" data-k="nc-pd"></button>）．</p>
+        <p data-step="5"><span class="so">∵</span>$BD=AD=CF$，$BD\parallel CF$，</p>
+        <p data-step="6"><span class="so">∴</span>四边形 $DBCF$ 是平行四边形（<button class="yj" data-k="pd-1"></button>）．</p>
+        <p data-step="7"><span class="so">∴</span>$DF\parallel BC$，$DE=\dfrac12DF=\dfrac12BC$（<button class="yj" data-k="px-db2"></button>）．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p86 的说理（图 9-32）。按 → 时左图依次高亮：△ADE 与 △CFE（全等）、BD 与 CF（平行且相等）、平行四边形 DBCF。“倍长中线（线段）”是构造全等的常用辅助线，9.3 练习中已经见过。</p>
+</section>
+
+<!-- 5 ================= 定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义 · 定理</span><h2>三角形的中位线定理</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="thm" class="brd-l"></div>
+      <div class="btns" data-noswipe id="thmBtns"><button class="btn solid" type="button" data-k="1">一条中位线</button><button class="btn" type="button" data-k="3">三条中位线</button><button class="btn" type="button" data-k="m">对比：中线</button></div>
+    </div>
+    <div class="col">
+      <div class="def"><h4>三角形的中位线（课本 p86）</h4>连接三角形两边中点的线段叫做<em>三角形的中位线</em>．</div>
+      <div class="def" data-step="1"><h4>定理（课本 p86）</h4>三角形的中位线平行于第三边，并且等于第三边的一半．</div>
+      <div class="readout r2" data-step="1"><span>$DE$</span><b class="v" id="tDE"></b><span>$BC$</span><b class="v" id="tBC"></b><span>$\angle ADE$</span><b class="v" id="tA1"></b><span>$\angle ABC$</span><b class="v" id="tA2"></b></div>
+      <p class="tip" data-step="2">符号语言：在 $\triangle ABC$ 中，∵ $D$、$E$ 分别是 $AB$、$AC$ 的中点，∴ <span class="think" data-step="3" data-ask="?">$DE\parallel BC$，$DE=\dfrac12BC$（三角形的中位线平行于第三边，并且等于第三边的一半）．</span></p>
+      <p class="warn" data-step="4" data-label="别混">中位线连的是<b>两边的中点</b>；中线连的是<b>顶点与对边中点</b>。一个三角形有 3 条中位线，它们把三角形分成 4 个全等的小三角形。</p>
+    </div>
+  </div>
+  <p class="note">课本 p86 定义与定理。拖动 A、B、C：DE 始终是 BC 的一半，∠ADE 始终等于 ∠ABC（同位角相等，所以平行）。“三条中位线”显示 4 个全等小三角形——下一页练习 1 会用到；“对比：中线”把中线 AM 与中位线 DE 画在一起，帮助辨别。</p>
+</section>
+
+<!-- 6 ================= 例：中点四边形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 · 讨论</span><h2>依次连接四边形各边中点，得到什么？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="mq" class="brd-l"></div>
+      <div class="btns sm" data-noswipe id="mqBtns"><button class="btn solid" type="button" data-k="any">任意四边形</button><button class="btn" type="button" data-k="eq">让 $AC=BD$</button><button class="btn" type="button" data-k="pp">让 $AC\perp BD$</button><button class="btn" type="button" data-k="both">两者都满足</button></div>
+      <p class="tip feedback" id="mqMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例</b> 已知：如图 9-33，在四边形 $ABCD$ 中，$AC=BD$，$E$、$F$、$G$、$H$ 分别是 $AB$、$BC$、$CD$、$DA$ 的中点．求证：四边形 $EFGH$ 是菱形．</p>
+      <div class="proof sm-pf">
+        <p data-step="1"><span class="lead">证明：</span>在 $\triangle BAC$ 中，<span class="so">∵</span>$BE=EA$，$BF=FC$，</p>
+        <p data-step="2"><span class="so">∴</span>$EF=\dfrac12AC$（<button class="yj" data-k="zwx">三角形的中位线等于第三边的一半</button>）．</p>
+        <p data-step="3">同理 $FG=\dfrac12BD$，$GH=\dfrac12AC$，$HE=\dfrac12BD$．</p>
+        <p data-step="4"><span class="so">∵</span>$AC=BD$，<span class="so">∴</span>$EF=FG=GH=HE$．</p>
+        <p data-step="5"><span class="so">∴</span>四边形 $EFGH$ 是菱形（<button class="yj" data-k="lx-pd1">四边相等的四边形是菱形</button>）．</p>
+      </div>
+      <p class="tip" data-step="6">讨论：如果一个四边形的对角线互相垂直，那么依次连接它的各边中点能得到什么图形？<span class="think" data-step="7" data-ask="?">矩形：$EF\parallel AC$，$FG\parallel BD$，$AC\perp BD$，所以 $EF\perp FG$；而 $EFGH$ 本来就是平行四边形（$EF$、$HG$ 都平行且等于 $\frac12AC$）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p87 例与讨论（图 9-33）。本课第二个核心互动：拖动 A、B、C、D，中点四边形 EFGH 永远是平行四边形；点按钮让对角线满足条件（D 的位置按条件精确算出），看它变成菱形、矩形、正方形。结论：中点四边形的形状只由原四边形的两条对角线决定。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>周长、面积与测距</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，$D$、$E$、$F$ 是 $\triangle ABC$ 各边的中点，$\triangle DEF$ 与 $\triangle ABC$ 的周长、面积分别有怎样的数量关系？证明你的结论．</p>
+        <p class="ans">周长比 $=$ <span class="blank" data-ans="1/2|1:2|0.5"></span>，面积比 $=$ <span class="blank" data-ans="1/4|1:4|0.25"></span></p>
+        <details><summary>提示</summary>$\triangle DEF$ 的每条边都是 $\triangle ABC$ 一条边的一半；三条中位线把 $\triangle ABC$ 分成几个全等的三角形？</details>
+        <details><summary>完整解答</summary>$DE=\frac12AC$，$EF=\frac12AB$，$FD=\frac12BC$（中位线定理），所以 $\triangle DEF$ 的周长是 $\triangle ABC$ 的 $\frac12$；四个小三角形三边对应相等，全等（SSS），所以 $\triangle DEF$ 的面积是 $\triangle ABC$ 的 $\frac14$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$A$、$B$ 两地被建筑物阻隔，为测量 $A$、$B$ 两地的距离，在地面上选一点 $C$，连接 $CA$、$CB$，分别取 $CA$、$CB$ 的中点 $D$、$E$．(1) 若 $DE$ 的长为 36 m，求 $A$、$B$ 两地的距离；(2) 若 $D$、$E$ 两点之间还有阻隔，你有什么解决办法？</p>
+        <div id="far" class="brd-s"></div>
+        <p class="ans">(1) $AB=$ <span class="blank" data-ans="72"></span> m</p>
+        <details><summary>完整解答</summary>(1) $DE$ 是 $\triangle CAB$ 的中位线，$AB=2DE=72$ m。(2) 例如再取 $CD$、$CE$ 的中点 $M$、$N$，量出 $MN$，则 $DE=2MN$，$AB=4MN$；或者换一个位置合适的点 $C$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p87 练习 1、2。填空回车判对错（比可以写成 1/2 或 1:2）。第 2 题的图：建筑物挡在 A、B 之间，C 选在旁边空地上；中位线定理把“量不到的 AB”转化成“量得到的 DE”。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 9.5</span><h2>中位线与中点的综合运用</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在 $\triangle ABC$ 中，$\angle ACB=90^\circ$，$D$、$E$、$F$ 分别是 $AC$、$AB$、$BC$ 的中点．求证：$CE=DF$．</p>
+        <div id="hw1" class="brd-xs"></div>
+        <details><summary>提示</summary>$CE$ 是哪个直角三角形斜边上的中线？$DF$ 是哪个三角形的中位线？它们都等于哪条线段的一半？</details>
+        <details><summary>完整解答</summary>$CE=\frac12AB$（直角三角形斜边上的中线等于斜边的一半），$DF=\frac12AB$（三角形的中位线等于第三边的一半），∴ $CE=DF$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> $\triangle ABC$ 的中线 $AF$ 与中位线 $DE$ 相交于点 $O$．$AF$ 与 $DE$ 有怎样的关系？证明你的结论．</p>
+        <div id="hw2" class="brd-xs"></div>
+        <details><summary>提示</summary>连接 $DF$、$EF$，四边形 $ADFE$ 是什么四边形？</details>
+        <details><summary>完整解答</summary>互相平分。$DF\parallel AC$、$EF\parallel AB$（中位线定理），所以 $ADFE$ 是平行四边形，它的对角线 $AF$、$DE$ 互相平分。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在四边形 $ABCD$ 中，$AB=DC$，$E$、$F$、$G$、$H$ 分别是 $AD$、$BC$、$BD$、$AC$ 的中点．四边形 $EGFH$ 是怎样的四边形？证明你的结论．</p>
+        <details><summary>提示</summary>$EG$ 在 $\triangle ABD$ 中，$GF$ 在 $\triangle BCD$ 中……每条边是 $AB$ 或 $DC$ 的一半。</details>
+        <details><summary>完整解答</summary>菱形。$EG=\frac12AB$，$FH=\frac12AB$，$GF=\frac12DC$，$HE=\frac12DC$（中位线定理）。∵ $AB=DC$，∴ 四边相等，四边形 $EGFH$ 是菱形。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p88 习题 9.5 第 1–3 题。第 1 题把八上“斜边上的中线”与本课“中位线”放在一起比较：都等于斜边（第三边）的一半。第 3 题与例题同一思路：中点四边形的边由对角线（这里是 AB、DC）决定。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想（兼第 9 章回顾）</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">中位线：连接三角形两边中点的线段。</p>
+        <p class="def">定理：三角形的中位线平行于第三边，并且等于第三边的一半——一个定理同时给出位置关系和数量关系。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="倍长">延长 $DE$ 到 $F$ 使 $EF=DE$，构造全等与平行四边形。</p>
+        <p class="method" data-label="见中点想中位线">多个中点时，连出中位线，把线段“搬”到一起。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">三角形剪拼成平行四边形；量不到的距离转化成量得到的线段。</p>
+        <p class="recall" data-label="第 9 章主线">旋转 → 中心对称 → 平行四边形 → 矩形、菱形、正方形 → 中位线。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>数学活动（课本 p88）：</b>设计对称图案——欣赏生活中的对称图案，判断几种汽车标志哪些是轴对称图形、哪些是中心对称图形，再用旋转、中心对称设计一个自己的图案。</p>
+  </div>
+  <p class="note">请学生先说出中位线定理的条件和两个结论。本课结束第 9 章，可以用“第 9 章主线”一栏串起整章。课后完成数学活动“设计对称图案”。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

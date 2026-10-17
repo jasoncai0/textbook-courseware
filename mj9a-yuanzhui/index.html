@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆锥的侧面积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/douli.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第2章 对称图形——圆 · 2.8</p>
+    <h1 class="cover-title">圆锥的侧面积</h1>
+    <p class="cover-q" data-step="1">编一顶斗笠、做一个圆锥形的容器盖，需要多大的材料？</p>
+    <p class="cover-q" data-step="2">圆锥的侧面是弯曲的，没法直接量。把它沿一条线剪开、展平，会得到一个什么图形？</p>
+    <div class="chips" data-step="3"><span class="chip">母线</span><span class="chip">侧面卷起 · 展开</span><span class="chip">弧长 = 底面周长</span><span class="chip">$S_{\text{侧}}=\pi rl$</span></div>
+  </div>
+  <p class="note">本课是第 2 章最后一节，也是 2.7 扇形面积的直接应用。核心是看清“展开图是扇形”以及扇形与圆锥各部分的对应关系。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc">
+      <div class="recall" data-label="小学 · 圆锥" data-step="1">
+        <p>圆锥由一个底面（圆）和一个侧面（曲面）围成；从顶点到底面圆心的距离是圆锥的高。</p>
+        <span class="use">认识圆锥的顶点、底面半径 $r$、高 $h$。</span>
+      </div>
+      <div class="recall" data-label="九上 2.7 弧长及扇形的面积" data-step="2">
+        <p>$l_{\text{弧}}=\dfrac{n\pi R}{180}$，$S_{\text{扇形}}=\dfrac{n}{360}\pi R^2=\dfrac12l_{\text{弧}}R$。</p>
+        <span class="use">侧面展开图是扇形，用 $S=\frac12l_{\text{弧}}R$ 求侧面积。</span>
+      </div>
+      <div class="recall" data-label="八上 3.1 勾股定理" data-step="3">
+        <p>直角三角形两直角边的平方和等于斜边的平方。</p>
+        <span class="use">高 $h$、底面半径 $r$、母线 $l$ 满足 $r^2+h^2=l^2$。</span>
+      </div>
+      <div class="recall" data-label="小学 · 圆的周长" data-step="4">
+        <p>半径为 $r$ 的圆，周长 $C=2\pi r$。</p>
+        <span class="use">展开扇形的弧长等于底面圆的周长 $2\pi r$。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 2 张卡是本课的关键工具：上一课最后得到的 S = ½lR，本课立刻派上用场。注意本课字母 l 表示母线长，和上一课的弧长 l 不同，教学时要提醒。</p>
+</section>
+
+<!-- 3 ================= 母线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>圆锥的母线</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cn" class="bigb"></div>
+      <div class="slider-row" data-noswipe>底面半径 $r=$<input type="range" id="cnR" min="0.6" max="2" step="0.1" value="1.2"><b class="v" id="cnRv"></b>　高 $h=$<input type="range" id="cnH" min="0.8" max="3" step="0.1" value="2.4"><b class="v" id="cnHv"></b></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="cnTurn">转动母线 $SA$</button></div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>母线（课本 p86）</h4>我们把连接圆锥的顶点和底面圆上一点的线段叫做圆锥的<b>母线</b>．如图 2-62，线段 $SA$ 是圆锥的母线．</div>
+      <p class="tip" data-step="2">圆锥有多少条母线？它们的长相等吗？<span class="think" data-step="3" data-ask="先猜，再点“转动母线”">有<b>无数条</b>，且都<b>相等</b>：$A$ 在底面圆上转动时，$\triangle SOA$ 始终是直角边为 $h$、$r$ 的直角三角形．</span></p>
+      <div class="readout r4"><span>$r$</span><b class="v" id="cnR2"></b><span>$h$</span><b class="v" id="cnH2"></b><span>母线 $l$</span><b class="v" id="cnL"></b><span>$r^2+h^2$</span><b class="v" id="cnSum"></b></div>
+      <p class="method" data-step="4" data-label="一个直角三角形">$\text{Rt}\triangle SOA$ 中：$r^2+h^2=l^2$——知道其中两个就能求第三个．</p>
+    </div>
+  </div>
+  <p class="note">课本 p86 定义与图 2-62。左图是按斜二测思路画的立体图：高 SO 竖直，底面圆画成椭圆，后半圈虚线。点“转动母线”看 A 绕底面一周，读数 l 不变。所有长度按坐标计算。</p>
+</section>
+
+<!-- 4 ================= 侧面展开 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>把侧面展开：得到什么图形？</h2></div>
+  <button class="media-btn" hidden data-img="assets/zhuizhan.jpg" data-video="assets/zhuizhan.mp4" data-cap="扇形纸片卷成圆锥的侧面：扇形的弧正好绕成底面圆，弧长 = 底面周长 2πr">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="wr" class="bigb"></div>
+      <div class="slider-row" data-noswipe>卷起：<input type="range" id="wrT" min="0" max="1" step="0.01" value="0"><span class="muted">展平 ← → 卷成圆锥</span></div>
+      <div class="slider-row" data-noswipe>$r=$<input type="range" id="wrR" min="0.6" max="2" step="0.1" value="1.2"><b class="v" id="wrRv"></b>　$l=$<input type="range" id="wrL" min="2" max="3.2" step="0.1" value="3"><b class="v" id="wrLv"></b></div>
+    </div>
+    <div class="col">
+      <div id="fl" class="flb"></div>
+      <div class="readout r4"><span>扇形半径</span><b class="v" id="flR"></b><span>扇形弧长</span><b class="v" id="flA"></b><span>底面周长</span><b class="v" id="flC"></b><span>圆心角 $n$</span><b class="v" id="flN"></b></div>
+      <p class="def" data-step="1">圆锥的侧面展开图是一个<b>扇形</b>．<span class="think" data-step="2" data-ask="扇形的半径、弧长分别是圆锥的什么？">扇形的<b>半径</b>是圆锥的<b>母线长 $l$</b>；扇形的<b>弧长</b>是圆锥的<b>底面圆周长 $2\pi r$</b>．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p86 思考与探索、图 2-62 与小明、小丽的提示。左图把扇形纸片一点点卷成圆锥（卷的过程中纸片不伸缩：每一点到顶点的距离、每段弧的长度都保持不变），卷到底时扇形的弧正好与底面圆（虚线）重合。右图是扇形的真实形状，圆心角 n = 360r/l。可先让学生用纸片做一做。右上角“看动画”是 15 秒无声动画。</p>
+</section>
+
+<!-- 5 ================= 推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>圆锥的侧面积公式</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>展开图</span><span>扇形：半径 $=l$，弧长 $=2\pi r$</span><i class="why">上一页</i></div>
+      <div class="dl" data-step="2"><span>$S_{\text{侧}}$</span><span class="think" data-step="3" data-ask="用哪个扇形面积公式最方便？">$=\dfrac12\cdot2\pi r\cdot l$</span><i class="why">$S_{\text{扇形}}=\dfrac12l_{\text{弧}}R$（2.7）</i></div>
+      <div class="dl end" data-step="4"><span></span><span>$=\pi rl$</span><i class="why">化简</i></div>
+    </div>
+    <div class="cols2">
+      <div class="def" data-step="5"><h4>结论（课本 p86）</h4>圆锥的侧面积 $S_{\text{侧}}=\dfrac12\cdot2\pi r\cdot l=\pi rl$（$r$ 为底面圆半径，$l$ 为母线长）．</div>
+      <div class="col">
+        <p class="warn" data-step="6" data-label="易错">公式里是<b>母线</b> $l$，不是高 $h$；已知高时，先用 $l=\sqrt{r^2+h^2}$ 求母线．</p>
+        <p class="tip" data-step="7"><b>练习 1（p87）：</b>圆锥的全面积为侧面积与底面积的和．用 $r$、$l$ 表示：$S=$<span class="think" data-step="8" data-ask="写出来">$\pi rl+\pi r^2$</span>．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p86 小丽的提示：侧面积 = ½ · 2πr · l = πrl。用 S = ½l弧R 比用 n/360 πR² 方便——不必先求圆心角。全面积是 p87 练习 1。</p>
+</section>
+
+<!-- 6 ================= 例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>圆锥形容器盖用多少铁皮？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f263" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-63（底面直径 80 cm、母线 50 cm，按比例作出；高为 30 cm）</p>
+      <p class="method" data-step="1" data-label="对号入座">图中 80 cm 是<span class="think" data-step="2" data-ask="直径还是半径？">底面<b>直径</b>，$r=40$ cm；50 cm 是母线 $l$．</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">用铁皮制作的圆锥形容器盖如图 2-63 所示，求这个容器盖铁皮的面积（精确到 1 cm²）．</p>
+      <div class="proof-l">
+        <p data-step="3"><b class="lead">解：</b>圆锥形容器盖的底面圆周长为 $2\pi\times40=80\pi$．</p>
+        <p data-step="4">容器盖的面积 $S=\dfrac12\times80\pi\times50$</p>
+        <p data-step="5">$\qquad\qquad\qquad\approx6\,280$．</p>
+        <p data-step="6"><b class="lead">答：</b>这个圆锥形容器盖铁皮的面积约为 6 280 cm²．</p>
+      </div>
+      <p class="recall" data-step="7" data-label="说明">$\dfrac12\times80\pi\times50=2000\pi$；课本取 $\pi\approx3.14$ 得 $6\,280$．（若用计算器 $\pi$ 键，得 $6\,283$．）</p>
+    </div>
+  </div>
+  <p class="note">课本 p86 例。容器盖没有底面，只求侧面积。注意 80 cm 是直径。高 = √(50² − 40²) = 30 cm，图按此比例画出。</p>
+</section>
+
+<!-- 7 ================= 拓展延伸 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">拓展与延伸</span><h2>剪下的扇形围圆锥，余料够做底面吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f264" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-64（圆的半径 $\sqrt2$，按比例精确作出；红色线段 $EF$ 是最大一块余料最“厚”处的宽度）</p>
+    </div>
+    <div class="col">
+      <p class="tip">在半径为 $\sqrt2$ 的圆形纸片中，剪一个圆心角为 $90^\circ$ 的扇形（图 2-64 中的阴影部分）．（1）求这个扇形的面积（结果保留 $\pi$）；（2）若用剪得的扇形纸片围成一个圆锥的侧面，能否从剪下的 3 块余料中选取一块，剪出一个圆作为这个圆锥的底面？</p>
+      <div class="hint-ladder">
+        <details><summary>提示 1</summary>$90^\circ$ 的圆周角所对的弦 $BC$ 是直径，$BC=2\sqrt2$，扇形半径 $AB=AC=2$．</details>
+        <details><summary>提示 2</summary>（2）圆锥底面周长 = 扇形弧长：$2\pi r=\dfrac{90\pi\times2}{180}$．最大的余料在 $BC$ 另一侧，沿 $AO$ 方向它最“厚”的地方是多少？</details>
+        <details><summary>完整解答</summary>（1）$S=\dfrac{90\pi\times2^2}{360}=\pi$．<br>（2）$2\pi r=\pi$，$r=\dfrac12$，底面直径为 1．射线 $AO$ 交扇形弧于 $E$、交圆于 $F$：$AF=2\sqrt2$，$AE=2$，$EF=2\sqrt2-2\approx0.83&lt;1$．最大的那块余料也放不下直径为 1 的圆，所以<b>不能</b>．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p86 拓展与延伸、图 2-64。图中红色线段 EF 是余料中最“厚”处的宽度 2√2 − 2 ≈ 0.83，而底面圆直径需要 1，直观看出放不下。另外两块余料更小。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p87 练习 2）用半径为 30、圆心角为 $120^\circ$ 的扇形纸片围成一个圆锥的侧面，求这个圆锥的底面圆半径．</p>
+        <details><summary>提示</summary>扇形的弧长 = 底面圆的周长．</details>
+        <details><summary>完整解答</summary>弧长 $=\dfrac{120\pi\times30}{180}=20\pi$，$2\pi r=20\pi$，$r=10$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 2.8 第 1 题）给一个圆锥形零件的侧面涂漆：母线长 12 cm，底面直径 12 cm．求需涂漆的面积（精确到 1 cm²）．</p>
+        <details><summary>提示</summary>$r=6$，$l=12$，$S_{\text{侧}}=\pi rl$．</details>
+        <details><summary>完整解答</summary>$S=\pi\times6\times12=72\pi\approx226$（cm²）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 2.8 第 3 题）在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$AC=3$，$BC=4$．（1）分别以 $AC$、$BC$ 所在直线为轴旋转 1 周，求两个圆锥的侧面积；（2）以 $AB$ 为轴旋转 1 周，求几何体的表面积．</p>
+        <details><summary>提示 1</summary>绕 $AC$ 转：底面半径是 $BC$，母线是 $AB=5$．</details>
+        <details><summary>提示 2</summary>绕 $AB$ 转：得到两个共底面的圆锥，底面半径是斜边上的高 $\dfrac{3\times4}{5}$．</details>
+        <details><summary>完整解答</summary>（1）绕 $AC$：$\pi\times4\times5=20\pi$；绕 $BC$：$\pi\times3\times5=15\pi$．<br>（2）$r=\dfrac{12}{5}$，$S=\pi\cdot\dfrac{12}{5}\cdot3+\pi\cdot\dfrac{12}{5}\cdot4=\dfrac{84}{5}\pi$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p87 练习 2，习题 2.8 第 1、3 题。第 3 题需要空间想象，可以拿三角板绕一边转一转。习题 2.8 第 2 题（扇形 AFD 围圆锥）作为课后作业。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">母线；侧面展开图是扇形：半径 $=l$，弧长 $=2\pi r$。</p>
+        <p class="def">$S_{\text{侧}}=\pi rl$，$S_{\text{全}}=\pi rl+\pi r^2$，$r^2+h^2=l^2$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="对应">圆锥 ↔ 展开扇形：母线 ↔ 半径，底面周长 ↔ 弧长。</p>
+        <p class="method" data-label="列方程">弧长 = 底面周长，常用来求 $r$ 或圆心角。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="化曲为平">把曲面展开成平面图形来计算。</p>
+        <p class="recall" data-label="空间 ↔ 平面">立体图形与它的展开图互相转化。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>第 2 章回顾：</b>圆 → 对称性 → 确定圆的条件 → 圆周角 → 直线与圆 → 正多边形与圆 → 弧长、扇形 → 圆锥。下一章：第 3 章 数据的集中趋势和离散程度。</p>
+  </div>
+  <p class="note">本课是第 2 章最后一节，可用最后一行带学生回顾全章脉络。作业：习题 2.8 第 2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

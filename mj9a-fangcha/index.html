@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>方差 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/pingpang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第3章 数据的集中趋势和离散程度 · 3.4</p>
+    <h1 class="cover-title">方　差</h1>
+    <p class="cover-q" data-step="1">乒乓球的标准直径为 40 mm。A、B 两厂各抽 10 只，平均直径<b>都是 40 mm</b>。</p>
+    <p class="cover-q" data-step="2">平均数一样，两个厂的质量就一样好吗？怎样用一个数说清楚“哪个厂的球更整齐”？</p>
+    <div class="chips" data-step="3"><span class="chip">离散程度</span><span class="chip">极差</span><span class="chip">方差</span><span class="chip">标准差</span></div>
+  </div>
+  <p class="note">课本 p113 情境。封面先点出“平均数相同”，让学生意识到只看集中趋势不够。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="3.1 · 平均数" data-step="1">
+        <p>$\bar x=\dfrac{x_1+x_2+\cdots+x_n}{n}$，各数据与平均数的差的和为 $0$（“平衡点”）．</p>
+        <span class="use">第 5 页：为什么不能直接把“差”加起来．</span>
+      </div>
+      <div class="recall" data-label="3.2 · 集中趋势" data-step="2">
+        <p>平均数、中位数、众数刻画一组数据的“集中趋势”．</p>
+        <span class="use">本课要刻画另一面：数据“散不散”——离散程度．</span>
+      </div>
+      <div class="recall" data-label="七年级上册 · 绝对值" data-step="3">
+        <p>$|a|$ 表示数轴上 $a$ 到原点的距离，$|a|\ge0$．</p>
+        <span class="use">第 5 页：用 $|x_i-\bar x|$ 去掉差的正负号．</span>
+      </div>
+      <div class="recall" data-label="七年级上册 · 乘方" data-step="4">
+        <p>任何数的平方都是非负数：$a^2\ge0$；$(-0.2)^2=0.04$．</p>
+        <span class="use">第 6–8 页：用 $(x_i-\bar x)^2$ 去掉正负号——方差．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>集中趋势之外，还要描述一组数据的<b>离散程度</b>——用什么数？</p>
+  </div>
+  <p class="note">第一张卡是本课的关键伏笔：差的和恒为 0，所以要先“去掉符号”。绝对值和平方两条路，课本选了平方。</p>
+</section>
+
+<!-- 3 ================= 极差 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>极差：最大值与最小值的差</h2></div>
+  <div class="bd full">
+    <p class="tip small-p"><b>A 厂</b> 10 只乒乓球的直径（mm）：40.0，39.9，40.0，40.1，40.2，39.8，40.0，39.9，40.0，40.1．</p>
+    <p class="tip" data-step="1">最大值为 40.2 mm，最小值为 39.8 mm，最大值与最小值的差为 <span class="think" data-step="2" data-ask="算一算">$40.2-39.8=0.4$（mm）</span>．</p>
+    <div class="def" data-step="3"><h4>极差（课本 p113）</h4>一组数据中最大值与最小值的差叫做<em>极差</em>．极差反映了一组数据的变化范围，在一定程度上描述了这组数据的离散程度．</div>
+    <p class="tip small-p" data-step="4"><b>尝试与交流：</b>质检部门又抽取了 <b>B 厂</b> 10 只乒乓球：40.0，40.2，39.8，40.1，39.9，40.1，39.9，40.2，39.8，40.0．这组数据的极差是多少？</p>
+    <p class="warn" data-step="5" data-label="问题来了"><span class="think" data-step="5" data-ask="B 厂的极差？">$40.2-39.8=0.4$（mm）——两厂的极差<b>都是 0.4 mm</b>．极差只看两个“端点”，比不出两组数据的离散程度．</span></p>
+  </div>
+  <p class="note">课本 p113。极差只用了最大、最小两个数据，中间的数据怎样分布它不管——下一页用图看两厂的差别。</p>
+</section>
+
+<!-- 4 ================= 图 3-3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>画出来看一看（图 3-3）</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col"><p class="center fig-t">A 厂</p><div id="figA" class="fig-board"></div></div>
+      <div class="col"><p class="center fig-t">B 厂</p><div id="figB" class="fig-board"></div></div>
+    </div>
+    <p class="tip" data-step="1">哪个厂的乒乓球直径更“整齐”？<span class="think" data-step="2" data-ask="看图说">A 厂：多数点就在 40.0 线上或紧挨着它；B 厂的点上下散开，离 40.0 线远的多．从图 3-3 可以看出，A 厂生产的乒乓球直径的离散程度较小．</span></p>
+    <p class="tip gold" data-step="3"><b>思考与探索：</b>图 3-3 直观地反映了两组数据的离散程度，怎样用<b>数量</b>来描述呢？</p>
+  </div>
+  <p class="note">课本 p114 图 3-3：横轴为序号，纵轴为直径，红线为 40.0 mm（平均数）。两幅图按课本数据由代码绘制。请学生先说“离 40.0 远的点各有几个”：A 厂偏离 0.2 的只有 2 个，B 厂有 4 个。</p>
+</section>
+
+<!-- 5 ================= 怎样用数量描述 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>先算“差”，再想办法把差合起来</h2></div>
+  <div class="bd full">
+    <p class="tip small-p">先分别计算这两组数据的平均数（都是 40 mm），再计算各组数据中每个数据与其平均数的差：</p>
+    <table class="mtab dev" id="devTab"></table>
+    <div class="cols3">
+      <p class="tip" data-step="1">① 把差直接加起来？<span class="think" data-step="2" data-ask="结果是？">两组都是 $0$——正负抵消了（3.1 的平衡点）．不行．</span></p>
+      <p class="tip" data-step="3">② 把差的<b>绝对值</b>加起来？<span class="think" data-step="4" data-ask="结果是？">A：0.8，B：1.2，能比较出 A 更整齐．</span></p>
+      <p class="tip" data-step="5">③ 把差的<b>平方</b>加起来？<span class="think" data-step="6" data-ask="结果是？">A：0.12，B：0.2，同样 A 小．</span></p>
+    </div>
+    <p class="method" data-step="7" data-label="统计中常用的方法">用一组数据与它们平均数的差的<b>平方的平均数</b>来描述离散程度——这就是方差（下一页）．</p>
+  </div>
+  <p class="note">课本 p114“思考与探索”两位同学的话：“计算这些差的绝对值的和，或计算这些差的平方和”。表格中的差、绝对值、平方均由代码按课本数据计算（以 0.1 mm 为单位做整数运算，避免小数误差）。平方的好处课本没展开，可以简单说：便于代数运算，以后学习还会用到。</p>
+</section>
+
+<!-- 6 ================= 偏差正方形（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手观察</span><h2>把每个“差”画成正方形：方差 = 正方形面积的平均数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="sqTabs"><button type="button" class="btn solid" data-k="A">A 厂</button><button type="button" class="btn" data-k="B">B 厂</button><button type="button" class="btn" id="sqReset">恢复课本数据</button></div>
+      <div class="readout sq-read">
+        <span>平均数 $\bar x$</span><span></span><span class="v" id="sqMean"></span>
+        <span>极差</span><span></span><span class="v" id="sqRange"></span>
+        <span>差的和</span><span></span><span class="v" id="sqSum"></span>
+        <span>方差 $s^2$</span><span class="bar"><i id="sqBar" style="background:var(--orange)"></i></span><span class="v" id="sqVar"></span>
+      </div>
+      <p class="tip feedback" id="sqMsg"></p>
+      <p class="tip" data-step="1">把 A 厂的 40.2 往下拖到 40.0：<span class="think" data-step="2" data-ask="方差怎么变？">最大的那个正方形没了，方差明显变小；离平均数越远的点，正方形面积增长得越快（边长翻倍，面积 4 倍）．</span></p>
+    </div>
+    <div class="col">
+      <div id="sqBoard" class="sq-board"></div>
+      <p class="muted center small-t">上下拖动点（每格 0.1 mm）；红线是平均数，橙色正方形的边长 = 该点到平均数的距离</p>
+    </div>
+  </div>
+  <p class="note">本课核心交互。纵轴以 0.1 mm 为一格，横轴序号间距也是一格，所以正方形是真正的正方形；面积单位 0.01 mm²。方差=10 个正方形面积之和 ÷ 10，由代码精确计算：A 厂 0.012，B 厂 0.02。试一试：把 B 厂所有点都拖到 40.0，方差为 0——数据完全没有波动。</p>
+</section>
+
+<!-- 7 ================= 方差定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>方差</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>方差（课本 p114）</h4>用一组数据 $x_1,x_2,\cdots,x_n$ 与它们的平均数 $\bar x$ 的差的平方的平均数，即
+      $$s^2=\frac{1}{n}\left[(x_1-\bar x)^2+(x_2-\bar x)^2+\cdots+(x_n-\bar x)^2\right]$$
+      来描述这组数据的离散程度，并把它叫做这组数据的<em>方差</em>（variance）．</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">读法：$s^2$ 读作“$s$ 方”．<br>算法顺序：<span class="think" data-step="3" data-ask="先算什么？">先求平均数 → 再求差 → 再平方 → 最后求平均．</span></p>
+      <p class="method" data-step="4" data-label="意义（课本）">一组数据的方差越大，说明这组数据的离散程度越大；方差越小，说明离散程度越小．</p>
+      <p class="warn" data-step="5" data-label="想一想">方差可能是负数吗？什么时候等于 0？<span class="think" data-step="6" data-ask="说一说">不可能为负（每一项都是平方）；所有数据都相等时，方差为 0．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p114。“读作 s 方”是常用读法。第三张卡是补充思考，可回第 6 页验证：把所有点拖到同一高度，方差为 0。</p>
+</section>
+
+<!-- 8 ================= 计算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">计算</span><h2>A、B 两厂乒乓球直径的方差</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>$\bar x_A$</span><span>$=\dfrac{40.0+39.9+\cdots+40.0+40.1}{10}=40$（mm），$\bar x_B=40$（mm）</span><i class="why">第一步：平均数</i></div>
+      <div class="dl" data-step="2"><span>$s_A^2$</span><span>$=\dfrac{(40.0-40)^2+(39.9-40)^2+\cdots+(40.0-40)^2+(40.1-40)^2}{10}$</span><i class="why">差的平方的平均数</i></div>
+      <div class="dl" data-step="3"><span></span><span class="think" data-step="3" data-ask="算一算">$=\dfrac{0.12}{10}=0.012$（mm²）</span><i class="why">平方和：$4\times0.01+2\times0.04=0.12$</i></div>
+      <div class="dl" data-step="4"><span>$s_B^2$</span><span>$=\dfrac{(40.0-40)^2+(40.2-40)^2+\cdots+(39.8-40)^2+(40.0-40)^2}{10}$</span><i class="why"></i></div>
+      <div class="dl end" data-step="5"><span></span><span class="think" data-step="5" data-ask="算一算">$=\dfrac{0.2}{10}=0.02$（mm²）</span><i class="why">平方和：$4\times0.01+4\times0.04=0.2$</i></div>
+    </div>
+    <p class="def" data-step="6">由 $s_A^2&lt;s_B^2$，可以推断 A 厂生产的乒乓球直径的离散程度较小，A 厂生产的乒乓球质量比较稳定．</p>
+  </div>
+  <p class="note">课本 p115。右侧“平方和”的分解是课件补充：A 厂差为 ±0.1 的有 4 个、±0.2 的有 2 个；B 厂 ±0.1 的 4 个、±0.2 的 4 个。注意方差的单位是 mm²——引出下一页“标准差”。</p>
+</section>
+
+<!-- 9 ================= 标准差 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">读一读</span><h2>标准差：把单位“开方”回来</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1">A 厂：方差 0.012 mm²．单位是 mm²，而直径的单位是 mm——<span class="think" data-step="2" data-ask="怎么办？">开平方：$\sqrt{0.012}\approx0.11$（mm）．</span></p>
+      <p class="tip" data-step="3">B 厂：$\sqrt{0.02}\approx$ <span class="think" data-step="4" data-ask="算一算">$0.14$（mm）</span>．</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="5"><h4>标准差（课本 p115 读一读）</h4>方差较为精确地反映一组数据相对于平均数的平均偏差，是一个被广泛用来描述数据离散程度的量．但方差以原始数据的单位的平方作为单位，所以在统计中，也用方差的算术平方根，即
+        $$s=\sqrt{\frac{1}{n}\left[(x_1-\bar x)^2+(x_2-\bar x)^2+\cdots+(x_n-\bar x)^2\right]}$$
+        来描述一组数据的离散程度，并把它叫做这组数据的<em>标准差</em>（standard deviation）．</div>
+      <p class="method" data-step="6" data-label="课本">标准差的单位与原始数据的单位相同．</p>
+    </div>
+  </div>
+  <p class="note">课本 p115“读一读”（课本英文 deviation 处有印刷错误，此处按正确拼写）。√0.012≈0.1095、√0.02≈0.1414，由代码计算后取两位小数。标准差为选学内容，不作要求。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>极差与方差：哪一个更可靠？</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某地某日最高气温为 12 ℃，最低气温为 $-7$ ℃，该日气温的极差是多少？</p>
+        <details><summary>提示 1</summary>极差 = 最大值 − 最小值，注意减负数．</details>
+        <details><summary>完整解答</summary>$12-(-7)=19$（℃）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 计算并比较两组数据的极差和方差：<br>甲组：5，15，10，10，9.2，10，10.1，10，10.8，9.9；<br>乙组：9，11，8，12，7，13，6，14，10，10．</p>
+        <details><summary>提示 1</summary>两组的平均数都是 10．</details>
+        <details><summary>提示 2</summary>甲组差的平方和：$25+25+0.64+0.01+0.64+0.01=51.3$．</details>
+        <details><summary>完整解答</summary>甲：极差 10，方差 5.13；乙：极差 8，方差 6．甲的极差大，方差却小——极差只看两个端点，方差用上了所有数据．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 某市 2011 年、2012 年 3 月上旬的日最高气温（℃）：<br>2011：11，12，13，18，10，9，10，14，16，17；<br>2012：12，13，11，8，15，16，14，10，15，16．<br>哪一年 3 月上旬的日最高气温比较稳定？为什么？</p>
+        <details><summary>提示 1</summary>两年的平均数都是 13 ℃．</details>
+        <details><summary>完整解答</summary>$s_{2011}^2=9$，$s_{2012}^2=6.6$，$6.6&lt;9$，2012 年比较稳定．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p116 练习 1–3，结果均已用代码核对。第 2 题是本课的“点睛”题：极差和方差给出的结论相反，说明方差更全面。</p>
+</section>
+
+<!-- 11 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 3.4</span><h2>选做：用方差作决策</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 零件标准直径 10 mm，甲、乙两台机床各抽 5 件（mm）：<br>甲：10.05，10.02，9.97，9.96，10.00；<br>乙：10.00，10.01，10.02，9.97，10.00．<br>(1) 求极差、方差；(2) 哪台机床的产品质量比较稳定？</p>
+        <details><summary>提示 1</summary>平均数都是 10 mm；差以 0.01 为单位更好算．</details>
+        <details><summary>完整解答</summary>甲：极差 0.09 mm，方差 0.001 08 mm²；乙：极差 0.05 mm，方差 0.000 28 mm²．乙机床比较稳定．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 甲、乙两名运动员 10 次 100 m 测试成绩（s）：<br>甲：12.8，12.9，12.9，12.7，13.2，13.1，12.8，13.0，12.7，12.9；<br>乙：12.9，12.8，12.8，12.9，13.0，12.9，12.9，13.1，12.9，12.8．<br>选派哪一名运动员参赛更好些？</p>
+        <details><summary>提示 1</summary>平均成绩都是 12.9 s，比稳定性．</details>
+        <details><summary>完整解答</summary>$s_{\text{甲}}^2=0.024$，$s_{\text{乙}}^2=0.008$，乙的成绩更稳定，选派乙更好些．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 某家电商店 1～6 周销售甲、乙两种品牌冰箱的数量如图（单位：台）．(1) 分别求周销售量的平均数和方差；(2) 对今后采购提出建议．</p>
+        <div id="fridgeBoard" class="fridge-board"></div>
+        <p class="legend"><span><i style="background:#d0342c"></i>甲品牌</span><span><i style="background:#1ea0dc"></i>乙品牌</span></p>
+        <details><summary>提示 1</summary>甲：7，10，8，10，12，13；乙：9，10，11，9，12，9．</details>
+        <details><summary>完整解答</summary>平均数都是 10 台；$s_{\text{甲}}^2=\dfrac{13}{3}\approx4.33$，$s_{\text{乙}}^2=\dfrac{4}{3}\approx1.33$．乙销量稳定；甲波动大但呈上升趋势，可适当多进甲品牌（答案不唯一）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 3.4 第 1、3、4 题，结果均已用代码核对。第 4 题折线图按课本数据绘制（课本纵轴从 7 开始有折断号）。第 2 题（18 个零件的方差 0.02 mm²）留作业。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>看平均，也看波动</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">极差 = 最大值 − 最小值；方差 $s^2=\dfrac{1}{n}\left[(x_1-\bar x)^2+\cdots+(x_n-\bar x)^2\right]$；标准差 $s=\sqrt{s^2}$．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="比较稳定性">先比平均数；平均数相近时，比方差：方差小的更稳定．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="从直观到数量">图看出“散”→ 差 → 去符号（平方）→ 求平均．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>3.5 用计算器求方差——数据多、小数多时，方差的计算量很大，计算器能帮上什么忙？</p>
+  </div>
+  <p class="note">请学生用自己的话说出“方差”四个字的意思：差的平方的平均。作业：习题 3.4 第 2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

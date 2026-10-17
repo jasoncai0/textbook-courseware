@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>等可能条件下的概率（一） · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/touzi-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第4章 等可能条件下的概率 · 4.2</p>
+    <h1 class="cover-title">等可能条件下的概率（一）</h1>
+    <p class="cover-q" data-step="1">抛掷一枚质地均匀的骰子 1 次，“朝上一面的点数大于 4”与“朝上一面的点数不大于 4”，<b>哪个事件发生的可能性大？</b></p>
+    <p class="cover-q" data-step="2">能不能不做试验，就<b>算出</b>它们的概率？</p>
+    <div class="chips" data-step="3"><span class="chip">$P(A)=\dfrac{m}{n}$</span><span class="chip">树状图</span><span class="chip">列表</span><span class="chip">不重复、不遗漏</span></div>
+  </div>
+  <p class="note">课本 p131“思考·探索”。请学生凭直觉先回答“哪个大”，再追问“大多少？能用一个数说清楚吗？”——引出本课：在等可能条件下，概率可以算出来。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="4.1 · 等可能性" data-step="1">
+        <p>试验的结果有 $n$ 个，每次有且只有一个出现，且<b>机会均等</b>．颜色相同的球要<b>编号</b>．</p>
+        <span class="use">公式 $P(A)=\frac{m}{n}$ 只在“等可能”时成立；例 2、例 4 都要先给球编号。</span>
+        <a class="lk" href="../mj9a-dengkenengxing/index.html">回看 4.1</a>
+      </div>
+      <div class="recall" data-label="八下 8.3 · 频率与概率" data-step="2">
+        <p>大量重复试验中，事件发生的频率稳定在某个常数附近，这个常数就是事件的概率．</p>
+        <span class="use">用掷骰子、抛硬币的试验检验：算出来的概率与频率吻合吗？</span>
+        <a class="lk" href="../mj8b-pinlvgailv/index.html">回看 8.3</a>
+      </div>
+      <div class="recall" data-label="小学 · 分数" data-step="3">
+        <p>约分：$\frac{4}{6}=\frac{2}{3}$；比较大小：$\frac{21}{40}>\frac{19}{40}$．</p>
+        <span class="use">概率写成最简分数，再比较大小。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>八下用“做大量试验”<b>估计</b>概率；在等可能的条件下，只要<b>数清结果</b>就能<b>计算</b>概率——难点是怎样把结果数得“不重复、不遗漏”．</p>
+  </div>
+  <p class="note">第一张卡是本课的前提：每一个公式应用都先问“这些结果等可能吗？”。第二张卡说明本课的计算与八下的试验并不矛盾——第 3、7 页会用真随机试验来印证。</p>
+</section>
+
+<!-- 3 ================= 骰子 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>掷骰子：可能性有多大？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip sm" data-step="1">抛掷一枚质地均匀的骰子 1 次，有哪些可能的结果？<span class="think" data-step="2" data-ask="列一列">1 点、2 点、…、6 点朝上，共 6 种，并且是等可能的．</span></p>
+      <div class="dice" id="dieFaces"></div>
+      <div class="btns" data-noswipe id="dieEv"></div>
+      <p class="tip sm feedback" id="dieMsg"></p>
+      <div class="derive sm-d" data-step="3">
+        <div class="dl"><span>事件 $A$ 发生</span><span>朝上的点数是 5 或 6</span><i class="why">6 种结果中占 2 种</i></div>
+        <div class="dl key"><span>$P(A)$</span><span class="think" data-step="4" data-ask="等于？">$=\dfrac{2}{6}=\dfrac{1}{3}$</span><i class="why">2 种 ÷ 6 种</i></div>
+        <div class="dl key"><span>$P(B)$</span><span class="think" data-step="5" data-ask="等于？">$=\dfrac{4}{6}=\dfrac{2}{3}$</span><i class="why">点数 1、2、3、4 之一</i></div>
+        <div class="dl end"><span>∵ $P(B)>P(A)$</span><span class="think" data-step="6" data-ask="结论？">“点数不大于 4”的可能性大</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="sim">
+        <div class="btns" data-noswipe id="dieRoll"><button class="btn" data-n="1">掷 1 次</button><button class="btn" data-n="10">掷 10 次</button><button class="btn" data-n="100">掷 100 次</button><button class="btn solid" data-n="1000">掷 1000 次</button><button class="btn" data-n="0">清零</button></div>
+        <p class="sim-st" id="dieSt"></p>
+        <svg class="bars" id="dieBars" aria-label="事件 A、B 的频率"></svg>
+      </div>
+      <p class="tip sm" data-step="7">掷 1000 次，频率与算出来的概率吻合吗？<span class="think" data-step="8" data-ask="看一看">频率分别在 $\frac13\approx0.333$、$\frac23\approx0.667$ 附近——<b>计算</b>与<b>试验</b>互相印证．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p131。先点事件按钮，让亮起来的骰面告诉学生“A 包含几种结果”；推导链逐步点开。然后掷 1000 次（浏览器真随机数），看频率条与虚线（理论值）几乎重合。追问：掷 10 次时为什么差得多？</p>
+</section>
+
+<!-- 4 ================= 公式 + 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>等可能条件下，概率怎样算</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>概率的计算（课本 p131）</h4>一般地，如果一个试验有 $n$ 个<em>等可能</em>的结果，当其中的 $m$ 个结果之一出现时，事件 $A$ 发生，那么事件 $A$ 发生的概率
+        <div class="formula"><span class="f">$P(A)=\dfrac{m}{n}$</span><span class="anns"><span>← $m$：事件 $A$ 发生可能出现的结果数</span><span>← $n$：所有等可能出现的结果数</span></span></div>
+      </div>
+      <p class="tip sm" data-step="2">$P(A)$ 最小是几？最大是几？<span class="think" data-step="3" data-ask="想一想">∵ $0\le m\le n$，∴ $0\le P(A)\le 1$；不可能事件 $m=0$，概率为 0；必然事件 $m=n$，概率为 1．</span></p>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="4">
+        <p><b>例 1</b> 某班级有 21 名男生和 19 名女生，名字彼此不同．现有相同的 40 张小纸条，每名学生分别将自己的名字写在纸条上，放入一个盒子中，搅匀后从中任意抽出 1 张纸条．比较“抽到男生名字”与“抽到女生名字”的概率的大小．</p>
+      </div>
+      <div class="derive" data-step="5">
+        <div class="dl"><span>$n=$</span><span class="think" data-step="6" data-ask="几种？">40</span><i class="why">每一名学生的名字被抽到的可能性相同</i></div>
+        <div class="dl key"><span>$P(\text{抽到男生名字})$</span><span class="think" data-step="7" data-ask="=?">$=\dfrac{21}{40}$</span><i class="why">男生 21 名，$m=21$</i></div>
+        <div class="dl key"><span>$P(\text{抽到女生名字})$</span><span class="think" data-step="8" data-ask="=?">$=\dfrac{19}{40}$</span><i class="why">女生 19 名，$m=19$</i></div>
+        <div class="dl end"><span>所以</span><span class="think" data-step="9" data-ask="谁大？">“抽到男生名字”的概率大</span><i class="why">$\frac{21}{40}>\frac{19}{40}$</i></div>
+      </div>
+      <p class="warn" data-step="10" data-label="先问：等可能吗？">用 $\frac{m}{n}$ 之前，先确认 $n$ 个结果是等可能的．“抽到男生”“抽到女生”只是两类，不能说 $n=2$．</p>
+    </div>
+  </div>
+  <p class="note">课本 p131–132。公式两侧的注释照课本图示；请学生用自己的话说出 m、n 各数的是什么。0≤P(A)≤1 不在本页课本原文中，是由 0≤m≤n 直接推出的，与八下“不可能事件概率为 0、必然事件概率为 1”相呼应。</p>
+</section>
+
+<!-- 5 ================= 例 2 + 拓展 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>3 个白球、2 个红球：先编号，再数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip sm">一只不透明的袋子中装有 3 个白球和 2 个红球，这些球除颜色外都相同，搅匀后从中任意摸出 1 个球．(1) 会有哪些等可能的结果？(2) 摸到白球、摸到红球的概率各是多少？</p>
+      <svg class="bag5" id="bag5" aria-label="编号为 1～5 的 5 个球：1、2、3 号白球，4、5 号红球"></svg>
+      <div class="derive" data-step="1">
+        <div class="dl"><span>编号</span><span>白球 1、2、3 号；红球 4、5 号</span><i class="why">图 4-3</i></div>
+        <div class="dl"><span>(1)</span><span class="think" data-step="2" data-ask="几种？">摸到 1～5 号球，共 5 种</span><i class="why">5 个球除颜色外相同，等可能</i></div>
+        <div class="dl key"><span>(2) $P(\text{摸到白球})$</span><span class="think" data-step="3" data-ask="=?">$=\dfrac{3}{5}$</span><i class="why">1、2、3 号之一出现</i></div>
+        <div class="dl key"><span>$P(\text{摸到红球})$</span><span class="think" data-step="4" data-ask="=?">$=\dfrac{2}{5}$</span><i class="why">4、5 号之一出现</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="jcard" data-step="5"><p><b>拓展 · 延伸</b> 甲袋中装有 3 个白球和 2 个红球，乙袋中装有 30 个白球和 20 个红球，这些球除颜色外都相同．分别从甲、乙两袋中任意摸出 1 个球，比较摸到红球的概率的大小．</p>
+        <div class="pick" data-ans="eq"><button data-k="a">甲袋大</button><button data-k="b">乙袋大</button><button data-k="eq">一样大</button><p class="pick-why">$P_{\text{甲}}=\dfrac{2}{5}$，$P_{\text{乙}}=\dfrac{20}{50}=\dfrac{2}{5}$，一样大．红球的<b>个数</b>多不等于概率大，要看红球占全部球的<b>比</b>．</p></div>
+      </div>
+      <p class="method" data-step="6" data-label="用公式的三步">① 确认等可能（必要时编号）；② 数出所有结果数 $n$；③ 数出使事件发生的结果数 $m$，算 $\frac{m}{n}$ 并约分．</p>
+    </div>
+  </div>
+  <p class="note">课本 p132 例 2、p133“拓展·延伸”。拓展题请学生先选，很多人会选“乙袋大”（红球 20 个更多），点按钮揭示后强调“比”而不是“个数”。</p>
+</section>
+
+<!-- 6 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>填一填：回车即判断</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> 一道选择题有 A、B、C、D 四个选项，其中有且只有一个正确的选项．在 A、B、C、D 中随意选择一个选项，所选选项恰好正确的概率是 <span class="blank" data-ans="1/4|0.25" data-w="3"></span>．</p>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 一只袋子中装有 3 个白球和 7 个红球，这些球除颜色外都相同，搅匀后从中任意摸出 1 个球．</p>
+        <p>$P(\text{摸到白球})=$ <span class="blank" data-ans="3/10|0.3" data-w="4"></span>，$P(\text{摸到红球})=$ <span class="blank" data-ans="7/10|0.7" data-w="4"></span>，</p>
+        <p>$P(\text{摸到绿球})=$ <span class="blank" data-ans="0" data-w="3"></span>，$P(\text{摸到白球或红球})=$ <span class="blank" data-ans="1" data-w="3"></span>．</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 请举出一些事件，它们发生的概率都是 $\dfrac{3}{5}$．</p>
+        <details><summary>提示 1</summary>想办法让“所有等可能结果”有 5 种（或 10 种、15 种……），事件占其中的 3 种（6 种、9 种……）．</details>
+        <details><summary>参考答案</summary>例 2 中“摸到白球”；从 1～5 这 5 张数字卡片中任抽 1 张，“抽到奇数”；10 张卡片中有 6 张写“奖”，任抽 1 张“抽到奖”．</details>
+      </div>
+    </div>
+    <p class="tip gold" data-step="1">第 2 题最后两空说明了什么？<span class="think" data-step="2" data-ask="想一想">“摸到绿球”是不可能事件，概率为 0；“摸到白球或红球”是必然事件，概率为 1．</span></p>
+  </div>
+  <p class="note">课本 p133 练习 1–3。填空支持分数或小数（如 3/10 或 0.3），回车或点别处即判断。第 3 题是开放题，鼓励学生说出不同“n”的设计。</p>
+</section>
+
+<!-- 7 ================= 两枚硬币 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>抛硬币 2 次，2 次都正面朝上的概率是多少？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="jcard" data-step="1"><b>有人这样想：</b>结果只有“两次正”“两次反”“一正一反”3 种，所以 $P(\text{两次都正})=\dfrac13$．对吗？</p>
+      <div class="sim">
+        <div class="btns" data-noswipe id="coinBtns"><button class="btn" data-n="10">抛 10 轮</button><button class="btn" data-n="100">抛 100 轮</button><button class="btn solid" data-n="1000">抛 1000 轮</button><button class="btn" data-n="0">清零</button></div>
+        <p class="sim-st" id="coinSt"></p>
+        <svg class="bars" id="coinBars" aria-label="三类结果的频率"></svg>
+        <p class="legend"><i class="lg-p"></i>列举算出的概率　<i class="lg-w"></i>“各 1/3”的猜想</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip sm" data-step="2">试验不支持“各 $\frac13$”．问题出在哪？——“一正一反”其实是<b>两种</b>结果：</p>
+      <table class="mtab" data-step="3">
+        <tr><th class="corner"><span class="c-top">第二次抛掷</span><span class="c-bot">第一次抛掷</span></th><th>正</th><th>反</th></tr>
+        <tr><th>正</th><td class="on">（正，正）</td><td>（正，反）</td></tr>
+        <tr><th>反</th><td>（反，正）</td><td>（反，反）</td></tr>
+      </table>
+      <div class="derive" data-step="4">
+        <div class="dl"><span>等可能的结果</span><span>4 种</span><i class="why">第 1 次、第 2 次各有正、反两种</i></div>
+        <div class="dl key"><span>$P(\text{正，正})$</span><span class="think" data-step="5" data-ask="=?">$=\dfrac{1}{4}$</span><i class="why">只有 1 种</i></div>
+        <div class="dl"><span>$P(\text{一正一反})$</span><span class="think" data-step="6" data-ask="=?">$=\dfrac{2}{4}=\dfrac{1}{2}$</span><i class="why">（正，反）（反，正）</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p133–134。先让学生对“1/3”的说法举手表态，再做 1000 轮真随机试验：两次正、两次反的频率在 0.25 附近，一正一反在 0.5 附近，都偏离 1/3 的虚线。然后用课本的表格解释：要把两次抛掷“分开记”，（正，反）与（反，正）是不同的结果。</p>
+</section>
+
+<!-- 8 ================= 树状图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法</span><h2>画树状图：一层一层地分叉</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip sm" data-step="1">从“开始”出发，第一次抛掷分出几个叉？每个叉后面，第二次抛掷又分出几个叉？<span class="think" data-step="2" data-ask="数一数">2 个叉，每个叉再分 2 个叉，共 $2\times2=4$ 个结果．</span></p>
+      <div class="def" data-step="3"><h4>树状图（课本 p134）</h4>像图 4-4 这样的图称为<b>树状图</b>（tree derivation），它直观地显示了一个随机事件在一次试验中所有可能的结果．</div>
+      <p class="warn" data-step="4" data-label="列表、画树状图都要做到">既<b>不重复</b>，又<b>不遗漏</b>．</p>
+    </div>
+    <div class="col">
+      <div id="treeCoin" class="tree"></div>
+    </div>
+  </div>
+  <p class="note">课本 p134 图 4-4。右侧树状图点“展开下一层”逐层画出，让学生先预测下一层有几个节点。全部展开后点“两次都正面朝上”，再点“一正一反”，读出 1/4 与 1/2；也可以直接点击右侧的结果自己选。</p>
+</section>
+
+<!-- 9 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>上衣与裤子：树状图列出所有搭配</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip sm">小明有红色、黄色、蓝色上衣各 1 件，有蓝色、棕色裤子各 1 条．小明任意取出 1 件上衣和 1 条裤子，恰好取到蓝色上衣和蓝色裤子的概率是多少？</p>
+      <div class="derive" data-step="1">
+        <div class="dl"><span>第一层</span><span class="think" data-step="2" data-ask="几个叉？">3 个（上衣）</span><i class="why">先取上衣</i></div>
+        <div class="dl"><span>第二层</span><span class="think" data-step="3" data-ask="几个叉？">每件上衣后 2 个（裤子）</span><i class="why">再取裤子</i></div>
+        <div class="dl"><span>$n=$</span><span class="think" data-step="4" data-ask="几种？">$3\times2=6$</span><i class="why">6 种结果等可能</i></div>
+        <div class="dl key"><span>$P(A)=$</span><span class="think" data-step="5" data-ask="=?">$\dfrac{1}{6}$</span><i class="why">事件 $A$ 的发生只有 1 种可能</i></div>
+      </div>
+      <p class="method" data-step="6" data-label="分步的试验">一个试验分两步（取上衣、取裤子）时，第一步有 $a$ 种、第二步有 $b$ 种，树状图共有 $a\times b$ 个结果．</p>
+    </div>
+    <div class="col">
+      <div id="treeCloth" class="tree"></div>
+    </div>
+  </div>
+  <p class="note">课本 p134–135 例 3 与图 4-5。树状图中的衣服、裤子按课本颜色用代码绘制。请学生先自己在本子上画，再在屏幕上逐层展开核对。“a×b”是本课补充的观察，为高中的计数原理埋伏笔，不要求记忆。</p>
+</section>
+
+<!-- 10 ================= 拓展 + 练习（树状图） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">拓展 · 练习</span><h2>三步的树状图、“不放回”的树状图</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip sm"><b>拓展 · 延伸</b> 抛掷一枚质地均匀的硬币 3 次，3 次抛掷的结果都是正面朝上的概率是多少？</p>
+        <div id="treeCoin3" class="tree"></div>
+      </div>
+      <div class="col">
+        <p class="tip sm"><b>练习 1</b> 袋中有 4 个大小、质地都相同的乒乓球，分别标有数字 1、$-2$、3、$-4$，先任意摸出 1 个（<b>不放回</b>），再从余下的 3 个中任意摸出 1 个．(1) 用树状图列出所有可能的结果；(2) 求 2 次摸出的数字的积为偶数的概率．</p>
+        <div id="treePing" class="tree"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p135“拓展·延伸”与练习 1。“不放回”的树状图第二层只有 3 个叉（摸出的球不再出现），共 4×3=12 种结果，积为偶数的 10 种，P=10/12=5/6。3 次抛硬币共 8 种结果，P=1/8。练习 1 的关键是“不放回”：第二层少一个分支。练习 2（同时抛硬币和骰子）留作口答：2×6=12 种结果，每种的概率都是 1/12。</p>
+</section>
+
+<!-- 11 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>摸球后放回：用表格列出所有结果</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip sm">一只不透明的袋子中装有 1 个白球和 2 个红球，这些球除颜色外都相同，搅匀后从中任意摸出 1 个球，记录颜色后<b>放回</b>、搅匀，再从中任意摸出 1 个球．求两次都摸到红球的概率．</p>
+      <div class="derive" data-step="1">
+        <div class="dl"><span>编号</span><span>白、红 1、红 2</span><i class="why">图 4-6</i></div>
+        <div class="dl"><span>$n=$</span><span class="think" data-step="2" data-ask="几种？">$3\times3=9$</span><i class="why">放回：第二次仍有 3 种</i></div>
+        <div class="dl key"><span>$P(B)=$</span><span class="think" data-step="3" data-ask="=?">$\dfrac{4}{9}$</span><i class="why">两次都红：4 种</i></div>
+      </div>
+      <p class="warn" data-step="4" data-label="放回 vs 不放回">如果<b>不放回</b>，对角线上的（白，白）（红 1，红 1）（红 2，红 2）不可能出现，结果只有 6 种，$P=\frac{2}{6}=\frac13$．</p>
+    </div>
+    <div class="col">
+      <div id="grid4" class="gridbox"></div>
+    </div>
+  </div>
+  <p class="note">课本 p136 例 4。点“两次都摸到红球”或自己点格子数出 4 种。表格的行是第一次、列是第二次，这样 (红 1，红 2) 与 (红 2，红 1) 自然分开，不会遗漏。“不放回”的对比是补充，与上一页练习 1 呼应。</p>
+</section>
+
+<!-- 12 ================= 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>5 张“福娃”卡片：取出、放回、再取</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip sm">将印有“贝贝、晶晶、欢欢、迎迎、妮妮”的 5 张卡片（形状、大小、质地都相同）放在盒子中，搅匀后任意取出 1 张，记录后放回、搅匀，再任意取出 1 张．求：(1) 2 张图案相同；(2) 1 张为“欢欢”、1 张为“贝贝”；(3) 至少有 1 张为“欢欢”的概率．</p>
+      <div class="fuwa"><span>1 贝贝</span><span>2 晶晶</span><span class="hh">3 欢欢</span><span>4 迎迎</span><span>5 妮妮</span></div>
+      <div class="derive" data-step="1">
+        <div class="dl key"><span>$P(A)=$</span><span class="think" data-step="2" data-ask="=?">$\dfrac{5}{25}=\dfrac{1}{5}$</span><i class="why">对角线 5 格</i></div>
+        <div class="dl key"><span>$P(B)=$</span><span class="think" data-step="3" data-ask="=?">$\dfrac{2}{25}$</span><i class="why">（1，3）（3，1）</i></div>
+        <div class="dl key"><span>$P(C)=$</span><span class="think" data-step="4" data-ask="=?">$\dfrac{9}{25}$</span><i class="why">第 3 行 5 格 + 第 3 列 5 格 − 重复的（3，3）</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div id="grid5" class="gridbox"></div>
+      <p class="tip sm" data-step="5"><b>尝试 · 交流</b> 树状图、表格各有什么特点？<span class="think" data-step="6" data-ask="说一说">表格适合<b>两步</b>的试验，一目了然；树状图可以画<b>三步或更多步</b>，也方便处理“不放回”．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p136–138 例 5 与“尝试·交流”。卡片编号照课本（欢欢是 3 号）。(3) 最容易数错：第 3 行与第 3 列共 10 格，但（3，3）被数了两次，所以是 9 种——这正是“不重复”。</p>
+</section>
+
+<!-- 13 ================= 练习 + 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · 习题 4.2</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>练习 2</b> 甲、乙两盒中各有 3 张卡片，分别标有 $-7$、$-1$、3 和 $-2$、1、6．从甲、乙两盒中各抽 1 张，把数字分别作为点的横坐标、纵坐标．点落在第三象限的概率是 <span class="blank" data-ans="2/9" data-w="3"></span>．</p>
+          <details><summary>提示 1</summary>列 3×3 的表格，共 9 个点．第三象限：横、纵坐标都是负数．</details>
+          <details><summary>完整解答</summary>横坐标取 $-7$ 或 $-1$，纵坐标取 $-2$：$(-7,-2)$、$(-1,-2)$，共 2 种，$P=\frac{2}{9}$．</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>习题 1(1)</b> 投篮 1 次只有“投中”“未投中”两种结果，所以 $P(\text{投中})=\frac12$．对吗？</p>
+          <details><summary>完整解答</summary>不对：这两种结果不是等可能的（与运动员水平有关），不能用 $\frac{m}{n}$．</details>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>习题 3</b> 从一副扑克牌（54 张）中任意抽取 1 张：$P(\text{大王})=$ <span class="blank" data-ans="1/54" data-w="3"></span>，$P(\text{A})=$ <span class="blank" data-ans="2/27|4/54" data-w="3"></span>，$P(\text{红桃})=$ <span class="blank" data-ans="13/54" data-w="3"></span>．</p>
+          <details><summary>提示 1</summary>一副牌 54 张：4 种花色各 13 张，另有大王、小王．</details>
+          <details><summary>完整解答</summary>$\frac{1}{54}$；A 有 4 张，$\frac{4}{54}=\frac{2}{27}$；红桃 13 张，$\frac{13}{54}$．</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>习题 7</b> “石头、剪子、布”：甲、乙每次都随意同时出 1 种．$P(\text{甲胜})=$ <span class="blank" data-ans="1/3|3/9" data-w="3"></span>，$P(\text{不分胜负})=$ <span class="blank" data-ans="1/3|3/9" data-w="3"></span>．</p>
+          <details><summary>提示 1</summary>列 3×3 表格：共 9 种等可能结果．</details>
+          <details><summary>完整解答</summary>甲胜 3 种、乙胜 3 种、平局 3 种，概率都是 $\frac{3}{9}=\frac13$．</details>
+        </div>
+      </div>
+      <div class="col">
+        <p class="q-s"><b>习题 8</b> 抛掷骰子 2 次，表中是点数之和．和为 8 的概率是多少？和为多少时概率最大？</p>
+        <div id="grid36" class="gridbox g36"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">p138 练习 2、习题 4.2 第 1、3、7、8 题（其余习题课后完成）。习题 8：点“和为 8”得 5/36；和为 7 的格子最多（一条完整的副对角线），6/36=1/6，概率最大。习题 9（3 个路口红绿灯）可用“三步树状图”：至少遇到 1 次红灯 7/8，没有遇到 1/8。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">试验有 $n$ 个<em>等可能</em>的结果，事件 $A$ 包含其中 $m$ 个：$P(A)=\dfrac{m}{n}$，$0\le P(A)\le1$．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="列举结果">一步：直接列举；两步：表格或树状图；三步及以上、不放回：树状图．</p>
+        <p class="method" data-label="不重复不遗漏">按顺序记录（第 1 次，第 2 次）；放回 / 不放回要分清．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="计算与试验">算出的概率与大量试验的频率吻合：“一正一反”是 $\frac12$ 而不是 $\frac13$，试验能帮我们发现列举中的错误．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>4.3 等可能条件下的概率（二）——转盘停下时，指针的位置有<b>无数种</b>可能，还能用 $\dfrac{m}{n}$ 吗？</p>
+  </div>
+  <p class="note">请学生用一句话说出本课公式成立的前提（等可能），再逐栏揭示。课后作业建议：习题 4.2 第 2、4、5、6、9 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆的对称性 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/danche.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第2章 对称图形——圆 · 2.2</p>
+    <h1 class="cover-title">圆的对称性</h1>
+    <p class="cover-q" data-step="1">轮子绕固定轴心旋转，不论转到什么位置，都与初始位置<b>重合</b>。</p>
+    <p class="cover-q" data-step="2">圆是中心对称图形，也是轴对称图形——这两种对称性，能帮我们推出哪些<b>相等的弧、相等的弦</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">旋转 · 叠合</span><span class="chip">圆心角、弧、弦的关系</span><span class="chip">折叠</span><span class="chip">垂径定理</span></div>
+  </div>
+  <p class="note">课本 p44 情境。本章章名就叫“对称图形——圆”：本节用“图形运动”（旋转、翻折）发现并证实圆的性质，这是本章的研究方法。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="八下 第9章 · 旋转与中心对称" data-step="1">
+        <p>旋转前后：对应线段相等，对应角相等。把一个图形绕某一点旋转 180°，如果能与自身重合，它就是中心对称图形。</p>
+        <span class="use">圆绕圆心旋转；把两个圆心角叠合。</span>
+      </div>
+      <div class="recall" data-label="八上 第2章 · 轴对称" data-step="2">
+        <p>如果一个图形沿一条直线折叠，直线两旁的部分能够互相重合，它就是轴对称图形；对称轴垂直平分对应点的连线。</p>
+        <span class="use">沿直径折叠，证实垂径定理。</span>
+      </div>
+      <div class="recall" data-label="八上 2.5 · 等腰三角形" data-step="3">
+        <p>等腰三角形底边上的高、底边上的中线、顶角平分线互相重合（三线合一）。</p>
+        <span class="use">垂径定理的推理证明：$OC=OD$，$OP\perp CD$。</span>
+      </div>
+      <div class="recall" data-label="上一节 2.1 · 圆" data-step="4">
+        <p>弦、弧、优弧、劣弧、圆心角、等圆、等弧；同圆或等圆的半径相等。</p>
+        <span class="use">本节研究圆心角、弧、弦之间的关系。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本节主线：</b>旋转 → 圆心角、弧、弦的关系；翻折 → 垂直于弦的直径的性质（垂径定理）。</p>
+  </div>
+  <p class="note">前两张卡对应本节两条主线。请学生先说一说：中心对称图形和轴对称图形分别是怎样定义的？各举一例。</p>
+</section>
+
+<!-- 3 ================= 中心对称 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">旋转</span><h2>圆绕圆心旋转任意角度</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="spin" class="spin"></div>
+      <div class="slider-row" data-noswipe>旋转角 $\alpha=$<input type="range" id="spinA" min="0" max="360" step="1" value="0"><b class="v" id="spinAV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">拖动滑块，让 $\odot O$ 绕圆心 $O$ 旋转（蓝色是旋转后的圆，虚线是原来的位置；红点、弦只是做的记号）。</p>
+      <p class="tip" data-step="1">旋转多少度，圆与原来的圆重合？<span class="think" data-step="2" data-ask="试一试"><b>任何角度</b>：圆上每一点到 $O$ 的距离都等于半径，转过去仍在原来的圆上。（记号会移走，但圆本身始终重合。）</span></p>
+      <p class="def big-def" data-step="3">圆是中心对称图形，圆心是它的对称中心．（课本 p44）</p>
+      <p class="recall" data-label="旋转 180° 是特例" data-step="4">转 $180^\circ$ 重合，所以是中心对称图形；圆更特殊——转任何角度都重合（旋转不变性）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p44。旋转由坐标精确计算。追问：正方形转多少度与自身重合？（90° 的整数倍）正三角形呢？（120° 的整数倍）圆却是任意角度——这条性质就是下一页“叠合”方法的依据。</p>
+</section>
+
+<!-- 4 ================= 叠合（核心 A） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作与思考</span><h2>相等的圆心角，所对的弧、弦相等吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fit" class="fit"></div>
+      <div class="slider-row" data-noswipe>叠合进度<input type="range" id="fitT" min="0" max="2" step="0.02" value="0"><button class="btn solid" type="button" id="fitPlay">▶ 演示</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">在两张透明纸片上，分别画半径相等的 $\odot O$ 和 $\odot O'$，再画相等的圆心角 $\angle AOB$ 和 $\angle A'O'B'$，连接 $AB$、$A'B'$（图 2-9）．还有哪些相等的线段、相等的弧？</p>
+      <p class="tip feedback" id="fitMsg"></p>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>①</span><span>使点 $O$ 与点 $O'$ 重合</span><i class="why">平移纸片</i></div>
+        <div class="dl" data-step="2"><span>②</span><span>旋转，使射线 $O'A'$ 与 $OA$ 重合</span><i class="why">圆绕圆心旋转，仍与自身重合</i></div>
+        <div class="dl" data-step="3"><span>∵</span><span>$\angle A'O'B'=\angle AOB$</span><span class="think" data-step="4" data-ask="于是？">射线 $O'B'$ 与 $OB$ 重合</span></div>
+        <div class="dl" data-step="5"><span>又∵</span><span>$O'A'=OA$，$O'B'=OB$</span><span class="think" data-step="6" data-ask="于是？">点 $A'$ 与 $A$、$B'$ 与 $B$ 重合</span></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$\overset{\frown}{AB}=\overset{\frown}{A'B'}$，$AB=A'B'$</span><i class="why">完全重合</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p44–45 操作与思考、图 2-10。两个小人的猜想：AB = A′B′；弧 AB = 弧 A′B′。拖动进度条：0→1 平移使 O′ 与 O 重合，1→2 绕 O 旋转使 O′A′ 与 OA 重合（图中两个圆心角都是 70°，开始时 ⊙O′ 里的角比 ⊙O 里的多转了 40°）。这就是课本说的“运用图形运动的方法证实猜想”。</p>
+</section>
+
+<!-- 5 ================= 定理 · 三量联动 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理</span><h2>圆心角、弧、弦：一组相等，其余都相等</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="three" class="three"></div>
+      <p class="muted small-t center">拖动点 $D$，改变 $\angle COD$</p>
+      <table class="mtab" id="threeTab"></table>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>课本 p45</h4>在同圆或等圆中，相等的圆心角所对的弧相等，所对的弦相等．</div>
+      <p class="tip" data-step="2"><b>思考与探索</b>　如果圆心角所对的弧相等，那么它们所对的弦相等吗？这两个圆心角相等吗？如果弦相等呢？<span class="think" data-step="3" data-ask="拖 D 试试">都相等（拖到弦长相等时，三行同时变绿）。</span></p>
+      <div class="def" data-step="4"><h4>课本 p45</h4>在同圆或等圆中，如果两个圆心角、两条弧、两条弦中有一组量相等，那么它们所对应的其余各组量都分别相等．</div>
+      <p class="recall" data-label="1° 的弧" data-step="5">把顶点在圆心的周角等分成 360 份，每一份是 $1^\circ$ 的圆心角，所对的弧叫做 $1^\circ$ 的弧．<b>圆心角的度数与它所对的弧的度数相等．</b></p>
+      <p class="warn" data-step="6" data-label="前提不能丢">“同圆或等圆”：两个同心圆中，相等的圆心角所对的弧<b>度数</b>相等，弧却不相等（不能重合）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p45 两个定理、图 2-11 与“1° 的弧”。左图中 ∠AOB 固定为 60°，拖动 D 改变 ∠COD，表格实时给出圆心角、弧的度数和弦长（半径取 2 计算）；当任一量相等时，另外两个量也相等（吸附到 60°）。</p>
+</section>
+
+<!-- 6 ================= 例1 · 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>由相等的圆心角得相等的弦</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex1" class="exfig"></div>
+      <p class="tip">如图 2-12，$AB$、$AC$、$BC$ 是 $\odot O$ 的弦，$\angle AOC=\angle BOC$．$\angle ABC$ 与 $\angle BAC$ 相等吗？为什么？</p>
+      <div class="proof">
+        <p data-step="1"><span class="lead">解：</span>$\angle ABC$ 与 $\angle BAC$ 相等．在 $\odot O$ 中，</p>
+        <p data-step="2"><span class="so">∵</span>$\angle AOC=\angle BOC$，</p>
+        <p data-step="3"><span class="so">∴</span>$AC=BC$（<button class="yj" data-k="ang-chord"></button>）．</p>
+        <p data-step="4"><span class="so">∴</span>$\angle ABC=\angle BAC$（<button class="yj" data-k="dy-xz"></button>）．</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1.</b> 在 $\odot O$ 中，$\overset{\frown}{AC}=\overset{\frown}{BD}$，$\angle AOB=50^\circ$．求 $\angle COD$ 的度数．</p>
+        <details><summary>提示</summary>等弧对等圆心角：$\angle AOC=\angle BOD$，两边同时去掉公共部分。</details>
+        <details><summary>答案</summary>$\angle AOC=\angle BOD$ ⇒ $\angle AOC-\angle BOC=\angle BOD-\angle BOC$，即 $\angle AOB=\angle COD$，所以 $\angle COD=50^\circ$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2.</b> 在 $\odot O$ 中，$\overset{\frown}{AB}=\overset{\frown}{AC}$，$\angle A=40^\circ$．求 $\angle ABC$ 的度数．</p>
+        <details><summary>提示</summary>等弧对等弦：$AB=AC$。</details>
+        <details><summary>答案</summary>$AB=AC$，$\angle ABC=\angle ACB=\dfrac{180^\circ-40^\circ}{2}=70^\circ$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 3.</b> 在 $\triangle ABC$ 中，$\angle C=90^\circ$，$\angle B=28^\circ$，以点 $C$ 为圆心、$CA$ 为半径的圆交 $AB$ 于点 $D$，交 $BC$ 于点 $E$．求 $\overset{\frown}{AD}$、$\overset{\frown}{DE}$ 的度数．</p>
+        <details><summary>提示</summary>连接 $CD$：$CA=CD$，先求圆心角 $\angle ACD$、$\angle DCE$。</details>
+        <details><summary>答案</summary>$\angle A=62^\circ$，$\angle CDA=\angle A=62^\circ$，$\angle ACD=56^\circ$，$\angle DCE=90^\circ-56^\circ=34^\circ$．所以 $\overset{\frown}{AD}$ 为 $56^\circ$，$\overset{\frown}{DE}$ 为 $34^\circ$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p45–46 例 1 与练习。例 1 的图按 ∠AOC = ∠BOC = 110° 精确绘制（此时 ∠ABC = ∠BAC = 55°）。练习 3 用“圆心角的度数与它所对的弧的度数相等”把求弧转化为求圆心角。</p>
+</section>
+
+<!-- 7 ================= 轴对称 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">折叠</span><h2>圆是轴对称图形</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1">在纸上画 $\odot O$，把 $\odot O$ 剪下并折叠，使折痕两旁的部分完全重合，你发现了什么？<span class="think" data-step="2" data-ask="动手折一折">折痕过圆心 $O$。</span></p>
+        <p class="def big-def" data-step="3">圆是轴对称图形，过圆心的任意一条直线都是它的对称轴．（课本 p46）</p>
+        <p class="warn" data-step="4" data-label="说法要准确">对称轴是<b>直线</b>：说“直径是圆的对称轴”不准确，应说“直径所在的直线是圆的对称轴”。圆有<b>无数条</b>对称轴。</p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="5"><b>操作与思考</b>　画 $\odot O$ 的直径 $AB$、弦 $CD$，使 $AB\perp CD$，垂足为 $P$（图 2-13）．在所画图中有哪些相等的线段、相等的弧？</p>
+        <svg viewBox="0 0 220 220" class="f213" aria-label="图2-13 直径AB垂直于弦CD">
+          <circle cx="110" cy="110" r="90" fill="none" stroke="#1f2d3a" stroke-width="2"/>
+          <line x1="110" y1="20" x2="110" y2="200" stroke="#1f2d3a" stroke-width="2"/>
+          <line x1="37.3" y1="163" x2="182.7" y2="163" stroke="#1d6fa5" stroke-width="2.5"/>
+          <path d="M110 163 h-9 v-9 h9" fill="none" stroke="#c0392b" stroke-width="1.6"/>
+          <circle cx="110" cy="110" r="3"/>
+          <text x="114" y="16" class="fl">A</text><text x="114" y="216" class="fl">B</text><text x="22" y="168" class="fl">C</text><text x="186" y="168" class="fl">D</text><text x="114" y="106" class="fl">O</text><text x="114" y="178" class="fl">P</text>
+        </svg>
+        <p class="tip" data-step="6">小丽：<span class="think" data-step="7" data-ask="猜一猜">$PC=PD$．</span>　小明：<span class="think" data-step="7" data-ask="猜一猜">$\overset{\frown}{AC}=\overset{\frown}{AD}$，$\overset{\frown}{BC}=\overset{\frown}{BD}$．</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p46 折纸与操作与思考、图 2-13（右图按 OP = 0.59r 精确绘制，CD ⊥ AB）。让每个学生真的折一次纸。猜想留给下一页用“翻折”验证。</p>
+</section>
+
+<!-- 8 ================= 折叠验证（核心 B） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验</span><h2>沿直径 $AB$ 折叠：$D$ 落在哪里？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fold" class="fold"></div>
+      <div class="slider-row" data-noswipe>翻折角度<input type="range" id="foldA" min="0" max="180" step="2" value="0"><b class="v" id="foldAV"></b>　<button class="btn" type="button" id="foldPerp">设 $CD\perp AB$</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">拖动 $C$、$D$ 改变弦 $CD$，再拖“翻折角度”把右半圆沿 $AB$ 折过去．</p>
+      <div class="readout fold-read">
+        <span>$\angle APD$</span><b class="v" id="fdAng"></b>
+        <span>$PC$ / $PD$</span><b class="v" id="fdP"></b>
+        <span>$\overset{\frown}{AC}$ / $\overset{\frown}{AD}$</span><b class="v" id="fdA"></b>
+        <span>$\overset{\frown}{BC}$ / $\overset{\frown}{BD}$</span><b class="v" id="fdB"></b>
+      </div>
+      <p class="tip feedback" id="fdMsg"></p>
+      <p class="tip" data-step="1">为什么 $CD\perp AB$ 时，折过去 $D$ 一定落在 $C$ 上？<span class="think" data-step="2" data-ask="说说理由">$\overset{\frown}{ADB}$ 与 $\overset{\frown}{ACB}$ 重合（圆的轴对称性）；$\angle APD=\angle APC=90^\circ$，射线 $PD$ 与 $PC$ 重合；两条“线”的交点 $D$ 与 $C$ 重合（图 2-14）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p47 图 2-14 的翻折。翻折用“右半边横坐标乘 cos(翻折角)”模拟纸片绕 AB 翻转的投影，180° 时恰为关于 AB 的轴对称。先按“设 CD ⊥ AB”，折到 180°：D 与 C 重合，读数两两相等；再把 D 拖开（CD 不垂直于 AB），折过去 D 落在别处——说明“垂直”这个条件必不可少。</p>
+</section>
+
+<!-- 9 ================= 证明 · 垂径定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>垂直于弦的直径</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex2" class="exfig"></div>
+      <p class="tip">如图 2-15，$AB$ 是 $\odot O$ 的直径，$CD$ 是 $\odot O$ 的弦，$AB\perp CD$，垂足为 $P$．</p>
+    </div>
+    <div class="col">
+      <div class="proof">
+        <p data-step="1">连接 $OC$、$OD$．在 $\triangle OCD$ 中，</p>
+        <p data-step="2"><span class="so">∵</span>$OC=OD$（<button class="yj" data-k="same-r"></button>），$OP\perp CD$，</p>
+        <p data-step="3"><span class="so">∴</span>$PC=PD$，$\angle BOC=\angle BOD$（<button class="yj" data-k="sxhy"></button>）．</p>
+        <p data-step="4"><span class="so">∴</span>$\angle AOC=\angle AOD$（<button class="yj" data-k="same-supp"></button>）．</p>
+        <p data-step="5"><span class="so">∴</span>$\overset{\frown}{BC}=\overset{\frown}{BD}$，$\overset{\frown}{AC}=\overset{\frown}{AD}$（<button class="yj" data-k="ang-arc"></button>）．</p>
+      </div>
+      <div class="def big-def" data-step="6"><h4>定理（课本 p47，通常称为垂径定理）</h4>垂直于弦的直径平分弦以及弦所对的两条弧．</div>
+      <p class="method" data-step="7" data-label="基本图形">半径 $r$、弦心距 $d$、半弦 $\frac a2$ 组成直角三角形：$r^2=d^2+\left(\frac a2\right)^2$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p47 图 2-15 的推理证明（翻折是“证实”，这里是“证明”）。第 3 行用的是等腰三角形三线合一；第 4 行：∠AOC = 180° − ∠BOC，∠AOD = 180° − ∠BOD。最后的“基本图形”是后面计算题的钥匙。</p>
+</section>
+
+<!-- 10 ================= 例2 · 拓展 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>同心圆中的两段相等</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex3" class="exfig"></div>
+      <p class="tip">如图 2-16，在以点 $O$ 为圆心的两个同心圆中，大圆的弦 $AB$ 交小圆于点 $C$、$D$．$AC$ 与 $BD$ 相等吗？为什么？</p>
+    </div>
+    <div class="col">
+      <div class="proof">
+        <p data-step="1"><span class="lead">解：</span>$AC$ 与 $BD$ 相等．过点 $O$ 作 $OP\perp AB$，垂足为 $P$（<button class="yj" data-k="aux"></button>）．</p>
+        <p data-step="2"><span class="so">∵</span>$OP\perp AB$，</p>
+        <p data-step="3"><span class="so">∴</span>$AP=BP$，$CP=DP$（<button class="yj" data-k="cj"></button>）．</p>
+        <p data-step="4"><span class="so">∴</span>$AP-CP=BP-DP$，即 $AC=BD$．</p>
+      </div>
+      <p class="method" data-step="5" data-label="作垂直于弦的直径">同一条 $OP$ 同时垂直于两个圆的弦，垂径定理用两次。</p>
+      <div class="hint-ladder">
+        <p class="q"><b>拓展与延伸（图 2-17）</b>　$AB$、$CD$ 是 $\odot O$ 的两条弦，$AB\parallel CD$．$\overset{\frown}{AC}$ 与 $\overset{\frown}{BD}$ 相等吗？为什么？</p>
+        <details><summary>提示</summary>作直径 $MN\perp AB$；因为 $AB\parallel CD$，所以 $MN\perp CD$。</details>
+        <details><summary>答案</summary>相等．由垂径定理，$\overset{\frown}{MA}=\overset{\frown}{MB}$，$\overset{\frown}{MC}=\overset{\frown}{MD}$，相减得 $\overset{\frown}{AC}=\overset{\frown}{BD}$（圆的两条平行弦所夹的弧相等）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p47 例 2、p48 拓展与延伸。例 2 课本的书写：“∴ AP = BP，CP = DP（垂直于弦的直径平分弦）”。注意 OP 不是直径，但它所在的直线过圆心且垂直于弦，同样适用。图按大圆半径 1、小圆半径 0.6、OP = 0.35 精确绘制。</p>
+</section>
+
+<!-- 11 ================= 计算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>垂径定理 + 勾股定理</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 5.</b> 在 $\odot O$ 中，直径 $AB=10$，弦 $CD\perp AB$，垂足为 $E$，$OE=3$．求弦 $CD$ 的长．</p>
+        <details><summary>提示</summary>连接 $OC$：$OC=5$，$OE=3$，在 $\text{Rt}\triangle OCE$ 中求 $CE$。</details>
+        <details><summary>答案</summary>$CE=\sqrt{5^2-3^2}=4$，$CD=2CE=8$（垂直于弦的直径平分弦）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 8.</b> 在直径为 650 mm 的圆柱形油罐内装进一些油后，其横截面如图．若油面宽 $AB=600$ mm，求油的最大深度．</p>
+        <svg viewBox="0 0 160 100" class="tank" aria-label="油罐横截面">
+          <defs><clipPath id="tk"><rect x="0" y="65.3" width="160" height="40"/></clipPath></defs>
+          <circle cx="80" cy="48" r="45" fill="none" stroke="#1f2d3a" stroke-width="1.5"/>
+          <circle cx="80" cy="48" r="45" fill="#bcd9ee" clip-path="url(#tk)"/>
+          <line x1="38.5" y1="65.3" x2="121.5" y2="65.3" stroke="#1f2d3a" stroke-width="1.5"/>
+          <line x1="80" y1="48" x2="80" y2="93" stroke="#c0392b" stroke-dasharray="3 3"/>
+          <line x1="80" y1="48" x2="121.5" y2="65.3" stroke="#1d6fa5"/>
+          <text x="30" y="70" class="fl">A</text><text x="124" y="70" class="fl">B</text><text x="84" y="46" class="fl">O</text>
+        </svg>
+        <details><summary>提示</summary>过 $O$ 作 $OE\perp AB$，延长交圆于最低点；半径 325，半弦 300。</details>
+        <details><summary>答案</summary>$OE=\sqrt{325^2-300^2}=125$，最大深度 $=325-125=200$ mm．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 3（p48）.</b> $\odot O$ 的直径为 10，弦 $AB$ 的长为 8，点 $P$ 在 $AB$ 上运动．求 $OP$ 的取值范围．</p>
+        <details><summary>提示</summary>$OP$ 最短是弦心距（$P$ 为 $AB$ 中点），最长是 $P$ 在端点时。</details>
+        <details><summary>答案</summary>弦心距 $\sqrt{5^2-4^2}=3$，所以 $3\le OP\le5$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 7.</b> $AB$、$AC$ 是 $\odot O$ 的两条弦，且 $AB\perp AC$，$AB=8$，$AC=6$．求 $\odot O$ 的半径．</p>
+        <details><summary>提示</summary>过 $O$ 分别作 $AB$、$AC$ 的垂线，得到矩形：$O$ 到 $AB$ 的距离是 3，到 $AC$ 的距离是 4。</details>
+        <details><summary>答案</summary>半径 $=\sqrt{4^2+3^2}=5$（也可以说明 $BC$ 是直径，$BC=10$）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p48–49 练习第 3 题、习题 2.2 第 5、7、8 题。油罐图按半径 325、油面宽 600 等比例绘制（油面在圆心下方 125）。四题都回到上一页的“基本图形”：半径、弦心距、半弦组成直角三角形。练习 p48 第 1 题“如何确定圆形纸片的圆心”：对折两次，两条折痕的交点就是圆心——这正好引出下一节。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>两种对称性，两组结论</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>旋转 → 中心对称</h3>
+        <p class="def">同圆或等圆中，圆心角、弧、弦，一组量相等，其余各组量都相等；圆心角的度数 = 所对弧的度数．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>翻折 → 轴对称</h3>
+        <p class="def">过圆心的任意一条直线都是对称轴；垂直于弦的直径平分弦以及弦所对的两条弧．</p>
+        <p class="method" data-label="辅助线">作弦心距、连半径：$r^2=d^2+\left(\frac a2\right)^2$。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="图形运动">用旋转、翻折“证实”猜想，再用推理“证明”。</p>
+        <p class="recall" data-label="转化">求弧 → 求圆心角；求弦 → 解直角三角形。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.3 确定圆的条件——对折两次能找到圆形纸片的圆心；那么，经过几个点可以确定一个圆？</p>
+  </div>
+  <p class="note">课后作业：习题 2.2 第 1–4、6 题。第 6 题“过圆内一点 P 画弦 AB，使 P 是 AB 的中点”：连 OP，过 P 作 OP 的垂线——是垂径定理的逆向运用。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

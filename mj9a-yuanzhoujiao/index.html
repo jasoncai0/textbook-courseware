@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆周角 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/juchang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第2章 对称图形——圆 · 2.4</p>
+    <h1 class="cover-title">圆周角</h1>
+    <p class="cover-q" data-step="1">剧场的看台沿着一段圆弧排开。坐在不同的座位上看舞台的两端，“视角”一样大吗？</p>
+    <p class="cover-q" data-step="2">把舞台的两端看作圆上的两点 $B$、$C$，座位看作圆上的点 $A$——$\angle BAC$ 会随 $A$ 的位置变化吗？它和圆心角 $\angle BOC$ 有什么关系？</p>
+    <div class="chips" data-step="3"><span class="chip">拖动顶点 · 猜想</span><span class="chip">分三种情形证明</span><span class="chip">直径所对的圆周角</span><span class="chip">圆内接四边形</span></div>
+  </div>
+  <p class="note">封面只提问题，让学生凭直觉先表态：“越靠边视角越小”还是“一样大”？本课主线：观察（拖点）→ 猜想 → 分类证明 → 两个推论（直径、内接四边形）→ 应用。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols3 rc">
+      <div class="recall" data-label="九上 2.2 圆的对称性" data-step="1">
+        <p>顶点在<b>圆心</b>的角叫圆心角。</p>
+        <p>圆心角的度数与它所对的<b>弧的度数</b>相等；在同圆或等圆中，相等的圆心角所对的弧相等、所对的弦相等。</p>
+        <span class="use">把圆周角“换算”成圆心角，再换算成弧的度数。</span>
+      </div>
+      <div class="recall" data-label="八上 2.5 等腰三角形" data-step="2">
+        <p>同圆的半径相等：$OA=OC$，所以 $\triangle AOC$ 是<b>等腰三角形</b>。</p>
+        <p><b>等边对等角</b>：$OA=OC\Rightarrow\angle OAC=\angle OCA$。</p>
+        <span class="use">证明情形（1）的第一步。</span>
+      </div>
+      <div class="recall" data-label="七下 12.2 三角形的外角" data-step="3">
+        <p>三角形的一个外角等于与它不相邻的两个内角的和。</p>
+        <p>$\angle BOC=\angle OAC+\angle OCA$。</p>
+        <span class="use">得出“圆心角是圆周角的 2 倍”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>上一课（2.3）讲到：</b>不在同一条直线上的三点确定一个圆，三角形三个顶点所在的圆叫它的<b>外接圆</b>。本课研究顶点在<b>圆上</b>的角。</p>
+  </div>
+  <p class="note">每出一张卡，先请学生口头复述，再看“本课用在”。第 1 张卡最关键：圆心角 = 所对弧的度数，这是把“圆周角—圆心角—弧”串起来的桥。</p>
+</section>
+
+<!-- 3 ================= 概念：圆周角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>什么样的角叫圆周角？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f222" class="gfig l"></div>
+      <p class="muted center small-t">图 2-22：$\angle BA_1C$、$\angle BA_2C$、$\angle BA_3C$ 有什么共同特征？</p>
+      <div class="def" data-step="1"><h4>圆周角（课本 p53）</h4>顶点在圆上，并且两边都和圆相交的角叫做<b>圆周角</b>．<br>图中 $\angle BA_1C$、$\angle BA_2C$、$\angle BA_3C$ 都是 $\odot O$ 中 $\overset{\frown}{BC}$ 所对的圆周角．</div>
+      <p class="method" data-step="2" data-label="两个条件，缺一不可">① 顶点在<b>圆上</b>；② 两边都和圆<b>相交</b>（都是弦所在的射线）。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习 1（p55）</b>　下列各图中的角是否是圆周角？先判断，再点按钮。</p>
+      <div class="cols2 pk4">
+        <div class="pkc"><div id="pk1" class="pkfig"></div><div class="pick" data-ans="n"><b>①</b><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">顶点在圆<b>外</b>。</p></div></div>
+        <div class="pkc"><div id="pk2" class="pkfig"></div><div class="pick" data-ans="y"><b>②</b><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">顶点在圆上，两边都与圆相交。</p></div></div>
+        <div class="pkc"><div id="pk3" class="pkfig"></div><div class="pick" data-ans="n"><b>③</b><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">顶点在圆<b>内</b>。</p></div></div>
+        <div class="pkc"><div id="pk4" class="pkfig"></div><div class="pick" data-ans="n"><b>④</b><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">顶点在圆上，但有一边与圆<b>只有一个公共点</b>（不相交）。</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p53 定义、p55 练习 1。先问“三个角有什么共同点”，让学生自己概括出两个条件，再出示定义。④ 最容易错：顶点在圆上，但一边没有再和圆相交——这个角在 2.5 学切线后还会遇到。</p>
+</section>
+
+<!-- 4 ================= 操作 · 猜想 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 猜想</span><h2>拖动顶点 $A$：圆周角变不变？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="mv" class="mv"></div>
+      <p class="muted center small-t">拖动橙色点 $A$ 沿圆周走；$B$、$C$ 也能拖。蓝色弧是 $\angle BAC$ 所对的弧</p>
+    </div>
+    <div class="col">
+      <div class="readout r4">
+        <span>$\angle BAC$</span><b class="v" id="mvA"></b>
+        <span>$\angle BOC$</span><b class="v" id="mvO"></b>
+        <span>所对弧的度数</span><b class="v" id="mvArc"></b>
+        <span>$A$ 在</span><b class="v" id="mvSide"></b>
+      </div>
+      <p class="tip feedback" id="mvMsg"></p>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="mvKeep">留下这个角</button><button class="btn" type="button" id="mvClr">清除</button><button class="btn" type="button" id="mv90">$\angle BOC=90^\circ$</button><button class="btn" type="button" id="mv60">$\angle BOC=60^\circ$</button></div>
+      <div class="def" data-step="1"><h4>猜想（课本 p53 操作与思考）</h4><span class="think" data-step="2" data-ask="说说你的发现">$\overset{\frown}{BC}$ 所对的圆周角可以画<b>无数个</b>，它们都<b>相等</b>，都等于圆心角 $\angle BOC$ 的<b>一半</b>：$\angle BAC=\dfrac12\angle BOC$。</span></div>
+    </div>
+  </div>
+  <p class="note">课本 p53 操作与思考 1、2：先点“∠BOC = 90°”，拖 A 走一圈，再点“留下这个角”留下 3、4 个——就是图 2-22 的样子。再换“60°”。故意把 A 拖到下面的劣弧上：此时 ∠BAC 对的是<b>优弧</b>，不再等于 ½∠BOC，而是 ½ 优弧的度数。这正说明定理里“它所对弧上的圆心角”的含义。所有读数都由坐标实时算出。</p>
+</section>
+
+<!-- 5 ================= 证明：情形 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明 · 情形（1）</span><h2>圆心在圆周角的一边上</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cs" class="cs"></div>
+      <div class="btns" data-noswipe id="csBtns"><button class="btn solid" type="button" data-case="1">情形（1）</button><button class="btn" type="button" data-case="2">情形（2）</button><button class="btn" type="button" data-case="3">情形（3）</button></div>
+      <p class="tip feedback" id="csMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">圆心 $O$ 和圆周角 $\angle BAC$ 的位置只有三种情况：在<b>一边上</b>、在<b>角的内部</b>、在<b>角的外部</b>。先研究最容易的情形（1）．</p>
+      <div class="proof">
+        <p data-step="1"><span class="lead">证明：</span>如图 2-25，<span class="so">∵</span>$OC=OA$（<button class="yj" data-k="r-eq"></button>），</p>
+        <p data-step="2"><span class="so">∴</span>$\angle OCA=\angle OAC$（<button class="yj" data-k="dy-xz"></button>）．</p>
+        <p data-step="3"><span class="so">∵</span>$\angle BOC$ 是 $\triangle AOC$ 的外角，</p>
+        <p data-step="4"><span class="so">∴</span>$\angle BOC=\angle OCA+\angle OAC$（<button class="yj" data-k="ext-angle"></button>）</p>
+        <p data-step="5"><span class="so"></span>$\phantom{\angle BOC}=2\angle OAC$，</p>
+        <p data-step="6"><span class="so">即</span>$\angle BAC=\dfrac12\angle BOC$．</p>
+      </div>
+      <p class="method" data-step="7" data-label="另外两种情形怎么办？"><span class="think" data-step="8" data-ask="想一想：能不能变成情形（1）？">过 $A$ 作直径 $AD$，让圆心落在新角的一边上，就能用情形（1）的结论．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p54。左图可以自由拖动 A，系统自动判断是哪种情形：拖到 O 恰好在 AC（或 AB）上时会吸附并显示“情形（1）”。证明里每一步的依据都可点开。第 7、8 步是本课的思想方法：把一般情形转化为已证的特殊情形。</p>
+</section>
+
+<!-- 6 ================= 证明：情形 2、3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明 · 情形（2）（3）</span><h2>作直径，转化成情形（1）</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <div id="f226" class="gfig l"></div>
+        <p class="tip"><b>（2）圆心在角的内部</b>（图 2-26）：作直径 $AD$，$\angle BAC$ 被分成 $\angle BAD$、$\angle CAD$，圆心 $O$ 在它们的公共边 $AD$ 上．</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="1"><span>$\angle BAC$</span><span>$=\angle BAD+\angle CAD$</span><i class="why">角的和</i></div>
+          <div class="dl" data-step="2"><span></span><span class="think" data-step="3" data-ask="用情形（1）">$=\dfrac12\angle BOD+\dfrac12\angle COD$</span><i class="why">由情形（1）</i></div>
+          <div class="dl end" data-step="4"><span></span><span>$=\dfrac12(\angle BOD+\angle COD)=\dfrac12\angle BOC$</span><i class="why">提取 $\frac12$</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <div id="f227" class="gfig l"></div>
+        <p class="tip"><b>（3）圆心在角的外部</b>：同样作直径 $AD$，这时 $\angle BAC$ 是两个角的<b>差</b>．</p>
+        <div class="derive small-d">
+          <div class="dl" data-step="5"><span>$\angle BAC$</span><span class="think" data-step="6" data-ask="和还是差？">$=\angle BAD-\angle CAD$</span><i class="why">角的差</i></div>
+          <div class="dl" data-step="7"><span></span><span>$=\dfrac12\angle BOD-\dfrac12\angle COD$</span><i class="why">由情形（1）</i></div>
+          <div class="dl end" data-step="8"><span></span><span>$=\dfrac12(\angle BOD-\angle COD)=\dfrac12\angle BOC$</span><i class="why">提取 $\frac12$</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="9" data-label="分类讨论 + 转化">三种情形都证了，猜想才对<b>所有</b>圆周角成立；后两种都通过“作直径”转化为第一种．</p>
+  </div>
+  <p class="note">课本 p54 图 2-26 与小丽的提示。情形（3）请学生先自己说“和还是差”，再点开。两幅图都按坐标精确作出：图 (2) 中 ∠BOC = 80°、∠BAC = 40°；图 (3) 中 ∠BOC = 100°、∠BAC = 50°。</p>
+</section>
+
+<!-- 7 ================= 圆周角定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理</span><h2>圆周角定理</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>定理（课本 p55）</h4>圆周角的度数等于它所对弧上的圆心角度数的一半，同弧或等弧所对的圆周角相等．</div>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="2">因为圆心角的度数与它所对的弧的度数相等，所以也可以说：<b>圆周角的度数等于它所对弧的度数的一半．</b></p>
+        <p class="tip" data-step="3"><b>符号语言：</b>在 $\odot O$ 中，$\angle BAC$、$\angle BDC$ 都是 $\overset{\frown}{BC}$ 所对的圆周角，<br>∴ $\angle BAC=\angle BDC=\dfrac12\angle BOC$（<span class="think" data-step="4" data-ask="依据？">圆周角定理</span>）．</p>
+      </div>
+      <div class="col">
+        <div class="jrow" data-step="5"><div id="fw" class="jfig"></div><p class="warn" data-label="易错：同一条弦，不一定同一条弧">弦 $BC$ 所对的圆周角有两类：$A$ 在优弧上、$E$ 在劣弧上．<span class="think" data-step="6" data-ask="∠BAC 与 ∠BEC 相等吗？">不相等！它们对的是不同的弧：$\angle BAC+\angle BEC=\dfrac12\times360^\circ=180^\circ$（第 4 页拖到劣弧上就看到了）．</span></p></div>
+        <p class="warn" data-step="7" data-label="易错：“同圆或等圆”">两个不等的圆中，度数相同的弧所对的圆周角相等，但“等弧”指能够互相重合的弧——必须在同圆或等圆中．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p55 定理框。引导学生分清“所对的弧”：同一条弦把圆分成两条弧，弦所对的圆周角有两种。图中按坐标作出：∠BAC = 50°，∠BEC = 130°，和为 180°——这为后面“圆内接四边形对角互补”埋下伏笔。</p>
+</section>
+
+<!-- 8 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>两条弦延长相交：求角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f227e" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-27（按 $\angle AOD=150^\circ$、$\overset{\frown}{BC}=70^\circ$ 精确作出）</p>
+      <div class="think-flow" data-step="1">
+        <p class="tf-h"><span>思路</span></p>
+        <p>$\angle ABD$ 是哪条弧所对的圆周角？<span class="think" data-step="2" data-ask="?">$\overset{\frown}{AD}$，对应圆心角 $\angle AOD$</span></p>
+        <p>$\angle AED$ 不是圆周角（顶点在圆外），怎样和圆周角联系？<span class="think" data-step="3" data-ask="?">它是 $\triangle BDE$ 的一个内角，$\angle ABD$ 是这个三角形的外角</span></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-27，$\odot O$ 的弦 $AB$、$DC$ 的延长线相交于点 $E$，$\angle AOD=150^\circ$，$\overset{\frown}{BC}$ 为 $70^\circ$．求 $\angle ABD$、$\angle AED$ 的度数．</p>
+      <div class="proof">
+        <p data-step="4"><span class="lead">解：</span>在 $\odot O$ 中，<span class="so">∵</span>$\angle AOD=150^\circ$，</p>
+        <p data-step="5"><span class="so">∴</span>$\angle ABD=75^\circ$（<button class="yj" data-k="yzj"></button>）．</p>
+        <p data-step="6"><span class="so">∵</span>$\overset{\frown}{BC}$ 为 $70^\circ$，</p>
+        <p data-step="7"><span class="so">∴</span>$\angle BDC=35^\circ$（<button class="yj" data-k="yzj-hu"></button>）．</p>
+        <p data-step="8">又<span class="so">∵</span>$\angle ABD=\angle AED+\angle BDC$（<button class="yj" data-k="ext-angle"></button>），</p>
+        <p data-step="9"><span class="so">∴</span>$\angle AED=\angle ABD-\angle BDC=75^\circ-35^\circ=40^\circ$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p55 例 1。先用左边两个问题引导：哪条弧？顶点在圆外的角怎么办？图中 ∠AED 恰好等于 ½(150° − 70°) = 40°，可作为学有余力学生的发现（圆外角等于所夹两弧度数差的一半），不作要求。</p>
+</section>
+
+<!-- 9 ================= 直径所对的圆周角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>直径所对的圆周角是多少度？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="dia" class="dia"></div>
+      <div class="btns" data-noswipe id="diaBtns"><button class="btn solid" type="button" data-m="d">$BC$ 是直径</button><button class="btn" type="button" data-m="r">$\angle BAC=90^\circ$，找圆心</button></div>
+      <p class="tip feedback" id="diaMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>1．</span><span>$BC$ 是直径 $\Rightarrow\angle BOC=180^\circ$</span><i class="why">平角</i></div>
+        <div class="dl" data-step="1"><span></span><span class="think" data-step="2" data-ask="∠BAC = ?">$\angle BAC=\dfrac12\times180^\circ=90^\circ$</span><i class="why">圆周角定理</i></div>
+        <div class="dl" data-step="3"><span>2．</span><span>$\angle BAC=90^\circ\Rightarrow\angle BOC=180^\circ$</span><i class="why">圆周角定理</i></div>
+        <div class="dl" data-step="3"><span></span><span class="think" data-step="4" data-ask="BC 过圆心吗？">$B$、$O$、$C$ 在一条直线上，$BC$ 是直径</span><i class="why">平角</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>推论（课本 p56）</h4>直径所对的圆周角是直角，$90^\circ$ 的圆周角所对的弦是直径．</div>
+      <p class="method" data-step="6" data-label="练习 1（p58）：找圆形工件的圆心">三角尺的直角顶点放在圆上，两边与圆的交点连线就是直径；换个位置再放一次，两条直径的交点就是圆心．</p>
+    </div>
+  </div>
+  <p class="note">课本 p56 思考与探索、p58 练习 1。先拖 A：无论 A 在哪里，∠BAC 都是 90°（读数实时计算）。再切到“找圆心”：两次放直角，画出两条直径，交点就是圆心——这是一个“正反两用”的推论。教师可提醒：这条推论今后常用来“构造直角”（连接直径端点）。</p>
+</section>
+
+<!-- 10 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>有直径，常连线构造直角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f230" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-30（按 $\angle ACD=60^\circ$、$\angle ADC=50^\circ$ 精确作出）</p>
+      <div class="think-flow" data-step="1">
+        <p class="tf-h"><span>思路</span></p>
+        <p>$\angle CEB$ 是 $\triangle BDE$ 的外角：$\angle CEB=\angle EBD+\angle EDB$．</p>
+        <p>$\angle EBD=\angle ABD$ 与谁对同一条弧？<span class="think" data-step="2" data-ask="?">$\angle ACD$（都对 $\overset{\frown}{AD}$）</span></p>
+        <p>$\angle EDB$ 怎么求？<span class="think" data-step="3" data-ask="?">连接 $DB$，$\angle ADB=90^\circ$（直径），再减去 $\angle ADC$</span></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-30，$AB$ 是 $\odot O$ 的直径，弦 $CD$ 交 $AB$ 于点 $E$，$\angle ACD=60^\circ$，$\angle ADC=50^\circ$．求 $\angle CEB$ 的度数．</p>
+      <div class="proof">
+        <p data-step="4"><span class="lead">解：</span>连接 $DB$．</p>
+        <p data-step="5"><span class="so">∵</span>$AB$ 是 $\odot O$ 的直径，</p>
+        <p data-step="6"><span class="so">∴</span>$\angle ADB=90^\circ$（<button class="yj" data-k="zj-90"></button>）．</p>
+        <p data-step="7"><span class="so">∵</span>$\angle ADC=50^\circ$，<span class="so">∴</span>$\angle EDB=\angle ADB-\angle ADC=90^\circ-50^\circ=40^\circ$．</p>
+        <p data-step="8">又<span class="so">∵</span>$\angle ABD=\angle ACD=60^\circ$（<button class="yj" data-k="yzj">同弧所对的圆周角相等</button>），</p>
+        <p data-step="9"><span class="so">∴</span>$\angle CEB=\angle ABD+\angle EDB=60^\circ+40^\circ=100^\circ$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p57 例 2。“连接 DB”是辅助线（图中虚线）。强调两个“桥”：同弧所对的圆周角相等（∠ABD = ∠ACD），直径所对的圆周角是直角（∠ADB = 90°）。</p>
+</section>
+
+<!-- 11 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>判断三角形的形状</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f231" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-31（$\overset{\frown}{AE}=\overset{\frown}{AB}$，精确作出）</p>
+      <div class="think-flow" data-step="1">
+        <p class="tf-h"><span>思路</span></p>
+        <p>要证等腰，只要证 $\angle AGB=\angle DAC$（即 $\angle AGF=\angle GAF$）．</p>
+        <p>两个角各在一个直角三角形里：<span class="think" data-step="2" data-ask="哪两个？">$\angle AGB$ 与 $\angle ABE$ 互余，$\angle DAC$ 与 $\angle ACB$ 互余</span></p>
+        <p>只要证<span class="think" data-step="3" data-ask="?">$\angle ABE=\angle ACB$——等弧所对的圆周角相等</span></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-31，$BC$ 是 $\odot O$ 的直径，点 $A$ 在 $\odot O$ 上，$AD\perp BC$，垂足为 $D$，$\overset{\frown}{AE}=\overset{\frown}{AB}$，$BE$ 分别交 $AD$、$AC$ 于点 $F$、$G$．判断 $\triangle FAG$ 的形状，并说明理由．</p>
+      <div class="proof sm">
+        <p data-step="4"><span class="lead">解：</span>$\triangle FAG$ 是等腰三角形．</p>
+        <p data-step="5"><span class="so">∵</span>$BC$ 是 $\odot O$ 的直径，<span class="so">∴</span>$\angle BAC=90^\circ$（<button class="yj" data-k="zj-90"></button>）．</p>
+        <p data-step="6"><span class="so">∴</span>$\angle ABE+\angle AGB=90^\circ$．</p>
+        <p data-step="7"><span class="so">∵</span>$AD\perp BC$，<span class="so">∴</span>$\angle ACB+\angle DAC=90^\circ$．</p>
+        <p data-step="8">又<span class="so">∵</span>$\overset{\frown}{AE}=\overset{\frown}{AB}$，<span class="so">∴</span>$\angle ABE=\angle ACB$（<button class="yj" data-k="yzj">等弧所对的圆周角相等</button>）．</p>
+        <p data-step="9"><span class="so">∴</span>$\angle AGB=\angle DAC$（<button class="yj" data-k="same-comp"></button>）．</p>
+        <p data-step="10"><span class="so">∴</span>$\triangle FAG$ 是等腰三角形（<button class="yj" data-k="dy-pd"></button>）．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p57 例 3。分析从结论倒推（要证等腰 → 证两底角相等 → 各找一个余角 → 余角相等），书写从条件顺推。课本 p58“拓展与延伸”（E、A 在直径两侧，图 2-32）结论仍成立，可作课后思考。</p>
+</section>
+
+<!-- 12 ================= 圆内接四边形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>圆内接四边形的对角有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="qd" class="qd"></div>
+      <p class="muted center small-t">四个顶点都能沿圆拖动（保持顺序 $A\to B\to C\to D$）</p>
+    </div>
+    <div class="col">
+      <p class="tip">一个四边形的 4 个顶点都在同一个圆上，这个四边形叫做<b>圆的内接四边形</b>，这个圆叫做四边形的<b>外接圆</b>（课本 p58）．</p>
+      <div class="readout r4">
+        <span>$\angle A$</span><b class="v" id="qA"></b><span>$\angle C$</span><b class="v" id="qC"></b>
+        <span>$\angle B$</span><b class="v" id="qB"></b><span>$\angle D$</span><b class="v" id="qD"></b>
+        <span>$\angle A+\angle C$</span><b class="v" id="qAC"></b><span>$\angle B+\angle D$</span><b class="v" id="qBD"></b>
+      </div>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>$\angle A$</span><span>$=\dfrac12\cdot\overset{\frown}{BCD}$ 的度数</span><i class="why">圆周角定理</i></div>
+        <div class="dl" data-step="1"><span>$\angle C$</span><span>$=\dfrac12\cdot\overset{\frown}{DAB}$ 的度数</span><i class="why">圆周角定理</i></div>
+        <div class="dl" data-step="2"><span>相加</span><span class="think" data-step="3" data-ask="两条弧合起来是什么？">$\angle A+\angle C=\dfrac12\times360^\circ=180^\circ$</span><i class="why">两弧合成整个圆</i></div>
+      </div>
+      <div class="def" data-step="4"><h4>定理（课本 p59）</h4>圆内接四边形的对角互补．</div>
+    </div>
+  </div>
+  <p class="note">课本 p59 思考与探索 1、2。先拖成 BD 是直径的特殊情形（∠A = ∠C = 90°，小明的发现），再随意拖动，读数始终满足 ∠A + ∠C = 180°。证明用小丽的方法（两弧合成整圆）；小明的“作直径 DE”方法可留作课后思考。追问：练习 1“圆的内接平行四边形是矩形吗？”——对角相等又互补，所以都是 90°。</p>
+</section>
+
+<!-- 13 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>两次用“对角互补”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f236" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-36（按 $AB=AD$、$\angle C=110^\circ$ 精确作出）</p>
+      <p class="method" data-step="1" data-label="找内接四边形">图中有两个圆内接四边形：<span class="think" data-step="2" data-ask="哪两个？">$ABCD$ 和 $ABDE$（连接 $BD$ 后）</span>．</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-36，在 $\odot O$ 的内接四边形 $ABCD$ 中，$AB=AD$，$\angle C=110^\circ$．若点 $E$ 在 $\overset{\frown}{AD}$ 上，求 $\angle E$ 的度数．</p>
+      <div class="proof">
+        <p data-step="3"><span class="lead">解：</span>连接 $BD$．<span class="so">∵</span>四边形 $ABCD$ 是 $\odot O$ 的内接四边形，</p>
+        <p data-step="4"><span class="so">∴</span>$\angle BAD+\angle C=180^\circ$（<button class="yj" data-k="nj-hb"></button>）．</p>
+        <p data-step="5"><span class="so">∴</span>$\angle BAD=180^\circ-110^\circ=70^\circ$．</p>
+        <p data-step="6">在 $\triangle ABD$ 中，<span class="so">∵</span>$AB=AD$，$\angle BAD=70^\circ$，</p>
+        <p data-step="7"><span class="so">∴</span>$\angle ABD=\angle ADB=\dfrac12\times(180^\circ-70^\circ)=55^\circ$．</p>
+        <p data-step="8">又<span class="so">∵</span>四边形 $ABDE$ 是 $\odot O$ 的内接四边形，</p>
+        <p data-step="9"><span class="so">∴</span>$\angle ABD+\angle E=180^\circ$（<button class="yj" data-k="nj-hb"></button>）．</p>
+        <p data-step="10"><span class="so">∴</span>$\angle E=180^\circ-55^\circ=125^\circ$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p59–60 例 4。关键是“连接 BD”后看出第二个内接四边形 ABDE。图中各角按坐标精确：∠BAD = 70°，∠AED = 125°。</p>
+</section>
+
+<!-- 14 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p55 练习 2）点 $A$、$B$、$C$、$D$ 在 $\odot O$ 上，$\angle BAC=35^\circ$．求 $\angle BDC$、$\angle BOC$ 的度数．</p>
+        <div id="h1" class="hfig"></div>
+        <details><summary>提示 1</summary>$\angle BAC$ 与 $\angle BDC$ 对同一条弧吗？</details>
+        <details><summary>提示 2</summary>都对 $\overset{\frown}{BC}$；圆心角 $\angle BOC$ 也对 $\overset{\frown}{BC}$．</details>
+        <details><summary>完整解答</summary>$\angle BDC=\angle BAC=35^\circ$（同弧所对的圆周角相等）；$\angle BOC=2\angle BAC=70^\circ$（圆周角定理）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（p55 练习 3）点 $A$、$B$、$C$、$D$ 在 $\odot O$ 上，$\angle ACB=\angle BDC=60^\circ$，$BC=3$．求 $\triangle ABC$ 的周长．</p>
+        <div id="h2" class="hfig"></div>
+        <details><summary>提示 1</summary>$\angle BAC$ 与 $\angle BDC$ 对同一条弧 $\overset{\frown}{BC}$．</details>
+        <details><summary>提示 2</summary>$\angle BAC=\angle ACB=60^\circ$，$\triangle ABC$ 是什么三角形？</details>
+        <details><summary>完整解答</summary>$\angle BAC=\angle BDC=60^\circ$，又 $\angle ACB=60^\circ$，所以 $\triangle ABC$ 是等边三角形，周长 $=3\times3=9$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（p60 练习 3）四边形 $ABCD$ 是 $\odot O$ 的内接四边形，$\angle C=130^\circ$．求 $\angle BOD$ 的度数．</p>
+        <div id="h3" class="hfig"></div>
+        <details><summary>提示 1</summary>先用对角互补求 $\angle A$．</details>
+        <details><summary>提示 2</summary>$\angle A$ 与 $\angle BOD$ 对同一条弧 $\overset{\frown}{BCD}$．</details>
+        <details><summary>完整解答</summary>$\angle A=180^\circ-130^\circ=50^\circ$（圆内接四边形的对角互补），$\angle BOD=2\angle A=100^\circ$（圆周角定理）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p55 练习 2、3，p60 练习 3。先独立做 3 分钟，卡住再逐级点开。第 3 题要分清 ∠BOD 对的是哪条弧（劣弧 BCD）。课后作业建议：习题 2.4 第 1、2 题；p58 练习 3（AD = 4，∠ABC = ∠DAC，AC = 2√2）。</p>
+</section>
+
+<!-- 15 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">圆周角 $=\dfrac12$ 所对弧上的圆心角 $=\dfrac12$ 所对弧的度数；同弧或等弧所对的圆周角相等。</p>
+        <p class="def">直径所对的圆周角是直角；$90^\circ$ 的圆周角所对的弦是直径。圆内接四边形的对角互补。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="找弧">求圆周角，先找它“所对的弧”，再找同弧上的圆心角或其他圆周角。</p>
+        <p class="method" data-label="添线">有直径，连线得直角；见内接四边形，想对角互补。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="分类讨论">圆心在角的一边上、内部、外部，三种情形都证。</p>
+        <p class="recall" data-label="转化">作直径，把一般情形化成特殊情形（1）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.5 直线与圆的位置关系——把直尺在圆旁平移，直线与圆的公共点个数怎样变化？怎样用数量关系来描述？</p>
+  </div>
+  <p class="note">请学生先说“这节课是怎样发现、怎样证明圆周角定理的”，再逐栏揭示。作业：习题 2.4（p60–62）选做。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>矩形、菱形、正方形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chuanghu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第9章 中心对称图形——平行四边形 · 9.4</p>
+    <h1 class="cover-title">矩形、菱形、正方形</h1>
+    <p class="cover-q" data-step="1">窗格是一个个长方形；有的标志由几个“斜放的方块”组成。上面的图片中有你熟悉的图形吗？</p>
+    <p class="cover-q" data-step="2">它们都是平行四边形，又比一般的平行四边形“多了一点什么”。多了什么？多出来的条件又带来了哪些<b>新性质</b>？怎样<b>判定</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">矩形</span><span class="chip">菱形</span><span class="chip">正方形</span><span class="chip">活动框架</span><span class="chip">平行线间的距离</span></div>
+  </div>
+  <p class="note">课本 p74 情境（窗户、菱形标志）。本课内容很多，建议分三课时：矩形（第 3–8 页）、菱形（第 9–13 页）、正方形与综合（第 14–18 页）。研究路线三次重复：定义 → 性质（比平行四边形多什么）→ 判定 → 例题。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="9.3 · 平行四边形" data-step="1">
+        <p>性质：对边平行且相等，对角相等，对角线互相平分；中心对称图形。</p>
+        <p>判定：两组对边分别平行 / 相等；一组对边平行且相等；对角线互相平分。</p>
+        <span class="use">矩形、菱形、正方形都是特殊的平行四边形，先继承这些性质。</span>
+      </div>
+      <div class="recall" data-label="八上 2.5 · 等腰三角形" data-step="2">
+        <p>等腰三角形顶角的平分线、底边上的中线、底边上的高互相重合（三线合一）。</p>
+        <p>直角三角形斜边上的中线等于斜边的一半。</p>
+        <span class="use">例 2 和练习中证明垂直、证明线段相等。</span>
+      </div>
+      <div class="recall" data-label="八上 3.1 · 勾股定理" data-step="3">
+        <p>直角三角形两直角边的平方和等于斜边的平方。</p>
+        <span class="use">菱形的对角线把它分成 4 个直角三角形，用来求边长、对角线（例 3）。</span>
+      </div>
+      <div class="recall" data-label="八上 2.1 · 轴对称图形" data-step="4">
+        <p>沿一条直线折叠，直线两旁的部分能够互相重合。</p>
+        <span class="use">平行四边形一般不是轴对称图形，矩形、菱形却是——各有几条对称轴？</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第一张卡是本课的“底座”：每学一种特殊平行四边形，先问“平行四边形的性质它都有吗？”（有），再问“它还多了什么？”。第二张卡的两个结论在例 2 中会同时用到。</p>
+</section>
+
+<!-- 3 ================= 矩形：活动框架 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念 · 思考</span><h2>扭动平行四边形框架，什么时候成了矩形？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="frameR" class="brd-l"></div>
+      <div class="slider-row" data-noswipe>$\angle ABC=$ <input type="range" id="frameRA" min="50" max="130" step="1" value="68"><b class="v" id="frameRAV"></b></div>
+    </div>
+    <div class="col">
+      <div class="def"><h4>矩形（课本 p74）</h4>有一个角是直角的平行四边形叫做<em>矩形</em>（rectangle）．矩形也叫长方形．</div>
+      <p class="tip">图 9-19：平行四边形活动框架，对角线是两根橡皮筋．扭动框架，边、内角、对角线都随着变化．</p>
+      <div class="readout r2"><span>$AC$</span><b class="v" id="frR1"></b><span>$BD$</span><b class="v" id="frR2"></b></div>
+      <p class="tip feedback" id="frRMsg"></p>
+      <p class="tip" data-step="1">当 $\angle ABC=90^\circ$ 时：(1) 其他三个内角为多少度？<span class="think" data-step="2" data-ask="?">都是 $90^\circ$（同旁内角互补；对角相等）。</span></p>
+      <p class="tip" data-step="3">(2) 对角线 $AC$、$BD$ 的大小有什么关系？<span class="think" data-step="4" data-ask="?">相等：$AB=DC$，$\angle ABC=\angle DCB=90^\circ$，$BC=CB$，$\triangle ABC\cong\triangle DCB$，所以 $AC=DB$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p74 定义与思考（图 9-19）。拖滑块扭动框架（两边长度不变）：∠ABC 越接近 90°，两根“橡皮筋”越接近等长；恰好 90° 时变成矩形，AC = BD（提示变绿）。说理时注意：四个角都是直角用的是平行四边形的性质，对角线相等用的是全等三角形。</p>
+</section>
+
+<!-- 4 ================= 矩形的性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理</span><h2>矩形的性质：比平行四边形多了什么？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="def" data-step="1"><h4>定理（课本 p75）</h4>矩形的四个角都是直角，对角线相等．</div>
+      <p class="tip" data-step="2">讨论：矩形是中心对称图形吗？是轴对称图形吗？<span class="think" data-step="3" data-ask="?">矩形是特殊的平行四边形，是中心对称图形；矩形还是轴对称图形，有<b>两条</b>对称轴（两组对边中点的连线所在的直线）。</span></p>
+      <div id="symR" class="brd-s"></div>
+      <p class="warn" data-step="4" data-label="别忘了">矩形的对角线相等<b>并且</b>互相平分，所以 $OA=OB=OC=OD$——四个点到 $O$ 一样远，图中有 4 个等腰三角形。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 1</b> 已知：如图 9-20，矩形 $ABCD$ 的对角线 $AC$、$BD$ 相交于点 $O$，且 $AC=2AB$．求证：$\triangle AOB$ 是等边三角形．</p>
+      <div class="proof">
+        <p data-step="5"><span class="lead">证明：</span><span class="so">∵</span>四边形 $ABCD$ 是矩形，</p>
+        <p data-step="5"><span class="so">∴</span>$AC=BD$（<button class="yj" data-k="jx-xz">矩形的对角线相等</button>），</p>
+        <p data-step="6">$AO=\dfrac12AC$，$BO=\dfrac12BD$（<button class="yj" data-k="px-djx">矩形的对角线互相平分</button>）．</p>
+        <p data-step="7"><span class="so">∵</span>$AC=2AB$，即 $AB=\dfrac12AC$，</p>
+        <p data-step="8"><span class="so">∴</span>$AO=BO=AB$．<span class="so">∴</span>$\triangle AOB$ 是等边三角形．</p>
+      </div>
+      <div class="hint-ladder" data-step="9">
+        <p class="q"><b>练习 1.</b> 矩形 $ABCD$ 的对角线 $AC$、$BD$ 相交于点 $O$，$\angle AOD=120^\circ$，$AB=4$ cm．求矩形对角线的长．　$AC=$ <span class="blank" data-ans="8"></span> cm</p>
+        <details><summary>提示</summary>$\angle AOB=180^\circ-120^\circ=60^\circ$，又 $OA=OB$，$\triangle AOB$ 是什么三角形？</details>
+        <details><summary>完整解答</summary>$\angle AOB=60^\circ$，$OA=OB$，∴ $\triangle AOB$ 是等边三角形，$OA=AB=4$ cm，∴ $AC=2OA=8$ cm。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p75 定理、讨论、例 1 与练习 1。例 1 的关键是“OA = OB”——来自矩形“对角线相等且互相平分”两条性质合用。左下小图画出矩形的对称中心和两条对称轴（按坐标精确绘制）。练习 2（CE∥DB 交 AB 延长线于 E，求证 AC = EC）可作课后：先证 BECD 是平行四边形，得 EC = BD = AC。</p>
+</section>
+
+<!-- 5 ================= 矩形的判定 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索 · 判定</span><h2>反过来：什么样的四边形是矩形？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip" data-step="1"><b>1.</b> 四个角（或三个角）都是直角的四边形是矩形吗？</p>
+      <div class="derive wrap" data-step="1">
+        <div class="dl"><span>∵</span><span>$\angle A=\angle B=\angle C=90^\circ$</span><i class="why">已知</i></div>
+        <div class="dl"><span>∴</span><span class="think" data-step="2" data-ask="得到什么？">$\angle A+\angle B=180^\circ$，$\angle B+\angle C=180^\circ$，于是 $AD\parallel BC$，$AB\parallel DC$</span><i class="why">同旁内角互补，两直线平行</i></div>
+        <div class="dl end"><span>∴</span><span class="think" data-step="3" data-ask="结论">四边形 $ABCD$ 是平行四边形，又有一个角是直角，所以是矩形</span><i class="why">矩形的定义</i></div>
+      </div>
+      <p class="tip" data-step="4"><b>2.</b> 对角线相等的平行四边形是矩形吗？（图 9-21）</p>
+      <div class="derive wrap" data-step="4">
+        <div class="dl"><span>∵</span><span>$AB=DC$，$BC=CB$，$AC=DB$</span><i class="why">▱ 对边相等；公共边；已知</i></div>
+        <div class="dl"><span>∴</span><span class="think" data-step="5" data-ask="?">$\triangle ABC\cong\triangle DCB$，$\angle ABC=\angle DCB$</span><i class="why">SSS；全等三角形对应角相等</i></div>
+        <div class="dl end"><span>∴</span><span class="think" data-step="6" data-ask="?">又 $\angle ABC+\angle DCB=180^\circ$，所以 $\angle ABC=90^\circ$，▱$ABCD$ 是矩形</span><i class="why">$AB\parallel DC$；矩形的定义</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="7"><h4>定理（课本 p76）</h4>三个角是直角的四边形是矩形．<br>对角线相等的平行四边形是矩形．</div>
+      <div id="judgeR" class="brd-s"></div>
+      <div class="btns" data-noswipe id="judgeRBtns"><button class="btn solid" type="button" data-k="p">对角线相等的▱</button><button class="btn" type="button" data-k="q">只是对角线相等</button></div>
+      <p class="warn" data-step="8" data-label="条件不能丢">第二个定理的前提是“<b>平行四边形</b>”。只知道“对角线相等”的四边形不一定是矩形——点右边的按钮看反例（习题 9.4 第 1(1) 题）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p76 探索 1、2 与判定定理。右图：两条对角线等长；“对角线相等的▱”时它们互相平分，画出来一定是矩形；“只是对角线相等”时两条对角线不互相平分，画出的四边形连平行四边形都不是。判定矩形一共三条路：定义（▱ + 一个直角）、三个直角、▱ + 对角线相等。</p>
+</section>
+
+<!-- 6 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>用“三个直角”判定矩形</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="ex2" class="brd-m"></div>
+      <div class="think-flow" data-step="1"><p class="tf-h"><span>证明的途径</span></p><p>由 $DC$ 是 $\text{Rt}\triangle ABC$ 斜边上的中线，可知 $DC=DA=DB$．又 $DE$、$DF$ 分别平分 $\angle BDC$、$\angle ADC$，于是 $DF\perp AC$，$DE\perp BC$．</p></div>
+    </div>
+    <div class="col">
+      <p class="tip">已知：如图 9-22，在 $\triangle ABC$ 中，$\angle ACB=90^\circ$，$D$ 是 $AB$ 的中点，$DE$、$DF$ 分别是 $\triangle BDC$、$\triangle ADC$ 的角平分线．求证：四边形 $DECF$ 是矩形．</p>
+      <div class="proof">
+        <p data-step="2"><span class="lead">证明：</span><span class="so">∵</span>$\angle ACB=90^\circ$，$D$ 是 $AB$ 的中点，</p>
+        <p data-step="3"><span class="so">∴</span>$DC=\dfrac12AB=DA=DB$（<button class="yj" data-k="rt-mid">直角三角形斜边上的中线等于斜边的一半</button>）．</p>
+        <p data-step="4"><span class="so">∵</span>$DC=DA$，$DF$ 平分 $\angle ADC$，</p>
+        <p data-step="5"><span class="so">∴</span>$DF\perp AC$（<button class="yj" data-k="sxhy">等腰三角形三线合一</button>），即 $\angle DFC=90^\circ$．</p>
+        <p data-step="6">同理 $\angle DEC=90^\circ$．</p>
+        <p data-step="7"><span class="so">∴</span>四边形 $DECF$ 是矩形（<button class="yj" data-k="jx-pd1">三个角是直角的四边形是矩形</button>）．</p>
+      </div>
+      <p class="tip" data-step="8">第三个直角在哪里？<span class="think" data-step="9" data-ask="?">$\angle ACB=90^\circ$ 是已知的，即 $\angle FCE=90^\circ$——加上证得的两个，共三个直角。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p77 例 2。左图按坐标精确作出：C 在以 AB 为直径的圆上，F、E 分别是 AC、BC 的中点（等腰三角形三线合一）。证明的结构：一个已知直角 + 两个证出的直角。</p>
+</section>
+
+<!-- 7 ================= 平行线之间的距离 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 概念</span><h2>两条平行线之间的距离</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="dist" class="brd-m"></div>
+      <p class="muted center small-t">拖动直线 $l_1$ 上的点 $A$、$C$</p>
+      <div class="readout r2"><span>$AB$</span><b class="v" id="dAB"></b><span>$CD$</span><b class="v" id="dCD"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 9-23，直线 $l_1\parallel l_2$，$A$、$C$ 是直线 $l_1$ 上的任意两点，$AB\perp l_2$，$CD\perp l_2$，垂足分别为 $B$、$D$．线段 $AB$、$CD$ 相等吗？为什么？</p>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="说理">由 $AB\perp l_2$、$CD\perp l_2$，可知 $AB\parallel CD$；又因为 $l_1\parallel l_2$，所以四边形 $ABDC$ 是平行四边形，而且有一个角是直角，是矩形，所以 $AB=CD$。</span></p>
+      <div class="def" data-step="3"><h4>两条平行线之间的距离（课本 p77）</h4>两条平行线中，一条直线上任意一点到另一条直线的距离，叫做<em>两条平行线之间的距离</em>．两条平行线之间的距离处处相等．</div>
+      <div class="hint-ladder" data-step="4">
+        <p class="q"><b>练习 2.</b> 怎样判断四边形的窗框是不是矩形？说说你的理由．</p>
+        <details><summary>完整解答</summary>先量两组对边是否分别相等（是平行四边形），再量两条对角线是否相等（对角线相等的平行四边形是矩形）。只量对角线不够！</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p77 思考、定义与 p78 练习 2。拖 A、C 到 l₁ 上任何位置，AB 与 CD 都等于 2.4——“处处相等”。这也是为什么“平行线之间的距离”可以作为一个确定的值。窗框问题是判定定理的实际应用，注意“只量对角线”是常见错误（对应上一页的反例）。</p>
+</section>
+
+<!-- 8 ================= 菱形：活动框架 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念 · 思考</span><h2>平移框架的一边，什么时候成了菱形？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="frameL" class="brd-l"></div>
+      <div class="slider-row" data-noswipe>$BC=$ <input type="range" id="frameLB" min="1.6" max="5" step="0.1" value="4.2"><b class="v" id="frameLBV"></b>（$AB=3$）</div>
+    </div>
+    <div class="col">
+      <div class="def"><h4>菱形（课本 p78）</h4>有一组邻边相等的平行四边形叫做<em>菱形</em>（rhombus）．</div>
+            <div class="readout r2"><span>$\angle AOB$</span><b class="v" id="frL1"></b><span>$BC$ − $AB$</span><b class="v" id="frL2"></b></div>
+      <p class="tip feedback" id="frLMsg"></p>
+      <p class="tip" data-step="1">当 $BC=AB$ 时：(1) 四条边有什么关系？<span class="think" data-step="2" data-ask="?">$AB=CD$，$AD=BC$（▱ 对边相等），于是 $AB=BC=CD=DA$。</span></p>
+      <p class="tip" data-step="3">(2) 对角线 $AC$、$BD$ 的位置有什么关系？<span class="think" data-step="4" data-ask="?">互相垂直：$AO=CO$（▱ 对角线互相平分），$\triangle ABC$ 中 $BA=BC$，由三线合一，$BD\perp AC$。</span></p>
+      <div class="def" data-step="5"><h4>定理（课本 p78）</h4>菱形的四条边相等，对角线互相垂直．</div>
+    </div>
+  </div>
+  <p class="note">课本 p78 定义、思考（图 9-24）与性质定理。这次框架不“扭”而是“平移一边”：∠B 不变，BC 的长度变。读数 ∠AOB 只在 BC = AB 时恰好为 90°。讨论：菱形是中心对称图形，也是轴对称图形，两条对称轴就是两条对角线所在的直线。</p>
+</section>
+
+<!-- 9 ================= 例 3 衣帽架 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>活动衣帽架：挂钩间距与 $B$、$M$ 的距离</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="rack" class="brd-m"></div>
+      <div class="slider-row" data-noswipe>$AC=$ <input type="range" id="rackAC" min="10" max="25" step="1" value="24"><b class="v" id="rackACV"></b> cm</div>
+      <div class="readout r2"><span>$BO$</span><b class="v" id="rkBO"></b><span>$BM$</span><b class="v" id="rkBM"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 9-25，木制活动衣帽架由 3 个全等的菱形构成，在 $A$、$E$、$F$、$C$、$G$、$H$ 处安装上、下两排挂钩，可以根据需要改变挂钩间的距离，并在 $B$、$M$ 处固定．已知菱形 $ABCD$ 的边长为 13 cm，要使两排挂钩间的距离 $AC$ 为 24 cm，求 $B$、$M$ 之间的距离．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>四边形 $ABCD$ 是菱形，∴ $\angle AOB=90^\circ$</span><i class="why">菱形的对角线互相垂直</i></div>
+        <div class="dl" data-step="2"><span></span><span>$AO=\dfrac12AC=\dfrac12\times24=12$</span><i class="why">菱形的对角线互相平分</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span class="think" data-step="4" data-ask="BO = ?">$BO=\sqrt{AB^2-AO^2}=\sqrt{13^2-12^2}=5$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="5"><span>∴</span><span>$BD=2BO=10$，$BM=3BD=30$</span><i class="why">菱形的对角线互相平分；3 个全等菱形</i></div>
+        <div class="dl end" data-step="6"><span>答</span><span>$B$、$M$ 之间的距离是 30 cm．</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p79 例 3（图 9-25、9-26）。拖滑块改变挂钩间距 AC（菱形边长始终 13 cm）：AC 变大，衣帽架“收拢”，BM 变短；AC = 24 时 BM 恰为 30 cm。图按比例精确绘制。这是生活中“菱形可变形”的应用：边长不变，形状可变。</p>
+</section>
+
+<!-- 10 ================= 菱形练习：面积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>菱形的面积等于两条对角线长乘积的一半</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="area" class="brd-s"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="areaBtn">把 4 个三角形拼进外框</button></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习 2.</b> 证明：菱形的面积等于它的两条对角线长的乘积的一半．</p>
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>∵</span><span>菱形 $ABCD$ 的对角线互相垂直、互相平分</span><i class="why">菱形的性质</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="怎样分？">$S=4S_{\triangle AOB}=4\times\dfrac12\cdot\dfrac{AC}2\cdot\dfrac{BD}2$</span><i class="why">4 个全等的直角三角形</i></div>
+        <div class="dl end" data-step="4"><span>即</span><span>$S=\dfrac12AC\cdot BD$</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="5" data-label="另一种看法">以两条对角线为边作矩形，菱形面积恰是矩形的一半（点左边的按钮）。</p>
+      <div class="hint-ladder" data-step="6">
+        <p class="q"><b>练习 1.</b> 在菱形 $ABCD$ 中，对角线 $AC$、$BD$ 相交于点 $O$，$E$、$F$、$G$、$H$ 分别是各边的中点．求证：$OE=OF=OG=OH$．</p>
+        <details><summary>提示</summary>$\triangle AOB$ 是直角三角形，$OE$ 是斜边 $AB$ 上的中线。</details>
+        <details><summary>完整解答</summary>∵ $AC\perp BD$，∴ $\angle AOB=90^\circ$，$OE=\frac12AB$（直角三角形斜边上的中线等于斜边的一半）。同理 $OF=\frac12BC$，$OG=\frac12CD$，$OH=\frac12DA$。又菱形四边相等，∴ $OE=OF=OG=OH$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p79 练习 1、2。左图：4 个直角三角形（直角在 O）各复制一个、翻到外侧，恰好补满以 AC、BD 为边的矩形，所以菱形面积 = ½·AC·BD。图形按坐标精确绘制。</p>
+</section>
+
+<!-- 11 ================= 菱形的判定 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索 · 判定</span><h2>四边相等？对角线垂直？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip" data-step="1"><b>1.</b> 四边相等的四边形是菱形吗？<span class="think" data-step="2" data-ask="?">由 $AB=DC$、$AD=BC$，四边形 $ABCD$ 是平行四边形；又有一组邻边相等，是菱形。</span></p>
+      <p class="tip" data-step="3"><b>2.</b> 对角线互相垂直的平行四边形是菱形吗？（图 9-27）<span class="think" data-step="4" data-ask="?">由 $BO=DO$、$AC\perp BD$，$AC$ 垂直平分 $BD$，所以 $AB=AD$，▱$ABCD$ 是菱形。</span></p>
+      <div class="def" data-step="5"><h4>定理（课本 p80）</h4>四边相等的四边形是菱形．<br>对角线互相垂直的平行四边形是菱形．</div>
+    </div>
+    <div class="col">
+      <div id="kite" class="brd-m"></div>
+      <div class="btns" data-noswipe id="kiteBtns"><button class="btn solid" type="button" data-k="p">对角线互相垂直的▱</button><button class="btn" type="button" data-k="q">只是对角线互相垂直</button></div>
+    </div>
+  </div>
+  <p class="note">课本 p79–80 探索与判定定理。右下小图：“只是对角线互相垂直”的四边形（如筝形）不一定是菱形——前提“平行四边形”不能丢（习题 9.4 第 1(3)(4) 题）。</p>
+</section>
+
+<!-- 11b ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>证明搭积木：对角线的垂直平分线</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="ex4" class="brd-s"></div>
+      <p class="tip"><b>例 4</b> 已知：如图 9-28，在四边形 $ABCD$ 中，$AD\parallel BC$，对角线 $AC$ 的垂直平分线与边 $AD$、$BC$ 分别相交于点 $E$、$F$．求证：四边形 $AFCE$ 是菱形．</p>
+      <div class="think-flow"><p class="tf-h"><span>证明的途径</span></p><p>先证 $\triangle AOE\cong\triangle COF$，得 $OE=OF$．又由 $OA=OC$，可知四边形 $AFCE$ 是平行四边形；再由 $EF\perp AC$，于是▱$AFCE$ 是菱形．</p></div>
+    </div>
+    <div class="col">
+      <div class="pblocks sm-pb" data-done="全部放对了！先证全等得 OE = OF，于是对角线互相平分（平行四边形），再由 EF⊥AC 得菱形。">
+        <div class="proof">
+          <p><span class="lead">证明：</span><span class="so">∵</span>$AD\parallel BC$，<span class="so">∴</span>$\angle1=\angle2$（<button class="slot" data-ans="nc-xz"></button>）．</p>
+          <p><span class="so">∵</span>$EF$ 垂直平分 $AC$，<span class="so">∴</span>$OA=OC$，$\angle AOE=\angle COF$．</p>
+          <p><span class="so">∴</span>$\triangle AOE\cong\triangle COF$（<button class="slot" data-ans="asa" data-hint="两个角和它们的夹边对应相等。"></button>）．<span class="so">∴</span>$OE=OF$（<button class="slot" data-ans="qd-dy"></button>）．</p>
+          <p><span class="so">∴</span>四边形 $AFCE$ 是平行四边形（<button class="slot" data-ans="pd-3"></button>）．</p>
+          <p>又 <span class="so">∵</span>$EF\perp AC$，<span class="so">∴</span>▱$AFCE$ 是菱形（<button class="slot" data-ans="lx-pd2"></button>）．</p>
+        </div>
+        <div class="pb-bank">
+          <button class="tile" data-k="nc-xz"></button><button class="tile" data-k="nc-pd"></button><button class="tile" data-k="asa">ASA</button><button class="tile" data-k="sas">SAS</button><button class="tile" data-k="qd-dy"></button><button class="tile" data-k="pd-3">对角线互相平分 ⇒ ▱</button><button class="tile" data-k="lx-pd1">四边相等 ⇒ 菱形</button><button class="tile" data-k="lx-pd2">▱ + 对角线垂直 ⇒ 菱形</button>
+        </div>
+        <div class="pb-row"><p class="pb-msg"></p><button class="btn pb-reset" type="button">重来</button></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p80–81 例 4（图 9-28）。用“证明搭积木”：把依据拖进空槽（或先点积木再点空槽）。证明用了两次判定：先“对角线互相平分 ⇒ 平行四边形”，再“对角线互相垂直的平行四边形 ⇒ 菱形”。∠1、∠2 是 AD∥BC 被 AC 所截的内错角。</p>
+</section>
+
+<!-- 12 ================= 菱形练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>矩形各边中点连成什么？尺规作菱形</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，$E$、$F$、$G$、$H$ 分别是矩形 $ABCD$ 各边的中点，四边形 $EFGH$ 是怎样的特殊四边形？证明你的结论．</p>
+        <div id="mid" class="brd-s"></div>
+        <details><summary>提示 1</summary>四个角上的直角三角形 $\triangle AEH$、$\triangle BEF$、$\triangle CGF$、$\triangle DGH$ 全等吗？</details>
+        <details><summary>提示 2</summary>全等 ⇒ $EH=EF=GF=GH$ ⇒ 用哪个判定定理？</details>
+        <details><summary>完整解答</summary>菱形。矩形的四个角都是直角，对边相等，所以 $AE=BE=CG=DG$，$AH=DH=BF=CF$，四个直角三角形全等（SAS），$EH=EF=GF=GH$，四边形 $EFGH$ 是菱形（四边相等的四边形是菱形）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用直尺和圆规作一个菱形，并说明你的作图的道理．</p>
+        <div id="cons" class="brd-s"></div>
+        <div class="slider-row" data-noswipe>作图步骤 <input type="range" id="consK" min="0" max="3" step="1" value="0"><b class="v" id="consKV"></b></div>
+        <details><summary>完整解答</summary>① 画线段 $AC$；② 分别以 $A$、$C$ 为圆心、相同的长（大于 $\frac12AC$）为半径画弧，两弧交于 $B$、$D$；③ 连接 $AB$、$BC$、$CD$、$DA$。因为 $AB=BC=CD=DA$，所以四边形 $ABCD$ 是菱形（四边相等的四边形是菱形）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p81 练习 1、2。第 2 题拖“作图步骤”滑块看尺规作图的每一步（弧的半径相同，交点由两圆方程精确求出）。也可以作 AC 的垂直平分线，在上面截取 OB = OD（对角线互相垂直平分）。</p>
+</section>
+
+<!-- 13 ================= 正方形 + 变身 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念 · 关系</span><h2>正方形：既是矩形，又是菱形</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="morph" class="brd-ms"></div>
+      <div class="btns" data-noswipe id="morphBtns"><button class="btn" type="button" data-k="r">加条件：有一个角是直角</button><button class="btn" type="button" data-k="l">加条件：有一组邻边相等</button></div>
+      <div id="venn" class="brd-xs"></div>
+    </div>
+    <div class="col">
+      <div class="def"><h4>正方形（课本 p81）</h4>有一组邻边相等并且有一个角是直角的平行四边形叫做<em>正方形</em>（square）．</div>
+      <div class="def" data-step="1"><h4>定理（课本 p81）</h4>有一组邻边相等的矩形是正方形．<br>有一个角是直角的菱形是正方形．</div>
+      <p class="tip" data-step="2">平行四边形、矩形、菱形、正方形的关系如图 9-29．正方形具有矩形的性质，同时又具有菱形的性质．</p>
+      <p class="tip" data-step="3">讨论：正方形的边、角和对角线各具有什么性质？<span class="think" data-step="4" data-ask="?">四条边相等，四个角都是直角；对角线相等且互相垂直平分。</span></p>
+      <p class="tip feedback" id="morphMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p81 定义、定理、图 9-29 与讨论。本页核心互动“加条件变身”：从一般平行四边形出发，点按钮逐个加条件，图形精确地变成矩形、菱形或正方形，下面的关系图同步高亮。先加“直角”再加“邻边相等”，或者反过来，最后都到正方形——这就是两条判定定理。</p>
+</section>
+
+<!-- 14 ================= 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>正方形里的正方形</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="ex5" class="brd-m"></div>
+      <div class="slider-row" data-noswipe>$AA'=$ <input type="range" id="ex5U" min="0.4" max="3.6" step="0.1" value="1.2"><b class="v" id="ex5UV"></b>（边长 4）</div>
+      <div class="think-flow" data-step="1"><p class="tf-h"><span>证明的途径</span></p><p>先证 $\triangle AA'D'\cong\triangle BB'A'\cong\triangle CC'B'\cong\triangle DD'C'$，得四边相等，于是 $A'B'C'D'$ 是菱形；再证 $\angle D'A'B'=90^\circ$，从而是正方形．</p></div>
+    </div>
+    <div class="col">
+      <p class="tip">已知：如图 9-30，在正方形 $ABCD$ 中，点 $A'$、$B'$、$C'$、$D'$ 分别在 $AB$、$BC$、$CD$、$DA$ 上，且 $AA'=BB'=CC'=DD'$．求证：四边形 $A'B'C'D'$ 是正方形．</p>
+      <div class="proof sm-pf">
+        <p data-step="2"><span class="lead">证明：</span>∵ 正方形 $ABCD$，∴ $\angle A=\angle B=\angle C=\angle D=90^\circ$，$AB=BC=CD=DA$．</p>
+        <p data-step="3">∵ $AA'=BB'=CC'=DD'$，∴ $D'A=A'B=B'C=C'D$．</p>
+        <p data-step="4">∴ $\triangle AA'D'\cong\triangle BB'A'\cong\triangle CC'B'\cong\triangle DD'C'$（<button class="yj" data-k="sas">SAS</button>）．</p>
+        <p data-step="5">∴ $D'A'=A'B'=B'C'=C'D'$，四边形 $A'B'C'D'$ 是菱形（<button class="yj" data-k="lx-pd1">四边相等的四边形是菱形</button>）．</p>
+        <p data-step="6">由 $\triangle AA'D'\cong\triangle BB'A'$，可得 $\angle2=\angle3$．∵ $\angle A=90^\circ$，∴ $\angle1+\angle2=90^\circ$，∴ $\angle1+\angle3=90^\circ$，∴ $\angle D'A'B'=90^\circ$．</p>
+        <p data-step="7">∴ 菱形 $A'B'C'D'$ 是正方形（<button class="yj" data-k="zf-pd2">有一个角是直角的菱形是正方形</button>）．</p>
+      </div>
+      <p class="tip" data-step="8">思考：还有其他方法吗？<span class="think" data-step="9" data-ask="想一想">如：由四个三角形全等，同理可证 $A'B'C'D'$ 的四个角都是直角（矩形），再由四边相等，用“有一组邻边相等的矩形是正方形”。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p82 例 5。拖滑块改变 AA′ 的长度：里面的四边形始终是正方形（读数显示四边与∠D′A′B′），AA′ = 2 时面积最小（是原正方形的一半）。∠1、∠2、∠3 的位置照课本图标在 A′ 处。</p>
+</section>
+
+<!-- 15 ================= 练习：性质表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>根据图形所具有的性质，在表中打“√”</h2></div>
+  <div class="bd full top">
+    <table class="mtab ptab" id="ptab">
+      <tr><th></th><th>平行四边形</th><th>矩形</th><th>菱形</th><th>正方形</th></tr>
+      <tr data-ans="1111"><td>对边平行且相等</td><td></td><td></td><td></td><td></td></tr>
+      <tr data-ans="0011"><td>四边相等</td><td></td><td></td><td></td><td></td></tr>
+      <tr data-ans="0101"><td>四个角都是直角</td><td></td><td></td><td></td><td></td></tr>
+      <tr data-ans="1111"><td>对角线互相平分</td><td></td><td></td><td></td><td></td></tr>
+      <tr data-ans="0011"><td>对角线互相垂直</td><td></td><td></td><td></td><td></td></tr>
+      <tr data-ans="0101"><td>对角线相等</td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <div class="btns" data-noswipe><button class="btn solid" type="button" id="ptabCheck">核对</button><button class="btn" type="button" id="ptabReset">清空</button><span class="tip feedback" id="ptabMsg">点格子打“√”，再点“核对”。</span></div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一个矩形的两条对角线互相垂直，证明这个矩形是正方形．</p>
+        <details><summary>完整解答</summary>矩形是平行四边形，对角线互相垂直的平行四边形是菱形；有一个角是直角的菱形是正方形。（或：对角线互相垂直平分 ⇒ 邻边相等 ⇒ 有一组邻边相等的矩形是正方形。）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 一个菱形的两条对角线相等，证明这个菱形是正方形．</p>
+        <details><summary>完整解答</summary>菱形是平行四边形，对角线相等的平行四边形是矩形；有一组邻边相等的矩形是正方形。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p82–83 练习 1–3。表格：点格子打“√”或取消，“核对”后错的格子变红、对的变绿。读表的方法：竖着看是一种图形的全部性质；横着看，越往右“√”越多——正方形性质最多，条件也最多。</p>
+</section>
+
+<!-- 16 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 9.4</span><h2>判断、计算、证明</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="q-t"><b>1.</b> 下列判断是否正确：</p>
+        <div class="jlist">
+          <div class="pick" data-ans="n"><span class="pl">(1) 对角线相等的四边形是矩形</span><button type="button" data-k="y">对</button><button type="button" data-k="n">错</button><p class="pick-why">缺“平行四边形”：等腰梯形对角线相等，却不是矩形。</p></div>
+          <div class="pick" data-ans="y"><span class="pl">(2) 对角线相等且互相平分的四边形是矩形</span><button type="button" data-k="y">对</button><button type="button" data-k="n">错</button><p class="pick-why">互相平分 ⇒ 平行四边形；再加对角线相等 ⇒ 矩形。</p></div>
+          <div class="pick" data-ans="n"><span class="pl">(3) 对角线互相垂直的四边形是菱形</span><button type="button" data-k="y">对</button><button type="button" data-k="n">错</button><p class="pick-why">筝形的对角线互相垂直，却不是菱形。</p></div>
+          <div class="pick" data-ans="y"><span class="pl">(4) 对角线互相垂直平分的四边形是菱形</span><button type="button" data-k="y">对</button><button type="button" data-k="n">错</button><p class="pick-why">平分 ⇒ 平行四边形；垂直 ⇒ 菱形。</p></div>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 矩形的面积为 48，一条边长为 6，求矩形的对角线长．　<span class="blank" data-ans="10"></span></p>
+          <details><summary>完整解答</summary>另一边长 $48\div6=8$，对角线长 $\sqrt{6^2+8^2}=10$（勾股定理）。</details>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>7.</b> 菱形的边长为 2，一个内角等于 $120^\circ$．求这个菱形的面积．</p>
+          <details><summary>提示</summary>$120^\circ$ 角的邻角是 $60^\circ$，较短的对角线把菱形分成两个什么三角形？</details>
+          <details><summary>完整解答</summary>较短对角线与两边构成等边三角形，长为 2；较长对角线长 $2\sqrt{2^2-1^2}=2\sqrt3$。面积 $=\frac12\times2\times2\sqrt3=2\sqrt3$。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>11.</b> $E$ 是正方形 $ABCD$ 边 $BC$ 延长线上的一点，且 $CE=AC$．求 $\angle E$ 的度数．</p>
+          <details><summary>提示</summary>$\angle ACB=45^\circ$（正方形的对角线平分一组对角）；$\triangle ACE$ 是等腰三角形。</details>
+          <details><summary>完整解答</summary>$\angle ACE=180^\circ-45^\circ=135^\circ$，$CE=CA$，∴ $\angle E=\angle CAE=\frac12(180^\circ-135^\circ)=22.5^\circ$。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>14.</b> 在 $\triangle ABC$ 中，$D$、$E$、$F$ 分别在 $BC$、$AB$、$AC$ 上，$DE\parallel AC$，$DF\parallel AB$．(1) $\angle BAC=90^\circ$；(2) $AD$ 平分 $\angle BAC$；(3) 两者都满足——四边形 $AEDF$ 分别是怎样的特殊平行四边形？</p>
+          <details><summary>完整解答</summary>$AEDF$ 先是平行四边形（两组对边分别平行）。(1) 矩形（有一个角是直角）；(2) 菱形（由 $\angle EAD=\angle DAF=\angle ADE$ 得 $AE=DE$，一组邻边相等）；(3) 正方形。</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p83–85 习题 9.4 第 1、2、7、11、14 题。第 1 题四个判断很能检验“前提不能丢”。第 14 题是本课的一个总结：同一个平行四边形，加不同条件就变成不同的特殊平行四边形，与第 13 页的“变身”互动对应。</p>
+</section>
+
+<!-- 17 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>三种特殊平行四边形</h2></div>
+  <div class="bd full">
+    <table class="mtab big-t" data-step="1">
+      <tr><th></th><th>矩形</th><th>菱形</th><th>正方形</th></tr>
+      <tr><td>定义</td><td>▱ + 一个直角</td><td>▱ + 一组邻边相等</td><td>▱ + 一组邻边相等 + 一个直角</td></tr>
+      <tr><td>特有性质</td><td>四个角都是直角；对角线相等</td><td>四边相等；对角线互相垂直</td><td>兼有矩形、菱形的全部性质</td></tr>
+      <tr><td>判定</td><td>三个直角；▱ + 对角线相等</td><td>四边相等；▱ + 对角线互相垂直</td><td>矩形 + 邻边相等；菱形 + 一个直角</td></tr>
+      <tr><td>对称性</td><td>中心对称；2 条对称轴</td><td>中心对称；2 条对称轴（对角线）</td><td>中心对称；4 条对称轴</td></tr>
+    </table>
+    <div class="cols3 sum">
+      <p class="method" data-step="2" data-label="方法">研究特殊图形：定义 → 性质（继承 + 特有）→ 判定（性质的逆命题，证明后才能用）。</p>
+      <p class="recall" data-step="3" data-label="思想">从一般到特殊；“包含关系”（图 9-29）；对角线是研究四边形的好工具。</p>
+      <p class="tip gold" data-step="4"><b>下一节：</b>9.5 三角形的中位线——把三角形剪一刀拼成平行四边形，能发现什么？</p>
+    </div>
+  </div>
+  <p class="note">请学生先说表格再揭示。作业建议：习题 9.4 第 3、5、8、9、12、13 题（选做）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

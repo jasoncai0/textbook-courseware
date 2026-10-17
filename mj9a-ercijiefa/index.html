@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一元二次方程的解法 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shuzhuo.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第1章 一元二次方程 · 1.2</p>
+    <h1 class="cover-title">一元二次方程的解法</h1>
+    <p class="cover-q" data-step="1">我们已经会解一元一次方程。上节课的花圃方程 $x(19-2x)=24$，我们是靠<b>一个一个试</b>，才找到 $x=1.5$ 和 $x=8$ 的。</p>
+    <p class="cover-q" data-step="2">能不能像解一元一次方程那样，<b>算</b>出一元二次方程的根？——秘诀只有两个字：<b>降次</b>。</p>
+    <div class="chips" data-step="3"><span class="chip">直接开平方法</span><span class="chip">配方法 · 拼图</span><span class="chip">公式法</span><span class="chip">根的判别式</span><span class="chip">因式分解法</span></div>
+  </div>
+  <p class="note">课本 p9 开篇“我们已经会解一元一次方程，如何解一元二次方程？”。本节内容多（课本 p9–20），建议分 3～4 课时：① 直接开平方法与配方法（第 3–10 页）；② 公式法与判别式（第 11–14 页）；③ 因式分解法与方法选择（第 15–18 页）。四种方法的共同想法是“降次”，贯穿全节。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>四件旧工具，对应四种新方法</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc4">
+      <div class="recall" data-label="八上 4.1 · 平方根" data-step="1">
+        <p>正数有两个平方根，它们互为相反数；0 的平方根是 0；负数没有平方根。如 $x^2=2$ 中，$x$ 是 2 的平方根：$x=\pm\sqrt2$。</p>
+        <span class="use">直接开平方法；判断方程有没有实数根。</span>
+      </div>
+      <div class="recall" data-label="七下 9.4 · 完全平方公式" data-step="2">
+        <p>$a^2\pm2ab+b^2=(a\pm b)^2$。如 $x^2+6x+9=x^2+2\cdot x\cdot3+3^2=(x+3)^2$。</p>
+        <span class="use">配方法：把方程左边“凑”成完全平方式。</span>
+      </div>
+      <div class="recall" data-label="七下 9.5 · 因式分解" data-step="3">
+        <p>提公因式：$x^2-x=x(x-1)$；平方差：$a^2-b^2=(a+b)(a-b)$。</p>
+        <span class="use">因式分解法：把方程一边化成两个一次因式的积。</span>
+      </div>
+      <div class="recall" data-label="上一节 1.1 · 一般形式" data-step="4">
+        <p>$ax^2+bx+c=0\ (a\ne0)$，系数 $a$、$b$、$c$ 连同符号一起看。</p>
+        <span class="use">推导求根公式；代入公式、计算判别式。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本节主线：</b>把“二次”方程转化为“一次”方程（降次）——四种方法，就是四种降次的办法。</p>
+  </div>
+  <p class="note">四张卡分别对应本节的四种解法，出示一张就请学生说一个例子。平方根的三条性质最关键：第 4 页“k ≥ 0 才有解”、第 14 页的判别式都从它来。</p>
+</section>
+
+<!-- 3 ================= 直接开平方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法一</span><h2>直接开平方法：把 $x^2=2$ 变成两个一次方程</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span></span><span>$x^2=2$</span><i class="why">$x$ 是 2 的平方根</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="x 等于几？">$x=\pm\sqrt2$</span><i class="why">正数有两个平方根，互为相反数</i></div>
+        <div class="dl end" data-step="4"><span>即</span><span>$x_1=\sqrt2,\ x_2=-\sqrt2$</span><i class="why">一元二次方程有两个根</i></div>
+      </div>
+      <p class="recall" data-label="降次" data-step="5">$x^2=2$ 转化为两个一次方程 $x=\sqrt2$ 和 $x=-\sqrt2$。</p>
+      <div class="def" data-step="6"><h4>直接开平方法（课本 p9）</h4>这种直接通过求平方根来解一元二次方程的方法叫做<em>直接开平方法</em>．</div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 1</b>　解下列方程：(1) $x^2-4=0$；　(2) $4x^2-1=0$．</p>
+      <div class="cols2 ex2">
+        <div class="derive small-d">
+          <div class="dl" data-step="7"><span>(1)</span><span>$x^2=4$</span><i class="why">移项</i></div>
+          <div class="dl" data-step="8"><span></span><span>$x=\pm2$</span><i class="why">$x$ 是 4 的平方根</i></div>
+          <div class="dl end" data-step="9"><span></span><span>$x_1=2,\ x_2=-2$</span><i class="why">写成两个根</i></div>
+        </div>
+        <div class="derive small-d">
+          <div class="dl" data-step="10"><span>(2)</span><span>$4x^2=1$</span><i class="why">移项</i></div>
+          <div class="dl" data-step="11"><span></span><span class="think" data-step="12" data-ask="下一步？">$x^2=\dfrac14$</span><i class="why">两边都除以 4</i></div>
+          <div class="dl" data-step="13"><span></span><span>$x=\pm\dfrac12$</span><i class="why">$x$ 是 $\frac14$ 的平方根</i></div>
+          <div class="dl end" data-step="14"><span></span><span>$x_1=\dfrac12,\ x_2=-\dfrac12$</span><i class="why"></i></div>
+        </div>
+      </div>
+      <p class="method" data-step="15" data-label="步骤">先化成 $x^2=$ 非负数，再开平方，最后写出 $x_1$、$x_2$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p9 与例 1。旁注“这样，一元二次方程 x² = 2 就转化为两个一次方程”是本节的总思路，板书“降次”。例 1(2) 要先把 x² 的系数化为 1 再开平方，学生常直接写 2x = ±1——也对，但要讲清依据（2x 是 1 的平方根）。</p>
+</section>
+
+<!-- 4 ================= 例2 · (x+h)^2=k 数轴 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法一</span><h2>把 $(x+h)$ 看成一个整体</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 2</b>　解方程：$(x+1)^2=2$．</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>分析</span><span>只要把 $(x+1)$ 看成一个整体</span><i class="why">就能用直接开平方法</i></div>
+        <div class="dl" data-step="2"><span>∵</span><span>$x+1=\pm\sqrt2$</span><i class="why">$(x+1)$ 是 2 的平方根</i></div>
+        <div class="dl end" data-step="3"><span>∴</span><span>$x_1=-1+\sqrt2,\ x_2=-1-\sqrt2$</span><i class="why">两个一次方程</i></div>
+      </div>
+      <div class="def" data-step="4">形如 $(x+h)^2=k$（$h$、$k$ 为常数，$k\ge0$）的一元二次方程，可以用直接开平方法求解．（课本 p10）</div>
+      <p class="tip" data-step="5"><b>尝试与交流</b>　$(x+1)^2=0$、$(x+1)^2=-1$ 有解吗？<span class="think" data-step="6" data-ask="拖右边的 k 试试">$(x+1)^2=0$：$x+1=0$，$x_1=x_2=-1$（两个相等的根）；$(x+1)^2=-1$：任何数的平方都不是负数，<b>没有实数根</b>。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">$(x+h)^2=k$ 的根在数轴上：以 $-h$ 为中心，左右各走 $\sqrt k$。</p>
+      <div class="slider-row" data-noswipe>$h=$<input type="range" id="hkH" min="-3" max="3" step="1" value="1"><b class="v" id="hkHV"></b>　$k=$<input type="range" id="hkK" min="-4" max="9" step="1" value="2"><b class="v" id="hkKV"></b></div>
+      <p class="hk-eq" id="hkEq"></p>
+      <div id="hkLine" class="nline"></div>
+      <p class="tip feedback" id="hkMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p10 例 2 与尝试与交流。右边数轴：两个根关于 −h 对称、到 −h 的距离都是 √k。把 k 拖到 0，两点合为一点（两个相等的实数根）；拖到负数，点消失（没有实数根）——“k ≥ 0”这个条件就看得见了，第 13 页的判别式是它的推广。根的位置由 −h ± √k 精确计算。</p>
+</section>
+
+<!-- 5 ================= 练习 p10 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>直接开平方法（课本 p10 练习）</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1.</b> 解下列方程：</p>
+        <div class="qgrid">
+          <p>(1) $x^2=16$　<span class="think" data-ask="答案">$x_1=4,\ x_2=-4$</span></p>
+          <p>(2) $x^2-0.81=0$　<span class="think" data-ask="答案">$x_1=0.9,\ x_2=-0.9$</span></p>
+          <p>(3) $y^2-144=0$　<span class="think" data-ask="答案">$y_1=12,\ y_2=-12$</span></p>
+          <p>(4) $9x^2=4$　<span class="think" data-ask="答案">$x^2=\frac49$，$x_1=\frac23,\ x_2=-\frac23$</span></p>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>2.</b> 解下列方程：</p>
+        <div class="qgrid">
+          <p>(1) $(x-1)^2=4$　<span class="think" data-ask="答案">$x-1=\pm2$，$x_1=3,\ x_2=-1$</span></p>
+          <p>(2) $(x+2)^2=3$　<span class="think" data-ask="答案">$x_1=-2+\sqrt3,\ x_2=-2-\sqrt3$</span></p>
+          <p>(3) $(x-4)^2-25=0$　<span class="think" data-ask="答案">$x-4=\pm5$，$x_1=9,\ x_2=-1$</span></p>
+          <p>(4) $(2x+3)^2-5=0$　<span class="think" data-ask="答案">$2x+3=\pm\sqrt5$，$x_1=\frac{-3+\sqrt5}{2},\ x_2=\frac{-3-\sqrt5}{2}$</span></p>
+        </div>
+      </div>
+    </div>
+    <p class="warn" data-step="1" data-label="常见错误">① 只写正根，丢了负根；② $(x-1)^2=4$ 写成 $x-1=2$；③ 第 2(4) 题开平方后忘了两边再除以 2。</p>
+  </div>
+  <p class="note">课本 p10 练习。学生独立完成后逐题点开核对。可以请学生到第 4 页的数轴上验证 2(1)：h = −1，k = 4，两根在 3 和 −1。</p>
+</section>
+
+<!-- 6 ================= 配方的想法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法二</span><h2>$x^2+6x+4=0$ 怎样化成 $(x+h)^2=k$？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">思考与探索：如何解方程 $x^2+6x+4=0$？</p>
+      <p class="tip" data-step="1">它不是 $(x+h)^2=k$ 的样子。<span class="think" data-step="2" data-ask="能把它变成那样吗？">左边要是一个<b>完全平方式</b>就好了：$x^2+6x+9=(x+3)^2$。</span></p>
+      <p class="recall" data-label="对照完全平方公式" data-step="3">$x^2+2\cdot x\cdot\boxed{3}+\boxed{3}^2=(x+3)^2$：<br>一次项系数 $6=2\times3$，要补上的正是 $\left(\dfrac62\right)^2=3^2$。</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="4"><span></span><span>$x^2+6x=-4$</span><i class="why">把常数项移到右边</i></div>
+        <div class="dl" data-step="5"><span>即</span><span>$x^2+2\cdot x\cdot3=-4$</span><i class="why">把 $6x$ 写成 $2\cdot x\cdot3$，看出 $a=x$、$b=3$</i></div>
+        <div class="dl key" data-step="6"><span></span><span class="think" data-step="7" data-ask="两边加什么？">$x^2+2\cdot x\cdot3+3^2=-4+3^2$</span><i class="why">两边都加上一次项系数 6 的一半的平方 $3^2$（等式的性质）</i></div>
+        <div class="dl" data-step="8"><span></span><span>$(x+3)^2=5$</span><i class="why">完全平方公式</i></div>
+        <div class="dl" data-step="9"><span></span><span>$x+3=\pm\sqrt5$</span><i class="why">直接开平方</i></div>
+        <div class="dl end" data-step="10"><span></span><span>$x_1=-3+\sqrt5,\ x_2=-3-\sqrt5$</span><i class="why"></i></div>
+      </div>
+      <p class="warn" data-step="11" data-label="两边都要加">只在左边加 $3^2$，等式就不成立了。</p>
+    </div>
+  </div>
+  <p class="note">课本 p10–11 思考与探索。两个小人的提示：“把它化成 (x + h)² = k 的形式就可以求解了”“如果方程的左边加上 3²，那么它就可以写成 (x + 3)² 了”。第 6 行是关键，停顿让学生说“加什么、为什么两边加”。下一页用拼图说明“为什么恰好是一次项系数一半的平方”。</p>
+</section>
+
+<!-- 7 ================= 配方拼图（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>配方 = 把矩形割补成正方形</h2></div>
+  <button class="media-btn" hidden data-img="assets/peifang.jpg" data-video="assets/peifang.mp4" data-cap="配方的过程：长 x + 2、宽 x 的矩形割补成边长 x + 1 的正方形，要补上一个 1×1 的小正方形">▶ 看动画</button>
+  <div class="bd wide-l">
+    <div class="col">
+      <div id="pf" class="pf"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="pfPrev">◂ 上一步</button><button class="btn solid" type="button" id="pfNext">下一步 ▸</button><span class="slider-row">一次项系数 $p=$<input type="range" id="pfP" min="1" max="6" step="1" value="2"><b class="v" id="pfPV"></b></span></div>
+      <p class="tip gold" data-step="1">为什么两边要加上一次项系数一半的平方？<span class="think" data-step="2" data-ask="看拼图说一说">把 $px$ 平均分成两条 $\frac p2\cdot x$ 拼在正方形两边，缺的那个角正好是边长 $\frac p2$ 的小正方形，面积 $\left(\frac p2\right)^2$。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">用拼图表示 $x^2+px=q$ 的配方（课本图 1-3 是 $p=2$，$q=24$）：</p>
+      <div class="derive pf-chain" id="pfChain"></div>
+      <p class="tip feedback" id="pfMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p12 数学实验室、图 1-3：“配方的过程，可以看成将一个长是 (x + 2)、宽是 x、面积是 24 的矩形割补成一个正方形”。点“下一步”逐步演示：割成 x² 和 2x → 2x 平分成两条 → 一条转到上面 → 补上 1² → 拼成 (x + 1)² = 25。再拖动 p 换一个一次项系数（p 为奇数时出现分数），追问课本最后一句：“为什么在配方过程中，方程的两边要加上一次项系数一半的平方？”图中 x 按 4 个单位精确绘制，所有面积都可数可算；右上角“看动画”是同一过程的 15 秒动画。</p>
+</section>
+
+<!-- 8 ================= 配方法 · 例3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法二</span><h2>配方法</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="def"><h4>配方法（课本 p11）</h4>把一个一元二次方程变形为 $(x+h)^2=k$（$h$、$k$ 为常数）的形式，当 $k\ge0$ 时，就可以用直接开平方法求出方程的解．这种解一元二次方程的方法叫做<em>配方法</em>．</div>
+      <p class="method" data-step="7" data-label="配方法四步（二次项系数为 1）">① <b>移项</b>：常数项移到右边；<br>② <b>配方</b>：两边加上一次项系数一半的平方；<br>③ 写成 $(x+h)^2=k$；<br>④ $k\ge0$ 时<b>开平方</b>，写出两根。</p>
+    </div>
+      <p class="tip"><b>例 3</b>　解下列方程：(1) $x^2-4x+3=0$；(2) $x^2+3x-1=0$．</p>
+      <div class="cols2 ex2">
+        <div class="derive small-d">
+          <div class="dl" data-step="1"><span>(1)</span><span>$x^2-4x=-3$</span><i class="why">移项</i></div>
+          <div class="dl" data-step="2"><span></span><span>$x^2-2\cdot x\cdot2+2^2=-3+2^2$</span><i class="why">配方</i></div>
+          <div class="dl" data-step="3"><span></span><span>$(x-2)^2=1$</span><i class="why"></i></div>
+          <div class="dl" data-step="4"><span></span><span>$x-2=\pm1$</span><i class="why">开平方</i></div>
+          <div class="dl end" data-step="5"><span></span><span>$x_1=3,\ x_2=1$</span><i class="why"></i></div>
+        </div>
+        <div class="derive small-d">
+          <div class="dl" data-step="6"><span>(2)</span><span>$x^2+3x=1$</span><i class="why">移项</i></div>
+          <div class="dl" data-step="6"><span></span><span class="think" data-step="8" data-ask="加上多少？">$x^2+2\cdot x\cdot\frac32+\left(\frac32\right)^2=1+\left(\frac32\right)^2$</span><i class="why">配方</i></div>
+          <div class="dl" data-step="9"><span></span><span>$\left(x+\frac32\right)^2=\frac{13}4$</span><i class="why"></i></div>
+          <div class="dl" data-step="10"><span></span><span>$x+\frac32=\pm\frac{\sqrt{13}}2$</span><i class="why">开平方</i></div>
+          <div class="dl end" data-step="11"><span></span><span>$x_{1,2}=-\frac32\pm\frac{\sqrt{13}}2$</span><i class="why"></i></div>
+        </div>
+      </div>
+  </div>
+  <p class="note">课本 p11 配方法定义与例 3。(1) 可以代回原方程检验：3² − 4×3 + 3 = 0 ✓。(2) 一次项系数是奇数，一半是 3/2——对应拼图里 p = 3 的情形。课本把两根分开写成 x₁ = −3/2 + √13/2，x₂ = −3/2 − √13/2。</p>
+</section>
+
+<!-- 9 ================= 练习 p13 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>配方（课本 p13 练习，回车判对错）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1.</b> 填空（分数写成 a/b）：</p>
+        <div class="fillq">
+          <p>(1) $x^2-2x+$<span class="blank" data-ans="1" data-w="3"></span>$=(x-$<span class="blank" data-ans="1" data-w="3"></span>$)^2$</p>
+          <p>(2) $x^2+8x+$<span class="blank" data-ans="16" data-w="3"></span>$=(x+$<span class="blank" data-ans="4" data-w="3"></span>$)^2$</p>
+          <p>(3) $x^2-5x+$<span class="blank" data-ans="25/4|6.25" data-w="4"></span>$=(x-$<span class="blank" data-ans="5/2|2.5" data-w="3"></span>$)^2$</p>
+          <p>(4) $x^2+\frac32x+$<span class="blank" data-ans="9/16|0.5625" data-w="4"></span>$=(x+$<span class="blank" data-ans="3/4|0.75" data-w="3"></span>$)^2$</p>
+        </div>
+        <p class="method" data-label="规律">括号里填一次项系数的<b>一半</b>，前一空填它的<b>平方</b>。</p>
+      </div>
+      <div class="col">
+        <p class="tip"><b>2.</b> 解下列方程：</p>
+        <div class="qgrid">
+          <p>(1) $x^2+2x=3$　<span class="think" data-ask="答案">$(x+1)^2=4$，$x_1=1,\ x_2=-3$</span></p>
+          <p>(2) $x^2-6x=4$　<span class="think" data-ask="答案">$(x-3)^2=13$，$x=3\pm\sqrt{13}$</span></p>
+          <p>(3) $x^2+10x+20=0$　<span class="think" data-ask="答案">$(x+5)^2=5$，$x=-5\pm\sqrt5$</span></p>
+          <p>(4) $x^2-x-1=0$　<span class="think" data-ask="答案">$\left(x-\frac12\right)^2=\frac54$，$x=\frac{1\pm\sqrt5}{2}$</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p13 练习。第 1 题填空即时判对错（分数输入 25/4 这样的形式，小数也算对）。第 2 题让学生在本子上写出完整的“移项—配方—开平方”过程，再点开核对结果。</p>
+</section>
+
+<!-- 10 ================= 二次项系数不是 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法二</span><h2>二次项系数不是 1，怎样配方？</h2></div>
+  <div class="bd full">
+    <p class="tip">思考与探索：当一元二次方程的二次项系数不是 1 时，怎样用配方法求解？<span class="think" data-step="1" data-ask="小人的提示">把二次项系数<b>化为 1</b>：两边都除以二次项系数。</span></p>
+    <div class="cols2">
+      <div class="derive small-d">
+        <div class="dl" data-step="2"><span>例 4</span><span>$2x^2-5x+2=0$</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span></span><span>$x^2-\frac52x+1=0$</span><i class="why">两边都除以 2</i></div>
+        <div class="dl" data-step="4"><span></span><span>$x^2-\frac52x=-1$</span><i class="why">移项</i></div>
+        <div class="dl" data-step="5"><span></span><span>$x^2-\frac52x+\left(\frac54\right)^2=-1+\left(\frac54\right)^2$</span><i class="why">配方</i></div>
+        <div class="dl" data-step="6"><span></span><span>$\left(x-\frac54\right)^2=\frac9{16}$</span><i class="why"></i></div>
+        <div class="dl" data-step="7"><span></span><span>$x-\frac54=\pm\frac34$</span><i class="why">开平方</i></div>
+        <div class="dl end" data-step="8"><span></span><span>$x_1=\frac12,\ x_2=2$</span><i class="why"></i></div>
+      </div>
+      <div class="derive small-d">
+        <div class="dl" data-step="9"><span>例 5</span><span>$-3x^2+4x+1=0$</span><i class="why"></i></div>
+        <div class="dl" data-step="10"><span></span><span class="think" data-step="11" data-ask="除以几？">$x^2-\frac43x-\frac13=0$</span><i class="why">两边都除以 $-3$（各项都变号）</i></div>
+        <div class="dl" data-step="12"><span></span><span>$x^2-\frac43x=\frac13$</span><i class="why">移项</i></div>
+        <div class="dl" data-step="12"><span></span><span>$x^2-\frac43x+\left(\frac23\right)^2=\frac13+\left(\frac23\right)^2$</span><i class="why">配方</i></div>
+        <div class="dl" data-step="13"><span></span><span>$\left(x-\frac23\right)^2=\frac79$</span><i class="why"></i></div>
+        <div class="dl end" data-step="14"><span></span><span>$x_1=\frac23+\frac{\sqrt7}3,\ x_2=\frac23-\frac{\sqrt7}3$</span><i class="why">开平方</i></div>
+      </div>
+    </div>
+    <p class="tip" data-step="15"><b>尝试与交流</b>　$2x^2+2x+\frac12=0$、$2x^2-x+1=0$ 有解吗？<span class="think" data-step="16" data-ask="配方看看">前者化为 $\left(x+\frac12\right)^2=0$，$x_1=x_2=-\frac12$；后者化为 $\left(x-\frac14\right)^2=-\frac7{16}$，右边是负数，<b>没有实数根</b>。</span></p>
+  </div>
+  <p class="note">课本 p13–14 例 4、例 5 与尝试与交流。例 5 除以 −3 时符号最容易错，让学生逐项说出变号后的结果。尝试与交流的两个方程，分别对应第 4 页数轴上 k = 0 与 k &lt; 0 的情形。</p>
+</section>
+
+<!-- 11 ================= 推导求根公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法三</span><h2>对 $ax^2+bx+c=0$ 配方：求根公式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">思考与探索：如何解一般形式的一元二次方程 $ax^2+bx+c=0\ (a\ne0)$？<span class="think" data-step="1" data-ask="提示">可以仿照例 4、例 5 的方法——用字母配方。</span></p>
+      <p class="warn" data-step="10" data-label="两个“因为”">① $a\ne0$，才能两边除以 $a$；<br>② $4a^2&gt;0$，所以右边的正负只看 $b^2-4ac$：它 $\ge0$ 时才能开平方。</p>
+    </div>
+    <div class="col">
+      <div class="derive small-d">
+        <div class="dl" data-step="2"><span></span><span>$x^2+\frac bax+\frac ca=0$</span><i class="why">因为 $a\ne0$，两边都除以 $a$</i></div>
+        <div class="dl" data-step="3"><span></span><span>$x^2+\frac bax=-\frac ca$</span><i class="why">移项</i></div>
+        <div class="dl key" data-step="4"><span></span><span class="think" data-step="5" data-ask="加上什么？">$x^2+2\cdot\frac b{2a}\cdot x+\left(\frac b{2a}\right)^2=-\frac ca+\left(\frac b{2a}\right)^2$</span><i class="why">配方：一次项系数 $\frac ba$ 的一半是 $\frac b{2a}$</i></div>
+        <div class="dl" data-step="6"><span></span><span>$\left(x+\frac b{2a}\right)^2=\frac{b^2-4ac}{4a^2}$</span><i class="why">右边通分：$\frac{b^2}{4a^2}-\frac{4ac}{4a^2}$</i></div>
+        <div class="dl" data-step="7"><span></span><span>$x+\frac b{2a}=\pm\frac{\sqrt{b^2-4ac}}{2a}$</span><i class="why">当 $b^2-4ac\ge0$ 时开平方</i></div>
+        <div class="dl end" data-step="8"><span></span><span>$x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$</span><i class="why">移项、合并成一个分数</i></div>
+      </div>
+      <div class="def" data-step="9"><h4>求根公式与公式法（课本 p15）</h4>当 $b^2-4ac\ge0$ 时，一元二次方程 $ax^2+bx+c=0\ (a\ne0)$ 的实数根是 $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$．这叫做一元二次方程的<em>求根公式</em>；把各项系数直接代入公式求根的方法叫做<em>公式法</em>．</div>
+    </div>
+  </div>
+  <p class="note">课本 p14–15。这是本节最重要的推导，建议学生先在本子上自己配方，再逐行对照。第 7 行严格说：当 a &lt; 0 时，√(4a²) = −2a，但因为前面有“±”，结果相同，所以课本统一写成 2a。小人旁注“原方程化成了 (x + h)² = k 的形式”：公式法就是“一次做完的配方法”。</p>
+</section>
+
+<!-- 12 ================= 公式法 · 例6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法三</span><h2>公式法：先定 $a$、$b$、$c$，再算 $b^2-4ac$</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 6</b>　解下列方程：(1) $x^2+3x+2=0$；(2) $2(x^2-2)=7x$．</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>(1) ∵</span><span>$a=1,\ b=3,\ c=2$</span><i class="why">找系数</i></div>
+        <div class="dl" data-step="2"><span></span><span>$b^2-4ac=3^2-4\times1\times2=1&gt;0$</span><i class="why">先算判别</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span>$x=\frac{-3\pm\sqrt1}{2\times1}=\frac{-3\pm1}2$</span><i class="why">代入公式</i></div>
+        <div class="dl end" data-step="4"><span>∴</span><span>$x_1=-1,\ x_2=-2$</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span>(2)</span><span>$2x^2-7x-4=0$</span><i class="why">先化成一般形式！</i></div>
+        <div class="dl" data-step="6"><span>∵</span><span>$a=2,\ b=-7,\ c=-4$</span><i class="why">注意符号</i></div>
+        <div class="dl" data-step="7"><span></span><span>$b^2-4ac=(-7)^2-4\times2\times(-4)=81&gt;0$</span><i class="why"></i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span>$x=\frac{7\pm9}4$，$x_1=-\frac12,\ x_2=4$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习（课本 p16）</b>　用公式法解：</p>
+      <div class="qgrid one">
+        <p>(1) $x^2-3x-4=0$　<span class="think" data-ask="答案">$\Delta=25$，$x_1=4,\ x_2=-1$</span></p>
+        <p>(2) $2x^2+x-1=0$　<span class="think" data-ask="答案">$\Delta=9$，$x_1=\frac12,\ x_2=-1$</span></p>
+        <p>(3) $x^2-2x=3$　<span class="think" data-ask="答案">化为 $x^2-2x-3=0$，$x_1=3,\ x_2=-1$</span></p>
+        <p>(4) $20x^2=8x+1$　<span class="think" data-ask="答案">$20x^2-8x-1=0$，$\Delta=144$，$x_1=\frac12,\ x_2=-\frac1{10}$</span></p>
+        <p>(5) $x(x-6)=6$　<span class="think" data-ask="答案">$x^2-6x-6=0$，$\Delta=60$，$x=3\pm\sqrt{15}$</span></p>
+        <p>(6) $4x(x-1)=1$　<span class="think" data-ask="答案">$4x^2-4x-1=0$，$\Delta=32$，$x=\frac{1\pm\sqrt2}2$</span></p>
+      </div>
+      <p class="method" data-step="9" data-label="公式法三步">化一般形式 → 写出 $a,b,c$ → 算 $b^2-4ac$，$\ge0$ 再代公式。</p>
+    </div>
+  </div>
+  <p class="note">课本 p16 例 6 与练习。为书写方便，这里用 Δ 表示 b² − 4ac（课本 p17 才正式引入“判别式”，可在这里先预告）。(2) 一定要先化成一般形式，b = −7 代入时要加括号。练习 (4)～(6) 都要先整理。</p>
+</section>
+
+<!-- 13 ================= 例7 · 判别式实验 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验</span><h2>$b^2-4ac$ 决定根的情况</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 7</b>　解下列方程：</p>
+      <div class="qgrid">
+        <p data-step="1">(1) $x^2+x-1=0$：$\Delta=5&gt;0$<br><span class="think" data-step="2" data-ask="根？">$x=\frac{-1\pm\sqrt5}{2}$，$x_1=\frac{-1+\sqrt5}2,\ x_2=\frac{-1-\sqrt5}2$</span></p>
+        <p data-step="3">(2) $x^2-2\sqrt3x+3=0$：$\Delta=0$<br><span class="think" data-step="4" data-ask="根？">$x=\frac{2\sqrt3\pm\sqrt0}{2\times1}=\sqrt3$，$x_1=x_2=\sqrt3$</span></p>
+        <p data-step="5">(3) $2x^2-2x+1=0$：$\Delta=-4&lt;0$<br><span class="think" data-step="6" data-ask="根？">这个方程<b>没有实数根</b></span></p>
+      </div>
+      <p class="tip" data-step="7"><b>尝试与交流（p15）</b>　$b^2-4ac&lt;0$ 时方程有实数根吗？<span class="think" data-step="8" data-ask="为什么？">没有：$\left(x+\frac b{2a}\right)^2=\frac{b^2-4ac}{4a^2}$，左边是一个数的平方，不可能小于 0，而右边小于 0。</span></p>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="dA" min="-3" max="3" step="1" value="1"><b class="v" id="dAV"></b>　$b=$<input type="range" id="dB" min="-6" max="6" step="1" value="1"><b class="v" id="dBV"></b>　$c=$<input type="range" id="dC" min="-6" max="6" step="1" value="-1"><b class="v" id="dCV"></b></div>
+      <p class="hk-eq" id="dEq"></p>
+      <div id="dLine" class="nline"></div>
+      <div class="dcase" id="dCase">
+        <p data-k="1">$\Delta&gt;0$：两个不相等的实数根</p>
+        <p data-k="0">$\Delta=0$：两个相等的实数根</p>
+        <p data-k="-1">$\Delta&lt;0$：没有实数根</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p16–17 例 7。右边实验：拖动 a、b、c，方程配方成 (x + b/2a)² = Δ/4a²，数轴上两个根以 −b/2a 为中心、相距 √Δ/|a|；Δ 变小两根靠拢，Δ = 0 重合，Δ &lt; 0 消失——和第 4 页的 (x + h)² = k 是同一件事。（a 拖到 0 时不是一元二次方程，实验会提示。）请学生找出 (1)(3) 两个例子的系数，在实验里验证。</p>
+</section>
+
+<!-- 14 ================= 判别式 · 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">判别式</span><h2>不解方程，判别根的情况</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def"><h4>根的情况（课本 p17）</h4>一元二次方程 $ax^2+bx+c=0\ (a\ne0)$．<br>当 $b^2-4ac&gt;0$ 时，有两个不相等的实数根；<br>当 $b^2-4ac=0$ 时，有两个相等的实数根；<br>当 $b^2-4ac&lt;0$ 时，没有实数根．</div>
+      <p class="def">我们把 $b^2-4ac$ 叫做一元二次方程 $ax^2+bx+c=0\ (a\ne0)$ 的根的<em>判别式</em>．</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习 1.</b> 不解方程，判别方程根的情况（点选）：</p>
+      <div class="pk">
+        <p>(1) $x^2+3x-1=0$</p>
+        <div class="pick" data-ans="a"><button data-k="a">两个不等</button><button data-k="b">两个相等</button><button data-k="c">没有实数根</button><p class="pick-why">$\Delta=9+4=13&gt;0$。</p></div>
+        <p>(2) $x^2-6x+5=0$</p>
+        <div class="pick" data-ans="a"><button data-k="a">两个不等</button><button data-k="b">两个相等</button><button data-k="c">没有实数根</button><p class="pick-why">$\Delta=36-20=16&gt;0$。</p></div>
+        <p>(3) $2y^2-3y+4=0$</p>
+        <div class="pick" data-ans="c"><button data-k="a">两个不等</button><button data-k="b">两个相等</button><button data-k="c">没有实数根</button><p class="pick-why">$\Delta=9-32=-23&lt;0$。</p></div>
+        <p>(4) $x^2+5=2\sqrt5x$</p>
+        <div class="pick" data-ans="b"><button data-k="a">两个不等</button><button data-k="b">两个相等</button><button data-k="c">没有实数根</button><p class="pick-why">先整理：$x^2-2\sqrt5x+5=0$，$\Delta=20-20=0$。</p></div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2.</b> $k$ 取什么值时，关于 $x$ 的一元二次方程 $x^2-kx+4=0$ 有两个相等的实数根？求此时方程的根．</p>
+        <details><summary>提示</summary>两个相等的实数根 ⇔ $b^2-4ac=0$：$(-k)^2-4\times1\times4=0$。</details>
+        <details><summary>完整解答</summary>$k^2=16$，$k=\pm4$．$k=4$ 时，$(x-2)^2=0$，$x_1=x_2=2$；$k=-4$ 时，$(x+2)^2=0$，$x_1=x_2=-2$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p17 方框结论、判别式定义与练习。第 (4) 题必须先化成一般形式再找 b（b = −2√5）。练习 2 是“逆用”判别式：由根的情况反求字母的值，注意 k 有两个值。</p>
+</section>
+
+<!-- 15 ================= 因式分解法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法四</span><h2>因式分解法：$AB=0\Rightarrow A=0$ 或 $B=0$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>尝试与交流</b>　如何解方程 $x^2-x=0$？</p>
+      <p class="tip" data-step="1">小人 A：可以用配方法或公式法．<br>小人 B：$x^2-x$ 可以化为 $x(x-1)$．</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="2"><span></span><span>$x(x-1)=0$</span><i class="why">左边分解因式</i></div>
+        <div class="dl key" data-step="3"><span></span><span class="think" data-step="4" data-ask="为什么？">$x=0$ 或 $x-1=0$</span><i class="why">两个因式的积为 0，至少有一个因式为 0</i></div>
+        <div class="dl end" data-step="5"><span></span><span>$x_1=0,\ x_2=1$</span><i class="why">两个一元一次方程</i></div>
+      </div>
+      <div class="def" data-step="6"><h4>因式分解法（课本 p18）</h4>当一个一元二次方程的一边是 0，另一边能分解为两个一次因式的乘积时，就可以把解这样的一元二次方程转化为解两个一元一次方程，这种解一元二次方程的方法叫做<em>因式分解法</em>．</div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 8</b>　(1) $x^2=-4x$；(2) $x+3-x(x+3)=0$．　<b>例 9</b>　$(2x-1)^2-x^2=0$．</p>
+      <div class="derive small-d">
+        <div class="dl" data-step="7"><span>例8(1)</span><span>$x^2+4x=0$，$x(x+4)=0$</span><i class="why">先移项使一边为 0，再提公因式</i></div>
+        <div class="dl end" data-step="8"><span></span><span>$x=0$ 或 $x+4=0$，$x_1=0,\ x_2=-4$</span><i class="why"></i></div>
+        <div class="dl" data-step="9"><span>例8(2)</span><span>$(x+3)(1-x)=0$</span><i class="why">把 $(x+3)$ 看成整体提出来</i></div>
+        <div class="dl end" data-step="10"><span></span><span>$x_1=-3,\ x_2=1$</span><i class="why"></i></div>
+        <div class="dl" data-step="11"><span>例9</span><span>$(2x-1+x)(2x-1-x)=0$</span><i class="why">平方差公式</i></div>
+        <div class="dl" data-step="12"><span>即</span><span>$(3x-1)(x-1)=0$</span><i class="why"></i></div>
+        <div class="dl end" data-step="13"><span></span><span>$x_1=\frac13,\ x_2=1$</span><i class="why"></i></div>
+      </div>
+      <p class="warn" data-step="14" data-label="一边必须是 0">$x(x-1)=2$ 不能写成 $x=2$ 或 $x-1=2$——积等于 2，因式不一定是 2。</p>
+    </div>
+  </div>
+  <p class="note">课本 p17–18。核心依据“两个因式的积为 0，至少有一个因式为 0”要让学生自己说出来。例 8(1) 学生常两边同除以 x 得 x = −4，丢了 x = 0——下一页的“观察与思考”专门讨论。最后的警示：只有“积 = 0”才能拆，“积 = 2”不行。</p>
+</section>
+
+<!-- 16 ================= 观察与思考 · 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察与思考</span><h2>小丽和小明，谁的解法对？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">解方程 $(x+2)^2=4(x+2)$．</p>
+      <div class="cols2 two-kids">
+        <p class="jcard"><b>小丽：</b>原方程可变形为<br>$(x+2)^2-4(x+2)=0$，<br>$(x+2)(x-2)=0$，<br>$x+2=0$ 或 $x-2=0$．<br>所以 $x_1=-2,\ x_2=2$．</p>
+        <p class="jcard"><b>小明：</b>原方程两边都除以 $(x+2)$，<br>得 $x+2=4$．<br>所以 $x=2$．</p>
+      </div>
+      <div class="pick" data-ans="li"><button data-k="li">小丽对</button><button data-k="ming">小明对</button><p class="pick-why">把 $x=-2$ 代回原方程：左边 $0^2=0$，右边 $4\times0=0$，$x=-2$ 确实是根。小明两边除以 $(x+2)$，可 $x+2$ 可能等于 0，<b>不能作除数</b>，于是丢掉了 $x=-2$ 这个根。</p></div>
+      <p class="method" data-step="1" data-label="避免失根">含未知数的式子不能随便约去：先移项使一边为 0，再提公因式。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习（课本 p19）</b>　用因式分解法解：</p>
+      <div class="qgrid one">
+        <p>1(1) $x^2-3x=0$　<span class="think" data-ask="答案">$x_1=0,\ x_2=3$</span></p>
+        <p>1(2) $3x^2=x$　<span class="think" data-ask="答案">$x(3x-1)=0$，$x_1=0,\ x_2=\frac13$</span></p>
+        <p>1(3) $2(x-1)+x(x-1)=0$　<span class="think" data-ask="答案">$(x-1)(x+2)=0$，$x_1=1,\ x_2=-2$</span></p>
+        <p>1(4) $4x(2x-1)=3(2x-1)$　<span class="think" data-ask="答案">$(2x-1)(4x-3)=0$，$x_1=\frac12,\ x_2=\frac34$</span></p>
+        <p>2(1) $(x+1)^2-9=0$　<span class="think" data-ask="答案">$(x+4)(x-2)=0$，$x_1=-4,\ x_2=2$</span></p>
+        <p>2(2) $(x-2)^2-9(x+1)^2=0$　<span class="think" data-ask="答案">$(4x+1)(-2x-5)=0$，$x_1=-\frac14,\ x_2=-\frac52$</span></p>
+        <p>2(3) $(x-1)^2-2(x-1)+1=0$　<span class="think" data-ask="答案">$(x-1-1)^2=0$，$x_1=x_2=2$</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p19 观察与思考及练习。先让学生举手站队，再点选揭示。练习 2(2) 用平方差：[(x − 2) + 3(x + 1)][(x − 2) − 3(x + 1)] = 0；2(3) 用完全平方公式，把 (x − 1) 看成整体。</p>
+</section>
+
+<!-- 17 ================= 选方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">选一选</span><h2>四种方法，各用在什么时候？</h2></div>
+  <div class="bd full">
+    <div class="cols2 pk2">
+      <div class="pk">
+        <p>① $(x-4)^2=25$</p>
+        <div class="pick" data-ans="kp"><button data-k="kp">直接开平方</button><button data-k="pf">配方</button><button data-k="gs">公式</button><button data-k="yf">因式分解</button><p class="pick-why">已是 $(x+h)^2=k$ 的形式：$x-4=\pm5$，$x_1=9,\ x_2=-1$。</p></div>
+        <p>② $x^2-5x-6=0$</p>
+        <div class="pick" data-ans="yf"><button data-k="kp">直接开平方</button><button data-k="pf">配方</button><button data-k="gs">公式</button><button data-k="yf">因式分解</button><p class="pick-why">$(x-6)(x+1)=0$，$x_1=6,\ x_2=-1$（习题 1.2 第 6(1) 题）。</p></div>
+        <p>③ $(x+3)^2=2(x+3)$</p>
+        <div class="pick" data-ans="yf"><button data-k="kp">直接开平方</button><button data-k="pf">配方</button><button data-k="gs">公式</button><button data-k="yf">因式分解</button><p class="pick-why">移项后提公因式 $(x+3)$：$(x+3)(x+1)=0$，$x_1=-3,\ x_2=-1$。别学小明约分！</p></div>
+      </div>
+      <div class="pk">
+        <p>④ $x^2+4x-1=0$</p>
+        <div class="pick" data-ans="pf"><button data-k="kp">直接开平方</button><button data-k="pf">配方</button><button data-k="gs">公式</button><button data-k="yf">因式分解</button><p class="pick-why">二次项系数为 1、一次项系数是偶数，配方简便：$(x+2)^2=5$，$x=-2\pm\sqrt5$。（公式法也可以。）</p></div>
+        <p>⑤ $3x^2-5x-1=0$</p>
+        <div class="pick" data-ans="gs"><button data-k="kp">直接开平方</button><button data-k="pf">配方</button><button data-k="gs">公式</button><button data-k="yf">因式分解</button><p class="pick-why">不易分解，配方要除以 3 出现分数：用公式法，$\Delta=37$，$x=\frac{5\pm\sqrt{37}}6$。</p></div>
+        <p class="method" data-step="1" data-label="选法顺序">先看能否<b>直接开平方</b>或<b>因式分解</b>（最快）；不行再用<b>公式法</b>（万能）；$a=1$ 且 $b$ 为偶数时<b>配方</b>也很方便。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">综合习题 1.2 第 1–6 题的选法训练。每题先让学生说“用哪种、为什么”，再点选核对；④ 有两种合理选法，点“配方”或说明公式法都应肯定，这里按“最简便”给出参考答案。课后作业从习题 1.2 第 1–7 题中按方法各选 1–2 题。</p>
+</section>
+
+<!-- 18 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>四种解法，一个思想：降次</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">直接开平方法、配方法、公式法 $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$、因式分解法．</p>
+        <p class="def">判别式 $b^2-4ac$：$&gt;0$ 两个不等实根；$=0$ 两个相等实根；$&lt;0$ 无实根．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="配方">两边加一次项系数一半的平方（拼图：补上缺的那个角）。</p>
+        <p class="method" data-label="公式">一般形式 → $a,b,c$ → 判别式 → 代入。</p>
+        <p class="warn" data-label="防失根">别把含未知数的式子约去。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化 · 降次">二次方程 → 两个一次方程（未知 → 已知）。</p>
+        <p class="recall" data-label="数形结合">配方 ↔ 矩形割补成正方形。</p>
+        <p class="recall" data-label="从特殊到一般">由具体方程的配方，推出求根公式。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>1.3 根与系数的关系为选学内容；1.4 用一元二次方程解决问题——列出方程、用今天的方法解，还要<b>检验</b>根是否符合实际。</p>
+  </div>
+  <p class="note">课本 p31“阅读：各类方程的解法”也可在这里先读一段：“解一元二次方程，把它转化为解两个一元一次方程（用直接开平方法、配方法、公式法、因式分解法）”。课后作业：习题 1.2 第 1–9 题分课时布置。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>弧长及扇形的面积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zheshan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级上册 · 第2章 对称图形——圆 · 2.7</p>
+    <h1 class="cover-title">弧长及扇形的面积</h1>
+    <p class="cover-q" data-step="1">打开一把折扇，扇面是圆的一部分。扇面的外边缘有多长？扇面有多大？</p>
+    <p class="cover-q" data-step="2">我们会算整个圆的周长 $2\pi R$ 和面积 $\pi R^2$——圆的“一部分”，能不能按比例算出来？</p>
+    <div class="chips" data-step="3"><span class="chip">把弧拉直</span><span class="chip">$l=\dfrac{n\pi R}{180}$</span><span class="chip">扇形切片重拼</span><span class="chip">$S=\dfrac12lR$</span></div>
+  </div>
+  <p class="note">课本例 2 的情境（折扇）。本课是推导课：从“整个圆”出发，用“按比例”（1° 的弧占圆周的 1/360）推出弧长、扇形面积公式，再发现扇形面积与三角形面积公式的相似。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2 rc">
+      <div class="recall" data-label="小学 · 圆的周长和面积" data-step="1">
+        <p>半径为 $R$ 的圆：周长 $C=2\pi R$，面积 $S=\pi R^2$。</p>
+        <p>圆的面积公式是把圆切成很多小扇形、拼成近似的长方形推出来的。</p>
+        <span class="use">弧长、扇形面积都是“整个圆”的一部分；切片重拼的方法本课再用一次。</span>
+      </div>
+      <div class="recall" data-label="九上 2.1 · 2.2 弧与圆心角" data-step="2">
+        <p>圆上任意两点间的部分叫做<b>弧</b>；一条弧和经过这条弧的端点的两条半径所组成的图形叫做<b>扇形</b>。</p>
+        <p>$1^\circ$ 的圆心角所对的弧叫 $1^\circ$ 的弧；圆心角的度数与它所对的弧的度数相等。</p>
+        <span class="use">$n^\circ$ 的圆心角所对的弧，就是 $n$ 个 $1^\circ$ 的弧。</span>
+      </div>
+      <div class="recall" data-label="九上 2.4 圆周角" data-step="3">
+        <p>圆周角的度数等于它所对弧上的圆心角度数的一半。</p>
+        <span class="use">例 1 由圆周角求圆心角，再求弧长。</span>
+      </div>
+      <div class="recall" data-label="八上 6.2 一次函数（正比例函数）" data-step="4">
+        <p>形如 $y=kx$（$k$ 为常数，$k\ne0$）的函数叫做正比例函数。</p>
+        <span class="use">看清弧长 $l$ 与 $n$、与 $R$ 的关系。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 2 张卡里“弧是圆的一部分，扇面是圆面的一部分”是本课的出发点（课本 p83 第一段）。上一课 2.6 研究了正多边形与圆，本课回到圆的“部分”：弧和扇形。</p>
+</section>
+
+<!-- 3 ================= 弧长：把弧拉直 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>$n^\circ$ 的圆心角所对的弧有多长？</h2></div>
+  <div class="bd full top">
+    <div id="ul" class="ulb"></div>
+    <div class="slider-row ctl" data-noswipe>圆心角 $n=$<input type="range" id="ulN" min="0" max="360" step="1" value="120"><b class="v" id="ulNv"></b>　半径 $R=$<input type="range" id="ulR" min="0.8" max="1.5" step="0.1" value="1.2"><b class="v" id="ulRv"></b>　拉直：<input type="range" id="ulT" min="0" max="1" step="0.01" value="0"></div>
+    <p class="tip feedback" id="ulMsg"></p>
+    <div class="cols2">
+      <table class="mtab" data-step="1">
+        <tr><th>圆心角</th><th>$360^\circ$</th><th>$180^\circ$</th><th>$1^\circ$</th><th>$n^\circ$</th></tr>
+        <tr><td>所对弧长</td><td>$2\pi R$</td><td><span class="think" data-step="2" data-ask="?">$\dfrac12\times2\pi R$</span></td><td><span class="think" data-step="3" data-ask="?">$\dfrac1{360}\times2\pi R$</span></td><td><span class="think" data-step="4" data-ask="?">$\dfrac{n}{360}\times2\pi R$</span></td></tr>
+      </table>
+      <p class="method" data-step="5" data-label="按比例">$n^\circ$ 的弧是 $n$ 个 $1^\circ$ 的弧，占整个圆周的 $\dfrac{n}{360}$．</p>
+    </div>
+  </div>
+  <p class="note">课本 p83 思考与探索、图 2-58。先拖“拉直”滑块：橙色的弧被拉成一条线段（长度始终不变），放到下面灰色的“整个圆周长”上比一比——它正好占 n/360。再改 n、R 观察。表格让学生先说再点开（小明、小丽的提示）。</p>
+</section>
+
+<!-- 4 ================= 弧长公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">公式</span><h2>弧长公式</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>弧长公式（课本 p83）</h4>在半径为 $R$ 的圆中，弧长 $l$ 与所对的圆心角度数 $n$ 之间有如下关系：$$l=\frac{n}{360}\times2\pi R=\frac{n\pi R}{180}.$$</div>
+    <div class="cols2">
+      <p class="recall" data-step="2" data-label="函数的眼光">当 $R$ 为常数时，$l$ 是 $n$ 的正比例函数；当 $n$ 为常数时，$l$ 是 $R$ 的正比例函数．<span class="think" data-step="3" data-ask="半径扩大到 2 倍，同样圆心角的弧长？">也扩大到 2 倍．</span></p>
+      <p class="warn" data-step="4" data-label="易错">公式里的 $n$ 是<b>度数</b>，只代数字，不带“°”；$n$ 和 $180$ 不能约错：$\dfrac{n\pi R}{180}$ 里 $180$ 来自 $\dfrac{2}{360}$．</p>
+    </div>
+    <p class="tip" data-step="5"><b>算一算：</b>半径为 6 的圆中，$60^\circ$ 的圆心角所对的弧长 $l=$<span class="blank" data-ans="2" data-w="2"></span>$\pi$；$90^\circ$ 的弧长 $l=$<span class="blank" data-ans="3" data-w="2"></span>$\pi$；半圆的弧长 $l=$<span class="blank" data-ans="6" data-w="2"></span>$\pi$．</p>
+  </div>
+  <p class="note">课本 p83 公式框与正比例函数的说明。“算一算”填 π 前面的系数，回车判对错：60π·6/180 = 2π，90π·6/180 = 3π，180π·6/180 = 6π（半圆 = 半个周长）。</p>
+</section>
+
+<!-- 5 ================= 扇形面积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察与思考</span><h2>扇形的面积与圆心角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="sa" class="bigb"></div>
+      <div class="slider-row" data-noswipe>$n=$<input type="range" id="saN" min="0" max="360" step="1" value="90"><b class="v" id="saNv"></b></div>
+      <p class="tip feedback" id="saMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">仿照上面的过程，当圆的半径 $R$ 确定时，探索扇形的面积 $S_{\text{扇形}}$ 与扇形的圆心角度数 $n$ 之间的数量关系．</p>
+      <table class="mtab" data-step="1">
+        <tr><th>圆心角</th><th>$360^\circ$</th><th>$180^\circ$</th><th>$1^\circ$</th><th>$n^\circ$</th></tr>
+        <tr><td>扇形面积</td><td>$\pi R^2$</td><td><span class="think" data-step="2" data-ask="?">$\dfrac12\pi R^2$</span></td><td><span class="think" data-step="3" data-ask="?">$\dfrac1{360}\pi R^2$</span></td><td><span class="think" data-step="4" data-ask="?">$\dfrac{n}{360}\pi R^2$</span></td></tr>
+      </table>
+      <div class="def" data-step="5"><h4>扇形面积公式（课本 p84）</h4>在半径为 $R$ 的圆中，扇形的面积 $S_{\text{扇形}}$ 与圆心角度数 $n$ 之间有如下关系：$$S_{\text{扇形}}=\frac{n}{360}\pi R^2.$$</div>
+    </div>
+  </div>
+  <p class="note">课本 p83–84 观察与思考。左图把整圆划成 36 等份（每份 10°），拖动 n 看扇形占了几份——面积占圆面积的 n/360。与弧长的推导完全类比，可以让学生自己完成表格。</p>
+</section>
+
+<!-- 6 ================= S = 1/2 lR ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>$S_{\text{扇形}}$ 与弧长 $l$ 有什么关系？</h2></div>
+  <div class="bd full top">
+    <div id="sl" class="slb"></div>
+    <div class="slider-row ctl" data-noswipe>圆心角 $n=$<input type="range" id="slN" min="30" max="180" step="5" value="120"><b class="v" id="slNv"></b>　切成<input type="range" id="slK" min="2" max="24" step="2" value="8"><b class="v" id="slKv"></b>片　重拼：<input type="range" id="slT" min="0" max="1" step="0.01" value="0"></div>
+    <p class="tip feedback" id="slMsg"></p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$S_{\text{扇形}}$</span><span>$=\dfrac{n}{360}\pi R^2=\dfrac12\cdot\dfrac{n\pi R}{180}\cdot R$</span><i class="why">把 $\pi R^2$ 拆成 $\frac12\cdot2\pi R\cdot R$</i></div>
+        <div class="dl end" data-step="2"><span>于是</span><span class="think" data-step="3" data-ask="用 l 表示">$S_{\text{扇形}}=\dfrac12lR$</span><i class="why">$l=\dfrac{n\pi R}{180}$</i></div>
+      </div>
+      <p class="method" data-step="4" data-label="像不像三角形？">把扇形看作“曲边三角形”：底是弧长 $l$，高是半径 $R$，$S=\dfrac12\times$底$\times$高．切得越细，重拼出的图形越接近底为 $\dfrac l2$、高为 $R$ 的平行四边形．</p>
+    </div>
+  </div>
+  <p class="note">课本 p84 思考与探索。先看推导（代数变形），再拖“重拼”：扇形被切成 k 片，交错拼成近似平行四边形——每片都是刚体移动，面积不变。把片数加到 24，看底边越来越接近 l/2、高越来越接近 R。这与小学推导圆面积的方法一脉相承。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>由圆周角求弧长</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f259" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-59（按 $\angle BAC=60^\circ$ 精确作出）</p>
+      <p class="method" data-step="1" data-label="思路">求弧长要知道<span class="think" data-step="2" data-ask="哪两个量？">半径 $R$ 和圆心角 $n$；已知的是圆周角，先转化成圆心角．</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-59，$\triangle ABC$ 是 $\odot O$ 的内接三角形，$\angle BAC=60^\circ$．设 $\odot O$ 的半径为 2，求 $\overset{\frown}{BC}$ 的长．</p>
+      <div class="proof-l">
+        <p data-step="3"><b class="lead">解：</b>连接 $OB$、$OC$，则 $\angle BOC$ 为 $\overset{\frown}{BC}$ 所对的圆心角．</p>
+        <p data-step="4">∵ $\angle BAC=60^\circ$，</p>
+        <p data-step="5">∴ $\angle BOC=2\angle BAC=120^\circ$（圆周角定理）．</p>
+        <p data-step="6">∴ $\overset{\frown}{BC}$ 的长 $l=\dfrac{120\pi\times2}{180}=\dfrac43\pi$．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p84 例 1。结果保留 π。可追问：优弧 BAC 的长是多少？（360° − 120° = 240°，l = 8π/3。）</p>
+</section>
+
+<!-- 8 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>折扇扇面的面积</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f260" class="gfig xl"></div>
+      <p class="muted center small-t">图 2-60（按 $120^\circ$、$OA=30$、$AC=20$ 的比例精确作出）</p>
+      <p class="method" data-step="1" data-label="思路">扇面（阴影）是<span class="think" data-step="2" data-ask="怎样表示？">大扇形 $OAB$ 减去小扇形 $OCD$；$OC=OA-AC=10$ cm．</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 2-60，折扇打开后，$OA$、$OB$ 的夹角为 $120^\circ$，$OA$ 的长为 30 cm，$AC$ 的长为 20 cm．求图中阴影部分的面积 $S$．</p>
+      <div class="proof-l">
+        <p data-step="3"><b class="lead">解：</b>$S=S_{\text{扇形}OAB}-S_{\text{扇形}OCD}$．</p>
+        <p data-step="4">∵ $S_{\text{扇形}OAB}=\dfrac{120\pi\times30^2}{360}=300\pi\ (\text{cm}^2)$，</p>
+        <p data-step="5">$\quad\ S_{\text{扇形}OCD}=\dfrac{120\pi\times10^2}{360}=\dfrac{100}{3}\pi\ (\text{cm}^2)$，</p>
+        <p data-step="6">∴ $S=300\pi-\dfrac{100}{3}\pi=\dfrac{800}{3}\pi\ (\text{cm}^2)$．</p>
+      </div>
+      <div class="hint-ladder" data-step="7">
+        <p class="q"><b>拓展与延伸（p85）</b>　半圆的直径 $AB=40$，$C$、$D$ 是半圆的 3 等分点．求弦 $AC$、$AD$ 与 $\overset{\frown}{CD}$ 围成的阴影部分的面积．</p>
+        <div id="f261" class="hfig"></div>
+        <details><summary>提示 1</summary>$C$、$D$ 是三等分点，$CD$ 与 $AB$ 有什么位置关系？</details>
+        <details><summary>提示 2</summary>$CD\parallel AB$，$\triangle ACD$ 与 $\triangle OCD$ 同底等高，面积相等．</details>
+        <details><summary>完整解答</summary>阴影面积 $=S_{\text{扇形}OCD}=\dfrac{60\pi\times20^2}{360}=\dfrac{200}{3}\pi$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p84–85 例 2 与拓展与延伸。易错：OC 不是 20，而是 30 − 20 = 10。拓展题的关键是“等积变形”：把不规则图形转化为扇形。</p>
+</section>
+
+<!-- 9 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p85 练习 1）已知圆弧所在圆的半径为 24，所对的圆心角为 $60^\circ$，求这条弧的长．</p>
+        <details><summary>提示</summary>$l=\dfrac{n\pi R}{180}$，$n=60$，$R=24$．</details>
+        <details><summary>完整解答</summary>$l=\dfrac{60\pi\times24}{180}=8\pi$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（p85 练习 2）已知扇形的圆心角为 $120^\circ$，弧长为 $20\pi$，求这个扇形的面积．</p>
+        <details><summary>提示 1</summary>先由弧长公式求半径 $R$．</details>
+        <details><summary>提示 2</summary>$\dfrac{120\pi R}{180}=20\pi$，$R=30$；再用 $S=\dfrac12lR$．</details>
+        <details><summary>完整解答</summary>$R=30$，$S=\dfrac12\times20\pi\times30=300\pi$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 2.7 第 1 题）已知 $75^\circ$ 的圆心角所对的弧长为 $5\pi$，求这条弧所在圆的半径．</p>
+        <details><summary>提示</summary>把公式看作关于 $R$ 的方程：$\dfrac{75\pi R}{180}=5\pi$．</details>
+        <details><summary>完整解答</summary>$R=\dfrac{5\times180}{75}=12$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b>（习题 2.7 第 2 题）已知扇形的面积为 $6\pi$，半径为 4，求这个扇形的弧长．</p>
+        <details><summary>提示</summary>不用求圆心角：$S=\dfrac12lR$．</details>
+        <details><summary>完整解答</summary>$6\pi=\dfrac12\times l\times4$，$l=3\pi$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p85 练习 1、2，习题 2.7 第 1、2 题。第 2、4 题体会 S = ½lR 的便利：已知弧长和半径时不必求圆心角。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">弧长 $l=\dfrac{n\pi R}{180}$；扇形面积 $S=\dfrac{n}{360}\pi R^2=\dfrac12lR$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="按比例">$n^\circ$ 的弧（扇形）占整个圆的 $\dfrac{n}{360}$。</p>
+        <p class="method" data-label="割补">不规则图形 = 扇形 ± 三角形或扇形（例 2、拓展）。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="从特殊到一般">$360^\circ\to180^\circ\to1^\circ\to n^\circ$。</p>
+        <p class="recall" data-label="类比 · 化曲为直">扇形 ↔ 三角形：$S=\dfrac12lR$；切片重拼化曲为直。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>2.8 圆锥的侧面积——把圆锥的侧面剪开、展平，会得到什么图形？它的弧长和底面圆有什么关系？</p>
+  </div>
+  <p class="note">作业：习题 2.7 第 3、4 题。第 3 题（以 OA 为直径的圆与原圆的两段弧相等）是对弧长公式“l 与 n、R 都成正比”的好应用。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
