@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>因数和倍数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mnum.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/ticao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第三单元 因数与倍数 · 因数和倍数</p>
+    <h1 class="cover-title">因数和倍数</h1>
+    <p class="cover-q" data-step="1">操场上做团体操，同学们要排成<b>每排人数一样多</b>的方阵。</p>
+    <p class="cover-q" data-step="2">用 <b>12 个同样大的正方形</b>拼一个长方形，也是这个道理：每排摆几个？摆了几排？有几种摆法？</p>
+    <div class="chips" data-step="3"><span class="chip">拼一拼</span><span class="chip">因数</span><span class="chip">倍数</span><span class="chip">一对一对地找</span></div>
+  </div>
+  <p class="note">课本 p30 例 1 的情境。先让学生猜一猜“有几种摆法”，不急着回答。提醒：本单元研究因数与倍数时，所说的数一般指不是 0 的自然数（课本 p30 脚注）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这几件事，你还记得吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="二上 · 表内乘法" data-step="1">
+        <svg viewBox="0 0 240 110" class="mini-fig" aria-label="3 排，每排 4 个圆点">
+          <g class="dots"></g>
+        </svg>
+        <p>每排 4 个，摆 3 排：$4\times3=12$。<br>乘法算式表示“<b>几个几</b>”。</p>
+        <span class="use">用乘法算式记下每一种摆法。</span>
+      </div>
+      <div class="recall" data-label="二下 · 有余数的除法" data-step="2">
+        <p class="big center">$12\div4=3$</p>
+        <p class="big center">$12\div5=2\cdots\cdots2$</p>
+        <p>第一个<b>正好分完</b>；第二个<b>有余数</b>，还剩 2 个。</p>
+        <span class="use">判断每排摆几个能不能正好拼成。</span>
+      </div>
+      <div class="recall" data-label="三下 · 长方形的面积" data-step="3">
+        <svg viewBox="0 0 240 110" class="mini-fig" aria-label="长方形里摆满 1 平方厘米的正方形，每排 5 个，摆 2 排">
+          <g class="sqs"></g>
+        </svg>
+        <p>摆面积单位：<b>每排个数 × 排数</b>。</p>
+        <span class="use">用小正方形拼长方形。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>像 $4\times3=12$ 这样的算式里，4、3、12 这几个数之间有什么关系？</p>
+  </div>
+  <p class="note">每张卡请学生先口答再点出。第 2 张卡的“有余数”是第 3 页判断“拼不拼得成”的依据：每排摆的个数去除 12，没有余数才能拼成长方形。</p>
+</section>
+
+<!-- 3 ================= 例 1 拼一拼（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 拼一拼</span><h2>12 个正方形，能拼成哪些长方形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">用 12 个同样大的正方形拼一个长方形。<b>每排摆几个</b>？摆了几排？</p>
+      <div class="pin-ctrl" data-noswipe>
+        <span>每排摆</span>
+        <button type="button" class="btn" id="pinMinus" aria-label="少摆一个">−</button>
+        <b id="pinK" class="pin-k">4</b>
+        <button type="button" class="btn" id="pinPlus" aria-label="多摆一个">＋</button>
+        <span>个</span>
+      </div>
+      <p class="tip feedback" id="pinMsg"></p>
+      <div class="found"><h4>找到的摆法（乘法算式）</h4><p id="pinFound" class="muted">还没有找到，试一试！</p></div>
+    </div>
+    <div class="col">
+      <svg id="pinFig" class="pin-fig" viewBox="0 0 640 330" aria-label="用 12 个正方形拼长方形"></svg>
+      <p class="tip" data-step="1">一共找到几种摆法？　<span class="think" data-step="2" data-ask="找全了吗？">3 种：$4\times3=12$、$6\times2=12$、$12\times1=12$（把长方形转个身，$3\times4$、$2\times6$、$1\times12$ 是同样的长方形）。</span></p>
+      <p class="tip" data-step="3">每排摆 5 个为什么不行？　<span class="think" data-step="4" data-ask="想一想">$12\div5=2\cdots\cdots2$，有余数，最后一排摆不满。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p30 例 1。让学生用 − ＋ 改变每排的个数，图上的小正方形按真实个数排列：能整除时拼成长方形并记录算式，不能整除时最后一排用红色虚线标出缺的格子。每排 1 个和每排 12 个、每排 3 个和每排 4 个，拼出来是同一个长方形转了个身，课本只列 3 个算式。</p>
+</section>
+
+<!-- 4 ================= 认识因数和倍数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 说一说</span><h2>从乘法算式认识因数和倍数</h2></div>
+  <div class="bd full top">
+    <div class="def big-def" data-step="1"><h4>课本这样说</h4>$4\times3=12$，4 和 3 都是 12 的<em>因数</em>，12 是 4 的<em>倍数</em>，也是 3 的<em>倍数</em>。</div>
+    <div class="fx" data-step="2">
+      <div class="fx-row"><span class="fx-n a">4</span><span>×</span><span class="fx-n a">3</span><span>=</span><span class="fx-n b">12</span></div>
+      <div class="fx-lb"><span class="a">因数</span><span></span><span class="a">因数</span><span></span><span class="b">倍数</span></div>
+    </div>
+    <div class="cols2">
+      <div class="calc" data-step="3">
+        <h4>根据 $6\times2=12$</h4>
+        <p><span class="blank" data-ans="6|2" data-label="谁是 12 的因数"></span> 和 <span class="blank" data-ans="2|6"></span> 都是 12 的因数；</p>
+        <p>12 是 <span class="blank" data-ans="6|2"></span> 的倍数，也是 <span class="blank" data-ans="2|6"></span> 的倍数。</p>
+      </div>
+      <div class="calc" data-step="4">
+        <h4>根据 $12\times1=12$</h4>
+        <p><span class="blank" data-ans="12|1"></span> 和 <span class="blank" data-ans="1|12"></span> 都是 12 的因数；</p>
+        <p>12 是 12 的倍数，也是 <span class="blank" data-ans="1"></span> 的倍数。</p>
+      </div>
+    </div>
+    <p class="warn" data-step="5" data-label="要说完整">因数和倍数是<b>相互依存</b>的：只能说“4 是 12 的因数”“12 是 4 的倍数”，不能单独说“4 是因数”“12 是倍数”。</p>
+  </div>
+  <p class="note">课本 p30 下半页。先请学生照着课本的句子说 4×3=12，再独立说 6×2=12、12×1=12，填空回车自查（两个因数先填哪个都算对）。12×1=12 里，12 既是 12 的因数，也是 12 的倍数——为下一页“最大的因数是它本身”“最小的倍数是它本身”埋伏笔。</p>
+</section>
+
+<!-- 5 ================= 例 2 找 36 的因数（一对一对） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 一对一对地找</span><h2>找出 36 的所有因数</h2></div>
+  <div class="bd full top">
+    <p class="tip">怎样找才能<b>不重复、不遗漏</b>？想一想：36 是由哪两个数相乘得到的？从 1 开始，依次试一试。</p>
+    <div class="pair-ctrl" data-noswipe>
+      <button type="button" class="btn solid" id="pairNext">试下一个数 ▶</button>
+      <button type="button" class="btn" id="pairReset">↺ 重来</button>
+      <span id="pairMsg" class="pair-msg"></span>
+    </div>
+    <div class="pair-wrap">
+      <ol id="pairLog" class="pair-log"></ol>
+      <svg id="pairFig" class="pair-fig" viewBox="0 0 640 230" aria-label="36 的因数一对一对连起来"></svg>
+    </div>
+    <p class="tip" data-step="1">36 的因数有：1，2，<span class="blank" data-ans="3"></span>，<span class="blank" data-ans="4"></span>，<span class="blank" data-ans="6"></span>，<span class="blank" data-ans="9"></span>，<span class="blank" data-ans="12"></span>，18，36。</p>
+    <p class="method" data-step="2" data-label="一对一对地找">$1\times36$、$2\times18$、$3\times12$、$4\times9$、$6\times6$——从小往大试，<b>两个因数碰头了</b>（6 × 6）就找完了，再往下试就重复了。</p>
+  </div>
+  <p class="note">课本 p30 例 2。每点一次“试下一个数”，左边写出 36 ÷ 几，右边把找到的一对因数用弧线连起来（小的从左往右排，大的从右往左排）。试到 5：36 ÷ 5 有余数，5 不是 36 的因数。试到 6：6 × 6 = 36，两个因数相同只写一个，找完了。也可以像课本小精灵那样依次列举除法算式。</p>
+</section>
+
+<!-- 6 ================= 试一试：因数的特点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>一个数的因数有什么特点？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc">
+        <p>15 的因数有：<span class="blank" data-ans="1,3,5,15|1、3、5、15|1，3，5，15" data-w="8"></span></p>
+        <p>16 的因数有：<span class="blank" data-ans="1,2,4,8,16|1、2、4、8、16|1，2，4，8，16" data-w="9"></span></p>
+        <p class="muted tiny">从小到大写，数之间用“、”或“，”隔开</p>
+      </div>
+      <div class="calc">
+        <p>15 = 1 × 15 = 3 × 5</p>
+        <p>16 = 1 × 16 = 2 × 8 = 4 × 4</p>
+        <p class="muted tiny">一对一对地找，碰头就停</p>
+      </div>
+    </div>
+    <p class="tip" data-step="1">观察 12、36、15、16 的因数，说说一个数的因数有什么特点。</p>
+    <div class="cols2">
+      <p class="def" data-step="2">一个数<b>最小</b>的因数是 <span class="think" data-step="3" data-ask="是几？">1</span>，<b>最大</b>的因数是 <span class="think" data-step="3" data-ask="是谁？">它本身</span>。</p>
+      <p class="def" data-step="4">一个数的因数的个数是 <span class="think" data-step="5" data-ask="有限还是无限？"><b>有限</b>的</span>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p31 试一试。16 = 4 × 4 时两个因数相同，只写一个 4。学生找完后，引导他们把 12、36、15、16 的因数并排看：第一个都是 1，最后一个都是它自己，能数得完。</p>
+</section>
+
+<!-- 7 ================= 例 3 3 的倍数：数轴跳一跳 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 跳一跳</span><h2>3 的倍数有多少个？</h2></div>
+  <div class="bd full top">
+    <p class="tip">从 3 的 1 倍开始依次列举：$3\times1=3$，$3\times2=6$，…… 小青蛙从 0 出发，<b>每次跳 <span id="jumpS">3</span> 格</b>，落在哪儿？</p>
+    <div class="jump-ctrl" data-noswipe>
+      <span class="btns" id="jumpStep"><button type="button" class="btn solid" data-s="3">3 的倍数</button><button type="button" class="btn" data-s="2">2 的倍数</button><button type="button" class="btn" data-s="5">5 的倍数</button></span>
+      <button type="button" class="btn solid" id="jumpGo">跳一下 ▶</button>
+      <button type="button" class="btn" id="jumpAll">一直跳 ▶▶</button>
+    </div>
+    <div class="hscroll" data-noswipe><svg id="jumpFig" class="jump-fig" viewBox="0 0 1000 150" aria-label="数轴上每次跳几格"></svg></div>
+    <p class="tip jump-list"><span id="jumpName">3</span> 的倍数有：<b id="jumpList"></b></p>
+    <div class="cols2">
+      <p class="tip" data-step="1">数轴画完了，还能接着跳吗？3 的倍数能找完吗？　<span class="think" data-step="2" data-ask="想一想">能一直跳下去，<b>找不完</b>。写的时候用“……”表示。</span></p>
+      <div class="def" data-step="3">一个数<b>最小</b>的倍数是 <span class="think" data-step="4" data-ask="是谁？">它本身</span>，<span class="think" data-step="4" data-ask="最大的呢？">没有最大的倍数</span>；倍数的个数是 <span class="think" data-step="4" data-ask="有限还是无限？"><b>无限</b>的</span>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p31 例 3 和试一试。先跳 3 的倍数：3、6、9、12……数轴只画到 40，落点之后用“……”。再切换成 2 的倍数、5 的倍数（试一试），让学生说出“一个数的倍数有什么特点”。课本小精灵：从 1 开始的自然数有 1，2，3，…，3 的倍数有无数个。</p>
+</section>
+
+<!-- 8 ================= 比一比 + 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比一比 · 辨一辨</span><h2>因数和倍数，哪里不一样？</h2></div>
+  <div class="bd full top">
+    <table class="mtab cmp-tab">
+      <tr><th></th><th>最小的</th><th>最大的</th><th>个数</th></tr>
+      <tr><th>一个数的因数</th><td><span class="think" data-step="1" data-ask="？">1</span></td><td><span class="think" data-step="1" data-ask="？">它本身</span></td><td><span class="think" data-step="1" data-ask="？">有限</span></td></tr>
+      <tr><th>一个数的倍数</th><td><span class="think" data-step="2" data-ask="？">它本身</span></td><td><span class="think" data-step="2" data-ask="？">没有</span></td><td><span class="think" data-step="2" data-ask="？">无限</span></td></tr>
+    </table>
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> “36 是倍数。”这句话对吗？</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">因数和倍数要<b>说清是谁的</b>：可以说“36 是 4 的倍数”，不能单独说“36 是倍数”。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 1 是 1、2、3、4……每个数的因数。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">任何一个数 $a$ 都有 $a\times1=a$，所以 1 是每个（不是 0 的自然数）的因数。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 一个数的因数一定比这个数的倍数小。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">6 是 6 的因数，6 也是 6 的倍数，<b>一样大</b>。应该说：因数不会比倍数大。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">表格由学生先说再点开，总结课本 p31 两组小精灵的话。三道辨析题请全班举手表决再点。第 3 题是常见误区：“它本身”既是最大的因数，又是最小的倍数。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>自己做一做：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 把乘法算式改写成除法算式，再说说谁是谁的因数、谁是谁的倍数。</p>
+        <p class="q small-q">$8\times9=72$：$72\div8=$ <span class="blank" data-ans="9"></span>，$72\div9=$ <span class="blank" data-ans="8"></span><br>$11\times4=44$：$44\div11=$ <span class="blank" data-ans="4"></span><br>$1\times15=15$：$15\div15=$ <span class="blank" data-ans="1"></span></p>
+        <details><summary>提示 1</summary>8 × 9 = 72 → 8 和 9 都是 72 的因数，72 是 8 和 9 的倍数。</details>
+        <details><summary>完整解答</summary>72 ÷ 8 = 9，72 ÷ 9 = 8；44 ÷ 11 = 4，44 ÷ 4 = 11；15 ÷ 1 = 15，15 ÷ 15 = 1。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 28 的因数有 <span class="blank" data-ans="1,2,4,7,14,28|1、2、4、7、14、28|1，2，4，7，14，28" data-w="9"></span>，其中最小的是 <span class="blank" data-ans="1"></span>，最大的是 <span class="blank" data-ans="28"></span>。</p>
+        <details><summary>提示 1</summary>一对一对地找：1 × 28，2 × 14，3 行吗？4 × ？</details>
+        <details><summary>提示 2</summary>4 × 7 = 28；5、6 都不行；再往下就和 7 碰头了。</details>
+        <details><summary>完整解答</summary>1，2，4，7，14，28；最小 1，最大 28。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 7 的倍数有 <span class="blank" data-ans="7,14,21,28,…|7,14,21,28,...|7、14、21、28、…|7，14，21，28，…|7,14,21,28" data-w="8"></span>，其中最小的是 <span class="blank" data-ans="7"></span>。</p>
+        <p class="muted tiny">写出前 4 个，后面用“…”</p>
+        <details><summary>提示 1</summary>$7\times1$，$7\times2$，$7\times3$……</details>
+        <details><summary>完整解答</summary>7，14，21，28，……；最小的是 7，没有最大的。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p32 练一练 1–3。第 1 题每个乘法算式能改写成两个除法算式，填空只检查得数，“谁是谁的因数”请学生口头说。</p>
+</section>
+
+<!-- 10 ================= 练习五 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习五</span><h2>在数表里圈一圈、画一画</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 24 个同学表演团体操，每排人数都是 24 的因数吗？排数呢？</p>
+        <div class="hscroll" data-noswipe><table class="mtab small-tab">
+          <tr><th>排数</th><td>1</td><td>2</td><td>3</td><td>4</td><td>6</td><td>8</td><td>12</td><td>24</td></tr>
+          <tr><th>每排人数</th><td>24</td><td>12</td><td><span class="blank" data-ans="8"></span></td><td><span class="blank" data-ans="6"></span></td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="3"></span></td><td><span class="blank" data-ans="2"></span></td><td><span class="blank" data-ans="1"></span></td></tr>
+        </table></div>
+        <details><summary>完整解答</summary>排数 × 每排人数 = 24，所以排数和每排人数<b>都是 24 的因数</b>。</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="q small-q"><b>4.</b> 在 6 的因数上画“△”，在 6 的倍数上画“○”。</p>
+      <div class="ntools" id="t6Tools"><span>选笔：</span><button type="button" class="btn solid" data-k="t">△ 6 的因数</button><button type="button" class="btn" data-k="o">○ 6 的倍数</button><button type="button" class="btn" id="t6Auto">看答案</button></div>
+      <div id="t6" class="ntab-24"></div>
+      <p class="tip small-t" id="t6Msg">画错的记号会变成红色虚线，再点一下可以擦掉。</p>
+      <p class="tip" data-step="1">哪个数既有 △ 又有 ○？　<span class="think" data-step="2" data-ask="找一找">6——它既是 6 的因数，又是 6 的倍数。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p35 练习五第 1、4 题（第 4 题课本是 0～24 的数轴，这里做成 1～24 的数表，点格子画记号）。选好笔再点数；△ 画在 6 的倍数以外、○ 画在不是 6 的倍数上，记号会变红。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>今天我们认识了什么？</h2></div>
+  <div class="bd full">
+    <div class="fx sum-fx" data-step="1">
+      <div class="fx-row"><span class="fx-n a">$a$</span><span>×</span><span class="fx-n a">$b$</span><span>=</span><span class="fx-n b">$c$</span></div>
+      <div class="fx-lb"><span class="a">因数</span><span></span><span class="a">因数</span><span></span><span class="b">倍数</span></div>
+      <p class="muted tiny center">$a$、$b$ 是 $c$ 的因数，$c$ 是 $a$ 和 $b$ 的倍数</p>
+    </div>
+    <div class="cols2">
+      <div class="method" data-label="找因数" data-step="2">一对一对地找（乘法或除法），从 1 开始，<b>碰头就停</b>：不重复、不遗漏。因数个数<b>有限</b>，最小 1，最大是它本身。</div>
+      <div class="method" data-label="找倍数" data-step="3">用它依次乘 1、2、3……倍数个数<b>无限</b>，最小是它本身，没有最大的，写到后面用“……”。</div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p32 例 4——在百数表里圈出 2 的倍数和 5 的倍数，它们有什么特征？</p>
+  </div>
+  <p class="note">请学生用自己的话说：拼长方形时，每排个数和排数都是 12 的因数；12 是它们的倍数。课后作业建议：练习五第 2、3、5、6 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mnum.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

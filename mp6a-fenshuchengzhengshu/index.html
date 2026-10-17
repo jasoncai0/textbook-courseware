@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分数与整数相乘 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chouhua.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第二单元 分数乘法 · 分数与整数相乘</p>
+    <h1 class="cover-title">分数与整数相乘</h1>
+    <p class="cover-q" data-step="1">做一朵绸花要用 <b>$\dfrac{3}{10}$ 米</b>绸带。</p>
+    <p class="cover-q" data-step="2">小芳做 <b>3 朵</b>这样的绸花，一共用绸带几分之几米？</p>
+    <div class="chips" data-step="3"><span class="chip">涂一涂</span><span class="chip">加法 → 乘法</span><span class="chip">先约分再算</span><span class="chip">求一个数的几分之几</span></div>
+  </div>
+  <p class="note">课本 p28 例 1 的情境。先让学生说：做 1 朵用 3/10 米，做 3 朵就是求 3 个 3/10 是多少——和整数里“3 个 5 是多少”是同一个意思。今天第一次把分数放进乘法里。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这三件旧本领，今天都要用</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="二年级 · 乘法的意义" data-step="1">
+        <p class="big center">$5+5+5=5\times3$</p>
+        <p>求<b>几个相同加数的和</b>，用乘法计算比较简便。</p>
+        <span class="use">3 个 $\dfrac{3}{10}$ 相加，也能写成乘法。</span>
+      </div>
+      <div class="recall" data-label="五下 · 同分母分数加法" data-step="2">
+        <p class="big center">$\dfrac{2}{7}+\dfrac{3}{7}=\dfrac{2+3}{7}=\dfrac{5}{7}$</p>
+        <p>分母不变，<b>分子相加</b>。</p>
+        <span class="use">第 4 页把 $\dfrac{3}{10}\times3$ 化成连加来算。</span>
+      </div>
+      <div class="recall" data-label="五下 · 约分" data-step="3">
+        <p class="big center">$\dfrac{15}{10}=\dfrac{15\div5}{10\div5}=\dfrac{3}{2}$</p>
+        <p>分子、分母同时除以它们的<b>公因数</b>，结果要约成最简分数。</p>
+        <span class="use">例 1（2）先约分，再计算。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>整数乘法我们很熟了。分数和整数相乘，表示什么？怎样算？</p>
+  </div>
+  <p class="note">三张卡逐张出示，先请学生口答卡片上的式子再看。第 1 张卡是本课的“根”：分数乘整数的意义和整数乘法的意义相同。</p>
+</section>
+
+<!-- 3 ================= 例 1(1) 涂一涂 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1（1）</span><h2>先涂一涂：做 3 朵绸花用的绸带</h2></div>
+  <div class="bd full top">
+    <p class="tip">下面这条绸带长 <b>1 米</b>，平均分成了 10 份。做一朵绸花用 $\dfrac{3}{10}$ 米，就是其中的 <b>3 份</b>。点“做一朵”，在图上涂出用去的绸带。</p>
+    <div class="strip-wrap" data-noswipe>
+      <svg id="strip1" viewBox="0 0 1000 150" aria-label="1 米长的绸带平均分成 10 份"></svg>
+      <div class="btns center-btns"><button type="button" class="btn solid" id="s1Add">做一朵 ＋</button><button type="button" class="btn" id="s1Reset">重来</button><span class="rd">已做 <b id="s1N">0</b> 朵，涂了 <b id="s1C">0</b> 份</span></div>
+    </div>
+    <div class="cols2">
+      <div class="calc" data-step="1">
+        <h4>可以用加法计算</h4>
+        <p class="big center">$\dfrac{3}{10}+\dfrac{3}{10}+\dfrac{3}{10}$</p>
+      </div>
+      <div class="calc" data-step="2">
+        <h4>求 3 个 $\dfrac{3}{10}$ 的和，可以用乘法计算</h4>
+        <p class="big center">$\dfrac{3}{10}\times3$　或　$3\times\dfrac{3}{10}$</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="3">和整数乘法一样：<b>求几个相同加数的和</b>，用乘法。$\dfrac{3}{10}\times3$ 表示 <span class="think" data-step="4" data-ask="表示什么？">3 个 $\dfrac{3}{10}$ 相加的和</span>。</p>
+  </div>
+  <p class="note">课本 p28 例 1（1）和小精灵“在上图中涂色表示做 3 朵绸花所用的米数，再列出算式”。请一名学生上台点 3 次，每朵用一种颜色，涂完数一数：一共涂了 9 份，就是 9/10 米。先让学生说加法算式，再引出乘法。图中每一份都是 1 米的 1/10，按真实比例画出。</p>
+</section>
+
+<!-- 4 ================= 例 1(1) 算一算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1（1）</span><h2>你能算出 $\dfrac{3}{10}\times3$ 的得数吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="strip1b" viewBox="0 0 1000 150" aria-label="3 朵绸花用去 9 份"></svg>
+      <p class="tip">回到加法：几个 $\dfrac{1}{10}$ 加几个 $\dfrac{1}{10}$……</p>
+      <p class="tip" data-step="5">看图验证：涂色的一共是 <b>9 份</b>，每份是 $\dfrac{1}{10}$ 米，也就是 $\dfrac{9}{10}$ 米。</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl"><span>$\dfrac{3}{10}\times3$</span><span>$=\dfrac{3}{10}+\dfrac{3}{10}+\dfrac{3}{10}$</span><i class="why">3 个 $\dfrac{3}{10}$ 相加</i></div>
+        <div class="dl" data-step="1"><span></span><span>$=$ <span class="fr"><span><span class="blank" data-ans="3"></span>＋<span class="blank" data-ans="3"></span>＋<span class="blank" data-ans="3"></span></span><span>10</span></span></span><i class="why">同分母分数相加：分母不变，分子相加</i></div>
+        <div class="dl key" data-step="2"><span></span><span>$=$ <span class="fr"><span><span class="blank" data-ans="3"></span>×<span class="blank" data-ans="3"></span></span><span>10</span></span></span><i class="why">3 个 3 相加，写成 $3\times3$</i></div>
+        <div class="dl" data-step="3"><span></span><span>$=$ <span class="fr"><span><span class="blank" data-ans="9"></span></span><span><span class="blank" data-ans="10"></span></span></span>（米）</span><i class="why">分子 $3\times3$，分母还是 10</i></div>
+      </div>
+      <p class="tip" data-step="4">答：小芳一共用绸带 <span class="blank" data-ans="9/10" data-w="4"></span> 米。</p>
+      <p class="method" data-step="6" data-label="发现">算的时候，<b>分子</b>和整数相乘（$3\times3$），<b>分母不变</b>（还是 10）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p28 中间的虚线框。每一行先让学生填，回车自查。关键在第 2 行：分子“3+3+3”就是“3×3”，所以分母不变、分子与整数相乘。学生容易把分母也乘 3，第 9 页会专门辨析。</p>
+</section>
+
+<!-- 5 ================= 例 1(2) 先约分 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1（2）</span><h2>小华做 5 朵，一共用绸带几分之几米？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="strip5" viewBox="0 0 1000 250" aria-label="5 朵用去 15 份，超过 1 米"></svg>
+      <p class="tip small-t">5 朵用去 15 份：第 1 米全部用完，第 2 米又用了 5 份（半米）。</p>
+    </div>
+    <div class="col">
+      <p class="tip">列式：$5\times\dfrac{3}{10}$。两种算法比一比：</p>
+      <div class="calc" data-step="1">
+        <h4>方法一：先算，再约分</h4>
+        <p class="center">$5\times\dfrac{3}{10}=\dfrac{5\times3}{10}=\dfrac{15}{10}=\dfrac{3}{2}$（米）</p>
+      </div>
+      <div class="calc" data-step="2">
+        <h4>方法二：先约分，再计算</h4>
+        <div class="yue" id="yue" data-noswipe>
+          <span class="y-n">5 ×</span>
+          <span class="fr big-fr"><span><i id="y5">5</i> × 3</span><span><i id="y10">10</i></span></span>
+          <span class="y-n">=</span>
+          <span class="fr big-fr y-res" id="yRes"><span>3</span><span>2</span></span>
+          <span class="y-n">（米）</span>
+        </div>
+        <div class="btns center-btns" data-noswipe><button type="button" class="btn" id="yueGo">演示：5 和 10 同时除以 5</button></div>
+      </div>
+      <p class="tip" data-step="3">答：小华一共用绸带 <span class="blank" data-exact data-ans="3/2" data-w="3"></span> 米。<span class="muted tiny">（写成最简分数）</span></p>
+      <p class="method" data-step="4" data-label="先约分">在“分子×整数”的式子里，<b>整数和分母</b>有公因数，可以先约分，数小了算起来更简便。</p>
+    </div>
+  </div>
+  <p class="note">课本 p28 底部和 p29 顶部。左图按 1 米 = 10 份画了两段，15 份正好是 1 米半，和 3/2 米对上。点“演示”：5 和 10 同时除以公因数 5，5 划掉写 1，10 划掉写 2——这就是课本上的“可以先约分，再计算”。约分的依据是分数的基本性质：分子分母同时除以 5。</p>
+</section>
+
+<!-- 6 ================= 概括 + 核心交互 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">涂一涂 · 说一说</span><h2>分数和整数相乘，可以怎样计算？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" id="pPick" data-noswipe>
+        <button type="button" class="btn solid" data-p="0">$4\times\dfrac{3}{16}$</button>
+        <button type="button" class="btn" data-p="1">$\dfrac{2}{7}\times3$</button>
+        <button type="button" class="btn" data-p="2">$4\times\dfrac{5}{6}$</button>
+        <button type="button" class="btn" data-p="3">$\dfrac{7}{10}\times5$</button>
+      </div>
+      <svg id="paint" class="pnt" viewBox="0 0 640 300" aria-label="把长方形看作 1，涂出几个这样的分数"></svg>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="pAdd">再涂一个 ＋</button><button type="button" class="btn" id="pReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">每个长方形表示 <b>1</b>。按算式涂一涂，涂满一个就换下一个。</p>
+      <p class="tip feedback" id="pMsg"></p>
+      <p class="tip" data-step="1">涂色的份数是怎样算出来的？分母变了吗？　<span class="think" data-step="2" data-ask="说一说">份数 = <b>分子 × 整数</b>；每份的大小没有变，所以<b>分母不变</b>。</span></p>
+      <div class="def" data-step="3"><h4>我们发现</h4>分数和整数相乘，用<em>分子与整数相乘的积作分子，分母不变</em>。能约分的，可以<em>先约分再计算</em>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p29“分数和整数相乘，可以怎样计算？”和练一练第 1 题（4 个 3/16，课本是 4×4 的方格长方形）。本页是本课核心活动：选算式 → 一个一个地涂 → 右边实时写出连加和乘法。长方形的份数、每次涂的格数都按算式精确计算；乘积超过 1 时会自动画第二个“1”。请学生用自己的话概括，再出示结论。</p>
+</section>
+
+<!-- 7 ================= 例 2 求 10 朵的几分之几 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>小星做了 10 朵绸花，其中 $\dfrac12$ 是红花，$\dfrac25$ 是绿花</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" id="fPick" data-noswipe>
+        <button type="button" class="btn solid" data-f="1/2">（1）红花：10 朵的 $\dfrac12$</button>
+        <button type="button" class="btn" data-f="2/5">（2）绿花：10 朵的 $\dfrac25$</button>
+      </div>
+      <svg id="flowers" class="flowers" viewBox="0 0 700 170" aria-label="10 朵绸花，平均分成几份"></svg>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" id="fSplit">① 平均分</button><button type="button" class="btn" id="fTake">② 涂出这几份</button></div>
+      <p class="tip center feedback" id="fMsg"></p>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <h4>（1）红花有多少朵？</h4>
+        <p>把 10 朵平均分成 2 份，取 1 份：$10\div2=$ <span class="blank" data-ans="5"></span>（朵）</p>
+        <p data-step="1">求 10 朵的 $\dfrac12$ 是多少，可以用乘法：$10\times\dfrac12=$ <span class="blank" data-ans="5"></span>（朵）</p>
+      </div>
+      <div class="calc" data-step="2">
+        <h4>（2）绿花有多少朵？</h4>
+        <p>$10\div5\times2=$ <span class="blank" data-ans="4"></span>（朵）</p>
+        <p>$10\times\dfrac25=$ <span class="blank" data-ans="4"></span>（朵）</p>
+      </div>
+      <p class="tip tall" data-step="3">$10\times\frac25$ 和 $10\div5\times2$ 有什么联系？　<span class="think" data-step="4" data-ask="想一想">$10\times\frac25=\frac{10\times2}{5}$，先除以 5（平均分成 5 份）再乘 2（取 2 份），结果一样。</span></p>
+      <div class="def" data-step="5">求一个数的几分之几是多少，可以用<em>乘法</em>计算。</div>
+    </div>
+  </div>
+  <p class="note">课本 p29–30 例 2。先点“平均分”再点“涂出”，图中花朵按份数分组排开。小精灵的问题“10×1/2 和 10÷2 有什么联系？10×2/5 和 10÷5×2 呢？”是本页重点：分母表示平均分成几份（除），分子表示取几份（乘）。</p>
+</section>
+
+<!-- 8 ================= 练一练 p30 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>先涂一涂，再用乘法计算</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>1.</b>（1）12 的 $\dfrac13$ 是多少？</p>
+        <svg id="ex12" class="ex-fig clickable" viewBox="0 0 330 110" data-noswipe aria-label="12 个圆，点一点涂色"></svg>
+        <p class="small-q">$12\times\dfrac13=$ <span class="blank" data-ans="4"></span>　<span class="muted tiny" id="ex12n">已涂 0 个</span></p>
+      </div>
+      <div class="jcard">
+        <p><b>1.</b>（2）20 的 $\dfrac45$ 是多少？</p>
+        <svg id="ex20" class="ex-fig clickable" viewBox="0 0 330 110" data-noswipe aria-label="平均分成 5 份的长条，代表 20"></svg>
+        <p class="small-q">$20\times\dfrac45=$ <span class="blank" data-ans="16"></span>　<span class="muted tiny" id="ex20n">已涂 0 份</span></p>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>2.</b>（1）8 米长的绳子，$\dfrac12$ 根长多少米？</p>
+        <svg id="rope1" class="rope" viewBox="0 0 440 60" aria-label="8 米的 1/2"></svg>
+        <p class="small-q">求 8 米的 <span class="blank" data-ans="1/2" data-w="3"></span>，列式为 <span class="blank" data-ans="8" ></span> × <span class="blank" data-ans="1/2" data-w="3"></span> ＝ <span class="blank" data-ans="4"></span> 米</p>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b>（2）8 米长的绳子，$\dfrac34$ 根长多少米？</p>
+        <svg id="rope2" class="rope" viewBox="0 0 440 60" aria-label="8 米的 3/4"></svg>
+        <p class="small-q">求 8 米的 <span class="blank" data-ans="3/4" data-w="3"></span>，列式为 <span class="blank" data-ans="8"></span> × <span class="blank" data-ans="3/4" data-w="3"></span> ＝ <span class="blank" data-ans="6"></span> 米</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p30 练一练。第 1 题点图涂色（圆按 3 个一组排，长条平均分成 5 份，每份代表 4）；第 2 题绳子图按 8 米精确画，粗线是所求部分。分数的空可以输入“1/2”。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这样算对吗？说出道理</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> $\dfrac{3}{10}\times3=\dfrac{3\times3}{10\times3}=\dfrac{9}{30}$</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button>
+          <p class="pick-why">分母也乘了 3，每份变小了！3 个 $\dfrac{3}{10}$ 是 9 个 $\dfrac{1}{10}$，应得 $\dfrac{9}{10}$。<b>分母不变</b>。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> $\dfrac{2}{27}\times9$，先把 9 和 27 约分，得 $\dfrac{2}{3}$。</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button>
+          <p class="pick-why">$\dfrac{2\times9}{27}$，整数 9 和分母 27 有公因数 9，约分后 $\dfrac{2\times1}{3}=\dfrac23$。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> $\dfrac{3}{5}\times15$ 中，可以把分子 3 和整数 15 约分。</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">可以</button><button type="button" data-k="n">不可以</button>
+          <p class="pick-why">约分是<b>分子（或整数）和分母</b>同时除以公因数。3 和 15 都在“分子”位置上，不能互相约。应把 15 和 5 约：$\dfrac{3\times3}{1}=9$。</p></div>
+      </div>
+    </div>
+    <p class="warn" data-step="1">分数乘整数：<b>分母不变</b>；先约分时，只能“上下”约（整数或分子与分母约），不能“左右”约。</p>
+  </div>
+  <p class="note">三道题都来自课本练习五第 2 题的算式。先全班举手表决，再请学生上来点并说理由。第 1 题是最常见的错误，回到第 3 页的绸带图：3 朵是 9 份，每份还是 1/10 米。</p>
+</section>
+
+<!-- 10 ================= 练习五 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习五</span><h2>算一算，用一用</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 计算（结果写成最简分数或整数）。</p>
+        <p class="q small-q">$\dfrac45\times3=$ <span class="blank" data-exact data-ans="12/5" data-w="3"></span>　$\dfrac17\times6=$ <span class="blank" data-exact data-ans="6/7" data-w="3"></span><br>
+          $\dfrac{2}{27}\times9=$ <span class="blank" data-exact data-ans="2/3" data-w="3"></span>　$6\times\dfrac{5}{12}=$ <span class="blank" data-exact data-ans="5/2" data-w="3"></span><br>
+          $\dfrac{3}{40}\times8=$ <span class="blank" data-exact data-ans="3/5" data-w="3"></span>　$\dfrac35\times15=$ <span class="blank" data-exact data-ans="9" data-w="2"></span></p>
+        <details><summary>提示 1</summary>分子与整数相乘，分母不变。</details>
+        <details><summary>提示 2</summary>先看整数和分母有没有公因数：9 和 27、6 和 12、8 和 40、15 和 5。</details>
+        <details><summary>完整解答</summary>$\dfrac{12}{5}$、$\dfrac67$、$\dfrac23$、$\dfrac52$、$\dfrac35$、$9$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 幼儿园有 36 个小朋友，每个小朋友吃 $\dfrac12$ 块月饼，一共吃多少块月饼？</p>
+        <p class="q small-q">$\dfrac12\times36=$ <span class="blank" data-ans="18"></span>（块）</p>
+        <details><summary>提示 1</summary>求 36 个 $\dfrac12$ 是多少。</details>
+        <details><summary>完整解答</summary>$\dfrac12\times36=18$（块）　答：一共吃 18 块月饼。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 每瓶饮料的净含量是 900 毫升。</p>
+        <p class="q small-q">(1) 3 瓶有 <span class="blank" data-ans="2700" data-w="4"></span> 毫升。<br>(2) $\dfrac13$ 瓶有 <span class="blank" data-ans="300" data-w="3"></span> 毫升；$\dfrac35$ 瓶有 <span class="blank" data-ans="540" data-w="3"></span> 毫升。<br>(3) 小明喝了这瓶饮料的 $\dfrac14$，喝了 <span class="blank" data-ans="225" data-w="3"></span> 毫升。</p>
+        <details><summary>提示 1</summary>(1) 是求 3 个 900；(2)(3) 是求 900 的几分之几。</details>
+        <details><summary>完整解答</summary>$900\times3=2700$；$900\times\dfrac13=300$，$900\times\dfrac35=540$；$900\times\dfrac14=225$（毫升）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p32 练习五第 2（部分）、3、6 题。第 2 题加了“最简”要求，输入 18/27 之类没约分的会判错。第 6 题三问放在一起，让学生比较：乘整数是求几个几，乘分数是求一个数的几分之几，都用乘法。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>今天，分数也学会了乘法</h2></div>
+  <div class="bd full">
+    <div class="sum-row" data-step="1">
+      <div class="sbox"><h4>意义 ①</h4><p class="big">$\dfrac{3}{10}\times3$</p><small>3 个 $\dfrac{3}{10}$ 的和</small></div>
+      <div class="sbox"><h4>算法</h4><p class="big">$\dfrac{3\times3}{10}=\dfrac{9}{10}$</p><small>分子×整数，分母不变；能约先约</small></div>
+      <div class="sbox"><h4>意义 ②</h4><p class="big">$10\times\dfrac25$</p><small>10 的 $\dfrac25$ 是多少</small></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="2" data-label="方法">遇到新问题，先<b>涂一涂、画一画</b>，再把它变成学过的（连加、同分母加法）来算。</p>
+      <p class="recall" data-step="3" data-label="想一想">$5\times\dfrac{3}{10}$ 为什么可以先约分？——因为 $\dfrac{5\times3}{10}$ 的分子、分母可以同时除以 5。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>课本 p31 例 3——红花比黄花多 $\dfrac{1}{10}$，红花比黄花多多少朵？“比……多几分之几”又该怎样想？</p>
+  </div>
+  <p class="note">请学生用自己的话说出分数乘整数的两种意义和算法。课后作业建议：练习五第 4、5、7、8 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

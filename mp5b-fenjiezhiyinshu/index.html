@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分解质因数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/dashu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第三单元 因数与倍数 · 分解质因数</p>
+    <h1 class="cover-title">分解质因数</h1>
+    <p class="cover-q" data-step="1">大树的树干分成两根树枝，每根树枝又分成两根……一直分到不能再分。</p>
+    <p class="cover-q" data-step="2">一个合数也能这样“分叉”：$30=\ ?\times\ ?\times\ ?$，分到最后，留下的都是什么数？</p>
+    <div class="chips" data-step="3"><span class="chip">质因数</span><span class="chip">因数树</span><span class="chip">短除法</span></div>
+  </div>
+  <p class="note">课本 p38 例 8 的分叉图像一棵倒着长的树。先让学生猜：分到不能再分时，留下的数有什么共同点（都是质数）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>分解之前，先准备好这些</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 质数和合数" data-step="1">
+        <p>质数：只有 1 和它本身两个因数。</p>
+        <p class="primes">2　3　5　7　11　13　17　19</p>
+        <p>合数：除了 1 和它本身还有别的因数。</p>
+        <span class="use">判断“还能不能再分”。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 因数和倍数" data-step="2">
+        <p>$28=4\times7$：4 和 7 都是 28 的因数。</p>
+        <p>$30=2\times15$：2 和 15 都是 30 的因数。</p>
+        <span class="use">把一个数写成两个因数相乘。</span>
+      </div>
+      <div class="recall" data-label="四下 · 乘法交换律、结合律" data-step="3">
+        <p class="big center">$2\times3\times5=5\times3\times2$</p>
+        <p>几个数连乘，交换位置、改变运算顺序，积不变。</p>
+        <span class="use">不同的分法，结果一样。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>一个合数，能不能写成几个<b>质数</b>相乘？</p>
+  </div>
+  <p class="note">第 1 张卡请学生背一背 20 以内的质数，分解时要随时用到。第 3 张卡为第 4 页“换一种分法，结果一样”做准备。</p>
+</section>
+
+<!-- 3 ================= 例 7 质因数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7</span><h2>哪些数是 5、28 的因数？哪几个是质数？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="eqbox"><p class="eq">$5=1\times5$</p><p class="small-t">1 和 5 是 5 的因数</p></div>
+      <div class="eqbox"><p class="eq">$28=4\times7$</p><p class="small-t">4 和 7 是 28 的因数</p></div>
+    </div>
+    <p class="tip">在 1、5、4、7 中，哪几个数是质数？点一点。</p>
+    <div class="chips4" id="q7" data-noswipe><button type="button" data-n="1">1</button><button type="button" data-n="5">5</button><button type="button" data-n="4">4</button><button type="button" data-n="7">7</button></div>
+    <p class="tip feedback" id="q7Msg"></p>
+    <div class="def big-def" data-step="1"><h4>课本这样说</h4>如果一个数的因数是质数，这个因数就是它的<em>质因数</em>。</div>
+    <p class="tip" data-step="2">上面的算式中，哪个数是哪个数的质因数？　<span class="think" data-step="3" data-ask="说一说">5 是 5 的质因数；7 是 28 的质因数。（4 是 28 的因数，但 4 不是质数，所以不是质因数。）</span></p>
+  </div>
+  <p class="note">课本 p38 例 7。点 1：既不是质数也不是合数；点 4：合数（4 = 2 × 2）。质因数要同时满足两条：①是它的因数；②是质数。</p>
+</section>
+
+<!-- 4 ================= 例 8 因数树（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8 · 分一分</span><h2>把 <span id="trN">30</span> 用几个质数相乘的形式表示出来</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" id="trPick" data-noswipe><span class="small-t">换个数：</span><button type="button" class="btn solid" data-v="30">30</button><button type="button" class="btn" data-v="36">36</button><button type="button" class="btn" data-v="60">60</button><button type="button" class="btn" data-v="84">84</button><button type="button" class="btn" data-v="72">72</button></div>
+      <p class="tip">点一个<b class="o">橙色</b>的数（合数），选一种分法，它就分成两个因数。<b class="g">绿色</b>的是质数，不能再分。</p>
+      <div class="tr-opts" id="trOpts" data-noswipe></div>
+      <p class="tip feedback" id="trMsg"></p>
+      <button type="button" class="btn" id="trAgain" data-noswipe>↺ 换一种分法再分一次</button>
+    </div>
+    <div class="col">
+      <svg id="trFig" class="tr-fig" viewBox="0 0 600 370" aria-label="因数树" data-noswipe></svg>
+      <p class="tr-res" id="trRes"></p>
+      <p class="tip" data-step="1">换一种分法，结果一样吗？　<span class="think" data-step="2" data-ask="试一试">一样！不管先分成 $2\times15$ 还是 $3\times10$、$5\times6$，最后都是 $30=2\times3\times5$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p38 例 8 的分叉图。先按课本：30 → 2 × 15，15 → 3 × 5。再点“换一种分法”，让学生从 5 × 6 或 3 × 10 开始，比较结果——质因数相同，只是顺序不同（乘法交换律）。也可以换成 36、60、84、72 练习。结果里的质因数按从小到大排。</p>
+</section>
+
+<!-- 5 ================= 定义 + 书写格式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>什么叫分解质因数？怎样写？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="calc">
+        <p class="eq-c">30</p>
+        <p>（2）×（<span class="blank" data-ans="15"></span>）</p>
+        <p class="ind">（<span class="blank" data-ans="3|5"></span>）×（<span class="blank" data-ans="5|3"></span>）</p>
+        <p>30 =（2）×（<span class="blank" data-ans="3"></span>）×（<span class="blank" data-ans="5"></span>）</p>
+      </div>
+      <p class="tip small-t">照课本 p38 的格式，把 30 分一分。</p>
+    </div>
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>课本这样说</h4>把一个合数用质数相乘的形式表示出来，叫作<em>分解质因数</em>。</div>
+      <p class="tip" data-step="2">注意三点：　<span class="think" data-step="3" data-ask="想一想会错在哪儿">①只有<b>合数</b>才分解；②每个因数都要是<b>质数</b>（不写 1）；③写成“$30=2\times3\times5$”，<b>被分解的数写在等号左边</b>。</span></p>
+      <div class="cols2 warn2" data-step="4">
+        <p class="warn" data-label="不对">$30=2\times15$<br><small>15 不是质数，还要再分</small></p>
+        <p class="warn" data-label="不对">$2\times3\times5=30$<br><small>这是乘法计算，不是分解</small></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p38 下方定义。左边的填空照课本括号的格式（15 分成 3 × 5，两个括号顺序可以互换）。“1 不写”“左边是被分解的数”是书写上最常见的两个错误。</p>
+</section>
+
+<!-- 6 ================= 短除法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">你知道吗</span><h2>用短除法分解质因数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" id="sdPick" data-noswipe><button type="button" class="btn solid" data-v="30">30</button><button type="button" class="btn" data-v="36">36</button><button type="button" class="btn" data-v="60">60</button><button type="button" class="btn" data-v="84">84</button><button type="button" class="btn" data-v="90">90</button></div>
+      <div class="sd" id="sd"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="sdStep">除一次 ▶</button><button type="button" class="btn" id="sdReset">↺ 重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">人们常用<b>短除法</b>来分解质因数：</p>
+      <ol class="sd-rule">
+        <li>先用一个能整除它的<b>质数</b>去除（一般从最小的 2 试起）；</li>
+        <li>得到的商如果是合数，再用质数去除；</li>
+        <li><b>除到商是质数为止</b>；</li>
+        <li>把每个除数和最后的商写成连乘的形式。</li>
+      </ol>
+      <p class="tr-res" id="sdRes"></p>
+      <p class="tip" data-step="1">短除法和因数树有什么相同的地方？　<span class="think" data-step="2" data-ask="比一比">都是把合数一次分出一个质因数，直到剩下的都是质数。短除法写起来更整齐。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p38“你知道吗”。每点一次“除一次”，在左边写出一行：用最小的能整除它的质数去除，右边旁注说明。30 → 2 → 15 → 3 → 5，得 30 = 2 × 3 × 5。可以换 36、60、84、90 练习。</p>
+</section>
+
+<!-- 7 ================= 练一练 + 练习六第 3 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>把下面各数分解质因数</h2></div>
+  <div class="bd full top">
+    <div class="cols2 eqs">
+      <p class="calc">$6=$（<span class="blank" data-ans="2"></span>）×（<span class="blank" data-ans="3"></span>）</p>
+      <p class="calc">$14=$（<span class="blank" data-ans="2"></span>）×（<span class="blank" data-ans="7"></span>）</p>
+      <p class="calc">$15=$（<span class="blank" data-ans="3"></span>）×（<span class="blank" data-ans="5"></span>）</p>
+      <p class="calc">$26=$（<span class="blank" data-ans="2"></span>）×（<span class="blank" data-ans="13"></span>）</p>
+      <p class="calc">$42=$（<span class="blank" data-ans="2"></span>）×（<span class="blank" data-ans="3"></span>）×（<span class="blank" data-ans="7"></span>）</p>
+      <p class="calc">$66=$（<span class="blank" data-ans="2"></span>）×（<span class="blank" data-ans="3"></span>）×（<span class="blank" data-ans="11"></span>）</p>
+    </div>
+    <p class="muted tiny">质因数从小到大填。</p>
+    <div class="hint-ladder">
+      <p class="q"><b>练习六第 5 题</b>　先圈出合数，再把它们分解质因数：7　9　13　16　20　25　29</p>
+      <p class="q small-q">$9=$ <span class="blank" data-ans="3×3|3*3|3x3" data-w="5"></span>　$16=$ <span class="blank" data-ans="2×2×2×2|2*2*2*2|2x2x2x2" data-w="8"></span>　$20=$ <span class="blank" data-ans="2×2×5|2*2*5|2x2x5" data-w="6"></span>　$25=$ <span class="blank" data-ans="5×5|5*5|5x5" data-w="5"></span></p>
+      <p class="muted tiny">乘号可以输入 ×、* 或 x</p>
+      <details><summary>提示 1</summary>7、13、29 是质数，不分解；9、16、20、25 是合数。</details>
+      <details><summary>完整解答</summary>$9=3\times3$，$16=2\times2\times2\times2$，$20=2\times2\times5$，$25=5\times5$。</details>
+    </div>
+  </div>
+  <p class="note">第 1、2 个是课本 p38 练一练，其余是 p39 练习六第 3、5 题。相同的质因数要重复写，如 16 = 2 × 2 × 2 × 2。</p>
+</section>
+
+<!-- 8 ================= 练习六第 4、7 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习六</span><h2>因数、质因数，分清楚</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>4(1)</b> $35=5\times7$，5 和 7 都是 35 的质因数吗？</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">都是</button><button type="button" data-k="x">不都是</button>
+          <p class="pick-why">5 和 7 是 35 的因数，又都是质数，所以都是 35 的质因数。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>4(2)</b> $27=3\times9$，3 和 9 都是 27 的质因数吗？</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">都是</button><button type="button" data-k="x">不都是</button>
+          <p class="pick-why">3 和 9 都是 27 的因数，但 9 不是质数，所以 9 不是 27 的质因数。$27=3\times3\times3$。</p></div>
+      </div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q"><b>7.</b> 你会在括号里填合适的质数吗？</p>
+      <p class="q small-q">$10=$（<span class="blank" data-ans="2"></span>）×（<span class="blank" data-ans="5"></span>）　$10=$（<span class="blank" data-ans="3|5|7"></span>）+（<span class="blank" data-ans="7|5|3"></span>）<br>
+      $14=$（<span class="blank" data-ans="2"></span>）×（<span class="blank" data-ans="7"></span>）　$14=$（<span class="blank" data-ans="3|7|11"></span>）+（<span class="blank" data-ans="11|7|3"></span>）<br>
+      $18=$（<span class="blank" data-ans="2"></span>）×（<span class="blank" data-ans="3"></span>）×（<span class="blank" data-ans="3"></span>）　$18=$（<span class="blank" data-ans="5|7|11|13"></span>）+（<span class="blank" data-ans="13|11|7|5"></span>）=（<span class="blank" data-ans="7|5|11|13"></span>）+（<span class="blank" data-ans="11|13|7|5"></span>）</p>
+      <details><summary>提示 1</summary>加法的填法不止一种：10 = 3 + 7 = 5 + 5。</details>
+      <details><summary>完整解答</summary>$10=2\times5=3+7$（或 $5+5$）；$14=2\times7=3+11$（或 $7+7$）；$18=2\times3\times3=5+13=7+11$。</details>
+    </div>
+    <p class="recall" data-label="你知道吗 · 哥德巴赫猜想" data-step="1">“任何大于 2 的偶数都是两个素数之和”——这就是著名的哥德巴赫猜想。我国数学家<b>陈景润</b>在这个问题的研究上取得了世界领先的成果。</p>
+  </div>
+  <p class="note">课本 p39–40 练习六第 4、7 题和 p40“你知道吗”。第 7 题加法部分答案不唯一，只要两个数都是质数且和对就行（填空按可能的质数判断，请老师核对和是否正确）。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>下面的分解质因数，写对了吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard"><p class="eq">$42=2\times3\times7$</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button><p class="pick-why">2、3、7 都是质数，乘积是 42，写法正确。</p></div></div>
+      <div class="jcard"><p class="eq">$18=2\times9$</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button><p class="pick-why">9 不是质数，还要分：$18=2\times3\times3$。</p></div></div>
+      <div class="jcard"><p class="eq">$12=1\times2\times2\times3$</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button><p class="pick-why">1 不是质数，不能写进去：$12=2\times2\times3$。</p></div></div>
+      <div class="jcard"><p class="eq">$2\times3\times5=30$</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button><p class="pick-why">这是计算乘积。分解质因数要写成 $30=2\times3\times5$。</p></div></div>
+    </div>
+  </div>
+  <p class="note">四种典型情况：正确、没分到底、写了 1、等号两边写反。全班表决后请学生说理由。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>分解质因数</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <p class="recall" data-label="质因数" data-step="1">一个数的因数是质数，这个因数就是它的质因数。</p>
+      <p class="recall" data-label="分解质因数" data-step="2">把一个合数用质数相乘的形式表示出来：$30=2\times3\times5$。</p>
+      <p class="method" data-label="两种方法" data-step="3">因数树：一分为二，分到都是质数；短除法：用质数去除，除到商是质数为止。</p>
+    </div>
+    <p class="tip center big-res" data-step="4">不管怎样分，一个合数分解出的质因数<b>总是相同的</b>。</p>
+    <p class="tip gold" data-step="5"><b>下一步：</b>课本 p41 例 9——用边长 6 厘米或 4 厘米的正方形纸片，哪种能正好铺满长 18 厘米、宽 12 厘米的长方形？</p>
+  </div>
+  <p class="note">课后作业建议：练习六第 3、5、8 题。第 8 题（哪个班能分成人数相同的几个小组）就是判断人数是不是合数：41、43 是质数，不行。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mnum.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

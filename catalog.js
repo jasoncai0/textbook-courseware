@@ -3237,50 +3237,82 @@ window.CATALOG = [
                 "no": "例1–3",
                 "title": "因数和倍数",
                 "genre": "概念",
-                "kind": "数论"
+                "kind": "数论",
+                "dir": "mp5b-yinshubeishu",
+                "pages": 11,
+                "desc": "正方形拼长方形，一对一对连弧找因数",
+                "cover": "mp5b-yinshubeishu/assets/ticao.jpg"
               },
               {
                 "no": "例4",
                 "title": "2和5的倍数的特征",
                 "genre": "推导",
-                "kind": "数论"
+                "kind": "数论",
+                "dir": "mp5b-erwubeishu",
+                "pages": 10,
+                "desc": "百数表画△○，看个位整列，大数检验器",
+                "cover": "mp5b-erwubeishu/assets/jieban.jpg"
               },
               {
                 "no": "例5",
                 "title": "3的倍数的特征",
                 "genre": "推导",
-                "kind": "数论"
+                "kind": "数论",
+                "dir": "mp5b-sanbeishu",
+                "pages": 10,
+                "desc": "计数器拨珠数珠，□里填数字找全填法",
+                "cover": "mp5b-sanbeishu/assets/jishuqi.jpg"
               },
               {
                 "no": "例6",
                 "title": "质数和合数",
                 "genre": "概念",
-                "kind": "数论"
+                "kind": "数论",
+                "dir": "mp5b-zhishuheshu",
+                "pages": 10,
+                "desc": "1～20因数个数柱状图，埃氏筛2～100动画",
+                "cover": "mp5b-zhishuheshu/assets/shaizi.jpg"
               },
               {
                 "no": "例7–8",
                 "title": "分解质因数",
                 "genre": "推导",
-                "kind": "数论"
+                "kind": "数论",
+                "dir": "mp5b-fenjiezhiyinshu",
+                "pages": 10,
+                "desc": "自选分法长因数树，短除法逐步演示",
+                "cover": "mp5b-fenjiezhiyinshu/assets/dashu.jpg"
               },
               {
                 "no": "例9–10",
                 "title": "公因数和最大公因数",
                 "genre": "概念",
-                "kind": "数论"
+                "kind": "数论",
+                "dir": "mp5b-gongyinshu",
+                "pages": 10,
+                "desc": "按真实比例铺正方形砖，维恩图分类",
+                "cover": "mp5b-gongyinshu/assets/pudizhuan.jpg"
               },
               {
                 "no": "例11–12",
                 "title": "公倍数和最小公倍数",
                 "genre": "概念",
-                "kind": "数论"
+                "kind": "数论",
+                "dir": "mp5b-gongbeishu",
+                "pages": 10,
+                "desc": "两只青蛙数轴跳出公倍数，公交时刻表",
+                "cover": "mp5b-gongbeishu/assets/gongjiao.jpg"
               },
               {
                 "no": "综合与实践",
                 "title": "和与积的奇偶性",
                 "genre": "推导",
                 "kind": "数论",
-                "optional": true
+                "optional": true,
+                "dir": "mp5b-heyujiqiou",
+                "pages": 10,
+                "desc": "配对点子合并看奇偶，点阵积配对",
+                "cover": "mp5b-heyujiqiou/assets/fanshu.jpg"
               }
             ]
           },
@@ -3476,37 +3508,61 @@ window.CATALOG = [
                 "no": "例1–2",
                 "title": "长方体和正方体的认识",
                 "genre": "概念",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6a-changfangtirenshi",
+                "pages": 11,
+                "desc": "转纸盒实时数看得见的面，滑块变成正方体",
+                "cover": "mp6a-changfangtirenshi/assets/hezi.jpg"
               },
               {
                 "no": "例3",
                 "title": "长方体和正方体的展开图",
                 "genre": "概念",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6a-zhankaitu",
+                "pages": 10,
+                "desc": "逐步折叠：11 种展开图，选纸片围盒子",
+                "cover": "mp6a-zhankaitu/assets/jianhezi.jpg"
               },
               {
                 "no": "例4–5",
                 "title": "长方体和正方体的表面积",
                 "genre": "推导",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6a-biaomianji",
+                "pages": 10,
+                "desc": "展开图相对面高亮，无盖鱼缸拆装玻璃",
+                "cover": "mp6a-biaomianji/assets/yugang.jpg"
               },
               {
                 "no": "例6–8",
                 "title": "体积和体积单位",
                 "genre": "概念",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6a-tijidanwei",
+                "pages": 10,
+                "desc": "放桃倒水按体积精确计算，切小正方体比大小",
+                "cover": "mp6a-tijidanwei/assets/taozi.jpg"
               },
               {
                 "no": "例9–11",
                 "title": "长方体和正方体的体积",
                 "genre": "推导",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6a-changfangtitiji",
+                "pages": 11,
+                "desc": "一排一层摞小正方体记表，底面积一层层升高",
+                "cover": "mp6a-changfangtitiji/assets/jimu.jpg"
               },
               {
                 "no": "例12",
                 "title": "相邻体积单位间的进率",
                 "genre": "推导",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6a-jinlv",
+                "pages": 10,
+                "desc": "1dm³ 拆成一排、一层、10 层共 1000 个",
+                "cover": "mp6a-jinlv/assets/jiaoju.jpg"
               },
               {
                 "no": "综合与实践",
@@ -3526,25 +3582,41 @@ window.CATALOG = [
                 "no": "例1–2",
                 "title": "分数与整数相乘",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp6a-fenshuchengzhengshu",
+                "pages": 11,
+                "desc": "绸带逐朵涂色，长方形涂色器算几个几分之几",
+                "cover": "mp6a-fenshuchengzhengshu/assets/chouhua.jpg"
               },
               {
                 "no": "例3",
                 "title": "求一个数的几分之几是多少",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp6a-qiujifenzhiji",
+                "pages": 11,
+                "desc": "可调线段图：分几份、多/少几份对上原句",
+                "cover": "mp6a-qiujifenzhiji/assets/luohua.jpg"
               },
               {
                 "no": "例4–6",
                 "title": "分数与分数相乘",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp6a-fenshuchengfenshu",
+                "pages": 11,
+                "desc": "面积模型：先横分涂色再竖分，数重叠格子",
+                "cover": "mp6a-fenshuchengfenshu/assets/zhezhi.jpg"
               },
               {
                 "no": "例7",
                 "title": "倒数的认识",
                 "genre": "概念",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp6a-daoshu",
+                "pages": 11,
+                "desc": "翻牌求倒数，可自己出题；思考题填圆圈",
+                "cover": "mp6a-daoshu/assets/fanpai.jpg"
               }
             ]
           },
@@ -3611,13 +3683,21 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "用假设的策略解决问题（一）",
                 "genre": "推导",
-                "kind": "策略"
+                "kind": "策略",
+                "dir": "mp6a-jiasheyi",
+                "pages": 11,
+                "desc": "换杯子假设表：大杯⇄3小杯，总量不变",
+                "cover": "mp6a-jiasheyi/assets/guozhi.jpg"
               },
               {
                 "no": "例2",
                 "title": "用假设的策略解决问题（二）",
                 "genre": "推导",
-                "kind": "策略"
+                "kind": "策略",
+                "dir": "mp6a-jiasheer",
+                "pages": 11,
+                "desc": "猜小盒个数再调整；大盒换小盒总数变化",
+                "cover": "mp6a-jiasheer/assets/qiuhe.jpg"
               }
             ]
           },
@@ -3649,44 +3729,72 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "百分数的意义和读写",
                 "genre": "概念",
-                "kind": "百分数"
+                "kind": "百分数",
+                "dir": "mp6a-baifenshuyiyi",
+                "pages": 11,
+                "desc": "百格图拖动涂色，三场命中率同屏对比",
+                "cover": "mp6a-baifenshuyiyi/assets/toulan.jpg"
               },
               {
                 "no": "例2–3",
                 "title": "百分数与分数、小数的互化",
                 "genre": "推导",
-                "kind": "百分数"
+                "kind": "百分数",
+                "dir": "mp6a-baifenshuhuhua",
+                "pages": 11,
+                "desc": "三联转换器联动，小数点逐位搬家",
+                "cover": "mp6a-baifenshuhuhua/assets/yangwoqizuo.jpg"
               },
               {
                 "no": "例4–5",
                 "title": "求百分率",
                 "genre": "推导",
-                "kind": "百分数"
+                "kind": "百分数",
+                "dir": "mp6a-qiubaifenlv",
+                "pages": 11,
+                "desc": "点名册点人改出勤，发芽率随调随算",
+                "cover": "mp6a-qiubaifenlv/assets/chenpao.jpg"
               },
               {
                 "no": "例6",
                 "title": "求一个数比另一个数多（少）百分之几",
                 "genre": "推导",
-                "kind": "百分数"
+                "kind": "百分数",
+                "dir": "mp6a-duoshaobaifenzhiji",
+                "pages": 11,
+                "desc": "拖两条线段，看多几%与少几%不同",
+                "cover": "mp6a-duoshaobaifenzhiji/assets/zaolin.jpg"
               },
               {
                 "no": "例7–9",
                 "title": "纳税、利息和折扣",
                 "genre": "概念",
-                "kind": "百分数"
+                "kind": "百分数",
+                "dir": "mp6a-nashuilixi",
+                "pages": 11,
+                "desc": "纳税/利息/折扣生活计算器精确出小票",
+                "cover": "mp6a-nashuilixi/assets/shudian.jpg"
               },
               {
                 "no": "例10–11",
                 "title": "列方程解决百分数问题",
                 "genre": "推导",
-                "kind": "百分数"
+                "kind": "百分数",
+                "dir": "mp6a-baifenshufangcheng",
+                "pages": 11,
+                "desc": "十份线段图滑块调，方程与份数对照",
+                "cover": "mp6a-baifenshufangcheng/assets/liangku.jpg"
               },
               {
                 "no": "综合与实践",
                 "title": "互联网的普及",
                 "genre": "推导",
                 "kind": "百分数",
-                "optional": true
+                "optional": true,
+                "dir": "mp6a-hulianwang",
+                "pages": 9,
+                "desc": "课本数据逐年描点折线图，班级调查表实时算比",
+                "cover": "mp6a-hulianwang/assets/shangwang.jpg"
               }
             ]
           }

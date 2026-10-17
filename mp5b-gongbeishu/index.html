@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>公倍数和最小公倍数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mnum.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/gongjiao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第三单元 因数与倍数 · 公倍数和最小公倍数</p>
+    <h1 class="cover-title">公倍数和最小公倍数</h1>
+    <p class="cover-q" data-step="1">1 路车每 <b>6 分钟</b>发一辆，2 路车每 <b>8 分钟</b>发一辆，早上 7 时同时发车。</p>
+    <p class="cover-q" data-step="2">它们<b>第二次同时发车</b>是几时几分？</p>
+    <div class="chips" data-step="3"><span class="chip">铺一铺</span><span class="chip">公倍数</span><span class="chip">两只青蛙跳一跳</span><span class="chip">最小公倍数</span></div>
+  </div>
+  <p class="note">课本 p46 练习七第 14 题的情境，先抛出来，第 9 页解决。让学生猜一猜：7:08？7:12？7:24？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课和本单元学过的</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 倍数" data-step="1">
+        <p>6 的倍数：6，12，18，24，……</p>
+        <p>一个数的倍数有<b>无限</b>个，最小的是它本身，没有最大的。</p>
+        <span class="use">依次列举两个数的倍数。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 公因数" data-step="2">
+        <p>12 和 18 的公因数：1，2，3，6，最大公因数是 6。</p>
+        <p>先列举，再找公有的；可以用维恩图表示。</p>
+        <span class="use">用同样的思路找“公倍数”。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 2、3 的倍数" data-step="3">
+        <p>2 的倍数：个位 0、2、4、6、8；</p>
+        <p>3 的倍数：各位上数的和是 3 的倍数。</p>
+        <span class="use">检验一个数是不是 2 和 3 的公倍数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>几个数公有的<b>倍数</b>，又有什么特点？</p>
+  </div>
+  <p class="note">第 2 张卡：上一课“公因数”的“列举—找公有—维恩图”方法，今天会原样迁移到“公倍数”。</p>
+</section>
+
+<!-- 3 ================= 例 11 铺正方形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 11 · 铺一铺</span><h2>用长 3 厘米、宽 2 厘米的长方形纸片铺正方形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">纸片都<b>横着</b>放（长 3 厘米朝左右）。选正方形的边长：</p>
+      <div class="side-btns" id="rkK" data-noswipe></div>
+      <div class="calc" id="rkCalc"></div>
+      <div class="found"><h4>能正好铺满的正方形边长</h4><p id="rkFound" class="muted">还没有找到</p></div>
+    </div>
+    <div class="col">
+      <svg id="rkFig" class="rk-fig" viewBox="0 0 520 470" aria-label="用 3×2 的长方形纸片铺正方形" data-noswipe></svg>
+      <p class="tip" data-step="1">能铺满的正方形，边长有什么特点？　<span class="think" data-step="2" data-ask="说一说">边长的厘米数<b>既是 2 的倍数，又是 3 的倍数</b>：6、12、18、24……</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p43 例 11。图按真实比例画。先试课本的边长 6 厘米（6 ÷ 3 = 2，6 ÷ 2 = 3，正好铺满）和 8 厘米（8 ÷ 3 = 2……2，铺不满），再试 12、18、24。铺不满的部分用红色斜线标出。</p>
+</section>
+
+<!-- 4 ================= 公倍数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>什么叫公倍数？</h2></div>
+  <div class="bd full top">
+    <table class="mtab mul-tab">
+      <tr><th>2 的倍数</th><td>2</td><td>4</td><td class="on">6</td><td>8</td><td>10</td><td class="on">12</td><td>14</td><td>16</td><td class="on">18</td><td>20</td><td>22</td><td class="on">24</td><td>…</td></tr>
+      <tr><th>3 的倍数</th><td>3</td><td></td><td class="on">6</td><td>9</td><td></td><td class="on">12</td><td>15</td><td></td><td class="on">18</td><td>21</td><td></td><td class="on">24</td><td>…</td></tr>
+    </table>
+    <div class="def big-def" data-step="1"><h4>课本这样说</h4>6，12，18，24，…… 既是 2 的倍数，又是 3 的倍数，它们是 2 和 3 的<em>公倍数</em>。</div>
+    <p class="tip" data-step="2">8 是 2 和 3 的公倍数吗？为什么？　<span class="think" data-step="3" data-ask="想一想">不是。8 是 2 的倍数，但<b>不是 3 的倍数</b>。</span></p>
+    <p class="tip" data-step="4">2 和 3 的公倍数能写完吗？有最大的吗？　<span class="think" data-step="5" data-ask="想一想">写不完，<b>没有最大的</b>，后面用“……”。但有<b>最小的</b>：6。</span></p>
+  </div>
+  <p class="note">课本 p43 下半页。表格把 2 的倍数和 3 的倍数按大小对齐，两行都有的数（绿色）就是公倍数。和上一课对比：公因数个数有限，公倍数个数无限。</p>
+</section>
+
+<!-- 5 ================= 例 12 维恩图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 12</span><h2>6 和 9 的公倍数有哪些？其中最小的是几？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="calc">
+        <h4>方法一：依次列举 6 和 9 的倍数，再找一找</h4>
+        <p>6 的倍数：6，12，18，24，30，36，42，48，54，…</p>
+        <p>9 的倍数：9，18，27，36，45，54，63，…</p>
+      </div>
+      <div class="calc" data-step="1">
+        <h4>方法二：先列举 9 的倍数，再从中找 6 的倍数</h4>
+        <p>9 的倍数：9，18，27，36，45，54，…；其中 18，36，54，… 也是 6 的倍数。</p>
+      </div>
+      <p class="tip" data-step="2">6 和 9 的公倍数有 <span class="blank" data-ans="18,36,54|18、36、54|18，36，54|18,36,54,…|18、36、54、…" data-w="6"></span>，……其中最小的是 <span class="blank" data-ans="18"></span>。</p>
+    </div>
+    <div class="col">
+      <p class="tip small-t">把 54 以内的 6 和 9 的倍数放进维恩图。</p>
+      <div id="vn12"></div>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" id="vn12Fill">帮我放好</button></div>
+    </div>
+  </div>
+  <p class="note">课本 p44 例 12 的两种方法和维恩图（课本图里每个区域下方都有省略号，表示倍数写不完）。方法二从较大数的倍数中找，更快。</p>
+</section>
+
+<!-- 6 ================= 最小公倍数 · 青蛙跳（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">跳一跳</span><h2>两只青蛙第一次落在同一点，是几？</h2></div>
+  <div class="bd full top">
+    <div class="def"><h4>课本这样说</h4>6 和 9 的公倍数有 18，36，54，…… 其中最小的是 18，18 就是 6 和 9 的<em>最小公倍数</em>。</div>
+    <div class="fg-ctrl" data-noswipe>
+      <span class="btns" id="fgPair"><button type="button" class="btn solid" data-a="6" data-b="9">6 和 9</button><button type="button" class="btn" data-a="4" data-b="6">4 和 6</button><button type="button" class="btn" data-a="2" data-b="5">2 和 5</button><button type="button" class="btn" data-a="6" data-b="8">6 和 8</button><button type="button" class="btn" data-a="8" data-b="20">8 和 20</button></span>
+      <button type="button" class="btn solid" id="fgGo">一起跳 ▶</button>
+    </div>
+    <div class="hscroll" data-noswipe><svg id="fgFig" class="fg-fig" viewBox="0 0 1000 230" aria-label="两只青蛙在数轴上跳"></svg></div>
+    <p class="tip fg-msg" id="fgMsg"></p>
+    <p class="tip" data-step="1">它们落在同一点的数，是两个数的什么？第一次落在同一点呢？　<span class="think" data-step="2" data-ask="想一想">同时落到的点都是<b>公倍数</b>；第一次一起落到的，就是<b>最小公倍数</b>。</span></p>
+  </div>
+  <p class="note">课本 p44 练一练第 2 题“照样子画出 4 的倍数和 6 的倍数”的做法：一只青蛙在数轴上方每次跳 a 格，另一只在下方每次跳 b 格。数轴长度按真实刻度画（到 72 为止），两只都落到的点画成绿色大圆。先演示 6 和 9，再让学生选 4 和 6（课本练一练）、2 和 5 等。</p>
+</section>
+
+<!-- 7 ================= 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 1</span><h2>在 2 的倍数上画“△”，在 5 的倍数上画“○”</h2></div>
+  <div class="bd full top">
+    <div class="ntools" id="t25Tools"><button type="button" class="btn solid" data-k="t">△ 2 的倍数</button><button type="button" class="btn" data-k="o">○ 5 的倍数</button><button type="button" class="btn" id="t25Auto">看答案</button></div>
+    <div id="t25" class="ntab-30"></div>
+    <p class="tip">2 和 5 的公倍数有 <span class="blank" data-ans="10,20,30|10、20、30|10，20，30" data-w="6"></span>（30 以内），最小公倍数是 <span class="blank" data-ans="10"></span>。</p>
+    <div class="hint-ladder">
+      <p class="q"><b>练习七第 10 题</b>　8 的倍数有 <span class="blank" data-ans="8,16,24,32,40|8、16、24、32、40|8，16，24，32，40|8,16,24,32,40,…" data-w="8"></span>，……；20 的倍数有 20，40，……；8 和 20 的最小公倍数是 <span class="blank" data-ans="40"></span>。</p>
+      <details><summary>提示 1</summary>先列举大数 20 的倍数：20，40，60……哪个也是 8 的倍数？</details>
+      <details><summary>完整解答</summary>20 不是 8 的倍数，40 ÷ 8 = 5，所以 8 和 20 的最小公倍数是 40。</details>
+    </div>
+  </div>
+  <p class="note">课本 p44 练一练第 1 题，p46 练习七第 10 题（倍数写前 5 个）。</p>
+</section>
+
+<!-- 8 ================= 练习七第 12 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七 · 第 12 题</span><h2>找最小公倍数，想想它们各有什么特点</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc grp">
+        <h4>第一组</h4>
+        <p>5 和 15：<span class="blank" data-ans="15"></span>　21 和 7：<span class="blank" data-ans="21"></span></p>
+        <p>11 和 33：<span class="blank" data-ans="33"></span>　60 和 12：<span class="blank" data-ans="60"></span></p>
+      </div>
+      <div class="calc grp">
+        <h4>第二组</h4>
+        <p>3 和 5：<span class="blank" data-ans="15"></span>　8 和 9：<span class="blank" data-ans="72"></span></p>
+        <p>4 和 15：<span class="blank" data-ans="60"></span>　12 和 1：<span class="blank" data-ans="12"></span></p>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="1" data-label="第一组">较大数是较小数的<b>倍数</b>，最小公倍数就是<b>较大的数</b>。</p>
+      <p class="method" data-step="2" data-label="第二组">两个数的公因数<b>只有 1</b>，最小公倍数就是它们的<b>乘积</b>。</p>
+    </div>
+    <div class="hint-ladder" data-step="3">
+      <p class="q"><b>第 13 题</b>　直接写出最小公倍数：7 和 10 <span class="blank" data-ans="70"></span>，4 和 9 <span class="blank" data-ans="36"></span>，8 和 24 <span class="blank" data-ans="24"></span>，27 和 3 <span class="blank" data-ans="27"></span></p>
+      <details><summary>提示 1</summary>先看：是倍数关系？还是公因数只有 1？</details>
+      <details><summary>完整解答</summary>7 和 10：70；4 和 9：36；8 和 24：24；27 和 3：27。</details>
+    </div>
+  </div>
+  <p class="note">课本 p46 练习七第 12、13 题。和上一课练习七第 5 题是同一组数，可以对照：倍数关系时，最大公因数是较小数、最小公倍数是较大数；公因数只有 1 时，最大公因数是 1、最小公倍数是乘积。</p>
+</section>
+
+<!-- 9 ================= 练习七第 14 题：公交车 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七 · 第 14 题</span><h2>两路车第二次同时发车是几时几分？</h2></div>
+  <div class="bd full top">
+    <p class="tip">1 路车每 6 分钟发一辆，2 路车每 8 分钟发一辆，早上 7 时同时发车。列表找出这两路车第二次同时发车的时间。</p>
+    <div class="btns" data-noswipe><button type="button" class="btn solid" id="busNext">各发下一辆 ▶</button><button type="button" class="btn" id="busReset">↺ 重来</button></div>
+    <div class="hscroll" data-noswipe><table class="mtab bus-tab" id="busTab"><tr><th>1 路车</th></tr><tr><th>2 路车</th></tr></table></div>
+    <p class="tip">第二次同时发车的时间是 7 时 <span class="blank" data-ans="24"></span> 分。</p>
+    <p class="tip" data-step="1">你还有其他方法吗？　<span class="think" data-step="2" data-ask="想一想">求 6 和 8 的<b>最小公倍数</b>：8 的倍数 8，16，24，……24 是 6 的倍数。7 时过 24 分，就是 <b>7:24</b>。</span></p>
+  </div>
+  <p class="note">课本 p46 练习七第 14 题。每点一次，两路车各发下一辆，发车时刻填进表格；两路车都有的时刻用绿色标出。第二次同时发车 7:24，第三次 7:48。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>公因数 · 公倍数，比一比</h2></div>
+  <div class="bd full">
+    <table class="mtab cmp-tab" data-step="1">
+      <tr><th></th><th>公因数</th><th>公倍数</th></tr>
+      <tr><th>个数</th><td>有限</td><td>无限</td></tr>
+      <tr><th>特别的一个</th><td>最大公因数（最小的都是 1）</td><td>最小公倍数（没有最大的）</td></tr>
+      <tr><th>12 和 18</th><td>1，2，3，6；最大 6</td><td>36，72，……；最小 36</td></tr>
+      <tr><th>用在哪儿</th><td>铺满长方形、裁正方形</td><td>铺满正方形、同时发车</td></tr>
+    </table>
+    <p class="recall" data-label="你知道吗" data-step="2">两个数的最大公因数可以用“（　）”表示，最小公倍数可以用“[　]”表示：$(12,18)=6$；$[12,18]=36$。</p>
+    <p class="tip gold" data-step="3"><b>下一步：</b>课本 p50“和与积的奇偶性”——两个奇数相加，和是奇数还是偶数？</p>
+  </div>
+  <p class="note">课本 p46“你知道吗”介绍了记号 (12,18)=6、[12,18]=36。课后作业建议：练习七第 9、11 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mnum.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

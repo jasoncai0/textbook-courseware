@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>列方程解决百分数问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/liangku.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第六单元 百分数 · 列方程解决百分数问题</p>
+    <h1 class="cover-title">列方程解决百分数问题</h1>
+    <p class="cover-q" data-step="1">马山粮库调运一批粮食，已经运走了 <b>60%</b>，还剩 <b>48 吨</b>。</p>
+    <p class="cover-q" data-step="2">这批粮食一共有多少吨？——“一共”不知道，怎么下手？</p>
+    <div class="chips" data-step="3"><span class="chip">单位“1”是未知数</span><span class="chip">线段图</span><span class="chip">$x-60\%x=48$</span></div>
+  </div>
+  <p class="note">课本 p102 例 10 情境。先让学生估一估：剩下 48 吨，是不是一共一百多吨？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>列方程，我们已经会了不少</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="五下 · 列方程解决实际问题" data-step="1">
+        <p>找<b>等量关系</b> → 设未知数为 $x$ → 列方程 → 解方程 → 检验。</p>
+        <span class="use">本课两道例题都这样做。</span>
+      </div>
+      <div class="recall" data-label="五上 · 含有字母的式子的化简" data-step="2">
+        <p class="big center">$x-0.6x=0.4x$</p>
+        <p>$1x$ 减去 $0.6x$，剩下 $0.4x$。</p>
+        <span class="use">解 $x-60\%x=48$ 的第一步。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 例 9 折扣" data-step="3">
+        <p class="big center">$x\times80\%=12$</p>
+        <p>原价不知道，就设原价为 $x$。</p>
+        <span class="use">单位“1”未知时，设它为 $x$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">本课的关键：<b>单位“1”的量不知道</b>，就把它设为 $x$。</p>
+  </div>
+  <p class="note">第 2 张卡请学生口算：x − 0.6x、x + 0.2x 各是多少。</p>
+</section>
+
+<!-- 3 ================= 例 10 线段图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 10</span><h2>先把线段图填写完整</h2></div>
+  <div class="bd full top">
+    <svg id="seg10" class="seg10" viewBox="0 0 900 190" aria-label="线段图：一共 x 吨，运走 60%，还剩 48 吨"></svg>
+    <div class="calc cols3">
+      <p>一共（<span class="blank" data-ans="x|X|？|?" data-w="2"></span>）吨</p>
+      <p>运走（<span class="blank" data-ans="60"></span>）%</p>
+      <p>还剩（<span class="blank" data-ans="48"></span>）吨</p>
+    </div>
+    <p class="tip" data-step="1">还剩的 48 吨占这批粮食的百分之几？<span class="think" data-step="2" data-ask="算一算">$100\%-60\%=40\%$，线段图上 48 吨对应 40%。</span></p>
+  </div>
+  <p class="note">课本 p102 的线段图（按 60%∶40% 精确画，每一小格 10%）。“一共”不知道，空里可以填 x 或“？”。</p>
+</section>
+
+<!-- 4 ================= 数量关系 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分析</span><h2>看线段图，找数量关系</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard" data-step="1"><p>粮食的总吨数 × 60% = 已经运走的吨数</p></div>
+      <div class="jcard" data-step="2"><p>粮食的总吨数 − 运走的吨数 = 剩下的吨数</p></div>
+      <div class="jcard" data-step="3"><p>粮食的总吨数不知道，可以列方程解答。</p></div>
+    </div>
+    <p class="tip" data-step="4">如果列方程解，可以设哪个未知量为 $x$？另一个量怎样表示？</p>
+    <div class="cols2" data-step="5">
+      <p class="def">题中粮食的总吨数为单位“1”，设<em>总吨数为 $x$</em>。</p>
+      <p class="def">已经运走的吨数就是 <span class="think" data-step="6" data-ask="怎样表示？">$60\%x$</span>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p102 下半页的三个小精灵和“设未知数”的讨论。重点：先确定单位“1”是总吨数，再用 60%x 表示运走的吨数。</p>
+</section>
+
+<!-- 5 ================= 解方程 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">解答</span><h2>列方程并解答，再检验</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="derive">
+        <div class="dl"><span>解：设这批粮食一共有 $x$ 吨。</span><i class="why"></i></div>
+        <div class="dl" data-step="1"><span></span><span>$x-60\%x=48$</span><i class="why">总吨数 − 运走的 = 剩下的</i></div>
+        <div class="dl" data-step="2"><span></span><span>$40\%x=48$</span><i class="why">$1-60\%=40\%$，合并</i></div>
+        <div class="dl" data-step="3"><span></span><span>$x=48\div0.4$</span><i class="why">等式两边同时除以 0.4</i></div>
+        <div class="dl key" data-step="4"><span></span><span>$x=$ <span class="blank" data-ans="120"></span></span><i class="why">　</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="calc" data-step="5">
+        <h4>你想怎样检验？</h4>
+        <p>$120-120\times60\%=120-72=48$ ✓</p>
+        <p>或：$120\times(1-60\%)=48$ ✓</p>
+      </div>
+      <p class="tip" data-step="6">答：这批粮食一共有 <b>120</b> 吨。</p>
+      <p class="method" data-step="7" data-label="回顾">要理解已知条件中百分数的意义，弄清数量之间的关系；根据数量关系的特点，确定是否用方程解答；列方程要选择一个合适的未知量，把它设为 $x$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p103 上半页。每一步右边写依据。回顾部分是课本三个小精灵的体会，请学生先说。</p>
+</section>
+
+<!-- 6 ================= 核心：方块线段图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">调一调</span><h2>运走的百分比、剩下的吨数变了，总数怎样求？</h2></div>
+  <div class="bd full top">
+    <div class="blocks" data-noswipe><svg id="blk" viewBox="0 0 900 200" aria-label="把总吨数平均分成 10 份，每份 10%"></svg></div>
+    <div class="ctrlrow" data-noswipe>
+      <label>运走 <input type="range" id="bP" min="10" max="90" step="10" value="60"> <b id="bPv">60</b>%</label>
+      <label>还剩 <input type="range" id="bR" min="6" max="120" step="6" value="48"> <b id="bRv">48</b> 吨</label>
+    </div>
+    <div class="cols2">
+      <p class="readout-big blk-o" id="bEq"></p>
+      <p class="readout-big blk-o" id="bWhy"></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动：把总吨数（单位“1”）平均分成 10 份，每份 10%。拖动滑块，运走的份数和剩下的吨数改变，方程和解随之改变；右边用“剩下的几份 → 1 份 → 10 份”的想法验证方程的解，两种想法结果一致。所有数值精确计算。</p>
+</section>
+
+<!-- 7 ================= 例 11 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 11</span><h2>原计划培育松树苗多少棵？</h2></div>
+  <div class="bd full top">
+    <p class="tip">钱大伯培育了 480 棵松树苗，比原计划多 20%。</p>
+    <svg id="seg11" class="seg10" viewBox="0 0 900 180" aria-label="线段图：原计划 x 棵，实际比原计划多 20%，实际 480 棵"></svg>
+    <p class="tip">（<span class="think" data-step="1" data-ask="谁？">原计划</span>）的棵数 + （<span class="think" data-step="1" data-ask="谁？">比原计划多</span>）的棵数 = 实际培育的棵数</p>
+    <div class="cols2" data-step="2">
+      <div class="derive">
+        <div class="dl"><span>解：设原计划培育 $x$ 棵。</span><i class="why"></i></div>
+        <div class="dl"><span></span><span>$x+20\%x=480$</span><i class="why">“比原计划多 20%”：多的是 $20\%x$</i></div>
+        <div class="dl"><span></span><span>$120\%x=480$</span><i class="why">$1+20\%=120\%$</i></div>
+        <div class="dl key"><span></span><span>$x=$ <span class="blank" data-ans="400"></span></span><i class="why">$480\div1.2$</i></div>
+      </div>
+      <div class="calc" data-step="3"><h4>检验</h4><p>$400+400\times20\%=400+80=480$ ✓</p><p>答：原计划培育松树苗 400 棵。</p></div>
+    </div>
+  </div>
+  <p class="note">课本 p104 例 11。“比原计划多 20%”——原计划是单位“1”，也是未知数。线段图按 100%∶20% 精确画。</p>
+</section>
+
+<!-- 8 ================= 对比 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比一比</span><h2>例 10 和例 11，有什么相同、有什么不同？</h2></div>
+  <div class="bd full">
+    <table class="mtab cmp-tab">
+      <tr><th></th><th>例 10</th><th>例 11</th></tr>
+      <tr><th>单位“1”</th><td>粮食总吨数（未知）</td><td>原计划棵数（未知）</td></tr>
+      <tr><th>方程</th><td>$x-60\%x=48$</td><td>$x+20\%x=480$</td></tr>
+      <tr><th>48、480 对应</th><td>$1-60\%=40\%$</td><td>$1+20\%=120\%$</td></tr>
+    </table>
+    <p class="method" data-step="1" data-label="方法">单位“1”未知时：设单位“1”为 $x$ → 用 $x$ 表示另一个量（如 $60\%x$、$20\%x$）→ 按等量关系列方程。</p>
+    <div class="jcard" data-step="2">
+      <p>东港小学舞蹈组有 35 人，<b>比美术组的人数少 30%</b>。下面哪个方程是对的？</p>
+      <div class="pick" data-ans="b"><button type="button" data-k="a">$35-30\%\times35=x$</button><button type="button" data-k="b">$x-30\%x=35$</button><button type="button" data-k="c">$x+30\%x=35$</button>
+        <p class="pick-why">“比美术组少”：美术组是单位“1”，设为 $x$。美术组人数 − 少的人数 = 舞蹈组人数。$70\%x=35$，$x=50$。</p></div>
+    </div>
+  </div>
+  <p class="note">课本 p104 练一练（选择题形式先判断方程，再求解）。易错：把 35 当作单位“1”去乘 30%。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>先找数量关系，再列方程解答</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1(1)</b> 已经铺了 350 米，还剩 75% 没有铺。这条电缆长 <span class="blank" data-ans="1400"></span> 米。</p>
+        <details><summary>提示 1</summary>（总）米数 − （没铺的）米数 = （已铺的）米数</details>
+        <details><summary>提示 2</summary>$x-75\%x=350$</details>
+        <details><summary>完整解答</summary>$25\%x=350$，$x=1400$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1(2)</b> 六年级有男生 94 人，女生人数占全年级的 53%。六年级一共有 <span class="blank" data-ans="200"></span> 人。</p>
+        <details><summary>提示 1</summary>（全年级）人数 − （女生）人数 = （男生）人数</details>
+        <details><summary>提示 2</summary>$x-53\%x=94$</details>
+        <details><summary>完整解答</summary>$47\%x=94$，$x=200$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一批水泥已运了 30%，还剩 56 吨没有运。这批水泥有 <span class="blank" data-ans="80"></span> 吨。</p>
+        <details><summary>提示</summary>$x-30\%x=56$</details>
+        <details><summary>完整解答</summary>$70\%x=56$，$x=80$。</details>
+      </div>
+    </div>
+    <div class="jcard">
+      <p><b>练习十七 1.</b> 解方程。　$x+60\%x=48$，$x=$ <span class="blank" data-ans="30"></span>　$x-25\%x=27$，$x=$ <span class="blank" data-ans="36"></span>　$x-35\%x=0.52$，$x=$ <span class="blank" data-ans="0.8"></span></p>
+    </div>
+  </div>
+  <p class="note">课本 p103 练一练第 1、2 题和 p105 练习十七第 1 题。可以回到第 6 页用方块线段图验证：如 运走 70%、还剩 56 吨。</p>
+</section>
+
+<!-- 10 ================= 练习十七 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十七</span><h2>增产、降价、节约——单位“1”是谁？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 东方村今年水稻产量是 38.5 吨，比去年增产 10%。去年水稻产量是 <span class="blank" data-ans="35"></span> 吨。</p>
+        <details><summary>提示</summary>去年是单位“1”：$x+10\%x=38.5$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 一件毛衣现在售价 51 元，比原来降价 15%。原来售价 <span class="blank" data-ans="60"></span> 元。</p>
+        <details><summary>提示</summary>原来是单位“1”：$x-15\%x=51$</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>8.</b> 污水处理池实际投资比原计划节约 10%。(1) 节约了 4.8 万元，原计划投资 <span class="blank" data-ans="48"></span> 万元；(2) 实际投资 43.2 万元，原计划投资 <span class="blank" data-ans="48"></span> 万元。</p>
+        <details><summary>提示</summary>(1) $10\%x=4.8$；(2) $x-10\%x=43.2$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 一桶油，(1) 用去 25%，正好用去 2.5 千克，这桶油重 <span class="blank" data-ans="10"></span> 千克；(2) 用去 25%，还剩 7.5 千克，这桶油重 <span class="blank" data-ans="10"></span> 千克。</p>
+        <details><summary>提示</summary>(1) $25\%x=2.5$；(2) $x-25\%x=7.5$。两题已知量对应的百分率不同。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p105 练习十七第 3、5、6、8 题。第 3、8 题都是一组对比题：已知的量对应的是“用去 / 节约的部分”还是“剩下 / 实际的部分”。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>单位“1”未知，就设它为 x</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><small>第 1 步</small>找单位“1”</div>
+      <i>未知</i>
+      <div class="fbox"><small>第 2 步（另一个量用 $a\%x$ 表示）</small>设单位“1”为 $x$</div>
+      <i>等量关系</i>
+      <div class="fbox hot"><small>第 3 步</small>列方程、解方程、检验</div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="两类方程" data-step="2">“还剩 / 少 a%”：$x-a\%x=$ 已知量；“多 / 增加 a%”：$x+a\%x=$ 已知量。</p>
+      <p class="method" data-label="想法" data-step="3">已知量对应单位“1”的百分之几，单位“1” = 已知量 ÷ 对应的百分率——方程把这个想法写得清清楚楚。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>接下来：</b>综合与实践《互联网的普及》（课本 p110）——用百分数调查、分析身边的数据。</p>
+  </div>
+  <p class="note">课后：练习十七第 2、7、10、11、12 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

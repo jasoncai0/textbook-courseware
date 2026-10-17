@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>长方体和正方体的认识 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/solid3d.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="../shared/mcube.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/hezi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第一单元 长方体和正方体 · 长方体和正方体的认识</p>
+    <h1 class="cover-title">长方体和正方体的认识</h1>
+    <p class="cover-q" data-step="1">纸巾盒、饼干盒、冰箱……它们的形状都是<b>长方体</b>。</p>
+    <p class="cover-q" data-step="2">拿起一个长方体纸盒转一转：它有几个面？从一个角度，<b>最多能同时看到几个面</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">面</span><span class="chip">棱</span><span class="chip">顶点</span><span class="chip">长 · 宽 · 高</span><span class="chip">正方体</span></div>
+  </div>
+  <p class="note">课本 p1 例 1 的情境。可以让学生课前每人带一个长方体纸盒（牙膏盒、药盒都行），本课边看边摸。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>认识长方体之前，先想想这三件事</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="一年级上册 · 认识图形（一）" data-step="1">
+        <p>我们早就见过<b>长方体</b>和<b>正方体</b>：会搭积木、会数个数，但还没仔细研究过它们。</p>
+        <span class="use">第 3 页：从生活中找长方体。</span>
+      </div>
+      <div class="recall" data-label="三年级上册 · 长方形和正方形" data-step="2">
+        <p>长方形：<b>对边相等</b>，4 个角都是直角。</p>
+        <p>正方形：<b>4 条边都相等</b>，4 个角都是直角。</p>
+        <span class="use">第 6 页：长方体的面是什么形状。</span>
+      </div>
+      <div class="recall" data-label="平面图形和立体图形" data-step="3">
+        <p>长方形、正方形是画在纸上的<b>平面图形</b>；长方体、正方体占着一块空间，是<b>立体图形</b>。</p>
+        <span class="use">第 4、5 页：立体图形有面、棱、顶点。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">今天用“<b>看一看、数一数、量一量、比一比</b>”的办法，把长方体和正方体研究清楚。</p>
+  </div>
+  <p class="note">每张卡先请学生口答再点开。第 2 张卡是本课最常用的旧知：长方体的每个面都是长方形（或正方形）。</p>
+</section>
+
+<!-- 3 ================= 例 1 找一找 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>生活中哪些物体的形状是长方体？</h2></div>
+  <div class="bd full top">
+    <p class="tip">点一点：你认为形状是<b>长方体</b>的就点亮它，选好后按“核对”。</p>
+    <div class="objs" id="objs" data-noswipe></div>
+    <div class="btns" data-noswipe><button type="button" class="btn solid" id="objChk">核对</button><button type="button" class="btn" id="objReset">重来</button></div>
+    <p class="tip feedback" id="objMsg">课本里的纸巾盒、饼干盒、冰箱、糖果罐都是长方体。你还能想到哪些？</p>
+    <p class="tip" data-step="1">像魔方、骰子这样每个面都一样的，是长方体吗？　<span class="think" data-step="2" data-ask="先猜一猜">它们是<b>正方体</b>。到第 8 页我们会发现：正方体其实是一种<b>特殊的长方体</b>。</span></p>
+  </div>
+  <p class="note">课本 p1 小精灵：“生活中还有哪些物体的形状也是长方体？”易拉罐（圆柱）、篮球（球）用来对比。魔方先不下结论，留到例 2。</p>
+</section>
+
+<!-- 4 ================= 面：转一转 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">转一转</span><h2>长方体有几个面？最多能同时看到几个面？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="spin" class="view3 tall"></div>
+      <p class="s3d-hint">拖动纸盒转着看；也可以点下面的按钮</p>
+      <div class="btns" data-noswipe id="spinK"><button type="button" class="btn" data-k="front">正对前面</button><button type="button" class="btn" data-k="edge">对着一条棱</button><button type="button" class="btn" data-k="corner">对着一个顶点</button></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback fb-ok" id="spinMsg"></p>
+      <p class="tip">纸盒的 6 个面颜色各不相同，转的时候数一数。</p>
+      <p class="tip" data-step="1">长方体一共有 <span class="think" data-step="2" data-ask="几个面？"><b>6 个面</b>：前、后、左、右、上、下。</span></p>
+      <p class="tip" data-step="3">从一个角度看，最多能同时看到 <span class="think" data-step="4" data-ask="几个面？"><b>3 个面</b>。</span></p>
+      <p class="tip gold" data-step="5">为什么不会看到 4 个面？　<span class="think" data-step="6" data-ask="想一想">前和后、左和右、上和下是<b>相对</b>的：看见一面，它对面的那一面就被挡住了。3 对面，每对最多看见 1 个。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p1 小精灵：“从不同的角度观察一个长方体，最多能同时看到几个面？”先让学生拿自己的纸盒转，再用左边的立体图验证。右上角的数是程序按视线方向实时算出来的“朝向你的面”的个数。</p>
+</section>
+
+<!-- 5 ================= 棱和顶点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数一数</span><h2>两个面相交的线叫作棱，三条棱相交的点叫作顶点</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="wire" class="view3 tall"></div>
+      <div class="btns" data-noswipe id="wireK"><button type="button" class="btn solid" data-k="none">原图</button><button type="button" class="btn" data-k="edge">数棱</button><button type="button" class="btn" data-k="vert">数顶点</button></div>
+    </div>
+    <div class="col">
+      <div class="def">两个面相交的线叫作<em>棱</em>，三条棱相交的点叫作<em>顶点</em>。</div>
+      <p class="tip feedback" id="wireMsg">看不见的棱画成<b>虚线</b>。拖动图形，虚线会跟着变。</p>
+      <div class="calc">
+        <p>长方体有 <span class="blank" data-ans="12"></span> 条棱，<span class="blank" data-ans="8"></span> 个顶点。</p>
+      </div>
+      <p class="method" data-step="1" data-label="怎样数才不重复、不遗漏">棱：按方向分成 <b>3 组</b>，每组 4 条，$4\times3=12$。<br>顶点：上面 4 个，下面 4 个，$4+4=8$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p1：“长方体有几条棱和几个顶点？”先让学生自己数，再点“数棱”：同一方向的 4 条棱同一种颜色，一组一组数。点“数顶点”会把 8 个顶点编号。</p>
+</section>
+
+<!-- 6 ================= 量一量 比一比 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">量一量 比一比</span><h2>长方体的面和棱各有什么特点？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="meas" class="view3"></div>
+      <div class="slider-row compact" data-noswipe>长 <input type="range" id="mL" min="1" max="8" step="1" value="6"><b id="mLv"></b>cm　宽 <input type="range" id="mW" min="1" max="8" step="1" value="3"><b id="mWv"></b>cm　高 <input type="range" id="mH" min="1" max="8" step="1" value="4"><b id="mHv"></b>cm</div>
+    </div>
+    <div class="col">
+      <table class="mtab" id="faceTab"></table>
+      <p class="tip" data-step="1">比一比表里的数，你发现了什么？　<span class="think" data-step="2" data-ask="和同桌说一说">上下、前后、左右这 3 组<b>相对的面</b>，长和宽都一样——完全相同。</span></p>
+      <div class="def" data-step="3">长方体的面是长方形（也可能有 2 个相对的面是正方形），相对的面完全相同，相对的棱长度相等。</div>
+    </div>
+  </div>
+  <p class="note">课本 p1 三个小精灵的发现。拖滑块改长、宽、高，右边的表（每个面的长和宽）由程序按尺寸算出。试着把宽和高调成一样（如 3 和 3）：左、右两个面变成正方形——这就是“也可能有 2 个相对的面是正方形”。</p>
+</section>
+
+<!-- 7 ================= 长、宽、高 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">长 · 宽 · 高</span><h2>相交于同一顶点的三条棱</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="lwh" class="view3"></div>
+      <p class="s3d-hint">红色是长，橙色是宽，绿色是高；拖动看看每种颜色各有几条</p>
+    </div>
+    <div class="col">
+      <div class="def">长方体相交于同一顶点的三条棱的长度，分别叫作它的<em>长</em>、<em>宽</em>、<em>高</em>。</div>
+      <p class="tip" data-step="1">长方体有 <span class="blank" data-ans="4"></span> 条长、<span class="blank" data-ans="4"></span> 条宽、<span class="blank" data-ans="4"></span> 条高。</p>
+      <div class="hint-ladder" data-step="2">
+        <p class="q">练习一 第 9 题：(1) 长方体的长、宽、高分别是 $a$、$b$、$c$ 厘米，长、宽、高的和是 <span class="blank" data-ans="a+b+c|b+a+c|c+b+a|a+c+b" data-w="5"></span> 厘米，棱长的和是 <span class="blank" data-ans="(a+b+c)×4|(a+b+c)*4|4(a+b+c)|4a+4b+4c|(a+b+c)x4" data-w="7"></span> 厘米。</p>
+        <p class="muted small-t">乘号可以输入 × 或 *</p>
+        <details><summary>提示 1</summary>12 条棱分成 3 组：4 条长、4 条宽、4 条高。</details>
+        <details><summary>完整解答</summary>长、宽、高的和是 $a+b+c$ 厘米；棱长的和是 $(a+b+c)\times4$ 厘米。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p2 上方的定义，配练习一第 9(1) 题。强调：“长、宽、高”是相交于<b>同一个顶点</b>的三条棱。习惯上，把横着的较长的一条叫长，前后方向的叫宽，竖直方向的叫高。</p>
+</section>
+
+<!-- 8 ================= 例 2 正方体 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>正方体有什么特点？它和长方体有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cube" class="view3 short"></div>
+      <div class="slider-row compact" data-noswipe>宽 <input type="range" id="cW" min="2" max="6" step="0.1" value="2"><b id="cWv"></b>　高 <input type="range" id="cH" min="2" max="6" step="0.1" value="3"><b id="cHv"></b>　（长 6 cm 不变）</div>
+      <p class="tip feedback" id="cubeMsg"></p>
+    </div>
+    <div class="col">
+      <table class="mtab">
+        <tr><th></th><th>面</th><th>棱</th><th>顶点</th></tr>
+        <tr><th>长方体</th><td>6 个，相对的面完全相同</td><td>12 条，相对的棱相等</td><td>8 个</td></tr>
+        <tr><th>正方体</th><td><span class="think" data-step="1" data-ask="？">6 个，<b>完全相同的正方形</b></span></td><td><span class="think" data-step="2" data-ask="？">12 条，<b>都相等</b></span></td><td><span class="think" data-step="2" data-ask="？">8 个</span></td></tr>
+      </table>
+      <p class="tip" data-step="3">正方体具有长方体的所有特征吗？　<span class="think" data-step="4" data-ask="想一想">有！正方体面、棱、顶点的个数与长方体相同；相对的面完全相同，相对的棱长度相等。</span></p>
+      <div class="venn-wrap" data-step="5">
+        <svg class="venn" viewBox="0 0 300 130" aria-label="长方体包含正方体"><ellipse cx="150" cy="65" rx="140" ry="58" class="v-out"/><ellipse cx="150" cy="80" rx="62" ry="28" class="v-in"/><text x="150" y="34">长方体</text><text x="150" y="88">正方体</text></svg>
+        <p class="def">正方体是<em>特殊的长方体</em>。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p2 例 2。先拖滑块：把宽和高都调到和长一样（6 cm），长方体就变成了正方体——各条棱都相等，6 个面都是相同的正方形。再填对比表，最后出示课本的集合图：正方体在长方体里面。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>想一想，说出道理</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> 长方体的 6 个面一定都是长方形。</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button>
+          <p class="pick-why">也可能有 2 个相对的面是<b>正方形</b>（比如长 6、宽 3、高 3 时，左、右两面是正方形）。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 一个长方体恰好有 4 个面是正方形，其余 2 个面不是。</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">可能</button><button type="button" data-k="n">不可能</button>
+          <p class="pick-why">4 个面是正方形，就说明长、宽、高都相等，那么 6 个面都是正方形，是正方体。所以不可能“恰好 4 个”。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 正方体是特殊的长方体，所以长方体也是正方体。</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button>
+          <p class="pick-why">正方体都是长方体，但长方体不一定是正方体——就像集合图里，小圈在大圈里面，大圈里还有小圈外面的部分。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="记住">长方体：相对的面完全相同，相对的棱相等。正方体：6 个面完全相同，12 条棱都相等。</p>
+  </div>
+  <p class="note">第 2 题是拓展，可以让学生拿第 6 页的滑块试一试：怎么调都做不出“恰好 4 个面是正方形”。</p>
+</section>
+
+<!-- 10 ================= 练习一 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习一</span><h2>看图说出长、宽、高</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> 看图说出长方体的长、宽、高。</p>
+        <div id="ex1" class="ex3"></div>
+        <p class="small-q">长 <span class="blank" data-ans="7"></span> cm，宽 <span class="blank" data-ans="4"></span> cm，高 <span class="blank" data-ans="3"></span> cm</p>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 下面两个图形，哪个是正方体？</p>
+        <div class="two" id="ex2"></div>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">左边</button><button type="button" data-k="b">右边</button>
+          <p class="pick-why">右边棱长都是 5 cm，是正方体，6 个面完全相同；左边长 5、宽 4、高 5，是长方体，有 2 个面（前、后）是正方形。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 看长方体回答。</p>
+        <div id="ex3" class="ex3"></div>
+        <p class="small-q">前面长 <span class="blank" data-ans="5"></span> cm、宽 <span class="blank" data-ans="3.5"></span> cm；<br>右面长 <span class="blank" data-ans="4"></span> cm、宽 <span class="blank" data-ans="3.5"></span> cm；<br>下面与 <span class="pick inl" data-ans="u"><button type="button" data-k="f">前面</button><button type="button" data-k="u">上面</button><button type="button" data-k="r">右面</button></span> 完全相同。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p4 练习一第 1 题（第一个图）、第 2 题、第 3 题。图按课本数据画。第 3 题的“前面”是长方形，长 5 cm、宽 3.5 cm（较长的边叫长）。第 1 题另外两个图（5 dm、4 dm、6 dm；8 mm、8 mm、20 mm）可以口答。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>今天我们认识了长方体和正方体</h2></div>
+  <div class="bd full">
+    <div class="cols2 sum">
+      <div class="col">
+        <h3>知识</h3>
+        <p class="recall" data-label="长方体" data-step="1">6 个面、12 条棱、8 个顶点；相对的面完全相同，相对的棱长度相等；相交于同一顶点的三条棱叫长、宽、高。</p>
+        <p class="recall" data-label="正方体" data-step="2">6 个面是完全相同的正方形，12 条棱都相等。正方体是特殊的长方体。</p>
+      </div>
+      <div class="col">
+        <h3>方法</h3>
+        <p class="method" data-label="怎样研究立体图形" data-step="3">看一看、数一数（分组数，不重复不遗漏）、量一量、比一比。</p>
+        <p class="tip gold" data-step="4"><b>下一课：</b>把长方体纸盒沿着棱<b>剪开</b>，会得到什么样的平面图形？课本 p3 例 3。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后：课本 p2 练一练——选一个长方体实物，指出它的面、棱和顶点，量出长、宽、高；再选一个正方体实物，量出棱长。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/solid3d.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="../shared/mcube.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

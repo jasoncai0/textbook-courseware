@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>公因数和最大公因数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mnum.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/pudizhuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第三单元 因数与倍数 · 公因数和最大公因数</p>
+    <h1 class="cover-title">公因数和最大公因数</h1>
+    <p class="cover-q" data-step="1">用同样大的正方形砖铺地，要<b>正好铺满</b>，不能切砖。</p>
+    <p class="cover-q" data-step="2">一个长方形长 <b>18 厘米</b>、宽 <b>12 厘米</b>。边长几厘米的正方形纸片能正好铺满它？最大能用多大的？</p>
+    <div class="chips" data-step="3"><span class="chip">铺一铺</span><span class="chip">公因数</span><span class="chip">最大公因数</span><span class="chip">维恩图</span></div>
+  </div>
+  <p class="note">课本 p41 例 9 的情境。生活中铺地砖、裁纸都希望“不切、不剩”。先让学生凭感觉猜：边长 6 厘米行吗？4 厘米呢？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这些旧知识，今天都要用</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 找因数" data-step="1">
+        <p>12 的因数：1，2，3，4，6，12</p>
+        <p>18 的因数：1，2，3，6，9，18</p>
+        <p class="small-t">一对一对地找，不重复、不遗漏。</p>
+        <span class="use">列出两个数各自的因数。</span>
+      </div>
+      <div class="recall" data-label="二下 · 有余数的除法" data-step="2">
+        <p class="big center">$18\div6=3$</p>
+        <p class="big center">$18\div4=4\cdots\cdots2$</p>
+        <span class="use">没有余数，才能正好铺满一条边。</span>
+      </div>
+      <div class="recall" data-label="三下 · 长方形的面积" data-step="3">
+        <svg viewBox="0 0 240 110" class="mini-fig" aria-label="长方形里铺满小正方形"><g class="mini-tile"></g></svg>
+        <p>用面积单位一排一排地铺满长方形。</p>
+        <span class="use">用正方形纸片铺长方形。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>两个数共同的因数，有什么用？怎样找？</p>
+  </div>
+  <p class="note">第 2 张卡是判断“能不能正好铺满”的关键：长和宽都要被正方形的边长整除。</p>
+</section>
+
+<!-- 3 ================= 例 9 铺一铺（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 9 · 铺一铺</span><h2>哪种正方形纸片能正好铺满这个长方形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">长方形：长 18 厘米，宽 12 厘米。选正方形纸片的边长：</p>
+      <div class="side-btns" id="tlK" data-noswipe></div>
+      <div class="calc" id="tlCalc"></div>
+      <div class="found"><h4>能正好铺满的边长</h4><p id="tlFound" class="muted">还没有找到</p></div>
+    </div>
+    <div class="col">
+      <svg id="tlFig" class="tl-fig" viewBox="0 0 640 420" aria-label="用正方形纸片铺长 18 厘米、宽 12 厘米的长方形" data-noswipe></svg>
+      <p class="tip" data-step="1">边长 6 厘米能铺满，4 厘米不能，为什么？　<span class="think" data-step="2" data-ask="看算式">$12\div6=2$，$18\div6=3$，都没有余数；$18\div4=4\cdots\cdots2$，长边剩下 2 厘米铺不满。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p41 例 9。图按真实比例画（1 厘米 = 同样长度），铺不满时剩下的部分用红色斜线标出。先试课本的 6 厘米、4 厘米，再问“还有哪些边长是整厘米数的正方形也能正好铺满”，让学生把 1～12 都试一试，记录能铺满的：1、2、3、6。</p>
+</section>
+
+<!-- 4 ================= 公因数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 9 · 想一想</span><h2>能铺满的边长，和 12、18 有什么关系？</h2></div>
+  <div class="bd full top">
+    <table class="mtab fac-tab">
+      <tr><th>12 的因数</th><td class="on">1</td><td class="on">2</td><td class="on">3</td><td>4</td><td class="on">6</td><td></td><td>12</td><td></td></tr>
+      <tr><th>18 的因数</th><td class="on">1</td><td class="on">2</td><td class="on">3</td><td></td><td class="on">6</td><td>9</td><td></td><td>18</td></tr>
+    </table>
+    <p class="tip" data-step="1">能铺满的边长 1、2、3、6　<span class="think" data-step="2" data-ask="它们是 12 和 18 的什么？">既是 <b>12 的因数</b>，又是 <b>18 的因数</b>——宽能分完，长也能分完。</span></p>
+    <div class="def big-def" data-step="3"><h4>课本这样说</h4>1、2、3 和 6 既是 12 的因数，又是 18 的因数，它们是 12 和 18 的<em>公因数</em>。</div>
+    <p class="tip" data-step="4">4 是 12 和 18 的公因数吗？为什么？　<span class="think" data-step="5" data-ask="想一想">不是。4 是 12 的因数，但<b>不是 18 的因数</b>（18 ÷ 4 有余数）。“公”就是两个数<b>都有</b>。</span></p>
+  </div>
+  <p class="note">课本 p41 下半页。表格把两个数的因数上下对齐，浅色格就是能铺满的边长，正好是两行都有的数。“4 是 12 和 18 的公因数吗”是课本小精灵的问题。</p>
+</section>
+
+<!-- 5 ================= 例 10 维恩图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 10</span><h2>8 和 12 的公因数有哪些？其中最大的是几？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="calc">
+        <h4>方法一：分别列举，再找一找</h4>
+        <p>8 的因数：1，2，4，8</p>
+        <p>12 的因数：1，2，3，4，6，12</p>
+      </div>
+      <div class="calc" data-step="1">
+        <h4>方法二：先找 8 的因数，再从中找 12 的因数</h4>
+        <p>8 的因数：1，2，4，8；其中 1，2，4 也是 12 的因数。</p>
+      </div>
+      <p class="tip" data-step="2">8 和 12 的公因数有 <span class="blank" data-ans="1,2,4|1、2、4|1，2，4" data-w="5"></span>，其中最大的是 <span class="blank" data-ans="4"></span>。</p>
+    </div>
+    <div class="col">
+      <p class="tip small-t">把每个数放进维恩图：只是 8 的因数放左边，只是 12 的因数放右边，两个数共有的放中间。</p>
+      <div id="vn10"></div>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" id="vn10Fill">帮我放好</button></div>
+    </div>
+  </div>
+  <p class="note">课本 p42 例 10 的两种方法和维恩图。先请学生上台点数、放区域；放错时提示“是不是 8 的因数、是不是 12 的因数”。中间重叠部分就是公因数，体会“公”的含义。</p>
+</section>
+
+<!-- 6 ================= 最大公因数 + 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">最大公因数</span><h2>公因数中最大的一个</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="def big-def"><h4>课本这样说</h4>8 和 12 的公因数有 1，2，4，其中最大的是 4。4 就是 8 和 12 的<em>最大公因数</em>。</div>
+      <p class="tip" data-step="1">两个数的公因数个数有限吗？有最小的公因数吗？　<span class="think" data-step="2" data-ask="想一想">公因数个数<b>有限</b>；最小的公因数都是 <b>1</b>。</span></p>
+      <p class="tip" data-step="3">例 9 里，能铺满的最大正方形边长是几厘米？　<span class="think" data-step="4" data-ask="想一想">6 厘米——它就是 12 和 18 的<b>最大公因数</b>。</span></p>
+    </div>
+    <div class="col">
+      <p class="q small-q"><b>练一练 1.</b> 在 18 的因数上画“△”，在 30 的因数上画“○”。</p>
+      <div class="ntools" id="t30Tools"><button type="button" class="btn solid" data-k="t">△ 18 的因数</button><button type="button" class="btn" data-k="o">○ 30 的因数</button><button type="button" class="btn" id="t30Auto">看答案</button></div>
+      <div id="t30" class="ntab-30"></div>
+      <p class="q small-q">18 和 30 的公因数有 <span class="blank" data-ans="1,2,3,6|1、2、3、6|1，2，3，6" data-w="6"></span>，最大公因数是 <span class="blank" data-ans="6"></span>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p42 定义和练一练第 1 题。既画了 △ 又画了 ○ 的数就是公因数。</p>
+</section>
+
+<!-- 7 ================= 练一练 2：维恩图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 2</span><h2>先填一填，再说出 15 和 20 的最大公因数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">15 的因数：<span class="blank" data-ans="1,3,5,15|1、3、5、15|1，3，5，15" data-w="7"></span></p>
+      <p class="tip">20 的因数：<span class="blank" data-ans="1,2,4,5,10,20|1、2、4、5、10、20|1，2，4，5，10，20" data-w="9"></span></p>
+      <p class="tip" data-step="1">15 和 20 的公因数有 <span class="blank" data-ans="1,5|1、5|1，5" data-w="4"></span>，最大公因数是 <span class="blank" data-ans="5"></span>。</p>
+    </div>
+    <div class="col">
+      <div id="vn15"></div>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" id="vn15Fill">帮我放好</button></div>
+    </div>
+  </div>
+  <p class="note">课本 p42 练一练第 2 题：课本先分别画两个圈，再把两个圈“推”到一起变成维恩图。学生先填因数，再把数放进维恩图。</p>
+</section>
+
+<!-- 8 ================= 练习七第 5 题：特殊的两种 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七 · 第 5 题</span><h2>找最大公因数，想想它们各有什么特点</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc grp">
+        <h4>第一组</h4>
+        <p>5 和 15：<span class="blank" data-ans="5"></span>　21 和 7：<span class="blank" data-ans="7"></span></p>
+        <p>11 和 33：<span class="blank" data-ans="11"></span>　60 和 12：<span class="blank" data-ans="12"></span></p>
+      </div>
+      <div class="calc grp">
+        <h4>第二组</h4>
+        <p>3 和 5：<span class="blank" data-ans="1"></span>　8 和 9：<span class="blank" data-ans="1"></span></p>
+        <p>4 和 15：<span class="blank" data-ans="1"></span>　12 和 1：<span class="blank" data-ans="1"></span></p>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="1" data-label="第一组">较大的数是较小的数的<b>倍数</b>（15 = 5 × 3），最大公因数就是<b>较小的数</b>。</p>
+      <p class="method" data-step="2" data-label="第二组">两个数的公因数<b>只有 1</b>，最大公因数就是 1。</p>
+    </div>
+    <div class="hint-ladder" data-step="3">
+      <p class="q"><b>第 6 题</b>　直接写出最大公因数：7 和 10 <span class="blank" data-ans="1"></span>，4 和 9 <span class="blank" data-ans="1"></span>，12 和 24 <span class="blank" data-ans="12"></span>，27 和 3 <span class="blank" data-ans="3"></span></p>
+      <details><summary>提示 1</summary>先看：大数是不是小数的倍数？</details>
+      <details><summary>完整解答</summary>7 和 10：1；4 和 9：1；12 和 24：12；27 和 3：3。</details>
+    </div>
+  </div>
+  <p class="note">课本 p45 练习七第 5、6 题。先做再找规律。第二组里 8 和 9、4 和 15 都不是质数，但它们的公因数也只有 1——不要误以为“只有质数才行”。</p>
+</section>
+
+<!-- 9 ================= 练习七第 8 题：裁正方形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七 · 第 8 题</span><h2>把长方形纸裁成同样大的正方形，没有剩余</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">一张长 15 厘米、宽 9 厘米的长方形纸，裁成同样大的正方形，纸没有剩余。正方形的边长最大是多少厘米？一共可以裁多少个？</p>
+      <div class="side-btns" id="cuK" data-noswipe></div>
+      <div class="calc" id="cuCalc"></div>
+      <p class="tip">边长最大是 <span class="blank" data-ans="3"></span> 厘米，一共可以裁 <span class="blank" data-ans="15"></span> 个。</p>
+    </div>
+    <div class="col">
+      <svg id="cuFig" class="tl-fig" viewBox="0 0 640 420" aria-label="长 15 厘米、宽 9 厘米的长方形裁正方形" data-noswipe></svg>
+      <p class="tip" data-step="1">怎样想？　<span class="think" data-step="2" data-ask="说一说">边长要既是 15 的因数，又是 9 的因数；要最大，就找 15 和 9 的<b>最大公因数 3</b>。$15\div3=5$，$9\div3=3$，$5\times3=15$（个）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p45 练习七第 8 题（课本要求在方格纸上画一画再回答）。用“铺一铺”同样的方法验证：边长 1、3 能裁完，3 最大。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>公因数和最大公因数</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <p class="recall" data-label="公因数" data-step="1">几个数<b>公有</b>的因数。12 和 18 的公因数：1，2，3，6。</p>
+      <p class="recall" data-label="最大公因数" data-step="2">公因数中最大的一个。12 和 18 的最大公因数是 6。</p>
+      <div class="method" data-label="怎样找" data-step="3"><ul class="use-list"><li>分别列举因数，再找公有的</li><li>先找小数的因数，再挑出大数的因数</li><li>倍数关系 → 较小数；只有公因数 1 → 1</li></ul></div>
+    </div>
+    <p class="tip" data-step="4"><b>用在哪儿：</b>铺地砖、裁正方形、把东西平均分成几份——“又不剩、又最大”，就找最大公因数。</p>
+    <p class="tip gold" data-step="5"><b>下一步：</b>课本 p43 例 11——用长 3 厘米、宽 2 厘米的长方形纸片铺正方形，能铺满边长几厘米的正方形？</p>
+  </div>
+  <p class="note">课后作业建议：练习七第 1、3、4、7 题。第 7 题（分子分母的最大公因数）为下学期学习约分做准备。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mnum.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

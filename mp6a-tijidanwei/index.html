@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>体积和体积单位 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="../shared/mcube.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/taozi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第一单元 长方体和正方体 · 体积和体积单位</p>
+    <h1 class="cover-title">体积和体积单位</h1>
+    <p class="cover-q" data-step="1">两个同样大的玻璃杯，左边的盛满水，右边的放一个<b>桃</b>。</p>
+    <p class="cover-q" data-step="2">把左杯的水倒进右杯，为什么<b>还剩下一些水</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">体积</span><span class="chip">容积</span><span class="chip">立方厘米 · 立方分米 · 立方米</span><span class="chip">升 · 毫升</span></div>
+  </div>
+  <p class="note">课本 p10 例 6 情境。有条件可以现场做：两个一样的杯子、一个桃（或苹果）、一瓶水。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>量长度、量面积，我们都用过“单位”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="二、三年级 · 长度单位" data-step="1">
+        <p>厘米（cm）、分米（dm）、米（m）。</p>
+        <p>量长度，就是看它里面有几个长度单位。</p>
+        <span class="use">第 6 页：棱长 1 厘米、1 分米、1 米的正方体。</span>
+      </div>
+      <div class="recall" data-label="三年级下册 · 面积单位" data-step="2">
+        <p>边长 1 厘米的正方形，面积是 <b>1 平方厘米</b>。</p>
+        <p>量面积，就是数里面有几个面积单位。</p>
+        <span class="use">第 6、7 页：体积单位照着“面积单位”来定。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 正方体" data-step="3">
+        <p>正方体 12 条棱都相等，6 个面是相同的正方形。</p>
+        <span class="use">第 5 页：把物体分成同样大小的小正方体来比较。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">前面学了长方体的<b>表面积</b>（6 个面有多大）。今天研究另一件事：物体<b>占的空间</b>有多大。</p>
+  </div>
+  <p class="note">第 2 张卡最重要：体积单位的定法与面积单位类似（边长 1 → 棱长 1），学生容易自己想到。</p>
+</section>
+
+<!-- 3 ================= 例 6 桃和水 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6</span><h2>左杯的水倒入右杯，为什么还剩下一些水？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="cups" class="fig2d cups" viewBox="0 0 560 330" aria-label="两个同样大的杯子"></svg>
+      <div class="btns" data-noswipe id="fruitK"><button type="button" class="btn solid" data-k="peach">桃</button><button type="button" class="btn" data-k="lychee">荔枝</button><button type="button" class="btn" data-k="cherry">樱桃</button><button type="button" class="btn" data-k="none">什么都不放</button></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="pourGo">▶ 把左杯的水倒进右杯</button><button type="button" class="btn" id="pourReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="pourMsg">先选右杯里放什么，再倒水。</p>
+      <p class="tip" data-step="1">为什么会剩下水？　<span class="think" data-step="2" data-ask="想一想">杯中有一部分<b>空间被桃占去了</b>。</span></p>
+      <p class="tip" data-step="3">放荔枝、放樱桃，剩下的水比放桃时多还是少？　<span class="think" data-step="4" data-ask="试一试再说">剩下的水少。荔枝、樱桃<b>占的空间小</b>，倒进去的水就多。</span></p>
+      <div class="def" data-step="5">物体所占空间的大小叫作物体的<em>体积</em>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p10 例 6 和下面两个问题。杯子、水果都按真实比例计算：杯子内径 7 cm、高 10 cm；桃、荔枝、樱桃近似看成直径 6 cm、3.2 cm、2.2 cm 的球。剩下的水正好等于水果的体积，左杯剩余水面的高度由程序按“体积 ÷ 杯底面积”算出。</p>
+</section>
+
+<!-- 4 ================= 例 7 容积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7</span><h2>哪个盒子里书的体积大？哪个杯子的容积大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="tip">两盒书摆满了各自的盒子：左边盒子里书的体积大一些——也可以说，左边盒子的<b>容积</b>大一些。</div>
+      <div class="def">容器所能容纳物体的体积叫作容器的<em>容积</em>。</div>
+      <p class="tip" data-step="1"><b>试一试：</b>两个杯子，一个高一些、一个粗一些，哪个容积大？怎样比？　<span class="think" data-step="2" data-ask="说说办法">把一个杯子装满水，倒进另一个杯子，看能不能装下（溢出或装不满）。</span></p>
+    </div>
+    <div class="col">
+      <svg id="cap" class="fig2d cups" viewBox="0 0 560 300" aria-label="两个不同的杯子"></svg>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="capGo">▶ 甲杯装满水，倒进乙杯</button><button type="button" class="btn" id="capBack">▶ 乙杯装满水，倒进甲杯</button></div>
+      <p class="tip feedback" id="capMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p11 例 7 和试一试。甲杯内径 5 cm、高 11 cm，乙杯内径 6.4 cm、高 7 cm（容积分别约 216 和 225 立方厘米），看起来差不多，倒一倒才知道乙杯大一点。体积与容积的区别：体积从外面量，容积从里面量。</p>
+</section>
+
+<!-- 5 ================= 例 8 分成小正方体 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8</span><h2>下面的长方体和正方体，哪个的体积大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cmpv" class="view3 tall"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="cutGo">✂ 分成同样大小的正方体</button><button type="button" class="btn" id="cutBack">合起来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">先猜一猜：长方体扁一些，正方体高一些，谁的体积大？</p>
+      <p class="tip" data-step="1">小精灵说：“把它们分成<b>同样大小的正方体</b>，就能比出大小。”点左边的按钮试试。</p>
+      <p class="tip" data-step="2">长方体含 <span class="blank" data-ans="9"></span> 个小正方体，正方体含 <span class="blank" data-ans="8"></span> 个。</p>
+      <p class="tip gold" data-step="3">所以 <span class="think" data-step="4" data-ask="谁大？"><b>长方体的体积大</b>。</span></p>
+      <p class="tip" data-step="5">如果两个图形分成的小正方体<b>不一样大</b>，还能这样比吗？　<span class="think" data-step="6" data-ask="想一想">不能！所以要用<b>统一的体积单位</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p12 例 8。课本图：长方体分成 3×3×1 共 9 个，正方体分成 2×2×2 共 8 个。程序用精确的小正方体网格画出，拖动可转着数；分开时小方块之间留出空隙，方便数清楚。</p>
+</section>
+
+<!-- 6 ================= 体积单位 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">体积单位</span><h2>常用的体积单位：立方厘米、立方分米、立方米</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="unitv" class="view3"></div>
+      <p class="s3d-hint">按真实大小比例画：右边大正方体的棱长是左边小正方体的 10 倍</p>
+    </div>
+    <div class="col">
+      <table class="mtab">
+        <tr><th>体积单位</th><th>写作</th><th>是什么样的正方体</th><th>大约有多大</th></tr>
+        <tr><td>立方厘米</td><td>cm³</td><td>棱长 1 厘米</td><td><span class="think" data-step="1" data-ask="？">手指头的体积</span></td></tr>
+        <tr><td>立方分米</td><td>dm³</td><td>棱长 1 分米</td><td><span class="think" data-step="2" data-ask="？">一个粉笔盒</span></td></tr>
+        <tr><td>立方米</td><td>m³</td><td><span class="think" data-step="3" data-ask="？">棱长 1 米</span></td><td><span class="think" data-step="3" data-ask="？">墙角 3 根 1 米木条围的空间</span></td></tr>
+      </table>
+      <p class="tip" data-step="4">用手势比划 1 立方分米的大小。再想一想：1 立方米的空间里大约能站几个同学？</p>
+      <p class="warn" data-step="5">“立方厘米”不是“厘米”也不是“平方厘米”：1 厘米是一条线段的长，1 平方厘米是一个正方形的大小，1 立方厘米是一个正方体的大小。</p>
+    </div>
+  </div>
+  <p class="note">课本 p12–13。可以拿出 1 立方厘米的小正方体和 1 立方分米的模型给学生看。立方米可以照课本：用 3 根 1 米长的木条在墙角做一个互成直角的架子。最后一张警示卡对应练习三第 6 题。</p>
+</section>
+
+<!-- 7 ================= 数一数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数一数</span><h2>用 1 立方厘米的正方体摆成的物体，体积是多少？</h2></div>
+  <div class="bd full top">
+    <div class="cols2 four">
+      <div class="jcard"><div id="k1" class="kv"></div><p>体积是 <span class="blank" data-ans="4"></span> cm³</p></div>
+      <div class="jcard"><div id="k2" class="kv"></div><p>体积是 <span class="blank" data-ans="6"></span> cm³</p></div>
+      <div class="jcard"><div id="k3" class="kv"></div><p>体积是 <span class="blank" data-ans="7"></span> cm³</p></div>
+      <div class="jcard"><div id="k4" class="kv"></div><p>体积是 <span class="blank" data-ans="6"></span> cm³</p></div>
+    </div>
+    <p class="method" data-step="1" data-label="体积单位的个数">一个物体含有几个 1 立方厘米的正方体，体积就是几立方厘米。看不见的小正方体也要算上（拖动转过来看）。</p>
+  </div>
+  <p class="note">前两个是课本 p12 下方的两个长方体（4 个；3 个一排、2 层，共 6 个）；后两个是练习三第 7 题的前两个物体（7 个；6 个）。练习三第 7 题第 3 个物体在 PDF 中层次看不清，请对照纸质课本口答。</p>
+</section>
+
+<!-- 8 ================= 升和毫升 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">容积单位</span><h2>计量液体的体积，通常用升或毫升</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="literv" class="view3"></div>
+      <p class="s3d-hint">棱长 1 dm 的正方体容器装满水；角上的小方块是 1 cm³（同一比例）</p>
+    </div>
+    <div class="col">
+      <p class="tip">计量容积，一般就用体积单位。计量液体的体积，通常用<b>升</b>（L）或<b>毫升</b>（mL）作单位。</p>
+      <div class="calc">
+        <p>容积是 1 立方分米的容器，正好盛水 1 升：<br>1 立方分米 = <span class="blank" data-ans="1"></span> 升</p>
+        <p>容积是 1 立方厘米的容器，正好盛水 1 毫升：<br>1 立方厘米 = <span class="blank" data-ans="1"></span> 毫升</p>
+      </div>
+      <p class="tip" data-step="1"><b>练习三 9</b>　填合适的单位：</p>
+      <div class="units" data-step="1">
+        <p>橡皮的体积约是 6 <span class="pick inl" data-ans="a"><button type="button" data-k="a">cm³</button><button type="button" data-k="b">dm³</button><button type="button" data-k="c">m³</button></span></p>
+        <p>集装箱的体积约是 40 <span class="pick inl" data-ans="c"><button type="button" data-k="a">cm³</button><button type="button" data-k="b">dm³</button><button type="button" data-k="c">m³</button></span></p>
+        <p>水桶的容积约是 12 <span class="pick inl" data-ans="b"><button type="button" data-k="a">mL</button><button type="button" data-k="b">L</button><button type="button" data-k="c">m³</button></span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p13 下方及练习三第 9 题。左图按真实比例：大容器棱长是小方块的 10 倍。1 升 = 1 立方分米、1 毫升 = 1 立方厘米要记住，下一课还会学“1 升 = 1000 毫升”的道理。</p>
+</section>
+
+<!-- 9 ================= 练习三 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习三</span><h2>想一想，选一选</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>3.</b> 小芳和小军各买了 1 瓶同样的饮料。小芳正好倒满 3 杯，小军只倒了 2 杯多。谁用的杯子容积大一些？</p>
+        <div class="pick" data-ans="j"><button type="button" data-k="f">小芳</button><button type="button" data-k="j">小军</button>
+          <p class="pick-why">饮料一样多，小军倒的杯数少，说明他的杯子每杯装得多——容积大。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>8.(1)</b> 下面哪个物品的体积比 1 立方厘米<b>大</b>？</p>
+        <div class="pick" data-ans="c"><button type="button" data-k="a">黄豆</button><button type="button" data-k="b">大米</button><button type="button" data-k="c">乒乓球</button>
+          <p class="pick-why">乒乓球直径约 4 cm，比手指头大多了；黄豆、米粒都比 1 立方厘米小。草莓呢？也比 1 立方厘米大。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>8.(2)</b> 下面哪个物品的体积比 1 立方分米<b>大</b>？</p>
+        <div class="pick" data-ans="d"><button type="button" data-k="a">香皂</button><button type="button" data-k="b">猕猴桃</button><button type="button" data-k="d">西瓜</button>
+          <p class="pick-why">1 立方分米大约是一个粉笔盒那么大。西瓜比它大；香皂、猕猴桃比它小。纸巾盒呢？比它大。</p></div>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>10.</b> 小明用 1 立方厘米的正方体木块摆了一个物体。从前面、上面、右面看到的图形如下，这个物体的体积是多少？</p>
+        <svg id="views3" class="fig2d views3" viewBox="0 0 520 120" aria-label="三个方向看到的图形"></svg>
+      </div>
+      <div class="jcard">
+        <div id="k5" class="kv short"></div>
+        <p>体积是 <span class="blank" data-ans="4"></span> cm³　<button type="button" class="btn" id="k5Show">看看这个物体</button></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p14–15 练习三第 3、8、10 题。第 10 题：上面看是一排 3 个，右面看是 2 层 1 个，前面看是下面 3 个、右边上面 1 个——一共 4 个。先让学生想，再点“看看这个物体”。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>体积、容积和它们的单位</h2></div>
+  <div class="bd full">
+    <div class="cols2 sum">
+      <div class="col">
+        <h3>知识</h3>
+        <p class="recall" data-label="体积与容积" data-step="1">物体所占空间的大小叫作物体的体积；容器所能容纳物体的体积叫作容器的容积。</p>
+        <p class="recall" data-label="单位" data-step="2">立方厘米、立方分米、立方米；1 立方分米 = 1 升，1 立方厘米 = 1 毫升。</p>
+      </div>
+      <div class="col">
+        <h3>方法</h3>
+        <p class="method" data-label="比较体积" data-step="3">分成同样大小的正方体（体积单位），数一数含有几个。</p>
+        <p class="tip gold" data-step="4"><b>下一课：</b>一个长方体由 1 立方厘米的小正方体摆成，不一个一个数，能算出有多少个吗？课本 p16 例 9。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后可让学生用 12 个同样的小正方体摆一摆（练习三第 2 题）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="../shared/mcube.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

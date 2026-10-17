@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>和与积的奇偶性 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fanshu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第三单元 因数与倍数 · 和与积的奇偶性</p>
+    <h1 class="cover-title">和与积的奇偶性</h1>
+    <p class="cover-q" data-step="1">随手翻开数学书，左、右两边页码的和，是<b>奇数</b>还是<b>偶数</b>？</p>
+    <p class="cover-q" data-step="2">不用算，你能<b>先猜出来</b>吗？今天我们像数学家一样：举例、观察、发现规律、再验证。</p>
+    <div class="chips" data-step="3"><span class="chip">多写算式</span><span class="chip">配对的点子</span><span class="chip">找规律</span><span class="chip">举例验证</span></div>
+  </div>
+  <p class="note">课本 p50–51 综合与实践。先让学生翻书试两次，记下结果，再提出问题：为什么总是这样？这节课以探究为主，重在经历“举例—观察—猜想—验证—说理”的过程。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>奇数和偶数，你能说说它们的特点吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 奇数和偶数" data-step="1">
+        <p>是 2 的倍数的数叫作<b>偶数</b>；不是 2 的倍数的数叫作<b>奇数</b>。</p>
+        <span class="use">判断和、积是奇数还是偶数。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 2 的倍数的特征" data-step="2">
+        <p>个位是 0、2、4、6、8 → 偶数；</p>
+        <p>个位是 1、3、5、7、9 → 奇数。</p>
+        <span class="use">很快看出算出来的和、积是奇是偶。</span>
+      </div>
+      <div class="recall" data-label="两个两个地数" data-step="3">
+        <svg viewBox="0 0 240 90" class="mini-fig" aria-label="7 个点两个一对，多出 1 个"><g class="mini-dots"></g></svg>
+        <p>偶数个东西能<b>正好两两配对</b>；奇数个总会<b>多出 1 个</b>。</p>
+        <span class="use">用“配对的点子”说清为什么。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>和、积是奇数还是偶数，与加数、乘数有什么关系？</p>
+  </div>
+  <p class="note">课本 p50 开头小精灵的问题“你能说说奇数和偶数各有什么特点吗”。第 3 张卡是本课说理的关键：偶数 = 若干对；奇数 = 若干对 + 1 个。</p>
+</section>
+
+<!-- 3 ================= 实验：两个数的和 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做实验</span><h2>任意选两个数，求和，看看和是奇数还是偶数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">任意选两个不是 0 的自然数，求出它们的和。自己写两个，或者让电脑抽。</p>
+      <div class="exp-in" data-noswipe>
+        <input type="text" id="exA" inputmode="numeric" aria-label="加数" value="12"> + <input type="text" id="exB" inputmode="numeric" aria-label="加数" value="35">
+        <button type="button" class="btn solid" id="exAdd">记下来 ✎</button>
+      </div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="exRand">电脑随机抽 5 组</button><button type="button" class="btn" id="exClear">↺ 清空</button></div>
+      <div class="exp-cnt" id="exCnt"></div>
+    </div>
+    <div class="col">
+      <table class="mtab exp-tab" id="exTab"><tr><th>加数</th><th>加数</th><th>和</th><th>和是奇数还是偶数</th></tr></table>
+      <p class="tip" data-step="1">观察填好的表格，说说你的发现。（提示：看两个加数分别是奇数还是偶数）</p>
+    </div>
+  </div>
+  <p class="note">课本 p50 的表格。先请学生报数，老师输入；再随机抽几组补充。右边的统计把记录按“偶 + 偶”“奇 + 奇”“奇 + 偶”分好类——学生会看到每一类里的和都一样。表格最多保留 10 行。</p>
+</section>
+
+<!-- 4 ================= 点子图（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想为什么</span><h2>用配对的点子，看看和为什么是奇数或偶数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="dt-ctrl" data-noswipe>
+        <div><span>第一个数</span><button type="button" class="btn" data-k="a" data-d="-1">−</button><b id="dtA">5</b><button type="button" class="btn" data-k="a" data-d="1">＋</button></div>
+        <div><span>第二个数</span><button type="button" class="btn" data-k="b" data-d="-1">−</button><b id="dtB">7</b><button type="button" class="btn" data-k="b" data-d="1">＋</button></div>
+      </div>
+      <button type="button" class="btn solid" id="dtGo" data-noswipe>合在一起 ▶</button>
+      <p class="tip feedback" id="dtMsg"></p>
+    </div>
+    <div class="col">
+      <svg id="dtFig" class="dt-fig" viewBox="0 0 640 300" aria-label="两个数用点子表示，两个一对" data-noswipe></svg>
+      <p class="tip" data-step="1">两个奇数相加，为什么和是偶数？　<span class="think" data-step="2" data-ask="看点子">每个奇数都<b>多出 1 个</b>，两个“多出来的”正好凑成一对，就没有多出来的了。</span></p>
+    </div>
+  </div>
+  <p class="note">点子竖着两个一对排列，奇数多出的那 1 个用橙色画在最右边。点“合在一起”，第二个数的点子接到第一个数后面，两个落单的点（如果有）会凑成一对。先演示 5 + 7，再请学生换成“偶 + 偶”“奇 + 偶”说一说。</p>
+</section>
+
+<!-- 5 ================= 规律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">发现规律</span><h2>两个数的和，奇偶有什么规律？</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="rule" data-step="1"><p class="r-eq">偶数 + 偶数 = <span class="think" data-step="2" data-ask="？"><b>偶数</b></span></p><small>对 + 对 = 对</small></div>
+      <div class="rule" data-step="3"><p class="r-eq">奇数 + 奇数 = <span class="think" data-step="4" data-ask="？"><b>偶数</b></span></p><small>落单的两个凑成一对</small></div>
+      <div class="rule" data-step="5"><p class="r-eq">奇数 + 偶数 = <span class="think" data-step="6" data-ask="？"><b>奇数</b></span></p><small>还剩 1 个落单</small></div>
+    </div>
+    <p class="method" data-step="7" data-label="课本小精灵说">和是奇数还是偶数，与两个加数是奇数还是偶数有关。</p>
+    <p class="tip" data-step="8">你能再举一些例子，验证自己的发现吗？　$123+456=$ <span class="blank" data-ans="579"></span>（奇 + 偶 = 奇）　$77+99=$ <span class="blank" data-ans="176"></span>（奇 + 奇 = 偶）</p>
+  </div>
+  <p class="note">课本 p50 三个小精灵的发现。先让学生说，再点开。最后两个算式请学生自己算，验证规律：先按规律猜奇偶，再算出结果核对。</p>
+</section>
+
+<!-- 6 ================= 页码 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">翻一翻</span><h2>打开数学书，左、右两边页码的和是奇数还是偶数？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="bkFig" class="bk-fig" viewBox="0 0 520 300" aria-label="翻开的书，左右两页的页码" data-noswipe></svg>
+      <div class="bk-ctrl" data-noswipe><button type="button" class="btn" id="bkPrev">◀ 往前翻</button><button type="button" class="btn" id="bkNext">往后翻 ▶</button><button type="button" class="btn" id="bkRand">随手翻开</button></div>
+      <p class="tip bk-sum" id="bkSum"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">左、右两边的页码有什么关系？　<span class="think" data-step="2" data-ask="看一看">是<b>相邻的两个自然数</b>：左边是偶数，右边是比它大 1 的奇数。</span></p>
+      <p class="tip" data-step="3">任意两个相邻自然数的和呢？　<span class="think" data-step="4" data-ask="想一想">相邻的两个自然数，<b>一个奇数、一个偶数</b>，和一定是<b>奇数</b>。</span></p>
+      <p class="tip" data-step="5">你知道这是为什么吗？　<span class="think" data-step="6" data-ask="说一说">奇数 + 偶数 = 奇数。也可以想：$n+(n+1)=n\times2+1$，是 2 的倍数多 1。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p50 下方的问题。书的第 1 页在右边，所以翻开后左页是偶数、右页是奇数。“随手翻开”在 2～120 页之间随机翻。</p>
+</section>
+
+<!-- 7 ================= 连加 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">连加</span><h2>几个数连加，和是奇数还是偶数？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">点数字卡片放进连加算式（最多 8 个），先猜和的奇偶，再看结果。</p>
+      <div class="pool9" id="cjPool" data-noswipe></div>
+      <p class="cj-eq" id="cjEq"></p>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="cjClear">↺ 清空</button></div>
+      <p class="tip feedback" id="cjMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">和的奇偶与加数中<b>奇数的个数</b>有什么关系？　<span class="think" data-step="2" data-ask="小组讨论">奇数有 1 个、3 个、5 个……（<b>单数个</b>），和是奇数；奇数有 2 个、4 个、6 个……（<b>双数个</b>），和是偶数。偶数的个数不影响。</span></p>
+      <div class="hint-ladder" data-step="3">
+        <p class="q">$1+3+5+\cdots+29$ 的和是奇数还是偶数？为什么？</p>
+        <p class="q small-q">加数一共有 <span class="blank" data-ans="15"></span> 个，都是奇数，所以和是 <span class="blank" data-ans="奇数|奇"></span>。</p>
+        <details><summary>提示 1</summary>从 1 到 29 的奇数：1、3、5、……、29，数一数有几个？（$(29+1)\div2$）</details>
+        <details><summary>完整解答</summary>有 15 个奇数，15 是单数，所以和是奇数（算一算：和是 225）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p51 小组讨论。卡片上有奇数和偶数，学生选好后系统数出奇数的个数，并算出和。重点引导：只看奇数的个数——每两个奇数凑成一个偶数。</p>
+</section>
+
+<!-- 8 ================= 积的奇偶性 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">积</span><h2>几个数的乘积，什么情况下是奇数？什么情况下是偶数？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="dt-ctrl" data-noswipe>
+        <div><span>每排</span><button type="button" class="btn" data-k="c" data-d="-1">−</button><b id="arC">5</b><button type="button" class="btn" data-k="c" data-d="1">＋</button></div>
+        <div><span>排数</span><button type="button" class="btn" data-k="r" data-d="-1">−</button><b id="arR">3</b><button type="button" class="btn" data-k="r" data-d="1">＋</button></div>
+      </div>
+      <svg id="arFig" class="ar-fig" viewBox="0 0 460 300" aria-label="点子阵列表示乘法" data-noswipe></svg>
+      <p class="tip feedback" id="arMsg"></p>
+    </div>
+    <div class="col">
+      <table class="mtab prod-tab">
+        <tr><td>$1\times3\times5=15$</td><td>$1\times2\times3=6$</td></tr>
+        <tr><td>$8\times4\times10=640$</td><td>$3\times5\times7\times2=210$</td></tr>
+      </table>
+      <p class="tip" data-step="1">左边两个算式和右边两个算式，各有什么共同点？</p>
+      <div class="cols2">
+        <p class="def" data-step="2">乘数都是奇数，积是 <span class="think" data-step="3" data-ask="？"><b>奇数</b></span>；乘数都是偶数，积是 <span class="think" data-step="3" data-ask="？"><b>偶数</b></span>。</p>
+        <p class="def" data-step="4">几个乘数中，只要有<b>一个是偶数</b>，积一定是 <span class="think" data-step="5" data-ask="？"><b>偶数</b></span>。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p51 积的奇偶性。左边点阵：每排几个 × 排数。只要有一个乘数是偶数，就能把点子两排两排（或两列两列）配对，全部配完——积是偶数；两个乘数都是奇数时，右下角总剩 1 个——积是奇数。表格是课本的四个算式。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">用规律</span><h2>不计算，直接判断奇偶</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard"><p>$99+100+101$</p>
+        <div class="pick" data-ans="e"><button type="button" data-k="o">奇数</button><button type="button" data-k="e">偶数</button><p class="pick-why">加数中有 2 个奇数（99、101），双数个，和是偶数（300）。</p></div></div>
+      <div class="jcard"><p>$1\times3\times5\times7\times9\times11$</p>
+        <div class="pick" data-ans="o"><button type="button" data-k="o">奇数</button><button type="button" data-k="e">偶数</button><p class="pick-why">乘数都是奇数，积是奇数。</p></div></div>
+      <div class="jcard"><p>$23\times46$</p>
+        <div class="pick" data-ans="e"><button type="button" data-k="o">奇数</button><button type="button" data-k="e">偶数</button><p class="pick-why">有一个乘数 46 是偶数，积一定是偶数。</p></div></div>
+      <div class="jcard"><p>$11+13+15$</p>
+        <div class="pick" data-ans="o"><button type="button" data-k="o">奇数</button><button type="button" data-k="e">偶数</button><p class="pick-why">3 个奇数相加（单数个），和是奇数（39）。</p></div></div>
+    </div>
+  </div>
+  <p class="note">学生先举手判断，再点开说理由。每题都可以让学生算出结果验证。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾</span><h2>说说探索和发现规律的体会</h2></div>
+  <div class="bd full">
+    <table class="mtab sum-tab" data-step="1">
+      <tr><th>和</th><td>偶 + 偶 = 偶；奇 + 奇 = 偶；奇 + 偶 = 奇。连加时，奇数有单数个 → 和是奇数，双数个 → 和是偶数。</td></tr>
+      <tr><th>积</th><td>乘数都是奇数 → 积是奇数；只要有一个乘数是偶数 → 积是偶数。</td></tr>
+    </table>
+    <div class="cols3">
+      <p class="method" data-label="体会 1" data-step="2">多写一些算式，并进行比较，才能发现规律。</p>
+      <p class="method" data-label="体会 2" data-step="3">要注意从不同的算式中发现共同的特点。</p>
+      <p class="method" data-label="体会 3" data-step="4">举例和验证是发现规律的好方法；用点子配对，还能说清“为什么”。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一步：</b>第四单元“分数的意义和性质”——找最大公因数、最小公倍数，会在约分、通分时派上大用场。</p>
+  </div>
+  <p class="note">课本 p51 最后三个小精灵的体会。请学生用自己的话说一说本节课是怎样发现规律的。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

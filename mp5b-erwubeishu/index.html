@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2和5的倍数的特征 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mnum.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jieban.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第三单元 因数与倍数 · 2和5的倍数的特征</p>
+    <h1 class="cover-title">2 和 5 的倍数的特征</h1>
+    <p class="cover-q" data-step="1">春游时同学们<b>两人一组</b>手拉手。全班 48 人，能正好两两结伴吗？</p>
+    <p class="cover-q" data-step="2">一个数的倍数有<b>无限</b>多个，写不完。能不能<b>一眼看出</b>一个数是不是 2 的倍数、5 的倍数？</p>
+    <div class="chips" data-step="3"><span class="chip">百数表里圈一圈</span><span class="chip">看个位</span><span class="chip">奇数 · 偶数</span></div>
+  </div>
+  <p class="note">情境引入：两两结伴就是看人数是不是 2 的倍数。让学生先凭感觉说 48 行不行、37 行不行，再追问“很大的数，比如 1236，怎么判断”。带着“有没有快速判断的办法”进入例 4。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>学新本领之前，先想想这些</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 因数和倍数" data-step="1">
+        <p>2 的倍数：2，4，6，8，……</p>
+        <p>5 的倍数：5，10，15，20，……</p>
+        <p>一个数的倍数有<b>无限</b>个，最小的是它本身。</p>
+        <span class="use">倍数写不完，所以要找“特征”。</span>
+      </div>
+      <div class="recall" data-label="一下 · 百数表" data-step="2">
+        <div class="mini-tab"><span>1</span><span>2</span><span>3</span><span>…</span><span>10</span><span>11</span><span>12</span><span>13</span><span>…</span><span>20</span></div>
+        <p>每行 10 个数。<b>竖着看</b>，同一列的数<b>个位相同</b>。</p>
+        <span class="use">在百数表里圈倍数，看它们排在哪几列。</span>
+      </div>
+      <div class="recall" data-label="一下 · 数位" data-step="3">
+        <p class="big center"><span class="dg">4</span><span class="dg">7</span><span class="dg one">5</span></p>
+        <p>从右边起，第一位是<b>个位</b>，第二位是<b>十位</b>，第三位是<b>百位</b>。</p>
+        <span class="use">判断时只看个位上的数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>2 的倍数、5 的倍数，有什么<b>共同的样子</b>（特征）？</p>
+  </div>
+  <p class="note">第 1 张卡呼应上一课：倍数写不完，所以不能靠一个一个列举来判断。第 3 张卡的个位用橙色标出，本课所有判断都只看它。</p>
+</section>
+
+<!-- 3 ================= 例 4 圈一圈（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 圈一圈</span><h2>在 5 的倍数上画“△”，在 2 的倍数上画“○”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">先选笔，再点百数表里的数。可以从 5 的 1 倍、2 倍……依次去找，也可以 <b>5 个 5 个</b>、<b>2 个 2 个</b>地数。</p>
+      <div class="ntools" id="h4Tools"><span>选笔：</span><button type="button" class="btn solid" data-k="t">△ 5 的倍数</button><button type="button" class="btn" data-k="o">○ 2 的倍数</button></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="h4AutoT">△ 帮我画完</button><button type="button" class="btn" id="h4AutoO">○ 帮我画完</button><button type="button" class="btn" id="h4Clear">↺ 擦掉</button></div>
+      <p class="tip feedback" id="h4Msg">画对的 △ <b id="h4nT">0</b> 个，○ <b id="h4nO">0</b> 个。画错会变成红色虚线。</p>
+      <p class="tip" data-step="1">这些记号排得有规律吗？　<span class="think" data-step="2" data-ask="看一看">△ 排成了<b>两竖列</b>，○ 排成了<b>五竖列</b>！</span></p>
+    </div>
+    <div class="col"><div id="h4" class="ntab-100"></div></div>
+  </div>
+  <p class="note">课本 p32 例 4。先请学生在课本上画 1～30，再到这里点。“帮我画完”按顺序一个一个画出（5 的倍数 20 个、2 的倍数 50 个）。让学生发现记号竖着排成整列——同一列的数个位相同，这就是下一页要说的特征。</p>
+</section>
+
+<!-- 4 ================= 看个位 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 找特征</span><h2>5 的倍数有什么特征？2 的倍数呢？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="h5Col5">看 5 的倍数的个位</button><button type="button" class="btn" id="h5Col2">看 2 的倍数的个位</button></div>
+      <div id="h5" class="ntab-100"></div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>5 的倍数</h4>个位上是 <span class="think" data-step="2" data-ask="是几？"><b>5 或 0</b></span>。</div>
+      <div class="def" data-step="3"><h4>2 的倍数</h4>个位上是 <span class="think" data-step="4" data-ask="是几？"><b>0、2、4、6 或 8</b></span>。</div>
+      <p class="tip" data-step="5">为什么只看个位就行？　<span class="think" data-step="6" data-ask="想一想">十位、百位上的数表示几个十、几个百，<b>整十、整百都是 2 和 5 的倍数</b>，所以只要看个位。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p32 下方小精灵的两句话。点按钮会把对应的数标出来、并给个位相同的整列加底色。第 6 步的“为什么”可作为拓展：10 = 2 × 5，几个十一定是 2 和 5 的倍数，剩下的个位决定结果。</p>
+</section>
+
+<!-- 5 ================= 大数检验器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>比 100 大的数，也只看个位吗？</h2></div>
+  <div class="bd full top">
+    <p class="tip">输入一个数（可以很大），先自己判断，再点“检验”：个位告诉我们答案，除法帮我们验证。</p>
+    <div class="ck-ctrl" data-noswipe>
+      <input type="text" id="ckIn" inputmode="numeric" value="1235" aria-label="输入一个数">
+      <button type="button" class="btn solid" id="ckGo">检验 ▶</button>
+      <span class="btns" id="ckEg"><button type="button" class="btn" data-v="2340">2340</button><button type="button" class="btn" data-v="786">786</button><button type="button" class="btn" data-v="10001">10001</button><button type="button" class="btn" data-v="555">555</button></span>
+    </div>
+    <div class="ck-show" id="ckShow"></div>
+    <div class="cols2" id="ckRes">
+      <div class="calc" id="ck2"></div>
+      <div class="calc" id="ck5"></div>
+    </div>
+  </div>
+  <p class="note">学生报数，老师输入。先让全班判断“是不是 2 的倍数、5 的倍数”，再点检验：上面把个位标成橙色，下面用除法算一遍，看余数是不是 0。让学生体会“只看个位”的方法对很大的数也成立。</p>
+</section>
+
+<!-- 6 ================= 既是 2 又是 5 的倍数 · 奇数偶数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>什么样的数既是 5 的倍数，又是 2 的倍数？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="h6Both">找出画了 △ 又画了 ○ 的数</button></div>
+      <div id="h6" class="ntab-100"></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">既是 5 的倍数又是 2 的倍数：10，20，<span class="blank" data-ans="30"></span>，<span class="blank" data-ans="40"></span>，……</p>
+      <div class="def" data-step="2">既是 2 的倍数又是 5 的倍数的数，个位上一定是 <span class="think" data-step="3" data-ask="是几？"><b>0</b></span>。</div>
+      <div class="def big-def" data-step="4"><h4>课本这样说</h4>是 2 的倍数的数叫作<em>偶数</em>，不是 2 的倍数的数叫作<em>奇（jī）数</em>。</div>
+      <p class="tip" data-step="5">偶数的个位是 0，2，4，6，8；奇数的个位是 <span class="blank" data-ans="1,3,5,7,9|1、3、5、7、9|1，3，5，7，9" data-w="6"></span>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p33 上方。“既是 2 的倍数又是 5 的倍数”就是两个特征同时满足：个位既要是 0 或 5，又要是 0、2、4、6、8，只剩下 0。偶数、奇数的定义请全班齐读，注意“奇”读 jī。</p>
+</section>
+
+<!-- 7 ================= 数字卡片（练习五第 6 题） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">摆一摆</span><h2>用两张数字卡片组成两位数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">从 <b>0、5、6、7</b> 中选出两张卡片，组成一个两位数。先点十位，再点个位。</p>
+      <div class="cards" id="cdPick" data-noswipe><button type="button" data-d="0">0</button><button type="button" data-d="5">5</button><button type="button" data-d="6">6</button><button type="button" data-d="7">7</button></div>
+      <div class="cd-num" id="cdNum"><span>?</span><span>?</span></div>
+      <p class="tip feedback" id="cdMsg">十位不能是 0 哦。</p>
+    </div>
+    <div class="col">
+      <table class="mtab cd-tab">
+        <tr><th>(1) 组成的数是偶数</th><td id="cdA"></td><td class="cnt" id="cdAn">0/5</td></tr>
+        <tr><th>(2) 组成的数是 5 的倍数</th><td id="cdB"></td><td class="cnt" id="cdBn">0/5</td></tr>
+        <tr><th>(3) 既是 2 的倍数，又是 5 的倍数</th><td id="cdC"></td><td class="cnt" id="cdCn">0/3</td></tr>
+      </table>
+      <p class="tip" data-step="1">怎样摆才能又快又全？　<span class="think" data-step="2" data-ask="想一想">先定<b>个位</b>！偶数个位放 0 或 6；5 的倍数个位放 0 或 5；两样都要，个位只能放 0。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p35 练习五第 6 题，题目只要求各组成一个，这里让学生把所有可能都找出来（每格后面是“已找到/一共”）。共有：偶数 50、56、60、70、76；5 的倍数 50、60、65、70、75；既是 2 又是 5 的倍数 50、60、70。关键方法：先确定个位。</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>对还是不对？说出理由</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>1.</b> 个位上是 5 的数，一定是 5 的倍数。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">个位上是 5 或 0 的数都是 5 的倍数，所以对。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 5 的倍数一定是奇数。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">10、20 是 5 的倍数，个位是 0，是<b>偶数</b>。5 的倍数可能是奇数，也可能是偶数。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 一个数的个位是 2，它一定是 2 的倍数。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">个位是 0、2、4、6、8 的数都是 2 的倍数。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>4.</b> 一个数的十位是 6，它就是偶数。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">要看<b>个位</b>，不是十位。比如 63，个位是 3，是奇数。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="判断方法">判断一个数是不是 2 或 5 的倍数，<b>只看个位</b>：个位 0、2、4、6、8 → 2 的倍数（偶数）；个位 0、5 → 5 的倍数；个位 0 → 两个都是。</p>
+  </div>
+  <p class="note">先让全班举手表决，再请学生上来点。第 4 题是常见错误：看错了数位。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>自己做一做：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 下面的数，哪些是 5 的倍数？哪些是 2 的倍数？哪些既是 5 的倍数，又是 2 的倍数？</p>
+        <p class="q nums">12　25　48　60　72　90</p>
+        <p class="q small-q">5 的倍数：<span class="blank" data-ans="25,60,90|25、60、90|25，60，90" data-w="7"></span><br>2 的倍数：<span class="blank" data-ans="12,48,60,72,90|12、48、60、72、90|12，48，60，72，90" data-w="10"></span><br>既是 5 又是 2 的倍数：<span class="blank" data-ans="60,90|60、90|60，90" data-w="5"></span></p>
+        <details><summary>提示 1</summary>只看个位：个位是 0 或 5 的，是 5 的倍数。</details>
+        <details><summary>完整解答</summary>5 的倍数：25、60、90；2 的倍数：12、48、60、72、90；既是 5 又是 2 的倍数：60、90（个位是 0）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（练习五第 5 题）下面的数，哪些是偶数？哪些是奇数？</p>
+        <p class="q nums">58　74　89　120　231　155　600</p>
+        <p class="q small-q">偶数：<span class="blank" data-ans="58,74,120,600|58、74、120、600|58，74，120，600" data-w="9"></span><br>奇数：<span class="blank" data-ans="89,231,155|89、231、155|89，231，155" data-w="8"></span></p>
+        <details><summary>提示 1</summary>偶数就是 2 的倍数，看个位是不是 0、2、4、6、8。</details>
+        <details><summary>完整解答</summary>偶数：58、74、120、600；奇数：89、231、155。</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（练习五第 13 题）在 □ 里填数字，使组成的数既是 5 的倍数又是 2 的倍数：48<span class="blank" data-ans="0"></span>，25<span class="blank" data-ans="0"></span>。</p>
+        <details><summary>完整解答</summary>个位只能填 0：480，250。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 你们班的人数是奇数还是偶数？你家的门牌号呢？说说生活中的奇数和偶数。</p>
+        <details><summary>提示 1</summary>看个位；比如电影院的座位常常单号在一边，双号在另一边。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1、4 题是课本 p33 练一练，第 2、3 题选自 p35–36 练习五第 5、13 题。答案按从小到大或题目中的顺序填，用“、”或“，”隔开。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>只看个位，就能判断</h2></div>
+  <div class="bd full">
+    <div class="sum3" data-step="1">
+      <div class="sbox"><h4>2 的倍数（偶数）</h4><p class="digits"><i>0</i><i>2</i><i>4</i><i>6</i><i>8</i></p><small>个位是这些数</small></div>
+      <div class="sbox both"><h4>2 和 5 的倍数</h4><p class="digits"><i>0</i></p><small>个位是 0</small></div>
+      <div class="sbox five"><h4>5 的倍数</h4><p class="digits"><i>0</i><i>5</i></p><small>个位是这些数</small></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-label="怎样发现的" data-step="2">在百数表里圈一圈 → 发现记号排成竖列 → 竖列的个位相同 → 用大数验证。</p>
+      <p class="recall" data-label="奇数和偶数" data-step="3">是 2 的倍数的数叫作偶数；不是 2 的倍数的数叫作奇数。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p33 例 5——在百数表里圈出 3 的倍数。它们排成竖列了吗？只看个位还行不行？</p>
+  </div>
+  <p class="note">课后作业建议：练习五第 7、12、13 题。下节课的悬念：3 的倍数在百数表里是斜着排的，看个位看不出来。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mnum.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

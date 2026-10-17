@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>长方体和正方体的展开图 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="../shared/mcube.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jianhezi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第一单元 长方体和正方体 · 长方体和正方体的展开图</p>
+    <h1 class="cover-title">长方体和正方体的展开图</h1>
+    <p class="cover-q" data-step="1">把一个正方体纸盒沿着一些棱<b>剪开</b>，摊平在桌上，会得到什么样的图形？</p>
+    <p class="cover-q" data-step="2">反过来，一张纸片怎样剪，才能<b>折</b>成一个正方体？</p>
+    <div class="chips" data-step="3"><span class="chip">剪开</span><span class="chip">展开图</span><span class="chip">折一折</span><span class="chip">相对的面</span></div>
+  </div>
+  <p class="note">课本 p3 例 3。建议每组准备一个正方体纸盒、一个长方体纸盒和剪刀，边剪边看课件。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上一课我们认识了长方体和正方体</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 例 1" data-step="1">
+        <p>长方体有 <b>6 个面</b>：上、下、前、后、左、右；<b>相对的面完全相同</b>。</p>
+        <span class="use">第 5 页：在展开图里找 3 组相对的面。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 例 2" data-step="2">
+        <p>正方体的 6 个面是<b>完全相同的正方形</b>，12 条棱都相等。</p>
+        <span class="use">第 3、4 页：正方体展开图是 6 个相同的正方形。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 棱" data-step="3">
+        <p>两个面相交的线叫作<b>棱</b>。一共 12 条。</p>
+        <span class="use">第 3 页：剪开的是棱，没剪开的棱变成折痕。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">今天把纸盒<b>剪开、摊平、再折回去</b>，看看立体图形和平面图形之间的关系。</p>
+  </div>
+  <p class="note">第 3 张卡强调：剪开就是沿着棱剪。12 条棱里，剪开了几条？（正方体展开图有 7 条棱被剪开、5 条没剪开——可作为拓展追问。）</p>
+</section>
+
+<!-- 3 ================= 例 3 剪开正方体 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>沿着红线的棱剪开，正方体纸盒变成了什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex3v" class="view3 tall"></div>
+    </div>
+    <div class="col">
+      <p class="tip">一个正方体纸盒，沿着一些棱剪开，就可以得到它的<b>展开图</b>。</p>
+      <div class="slider-row" data-noswipe>摊平 <input type="range" id="ex3T" min="0" max="1" step="0.01" value="1"> 折好　<button type="button" class="btn solid" id="ex3Play">▶ 展开 / 折回</button></div>
+      <p class="tip" data-step="1">数一数，展开图由几个正方形组成？　<span class="think" data-step="2" data-ask="数一数">6 个<b>完全相同的正方形</b>——正方体的 6 个面。</span></p>
+      <p class="tip" data-step="3">展开图里的虚线是什么？　<span class="think" data-step="4" data-ask="想一想">是<b>没有剪开的棱</b>（折痕）；外面一圈实线是<b>剪开的棱</b>。</span></p>
+      <p class="method" data-step="5" data-label="立体 ⇄ 平面">剪开、展开：立体图形 → 平面图形；沿虚线折回去：平面图形 → 立体图形。</p>
+    </div>
+  </div>
+  <p class="note">课本 p3 例 3 的三幅图：纸盒 → 剪开一半 → 展开图（1 行 4 个，上下各 1 个）。先拖滑块慢慢展开，停在一半问学生“现在是什么样子”。展开图上的字是每个面的位置，帮助学生对应。</p>
+</section>
+
+<!-- 4 ================= 沿其他棱剪 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">剪一剪</span><h2>沿着其他的棱剪，还会得到哪些展开图？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">正方体一共有 <b>11 种</b>不同的展开图。点一个，看它怎样折成正方体。</p>
+      <div class="nets" id="nets11" data-noswipe></div>
+      <div class="slider-row" data-noswipe>摊平 <input type="range" id="n11T" min="0" max="1" step="0.01" value="0"> 折好　<button type="button" class="btn solid" id="n11Play">▶ 折一折</button></div>
+    </div>
+    <div class="col">
+      <div id="n11v" class="view3"></div>
+      <p class="tip" data-step="1">这 11 种可以怎样分类？　<span class="think" data-step="2" data-ask="看中间一行">中间一行有 4 个的（“1-4-1”型）6 种；中间一行 3 个的（“1-3-2”“2-2-2”“3-3”型）5 种。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p3 小精灵：“沿着其他棱试着剪一剪，与同学交流。”学生剪出的展开图可以在这里找到对应的一种。程序折叠时，每块都绕它和相邻块的公共边（折痕）转 90°，不需要记。</p>
+</section>
+
+<!-- 5 ================= 试一试：长方体展开图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>长方体纸盒的展开图里，能找到 3 组相对的面吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cuv" class="view3 tall"></div>
+      <div class="slider-row" data-noswipe>摊平 <input type="range" id="cuT" min="0" max="1" step="0.01" value="0"> 折好　<button type="button" class="btn solid" id="cuPlay">▶ 折一折</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">这个长方体长 4 cm、宽 2 cm、高 3 cm。点按钮，同一组相对的面会涂上相同的颜色。</p>
+      <div class="btns" data-noswipe id="cuK"><button type="button" class="btn" data-k="0">上、下</button><button type="button" class="btn" data-k="1">前、后</button><button type="button" class="btn" data-k="2">左、右</button><button type="button" class="btn solid" data-k="all">全部</button></div>
+      <p class="tip" data-step="1">展开图里，相对的两个面<b>挨在一起</b>吗？　<span class="think" data-step="2" data-ask="看一看">不挨着！在一行（或一列）里，相对的面中间<b>隔着一个面</b>。</span></p>
+      <p class="tip" data-step="3">相对的两个面形状、大小怎样？　<span class="think" data-step="4" data-ask="比一比">完全相同（长方体相对的面完全相同）。</span></p>
+      <p class="method" data-step="5" data-label="找相对的面">“一行隔一个”：同一行或同一列中，中间隔一个面的两个面是相对的面。</p>
+    </div>
+  </div>
+  <p class="note">课本 p3 试一试及小精灵：“你能从展开图中找到长方体 3 组相对的面吗？”注意长方体展开图中有 3 种不同大小的长方形，各 2 个。</p>
+</section>
+
+<!-- 6 ================= 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 1</span><h2>你能标出长方体的下面、后面和左面吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="lbNet" class="fig2d netfig" viewBox="0 0 520 330" aria-label="长方体展开图"></svg>
+      <div class="calc">
+        <p>A 是 <span class="pick inl" data-ans="z"><button type="button" data-k="x">下面</button><button type="button" data-k="h">后面</button><button type="button" data-k="z">左面</button></span></p>
+        <p>B 是 <span class="pick inl" data-ans="h"><button type="button" data-k="x">下面</button><button type="button" data-k="h">后面</button><button type="button" data-k="z">左面</button></span></p>
+        <p>C 是 <span class="pick inl" data-ans="x"><button type="button" data-k="x">下面</button><button type="button" data-k="h">后面</button><button type="button" data-k="z">左面</button></span></p>
+      </div>
+    </div>
+    <div class="col">
+      <div id="lbv" class="view3"></div>
+      <div class="slider-row" data-noswipe>摊平 <input type="range" id="lbT" min="0" max="1" step="0.01" value="0"> 折好　<button type="button" class="btn solid" id="lbPlay">▶ 折起来验证</button></div>
+      <p class="tip" data-step="1">想一想：B 和前面是什么关系？　<span class="think" data-step="2" data-ask="用“隔一个”">B 和前面在同一行，中间隔着右面，是<b>相对的面</b>——所以 B 是后面。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p3 练一练第 1 题。先在左图上选，再折起来验证：折好后转一转，看 A、B、C 分别到了哪里。</p>
+</section>
+
+<!-- 7 ================= 练一练 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 2</span><h2>哪些图形沿虚线折叠后能围成正方体？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">先想一想，再点图形折一折。</p>
+      <div class="nets four" id="nets4" data-noswipe></div>
+      <p class="tip feedback" id="n4Msg">点上面任意一个图形。</p>
+    </div>
+    <div class="col">
+      <div id="n4v" class="view3"></div>
+      <p class="warn" data-step="1">折的时候如果有两个面<b>重叠</b>（变红），就一定还有一个面<b>缺着</b>，围不成正方体。</p>
+    </div>
+  </div>
+  <p class="note">课本 p3 练一练第 2 题（第 117 页有可剪的图）。①③能围成，②④不能：② 横着伸出的两个面中，外面那个折过去和竖条最下面的面重叠；④ 上面一行 3 个面，后两个折起来重叠。注：教材 PDF 中第 ③ 个图印刷不清，按可辨认的方格画出，请教师对照纸质课本。</p>
+</section>
+
+<!-- 8 ================= 练习一 7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习一 7</span><h2>把长方体、正方体和相应的展开图连一连</h2></div>
+  <div class="bd full top">
+    <div class="match">
+      <div class="m-solids" id="mSolids"></div>
+      <div class="m-nets" id="mNets"></div>
+    </div>
+    <div class="cols3">
+      <div class="jcard"><p>长方体①的展开图是</p><div class="pick" data-ans="b"><button type="button" data-k="a">甲</button><button type="button" data-k="b">乙</button><button type="button" data-k="c">丙</button><p class="pick-why">①的上、下面是正方形，4 个侧面是相同的长方形——乙。</p></div></div>
+      <div class="jcard"><p>正方体②的展开图是</p><div class="pick" data-ans="c"><button type="button" data-k="a">甲</button><button type="button" data-k="b">乙</button><button type="button" data-k="c">丙</button><p class="pick-why">丙由 6 个相同的正方形组成。</p></div></div>
+      <div class="jcard"><p>长方体③的展开图是</p><div class="pick" data-ans="a"><button type="button" data-k="a">甲</button><button type="button" data-k="b">乙</button><button type="button" data-k="c">丙</button><p class="pick-why">甲有 3 种不同大小的长方形，各 2 个，和扁扁的③一样。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p5 练习一第 7 题，展开图的比例按课本量出：甲 3∶2∶1，乙 1∶1∶2，丙为正方体。点展开图下方的“折”可以把它折起来核对。</p>
+</section>
+
+<!-- 9 ================= 动手做 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手做</span><h2>选几张纸片，围一个长方体或正方体</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="cards" id="cards" data-noswipe></div>
+      <p class="tip feedback" id="cardMsg"></p>
+    </div>
+    <div class="col">
+      <div id="cardv" class="view3"></div>
+      <p class="tip" data-step="1">要围一个长方体，可以怎样选？　<span class="think" data-step="2" data-ask="先想一想">例如 10×8 的 2 张、10×5 的 2 张、8×5 的 2 张，围成长 10、宽 8、高 5 的长方体。</span></p>
+      <p class="tip" data-step="3">要围正方体呢？　<span class="think" data-step="4" data-ask="想一想">6 张 8×8，或 6 张 10×10。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p5 动手做。纸片尺寸照课本：10×8、8×8、10×5、8×5、10×10（单位 cm）。程序会检查你选的 6 张能不能两两配成 3 组相对的面，并且棱长对得上；能围成就画出来。可以追问：有没有不止一种选法？</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>剪开、展开、折回去</h2></div>
+  <div class="bd full">
+    <div class="cols2 sum">
+      <div class="col">
+        <h3>知识</h3>
+        <p class="recall" data-label="展开图" data-step="1">沿着一些棱把长方体（正方体）剪开、展平，得到它的展开图。正方体展开图有 11 种，都是 6 个相同的正方形。</p>
+        <p class="recall" data-label="相对的面" data-step="2">展开图中，相对的面不相邻，常常“一行隔一个”。</p>
+      </div>
+      <div class="col">
+        <h3>方法</h3>
+        <p class="method" data-label="想象 + 操作" data-step="3">先在头脑里折一折，再动手验证；折的时候看有没有面重叠、缺面。</p>
+        <p class="tip gold" data-step="4"><b>下一课：</b>做一个长 6 cm、宽 5 cm、高 4 cm 的纸盒，至少要用多少硬纸板？展开图能帮我们想清楚。课本 p6 例 4。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后：练习一第 6 题，把课本第 119 页的图形剪下来折一折。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="../shared/mcube.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分数与分数相乘 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zhezhi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第二单元 分数乘法 · 分数与分数相乘</p>
+    <h1 class="cover-title">分数与分数相乘</h1>
+    <p class="cover-q" data-step="1">一张纸，先涂出它的 <b>$\dfrac12$</b>；再在涂色部分里画斜线，画出<b>涂色部分的 $\dfrac14$</b>。</p>
+    <p class="cover-q" data-step="2">斜线部分是<b>这张纸</b>的几分之几？$\dfrac12\times\dfrac14$ 又等于多少？</p>
+    <div class="chips" data-step="3"><span class="chip">先横分，再竖分</span><span class="chip">数重叠的格子</span><span class="chip">分子乘分子 · 分母乘分母</span><span class="chip">连乘</span></div>
+  </div>
+  <p class="note">课本 p34 例 4 的情境。可以让学生真的拿一张长方形纸折一折：先对折涂一半，再把涂色部分对折两次。问题先不回答，第 3 页用图揭示。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>分数乘法，我们已经会了哪些？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 例 1" data-step="1">
+        <p class="big center">$\dfrac{3}{10}\times3=\dfrac{3\times3}{10}=\dfrac{9}{10}$</p>
+        <p>分数乘整数：分子与整数相乘，<b>分母不变</b>。</p>
+        <span class="use">试一试第 2 题：用新方法再算分数乘整数。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 例 2、例 3" data-step="2">
+        <p class="big center">$10\times\dfrac25=4$</p>
+        <p>求一个数的<b>几分之几</b>是多少，用乘法。</p>
+        <span class="use">“$\dfrac12$ 的 $\dfrac14$”也写成乘法 $\dfrac12\times\dfrac14$。</span>
+      </div>
+      <div class="recall" data-label="五下 · 分数的意义" data-step="3">
+        <svg viewBox="0 0 240 90" class="mini-fig" aria-label="长方形平均分成 4 份，涂 3 份">
+          <rect x="40" y="10" width="160" height="70" fill="#fff" stroke="#2a9fd6" stroke-width="2"/>
+          <rect x="40" y="10" width="120" height="70" fill="#8fd3f4" stroke="#2a9fd6" stroke-width="2"/>
+          <path d="M80 10V80M120 10V80M160 10V80" stroke="#2a9fd6" stroke-width="2"/>
+        </svg>
+        <p>把单位“1”<b>平均分成</b>若干份，表示这样的一份或几份的数。</p>
+        <span class="use">数一数：斜线部分占整张纸平均分成的几份。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>两个<b>分数</b>相乘，表示什么？结果怎样算？</p>
+  </div>
+  <p class="note">本课接着上一课。第 2 张卡最关键：分数乘分数仍然是“求一个数的几分之几是多少”，只不过“这个数”本身也是分数。</p>
+</section>
+
+<!-- 3 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>斜线部分各占 $\dfrac12$ 的几分之几？各是这张纸的几分之几？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="pair">
+        <svg id="ex4a" class="area-s" viewBox="0 0 300 200" aria-label="左图"></svg>
+        <svg id="ex4b" class="area-s" viewBox="0 0 300 200" aria-label="右图"></svg>
+      </div>
+      <div class="btns center-btns" data-noswipe>
+        <button type="button" class="btn" data-g="1">① 涂出 $\frac12$</button>
+        <button type="button" class="btn" data-g="2">② 竖着分成 4 份，画斜线</button>
+        <button type="button" class="btn" data-g="3">③ 把整张纸都分开</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">左图斜线部分占 $\dfrac12$ 的 $\dfrac14$，右图斜线部分占 $\dfrac12$ 的 $\dfrac34$。</p>
+      <p class="tip" data-step="1">把整张纸都按虚线分开，一共分成了 <span class="blank" data-ans="8"></span> 份。</p>
+      <div class="calc" data-step="2">
+        <p>左：$\dfrac12$ 的 $\dfrac14$ 是这张纸的 <span class="blank" data-ans="1/8" data-w="3"></span>　$\dfrac12\times\dfrac14=$ <span class="blank" data-ans="1/8" data-w="3"></span></p>
+        <p>右：$\dfrac12$ 的 $\dfrac34$ 是这张纸的 <span class="blank" data-ans="3/8" data-w="3"></span>　$\dfrac12\times\dfrac34=$ <span class="blank" data-ans="3/8" data-w="3"></span></p>
+      </div>
+      <p class="tip gold" data-step="3">“$\dfrac12$ 的 $\dfrac14$”和上节课“10 朵的 $\dfrac25$”一样，都可以用<b>乘法</b>表示。</p>
+    </div>
+  </div>
+  <p class="note">课本 p34 例 4（长方形横着平均分成 2 份涂上面 1 份，再竖着平均分成 4 份）。依次点三个按钮：先横分涂色，再竖分画斜线，最后把虚线延长到整张纸，让学生数出一共 2×4=8 份，斜线占 1 份（3 份）。小精灵的话：“左图中斜线部分占 1/2 的 1/4”。</p>
+</section>
+
+<!-- 4 ================= 核心：面积模型实验 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">做实验</span><h2>换几组分数，先横分、再竖分，数一数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="fpick" data-noswipe>
+        <div><span class="fp-n"><button type="button" class="btn" data-k="a-">−</button><b id="va">2</b><button type="button" class="btn" data-k="a+">＋</button></span><span class="fp-l"></span><span class="fp-n"><button type="button" class="btn" data-k="b-">−</button><b id="vb">3</b><button type="button" class="btn" data-k="b+">＋</button></span></div>
+        <i>×</i>
+        <div><span class="fp-n"><button type="button" class="btn" data-k="c-">−</button><b id="vc">3</b><button type="button" class="btn" data-k="c+">＋</button></span><span class="fp-l"></span><span class="fp-n"><button type="button" class="btn" data-k="d-">−</button><b id="vd">4</b><button type="button" class="btn" data-k="d+">＋</button></span></div>
+      </div>
+      <div class="btns center-btns" data-noswipe>
+        <button type="button" class="btn" data-s="1">① 横分</button>
+        <button type="button" class="btn" data-s="2">② 竖分</button>
+        <button type="button" class="btn" data-s="3">③ 数一数</button>
+      </div>
+      <p class="tip feedback" id="amMsg"></p>
+    </div>
+    <div class="col">
+      <svg id="am" class="area-l" viewBox="0 0 560 360" aria-label="面积模型：先横分，再竖分"></svg>
+    </div>
+  </div>
+  <p class="note">本课核心活动。用 + − 改两个分数（分母 2–8），按①②③三步走：①横着把整张纸平均分成第一个分数的分母那么多份，涂出分子那么多份（绿色）；②竖着平均分成第二个分数的分母那么多份，在绿色部分里画出分子那么多列的斜线；③整张纸被分成“行数 × 列数”个同样大的格子，斜线格子是“绿色行数 × 斜线列数”个。让学生预测再点③验证，多做几组后自己说出规律。</p>
+</section>
+
+<!-- 5 ================= 例 5 画斜线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>根据乘法算式在图中画斜线表示计算结果，再填空</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard">
+        <p class="center big-eq">$\dfrac23\times\dfrac15=$ <span class="blank" data-ans="2/15" data-w="3"></span></p>
+        <svg id="ex5a" class="area-m tap" viewBox="0 0 400 230" data-noswipe aria-label="横分 3 份涂 2 份，竖分 5 份"></svg>
+        <p class="tip center small-t" id="ex5aMsg">点竖着的一列，画上斜线</p>
+      </div>
+      <div class="jcard">
+        <p class="center big-eq">$\dfrac23\times\dfrac45=$ <span class="blank" data-ans="8/15" data-w="3"></span></p>
+        <svg id="ex5b" class="area-m tap" viewBox="0 0 400 230" data-noswipe aria-label="横分 3 份涂 2 份，竖分 5 份"></svg>
+        <p class="tip center small-t" id="ex5bMsg">点竖着的一列，画上斜线</p>
+      </div>
+    </div>
+    <p class="tip" data-step="1">观察例 4、例 5 中每个算式和它们的计算结果，你有什么发现？　<span class="think" data-step="2" data-ask="和同桌说一说">积的分子正好是两个分子的积，积的分母正好是两个分母的积。</span></p>
+  </div>
+  <p class="note">课本 p34 例 5。图已按课本画好（横分 3 份涂 2 份、竖分 5 份），学生点列来画斜线：斜线只画在绿色部分里。画对了会提示“✓”。第一题 2 行 × 1 列 = 2 格，整张 15 格；第二题 2 × 4 = 8 格。</p>
+</section>
+
+<!-- 6 ================= 发现 + 推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>为什么“分子乘分子，分母乘分母”？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="why" class="area-m" viewBox="0 0 400 230" aria-label="2/3 × 4/5 的面积图"></svg>
+      <p class="tip center small-t">以 $\dfrac23\times\dfrac45$ 为例</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>整张纸被分成</span><span>$3\times5=15$ 格</span><i class="why">横 3 行、竖 5 列：<b>分母 × 分母</b></i></div>
+        <div class="dl" data-step="2"><span>斜线部分有</span><span>$2\times4=8$ 格</span><i class="why">绿色 2 行里画了 4 列：<b>分子 × 分子</b></i></div>
+        <div class="dl key" data-step="3"><span>$\dfrac23\times\dfrac45$</span><span>$=\dfrac{2\times4}{3\times5}=\dfrac{8}{15}$</span><i class="why">8 格占 15 格</i></div>
+      </div>
+      <div class="def" data-step="4"><h4>分数和分数相乘</h4>用<em>分子相乘的积作分子</em>，<em>分母相乘的积作分母</em>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p34 的结论句。推导的三行分别对着左图指一指：分母相乘是“整张纸分成多少格”，分子相乘是“斜线有多少格”。这是从图到算法的关键一步，宁可慢一点。</p>
+</section>
+
+<!-- 7 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>能先约分再计算吗？整数也能这样乘吗？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc">
+        <h4>1. 先约分再计算</h4>
+        <p>$\dfrac14\times\dfrac23=\dfrac{1\times2}{4\times3}=$ <span class="blank" data-exact data-ans="1/6" data-w="3"></span></p>
+        <p>$\dfrac89\times\dfrac34=\dfrac{8\times3}{9\times4}=$ <span class="blank" data-exact data-ans="2/3" data-w="3"></span></p>
+        <p class="muted tiny">提示：2 和 4、8 和 4、3 和 9 可以先约分。</p>
+      </div>
+      <div class="calc">
+        <h4>2. 用分数和分数相乘的方法计算</h4>
+        <p>$\dfrac{2}{11}\times3=\dfrac{2}{11}\times\dfrac{3}{1}=\dfrac{2\times3}{11\times1}=$ <span class="blank" data-exact data-ans="6/11" data-w="3"></span></p>
+        <p>$4\times\dfrac56=\dfrac41\times\dfrac56=\dfrac{4\times5}{1\times6}=$ <span class="blank" data-exact data-ans="10/3" data-w="3"></span></p>
+      </div>
+    </div>
+    <p class="tip" data-step="1">分数与分数相乘的方法适用于分数与整数相乘吗？为什么？　<span class="think" data-step="2" data-ask="想一想">适用。整数可以看作<b>分母是 1 的分数</b>（$3=\dfrac31$），分母乘 1 不变，就是“分子与整数相乘，分母不变”。</span></p>
+    <p class="warn" data-step="3">先约分时，是<b>分子与分母</b>约（可以交叉约），不能分子和分子约。</p>
+  </div>
+  <p class="note">课本 p34–35 试一试。第 1 题结果要求最简分数（填 2/12 会判错）。第 2 题是小精灵的问题，统一了两种算法：分数乘整数是分数乘分数的特例。</p>
+</section>
+
+<!-- 8 ================= 练一练 + 练习六 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>看图写得数</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard">
+        <svg id="lx1" class="area-s" viewBox="0 0 300 200" aria-label="1/3 × 1/4"></svg>
+        <p class="center">$\dfrac13\times\dfrac14=$ <span class="blank" data-ans="1/12" data-w="3"></span></p>
+      </div>
+      <div class="jcard">
+        <svg id="lx2" class="area-s" viewBox="0 0 300 200" aria-label="3/4 × 2/5"></svg>
+        <p class="center">$\dfrac34\times\dfrac25=$ <span class="blank" data-exact data-ans="3/10" data-w="3"></span></p>
+      </div>
+      <div class="jcard">
+        <p class="small-q"><b>练习六 1.</b> 拖拉机每小时耕地 $\dfrac12$ 公顷，$\dfrac13$ 小时耕地 <span class="blank" data-ans="1/6" data-w="3"></span> 公顷，$\dfrac23$ 小时耕地 <span class="blank" data-exact data-ans="1/3" data-w="3"></span> 公顷。</p>
+        <div class="btns" data-noswipe><button type="button" class="btn" data-t="1">看 $\frac13$ 小时</button><button type="button" class="btn" data-t="2">看 $\frac23$ 小时</button></div>
+        <svg id="lx3" class="area-s" viewBox="0 0 300 200" aria-label="1 公顷的图"></svg>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p35 练一练（图照课本：左图横分 3 份、竖分 4 份；右图横分 4 份涂 3 份、竖分 5 份）和 p37 练习六第 1 题。第 3 题的长方形表示 1 公顷，上面一半是 1 小时耕的 1/2 公顷，再按时间竖着分。3/4×2/5=6/20 要约成 3/10。</p>
+</section>
+
+<!-- 9 ================= 例 6 连乘 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6</span><h2>三班做了多少朵绸花？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-t">一班做了 135 朵，二班做的朵数是一班的 $\dfrac89$，三班做的朵数是二班的 $\dfrac34$。</p>
+      <svg id="ex6" class="seg6" viewBox="0 0 640 250" aria-label="例 6 线段图"></svg>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" data-l="2">画二班</button><button type="button" class="btn" data-l="3">画三班</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">第一步求什么？为什么？　<span class="think" data-step="1" data-ask="想一想">先求<b>二班</b>：三班是和二班比的，要先知道二班做了多少朵。</span></p>
+      <div class="calc" data-step="2">
+        <p>(1) 二班：$135\times\dfrac89=$ <span class="blank" data-ans="120" data-w="3"></span>（朵）</p>
+        <p>(2) 三班：$120\times\dfrac34=$ <span class="blank" data-ans="90"></span>（朵）</p>
+      </div>
+      <div class="calc" data-step="3">
+        <h4>也可以列综合算式</h4>
+        <p>$135\times\dfrac89\times\dfrac34=\dfrac{\overset{15}{\cancel{135}}\times\overset{2}{\cancel{8}}\times3}{\underset{1}{\cancel{9}}\times\underset{1}{\cancel{4}}}=90$（朵）</p>
+      </div>
+      <p class="tip" data-step="4">答：三班做了 <span class="blank" data-ans="90"></span> 朵。</p>
+    </div>
+  </div>
+  <p class="note">课本 p35 例 6 和 p36 综合算式。先让学生按小精灵的提示把线段图画完整：一班平均分成 9 份，二班是其中 8 份；再把二班平均分成 4 份（每份正好是一班的 2 份），三班取 3 份，也就是一班的 6 份。图中长度按 135、120、90 精确画出。连乘可以一次约分：135 和 9 约（15、1），8 和 4 约（2、1）。</p>
+</section>
+
+<!-- 10 ================= 练习六 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习六</span><h2>算一算，改一改，用一用</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 计算（写成最简分数）。</p>
+        <p class="q small-q">$\dfrac35\times\dfrac27=$ <span class="blank" data-exact data-ans="6/35" data-w="3"></span>　$\dfrac14\times\dfrac45=$ <span class="blank" data-exact data-ans="1/5" data-w="3"></span><br>$\dfrac{3}{10}\times\dfrac59=$ <span class="blank" data-exact data-ans="1/6" data-w="3"></span>　$\dfrac{15}{7}\times\dfrac{21}{20}=$ <span class="blank" data-exact data-ans="9/4" data-w="3"></span></p>
+        <details><summary>提示 1</summary>能约分的先约分：4 和 4；3 和 9、5 和 10；15 和 20、7 和 21。</details>
+        <details><summary>完整解答</summary>$\dfrac{6}{35}$、$\dfrac15$、$\dfrac16$、$\dfrac94$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 下面的计算对吗？</p>
+        <p class="q small-q">(2) $\dfrac{8}{21}\times\dfrac{7}{24}=\dfrac13\times\dfrac13=9$</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">对</button><button type="button" data-k="n">不对</button>
+          <p class="pick-why">约分没错（8 和 24、7 和 21），但 $\dfrac13\times\dfrac13$ 是分母相乘：$=\dfrac19$，不是 9。</p></div>
+        <details><summary>完整解答</summary>$\dfrac{8}{21}\times\dfrac{7}{24}=\dfrac{1\times1}{3\times3}=\dfrac19$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>9.</b> 一张长方形铁皮，长 $\dfrac45$ 米，宽是长的 $\dfrac34$。求这张铁皮的面积。</p>
+        <p class="q small-q">宽：<span class="blank" data-exact data-ans="3/5" data-w="3"></span> 米；面积：<span class="blank" data-exact data-ans="12/25" data-w="4"></span> 平方米</p>
+        <details><summary>提示 1</summary>宽 = 长 × $\dfrac34$；面积 = 长 × 宽。</details>
+        <details><summary>完整解答</summary>宽 $\dfrac45\times\dfrac34=\dfrac35$（米），面积 $\dfrac45\times\dfrac35=\dfrac{12}{25}$（平方米）</details>
+      </div>
+    </div>
+    <div class="hint-ladder" data-step="1">
+      <p class="q"><b>12.</b> 星光小学科技节一共收到 120 件科技作品，其中有 $\dfrac34$ 的作品获奖，一等奖占获奖总数的 $\dfrac23$。获一等奖的作品有 <span class="blank" data-ans="60"></span> 件。</p>
+      <details><summary>提示 1</summary>一等奖是和“获奖总数”比的，先求获奖总数：$120\times\dfrac34$。</details>
+      <details><summary>完整解答</summary>$120\times\dfrac34\times\dfrac23=60$（件）</details>
+    </div>
+  </div>
+  <p class="note">课本 p37–38 练习六第 2（部分）、3（2）、9、12 题。第 3 题是典型错误：约分后忘了“分母乘分母”。第 12 题和例 6 一样是连乘，先说清楚单位“1”依次是谁。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>一张纸，看懂分数乘分数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <svg id="sumFig" class="area-m" viewBox="0 0 400 230" aria-label="小结图"></svg>
+    </div>
+    <div class="col">
+      <p class="recall" data-step="1" data-label="意义">$\dfrac23\times\dfrac45$ 表示 $\dfrac23$ 的 $\dfrac45$ 是多少。</p>
+      <p class="method" data-step="2" data-label="算法">分子乘分子，分母乘分母；能约分的先约分。整数看作分母是 1 的分数。</p>
+      <p class="recall" data-step="3" data-label="思想">“先横分、再竖分”，把乘法变成<b>数格子</b>——用图说明算法的道理。</p>
+      <p class="tip gold" data-step="4"><b>下一课：</b>课本 p36 例 7——$\dfrac38\times\dfrac83=1$。乘积是 1 的两个数，有什么关系？</p>
+    </div>
+  </div>
+  <p class="note">请学生对着图说一遍：分母相乘是什么，分子相乘是什么。课后作业建议：练习六第 5、6、7、8 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

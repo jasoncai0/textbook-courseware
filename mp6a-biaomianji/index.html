@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>长方体和正方体的表面积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="../shared/mcube.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/yugang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第一单元 长方体和正方体 · 长方体和正方体的表面积</p>
+    <h1 class="cover-title">长方体和正方体的表面积</h1>
+    <p class="cover-q" data-step="1">做一个长方体纸盒、一个没有盖的玻璃鱼缸，各要用多少材料？</p>
+    <p class="cover-q" data-step="2">材料都用在了长方体的<b>哪几个面</b>上？怎样算得又快又对？</p>
+    <div class="chips" data-step="3"><span class="chip">展开图</span><span class="chip">3 组相对的面</span><span class="chip">表面积</span><span class="chip">无盖</span></div>
+  </div>
+  <p class="note">课本 p6 例 4、p7 例 5。本课的关键：先想清楚“求的是哪几个面”，再算。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>算表面积要用到这三件事</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三年级下册 · 长方形的面积" data-step="1">
+        <p class="big center">长方形面积 = 长 × 宽</p>
+        <p>正方形面积 = 边长 × 边长</p>
+        <span class="use">每个面的面积都这样算。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 长方体的认识" data-step="2">
+        <p>长方体有 6 个面，<b>相对的面完全相同</b>；相交于一个顶点的三条棱是长、宽、高。</p>
+        <span class="use">第 4 页：3 组相对的面，算一个再乘 2。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 展开图" data-step="3">
+        <p>把长方体沿棱剪开、摊平，6 个面都在一张展开图上。</p>
+        <span class="use">第 3 页：看清每个面的长和宽是长方体的哪两条棱。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">这节课要回答：做一个纸盒、一个鱼缸，<b>至少</b>要用多少材料？</p>
+  </div>
+  <p class="note">第 2 张卡是本课的“省力”关键：相对的面完全相同，所以只要算 3 个不同的面。</p>
+</section>
+
+<!-- 3 ================= 例 4 纸盒的 6 个面 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>做一个长 6 cm、宽 5 cm、高 4 cm 的纸盒，至少要用多少硬纸板？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="boxv" class="view3 tall"></div>
+      <div class="slider-row" data-noswipe>摊平 <input type="range" id="boxT" min="0" max="1" step="0.01" value="1"> 折好　<button type="button" class="btn solid" id="boxPlay">▶ 展开 / 折回</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">求“至少要用多少硬纸板”，就是求长方体<span class="think" data-step="1" data-ask="几个面？"><b>6 个面</b>面积的和</span>。</p>
+      <p class="tip" data-step="2">点一组相对的面，看看它在展开图里是哪两块、长和宽各是多少：</p>
+      <div class="btns" data-noswipe id="pairK" data-step="2"><button type="button" class="btn" data-k="0">上、下</button><button type="button" class="btn" data-k="1">前、后</button><button type="button" class="btn" data-k="2">左、右</button><button type="button" class="btn solid" data-k="all">全部</button></div>
+      <p class="tip feedback" id="pairMsg" data-step="2"></p>
+      <table class="mtab" data-step="3">
+        <tr><th>面</th><th>长 × 宽</th><th>面积/cm²</th></tr>
+        <tr><td>上、下</td><td>6 × 5</td><td><span class="blank" data-ans="30"></span></td></tr>
+        <tr><td>前、后</td><td>6 × 4</td><td><span class="blank" data-ans="24"></span></td></tr>
+        <tr><td>左、右</td><td>5 × 4</td><td><span class="blank" data-ans="20"></span></td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="note">课本 p6 例 4 及小精灵：“求至少要用硬纸板多少平方厘米，就是求长方体几个面面积的和？”拖滑块展开，展开图上每块都标了长 × 宽。重点看：上下面的长和宽是长方体的“长和宽”，前后面是“长和高”，左右面是“宽和高”。</p>
+</section>
+
+<!-- 4 ================= 三种算法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">算一算</span><h2>选一种方法算出结果，比一比哪种简便</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="calc">
+        <h4>方法 1　6 个面依次相加</h4>
+        <p>$6\times5+6\times5+6\times4$<br>$+6\times4+5\times4+5\times4$<br>$=$ <span class="blank" data-ans="148"></span>（cm²）</p>
+      </div>
+      <div class="calc" data-step="1">
+        <h4>方法 2　3 组相对的面分别算</h4>
+        <p>$6\times5\times2+6\times4\times2+5\times4\times2$<br>$=60+48+40$<br>$=$ <span class="blank" data-ans="148"></span>（cm²）</p>
+      </div>
+      <div class="calc" data-step="2">
+        <h4>方法 3　先算 3 个面，再乘 2</h4>
+        <p>$(6\times5+6\times4+5\times4)\times2$<br>$=$ <span class="blank" data-ans="74"></span> $\times2$<br>$=$ <span class="blank" data-ans="148"></span>（cm²）</p>
+      </div>
+    </div>
+    <p class="tip" data-step="3">答：至少要用硬纸板 <span class="blank" data-ans="148"></span> 平方厘米。</p>
+    <p class="tip" data-step="4">方法 3 为什么可以“先加再乘 2”？　<span class="think" data-step="5" data-ask="想一想">上、前、右 3 个面各有一个“完全相同的对面”，所以 6 个面 = 这 3 个面的 2 倍。</span></p>
+    <p class="method" data-step="6" data-label="长方体 6 个面的面积和">（长 × 宽 + 长 × 高 + 宽 × 高）× 2</p>
+  </div>
+  <p class="note">课本 p6 三个小精灵的三种想法，对应这里的三种算法。不要求统一用哪一种，但要能说出每一步算的是哪个面。</p>
+</section>
+
+<!-- 5 ================= 表面积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>做一个棱长 3 分米的正方体纸盒，至少要用多少硬纸板？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cubev" class="view3"></div>
+      <div class="slider-row" data-noswipe>摊平 <input type="range" id="cubeT" min="0" max="1" step="0.01" value="1"> 折好</div>
+    </div>
+    <div class="col">
+      <p class="tip">正方体的 6 个面有什么特点？　<span class="think" data-step="1" data-ask="想一想">6 个面是<b>完全相同的正方形</b>，每个面 $3\times3=9$（dm²）。</span></p>
+      <p class="tip" data-step="2">$3\times3\times6=$ <span class="blank" data-ans="54"></span>（dm²）</p>
+      <div class="def" data-step="3">长方体（或正方体）6 个面的总面积，叫作它的<em>表面积</em>。</div>
+      <div class="cols2" data-step="4">
+        <p class="method" data-label="长方体的表面积">（长 × 宽 + 长 × 高 + 宽 × 高）× 2</p>
+        <p class="method" data-label="正方体的表面积">棱长 × 棱长 × 6</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p6 试一试和表面积的定义。课本只给出文字定义，没有要求记字母公式；这里的两张方法卡是从例 4 和试一试概括出来的计算方法。</p>
+</section>
+
+<!-- 6 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>计算长方体和正方体的表面积</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <div id="p1v" class="exv"></div>
+        <p class="q">长 5 cm、宽 4 cm、高 2.5 cm 的长方体，表面积是 <span class="blank" data-ans="85"></span> cm²。</p>
+        <details><summary>提示 1</summary>3 个不同的面：$5\times4$、$5\times2.5$、$4\times2.5$。</details>
+        <details><summary>提示 2</summary>$20+12.5+10=42.5$，再乘 2。</details>
+        <details><summary>完整解答</summary>$(5\times4+5\times2.5+4\times2.5)\times2=42.5\times2=85$（cm²）</details>
+      </div>
+      <div class="hint-ladder">
+        <div id="p2v" class="exv"></div>
+        <p class="q">棱长 4 cm 的正方体，表面积是 <span class="blank" data-ans="96"></span> cm²。</p>
+        <details><summary>提示 1</summary>一个面是 $4\times4=16$（cm²），一共几个面？</details>
+        <details><summary>完整解答</summary>$4\times4\times6=96$（cm²）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p6 练一练。长方体那题注意 2.5 的乘法：$5\times2.5=12.5$，$4\times2.5=10$。</p>
+</section>
+
+<!-- 7 ================= 例 5 无盖鱼缸 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>无盖鱼缸长 5 dm、宽 3 dm、高 3.5 dm，至少需要玻璃多少平方分米？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="tankv" class="view3 tall"></div>
+    </div>
+    <div class="col">
+      <p class="tip">鱼缸要用玻璃的是哪几个面？<b>点按钮</b>装上或拿掉玻璃。</p>
+      <div class="faces6" id="tankK" data-noswipe></div>
+      <p class="tip feedback" id="tankMsg"></p>
+      <p class="tip" data-step="1">算一算：$5\times3+(5\times3.5+3\times3.5)\times2=$ <span class="blank" data-ans="71"></span>（dm²）</p>
+      <p class="tip" data-step="2">还可以怎样算？　<span class="think" data-step="3" data-ask="想一想">先算 6 个面的总面积，再减去上面：$(5\times3+5\times3.5+3\times3.5)\times2-5\times3=86-15=71$（dm²）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p7 例 5 和三个小精灵的想法。先让学生说“缺哪个面”，再点按钮验证：只有装上下、前、后、左、右 5 块时，才是“无盖鱼缸”。右边的面积和由程序按所装的面实时相加。</p>
+</section>
+
+<!-- 8 ================= 要注意什么 + 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>赵明做了无盖的长方体和正方体纸盒，各用多少纸板？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <div id="q1v" class="exv"></div>
+        <p class="q">无盖长方体：长 14 cm、宽 10 cm、高 8 cm，至少用 <span class="blank" data-ans="524"></span> cm² 纸板。</p>
+        <details><summary>提示 1</summary>没有上面，要算下面 + 前后 + 左右 5 个面。</details>
+        <details><summary>完整解答</summary>$14\times10+(14\times8+10\times8)\times2=140+384=524$（cm²）</details>
+      </div>
+      <div class="hint-ladder">
+        <div id="q2v" class="exv"></div>
+        <p class="q">无盖正方体：棱长 10 cm，至少用 <span class="blank" data-ans="500"></span> cm² 纸板。</p>
+        <details><summary>提示 1</summary>正方体去掉 1 个面，还剩几个面？</details>
+        <details><summary>完整解答</summary>$10\times10\times5=500$（cm²）</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="用表面积解决实际问题时要注意">要根据实际问题，确定计算<b>哪几个面</b>的面积和；可以根据长方体面的特征，用不同的方法计算。</p>
+  </div>
+  <p class="note">课本 p7 下方的讨论和练一练。图中纸盒开口朝上，按课本数据画。</p>
+</section>
+
+<!-- 9 ================= 练习二 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习二</span><h2>先想清楚是哪几个面，再算</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 长方体饼干盒长 17 cm、宽 11 cm、高 22 cm。在它的侧面贴满一圈包装纸，包装纸至少 <span class="blank" data-ans="1232"></span> cm²。</p>
+        <details><summary>提示 1</summary>“侧面一圈”是前、后、左、右 4 个面（不包括上、下）。</details>
+        <details><summary>完整解答</summary>$(17\times22+11\times22)\times2=(374+242)\times2=1232$（cm²）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>8.</b> 昆虫箱长 40 cm、宽 25 cm、高 35 cm。上、下、左、右面是木板，前、后面是纱网。木板至少 <span class="blank" data-ans="3750"></span> cm²，纱网至少 <span class="blank" data-ans="2800"></span> cm²。</p>
+        <details><summary>提示 1</summary>上、下面是 40 × 25；左、右面是 25 × 35；前、后面是 40 × 35。</details>
+        <details><summary>完整解答</summary>木板：$40\times25\times2+25\times35\times2=2000+1750=3750$（cm²）；纱网：$40\times35\times2=2800$（cm²）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>9.</b> 教室长 8.5 m、宽 6 m、高 4.2 m，门窗和黑板共 35.8 m²。粉刷顶面和四面墙壁，粉刷面积是 <span class="blank" data-ans="137"></span> m²。</p>
+        <details><summary>提示 1</summary>不刷地面；四面墙还要减去门窗和黑板。</details>
+        <details><summary>提示 2</summary>顶面 $8.5\times6=51$；四面墙 $(8.5\times4.2+6\times4.2)\times2=121.8$。</details>
+        <details><summary>完整解答</summary>$51+121.8-35.8=137$（m²）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p8–9 练习二第 6、8、9 题。三道题算的面都不一样：第 6 题 4 个面，第 8 题分两种材料，第 9 题 5 个面还要减去门窗。其他题（第 3、4、5、7 题）可作课堂作业。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>表面积：6 个面的总面积</h2></div>
+  <div class="bd full">
+    <div class="cols2 sum">
+      <div class="col">
+        <h3>知识</h3>
+        <p class="recall" data-label="表面积" data-step="1">长方体（或正方体）6 个面的总面积，叫作它的表面积。</p>
+        <p class="recall" data-label="怎样算" data-step="2">长方体：（长 × 宽 + 长 × 高 + 宽 × 高）× 2；正方体：棱长 × 棱长 × 6。</p>
+      </div>
+      <div class="col">
+        <h3>方法</h3>
+        <p class="method" data-label="先想面，再列式" data-step="3">借助展开图想清楚：要算哪几个面？每个面的长和宽是长方体的哪两条棱？</p>
+        <p class="tip gold" data-step="4"><b>下一课：</b>桃子放进装满水的杯子，水为什么会溢出来？物体占的“空间”有多大——体积。课本 p10 例 6。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">易错提醒：无盖、侧面一圈、通风管（没有上下两个面）等，都不是求 6 个面。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="../shared/mcube.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

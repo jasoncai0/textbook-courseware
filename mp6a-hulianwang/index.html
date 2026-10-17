@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>互联网的普及 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shangwang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第六单元 百分数 · 综合与实践 互联网的普及</p>
+    <h1 class="cover-title">互联网的普及</h1>
+    <p class="cover-q" data-step="1">2002 年，我国上网人数只有 <b>0.59 亿</b>；到 2012 年，已经有 <b>5.64 亿</b>。</p>
+    <p class="cover-q" data-step="2">互联网到底“普及”到什么程度？我们班、我们家又怎么样？用百分数来调查一下！</p>
+    <div class="chips" data-step="3"><span class="chip">普及率</span><span class="chip">折线统计图</span><span class="chip">班级调查</span></div>
+  </div>
+  <p class="note">课本 p110–111 综合与实践。先请学生说说利用互联网可以做哪些事（查资料、看新闻、联系同学……）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">知识链接</span><h2>这次活动要用到的本领</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 求百分率" data-step="1">
+        <p class="big center">部分 ÷ 总数 × 100%</p>
+        <span class="use">算普及率、班级上网同学的百分比。</span>
+      </div>
+      <div class="recall" data-label="五下 · 折线统计图" data-step="2">
+        <p>折线统计图不但能看出数量多少，还能清楚地看出<b>增减变化</b>。</p>
+        <span class="use">画出 2002～2012 年普及率的变化。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 多百分之几、列方程" data-step="3">
+        <p class="big center">$(a-b)\div b$　$x\times42.1\%=5.64$</p>
+        <span class="use">算增长了百分之几、反推人口总数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">这是一次<b>用数学调查生活</b>的活动：读数据 → 画图分析 → 自己调查 → 说说想法。</p>
+  </div>
+  <p class="note">本课是综合与实践，课本没有例题编号。可以分两课时：第一课时读数据、画图分析，第二课时课后调查后汇报。</p>
+</section>
+
+<!-- 3 ================= 阅读与讨论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">阅读与讨论</span><h2>2002～2012 年我国互联网的统计数据</h2></div>
+  <div class="bd full top">
+    <table class="mtab net-tab">
+      <tr><th>年份</th><th>2002</th><th>2004</th><th>2006</th><th>2008</th><th>2010</th><th>2012</th></tr>
+      <tr><th>接入宽带用户/亿户</th><td>0.03</td><td>0.25</td><td>0.51</td><td>0.83</td><td>1.26</td><td>1.75</td></tr>
+      <tr><th>上网人数/亿人</th><td>0.59</td><td>0.94</td><td>1.37</td><td>2.98</td><td>4.57</td><td>5.64</td></tr>
+      <tr><th>互联网普及率/%</th><td>4.6</td><td>7.3</td><td>10.5</td><td>22.6</td><td>34.3</td><td>42.1</td></tr>
+    </table>
+    <div class="def" data-step="1"><h4>互联网普及率（课本 p110 注）</h4>指某个地区（或国家）的<em>互联网上网人数</em>与该地区（或国家）的<em>人口总数</em>的比。</div>
+    <p class="tip" data-step="2">2012 年的普及率 42.1% 表示什么？<span class="think" data-step="3" data-ask="说一说">2012 年我国上网的人数占全国人口总数的 42.1%，也就是大约每 100 人里有 42 人上网。</span></p>
+  </div>
+  <p class="note">课本 p110 表格（数据照课本）。读完这段文字，请学生说说感想：十年间变化有多大？</p>
+</section>
+
+<!-- 4 ================= 核心：折线统计图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">画图分析</span><h2>把数据画成折线统计图，变化一目了然</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="tabs" id="lineTabs" data-noswipe><button type="button" class="btn solid" data-k="rate">普及率</button><button type="button" class="btn" data-k="users">上网人数</button><button type="button" class="btn" data-k="bb">宽带用户</button></div>
+      <svg id="line" class="line" viewBox="0 0 560 340" aria-label="2002～2012 年互联网数据折线统计图"></svg>
+      <div class="ctrlrow" data-noswipe><button type="button" class="btn solid" id="lineGo">▶ 按年份描点连线</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">哪两年之间普及率上升得最快？<span class="think" data-step="1" data-ask="看线段的倾斜">2006～2008 年和 2008～2010 年：线段最陡，分别上升了 12.1 和 11.7（百分号前的数）。</span></p>
+      <p class="tip" data-step="2">普及率的折线和上网人数的折线，形状为什么很像？<span class="think" data-step="3" data-ask="想一想">普及率 = 上网人数 ÷ 人口总数；这些年人口总数变化不大，所以两条线的变化趋势差不多。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动：点“描点连线”，按年份依次描点（坐标由数据精确计算，纵轴每格表示的数标在轴上）。切换三组数据比较变化趋势。点任意一个点可以看到准确数据。</p>
+</section>
+
+<!-- 5 ================= 算一算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">算一算</span><h2>用学过的百分数知识分析数据</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 2012 年上网人数比 2010 年增长了百分之几？（保留一位小数）<br>约 <span class="blank" data-ans="23.4" data-exact></span>%</p>
+        <details><summary>提示 1</summary>“比 2010 年”——2010 年的 4.57 亿是单位“1”。</details>
+        <details><summary>完整解答</summary>$(5.64-4.57)\div4.57=1.07\div4.57\approx0.234=23.4\%$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 2012 年上网人数大约是 2002 年的多少倍？（保留一位小数）<br>约 <span class="blank" data-ans="9.6" data-exact></span> 倍</p>
+        <details><summary>提示</summary>$5.64\div0.59$</details>
+        <details><summary>完整解答</summary>$5.64\div0.59\approx9.56\approx9.6$（倍）</details>
+      </div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q"><b>3.</b> 根据 2012 年的上网人数和普及率，估计 2012 年我国人口总数大约是多少亿？（保留一位小数）<br>约 <span class="blank" data-ans="13.4" data-exact></span> 亿</p>
+      <details><summary>提示 1</summary>人口总数是单位“1”，不知道，设为 $x$ 亿。</details>
+      <details><summary>提示 2</summary>$x\times42.1\%=5.64$</details>
+      <details><summary>完整解答</summary>$x=5.64\div0.421\approx13.4$（亿）</details>
+    </div>
+  </div>
+  <p class="note">这一页把本单元的三种方法用在真实数据上：多百分之几、倍数、列方程反推单位“1”。第 3 题的估计值约 13.4 亿，和当时我国人口总数接近，说明数据是互相对得上的。可以用计算器。</p>
+</section>
+
+<!-- 6 ================= 班级调查 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">统计与分析</span><h2>我们班的互联网普及情况怎样？</h2></div>
+  <div class="bd full top">
+    <p class="tip">分小组调查，把数据填进表格，百分比自动算出（保留一位小数）。</p>
+    <table class="mtab survey" data-noswipe>
+      <tr><th>家庭户数</th><th>接入互联网宽带的户数</th><th>占全班家庭户数的百分之几</th></tr>
+      <tr><td><input class="num" data-g="h" data-r="t" value="45"></td><td><input class="num" data-g="h" data-r="p" value="41"></td><td class="out" data-o="h"></td></tr>
+    </table>
+    <table class="mtab survey" data-noswipe>
+      <tr><th></th><th>总人数</th><th>上网人数</th><th>上网人数占总人数的百分之几</th></tr>
+      <tr><th>班级同学</th><td><input class="num" data-g="c" data-r="t" value="45"></td><td><input class="num" data-g="c" data-r="p" value="38"></td><td class="out" data-o="c"></td></tr>
+      <tr><th>全班家庭成员</th><td><input class="num" data-g="f" data-r="t" value="150"></td><td><input class="num" data-g="f" data-r="p" value="117"></td><td class="out" data-o="f"></td></tr>
+    </table>
+    <p class="tip" data-step="1">把你们班的普及率和全国 2012 年的 42.1% 比一比，你认为你们班同学家庭的互联网普及情况怎么样？</p>
+  </div>
+  <p class="note">课本 p111 的两张调查表。表中默认数字只是示例，请换成本班真实调查的数据。上网人数不能多于总人数，填错时会提示。</p>
+</section>
+
+<!-- 7 ================= 用途调查 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">调查用途</span><h2>同学们上网都做些什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-t">上网人数：<input class="num" id="uTotal" value="38"> 人（每人可以选多项）</p>
+      <table class="mtab survey" data-noswipe id="useTab">
+        <tr><th>用途</th><th>人数</th><th>占上网人数的百分比</th></tr>
+      </table>
+    </div>
+    <div class="col">
+      <svg id="useBar" class="use-bar" viewBox="0 0 440 240" aria-label="各种用途占上网人数的百分比条形图"></svg>
+      <p class="tip" data-step="1">把五个百分数加起来，结果可能超过 100% 吗？<span class="think" data-step="2" data-ask="想一想">可能。一个同学可以既查资料又联系同学，会被统计好几次。和练习十五第 3 题的邮票（每枚只属于一类，加起来正好 100%）不一样。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p111 第三张调查表。默认数据只是示例。重点讨论：什么时候各部分的百分数合起来是 100%，什么时候不是。</p>
+</section>
+
+<!-- 8 ================= 回顾与反思 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾与反思</span><h2>回顾活动过程，你有什么收获和体会？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1"><p>通过统计，能了解互联网在全班同学家庭中的普及情况。</p></div>
+      <div class="jcard" data-step="2"><p>从互联网普及率的变化，看出我国社会的发展越来越快。</p></div>
+      <div class="jcard" data-step="3"><p>要充分利用网络资源，合理安排上网时间。</p></div>
+    </div>
+    <p class="method" data-step="4" data-label="数学方法">提出问题 → 收集数据 → 整理成表、画成图 → 用百分数比较 → 得出结论、提出建议。</p>
+  </div>
+  <p class="note">课本 p111 回顾与反思的三点体会。可以请各小组用一两句话汇报本组的发现和建议。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>百分数，帮我们读懂身边的变化</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><small>读数据</small>表格</div>
+      <i>描点连线</i>
+      <div class="fbox"><small>看变化</small>折线统计图</div>
+      <i>百分数比较</i>
+      <div class="fbox hot"><small>得结论</small>普及率、增长率</div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="本单元用到了" data-step="2">百分数的意义、求百分率、多百分之几、列方程求单位“1”。</p>
+      <p class="method" data-label="提醒" data-step="3">算百分率先看清“谁是总数”；几个百分数能不能相加，要看各部分有没有重复。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>第六单元“整理与练习”，把百分数的各种问题串起来复习。</p>
+  </div>
+  <p class="note">课后实践：完成本班调查表，下节课汇报。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

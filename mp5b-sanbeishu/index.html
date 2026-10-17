@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3的倍数的特征 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mnum.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jishuqi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第三单元 因数与倍数 · 3的倍数的特征</p>
+    <h1 class="cover-title">3 的倍数的特征</h1>
+    <p class="cover-q" data-step="1">2 和 5 的倍数，<b>看个位</b>就知道。3 的倍数呢？</p>
+    <p class="cover-q" data-step="2">13、23、33，个位都是 3，可只有 33 是 3 的倍数……<b>秘密藏在哪儿？</b></p>
+    <div class="chips" data-step="3"><span class="chip">百数表</span><span class="chip">计数器拨珠</span><span class="chip">各位上数的和</span></div>
+  </div>
+  <p class="note">开门见山制造冲突：个位相同的 13、23、33，结果不同，说明 3 的倍数不能只看个位。让学生先猜一猜秘密在哪里。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到这些</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 2和5的倍数" data-step="1">
+        <p>2 的倍数：个位是 0、2、4、6、8；</p>
+        <p>5 的倍数：个位是 0 或 5。</p>
+        <span class="use">先试试“看个位”对 3 行不行。</span>
+      </div>
+      <div class="recall" data-label="二下 · 认识万以内的数" data-step="2">
+        <svg viewBox="0 0 220 120" class="mini-fig" aria-label="计数器上表示 42：十位 4 颗，个位 2 颗"><g class="abc-mini"></g></svg>
+        <p>计数器上表示 42：十位拨 <b>4</b> 颗，个位拨 <b>2</b> 颗。</p>
+        <span class="use">数一数一共用了几颗珠。</span>
+      </div>
+      <div class="recall" data-label="二上 · 乘法口诀" data-step="3">
+        <p class="big center">三三得九</p>
+        <p>3 的倍数：3，6，9，12，15，18，21，24，27，30，……</p>
+        <span class="use">判断珠子总数是不是 3 的倍数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>3 的倍数有什么特征？</p>
+  </div>
+  <p class="note">第 2 张卡：计数器上每一位拨的珠子个数，就是这一位上的数。本课的核心活动就是“数珠子”。</p>
+</section>
+
+<!-- 3 ================= 例 5 百数表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 圈一圈</span><h2>在 3 的倍数上画“○”，还能只看个位吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="h3Auto">○ 圈出 3 的倍数</button><button type="button" class="btn" id="h3Col">看个位是 3 的一列</button><button type="button" class="btn" id="h3Dia">看斜线</button></div>
+      <div id="h3" class="ntab-100"></div>
+      <p class="tip small-t">也可以自己点格子画 ○，画错会变红。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">个位是 3 的数：3、13、23、33……都是 3 的倍数吗？　<span class="think" data-step="2" data-ask="看一看">不是。13、23 就不是。而且每一列里都有 3 的倍数，个位 0～9 都可能。</span></p>
+      <p class="tip" data-step="3">3 的倍数在表里怎样排？　<span class="think" data-step="4" data-ask="看一看">它们<b>斜着</b>排成一条条线。</span></p>
+      <p class="warn" data-step="5" data-label="看个位不行">从个位上看不出 3 的倍数的特征，该怎么办？换个思路——用<b>计数器</b>拨一拨。</p>
+    </div>
+  </div>
+  <p class="note">课本 p33 例 5。先圈 3 的倍数，再点“看个位是 3 的一列”：3、33、63、93 是，13、23、43……不是。“看斜线”把同一条斜线上的 3 的倍数加底色，比如 12、21、30——它们的十位数字加个位数字都等于 3。为下一页埋伏笔，但先不说破。</p>
+</section>
+
+<!-- 4 ================= 计数器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 拨一拨</span><h2>在计数器上表示 3 的倍数，各用了多少颗珠？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="abc" class="abc-fig" viewBox="0 0 420 330" aria-label="计数器" data-noswipe></svg>
+      <div class="abc-ctrl" id="abcCtrl" data-noswipe>
+        <div><span>百</span><button type="button" class="btn" data-p="2" data-d="-1">−</button><button type="button" class="btn" data-p="2" data-d="1">＋</button></div>
+        <div><span>十</span><button type="button" class="btn" data-p="1" data-d="-1">−</button><button type="button" class="btn" data-p="1" data-d="1">＋</button></div>
+        <div><span>个</span><button type="button" class="btn" data-p="0" data-d="-1">−</button><button type="button" class="btn" data-p="0" data-d="1">＋</button></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="btns" id="abcEg" data-noswipe><span class="small-t">课本的数：</span><button type="button" class="btn" data-v="27">27</button><button type="button" class="btn" data-v="42">42</button><button type="button" class="btn" data-v="75">75</button><button type="button" class="btn" id="abcRec">记下来 ✎</button></div>
+      <p class="abc-read" id="abcRead"></p>
+      <table class="mtab rec-tab" id="abcTab">
+        <tr><th>数</th><th>用了几颗珠</th><th>是 3 的倍数吗？</th></tr>
+      </table>
+      <p class="tip" data-step="1">再拨几个比较大的 3 的倍数（如 111、252、369）。你发现了什么？　<span class="think" data-step="2" data-ask="说一说">3 的倍数，用的珠子个数（<b>各位上数的和</b>）都是 3 的倍数。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p34 上方。先拨课本的 27、42、75，各用了 9、6、12 颗珠，点“记下来”填进表格。然后放手让学生报一个较大的 3 的倍数（如 111、252、369、582），拨出来数珠子。也可以故意拨一个不是 3 的倍数的数，为下一页“反过来”做准备。</p>
+</section>
+
+<!-- 5 ================= 概括 + 反过来 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>3 的倍数的特征</h2></div>
+  <div class="bd full top">
+    <div class="def big-def" data-step="1"><h4>课本这样说</h4>3 的倍数，它<em>各位上数的和</em>一定是 3 的倍数。</div>
+    <p class="tip" data-step="2">反过来：如果一个数不是 3 的倍数，它各位上数的和会是 3 的倍数吗？找几个这样的数算一算。</p>
+    <div class="cols3" data-step="3">
+      <div class="calc"><p>52：$5+2=$ <span class="blank" data-ans="7"></span></p><p>52 ÷ 3 = 17……1</p></div>
+      <div class="calc"><p>104：$1+0+4=$ <span class="blank" data-ans="5"></span></p><p>104 ÷ 3 = 34……2</p></div>
+      <div class="calc"><p>98：$9+8=$ <span class="blank" data-ans="17"></span></p><p>98 ÷ 3 = 32……2</p></div>
+    </div>
+    <p class="tip" data-step="4">各位上数的和都 <span class="think" data-step="5" data-ask="是不是 3 的倍数？"><b>不是 3 的倍数</b>。</span></p>
+    <p class="method" data-step="6" data-label="判断方法">看一个数是不是 3 的倍数：把<b>各位上的数加起来</b>，和是 3 的倍数，这个数就是 3 的倍数；和不是，这个数就不是。</p>
+    <p class="tip small-t" data-step="7"><b>为什么？</b>一个十 = 9 + 1，一个百 = 99 + 1。9、99 都是 3 的倍数，拿走它们，每颗珠只剩下“1”——剩下的就是珠子总数。</p>
+  </div>
+  <p class="note">课本 p34 中间。课本的问题“如果一个数不是 3 的倍数，这个数各位上数的和会是 3 的倍数吗”，让学生自己举例算。最后一行“为什么”供学有余力的学生思考，不要求全班掌握：42 = 4 个十 + 2 = 4 × 9 + 4 + 2，4 × 9 一定是 3 的倍数，所以只看 4 + 2。</p>
+</section>
+
+<!-- 6 ================= 练一练 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用各位上数的和来判断</h2></div>
+  <div class="bd full top">
+    <p class="q"><b>1.</b> 在 29、45、51、67、86、96 中，哪些是 3 的倍数？点一点（点到的会告诉你各位上数的和）。</p>
+    <div class="chips3" id="c1" data-noswipe></div>
+    <p class="tip feedback" id="c1Msg">点一个数试试。</p>
+    <p class="q"><b>2.</b> 你能很快说出哪几题的得数有余数吗？</p>
+    <div class="cols3 picks5">
+      <div class="jcard"><p>$48\div3$</p><div class="pick" data-ans="n"><button type="button" data-k="y">有余数</button><button type="button" data-k="n">没有</button><p class="pick-why">4 + 8 = 12，是 3 的倍数，48 ÷ 3 = 16。</p></div></div>
+      <div class="jcard"><p>$56\div3$</p><div class="pick" data-ans="y"><button type="button" data-k="y">有余数</button><button type="button" data-k="n">没有</button><p class="pick-why">5 + 6 = 11，不是 3 的倍数，56 ÷ 3 = 18……2。</p></div></div>
+      <div class="jcard"><p>$342\div3$</p><div class="pick" data-ans="n"><button type="button" data-k="y">有余数</button><button type="button" data-k="n">没有</button><p class="pick-why">3 + 4 + 2 = 9，342 ÷ 3 = 114。</p></div></div>
+      <div class="jcard"><p>$567\div3$</p><div class="pick" data-ans="n"><button type="button" data-k="y">有余数</button><button type="button" data-k="n">没有</button><p class="pick-why">5 + 6 + 7 = 18，567 ÷ 3 = 189。</p></div></div>
+      <div class="jcard"><p>$802\div3$</p><div class="pick" data-ans="y"><button type="button" data-k="y">有余数</button><button type="button" data-k="n">没有</button><p class="pick-why">8 + 0 + 2 = 10，802 ÷ 3 = 267……1。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p34 练一练 1、2。第 1 题点到 3 的倍数变绿，点到不是的变灰，都会显示各位上数的和。第 2 题先口答再点，不用真的去除。</p>
+</section>
+
+<!-- 7 ================= 练习五第 8 题：填数字 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习五 · 第 8 题</span><h2>在 □ 里填一个数字，使组成的数是 3 的倍数</h2></div>
+  <div class="bd full top">
+    <p class="tip">点 □ 下面的数字试一试。你能找到<b>多少种</b>不同的填法？</p>
+    <div class="cols2 fill-grid" id="fill" data-noswipe></div>
+    <p class="method" data-step="1" data-label="有窍门">先把已知的数字加起来，再看还差几就是 3 的倍数：比如 7□，7 + 2 = 9，所以填 2；再添 3、再添 3，还可以填 5、8。</p>
+  </div>
+  <p class="note">课本 p36 练习五第 8 题。每填一个，下面显示各位上数的和；找全了会显示“全部找到”。共有：7□ 填 2、5、8；□12 填 3、6、9（首位不能是 0）；20□ 填 1、4、7；3□5 填 1、4、7。规律：找到一个后，每次加 3 就是下一个。</p>
+</section>
+
+<!-- 8 ================= 2、3、5 一起用 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">综合</span><h2>2、3、5 的倍数特征一起用</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（练习五第 12 题）下面的数，哪些是 3 的倍数？</p>
+        <p class="q nums">27　30　48　65　102　147　345</p>
+        <p class="q small-q">3 的倍数：<span class="blank" data-ans="27,30,48,102,147,345|27、30、48、102、147、345|27，30，48，102，147，345" data-w="11"></span></p>
+        <details><summary>提示 1</summary>65：6 + 5 = 11，不是 3 的倍数。其余的都算一算。</details>
+        <details><summary>完整解答</summary>27、30、48、102、147、345 是 3 的倍数；再看个位，30 和 345 也是 5 的倍数，30、48、102 也是 2 的倍数。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（练习五第 13 题）在 □ 里填数字。</p>
+        <p class="q small-q">既是 2 的倍数又是 3 的倍数：24<span class="blank" data-ans="0|6"></span>，37<span class="blank" data-ans="2|8"></span><br>既是 5 的倍数又是 3 的倍数：10<span class="blank" data-ans="5"></span></p>
+        <details><summary>提示 1</summary>先用 2 或 5 的特征定下个位能填哪几个，再用 3 的特征挑。</details>
+        <details><summary>提示 2</summary>24□：个位要是 0、2、4、6、8；2 + 4 + □ 要是 3 的倍数。</details>
+        <details><summary>完整解答</summary>24□ 填 0 或 6；37□ 填 2 或 8；10□ 只能填 5（100 的 1 + 0 + 0 = 1 不行）。</details>
+      </div>
+    </div>
+    <div class="recall" data-label="你知道吗" data-step="1">6 的因数有 1，2，3，6，除了 6 本身，$1+2+3=6$。像 6 这样的数叫作<b>完全数</b>（也叫完美数）。28 也是完全数：$1+2+4+7+14=28$。</div>
+  </div>
+  <p class="note">课本 p36 练习五第 12、13 题，以及 p34“你知道吗”的完全数。第 2 题方法：两个条件，先用简单的（看个位）缩小范围，再用 3 的特征检验。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>对还是不对？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> 个位上是 3、6、9 的数都是 3 的倍数。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">13 的个位是 3，但 1 + 3 = 4，不是 3 的倍数。3 的倍数<b>不能看个位</b>。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 一个数各位上数的和是 12，这个数是 3 的倍数。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">12 是 3 的倍数，所以这个数是 3 的倍数（比如 75、444）。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 把 312 的数字换个顺序，变成 132、231、213……它们都是 3 的倍数。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">不对</button>
+          <p class="pick-why">换顺序，各位上数的和不变：都是 3 + 1 + 2 = 6。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="比一比">2、5 的倍数：<b>看个位</b>；3 的倍数：<b>看各位上数的和</b>。</p>
+  </div>
+  <p class="note">第 3 题可以引出练习五第 9 题：从 0、5、6、7 中选 3 个数字组成 3 的倍数的三位数，只要选的三个数字之和是 3 的倍数（0、5、7 或 5、6、7），顺序可以任意排（0 不能放百位）。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>3 的倍数的特征，我们是怎样找到的？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>百数表里圈</b><small>看个位：看不出来</small></div>
+      <i>换个思路</i>
+      <div class="fbox"><b>计数器上拨</b><small>数一数用了几颗珠</small></div>
+      <i>举例验证</i>
+      <div class="fbox hot"><b>各位上数的和</b><small>是 3 的倍数 ⇔ 这个数是 3 的倍数</small></div>
+    </div>
+    <table class="mtab sum-tab" data-step="2">
+      <tr><th>2 的倍数</th><th>5 的倍数</th><th>3 的倍数</th></tr>
+      <tr><td>个位是 0、2、4、6、8</td><td>个位是 0 或 5</td><td>各位上数的和是 3 的倍数</td></tr>
+    </table>
+    <p class="tip gold" data-step="3"><b>下一步：</b>课本 p37 例 6——2、3、5 的因数只有两个，6、8、9 的因数不止两个。数的因数个数里有什么学问？</p>
+  </div>
+  <p class="note">强调探究的过程：观察（百数表）→ 发现看个位不行 → 换工具（计数器）→ 猜想 → 举例验证（包括反例）。课后作业建议：练习五第 9、10、14 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mnum.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

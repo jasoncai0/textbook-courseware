@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>相邻体积单位间的进率 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="../shared/mcube.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jiaoju.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第一单元 长方体和正方体 · 相邻体积单位间的进率</p>
+    <h1 class="cover-title">相邻体积单位间的进率</h1>
+    <p class="cover-q" data-step="1">一个粉笔盒大约是 1 立方分米，一个手指尖大约是 1 立方厘米。</p>
+    <p class="cover-q" data-step="2">1 立方分米里，能装下<b>多少个</b> 1 立方厘米？是 10 个吗？</p>
+    <div class="chips" data-step="3"><span class="chip">1 dm³ = 1000 cm³</span><span class="chip">1 m³ = 1000 dm³</span><span class="chip">10 · 100 · 1000</span><span class="chip">单位换算</span></div>
+  </div>
+  <p class="note">课本 p19 例 12。先让学生大胆猜：很多学生会猜 10 或 100，本课用“放大分割”让他们看到为什么是 1000。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>长度、面积的进率，我们已经学过</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="二、三年级 · 长度单位" data-step="1">
+        <p class="big center">1 分米 = 10 厘米</p>
+        <p>1 米 = 10 分米</p>
+        <span class="use">第 3 页：棱长 1 分米就是棱长 10 厘米。</span>
+      </div>
+      <div class="recall" data-label="三年级下册 · 面积单位间的进率" data-step="2">
+        <p class="big center">1 平方分米 = 100 平方厘米</p>
+        <p>边长 1 分米的正方形，每行 10 个，有 10 行。</p>
+        <span class="use">第 4 页：一层有 100 个小正方体。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 正方体的体积" data-step="3">
+        <p class="big center">$V=a^3$</p>
+        <p>正方体的体积 = 棱长 × 棱长 × 棱长。</p>
+        <span class="use">第 3 页：算两个正方体的体积。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">长度进率是 10，面积进率是 100，体积进率是多少呢？</p>
+  </div>
+  <p class="note">第 2 张卡的推理方式（一行 10 个、10 行）正是本课推理的“前一半”。</p>
+</section>
+
+<!-- 3 ================= 例 12 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 12</span><h2>下面两个正方体的体积相等吗？为什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="twov" class="view3"></div>
+      <p class="s3d-hint">左：棱长 1 分米　右：棱长 10 厘米（同一比例）</p>
+    </div>
+    <div class="col">
+      <p class="tip">两个正方体的体积相等吗？　<span class="think" data-step="1" data-ask="先判断">相等！1 分米 = 10 厘米，两个正方体<b>棱长相等</b>，体积就相等。</span></p>
+      <div class="calc" data-step="2">
+        <p>左边：棱长 1 分米的正方体，体积是 <span class="blank" data-ans="1"></span> 立方分米。</p>
+        <p>右边：$10\times10\times10=$ <span class="blank" data-ans="1000" data-w="4"></span>（立方厘米）。</p>
+      </div>
+      <div class="def" data-step="3">1 立方分米 = <span class="blank" data-ans="1000" data-w="4"></span> 立方厘米</div>
+    </div>
+  </div>
+  <p class="note">课本 p19 例 12 和两个小精灵的说法。同一个正方体，用两种单位量，得到两个数：1 和 1000。下一页把它切开看清楚这 1000 个是怎么来的。</p>
+</section>
+
+<!-- 4 ================= 放大分割 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">切一切</span><h2>1 立方分米里到底有多少个 1 立方厘米？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="splitv" class="view3 tall"></div>
+      <div class="btns" data-noswipe id="splitK"><button type="button" class="btn solid" data-k="0">整块</button><button type="button" class="btn" data-k="1">① 切出一排</button><button type="button" class="btn" data-k="2">② 切出一层</button><button type="button" class="btn" data-k="3">③ 分成 10 层</button></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="splitMsg"></p>
+      <table class="mtab">
+        <tr><th></th><th>个数</th><th>想法</th></tr>
+        <tr><td>一排</td><td><span class="blank" data-ans="10"></span></td><td>棱长 10 厘米，一排摆 10 个</td></tr>
+        <tr><td>一层</td><td><span class="blank" data-ans="100"></span></td><td>10 排：$10\times10$</td></tr>
+        <tr><td>整块</td><td><span class="blank" data-ans="1000" data-w="4"></span></td><td>10 层：$100\times10$</td></tr>
+      </table>
+      <p class="tip gold" data-step="1">用同样的方法想：1 立方米 = <span class="blank" data-ans="1000" data-w="4"></span> 立方分米。　<span class="think" data-step="2" data-ask="为什么？">1 米 = 10 分米，棱长 1 米的正方体，一排 10 个 1 dm³，一层 100 个，10 层 1000 个。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心演示：把棱长 1 分米的正方体按 1 厘米精确分割（共 1000 个小正方体，网格由程序画出）。依次点①②③：先把最前面的一排拉出来（10 个），再把最上面一层抬起来（100 个），最后把 10 层全部分开。每一步先让学生说个数，再点。</p>
+</section>
+
+<!-- 5 ================= 进率对比 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比一比</span><h2>为什么长度、面积、体积的进率是 10、100、1000？</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard center"><svg id="g1" class="fig2d g3" viewBox="0 0 220 180"></svg><p>1 分米 = <span class="blank" data-ans="10"></span> 厘米</p><p class="muted small-t">1 条线段：10 段</p></div>
+      <div class="jcard center"><svg id="g2" class="fig2d g3" viewBox="0 0 220 180"></svg><p>1 平方分米 = <span class="blank" data-ans="100"></span> 平方厘米</p><p class="muted small-t">10 行 × 每行 10 个</p></div>
+      <div class="jcard center"><div id="g3" class="g3 v"></div><p>1 立方分米 = <span class="blank" data-ans="1000" data-w="4"></span> 立方厘米</p><p class="muted small-t">10 层 × 每层 100 个</p></div>
+    </div>
+    <table class="mtab" data-step="1">
+      <tr><th></th><th>单位</th><th>相邻两个单位间的进率</th></tr>
+      <tr><td>长度</td><td>米、分米、厘米</td><td>10</td></tr>
+      <tr><td>面积</td><td>平方米、平方分米、平方厘米</td><td><span class="think" data-step="2" data-ask="？">100</span></td></tr>
+      <tr><td>体积</td><td>立方米、立方分米、立方厘米</td><td><span class="think" data-step="2" data-ask="？">1000</span></td></tr>
+    </table>
+  </div>
+  <p class="note">对应练习四第 9 题的表格。三幅图都按 1 分米 = 10 厘米精确画：线段 10 段，正方形 10×10，正方体 10×10×10。</p>
+</section>
+
+<!-- 6 ================= 换算方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>体积单位怎样换算？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="calc">
+        <p>5 立方分米 = <span class="blank" data-ans="5000" data-w="4"></span> 立方厘米</p>
+        <p>0.24 立方米 = <span class="blank" data-ans="240"></span> 立方分米</p>
+        <p>7500 立方厘米 = <span class="blank" data-ans="7.5"></span> 立方分米</p>
+      </div>
+      <div class="hint-ladder">
+        <details><summary>提示 1</summary>1 立方分米 = 1000 立方厘米，5 立方分米就是 5 个 1000。</details>
+        <details><summary>提示 2</summary>7500 立方厘米里有几个 1000 立方厘米？$7500\div1000$。</details>
+        <details><summary>完整解答</summary>$5\times1000=5000$；$0.24\times1000=240$；$7500\div1000=7.5$</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="conv">
+        <div class="cv-u">立方米 m³</div><div class="cv-a">× 1000 ↓　↑ ÷ 1000</div>
+        <div class="cv-u">立方分米 dm³（升 L）</div><div class="cv-a">× 1000 ↓　↑ ÷ 1000</div>
+        <div class="cv-u">立方厘米 cm³（毫升 mL）</div>
+      </div>
+      <p class="method" data-step="1" data-label="换算">大单位 → 小单位：乘进率 1000；小单位 → 大单位：除以进率 1000。<br>乘、除以 1000，就是把小数点向右、向左移动<b>三位</b>。</p>
+      <p class="tip" data-step="2">1 升 = <span class="blank" data-ans="1000" data-w="4"></span> 毫升　<span class="think" data-step="3" data-ask="为什么？">1 升 = 1 立方分米 = 1000 立方厘米 = 1000 毫升。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p19 练一练。第 2 题 0.24 立方米：小数点向右移三位，个位补 0 → 240。升与毫升的进率课本没有单独讲，但练习四第 12 题要用，从“1 升 = 1 立方分米、1 毫升 = 1 立方厘米”推出。</p>
+</section>
+
+<!-- 7 ================= 练习四 10–12 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四</span><h2>长度、面积、体积单位，别弄混</h2></div>
+  <div class="bd full top">
+    <div class="cols3 conv-q">
+      <div class="calc">
+        <h4>第 10 题</h4>
+        <p>4 m = <span class="blank" data-ans="40"></span> dm</p>
+        <p>4 m² = <span class="blank" data-ans="400"></span> dm²</p>
+        <p>4 m³ = <span class="blank" data-ans="4000" data-w="4"></span> dm³</p>
+        <p>3.6 dm = <span class="blank" data-ans="36"></span> cm</p>
+        <p>3.6 dm² = <span class="blank" data-ans="360"></span> cm²</p>
+        <p>3.6 dm³ = <span class="blank" data-ans="3600" data-w="4"></span> cm³</p>
+      </div>
+      <div class="calc">
+        <h4>第 10、11 题</h4>
+        <p>30 cm = <span class="blank" data-ans="3"></span> dm</p>
+        <p>600 cm² = <span class="blank" data-ans="6"></span> dm²</p>
+        <p>420 cm³ = <span class="blank" data-ans="0.42" data-w="4"></span> dm³</p>
+        <p>0.5 dm³ = <span class="blank" data-ans="500"></span> cm³</p>
+        <p>8500 dm³ = <span class="blank" data-ans="8.5"></span> m³</p>
+        <p>2.03 m³ = <span class="blank" data-ans="2030" data-w="4"></span> dm³</p>
+      </div>
+      <div class="calc">
+        <h4>第 11、12 题</h4>
+        <p>6780 cm³ = <span class="blank" data-ans="6.78" data-w="4"></span> dm³</p>
+        <p>1.2 L = <span class="blank" data-ans="1200" data-w="4"></span> mL</p>
+        <p>2.7 L = <span class="blank" data-ans="2.7"></span> dm³</p>
+        <p>800 mL = <span class="blank" data-ans="0.8"></span> L</p>
+        <p>350 mL = <span class="blank" data-ans="350"></span> cm³</p>
+      </div>
+    </div>
+    <p class="warn" data-step="1">先看单位是长度、面积还是体积，再定进率是 10、100 还是 1000。升和立方分米、毫升和立方厘米是“相等”关系，不用换算。</p>
+  </div>
+  <p class="note">课本 p21 练习四第 10–12 题。第 10 题三行对比着做，最容易看出进率的不同。</p>
+</section>
+
+<!-- 8 ================= 练习四 15–17 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四</span><h2>表面积、体积一起算，注意单位</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc">
+        <h4>第 15 题</h4>
+        <table class="mtab">
+          <tr><th></th><th>长</th><th>宽</th><th>高</th><th>表面积</th><th>体积</th></tr>
+          <tr><th rowspan="3">长方体</th><td>10 cm</td><td>8 cm</td><td>6 cm</td><td><span class="blank" data-ans="376"></span> cm²</td><td><span class="blank" data-ans="480"></span> cm³</td></tr>
+          <tr><td>5 dm</td><td>5 dm</td><td>4 dm</td><td><span class="blank" data-ans="130"></span> dm²</td><td><span class="blank" data-ans="100"></span> dm³</td></tr>
+          <tr><td>0.5 m</td><td>0.3 m</td><td>0.2 m</td><td><span class="blank" data-ans="0.62" data-w="4"></span> m²</td><td><span class="blank" data-ans="0.03" data-w="4"></span> m³</td></tr>
+          <tr><th>正方体</th><td colspan="3">棱长 4 dm</td><td><span class="blank" data-ans="96"></span> dm²</td><td><span class="blank" data-ans="64"></span> dm³</td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>16.</b> 煤气灶包装箱长 8 dm、宽 4 dm、高 1.5 dm。至少用硬纸板 <span class="blank" data-ans="100"></span> dm²，合 <span class="blank" data-ans="1"></span> m²；体积 <span class="blank" data-ans="48"></span> dm³，合 <span class="blank" data-ans="0.048" data-w="5"></span> m³。</p>
+          <details><summary>完整解答</summary>$(8\times4+8\times1.5+4\times1.5)\times2=100$（dm²）$=1$ m²；$8\times4\times1.5=48$（dm³）$=0.048$ m³</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>17.</b> 无盖铁皮水槽长 12 dm、宽 5 dm、高 2 dm。至少需要铁皮 <span class="blank" data-ans="128"></span> dm²；最多盛水 <span class="blank" data-ans="120"></span> 升。</p>
+          <details><summary>提示 1</summary>无盖：下面 + 前后 + 左右；盛水用体积，1 dm³ = 1 L。</details>
+          <details><summary>完整解答</summary>$12\times5+(12\times2+5\times2)\times2=128$（dm²）；$12\times5\times2=120$（dm³）$=120$ L</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p21–22 练习四第 15、16、17 题。第 16 题面积单位进率是 100，体积单位进率是 1000，学生最容易在这里混。</p>
+</section>
+
+<!-- 9 ================= 思考题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考题</span><h2>高增加 2 厘米就成了正方体，表面积增加 56 平方厘米</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="thinkv" class="view3"></div>
+      <div class="slider-row" data-noswipe>增加的高 <input type="range" id="tH" min="0" max="2" step="0.05" value="2"><b id="tHv"></b> cm</div>
+    </div>
+    <div class="col">
+      <p class="tip">一个长方体，如果高增加 2 cm，就变成一个正方体。这时表面积比原来增加 56 cm²。原来长方体的体积是多少立方厘米？</p>
+      <div class="hint-ladder">
+        <details><summary>提示 1</summary>增加的表面积在哪里？上、下面的大小没变，只有<b>4 个侧面</b>各多出一条“长 × 2”的长方形（橙色）。</details>
+        <details><summary>提示 2</summary>4 个长方形一样大，每个 $56\div4=14$（cm²），长 = $14\div2=7$（cm），就是正方体的棱长。</details>
+        <details><summary>完整解答</summary>原来长方体长 7 cm、宽 7 cm、高 $7-2=5$ cm，体积 $7\times7\times5=245$（cm³）。</details>
+      </div>
+      <p class="tip">原来长方体的体积是 <span class="blank" data-ans="245"></span> cm³。</p>
+    </div>
+  </div>
+  <p class="note">课本 p22 思考题。左图按答案尺寸画（棱长 7 cm，原高 5 cm），拖滑块看增加的 2 cm 怎样“长”出来：4 个侧面各多一条 7 × 2 的长方形，$4\times7\times2=56$，正好对上。建议先让学生想，再逐级看提示。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>10、100、1000</h2></div>
+  <div class="bd full">
+    <div class="cols2 sum">
+      <div class="col">
+        <h3>知识</h3>
+        <p class="recall" data-label="体积单位的进率" data-step="1">1 立方米 = 1000 立方分米；1 立方分米 = 1000 立方厘米；1 升 = 1000 毫升。</p>
+        <p class="recall" data-label="对比" data-step="2">相邻长度单位进率 10，面积单位 100，体积单位 1000。</p>
+      </div>
+      <div class="col">
+        <h3>方法</h3>
+        <p class="method" data-label="推理" data-step="3">一排 10 个 → 一层 $10\times10$ 个 → 10 层 $10\times10\times10$ 个；用正方体体积公式验证。</p>
+        <p class="tip gold" data-step="4"><b>本单元回顾：</b>认识 → 展开图 → 表面积 → 体积和体积单位 → 体积公式 → 进率。课本 p23–25 有整理与练习。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课后：练习四第 14、18、19 题；“你知道吗”：包装箱上的连乘式子 185×150×230 就是长、宽、高（mm）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="../shared/mcube.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
