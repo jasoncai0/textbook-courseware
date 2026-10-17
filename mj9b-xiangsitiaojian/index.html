@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>探索三角形相似的条件 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tanjiu-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第6章 图形的相似 · 6.4</p>
+    <h1 class="cover-title">探索三角形相似的条件</h1>
+    <p class="cover-q" data-step="1">两个相似三角形的对应角相等，对应边成比例。反过来，要说明两个三角形相似，一定要把 <b>3 个角、3 组边</b>全部检验一遍吗？</p>
+    <p class="cover-q" data-step="2">判定全等时，我们只用 3 个条件（SSS、SAS、ASA、AAS）。判定相似，能不能也“省”一些条件？</p>
+    <div class="chips" data-step="3"><span class="chip">平行线分线段成比例</span><span class="chip">两角</span><span class="chip">两边及夹角</span><span class="chip">三边</span><span class="chip">重心</span></div>
+  </div>
+  <p class="note">课本 p53 引言。本课内容很多（课本 p53–68），建议分 3–4 课时：①平行线分线段成比例与例 1（第 3–5 页）；②两角（第 6–8 页）；③两边及夹角、三边（第 9–14 页）；④综合应用、重心、小结（第 15–18 页）。封面把“全等的判定”拿来类比，让学生先猜。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="上一课 · 6.3 相似图形" data-step="1">
+        <p>各角分别相等、各边成比例的两个多边形叫<b>相似多边形</b>；两个条件缺一不可（矩形、菱形的反例）。</p>
+        <span class="use">本课要证明：对三角形来说，条件可以少一些。</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 1.3 探索三角形全等的条件" data-step="2">
+        <p>SSS、SAS、ASA、AAS；直角三角形还有 HL。</p>
+        <span class="use">证明相似判定定理时，最后一步要用全等；判定定理的形式也和它们类比。</span>
+      </div>
+      <div class="recall" data-label="七年级下册 · 7.2 探索平行线的性质" data-step="3">
+        <p>两直线平行，同位角相等、内错角相等。</p>
+        <span class="use">例 1：由 $DE\parallel BC$ 得 $\angle ADE=\angle B$。</span>
+      </div>
+      <div class="recall" data-label="6.1 成比例线段 · 八年级下册 平行四边形" data-step="4">
+        <p>比例的基本性质；平行四边形的对边相等。</p>
+        <span class="use">例 1 中由 ▱$DFCE$ 得 $DE=FC$，再换比例式。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">四张卡分别对应本课的四个环节：相似的定义（目标）、全等的判定（类比和证明工具）、平行线性质（证角相等）、成比例与平行四边形（证边成比例）。第二张卡请学生把四种全等判定说一遍。</p>
+</section>
+
+<!-- 3 ================= 平行线分线段成比例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>两条直线被一组平行线所截</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="parBd" class="mboard parbd"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" data-par="1">图 6-10(1)</button><button class="btn" type="button" data-par="2">图 6-10(2)</button><button class="btn" type="button" data-par="3">图 6-10(3)</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">拖动直线 $a$、$b$ 的端点，或拖左端的点改变 $l_2$、$l_3$ 的位置（$l_1\parallel l_2\parallel l_3$ 始终成立）。</p>
+      <div class="readout lab-read" id="parRead"></div>
+      <p class="tip" data-step="1">你有什么发现？<span class="think" data-step="2" data-ask="说一说">小明：$\dfrac{AB}{BC}=\dfrac{DE}{EF}$；小丽：$\dfrac{AB}{AC}=\dfrac{DE}{DF}$，$\dfrac{BC}{AC}=\dfrac{EF}{DF}$。</span></p>
+      <p class="thm" data-step="3"><b>基本事实</b>　两条直线被一组平行线所截，所得的对应线段成比例．</p>
+    </div>
+  </div>
+  <p class="note">课本 p53“尝试与交流”与图 6-10。先让学生画、量，再用这块板验证：三种位置（不相交、在中间相交、交点在 l₁ 上）比值都相等。画 4 条、5 条平行线结论仍成立。这是“基本事实”，不证明，直接用——像七年级的“同位角相等，两直线平行”一样。所有长度由交点坐标实时计算。</p>
+</section>
+
+<!-- 4 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>例 1　平行于一边的直线截出的三角形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 6-11，在 $\triangle ABC$ 中，点 $D$、$E$ 分别在 $AB$、$AC$ 上，且 $DE\parallel BC$．试说明 $\triangle ADE$ 与 $\triangle ABC$ 相似的理由．</p>
+      <div id="ex1Bd" class="mboard ex1bd"></div>
+      <div class="slider-row" data-noswipe>$\dfrac{AD}{AB}$：<input type="range" id="ex1T" min="0.2" max="0.85" step="0.01" value="0.35"><b class="v" id="ex1TV"></b></div>
+      <p class="tip feedback small-d" id="ex1Msg"></p>
+    </div>
+    <div class="col">
+      <p class="tip gold small-d" data-step="1"><b>分析：</b>各角相等容易（平行线）；边要证 $\dfrac{AD}{AB}=\dfrac{AE}{AC}=\dfrac{DE}{BC}$。前两个比由基本事实可得；<span class="think" data-step="2" data-ask="DE/BC 怎么办？">把 $DE$ 平移到 $FC$ 的位置：作 $DF\parallel AC$。</span></p>
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="3"><span>解：</span><span>过点 $D$ 作 $DF\parallel AC$，交 $BC$ 于点 $F$．</span><i class="why">作辅助线</i></div>
+        <div class="dl" data-step="4"><span>∵</span><span>$DE\parallel BC$，$DF\parallel AC$，</span><i class="why">已知、作图</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span>$\dfrac{AD}{AB}=\dfrac{AE}{AC}$，$\dfrac{AD}{AB}=\dfrac{FC}{BC}$</span><i class="why"><button class="yj" data-k="px-fd"></button></i></div>
+        <div class="dl" data-step="5"><span>∵</span><span>四边形 $DFCE$ 是平行四边形，∴ $DE=FC$．</span><i class="why">平行四边形的对边相等</i></div>
+        <div class="dl" data-step="6"><span>∴</span><span>$\dfrac{AD}{AB}=\dfrac{AE}{AC}=\dfrac{DE}{BC}$．</span><i class="why">等量代换</i></div>
+        <div class="dl" data-step="7"><span>∵</span><span>$DE\parallel BC$，∴ $\angle ADE=\angle B$，$\angle AED=\angle C$．</span><i class="why"><button class="yj" data-k="tw-xz"></button></i></div>
+        <div class="dl end" data-step="8"><span>又∵</span><span>$\angle DAE=\angle BAC$，∴ $\triangle ADE\backsim\triangle ABC$．</span><i class="why">相似多边形的定义</i></div>
+      </div>
+      <p class="thm" data-step="9"><b>结论</b>　平行于三角形一边的直线与其他两边相交，所截得的三角形与原三角形相似．</p>
+    </div>
+  </div>
+  <p class="note">课本 p54 例 1、图 6-11。滑块改变 DE 的位置，读数显示三个比始终相等，虚线 DF 是辅助线。证明的难点是第三个比 DE/BC：DE 不在 AB、AC 上，要借平行四边形把它“搬”到 BC 上——这是“转化”的思想。这个结论是后面证明三个判定定理的“桥梁”。</p>
+</section>
+
+<!-- 5 ================= 练习 p54-55 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>用基本事实和例 1 的结论</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，$l_1\parallel l_2\parallel l_3$，直线 $a$、$b$ 与 $l_1$、$l_2$、$l_3$ 分别相交于点 $A$、$B$、$C$ 和点 $D$、$E$、$F$．设 $AB=3$，$BC=5$，$DE=4$，求 $EF$ 的长．</p>
+        <div id="pr1Fig" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>基本事实：$\dfrac{AB}{BC}=\dfrac{DE}{EF}$。</details>
+        <details><summary>完整解答</summary>$\dfrac35=\dfrac4{EF}$，$EF=\dfrac{20}{3}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$OC$ 是 $\angle AOB$ 内的一条射线，点 $D$、$D'$ 在 $OC$ 上，过点 $D$、$D'$ 分别作 $OA$、$OB$ 的垂线，垂足分别为 $E$、$E'$ 和 $F$、$F'$．(1) 图中有几对相似三角形？是哪几对？(2) $\dfrac{DE}{D'E'}$ 与 $\dfrac{DF}{D'F'}$ 相等吗？为什么？</p>
+        <div id="pr2Fig" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>$DE\parallel D'E'$（都垂直于 $OA$），用例 1 的结论。</details>
+        <details><summary>完整解答</summary>(1) 2 对：$\triangle ODE\backsim\triangle OD'E'$，$\triangle ODF\backsim\triangle OD'F'$．<br>(2) 相等：$\dfrac{DE}{D'E'}=\dfrac{OD}{OD'}=\dfrac{DF}{D'F'}$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p54–55 练习。第 2 题的关键是先看出 DE∥D′E′（同垂直于一条直线的两直线平行），再用例 1 的结论；第 (2) 问用 OD/OD′ 做“中间比”。两图按题意坐标精确画出。</p>
+</section>
+
+<!-- 6 ================= 两角：实验 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实践 · 探索</span><h2>已知两个角，作出的三角形都相似吗？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="aaBd" class="mboard labbd"></div>
+      <div class="slider-row" data-noswipe>$\angle\alpha$<input type="range" id="aaA" min="30" max="100" step="1" value="62"><b class="v" id="aaAV"></b>　$\angle\beta$<input type="range" id="aaB" min="30" max="80" step="1" value="58"><b class="v" id="aaBV"></b>　$B'C'$<input type="range" id="aaL" min="2" max="4.6" step="0.1" value="3.2"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="aaMove">平移 △A′B′C′，使 A′ 与 A 重合</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-d">作 $\triangle ABC$、$\triangle A'B'C'$，使 $\angle A=\angle A'=\alpha$，$\angle B=\angle B'=\beta$（图 6-12、6-13）。拖滑块改变角和大小：</p>
+      <table class="mtab lab-tab" id="aaTab"></table>
+      <div class="derive wrap small-d" data-step="1">
+        <div class="dl"><span>证明思路</span><span>平移 $\triangle A'B'C'$，使 $A'$ 与 $A$ 重合，$A'B'$ 落在 $AB$ 上</span><i class="why">平移不改变形状、大小</i></div>
+        <div class="dl" data-step="2"><span>∵</span><span>$\angle A'=\angle A$，∴ $A'C'$ 落在 $AC$ 上；</span><i class="why">角相等，边重合</i></div>
+        <div class="dl" data-step="3"><span>∵</span><span>$\angle AB'C'=\angle B$，∴ $B'C'\parallel BC$．</span><i class="why"><button class="yj" data-k="tw-pd"></button></i></div>
+        <div class="dl end" data-step="4"><span>∴</span><span>$\triangle ABC\backsim\triangle AB'C'$，即 $\triangle ABC\backsim\triangle A'B'C'$．</span><i class="why"><button class="yj" data-k="yu-bei"></button></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p55“实践与探索”与图 6-12～6-14。先让学生在练习本上作图：两个角定了，三角形可以作无数个，大小不同但看起来形状都一样。用滑块验证：第三个角自动相等，三组边的比也相等。再点“平移”按钮看证明（图 6-14）：A′ 与 A 重合后，B′C′ 与 BC 平行——转化成例 1 的情形。所有角度、比值都由坐标实时算出。</p>
+</section>
+
+<!-- 7 ================= 定理 AA + 例 2、例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理 · 例题</span><h2>两角分别相等的两个三角形相似</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="thm" data-step="1"><b>定理</b>　两角分别相等的两个三角形相似．</p>
+      <p class="tip small-d"><b>例 2</b>　如图 6-15，在 $\triangle ABC$ 和 $\triangle A'B'C'$ 中，$\angle A=50^\circ$，$\angle B=\angle B'=60^\circ$，$\angle C'=70^\circ$．$\triangle ABC$ 与 $\triangle A'B'C'$ 相似吗？为什么？</p>
+      <div class="cmp-figs"><div id="f615a" class="mboard gfig"></div><div id="f615b" class="mboard gfig"></div></div>
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="2"><span>解：</span><span>在 $\triangle ABC$ 中，$\angle C=180^\circ-(50^\circ+60^\circ)=70^\circ$．</span><i class="why">三角形内角和</i></div>
+        <div class="dl end" data-step="3"><span>∵</span><span>$\angle B=\angle B'$，$\angle C=\angle C'$，∴ $\triangle ABC\backsim\triangle A'B'C'$．</span><i class="why"><button class="yj" data-k="aa"></button></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip small-d"><b>例 3</b>　如图 6-16，在 $\triangle ABC$ 中，$AB=AC$，点 $D$、$E$ 分别在 $BC$、$AB$ 上，且 $\angle BDE=\angle CAD$．$\triangle ADE$ 与 $\triangle ABD$ 相似吗？为什么？</p>
+      <div id="f616" class="mboard gfig l"></div>
+      <p class="tip gold small-d" data-step="4"><b>分析：</b>$\angle DAB$ 是公共角，<span class="think" data-step="5" data-ask="还差什么？">只要再证 $\angle ADE=\angle B$。</span></p>
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="6"><span>∵</span><span>$\angle ADB=\angle ADE+\angle BDE$，$\angle ADB=\angle CAD+\angle C$，</span><i class="why"><button class="yj" data-k="ext-angle"></button></i></div>
+        <div class="dl" data-step="7"><span></span><span>$\angle BDE=\angle CAD$，∴ $\angle ADE=\angle C$．</span><i class="why">等式性质</i></div>
+        <div class="dl" data-step="8"><span>又∵</span><span>$AB=AC$，∴ $\angle B=\angle C$，∴ $\angle ADE=\angle B$．</span><i class="why"><button class="yj" data-k="dy-xz"></button></i></div>
+        <div class="dl end" data-step="9"><span>∵</span><span>$\angle DAE=\angle BAD$，∴ $\triangle ADE\backsim\triangle ABD$．</span><i class="why"><button class="yj" data-k="aa"></button></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p55–56 定理、例 2、例 3。例 2 注意书写：先求出第三个角，再在两个三角形中找“两角分别相等”。例 3 的突破口是“公共角”，再借外角把已知的 ∠BDE = ∠CAD 转化为 ∠ADE = ∠C。图 6-16 按 ∠BDE = ∠CAD 用坐标精确作出点 E。点依据按钮可看到完整的依据卡。</p>
+</section>
+
+<!-- 8 ================= 练习 p57 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>用“两角”判定</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在 $\triangle ABC$ 和 $\triangle A'B'C'$ 中，$\angle A=\angle A'$，$\dfrac{AB}{A'B'}=k$，$\angle B=\angle B'$．(1) 当 $k=1$ 时，两三角形有怎样的关系？(2) 当 $k\neq1$ 时呢？</p>
+        <details><summary>提示 1</summary>$k=1$ 即 $AB=A'B'$，想想 ASA。</details>
+        <details><summary>完整解答</summary>(1) 全等（ASA）；(2) 相似（两角分别相等），相似比为 $k$．全等是 $k=1$ 的特殊相似。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$BC\parallel ED$，计算 $AB$、$AC$ 的长．</p>
+        <div id="p57b" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>$\angle E=\angle C$、$\angle D=\angle B$（内错角），$\triangle AED\backsim\triangle ACB$。</details>
+        <details><summary>提示 2</summary>$\dfrac{AE}{AC}=\dfrac{AD}{AB}=\dfrac{ED}{CB}=\dfrac{12}{18}=\dfrac23$。</details>
+        <details><summary>完整解答</summary>$AC=8\times\dfrac32=12$，$AB=10\times\dfrac32=15$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在矩形 $ABCD$ 中，$DE\perp AC$，垂足为 $E$．图中有哪些三角形与 $\triangle ABC$ 相似？为什么？</p>
+        <div id="p57c" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>找直角三角形，再找一组相等的锐角（平行线的内错角）。</details>
+        <details><summary>完整解答</summary>$\triangle DEA$：$\angle DEA=\angle B=90^\circ$，$\angle DAE=\angle ACB$；<br>$\triangle CED$：$\angle CED=\angle B$，$\angle DCE=\angle CAB$；<br>$\triangle CDA$：$\angle D=\angle B$，$\angle DCA=\angle CAB$．<br>所以 $\triangle ABC\backsim\triangle DEA\backsim\triangle CED\backsim\triangle CDA$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p57 练习。第 2 题是“X 型”（8 字型）相似，对应关系要看清：A 对 A、E 对 C、D 对 B。第 3 题写相似时注意对应顶点的顺序。两图按题中数据（ED = 12、AE = 8、AD = 10、BC = 18）和矩形比例精确画出。</p>
+</section>
+
+<!-- 9 ================= 两边及夹角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实践 · 探索</span><h2>两边成比例、夹角相等，就相似吗？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="sasBd" class="mboard labbd"></div>
+      <div class="slider-row" data-noswipe>$\angle A$<input type="range" id="sasA" min="30" max="110" step="1" value="62"><b class="v" id="sasAV"></b>　$k=\dfrac{A'B'}{AB}=\dfrac{A'C'}{AC}$<input type="range" id="sasK" min="0.3" max="0.9" step="0.05" value="0.5"><b class="v" id="sasKV"></b></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="sasCut">在 AB 上截取 AB″ = A′B′，作 B″C″∥BC</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-d">图 6-17：作 $\triangle A'B'C'$，使 $\angle A'=\angle A$，$\dfrac{A'B'}{AB}=\dfrac{A'C'}{AC}=k$。改变 $k$ 再试一试：</p>
+      <table class="mtab lab-tab" id="sasTab"></table>
+      <div class="derive wrap small-d" data-step="1">
+        <div class="dl"><span>证明</span><span>在 $AB$ 上截取 $AB''=A'B'$，过 $B''$ 作 $B''C''\parallel BC$ 交 $AC$ 于 $C''$</span><i class="why">图 6-19</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span>$\triangle ABC\backsim\triangle AB''C''$，$\dfrac{AB}{AB''}=\dfrac{AC}{AC''}$</span><i class="why"><button class="yj" data-k="yu-bei"></button></i></div>
+        <div class="dl" data-step="3"><span>又</span><span>$AB''=A'B'$，$\dfrac{AB}{A'B'}=\dfrac{AC}{A'C'}$，∴ $AC''=A'C'$</span><i class="why">等量代换</i></div>
+        <div class="dl end" data-step="4"><span>∴</span><span>$\triangle AB''C''\cong\triangle A'B'C'$，$\triangle ABC\backsim\triangle A'B'C'$</span><i class="why"><button class="yj" data-k="qd-sas"></button></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p57–58“实践与探索”与图 6-17～6-19。先作图、量第三边和另两个角，发现都对应成比例/相等。证明要“造”一个和 △A′B′C′ 全等、又和 △ABC 相似的三角形：在 AB 上截取 AB″ = A′B′ 并作平行线。点按钮在左图画出 △AB″C″（绿色），它与右边的 △A′B′C′ 全等（SAS）。</p>
+</section>
+
+<!-- 10 ================= 定理 SAS + 例 4 + 思考与探索 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理 · 例题</span><h2>两边成比例且夹角相等的两个三角形相似</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="thm" data-step="1"><b>定理</b>　两边成比例且夹角相等的两个三角形相似．</p>
+      <p class="tip small-d"><b>例 4</b>　如图 6-20，点 $D$ 在 $\triangle ABC$ 内，点 $E$ 在 $\triangle ABC$ 外，且 $\angle1=\angle2$，$\angle3=\angle4$．$\triangle DBE$ 与 $\triangle ABC$ 相似吗？为什么？</p>
+      <div id="f620" class="mboard gfig l"></div>
+    </div>
+    <div class="col">
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="2"><span>分析</span><span>易知 $\angle DBE=\angle ABC$；只需 $\dfrac{BD}{AB}=\dfrac{BE}{BC}$．</span><i class="why">夹角 + 两边</i></div>
+        <div class="dl" data-step="3"><span>解：</span><span>在 $\triangle ABD$ 和 $\triangle CBE$ 中，∵ $\angle1=\angle2$，$\angle3=\angle4$，</span><i class="why">已知</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span>$\triangle ABD\backsim\triangle CBE$，∴ $\dfrac{BD}{AB}=\dfrac{BE}{BC}$．</span><i class="why"><button class="yj" data-k="aa"></button>；对应边成比例</i></div>
+        <div class="dl" data-step="5"><span>又∵</span><span>$\angle2=\angle1$，∴ $\angle DBE=\angle ABC$．</span><i class="why">两边都加 $\angle DBC$</i></div>
+        <div class="dl end" data-step="6"><span>∴</span><span>$\triangle DBE\backsim\triangle ABC$．</span><i class="why"><button class="yj" data-k="sas-s"></button></i></div>
+      </div>
+      <div class="hint-ladder" data-step="7">
+        <p class="q"><b>思考与探索</b>（图 6-21）在 $\triangle ABC$ 中，$AB=4$，$AC=2$．(1) 在 $AB$ 上确定点 $D$，使 $\triangle ACD\backsim\triangle ABC$；(2) 在 $AC$ 的延长线上确定点 $E$，使 $\triangle AEB\backsim\triangle ABC$．此时 $BE$ 与 $DC$ 有怎样的位置关系？</p>
+        <details><summary>提示 1</summary>公共角 $\angle A$ 是夹角：$\dfrac{AC}{AB}=\dfrac{AD}{AC}$，$\dfrac{AE}{AB}=\dfrac{AB}{AC}$。</details>
+        <details><summary>完整解答</summary>(1) $AD=\dfrac{AC^2}{AB}=1$；(2) $AE=\dfrac{AB^2}{AC}=8$．由两次相似，$\angle AEB=\angle ABC=\angle ACD$，所以 $BE\parallel DC$（同位角相等）。<div id="f621" class="mboard gfig"></div></details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p58–59 定理、例 4、图 6-20、思考与探索、图 6-21。例 4 是“先证一对相似，得到比例式，再证另一对相似”的两步法，要点是比例式要“换位”成 BD/AB = BE/BC，正好是 △DBE 与 △ABC 的两边。图 6-20 中的 E 由 D 绕 B 按 ∠ABC 旋转并放大 BC/BA 倍精确作出，所以 ∠1 = ∠2、∠3 = ∠4 严格成立。</p>
+</section>
+
+<!-- 11 ================= 练习 p59 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>用“两边及夹角”判定</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在 $\triangle ABC$ 和 $\triangle A'B'C'$ 中，$\angle A=\angle A'$，$\dfrac{AB}{A'B'}=\dfrac{AC}{A'C'}=k$．(1) 当 $k=1$ 时，两三角形有怎样的关系？(2) 当 $k\neq1$ 时呢？</p>
+        <details><summary>完整解答</summary>(1) 全等（SAS）；(2) 相似（两边成比例且夹角相等），相似比为 $k$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$\angle1=\angle2$．要使 $\triangle ABC\backsim\triangle ADE$，还需添加什么条件？</p>
+        <div id="p59b" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>$\angle1=\angle2$ ⇒ 两边同加 $\angle BAE$：$\angle BAC=\angle DAE$。</details>
+        <details><summary>完整解答</summary>已有一组角相等，可添加：$\angle B=\angle D$，或 $\angle C=\angle AED$（两角）；或 $\dfrac{AB}{AD}=\dfrac{AC}{AE}$（两边成比例且夹角相等）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 如图，在正方形 $ABCD$ 中，$E$ 是 $AD$ 的中点，点 $F$ 在 $CD$ 上，且 $CF=3FD$．$\triangle ABE$ 与 $\triangle DEF$ 相似吗？为什么？</p>
+        <div id="p59c" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>设正方形边长为 4，算出 $AE$、$DE$、$DF$。</details>
+        <details><summary>完整解答</summary>相似．设边长为 4，则 $AE=DE=2$，$DF=1$；$\dfrac{AB}{DE}=\dfrac42=2$，$\dfrac{AE}{DF}=\dfrac21=2$，且 $\angle A=\angle D=90^\circ$，所以 $\triangle ABE\backsim\triangle DEF$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p59 练习。第 2 题图中 ∠1 = ∠DAB、∠2 = ∠EAC（按课本图画出），答案开放：两角或两边夹角都可以。第 3 题“设边长为 4”避免分数，正方形图按 CF = 3FD 精确画出；注意对应：AB 对 DE、AE 对 DF。</p>
+</section>
+
+<!-- 12 ================= 三边 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实践 · 探索</span><h2>三边成比例，就相似吗？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="sssBd" class="mboard labbd"></div>
+      <div class="slider-row" data-noswipe>$k=\dfrac{A'B'}{AB}=\dfrac{B'C'}{BC}=\dfrac{C'A'}{CA}$<input type="range" id="sssK" min="0.3" max="0.9" step="0.05" value="0.5"><b class="v" id="sssKV"></b></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="sssCut">截取 AB″ = A′B′，作 B″C″∥BC</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-d">图 6-22：拖动 $A$、$B$、$C$ 改变 $\triangle ABC$；按三边 $k\cdot AB$、$k\cdot BC$、$k\cdot CA$ 用圆规作出 $\triangle A'B'C'$（虚线弧）：</p>
+      <table class="mtab lab-tab" id="sssTab"></table>
+      <div class="derive wrap small-d" data-step="1">
+        <div class="dl"><span>证明</span><span>同前：$\triangle ABC\backsim\triangle AB''C''$，$\dfrac{AB}{AB''}=\dfrac{BC}{B''C''}=\dfrac{CA}{C''A}$</span><i class="why"><button class="yj" data-k="yu-bei"></button></i></div>
+        <div class="dl" data-step="2"><span>又</span><span>$AB''=A'B'$，∴ $B''C''=B'C'$，$C''A=C'A'$</span><i class="why">比较两个比例式</i></div>
+        <div class="dl end" data-step="3"><span>∴</span><span>$\triangle AB''C''\cong\triangle A'B'C'$，$\triangle ABC\backsim\triangle A'B'C'$</span><i class="why"><button class="yj" data-k="qd-sss"></button></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p59–60“实践与探索”与图 6-22～6-24。三边确定，三角形的形状就确定了（八上 SSS）。用圆规作 △A′B′C′：先画 B′C′ = k·BC，再分别以 B′、C′ 为圆心、k·AB、k·AC 为半径画弧，交点就是 A′——虚线弧按真实半径画出。表格显示三组角都相等。证明方法与上一个定理相同，只是最后用 SSS 全等。</p>
+</section>
+
+<!-- 13 ================= 定理 SSS + 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定理 · 例题</span><h2>三边成比例的两个三角形相似</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="thm" data-step="1"><b>定理</b>　三边成比例的两个三角形相似．</p>
+      <p class="tip small-d"><b>例 5</b>　如图 6-25，在四边形 $ABCD$ 中，$AC$、$BD$ 相交于点 $F$，点 $E$ 在 $BD$ 上，且 $\dfrac{AB}{AE}=\dfrac{BC}{ED}=\dfrac{AC}{AD}$．(1) $\angle1$ 与 $\angle2$ 相等吗？为什么？(2) 判断 $\triangle ABE$ 与 $\triangle ACD$ 是否相似，并说明理由．</p>
+      <div id="f625" class="mboard gfig l"></div>
+    </div>
+    <div class="col">
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="2"><span>(1)</span><span>在 $\triangle ABC$ 和 $\triangle AED$ 中，∵ $\dfrac{AB}{AE}=\dfrac{BC}{ED}=\dfrac{AC}{AD}$，</span><i class="why">已知</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span>$\triangle ABC\backsim\triangle AED$，∴ $\angle BAC=\angle EAD$．</span><i class="why"><button class="yj" data-k="sss-s"></button>；对应角相等</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span class="think" data-step="5" data-ask="怎样得到？">$\angle1=\angle2$（两边同减 $\angle EAC$）．</span><i class="why">等式性质</i></div>
+        <div class="dl" data-step="6"><span>(2)</span><span>由 $\dfrac{AB}{AE}=\dfrac{AC}{AD}$，得 $\dfrac{AB}{AC}=\dfrac{AE}{AD}$．</span><i class="why">比例的基本性质（换位）</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>在 $\triangle ABE$ 和 $\triangle ACD$ 中，$\angle1=\angle2$，$\triangle ABE\backsim\triangle ACD$．</span><i class="why"><button class="yj" data-k="sas-s"></button></i></div>
+      </div>
+      <p class="recall" data-step="8" data-label="拓展与延伸">图 6-25 中还有哪几对相似三角形？<span class="think" data-step="9" data-ask="找一找">例如：由 (2) 得 $\angle ABE=\angle ACD$，即 $\angle ABF=\angle DCF$，又 $\angle AFB=\angle DFC$（对顶角），所以 $\triangle ABF\backsim\triangle DCF$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p60–61 定理、例 5、图 6-25。(1) 用 SSS 相似得角；(2) 把比例式“换位”后用 SAS 相似——同一个比例式，换个读法就是另一对三角形的两边。图 6-25 由 △ABC 绕 A 旋转、缩放得到 △AED，并用数值方法让 E 恰好落在 BD 上，三个比严格相等。拓展部分以 △ABF ∽ △DCF 为例，学生可能还会找到 △AFD ∽ △BFC 等，需逐一说明依据。</p>
+</section>
+
+<!-- 14 ================= 练习 p61 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>用“三边”判定</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在 $\triangle ABC$ 和 $\triangle A'B'C'$ 中，$\dfrac{AB}{A'B'}=\dfrac{BC}{B'C'}=\dfrac{CA}{C'A'}=k$．(1) $k=1$ 时，两三角形有怎样的关系？(2) $k\neq1$ 时呢？</p>
+        <details><summary>完整解答</summary>(1) 全等（SSS）；(2) 相似（三边成比例），相似比为 $k$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在平面直角坐标系中，$\triangle ABC$ 的顶点坐标为 $A(2,0)$、$B(4,0)$、$C(0,4)$，将各顶点的横坐标、纵坐标都乘 2，得相应的点 $A'$、$B'$、$C'$ 的坐标．(1) 画 $\triangle A'B'C'$；(2) $\triangle A'B'C'$ 与 $\triangle ABC$ 相似吗？为什么？</p>
+        <div id="p61b" class="mboard gfig l"></div>
+        <details><summary>提示 1</summary>$A'(4,0)$、$B'(8,0)$、$C'(0,8)$；用勾股定理算各边。</details>
+        <details><summary>完整解答</summary>$AB=2$，$BC=4\sqrt2$，$CA=2\sqrt5$；$A'B'=4$，$B'C'=8\sqrt2$，$C'A'=4\sqrt5$．三边的比都等于 2，所以相似（三边成比例）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 如图，点 $B$、$D$、$E$ 在一条直线上，$BE$ 交 $AC$ 于点 $F$，$\dfrac{AB}{AD}=\dfrac{BC}{DE}=\dfrac{AC}{AE}$．$\angle BAD$ 与 $\angle EBC$ 相等吗？为什么？</p>
+        <div id="p61c" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>三边成比例 ⇒ $\triangle ABC\backsim\triangle ADE$ ⇒ $\angle ABC=\angle ADE$。</details>
+        <details><summary>提示 2</summary>$\angle ADE$ 是 $\triangle ABD$ 的外角；$\angle ABC=\angle ABD+\angle EBC$。</details>
+        <details><summary>完整解答</summary>相等．$\angle ADE=\angle BAD+\angle ABD$，$\angle ABC=\angle ABD+\angle EBC$，而 $\angle ABC=\angle ADE$，所以 $\angle BAD=\angle EBC$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p61 练习。第 2 题右图在方格坐标系中精确画出两个三角形——“坐标都乘 2”就是 6.6 要学的“以原点为位似中心的位似变换”，可以先埋个伏笔。第 3 题与例 5 的图形结构相同（一对“旋转相似”的三角形），图按三边比严格成立的位置画出。</p>
+</section>
+
+<!-- 15 ================= 例 6 + 重心 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">综合 · 探索</span><h2>圆中的相似；三角形的重心</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-d"><b>例 6</b>　如图 6-26，在 $\triangle ABC$ 中，$AB=AC$，点 $D$ 在 $BC$ 上，$AD$ 的延长线交 $\triangle ABC$ 的外接圆于点 $E$．$\triangle ABE$ 与 $\triangle CDE$ 相似吗？为什么？</p>
+      <div id="f626" class="mboard gfig"></div>
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="1"><span>∵</span><span>$AB=AC$，∴ $\overset{\frown}{AB}=\overset{\frown}{AC}$，∴ $\angle AEB=\angle AEC$．</span><i class="why">等弦对等弧；等弧所对的圆周角相等</i></div>
+        <div class="dl" data-step="2"><span>又</span><span>$\angle BAE=\angle DCE$，</span><i class="why"><button class="yj" data-k="tong-hu"></button></i></div>
+        <div class="dl end" data-step="3"><span>∴</span><span>$\triangle ABE\backsim\triangle CDE$．</span><i class="why"><button class="yj" data-k="aa"></button></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip small-d"><b>思考与探索</b>　三角形的三条中线相交于一点（七年级发现），能用相似证实吗？拖动顶点：</p>
+      <div id="gBd" class="mboard gbd"></div>
+      <p class="tip feedback small-d" id="gMsg"></p>
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="4"><span>①</span><span>$BE$、$CF$ 交于 $G$：$FE\parallel BC$，$FE=\frac12BC$，$\triangle GEF\backsim\triangle GBC$，$GE=\frac12GB$．</span><i class="why">中位线；两角相等</i></div>
+        <div class="dl" data-step="5"><span>②</span><span>$AD$、$BE$ 交于 $G'$：同样 $G'E=\frac12G'B$．</span><i class="why">图 6-28</i></div>
+        <div class="dl end" data-step="6"><span>∴</span><span>$G'$ 与 $G$ 重合——<b>三角形的重心</b>．</span><i class="why">$BE$ 上这样的点只有一个</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p62–63 例 6、图 6-26 与“思考与探索”（重心）。例 6 用到九上第 2 章的圆周角定理，等弧所对的圆周角相等。右边拖动三角形顶点：G（BE 与 CF 的交点）和 G′（BE 与 AD 的交点）由两组直线分别算出，读数显示它们始终是同一个点，且 GE : GB = 1 : 2。物理意义：用手指顶在均匀三角形薄板的重心处，薄板能保持平衡。</p>
+</section>
+
+<!-- 16 ================= 汇总 + 反例 + 读一读 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳 · 辨析</span><h2>相似三角形的判定：与全等对照</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab sum-tab" data-step="1">
+        <tr><th>相似的判定</th><th>对应的全等判定</th></tr>
+        <tr><td>平行于一边的直线截得的三角形（例 1）</td><td>—</td></tr>
+        <tr><td>两角分别相等</td><td>ASA / AAS</td></tr>
+        <tr><td>两边成比例且<b>夹角</b>相等</td><td>SAS</td></tr>
+        <tr><td>三边成比例</td><td>SSS</td></tr>
+      </table>
+      <p class="method small-d" data-step="2" data-label="怎样选">有平行线 → 例 1 的结论；有角 → 找第二组角，或找夹这个角的两边；只有边 → 三边成比例。</p>
+    </div>
+    <div class="col">
+      <p class="warn small-d" data-step="3" data-label="两边成比例 + 非夹角相等？">不一定相似！下图中 $\angle A=\angle A'$，$\dfrac{A'B'}{AB}=\dfrac{B'C'}{BC}$，但 $\angle A$ 不是这两边的夹角——$C'$ 有两个位置，其中一个不相似。</p>
+      <div id="ssaFig" class="mboard gfig l" data-step="3"></div>
+      <p class="recall small-d" data-step="4" data-label="读一读 · 直觉的误导">七下“12.2 证明”中把 8×8 的正方形剪拼成 13×5 的“长方形”——用相似可证：若是长方形，则 $\dfrac{2}{3}=\dfrac{5}{8}$，矛盾；$\dfrac23-\dfrac58=\dfrac1{24}$ 太小，眼睛看不出来（课本 p64）。</p>
+    </div>
+  </div>
+  <p class="note">本页把三个判定定理与全等判定列表对照，并补充“SSA”反例——与全等一样，“两边及其中一边的对角”不能判定相似。反例图按 AB = 4、AC = 5、∠A = 40°、k = 0.8 精确作出：以 B′ 为圆心、k·BC 为半径的圆与射线 A′C′ 交于两点。读一读（课本 p64）说明“凭直觉不行，要推理”，可作课后阅读。</p>
+</section>
+
+<!-- 17 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.4（选做）</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 刻度尺的分度值为 1 mm．如果玻璃管的内径 $DE$ 正对“30”刻度线（$DE\parallel AB$），且量得 $AB$ 长 7 mm，那么 $DE$ 的长为多少？如果 $DE$ 正对“35”刻度线呢？</p>
+        <details><summary>提示 1</summary>$\triangle CDE\backsim\triangle CAB$，$CD=30$，$CA=50$（刻度）。</details>
+        <details><summary>完整解答</summary>$DE=7\times\dfrac{30}{50}=4.2$（mm）；正对“35”时 $DE=7\times\dfrac{35}{50}=4.9$（mm）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 在 $\triangle ABC$ 中，$\angle ACB=90^\circ$，$CD\perp AB$，垂足为 $D$．(1) $\triangle ACD$ 与 $\triangle CBD$ 相似吗？(2) 图中还有几对相似三角形？</p>
+        <div id="h5Fig" class="mboard gfig s"></div>
+        <details><summary>提示 1</summary>$\angle A$ 与 $\angle BCD$ 都是 $\angle ACD$ 的余角。</details>
+        <details><summary>完整解答</summary>(1) 相似：$\angle ADC=\angle CDB=90^\circ$，$\angle A=\angle BCD$．(2) 还有 2 对：$\triangle ACD\backsim\triangle ABC$，$\triangle CBD\backsim\triangle ABC$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>7.</b> 在 ▱$ABCD$ 中，$E$ 是 $BC$ 的中点，$AE$ 交 $BD$ 于点 $F$．求 $\dfrac{AF}{EF}$ 的值．</p>
+        <div id="h7Fig" class="mboard gfig s"></div>
+        <details><summary>提示 1</summary>$AD\parallel BE$，$\triangle ADF\backsim\triangle EBF$。</details>
+        <details><summary>完整解答</summary>$\dfrac{AF}{EF}=\dfrac{AD}{EB}=\dfrac{BC}{\frac12BC}=2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>8.</b> 在 $\triangle ABC$ 中，$AB=6$，$AC=8$，$\angle A=50^\circ$；在 $\triangle DEF$ 中，$DE=12$，$\angle D=50^\circ$．试确定 $DF$ 的长，使 $\triangle ABC\backsim\triangle DEF$．</p>
+        <details><summary>完整解答</summary>夹角相等，需 $\dfrac{AB}{DE}=\dfrac{AC}{DF}$：$\dfrac6{12}=\dfrac8{DF}$，$DF=16$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>9.</b> 在 $\triangle ABC$ 中，点 $D$ 在 $AC$ 上，且 $AB^2=AD\cdot AC$．$\angle ABD$ 与 $\angle C$ 是否相等？为什么？</p>
+        <details><summary>提示 1</summary>$AB^2=AD\cdot AC$ ⇒ $\dfrac{AB}{AD}=\dfrac{AC}{AB}$，公共角 $\angle A$。</details>
+        <details><summary>完整解答</summary>相等．$\triangle ABD\backsim\triangle ACB$（两边成比例且夹角相等），所以 $\angle ABD=\angle C$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>17.</b> 三角形钢筋框架三边长 20 cm、50 cm、60 cm．现有 30 cm、50 cm 两根钢筋，以其中一根为一边，从另一根上截下两段（允许有余料）作另外两边，做一个相似的框架．有几种截法？</p>
+        <details><summary>提示 1</summary>30 cm 的那根整根作一边，分别对应 20、50、60 三种情况，看另两边之和是否 ≤ 50。</details>
+        <details><summary>完整解答</summary>2 种：30 对应 60 时另两边 10、25；30 对应 50 时另两边 12、36（和都不超过 50）；30 对应 20 时需 75、90，不行；以 50 cm 为一边时另两边之和都超过 30，不行．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p65–68 习题 6.4 选了 6 题（第 2、5、7、8、9、17 题），其余可作课后作业。第 5 题的“母子三角形”（射影定理的基础）很重要。第 17 题要分类讨论并检验“余料”条件。图按题意坐标精确画出。</p>
+</section>
+
+<!-- 18 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">基本事实：两条直线被一组平行线所截，对应线段成比例。</p>
+        <p class="def">判定：平行截得；两角；两边成比例且夹角；三边成比例。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="构造">截取 $AB''=A'B'$、作平行线，借“全等 + 例 1”证明。</p>
+        <p class="method" data-label="找对应">先找相等的角（公共角、对顶角、平行线），再看边。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="类比">相似判定 ↔ 全等判定；全等是相似比为 1 的相似。</p>
+        <p class="recall" data-label="转化">新定理 → 例 1 的结论 → 基本事实。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.5 相似三角形的性质——除了对应角相等、对应边成比例，相似三角形的周长、面积、对应高有什么关系？</p>
+  </div>
+  <p class="note">请学生先口述三个判定定理的证明思路（都是“截取 + 平行 + 全等”），再逐栏揭示。小结强调“判定 → 性质”的顺序：学会了怎样判断相似，下一节研究相似了以后还有什么性质。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

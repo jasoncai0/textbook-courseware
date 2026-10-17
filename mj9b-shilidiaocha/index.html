@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中学生的视力情况调查 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shili-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第8章 统计和概率的简单应用 · 8.1</p>
+    <h1 class="cover-title">中学生的视力情况调查</h1>
+    <p class="cover-q" data-step="1">想知道本地区中学生的视力不良率（视力低于 5.0 为视力不良），不可能、也没必要一个个去查。</p>
+    <p class="cover-q" data-step="2"><b>抽谁来查？查完怎样整理、分析？</b>怎样才能根据一部分人的数据，对全体做出靠得住的估计？</p>
+    <div class="chips" data-step="3"><span class="chip">样本的代表性</span><span class="chip">简单随机抽样</span><span class="chip">频数分布直方图</span><span class="chip">分析与推断</span></div>
+  </div>
+  <p class="note">课本 p124 引言。本章是“统计和概率的简单应用”，每一课都是一个真实问题。封面先问“你认为可以怎样收集数据？”，请学生说说自己的办法，下一页再看 5 名学生的做法。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八下 7.1 · 普查与抽样调查" data-step="1">
+        <p>从总体中抽取一部分个体（样本）进行调查，再用样本估计总体；样本要有<b>代表性</b>．</p>
+        <span class="use">评价 5 名学生的调查方式：谁的样本缺乏代表性？</span>
+        <a class="lk" href="../mj8b-puchachouyang/index.html">回看 7.1</a>
+      </div>
+      <div class="recall" data-label="八下 7.4 · 频数分布直方图" data-step="2">
+        <p>分组 → 划记 → 频数分布表 → 直方图；频率 $=\dfrac{\text{频数}}{\text{数据总数}}$．</p>
+        <span class="use">把七～九年级的视力统计表整理成频数分布表和直方图。</span>
+        <a class="lk" href="../mj8b-zhifangtu/index.html">回看 7.4</a>
+      </div>
+      <div class="recall" data-label="九上 3.1、3.4 · 平均数与方差" data-step="3">
+        <p>平均数 $\bar x=\dfrac{x_1+x_2+\cdots+x_n}{n}$；方差是各数据与平均数之差的平方的平均数，刻画数据的波动．</p>
+        <span class="use">抽签实验室：比较样本和总体的平均数、方差。</span>
+        <a class="lk" href="../mj9a-fangcha/index.html">回看 3.4</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>收集数据（怎样抽样）→ 整理数据（表、图）→ 分析数据 → 做出推断、提出建议。</p>
+  </div>
+  <p class="note">三张卡分别对应本课三段：抽样、整理、计算。八下第 7 章讲过“样本要有代表性”，但没有讲“怎样抽才有代表性”——这正是本课要补上的“简单随机抽样”。</p>
+</section>
+
+<!-- 3 ================= 五名学生的调查 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>5 名学生的调查方式</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="stu" data-step="1">
+        <h3>学生 A：在眼镜店调查 50 名中学生</h3>
+        <div id="figA" class="fig-a"></div>
+        <p>图 8-1　不良率 $\dfrac{11+37}{50}=96\%$，估计本地区超过 95%．</p>
+      </div>
+      <div class="stu" data-step="2">
+        <h3>学生 B：在邻居中调查 20 名中学生</h3>
+        <div id="figB" class="fig-b"></div>
+        <p>图 8-2　不良率 $35\%+40\%=75\%$，估计本地区在 75% 左右．</p>
+      </div>
+      <div class="stu" data-step="3">
+        <h3>学生 C：每个年级（初一～高三）各调查 10 名</h3>
+        <div id="figC" class="fig-c"></div>
+        <p>图 8-3　这 60 名学生不良率约为 56.7%，估计接近 60%．</p>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="4"><b>学生 D：</b>查阅本地区每个中学医务室检查学生视力的资料，算出本地区中学生的视力不良率为 <b>66.1%</b>．</p>
+      <p class="tip" data-step="5"><b>学生 E：</b><b>随机</b>调查了本地区 10% 的中学生的视力，估计本地区中学生的视力不良率约为 <b>66.2%</b>．</p>
+    </div>
+    <p class="tip gold" data-step="6">学生 C 的 56.7% 是怎样算出来的？<span class="think" data-step="7" data-ask="算一算">每个年级人数相同（各 10 名），不良率取平均：$\dfrac{30\%+40\%+60\%+60\%+70\%+80\%}{6}=\dfrac{340\%}{6}\approx56.7\%$．</span></p>
+  </div>
+  <p class="note">课本 p124–125 与图 8-1、8-2、8-3，三幅图按课本数据绘制。先让学生核对 A、B 的不良率：视力低于 5.0 的是前两组。学生 C 的折线六个点依次是 30%、40%、60%、60%、70%、80%，平均正好是 56.7%（每个年级人数相等，才能直接平均百分比）。</p>
+</section>
+
+<!-- 4 ================= 评价 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">评价</span><h2>五个估计，差得这么远——谁的更可信？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <svg class="est-fig" id="estFig" viewBox="0 0 620 230" aria-label="五名学生的估计值在数轴上的位置"></svg>
+      <p class="tip" data-step="1">学生 A、B、C 的样本有什么问题？<span class="think" data-step="2" data-ask="说一说">都是对本地区的<b>特殊群体</b>调查：去眼镜店的多半视力不好；邻居太少、太集中；每个年级人数不同却各抽 10 名．所抽取的样本缺乏代表性，对总体的估计偏差较大．</span></p>
+      <p class="tip" data-step="3">学生 D、E 呢？<span class="think" data-step="4" data-ask="说一说">D 是普查，结果准确，但工作量较大；E 抽取的样本具有代表性，对总体的估计比较准确（66.2% 与 66.1% 只差 0.1 个百分点）．</span></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="5"><h4>样本的代表性（课本 p125）</h4>在统计里，我们通常是从总体中抽取样本，并根据样本的某种特性估计总体的相应特性．为了使估计、推断更加准确，抽样时要注意<em>样本的代表性</em>．</div>
+      <p class="warn" data-step="6" data-label="样本大≠有代表性">学生 A 调查了 50 人，比 B 多，但 50 人全在眼镜店——人数再多，偏的样本还是偏的．</p>
+      <p class="tip gold" data-step="7">那么，怎样抽取，才能使样本具有代表性？<span class="think" data-step="8" data-ask="想一想">关键是“随机”：让总体中每个个体被抽到的可能性都相同——下一页．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p125 两位同学的对话。数轴上五个估计值按真实位置标出，D（普查）用虚线作参照。追问：E 只查了 10%，为什么比 A 准？——不是人数多少，而是“怎样抽”。</p>
+</section>
+
+<!-- 5 ================= 简单随机抽样 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>800 人中抽 50 人：怎样抽才有代表性？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">要从某校九年级 800 名学生中抽查 50 名学生的视力，怎样抽取才能使样本具有代表性？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>① 编号</span><span>号码 1、2、…、800</span><i class="why">每人一个号</i></div>
+        <div class="dl" data-step="2"><span>② 做签</span><span>形状、大小、质地都相同</span><i class="why">摸不出区别</i></div>
+        <div class="dl" data-step="3"><span>③ 抽签</span><span>每次先搅匀，再抽 1 个，不放回</span><i class="why">机会均等</i></div>
+        <div class="dl end" data-step="4"><span>④ 连抽 50 次</span><span>容量为 50 的样本</span><i class="why">号码对应的人入选</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="5"><h4>简单随机抽样（课本 p125）</h4>一般地，从个体总数为 $N$ 的总体中抽取容量为 $n$ 的样本（$n&lt;N$），且每次抽取样本时，总体中的<em>每个个体被抽到的可能性相同</em>，这种抽样方法叫做<b>简单随机抽样</b>（simple random sampling）．</div>
+      <p class="tip" data-step="6">为什么号签要“形状、大小、质地都相同”，还要每次“搅匀”？<span class="think" data-step="7" data-ask="想一想">否则手感不同、沉在下面的签被抽到的机会小，就不是“每个个体被抽到的可能性相同”了．</span></p>
+      <p class="method" data-step="8" data-label="和概率的联系">“可能性相同”就是九上第 4 章的<b>等可能</b>：每一次抽取，盒中剩下的每个号签被抽到的概率都相等．</p>
+    </div>
+  </div>
+  <p class="note">课本 p125。定义里抓三个词：从总体中抽取、容量 n &lt; N、每个个体被抽到的可能性相同。抽签法是简单随机抽样最常见的做法；课本习题 2、3 也是用抽签（编号 → 做签 → 抽取）。</p>
+</section>
+
+<!-- 6 ================= 练习 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>选取样本的方法是否合适？说明理由</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p><b>(1)</b> 为了解某地区老年人的健康状况，在该地区医院里调查了 100 名老年病人 1 年内生病的次数．</p>
+        <div class="think" data-step="2" data-ask="合适吗？"><p><span class="verdict x">不合适</span>医院里的老人本来就在生病，样本是特殊群体，缺乏代表性，会高估生病次数．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>(2)</b> 某方便面厂家为了解产品质量情况，在其生产线上每 100 包随机抽取 1 包进行检查．</p>
+        <div class="think" data-step="4" data-ask="合适吗？"><p><span class="verdict ok">合适</span>抽样覆盖了整个生产过程，每包被抽到的机会相同，样本有代表性．</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>(3)</b> 为了解某城市的空气污染情况，调查了该城市某个月的空气污染情况．</p>
+        <div class="think" data-step="6" data-ask="合适吗？"><p><span class="verdict x">不合适</span>空气质量随季节变化很大（如冬季常偏差），只看一个月不能代表全年．</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="判断样本好不好">一看是不是<b>特殊群体</b>（地点、时间、人群偏了吗）；二看<b>容量</b>是否太小；三看是不是<b>随机</b>抽取的．</p>
+  </div>
+  <p class="note">课本 p126 练习 1。三题分别是“地点偏”“随机抽取”“时间偏”。第 (2) 题每 100 包中“随机抽取 1 包”，学生可能会问：这是不是简单随机抽样？——不完全是（在每一段里随机），但每包被抽到的机会相同，样本有代表性；高中会学“分层抽样”等其他方法。</p>
+</section>
+
+<!-- 7 ================= 抽签实验室（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">抽签实验室</span><h2>从 50 名学生的身高中，随机抽 20 个</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="small-p">课本 p126 练习 2：某班 50 名学生的身高（单位：cm）．点“抽签”，真随机地不放回抽 20 个号签．</p>
+      <div class="pool" id="pool"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="drawOne">抽签：抽一个容量为 20 的样本</button><button class="btn" type="button" id="drawTen">再抽 10 个样本</button><button class="btn" type="button" id="drawClr">清空</button></div>
+    </div>
+    <div class="col">
+      <table class="mtab lab-tab" id="labTab"></table>
+      <svg class="mean-fig" id="meanFig" viewBox="0 0 600 130" aria-label="各样本平均数的位置"></svg>
+      <p class="tip feedback" id="labMsg"></p>
+      <p class="tip" data-step="1">(2) 两个样本的结果一致吗？与总体一致吗？<span class="think" data-step="2" data-ask="抽两次看看">一般<b>不完全一致</b>，但都和总体的平均数、方差比较接近——样本平均数落在总体平均数两侧，不会一边倒．</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。课本 p126 练习 2 的 50 个数据原样放在左边（按课本顺序编号 1～50）。总体：平均数 160.58 cm，方差约 40.40。每抽一次，20 个号签逐个亮起，右表记录样本的平均数和方差，下方数轴标出样本平均数的位置（红线是总体平均数）。先抽两个样本回答 (2)，再点“再抽 10 个”让学生看到：样本平均数在 160.58 附近摆动——这就是“用样本估计总体”可行的原因。随机数取自 crypto.getRandomValues。</p>
+</section>
+
+<!-- 8 ================= 从统计表到频数分布表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">整理数据</span><h2>七～九年级各 100 名学生的视力：先合并成组</h2></div>
+  <div class="bd full">
+    <p class="small-p">某市 2 万名七～九年级学生中抽查 300 名：考虑到各年级视力有较明显的差异，用简单随机抽样的方法从<b>每个年级各抽查 100 名</b>．</p>
+    <div class="tab-wrap"><table class="mtab tight" id="rawTab"></table></div>
+    <div class="cols2">
+      <div class="col">
+        <div class="btns gbtn" data-noswipe id="gradeBtns"></div>
+        <div class="tab-wrap"><table class="mtab" id="grpTab"></table></div>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="1">为什么分组是 3.95～4.15、4.15～4.35……？<span class="think" data-step="2" data-ask="想一想">视力记录到 0.1，相邻两个值合成一组（组距 0.2）；端点取到 0.05，任何一个视力值都不会落在分点上：如 4.0、4.1 都落在 3.95～4.15 里．</span></p>
+        <p class="tip" data-step="3">点一个年级，再点表中某一组：它的频数是哪两格相加？<span class="think" data-step="4" data-ask="试一试">如八年级 4.95～5.15：视力 5.0 的 28 人 + 5.1 的 21 人 = 49 人，频率 $\dfrac{49}{100}=0.49$．</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p126 统计表、p127 频数分布表。频数分布表不是抄的，是由上面的统计表逐组相加算出来的（点组看对应的两格高亮），可以和课本核对。复习八下 7.4：分点比数据多一位小数，避免数据落在分点上。</p>
+</section>
+
+<!-- 9 ================= 直方图 + 观察 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察与思考</span><h2>三个直方图：你能获得哪些信息？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col"><h3 class="h3 center">七年级 100 名学生视力频数分布直方图</h3><div id="h7" class="hist3"></div></div>
+      <div class="col"><h3 class="h3 center">八年级</h3><div id="h8" class="hist3"></div></div>
+      <div class="col"><h3 class="h3 center">九年级</h3><div id="h9" class="hist3"></div></div>
+    </div>
+    <p class="legend-s"><i style="background:#e0675a"></i>视力低于 5.0（视力不良）<i style="background:#f4a58a"></i>视力不低于 5.0</p>
+    <div class="cols2">
+      <p class="bubble" data-step="1">可以发现，随着年级的升高，所抽查的学生的平均视力在下降，视力不良率在增大……</p>
+      <p class="bubble" data-step="2">可以算出，七～九年级所抽查的学生的视力不良率依次为 32%、42%、54%……</p>
+    </div>
+    <table class="mtab" data-step="3">
+      <tr><th></th><th>七年级</th><th>八年级</th><th>九年级</th></tr>
+      <tr><th>视力不良率（深色长条的频数和）</th><td>$8+24=32$，32%</td><td>$9+10+23=42$，42%</td><td>$1+3+11+13+26=54$，54%</td></tr>
+      <tr><th>平均视力（由统计表计算）</th><td><span class="think" data-step="4" data-ask="算一算">5.00</span></td><td><span class="think" data-step="4" data-ask="算一算">4.92</span></td><td><span class="think" data-step="4" data-ask="算一算">4.86</span></td></tr>
+    </table>
+  </div>
+  <p class="note">课本 p127 三个直方图（按频数分布表精确绘制）与 p128 两位同学的话。深色长条就是视力 4.9 及以下的组（分点 4.95），所以深色长条的频数和就是视力不良的人数。平均视力用加权平均数：如七年级 (4.6×4+4.7×4+4.8×8+4.9×16+5.0×25+5.1×30+5.2×9+5.3×4)÷100=5.00；八年级 4.921≈4.92；九年级 4.855≈4.86。</p>
+</section>
+
+<!-- 10 ================= 分析与推断 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分析推断</span><h2>你对该市七～九年级学生的视力情况怎样推断？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip" data-step="1"><b>趋势：</b><span class="think" data-step="2" data-ask="看直方图">长条整体向左移，不良率 32% → 42% → 54%：年级越高，视力越差．</span></p>
+      <p class="tip" data-step="3"><b>推断：</b><span class="think" data-step="4" data-ask="用样本估计总体">样本是随机抽取的，有代表性，可以估计该市七年级学生视力不良率约 32%，九年级约 54%．</span></p>
+      <p class="tip" data-step="5"><b>原因？</b><span class="think" data-step="6" data-ask="说一说">课业负担加重、近距离用眼时间增加……（还需要进一步调查）</span></p>
+            <p class="warn" data-step="7" data-label="推断要留有余地">这是用样本估计总体，结论是“大约”“估计”；而且只能推断<b>七～九年级</b>，不能直接推到高中．</p>
+    </div>
+    <div class="col">
+      <p class="tip gold" data-step="8"><b>提出建议</b>（课本：可以提出保护视力的建议）<span class="think" data-step="9" data-ask="你会提哪些建议？">如：控制连续用眼时间，每 40 分钟远眺休息；坚持做眼保健操；保证户外活动时间；读写姿势正确、光线充足；定期检查视力，七年级起就要重视……</span></p>
+      <p class="tip" data-step="10">为什么不直接在 2 万人中随机抽 300 人，而是每个年级各抽 100 人？<span class="think" data-step="11" data-ask="想一想">各年级视力差异明显，分年级抽能保证每个年级都有足够的代表，便于比较年级之间的差异．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p128“观察与思考”第 2 问，结论开放，重点是“有理有据”：每条推断都要能指到表或图里的数据。最后一问引出“按年级分开抽”的想法（高中称分层抽样），点到为止。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某市环保部门用简单随机抽样的方法抽查了该市一年内 30 天的空气质量：</p>
+        <table class="mtab"><tr><th>污染指数 $W$</th><td>40</td><td>60</td><td>90</td><td>110</td><td>120</td></tr><tr><th>天数 $t$</th><td>3</td><td>3</td><td>9</td><td>10</td><td>5</td></tr></table>
+        <p class="q small-p">$W\le50$ 时空气质量为优；$50&lt;W\le100$ 时为良；$100&lt;W\le150$ 时为轻微污染．请估计该城市这一年（365 天）中有多少天空气质量达到良以上．</p>
+        <details><summary>提示 1</summary>良以上 = 优或良，即 $W\le100$：哪几列？</details>
+        <details><summary>提示 2</summary>样本中良以上的频率是 $\dfrac{3+3+9}{30}$，用它估计全年．</details>
+        <details><summary>完整解答</summary>样本中良以上的天数为 $3+3+9=15$，频率为 $\dfrac{15}{30}=\dfrac12$；$365\times\dfrac12=182.5$，估计这一年约有 183 天空气质量达到良以上．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某研究性学习小组用简单随机抽样的方法调查本校九年级学生一天中做家庭作业所用时间（min），绘制成频数分布直方图：</p>
+        <div id="hwHist" class="ex-hist"></div>
+        <p class="q small-p">(1) 样本容量是多少？(2) 用时超过 120 min 的频率？(3) 中位数落在什么范围内？(4) 你怎样分析、推断？</p>
+        <details><summary>提示 1</summary>样本容量 = 各组频数之和；超过 120 min 是最后两组．</details>
+        <details><summary>提示 2</summary>30 个数据的中位数是第 15、16 个数据的平均数：从左往右累计频数 3、9、18……</details>
+        <details><summary>完整解答</summary>(1) $3+6+9+8+4=30$；(2) $\dfrac{8+4}{30}=0.4$；(3) 累计到第 3 组为 18 ≥ 16，第 15、16 个数据都在 100.5～120.5 内，中位数落在 100.5～120.5 min；(4) 多数学生用时在 100.5～140.5 min，有四成学生超过 2 小时，作业负担偏重．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p128 练习 1、2。第 1 题 182.5 天要按实际意义取整（约 183 天）。第 2 题直方图按课本频数 3、6、9、8、4 绘制；第 (4) 问开放，言之有据即可。</p>
+</section>
+
+<!-- 12 ================= 习题精选 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 8.1 选做</h2></div>
+  <div class="bd full top">
+    <div class="cols2 ex12">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一个总体中有编号为 1、2、3、4、5 的 5 个个体．用简单随机抽样的方法从中抽取 1 个容量为 2 的样本，这样的样本共有多少个？写出所有可能的样本．</p>
+        <details><summary>提示 1</summary>样本只看抽到了哪两个，不看先后：{1, 2} 和 {2, 1} 是同一个样本．</details>
+        <details><summary>提示 2</summary>按“含 1 的、含 2 不含 1 的……”有序地列，不重不漏．</details>
+        <details><summary>完整解答</summary>共 10 个：{1,2}、{1,3}、{1,4}、{1,5}、{2,3}、{2,4}、{2,5}、{3,4}、{3,5}、{4,5}．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 某校用简单随机抽样的方法从九年级 480 名学生中抽取部分学生的数学检测成绩，绘制成下表（72 分及以上为“及格”，96 分及以上为“优秀”，36 分以下为“后进”）：</p>
+        <div class="tab-wrap"><table class="mtab tight">
+          <tr><th>样本容量</th><th>平均分</th><th>及格率</th><th>优秀率</th><th>后进率</th><th>最高分</th><th>最低分</th><th>极差</th><th>方差</th></tr>
+          <tr><td></td><td>87.5</td><td></td><td></td><td></td><td>120</td><td>29</td><td></td><td>334.9</td></tr>
+        </table>
+        <table class="mtab tight">
+          <tr><th>分数段</th><td>0～35.5</td><td>35.5～47.5</td><td>47.5～59.5</td><td>59.5～71.5</td><td>71.5～83.5</td><td>83.5～95.5</td><td>95.5～107.5</td><td>107.5～119.5</td><td>120</td></tr>
+          <tr><th>频数</th><td>1</td><td></td><td>3</td><td></td><td>9</td><td></td><td>10</td><td>6</td><td>1</td></tr>
+          <tr><th>频率</th><td></td><td>0.04</td><td></td><td>0.08</td><td></td><td>0.28</td><td></td><td>0.12</td><td></td></tr>
+        </table></div>
+        <p class="q small-p">(1) 填写表中的空格；(2) 估计这 480 名学生成绩的中位数落在哪个分数段内．</p>
+        <details><summary>提示 1</summary>样本容量 $=6\div0.12$；再由频率反求各段频数，如 0.04 对应 $50\times0.04=2$．</details>
+        <details><summary>提示 2</summary>各段频数依次为 1、2、3、4、9、14、10、6、1；及格是 71.5 分以上的各段．</details>
+        <details><summary>完整解答</summary>样本容量 50；及格率 $\dfrac{9+14+10+6+1}{50}=80\%$；优秀率 $\dfrac{10+6+1}{50}=34\%$；后进率 $\dfrac1{50}=2\%$；极差 $120-29=91$．累计频数 1、3、6、10、19、33，第 25、26 个数据在 83.5～95.5 内，估计中位数落在 83.5～95.5 分．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p129 习题 8.1 第 1、4 题（第 4 题的表照课本排）。关键是 107.5～119.5 这一段同时给了频数 6 和频率 0.12，由此求出样本容量 50。各段频数之和 1+2+3+4+9+14+10+6+1=50，可用来检验。第 (3) 问“从两个角度评价”留作课后讨论（如平均分 87.5 较高，但方差 334.9 很大，成绩两极分化）。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">样本要有<em>代表性</em>；<b>简单随机抽样</b>：每次抽取时，总体中每个个体被抽到的可能性相同．</p>
+        <p class="recall" data-label="抽签法">编号 → 做相同的号签 → 搅匀后逐个不放回抽取．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="统计调查四步">收集数据 → 整理数据（表、直方图）→ 分析数据（频率、平均数、方差）→ 推断与建议．</p>
+        <p class="warn" data-label="易错">样本容量大≠有代表性；推断只能推到抽样的那个总体．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="用样本估计总体">样本随机，样本的平均数、方差、频率就在总体的附近摆动——抽签实验室亲眼看到了．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>8.2 货比三家——统计数据很多时候是别人提供的：厂家、网站、广告给的数据和图，能全信吗？</p>
+  </div>
+  <p class="note">请学生先口述“这节课我们是怎样一步步从调查走到建议的”，再逐栏揭示。课后作业建议：习题 8.1 第 2、3 题（用抽签法设计抽样方案）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

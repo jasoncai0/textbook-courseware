@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小数的意义 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/celiang.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第三单元 小数的意义和性质 · 小数的意义</p>
+    <h1 class="cover-title">小数的意义</h1>
+    <p class="cover-q" data-step="1">用米尺量东西，常常量不到<b>整米</b>：还差一点点，怎么办？</p>
+    <p class="cover-q" data-step="2">3 分米、12 厘米、105 毫米……都用<b>“米”</b>作单位，能写成什么样的数？</p>
+    <div class="chips" data-step="3"><span class="chip">米尺放大镜</span><span class="chip">十分之几 · 百分之几 · 千分之几</span><span class="chip">涂一涂格子</span></div>
+  </div>
+  <p class="note">先让学生说说生活中在哪里见过小数（价钱、身高、跳远成绩）。今天要弄明白：小数和分数到底是什么关系？0.01、0.001 表示什么？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这三件事，你还记得吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三年级 · 分数的初步认识" data-step="1">
+        <svg viewBox="0 0 240 70" class="mini-fig" aria-label="长条平均分成 10 份，涂 3 份">
+          <rect x="10" y="10" width="66" height="50" fill="#9fd3f2"/>
+          <path d="M10 10H230V60H10Z" fill="none" stroke="#1d6fa5" stroke-width="2.5"/>
+          <path d="M32 10V60M54 10V60M76 10V60M98 10V60M120 10V60M142 10V60M164 10V60M186 10V60M208 10V60" stroke="#1d6fa5" stroke-width="1.5"/>
+        </svg>
+        <p>把一个整体<b>平均分成 10 份</b>，涂了 3 份，就是它的 $\dfrac{3}{10}$。</p>
+        <span class="use">米尺平均分成 10、100、1000 份。</span>
+      </div>
+      <div class="recall" data-label="三年级 · 小数的初步认识" data-step="2">
+        <p>1 元 = 10 角，3 角 = $\dfrac{3}{10}$ 元 = <b>0.3 元</b>。</p>
+        <p>十分之几的数可以写成<b>一位小数</b>。</p>
+        <span class="use">今天接着往下：百分之几、千分之几又怎样写？</span>
+      </div>
+      <div class="recall" data-label="二年级 · 长度单位" data-step="3">
+        <p class="big center">1 米 = 10 分米</p>
+        <p class="big center">1 米 = 100 厘米</p>
+        <p class="big center">1 米 = 1000 毫米</p>
+        <span class="use">用米尺上的分米、厘米、毫米认识小数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>不满 1 米的长度，用“米”作单位，怎样用小数表示？小数和分数有什么关系？</p>
+  </div>
+  <p class="note">第 2 张卡请学生口答“5 角是几分之几元？写成小数呢？”。第 3 张卡的进率要读熟，后面每一步都要用。</p>
+</section>
+
+<!-- 3 ================= 例 1：分米 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 想一想</span><h2>1 分米等于几分之几米？写成小数呢？</h2></div>
+  <div class="bd full top">
+    <svg id="dmFig" class="dm-fig" viewBox="0 0 1000 150" aria-label="1 米平均分成 10 份，每份 1 分米" data-noswipe></svg>
+    <p class="tip center small-t">点一点米尺上的格子，看看涂了几分米</p>
+    <div class="cols2">
+      <div class="calc">
+        <p>1 分米 $=$ <span class="frac-b"><span class="blank" data-ans="1"></span><span class="blank" data-ans="10"></span></span> 米 $=$ <span class="blank" data-ans="0.1" data-w="3"></span> 米</p>
+        <p>3 分米 $=$ <span class="frac-b"><span class="blank" data-ans="3"></span><span class="blank" data-ans="10"></span></span> 米 $=$ <span class="blank" data-ans="0.3" data-w="3"></span> 米</p>
+      </div>
+      <div class="col">
+        <p class="tip" id="dmRead"></p>
+        <p class="tip" data-step="1">你是怎样想的？　<span class="think" data-step="2" data-ask="说一说">把 1 米平均分成 <b>10 份</b>，每份是 1 分米，1 分米就是 $\dfrac{1}{10}$ 米；十分之几可以写成<b>一位小数</b>。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p30 例 1 第一问。先在空格里填（分子分母分两格，上面分子、下面分母），再点米尺验证。这一步复习三年级的“十分之几 = 一位小数”，为下一步“百分之几”铺路。</p>
+</section>
+
+<!-- 4 ================= 例 1：米尺放大镜（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 米尺放大镜</span><h2>1 厘米是 1 米的几分之几？1 毫米呢？</h2></div>
+  <div class="bd full top">
+    <div class="zm-ctrl" data-noswipe>
+      <span class="btns" id="zmMode"><button type="button" class="btn solid" data-u="cm">按厘米量</button><button type="button" class="btn" data-u="mm">按毫米量</button></span>
+      <button type="button" class="btn" id="zmMinus" aria-label="少一格">◀</button>
+      <button type="button" class="btn" id="zmPlus" aria-label="多一格">▶</button>
+      <span class="btns" id="zmQuick"></span>
+    </div>
+    <svg id="zmFig" class="zm-fig" viewBox="0 0 1000 350" aria-label="1 米长的米尺和放大镜" data-noswipe></svg>
+    <p class="zm-read" id="zmRead"></p>
+    <p class="tip" data-step="1">1 米 $=$ 100 厘米，1 厘米是 1 米的 <span class="think" data-step="2" data-ask="几分之几？">$\dfrac{1}{100}$，$\dfrac{1}{100}$ 米写成小数是 <b>0.01 米</b>，读作“零点零一”。</span></p>
+  </div>
+  <p class="note">课本 p30–31。拖动米尺上的红色小三角（或用 ◀ ▶ 一格一格地走），下面的“放大镜”把三角所在的那 1 分米放大 10 倍，厘米、毫米刻度都看得清。先按厘米走到 1、4、12 厘米（课本的三个例子），再切换“按毫米量”走到 1、40、105 毫米。读数里的分数、小数都由代码按格数算出。</p>
+</section>
+
+<!-- 5 ================= 例 1：填一填 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 填一填</span><h2>先填一填，再读一读</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc">
+        <h4>厘米 → 米（百分之几）</h4>
+        <p>4 厘米 $=\dfrac{4}{100}$ 米 $=$ <span class="blank" data-ans="0.04" data-w="4"></span> 米</p>
+        <p>7 厘米 $=$ <span class="frac-b"><span class="blank" data-ans="7"></span><span class="blank" data-ans="100" data-w="3"></span></span> 米 $=$ <span class="blank" data-ans="0.07" data-w="4"></span> 米</p>
+        <p>12 厘米 $=\dfrac{12}{100}$ 米 $=$ <span class="blank" data-ans="0.12" data-w="4"></span> 米</p>
+      </div>
+      <div class="calc">
+        <h4>毫米 → 米（千分之几）</h4>
+        <p>3 毫米 $=$ <span class="frac-b"><span class="blank" data-ans="3"></span><span class="blank" data-ans="1000" data-w="4"></span></span> 米，写成小数是 <span class="blank" data-ans="0.003" data-w="5"></span> 米</p>
+        <p>86 毫米 $=$ <span class="frac-b"><span class="blank" data-ans="86"></span><span class="blank" data-ans="1000" data-w="4"></span></span> 米，写成小数是 <span class="blank" data-ans="0.086" data-w="5"></span> 米</p>
+        <p>160 毫米 $=$ <span class="frac-b"><span class="blank" data-ans="160" data-w="3"></span><span class="blank" data-ans="1000" data-w="4"></span></span> 米，写成小数是 <span class="blank" data-ans="0.160|0.16" data-w="5"></span> 米</p>
+      </div>
+    </div>
+    <p class="tip" data-step="1">读一读：0.04 读作 <span class="think" data-step="2" data-ask="读一读">零点零四</span>；0.105 读作 <span class="think" data-step="2" data-ask="读一读">零点一零五</span>；0.040 读作 <span class="think" data-step="2" data-ask="读一读">零点零四零</span>。</p>
+    <p class="warn" data-step="3">小数部分要<b>一位一位地读</b>：0.12 读作“零点一二”，不读“零点十二”。</p>
+  </div>
+  <p class="note">课本 p30–31 的填空和 p31 小精灵的问题（3 毫米、86 毫米、160 毫米）。千分之几的小数要写三位：86 毫米是 0.086 米，0 不能漏。160 毫米课本写作 0.160 米，写 0.16 也对（下节课学小数的性质会讲为什么）。</p>
+</section>
+
+<!-- 6 ================= 概括 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>分数和小数，是什么关系？</h2></div>
+  <div class="bd full top">
+    <table class="mtab sum-tab">
+      <tr><th>平均分成</th><th>每份（分数）</th><th>写成小数</th><th>几位小数</th></tr>
+      <tr><td>10 份</td><td>$\dfrac{1}{10}$ 米</td><td>0.1 米</td><td><span class="think" data-step="1" data-ask="？">一位小数</span></td></tr>
+      <tr><td>100 份</td><td>$\dfrac{1}{100}$ 米</td><td>0.01 米</td><td><span class="think" data-step="2" data-ask="？">两位小数</span></td></tr>
+      <tr><td>1000 份</td><td>$\dfrac{1}{1000}$ 米</td><td>0.001 米</td><td><span class="think" data-step="3" data-ask="？">三位小数</span></td></tr>
+    </table>
+    <div class="def" data-step="4"><h4>小数的意义</h4>分母是 10、100、1000……的分数都可以用小数表示。<br><em>一位小数</em>表示十分之几，<em>两位小数</em>表示百分之几，<em>三位小数</em>表示千分之几……</div>
+    <div class="cols2" data-step="5">
+      <div class="calc">
+        <h4>试一试：钱也一样</h4>
+        <p>1 分 $=\dfrac{1}{100}$ 元 $=$ <span class="blank" data-ans="0.01" data-w="4"></span> 元</p>
+        <p>5 分 $=$ <span class="frac-b"><span class="blank" data-ans="5"></span><span class="blank" data-ans="100" data-w="3"></span></span> 元 $=$ <span class="blank" data-ans="0.05" data-w="4"></span> 元</p>
+      </div>
+      <div class="calc">
+        <p class="tall">7 角 3 分 $=$ <span class="frac-b"><span class="blank" data-ans="73"></span><span class="blank" data-ans="100" data-w="3"></span></span> 元 $=$ <span class="blank" data-ans="0.73" data-w="4"></span> 元</p>
+        <p class="muted small-t">提示：7 角 3 分是 73 分。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p31 底部的结论和 p32 试一试。先让学生看表格自己说出规律，再出示结论。“分母是 10、100、1000……”的“……”可以问：分母是 10000 的呢？（四位小数）</p>
+</section>
+
+<!-- 7 ================= 例 2：涂色板（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 涂一涂</span><h2>每个正方形都表示整数“1”，涂色表示小数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns center-btns" id="tuMode" data-noswipe>
+        <button type="button" class="btn solid" data-u="10">平均分成 10 份</button>
+        <button type="button" class="btn" data-u="100">100 份</button>
+        <button type="button" class="btn" data-u="1000">1000 份</button>
+      </div>
+      <svg id="tuFig" class="tu-fig" viewBox="0 0 420 420" aria-label="表示整数 1 的正方形" data-noswipe></svg>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" id="tuMinus">− 1 份</button><button type="button" class="btn" id="tuPlus">＋ 1 份</button><button type="button" class="btn" id="tuClear">清空</button></div>
+    </div>
+    <div class="col">
+      <p class="tu-read" id="tuRead"></p>
+      <div class="task-row" id="tuTasks" data-noswipe>
+        <button type="button" class="btn" data-t="6" data-u="10">涂出 0.6</button>
+        <button type="button" class="btn" data-t="6" data-u="100">涂出 0.06</button>
+      </div>
+      <p class="tip feedback" id="tuMsg">点格子涂色：点到哪一格，就涂到哪一格。</p>
+      <div class="calc">
+        <p>0.6 里有 <span class="blank" data-ans="6"></span> 个 0.1</p>
+        <p>0.06 里有 <span class="blank" data-ans="6"></span> 个 0.01</p>
+        <p>1 里有 <span class="blank" data-ans="10" data-w="3"></span> 个 0.1；0.1 里有 <span class="blank" data-ans="10" data-w="3"></span> 个 0.01</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p32 例 2。先点“涂出 0.6”，学生说涂几份，再上来点格子；再“涂出 0.06”。最后一问是小精灵的问题：在“10 份”里涂满 10 份就是 1；在“100 份”里一整列 10 小格正好是 0.1——请学生数一数。“1000 份”时每个小格再平均分成 10 条细条，可以用 ＋ 按钮一条一条涂，看 0.001 有多小。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>涂色部分用分数和小数表示</h2></div>
+  <div class="bd full top">
+    <p class="tip">下面每个图形都表示整数“1”，把涂色部分分别用分数和小数表示出来。</p>
+    <div class="cols3">
+      <div class="jcard">
+        <svg id="ex1" class="ex-fig" viewBox="0 0 150 150" aria-label="平均分成 10 份涂 7 份"></svg>
+        <p>分数：<span class="blank" data-ans="7/10" data-w="4"></span>　小数：<span class="blank" data-ans="0.7" data-w="3"></span></p>
+      </div>
+      <div class="jcard">
+        <svg id="ex2" class="ex-fig" viewBox="0 0 150 150" aria-label="平均分成 100 份涂 43 份"></svg>
+        <p>分数：<span class="blank" data-ans="43/100" data-w="5"></span>　小数：<span class="blank" data-ans="0.43" data-w="4"></span></p>
+      </div>
+      <div class="jcard">
+        <svg id="ex3" class="ex-fig" viewBox="0 0 170 150" aria-label="1000 个小正方体涂 9 个"></svg>
+        <p>分数：<span class="blank" data-ans="9/1000" data-w="5"></span>　小数：<span class="blank" data-ans="0.009" data-w="5"></span></p>
+      </div>
+    </div>
+    <p class="muted small-t center">分数用“/”输入，如 7/10。</p>
+    <p class="tip gold" data-step="1">第 3 个图：大正方体由 <b>1000 个</b>小正方体组成，涂色的有 <span class="think" data-step="2" data-ask="数一数">9 个，是 $\dfrac{9}{1000}$，写成 <b>0.009</b>。</span></p>
+  </div>
+  <p class="note">课本 p32 练一练。图按课本画：10 份涂 7 份；100 格涂 43 格（4 整列加 3 格）；10×10×10 的正方体前面最右一列涂了 9 个。第 3 题提醒：千分之几要写成三位小数，0.009 中的两个 0 都不能少。</p>
+</section>
+
+<!-- 9 ================= 练习五 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习五</span><h2>填一填、改一改</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 填空。</p>
+        <p class="q small-q">0.8 是把整数“1”平均分成 10 份，表示这样的 <span class="blank" data-ans="8"></span> 份。<br>0.46 是把“1”平均分成 <span class="blank" data-ans="100" data-w="3"></span> 份，表示这样的 46 份。<br>0.137 是把“1”平均分成 <span class="blank" data-ans="1000" data-w="4"></span> 份，表示这样的 <span class="blank" data-ans="137" data-w="3"></span> 份。</p>
+        <details><summary>提示 1</summary>几位小数，就是分成 10、100 还是 1000 份？</details>
+        <details><summary>完整解答</summary>8；100；1000，137。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6(1).</b> 改写成用“米”作单位的小数。</p>
+        <p class="q small-q">4 分米 $=$ <span class="blank" data-ans="0.4" data-w="3"></span> 米<br>9 厘米 $=$ <span class="blank" data-ans="0.09" data-w="4"></span> 米<br>18 厘米 $=$ <span class="blank" data-ans="0.18" data-w="4"></span> 米<br>23 毫米 $=$ <span class="blank" data-ans="0.023" data-w="5"></span> 米</p>
+        <details><summary>提示 1</summary>先写成分数：9 厘米 $=\dfrac{9}{100}$ 米；23 毫米 $=\dfrac{23}{1000}$ 米。</details>
+        <details><summary>完整解答</summary>0.4 米；0.09 米；0.18 米；0.023 米。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6(2).</b> 改写成用“元”作单位的小数。</p>
+        <p class="q small-q">3 角 $=$ <span class="blank" data-ans="0.3" data-w="3"></span> 元<br>8 分 $=$ <span class="blank" data-ans="0.08" data-w="4"></span> 元<br>5 角 9 分 $=$ <span class="blank" data-ans="0.59" data-w="4"></span> 元<br>4 元 7 角 $=$ <span class="blank" data-ans="4.7" data-w="3"></span> 元</p>
+        <details><summary>提示 1</summary>1 角 $=\dfrac{1}{10}$ 元，1 分 $=\dfrac{1}{100}$ 元。</details>
+        <details><summary>提示 2</summary>4 元 7 角：整数部分是 4，7 角是 0.7 元。</details>
+        <details><summary>完整解答</summary>0.3 元；0.08 元；0.59 元；4.7 元。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p35 练习五第 2、6 题。先独立填，回车自查。4 元 7 角是本课第一次出现整数部分不是 0 的小数，可以顺便说：4.7 元就是 4 元加 0.7 元。</p>
+</section>
+
+<!-- 10 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> 12 厘米 $=$ 0.12 米。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">12 厘米是 $\dfrac{12}{100}$ 米，百分之几写成<b>两位小数</b>：0.12 米。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 7 毫米 $=$ 0.07 米。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">7 毫米是 $\dfrac{7}{1000}$ 米，千分之几要写成<b>三位小数</b>：0.007 米。0.07 米是 7 厘米。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 0.6 和 0.06 一样大，因为都有“6”。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">0.6 是 6 个 0.1（$\dfrac{6}{10}$），0.06 是 6 个 0.01（$\dfrac{6}{100}$）。在涂色板上，0.6 涂了 6 大条，0.06 只涂了 6 小格。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="写小数">先想<b>平均分成几份</b>：10 份 → 一位小数，100 份 → 两位小数，1000 份 → 三位小数；位数不够，用 0 占位。</p>
+  </div>
+  <p class="note">第 2 题是最常见的错误：把毫米当成厘米。让学生回到第 4 页的米尺放大镜，按毫米走 7 格看一看。第 3 题回到第 7 页的涂色板比一比面积。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>小数，就是十进分数的另一种写法</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>1 米</b><small>整数“1”</small></div>
+      <i>平均分成 10 份</i>
+      <div class="fbox"><b>$\dfrac{1}{10}$ 米 = 0.1 米</b><small>一位小数</small></div>
+      <i>再平均分成 10 份</i>
+      <div class="fbox"><b>$\dfrac{1}{100}$ 米 = 0.01 米</b><small>两位小数</small></div>
+      <i>再平均分成 10 份</i>
+      <div class="fbox hot"><b>$\dfrac{1}{1000}$ 米 = 0.001 米</b><small>三位小数</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="小数的意义" data-step="2">分母是 10、100、1000……的分数都可以用小数表示。一位小数表示十分之几，两位小数表示百分之几，三位小数表示千分之几……</p>
+      <p class="method" data-label="想一想" data-step="3">1 里有 10 个 0.1，0.1 里有 10 个 0.01，0.01 里有 10 个 0.001——每次都是 <b>10 个</b>。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p33 例 3——“神舟”六号飞船离地面大约 344.725 千米。小数点右边的每一位叫什么？“7”“2”“5”各表示多少？</p>
+  </div>
+  <p class="note">请学生用自己的话说：0.01 是怎么来的（把 1 平均分成 100 份）。课后作业建议：练习五第 1、3、4、5 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用相似三角形解决问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/yingzi-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第6章 图形的相似 · 6.7</p>
+    <h1 class="cover-title">用相似三角形解决问题</h1>
+    <p class="cover-q" data-step="1">旗杆太高，爬不上去量。只用一把卷尺和同学的身高，能测出旗杆有多高吗？</p>
+    <p class="cover-q" data-step="2">古埃及国王请一位学者测量金字塔的高度，他只等了一个时刻，量了几段<b>影子</b>就算出来了——他是怎么做到的？</p>
+    <div class="chips" data-step="3"><span class="chip">平行投影</span><span class="chip">中心投影</span><span class="chip">测高</span><span class="chip">测距</span></div>
+  </div>
+  <p class="note">课本 p81 引言（光的直线传播与影子）。本课是第 6 章的应用课：把实际测量问题转化成相似三角形，再用“对应边成比例”列方程。封面先让学生出主意，记下他们的方法，课末再对照。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="6.4 探索三角形相似的条件" data-step="1">
+        <p>两角分别相等的两个三角形相似；平行于三角形一边的直线截得的三角形与原三角形相似。</p>
+        <span class="use">影子问题里：直角相等 + 光线与地面夹角相等。</span>
+      </div>
+      <div class="recall" data-label="6.5 相似三角形的性质" data-step="2">
+        <p>对应边成比例：$\dfrac{AB}{A'B'}=\dfrac{BC}{B'C'}$。</p>
+        <span class="use">由已知的三条边求第四条边（物高或距离）。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 6.6 图形的位似" data-step="3">
+        <p>点光源投影：影子与原图形位似，位似中心是光源。</p>
+        <span class="use">路灯下的影子（中心投影）。</span>
+      </div>
+      <div class="recall" data-label="物理 · 光的直线传播、反射" data-step="4">
+        <p>光沿直线传播；光反射时，反射角等于入射角。</p>
+        <span class="use">太阳光看作平行光；镜子测高（习题第 3 题）。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">四张卡分别对应本课的四类模型：平行投影（太阳光）、中心投影（灯光）、反射（镜子）、视线（标杆、小尺）。这些模型的核心都是“找出一对相似三角形”。</p>
+</section>
+
+<!-- 3 ================= 平行投影 · 数学实验室 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>太阳光下：同一时刻，物高与影长有什么关系？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="sunBd" class="mboard labbd"></div>
+      <div class="slider-row" data-noswipe>太阳光与地面的夹角：<input type="range" id="sunA" min="25" max="70" step="1" value="40"><b class="v" id="sunAV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip small-d">太阳光看成<b>平行光</b>；在平行光的照射下，物体所产生的影称为<b>平行投影</b>（课本 p81）。在操场上竖立甲、乙、丙三根木杆，同一时刻测影长：</p>
+      <table class="mtab lab-tab" id="sunTab"></table>
+      <p class="thm" data-step="1">在平行光的照射下，在同一时刻，不同物体的物高与影长<b>成比例</b>．</p>
+      <p class="tip small-d" data-step="2">为什么？<span class="think" data-step="3" data-ask="找相似三角形">木杆、影子、光线围成直角三角形；光线平行，所以它们与地面的夹角都相等——两角分别相等，三个直角三角形相似。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p81“数学实验室”与图 6-41。最好课前真的在操场测一组数据填表。这块板按影长 = 杆长 ÷ tan(太阳高度角) 计算：拖动滑块表示换了一个时刻，三个比值同时变，但始终彼此相等——“同一时刻”是关键条件。</p>
+</section>
+
+<!-- 4 ================= 金字塔 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>学者怎样测出金字塔的高度？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="pyBd" class="mboard gfig l"></div>
+      <p class="tip small-d">图 6-43(2)：$AC$ 是金字塔的高，$DB$ 是金字塔的影长。学者在影长<b>等于</b>身高时，让助手测出 $DB=32$ m，金字塔底部正方形的边长为 230 m。</p>
+    </div>
+    <div class="col">
+      <p class="tip small-d" data-step="1"><b>1.</b> 甲木杆 $AB$ 的影长为 $BC$（图 6-42），同一时刻乙、丙的影子怎样画？<span class="think" data-step="2" data-ask="怎样画？">过乙、丙的顶端画与 $AC$ 平行的光线，交地面得到影子的端点——影长与杆长成比例。</span></p>
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="3"><span><b>2.</b></span><span>人的影长等于身高 ⇒ 此时光线与地面成 $45^\circ$；</span><i class="why">等腰直角三角形</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span>金字塔的高与它的“影长” $CB$ 也相等．</span><i class="why">同一时刻，物高与影长成比例</i></div>
+        <div class="dl" data-step="5"><span></span><span class="think" data-step="6" data-ask="CB = ?">$CB=CD+DB=\dfrac{230}{2}+32=147$（m）</span><i class="why">$C$ 是底面中心</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$AC=CB=147$ m．</span><i class="why"></i></div>
+      </div>
+      <p class="warn small-d" data-step="8" data-label="注意">金字塔的“影长”要从塔的中心 $C$ 量起：看得见的影子 $DB$ 只是一部分，还要加上底边的一半 $CD$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p82“尝试与交流”与图 6-42、6-43。第 2 题传说是泰勒斯测金字塔。易错：直接用 DB = 32 当影长。图按 CD = 115、DB = 32、AC = 147、45° 光线精确画出（按比例缩小）。追问：如果那天人的影长不等于身高，还能测吗？——只要同时测人的身高、影长，按比例算即可（下一页练习）。</p>
+</section>
+
+<!-- 5 ================= 练习：平行投影 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>同一时刻：物高 : 影长 相等</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在阳光下，身高为 1.68 m 的小强在地面上的影长为 2 m．在同一时刻，测得旗杆在地面上的影长为 18 m．求旗杆的高度（精确到 0.1 m）．</p>
+        <details><summary>提示 1</summary>$\dfrac{1.68}{2}=\dfrac{h}{18}$。</details>
+        <details><summary>完整解答</summary>$h=\dfrac{1.68\times18}{2}=15.12\approx15.1$（m）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在阳光下，高为 6 m 的旗杆在地面上的影长为 4 m．在同一时刻，测得附近一座建筑物的影长为 36 m．求这座建筑物的高度．</p>
+        <details><summary>提示 1</summary>$\dfrac{6}{4}=\dfrac{h}{36}$。</details>
+        <details><summary>完整解答</summary>$h=\dfrac{6\times36}{4}=54$（m）．</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="平行投影测高">同一时刻：$\dfrac{\text{物高}_1}{\text{影长}_1}=\dfrac{\text{物高}_2}{\text{影长}_2}$。你能用这种方法测出学校附近某一物体的高度吗？</p>
+  </div>
+  <p class="note">课本 p82 练习。书写时先说明“同一时刻，物高与影长成比例”，再列比例式。课后实践：分组测量学校旗杆或教学楼的高度，比较各组结果。</p>
+</section>
+
+<!-- 6 ================= 中心投影 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 实验</span><h2>路灯下：离路灯越远，影子越长</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="lampBd" class="mboard labbd"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="lampRec">记下这个位置</button><button class="btn" type="button" id="lampClr">清空</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-d">路灯、台灯、手电筒的光可以看成从一个点发出的。在点光源的照射下，物体所产生的影称为<b>中心投影</b>（课本 p83）。拖动小明（身高 1.6 m，灯高 5 m）：</p>
+      <table class="mtab lab-tab" id="lampTab"></table>
+      <p class="thm" data-step="1">一般地，在点光源的照射下，同一个物体在不同的位置，它的物高与影长<b>不成比例</b>．</p>
+      <p class="tip small-d" data-step="2">但每一个位置都有一对相似三角形：<span class="think" data-step="3" data-ask="哪一对？">人与影子组成的三角形 ∽ 灯杆与“灯杆到影子端点”组成的三角形（光源是位似中心）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p83 图 6-44 与“中心投影”的定义。拖动小明，影长 = 1.6 × 到灯杆距离 ÷ (5 − 1.6)。记下几个位置对比：物高不变，影长变化，比值不同——与平行投影的结论形成对比。但在每个位置，都能用一对相似三角形列比例式，这是后面例题的方法。</p>
+</section>
+
+<!-- 7 ================= 尝试与交流：找光源、两根灯杆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>由影子找光源；两根灯杆一样高吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="srcBd" class="mboard labbd"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="srcFind">画出光源</button><button class="btn" type="button" id="srcThird">画第三根的影子</button></div>
+      <p class="tip small-d"><b>1.</b> 三根旗杆的底部在同一条直线上，其中两根在同一灯光下的影长如图 6-45．画出光源的位置，并画出另一根旗杆在该灯光下的影长．</p>
+    </div>
+    <div class="col">
+      <p class="tip small-d"><b>2.</b> 如图 6-46，马路两侧有两根灯杆 $AB$、$CD$．当小明站在点 $N$ 处时，在灯 $C$ 的照射下小明的影长正好为 $NB$，在灯 $A$ 的照射下小明的影长为 $NE$．测得 $BD=24$ m，$NB=6$ m，$NE=2$ m，判断这两根灯杆的高度是否相同，并说明理由．</p>
+      <div id="f646" class="mboard gfig"></div>
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="1"><span>∵</span><span class="nw">$MN\parallel CD$，∴ $\triangle BNM\backsim\triangle BDC$，</span><i class="why">平行截得的三角形相似</i></div>
+        <div class="dl" data-step="1"><span>∴</span><span class="nw">$\dfrac{MN}{CD}=\dfrac{BN}{BD}=\dfrac{6}{24}=\dfrac14$；</span><i class="why">对应边成比例</i></div>
+        <div class="dl" data-step="2"><span>∵</span><span class="nw">$MN\parallel AB$，∴ $\triangle ENM\backsim\triangle EBA$，</span><i class="why">同上</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="nw">$\dfrac{MN}{AB}=\dfrac{EN}{EB}=\dfrac{2}{8}=\dfrac14$；</span><i class="why">$EB=EN+NB=8$</i></div>
+        <div class="dl end" data-step="3"><span>∴</span><span>$AB=CD=4MN$，两根灯杆一样高．</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p83“尝试与交流”与图 6-45、6-46。第 1 题：光线经过杆顶和影子的端点，两条光线的交点就是光源——按课本图量得的位置精确作出。第 2 题的关键是 EB = EN + NB = 8，学生容易误用 NE = 2 作分母。图 6-46 按 BD = 24、NB = 6、NE = 2 画出，小明身高任取，灯杆高为其 4 倍。</p>
+</section>
+
+<!-- 8 ================= 例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>例　两次测影长，求灯杆的高度</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-d">如图 6-47，河对岸有一灯杆 $AB$，在灯光下，小丽在点 $D$ 处测得自己的影长 $DF=3$ m，沿 $BD$ 方向前进到点 $F$ 处测得自己的影长 $FG=4$ m．设小丽的身高为 1.6 m，求灯杆 $AB$ 的高度．</p>
+      <div id="f647" class="mboard gfig l"></div>
+      <p class="tip gold small-d" data-step="1"><b>分析：</b>$AB$、$BD$ 都不知道（河对岸量不到）。<span class="think" data-step="2" data-ask="怎么办？">两对相似三角形各给出一个关于 $AB$、$BD$ 的关系式，联立求解。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="3"><span>解：</span><span>在 Rt$\triangle ABF$ 和 Rt$\triangle CDF$ 中，$\angle AFB=\angle CFD$，</span><i class="why">公共角</i></div>
+        <div class="dl" data-step="3"><span>于是</span><span>$\triangle ABF\backsim\triangle CDF$．</span><i class="why">两角分别相等</i></div>
+        <div class="dl" data-step="4"><span>所以</span><span class="nw">$\dfrac{AB}{CD}=\dfrac{BF}{DF}$，即 $\dfrac{AB}{1.6}=\dfrac{3+BD}{3}$．①</span><i class="why">对应边成比例</i></div>
+        <div class="dl" data-step="5"><span>类似地</span><span>$\triangle ABG\backsim\triangle EFG$，</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span>所以</span><span class="nw">$\dfrac{AB}{EF}=\dfrac{BG}{FG}$，即 $\dfrac{AB}{1.6}=\dfrac{7+BD}{4}$．②</span><i class="why">$BG=BD+DF+FG$</i></div>
+        <div class="dl" data-step="6"><span>由①②</span><span class="think" data-step="7" data-ask="解方程">$\dfrac{3+BD}{3}=\dfrac{7+BD}{4}$，$BD=9$．</span><i class="why">$12+4BD=21+3BD$</i></div>
+        <div class="dl" data-step="8"><span>代入①</span><span>$\dfrac{AB}{1.6}=\dfrac{3+9}{3}$，$AB=6.4$．</span><i class="why"></i></div>
+        <div class="dl end" data-step="9"><span>答：</span><span>灯杆 $AB$ 高 6.4 m．</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p84 例、图 6-47（按 AB = 6.4、BD = 9、DF = 3、FG = 4、身高 1.6 精确画出，光线确实经过小丽头顶）。思路：一个未知量 BD 量不到，就用两个比例式消去它——这是“方程思想”。验算：1.6/6.4 = 3/12 = 4/16 = 1/4。</p>
+</section>
+
+<!-- 9 ================= 练习 p84-85 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>中心投影的计算</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，某学生身高 $AB=1.70$ m，在灯光下，他从灯杆底部点 $D$ 处沿直线前进 4 m 到达点 $B$ 时，测得他的影长 $PB=2$ m．求灯杆 $CD$ 的高度．</p>
+        <div id="p84a" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>$\triangle PAB\backsim\triangle PCD$，$PD=PB+BD=6$。</details>
+        <details><summary>完整解答</summary>$\dfrac{AB}{CD}=\dfrac{PB}{PD}$，$\dfrac{1.70}{CD}=\dfrac26$，$CD=5.1$（m）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 圆桌正上方的灯泡 $O$（看作一个点）发出的光线照射到桌面后，在地面上形成影．设桌面的半径 $AC=0.8$ m，桌面与地面的距离 $AB=1$ m，灯泡与桌面的距离 $OA=2$ m，求地面上形成的影的面积．</p>
+        <div id="p85a" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>$\triangle OAC\backsim\triangle OBD$，$OB=OA+AB=3$。</details>
+        <details><summary>完整解答</summary>$\dfrac{BD}{AC}=\dfrac{OB}{OA}=\dfrac32$，$BD=1.2$ m，影的面积 $=\pi\times1.2^2=1.44\pi\approx4.52$（m²）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p84–85 练习。第 2 题也可以直接用 6.5 的“面积比 = 相似比的平方”：桌面面积 0.64π，影的面积 = 0.64π × (3/2)² = 1.44π。两图按题中数据精确画出（第 2 题为侧面的截面）。</p>
+</section>
+
+<!-- 10 ================= 习题 1-3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.7（一）：测距离、测厚度、用镜子测高</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> $A$、$B$ 两地分别在湖的两侧，点 $D$、$E$ 分别在 $AC$、$BC$ 上．设 $CD=20$ m，$CE=40$ m，$AD=100$ m，$BE=20$ m，$DE=45$ m，求 $AB$．</p>
+        <div id="h1fig" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>$CA=120$，$CB=60$；$\dfrac{CD}{CB}=\dfrac{CE}{CA}=\dfrac13$，$\angle C$ 公共。</details>
+        <details><summary>完整解答</summary>$\triangle CDE\backsim\triangle CBA$（两边成比例且夹角相等），$\dfrac{DE}{BA}=\dfrac13$，$AB=135$ m．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 零件的外径为 16 cm，用卡钳（$AD=BC$，且 $OA:OD=OB:OC=3:1$）测得 $CD=5$ cm，求零件的壁厚 $x$．</p>
+        <details><summary>提示 1</summary>$\triangle AOB\backsim\triangle DOC$，$AB=3CD$。</details>
+        <details><summary>完整解答</summary>$AB=15$ cm，$2x=16-15$，$x=0.5$ cm．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在地面上点 $C$ 处平放一面镜子，小军站在点 $D$ 处恰好看到建筑物 $AB$ 的顶端 $A$ 在镜子中的像与镜子上的标记重合．小军的眼睛距地面 1.65 m，$BC$、$CD$ 的长分别为 60 m、3 m，求这座建筑物的高度．</p>
+        <div id="h3fig" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>反射角等于入射角 ⇒ $\angle ACB=\angle ECD$，$\triangle ABC\backsim\triangle EDC$。</details>
+        <details><summary>完整解答</summary>$\dfrac{AB}{ED}=\dfrac{BC}{DC}$，$\dfrac{AB}{1.65}=\dfrac{60}{3}$，$AB=33$ m．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p85 习题 6.7 第 1～3 题。第 1 题要先判断对应关系：CD 对 CB、CE 对 CA（不是 CD 对 CA！），图按题中数据精确作出。第 3 题镜子图中两角 α 相等（反射定律）。</p>
+</section>
+
+<!-- 11 ================= 习题 4-7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.7（二）：墙上的影子、标杆、小尺、照相机</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 在阳光下，旗杆 $AB$ 在地面上的影长 $BC$ 为 20 m；在建筑物墙面上的影长 $CD$ 为 4 m．同一时刻，测得直立于地面长 1 m 的木杆的影长为 0.8 m．求旗杆 $AB$ 的高度．</p>
+        <details><summary>提示 1</summary>墙上的影子 $CD$ 对应旗杆上高 4 m 的一段；其余部分的影子落在地面上，长 20 m。</details>
+        <details><summary>完整解答</summary>$AB-4=20\div0.8=25$，$AB=29$ m．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 竖立在点 $B$ 处的标杆 $AB$ 高 2.5 m，站立在点 $F$ 处的观察者从点 $E$ 处看到标杆顶 $A$、树顶 $C$ 在一条直线上．设 $BD=10$ m，$FB=3$ m，$EF=1.7$ m，求树高 $CD$（精确到 0.1 m）．</p>
+        <details><summary>提示 1</summary>过 $E$ 作水平线，交 $AB$、$CD$ 于 $G$、$H$：$\dfrac{AG}{CH}=\dfrac{EG}{EH}$。</details>
+        <details><summary>完整解答</summary>$\dfrac{2.5-1.7}{CD-1.7}=\dfrac{3}{13}$，$CD-1.7=\dfrac{10.4}{3}\approx3.47$，$CD\approx5.2$ m．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 小明把手臂水平向前伸直，手持小尺竖直，瞄准小尺的两端 $E$、$F$，使在点 $D$ 处恰好能看到铁塔的顶部 $B$ 和底部 $A$．设手臂长 $l=50$ cm，小尺长 $a=20$ cm，点 $D$ 到铁塔底部的距离 $AD=40$ m，求铁塔的高度．</p>
+        <details><summary>提示 1</summary>眼睛 $C$ 是位似中心：$\dfrac{a}{AB}=\dfrac{l}{AD}$。</details>
+        <details><summary>完整解答</summary>$AB=\dfrac{0.2\times40}{0.5}=16$ m．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>7.</b> 照相机成像示意图：如果底片 $AB$ 宽为 35 mm，焦距是 70 mm，那么拍摄 5 m 外的景物 $A'B'$ 至少有多宽？如果焦距是 50 mm 呢？</p>
+        <details><summary>提示 1</summary>$\triangle OAB\backsim\triangle OA'B'$，对应高的比等于相似比。</details>
+        <details><summary>完整解答</summary>$A'B'=35\times\dfrac{5\,000}{70}=2\,500$ mm $=2.5$ m；焦距 50 mm 时 $A'B'=35\times\dfrac{5\,000}{50}=3.5$ m．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p86 习题 6.7 第 4～7 题。第 4 题最易错：墙上的影子不能按 0.8 折算，它就是旗杆顶部射下来的光线在墙上的高度。第 6、7 题都是“小孔/眼睛”作位似中心的模型，用 6.5 的“对应高的比等于相似比”。第 7 题焦距越短，拍到的范围越宽（广角）。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>相似三角形的测量模型</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>模型</h3>
+        <p class="def">平行投影：同一时刻物高与影长成比例。</p>
+        <p class="def">中心投影：光源是位似中心；同一物体在不同位置，物高与影长不成比例。</p>
+        <p class="def">镜子（反射角 = 入射角）、标杆与视线、小尺与小孔成像。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="建模">实际问题 → 画示意图 → 找相似三角形 → 列比例式 → 解方程 → 检验作答。</p>
+        <p class="method" data-label="量不到的量">设为未知数，用两个比例式联立（例题）。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数学建模">把“测高、测距”转化为相似三角形。</p>
+        <p class="recall" data-label="本章回顾">成比例线段 → 黄金分割 → 相似图形 → 判定 → 性质 → 位似 → 应用。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一章：</b>第 7 章 锐角三角函数——直角三角形中，“角定了，边比就定了”。相似三角形正是三角函数的基础。</p>
+  </div>
+  <p class="note">回到封面：学生课前想的测旗杆方法，对应到了哪一种模型？本章回顾一行把第 6 章七节串起来。第 7 章“正切”就是“同一个锐角的直角三角形都相似，所以对边 : 邻边是定值”——本章的相似是它的基础。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

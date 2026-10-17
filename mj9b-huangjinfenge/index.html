@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>黄金分割 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/balei-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第6章 图形的相似 · 6.2</p>
+    <h1 class="cover-title">黄金分割</h1>
+    <p class="cover-q" data-step="1">东方明珠电视塔挺拔秀丽，芭蕾舞演员身姿匀称协调。量一量课本图中的线段 $AB$、$AC$、$BC$，算出 $\dfrac{AB}{AC}$ 与 $\dfrac{BC}{AB}$。</p>
+    <p class="cover-q" data-step="2">两个比值都约为 <b>0.62</b>！点 $B$ 的位置有什么特别？这个数又是从哪里来的？</p>
+    <div class="chips" data-step="3"><span class="chip">找一个特别的点</span><span class="chip">列方程求比值</span><span class="chip">尺规作图</span><span class="chip">黄金矩形</span></div>
+  </div>
+  <p class="note">课本 p44 两幅图（东方明珠、芭蕾舞演员）。课前可让学生在课本上量一量、算一算，课上只说结果：两个比值都约为 0.62。封面抛出两个问题——“B 点特别在哪”“0.62 从哪来”，本课逐一回答。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="上一课 · 6.1 图上距离与实际距离" data-step="1">
+        <p>两条线段的比等于另两条线段的比，这四条线段叫做<b>成比例线段</b>；</p>
+        <p>比例的基本性质：$\dfrac ab=\dfrac cd\Leftrightarrow ad=bc$。</p>
+        <span class="use">黄金分割的定义 $\dfrac{BC}{AB}=\dfrac{AB}{AC}$ 就是一个比例式；化成等积式列方程。</span>
+      </div>
+      <div class="recall" data-label="九年级上册 · 第1章 一元二次方程" data-step="2">
+        <p>$ax^2+bx+c=0$ 的求根公式：$x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$。</p>
+        <span class="use">例题解方程 $x^2+x-1=0$，并按“线段长是正数”取舍。</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 3.1 勾股定理" data-step="3">
+        <p>直角边为 $1$ 和 $\dfrac12$ 的直角三角形，斜边为 $\sqrt{1+\dfrac14}=\dfrac{\sqrt5}{2}$。</p>
+        <span class="use">第 7 页用尺规作出黄金分割点，并说明为什么作得对。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 习题 6.1 第 5 题" data-step="4">
+        <p>“你最喜欢哪个矩形？”的调查结果带来了吗？</p>
+        <span class="use">第 3 页：最受欢迎的矩形，宽与长的比是多少？</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">上一课学了“成比例线段”，本课的黄金分割就是一种特殊的成比例：一条线段被分成两段，三条线段之间成比例。解方程要用九上第 1 章的求根公式，作图证明要用勾股定理——提醒学生这两件工具今天都会派上用场。</p>
+</section>
+
+<!-- 3 ================= 尝试与交流 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>你最喜欢哪一个矩形？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">习题 6.1 第 5 题的四个矩形（按课本图的宽长比画出）。先选你最喜欢的一个：</p>
+      <div class="rect-pick" id="rectPick" data-noswipe>
+        <button type="button" data-r="0.88"><svg viewBox="0 0 120 110"></svg><span>①</span><span class="r"></span></button>
+        <button type="button" data-r="0.618"><svg viewBox="0 0 120 110"></svg><span>②</span><span class="r"></span></button>
+        <button type="button" data-r="0.26"><svg viewBox="0 0 120 110"></svg><span>③</span><span class="r"></span></button>
+        <button type="button" data-r="0.42"><svg viewBox="0 0 120 110"></svg><span>④</span><span class="r"></span></button>
+      </div>
+      <p class="tip feedback" id="rectMsg">点一个矩形。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">小丽调查了 10 名同学，其中 <b>8 名</b>最喜欢第②个矩形。度量它（图 6-3）的边 $BC$、$AB$，计算 $\dfrac{BC}{AB}$：<span class="think" data-step="2" data-ask="算一算">约 $0.62$。</span></p>
+      <p class="tip" data-step="3">再回到封面：东方明珠、芭蕾舞演员图中，$\dfrac{AB}{AC}$ 与 $\dfrac{BC}{AB}$ 都约为 <span class="think" data-step="4" data-ask="?">$0.62$。</span></p>
+      <p class="def" data-step="5"><b>猜想：</b>点 $B$ 把线段 $AC$ 分成两段，使得“短段 : 长段 = 长段 : 全长”，即 $\dfrac{BC}{AB}=\dfrac{AB}{AC}$。这样的点 $B$ 能找到吗？比值一定是 0.62 左右吗？</p>
+    </div>
+  </div>
+  <p class="note">课本 p45“尝试与交流”与图 6-3。先让全班投票选矩形（可以用上节课布置的调查结果），再点“看比值”。四个矩形按课本图量得的宽长比（约 0.88、0.62、0.26、0.42）精确画出。第②个矩形宽 : 长 ≈ 0.62，和电视塔、舞蹈演员的比值一样——三个不同的情境出现同一个数，引出猜想。</p>
+</section>
+
+<!-- 4 ================= 探究：找点 B ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探究</span><h2>拖动点 $B$：两个比什么时候相等？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="segBd" class="mboard segbd"></div>
+      <div class="readout gold-read">
+        <span>$\dfrac{BC}{AB}$</span><div class="bar"><i class="b1" id="r1Bar"></i></div><b class="v" id="r1"></b>
+        <span>$\dfrac{AB}{AC}$</span><div class="bar"><i class="b2" id="r2Bar"></i></div><b class="v" id="r2"></b>
+      </div>
+      <p class="tip feedback" id="segMsg"></p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="segFine">微调：B 向左 0.001</button><button class="btn" type="button" id="segFine2">微调：B 向右 0.001</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">设 $AC=1$，$AB=x$。拖动点 $B$，右图同时画出两个比随 $x$ 变化的图象：</p>
+      <div id="curveBd" class="mboard curvebd"></div>
+      <p class="tip" data-step="1">$B$ 越往右，$\dfrac{BC}{AB}$ 越<span class="think" data-step="2" data-ask="?">小</span>，$\dfrac{AB}{AC}$ 越<span class="think" data-step="3" data-ask="?">大</span>——所以恰好有<b>一个</b>位置让它们相等（图象的交点）。</p>
+    </div>
+  </div>
+  <p class="note">本课独有的探究：先让学生拖 B 去“碰”两个比相等，会发现大约在 0.62 处；用微调按钮逼近，读数在 0.618 附近两个比交换大小。右图把两个比画成 x 的函数：y = (1 − x)/x 递减、y = x 递增，交点只有一个——这与九下第 5 章“用图象看方程的解”是同一个想法。精确值要靠下一页列方程求。</p>
+</section>
+
+<!-- 5 ================= 例题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>例　列方程求出这个比值</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 6-4，点 $B$ 在线段 $AC$ 上，且 $\dfrac{BC}{AB}=\dfrac{AB}{AC}$．设 $AC=1$，求 $AB$ 的长．</p>
+      <div id="ex64" class="mboard gfig s"></div>
+      <p class="tip gold" data-step="1"><b>思路分析：</b>未知的是 $AB$。<span class="think" data-step="2" data-ask="BC 怎样用 x 表示？">设 $AB=x$，则 $BC=1-x$，代入比例式就得到关于 $x$ 的方程。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="3"><span>解：</span><span>设 $AB=x$，则 $BC=AC-AB=1-x$．</span><i class="why">线段的和差</i></div>
+        <div class="dl" data-step="4"><span>由</span><span>$\dfrac{BC}{AB}=\dfrac{AB}{AC}$，得 $\dfrac{1-x}{x}=x$，</span><i class="why">代入已知比例式</i></div>
+        <div class="dl" data-step="5"><span>即</span><span class="think" data-step="6" data-ask="化成一般形式">$x^2+x-1=0$．</span><i class="why">比例的基本性质：$1-x=x^2$</i></div>
+        <div class="dl" data-step="7"><span></span><span class="think" data-step="8" data-ask="用求根公式">$x_1=\dfrac{\sqrt5-1}{2}$，$x_2=\dfrac{-\sqrt5-1}{2}$（不合题意，舍去）．</span><i class="why">求根公式；线段长 $x\gt0$</i></div>
+        <div class="dl end" data-step="9"><span>于是</span><span>$AB$ 的长为 $\dfrac{\sqrt5-1}{2}$．</span><i class="why">$\approx\dfrac{2.236-1}{2}=0.618$</i></div>
+      </div>
+      <p class="tip" data-step="10">回到上一页：两个比相等的位置正是 $x\approx0.618$，读数对上了！</p>
+    </div>
+  </div>
+  <p class="note">课本 p45 例。关键一步是把比例式化成等积式（上一课的比例的基本性质），得到一元二次方程。负根要舍去，理由是“线段长是正数”，要让学生说出来。图 6-4 中 B 按 AB = (√5 − 1)/2 精确画出。</p>
+</section>
+
+<!-- 6 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>黄金分割、黄金分割点、黄金比</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>定义（课本 p45–46）</h4>点 $B$ 把线段 $AC$ 分成两部分，如果 $\dfrac{BC}{AB}=\dfrac{AB}{AC}$，那么称线段 $AC$ 被点 $B$ <em>黄金分割</em>，点 $B$ 为线段 $AC$ 的<em>黄金分割点</em>．$AB$ 与 $AC$（或 $BC$ 与 $AB$）的比称为<em>黄金比</em>，它们的比值为 $\dfrac{\sqrt5-1}{2}$，在计算时，通常取它的近似值 $0.618$．</div>
+      <p class="tip" data-step="2">用自己的话说：<b>较短段 : 较长段 = 较长段 : 全长 $\approx0.618$</b>。</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="3">一条线段有几个黄金分割点？</p>
+      <div id="twoPts" class="mboard segbd" data-step="3"></div>
+      <p class="tip" data-step="4"><span class="think" data-step="5" data-ask="想一想再看">两个！靠近 $A$、靠近 $C$ 各一个（关于中点对称）：较长段可以在左边，也可以在右边。</span></p>
+      <p class="warn" data-step="6" data-label="易错">黄金比是“较长段 : 全长”或“较短段 : 较长段”，约 $0.618$；不是“较短段 : 全长”（约 $0.382$）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p45–46 定义。强调两个比的“谁比谁”：短比长、长比全，都等于 (√5 − 1)/2。追问“一条线段有几个黄金分割点”为练习 2 做准备。0.382 = 1 − 0.618 是“较短段 : 全长”，学生常与黄金比混淆。下方图中两个点按 AC 的 0.382、0.618 处精确画出。</p>
+</section>
+
+<!-- 7 ================= 尺规作图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">作图 · 说理</span><h2>用直尺和圆规作出黄金分割点</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="consBd" class="mboard consbd"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="consPrev">上一步</button><button class="btn solid" type="button" id="consNext">下一步作图</button><span class="muted small-t">拖动点 $C$ 改变 $AC$ 的长</span></div>
+      <p class="tip feedback" id="consMsg"></p>
+    </div>
+    <div class="col">
+      <div class="cons-steps" id="consSteps">
+        <p class="st">① 过点 $C$ 画 $CD\perp AC$，使 $CD=\dfrac12AC$；</p>
+        <p class="st">② 连接 $AD$；</p>
+        <p class="st">③ 以点 $D$ 为圆心、$DC$ 的长为半径画弧，交 $AD$ 于点 $E$；</p>
+        <p class="st">④ 以点 $A$ 为圆心、$AE$ 的长为半径画弧，交 $AC$ 于点 $B$．</p>
+      </div>
+      <div class="derive wrap small-d" data-step="1">
+        <div class="dl"><span>设 $AC=1$</span><span class="think" data-step="2" data-ask="AD = ?">$AD=\sqrt{1^2+\left(\dfrac12\right)^2}=\dfrac{\sqrt5}{2}$</span><i class="why">勾股定理</i></div>
+        <div class="dl"><span></span><span class="think" data-step="3" data-ask="AE = ?">$AE=AD-DE=\dfrac{\sqrt5}{2}-\dfrac12=\dfrac{\sqrt5-1}{2}$</span><i class="why">$DE=DC=\dfrac12$（同圆半径相等）</i></div>
+        <div class="dl end"><span>∴</span><span class="think" data-step="4" data-ask="结论">$AB=AE=\dfrac{\sqrt5-1}{2}$，<br>$B$ 是 $AC$ 的黄金分割点</span><i class="why">黄金分割点的定义（例题已算出）</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p47 习题 6.2 第 3 题。先逐步点“下一步作图”，每一步请学生说出用的是哪种基本作图（过一点作垂线、截取线段、画弧）。所有点都按坐标计算：D = C + (0, AC/2)，E 在 AD 上且 DE = DC，B 在 AC 上且 AB = AE。拖动 C 改变 AC，AB/AC 始终是 0.618——作法对任意长的线段都成立，右边的说理用“设 AC = 1”说明为什么。</p>
+</section>
+
+<!-- 8 ================= 黄金矩形与生活 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">欣赏 · 应用</span><h2>黄金矩形：切掉一个正方形，还是黄金矩形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="recBd" class="mboard recbd"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="cutBtn">切掉一个正方形</button><button class="btn" type="button" id="cutReset">还原</button></div>
+      <p class="tip feedback" id="cutMsg"></p>
+    </div>
+    <div class="col">
+      <p class="def" data-step="1"><b>黄金矩形</b>（课本 p46 练习 1）：宽与长的比为黄金比的矩形，它给人以美感。</p>
+      <p class="tip" data-step="2">为什么切掉正方形后还是黄金矩形？设长 $1$、宽 $x=\dfrac{\sqrt5-1}{2}$，剩下矩形的边为 $x$ 和 $1-x$：<span class="think" data-step="3" data-ask="算一算">$\dfrac{1-x}{x}=x$（例题中的方程！），宽长比还是黄金比。</span></p>
+      <p class="recall" data-label="生活中的黄金分割" data-step="4">陕北民歌《天心顺》的高潮音符落在全曲的黄金分割处；国歌的高潮部分在结构上几乎正好是全曲的黄金分割的位置（课本 p46）。你还能举出例子吗？</p>
+    </div>
+  </div>
+  <p class="note">课本 p46 的“应用”与练习 1 中的黄金矩形。每点一次“切掉一个正方形”，剩下的小矩形的宽长比都显示 0.618——这是黄金矩形的“自相似”，与 6.3“相似图形”相呼应。图形按 x = (√5 − 1)/2 精确计算，不是近似画的。学生举例可能有：书本、名片、窗户、绘画构图、人体比例等，鼓励他们课后量一量验证。</p>
+</section>
+
+<!-- 9 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>课本练习：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在图 6-3 中，$BC$ 与 $AB$ 的比为黄金比，这样的矩形称为黄金矩形，它给人以美感．某建筑物的窗户为黄金矩形，已知它的一边长为 3.24 m，求它的邻边的长（精确到 0.01 m）．</p>
+        <details><summary>提示 1</summary>3.24 m 可能是长，也可能是宽——要分两种情况。</details>
+        <details><summary>提示 2</summary>宽 = 长 × 0.618；长 = 宽 ÷ 0.618。</details>
+        <details><summary>完整解答</summary>若 3.24 m 是长：邻边 $\approx3.24\times0.618\approx2.00$（m）；<br>若 3.24 m 是宽：邻边 $\approx3.24\div0.618\approx5.24$（m）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$C$、$D$ 是线段 $AB$ 的两个黄金分割点，$AB=1$．求线段 $CD$ 的长．</p>
+        <div id="pr2Fig" class="mboard gfig s"></div>
+        <details><summary>提示 1</summary>$D$ 是黄金分割点且 $AD$ 是较长段：$AD=\dfrac{\sqrt5-1}{2}$；同理 $BC=\dfrac{\sqrt5-1}{2}$。</details>
+        <details><summary>提示 2</summary>$CD=AD+BC-AB$（两段重叠的部分）。</details>
+        <details><summary>完整解答</summary>$CD=\dfrac{\sqrt5-1}{2}+\dfrac{\sqrt5-1}{2}-1=\sqrt5-2\ (\approx0.236)$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p46 练习 1、2。第 1 题容易只算一种情况，提示 1 专门点出“分类讨论”。第 2 题的图按 AC = 0.382、AD = 0.618 精确画出；CD = √5 − 2 也可以写成 AD − AC = (√5 − 1)/2 − (3 − √5)/2。</p>
+</section>
+
+<!-- 10 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.2：电视塔与面积</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 东方明珠电视塔高 468 m，如果把塔身看作一条线段 $AC$，中间的球体看作点 $B$，那么点 $B$ 是线段 $AC$ 的黄金分割点．求 $AB$ 的长（精确到 0.1 m）．</p>
+        <details><summary>提示 1</summary>看课本图：$A$ 在塔底，$B$ 在中间的球体，$AB$ 是较长的一段。</details>
+        <details><summary>提示 2</summary>$\dfrac{AB}{AC}=\dfrac{\sqrt5-1}{2}$。</details>
+        <details><summary>完整解答</summary>$AB=468\times\dfrac{\sqrt5-1}{2}\approx468\times0.618\approx289.2$（m）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$P$ 是线段 $AB$ 的黄金分割点，且 $PA\gt PB$，$S_1$ 表示以 $PA$ 为一边的正方形的面积，$S_2$ 表示长为 $AB$、宽为 $PB$ 的矩形的面积．比较 $S_1$ 与 $S_2$ 的大小，并说明理由．</p>
+        <div id="h2Fig" class="mboard gfig l"></div>
+        <details><summary>提示 1</summary>$S_1=PA^2$，$S_2=AB\cdot PB$。</details>
+        <details><summary>提示 2</summary>黄金分割：$\dfrac{PB}{PA}=\dfrac{PA}{AB}$，用比例的基本性质化成等积式。</details>
+        <details><summary>完整解答</summary>∵ $P$ 是黄金分割点，$PA\gt PB$，∴ $\dfrac{PB}{PA}=\dfrac{PA}{AB}$，∴ $PA^2=AB\cdot PB$，即 $S_1=S_2$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p47 习题 6.2 第 1、2 题（第 3 题已在作图页完成）。第 2 题是“比例式 ⇔ 等积式”的漂亮应用：黄金分割的定义也可以写成 PA² = AB · PB，即较长段是较短段与全长的比例中项（6.1 学的比例中项）。图中按 PA = 0.618 AB 精确画出，两个阴影面积确实相等。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$\dfrac{BC}{AB}=\dfrac{AB}{AC}$：$B$ 是 $AC$ 的黄金分割点；黄金比 $\dfrac{\sqrt5-1}{2}\approx0.618$。</p>
+        <p class="def">一条线段有两个黄金分割点；$AB^2=BC\cdot AC$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="方程">设未知线段为 $x$，比例式 → 等积式 → 一元二次方程，负根舍去。</p>
+        <p class="method" data-label="作图">$CD\perp AC$、$CD=\dfrac12AC$，两次画弧截取。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">“美”的比例背后是一个方程 $x^2+x-1=0$ 的正根。</p>
+        <p class="recall" data-label="从特殊到一般">三个情境都得 0.62 → 猜想 → 方程算出精确值。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.3 相似图形——黄金矩形切掉正方形后，剩下的矩形“形状相同、大小不同”。什么样的两个图形叫“形状相同”？</p>
+  </div>
+  <p class="note">请学生用一句话说出黄金分割点的“特别之处”，再逐栏揭示。作业建议：习题 6.2，并找一件身边的物品量一量，看它的比例是否接近 0.618。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

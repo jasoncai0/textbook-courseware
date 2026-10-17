@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图上距离与实际距离 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/ditu-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第6章 图形的相似 · 6.1</p>
+    <h1 class="cover-title">图上距离与实际距离</h1>
+    <p class="cover-q" data-step="1">两幅江苏省地图，一幅比例尺 <b>1 : 8 000 000</b>，一幅 <b>1 : 16 000 000</b>。同一段“南京—徐州”，在两幅图上画出来长短不同。</p>
+    <p class="cover-q" data-step="2">图变小了，地图上的“<b>形状</b>”却没变——南京、徐州、连云港三条连线之间，藏着什么不变的关系？</p>
+    <div class="chips" data-step="3"><span class="chip">比例尺</span><span class="chip">成比例线段</span><span class="chip">比例的基本性质</span><span class="chip">比例中项</span></div>
+  </div>
+  <p class="note">课本 p40 两幅地图。第 6 章“图形的相似”从地图开始：地图是实际地形的“缩小”，形状相同、大小不同。封面只抛问题——“图缩小了，什么没变？”让学生先猜（线段的比没变），本课就来验证并给它起名字：成比例线段。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的四件“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="六年级下册 · 比例尺" data-step="1">
+        <p>$\text{比例尺}=\text{图上距离}:\text{实际距离}$</p>
+        <p>算之前，图上距离和实际距离要化成<b>同一单位</b>（如都用 cm）。</p>
+        <span class="use">第 3 页由地图求实际距离；例 1 先求比例尺。</span>
+      </div>
+      <div class="recall" data-label="六年级下册 · 比例" data-step="2">
+        <p>表示两个比相等的式子叫做<b>比例</b>，如 $2:3=4:6$。</p>
+        <p>两个外项的积等于两个内项的积：$2\times6=3\times4$。</p>
+        <span class="use">第 6 页：把“比例的基本性质”用字母写出来，并说明为什么成立。</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 3.1 勾股定理" data-step="3">
+        <p>直角三角形中 $a^2+b^2=c^2$；方格纸上的斜线段，看成直角三角形的斜边来算长度。</p>
+        <span class="use">第 5 页：求方格纸上 4 条斜线段的长。</span>
+      </div>
+      <div class="recall" data-label="八年级下册 · 二次根式 / 七年级上册 · 一元一次方程" data-step="4">
+        <p>$\sqrt8=2\sqrt2$，$\sqrt{40}=2\sqrt{10}$；$\dfrac{2\sqrt2}{\sqrt2}=2$。</p>
+        <p>设一个未知数，列方程 $3k+5k=24$ 求出 $k$。</p>
+        <span class="use">第 5 页化简线段长；例 2 用“设 $k$ 法”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本章主线：</b>形状相同、大小不同的图形——<b>相似</b>。本课先研究最简单的“零件”：线段与线段的<b>比</b>。</p>
+  </div>
+  <p class="note">每张卡请学生先口头复述，再看“本课用在”。比例尺和比例都是小学六年级下册的内容，学生多半记得算法但说不清道理；本课第 6 页会用字母和“等式的性质”把“内项积 = 外项积”证一遍——这是从小学的“算”走向初中的“推”。</p>
+</section>
+
+<!-- 3 ================= 尝试与交流：两幅地图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>换一幅比例尺，线段的比变了吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="mapBd" class="mboard mapbd"></div>
+      <div class="slider-row" data-noswipe>右图比例尺 1 : <input type="range" id="mapK" min="0" max="5" step="1" value="4"><b class="v" id="mapKV"></b></div>
+      <p class="muted small-t">示意图：三城位置按经纬度换算，背景每小格 1 cm；左图比例尺固定为 1 : 8 000 000</p>
+    </div>
+    <div class="col">
+      <p class="tip">左图：南京—徐州记作 $a$，南京—连云港记作 $c$；右图：同样两段记作 $b$、$d$。</p>
+      <div class="readout map-read">
+        <span>$a$</span><b class="v" id="mA"></b><span>$b$</span><b class="v" id="mB"></b>
+        <span>$c$</span><b class="v" id="mC"></b><span>$d$</span><b class="v" id="mD"></b>
+        <span>$\dfrac ab$</span><b class="v" id="mAB"></b><span>$\dfrac cd$</span><b class="v" id="mCD"></b>
+      </div>
+      <p class="tip feedback" id="mapMsg"></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>小明</span><span class="think" data-step="2" data-ask="量一量，算一算">$\dfrac ab=\dfrac cd$</span><i class="why">度量 $a$、$b$、$c$、$d$ 的长度再算比</i></div>
+        <div class="dl" data-step="3"><span>小丽</span><span class="think" data-step="4" data-ask="不量也能知道吗？">$\dfrac ab=2$，$\dfrac cd=2$</span><i class="why">两幅图的比例尺之比：$\dfrac{1}{8\,000\,000}\div\dfrac{1}{16\,000\,000}=2$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p40“尝试与交流”和两个小人的说法。先让学生用课本地图实际量（约 3.6 cm），再看右边的读数：拖动滑块换右图的比例尺，a、b、c、d 都在变，但 a/b 始终等于 c/d，而且等于两个比例尺的比。小明靠“量”，小丽靠“推”——两种都对，后者说清了为什么。读数是用两城的经纬度换算的直线距离（约 286 km、约 284 km）再按比例尺算出来的，与课本图量得的结果会有零点几厘米的误差。</p>
+</section>
+
+<!-- 4 ================= 定义：成比例线段 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>成比例线段</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>定义（课本 p40）</h4>在四条线段中，如果两条线段的比<em>等于</em>另两条线段的比，那么这四条线段叫做<em>成比例线段</em>．</div>
+      <p class="tip" data-step="2">上一页：$\dfrac ab=\dfrac cd$（或写成 $a:b=c:d$），所以 $a$、$b$、$c$、$d$ 是成比例线段。</p>
+      <p class="warn" data-step="3" data-label="注意顺序">说“$a$、$b$、$c$、$d$ 成比例”，指的是按这个顺序：$a:b=c:d$。换了顺序，要重新检验。</p>
+    </div>
+    <div class="col">
+      <p class="tip">思考与探索 1：在图 6-1 中，哪两个矩形的长和宽是成比例线段？</p>
+      <svg viewBox="0 0 480 120" class="rects" aria-label="图 6-1：9×6、8×4、6×4 三个矩形">
+        <rect x="20" y="16" width="135" height="90" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2"/>
+        <rect x="190" y="46" width="120" height="60" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2"/>
+        <rect x="345" y="46" width="90" height="60" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2"/>
+        <text x="80" y="12" class="fl" style="font-style:normal;font-size:17px">9</text><text x="4" y="66" class="fl" style="font-style:normal;font-size:17px">6</text>
+        <text x="244" y="42" class="fl" style="font-style:normal;font-size:17px">8</text><text x="176" y="82" class="fl" style="font-style:normal;font-size:17px">4</text>
+        <text x="384" y="42" class="fl" style="font-style:normal;font-size:17px">6</text><text x="331" y="82" class="fl" style="font-style:normal;font-size:17px">4</text>
+        <text x="78" y="120" style="font-size:14px" fill="#556575">(1)</text><text x="240" y="120" style="font-size:14px" fill="#556575">(2)</text><text x="380" y="120" style="font-size:14px" fill="#556575">(3)</text>
+      </svg>
+      <div class="pick" data-ans="13">
+        <button data-k="12">(1) 和 (2)</button><button data-k="13">(1) 和 (3)</button><button data-k="23">(2) 和 (3)</button>
+        <p class="pick-why">长与宽的比：(1) $9:6=\dfrac32$，(2) $8:4=2$，(3) $6:4=\dfrac32$。所以 (1)(3) 的长和宽成比例：$9:6=6:4$。</p>
+      </div>
+      <p class="method" data-step="4" data-label="判断方法">把每个矩形的“长 : 宽”化成最简比（或求比值），比值相等就成比例。</p>
+    </div>
+  </div>
+  <p class="note">课本 p40 定义和“思考与探索”第 1 题。先读定义，强调“两条线段的比等于另两条线段的比”——比较的是“比”，不是长度本身。图 6-1 按 9×6、8×4、6×4 等比例画出：(1)(3) 看上去“一样胖”，(2) 明显更“扁长”，这是下节课“相似图形”的直观铺垫。</p>
+</section>
+
+<!-- 5 ================= 方格纸上的线段（图 6-2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>方格纸上的四条斜线段，成比例吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="gridBd" class="mboard gridbd"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="legBtn">画出直角三角形</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">如图 6-2，线段 $A_1B_1$、$B_1C_1$、$A_2B_2$、$B_2C_2$ 的端点都在边长为 1 的小正方形的顶点上。这四条线段是成比例线段吗？为什么？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$A_1B_1$</span><span class="think" data-step="2" data-ask="直角边各几格？">$\sqrt{2^2+2^2}=2\sqrt2$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="1"><span>$B_1C_1$</span><span class="think" data-step="3" data-ask="?">$\sqrt{6^2+2^2}=2\sqrt{10}$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="1"><span>$A_2B_2$</span><span class="think" data-step="4" data-ask="?">$\sqrt{1^2+1^2}=\sqrt2$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="1"><span>$B_2C_2$</span><span class="think" data-step="5" data-ask="?">$\sqrt{3^2+1^2}=\sqrt{10}$</span><i class="why">勾股定理</i></div>
+        <div class="dl key" data-step="6"><span>∵</span><span>$\dfrac{A_1B_1}{B_1C_1}=\dfrac{2\sqrt2}{2\sqrt{10}}=\dfrac{\sqrt2}{\sqrt{10}}=\dfrac{A_2B_2}{B_2C_2}$</span><i class="why">约去公因数 2</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>是成比例线段</span><i class="why">成比例线段的定义</i></div>
+      </div>
+      <p class="tip" data-step="8">换个角度：$\dfrac{A_1B_1}{A_2B_2}=\dfrac{B_1C_1}{B_2C_2}=$ <span class="think" data-step="9" data-ask="等于几？">$2$——第一组线段正好是第二组的 2 倍。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p41“思考与探索”第 2 题、图 6-2（按课本格点坐标精确画出：B₁(0,1)、A₁(2,3)、C₁(6,3)、B₂(3,5)、A₂(4,4)、C₂(6,4)）。先让学生自己数直角边、算长度，点“画出直角三角形”核对。斜线段的长度是无理数，不能直接“量”准，只能“算”——这正是要用勾股定理和二次根式的原因。最后一行提醒：比例式可以换一种写法，后面“比例的基本性质”会说明为什么可以这样换。</p>
+</section>
+
+<!-- 6 ================= 比例的基本性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推理</span><h2>比例的基本性质：小学“记住”，现在“证明”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>比例的基本性质（课本 p41）</h4>如果 $a:b=c:d$，那么 $ad=bc$；<br>反过来，如果 $ad=bc\ (b\neq0,\ d\neq0)$，那么 $a:b=c:d$．</div>
+      <div class="derive wrap">
+        <div class="dl" data-step="2"><span>∵</span><span>$\dfrac ab=\dfrac cd$</span><i class="why">已知</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span class="think" data-step="4" data-ask="两边同乘什么？">$\dfrac ab\cdot bd=\dfrac cd\cdot bd$，即 $ad=bc$</span><i class="why">等式两边同乘 $bd$（等式的性质）</i></div>
+        <div class="dl" data-step="5"><span>反过来</span><span class="think" data-step="6" data-ask="两边同除以什么？">$ad=bc\Rightarrow\dfrac{ad}{bd}=\dfrac{bc}{bd}$，即 $\dfrac ab=\dfrac cd$</span><i class="why">两边同除以 $bd$，所以要 $b\neq0$，$d\neq0$</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="7"><h4>比例中项（课本 p41）</h4>在比例式 $a:b=b:c$ 中，$b$ 叫做 $a$ 和 $c$ 的<em>比例中项</em>．</div>
+      <p class="tip" data-step="8">由基本性质：$a:b=b:c\Rightarrow$ <span class="think" data-step="9" data-ask="写出等积式">$b^2=ac$</span></p>
+      <p class="tip" data-step="10">试一试（输入后按回车）：<br>① 由 $2x=3y\ (y\neq0)$ 得 $x:y=$ <span class="blank" data-ans="3:2|3/2|1.5" data-w="4"></span><br>② 线段 4 cm 和 9 cm 的比例中项是 <span class="blank" data-ans="6" data-w="3"></span> cm</p>
+      <p class="warn" data-step="11" data-label="线段取正">$b^2=4\times9=36$，$b=\pm6$；但线段的长是正数，所以比例中项取 $6$ cm。</p>
+    </div>
+  </div>
+  <p class="note">课本 p41。小学是从具体比例“发现”内项积等于外项积；现在用字母和“等式的性质”说明它对任何比例都成立。反过来时为什么要加 b ≠ 0、d ≠ 0？——除数不能为 0，这是推理里每一步都要“有依据”的体现。第 ① 题可追问：“x : y = 3 : 2 还是 2 : 3？”用基本性质验一下：x·2 = y·3 ✓。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>例 1　由图上距离求实际距离</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">某公园平面图上有一块三角形草地，三边长分别为 4 cm、5 cm、6 cm．已知这块三角形草地最短边的实际长度为 80 m，求另外两条边的实际长度．</p>
+      <div id="ex1Fig" class="mboard gfig l"></div>
+      <p class="tip gold" data-step="1"><b>思路分析：</b>已知哪一组“图上—实际”？<span class="think" data-step="2" data-ask="先找对应">最短边：图上 4 cm ↔ 实际 80 m。先求比例尺，再求另两边。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解：</span><span class="think" data-step="4" data-ask="单位怎么统一？">比例尺 $=4:8\,000=1:2\,000$</span><i class="why">$80\text{ m}=8\,000\text{ cm}$，化成同一单位</i></div>
+        <div class="dl" data-step="5"><span></span><span>$5\times2\,000=10\,000\text{ (cm)}=100\text{ m}$</span><i class="why">实际距离 = 图上距离 × 2 000</i></div>
+        <div class="dl" data-step="6"><span></span><span>$6\times2\,000=12\,000\text{ (cm)}=120\text{ m}$</span><i class="why">同上</i></div>
+        <div class="dl end" data-step="7"><span>答：</span><span>另外两条边的实际长度分别为<br>100 m 和 120 m．</span><i class="why">写出答句</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="另一种想法">图上三边 $4:5:6$，实际三边也是 $4:5:6$（同一幅图的比例尺相同）：$80:x=4:5\Rightarrow4x=400$，$x=100$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p41 例 1。易错点是单位：80 m 要先化成 8 000 cm。下面“另一种想法”用的正是成比例线段和比例的基本性质——实际三边与图上三边成比例，这是后面“相似三角形对应边成比例”的雏形。三角形草图按 4、5、6 cm 的比例精确画出。</p>
+</section>
+
+<!-- 8 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>例 2　连比式求值：“设 $k$ 法”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">已知 $\dfrac x3=\dfrac y5$，且 $x+y=24$．求 $x$、$y$ 的值．</p>
+      <p class="tip gold" data-step="1"><b>思路分析：</b>两个未知数，一个比例式 + 一个和。<span class="think" data-step="2" data-ask="怎样把两个未知数变成一个？">让两个比都等于同一个数 $k$，$x$、$y$ 就都能用 $k$ 表示。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解：</span><span>设 $\dfrac x3=\dfrac y5=k$，则 $x=3k$，$y=5k$．</span><i class="why">引入参数 $k$</i></div>
+        <div class="dl" data-step="4"><span>∵</span><span>$x+y=24$，</span><i class="why">已知</i></div>
+        <div class="dl" data-step="5"><span>∴</span><span class="think" data-step="6" data-ask="代入">$3k+5k=24$，$k=3$．</span><i class="why">代入，解一元一次方程</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>$x=9$，$y=15$．</span><i class="why">验算：$9:15=3:5$，$9+15=24$ ✓</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="method" data-step="8" data-label="设 k 法">见到 $\dfrac x3=\dfrac y5$ 这样的“连比”，设它们都等于 $k$，把几个未知数统一成一个 $k$。</p>
+      <div class="hint-ladder" data-step="9">
+        <p class="q"><b>习题 6.1 第 2 题</b>　已知 $\dfrac a9=\dfrac b{11}=\dfrac c{14}$，且 $a+b+c=68$．求 $a$、$b$、$c$ 的值．</p>
+        <details><summary>提示 1</summary>设 $\dfrac a9=\dfrac b{11}=\dfrac c{14}=k$，$a$、$b$、$c$ 分别等于什么？</details>
+        <details><summary>提示 2</summary>$9k+11k+14k=68$。</details>
+        <details><summary>完整解答</summary>$34k=68$，$k=2$，所以 $a=18$，$b=22$，$c=28$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p41 例 2。设 k 法的本质是“把比的值命名”：几个比相等，就用同一个字母表示它。验算：9 : 15 = 3 : 5 ✓，9 + 15 = 24 ✓。右边习题 6.1 第 2 题是三连比，方法完全一样，可让学生当堂完成。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这三种说法，对吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>地图上两地相距 3 cm，实际相距 150 km，所以比例尺是 $3:150=1:50$。</p>
+        <div class="think" data-step="2" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>单位没统一：$150\text{ km}=15\,000\,000\text{ cm}$，比例尺是 $3:15\,000\,000=1:5\,000\,000$。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>线段 $a=2$，$b=3$，$c=4$，$d=6$，所以 $a$、$c$、$b$、$d$ 也成比例。</p>
+        <div class="think" data-step="4" data-ask="对还是错？先判断"><p><span class="verdict ok">✓</span>按顺序检验：$a:c=2:4=\dfrac12$，$b:d=3:6=\dfrac12$，相等。由 $ad=bc$ 也能看出：$2\times6=3\times4$。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>线段 1 cm 和 2 cm 的比例中项是 $\pm\sqrt2$ cm。</p>
+        <div class="think" data-step="6" data-ask="对还是错？先判断"><p><span class="verdict x">✗</span>$b^2=1\times2=2$，但线段长度是正数，比例中项是 $\sqrt2$ cm，不能取负。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="三个提醒">① 求比例尺先统一单位；② “成比例”要按指定顺序检验，用 $ad=bc$ 检验最快；③ 线段的比例中项只取正值。</p>
+  </div>
+  <p class="note">每张卡先举手表决“对/错”，再点开。第 2 张是对的——提醒学生不要见到换顺序就判错：用比例的基本性质 ad = bc 检验，两个比例 a:b = c:d 与 a:c = b:d 对应的是同一个等积式。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>课本练习：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 小丽的身高为 1.6 m，在某一时刻，她的影长为 2 m．求此时小丽的身高与影长的比．</p>
+        <details><summary>提示 1</summary>身高 : 影长 $=1.6:2$，化成最简整数比。</details>
+        <details><summary>完整解答</summary>$1.6:2=16:20=4:5$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 图纸上画出的某个工件的长为 40 mm，如果比例尺为 $1:30$，那么这个工件实际长度是多少？如果比例尺为 $2:1$ 呢？</p>
+        <details><summary>提示 1</summary>比例尺 $1:30$：实际是图上的 30 倍；比例尺 $2:1$：图上是实际的 2 倍（放大图）。</details>
+        <details><summary>完整解答</summary>$40\times30=1\,200$（mm），即 1.2 m；$40\div2=20$（mm）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 如图，$\dfrac{AD}{DB}=\dfrac{AE}{EC}$，$AD=15$，$AB=40$，$AC=28$．求 $AE$ 的长．</p>
+        <div id="p4Fig" class="mboard gfig s"></div>
+        <details><summary>提示 1</summary>$DB=AB-AD=25$；设 $AE=x$，则 $EC=28-x$。</details>
+        <details><summary>提示 2</summary>$\dfrac{15}{25}=\dfrac{x}{28-x}$，用比例的基本性质化成等积式。</details>
+        <details><summary>完整解答</summary>$15(28-x)=25x$，$420=40x$，$x=10.5$，即 $AE=10.5$．</details>
+      </div>
+    </div>
+    <p class="tip" data-step="1"><b>练习 1：</b>用直尺量课本 p40 第一幅地图（比例尺 $1:8\,000\,000$）上南京—徐州、南京—连云港的线段，<span class="think" data-step="2" data-ask="怎样算？">图上约 3.6 cm，实际距离 $\approx3.6\times8\,000\,000\text{ cm}=28\,800\,000\text{ cm}=288\text{ km}$（以实际量得的数据为准）。</span></p>
+  </div>
+  <p class="note">课本 p42 练习 1–4。第 1 题答案取决于量得的数据，只要列式正确即可（按经纬度换算的直线距离约 286 km 和 284 km）。第 3 题注意比例尺 2:1 是“放大”的图纸，精密零件常这样画。第 4 题是“比例的基本性质”的典型用法，图中 DE∥BC——它为什么成立，6.4 会给出答案。</p>
+</section>
+
+<!-- 11 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.1：再练几道</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在比例尺为 $1:38\,000$ 的城市交通地图上，某条道路的长为 7 cm．求这条道路的实际长度．</p>
+        <details><summary>提示 1</summary>实际距离 = 图上距离 × 38 000，最后换算成 km。</details>
+        <details><summary>完整解答</summary>$7\times38\,000=266\,000$（cm）$=2.66$ km．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 如图，$\dfrac{AD}{DB}=\dfrac{AE}{EC}=2$．求 $\dfrac{AB}{DB}$、$\dfrac{AE}{AC}$ 的值．</p>
+        <div id="h3Fig" class="mboard gfig s"></div>
+        <details><summary>提示 1</summary>设 $DB=k$，则 $AD=2k$，$AB=$？</details>
+        <details><summary>提示 2</summary>设 $EC=m$，则 $AE=2m$，$AC=3m$。</details>
+        <details><summary>完整解答</summary>$\dfrac{AB}{DB}=\dfrac{2k+k}{k}=3$；$\dfrac{AE}{AC}=\dfrac{2m}{3m}=\dfrac23$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 如图，$\dfrac{AG}{AD}=\dfrac{EF}{BC}$，$EF=10$，$BC=15$，$GD=4$，求 $AD$ 的长．</p>
+        <div id="h4Fig" class="mboard gfig s"></div>
+        <details><summary>提示 1</summary>$\dfrac{EF}{BC}=\dfrac{10}{15}=\dfrac23$；设 $AG=x$，则 $AD=x+4$。</details>
+        <details><summary>提示 2</summary>$\dfrac{x}{x+4}=\dfrac23$，化成等积式。</details>
+        <details><summary>完整解答</summary>$3x=2(x+4)$，$x=8$，所以 $AD=AG+GD=12$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p42 习题 6.1 第 1、3、4 题（第 2 题已在例 2 页完成）。第 3、4 题都是“设 k / 设 x，化成方程”，和例 2 同一个思路。第 4 题的图中 EF∥BC、AD⊥BC 时，这个比例式就是后面“相似三角形对应高的比等于相似比”（6.5）——现在先当作已知条件用。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">成比例线段：$a:b=c:d$；比例中项：$a:b=b:c$。</p>
+        <p class="def">比例的基本性质：$a:b=c:d\Leftrightarrow ad=bc\ (b,d\neq0)$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="比例尺">统一单位 → 求比例尺 → 求实际距离。</p>
+        <p class="method" data-label="设 k 法">连比 $\dfrac x3=\dfrac y5=k$，化多元为一元。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="变中有不变">比例尺变了，线段变了，线段的<b>比</b>没变。</p>
+        <p class="recall" data-label="方程思想">比例式 → 等积式 → 方程。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.2 黄金分割——习题 6.1 第 5 题请你调查“最喜欢哪个矩形”，大多数人喜欢的那个矩形，长和宽之间藏着一个特别的比：约 $0.618$。</p>
+  </div>
+  <p class="note">请学生先说出“这节课是从什么问题出发、得到了什么”，再逐栏揭示。课后作业：习题 6.1 第 5 题的矩形调查（课本 p43），下节课开头要用调查结果。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

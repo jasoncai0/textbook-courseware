@@ -2846,31 +2846,51 @@ window.CATALOG = [
                 "no": "例1–2",
                 "title": "小数的意义",
                 "genre": "概念",
-                "kind": "小数"
+                "kind": "小数",
+                "dir": "mp5a-xiaoshuyiyi",
+                "pages": 11,
+                "desc": "米尺放大镜看厘米毫米，百格千格涂色",
+                "cover": "mp5a-xiaoshuyiyi/assets/celiang.jpg"
               },
               {
                 "no": "例3",
                 "title": "小数的计数单位和数位顺序",
                 "genre": "概念",
-                "kind": "小数"
+                "kind": "小数",
+                "dir": "mp5a-jishudanwei",
+                "pages": 11,
+                "desc": "点数位表数字自动读数，计数器满十进一",
+                "cover": "mp5a-jishudanwei/assets/feichuan.jpg"
               },
               {
                 "no": "例4–5",
                 "title": "小数的性质",
                 "genre": "推导",
-                "kind": "小数"
+                "kind": "小数",
+                "dir": "mp5a-xiaoshuxingzhi",
+                "pages": 11,
+                "desc": "方格叠一叠，末尾添0去0实验台",
+                "cover": "mp5a-xiaoshuxingzhi/assets/wenju.jpg"
               },
               {
                 "no": "例6–7",
                 "title": "小数的大小比较",
                 "genre": "推导",
-                "kind": "小数"
+                "kind": "小数",
+                "dir": "mp5a-daxiaobijiao",
+                "pages": 11,
+                "desc": "数轴放大镜逐层比位，□里能填几",
+                "cover": "mp5a-daxiaobijiao/assets/shengao.jpg"
               },
               {
                 "no": "例8–9",
                 "title": "改写和求近似数",
                 "genre": "概念",
-                "kind": "小数"
+                "kind": "小数",
+                "dir": "mp5a-gaixiejinsi",
+                "pages": 11,
+                "desc": "小数点搬家改写万亿，四舍五入数轴",
+                "cover": "mp5a-gaixiejinsi/assets/xingkong.jpg"
               }
             ]
           },
@@ -2883,13 +2903,21 @@ window.CATALOG = [
                 "no": "例1–2",
                 "title": "小数加法和减法",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-jiajianfa",
+                "pages": 10,
+                "desc": "末尾对齐与小数点对齐实验，竖式逐列算",
+                "cover": "mp5a-jiajianfa/assets/guitai.jpg"
               },
               {
                 "no": "例3",
                 "title": "小数加减混合运算",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-jiajianhunhe",
+                "pages": 10,
+                "desc": "课堂计算器连加，水位边算边画折线",
+                "cover": "mp5a-jiajianhunhe/assets/chaoshi.jpg"
               }
             ]
           },
@@ -5312,43 +5340,71 @@ window.CATALOG = [
                 "no": "6.1",
                 "title": "图上距离与实际距离",
                 "genre": "概念",
-                "kind": "相似"
+                "kind": "相似",
+                "dir": "mj9b-tushangjuli",
+                "pages": 12,
+                "desc": "换比例尺看线段比不变，格点线段",
+                "cover": "mj9b-tushangjuli/assets/ditu-cover.jpg"
               },
               {
                 "no": "6.2",
                 "title": "黄金分割",
                 "genre": "概念",
-                "kind": "相似"
+                "kind": "相似",
+                "dir": "mj9b-huangjinfenge",
+                "pages": 11,
+                "desc": "拖点找黄金比，尺规作图，切黄金矩形",
+                "cover": "mj9b-huangjinfenge/assets/balei-cover.jpg"
               },
               {
                 "no": "6.3",
                 "title": "相似图形",
                 "genre": "概念",
-                "kind": "相似"
+                "kind": "相似",
+                "dir": "mj9b-xiangsituxing",
+                "pages": 12,
+                "desc": "相似检测器：拖顶点，量角，比相似比",
+                "cover": "mj9b-xiangsituxing/assets/zhaopian-cover.jpg"
               },
               {
                 "no": "6.4",
                 "title": "探索三角形相似的条件",
                 "genre": "推导",
-                "kind": "相似"
+                "kind": "相似",
+                "dir": "mj9b-xiangsitiaojian",
+                "pages": 18,
+                "desc": "三个判定实验台，平移叠合，截取全等",
+                "cover": "mj9b-xiangsitiaojian/assets/tanjiu-cover.jpg"
               },
               {
                 "no": "6.5",
                 "title": "相似三角形的性质",
                 "genre": "推导",
-                "kind": "相似"
+                "kind": "相似",
+                "dir": "mj9b-xiangsixingzhi",
+                "pages": 13,
+                "desc": "拖相似比k，k²等分，对应线段",
+                "cover": "mj9b-xiangsixingzhi/assets/huayuan-cover.jpg"
               },
               {
                 "no": "6.6",
                 "title": "图形的位似",
                 "genre": "概念",
-                "kind": "相似"
+                "kind": "相似",
+                "dir": "mj9b-weisi",
+                "pages": 12,
+                "desc": "拖位似中心，k可正可负，坐标乘k",
+                "cover": "mj9b-weisi/assets/touying-cover.jpg"
               },
               {
                 "no": "6.7",
                 "title": "用相似三角形解决问题",
                 "genre": "推导",
-                "kind": "相似"
+                "kind": "相似",
+                "dir": "mj9b-xiangsiwenti",
+                "pages": 12,
+                "desc": "太阳光与路灯两种影子，由影找光源",
+                "cover": "mj9b-xiangsiwenti/assets/yingzi-cover.jpg"
               }
             ]
           },
@@ -5428,37 +5484,61 @@ window.CATALOG = [
                 "no": "8.1",
                 "title": "中学生的视力情况调查",
                 "genre": "概念",
-                "kind": "统计与概率"
+                "kind": "统计与概率",
+                "dir": "mj9b-shilidiaocha",
+                "pages": 13,
+                "desc": "抽签实验室：从 50 个身高中随机抽 20 个",
+                "cover": "mj9b-shilidiaocha/assets/shili-cover.jpg"
               },
               {
                 "no": "8.2",
                 "title": "货比三家",
                 "genre": "概念",
-                "kind": "统计与概率"
+                "kind": "统计与概率",
+                "dir": "mj9b-huobisanjia",
+                "pages": 11,
+                "desc": "挑年份、挑指标，“冠军”就换人",
+                "cover": "mj9b-huobisanjia/assets/bingxiang-cover.jpg"
               },
               {
                 "no": "8.3",
                 "title": "统计分析帮你做预测",
                 "genre": "概念",
-                "kind": "统计与概率"
+                "kind": "统计与概率",
+                "dir": "mj9b-tongjiyuce",
+                "pages": 10,
+                "desc": "拖动 A、B 选直线，实时预测",
+                "cover": "mj9b-tongjiyuce/assets/chengshi-cover.jpg"
               },
               {
                 "no": "8.4",
                 "title": "抽签方法合理吗",
                 "genre": "推导",
-                "kind": "统计与概率"
+                "kind": "统计与概率",
+                "dir": "mj9b-chouqian",
+                "pages": 9,
+                "desc": "抽签机：甲乙丙依次抽，重复几千次",
+                "cover": "mj9b-chouqian/assets/chouqian-cover.jpg"
               },
               {
                 "no": "8.5",
                 "title": "概率帮你做估计",
                 "genre": "推导",
-                "kind": "统计与概率"
+                "kind": "统计与概率",
+                "dir": "mj9b-gailvguji",
+                "pages": 10,
+                "desc": "捉放捉鱼塘：捞鱼估计青鱼条数",
+                "cover": "mj9b-gailvguji/assets/yutang-cover.jpg"
               },
               {
                 "no": "8.6",
                 "title": "收取多少保险费才合理",
                 "genre": "推导",
-                "kind": "统计与概率"
+                "kind": "统计与概率",
+                "dir": "mj9b-baoxianfei",
+                "pages": 10,
+                "desc": "保险账本：调保费，飞 10 万次看盈亏",
+                "cover": "mj9b-baoxianfei/assets/jichang-cover.jpg"
               }
             ]
           },

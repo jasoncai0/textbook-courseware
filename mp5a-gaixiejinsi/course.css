@@ -1,0 +1,73 @@
+/* 五上 改写和求近似数 · 本课专属样式 */
+.recall p, .method p { margin: .2em 0; }
+.small-t { margin: 0; font-size: .78em; }
+.small-q { font-size: .9em; line-height: 2.1; margin: .2em 0; }
+.calc { background: #fff; border: 1px solid var(--line); border-radius: .5em; padding: .3em 1em; line-height: 2.1; }
+.calc p { margin: 0; }
+.calc h4 { margin: .2em 0 0; font-size: .8em; color: var(--red); }
+.o { color: var(--orange) !important; }
+.feedback { min-height: 2.4em; }
+.feedback.fb-ok { background: #eef6f2; border-color: #9fcdb7; }
+.mtab { border-collapse: collapse; width: 100%; background: #fff; }
+.mtab th, .mtab td { border: 1px solid var(--line); padding: .2em .5em; text-align: center; }
+.mtab th { background: #e8f1f8; font-weight: normal; font-size: .85em; }
+.cols4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6em; }
+.jcard p { margin: .2em 0; }
+.cq { font-size: 1.05em; text-align: center; font-family: "Times New Roman", var(--serif); }
+.jcard .pick { justify-content: center; }
+
+/* 小数点搬家 */
+.mv-ctrl { display: flex; gap: .5em; justify-content: center; flex-wrap: wrap; }
+.mv-ctrl .btn { font-size: .82em; padding: .1em .6em; }
+.mv-stage { position: relative; display: flex; justify-content: center; margin: .6em 0 .2em; }
+.mv-row { display: flex; align-items: flex-start; gap: .25em; }
+.mv-cell { display: flex; flex-direction: column; align-items: center; width: 2.6em; }
+.mv-d { font-size: 2.2em; font-weight: bold; color: var(--red-d); font-family: "Times New Roman", var(--serif); line-height: 1.2; background: #fff; border: 2px solid var(--gold-l); border-radius: .2em; width: 1.05em; text-align: center; transition: opacity .6s, color .6s; }
+.mv-d.added { color: var(--orange); border-color: var(--orange); }
+.mv-cell small { font-size: .62em; color: var(--ink-2); margin-top: .1em; }
+.mv-stage.done .mv-d.trail { opacity: .18; text-decoration: line-through; }
+.mv-unit { font-size: 2.2em; font-weight: bold; color: var(--orange); width: 1.2em; line-height: 1.3; }
+.mv-dot { position: absolute; top: .05em; font-size: 3.2em; line-height: 1; color: #c0392b; font-weight: bold; transform: translateX(-50%); transition: left .9s ease, opacity .5s; pointer-events: none; }
+.mv-dot.ghost { opacity: .25; }
+.mv-stage.done.nodot .mv-dot { opacity: .18; }
+.mv-res { text-align: center; font-size: 1.05em; min-height: 1.6em; margin: .2em 0; }
+
+/* 四舍五入数轴 */
+.rd-ctrl { display: flex; gap: .4em 1em; justify-content: center; flex-wrap: wrap; }
+.rd-ctrl .btn { font-size: .8em; padding: .1em .55em; }
+.rd-num { text-align: center; font-size: 2.4em; margin: .1em 0 0; font-family: "Times New Roman", var(--serif); }
+.rd-num .keep { color: var(--red); font-weight: bold; }
+.rd-num .next { color: var(--orange); font-weight: bold; border: 3px solid var(--orange); border-radius: .15em; padding: 0 .05em; }
+.rd-num .rest { color: #9aa8b5; }
+.rd-fig { width: 100%; max-height: 8.5em; display: block; }
+.rd-ax { stroke: #1f2d3a; stroke-width: 2.5; }
+.rd-tk { stroke: #1f2d3a; stroke-width: 1.6; }
+.rd-tk.big { stroke-width: 3; }
+.rd-mid { stroke: var(--orange); stroke-width: 2.5; stroke-dasharray: 7 6; }
+.rd-midt { font-size: 17px; text-anchor: middle; fill: var(--orange); }
+.rd-end { font-size: 28px; text-anchor: middle; fill: var(--ink-2); font-weight: bold; }
+.rd-end.win { fill: var(--jade); }
+.rd-ring { fill: none; stroke: var(--jade); stroke-width: 3.5; }
+.rd-arrow { fill: none; stroke: var(--jade); stroke-width: 3; stroke-dasharray: 6 5; }
+.rd-pt { font-size: 24px; text-anchor: middle; fill: #c0392b; font-weight: bold; }
+
+/* 范围图 */
+.rg-fig { width: 100%; max-height: 9.5em; display: block; }
+.rg-n { font-size: 20px; text-anchor: middle; fill: var(--ink); }
+.rg-a { fill: rgba(217, 113, 28, .55); }
+text.rg-a { fill: var(--orange); }
+.rg-b { fill: rgba(29, 111, 165, .75); }
+text.rg-b { fill: var(--red); }
+.rg-t { font-size: 20px; text-anchor: middle; font-weight: bold; }
+
+@media (max-width: 820px), (max-height: 520px) {
+  .rd-fig, .rg-fig { max-height: none; }
+  .cols4 { grid-template-columns: 1fr 1fr; }
+  .mv-cell { width: 1.7em; }
+  .mv-d { font-size: 1.5em; }
+  .mv-unit { font-size: 1.5em; }
+  .mv-dot { font-size: 2.2em; }
+  .mv-cell small { font-size: .5em; white-space: nowrap; }
+  .rd-num { font-size: 1.8em; }
+}
+.jcard .pick > button[data-k] { font-size: 1.02em; }

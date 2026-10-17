@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>相似图形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zhaopian-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第6章 图形的相似 · 6.3</p>
+    <h1 class="cover-title">相似图形</h1>
+    <p class="cover-q" data-step="1">放映电影时，银幕上的画面是把底片上的画面放大后投影得到的；用复印机可以把图形<b>按比例</b>放大或缩小。</p>
+    <p class="cover-q" data-step="2">我们一眼就能看出“形状相同”。可是在数学里，两个多边形要满足什么条件，才能说它们“形状相同”？</p>
+    <div class="chips" data-step="3"><span class="chip">相似形</span><span class="chip">相似多边形</span><span class="chip">相似比</span><span class="chip">相似检测器</span></div>
+  </div>
+  <p class="note">课本 p48 情境（电影银幕、复印机、天坛照片的放大）。封面的关键词是“按比例”——上一课的成比例线段要在这里派上用场。问题是本课的主线：把“看起来形状相同”变成可以检验的数学条件。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="6.1 图上距离与实际距离" data-step="1">
+        <p>四条线段中，两条线段的比等于另两条线段的比，叫做<b>成比例线段</b>；地图缩小了，线段的比不变。</p>
+        <span class="use">“各边成比例”就是对应边的比都相等。</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 1.1 全等图形" data-step="2">
+        <p>能完全重合的两个图形叫做全等图形：形状相同、<b>大小也相同</b>。</p>
+        <p>记 $\triangle ABC\cong\triangle DEF$ 时，对应顶点的字母写在对应的位置上。</p>
+        <span class="use">相似是“形状相同、大小可以不同”；记法同样要对应。</span>
+      </div>
+      <div class="recall" data-label="八年级下册 · 9.5 三角形的中位线" data-step="3">
+        <p>三角形的中位线平行于第三边，并且等于第三边的一半。</p>
+        <span class="use">例 2：三边中点围成的三角形与原三角形相似吗？</span>
+      </div>
+      <div class="recall" data-label="七年级下册 · 7.5 多边形的内角和" data-step="4">
+        <p>$n$ 边形的内角和为 $(n-2)\cdot180^\circ$；四边形内角和为 $360^\circ$。</p>
+        <span class="use">练习 2：已知相似四边形的三个角，求第四个角。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本章章首语：</b>“全等”“相似”具有特殊与一般的关系——全等是相似比为 1 的相似。</p>
+  </div>
+  <p class="note">6.1 研究了线段的比，6.2 研究了一种特殊的比（黄金比），本课开始研究“形”。前情回顾的第二张卡最重要：把“全等”和“相似”放在一起比较，学生就容易理解相似的记法和“对应”的要求。</p>
+</section>
+
+<!-- 3 ================= 观察与思考 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 思考</span><h2>这些图形有什么共同的特征？</h2></div>
+  <div class="bd full">
+    <svg viewBox="0 0 1100 150" class="shapes" id="shapesSvg" aria-label="五组形状相同、大小不同的图形"></svg>
+    <p class="tip" data-step="1">每一组图形：<span class="think" data-step="2" data-ask="共同特征是什么？">形状相同，大小不同——一个是另一个按比例缩小（每组都按同一个比例精确画出）。</span></p>
+    <div class="def big-def" data-step="3"><h4>定义（课本 p48）</h4>形状相同的图形叫做<em>相似形</em>．</div>
+    <p class="tip" data-step="4">你还能举出具有这样特征的图形吗？<span class="think" data-step="5" data-ask="举例">同一张底片洗出的大小照片、不同比例尺的同一幅地图、大小不同的国旗……</span></p>
+    <p class="warn" data-step="6" data-label="追问">“形状相同”靠眼睛看不可靠。两个<b>多边形</b>具有怎样的特征，才能说它们“形状相同”？</p>
+  </div>
+  <p class="note">课本 p48“观察与思考”。五组图形都用代码按固定比例缩放（五角星 0.6、六边形 0.65、三角形 0.5、长方体和圆柱 0.75），保证“形状相同”是真的。最后的追问把学生从“看”带到“量”：下一页用度量来找相似多边形的特征。</p>
+</section>
+
+<!-- 4 ================= 思考与探索：度量 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>量一量：形状相同的多边形，边和角有什么关系？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="cmp-figs">
+        <div><div id="f65a" class="mboard gfig"></div><p class="cap">图 6-5(1) 两个正三角形</p></div>
+        <div><div id="f65b" class="mboard gfig"></div><p class="cap">图 6-5(2) 两个三角形</p></div>
+        <div><div id="f66a" class="mboard gfig"></div><p class="cap">图 6-6(1) 两个正方形</p></div>
+        <div><div id="f66b" class="mboard gfig"></div><p class="cap">图 6-6(2) 两个四边形</p></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">图中的角度都是按坐标算出来的。比一比对应角、对应边：</p>
+      <table class="mtab small-d" data-step="1">
+        <tr><th>图 6-5(2)</th><th>$\angle A$ / $\angle A'$</th><th>$\angle B$ / $\angle B'$</th><th>$\angle C$ / $\angle C'$</th></tr>
+        <tr><td>角</td><td id="t65A"></td><td id="t65B"></td><td id="t65C"></td></tr>
+        <tr><th></th><th>$\dfrac{AB}{A'B'}$</th><th>$\dfrac{BC}{B'C'}$</th><th>$\dfrac{CA}{C'A'}$</th></tr>
+        <tr><td>边的比</td><td id="r65a"></td><td id="r65b"></td><td id="r65c"></td></tr>
+      </table>
+      <p class="tip" data-step="2">两个正三角形、两个正方形：<span class="think" data-step="3" data-ask="边和角有什么关系？">各角相等，各边成比例。</span></p>
+      <p class="tip" data-step="4">图 6-5(2)、图 6-6(2)：<span class="think" data-step="5" data-ask="量出来呢？">通过度量、计算发现：各角分别相等，各边成比例。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p48–49“思考与探索”1、2 题与图 6-5、6-6。右边表格的数据就是左图 6-5(2) 两个三角形的实际角度和边长比（后一个是前一个的 1.4 倍）。学生会自然说“角相等、边成比例”——注意让他们说出“对应”两个字：哪个角对哪个角、哪条边对哪条边。</p>
+</section>
+
+<!-- 5 ================= 定义：相似多边形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>相似多边形与相似比</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>定义（课本 p49）</h4>各角分别相等、各边成比例的两个多边形，它们的形状相同，称为<em>相似多边形</em>．</div>
+      <p class="tip" data-step="2">在图 6-5 中，$\triangle ABC$ 与 $\triangle A'B'C'$ 相似，记作“$\triangle ABC\backsim\triangle A'B'C'$”，读作“$\triangle ABC$ 相似于 $\triangle A'B'C'$”。</p>
+      <p class="warn" data-step="3" data-label="对应顶点写在对应的位置上">表示两个多边形相似，应把对应顶点的字母写在对应的位置上——和全等的记法一样。</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="4"><h4>性质与相似比（课本 p50）</h4>相似多边形的<em>对应角相等</em>，<em>对应边成比例</em>．相似多边形的对应边的比叫做<em>相似比</em>．</div>
+      <p class="tip" data-step="5">四边形 $ABCD\backsim$ 四边形 $A'B'C'D'$ 时，写出所有结论：<span class="think" data-step="6" data-ask="写一写">$\angle A=\angle A'$，$\angle B=\angle B'$，$\angle C=\angle C'$，$\angle D=\angle D'$，$\dfrac{AB}{A'B'}=\dfrac{BC}{B'C'}=\dfrac{CD}{C'D'}=\dfrac{DA}{D'A'}$。</span></p>
+      <p class="tip" data-step="7">若 $\triangle ABC$ 与 $\triangle A'B'C'$ 的相似比为 $\dfrac23$，那么 $\triangle A'B'C'$ 与 $\triangle ABC$ 的相似比为 <span class="think" data-step="8" data-ask="?">$\dfrac32$——相似比有顺序。相似比为 1 时就是全等。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p49–50 定义、记法与相似比。定义是判定（“各角相等、各边成比例 ⇒ 相似”），性质是反过来用（“相似 ⇒ 对应角相等、对应边成比例”），两个方向要分清。相似比有顺序，这是学生最容易忽略的；全等是相似比为 1 的特殊相似，呼应章首语“特殊与一般的关系”。</p>
+</section>
+
+<!-- 6 ================= 核心交互：相似检测器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手 · 检验</span><h2>相似检测器：两个条件，缺一不可</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="chkBd" class="mboard chkbd"></div>
+      <div class="slider-row" data-noswipe>相似比 $k=\dfrac{A'B'}{AB}$：<input type="range" id="chkK" min="0.6" max="1.6" step="0.05" value="1.3"><b class="v" id="chkKV"></b></div>
+      <div class="btns" data-noswipe>
+        <button class="btn" type="button" data-pre="sim">还原成相似</button>
+        <button class="btn" type="button" data-pre="rect">图 6-7(1) 两个矩形</button>
+        <button class="btn" type="button" data-pre="rhomb">图 6-7(2) 两个菱形</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">拖动任一个顶点改变形状；滑块把右图按比例放大、缩小（形状不变）。</p>
+      <table class="mtab chk-tab" id="chkTab"></table>
+      <p class="tip feedback" id="chkMsg"></p>
+    </div>
+  </div>
+  <p class="note">本课独有的核心交互。① 先点“还原成相似”，拖滑块：角度一直相等、边的比一直等于 k。② 拖动右图一个顶点：角和比都乱了。③ 点“两个矩形”：四个角都是 90°，但边的比不相等——不相似。④ 点“两个菱形”：四条边的比都相等，但角不相等（60° 与 30°）——也不相似。这正是课本 p50“尝试与交流”的结论：两个条件缺一不可。所有角度、边长都由坐标实时计算。</p>
+</section>
+
+<!-- 7 ================= 尝试与交流 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>图 6-7：只满足一个条件，行不行？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="cmp-figs">
+        <div><div id="f67a" class="mboard gfig"></div><p class="cap">图 6-7(1)</p></div>
+        <div><div id="f67b" class="mboard gfig"></div><p class="cap">图 6-7(2)</p></div>
+      </div>
+      <p class="tip" data-step="1">图 6-7(1) 中的两个矩形是相似多边形吗？<span class="think" data-step="2" data-ask="为什么？">不是。各角都是直角（相等），但 $\dfrac{AB}{A'B'}\neq\dfrac{BC}{B'C'}$，各边不成比例。</span></p>
+      <p class="tip" data-step="3">图 6-7(2) 中的两个菱形呢？<span class="think" data-step="4" data-ask="为什么？">不是。各边成比例，但 $\angle A=60^\circ\neq\angle A'=30^\circ$，各角不分别相等。</span></p>
+    </div>
+    <div class="col">
+      <p class="method" data-step="5" data-label="结论">判断两个多边形相似，“<b>各角分别相等</b>”和“<b>各边成比例</b>”两个条件<b>缺一不可</b>。</p>
+      <p class="recall" data-step="6" data-label="想一想">那三角形呢？是否也要同时检验两个条件？——这正是下一节 6.4 要探索的问题。</p>
+    </div>
+  </div>
+  <p class="note">课本 p50“尝试与交流”与图 6-7、两个小人的说法。两个图按课本数据画：矩形 ABCD 宽长比约 0.62，A′B′C′D′ 约 0.29；菱形 ∠A = 60°、∠A′ = 30°。追问为 6.4 埋伏笔：对三角形来说，条件可以“少”一些。</p>
+</section>
+
+<!-- 8 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>例 1　由相似求角和边</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 6-8，已知 $\triangle ABC\backsim\triangle A'B'C'$．求 $\angle\alpha$ 的大小和 $A'C'$ 的长．</p>
+      <div class="cmp-figs">
+        <div id="f68a" class="mboard gfig l"></div>
+        <div id="f68b" class="mboard gfig l"></div>
+      </div>
+      <p class="tip gold" data-step="1"><b>思路分析：</b>相似 ⇒ <span class="think" data-step="2" data-ask="能用什么？">对应角相等、对应边成比例。先由记法找准对应：$A\leftrightarrow A'$，$B\leftrightarrow B'$，$C\leftrightarrow C'$。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="3"><span>解：</span><span>因为 $\triangle ABC\backsim\triangle A'B'C'$，</span><i class="why">已知</i></div>
+        <div class="dl" data-step="4"><span></span><span>所以它们的对应角相等，对应边成比例．</span><i class="why">相似多边形的性质</i></div>
+        <div class="dl" data-step="5"><span>由此，得</span><span class="think" data-step="6" data-ask="∠α 对应哪个角？">$\angle\alpha=\angle A=60^\circ$，</span><i class="why">$\angle\alpha$ 是 $\angle A'$</i></div>
+        <div class="dl" data-step="7"><span></span><span class="think" data-step="8" data-ask="列比例式">$\dfrac{AB}{A'B'}=\dfrac{AC}{A'C'}$，</span><i class="why">对应边成比例</i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span>$A'C'=\dfrac{AC\cdot A'B'}{AB}=\dfrac{10\times6}{8}=7.5$．</span><i class="why">比例的基本性质</i></div>
+      </div>
+      <p class="method" data-step="9" data-label="方法">先由记法定对应，再“对应角相等”求角、“对应边成比例”列比例式求边。相似比 $\dfrac{A'B'}{AB}=\dfrac68=\dfrac34$，也可直接 $A'C'=10\times\dfrac34=7.5$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p50 例 1、图 6-8（按 AB = 8、AC = 10、∠A = 60°，A′B′ = 6 精确画出，后者是前者的 3/4）。易错：把比例式写成 AB/A′B′ = A′C′/AC——对应边要“同一侧”放在分子。</p>
+</section>
+
+<!-- 9 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>例 2　中点三角形与原三角形相似吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">如图 6-9，$D$、$E$、$F$ 分别是 $\triangle ABC$ 三边的中点．$\triangle DEF$ 与 $\triangle ABC$ 相似吗？为什么？</p>
+      <div id="midBd" class="mboard midbd"></div>
+      <p class="tip feedback" id="midMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip gold" data-step="1"><b>分析：</b>判定两个三角形相似，需要知道它们的<b>各角分别相等，各边成比例</b>（课本 p50）。</p>
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="2"><span>解：</span><span>$EF\parallel BC$，$DE\parallel AB$，$DF\parallel AC$；</span><i class="why">三角形中位线的性质</i></div>
+        <div class="dl" data-step="2"><span></span><span>$EF=\dfrac12BC$，$DE=\dfrac12AB$，$DF=\dfrac12AC$．</span><i class="why">同上</i></div>
+        <div class="dl" data-step="3"><span>于是</span><span class="think" data-step="4" data-ask="角怎么相等？">在 ▱$AFDE$、▱$BDEF$、▱$CEFD$ 中，$\angle EDF=\angle A$，$\angle DEF=\angle B$，$\angle DFE=\angle C$．</span><i class="why">平行四边形的对角相等</i></div>
+        <div class="dl" data-step="5"><span>又因为</span><span>$\dfrac{EF}{BC}=\dfrac{DE}{AB}=\dfrac{DF}{AC}=\dfrac12$，</span><i class="why">各边成比例</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$\triangle DEF\backsim\triangle ABC$．</span><i class="why">相似多边形的定义</i></div>
+      </div>
+      <p class="warn" data-step="7" data-label="注意对应">$\angle EDF$ 的顶点 $D$ 在 $BC$ 上，却对应 $\angle A$——所以写 $\triangle DEF\backsim\triangle ABC$，$D$ 与 $A$ 对应。</p>
+    </div>
+  </div>
+  <p class="note">课本 p50–51 例 2、图 6-9。拖动 A、B、C 三个顶点，左下读数始终显示三组角相等、边的比都是 1/2——“任意三角形”都成立。第 3 行的依据是三个平行四边形（由中位线平行得到两组对边平行）。最后一条提醒对应关系：D 在 BC 边上，但 ∠EDF 与 ∠A 相等（平行四边形 AFDE 的对角），学生容易写成 △DEF ∽ △BCA 之类的错误对应。</p>
+</section>
+
+<!-- 10 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>下列图形一定相似吗？（习题 6.3 第 3 题）</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>(1) 所有的等腰三角形都相似吗？</p>
+        <div class="think" data-step="2" data-ask="先判断"><p><span class="verdict x">✗</span>不一定。顶角 $30^\circ$ 的等腰三角形和顶角 $100^\circ$ 的等腰三角形，角不相等。</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>(2) 所有的直角三角形都相似吗？</p>
+        <div class="think" data-step="4" data-ask="先判断"><p><span class="verdict x">✗</span>不一定。三角板的两个直角三角形：$30^\circ$-$60^\circ$-$90^\circ$ 与 $45^\circ$-$45^\circ$-$90^\circ$。</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>(2) 所有的等腰直角三角形呢？</p>
+        <div class="think" data-step="6" data-ask="先判断"><p><span class="verdict ok">✓</span>都相似。角都是 $45^\circ$、$45^\circ$、$90^\circ$；三边之比都是 $1:1:\sqrt2$。</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        <p>所有的正方形都相似吗？所有的矩形呢？</p>
+        <div class="think" data-step="8" data-ask="先判断"><p>正方形 <span class="verdict ok">✓</span> 角都是直角、四边成比例；矩形 <span class="verdict x">✗</span> 见图 6-7(1)。</p></div>
+      </div>
+      <div class="jcard" data-step="9">
+        <p>所有的菱形都相似吗？所有的正五边形呢？</p>
+        <div class="think" data-step="10" data-ask="先判断"><p>菱形 <span class="verdict x">✗</span> 见图 6-7(2)；边数相同的正多边形 <span class="verdict ok">✓</span> 角都相等、边都成比例。</p></div>
+      </div>
+      <div class="jcard" data-step="11">
+        <p>两个全等三角形相似吗？</p>
+        <div class="think" data-step="12" data-ask="先判断"><p><span class="verdict ok">✓</span> 相似，相似比为 1。全等是特殊的相似。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p52 习题 6.3 第 3 题，并补充了正方形、矩形、菱形、正多边形、全等三角形几种常见情形。每张卡先举手表决再揭示。判断“都相似”要说明两个条件都满足；判断“不一定”只需举一个反例——这是证明与举反例的不同要求。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>练习与习题：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2.</b> 如图，四边形 $ABCD\backsim$ 四边形 $A'B'C'D'$．求 $\angle\alpha$、$\angle\beta$ 的大小和 $A'D'$ 的长．</p>
+        <div class="cmp-figs"><div id="p2a" class="mboard gfig s"></div><div id="p2b" class="mboard gfig s"></div></div>
+        <details><summary>提示 1</summary>$\angle\alpha$ 对应 $\angle C$；$\angle\beta=\angle D$，用四边形内角和，$\angle A=\angle A'=120^\circ$。</details>
+        <details><summary>提示 2</summary>$\dfrac{AB}{A'B'}=\dfrac{AD}{A'D'}$，即 $\dfrac69=\dfrac{8}{A'D'}$。</details>
+        <details><summary>完整解答</summary>$\angle\alpha=\angle C=80^\circ$；$\angle\beta=360^\circ-120^\circ-75^\circ-80^\circ=85^\circ$；$A'D'=\dfrac{8\times9}{6}=12$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2.</b> $\triangle ABC$ 的三条边的长分别为 4、5、6，与 $\triangle ABC$ 相似的 $\triangle A'B'C'$ 的最长边的长为 18．求 $\triangle A'B'C'$ 的最短边的长．</p>
+        <details><summary>提示 1</summary>最长边对应最长边：相似比 $=\dfrac{18}{6}$。</details>
+        <details><summary>完整解答</summary>相似比为 $3$，最短边 $=4\times3=12$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4.</b> 在四边形 $ABCD$ 的边 $AB$ 上任取一点 $O$（不与 $A$、$B$ 重合），连接 $OC$、$OD$，分别取 $OA$、$OB$、$OC$、$OD$ 的中点 $A'$、$B'$、$C'$、$D'$，连接 $A'D'$、$D'C'$、$C'B'$．四边形 $A'B'C'D'$ 与四边形 $ABCD$ 相似吗？为什么？</p>
+        <details><summary>提示 1</summary>在 $\triangle OAD$、$\triangle ODC$、$\triangle OCB$ 中用中位线：$A'D'\parallel AD$，$A'D'=\dfrac12AD$……</details>
+        <details><summary>提示 2</summary>两边分别平行且方向相同的两个角相等：$\angle D'A'B'=\angle DAB$ 等。</details>
+        <details><summary>完整解答</summary>相似。由中位线，四组对应边都平行且等于原来的 $\dfrac12$，各边成比例（比为 $\dfrac12$）；对应边分别平行，各角分别相等。所以四边形 $A'B'C'D'\backsim$ 四边形 $ABCD$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p51 练习 2、p52 习题 6.3 第 2、4 题（练习 1 与习题 1 是课本上的找图、画图题，请学生在课本和方格纸上完成）。练习 2 的图按 AB = 6、AD = 8、∠A = 120°、∠B = 75°、∠C = 80° 精确画出，右图放大 1.5 倍。习题 4 是 6.6“位似”的伏笔：O 是位似中心，新四边形是原四边形缩小一半。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">相似多边形：各角分别相等、各边成比例；记作 $\backsim$，对应顶点写在对应位置。</p>
+        <p class="def">相似比：对应边的比（有顺序）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判定">两个条件都要检验；判“不一定相似”，举一个反例。</p>
+        <p class="method" data-label="应用">相似 ⇒ 对应角相等求角；对应边成比例列方程求边。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="特殊与一般">全等是相似比为 1 的相似。</p>
+        <p class="recall" data-label="从直观到严格">“形状相同” → “各角相等、各边成比例”。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.4 探索三角形相似的条件——判定两个三角形相似，一定要把 3 个角、3 组边都检验一遍吗？能不能像全等那样，用更少的条件？</p>
+  </div>
+  <p class="note">请学生先说出“相似多边形的定义”和“为什么两个条件缺一不可”，再逐栏揭示。指向 6.4：全等有 SSS、SAS、ASA、AAS，相似的判定也会“省”条件，课后可以先猜一猜。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

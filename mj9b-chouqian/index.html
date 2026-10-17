@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>抽签方法合理吗 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chouqian-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第8章 统计和概率的简单应用 · 8.4</p>
+    <h1 class="cover-title">抽签方法合理吗</h1>
+    <p class="cover-q" data-step="1">用抽签的方法从 3 名学生中选 1 名出席某场音乐会：3 张相同的纸条，其中 1 张画上记号，放在盒中搅匀，3 名学生先后各抽 1 张（抽出的纸条不放回）．</p>
+    <p class="cover-q" data-step="2">抽签有先有后——<b>先抽的人与后抽的人中签的概率一样吗？</b></p>
+    <div class="chips" data-step="3"><span class="chip">先猜</span><span class="chip">做试验</span><span class="chip">画树状图</span><span class="chip">算概率、说道理</span></div>
+  </div>
+  <p class="note">课本 p137 情境。生活中抽签很常见（排比赛顺序、分配名额），但很多人心里都犯嘀咕：“先抽吃亏还是后抽吃亏？”本课用概率给出答案。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="九上 4.1 · 等可能性" data-step="1">
+        <p>试验的结果有 $n$ 个，每次有且只有一个出现，且机会均等；颜色相同的球要<b>编号</b>．</p>
+        <span class="use">两张空白纸条要分别记作 $B_1$、$B_2$．</span>
+        <a class="lk" href="../mj9a-dengkenengxing/index.html">回看 4.1</a>
+      </div>
+      <div class="recall" data-label="九上 4.2 · 树状图与列表" data-step="2">
+        <p>等可能条件下 $P(A)=\dfrac{m}{n}$；“不放回”时，第二层的分支比第一层少一个．</p>
+        <span class="use">用树状图列出甲、乙、丙抽签的所有可能结果．</span>
+        <a class="lk" href="../mj9a-gailvyi/index.html">回看 4.2</a>
+      </div>
+      <div class="recall" data-label="八下 8.3 · 频率与概率" data-step="3">
+        <p>大量重复试验中，事件发生的频率稳定在它的概率附近．</p>
+        <span class="use">抽签机：重复抽几千次，看谁中签的频率更大．</span>
+        <a class="lk" href="../mj8b-pinlvgailv/index.html">回看 8.3</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>先猜 → 用试验检验 → 用树状图计算 → 说清“为什么一样”．</p>
+  </div>
+  <p class="note">第二张卡是关键：本课的树状图就是九上 4.2 “不放回”树状图的延伸（三层）。</p>
+</section>
+
+<!-- 3 ================= 猜一猜 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>先抽的人与后抽的人，中签的概率一样吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="bubble" data-step="1">先抽的人中签的可能性大一些，后抽的人可能吃亏．</p>
+      <p class="bubble" data-step="2" style="margin-top:.5em">如果先抽的人没有抽到，那么后抽的人中签的可能性不就大了吗？</p>
+      <p class="tip" data-step="3">你同意谁？投一票：</p>
+      <div class="btns vote" data-noswipe id="vote" data-step="3"></div>
+      <p class="tip feedback" id="voteMsg" data-step="3"></p>
+    </div>
+    <div class="col">
+      <svg class="box-svg" viewBox="0 0 420 200" aria-label="盒中的三张纸条">
+        <rect x="80" y="70" width="260" height="110" rx="10" fill="#f3e3c8" stroke="#a0784a" stroke-width="3"/>
+        <path d="M80 70 L120 30 H300 L340 70" fill="#f8ecd8" stroke="#a0784a" stroke-width="3"/>
+        <g transform="translate(118 100) rotate(-8)"><rect width="56" height="44" rx="4" fill="#fff" stroke="#556575"/><circle cx="28" cy="22" r="9" fill="#d23b3b"/></g>
+        <g transform="translate(182 104) rotate(5)"><rect width="56" height="44" rx="4" fill="#fff" stroke="#556575"/></g>
+        <g transform="translate(246 98) rotate(-3)"><rect width="56" height="44" rx="4" fill="#fff" stroke="#556575"/></g>
+        <text x="146" y="166" text-anchor="middle" font-size="18" font-style="italic">A</text>
+        <text x="210" y="168" text-anchor="middle" font-size="18" font-style="italic">B₁</text>
+        <text x="274" y="164" text-anchor="middle" font-size="18" font-style="italic">B₂</text>
+      </svg>
+      <p class="small-p">画有记号的纸条记作 $A$，其余 2 张分别记作 $B_1$ 和 $B_2$（课本 p137）．抽签顺序：甲第一，乙第二，丙第三．</p>
+      <p class="tip" data-step="4">两种说法各有道理吗？<span class="think" data-step="5" data-ask="想一想">第一种只看到“先抽的人选择多”；第二种只看到“甲没抽中”这一种情况——可是甲也可能抽中，那样乙就没机会了．两种情况要<b>合起来</b>算．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p137 两位同学的话。先让学生投票并说理由，不要急着评判，下一页用试验检验。</p>
+</section>
+
+<!-- 4 ================= 抽签机（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">抽签机</span><h2>甲、乙、丙依次抽签，重复几千次看看</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <svg class="box-svg" id="drawSvg" viewBox="0 0 520 190" aria-label="一次抽签的过程"></svg>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="sim1">抽 1 次（看过程）</button><button class="btn" type="button" id="sim100">再抽 100 次</button><button class="btn" type="button" id="sim1000">再抽 1 000 次</button><button class="btn" type="button" id="simClr">清空</button></div>
+      <table class="mtab sim-tab" id="simTab"></table>
+    </div>
+    <div class="col">
+      <svg class="freq-svg" id="freqSvg" viewBox="0 0 520 240" aria-label="甲、乙、丙中签的频率"></svg>
+      <p class="tip feedback" id="simMsg"></p>
+      <p class="tip" data-step="1">次数越来越多，三个人中签的频率怎样？<span class="think" data-step="2" data-ask="做几千次再看">都稳定在 $\dfrac13\approx0.333$ 附近，没有谁明显大——先抽、后抽似乎一样．</span></p>
+      <p class="tip gold" data-step="3">试验只能“估计”，怎样<b>算</b>出概率？<span class="think" data-step="4" data-ask="下一页">把所有可能的结果一个不漏地列出来——画树状图．</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心试验。每次抽签：先把 A、B₁、B₂ 随机打乱（相当于搅匀），甲拿第 1 张、乙拿第 2 张、丙拿第 3 张——这正是“依次抽取、不放回”。“抽 1 次”会动画演示三人依次抽出纸条；表格统计每人中签次数与频率，右图中虚线是 1/3。随机数取自 crypto.getRandomValues。</p>
+</section>
+
+<!-- 5 ================= 树状图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>用树状图列出所有可能出现的结果（图 8-6）</h2></div>
+  <div class="bd w64">
+    <div class="col">
+      <svg class="tree-svg" id="treeSvg" viewBox="0 0 640 400" aria-label="甲、乙、丙依次抽签的树状图"></svg>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="treeBtns"></div>
+      <p class="tip" data-step="1">第一次（甲抽）有几种可能？第二次呢？第三次呢？<span class="think" data-step="2" data-ask="数分支">3 种；甲抽走一张后剩 2 张，乙有 2 种；最后只剩 1 张，丙只有 1 种．共 $3\times2\times1=6$ 种．</span></p>
+      <p class="tip" data-step="3">这 6 种结果是等可能的吗？<span class="think" data-step="4" data-ask="想一想">是：纸条相同、每次都搅匀，每一步各分支机会均等，所以每条路径的可能性一样．</span></p>
+      <p class="tip" data-step="5">点上面的按钮：甲中签的结果有几种？乙、丙呢？<span class="think" data-step="6" data-ask="点一点">各 2 种．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p137 图 8-6（树状图的结构、记号与课本一致）。点“甲中签”等按钮，图中对应的结果高亮；也可以直接点右边一列中的某个结果，看它属于谁中签。</p>
+</section>
+
+<!-- 6 ================= 计算与结论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">结论</span><h2>先抽的人与后抽的人中签的概率相同</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">从图 8-6 可以看出，甲、乙、丙依次抽签，一共有 6 种可能出现的结果，并且它们是等可能的．其中，</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$AB_1B_2$ 和 $AB_2B_1$</span><span>$P(\text{甲中签})=\dfrac26=\dfrac13$</span><i class="why">甲中签</i></div>
+        <div class="dl" data-step="2"><span>$B_1AB_2$ 和 $B_2AB_1$</span><span>$P(\text{乙中签})=\dfrac26=\dfrac13$</span><i class="why">乙中签</i></div>
+        <div class="dl" data-step="3"><span>$B_1B_2A$ 和 $B_2B_1A$</span><span>$P(\text{丙中签})=\dfrac26=\dfrac13$</span><i class="why">丙中签</i></div>
+      </div>
+      <div class="def" data-step="4"><h4>结论（课本 p138）</h4>抽签虽然有先有后，但是先抽的人与后抽的人中签的<em>概率是相同的</em>，这样的抽签方法是<em>合理的</em>．</div>
+    </div>
+    <div class="col">
+      <p class="tip gold" data-step="5">回应第二位同学：“甲没抽中，乙的机会不就大了吗？”</p>
+      <svg class="bar1" id="bar1" viewBox="0 0 560 120" data-step="5" aria-label="6 种结果按甲是否中签分组"></svg>
+      <p class="tip" data-step="6"><span class="think" data-step="7" data-ask="数一数">甲没抽中的有 4 种结果，在这 4 种里乙中签占 2 种——乙的机会确实变成了“一半”；但甲没抽中本身只占 6 种中的 4 种．合起来，乙中签仍是 6 种中的 2 种，即 $\dfrac13$．</span></p>
+      <p class="warn" data-step="8" data-label="合理的前提">纸条要相同、每次要搅匀——否则“等可能”就不成立，结论也不成立．</p>
+    </div>
+  </div>
+  <p class="note">课本 p138 的计算与结论。右边是对第二位同学的回应：“如果甲没抽中，乙中签的机会是 1/2”没错，但这只是“甲没抽中”时的情况；把甲抽中（乙一定不中）和甲没抽中两种情况合起来，乙中签的概率还是 1/3。用数结果的办法讲，不需要乘法公式。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>放回与不放回：结果表不一样</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 有 $A$、$B$、$C$、$D$ 4 部不同的电影，甲、乙 2 人分别从中任意选择 1 部观看．求甲、乙 2 人选择同 1 部电影的概率．</p>
+        <details><summary>提示 1</summary>列表：甲有 4 种选法，乙也有 4 种选法，共几种结果？</details>
+        <details><summary>完整解答</summary>共 $4\times4=16$ 种等可能的结果，选同 1 部电影的有 $AA$、$BB$、$CC$、$DD$ 4 种，$P=\dfrac4{16}=\dfrac14$．</details>
+      </div>
+      <p class="q small-p"><b>2.</b> 一只不透明的袋子中装有 2 个红球和 1 个白球，这些球除颜色外都相同．(1) 摸出 1 个球，记下颜色后放回、搅匀，再摸出 1 个球，求 2 次都摸到红球的概率；(2) 从中任意摸出 2 个球（相当于第 1 次摸出的球不放回），求摸到 2 个红球的概率．</p>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="ballBtns"></div>
+      <div id="ballGrid"></div>
+      <p class="tip feedback" id="ballMsg"></p>
+      <p class="method" data-step="1" data-label="比较">不放回：第 2 次不能再摸到第 1 次的那个球，表中对角线上的结果划掉．</p>
+    </div>
+  </div>
+  <p class="note">课本 p138 练习 1、2。第 2 题右侧表格：红球编号为红₁、红₂。点“放回”与“不放回”切换：放回共 9 种结果，2 次都红 4 种，P = 4/9；不放回划掉对角线 3 种，剩 6 种，2 个都红 2 种，P = 2/6 = 1/3。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 8.4：再用抽签说理</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 用抽签的方法从 3 名学生中选出 2 名参加环保活动．这种方法公平吗？请说明理由．</p>
+        <details><summary>提示 1</summary>3 张纸条中 2 张画记号（$A_1$、$A_2$），1 张空白（$B$），仿照图 8-6 画树状图．</details>
+        <details><summary>完整解答</summary>共 6 种等可能的结果，甲、乙、丙各有 4 种结果被选中，被选中的概率都是 $\dfrac46=\dfrac23$，所以公平．（也可以想：选 2 人就是“淘汰 1 人”，每人被淘汰的概率都是 $\dfrac13$．）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一只不透明的袋子中装有 2 个白球和 2 个红球，这些球除颜色外都相同，搅匀后甲、乙、丙 3 人依次按顺序从中任意摸出 1 个球（摸出的球不放回）．甲、乙、丙 3 人摸到白球的概率相同吗？为什么？</p>
+        <details><summary>提示 1</summary>给球编号：白₁、白₂、红₁、红₂．前三次摸球共有 $4\times3\times2=24$ 种等可能的结果．</details>
+        <details><summary>完整解答</summary>相同．24 种结果中，甲摸到白球的有 $2\times3\times2=12$ 种；同理乙、丙摸到白球也各 12 种（把“谁先摸”换一换，数法完全一样）．所以 $P=\dfrac{12}{24}=\dfrac12$．</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">用试验检验第 2 题：</p>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="ex2Go">摸 2 000 次</button><button class="btn" type="button" id="ex2Clr">清空</button></div>
+      <table class="mtab" id="ex2Tab"></table>
+      <p class="tip feedback" id="ex2Msg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p138 习题 8.4。第 2 题答案的计数：甲摸到白球——第 1 个是白（2 种），后两个从剩下 3 个里依次摸（3×2 种），共 12 种；乙摸到白球——第 2 个是白（2 种），第 1、3 个从剩下 3 个里依次摸（3×2 种），也是 12 种。右侧试验每次把 4 个球随机打乱，取前 3 个分别给甲、乙、丙。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>结论</h3>
+        <p class="def">抽签有先有后，但先抽的人与后抽的人中签的<em>概率相同</em>，抽签方法是合理的．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断是否公平">编号 → 树状图（或列表）列出所有等可能结果 → 分别数出各人“中”的结果 → 比较概率．</p>
+        <p class="warn" data-label="易错">只看一种情况（“甲没抽中时”）就下结论；“放回”“不放回”分不清．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="试验与计算">试验让我们猜到结论，计算说明结论为什么对——两者互相印证．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>8.5 概率帮你做估计——反过来，如果不知道袋中有几个红球，能用试验的频率估计出来吗？</p>
+  </div>
+  <p class="note">联系 8.1：简单随机抽样中“每个个体被抽到的可能性相同”，正是本课结论的应用——抽签法每一次、每一个号码被抽中的机会都相同。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

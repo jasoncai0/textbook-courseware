@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>货比三家 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/bingxiang-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第8章 统计和概率的简单应用 · 8.2</p>
+    <h1 class="cover-title">货比三家</h1>
+    <p class="cover-q" data-step="1">小明家准备买一台冰箱。A、B、C 三个品牌的厂家都拿出了统计图：<b>“我的销量逐年上升！”“我的总量最大！”“我的市场占有率最高！”</b></p>
+    <p class="cover-q" data-step="2">三句话能同时都对吗？<b>该信谁？</b>从数据里，我们还能看出厂家没说的东西吗？</p>
+    <div class="chips" data-step="3"><span class="chip">读统计图</span><span class="chip">数据的来源与角度</span><span class="chip">纵轴起点</span><span class="chip">全面综合考虑</span></div>
+  </div>
+  <p class="note">课本 p130“尝试与交流”。封面只抛问题：请学生先猜“三句话会不会有人在说谎”，第 5 页的实验室会给出答案——三句话都可以是真的。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八下 7.2 · 统计图的选用" data-step="1">
+        <p>折线统计图看<b>变化趋势</b>；条形统计图比<b>数量多少</b>；扇形统计图看<b>部分占总体的百分比</b>．</p>
+        <span class="use">读厂家给的三幅图：每幅图只回答了一个问题。</span>
+        <a class="lk" href="../mj8b-tongjitu/index.html">回看 7.2</a>
+      </div>
+      <div class="recall" data-label="九上 3.1、3.2 · 平均数、中位数" data-step="2">
+        <p>平均数反映一般水平；中位数是排序后位于中间的数（或中间两个数的平均数）．</p>
+        <span class="use">练习 3：比较两种电视机的月销售量。</span>
+        <a class="lk" href="../mj9a-zhongweishu/index.html">回看 3.2</a>
+      </div>
+      <div class="recall" data-label="九上 3.4 · 方差" data-step="3">
+        <p>方差 $s^2$ 是各数据与平均数之差的平方的平均数；方差越大，数据的波动越大．</p>
+        <span class="use">练习 3：谁的销量更稳定？</span>
+        <a class="lk" href="../mj9a-fangcha/index.html">回看 3.4</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>上一课</b>是我们自己收集数据（8.1 视力调查）；<b>这一课</b>的数据是别人给的——厂家、网站、广告．别人给的数据，怎样读、怎样用？</p>
+  </div>
+  <p class="note">第一张卡最重要：三种统计图各有所长，也就各有“只说一面”的可能。八下 7.2 最后一页讲过“纵轴起点”会让差距看起来变大，本课练习 1 再用一次。</p>
+</section>
+
+<!-- 3 ================= 厂家的三幅图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>小明父母收集的：厂家提供的统计图</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="ad" data-step="1">
+        <div id="adA" class="fig-s"></div>
+        <p class="claim">A 品牌冰箱的销售量逐年上升．</p>
+      </div>
+      <div class="ad" data-step="2">
+        <div id="adB" class="fig-s"></div>
+        <p class="claim">2008～2012 年 B 品牌冰箱的销售总量最大．</p>
+      </div>
+      <div class="ad" data-step="3">
+        <div id="adC" class="fig-s"></div>
+        <p class="claim">2012 年 C 品牌冰箱的市场占有率最高．</p>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="4">三幅图各用了哪种统计图？各回答了什么问题？<span class="think" data-step="5" data-ask="说一说">折线图——A 的变化趋势；条形图——5 年总量的多少；扇形图——2012 年各品牌所占的百分比．</span></p>
+      <p class="tip" data-step="6">能根据这三幅图比较三个品牌吗？<span class="think" data-step="7" data-ask="想一想">不能直接比：三幅图的<b>对象、时间段、指标都不一样</b>——A 只给了自己的趋势，B 给的是 5 年总量，C 给的是一年的占有率．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p130 三幅图，按课本标注的数据绘制。课本里第三幅图标注：A 品牌 29%、B 品牌 25%、C 品牌 34%、其他 12%。关键问题是第 7 步：“缺乏可比性”——这正是课本里第一位同学的评价。</p>
+</section>
+
+<!-- 4 ================= 互联网数据 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>小明在互联网上收集的：月平均销售量</h2></div>
+  <div class="bd w64">
+    <div class="col">
+      <h3 class="h3 center">A、B、C 三种品牌冰箱月平均销售量折线统计图</h3>
+      <div id="netLine" class="fig-line"></div>
+    </div>
+    <div class="col">
+      <table class="mtab">
+        <caption>月平均销售量统计表（单位：万台）</caption>
+        <tr><th></th><th>A 品牌</th><th>B 品牌</th><th>C 品牌</th></tr>
+        <tr><th>2008 年</th><td>4.8</td><td>32.42</td><td>17.33</td></tr>
+        <tr><th>2009 年</th><td>7.7</td><td>29.42</td><td>20.33</td></tr>
+        <tr><th>2010 年</th><td>11.25</td><td>26.58</td><td>22.08</td></tr>
+        <tr><th>2011 年</th><td>15.58</td><td>22.17</td><td>23.33</td></tr>
+        <tr><th>2012 年</th><td>20.75</td><td>18.08</td><td>24.08</td></tr>
+        <tr><th>2013 年</th><td>24</td><td>17.3</td><td>24.33</td></tr>
+      </table>
+      <p class="tip" data-step="1">三条折线各是什么趋势？<span class="think" data-step="2" data-ask="看折线">B 的月平均销售量逐年下降；A、C 逐年上升，A 上升得最快，C 上升得较平稳．</span></p>
+      <p class="tip" data-step="3">这张表多了什么？<span class="think" data-step="4" data-ask="比一比">三个品牌、同样的年份、同一个指标放在一起——<b>有了可比性</b>，还多了 2013 年．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p131 统计表与折线图（按表中数据精确绘制）。问学生：B 在 2008 年遥遥领先，为什么 B 厂偏偏要说“5 年总量”而不画趋势？——下一页的实验室回答。</p>
+</section>
+
+<!-- 5 ================= 挑区间实验室（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数据实验室</span><h2>同一张表，换个年份、换个指标，“冠军”就换人</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns" data-noswipe id="presets"></div>
+      <div class="pick-row" data-noswipe><span class="lbl">从</span><span id="fromBtns"></span></div>
+      <div class="pick-row" data-noswipe><span class="lbl">到</span><span id="toBtns"></span></div>
+      <div class="pick-row" data-noswipe><span class="lbl">比什么</span><span id="measBtns"></span></div>
+      <div id="labLine" class="lab-line"></div>
+    </div>
+    <div class="col">
+      <div id="labBars" class="lab-bars"></div>
+      <p class="tip feedback verdict-big" id="labMsg"></p>
+      <p class="tip" data-step="1">三个厂家的说法，哪一句是假的？<span class="think" data-step="2" data-ask="点三个按钮试试">都<b>不假</b>：每家都挑了对自己最有利的年份和指标．把年份改到 2011～2013 年，比总量的冠军就成了 C．</span></p>
+      <p class="warn" data-step="3" data-label="所以">媒体提供的数据很多，从中能获得许多有用的信息，但有些信息不一定客观、全面．</p>
+    </div>
+  </div>
+  <p class="note">本课核心。年销售量 = 月平均销售量 × 12，全部由第 4 页的表计算：A 品牌 2008～2012 年的年销量 57.6、92.4、135、186.96、249（万台），正是厂家折线图上的点；5 年总量 A≈721、B≈1544、C≈1286，正是厂家条形图的高度；2012 年三家月销量之比 20.75∶18.08∶24.08 也和扇形图 29%∶25%∶34% 吻合。先点三个“厂家的说法”按钮，再请学生自己挑年份，把冠军“变”成别人。</p>
+</section>
+
+<!-- 6 ================= 评价与建议 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>你如何评价这些信息？你建议小明家买哪种冰箱？</h2></div>
+  <div class="bd full">
+    <div class="bubbles">
+      <p class="bubble" data-step="1">厂家提供的 A、B、C 三种品牌冰箱的销售数据缺乏可比性．</p>
+      <p class="bubble" data-step="2">由互联网提供的销售数据可以看出：B 品牌冰箱的月平均销售量逐年下降，A、C 两种品牌冰箱的月平均销售量逐年上升．</p>
+      <p class="bubble" data-step="3">C 品牌冰箱的月平均销售量比较稳定，且销售总量、市场占有率都高于 A 品牌冰箱，建议小明家选购 C 品牌冰箱．</p>
+      <p class="bubble" data-step="4">A 品牌冰箱月平均销售量逐年上升的幅度最大，也可以选购 A 品牌冰箱．</p>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="5">只看销量，就能决定买哪台冰箱吗？<span class="think" data-step="6" data-ask="还要看什么？">还要看价格、容量、耗电量、质量和售后服务、自家厨房的空间……销量只是一个方面．</span></p>
+      <div class="def" data-step="7"><h4>货比三家（课本 p131–132）</h4>媒体提供的数据很多，从中能够获得许多有用的信息，但有些信息不一定客观、全面．因此，我们在做出决策时要<em>全面综合考虑各种因素</em>，“货比三家”．</div>
+    </div>
+  </div>
+  <p class="note">课本 p131 四位同学的话（原文）与 p132 的结论。第 3、4 两种建议都言之有据，没有标准答案；重点是让学生说出“依据的是哪组数据”。</p>
+</section>
+
+<!-- 7 ================= 练习 1、2：纵轴起点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>同样的身高，为什么一幅图差得多、一幅图差得少？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="small-p"><b>1.</b> 5 名学生身高的 2 幅统计图：拖动滑块改变纵轴的起点．</p>
+      <svg class="yfig" id="yFig" viewBox="0 0 560 330" aria-label="5 名学生身高条形统计图"></svg>
+      <div class="slider-row" data-noswipe><span>纵轴起点</span><input type="range" id="ySlide" min="0" max="1.5" step="0.05" value="0"><b id="yVal">0</b></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="yMsg"></p>
+      <p class="tip" data-step="1">对这 2 幅图你有何评价？<span class="think" data-step="2" data-ask="拖到 1.50 看看">两幅图的数据一样（A 1.60 m，B 1.52 m，C 1.72 m，D 1.54 m，E 1.64 m）．第 2 幅纵轴从 1.50 开始，C 的长条是 B 的 11 倍，但 C 只比 B 高 0.20 m——<b>差距被放大了</b>．</span></p>
+      <div class="hint-ladder" data-step="3">
+        <p class="q"><b>2.</b> 有一则广告称：“有 70% 的人使用本公司的产品．”对这则广告你有什么想法？</p>
+        <details><summary>提示 1</summary>这 70% 是在哪些人中调查的？调查了多少人？</details>
+        <details><summary>完整解答</summary>要问清数据的来源：如果只调查了 10 个人，或只在本公司的门店里调查，样本缺乏代表性，“70%”就不能说明全体消费者的情况．不能轻信．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p132 练习 1、2。身高数据读自课本第 2 幅图（纵轴 1.50～1.72，刻度 0.02）。滑块从 0 拖到 1.50：长条比例 (1.72−起点)∶(1.52−起点) 从约 1.13 变到 11，消息框实时算出。第 2 题联系 8.1：样本的代表性。</p>
+</section>
+
+<!-- 8 ================= 练习 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>两种品牌电视机 7 个月的销售情况</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="tvLine" class="tv-line"></div>
+      <table class="mtab">
+        <tr><th>月份</th><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+        <tr><th>A 品牌/台</th><td>10</td><td>14</td><td>17</td><td>16</td><td>13</td><td>14</td><td>14</td></tr>
+        <tr><th>B 品牌/台</th><td>6</td><td>10</td><td>14</td><td>15</td><td>16</td><td>17</td><td>20</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <p class="tip">(1) 分别求这 7 个月 A、B 两种品牌电视机月销售量的平均数、中位数和方差．</p>
+      <table class="mtab" data-step="1">
+        <tr><th></th><th>平均数</th><th>中位数</th><th>方差</th></tr>
+        <tr><th>A</th><td><span class="think" data-step="2" data-ask="算">$\dfrac{98}{7}=14$</span></td><td><span class="think" data-step="2" data-ask="算">14</span></td><td><span class="think" data-step="2" data-ask="算">$\dfrac{30}{7}\approx4.29$</span></td></tr>
+        <tr><th>B</th><td><span class="think" data-step="3" data-ask="算">$\dfrac{98}{7}=14$</span></td><td><span class="think" data-step="3" data-ask="算">15</span></td><td><span class="think" data-step="3" data-ask="算">$\dfrac{130}{7}\approx18.57$</span></td></tr>
+      </table>
+      <p class="tip" data-step="4">(2) 你对两种品牌电视机的销售情况怎样分析、推断？<span class="think" data-step="5" data-ask="说一说">平均数相同；A 的方差小，销量较稳定，但 6 月后没有增长；B 的方差大是因为它<b>一直在上升</b>，最近 4 个月都超过 A．商场可以多进 B 品牌．</span></p>
+      <p class="warn" data-step="6" data-label="方差不是越小越好">这里 B 的“波动”是持续增长造成的——只看方差会误判，还要看折线的趋势．</p>
+    </div>
+  </div>
+  <p class="note">课本 p132 练习 3，数据读自课本折线图（纵轴每格 2 台），表中数据可以和折线核对。A 的方差：偏差 −4、0、3、2、−1、0、0，平方和 30；B：偏差 −8、−4、0、1、2、3、6，平方和 130。</p>
+</section>
+
+<!-- 9 ================= 习题 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 8.2：看图要看刻度，比率要看基数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="small-p"><b>1.</b> 甲、乙两家公司 2008～2012 年的利润统计图如下．你认为哪家公司的利润增长较快？为什么？</p>
+      <div class="btns" data-noswipe id="profitBtns"></div>
+      <div id="profitFig" class="profit"></div>
+      <p class="tip" data-step="1"><span class="think" data-step="2" data-ask="哪家快？">乙的图纵轴从 100 开始、每格 10 万元，线显得陡；画到同一坐标系里看：甲从约 124 万元增到 200 万元，增加约 76 万元；乙从 120 万元增到 160 万元，增加 40 万元——<b>甲增长较快</b>．</span></p>
+    </div>
+    <div class="col">
+      <p class="small-p"><b>2.</b> 某种产品质量检验的结果如下：</p>
+      <table class="mtab"><tr><th>厂家</th><th>甲厂</th><th>乙厂</th></tr><tr><th>被检数</th><td>60</td><td>6</td></tr><tr><th>不合格数</th><td>13</td><td>1</td></tr></table>
+      <p class="small-p">有人由此认为“乙厂该产品的不合格率较低，更让人放心”．你同意这种说法吗？为什么？</p>
+      <div class="derive" data-step="3">
+        <div class="dl"><span>甲厂不合格率</span><span>$\dfrac{13}{60}\approx21.7\%$</span><i class="why">不合格数 ÷ 被检数</i></div>
+        <div class="dl"><span>乙厂不合格率</span><span>$\dfrac16\approx16.7\%$</span><i class="why">只检了 6 件</i></div>
+      </div>
+      <p class="tip" data-step="4"><span class="think" data-step="5" data-ask="同意吗？">不同意：乙厂只检验了 6 件，样本容量太小，多 1 件、少 1 件不合格，不合格率就变化约 16.7 个百分点，结论不可靠；两厂的不合格率都偏高，都不能“放心”．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p133 习题 8.2 第 1、2 题。乙公司的数据 120、130、140、150、160 可以从图上准确读出；甲公司的点不在格线上，读数约为 124、133、144、159、200（万元），结论不受读数误差影响。点“画在同一坐标系”按钮，两条折线用同一纵轴 0～250 重画，立刻看出甲的总增长更多。</p>
+</section>
+
+<!-- 10 ================= 习题 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>三种品牌洗衣机：占有率与满意度</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <h3 class="h3 center">A、B、C 三种品牌洗衣机市场占有率扇形统计图</h3>
+      <div id="washPie" class="wash-pie"></div>
+      <table class="mtab tight">
+        <caption>用户对 A、B、C 三种品牌洗衣机的满意情况统计表</caption>
+        <tr><th>内容</th><th colspan="3">质量</th><th colspan="3">价格</th><th colspan="3">广告</th></tr>
+        <tr><th>品牌</th><td>A</td><td>B</td><td>C</td><td>A</td><td>B</td><td>C</td><td>A</td><td>B</td><td>C</td></tr>
+        <tr><th>满意户数</th><td class="on">195</td><td>120</td><td>118</td><td>95</td><td>93</td><td>94</td><td>145</td><td>150</td><td>95</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">(1) 哪种品牌洗衣机的市场占有率最高？它的主要竞争优势是什么？<span class="think" data-step="2" data-ask="比一比">A 品牌（42%）．三种品牌的价格满意户数相差无几（95、93、94），A 的<b>质量</b>满意户数 195 遥遥领先——主要优势是质量．</span></p>
+      <p class="tip" data-step="3">(2) 广告对用户选购品牌洗衣机有影响吗？说说你的理由．<span class="think" data-step="4" data-ask="说一说">有一定影响，但不是决定因素：B 的广告满意户数最多（150），占有率（30%）却不如 A；C 的质量与 B 相当（118、120），广告满意户数少（95），占有率也最低（21%）．</span></p>
+      <p class="method" data-step="5" data-label="综合考虑">做判断时把几个方面的数据放在一起比：找出“差别大”的那一项，往往就是关键因素．</p>
+    </div>
+  </div>
+  <p class="note">课本 p133 习题 8.2 第 3 题，扇形按 A 42%、B 30%、C 21%、其他 7% 精确绘制。第 (2) 问开放，言之有据即可。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>读数据</h3>
+        <p class="method" data-label="三问">数据从哪里来？比的是不是同一指标、同一时间段？图的纵轴从哪里开始？</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>用数据</h3>
+        <p class="method" data-label="多个统计量">平均数、中位数、方差、趋势一起看；比率要看基数（样本容量）．</p>
+        <p class="warn" data-label="易错">只看对自己有利的一个数据；把“图看起来差很多”当成“真的差很多”．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>做决策</h3>
+        <p class="def">媒体数据不一定客观、全面，做决策时要<em>全面综合考虑各种因素</em>——货比三家．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>8.3 统计分析帮你做预测——已经知道过去十几年的数据，怎样估计以后的情况？</p>
+  </div>
+  <p class="note">请学生用今天学到的“三问”评价一则真实的广告或新闻图表，作为课后小作业。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

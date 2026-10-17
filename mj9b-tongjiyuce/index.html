@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>统计分析帮你做预测 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chengshi-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第8章 统计和概率的简单应用 · 8.3</p>
+    <h1 class="cover-title">统计分析帮你做预测</h1>
+    <p class="cover-q" data-step="1">1992 年我国国内生产总值（GDP）约 2.7 万亿元，2003 年约 13.7 万亿元。</p>
+    <p class="cover-q" data-step="2">只知道过去 12 年的数据，<b>能不能估计 2003 年以后的 GDP？</b>数据点不在一条直线上，又怎样用函数来描述？</p>
+    <div class="chips" data-step="3"><span class="chip">描点观察</span><span class="chip">用直线近似</span><span class="chip">一次函数表达式</span><span class="chip">估计与预测</span></div>
+  </div>
+  <p class="note">课本 p134 情境。本课把八年级上册的一次函数用到真实数据上：数据不会恰好在一条直线上，我们选一条“最合适”的直线来近似。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八上 6.2 · 待定系数法" data-step="1">
+        <p>一次函数 $y=kx+b$ 的图像是直线；已知直线上两个点的坐标，就能求出 $k$、$b$．</p>
+        <span class="use">由直线 AB 过的两个点，求出 GDP 与年份的近似表达式。</span>
+        <a class="lk" href="../mj8a-yicihanshu/index.html">回看 6.2</a>
+      </div>
+      <div class="recall" data-label="七下 10.3 · 解二元一次方程组" data-step="2">
+        <p>加减消元：两式相减消去 $b$，先求 $k$，再代回求 $b$．</p>
+        <span class="use">解方程组 $\begin{cases}1992k+b=27\,194.5\\2003k+b=137\,422.0\end{cases}$．</span>
+        <a class="lk" href="../mj7b-jiefangchengzu/index.html">回看 10.3</a>
+      </div>
+      <div class="recall" data-label="八下 7.2 · 折线统计图" data-step="3">
+        <p>以时间为横轴描点、连线，能清楚地看出数量的<b>变化趋势</b>．</p>
+        <span class="use">以年份为横坐标、GDP 为纵坐标描点，观察趋势。</span>
+        <a class="lk" href="../mj8b-tongjitu/index.html">回看 7.2</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>统计表 → 描点 → 发现“大致在一条直线附近” → 选一条直线 → 求出表达式 → 用它估计（预测）．</p>
+  </div>
+  <p class="note">第二张卡的方程组正是本课第 6 页要解的。可以先请学生口述加减消元的步骤。</p>
+</section>
+
+<!-- 3 ================= GDP 统计表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>1992～2003 年中国 GDP：从表中你能获得哪些信息？</h2></div>
+  <div class="bd full">
+    <div class="tab-wrap"><table class="mtab" id="gdpTab"></table></div>
+    <p class="small-p muted">单位：亿元．数据来源：中国国家统计局（课本 p134）．</p>
+    <div class="cols3">
+      <p class="tip" data-step="1">总的趋势？<span class="think" data-step="2" data-ask="说一说">GDP 逐年增长，12 年里增长到原来的约 5 倍．</span></p>
+      <p class="tip" data-step="3">每年增长多少？<span class="think" data-step="4" data-ask="看第三行">表中第三行是每年比上一年增加的量：都是正数，大多在 5 000～15 000 亿元之间，并不完全相同．</span></p>
+      <p class="tip" data-step="5">能精确地写出 GDP 与年份的函数表达式吗？<span class="think" data-step="6" data-ask="想一想">不能——每年的增长量不一样，没有一个式子恰好对所有数据成立．但可以找一个“近似”的式子．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p134 统计表（原样）。第三行“比上年增加”是由表中数据相减算出的，帮助学生体会“增长得比较均匀，但不完全均匀”——这就是下一页“大致在一条直线附近”的原因。</p>
+</section>
+
+<!-- 4 ================= 描点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">描点</span><h2>以年份为横坐标、GDP 为纵坐标画出点</h2></div>
+  <div class="bd w64">
+    <div class="col">
+      <div id="scatBoard" class="fit-board"></div>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="scatBtns"></div>
+      <p class="tip" data-step="1">这些点的分布有什么特点？<span class="think" data-step="2" data-ask="看图">这些点<b>大致分布在一条直线附近</b>（图 8-4）．</span></p>
+      <p class="tip" data-step="3">如果在这些点中恰当地选择两个点，过这两点作一条直线，并尽量使其他的点都在这条直线附近——<span class="think" data-step="4" data-ask="会怎样？">就可以用这条直线<b>近似地表示</b>我国 1992～2003 年 GDP 不断增长的变化趋势（图 8-5 中的直线 AB）．</span></p>
+      <p class="warn" data-step="5" data-label="点不在直线上">这条直线不经过所有的点：它表示的是<b>趋势</b>，算出来的是<b>近似值</b>．</p>
+    </div>
+  </div>
+  <p class="note">课本 p134 图 8-4、图 8-5，点的坐标就是统计表中的数据。点“图 8-5 直线 AB”按钮，画出过 1992 年和 2003 年两个点的直线。请学生观察：有的点在直线上方，有的在下方。</p>
+</section>
+
+<!-- 5 ================= 选直线实验室（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">选直线实验室</span><h2>拖动 A、B 两点：哪条直线最能代表这些点？</h2></div>
+  <div class="bd w64">
+    <div class="col">
+      <div id="fitBoard" class="fit-board"></div>
+    </div>
+    <div class="col">
+      <div class="btns sm" data-noswipe id="fitBtns"></div>
+      <div class="readout2" id="fitRead"></div>
+      <p class="tip" data-step="1">怎样的直线算“恰当”？<span class="think" data-step="2" data-ask="拖一拖，比一比">点尽量靠近直线（红色虚线短），而且直线两侧都有点，不能所有点都偏在一边．</span></p>
+      <p class="tip" data-step="3">换一条直线，2004 年的估计值变不变？<span class="think" data-step="4" data-ask="看右上角">会变：选的直线不同，表达式不同，估计值也不同——所以这是<b>估计</b>，不是精确值．</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。拖动橙色的 A、B（横坐标取整数年份），直线、表达式 y = kx + b、2004 年的估计值、每个点到直线的竖直距离（红色虚线）实时更新；读数框统计直线上方、下方各有几个点和“偏离量之和”。先点“课本的直线 AB”，再请学生自己找一条“更好”的直线，比一比偏离量之和。这是课本 p135“尝试与交流”的动手版。</p>
+</section>
+
+<!-- 6 ================= 求表达式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>求直线 AB 的表达式，并做出估计</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设</span><span>直线 AB：$y=kx+b$</span><i class="why">一次函数</i></div>
+        <div class="dl" data-step="2"><span>过两点</span><span>$(1992,\,27\,194.5)$、$(2003,\,137\,422.0)$</span><i class="why">表中首、末两年</i></div>
+        <div class="dl" data-step="3"><span>得</span><span>$\begin{cases}1992k+b=27\,194.5\\2003k+b=137\,422.0\end{cases}$</span><i class="why">点的坐标满足表达式</i></div>
+        <div class="dl" data-step="4"><span>相减</span><span class="think" data-step="5" data-ask="得到什么？">$11k=110\,227.5$，$k\approx10\,020.7$</span><i class="why">消去 $b$</i></div>
+        <div class="dl end" data-step="6"><span>代回</span><span class="think" data-step="7" data-ask="b = ?">$b\approx-19\,934\,039.9$</span><i class="why">$b=27\,194.5-1992k$</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="def" data-step="8">于是，1992～2003 年我国 GDP 与年份之间的关系可以近似地用函数表达式 $y=10\,020.7x-19\,934\,039.9$ 表示．</p>
+      <p class="tip" data-step="9">若按这样的增长趋势，估计 2004 年我国的 GDP：<span class="think" data-step="10" data-ask="代入 x = 2004">$y=10\,020.7\times2004-19\,934\,039.9=147\,442.9$（亿元）</span></p>
+      <p class="method" data-step="11" data-label="让数字变小">设 $t=$ 年份 $-1992$，则两点为 $(0,\,27\,194.5)$、$(11,\,137\,422.0)$，直接得 $b=27\,194.5$，$y\approx10\,020.7t+27\,194.5$．2004 年 $t=12$，$y\approx147\,442.9$——结果一样，计算简单得多．</p>
+    </div>
+  </div>
+  <p class="note">课本 p135。注意 b 的值依赖于 k 的取舍：课本先把 k 取成 10 020.7，再算 b = 27 194.5 − 1992 × 10 020.7 = −19 934 039.9；若用 k 的精确值 110 227.5/11 计算，b ≈ −19 934 003.7，2004 年的估计值约为 147 442.7，与课本结果只差 0.2——取近似值带来的误差很小。b 是一个很大的负数，是直线延长到 x = 0（公元 0 年）时的“纵截距”，没有实际意义——这正是“换元 t = 年份 − 1992”的好处。</p>
+</section>
+
+<!-- 7 ================= 尝试与交流 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>还可以选用其他直线吗？预测能走多远？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip" data-step="1">还可以选用其他的直线来近似地表示 1992～2003 年 GDP 不断增长的变化趋势吗？<span class="think" data-step="2" data-ask="说一说">可以．如过 1994 年和 2002 年的点作直线，所得表达式不同，但只要大多数点都在直线附近，都是合理的近似．</span></p>
+      <p class="tip" data-step="3">用 $y=10\,020.7x-19\,934\,039.9$ 估计 2030 年的 GDP，可靠吗？<span class="think" data-step="4" data-ask="想一想">不太可靠：表达式是根据 1992～2003 年的数据得到的，只反映这段时间的趋势；离这段时间越远，情况变化越大，估计越不可靠．</span></p>
+      <p class="warn" data-step="5" data-label="预测的前提">“若按照 1992～2003 年这样的增长趋势”——课本的这句前提不能丢．</p>
+    </div>
+    <div class="col">
+      <p class="tip gold" data-step="6">生活中，类似的例子还有很多：</p>
+      <div class="cols2" data-step="6">
+        <p class="recall" data-label="例 1">学生的身高和体重之间</p>
+        <p class="recall" data-label="例 2">同一种树的树叶长与宽之间</p>
+      </div>
+      <p class="tip" data-step="7">都存在着某种关系．你不妨做一些调查，探索相应的两个量之间的关系．<span class="think" data-step="8" data-ask="怎样做？">收集数据 → 描点 → 看是否大致在一条直线附近 → 选两点求表达式 → 用表达式估计．</span></p>
+      <p class="method" data-step="9" data-label="用统计做预测">描点看趋势，恰当选直线，待定系数求式子，代入数值做估计．</p>
+    </div>
+  </div>
+  <p class="note">课本 p135“尝试与交流”和后面的一段话。第 3 问是对“预测”的必要提醒：高中会学更精确的“线性回归”方法，那时选直线不再凭眼睛，而是让“偏离量”最小——第 5 页实验室里的“偏离量之和”就是这种想法的雏形。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>10 名九年级男生的身高与体重</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="tab-wrap"><table class="mtab tight">
+        <tr><th>序号</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+        <tr><th>体重/kg</th><td>49</td><td>43</td><td>65</td><td>46</td><td>62</td><td>56</td><td>60</td><td>52</td><td>48</td><td>69</td></tr>
+        <tr><th>身高/cm</th><td>170</td><td>165</td><td>177</td><td>167</td><td>176</td><td>172</td><td>175</td><td>171</td><td>168</td><td>183</td></tr>
+      </table></div>
+      <div id="hwBoard" class="fit-small"></div>
+      <div class="readout2" id="hwRead"></div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q">(1) 以体重为横坐标、身高为纵坐标描点，并选用一条适当的直线近似表示身高与体重之间的变化趋势；(2) 求近似表达式，并估计身高 180 cm 的九年级男生的体重．</p>
+        <details><summary>提示 1</summary>左图已经描好点：拖动 A、B，让直线穿过点群的“中间”．</details>
+        <details><summary>提示 2</summary>可以选第 2 名 $(43,165)$ 和第 10 名 $(69,183)$ 这两个点，设 $y=kx+b$，列方程组．</details>
+        <details><summary>完整解答（一种）</summary>由 $\begin{cases}43k+b=165\\69k+b=183\end{cases}$ 得 $k=\dfrac{9}{13}\approx0.69$，$b\approx135.2$，即 $y\approx0.69x+135.2$．当 $y=180$ 时，$x\approx\dfrac{180-135.2}{0.69}\approx65$，估计体重约 65 kg．（选的直线不同，结果会略有不同．）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p135 练习。注意本题横坐标是体重、纵坐标是身高；问的是“已知身高估计体重”，所以要由 y 反求 x。左边的读数框随拖动给出表达式和“身高 180 cm 对应的体重”。答案不唯一，只要直线选得合理、计算正确即可。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 8.3：我国 1949～1999 年部分年份的人口数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="tab-wrap"><table class="mtab tight">
+        <tr><th>年份</th><td>1949</td><td>1954</td><td>1959</td><td>1964</td><td>1969</td><td>1974</td><td>1979</td><td>1984</td><td>1989</td><td>1994</td><td>1999</td></tr>
+        <tr><th>人口数/百万</th><td>542</td><td>603</td><td>672</td><td>705</td><td>807</td><td>909</td><td>975</td><td>1 044</td><td>1 127</td><td>1 199</td><td>1 258</td></tr>
+      </table></div>
+      <div id="popBoard" class="fit-small"></div>
+      <div class="readout2" id="popRead"></div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q">(1) 以年份为横坐标、人口数为纵坐标描点，选用一条适当的直线近似表示人口数与年份之间的变化趋势；(2) 求近似表达式，并估计我国 2004 年的人口数．</p>
+        <details><summary>提示 1</summary>为了计算方便，设 $t=$ 年份 $-1949$．</details>
+        <details><summary>提示 2</summary>例如选首、末两点 $(0,542)$、$(50,1\,258)$．</details>
+        <details><summary>完整解答（一种）</summary>$k=\dfrac{1\,258-542}{50}=14.32$，$b=542$，$y=14.32t+542$，即 $y=14.32(x-1949)+542$．2004 年 $t=55$，$y=14.32\times55+542\approx1\,330$，估计约 1 330 百万人（约 13.3 亿）．</details>
+      </div>
+      <p class="warn" data-step="1" data-label="想一想">据统计，2004 年末我国人口约 12.99 亿，比估计值少．为什么？<span class="think" data-step="2" data-ask="说一说">20 世纪 80 年代以后人口增长放缓，图中最后几个点已经在直线下方——趋势变了，直线外推就会偏高．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p136 习题 8.3。2004 年末全国总人口 129 988 万人（国家统计局公报），用来说明“预测要以趋势不变为前提”。拖动 A、B 可以试试只用 1979 年以后的点选直线，估计值会更接近实际。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>方法</h3>
+        <p class="method" data-label="五步">列表 → 描点 → 发现点大致在一条直线附近 → 选两点求 $y=kx+b$ → 代入估计．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>注意</h3>
+        <p class="warn" data-label="近似与前提">表达式是近似的，选的直线不同结果不同；预测以“趋势不变”为前提，离已知数据越远越不可靠．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数学建模">把实际问题中的数据抽象成函数（模型），用模型解释过去、估计未来．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>8.4 抽签方法合理吗——从统计回到概率：先抽的人和后抽的人，机会一样吗？</p>
+  </div>
+  <p class="note">前后联系：八上一次函数（精确的函数关系）→ 本课（近似的函数关系）→ 高中“线性回归”。课后作业：自己调查一组数据（如同学的身高与臂展），描点并求近似表达式。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

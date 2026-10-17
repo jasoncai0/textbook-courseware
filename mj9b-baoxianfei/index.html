@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>收取多少保险费才合理 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jichang-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第8章 统计和概率的简单应用 · 8.6</p>
+    <h1 class="cover-title">收取多少保险费才合理</h1>
+    <p class="cover-q" data-step="1">某航班平均每次约有 100 名乘客．保险公司承诺：飞机一旦失事，向每名乘客赔偿 40 万元．</p>
+    <p class="cover-q" data-step="2">飞机失事的概率极小——那么保险公司<b>向每名乘客收多少保险费</b>，平均来说才能不亏本？</p>
+    <div class="chips" data-step="3"><span class="chip">平均发生次数 $n\times P(A)$</span><span class="chip">收入不小于支出</span><span class="chip">列不等式</span></div>
+  </div>
+  <p class="note">课本 p143“思考与探索”的问题放在封面。先请学生凭感觉报一个价：10 元？100 元？1 000 元？记在黑板上，最后对照。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八下 8.3 · 频率与概率" data-step="1">
+        <p>大量重复试验中，事件发生的频率稳定在概率附近：$\dfrac{\text{发生次数}}{n}\approx P(A)$．</p>
+        <span class="use">由此得：发生次数 $\approx n\times P(A)$．</span>
+        <a class="lk" href="../mj8b-pinlvgailv/index.html">回看 8.3</a>
+      </div>
+      <div class="recall" data-label="九上 3.1 · 平均数" data-step="2">
+        <p>“平均每组 1 张”：把很多组合起来，总数 ÷ 组数．</p>
+        <span class="use">理解“平均来说”——不是每一组都恰好这样．</span>
+        <a class="lk" href="../mj9a-pingjunshu/index.html">回看 3.1</a>
+      </div>
+      <div class="recall" data-label="七下 11.5 · 用一元一次不等式解决问题" data-step="3">
+        <p>找不等关系（如“收入不小于支出”）→ 列不等式 → 解．</p>
+        <span class="use">$100nx\ge40\,000\,000np$，解出 $x\ge20$．</span>
+        <a class="lk" href="../mj7b-budengshijiejuewenti/index.html">回看 11.5</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>概率 → 平均发生次数 $n\times P(A)$ → 用它比较“平均收入”与“平均支出” → 列不等式做决策．</p>
+  </div>
+  <p class="note">第一张卡是本课结论的来源：频率 ≈ 概率，两边同乘 n。上一课（8.5）是由频率估计“有多少个”，这一课是由概率估计“平均发生多少次”。</p>
+</section>
+
+<!-- 3 ================= 奖券与罚球 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>中奖概率 0.01，100 张奖券中一定有 1 张中奖吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns sm" data-noswipe id="avgCase"></div>
+      <svg class="chart-svg" id="avgSvg" viewBox="0 0 560 280" aria-label="各组中奖次数的分布"></svg>
+      <div class="btns sm" data-noswipe><button class="btn solid" type="button" id="avg10">模拟 10 组</button><button class="btn" type="button" id="avg1000">模拟 1 000 组</button><button class="btn" type="button" id="avgClr">清空</button></div>
+    </div>
+    <div class="col">
+      <div class="readout2" id="avgRead"></div>
+      <p class="tip" data-step="1">奖券中奖的概率为 0.01．在 100 张奖券中必有 1 张中奖吗？<span class="think" data-step="2" data-ask="看模拟">不能断定：有的组 1 张也没中，有的组中了 2、3 张．但当购买的奖券数很大时，在 100 张一组的奖券中，<b>平均</b>会有 $100\times0.01=1$ 张中奖．</span></p>
+      <p class="tip" data-step="3">一名篮球运动员罚球命中的概率是 0.8，10 次一组的罚球呢？<span class="think" data-step="4" data-ask="切换到“罚球”">当罚球次数很大时，在 10 次一组的罚球中，该运动员平均会有 $10\times0.8=8$ 次投中．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p143 前两段。本页是核心的第一部分：每“模拟 1 组”就是真随机地买 100 张奖券（或罚 10 次球），条形图统计“各组中奖张数”的分布，读数框给出所有组的平均数。100 张中 1 张也不中的组约占 37%——“概率 0.01”不等于“100 张必中 1 张”；但组数多了，平均数稳定在 1。</p>
+</section>
+
+<!-- 4 ================= 结论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>事件 A 发生的次数的平均值</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>大量重复试验</span><span>$\dfrac{A\text{ 发生的次数}}{\text{试验次数}}\approx P(A)$</span><i class="why">频率估计概率</i></div>
+        <div class="dl" data-step="2"><span>分成 $n$ 次一组</span><span>每组平均发生次数 $\approx n\times P(A)$</span><i class="why">两边同乘 $n$</i></div>
+      </div>
+      <div class="def" data-step="3"><h4>结论（课本 p143）</h4>一般地，如果随机事件 $A$ 发生的概率是 $P(A)$，那么在相同条件下重复 $n$ 次试验，事件 $A$ 发生的次数的<em>平均值</em>为 $n\times P(A)$．</div>
+    </div>
+    <div class="col">
+      <p class="warn" data-step="4" data-label="平均值，不是每一次">$n\times P(A)$ 说的是“很多组的平均”；具体某一组，$A$ 发生的次数可能多、可能少．</p>
+      <p class="tip" data-step="5">某路口红灯亮的概率是 0.4，小明一学期经过这个路口 100 次，平均会遇到几次红灯？<span class="think" data-step="6" data-ask="算一算">$100\times0.4=40$（次）——但这学期不一定恰好 40 次．</span></p>
+      <p class="method" data-step="7" data-label="怎样用">知道概率 $P(A)$ 和次数 $n$，就能预估“平均来说”的结果，用于决策（如定价、备货）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p143 的一般结论。第 5 步红灯是补充的口算例子，不是课本题。高中会把 n×P(A) 叫做“二项分布的数学期望”，这里只要求会用。</p>
+</section>
+
+<!-- 5 ================= 思考探索：推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>保险公司应该如何收取保险费？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="small-p">假设某航班平均每次约有 100 名乘客，飞机失事的概率 $p=0.000\,05$．一家保险公司要为乘客保险，承诺飞机一旦失事，将向每名乘客赔偿人民币 40 万元．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设每人收</span><span>$x$ 元</span><i class="why">未知数</i></div>
+        <div class="dl" data-step="2"><span>$n$ 次飞行共收</span><span class="think" data-step="3" data-ask="收多少？">$100nx$ 元</span><i class="why">每次 100 人</i></div>
+        <div class="dl" data-step="4"><span>平均失事</span><span class="think" data-step="5" data-ask="几次？">$np$ 次</span><i class="why">$n\times P(A)$</i></div>
+        <div class="dl" data-step="6"><span>平均赔偿</span><span class="think" data-step="7" data-ask="赔多少？">$400\,000\times100\times np$ 元</span><i class="why">赔 100 人</i></div>
+        <div class="dl key" data-step="8"><span>收入 ≥ 支出</span><span>$100nx\ge40\,000\,000np$</span><i class="why">保证不亏本</i></div>
+        <div class="dl" data-step="9"><span>代入 $p$</span><span>$100nx\ge40\,000\,000\times n\times0.000\,05$</span><i class="why"></i></div>
+        <div class="dl" data-step="10"><span>即</span><span>$100nx\ge2\,000n$</span><i class="why">$n&gt;0$，除以 $100n$</i></div>
+        <div class="dl end" data-step="11"><span>所以</span><span>$x\ge20$</span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="def" data-step="12">所以该保险公司向每名乘客收取的保险费应<em>不低于 20 元</em>．</p>
+      <p class="tip" data-step="13">和封面上大家猜的价格比一比？<span class="think" data-step="14" data-ask="想一想">40 万元的赔偿，只要 20 元——因为失事的概率只有十万分之五：$400\,000\times0.000\,05=20$，正好是“每名乘客平均被赔的钱”．</span></p>
+      <p class="method" data-step="15" data-label="快速检验">每名乘客的保险费 ≥ 赔偿额 × 概率．</p>
+    </div>
+  </div>
+  <p class="note">课本 p143 推导，按课本的式子逐行出示。第 10 步要强调 n &gt; 0 才能直接除。第 14 步给出更直观的理解：每名乘客“平均被赔”400 000 × 0.000 05 = 20 元，保险费不能低于它。</p>
+</section>
+
+<!-- 6 ================= 保险公司账本（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">账本模拟</span><h2>收 x 元，保险公司 10 万次航班下来是赚是赔？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="slider-row" data-noswipe><span>每人保险费 $x$</span><input type="range" id="xSlide" min="0" max="50" step="1" value="20"><b id="xVal">20 元</b></div>
+      <div class="btns sm" data-noswipe id="pBtns"></div>
+      <svg class="chart-svg" id="bookSvg" viewBox="0 0 600 300" aria-label="累计盈亏折线"></svg>
+      <div class="btns sm" data-noswipe><button class="btn solid" type="button" id="bookRun">飞 10 万次（真随机）</button><button class="btn" type="button" id="bookClr">清空</button></div>
+    </div>
+    <div class="col">
+      <div class="readout2" id="bookRead"></div>
+      <p class="tip" data-step="1">$x=20$ 时，每次模拟的结果都是“不赚不赔”吗？<span class="think" data-step="2" data-ask="多跑几次">不是：失事是随机的，有时赔得多、有时赔得少；但许多次平均起来，盈亏在 0 附近——这就是“平均来说”．</span></p>
+      <p class="tip" data-step="3">在实践中，飞机失事的概率现已远远低于 0.000 05．把概率换小一些看看：<span class="think" data-step="4" data-ask="切换概率">收 20 元保险费，平均来说，对保险公司是非常有利的．</span></p>
+      <p class="recall" data-step="5" data-label="课本 p143">要想更加准确地讨论保险业中遇到的类似问题，还需要更进一步学习概率知识．概率论也是保险业健康发展的重要理论基础．</p>
+    </div>
+  </div>
+  <p class="note">本课核心。每次“飞 10 万次”：对每一次航班按概率 p 真随机地决定是否失事，累计“保费收入 − 赔偿支出”，画成折线（灰色细线是之前几次模拟，虚线是平均盈亏 100 000 × 100 × (x − 400 000p)）。x = 20、p = 0.000 05 时，10 万次航班平均失事 5 次，每次失事赔 4 000 万元。拖动滑块看 x &lt; 20 时平均亏损、x &gt; 20 时平均盈利；换成更小的概率，20 元就“非常有利”。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某奖券的中奖率是 1%，买 100 张奖券，一定会中奖吗？</p>
+        <details><summary>提示 1</summary>回到第 3 页的模拟：1 000 组里，0 张中奖的组多不多？</details>
+        <details><summary>完整解答</summary>不一定．中奖率 1% 是说大量购买时平均每 100 张中 1 张，但具体买 100 张，可能 1 张也不中（这种情况约占 37%）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一批电子产品的抽样合格率为 75%，当购买该电子产品足够多时，平均来说，购买多少个这样的电子产品，可能会出现 1 个次品？</p>
+        <details><summary>提示 1</summary>次品率是多少？设买 $n$ 个，平均次品数 $=n\times$ 次品率．</details>
+        <details><summary>完整解答</summary>次品率为 $1-75\%=25\%$，由 $n\times25\%=1$ 得 $n=4$．平均来说，购买 4 个可能会出现 1 个次品．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 如果事件 $A$ 发生的概率是 $\dfrac5{100}$，那么下列推断，哪几个是正确的？(1) 做 100 次这种试验，事件 $A$ 必发生 5 次；(2) 大量重复做这种试验，事件 $A$ 平均每 100 次发生 5 次；(3) 做 100 次这种试验，事件 $A$ 不可能发生 6 次．</p>
+        <details><summary>提示 1</summary>“必”“不可能”对随机事件说得太绝对了．</details>
+        <details><summary>完整解答</summary>只有 (2) 正确．(1)(3) 把“平均”当成了“每一次都这样”：100 次试验中 $A$ 发生 4 次、6 次都是可能的．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p144 练习 1、2、3。第 1 题的 37% 来自 0.99^100 ≈ 0.366，可让学生在第 3 页的模拟中看到，不要求计算。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 8.6 选做</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某车间生产的零件不合格的概率为 $\dfrac1{1\,000}$．如果每天从他们生产的零件中任取 10 个做检验，那么在大量重复检验中，平均来说，多少天会查到 1 个次品？</p>
+        <details><summary>提示 1</summary>平均每天查到的次品数 $=10\times\dfrac1{1\,000}$．</details>
+        <details><summary>完整解答</summary>平均每天查到 $10\times\dfrac1{1\,000}=\dfrac1{100}$ 个次品，所以平均 100 天会查到 1 个次品．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某商场设立转盘：每购买 100 元商品可转一次，指针落在红、绿、黄区域分别获得 80 元、30 元、10 元购物券，否则不获奖；不转可直接获得 10 元购物券．指针落在红、绿、黄区域的概率依次为 0.1、0.15、0.25．(1) 平均来说，每转动转盘 1 次所获购物券的金额是多少？(2) 小明转动 10 次共得购物券 90 元，认为还是直接领 10 元合算．你同意吗？</p>
+        <details><summary>提示 1</summary>转 $n$ 次，平均落在红色区域 $0.1n$ 次……总金额 ÷ $n$．</details>
+        <details><summary>完整解答</summary>(1) $80\times0.1+30\times0.15+10\times0.25=8+4.5+2.5=15$（元）．(2) 不同意：15 元 &gt; 10 元，平均来说转转盘合算；小明只转了 10 次，次数太少，结果有偶然性．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 某航空公司的保险合同：飞机一旦失事，向每名乘客赔偿 50 万元，向每名乘客收取保险费 20 元．如果航班平均每次约有 120 名乘客，那么平均来说，当飞机失事的概率不超过多少时，才能保证保险公司的收入不小于支出？</p>
+        <details><summary>提示 1</summary>仿照课本：设失事概率为 $p$，$n$ 次飞行收入 $120n\times20$，平均支出 $500\,000\times120\times np$．</details>
+        <details><summary>完整解答</summary>$120n\times20\ge500\,000\times120\times np$，即 $20\ge500\,000p$，$p\le0.000\,04$．失事概率不超过 0.000 04 时，收入不小于支出．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p144 习题 8.6。第 2 题 (1) 的思路：转 n 次平均得 (80×0.1n + 30×0.15n + 10×0.25n) 元，再除以 n。第 3 题可用第 6 页的“快速检验”：保险费 ≥ 赔偿额 × 概率，20 ≥ 500 000p。</p>
+</section>
+
+<!-- 9 ================= 阅读：孟德尔 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">阅读</span><h2>概率帮你解释实验数据：豌豆花色 1∶2∶1</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="small-p">第三代豌豆 564 株：开白花的 141 株，开粉红花的 291 株，开红花的 132 株——近似等于 1∶2∶1．怎样解释？</p>
+      <div class="gene"><span>WW（白）</span>×<span class="r">RR（红）</span>→<span class="p">WR（粉红）</span></div>
+      <table class="mtab">
+        <tr><th></th><th>W</th><th>R</th></tr>
+        <tr><th>W</th><td>WW（白）</td><td>WR（粉红）</td></tr>
+        <tr><th>R</th><td>RW（粉红）</td><td>RR（红）</td></tr>
+      </table>
+      <p class="tip" data-step="1">这 4 种结果是等可能的，因此<span class="think" data-step="2" data-ask="算概率">$P(\text{白})=\dfrac14$，$P(\text{粉红})=\dfrac24$，$P(\text{红})=\dfrac14$，株数之比 $\dfrac14:\dfrac24:\dfrac14=1:2:1$．</span></p>
+    </div>
+    <div class="col">
+      <div class="btns sm" data-noswipe><button class="btn solid" type="button" id="peaRun">种 564 株（随机授粉）</button><button class="btn" type="button" id="peaClr">清空</button></div>
+      <svg class="chart-svg" id="peaSvg" viewBox="0 0 560 250" aria-label="白、粉红、红花株数"></svg>
+      <p class="tip feedback" id="peaMsg"></p>
+      <p class="recall" data-step="3" data-label="课本 p145">上面的解释其实就是奥地利遗传学家孟德尔（1822～1884 年）于 1865 年发表的论文的基本想法．</p>
+    </div>
+  </div>
+  <p class="note">课本 p145“阅读”。右侧每株豌豆分别从两个 WR 亲本中随机各取一个基因（W 或 R 各占一半），统计三种花色的株数；深色条是史料中的 141、291、132，浅色条是本次模拟。平均来说，564 株中白、粉红、红约为 564 × 1/4 = 141、564 × 2/4 = 282、141——正是本课的 n × P(A)。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>本课与第 8 章回顾</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>本课</h3>
+        <p class="def">重复 $n$ 次试验，事件 $A$ 发生次数的<em>平均值</em>为 $n\times P(A)$．</p>
+        <p class="method" data-label="定价">保险费 ≥ 赔偿额 × 概率：收入不小于支出．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>第 8 章 · 统计</h3>
+        <p class="recall" data-label="8.1–8.3">简单随机抽样、整理分析数据；读数据要“货比三家”；用直线近似趋势做预测．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>第 8 章 · 概率</h3>
+        <p class="recall" data-label="8.4–8.6">抽签先后概率相同；由频率估计数量（捉—放—捉）；由概率估计平均次数（保险）．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>思想：</b>统计让我们从数据中看到规律，概率让我们在不确定中做出合理的决策——“用数据做决策”．</p>
+  </div>
+  <p class="note">本章收束。课后作业建议：习题 8.6 第 1、2 题；想一想阅读材料的最后一问“生活中还有类似的现象吗？”</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

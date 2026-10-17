@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图形的位似 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/touying-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第6章 图形的相似 · 6.6</p>
+    <h1 class="cover-title">图形的位似</h1>
+    <p class="cover-q" data-step="1">在玻璃片上画一个三角形，使玻璃片与墙面平行，用手电筒（点光源）把它投影到墙上。墙上的三角形与玻璃片上的三角形是什么关系？</p>
+    <p class="cover-q" data-step="2">保持玻璃片与墙面平行，把玻璃片<b>前后移动</b>，影子会怎样变？</p>
+    <div class="chips" data-step="3"><span class="chip">位似中心</span><span class="chip">位似多边形</span><span class="chip">按相似比放大、缩小</span><span class="chip">坐标 × k</span></div>
+  </div>
+  <p class="note">课本 p76 情境（图 6-35）。有条件的话可以真的用手电筒做一做。学生会发现影子与原图“形状相同”，而且光线（对应点的连线）都从光源出发——这就是“位似”的两个特点。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="6.3 相似图形 · 上一课 6.5 相似三角形的性质" data-step="1">
+        <p>相似多边形对应角相等、对应边成比例；周长比 $k$，面积比 $k^2$。</p>
+        <span class="use">位似图形是一种特殊的相似图形。</span>
+      </div>
+      <div class="recall" data-label="6.4 探索三角形相似的条件" data-step="2">
+        <p>两边成比例且夹角相等的两个三角形相似；平行于三角形一边的直线截得的三角形与原三角形相似。</p>
+        <span class="use">证明位似三角形相似、对应边平行。</span>
+      </div>
+      <div class="recall" data-label="八年级下册 · 第9章 图形的旋转、中心对称" data-step="3">
+        <p>平移、旋转、轴对称：只改位置，不改形状、大小（全等变换）。</p>
+        <span class="use">位似是一种新的图形变换：形状不变，大小按比例变。</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 第5章 平面直角坐标系" data-step="4">
+        <p>点的坐标 $(x,y)$；关于原点对称的点：$(-x,-y)$。</p>
+        <span class="use">第 9 页：把坐标都乘 $k$，图形怎样变？</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第三张卡点出本课在“图形变换”中的位置：平移、旋转、轴对称都是全等变换，位似是第一种改变大小的变换。第四张卡的“关于原点对称”在第 9 页会作为 k = −1 的特例出现。</p>
+</section>
+
+<!-- 3 ================= 投影实验 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验</span><h2>点光源投影：前后移动玻璃片</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="prBd" class="mboard labbd"></div>
+      <div class="slider-row" data-noswipe>玻璃片到光源的距离 $d$：<input type="range" id="prD" min="2.5" max="8" step="0.1" value="4"><b class="v" id="prDV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip small-d">左：侧面看（光源 $O$、玻璃片、墙面）；右：正面看，蓝色是玻璃片上的三角形，橙色是墙上的影子（墙到光源的距离为 10）。</p>
+      <p class="tip feedback small-d" id="prMsg"></p>
+      <p class="tip small-d" data-step="1">你发现了什么？<span class="think" data-step="2" data-ask="说一说">影子与原三角形形状相同（相似），相似比 $=\dfrac{10}{d}$；玻璃片越靠近光源，影子越大。每条光线都经过光源 $O$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p76 图 6-35 的模型。光线是直线，所以 墙上的点 = 光源 + (玻璃上的点 − 光源) × 10/d——影子是玻璃片上三角形按 10/d 放大的结果。这块板就是用这个公式算的，所以影子的形状与原三角形严格相似。两个要点：①相似；②对应点的连线（光线）都过同一点。</p>
+</section>
+
+<!-- 4 ================= 尝试与交流：作图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>按要求画一画（图 6-36）</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="tryBd" class="mboard labbd"></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" data-try="1">第 1 题</button><button class="btn" type="button" data-try="2">第 2 题</button><button class="btn" type="button" id="tryStep">下一步</button><button class="btn" type="button" id="tryReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-d"><b>1.</b> 在图 6-36(1) 中，连接 $OA$、$OB$、$OC$，分别在线段 $OA$、$OB$、$OC$ 的<b>反向延长线</b>上取点 $A'$、$B'$、$C'$，使 $\dfrac{OA'}{OA}=\dfrac{OB'}{OB}=\dfrac{OC'}{OC}=2$；画 $\triangle A'B'C'$．</p>
+      <p class="tip small-d"><b>2.</b> 在图 6-36(2) 中，连接 $OC$、$OD$，分别在线段 $OA$、$OB$、$OC$、$OD$ 上取点 $A'$、$B'$、$C'$、$D'$，使 $\dfrac{OA'}{OA}=\dfrac{OB'}{OB}=\dfrac{OC'}{OC}=\dfrac{OD'}{OD}=\dfrac12$；画四边形 $A'B'C'D'$．</p>
+      <p class="tip feedback small-d" id="tryMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p76 尝试与交流与图 6-36、两个小人画出的结果。每点一次“下一步”作出一个对应点（按坐标精确计算：A′ = O + k(A − O)，第 1 题 k = −2 表示“反向延长线上、2 倍”；第 2 题 k = 1/2）。请学生说出画出的图形与原图有什么关系：形状相同，对应点连线都过 O。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>位似多边形与位似中心</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>定义（课本 p77）</h4>如图 6-37，两个多边形的顶点 $A$ 与 $A'$、$B$ 与 $B'$、$C$ 与 $C'$……所在的直线都经过同一点 $O$，并且 $\dfrac{OA'}{OA}=\dfrac{OB'}{OB}=\dfrac{OC'}{OC}=\cdots$．像这样的两个多边形叫做<em>位似多边形</em>，点 $O$ 叫做<em>位似中心</em>．</div>
+      <p class="warn small-d" data-step="2" data-label="两个条件">① 对应顶点的连线<b>都经过同一点</b>；② 对应点到这一点的距离之比<b>都相等</b>。</p>
+    </div>
+    <div class="col">
+      <div class="cmp-figs">
+        <div><div id="f637a" class="mboard gfig l"></div><p class="small-t center muted">图 6-37(1)：$O$ 在两图之间</p></div>
+        <div><div id="f637b" class="mboard gfig l"></div><p class="small-t center muted">图 6-37(2)：$O$ 在边上</p></div>
+      </div>
+      <p class="tip small-d" data-step="3">位似中心可以在两个图形之间、同侧、图形内部、图形的边上……<span class="think" data-step="4" data-ask="下一页试试">下一页拖动 $O$ 看看。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p77 定义与图 6-37（两图按 OA′ : OA = 2、1/2 等精确画出）。定义的两个条件缺一不可：只“过同一点”而比不相等，或只“比相等”而不共点，都不是位似。</p>
+</section>
+
+<!-- 6 ================= 核心交互：位似作图台 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手 · 探究</span><h2>位似作图台：拖动位似中心 $O$</h2></div>
+  <button class="media-btn" hidden data-img="assets/weisi.jpg" data-video="assets/weisi.mp4" data-cap="以 O 为位似中心：k 从 1 变到 2（放大）、0.5（缩小）、−2（在 O 的另一侧）">▶ 看动画</button>
+  <div class="bd wide">
+    <div class="col">
+      <div id="hoBd" class="mboard labbd"></div>
+      <div class="slider-row" data-noswipe>$\dfrac{OA'}{OA}=k$：<input type="range" id="hoK" min="-2.5" max="2.5" step="0.1" value="2"><b class="v" id="hoKV"></b>　<button class="btn" type="button" id="hoNeg">换到 $O$ 的另一侧</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-d">拖动橙色的位似中心 $O$ 或 $\triangle ABC$ 的顶点；滑块改变比（负值表示 $A'$ 在 $OA$ 的反向延长线上）。</p>
+      <table class="mtab lab-tab" id="hoTab"></table>
+      <p class="tip feedback small-d" id="hoMsg"></p>
+    </div>
+  </div>
+  <p class="note">本课独有的核心交互。所有对应点都按 A′ = O + k(A − O) 计算，灰色虚线是过位似中心的连线。请学生观察三件事：①不管 O 在哪，△A′B′C′ 都与 △ABC 相似（表中角相等、边的比都是 |k|）；②对应边平行（表中显示两边方向的夹角为 0°）；③|k| &gt; 1 放大，|k| &lt; 1 缩小，k &lt; 0 时图形“倒过来”在 O 的另一侧。k = 1 时两图重合，k = −1 时是中心对称。右上角“看动画”是 15 秒无声动画（Remotion 按坐标绘制），可用于课堂小结。</p>
+</section>
+
+<!-- 7 ================= 思考与探索：位似一定相似 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>位似多边形一定相似吗？对应边有什么位置关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="f637c" class="mboard gfig l"></div>
+      <p class="tip small-d">在图 6-37(1) 中，$\triangle ABC$ 与 $\triangle A'B'C'$ 是位似形（$\dfrac{OA'}{OA}=\dfrac{OB'}{OB}=\dfrac{OC'}{OC}=k$）。</p>
+    </div>
+    <div class="col">
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="1"><span>小明</span><span>由 $\dfrac{OA'}{OA}=\dfrac{OB'}{OB}=k$，$\angle A'OB'=\angle AOB$，得 $\triangle A'OB'\backsim\triangle AOB$，</span><i class="why"><button class="yj" data-k="sas-s"></button>（$\angle A'OB'$、$\angle AOB$ 是对顶角）</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span>$\dfrac{A'B'}{AB}=k$．同样，$\dfrac{B'C'}{BC}=k$，$\dfrac{C'A'}{CA}=k$，于是 $\triangle A'B'C'\backsim\triangle ABC$．</span><i class="why"><button class="yj" data-k="sss-s"></button></i></div>
+        <div class="dl" data-step="3"><span>小丽</span><span>由 $\triangle A'OB'\backsim\triangle AOB$，得 $\angle OA'B'=\angle OAB$，于是 $A'B'\parallel AB$．同样 $B'C'\parallel BC$，$C'A'\parallel CA$．</span><i class="why">内错角相等，两直线平行</i></div>
+      </div>
+      <p class="thm" data-step="4">两个位似多边形<b>一定相似</b>，并且它们的对应边<b>互相平行（或在同一条直线上）</b>．</p>
+      <p class="method small-d" data-step="5" data-label="用途">利用位似可以把一个图形按所给相似比<b>放大或缩小</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p77“思考与探索”与两个小人的说理。第 2 题的四边形（图 6-37(2)）道理相同：把四边形分成三角形看。“或在同一条直线上”对应图 6-37(2) 中 A′B′ 与 AB 都在直线 AB 上的情形——位似中心在边上时会出现。</p>
+</section>
+
+<!-- 8 ================= 尝试与交流：放大、缩小 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>以 $O$ 为位似中心，按相似比放大、缩小</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="drBd" class="mboard labbd"></div>
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" data-dr="38">图 6-38：2 : 1 放大</button>
+        <button class="btn" type="button" data-dr="39">图 6-39：1 : 2 缩小</button>
+        <button class="btn" type="button" id="drSide">画在 $O$ 的另一侧</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip small-d"><b>1.</b> 在图 6-38 中，以点 $O$ 为位似中心，把 $\triangle ABC$ 按相似比 $2:1$ 放大（即所画图形与原图形的相似比为 $2:1$）．</p>
+      <p class="tip small-d"><b>2.</b> 在图 6-39 中，以点 $O$ 为位似中心，把四边形 $ABCD$ 按相似比 $1:2$ 缩小．</p>
+      <p class="method small-d" data-step="1" data-label="作图步骤">① 连接 $O$ 与各顶点（必要时延长）；② 在射线上（或反向延长线上）截取 $OA'=k\cdot OA$……；③ 顺次连接各点。</p>
+      <p class="warn small-d" data-step="2" data-label="答案不唯一">同侧、异侧各有一个图形，都符合要求。</p>
+    </div>
+  </div>
+  <p class="note">课本 p77–78 尝试与交流与图 6-38、6-39（按课本图的位置画出 O 和原图）。注意 6-38 的 O 在三角形内部，6-39 的 O 在四边形外部。“画在另一侧”按钮切换 k 的正负，强调同一个相似比有两种画法——这也是习题 6.6 第 2 题“在第一、三象限分别画出”的原因。</p>
+</section>
+
+<!-- 9 ================= 坐标中的位似 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实践 · 探索</span><h2>坐标都乘 $k$：以原点为位似中心</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="coBd" class="mboard labbd"></div>
+      <div class="btns" data-noswipe>
+        <span class="small-t">横、纵坐标都乘</span>
+        <button class="btn solid" type="button" data-ck="2">2</button><button class="btn" type="button" data-ck="0.5">1/2</button><button class="btn" type="button" data-ck="-1">−1</button><button class="btn" type="button" data-ck="-2">−2</button>
+        <button class="btn" type="button" id="coFig">图 6-40</button><button class="btn" type="button" id="coQuad">练习：四边形</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip small-d">图 6-40：$O(0,0)$、$A(5,4)$、$B(3,0)$，把 $A$、$B$ 的横坐标、纵坐标都乘 2。拖动顶点（自动吸附到整数坐标）试试别的图形：</p>
+      <table class="mtab coord-tab" id="coTab"></table>
+      <p class="tip small-d" data-step="1">$\triangle OA'B'$ 与 $\triangle OAB$ 是位似形吗？<span class="think" data-step="2" data-ask="为什么？">是。$A'(10,8)$ 在射线 $OA$ 上且 $OA'=2OA$，$B'(6,0)$ 在射线 $OB$ 上且 $OB'=2OB$，位似中心是原点，相似比为 2。</span></p>
+      <p class="method small-d" data-step="3" data-label="结论">以原点为位似中心、相似比为 $k$：$(x,y)\to(kx,ky)$ 或 $(-kx,-ky)$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p78“实践与探索”（图 6-40）与练习。按钮切换乘数：乘 2 放大，乘 1/2 缩小，乘 −1 是关于原点的中心对称（全等），乘 −2 在原点另一侧放大。练习：先拖出一个整数坐标的四边形 ABCD，再看 A′B′C′D′ 的坐标——(3) 问的答案就是“对应坐标都是原来的 2 倍”。</p>
+</section>
+
+<!-- 10 ================= 阅读 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">阅读</span><h2>特殊—一般—特殊</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 360 230" class="venn" aria-label="全等形、位似形都是特殊的相似形">
+        <ellipse cx="180" cy="118" rx="168" ry="104" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="2.5"/>
+        <ellipse cx="112" cy="132" rx="66" ry="52" fill="#fdf1e6" stroke="#d9711c" stroke-width="2.5"/>
+        <ellipse cx="250" cy="132" rx="70" ry="52" fill="#eef6f2" stroke="#2f7d6b" stroke-width="2.5"/>
+        <text x="180" y="40" text-anchor="middle" font-size="20" fill="#163a5a" font-weight="bold">相似形</text>
+        <text x="112" y="128" text-anchor="middle" font-size="18" fill="#d9711c">全等形</text>
+        <text x="112" y="152" text-anchor="middle" font-size="14" fill="#556575">k = 1</text>
+        <text x="250" y="128" text-anchor="middle" font-size="18" fill="#2f7d6b">位似形</text>
+        <text x="250" y="152" text-anchor="middle" font-size="14" fill="#556575">对应点连线共点</text>
+      </svg>
+    </div>
+    <div class="col">
+      <p class="tip small-d" data-step="1">在 $\triangle ABC$ 和 $\triangle A'B'C'$ 中，如果 (1) $\angle A=\angle A'$，$\dfrac{AB}{A'B'}=k$，$\angle B=\angle B'$；(2) $\angle A=\angle A'$，$\dfrac{AB}{A'B'}=\dfrac{AC}{A'C'}=k$；(3) $\dfrac{AB}{A'B'}=\dfrac{BC}{B'C'}=\dfrac{CA}{C'A'}=k$，那么 $k=1$ 时 $\triangle ABC\cong\triangle A'B'C'$；$k\neq1$ 时 $\triangle ABC\backsim\triangle A'B'C'$。<b>全等形是特殊的相似形。</b></p>
+      <p class="tip small-d" data-step="2">位似形不仅相似，而且有“对应边互相平行（或在同一条直线上），对应顶点所在直线相交于一点”的特殊位置关系。<b>位似形是特殊的相似形。</b></p>
+      <p class="recall small-d" data-step="3" data-label="想一想">我们经历了“由特殊到一般，再由一般到特殊”的认识过程。你能举例说明吗？<span class="think" data-step="4" data-ask="举例">如：正方形 → 矩形 → 平行四边形；等边三角形 → 等腰三角形 → 三角形。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p79 阅读“特殊—一般—特殊”。用韦恩图把全等形、位似形、相似形的关系画清楚：全等、位似都是相似的特殊情形（二者也可以同时成立：k = −1 的位似是中心对称，同时也全等）。</p>
+</section>
+
+<!-- 11 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.6</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 根据下列要求画图：(1) 如图①，以 $AB$ 的中点 $O$ 为位似中心，把矩形 $ABCD$ 按相似比 $1:2$ 缩小；(2) 如图②，以点 $B$ 为位似中心，把 $\triangle ABC$ 按相似比 $2:1$ 放大．</p>
+        <div class="cmp-figs"><div id="h1a" class="mboard gfig"></div><div id="h1b" class="mboard gfig"></div></div>
+        <details><summary>提示 1</summary>(1) 连接 $OC$、$OD$，取 $OA$、$OB$、$OC$、$OD$ 的中点；(2) 延长 $BA$、$BC$，使 $BA'=2BA$，$BC'=2BC$。</details>
+        <details><summary>完整解答</summary>见上图：虚线为所画图形（同侧）。也可以画在位似中心的另一侧：(1) 矩形在 $AB$ 下方；(2) 在 $AB$、$CB$ 的反向延长线上截取。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在平面直角坐标系中，$\triangle ABC$ 的顶点坐标分别为 $A(2,2)$、$B(5,1)$、$C(4,3)$．以坐标原点为位似中心，在第一、三象限分别画出与 $\triangle ABC$ 位似的三角形，使相似比为 $2:1$，并分别写出所画三角形的顶点坐标．</p>
+        <div id="h2fig" class="mboard gfig l"></div>
+        <details><summary>提示 1</summary>第一象限：坐标都乘 2；第三象限：坐标都乘 $-2$。</details>
+        <details><summary>完整解答</summary>第一象限：$A'(4,4)$、$B'(10,2)$、$C'(8,6)$；第三象限：$A''(-4,-4)$、$B''(-10,-2)$、$C''(-8,-6)$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p79–80 习题 6.6。第 1 题两图按课本比例画出，打开“完整解答”时虚线图形按 k = 1/2、2 精确作出。第 2 题坐标系中两个位似三角形都已画出，可让学生先写坐标再对照。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">位似多边形：对应顶点连线过同一点 $O$，且 $\dfrac{OA'}{OA}=\dfrac{OB'}{OB}=\cdots$。</p>
+        <p class="def">位似形一定相似，对应边平行（或共线）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="作图">连线 → 按比截取（同侧或异侧）→ 顺次连接。</p>
+        <p class="method" data-label="坐标">以原点为中心：$(x,y)\to(\pm kx,\pm ky)$。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="变换">平移、旋转、轴对称（全等）→ 位似（相似）。</p>
+        <p class="recall" data-label="特殊与一般">全等形、位似形都是特殊的相似形。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.7 用相似三角形解决问题——太阳光、点光源下的影子，怎样用相似测量旗杆、路灯的高度？</p>
+  </div>
+  <p class="note">位似把“相似”和“图形变换”连在一起；下一节的“中心投影”（点光源）正是位似的应用，“平行投影”（太阳光）则对应平行线截得的相似三角形。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

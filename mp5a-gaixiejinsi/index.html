@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>改写和求近似数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xingkong.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第三单元 小数的意义和性质 · 改写和求近似数</p>
+    <h1 class="cover-title">改写和求近似数</h1>
+    <p class="cover-q" data-step="1">地球和月球之间的平均距离大约是 <b>384400 千米</b>，地球和太阳之间的平均距离大约是 <b>149600000 千米</b>。</p>
+    <p class="cover-q" data-step="2">这么长的数，读写都不方便。能不能写得<b>简短</b>一些？</p>
+    <div class="chips" data-step="3"><span class="chip">小数点搬家</span><span class="chip">用“万”“亿”作单位</span><span class="chip">四舍五入数轴</span></div>
+  </div>
+  <p class="note">课本 p42 例 8 的情境。先让学生读一读这两个数（三十八万四千四百、一亿四千九百六十万），感受“数大了读写麻烦”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>四年级学过的“万”“亿”和“≈”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="四年级 · 改写成用“万”作单位" data-step="1">
+        <p class="big center">380000 = 38 万</p>
+        <p>整万数：去掉末尾 4 个 0，添上“万”字。</p>
+        <span class="use">384400 不是整万数，怎么办？</span>
+      </div>
+      <div class="recall" data-label="四年级 · 四舍五入求近似数" data-step="2">
+        <p class="big center">384400 ≈ 38 万</p>
+        <p>省略万位后面的尾数：看千位，4 &lt; 5，舍去。</p>
+        <span class="use">小数也用“四舍五入”法求近似数。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 小数的性质" data-step="3">
+        <p class="big center">38.4400 = 38.44</p>
+        <p>小数末尾的 0 去掉，大小不变。</p>
+        <span class="use">改写后把小数末尾的 0 去掉。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>注意区分：</b>“=”表示大小<b>完全相等</b>；“≈”表示<b>近似</b>，大小变了一点点。</p>
+  </div>
+  <p class="note">第 2 张卡的“≈”和第 1 张卡的“=”放在一起对比：今天的改写用“=”，求近似数用“≈”。</p>
+</section>
+
+<!-- 3 ================= 例 8 小数点搬家（核心 1） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8 · 小数点搬家</span><h2>把 384400 改写成用“万”作单位的数</h2></div>
+  <div class="bd full top">
+    <div class="mv-ctrl" data-noswipe>
+      <span class="btns" id="mvPick"></span>
+    </div>
+    <div class="mv-stage" id="mvStage" data-noswipe></div>
+    <div class="mv-ctrl" data-noswipe>
+      <button type="button" class="btn solid" data-u="4">改写成用“万”作单位</button>
+      <button type="button" class="btn solid" data-u="8">改写成用“亿”作单位</button>
+      <button type="button" class="btn" id="mvReset">还原</button>
+    </div>
+    <p class="mv-res" id="mvRes"></p>
+    <div class="cols2">
+      <p class="tip" data-step="1"><b>想法 1：</b>这个数比 380000 多一些，用“万”作单位，整数部分是 <span class="think" data-step="2" data-ask="？">38</span>。</p>
+      <p class="tip" data-step="3"><b>想法 2：</b>384400 里有 38 个万和 4400 个一，4400 个一是 <span class="think" data-step="4" data-ask="？">0.44 万</span>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p42 例 8(1)。整数的小数点“藏”在个位的右边。点“改写成用‘万’作单位”：小数点从个位右边搬到<b>万位右边</b>，小数末尾的 0 按小数的性质去掉，最后添上“万”字。数的大小没变，所以用“=”。可以换其他数试一试，再点“亿”。</p>
+</section>
+
+<!-- 4 ================= 例 8 方法 + 亿 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 8 · 概括</span><h2>用“万”“亿”作单位，小数点点在哪？</h2></div>
+  <div class="bd full top">
+    <div class="def" data-step="1"><h4>改写成用“万”作单位的数</h4>只要在<em>万位</em>右边点上小数点，并在数的后面添上“万”字。</div>
+    <p class="tip" data-step="2">(2) 用“亿”作单位，应该在哪一位右边点上小数点？　<span class="think" data-step="3" data-ask="想一想">在<b>亿位</b>右边。</span></p>
+    <div class="cols2">
+      <div class="calc" data-step="4">
+        <p>149600000 $=$ <span class="blank" data-ans="1.496" data-w="5"></span> 亿</p>
+        <p class="muted small-t">试一试：水星离太阳大约 57910000 千米</p>
+        <p>57910000 千米 $=$ <span class="blank" data-ans="0.5791" data-w="6"></span> 亿千米</p>
+      </div>
+      <div class="calc" data-step="5">
+        <h4>练一练</h4>
+        <p>164500 $=$ <span class="blank" data-ans="16.45" data-w="5"></span> 万</p>
+        <p>4300000 $=$ <span class="blank" data-ans="0.043" data-w="5"></span> 亿</p>
+      </div>
+    </div>
+    <p class="warn" data-step="6">57910000 不到 1 亿，整数部分是 <b>0</b>：亿位上没有数，要补 0 占位，写成 0.5791 亿。</p>
+  </div>
+  <p class="note">课本 p42 例 8(2)、试一试和 p43 练一练。做完回到上一页用“小数点搬家”验证 57910000 和 4300000：亿位、千万位上没有数字的，会补上橙色的 0。</p>
+</section>
+
+<!-- 5 ================= 例 9 四舍五入数轴（核心 2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 9 · 求近似数</span><h2>1.496 亿千米，精确到十分位大约是多少？</h2></div>
+  <div class="bd full top">
+    <div class="rd-ctrl" data-noswipe>
+      <span class="btns" id="rdPick"></span>
+      <span class="btns" id="rdPrec"><button type="button" class="btn" data-d="0">保留整数</button><button type="button" class="btn solid" data-d="1">精确到十分位</button><button type="button" class="btn" data-d="2">精确到百分位</button></span>
+    </div>
+    <p class="rd-num" id="rdNum"></p>
+    <svg id="rdFig" class="rd-fig" viewBox="0 0 1000 180" aria-label="四舍五入数轴" data-noswipe></svg>
+    <p class="tip feedback" id="rdMsg"></p>
+  </div>
+  <p class="note">课本 p43 例 9。精确到十分位就是保留一位小数：1.496 在 1.4 和 1.5 之间，离谁近？直线上的虚线是“正中间”1.45：点在虚线右边就离 1.5 近（看百分位 9 ≥ 5，进一）；在左边就离 1.4 近（舍去）。点的位置按数值精确画出。再切换“精确到百分位”：1.496 在 1.49 和 1.50 之间。</p>
+</section>
+
+<!-- 6 ================= 1.5 与 1.50 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 9 · 想一想</span><h2>近似数 1.50 末尾的“0”能去掉吗？</h2></div>
+  <div class="bd full top">
+    <svg id="rgFig" class="rg-fig" viewBox="0 0 1000 220" aria-label="近似数 1.5 和 1.50 表示的范围"></svg>
+    <div class="cols2">
+      <p class="tip" data-step="1">近似数 1.5：原来的数在哪个范围？　<span class="think" data-step="2" data-ask="看图说">大于或等于 1.45，小于 1.55——范围<b>宽</b>。</span></p>
+      <p class="tip" data-step="3">近似数 1.50：原来的数在哪个范围？　<span class="think" data-step="4" data-ask="看图说">大于或等于 1.495，小于 1.505——范围<b>窄</b>，更精确。</span></p>
+    </div>
+    <p class="warn" data-step="5">1.5 是精确到十分位的近似数，1.50 是精确到百分位的近似数，<b>1.50 比 1.5 更精确</b>。所以近似数末尾的 0 <b>不能去掉</b>。</p>
+  </div>
+  <p class="note">课本 p43“想一想”。图中两段彩色范围按数值精确画出：橙色 1.45～1.55（宽 0.1），蓝色 1.495～1.505（宽 0.01）。小数的性质说的是“大小不变”，但近似数的 0 还表示“精确到哪一位”，去掉就不一样精确了。</p>
+</section>
+
+<!-- 7 ================= 试一试 / 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>求下面小数的近似数</h2></div>
+  <div class="bd full top">
+    <div class="calc">
+      <p><b>试一试</b>　地球和月球之间的平均距离大约是 38.44 万千米，保留一位小数：38.44 万千米 ≈ <span class="blank" data-exact data-ans="38.4" data-w="4"></span> 万千米</p>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>(1)</b> 精确到十分位。</p>
+        <p class="q small-q">7.54 ≈ <span class="blank" data-exact data-ans="7.5" data-w="3"></span>　0.365 ≈ <span class="blank" data-exact data-ans="0.4" data-w="3"></span>　2.692 ≈ <span class="blank" data-exact data-ans="2.7" data-w="3"></span></p>
+        <details><summary>提示 1</summary>看<b>百分位</b>上的数：小于 5 舍去，大于或等于 5 向十分位进 1。</details>
+        <details><summary>完整解答</summary>7.54 ≈ 7.5（4 &lt; 5）；0.365 ≈ 0.4（6 ≥ 5）；2.692 ≈ 2.7（9 ≥ 5）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>(2)</b> 精确到百分位。</p>
+        <p class="q small-q">0.158 ≈ <span class="blank" data-exact data-ans="0.16" data-w="4"></span>　6.454 ≈ <span class="blank" data-exact data-ans="6.45" data-w="4"></span>　0.503 ≈ <span class="blank" data-exact data-ans="0.50" data-w="4"></span></p>
+        <details><summary>提示 1</summary>看<b>千分位</b>上的数。</details>
+        <details><summary>提示 2</summary>0.503 ≈ 0.50：末尾的 0 要保留，表示精确到百分位。</details>
+        <details><summary>完整解答</summary>0.16；6.45；0.50。</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="怎样求小数的近似数">精确到哪一位，就看<b>它的下一位</b>：用“四舍五入”法，再把后面的数去掉。</p>
+  </div>
+  <p class="note">课本 p43 试一试、练一练。本页按“写法”判对错：0.503 精确到百分位填 0.5 会判错。做完可以回第 5 页的数轴验证 0.365 和 0.503。</p>
+</section>
+
+<!-- 8 ================= 练习七：亿 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七</span><h2>把表中各数改写成用“亿”作单位的数</h2></div>
+  <div class="bd full top">
+    <table class="mtab">
+      <tr><th></th><th>面积/平方千米</th><th>面积/亿平方千米</th></tr>
+      <tr><td>最大的洲：亚洲</td><td>44000000</td><td><span class="blank" data-ans="0.44" data-w="5"></span></td></tr>
+      <tr><td>最小的洲：大洋洲</td><td>8970000</td><td><span class="blank" data-ans="0.0897" data-w="6"></span></td></tr>
+      <tr><td>最大的洋：太平洋</td><td>181344000</td><td><span class="blank" data-ans="1.81344" data-w="7"></span></td></tr>
+      <tr><td>最小的洋：北冰洋</td><td>13100000</td><td><span class="blank" data-ans="0.131" data-w="5"></span></td></tr>
+    </table>
+    <div class="hint-ladder">
+      <p class="q">卡住了？</p>
+      <details><summary>提示 1</summary>在<b>亿位</b>右边点上小数点；8970000 只有 7 位，亿位、千万位上都要补 0。</details>
+      <details><summary>完整解答</summary>0.44；0.0897；1.81344；0.131。</details>
+    </div>
+  </div>
+  <p class="note">课本 p44 练习七第 2 题。8970000 是最容易错的：数一数，它是百万位起头的七位数，用“亿”作单位是 0.0897 亿。可以回第 3 页选 8970000，用“小数点搬家”验证。</p>
+</section>
+
+<!-- 9 ================= 练习七：近似数表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七 · 5</span><h2>写出各小数的近似数</h2></div>
+  <div class="bd full top">
+    <table class="mtab">
+      <tr><th></th><th>保留整数</th><th>保留一位小数</th><th>保留两位小数</th></tr>
+      <tr><td>3.8215</td><td><span class="blank" data-exact data-ans="4" data-w="3"></span></td><td><span class="blank" data-exact data-ans="3.8" data-w="3"></span></td><td><span class="blank" data-exact data-ans="3.82" data-w="4"></span></td></tr>
+      <tr><td>9.9674</td><td><span class="blank" data-exact data-ans="10" data-w="3"></span></td><td><span class="blank" data-exact data-ans="10.0" data-w="4"></span></td><td><span class="blank" data-exact data-ans="9.97" data-w="4"></span></td></tr>
+      <tr><td>1.0495</td><td><span class="blank" data-exact data-ans="1" data-w="3"></span></td><td><span class="blank" data-exact data-ans="1.0" data-w="3"></span></td><td><span class="blank" data-exact data-ans="1.05" data-w="4"></span></td></tr>
+    </table>
+    <div class="cols2">
+      <p class="warn" data-step="1">9.9674 保留一位小数：百分位 6 ≥ 5，十分位 9 + 1 = 10，<b>连续进位</b>，得 10.0，末尾的 0 不能去掉。</p>
+      <p class="tip" data-step="2">王强身高 1.748 米，精确到百分位约是 <span class="blank" data-exact data-ans="1.75" data-w="4"></span> 米；体重 65.25 千克，精确到个位约是 <span class="blank" data-exact data-ans="65" data-w="3"></span> 千克。</p>
+    </div>
+  </div>
+  <p class="note">课本 p45 练习七第 5、6 题。按写法判对错。1.0495 保留两位小数：看千分位 9，百分位 4 进 1 得 1.05；保留一位小数看百分位 4，舍去得 1.0。</p>
+</section>
+
+<!-- 10 ================= = 还是 ≈ ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七 · 7</span><h2>在○里填“=”或“≈”</h2></div>
+  <div class="bd full top">
+    <div class="cols4">
+      <div class="jcard"><p class="cq">324000 ○ 32.4 万</p><div class="pick" data-ans="eq"><button type="button" data-k="eq">=</button><button type="button" data-k="ap">≈</button><p class="pick-why">万位右边点上小数点：32.4400 万 = 32.4 万，大小没变。</p></div></div>
+      <div class="jcard"><p class="cq">324000 ○ 32 万</p><div class="pick" data-ans="ap"><button type="button" data-k="eq">=</button><button type="button" data-k="ap">≈</button><p class="pick-why">32 万 = 320000，比 324000 少了 4000，是近似数。</p></div></div>
+      <div class="jcard"><p class="cq">4090000000 ○ 41 亿</p><div class="pick" data-ans="ap"><button type="button" data-k="eq">=</button><button type="button" data-k="ap">≈</button><p class="pick-why">4090000000 = 40.9 亿，41 亿是保留整数的近似数。</p></div></div>
+      <div class="jcard"><p class="cq">4090000000 ○ 40.9 亿</p><div class="pick" data-ans="eq"><button type="button" data-k="eq">=</button><button type="button" data-k="ap">≈</button><p class="pick-why">亿位右边点上小数点，去掉末尾的 0：40.9 亿，大小没变。</p></div></div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q"><b>想一想</b>　有一个三位小数，精确到百分位是 4.80。这个三位小数最大是多少？最小呢？</p>
+      <p class="q small-q">最大 <span class="blank" data-ans="4.804" data-w="5"></span>，最小 <span class="blank" data-ans="4.795" data-w="5"></span></p>
+      <details><summary>提示 1</summary>“四舍”得到 4.80：4.80□，□最大是 4。</details>
+      <details><summary>提示 2</summary>“五入”得到 4.80：4.79□，□最小是 5。</details>
+      <details><summary>完整解答</summary>最大 4.804，最小 4.795。</details>
+    </div>
+  </div>
+  <p class="note">课本 p45 练习七第 7 题和底部的思考题。思考题可以回到第 6 页的范围图：近似数 4.80 的范围是 4.795～4.805（不含 4.805），三位小数里最大是 4.804。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>改写用“=”，求近似数用“≈”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="改写（大小不变）" data-step="1">
+        <p class="big center">384400 = 38.44 万</p>
+        <p>在<b>万位</b>（或<b>亿位</b>）右边点上小数点，去掉小数末尾的 0，添上“万”（“亿”）字。</p>
+      </div>
+      <div class="method" data-label="求近似数（大小变了一点）" data-step="2">
+        <p class="big center">1.496 ≈ 1.50</p>
+        <p>精确到哪一位，看它的<b>下一位</b>，四舍五入；近似数末尾的 0 <b>不能</b>去掉。</p>
+      </div>
+    </div>
+    <p class="tip" data-step="3">有时两步连着做：149600000 千米 = 1.496 亿千米 ≈ <span class="think" data-step="4" data-ask="保留一位小数">1.5 亿千米</span>。</p>
+    <p class="tip gold" data-step="5"><b>下一步：</b>第四单元《小数加法和减法》——4.75 + 3.4，竖式怎样对齐？</p>
+  </div>
+  <p class="note">课后作业建议：练习七第 1、3、4、8 题。第 4 题（人口改写成“万”“亿”）可以分组完成。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小数加减混合运算 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chaoshi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第四单元 小数加法和减法 · 小数加减混合运算</p>
+    <h1 class="cover-title">小数加减混合运算</h1>
+    <p class="cover-q" data-step="1">李芸在超市买了铅笔、电池、文具盒、书包和面包，一共用去多少元？</p>
+    <p class="cover-q" data-step="2">要连着加好几个数，怎样算又快又对？<b>计算器</b>能帮忙吗？</p>
+    <div class="chips" data-step="3"><span class="chip">课堂计算器</span><span class="chip">从左往右</span><span class="chip">水位变化图</span></div>
+  </div>
+  <p class="note">课本 p52 例 3 的情境。先让学生说说：在超市结账时，收银员是怎样算出总价的？（收银机 / 计算器）</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的三样本领</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 小数加减法" data-step="1">
+        <p>小数点对齐（相同数位对齐），从最低位算起，得数能化简的化简。</p>
+        <p class="big center">4.75 + 3.4 = 8.15</p>
+        <span class="use">连加、连减每一步都这样算。</span>
+      </div>
+      <div class="recall" data-label="四年级 · 整数加减混合运算" data-step="2">
+        <p>只有加、减法：<b>从左往右</b>依次计算；有括号先算括号里面的。</p>
+        <p class="big center">50 − 20 + 5 = 35</p>
+        <span class="use">小数加减混合运算顺序相同。</span>
+      </div>
+      <div class="recall" data-label="四年级 · 用计算器计算" data-step="3">
+        <p>开机 ON / 清除 C；按数字键输入，再按运算键、等号键。</p>
+        <span class="use">今天学怎样在计算器上输入小数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>小数连加、连减和加减混合运算怎样算？计算器上怎样输入 0.80 这样的小数？</p>
+  </div>
+  <p class="note">第 2 张卡请学生先说 50 − 20 + 5 等于多少，如果有人先算 20 + 5，正好讨论运算顺序（第 5 页会再遇到）。</p>
+</section>
+
+<!-- 3 ================= 例 3 计算器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 计算器</span><h2>李芸一共用去多少元？用计算器算一算</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab shop">
+        <tr><th>商品名称</th><th>数量</th><th>单价</th><th>全额</th></tr>
+        <tr><td>铅笔</td><td>1 支</td><td>0.80 元/支</td><td>0.80 元</td></tr>
+        <tr><td>电池</td><td>4 节</td><td>6.00 元/节</td><td>24.00 元</td></tr>
+        <tr><td>文具盒</td><td>1 个</td><td>15.40 元/个</td><td>15.40 元</td></tr>
+        <tr><td>书包</td><td>1 个</td><td>44.70 元/个</td><td>44.70 元</td></tr>
+        <tr><td>面包</td><td>2 个</td><td>3.00 元/个</td><td>6.00 元</td></tr>
+      </table>
+      <p class="tip" data-step="1">在计算器上应该怎样输入买铅笔的钱数？　<span class="think" data-step="2" data-ask="试一试">按 0 · 8 0，显示 0.80；也可以先按“·”再按 8，显示 0.8——就是 0.8 元。</span></p>
+    </div>
+    <div class="col">
+      <div class="calc-dev" data-noswipe>
+        <div class="cd-expr" id="cdExpr">&nbsp;</div>
+        <div class="cd-disp" id="cdDisp">0</div>
+        <div class="cd-keys" id="cdKeys"></div>
+      </div>
+      <p class="tip feedback" id="cdMsg">把 5 个全额连加起来，最后按“=”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p52 例 3。请学生上来按计算器：0.80 + 24.00 + 15.40 + 44.70 + 6.00 =。计算器按“从左往右”逐步算出 0.8、24.8、40.2、84.9、90.9，上面一行记录按过的算式。计算结果由代码精确计算（不会出现 0.1 + 0.2 = 0.30000000004 这样的误差）。注意：计算器显示 90.9，写钱数时可以写 90.90 元。</p>
+</section>
+
+<!-- 4 ================= 例 3 列式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 列式</span><h2>列式计算，再估一估、算一算找回多少</h2></div>
+  <div class="bd full top">
+    <div class="calc">
+      <p>$0.80+24.00+15.40+44.70+6.00=$ <span class="blank" data-ans="90.9|90.90" data-w="5"></span>（元）</p>
+      <p class="muted small-t">答：一共用去 90.90 元。</p>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="1"><b>先估一估：</b>$1+24+15+45+6=$ <span class="blank" data-ans="91" data-w="3"></span>，结果大约是 91 元，和计算器算出的 <span class="think" data-step="2" data-ask="接近吗？">90.9 元很接近，说明没有按错键。</span></p>
+      <p class="tip" data-step="3"><b>试一试：</b>如果李芸付出 100 元，应找回多少元？<br>$100-90.90=$ <span class="blank" data-ans="9.1|9.10" data-w="4"></span>（元）</p>
+    </div>
+    <p class="method" data-step="4" data-label="用计算器的好习惯">输入前先<b>估一估</b>；输完一个数看一眼显示屏；算完再和估计比一比。</p>
+  </div>
+  <p class="note">课本 p52 例 3 列式、试一试。估算时把每个数看成和它接近的整数。找回的钱也可以用计算器 100 − 90.9 = 9.1。</p>
+</section>
+
+<!-- 5 ================= 运算顺序 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">加减混合</span><h2>点一个运算符号，先算它——顺序对吗？</h2></div>
+  <div class="bd full top">
+    <div class="btns center-btns" id="odPick" data-noswipe></div>
+    <div class="od-expr" id="odExpr" data-noswipe></div>
+    <div class="od-hist" id="odHist"></div>
+    <p class="tip feedback" id="odMsg"></p>
+    <div class="cols2">
+      <p class="tip" data-step="1">小数加减混合运算的顺序和整数一样吗？　<span class="think" data-step="2" data-ask="说一说">一样：没有括号时<b>从左往右</b>依次计算；有括号先算括号里面的。</span></p>
+      <p class="warn" data-step="3">$13-5.4+2.6$ 不能先算 $5.4+2.6$：那样算成了 $13-(5.4+2.6)=5$，多减了 2.6。</p>
+    </div>
+  </div>
+  <p class="note">课本 p54 练习九第 6 题的题目。请学生上来点“先算哪一步”：点对了，这一步算出来写在下面；点错了，会提示应该先算哪一步，并算出错误顺序得到的结果作对比。每一步的结果都由代码精确计算。</p>
+</section>
+
+<!-- 6 ================= 竹竿 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习九 · 7</span><h2>你能算出池水深多少米吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="poleFig" class="pole-fig" viewBox="0 0 480 420" aria-label="3.5 米竹竿插入水池"></svg>
+    </div>
+    <div class="col">
+      <p class="tip">一根 <b>3.5 米</b>长的竹竿竖直插入水池中，竹竿入泥的部分是 <b>0.4 米</b>，露出水面的部分是 <b>0.8 米</b>。</p>
+      <div class="calc">
+        <p><b>方法 1：</b>$3.5-0.4-0.8=$ <span class="blank" data-ans="2.3" data-w="3"></span>（米）</p>
+        <p><b>方法 2：</b>$3.5-(0.4+0.8)=$ <span class="blank" data-ans="2.3" data-w="3"></span>（米）</p>
+      </div>
+      <p class="tip" data-step="1">两种方法有什么联系？　<span class="think" data-step="2" data-ask="想一想">连续减去两个数，等于减去这两个数的<b>和</b>：先把入泥和露出的部分合起来是 1.2 米。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p54 练习九第 7 题。左图按比例画（1 米 = 100 个单位）：入泥 0.4、水中 2.3、露出 0.8，加起来正好 3.5。方法 2 用到的规律（a − b − c = a − (b + c)）下一单元做简便计算还会用到。</p>
+</section>
+
+<!-- 7 ================= 水位 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习九 · 8</span><h2>沙青河一周水位：一边算，一边画</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab wl-tab">
+        <tr><th></th><th>周日</th><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th></tr>
+        <tr><th>变化/米</th><td>——</td><td>−0.05</td><td>+0.36</td><td>+0.87</td><td>+1.27</td><td>−0.28</td><td>−0.62</td></tr>
+        <tr><th>水位/米</th><td>14.55</td>
+          <td><span class="blank wl" data-day="1" data-ans="14.5|14.50" data-w="4"></span></td>
+          <td><span class="blank wl" data-day="2" data-ans="14.86" data-w="4"></span></td>
+          <td><span class="blank wl" data-day="3" data-ans="15.73" data-w="4"></span></td>
+          <td><span class="blank wl" data-day="4" data-ans="17|17.00" data-w="4"></span></td>
+          <td><span class="blank wl" data-day="5" data-ans="16.72" data-w="4"></span></td>
+          <td><span class="blank wl" data-day="6" data-ans="16.1|16.10" data-w="4"></span></td></tr>
+      </table>
+      <p class="tip" data-step="1">哪几天的水位超过了警戒水位 16.7 米？　<span class="think" data-step="2" data-ask="看图找一找">周四（17.00 米）和周五（16.72 米）。</span></p>
+    </div>
+    <div class="col">
+      <svg id="wlFig" class="wl-fig" viewBox="0 0 520 330" aria-label="一周水位折线图"></svg>
+      <p class="muted small-t center">填对一天，图上就画出这一天的点</p>
+    </div>
+  </div>
+  <p class="note">课本 p54 练习九第 8 题。“+0.36”表示比前一天上涨 0.36 米，“−0.05”表示下降 0.05 米（五上第一单元的正负数）。每天的水位 = 前一天水位 ± 变化。填对后右图自动描点连线，红色虚线是警戒水位 16.7 米。课本要求用计算器算，也可以笔算。</p>
+</section>
+
+<!-- 8 ================= 练习九 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习九</span><h2>算一算，找规律</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 用计算器算前三题，再直接写出最后一题的得数。</p>
+        <p class="q small-q">$0.9+0.99=$ <span class="blank" data-ans="1.89" data-w="4"></span><br>$0.9+0.99+0.999=$ <span class="blank" data-ans="2.889" data-w="5"></span><br>$0.9+0.99+0.999+0.9999=$ <span class="blank" data-ans="3.8889" data-w="6"></span><br>$0.9+0.99+\cdots+0.\underbrace{9\cdots9}_{10\text{ 个 }9}=$ <span class="blank" data-ans="9.8888888889" data-w="11"></span></p>
+        <details><summary>提示 1</summary>每个加数都比 1 少一点：0.9 = 1 − 0.1，0.99 = 1 − 0.01……</details>
+        <details><summary>提示 2</summary>10 个加数，就是 10 − 0.1111111111。</details>
+        <details><summary>完整解答</summary>1.89；2.889；3.8889；9.8888888889（小数点后面 9 个 8，最后一位是 9）。</details>
+      </div>
+      <div class="col">
+        <div class="calc">
+          <p><b>4.</b> 巧克力 25.50 元，饼干 15.45 元，付 50 元应找回多少元？</p>
+          <p>$50-25.50-15.45=$ <span class="blank" data-ans="9.05" data-w="4"></span>（元）</p>
+        </div>
+        <div class="calc">
+          <p><b>9.</b> 食用油 32.80 元、大米 43.90 元、大枣 17.28 元各买一件。</p>
+          <p>估计：大约 <span class="blank" data-ans="94" data-w="3"></span> 元；计算：<span class="blank" data-ans="93.98" data-w="5"></span> 元</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p53 练习九第 3、4 题和 p54 第 9 题。第 3 题可以回到第 3 页用计算器算前三题，找规律：整数部分依次是 1、2、3……，小数部分是“8……89”。第 9 题估计：33 + 44 + 17 = 94。</p>
+</section>
+
+<!-- 9 ================= 思考题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>物体下落前，离地面多少米？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">一个物体从高空下落，经过 4 秒落地。已知第一秒下落 <b>4.9 米</b>，以后每一秒都比前一秒多下落 <b>9.8 米</b>。这个物体在下落前距地面多少米？</p>
+      <table class="mtab">
+        <tr><th>时间</th><th>第 1 秒</th><th>第 2 秒</th><th>第 3 秒</th><th>第 4 秒</th></tr>
+        <tr><th>下落/米</th><td>4.9</td><td><span class="blank" data-ans="14.7" data-w="4"></span></td><td><span class="blank" data-ans="24.5" data-w="4"></span></td><td><span class="blank" data-ans="34.3" data-w="4"></span></td></tr>
+      </table>
+      <p class="tip">下落前距地面：<span class="blank" data-ans="78.4" data-w="4"></span> 米</p>
+    </div>
+    <div class="col">
+      <svg id="fallFig" class="fall-fig" viewBox="0 0 360 400" aria-label="每秒下落的距离"></svg>
+    </div>
+  </div>
+  <p class="note">课本 p54 底部的思考题，要求“先列表，再解答”。右图按比例画出每一秒下落的距离（1 米 = 4.5 个单位），四段接起来就是总高度 4.9 + 14.7 + 24.5 + 34.3 = 78.4（米）。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>小数加减混合运算：和整数一样</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <p class="recall" data-label="运算顺序" data-step="1">没有括号，<b>从左往右</b>依次计算；有括号，先算括号里面的。每一步都“小数点对齐”。</p>
+      <p class="method" data-label="计算器" data-step="2">输入小数：按数字键和“·”键；0.80 可以只按 0.8；先估一估，再用计算器算，算完比一比。</p>
+    </div>
+    <p class="tip" data-step="3">$a-b-c=a-(b+c)$：连续减去两个数，可以减去它们的和（竹竿那道题）。</p>
+    <p class="tip gold" data-step="4"><b>下一步：</b>第五单元《小数乘法和除法》——一个小数乘整数，积的小数点在哪里？</p>
+  </div>
+  <p class="note">课后作业建议：练习九第 1、2、5、6 题。第 2 题（小明家收支表）适合用计算器分组完成。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

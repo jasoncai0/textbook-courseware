@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>相似三角形的性质 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="../shared/mproof.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huayuan-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第6章 图形的相似 · 6.5</p>
+    <h1 class="cover-title">相似三角形的性质</h1>
+    <p class="cover-q" data-step="1">两块形状相同的三角形花坛，大的边长是小的 <b>2 倍</b>。围篱笆要多用几倍的材料？铺草皮要多用几倍？</p>
+    <p class="cover-q" data-step="2">边长 2 倍，面积也是 2 倍吗？除了“对应角相等、对应边成比例”，相似三角形还有什么性质？</p>
+    <div class="chips" data-step="3"><span class="chip">周长比 = k</span><span class="chip">面积比 = k²</span><span class="chip">对应线段的比 = k</span></div>
+  </div>
+  <p class="note">课本 p69 引言。封面用一个生活问题让学生先凭直觉回答——很多学生会说“面积也是 2 倍”，这个错误直觉正是本课要纠正的。先表决，不揭晓。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="6.3 相似图形" data-step="1">
+        <p>相似多边形的对应角相等，对应边成比例；对应边的比叫做<b>相似比</b> $k$。</p>
+        <p>例 2：三边中点围成的 $\triangle DEF\backsim\triangle ABC$，相似比为 $\dfrac12$。</p>
+        <span class="use">第 3 页从中点三角形出发猜周长比、面积比。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 6.4 探索三角形相似的条件" data-step="2">
+        <p>两角分别相等；两边成比例且夹角相等；三边成比例 ⇒ 两个三角形相似。</p>
+        <span class="use">证明对应高、中线、角平分线的比时，要先证出一对“小”三角形相似。</span>
+      </div>
+      <div class="recall" data-label="小学 · 三角形面积 / 6.1 比例" data-step="3">
+        <p>$S=\dfrac12\times\text{底}\times\text{高}$；连比 $\dfrac ab=\dfrac cd=\dfrac ef=k$ 时 $a=kb$，$c=kd$，$e=kf$。</p>
+        <span class="use">用“设 $k$ 法”证明周长比、面积比。</span>
+      </div>
+      <div class="recall" data-label="九年级上册 · 一元二次方程" data-step="4">
+        <p>$k^2=\dfrac{9}{16}$，$k\gt0$ ⇒ $k=\dfrac34$。</p>
+        <span class="use">已知面积比，开平方求相似比。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第一张卡的中点三角形是本课的起点（课本 p69 图 6-29），第三张卡的“设 k 法”是本课证明的主要工具。</p>
+</section>
+
+<!-- 3 ================= 观察与思考 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 思考</span><h2>中点三角形：周长、面积各是原来的几分之几？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="midBd" class="mboard labbd"></div>
+      <p class="tip feedback small-d" id="midMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 6-29，$D$、$E$、$F$ 分别是 $\triangle ABC$ 各边的中点，$\triangle DEF\backsim\triangle ABC$，相似比为 $\dfrac12$。拖动 $A$、$B$、$C$ 观察：</p>
+      <p class="tip" data-step="1"><b>小明：</b><span class="think" data-step="2" data-ask="周长呢？">$DE=\dfrac12AB$，$EF=\dfrac12BC$，$FD=\dfrac12AC$，$\triangle DEF$ 的周长是 $\triangle ABC$ 周长的 $\dfrac12$——周长比等于相似比。</span></p>
+      <p class="tip" data-step="3"><b>小丽：</b><span class="think" data-step="4" data-ask="面积呢？">四个小三角形全等，$\triangle DEF$ 的面积是 $\triangle ABC$ 面积的 $\dfrac14$——面积比等于相似比的<b>平方</b>。</span></p>
+      <p class="warn" data-step="5" data-label="回到封面">边长 2 倍，面积是 <span class="think" data-step="6" data-ask="几倍？">$2^2=4$ 倍，不是 2 倍！</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p69“观察与思考”与两个小人的猜想。四个小三角形全等（三边对应相等），所以面积各占 1/4——这是“面积比 = k²”最直观的例子。读数由坐标实时计算，拖成任何形状都成立。</p>
+</section>
+
+<!-- 4 ================= 核心交互：k 与 k² ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验</span><h2>拖动相似比 $k$：周长、高、面积怎样变？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="kBd" class="mboard labbd"></div>
+      <div class="slider-row" data-noswipe>相似比 $k=\dfrac{A'B'}{AB}$：<input type="range" id="kK" min="1" max="3" step="0.1" value="2"><b class="v" id="kKV"></b><button class="btn" type="button" id="kTile">分割成小三角形</button></div>
+    </div>
+    <div class="col">
+      <div class="prop-read" id="kRead"></div>
+      <p class="tip small-d" data-step="1">$k=2$ 时，大三角形恰好能分成 <span class="think" data-step="2" data-ask="几个？">4 个</span>与小三角形全等的三角形；$k=3$ 时能分成 <span class="think" data-step="3" data-ask="几个？">9 个</span>。</p>
+      <p class="method small-d" data-step="4" data-label="猜想">周长比、对应高的比都等于 $k$；面积比等于 $k^2$。</p>
+    </div>
+  </div>
+  <p class="note">本课独有的核心交互。左边小三角形 ABC 固定，A′B′C′ 是它按相似比 k 放大（两图中紫色线是对应高）。拖滑块看右边三条读数：周长比、高的比与 k 同步，面积比是 k²，增长得快得多。k 取 2 或 3 时点“分割”，大三角形被平行于三边的线分成 k² 个与小三角形全等的三角形——面积比 = k² 一目了然。所有数据由坐标计算。</p>
+</section>
+
+<!-- 5 ================= 周长定理 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>相似三角形周长的比等于相似比</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="1"><span>设</span><span>$\triangle ABC\backsim\triangle A'B'C'$，相似比为 $k$，</span><i class="why">已知</i></div>
+        <div class="dl" data-step="2"><span>那么</span><span>$\dfrac{AB}{A'B'}=\dfrac{BC}{B'C'}=\dfrac{CA}{C'A'}=k$，</span><i class="why">相似三角形对应边成比例</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span class="think" data-step="4" data-ask="设 k 法">$AB=kA'B'$，$BC=kB'C'$，$CA=kC'A'$．</span><i class="why">比例式 → 等式</i></div>
+        <div class="dl end" data-step="5"><span>∴</span><span class="nw">$\dfrac{AB+BC+CA}{A'B'+B'C'+C'A'}$</span><i class="why">周长的比</i></div>
+        <div class="dl" data-step="5"><span></span><span class="nw">$=\dfrac{kA'B'+kB'C'+kC'A'}{A'B'+B'C'+C'A'}=k$．</span><i class="why">代入，提取公因式 $k$</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="thm" data-step="6"><b>定理</b>　相似三角形周长的比等于相似比．</p>
+      <p class="thm" data-step="7">类似地：<b>相似多边形周长的比等于相似比．</b></p>
+      <p class="method small-d" data-step="8" data-label="等比性质（了解）">若 $\dfrac ab=\dfrac cd=\dfrac ef=k$，则 $\dfrac{a+c+e}{b+d+f}=k$（分母不为 0）——“设 $k$ 法”一步就能证。</p>
+    </div>
+  </div>
+  <p class="note">课本 p69 的证明。关键一步是“设 k 法”（6.1 例 2 学过）：把连比化成三个等式，分子就能提出公因式 k。相似多边形的周长同理，课本直接给出结论。</p>
+</section>
+
+<!-- 6 ================= 高与面积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">证明</span><h2>相似三角形面积的比等于相似比的平方</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-d">如图 6-30，$\triangle ABC\backsim\triangle A'B'C'$，相似比为 $k$，$AD$、$A'D'$ 分别是 $\triangle ABC$ 和 $\triangle A'B'C'$ 的高．</p>
+      <div class="cmp-figs"><div id="f630a" class="mboard gfig"></div><div id="f630b" class="mboard gfig"></div></div>
+      <p class="tip small-d" data-step="1">要算面积，先要知道两条高的关系。<span class="think" data-step="2" data-ask="AD 与 A′D′ 的比？">由一对“小”直角三角形相似可得 $\dfrac{AD}{A'D'}=k$。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="3"><span>∵</span><span>$\angle B=\angle B'$，$\angle ADB=\angle A'D'B'=90^\circ$，</span><i class="why">相似三角形对应角相等；高的定义</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span>$\triangle ABD\backsim\triangle A'B'D'$，$\dfrac{AD}{A'D'}=\dfrac{AB}{A'B'}=k$，$AD=kA'D'$．</span><i class="why"><button class="yj" data-k="aa"></button></i></div>
+        <div class="dl" data-step="5"><span>又</span><span>$BC=kB'C'$，</span><i class="why">对应边成比例</i></div>
+        <div class="dl end" data-step="6"><span>∴</span><span>$\dfrac{S_{\triangle ABC}}{S_{\triangle A'B'C'}}=\dfrac{\frac12BC\cdot AD}{\frac12B'C'\cdot A'D'}=\dfrac{\frac12kB'C'\cdot kA'D'}{\frac12B'C'\cdot A'D'}=k^2$．</span><i class="why">三角形面积公式</i></div>
+      </div>
+      <p class="thm" data-step="7"><b>定理</b>　相似三角形面积的比等于相似比的平方．</p>
+      <p class="thm" data-step="8">把相似多边形分成若干个相似的三角形：<b>相似多边形面积的比等于相似比的平方．</b></p>
+    </div>
+  </div>
+  <p class="note">课本 p69–70 的证明与两个定理。证明中顺带得到“对应高的比等于相似比”——这是后面“对应线段的比”的第一个例子。面积比是 k²，因为面积由“底 × 高”两个长度相乘，每个长度都放大了 k 倍。图 6-30 中两三角形按 k = 1.4 精确画出。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>例 1　由地图求实际周长和面积</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">在比例尺为 $1:500$ 的地图上，测得三角形地块 $ABC$ 的周长为 12 cm，面积为 6 cm²．求这个地块的实际周长和面积．</p>
+      <p class="tip gold" data-step="1"><b>思路分析：</b>图上的三角形与实际的三角形相似，<span class="think" data-step="2" data-ask="相似比是多少？">相似比就是比例尺 $k=\dfrac1{500}$。周长按 $k$ 放大，面积按 $k^2$ 放大。</span></p>
+      <p class="warn" data-step="10" data-label="易错">面积不是 $6\times500=3\,000$ cm²！要乘 $500^2$。</p>
+    </div>
+    <div class="col">
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="3"><span>解：</span><span>把实际三角形地块记为 $\triangle A'B'C'$，那么 $\triangle ABC\backsim\triangle A'B'C'$，且相似比 $k=\dfrac1{500}$．</span><i class="why">地图是实际地形按比例缩小</i></div>
+        <div class="dl" data-step="4"><span>于是</span><span>$\dfrac{\triangle ABC\text{ 的周长}}{\triangle A'B'C'\text{ 的周长}}=\dfrac1{500}$，</span><i class="why">相似三角形周长的比等于相似比</i></div>
+        <div class="dl" data-step="5"><span></span><span>$\dfrac{\triangle ABC\text{ 的面积}}{\triangle A'B'C'\text{ 的面积}}=\left(\dfrac1{500}\right)^2$．</span><i class="why">相似三角形面积的比等于相似比的平方</i></div>
+        <div class="dl" data-step="6"><span>∴</span><span>$\triangle A'B'C'$ 的周长 $=12\times500=6\,000$ (cm) $=60$ m，</span><i class="why"></i></div>
+        <div class="dl" data-step="7"><span></span><span>$\triangle A'B'C'$ 的面积 $=6\times500^2=1\,500\,000$ (cm²) $=150$ m²．</span><i class="why">1 m² = 10 000 cm²</i></div>
+        <div class="dl end" data-step="8"><span>答：</span><span>这个地块的实际周长为 60 m，面积为 150 m²．</span><i class="why"></i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p70 例 1。回扣 6.1：比例尺就是相似比。最后一步单位换算容易错：1 m² = 100 cm × 100 cm = 10 000 cm²，所以 1 500 000 cm² = 150 m²。</p>
+</section>
+
+<!-- 8 ================= 练习 p71 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>周长比与面积比</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 给形状相同且对应边的比为 $1:2$ 的两块多边形标牌的表面涂漆．如果小标牌用漆半听，那么大标牌需用漆多少听？</p>
+        <details><summary>提示 1</summary>用漆量与面积成正比；面积比 = 相似比的平方。</details>
+        <details><summary>完整解答</summary>面积比为 $1:4$，大标牌需用漆 $\dfrac12\times4=2$（听）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 两个相似多边形面积的比为 $9:16$，其中较小的多边形的周长为 36 cm．求另一个多边形的周长．</p>
+        <details><summary>提示 1</summary>由面积比开平方求相似比。</details>
+        <details><summary>完整解答</summary>相似比 $=\sqrt{\dfrac9{16}}=\dfrac34$，另一个多边形的周长 $=36\div\dfrac34=48$（cm）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 如图，在 $\triangle ABC$ 中，$\angle C=90^\circ$，矩形 $DEFG$ 的顶点 $G$、$F$ 分别在 $AC$、$BC$ 上，$DE$ 在 $AB$ 上．设 $AG=5$，$AD=4$，求 $\triangle ADG$ 与 $\triangle FEB$ 的面积的比．</p>
+        <div id="p71c" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>$\angle AGD$、$\angle B$ 都是 $\angle A$ 的余角 ⇒ $\triangle ADG\backsim\triangle FEB$（$A$ 对 $F$，$D$ 对 $E$，$G$ 对 $B$）。</details>
+        <details><summary>提示 2</summary>$DG=\sqrt{5^2-4^2}=3$，$FE=DG=3$，相似比 $\dfrac{AD}{FE}$。</details>
+        <details><summary>完整解答</summary>相似比 $=\dfrac{AD}{FE}=\dfrac43$，面积比 $=\left(\dfrac43\right)^2=\dfrac{16}9$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p71 练习。第 2 题是“反过来用”：由面积比求相似比要开平方。第 3 题对应关系最关键：∠A 对 ∠EFB，所以 AD 对 FE。图按 AD = 4、DG = 3 的矩形与直角三角形精确画出。</p>
+</section>
+
+<!-- 9 ================= 对应线段 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>对应中线、角平分线的比也等于相似比吗？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="lnBd" class="mboard labbd"></div>
+      <div class="seg-pick btns" data-noswipe>
+        <button class="btn solid" type="button" data-ln="h">对应高</button>
+        <button class="btn" type="button" data-ln="m">对应中线（图 6-31）</button>
+        <button class="btn" type="button" data-ln="b">对应角平分线（图 6-32）</button>
+        <button class="btn" type="button" data-ln="g">$\dfrac{BG}{B'G'}=k$（图 6-33）</button>
+      </div>
+      <div class="slider-row" data-noswipe>$A'B':AB$<input type="range" id="lnK" min="1.2" max="2.2" step="0.1" value="1.5"><b class="v" id="lnKV"></b>　$BG:BC$<input type="range" id="lnT" min="0.1" max="0.9" step="0.05" value="0.35"></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback small-d" id="lnMsg"></p>
+      <p class="tip small-d" data-step="1"><b>中线：</b>由 $\dfrac{AB}{A'B'}=\dfrac{BE}{B'E'}=k$，$\angle B=\angle B'$，可知 $\triangle ABE\backsim\triangle A'B'E'$（<button class="yj" data-k="sas-s"></button>）．</p>
+      <p class="tip small-d" data-step="2"><b>角平分线：</b>由 $\angle B=\angle B'$，$\angle BAF=\angle B'A'F'$，可知 $\triangle ABF\backsim\triangle A'B'F'$（<button class="yj" data-k="aa"></button>）．</p>
+      <p class="tip small-d" data-step="3"><b>一般地：</b>由 $\dfrac{AB}{A'B'}=k$，$\dfrac{BG}{B'G'}=k$，$\angle B=\angle B'$，可知 $\triangle ABG\backsim\triangle A'B'G'$，所以 $\dfrac{AG}{A'G'}=k$．</p>
+      <p class="thm" data-step="4"><b>定理</b>　相似三角形对应线段的比等于相似比．</p>
+    </div>
+  </div>
+  <p class="note">课本 p71–72“思考与探索”与图 6-31～6-33，三个小人的提示。切换线段类型、拖 k 和 G 的位置，读数显示 AX : A′X′ 始终等于 k。图 6-33 最一般：只要 G、G′ 是“对应点”（BG : B′G′ = k），AG 与 A′G′ 就是对应线段——高、中线、角平分线都是它的特例。</p>
+</section>
+
+<!-- 10 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>例 2　用“对应高的比”求距离</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-d">如图 6-34，$AF$ 是 $\triangle ABC$ 的高，点 $D$、$E$ 分别在 $AB$、$AC$ 上，且 $DE\parallel BC$，$DE$ 交 $AF$ 于点 $G$．设 $DE=6$，$BC=10$，$GF=5$，求点 $A$ 到 $DE$、$BC$ 的距离．</p>
+      <div id="f634" class="mboard gfig l"></div>
+      <p class="tip gold small-d" data-step="1"><b>思路分析：</b>$AG$、$AF$ 是 $\triangle ADE$、$\triangle ABC$ 的<span class="think" data-step="2" data-ask="什么线段？">对应高；设 $AG=x$，则 $AF=x+5$。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="3"><span>解：</span><span>由 $DE\parallel BC$，$\angle AFB=90^\circ$，得 $\angle AGD=90^\circ$，即 $AG\perp DE$．</span><i class="why">两直线平行，同位角相等</i></div>
+        <div class="dl" data-step="4"><span></span><span>可知 $AG$、$AF$ 的长分别为点 $A$ 到 $DE$、$BC$ 的距离．</span><i class="why">点到直线的距离</i></div>
+        <div class="dl" data-step="5"><span>由</span><span>$DE\parallel BC$，得 $\angle ADE=\angle B$，$\angle AED=\angle C$．</span><i class="why"><button class="yj" data-k="tw-xz"></button></i></div>
+        <div class="dl" data-step="6"><span>于是</span><span>$\triangle ADE\backsim\triangle ABC$，$\dfrac{AG}{AF}=\dfrac{DE}{BC}$，<br>即 $\dfrac{AG}{AG+5}=\dfrac35$．</span><i class="why">对应高的比等于相似比</i></div>
+        <div class="dl end" data-step="7"><span>计算，得</span><span>$AG=7.5$，$AF=AG+5=12.5$，<br>即点 $A$ 到 $DE$、$BC$ 的距离分别为 7.5、12.5．</span><i class="why">$5AG=3AG+15$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p72 例 2、图 6-34。图按 DE = 6、BC = 10、AG = 7.5、GF = 5 精确画出（比例 3 : 5）。“距离”问题先要说明 AG ⊥ DE，这一步常被忽略。</p>
+</section>
+
+<!-- 11 ================= 练习 p73 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>对应线段的比</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，点 $D$、$E$ 分别在 $AC$、$AB$ 上，且 $\angle ADE=\angle B$，$F$、$G$ 分别是 $BC$、$DE$ 的中点．设 $AD=3$，$AB=5$，求 $\dfrac{AG}{AF}$ 的值．</p>
+        <div id="p73a" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>$\angle ADE=\angle B$，$\angle A$ 公共 ⇒ $\triangle ADE\backsim\triangle ABC$（$D$ 对 $B$，$E$ 对 $C$）。</details>
+        <details><summary>完整解答</summary>$AG$、$AF$ 是对应中线，$\dfrac{AG}{AF}=\dfrac{AD}{AB}=\dfrac35$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在 $\triangle ABC$ 和 $\triangle A'B'C'$ 中，$AD$、$A'D'$ 分别是角平分线，且 $AB=2A'B'$，$AC=2A'C'$，$\angle BAC=\angle B'A'C'$．求：(1) $\dfrac{AD}{A'D'}$；(2) 两三角形面积的比．</p>
+        <details><summary>提示 1</summary>两边成比例且夹角相等 ⇒ 相似，相似比为 2。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{AD}{A'D'}=2$；(2) 面积比为 $2^2=4$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 如图，在 $\triangle ABC$ 中，$AB=AC$，正方形 $DEFG$ 的顶点 $D$、$G$ 分别在 $AB$、$AC$ 上，$EF$ 在 $BC$ 上．设 $AB=5$，$BC=6$，求正方形 $DEFG$ 的边长．</p>
+        <div id="p73c" class="mboard gfig"></div>
+        <details><summary>提示 1</summary>$BC$ 边上的高 $=\sqrt{5^2-3^2}=4$；$\triangle ADG\backsim\triangle ABC$。</details>
+        <details><summary>提示 2</summary>设边长为 $x$：$\dfrac{x}{6}=\dfrac{4-x}{4}$（对应边的比 = 对应高的比）。</details>
+        <details><summary>完整解答</summary>$4x=24-6x$，$x=2.4$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p73 练习。第 3 题是经典的“内接正方形”：DG 与 BC 是对应边，两三角形的高分别是 4 − x 与 4。图按 x = 2.4 精确画出，正方形四个顶点正好落在三角形的边上——学生可以用直尺量一量检验。</p>
+</section>
+
+<!-- 12 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.5</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在比例尺为 $1:5\,000$ 的地图上，测得一个多边形地块的面积为 24 cm²．求这个多边形地块的实际面积．</p>
+        <details><summary>完整解答</summary>$24\times5\,000^2=600\,000\,000$（cm²）$=60\,000$ m²．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在 $\triangle ABC$ 中，$DE\parallel BC$，$\triangle ADE$ 与四边形 $DBCE$ 的面积的比为 $1:3$．求 $\dfrac{AD}{AB}$．</p>
+        <details><summary>提示 1</summary>$\triangle ADE$ 与 $\triangle ABC$ 的面积比是 $1:(1+3)$。</details>
+        <details><summary>完整解答</summary>面积比 $1:4$，相似比 $\dfrac{AD}{AB}=\dfrac12$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在 ▱$ABCD$ 中，$E$ 是 $BC$ 上的 3 等分点（$BE=\dfrac13BC$），$AE$ 交 $BD$ 于点 $F$．求：(1) $\dfrac{BF}{DF}$；(2) $\triangle BEF$ 与 $\triangle DAF$ 的周长的比、面积的比．</p>
+        <details><summary>提示 1</summary>$BE\parallel AD$ ⇒ $\triangle BEF\backsim\triangle DAF$，相似比 $\dfrac{BE}{DA}$。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{BF}{DF}=\dfrac{BE}{DA}=\dfrac13$；(2) 周长比 $1:3$，面积比 $1:9$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 在 $\triangle ABC$ 中，$AD$ 是高，$EF\parallel BC$，$EF$ 交 $AD$ 于点 $G$，$\dfrac{EF}{BC}=\dfrac35$．求：(1) $\dfrac{AG}{AD}$；(2) $\triangle AEF$ 与 $\triangle ABC$ 的面积的比．</p>
+        <details><summary>完整解答</summary>(1) $\dfrac{AG}{AD}=\dfrac35$（对应高）；(2) $\left(\dfrac35\right)^2=\dfrac9{25}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 在 $\triangle ABC$ 中，$AD$ 是高，矩形 $PQMN$ 的顶点 $P$、$N$ 分别在 $AB$、$AC$ 上，$QM$ 在 $BC$ 上，$AD$ 交 $PN$ 于点 $E$．设 $BC=48$，$AD=16$，$PQ:PN=5:9$，求矩形 $PQMN$ 的面积．</p>
+        <details><summary>提示 1</summary>设 $PQ=5t$，$PN=9t$；$\dfrac{PN}{BC}=\dfrac{AE}{AD}$。</details>
+        <details><summary>完整解答</summary>$\dfrac{9t}{48}=\dfrac{16-5t}{16}$，$t=2$，$PQ=10$，$PN=18$，面积 $=180$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 在四边形 $ABCD$ 中，点 $E$ 在 $AD$ 上，$EC\parallel AB$，$EB\parallel DC$．(1) $\triangle ABE$ 与 $\triangle ECD$ 相似吗？(2) $\triangle ABE$ 的面积为 3，$\triangle ECD$ 的面积为 1，$BE$、$CD$ 边上的高分别为 $h_1$、$h_2$，求 $\dfrac{h_1}{h_2}$ 以及 $\triangle BCE$ 的面积．</p>
+        <details><summary>提示 1</summary>同位角：$\angle A=\angle CED$，$\angle AEB=\angle D$。</details>
+        <details><summary>完整解答</summary>(1) 相似；(2) 相似比 $=\sqrt3$，$\dfrac{h_1}{h_2}=\sqrt3$；$EB\parallel DC$，$\triangle BCE$ 中 $BE$ 边上的高等于 $h_2$，面积 $=\dfrac12BE\cdot h_2=\sqrt3\times\dfrac12CD\cdot h_2=\sqrt3$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p73–75 习题 6.5 全部 6 题（第 3 题 E 是靠近 B 的三等分点，以课本图为准）。第 6 题 (2) 较难：△BCE 与 △ECD 的“高”相同（平行线间距离），底的比是 BE : CD = √3。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">相似三角形：对应角相等，对应边、对应线段（高、中线、角平分线）、周长的比都等于 $k$；面积比等于 $k^2$。</p>
+        <p class="def">相似多边形：周长比 $k$，面积比 $k^2$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="设 k 法">连比化等式，证周长比。</p>
+        <p class="method" data-label="找小三角形">要证对应线段的比，先证它们所在的一对小三角形相似。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="一维与二维">长度（一维）按 $k$ 变，面积（二维）按 $k^2$ 变。</p>
+        <p class="recall" data-label="方程">已知比，设未知数列方程求高、边。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.6 图形的位似——手电筒把玻璃片上的三角形投到墙上，墙上的三角形与原三角形相似，而且对应点的连线都经过同一点。</p>
+  </div>
+  <p class="note">回到封面问题请学生回答：篱笆（周长）2 倍，草皮（面积）4 倍。拓展思考：体积呢？（相似立体的体积比是 k³，高中再学。）</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="../shared/mproof.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

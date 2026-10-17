@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>概率帮你做估计 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/yutang-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第8章 统计和概率的简单应用 · 8.5</p>
+    <h1 class="cover-title">概率帮你做估计</h1>
+    <p class="cover-q" data-step="1">鱼塘里养了若干条青鱼——不可能把水抽干一条条数．</p>
+    <p class="cover-q" data-step="2"><b>怎样估计鱼塘里青鱼的条数？</b>这个问题，和“从袋子里摸球”有什么联系？</p>
+    <div class="chips" data-step="3"><span class="chip">摸球试验</span><span class="chip">用频率估计概率</span><span class="chip">列方程求未知数</span><span class="chip">捉—放—捉</span></div>
+  </div>
+  <p class="note">课本 p139“拓展延伸”的问题放在封面。前几课是“已知袋中的球，求概率”；本课反过来：“由试验的频率，估计袋中有多少球”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八下 8.3 · 频率与概率" data-step="1">
+        <p>当试验次数很大时，可以用事件发生的<b>频率</b>作为它的<b>概率</b>的估计值．</p>
+        <span class="use">由“400 次摸到白球 40 次”得 P(摸到白球) ≈ 0.1．</span>
+        <a class="lk" href="../mj8b-pinlvgailv/index.html">回看 8.3</a>
+      </div>
+      <div class="recall" data-label="九上 4.2 · 等可能条件下的概率" data-step="2">
+        <p>袋中共有 $n$ 个球，其中白球 $m$ 个，则 $P(\text{摸到白球})=\dfrac{m}{n}$．</p>
+        <span class="use">袋中有红球 $x$ 个、白球 5 个，$P=\dfrac{5}{x+5}$．</span>
+        <a class="lk" href="../mj9a-gailvyi/index.html">回看 4.2</a>
+      </div>
+      <div class="recall" data-label="八下 10.5 · 分式方程" data-step="3">
+        <p>去分母化为整式方程，解出后要<b>检验</b>．</p>
+        <span class="use">解 $\dfrac{5}{x+5}=0.1$、$\dfrac{60}{N+60}=\dfrac1{24}$．</span>
+        <a class="lk" href="../mj8b-fenshifangcheng/index.html">回看 10.5</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>大量试验得频率 → 频率估计概率 → 概率用未知数表示 → 列方程 → 解出估计值．</p>
+  </div>
+  <p class="note">三张卡恰好是本课解题的三步：频率≈概率、概率的表达式、解分式方程。“读一读”估计 π 还会用到九上 4.3 的“面积之比”。</p>
+</section>
+
+<!-- 3 ================= 数学实验室：神秘袋子 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>袋中白球与红球的个数比，能估计出来吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="small-p">一只不透明的袋子中装有若干个白球和红球（除颜色外都相同）．(1) 两人一组，一人摸出 1 个球，另一人记下颜色后将球放回并搅匀，每组连续做 20 次；(2) 汇总全班各组数据并填表．</p>
+      <svg class="bag-svg" id="bagSvg" viewBox="0 0 520 150" aria-label="不透明的袋子与最近摸出的球"></svg>
+      <div class="btns sm" data-noswipe><button class="btn solid" type="button" id="bag20">一组摸 20 次</button><button class="btn" type="button" id="bagAll">汇总全班（共 20 组）</button><button class="btn" type="button" id="bagNew">换一个袋子</button></div>
+      <table class="mtab" id="bagTab"></table>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="bagMsg"></p>
+      <p class="tip" data-step="1">根据试验的结果，你能估计袋子中白球数与红球数的比吗？<span class="think" data-step="2" data-ask="怎样估计？">若摸到白球的频率约为 $f$，则 $\dfrac{\text{白球数}}{\text{总球数}}\approx f$，白球数∶红球数 $\approx f:(1-f)$．</span></p>
+      <div class="btns" data-noswipe data-step="3"><button class="btn" type="button" id="bagShow">打开袋子看看</button></div>
+      <p class="warn" data-step="3" data-label="只能估计比">只知道频率，只能估计<b>比</b>；要估计个数，还需要知道其中一种球有几个——下一页．</p>
+    </div>
+  </div>
+  <p class="note">课本 p139“数学实验室”。袋子里的球数是随机设定的，学生看不到；每点一次“一组摸 20 次”，用真随机数做 20 次有放回的摸球。先让各组报自己的 20 次结果（差别很大），再“汇总全班”到 400 次，用频率估计比，最后打开袋子核对。“换一个袋子”可以再做一轮。</p>
+</section>
+
+<!-- 4 ================= 思考探索 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>400 次摸到白球 40 次，袋中有白球 5 个：红球有几个？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>摸到白球的频率</span><span>$\dfrac{40}{400}=0.1$</span><i class="why">频数 ÷ 试验次数</i></div>
+        <div class="dl" data-step="2"><span>估计概率</span><span>$P(\text{摸到白球})\approx0.1$</span><i class="why">试验次数很大，频率估计概率</i></div>
+        <div class="dl" data-step="3"><span>设红球 $x$ 个</span><span class="think" data-step="4" data-ask="概率怎样表示？">$P(\text{摸到白球})=\dfrac{5}{x+5}$</span><i class="why">共有球 $(x+5)$ 个</i></div>
+        <div class="dl" data-step="5"><span>列方程</span><span>$\dfrac{5}{x+5}=0.1$</span><i class="why">两个式子表示同一个概率</i></div>
+        <div class="dl end" data-step="6"><span>解得</span><span class="think" data-step="7" data-ask="解一解">$x=45$</span><i class="why">$x+5=50$；经检验是原方程的解</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="def" data-step="8">这样，我们可以估计袋中有红球 <b>45</b> 个（课本 p139）．</p>
+      <p class="tip" data-step="9">袋中一定恰好有 45 个红球吗？<span class="think" data-step="10" data-ask="想一想">不一定．0.1 是频率，只是概率的<b>估计值</b>；红球 44 个或 46 个，400 次里也很可能摸到 40 次白球．所以说“估计”有 45 个．</span></p>
+      <p class="method" data-step="11" data-label="用概率做估计">① 大量试验求频率；② 用频率估计概率；③ 用含未知数的式子表示这个概率；④ 列方程求解．</p>
+    </div>
+  </div>
+  <p class="note">课本 p139“思考与探索”。第 10 步的追问很重要：估计值不是精确值。可以回到上一页做验证：袋中 5 白 45 红时，P(白)=0.1。</p>
+</section>
+
+<!-- 5 ================= 鱼塘（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">拓展 · 延伸</span><h2>捉—放—捉：估计鱼塘里青鱼的条数</h2></div>
+  <div class="bd w64">
+    <div class="col">
+      <canvas class="pond" id="pond" width="960" height="540" aria-label="鱼塘：青鱼与白鱼"></canvas>
+      <div class="btns sm" data-noswipe><button class="btn solid" type="button" id="pondPut">① 放入 60 条白鱼</button><button class="btn" type="button" id="pondNet">② 捕捞一网（50 条，记数后放回）</button><button class="btn" type="button" id="pondNet10">再捞 20 网</button><button class="btn" type="button" id="pondNew">换一个鱼塘</button><button class="btn" type="button" id="pondShow">揭晓</button></div>
+    </div>
+    <div class="col">
+      <div class="readout2" id="pondRead"></div>
+      <p class="bubble" data-step="1">把鱼塘内的青鱼看成“红球”．</p>
+      <p class="bubble" data-step="1" style="margin-top:.3em">往鱼塘内投放若干条白鱼，把白鱼看成“白球”．</p>
+      <p class="tip" data-step="2">为什么要“稍后再次捕捞”？<span class="think" data-step="3" data-ask="想一想">让白鱼与青鱼充分混合（相当于搅匀），每条鱼被捕到的可能性才相同．</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。每个鱼塘的青鱼条数 N 是随机设定的（800～2 000 条），点“揭晓”前谁也不知道。先放入 60 条白鱼（白点），每“捕捞一网”随机捞起 50 条（黄圈标出），统计其中白鱼的条数后放回；读数框实时给出“捕到白鱼的频率”和由 60/(N+60)=频率 解出的估计值。网数越多，估计越稳定。</p>
+</section>
+
+<!-- 6 ================= 例：1 380 条 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>由捕到白鱼的频率，求青鱼的条数</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">设鱼塘内有青鱼 $N$ 条，往鱼塘内投放白鱼 60 条，由多次捕捞、记数（每次捕捞后都放回，稍后再次捕捞），算得捕到白鱼的频率为 $\dfrac1{24}$．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>估计概率</span><span>$P(\text{捕到白鱼})\approx\dfrac1{24}$</span><i class="why">频率作为概率的估计值</i></div>
+        <div class="dl" data-step="2"><span>又</span><span>$P(\text{捕到白鱼})=\dfrac{60}{N+60}$</span><i class="why">白鱼 60 条，共 $N+60$ 条</i></div>
+        <div class="dl" data-step="3"><span>得</span><span>$\dfrac{60}{N+60}=\dfrac1{24}$</span><i class="why">列方程</i></div>
+        <div class="dl end" data-step="4"><span>解得</span><span class="think" data-step="5" data-ask="N = ?">$N=1\,380$</span><i class="why">$N+60=1\,440$，经检验</i></div>
+      </div>
+      <p class="def" data-step="6">这样，我们可以估计该鱼塘内有青鱼 1 380 条．</p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7">也可以不放白鱼：先从鱼塘内捕捞一些青鱼（如 60 条），给每条青鱼做上记号，把这些青鱼看成“白鱼”——<span class="think" data-step="8" data-ask="方程会怎样变？">这时塘里鱼的总数就是 $N$（有记号的也是青鱼）：$\dfrac{60}{N}\approx$ 捕到有记号的鱼的频率．</span></p>
+      <p class="warn" data-step="9" data-label="两种做法的区别">放白鱼：总数是 $N+60$；做记号：总数是 $N$．列方程前先想清楚“总共有多少条”．</p>
+      <p class="recall" data-step="10" data-label="科学研究中">生物学家常用这种方法估计某个种群的数量，如某地区野鹿的只数、某山区某种鸟的数量等．</p>
+    </div>
+  </div>
+  <p class="note">课本 p140。检验：N = 1 380 时 60/1 440 = 1/24。第 7 步是课本的第二种做法（做记号），练习 2 和习题 2 都是这种情况，方程分母没有“+60”，学生容易混。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一只不透明的袋子中共装有红球、黄球和蓝球 360 个，这些球除颜色外都相同．小明每次从中任意摸出 1 个球，记下颜色后将球放回并搅匀，通过多次重复试验，算得摸到红球、黄球和蓝球的频率分别是 25%、35% 和 40%．试估计这只袋子中 3 种颜色的球的数目．</p>
+        <p class="q">红球约 <span class="blank" data-ans="90"></span> 个，黄球约 <span class="blank" data-ans="126"></span> 个，蓝球约 <span class="blank" data-ans="144"></span> 个．</p>
+        <details><summary>提示 1</summary>摸到红球的概率 ≈ 25%，而 $P(\text{红})=\dfrac{\text{红球数}}{360}$．</details>
+        <details><summary>完整解答</summary>红球约 $360\times25\%=90$ 个，黄球约 $360\times35\%=126$ 个，蓝球约 $360\times40\%=144$ 个．（检验：$90+126+144=360$．）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 为估计鱼塘中鱼的数量，先从鱼塘中捕捞 30 条鱼做上标记，然后放回鱼塘．经过一段时间，待有标记的鱼完全混合于鱼群后，再从中多次捕捞，并算得平均每 200 条鱼中带有标记的鱼有 5 条．试估计该鱼塘中鱼的数量．</p>
+        <p class="q">该鱼塘中约有鱼 <span class="blank" data-ans="1200" data-w="5"></span> 条．</p>
+        <details><summary>提示 1</summary>有标记的鱼也在鱼塘里：总数是 $N$，不是 $N+30$．</details>
+        <details><summary>完整解答</summary>设鱼塘中有鱼 $N$ 条，则 $\dfrac{30}{N}=\dfrac{5}{200}$，解得 $N=1\,200$，经检验符合题意．估计该鱼塘中约有鱼 1 200 条．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p140 练习 1、2。填空回车即判断。第 2 题与上一页“做记号”的做法相同，注意分母是 N。</p>
+</section>
+
+<!-- 8 ================= 读一读：估计 π ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">读一读</span><h2>估计圆周率 π 的值：撒一把米</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <canvas class="pi-canvas" id="piCanvas" width="600" height="600" aria-label="正方形及其内切圆，随机撒米"></canvas>
+      <div class="btns sm" data-noswipe><button class="btn solid" type="button" id="pi100">撒 100 粒</button><button class="btn" type="button" id="pi1000">撒 1 000 粒</button><button class="btn" type="button" id="pi10000">撒 10 000 粒</button><button class="btn" type="button" id="piClr">清空</button></div>
+    </div>
+    <div class="col">
+      <p class="small-p">在桌面上放一张画有 30 cm × 30 cm 的正方形及其内切圆的白纸，随机地将一把大米撒到白纸上，计算落在圆内的米粒数 $m$、落在正方形内的米粒数 $n$ 和相应的频率 $\dfrac mn$．</p>
+      <div class="readout2" id="piRead"></div>
+      <div class="derive" data-step="1">
+        <div class="dl"><span>$P(A)$</span><span>$=\dfrac{\pi\times15^2}{30\times30}=\dfrac{\pi}{4}$</span><i class="why">面积之比（九上 4.3）</i></div>
+        <div class="dl end"><span>所以</span><span>$\dfrac mn\approx\dfrac\pi4$，$\pi\approx\dfrac{4m}{n}$</span><i class="why">频率估计概率</i></div>
+      </div>
+      <p class="tip" data-step="2">撒得越多，估计越准吗？<span class="think" data-step="3" data-ask="多撒几次">总体上越来越接近 3.14，但每次结果都不同；要得到 π 的很多位小数，这种方法太慢——它的意义在于“用概率估计一个确定的数”．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p141“读一读”。课本记号：米粒落在圆内记为事件 A，P(A) = 圆面积 / 正方形面积 = π/4（九上 4.3 “阅读”的面积之比）。米粒位置用真随机数生成，圆内的画成橙色、圆外的画成灰色。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 8.5 选做</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>1.</b> 某种绿豆在相同条件下的发芽试验结果如下．一般地，在相同条件下，5 000 粒该种绿豆大约有多少粒不能发芽？</p>
+          <div class="tab-wrap"><table class="mtab tight">
+            <tr><th>每批粒数 $n$</th><td>2</td><td>5</td><td>10</td><td>50</td><td>100</td><td>500</td><td>1 000</td><td>1 500</td></tr>
+            <tr><th>发芽的频数 $m$</th><td>2</td><td>4</td><td>9</td><td>44</td><td>92</td><td>463</td><td>928</td><td>1 396</td></tr>
+            <tr><th>发芽的频率 $\frac mn$</th><td>1</td><td>0.8</td><td>0.9</td><td>0.88</td><td>0.92</td><td>0.926</td><td>0.928</td><td>0.931</td></tr>
+          </table></div>
+          <details><summary>提示 1</summary>粒数很多时，发芽的频率稳定在多少附近？</details>
+          <details><summary>完整解答</summary>发芽的概率约为 0.93，不能发芽的概率约为 0.07，$5\,000\times0.07=350$，大约有 350 粒不能发芽．</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 先捕捉野鹿 $n$ 只做上记号后放归；一段时间后重新捕捉，平均每 $m$ 只中有 $a$ 只带有记号．试估计该地区野鹿的只数（用含 $m$、$n$、$a$ 的代数式表示）．</p>
+          <details><summary>完整解答</summary>设有野鹿 $x$ 只，$\dfrac nx=\dfrac am$，$x=\dfrac{mn}{a}$（只）．</details>
+        </div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 一只不透明的袋子中装有若干个白球和红球，这些球除颜色外都相同．将球搅匀后从中任意摸出 1 个球，记下颜色后放回、搅匀，不断重复这个过程：</p>
+        <div class="tab-wrap"><table class="mtab tight">
+          <tr><th>摸球的次数 $n$</th><td>200</td><td>300</td><td>400</td><td>1 000</td><td>1 600</td><td>2 000</td></tr>
+          <tr><th>摸到白球的频数 $m$</th><td>116</td><td>192</td><td>232</td><td>590</td><td>968</td><td>1 202</td></tr>
+          <tr><th>频率 $\frac mn$</th><td><span class="blank" data-ans="0.58" data-w="4"></span></td><td><span class="blank" data-ans="0.64" data-w="4"></span></td><td><span class="blank" data-ans="0.58" data-w="4"></span></td><td><span class="blank" data-ans="0.59" data-w="4"></span></td><td><span class="blank" data-ans="0.605" data-w="5"></span></td><td><span class="blank" data-ans="0.601" data-w="5"></span></td></tr>
+        </table></div>
+        <p class="q">(2) 摸到白球的概率的估计值约为 <span class="blank" data-ans="0.6" data-w="3"></span>；(3) 若已知袋中有白球 24 个，则红球约 <span class="blank" data-ans="16" data-w="3"></span> 个．</p>
+        <details><summary>提示 1</summary>(3) 设红球 $x$ 个，$\dfrac{24}{24+x}=0.6$．</details>
+        <details><summary>完整解答</summary>(1) 0.58、0.64、0.58、0.59、0.605、0.601；(2) 约 0.6；(3) $\dfrac{24}{24+x}=0.6$，$24+x=40$，$x=16$，经检验符合题意，红球约 16 个．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p141–142 习题 8.5 第 1、2、3 题。第 3 题的频率填空回车即判断（0.605 写成 0.6050 也算对）。第 2 题与鱼塘“做记号”的方法一样。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>方法</h3>
+        <p class="method" data-label="四步">大量试验得频率 → 频率估计概率 → 用未知数表示概率 → 列方程求解（检验）．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>注意</h3>
+        <p class="warn" data-label="易错">放入白鱼时总数是 $N+60$；做记号时总数是 $N$．结果是“估计”，不是精确值．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="模型与转化">鱼塘、野鹿、撒米都转化为“摸球”模型：未知的数量藏在概率里．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>8.6 收取多少保险费才合理——知道了概率，能不能预测“平均会发生多少次”？</p>
+  </div>
+  <p class="note">前后联系：8.4 是“已知球，算概率”，8.5 是“由频率，估计球”，8.6 将是“由概率，估计平均发生次数”，三课合起来是概率的完整应用。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

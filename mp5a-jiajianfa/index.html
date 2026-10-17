@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小数加法和减法 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/guitai.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第四单元 小数加法和减法 · 小数加法和减法</p>
+    <h1 class="cover-title">小数加法和减法</h1>
+    <p class="cover-q" data-step="1">文具柜台：钢笔 <b>8 元</b>，笔记本 <b>3.4 元</b>，讲义夹 <b>4.75 元</b>，水彩笔 <b>2.65 元</b>。</p>
+    <p class="cover-q" data-step="2">小明买 1 个讲义夹，小丽买 1 本笔记本，一共要用多少元？竖式该怎样<b>对齐</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">对齐实验</span><span class="chip">竖式一步一步算</span><span class="chip">路线图</span></div>
+  </div>
+  <p class="note">课本 p48 例 1 的情境。先让学生估一估：4 元多加 3 元多，一共大约 8 元。这个估计后面用来检验竖式对不对。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>算小数加减法，要用到哪些旧知识？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="二、三年级 · 整数加减竖式" data-step="1">
+        <div class="mini-vert"><span></span><span>4</span><span>7</span><span>5</span><span>+</span><span></span><span>3</span><span>4</span><span></span><span>5</span><span>0</span><span>9</span></div>
+        <p>相同数位对齐，从<b>个位</b>算起，满十进一。</p>
+        <span class="use">小数也要相同数位对齐。</span>
+      </div>
+      <div class="recall" data-label="第三单元 · 计数单位" data-step="2">
+        <p>7 个 0.1 + 4 个 0.1 = 11 个 0.1 = 1.1</p>
+        <p>只有<b>计数单位相同</b>的数才能直接相加减。</p>
+        <span class="use">为什么要“小数点对齐”。</span>
+      </div>
+      <div class="recall" data-label="第三单元 · 小数的性质" data-step="3">
+        <p class="big center">3.4 = 3.40</p>
+        <p>末尾添 0 或去 0，大小不变。</p>
+        <span class="use">被减数位数不够时补 0；结果末尾的 0 化简。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>4.75 + 3.4，竖式应该“末尾对齐”还是“小数点对齐”？</p>
+  </div>
+  <p class="note">第 1 张卡的整数竖式 475 + 34 和今天的 4.75 + 3.4 数字一样，正好引出冲突：整数是末尾对齐，小数也能这样吗？</p>
+</section>
+
+<!-- 3 ================= 对齐实验（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 对齐实验</span><h2>4.75 + 3.4：哪一种算法正确？为什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns center-btns" id="alMode" data-noswipe>
+        <button type="button" class="btn" data-m="end">先把末尾对齐</button>
+        <button type="button" class="btn solid" data-m="dot">先把小数点对齐</button>
+      </div>
+      <table class="vt al-grid" id="alGrid"></table>
+      <p class="tip feedback" id="alMsg"></p>
+    </div>
+    <div class="col">
+      <div class="money" data-step="1">
+        <h4>用元、角、分验证</h4>
+        <table class="mtab">
+          <tr><th></th><th>元</th><th>角</th><th>分</th></tr>
+          <tr><td>讲义夹 4.75 元</td><td>4</td><td>7</td><td>5</td></tr>
+          <tr><td>笔记本 3.4 元</td><td>3</td><td>4</td><td>0</td></tr>
+          <tr><td>合起来</td><td>7</td><td>11</td><td>5</td></tr>
+        </table>
+        <p>11 角 = 1 元 1 角，一共 <span class="blank" data-ans="8.15" data-w="4"></span> 元。</p>
+      </div>
+      <p class="method" data-step="2" data-label="为什么">小数点对齐了，<b>相同数位</b>就对齐了：元对元、角对角、分对分，计数单位相同才能相加。</p>
+    </div>
+  </div>
+  <p class="note">课本 p48 两个小精灵的算法。先切到“末尾对齐”：表头标出每一列的数位，3.4 的“3”跑到了十分位，“4”跑到了百分位——3 个一被当成了 3 个 0.1，所以得 5.09，比估计的 8 元差太多。再切回“小数点对齐”，得 8.15，和用元角分算的一致。</p>
+</section>
+
+<!-- 4 ================= 竖式一步一步 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 竖式</span><h2>一列一列算：从最低位算起</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="vt-box" id="vt1"></div>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <p>(1) $4.75+3.4=$ <span class="blank" data-ans="8.15" data-w="4"></span>（元）</p>
+        <p>(2) 小明比小丽多用多少元？<br>$4.75-3.4=$ <span class="blank" data-ans="1.35" data-w="4"></span>（元）</p>
+      </div>
+      <div class="calc" data-step="1">
+        <h4>试一试</h4>
+        <p>小明和小芳一共：$4.75+2.65=$ <span class="blank" data-ans="7.4|7.40" data-w="4"></span>（元）</p>
+        <p>小芳比小明少：$4.75-2.65=$ <span class="blank" data-ans="2.1|2.10" data-w="4"></span>（元）</p>
+      </div>
+      <p class="tip gold" data-step="2">你能把计算的结果化简吗？　<span class="think" data-step="3" data-ask="想一想">7.40 = 7.4，2.10 = 2.1：得数末尾的 0 一般去掉。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p48 例 1(1)(2) 和试一试。左边竖式点“算下一列”：从百分位开始，一列一列算，进位用小 1 标出，最后在得数里点上小数点（和横线上面的小数点对齐）。3.4 的百分位上没有数，看作 0（灰色虚框）。试一试的两题在左边也可以选。</p>
+</section>
+
+<!-- 5 ================= 概括 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>小数加减法和整数加减法，有什么相同的地方？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="lr-box" data-step="1">
+        <h4>相同</h4>
+        <p>都要把<b>相同数位</b>对齐；都从<b>最低位</b>算起；满十进一、退一当十。</p>
+      </div>
+      <div class="lr-box" data-step="2">
+        <h4>要注意</h4>
+        <p>小数要<b>小数点对齐</b>（这样相同数位才对齐）；得数里的小数点要和横线上的小数点对齐；得数末尾有 0 的，一般要化简。</p>
+      </div>
+    </div>
+    <div class="method" data-step="3" data-label="计算小数加、减法"><ol class="m-list"><li>小数点对齐（也就是相同数位对齐）；</li><li>按整数加、减法的方法计算；</li><li>得数里对齐横线上的小数点，点上小数点；能化简的化简。</li></ol></div>
+  </div>
+  <p class="note">课本 p49 上方的问题，先让学生和同桌说，再出示。强调：整数的“末尾对齐”其实也是“个位对齐”，本质都是相同数位对齐。</p>
+</section>
+
+<!-- 6 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用竖式计算</h2></div>
+  <div class="bd full top">
+    <div class="cols4">
+      <div class="jcard"><p class="cq">$9.3+6.98$</p><p class="center">$=$ <span class="blank" data-ans="16.28" data-w="5"></span></p></div>
+      <div class="jcard"><p class="cq">$24+9.9$</p><p class="center">$=$ <span class="blank" data-ans="33.9" data-w="4"></span></p></div>
+      <div class="jcard"><p class="cq">$13.8-8.3$</p><p class="center">$=$ <span class="blank" data-ans="5.5" data-w="3"></span></p></div>
+      <div class="jcard"><p class="cq">$7.56-4.56$</p><p class="center">$=$ <span class="blank" data-ans="3" data-w="3"></span></p></div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q">卡住了？</p>
+      <details><summary>提示 1</summary>24 是整数，它的小数点在个位右边：24 = 24.0。</details>
+      <details><summary>提示 2</summary>7.56 − 4.56 = 3.00，化简成 3。</details>
+      <details><summary>完整解答</summary>16.28；33.9；5.5；3。</details>
+    </div>
+    <p class="warn" data-step="1">24 + 9.9：不能把 9.9 的末位和 24 的末位对齐！先找到 24 的小数点（在 4 的右边）。</p>
+  </div>
+  <p class="note">课本 p49 练一练（上）。可以请四位学生到黑板上列竖式。24 + 9.9 是最容易错的：错算成 3.39 或 25.89 的，回到第 3 页的“末尾对齐”看看。</p>
+</section>
+
+<!-- 7 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>1 本笔记本比 1 支水彩笔贵多少元？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="vt-box" id="vt2"></div>
+    </div>
+    <div class="col">
+      <p class="tip">$3.4-2.65=$ <span class="blank" data-ans="0.75" data-w="4"></span>（元）</p>
+      <p class="tip" data-step="1">被减数的百分位上没有数，为什么可以看作 0？　<span class="think" data-step="2" data-ask="说一说">根据<b>小数的性质</b>：3.4 = 3.40，在末尾添 0 大小不变。</span></p>
+      <p class="tip" data-step="3"><b>试一试：</b>1 支水彩笔比 1 支钢笔便宜多少元？<br>$8-2.65=$ <span class="blank" data-ans="5.35" data-w="4"></span>（元）　<span class="think" data-step="4" data-ask="十分位、百分位看作几？">8 = 8.00，十分位和百分位都看作 0。</span></p>
+      <p class="method" data-step="5" data-label="验算">小数加、减法的验算方法与整数相同：$0.75+2.65=3.4$ ✓</p>
+    </div>
+  </div>
+  <p class="note">课本 p49 例 2 和试一试。左边竖式选“3.4 − 2.65”，点“算下一列”：百分位 0 − 5 不够减，从十分位退 1（退位点），10 − 5 = 5……注意得数的整数部分是 0，要写 0。再选“8 − 2.65”看连续退位。最后选“验算”用加法检验。</p>
+</section>
+
+<!-- 8 ================= 练一练 + 找错 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 找错</span><h2>算一算，再当小医生</h2></div>
+  <div class="bd full top">
+    <div class="cols4">
+      <div class="jcard"><p class="cq">$7.5-3.24$</p><p class="center">$=$ <span class="blank" data-ans="4.26" data-w="4"></span></p></div>
+      <div class="jcard"><p class="cq">$0.6-0.29$</p><p class="center">$=$ <span class="blank" data-ans="0.31" data-w="4"></span></p></div>
+      <div class="jcard"><p class="cq">$13-8.6$</p><p class="center">$=$ <span class="blank" data-ans="4.4" data-w="3"></span></p></div>
+      <div class="jcard"><p class="cq">$6.5-5.78$</p><p class="center">$=$ <span class="blank" data-ans="0.72" data-w="4"></span></p></div>
+    </div>
+    <p class="tip">练习八 · 4　先找出错在哪里，再改正。</p>
+    <div class="cols3">
+      <div class="jcard"><p class="cq">$4.3-2.14=2.24$</p><p class="center">改正：<span class="blank" data-ans="2.16" data-w="4"></span></p><p class="why-s" data-step="1">错因：百分位 0 − 4 时，直接用 4 − 0 了。</p></div>
+      <div class="jcard"><p class="cq">$8.36-7.4=96$</p><p class="center">改正：<span class="blank" data-ans="0.96" data-w="4"></span></p><p class="why-s" data-step="1">错因：得数漏写小数点和整数部分的 0。</p></div>
+      <div class="jcard"><p class="cq">$16-6.7=10.3$</p><p class="center">改正：<span class="blank" data-ans="9.3" data-w="3"></span></p><p class="why-s" data-step="1">错因：把 16 写成 16.0 后，十分位 0 − 7 没有退位。</p></div>
+    </div>
+  </div>
+  <p class="note">课本 p49 练一练（下）和 p50 练习八第 4 题。错因先让学生说，再按 → 出示；三个错误分别是：没有退位、漏写小数点和 0、整数的小数点位置找错导致没退位。</p>
+</section>
+
+<!-- 9 ================= 路线图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习八 · 3</span><h2>看路线图，解决问题</h2></div>
+  <div class="bd full top">
+    <svg id="routeFig" class="route-fig" viewBox="0 0 1000 150" aria-label="少年宫、小冬家、学校、小华家的路线图"></svg>
+    <div class="cols3">
+      <div class="calc"><p>(1) 小冬家和小华家相距多少千米？</p><p>$0.55+1.55=$ <span class="blank" data-ans="2.1|2.10" data-w="4"></span></p></div>
+      <div class="calc"><p>(2) 各自从家到学校，小华要比小冬多走多少千米？</p><p>$1.55-0.55=$ <span class="blank" data-ans="1|1.00" data-w="3"></span></p></div>
+      <div class="calc"><p>(3) 小华从家到少年宫一共要走多少千米？</p><p><span class="blank" data-ans="4.25" data-w="4"></span> 千米</p></div>
+    </div>
+    <p class="tip" data-step="1">你还能提出什么问题？　<span class="think" data-step="2" data-ask="提一提">比如：小冬从家到少年宫比到学校远多少千米？$2.15-0.55=1.6$（千米）</span></p>
+  </div>
+  <p class="note">课本 p50 练习八第 3 题。路线图按比例画（1 千米画 200 个单位）：2.15、0.55、1.55 千米的三段长度准确。第 (3) 题小华要走三段：2.15 + 0.55 + 1.55 = 4.25（千米），这就是下一课的“连加”。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>小数点对齐，就是数位对齐</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>小数点对齐</b><small>相同数位对齐</small></div><i>然后</i>
+      <div class="fbox"><b>从最低位算起</b><small>满十进一 · 退一当十</small></div><i>最后</i>
+      <div class="fbox"><b>点上小数点</b><small>对齐横线上的小数点，能化简就化简</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="位数不同怎么办" data-step="2">空着的数位看作 0（小数的性质）：3.4 − 2.65 → 3.40 − 2.65；8 − 2.65 → 8.00 − 2.65。</p>
+      <p class="method" data-label="检验" data-step="3">先估一估（4.75 + 3.4 大约是 8），再用加、减法互相验算。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一步：</b>课本 p52 例 3——李芸在超市买了 5 种物品，一共用去多少元？可以用计算器算吗？</p>
+  </div>
+  <p class="note">课后作业建议：练习八第 1、2、5、6、7、8 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
