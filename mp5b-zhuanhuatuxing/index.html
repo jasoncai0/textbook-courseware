@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用转化的策略解决问题（图形） · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <svg id="coverFig" class="cover-fig" viewBox="0 0 640 400" aria-hidden="true"></svg>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第七单元 解决问题的策略 · 用转化的策略解决问题（图形）</p>
+    <h1 class="cover-title">转化（图形）</h1>
+    <p class="cover-q" data-step="1">方格纸上有两个奇怪的图形，边上弯弯曲曲的。</p>
+    <p class="cover-q" data-step="2">哪个<b>面积大</b>一些？不用一格一格地数，有没有好办法？</p>
+    <div class="chips" data-step="3"><span class="chip">平移</span><span class="chip">旋转</span><span class="chip">化不规则为规则</span><span class="chip">形状变了，大小没变</span></div>
+  </div>
+  <p class="note">课本 p105 例 1。封面右侧就是例 1 的两个图形（按课本格数画）。先让学生凭感觉猜，再研究怎样比较。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们曾经把哪些图形“变”成了学过的图形？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="五上 · 平行四边形的面积" data-step="1">
+        <svg viewBox="0 0 260 110" class="mini-fig" aria-label="平行四边形剪拼成长方形"><path d="M60 15H230L190 95H20Z" class="pg"/><path d="M60 15L20 95H60Z" class="cutp"/><path d="M60 15V95" class="dashl"/></svg>
+        <p>沿高剪开，<b>平移</b>，拼成长方形。</p>
+        <span class="use">例 1 的第一个图形也用平移。</span>
+      </div>
+      <div class="recall" data-label="五上 · 三角形的面积" data-step="2">
+        <svg viewBox="0 0 280 110" class="mini-fig" aria-label="两个完全一样的三角形拼成平行四边形"><path d="M30 95L110 15L190 95Z" class="pg"/><path d="M110 15L270 15L190 95Z" class="cutp"/></svg>
+        <p>两个完全一样的三角形，一个<b>旋转</b>后拼成平行四边形。</p>
+        <span class="use">第二个图形用旋转。</span>
+      </div>
+      <div class="recall" data-label="五下 · 圆的面积" data-step="3">
+        <p>把圆剪开，拼成近似的长方形：$S=\pi r^2$。</p>
+        <span class="use">化曲为直、化新为旧。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">这些方法有一个共同的名字——<b>转化</b>。今天专门来研究它。</p>
+  </div>
+  <p class="note">三张卡请学生回忆推导过程，说出“剪、移、拼”“旋转”。点出共同点：把新图形变成学过的图形，面积不变。</p>
+</section>
+
+<!-- 3 ================= 例 1 问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 猜一猜</span><h2>下面两个图形，哪个面积大一些？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="ex1" class="fig grid-fig" viewBox="0 0 620 410" aria-label="方格纸上的两个图形"></svg>
+    </div>
+    <div class="col">
+      <div class="pick" data-ans="c"><p class="small-t">先凭感觉猜一猜：</p><button type="button" data-k="a">左边大</button><button type="button" data-k="b">右边大</button><button type="button" data-k="c">一样大</button><p class="pick-why">猜对了！可是要说明理由——下面两页来验证。</p></div>
+      <p class="tip" data-step="1">你打算怎样比较这两个图形的面积？</p>
+      <div class="cols2" data-step="2">
+        <p class="tip small-t"><b>方法 1：</b>数方格。<br>边是弯的，不满一格的很多，<b>数不准</b>。</p>
+        <p class="tip small-t"><b>方法 2：</b>把它们<b>转化</b>成规则图形再比较。</p>
+      </div>
+      <p class="tip gold" data-step="3">认真观察图形的特点：哪些弯弯的部分<b>形状、大小完全一样</b>？</p>
+    </div>
+  </div>
+  <p class="note">课本 p105 例 1 和“你打算怎样比较”。图按课本格数精确画：左图宽 6 格，上面是半径 3 格的半圆，下面挖去同样大的半圆；右图中间宽 6 格、高 8 格，两侧上面各挖去一个半径 2 格的半圆，下面各凸出一个同样大的半圆。</p>
+</section>
+
+<!-- 4 ================= 平移 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 平移</span><h2>把上面的半圆向下平移，正好拼成长方形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="tr" class="fig grid-fig" viewBox="0 0 300 410" aria-label="拖动半圆向下平移" data-noswipe></svg>
+    </div>
+    <div class="col">
+      <p class="tip">拖动粉色的半圆，向下平移。</p>
+      <p class="tip big-say">已经向下平移了 <b id="trN">0</b> 格</p>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="trGo">自动平移</button><button type="button" class="btn" id="trBack">↺ 移回去</button></div>
+      <p class="tip" data-step="1">向下平移几格，正好拼成长方形？　<span class="think" data-step="2" data-ask="拖一拖">向下平移 <b>8 格</b>，正好填满下面的空缺。</span></p>
+      <p class="tip" data-step="3">拼成的长方形长 <span class="blank" data-ans="8"></span> 格，宽 <span class="blank" data-ans="6"></span> 格，面积是 <span class="blank" data-ans="48"></span> 个方格。</p>
+    </div>
+  </div>
+  <p class="note">课本 p105 小精灵：“把上面的半圆向下平移 8 格，正好拼成长方形。”拖动时按整格吸附；只有正好 8 格时半圆和缺口完全重合（半径都是 3 格）。</p>
+</section>
+
+<!-- 5 ================= 旋转 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 旋转</span><h2>把 2 个半圆分别旋转 180°，也拼成长方形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="rot" class="fig grid-fig" viewBox="0 0 420 330" aria-label="把下面两个半圆分别旋转 180 度" data-noswipe></svg>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>旋转 <input type="range" id="rotA" min="0" max="180" step="5" value="0"><b id="rotAv" class="v"></b></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="rotGo">自动旋转</button></div>
+      <p class="tip" data-step="1">绕着哪个点旋转？　<span class="think" data-step="2" data-ask="看一看">绕着下面半圆和上面缺口<b>相接的那一点</b>（红点）旋转 180°。</span></p>
+      <p class="tip" data-step="3">拼成的长方形长 <span class="blank" data-ans="8"></span> 格，宽 <span class="blank" data-ans="6"></span> 格，面积是 <span class="blank" data-ans="48"></span> 个方格。</p>
+      <p class="method" data-step="4" data-label="结论">因为两个长方形面积相等，所以原来两个图形面积<b>相等</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p106 上方。右图两个凸出的半圆（半径 2 格）分别绕红点旋转 180°，正好填进上面两个缺口。滑块精确控制旋转角度。</p>
+</section>
+
+<!-- 6 ================= 体会 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾</span><h2>回顾解决问题的过程，你有什么体会？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <p class="tip" data-step="1"><span class="think" data-step="1" data-ask="体会 1">有些<b>不规则的图形</b>可以转化成熟悉的、简单的图形。</span></p>
+      <p class="tip" data-step="2"><span class="think" data-step="2" data-ask="体会 2">图形转化时可以运用<b>平移、旋转</b>等方法。</span></p>
+      <p class="tip" data-step="3"><span class="think" data-step="3" data-ask="体会 3">转化后的图形与转化前相比，<b>形状变了，大小没有变</b>。</span></p>
+    </div>
+    <p class="tip" data-step="4">在以前的学习中，我们曾经运用转化的策略解决过哪些问题？</p>
+    <div class="cols3" data-step="5">
+      <p class="recall" data-label="分数">计算异分母分数加、减法时，把异分母分数转化成<b>同分母分数</b>。</p>
+      <p class="recall" data-label="圆">推导圆面积公式时，把圆转化成<b>长方形</b>。</p>
+      <p class="recall" data-label="小数">计算小数乘法时，把小数乘法转化成<b>整数乘法</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p106 中间三个小精灵的话（体会）和下面三个例子（以前用过的转化）。先让学生说，再点开核对。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>两个图案的面积相等吗？为什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="road" class="fig road-fig" viewBox="0 0 640 230" aria-label="同样大小的长方形纸上两个图案，直条宽度相等" data-noswipe></svg>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="roadGo">把明明图案的直条平移到边上</button><button type="button" class="btn" id="roadBack">↺</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">明明和冬冬在同样大小的长方形纸上分别画了一个图案（图中直条的宽度都相等）。</p>
+      <div class="pick" data-ans="v"><button type="button" data-k="v">相等</button><button type="button" data-k="x">不相等</button>
+        <p class="pick-why">把明明图案中的两根直条分别平移到左边和下边，就和冬冬的图案一模一样。</p></div>
+      <p class="tip" data-step="1">空白部分呢？　<span class="think" data-step="2" data-ask="想一想">空白部分也可以平移拼成一个长方形：长、宽都比纸少一个直条宽。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p106 练一练（图案按课本比例简化重画）。动画中两根直条只是平移（形状、大小都不变）。</p>
+</section>
+
+<!-- 8 ================= 练习十六 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十六 · 1</span><h2>求右边图形的周长，怎样计算比较简便？</h2></div>
+  <div class="bd full top">
+    <svg id="peri" class="fig peri-fig" viewBox="0 0 900 240" aria-label="长方形和台阶形图形" data-noswipe></svg>
+    <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="periGo">把线段平移出去</button><button type="button" class="btn" id="periBack">↺</button></div>
+    <div class="cols2">
+      <p class="tip" data-step="1">每个小方格的边长是 1 厘米，右边图形的周长是 <span class="blank" data-ans="16"></span> 厘米。</p>
+      <p class="tip" data-step="2">为什么？　<span class="think" data-step="3" data-ask="看动画">向上的线段平移到上面，向右的线段平移到右边……合起来正好是一个长 5 厘米、宽 3 厘米的长方形的周长：$(5+3)\times2=16$。</span></p>
+    </div>
+  </div>
+  <p class="note">练习十六第 1 题（课本 p109）。右边图形照课本形状画：台阶的转折点不在格线上，没法一段一段地量，但平移后周长和左边 5 × 3 的长方形相同。注意：这里转化的是“周长”，面积并不相等。</p>
+</section>
+
+<!-- 9 ================= 练习十六 3、11 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十六</span><h2>先转化，再计算</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-t"><b>3.</b> 一块草坪被 4 条 1 米宽的小路平均分成了 9 小块。草坪的面积是多少平方米？</p>
+      <svg id="lawn" class="fig lawn-fig" viewBox="0 0 540 330" aria-label="45 米 × 27 米的草坪被 4 条小路分成 9 块" data-noswipe></svg>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="lawnGo">把小路平移到边上</button><button type="button" class="btn" id="lawnBack">↺</button></div>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <p>草坪拼成的长方形：长 $45-2=$ <span class="blank" data-ans="43"></span> 米，宽 $27-2=$ <span class="blank" data-ans="25"></span> 米</p>
+        <p>面积：<span class="blank" data-ans="1075" data-w="4"></span> 平方米</p>
+      </div>
+      <div class="hint-ladder" data-step="1">
+        <p class="q"><b>11.</b> 求涂色部分的面积（单位：cm）。</p>
+        <svg id="ex11" class="fig ex11-fig" viewBox="0 0 300 150" aria-label="左右各凸出一个半圆、上下各挖去一个半圆"></svg>
+        <p class="q small-q">涂色部分 <span class="blank" data-ans="16"></span> cm²</p>
+        <details><summary>提示 1</summary>左右凸出的两个半圆，正好可以填进上下挖去的两个半圆。</details>
+        <details><summary>完整解答</summary>转化成边长 4 cm 的正方形：$4\times4=16$（cm²）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">练习十六第 3 题（课本 p109），小精灵问“怎样计算比较简便？”；第 11 题左图（课本 p111）。草坪图按 45 × 27 的比例画，小路平移后剩下的草坪拼成 43 × 25 的长方形。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>转化：把不会的变成会的</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>不规则图形</b><small>新问题</small></div>
+      <i>平移 · 旋转<br><small>割补</small></i>
+      <div class="fbox"><b>规则图形</b><small>学过的问题</small></div>
+      <i>解决</i>
+      <div class="fbox hot"><b>原问题的答案</b><small>大小不变</small></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-label="怎样转化" data-step="2">先仔细观察：哪些部分形状、大小相同，能“搬”过去补上？</p>
+      <p class="warn" data-label="注意" data-step="3">求面积时，平移、旋转不改变面积；求周长时，平移线段不改变周长——要想清楚转化的是什么。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>例 2——计算 $\frac12+\frac14+\frac18+\frac1{16}$，算式也能转化吗？</p>
+  </div>
+  <p class="note">作业建议：练习十六第 2、12 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

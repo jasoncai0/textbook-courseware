@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用转化的策略解决问题（计算） · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <svg id="coverFig" class="cover-fig" viewBox="0 0 400 400" aria-hidden="true"></svg>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第七单元 解决问题的策略 · 用转化的策略解决问题（计算）</p>
+    <h1 class="cover-title">转化（计算）</h1>
+    <p class="cover-q" data-step="1">计算 $\dfrac12+\dfrac14+\dfrac18+\dfrac1{16}$。</p>
+    <p class="cover-q" data-step="2">一个一个通分当然可以。可如果一直加到 $\dfrac1{128}$ 呢？有没有<b>更简单</b>的算法？</p>
+    <div class="chips" data-step="3"><span class="chip">画图</span><span class="chip">找规律</span><span class="chip">复杂 → 简单</span><span class="chip">倒过来拼</span></div>
+  </div>
+  <p class="note">课本 p107 例 2。封面右侧的正方形就是本课的关键图：每次涂上剩下部分的一半。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这节课要用到的“老朋友”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 转化（图形）" data-step="1">
+        <p>把不规则图形<b>平移、旋转</b>成长方形，面积不变。</p>
+        <span class="use">算式也能转化吗？</span>
+      </div>
+      <div class="recall" data-label="五下 · 异分母分数加法" data-step="2">
+        <p class="big center">$\dfrac12+\dfrac14=\dfrac24+\dfrac14=\dfrac34$</p>
+        <p>先通分，再相加。</p>
+        <span class="use">例 2 的第一种算法。</span>
+      </div>
+      <div class="recall" data-label="五上 · 梯形的面积" data-step="3">
+        <p class="big center">（上底 + 下底）× 高 ÷ 2</p>
+        <p>两个完全一样的梯形，一个<b>旋转</b>后拼成平行四边形。</p>
+        <span class="use">练一练：数铅笔、连续数求和。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>复杂的算式，能不能转化成简单的算式？</p>
+  </div>
+  <p class="note">第 3 张卡请学生回忆梯形面积公式是怎样推导的（两个完全一样的梯形拼成平行四边形），练一练第 2 题正好用同样的方法数铅笔。</p>
+</section>
+
+<!-- 3 ================= 例 2 观察 + 通分 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 观察</span><h2>$\dfrac12+\dfrac14+\dfrac18+\dfrac1{16}$，你有什么发现？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1"><span class="think" data-step="1" data-ask="发现 1">4 个分数连加，每个加数的<b>分子都是 1</b>。</span></p>
+      <p class="tip" data-step="2"><span class="think" data-step="2" data-ask="发现 2">分母是有规律排列的：依次是 2，$2\times2$，$2\times2\times2$，$2\times2\times2\times2$——后一个加数是前一个的<b>一半</b>。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip">你准备怎样计算？先用学过的方法算一算。</p>
+      <div class="calc" data-step="3">
+        <h4>先通分，再计算</h4>
+        <p>$=\dfrac{\square}{16}+\dfrac{4}{16}+\dfrac{2}{16}+\dfrac1{16}$　□ = <span class="blank" data-ans="8"></span></p>
+        <p>$=$ <span class="blank" data-ans="15/16" data-w="4"></span></p>
+      </div>
+      <p class="tip gold" data-step="4">能不能<b>转化成更简单的算式</b>？画个图看看。</p>
+    </div>
+  </div>
+  <p class="note">课本 p107 前两个框：“观察这道算式，你有什么发现？”“你准备怎样计算？”三种想法：从左往右依次计算、先通分再计算、能不能转化成更简单的算式。先让学生用通分算出 15/16，再引出画图。</p>
+</section>
+
+<!-- 4 ================= 核心：正方形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 画一画</span><h2>把正方形看作单位“1”，把加数填入图中</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="half" class="fig half-fig" viewBox="0 0 400 400" aria-label="正方形每次涂上剩下部分的一半"></svg>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>加到第 <input type="range" id="halfN" min="1" max="7" step="1" value="4"> <b id="halfNv" class="v"></b> 个加数</div>
+      <p class="tip big-eq" id="halfEq"></p>
+      <p class="tip" data-step="1">空白部分占大正方形的几分之几？　<span class="think" data-step="2" data-ask="看图">4 个加数时，空白部分是 $\dfrac1{16}$。</span></p>
+      <p class="tip" data-step="3">涂色部分呢？　<span class="think" data-step="4" data-ask="想一想">涂色部分是大正方形的 $1-\dfrac1{16}$。</span></p>
+      <p class="method" data-step="5" data-label="规律">每加一个数，空白部分就变成原来的一半：加数之和 = 1 − 空白部分 = 1 − 最后一个加数。</p>
+    </div>
+  </div>
+  <p class="note">课本 p107“把正方形看作单位‘1’，把算式中的加数填入下图”。图中每一块都按面积精确划分（1/2、1/4、1/8……交替竖切、横切），右边算式同步变化。拖滑块到 7，就是练一练第 1 题。</p>
+</section>
+
+<!-- 5 ================= 转化 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 转化</span><h2>原来的加法算式可以转化成……</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive word-derive">
+        <div class="dl" data-step="1"><span>$\dfrac12+\dfrac14+\dfrac18+\dfrac1{16}$</span><span></span><i class="why">4 个加数连加</i></div>
+        <div class="dl key" data-step="2"><span>$=1-\dfrac1{16}$</span><span></span><i class="why">涂色部分 = 整个正方形 − 空白部分</i></div>
+        <div class="dl" data-step="3"><span>$=$ <span class="blank" data-ans="15/16" data-w="4" data-strict></span></span><span></span><i class="why">一步就算出来</i></div>
+      </div>
+      <p class="tip" data-step="4">用转化后的算式算一算，看看与原来的计算结果是否相同。　<span class="think" data-step="5" data-ask="比一比">都是 $\dfrac{15}{16}$，结果相同。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6">回顾解决问题的过程，你有什么体会？</p>
+      <p class="recall" data-label="体会 1" data-step="7">有些复杂的算式可以<b>转化成简单的算式</b>。</p>
+      <p class="recall" data-label="体会 2" data-step="8">有时<b>画图</b>可以帮助我们找到转化的方法。</p>
+    </div>
+  </div>
+  <p class="note">课本 p108 上方：“用转化后的算式算一算，看看与原来的计算结果是否相同。”“回顾解决问题的过程，你有什么体会？”两条体会照课本。</p>
+</section>
+
+<!-- 6 ================= 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 1</span><h2>加数更多了，还能一步算吗？</h2></div>
+  <div class="bd full">
+    <div class="hint-ladder">
+      <p class="q">计算 $\dfrac12+\dfrac14+\dfrac18+\dfrac1{16}+\dfrac1{32}+\dfrac1{64}+\dfrac1{128}$。</p>
+      <p class="q small-q">$=1-$ <span class="blank" data-ans="1/128" data-w="4" data-strict></span> $=$ <span class="blank" data-ans="127/128" data-w="5" data-strict></span></p>
+      <details><summary>提示 1</summary>回到上一页的正方形，把滑块拖到 7：空白部分是最后一个加数。</details>
+      <details><summary>完整解答</summary>$=1-\frac1{128}=\frac{127}{128}$</details>
+    </div>
+    <div class="cols2">
+      <div class="jcard">
+        <p>$\dfrac12+\dfrac14+\dfrac18=1-\dfrac18$？</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">空白部分正好是最后一个加数 $\frac18$，结果 $\frac78$。</p></div>
+      </div>
+      <div class="jcard">
+        <p>$\dfrac13+\dfrac19+\dfrac1{27}=1-\dfrac1{27}$？</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">这里每个加数是前一个的 $\frac13$，不是一半，图形转化不成立。通分：$\frac9{27}+\frac3{27}+\frac1{27}=\frac{13}{27}$。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p108 练一练第 1 题。下面两个判断是补充的辨析：这种转化只在“后一个加数是前一个的一半、第一个是 1/2”时成立，不能乱套。</p>
+</section>
+
+<!-- 7 ================= 练一练 2 铅笔 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 2</span><h2>联系梯形面积公式，计算铅笔的支数</h2></div>
+  <div class="bd full top">
+    <svg id="pencil" class="fig pencil-fig" viewBox="0 0 1000 300" aria-label="装满铅笔的铅笔架，再倒放一个拼成平行四边形" data-noswipe></svg>
+    <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="pGo">再倒放一个同样的铅笔架</button><button type="button" class="btn" id="pBack">↺</button></div>
+    <div class="cols2">
+      <div class="calc">
+        <p>最上层 <span class="blank" data-ans="15"></span> 支，最下层 <span class="blank" data-ans="6"></span> 支，共 <span class="blank" data-ans="10"></span> 层</p>
+        <p>$(15+6)\times10\div2=$ <span class="blank" data-ans="105" data-w="3"></span>（支）</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">结合上面的计算想一想：$15+16+17+\cdots+24$（10 个连续自然数）怎样算比较简便？</p>
+        <p class="q small-q">$=$ <span class="blank" data-ans="195" data-w="3"></span></p>
+        <details><summary>提示 1</summary>把 15、16……24 看成每层的支数：上底 15，下底 24，10 层。</details>
+        <details><summary>完整解答</summary>$(15+24)\times10\div2=195$</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p108 练一练第 2 题（图中最上层 15 支、最下层 6 支、共 10 层，每层比上一层少 1 支）。点按钮：一个同样的铅笔架旋转 180° 后拼过来，每层都变成 15 + 6 = 21 支，共 10 层，所以一个铅笔架是 21 × 10 ÷ 2 = 105 支——和梯形面积公式的推导一样。</p>
+</section>
+
+<!-- 8 ================= 练习十六 4、5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十六 · 4、5</span><h2>转化成好算的算式</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> $9999+999+99+9$ 可以转化成怎样的算式来计算？</p>
+        <p class="q small-q">$=$ <span class="blank" data-ans="11106" data-w="5"></span></p>
+        <details><summary>提示 1</summary>每个数都比整万、整千、整百、整十少 1。</details>
+        <details><summary>完整解答</summary>$=(10000-1)+(1000-1)+(100-1)+(10-1)=11110-4=11106$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 计算 $75+76+77+78+79+80+81+82+83$。</p>
+        <p class="q small-q">$=$ <span class="blank" data-ans="711" data-w="3"></span></p>
+        <details><summary>提示 1</summary>这 9 个数的平均数是多少？（中间那个数）</details>
+        <details><summary>提示 2</summary>也可以像铅笔架那样：（第一个数 + 最后一个数）× 个数 ÷ 2。</details>
+        <details><summary>完整解答</summary>$79\times9=711$，或 $(75+83)\times9\div2=711$</details>
+      </div>
+    </div>
+    <svg id="avg" class="fig avg-fig" viewBox="0 0 900 200" aria-label="9 个数移多补少都变成 79" data-step="1" data-noswipe></svg>
+    <div class="btns center-btns" data-step="1" data-noswipe><button type="button" class="btn" id="avgGo">移多补少</button><button type="button" class="btn" id="avgBack">↺</button></div>
+  </div>
+  <p class="note">练习十六第 4、5 题（课本 p109），第 5 题小精灵问“这 9 个数的平均数是多少？你还能想到其他的简便算法吗？”。下面的条形图（只画出超过 70 的部分）演示“移多补少”：83 比 79 多 4，补给 75……最后 9 根一样高，都是 79。</p>
+</section>
+
+<!-- 9 ================= 练习十六 7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十六 · 7</span><h2>观察每个图形中圆的排列规律</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="odd" class="fig odd-fig" viewBox="0 0 330 330" aria-label="用圆点摆成的正方形，一层一层像 L 形" data-noswipe></svg>
+      <div class="slider-row" data-noswipe>层数 <input type="range" id="oddN" min="1" max="10" step="1" value="4"><b id="oddNv" class="v"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip big-eq" id="oddEq"></p>
+      <p class="tip">(1) $1+3+5+7=$ <span class="blank" data-ans="16"></span> $=$ <span class="blank" data-ans="4"></span> $\times$ <span class="blank" data-ans="4"></span></p>
+      <p class="tip">(2) $1+3+5+7+9+11=$ <span class="blank" data-ans="36"></span></p>
+      <p class="tip">　　$1+3+5+\cdots+19=$ <span class="blank" data-ans="100" data-w="3"></span></p>
+      <p class="method" data-step="1" data-label="规律">从 1 开始连续 $n$ 个奇数相加，和等于 $n\times n$。</p>
+    </div>
+  </div>
+  <p class="note">练习十六第 7 题（课本 p110）。每一层是一个“L”形，比上一层多 2 个圆，正好是下一个奇数；n 层拼成 n × n 的正方形。1 + 3 + … + 19 共 10 个奇数，和是 10 × 10 = 100。</p>
+</section>
+
+<!-- 10 ================= 思考题 + 淘汰赛 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">挑战</span><h2>换个角度想，问题就简单了</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 有 8 支足球队参加比赛，比赛以单场淘汰制（每场比赛淘汰 1 支球队）进行。一共要进行多少场比赛才能产生冠军？</p>
+        <p class="q small-q">8 支：<span class="blank" data-ans="7"></span> 场　16 支：<span class="blank" data-ans="15"></span> 场　32 支：<span class="blank" data-ans="31"></span> 场</p>
+        <details><summary>提示 1</summary>不去数每一轮，换个角度：最后只剩冠军 1 队，要淘汰掉几支队？</details>
+        <details><summary>完整解答</summary>每场淘汰 1 队，要淘汰 8 − 1 = 7 队，就要比 7 场。16 支要 15 场，32 支要 31 场。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>思考题</b> 如下图，涂色部分是正方形，你能求出图中最大长方形的周长吗？</p>
+        <svg id="think" class="fig think-fig" viewBox="0 0 420 150" aria-label="长方形中间有一个涂色正方形，标注 19 cm 和 27 cm"></svg>
+        <p class="q small-q">周长 <span class="blank" data-ans="92"></span> cm</p>
+        <details><summary>提示 1</summary>设正方形边长是 a，它也是长方形的宽。长方形的长 = 27 + 19 − a。</details>
+        <details><summary>完整解答</summary>周长 =（长 + 宽）× 2 =（27 + 19 − a + a）× 2 = 46 × 2 = 92（cm）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">练习十六第 6 题和 p111 思考题。两题都是“换个角度”：第 6 题把“数比赛场数”转化成“数被淘汰的队数”；思考题不知道正方形边长，但边长在长和宽里一减一加正好抵消。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>转化：化繁为简、化新为旧</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>复杂的算式</b><small>$\frac12+\frac14+\cdots$</small></div>
+      <i>画图<br><small>找规律</small></i>
+      <div class="fbox"><b>简单的算式</b><small>$1-\frac1{16}$</small></div>
+      <i>拼一拼</i>
+      <div class="fbox hot"><b>熟悉的公式</b><small>（上底 + 下底）× 高 ÷ 2</small></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-label="怎样找到转化的方法" data-step="2">仔细观察数的特点；画图帮助思考；联想学过的公式（梯形、正方形）。</p>
+      <p class="recall" data-label="这一单元" data-step="3">图形：平移、旋转，形状变、大小不变。计算：复杂变简单，结果不变。</p>
+    </div>
+    <p class="tip gold" data-step="4">今后遇到新问题，先问一问自己：<b>能不能转化成我会的问题？</b></p>
+  </div>
+  <p class="note">作业建议：练习十六第 8、13 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

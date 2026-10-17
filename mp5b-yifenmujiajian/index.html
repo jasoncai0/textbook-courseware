@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>异分母分数加减法 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shiyantian.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第五单元 分数加法和减法 · 异分母分数加减法</p>
+    <h1 class="cover-title">异分母分数加减法</h1>
+    <p class="cover-q" data-step="1">明桥小学有一块长方形试验田，其中 <b>$\frac12$ 种黄瓜</b>，<b>$\frac14$ 种番茄</b>。</p>
+    <p class="cover-q" data-step="2">黄瓜和番茄的面积一共占这块地的<b>几分之几</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">折一折</span><span class="chip">找同样大的小格</span><span class="chip">先通分</span><span class="chip">再加减</span></div>
+  </div>
+  <p class="note">课本 p80 例 1 的情境。先让学生列式：$\frac12+\frac14$。问：这两个分数和以前算过的分数加法有什么不一样？（分母不同）带着“分母不同怎么加”进入新课。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>算之前，先想想这三件事</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三上 · 同分母分数加减" data-step="1">
+        <svg viewBox="0 0 240 70" class="mini-fig" aria-label="2/5 加 1/5">
+          <g id="rcBar"></g>
+        </svg>
+        <p class="big center">$\dfrac25+\dfrac15=\dfrac35$</p>
+        <p>分母不变，<b>分子相加减</b>：2 个 $\frac15$ 加 1 个 $\frac15$ 是 3 个 $\frac15$。</p>
+        <span class="use">通分以后，就按这个方法算。</span>
+      </div>
+      <div class="recall" data-label="五下 · 分数单位" data-step="2">
+        <p class="big center">$\dfrac34$ 的分数单位是 $\dfrac14$</p>
+        <p>把单位“1”平均分成几份，表示其中一份的数叫<b>分数单位</b>。$\frac34$ 里有 3 个 $\frac14$。</p>
+        <span class="use">只有分数单位相同，才能直接相加减。</span>
+      </div>
+      <div class="recall" data-label="五下 · 通分" data-step="3">
+        <p class="big center">$\dfrac12=\dfrac{2}{4}$，$\dfrac{7}{10}=\dfrac{21}{30}$</p>
+        <p>把异分母分数化成和原来分数相等的<b>同分母分数</b>，叫作通分。通常用两个分母的<b>最小公倍数</b>作公分母。</p>
+        <span class="use">今天的关键一步：先通分。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>分母不同的分数，怎样相加、相减？</p>
+  </div>
+  <p class="note">三张卡请学生先口答再点开。第 1 张：为什么分母不变？因为都是 1/5 在数，“数的单位”没变。第 3 张通分是第四单元例 14–15 学的，请学生说说 1/2 和 1/4 通分成什么。</p>
+</section>
+
+<!-- 3 ================= 例 1 猜一猜 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 猜一猜</span><h2>$\dfrac12+\dfrac14$，能不能直接把分子、分母相加？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="field" class="fig field-fig" viewBox="0 0 440 250" aria-label="试验田：一半种黄瓜，四分之一种番茄"></svg>
+      <p class="tip center small-t">绿色：黄瓜 $\frac12$　红色：番茄 $\frac14$</p>
+    </div>
+    <div class="col">
+      <p class="tip">小明这样算：$\dfrac12+\dfrac14=\dfrac{1+1}{2+4}=\dfrac26$。你同意吗？</p>
+      <div class="pick" data-ans="x"><button type="button" data-k="v">同意</button><button type="button" data-k="x">不同意</button>
+        <p class="pick-why">$\dfrac26=\dfrac13$，比黄瓜的 $\dfrac12$ 还小！加上番茄反而变少了，肯定不对。</p></div>
+      <p class="tip" data-step="1">为什么不能直接相加？　<span class="think" data-step="2" data-ask="和同桌说一说">$\frac12$ 是 1 个“二分之一”，$\frac14$ 是 1 个“四分之一”——<b>分母不同，分数单位就不同</b>，不能直接相加。</span></p>
+      <p class="tip gold" data-step="3">就像 1 米加 1 厘米不能说成“2 米”。要先把它们变成<b>同样大的单位</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p80 第一个小精灵：“分母不同，就是分数单位不同，不能直接相加。”先让学生判断小明的算法，再看图：黄瓜已经占了一半，结果 2/6 = 1/3 比一半还少，显然错了。用“1 米 + 1 厘米”类比单位不同。</p>
+</section>
+
+<!-- 4 ================= 例 1 折一折 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 折一折</span><h2>用纸折一折，再涂色看一看</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="fold" class="fig fold-fig" viewBox="0 0 440 270" aria-label="把长方形纸对折两次"></svg>
+      <div class="btns center-btns" data-noswipe>
+        <button type="button" class="btn" id="fold1">① 对折，涂 $\frac12$</button>
+        <button type="button" class="btn" id="fold2">② 再对折，涂 $\frac14$</button>
+        <button type="button" class="btn" id="fold0">↺ 重来</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">对折两次，这张纸被平均分成了几份？　<span class="think" data-step="1" data-ask="数一数">4 份，每份是 $\frac14$。</span></p>
+      <p class="tip" data-step="2">绿色的 $\frac12$ 占了几个 $\frac14$？　<span class="think" data-step="3" data-ask="数一数">2 个，$\dfrac12=\dfrac24$。</span></p>
+      <p class="tip" data-step="4">涂色部分一共有 <span class="blank" data-ans="3"></span> 个 $\frac14$，就是 <span class="blank" data-ans="3/4" data-w="3"></span>。</p>
+      <p class="method" data-step="5" data-label="发现">把 $\frac12$ 换成同样大小的 $\frac24$，两个分数的<b>分数单位就相同了</b>，可以直接数一共有几个 $\frac14$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p80 第二个小精灵：“用纸折一折，再涂色看一看。”可以让学生真的拿长方形纸折。先点①（对折，左半涂绿），再点②（横着再对折，右上角那一格涂红），看到绿色正好是 2 格。</p>
+</section>
+
+<!-- 5 ================= 核心：找同样大的小格 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分数条</span><h2>把单位“1”平均分成几份，两个分数都能正好数出来？</h2></div>
+  <div class="bd full top">
+    <div class="fb-ctrl" data-noswipe>
+      <span class="btns" id="fbQ">
+        <button type="button" class="btn solid" data-q="1,2,+,1,4">$\frac12+\frac14$</button>
+        <button type="button" class="btn" data-q="3,4,+,1,6">$\frac34+\frac16$</button>
+        <button type="button" class="btn" data-q="7,10,-,1,6">$\frac7{10}-\frac16$</button>
+        <button type="button" class="btn" data-q="4,5,-,2,3">$\frac45-\frac23$</button>
+      </span>
+    </div>
+    <div class="slider-row fb-slider" data-noswipe>平均分成 <input type="range" id="fbN" min="2" max="36" step="1" value="3"> <b id="fbNv" class="v"></b> 份</div>
+    <svg id="fbFig" class="fig fb-fig" viewBox="0 0 1000 300" aria-label="分数条：拖动滑块改变平均分的份数" data-noswipe></svg>
+    <p class="tip center fb-say" id="fbSay"></p>
+    <p class="tip gold" data-step="1">哪些份数能让两个分数<b>都</b>正好落在格线上？最少要分成几份？　<span class="think" data-step="2" data-ask="拖一拖，再说">份数必须<b>同时是两个分母的倍数</b>，最少就是两个分母的<b>最小公倍数</b>——这正是通分用的公分母！</span></p>
+  </div>
+  <p class="note">本课核心操作。先选 1/2 + 1/4，从 2 份拖到 4 份、8 份：两个分数的右端都落在格线上（打 ✓）时，下面会拼出结果。再换 7/10 − 1/6：拖到 10 份、12 份都不行，30 份才行；问学生为什么是 30（10 和 6 的最小公倍数）。60 份也行，但算起来麻烦，所以通常用最小公倍数。图中格线位置都是精确计算的。</p>
+</section>
+
+<!-- 6 ================= 例 1 算一算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 算一算</span><h2>先通分，化成同分母分数再计算</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive word-derive">
+        <div class="dl" data-step="1"><span>$\dfrac12+\dfrac14$</span><span></span><i class="why">分母不同，不能直接加</i></div>
+        <div class="dl" data-step="2"><span>$=\dfrac{2}{4}+\dfrac14$</span><span></span><i class="why">通分：$\frac12=\frac{1\times2}{2\times2}=\frac24$</i></div>
+        <div class="dl key" data-step="3"><span>$=\dfrac{3}{4}$</span><span></span><i class="why">分母不变，分子相加：$2+1=3$</i></div>
+      </div>
+      <p class="tip gold" data-step="4"><b>答：</b>一共占这块地的 <span class="blank" data-ans="3/4" data-w="3"></span>。</p>
+    </div>
+    <div class="col">
+      <svg id="sumBar" class="fig" viewBox="0 0 460 190" aria-label="1/2 加 1/4 等于 3/4 的分数条"></svg>
+      <p class="tip" data-step="5">为什么通分以后就能加了？　<span class="think" data-step="6" data-ask="想一想">通分后分数单位都是 $\frac14$，就变成了“2 个 $\frac14$ 加 1 个 $\frac14$”，和同分母分数加法一样。</span></p>
+      <p class="method" data-step="7" data-label="转化">没学过的<b>异分母</b>分数加法 —通分→ 学过的<b>同分母</b>分数加法。</p>
+    </div>
+  </div>
+  <p class="note">课本 p80 下面的算式框：1/2 + 1/4 = (2/4) + (1/4) = (3/4)。第三个小精灵：“可以先通分，化成同分母分数后再计算。”板书时强调每一步的依据，最后点出“转化”。</p>
+</section>
+
+<!-- 7 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>异分母分数减法也一样吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="calc">
+        <h4>① $\frac{7}{10}-\frac16$　（10 和 6 的最小公倍数是 30）</h4>
+        <p>$=\dfrac{21}{30}-\dfrac{\square}{30}$　□ = <span class="blank" data-ans="5"></span></p>
+        <p>$=\dfrac{16}{30}=$ <span class="blank" data-ans="8/15" data-w="4" data-strict></span>　<small class="muted">（能约分的要约分）</small></p>
+      </div>
+      <div class="calc" data-step="2">
+        <h4>② $1-\frac49$</h4>
+        <p>$=\dfrac{\square}{9}-\dfrac49$　□ = <span class="blank" data-ans="9"></span></p>
+        <p>$=$ <span class="blank" data-ans="5/9" data-w="3" data-strict></span></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">$\frac{16}{30}$ 还能约分吗？　<span class="think" data-step="1" data-ask="看一看分子分母">16 和 30 都是 2 的倍数，$\dfrac{16}{30}=\dfrac{8}{15}$，结果要化成<b>最简分数</b>。</span></p>
+      <p class="tip" data-step="3">“1” 怎样写成分数？　<span class="think" data-step="4" data-ask="想一想">减的是九分之几，就把 1 看成 $\dfrac99$。</span></p>
+      <div class="calc" data-step="5">
+        <h4>你会验算吗？（用加法验算减法）</h4>
+        <p>$\dfrac{8}{15}+\dfrac16=\dfrac{16}{30}+\dfrac{5}{30}=$ <span class="blank" data-ans="7/10" data-w="4" data-strict></span>　✓ 等于被减数</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p80 试一试。题目要求“得到的结果能约分的要约分”，所以 16/30 填进去会提示要约分（这一格按字面判断）。课本小精灵问“你会验算吗？”——差 + 减数 = 被减数。</p>
+</section>
+
+<!-- 8 ================= 概括 + 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">说一说</span><h2>计算异分母分数加、减法要注意什么？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p>$\dfrac34+\dfrac16=\dfrac{4}{10}=\dfrac25$</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">分子、分母直接相加了。应先通分：$\frac{9}{12}+\frac{2}{12}=\frac{11}{12}$。</p></div>
+      </div>
+      <div class="jcard">
+        <p>$\dfrac7{12}+\dfrac14=\dfrac7{12}+\dfrac3{12}=\dfrac{10}{12}$</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">没算完</button>
+          <p class="pick-why">$\frac{10}{12}$ 还能约分，结果应是 $\frac56$。</p></div>
+      </div>
+      <div class="jcard">
+        <p>$\dfrac45-\dfrac23=\dfrac{12}{15}-\dfrac{10}{15}=\dfrac{2}{15}$</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">先通分，再把分子相减，结果已是最简分数。</p></div>
+      </div>
+    </div>
+    <div class="def" data-step="1"><h4>异分母分数加、减法</h4>先<em>通分</em>，化成同分母分数，再按同分母分数加、减法计算；计算结果<em>能约分的要约分</em>。</div>
+  </div>
+  <p class="note">课本 p80 的问题“计算异分母分数加、减法要注意什么？”。三道题取自练一练第 1 题。先判断，再让学生自己说出法则，最后点开定义卡核对。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>自己算一算：结果要化成最简分数</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算。</p>
+        <p class="q small-q">$\dfrac34+\dfrac16=$ <span class="blank" data-ans="11/12" data-w="4" data-strict></span>　$\dfrac45-\dfrac23=$ <span class="blank" data-ans="2/15" data-w="4" data-strict></span><br>
+          $\dfrac7{12}+\dfrac14=$ <span class="blank" data-ans="5/6" data-w="4" data-strict></span>　$1-\dfrac37=$ <span class="blank" data-ans="4/7" data-w="4" data-strict></span></p>
+        <details><summary>提示 1</summary>公分母分别用 12、15、12、7。</details>
+        <details><summary>完整解答</summary>$\frac{9}{12}+\frac{2}{12}=\frac{11}{12}$；$\frac{12}{15}-\frac{10}{15}=\frac{2}{15}$；$\frac{7}{12}+\frac{3}{12}=\frac{10}{12}=\frac56$；$\frac77-\frac37=\frac47$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一台拖拉机耕一块地，上午耕了 $\dfrac78$ 公顷，下午比上午多耕了 $\dfrac14$ 公顷。下午耕地多少公顷？</p>
+        <p class="q small-q">下午耕地 <span class="blank" data-ans="9/8" data-w="4" data-strict></span> 公顷</p>
+        <details><summary>提示 1</summary>“比上午多 $\frac14$ 公顷”：下午 = 上午 + $\frac14$。</details>
+        <details><summary>提示 2</summary>$\frac78+\frac14=\frac78+\frac28$</details>
+        <details><summary>完整解答</summary>$\frac78+\frac14=\frac78+\frac28=\frac98$（公顷）。答：下午耕地 $\frac98$ 公顷。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p80 练一练。第 2 题的“多耕了 1/4 公顷”是具体数量，不是“多 1/4”。结果 9/8 是假分数，不用化成带分数也可以。空格按字面判断，没约分会提示。</p>
+</section>
+
+<!-- 10 ================= 练习十二 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十二</span><h2>涂一涂、算一算</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> 先涂一涂，再写得数。</p>
+        <div class="tuse-row" data-noswipe>
+          <div><svg class="tuse" data-n="5" viewBox="0 0 120 120" aria-label="平均分成 5 份的圆"></svg><p class="small-q">$\frac15+\frac35=$ <span class="blank" data-ans="4/5" data-w="3"></span></p></div>
+          <div><svg class="tuse" data-n="8" viewBox="0 0 120 120" aria-label="平均分成 8 份的圆"></svg><p class="small-q">$\frac14+\frac38=$ <span class="blank" data-ans="5/8" data-w="3"></span></p></div>
+        </div>
+        <p class="muted small-t">点圆里的小块涂色；$\frac14$ 要涂几块？</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 太平洋大约占地球表面的 $\dfrac13$，大西洋大约占 $\dfrac15$。这两大洋一共约占地球表面的几分之几？</p>
+        <p class="q small-q">一共约占 <span class="blank" data-ans="8/15" data-w="4" data-strict></span></p>
+        <details><summary>提示 1</summary>3 和 5 的最小公倍数是 15。</details>
+        <details><summary>完整解答</summary>$\frac13+\frac15=\frac5{15}+\frac3{15}=\frac8{15}$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 体育馆—学校 $\dfrac45$ 千米，学校—少年宫 $\dfrac54$ 千米。</p>
+        <p class="q small-q">(1) 体育馆到少年宫：<span class="blank" data-ans="41/20" data-w="4" data-strict></span> 千米<br>(2) 近：<span class="blank" data-ans="9/20" data-w="4" data-strict></span> 千米</p>
+        <details><summary>提示 1</summary>(1) 两段相加；(2) $\frac54-\frac45$。公分母是 20。</details>
+        <details><summary>完整解答</summary>$\frac45+\frac54=\frac{16}{20}+\frac{25}{20}=\frac{41}{20}$（千米）；$\frac54-\frac45=\frac{25}{20}-\frac{16}{20}=\frac{9}{20}$（千米）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">练习十二第 1、3、4 题（课本 p82）。第 1 题：1/4 在 8 等份的圆里要涂 2 块，正好体现“通分”。第 4 题小精灵的追问（小军家离学校多远）：1 − 4/5 = 1/5 千米，可口头完成。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>分母不同，怎样加减？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>$\dfrac{7}{10}-\dfrac16$</b><small>异分母：分数单位不同</small></div>
+      <i>通分<br><small>化新为旧</small></i>
+      <div class="fbox"><b>$\dfrac{21}{30}-\dfrac{5}{30}$</b><small>同分母：单位都是 $\frac1{30}$</small></div>
+      <i>分子相减</i>
+      <div class="fbox"><b>$\dfrac{16}{30}$</b><small>分母不变</small></div>
+      <i>约分</i>
+      <div class="fbox hot"><b>$\dfrac{8}{15}$</b><small>最简分数</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="为什么要通分" data-step="2">只有<b>分数单位相同</b>的数才能直接相加减。通分就是找一个两个分数都能用的“小格”（公分母）。</p>
+      <p class="method" data-label="转化" data-step="3">异分母 → 同分母，用的是<b>转化</b>：把新问题变成学过的问题。第七单元还会专门学这个策略。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>课本 p81 例 2——花园里月季花占 $\frac14$，杜鹃花占 $\frac13$，草坪占几分之几？三个数连着加减，怎样算？</p>
+  </div>
+  <p class="note">请学生用“先……再……最后……”说一说计算方法。课后作业建议：练习十二第 2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

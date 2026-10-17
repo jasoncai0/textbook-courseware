@@ -3423,13 +3423,21 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "异分母分数加减法",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp5b-yifenmujiajian",
+                "pages": 11,
+                "desc": "拖滑块等分分数条，找公分母",
+                "cover": "mp5b-yifenmujiajian/assets/shiyantian.jpg"
               },
               {
                 "no": "例2",
                 "title": "分数加减混合运算",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp5b-fenshihunhe",
+                "pages": 10,
+                "desc": "点运算符选先算哪步，判运算律",
+                "cover": "mp5b-fenshihunhe/assets/huayuan.jpg"
               }
             ]
           },
@@ -3442,19 +3450,31 @@ window.CATALOG = [
                 "no": "例1–2",
                 "title": "圆的认识",
                 "genre": "概念",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mp5b-yuanderenshi",
+                "pages": 11,
+                "desc": "拖圆规画圆，改两脚距离不成圆",
+                "cover": "mp5b-yuanderenshi/assets/bowen.jpg"
               },
               {
                 "no": "例3",
                 "title": "扇形的认识",
                 "genre": "概念",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mp5b-shanxing",
+                "pages": 10,
+                "desc": "拖A、B两点调圆心角看扇形",
+                "cover": "mp5b-shanxing/assets/zheshan.jpg"
               },
               {
                 "no": "例4–6",
                 "title": "圆的周长",
                 "genre": "推导",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mp5b-yuanzhouchang",
+                "pages": 11,
+                "desc": "圆片在直尺上滚一周测π",
+                "cover": "mp5b-yuanzhouchang/assets/zixingche.jpg"
               },
               {
                 "no": "例7–9",
@@ -3470,7 +3490,11 @@ window.CATALOG = [
                 "no": "例10–11",
                 "title": "已知周长求面积与圆环的面积",
                 "genre": "推导",
-                "kind": "圆"
+                "kind": "圆",
+                "dir": "mp5b-yuanhuan",
+                "pages": 10,
+                "desc": "抠掉内圆、圆环剪开拼成平行四边形",
+                "cover": "mp5b-yuanhuan/assets/shuichi.jpg"
               }
             ]
           },
@@ -3483,13 +3507,19 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "用转化的策略解决问题（图形）",
                 "genre": "推导",
-                "kind": "策略"
+                "kind": "策略",
+                "dir": "mp5b-zhuanhuatuxing",
+                "pages": 10,
+                "desc": "拖半圆平移8格、旋转180°拼长方形"
               },
               {
                 "no": "例2",
                 "title": "用转化的策略解决问题（计算）",
                 "genre": "推导",
-                "kind": "策略"
+                "kind": "策略",
+                "dir": "mp5b-zhuanhuajisuan",
+                "pages": 11,
+                "desc": "正方形逐次涂一半、铅笔架倒放拼"
               }
             ]
           }
@@ -3629,19 +3659,31 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "分数除以整数",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp6a-fenshuchuzhengshu",
+                "pages": 11,
+                "desc": "面积模型把4/5升按人数竖切，看出÷n=×1/n",
+                "cover": "mp6a-fenshuchuzhengshu/assets/guozhi.jpg"
               },
               {
                 "no": "例2–4",
                 "title": "一个数除以分数",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp6a-chuyifenshu",
+                "pages": 12,
+                "desc": "切橙子数块数、按2/3米剪彩带",
+                "cover": "mp6a-chuyifenshu/assets/juzi.jpg"
               },
               {
                 "no": "例5–6",
                 "title": "分数除法解决实际问题",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp6a-fenshuchufawenti",
+                "pages": 11,
+                "desc": "线段图五步倒推单位1，可换题",
+                "cover": "mp6a-fenshuchufawenti/assets/pingzhi.jpg"
               },
               {
                 "no": "例7–8",
@@ -3657,13 +3699,21 @@ window.CATALOG = [
                 "no": "例9–10",
                 "title": "比的基本性质",
                 "genre": "推导",
-                "kind": "比"
+                "kind": "比",
+                "dir": "mp6a-bidexingzhi",
+                "pages": 11,
+                "desc": "配比滑块同乘同除看颜色，加化简工作台",
+                "cover": "mp6a-bidexingzhi/assets/fengmishui.jpg"
               },
               {
                 "no": "例11",
                 "title": "按比分配",
                 "genre": "推导",
-                "kind": "比"
+                "kind": "比",
+                "dir": "mp6a-anbifenpei",
+                "pages": 11,
+                "desc": "30格涂色，加可调各项的分段线段图",
+                "cover": "mp6a-anbifenpei/assets/zhishu.jpg"
               },
               {
                 "no": "综合与实践",
@@ -3710,13 +3760,21 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "分数四则混合运算",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp6a-fenshusize",
+                "pages": 10,
+                "desc": "点运算符按顺序算，18竖条图看分配律",
+                "cover": "mp6a-fenshusize/assets/zhongguojie.jpg"
               },
               {
                 "no": "例2–3",
                 "title": "稍复杂的分数实际问题",
                 "genre": "推导",
-                "kind": "分数运算"
+                "kind": "分数运算",
+                "dir": "mp6a-fuzafenshuwenti",
+                "pages": 11,
+                "desc": "部分与其余、比多少几分之几的比较线段图",
+                "cover": "mp6a-fuzafenshuwenti/assets/yundonghui.jpg"
               }
             ]
           },

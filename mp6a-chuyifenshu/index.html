@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一个数除以分数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/juzi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第三单元 分数除法 · 一个数除以分数</p>
+    <h1 class="cover-title">一个数除以分数</h1>
+    <p class="cover-q" data-step="1">把 <b>4 个</b>同样大的橙子分给小朋友，每人分 <b>$\dfrac12$ 个</b>，可以分给几人？</p>
+    <p class="cover-q" data-step="2">除数是分数时，又该怎样算？</p>
+    <div class="chips" data-step="3"><span class="chip">切一切、数一数</span><span class="chip">量一量</span><span class="chip">甲数 ÷ 乙数 = 甲数 × 乙数的倒数</span></div>
+  </div>
+  <p class="note">课本 p44 例 2 的情境。先问：“求可以分给几人”，用什么方法计算？——看 4 个里面有几个 1/2 个，用除法。上节课分数当被除数，今天分数当除数。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这三件事，今天还要用</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="二年级 · 除法的意义" data-step="1">
+        <p class="big center">12 个苹果，每人 3 个</p>
+        <p>可以分给几人？看 12 里面有几个 3：$12\div3=4$（人）。</p>
+        <span class="use">例 2 看 4 个橙子里有几个 $\dfrac12$ 个。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 分数除以整数" data-step="2">
+        <p class="big center">$\dfrac45\div2=\dfrac45\times\dfrac12$</p>
+        <p>除以整数，等于乘这个整数的<b>倒数</b>。</p>
+        <span class="use">猜一猜：除以分数，是不是也能乘倒数？</span>
+      </div>
+      <div class="recall" data-label="六上第二单元 · 倒数" data-step="3">
+        <p class="big center">$\dfrac23$ 的倒数是 $\dfrac32$</p>
+        <p>分子、分母交换位置；$\dfrac12$ 的倒数是 2。</p>
+        <span class="use">例 3、例 4 把除法写成乘倒数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>整数除以分数、分数除以分数，怎样算？</p>
+  </div>
+  <p class="note">第 1 张卡是“包含除”：求一个数里面有几个另一个数。今天的例题都是这种意义，学生用“数一数”就能先得出答案，再找算法。</p>
+</section>
+
+<!-- 3 ================= 例 2 (1)(2) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>每人分 $\dfrac12$ 个，可以分给几人？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="or3" viewBox="0 0 560 170" aria-label="4 个橙子"></svg>
+      <div class="ctrlrow" data-noswipe>
+        <button type="button" class="btn" data-k3="1">每人 1 个</button>
+        <button type="button" class="btn" data-k3="2">每人 $\dfrac12$ 个</button>
+      </div>
+      <p class="tip feedback" id="msg3">点按钮分一分。</p>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <h4>（1）每人分 2 个、1 个</h4>
+        <p>$4\div2=$ <span class="blank" data-ans="2"></span>（人）　$4\div1=$ <span class="blank" data-ans="4"></span>（人）</p>
+      </div>
+      <div class="calc" data-step="1">
+        <h4>（2）每人分 $\dfrac12$ 个</h4>
+        <p>$4\div\dfrac12=$ <span class="blank" data-ans="8"></span>（人）</p>
+        <p>1 个橙子分给 2 人，4 个可以分给 8 人：$4\times2=$ <span class="blank" data-ans="8"></span>（人）</p>
+      </div>
+      <p class="tip gold" data-step="2">所以 $4\div\dfrac12=4\times2$。$\dfrac12$ 与 2 有什么关系？　<span class="think" data-step="3" data-ask="想一想">$\dfrac12$ 和 2 <b>互为倒数</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p44 例 2（1）（2）。求可以分给几人用除法，学生会说。每人 1/2 个时，点按钮把每个橙子切成两半并编号，数出 8 份。两种想法：“每人 1/2 个可以分给 8 人”（除法）和“1 个分给 2 人，4 个分给 8 人”（乘法），引出 4÷1/2 = 4×2。</p>
+</section>
+
+<!-- 4 ================= 例 2 (3) 核心：切橙子 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2（3）</span><h2>每人分 $\dfrac13$ 个、$\dfrac14$ 个呢？切一切，数一数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="or4" viewBox="0 0 560 170" aria-label="4 个橙子平均切开"></svg>
+      <div class="ctrlrow slider-row" data-noswipe>
+        <span>每人分</span><input type="range" id="k4" min="2" max="6" step="1" value="3" aria-label="每人分几分之一个"><b id="k4v"></b><span>个</span>
+      </div>
+      <p class="readout-big" id="eq4"></p>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <p>$4\div\dfrac13=$ <span class="blank" data-ans="12"></span>（人）　$4\div\dfrac14=$ <span class="blank" data-ans="16"></span>（人）</p>
+        <p data-step="1">从上面的结果可以看出：<br>$4\div\dfrac13=4\times$ <span class="blank" data-ans="3"></span>　$4\div\dfrac14=4\times$ <span class="blank" data-ans="4"></span></p>
+      </div>
+      <p class="tip gold" data-step="2">想一想：括号里的数与除数有什么关系？　<span class="think" data-step="3" data-ask="和同桌说一说">括号里的数是除数的<b>倒数</b>：每个橙子切成 3 份，4 个就有 $4\times3$ 份。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p45 例 2（3）“先分别在下图中分一分，再写出结果”。拖动滑块：每个橙子平均切成 k 块，按顺序编号，一共 4×k 块，正好分给 4×k 人。滑块到 1/5、1/6 时请学生先口答再看图验证。</p>
+</section>
+
+<!-- 5 ================= 例 3 量彩带 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>4 米长的彩带，每 $\dfrac23$ 米剪一段，可以剪成多少段？</h2></div>
+  <div class="bd full top">
+    <div class="tape" data-noswipe>
+      <div class="wide" data-noswipe><svg id="tape5" viewBox="0 0 1000 150" aria-label="4 米长的彩带"></svg></div>
+      <div class="ctrlrow">
+        <span>每段长</span>
+        <span class="seg-pick" id="segPick"></span>
+        <button type="button" class="btn solid" id="cut5">剪一段 ✂</button>
+        <button type="button" class="btn" id="all5">一下剪完</button>
+        <button type="button" class="btn" id="reset5">重来</button>
+      </div>
+      <p class="tip feedback" id="msg5"></p>
+    </div>
+    <div class="cols2">
+      <div class="calc">
+        <p>$4\div\dfrac23=$ <span class="blank" data-ans="6"></span>（段）</p>
+        <p data-step="1">这个等式成立吗？　$4\div\dfrac23=4\times\dfrac32$　<span class="think" data-step="2" data-ask="算一算">$4\times\dfrac32=6$，成立。</span></p>
+      </div>
+      <div class="derive" data-step="3">
+        <div class="dl"><span>1 米里有</span><span>3 个 $\dfrac13$ 米</span><i class="why">米尺上每米 3 格</i></div>
+        <div class="dl"><span>4 米里有</span><span>$4\times3=12$ 个 $\dfrac13$ 米</span><i class="why">数一数小格</i></div>
+        <div class="dl key"><span>每段 2 个，剪成</span><span>$12\div2=6$（段）</span><i class="why">$4\times3\div2=4\times\dfrac32$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p45 例 3。点“剪一段”，按 2/3 米一段在彩带上依次涂色（比例精确：每米 3 小格），数出 6 段。再换成每段 1/3 米、3/4 米试一试：4÷3/4 剪 5 段还剩 1/4 米，正好是 1/3 段——商是 5又1/3，和 4×4/3 = 16/3 相同。右边推导说明“乘倒数”是怎么来的：先乘分母（数出有几个几分之一），再除以分子（几个一段）。</p>
+</section>
+
+<!-- 6 ================= 概括：整数除以分数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比较</span><h2>比较例 2 和例 3，你有什么发现？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="calc">
+        <p class="center">$4\div\dfrac12=4\times2$</p>
+        <p class="center">$4\div\dfrac13=4\times3$　　$4\div\dfrac14=4\times4$</p>
+        <p class="center">$4\div\dfrac23=4\times\dfrac32$</p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="1">整数除以分数，都可以转化成什么运算？　<span class="think" data-step="2" data-ask="说一说">都可以转化成<b>乘法</b>计算。</span></p>
+        <div class="def" data-step="3"><h4>整数除以分数</h4>整数除以分数，等于整数<em>乘这个分数的倒数</em>。</div>
+      </div>
+    </div>
+    <p class="method" data-step="4" data-label="和上一课连起来">分数 ÷ 整数 = 分数 × 整数的倒数；整数 ÷ 分数 = 整数 × 分数的倒数。<b>除以一个数，都变成乘它的倒数。</b></p>
+  </div>
+  <p class="note">课本 p45 底部两个对话框。让学生自己总结，再出示。下一页看分数除以分数是不是也一样。</p>
+</section>
+
+<!-- 7 ================= 例 4 倒果汁 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>$\dfrac9{10}$ 升果汁，倒进容量 $\dfrac3{10}$ 升的杯子，能倒满几杯？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="pour">
+        <svg id="pour7" viewBox="0 0 520 300" aria-label="量杯里 9/10 升果汁，玻璃杯容量 3/10 升"></svg>
+      </div>
+      <div class="ctrlrow" data-noswipe>
+        <button type="button" class="btn solid" id="pour7go">倒一杯</button>
+        <button type="button" class="btn" id="pour7reset">重来</button>
+        <span>倒满 <b id="pour7n">0</b> 杯</span>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">分数除以分数，也可以用被除数乘除数的倒数来计算吗？先算一算：</p>
+      <p class="tip">$\dfrac9{10}\div\dfrac3{10}=\dfrac9{10}\times$ <span class="fr"><span><span class="blank" data-ans="10"></span></span><span><span class="blank" data-ans="3"></span></span></span> $=$ <span class="blank" data-ans="3"></span>（杯）</p>
+      <p class="tip" data-step="1">再在图中分一分，看结果是否相同：$\dfrac9{10}$ 里有 9 个 $\dfrac1{10}$，一杯装 3 个 $\dfrac1{10}$，<span class="think" data-step="2" data-ask="能倒满几杯？">$9\div3=3$（杯），结果相同。</span></p>
+      <div class="def" data-step="3"><h4>分数除法的计算方法</h4>甲数除以乙数（0 除外），等于甲数<em>乘乙数的倒数</em>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p46 例 4。先让学生按“乘倒数”算，再点“倒一杯”验证：量杯 1 升平均分成 10 格，果汁 9 格；每倒一杯取走 3 格（玻璃杯里画出 3/10 升），正好倒满 3 杯。最后联系前两课出示总的计算方法，强调“0 除外”。</p>
+</section>
+
+<!-- 8 ================= 练一练（p46） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>看看 $\dfrac35$ 里有几个 $\dfrac15$，有几个 $\dfrac3{10}$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="fig8" viewBox="0 0 520 200" aria-label="长方形平均分成 5 份，涂色 3 份，每份再分成两半"></svg>
+      <div class="ctrlrow" data-noswipe>
+        <button type="button" class="btn" data-g8="1">数 $\dfrac15$</button>
+        <button type="button" class="btn" data-g8="2">数 $\dfrac3{10}$</button>
+      </div>
+      <p class="tip feedback" id="msg8">点按钮数一数。</p>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <p>$\dfrac35\div\dfrac15=\dfrac35\times$ <span class="fr"><span><span class="blank" data-ans="5"></span></span><span><span class="blank" data-ans="1"></span></span></span> $=$ <span class="blank" data-ans="3"></span></p>
+        <p>$\dfrac35\div\dfrac3{10}=\dfrac35\times$ <span class="fr"><span><span class="blank" data-ans="10"></span></span><span><span class="blank" data-ans="3"></span></span></span> $=$ <span class="blank" data-ans="2"></span></p>
+      </div>
+      <p class="method" data-step="1" data-label="对一对">图上数出来的个数，和“乘倒数”算出来的商一样。</p>
+    </div>
+  </div>
+  <p class="note">课本 p46 练一练。图按课本：长方形平均分成 5 份涂 3 份，虚线把每份再平均分成 2 份。“数 1/5”按每 1 份一组上色，有 3 组；“数 3/10”按每 3 小格一组上色，有 2 组。</p>
+</section>
+
+<!-- 9 ================= 练习七 计算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七</span><h2>算一算（结果写成最简分数或整数）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc">
+        <h4>第 6 题　整数 ÷ 分数</h4>
+        <div class="q4">
+          <p>$2\div\dfrac15=$ <span class="blank" data-ans="10"></span></p><p>$3\div\dfrac9{10}=$ <span class="blank" data-exact data-ans="10/3" data-w="3"></span></p>
+          <p>$6\div\dfrac49=$ <span class="blank" data-exact data-ans="27/2" data-w="3"></span></p><p>$15\div\dfrac{10}{21}=$ <span class="blank" data-exact data-ans="63/2" data-w="3"></span></p>
+        </div>
+      </div>
+      <div class="calc">
+        <h4>第 9 题　分数 ÷ 分数</h4>
+        <div class="q4">
+          <p>$\dfrac12\div\dfrac23=$ <span class="blank" data-exact data-ans="3/4" data-w="3"></span></p><p>$\dfrac45\div\dfrac65=$ <span class="blank" data-exact data-ans="2/3" data-w="3"></span></p>
+          <p>$\dfrac83\div\dfrac49=$ <span class="blank" data-ans="6"></span></p><p>$\dfrac{10}{21}\div\dfrac25=$ <span class="blank" data-exact data-ans="25/21" data-w="4"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q">卡住了？看 $15\div\dfrac{10}{21}$：</p>
+      <details><summary>提示 1</summary>除以 $\dfrac{10}{21}$，等于乘它的倒数 $\dfrac{21}{10}$。</details>
+      <details><summary>提示 2</summary>15 和 10 有公因数 5，先约分。</details>
+      <details><summary>完整解答</summary>$15\div\dfrac{10}{21}=15\times\dfrac{21}{10}=\dfrac{3\times21}{2}=\dfrac{63}{2}$</details>
+    </div>
+    <p class="warn" data-step="1" data-label="易错">只把<b>除数</b>变成倒数，被除数不变：$\dfrac12\div\dfrac23=\dfrac12\times\dfrac32$，不是 $2\times\dfrac23$。</p>
+  </div>
+  <p class="note">课本 p47 练习七第 6 题、p48 第 9 题（各选 4 道）。假分数结果可以不化成带分数（课本此阶段以假分数为主）；结果必须约成最简，没约分的会判错。</p>
+</section>
+
+<!-- 10 ================= 发现规律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七 10、11</span><h2>商比被除数大，还是小？</h2></div>
+  <div class="bd full top">
+    <div class="calc">
+      <h4>第 10 题　先计算，再分别把商与被除数比一比</h4>
+      <div class="q5">
+        <p>$\dfrac34\div3=$ <span class="blank" data-exact data-ans="1/4" data-w="3"></span></p>
+        <p>$\dfrac34\div\dfrac32=$ <span class="blank" data-exact data-ans="1/2" data-w="3"></span></p>
+        <p>$\dfrac34\div1=$ <span class="blank" data-exact data-ans="3/4" data-w="3"></span></p>
+        <p>$\dfrac34\div\dfrac34=$ <span class="blank" data-ans="1"></span></p>
+        <p>$\dfrac34\div\dfrac16=$ <span class="blank" data-exact data-ans="9/2" data-w="3"></span></p>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="发现">一个数（0 除外）除以<b>大于 1</b> 的数，商比这个数<b>小</b>；除以 1，商<b>等于</b>这个数；除以<b>小于 1</b> 的数，商比这个数<b>大</b>。</p>
+    <div class="cols3">
+      <div class="jcard"><p class="center">$\dfrac47\div\dfrac13$ ○ $\dfrac47$</p><div class="pick" data-ans="g"><button type="button" data-k="g">＞</button><button type="button" data-k="l">＜</button><button type="button" data-k="e">＝</button><p class="pick-why">除数 $\dfrac13$ 小于 1，商比 $\dfrac47$ 大。</p></div></div>
+      <div class="jcard"><p class="center">$\dfrac47\div2$ ○ $\dfrac47$</p><div class="pick" data-ans="l"><button type="button" data-k="g">＞</button><button type="button" data-k="l">＜</button><button type="button" data-k="e">＝</button><p class="pick-why">除数 2 大于 1，商比 $\dfrac47$ 小。</p></div></div>
+      <div class="jcard"><p class="center">$1\div\dfrac7{12}$ ○ $\dfrac7{12}$</p><div class="pick" data-ans="g"><button type="button" data-k="g">＞</button><button type="button" data-k="l">＜</button><button type="button" data-k="e">＝</button><p class="pick-why">$1\div\dfrac7{12}=\dfrac{12}7$，大于 1，当然比 $\dfrac7{12}$ 大。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p48 练习七第 10 题、第 11 题（选 3 个）。第 10 题算完让学生按“除数比 1 大 / 等于 1 / 比 1 小”分三类说规律。第 11 题先不算，用规律判断。</p>
+</section>
+
+<!-- 11 ================= 应用 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七</span><h2>用分数除法解决问题</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>8.</b> 三种交通工具都行 30 千米，求速度（千米/时）。</p>
+        <p class="q small-q">自行车 2 时：<span class="blank" data-ans="15"></span><br>汽车 $\dfrac12$ 时：<span class="blank" data-ans="60"></span><br>摩托车 $\dfrac23$ 时：<span class="blank" data-ans="45"></span></p>
+        <details><summary>提示 1</summary>速度 = 路程 ÷ 时间。</details>
+        <details><summary>完整解答</summary>$30\div2=15$；$30\div\dfrac12=60$；$30\div\dfrac23=30\times\dfrac32=45$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>13.</b> 一盒毛线 $\dfrac12$ 千克。每副手套用 $\dfrac1{10}$ 千克，每条围巾用 $\dfrac14$ 千克。</p>
+        <p class="q small-q">能织手套 <span class="blank" data-ans="5"></span> 副，或者织围巾 <span class="blank" data-ans="2"></span> 条。</p>
+        <details><summary>提示 1</summary>求 $\dfrac12$ 里有几个 $\dfrac1{10}$，用除法。</details>
+        <details><summary>完整解答</summary>$\dfrac12\div\dfrac1{10}=5$（副）；$\dfrac12\div\dfrac14=2$（条）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>14.</b> 汽车行 $\dfrac32$ 千米用汽油 $\dfrac3{25}$ 升。</p>
+        <p class="q small-q">行 1 千米用汽油 <span class="blank" data-exact data-ans="2/25" data-w="3"></span> 升；<br>1 升汽油可行 <span class="blank" data-exact data-ans="25/2|12.5" data-w="3"></span> 千米。</p>
+        <details><summary>提示 1</summary>“行 1 千米用多少升”：油 ÷ 路程；“1 升行多少千米”：路程 ÷ 油。</details>
+        <details><summary>完整解答</summary>$\dfrac3{25}\div\dfrac32=\dfrac2{25}$（升）；$\dfrac32\div\dfrac3{25}=\dfrac{25}2$（千米）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p48 练习七第 8、13、14 题。第 14 题是易混题：问“每千米用几升”，升数做被除数；问“每升行几千米”，千米数做被除数。可以请学生说“谁 ÷ 谁”再算。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>除以一个数，等于乘它的倒数</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>分数 ÷ 整数</b><small>上一课：平均分</small></div>
+      <i>＋</i>
+      <div class="fbox"><b>整数 ÷ 分数</b><small>例 2、例 3：切一切、量一量</small></div>
+      <i>＋</i>
+      <div class="fbox"><b>分数 ÷ 分数</b><small>例 4：倒一倒</small></div>
+      <i>都是</i>
+      <div class="fbox hot"><b>甲 ÷ 乙 = 甲 × 乙的倒数</b><small>乙不能是 0</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="为什么" data-step="2">$4\div\dfrac23$：先看 4 里有几个 $\dfrac13$（乘 3），再看每 2 个一段（除以 2），合起来就是 $\times\dfrac32$。</p>
+      <p class="method" data-label="规律" data-step="3">除数小于 1，商比被除数大；除数大于 1，商比被除数小。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>课本 p49 例 5——小瓶果汁 600 毫升，是大瓶的 $\dfrac23$，大瓶有多少毫升？用分数除法解决实际问题。</p>
+  </div>
+  <p class="note">请学生举一个自己编的例子说明“除以分数”的意思（包含除）。作业建议：练习七第 7、12 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

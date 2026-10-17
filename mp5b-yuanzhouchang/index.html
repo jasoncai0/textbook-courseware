@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆的周长 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zixingche.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第六单元 圆 · 圆的周长</p>
+    <h1 class="cover-title">圆的周长</h1>
+    <p class="cover-q" data-step="1">三个小朋友骑着车轮大小不同的自行车。车轮各滚动<b>一周</b>，</p>
+    <p class="cover-q" data-step="2">哪个车轮行的路程比较长？长多少？</p>
+    <div class="chips" data-step="3"><span class="chip">滚一滚</span><span class="chip">周长 ÷ 直径</span><span class="chip">圆周率 π</span><span class="chip">C = πd</span></div>
+  </div>
+  <p class="note">课本 p92 例 4 的情境：26 英寸、24 英寸、22 英寸的车轮各滚动一周。先让学生凭感觉说，再一起研究“车轮一周有多长”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>研究圆的周长，先想想这些</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三上 · 周长" data-step="1">
+        <svg viewBox="0 0 240 100" class="mini-fig" aria-label="正方形的周长"><rect x="80" y="12" width="80" height="80" class="sqr"/></svg>
+        <p>围成一个图形的所有边长的总和是它的<b>周长</b>。正方形的周长 = 边长 × 4。</p>
+        <span class="use">圆一周的长度就是圆的周长。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 圆的认识" data-step="2">
+        <p class="big center">$d=2r$</p>
+        <p>同一个圆里，直径是半径的 2 倍；圆心决定位置，<b>半径决定大小</b>。</p>
+        <span class="use">周长和直径（半径）有什么关系？</span>
+      </div>
+      <div class="recall" data-label="五下 · 解方程" data-step="3">
+        <p class="big center">$3x=12$，$x=4$</p>
+        <p>根据等式的性质，方程两边同时除以同一个不是 0 的数。</p>
+        <span class="use">例 6 已知周长，列方程求直径。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>圆是曲线围成的，没法直接用尺子量——圆的周长怎样求？</p>
+  </div>
+  <p class="note">第 1 张卡：多边形的周长可以一条边一条边地量；圆没有“边”。第 3 张卡第一单元刚学过，例 6 会用到。</p>
+</section>
+
+<!-- 3 ================= 例 4 车轮 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 滚一滚</span><h2>3 个车轮各滚动一周，哪个车轮行的路程比较长？</h2></div>
+  <div class="bd full top">
+    <svg id="race" class="fig race-fig" viewBox="0 0 1000 370" aria-label="三个大小不同的车轮各滚动一周" data-noswipe></svg>
+    <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="raceGo">▶ 各滚一周</button></div>
+    <div class="cols2">
+      <p class="tip" data-step="1">车轮一周的长度是车轮的<b>周长</b>。比较 3 个车轮的直径和周长，你有什么发现？　<span class="think" data-step="2" data-ask="说一说">直径越长，周长越长；直径越短，周长越短。</span></p>
+      <p class="tip gold" data-step="3">圆的周长和它的直径有关系。到底是什么关系？是直径的几倍？</p>
+    </div>
+  </div>
+  <p class="note">课本 p92 例 4。课本注：26 英寸 ≈ 66 厘米，24 英寸 ≈ 61 厘米，22 英寸 ≈ 56 厘米。动画中三个车轮按真实比例画，每个都恰好转一周（车轮上的红点从着地转回着地），走过的路程按 π × 直径精确计算。</p>
+</section>
+
+<!-- 4 ================= 例 5 估一估 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 想一想</span><h2>圆的周长大约是直径的几倍？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="sqhex" class="fig sqhex-fig" viewBox="0 0 300 300" aria-label="正方形内最大的圆和圆内的正六边形"></svg>
+    </div>
+    <div class="col">
+      <p class="tip small-t">在正方形内画一个最大的圆，在圆内再画一个正六边形（顶点都在圆上）。</p>
+      <p class="tip">正方形的周长是圆直径的 <span class="blank" data-ans="4"></span> 倍。</p>
+      <p class="tip" data-step="1">六边形的每条边都等于半径，周长 = 6 条半径 = 直径的 <span class="blank" data-ans="3"></span> 倍。</p>
+      <svg id="bars" class="fig bars-fig" viewBox="0 0 520 150" aria-label="三种周长的比较" data-step="2"></svg>
+      <p class="tip gold" data-step="3">圆的周长比正六边形的长，比正方形的短，所以圆的周长大约是直径的 <span class="think" data-step="4" data-ask="猜一猜">3 倍多一些</span>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p92 例 5 前半。正六边形的边长等于半径（6 个正三角形），所以周长正好是 3 个直径；正方形周长是 4 个直径。下面三根条按真实长度比例画（3d、πd、4d）。</p>
+</section>
+
+<!-- 5 ================= 核心：滚动测量 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 量一量</span><h2>把圆片放在直尺上滚动一周，量出它的周长</h2></div>
+  <div class="bd full top">
+    <div class="btns center-btns" id="rollD" data-noswipe>
+      <span>选圆片：</span>
+      <button type="button" class="btn solid" data-d="5">直径 5 cm</button>
+      <button type="button" class="btn" data-d="8">直径 8 cm</button>
+      <button type="button" class="btn" data-d="10">直径 10 cm</button>
+      <button type="button" class="btn go" id="rollGo">▶ 滚一周</button>
+    </div>
+    <svg id="roll" class="fig roll-fig" viewBox="0 0 1000 305" aria-label="圆片在直尺上滚动一周" data-noswipe></svg>
+    <table class="mtab roll-tab">
+      <tr><th>周长/cm</th><th>直径/cm</th><th>周长除以直径的商（得数保留两位小数）</th></tr>
+      <tr><td id="c5">?</td><td>5</td><td><span class="blank" data-ans="3.14" data-w="4"></span></td></tr>
+      <tr><td id="c8">?</td><td>8</td><td><span class="blank" data-ans="3.14" data-w="4"></span></td></tr>
+      <tr><td id="c10">?</td><td>10</td><td><span class="blank" data-ans="3.14" data-w="4"></span></td></tr>
+    </table>
+    <p class="tip gold" data-step="1">通过测量和计算，你发现圆的周长和直径之间有什么关系？　<span class="think" data-step="2" data-ask="和同桌说一说">一个圆的周长总是它直径的 <b>3 倍多一些</b>（约 3.14 倍）。</span></p>
+  </div>
+  <p class="note">课本 p92 下方的实验（“把圆片放在直尺上滚动一周，量出它的长度”），表格照课本。圆片上的红点从直尺 0 刻度出发，滚一周后落在直尺上，按 1 mm 读数。滚动距离 = π × 直径，由代码逐帧精确计算。学生用计算器算商，保留两位小数都是 3.14。也可让学生说说“用线绕一周”的方法。</p>
+</section>
+
+<!-- 6 ================= 圆周率 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">圆周率</span><h2>任何一个圆，周长除以直径的商都一样</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>圆周率</h4>任何一个圆的周长除以直径的商都是一个固定的数，我们把它叫作<em>圆周率</em>，用字母 $\pi$（pài）表示。$\pi$ 是一个无限不循环小数。<p class="formula">$\pi=3.141592653\cdots$</p></div>
+      <p class="tip" data-step="2">在计算时，一般保留两位小数，取它的近似值 <b>3.14</b>。</p>
+    </div>
+    <div class="col">
+      <div class="derive word-derive">
+        <div class="dl" data-step="3"><span>周长 ÷ 直径 $=\pi$</span><span></span><i class="why">实验发现</i></div>
+        <div class="dl" data-step="4"><span>周长 $=\pi\times$ 直径</span><span></span><i class="why">反过来想</i></div>
+        <div class="dl key" data-step="5"><span>$C=\pi d$</span><span></span><i class="why">用 $C$ 表示周长</i></div>
+        <div class="dl key" data-step="6"><span>$C=2\pi r$</span><span></span><i class="why">$d=2r$</i></div>
+      </div>
+      <p class="warn" data-step="7">$\pi$ 是一个确定的数，3.14 只是它的<b>近似值</b>，所以用 3.14 算出的周长是近似数。</p>
+    </div>
+  </div>
+  <p class="note">课本 p93 上方。先文字公式“周长 = 圆周率 × 直径”，再写成字母公式。C = 2πr 让学生自己由 d = 2r 推出来。</p>
+</section>
+
+<!-- 7 ================= 割圆术 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">你知道吗</span><h2>刘徽的“割圆术”：边数越多，越接近圆</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="gey" class="fig gey-fig" viewBox="0 0 300 300" aria-label="圆内接正多边形"></svg>
+      <div class="btns center-btns" id="geyN" data-noswipe>
+        <button type="button" class="btn solid" data-n="6">6 边</button><button type="button" class="btn" data-n="12">12 边</button><button type="button" class="btn" data-n="24">24 边</button><button type="button" class="btn" data-n="48">48 边</button><button type="button" class="btn" data-n="96">96 边</button>
+      </div>
+    </div>
+    <div class="col">
+      <table class="mtab"><tr><th>正多边形</th><th>周长 ÷ 直径</th></tr><tbody id="geyTab"></tbody></table>
+      <p class="tip" data-step="1">边数越来越多，周长 ÷ 直径越来越接近 <b>3.14159…</b></p>
+      <p class="recall" data-label="祖冲之" data-step="2">大约 1500 年前，祖冲之算出 $\pi$ 在 3.1415926 和 3.1415927 之间，成为世界上第一个把圆周率精确到小数点后 7 位的人。</p>
+    </div>
+  </div>
+  <p class="note">课本 p95“你知道吗”。我国魏晋时期刘徽从圆的内接正六边形算起，逐次把边数加倍。表里的数是正 n 边形周长 ÷ 直径 = n × sin(180°/n) 的精确计算结果（保留 4 位小数），点哪种边数就加一行。</p>
+</section>
+
+<!-- 8 ================= 试一试 / 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 练一练</span><h2>用公式算一算周长</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc">
+        <h4>试一试：例 4 中三种车轮的周长大约各是多少厘米？</h4>
+        <p>直径 66 cm：$3.14\times66=$ <span class="blank" data-ans="207.24" data-w="6"></span>（cm）</p>
+        <p>直径 61 cm：$3.14\times61=$ <span class="blank" data-ans="191.54" data-w="6"></span>（cm）</p>
+        <p>直径 56 cm：$3.14\times56=$ <span class="blank" data-ans="175.84" data-w="6"></span>（cm）</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练</b> 一个圆形喷水池的半径是 14 米。它的周长是多少米？</p>
+        <p class="q small-q">周长 <span class="blank" data-ans="87.92" data-w="5"></span> 米</p>
+        <details><summary>提示 1</summary>已知半径，用 $C=2\pi r$。</details>
+        <details><summary>完整解答</summary>$2\times3.14\times14=87.92$（米）</details>
+      </div>
+    </div>
+    <p class="warn" data-step="1">已知<b>半径</b>求周长，别忘了乘 2：$C=2\pi r$；已知<b>直径</b>才是 $C=\pi d$。</p>
+  </div>
+  <p class="note">课本 p93 试一试和练一练。回到例 4：26 英寸车轮一周比 22 英寸的多走约 207.24 − 175.84 = 31.4 厘米，正好是 π × (66 − 56)。</p>
+</section>
+
+<!-- 9 ================= 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6 · 倒过来</span><h2>知道周长，怎样求直径？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">一个圆形花坛的周长是 <b>251.2 米</b>。花坛的直径是多少米？</p>
+      <p class="tip" data-step="1">根据 $C=\pi d$，可以列方程解答。</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>解：设花坛的直径是 $x$ 米。</span><span></span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>$3.14x=251.2$</span><span></span><i class="why">$\pi\times$ 直径 = 周长</i></div>
+        <div class="dl" data-step="4"><span>$x=251.2\div3.14$</span><span></span><i class="why">两边同时除以 3.14</i></div>
+        <div class="dl key" data-step="5"><span>$x=$ <span class="blank" data-ans="80"></span></span><span></span><i class="why">数据较大，可以用计算器</i></div>
+      </div>
+      <p class="tip gold" data-step="6">还可以怎样求？　<span class="think" data-step="7" data-ask="想一想">直接用除法：直径 = 周长 ÷ $\pi$，$251.2\div3.14=80$（米）。</span></p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>练一练</b> 先估计，再求出圆的直径。</p>
+        <p class="q small-q">$C=12.56$ 米：$d=$ <span class="blank" data-ans="4"></span> 米<br>$C=15.7$ 厘米：$d=$ <span class="blank" data-ans="5"></span> 厘米<br>$C=62.8$ 厘米：$d=$ <span class="blank" data-ans="20"></span> 厘米</p>
+        <details><summary>提示 1</summary>估计：直径大约是周长的 $\frac13$（比 $\frac13$ 少一点）。</details>
+        <details><summary>完整解答</summary>$12.56\div3.14=4$；$15.7\div3.14=5$；$62.8\div3.14=20$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p93 例 6。课本小精灵问“还可以怎样求花坛的直径？”——直接用除法。练一练先估再算：12.56 的 1/3 大约是 4.2，直径应比它小一点。</p>
+</section>
+
+<!-- 10 ================= 练习十四 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十四</span><h2>生活中的周长问题</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 一种汽车车轮的直径是 0.6 米。它在公路上转一周前进多少米？</p>
+        <p class="q small-q">前进 <span class="blank" data-ans="1.884" data-w="5"></span> 米</p>
+        <details><summary>提示 1</summary>转一周前进的距离 = 车轮的周长。</details>
+        <details><summary>完整解答</summary>$3.14\times0.6=1.884$（米）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>7.</b> 用一根长 90 厘米的铁片弯成一个圆形铁环，铁环的半径大约是多少厘米？（得数保留整数）</p>
+        <p class="q small-q">半径约 <span class="blank" data-ans="14"></span> 厘米</p>
+        <details><summary>提示 1</summary>90 厘米是铁环的周长。先求直径，再求半径。</details>
+        <details><summary>完整解答</summary>$90\div3.14\div2\approx14.33\approx14$（厘米）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>8.</b> 用一根绳子绕树干 10 圈的绳长是 12.56 米。树干横截面的直径大约是多少厘米？</p>
+        <p class="q small-q">直径约 <span class="blank" data-ans="40"></span> 厘米</p>
+        <details><summary>提示 1</summary>先求绕 1 圈的长度：$12.56\div10$。</details>
+        <details><summary>提示 2</summary>单位要换成厘米。</details>
+        <details><summary>完整解答</summary>$12.56\div10=1.256$（米），$1.256\div3.14=0.4$（米）$=40$（厘米）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">练习十四第 3、7、8 题（课本 p94）。第 8 题先求一圈、再求直径、最后换单位，三步都要提醒。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>我们是怎样找到圆的周长公式的？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>估</b><small>3d &lt; C &lt; 4d</small></div>
+      <i>化曲为直</i>
+      <div class="fbox"><b>量</b><small>滚一滚、绕一绕</small></div>
+      <i>算商</i>
+      <div class="fbox"><b>π ≈ 3.14</b><small>周长 ÷ 直径</small></div>
+      <i>得出</i>
+      <div class="fbox hot"><b>$C=\pi d=2\pi r$</b></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-label="用公式" data-step="2">已知 $d$：$C=\pi d$；已知 $r$：$C=2\pi r$；已知 $C$：$d=C\div\pi$，$r=C\div\pi\div2$。</p>
+      <p class="recall" data-label="化曲为直" data-step="3">用直尺量不了曲线，就让圆滚一滚、用线绕一绕，把曲线变成直线再量。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>例 7 圆的面积——圆占了多大的地方？</p>
+  </div>
+  <p class="note">作业建议：练习十四第 1、2、6 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分数加减混合运算 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huayuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第五单元 分数加法和减法 · 分数加减混合运算</p>
+    <h1 class="cover-title">分数加减混合运算</h1>
+    <p class="cover-q" data-step="1">红山小学校园里有一个花园，其中<b>月季花</b>的面积占 $\frac14$，<b>杜鹃花</b>的面积占 $\frac13$，其余的是草坪。</p>
+    <p class="cover-q" data-step="2"><b>草坪</b>的面积占几分之几？</p>
+    <div class="chips" data-step="3"><span class="chip">单位“1”</span><span class="chip">连减</span><span class="chip">先算括号</span><span class="chip">运算律</span></div>
+  </div>
+  <p class="note">课本 p81 例 2 的情境。先请学生找一找：“月季花占 1/4、杜鹃花占 1/3”都是把什么看作单位“1”？（整个花园的面积）草坪就是“1”里去掉两种花剩下的部分。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这些旧本领，今天都用得上</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 异分母加减" data-step="1">
+        <p class="big center">$\dfrac{7}{10}-\dfrac16=\dfrac{21}{30}-\dfrac{5}{30}=\dfrac{8}{15}$</p>
+        <p>先<b>通分</b>，再按同分母加减；结果能约分的要约分。</p>
+        <span class="use">每一步加减都要用它。</span>
+      </div>
+      <div class="recall" data-label="四年级 · 运算顺序" data-step="2">
+        <p class="big center">$100-25-35$　$100-(25+35)$</p>
+        <p>只有加减法：<b>从左往右</b>依次计算；有括号的，<b>先算括号里面的</b>。</p>
+        <span class="use">分数加减混合运算的顺序和整数一样。</span>
+      </div>
+      <div class="recall" data-label="四下 · 运算律" data-step="3">
+        <p>加法交换律 $a+b=b+a$<br>加法结合律 $(a+b)+c=a+(b+c)$<br>连减：$a-b-c=a-(b+c)$</p>
+        <span class="use">用来简便计算。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>三个分数连着加减，怎样算？整数的运算顺序、运算律还能用吗？</p>
+  </div>
+  <p class="note">第 2 张卡请学生先口算 100 − 25 − 35 和 100 − (25 + 35)，都等于 40。第 3 张卡的“连减”在例 2 里就要用到。</p>
+</section>
+
+<!-- 3 ================= 例 2 看图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 看一看</span><h2>把花园的面积看作单位“1”</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="garden" class="fig garden-fig" viewBox="0 0 520 250" aria-label="花园平均分成 12 份：月季 3 份，杜鹃 4 份，草坪 5 份"></svg>
+      <div class="btns center-btns" data-noswipe>
+        <button type="button" class="btn" id="gA">先减 $\frac14$，再减 $\frac13$</button>
+        <button type="button" class="btn" id="gB">先算两种花一共占多少</button>
+        <button type="button" class="btn" id="g0">↺</button>
+      </div>
+      <p class="tip center small-t" id="gSay">把花园平均分成 12 份（4 和 3 的最小公倍数）</p>
+    </div>
+    <div class="col">
+      <p class="tip">月季花占 $\frac14$，杜鹃花占 $\frac13$，都是把<b>哪个数量</b>看作单位“1”的？　<span class="think" data-step="1" data-ask="想一想">都是把<b>花园的面积</b>看作单位“1”。</span></p>
+      <p class="tip" data-step="2">图里平均分成 12 份：月季花占 <span class="blank" data-ans="3"></span> 份，杜鹃花占 <span class="blank" data-ans="4"></span> 份，草坪占 <span class="blank" data-ans="5"></span> 份。</p>
+      <p class="tip" data-step="3">怎样列式求草坪？　<span class="think" data-step="4" data-ask="和同桌说一说">从整个花园（1）里去掉两种花：可以<b>连着减两次</b>，也可以<b>先把两种花合起来再减</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p81 第一个小精灵：“都是把哪个数量看作单位‘1’的？”图中把花园平均分成 12 份是按 4 和 3 的最小公倍数精确画的：1/4 = 3/12，1/3 = 4/12。左下两个按钮分别演示两种想法：先去掉粉色再去掉紫色 / 先把两种花合起来再一起去掉。</p>
+</section>
+
+<!-- 4 ================= 两种算法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 算一算</span><h2>两种想法，结果一样吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive">
+        <p class="m-lead">① 先减去 $\frac14$，再减去 $\frac13$</p>
+        <div class="dl" data-step="1"><span>$1-\dfrac14-\dfrac13$</span><span></span><i class="why">从左往右算</i></div>
+        <div class="dl" data-step="2"><span>$=\dfrac34-\dfrac13$</span><span></span><i class="why">$1-\frac14=\frac44-\frac14$</i></div>
+        <div class="dl" data-step="3"><span>$=\dfrac{9}{12}-\dfrac{4}{12}$</span><span></span><i class="why">通分</i></div>
+        <div class="dl key" data-step="4"><span>$=\dfrac{5}{12}$</span><span></span><i class="why">分子相减</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <p class="m-lead">② 先算两种花一共占几分之几</p>
+        <div class="dl" data-step="5"><span>$1-\left(\dfrac14+\dfrac13\right)$</span><span></span><i class="why">先算括号里的</i></div>
+        <div class="dl" data-step="6"><span>$=1-\dfrac{7}{12}$</span><span></span><i class="why">$\frac{3}{12}+\frac{4}{12}=\frac{7}{12}$</i></div>
+        <div class="dl key" data-step="7"><span>$=$ <span class="blank" data-ans="5/12" data-w="4" data-strict></span></span><span></span><i class="why">$\frac{12}{12}-\frac{7}{12}$</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="发现">两种方法结果相同：$1-\frac14-\frac13=1-\left(\frac14+\frac13\right)$。<br>分数加减混合运算的<b>运算顺序和整数的相同</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p81 中间两种算法。第①种：从左往右；第②种：先算括号。两种结果都是 5/12，回到上一页的图核对：草坪正好 5 份。追问：整数里 100 − 25 − 35 = 100 − (25 + 35)，分数里也一样——为后面“运算律对分数也适用”埋伏笔。</p>
+</section>
+
+<!-- 5 ================= 核心：点一点先算哪一步 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>$\dfrac16+\dfrac35+\dfrac23$，你想先算哪一步？</h2></div>
+  <div class="bd full top">
+    <div class="btns center-btns" id="exQ" data-noswipe>
+      <button type="button" class="btn solid" data-e="1/6 + 3/5 + 2/3">$\frac16+\frac35+\frac23$</button>
+      <button type="button" class="btn" data-e="5/9 + 2/3 - 2/5">$\frac59+\frac23-\frac25$</button>
+      <button type="button" class="btn" data-e="3/4 - 5/8 + 5/6">$\frac34-\frac58+\frac56$</button>
+      <button type="button" class="btn" data-e="3/7 + 5/6 + 4/7">$\frac37+\frac56+\frac47$</button>
+    </div>
+    <div class="calc-box" data-noswipe>
+      <p class="muted small-t center">点算式中的“+”或“−”，就先算它两边的两个数</p>
+      <div class="ex-line" id="exLine"></div>
+      <div class="ex-log" id="exLog"></div>
+      <p class="ex-msg" id="exMsg"></p>
+      <div class="btns center-btns"><button type="button" class="btn" id="exOne">一次通分（公分母一起找）</button><button type="button" class="btn" id="exReset">↺ 重来</button></div>
+    </div>
+    <p class="tip gold" data-step="1">什么时候可以“跳着”先算后面两个数？　<span class="think" data-step="2" data-ask="试一试再说">前面是<b>加号</b>时可以（运算律）；前面是<b>减号</b>时不能随便先算后面，否则结果会变。</span></p>
+  </div>
+  <p class="note">课本 p81 试一试，小精灵问“你想怎样算？”。可以从左往右一步步算，也可以点“一次通分”：6、5、3 的最小公倍数是 30，5/30 + 18/30 + 20/30 = 43/30。换第 3 题，故意先点“+”（先算 5/8 + 5/6），系统会提示这样算的结果不同。每一步结果都是精确计算并约分的。</p>
+</section>
+
+<!-- 6 ================= 运算律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比一比</span><h2>整数加法的运算律，对分数加法适用吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="calc">
+        <h4>练习十二 第 14 题</h4>
+        <p>$\dfrac27+\dfrac38+\dfrac58=$ <span class="blank" data-ans="9/7" data-w="3" data-strict></span></p>
+        <p>$\dfrac27+\left(\dfrac38+\dfrac58\right)=$ <span class="blank" data-ans="9/7" data-w="3" data-strict></span></p>
+        <p>$\dfrac37+\dfrac56+\dfrac47=$ <span class="blank" data-ans="11/6" data-w="4" data-strict></span></p>
+        <p>$\left(\dfrac37+\dfrac47\right)+\dfrac56=$ <span class="blank" data-ans="11/6" data-w="4" data-strict></span></p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">每组两题的结果一样吗？哪一题算起来更简单？　<span class="think" data-step="2" data-ask="说一说">结果相同。$\frac38+\frac58=1$、$\frac37+\frac47=1$，先凑成整数，算起来简单多了。</span></p>
+      <p class="method" data-step="3" data-label="结论"><b>整数加法的交换律和结合律，对分数加法同样适用。</b>运用运算律可以使一些计算简便。</p>
+      <div class="calc" data-step="4">
+        <h4>练习十二 第 15 题：减法也比一比</h4>
+        <p>$\dfrac58-\left(\dfrac38+\dfrac1{12}\right)=$ <span class="blank" data-ans="1/6" data-w="3" data-strict></span>　$\dfrac58-\dfrac38-\dfrac1{12}=$ <span class="blank" data-ans="1/6" data-w="3" data-strict></span></p>
+      </div>
+      <p class="warn" data-step="5">减去两个数的和，等于连续减去这两个数：$a-(b+c)=a-b-c$。去括号时，括号里的“+”要变成“−”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p84 练习十二第 14、15 题，小精灵问“整数加法的运算律，对分数加法适用吗？”。先让学生分别计算，发现结果相同，再概括。第 15 题与例 2 的两种算法呼应。</p>
+</section>
+
+<!-- 7 ================= 简便计算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十二 · 16</span><h2>怎样算简便就怎样算</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q">$\dfrac3{10}+\dfrac34+\dfrac7{10}$</p>
+        <p class="q small-q">$=$ <span class="blank" data-ans="7/4" data-w="4" data-strict></span></p>
+        <details><summary>提示 1</summary>哪两个数先加能凑成 1？</details>
+        <details><summary>完整解答</summary>$=\left(\frac3{10}+\frac7{10}\right)+\frac34=1+\frac34=\frac74$（交换律、结合律）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">$\dfrac56+\dfrac25+\dfrac16+\dfrac35$</p>
+        <p class="q small-q">$=$ <span class="blank" data-ans="2" data-w="2"></span></p>
+        <details><summary>提示 1</summary>分母相同的放在一起。</details>
+        <details><summary>完整解答</summary>$=\left(\frac56+\frac16\right)+\left(\frac25+\frac35\right)=1+1=2$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">$\dfrac89-\left(\dfrac49+\dfrac13\right)$</p>
+        <p class="q small-q">$=$ <span class="blank" data-ans="1/9" data-w="3" data-strict></span></p>
+        <details><summary>提示 1</summary>减去两个数的和，可以连续减去这两个数。</details>
+        <details><summary>完整解答</summary>$=\frac89-\frac49-\frac13=\frac49-\frac39=\frac19$</details>
+      </div>
+    </div>
+    <div class="cols2" data-step="1">
+      <div class="jcard"><p>$\dfrac34-\dfrac58+\dfrac38=\dfrac34-\left(\dfrac58+\dfrac38\right)=\dfrac34-1$……</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">减号后面不能随便加括号！$\frac34-\frac58+\frac38$ 应从左往右：$\frac68-\frac58+\frac38=\frac48=\frac12$。</p></div></div>
+      <div class="jcard"><p>$\dfrac34+\dfrac56+\dfrac14=\left(\dfrac34+\dfrac14\right)+\dfrac56=1+\dfrac56=\dfrac{11}{6}$</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">都是加法，可以交换位置、先把 $\frac34$ 和 $\frac14$ 凑成 1（交换律、结合律）。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p84 第 16 题三道。下面两个判断是本页补充的辨析：第一个是最常见的错误（看到能凑整就乱加括号），第二个全是加法，可以交换、结合，用来对比。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>算一算、想一想</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算。</p>
+        <p class="q small-q">$\dfrac59+\dfrac23-\dfrac25=$ <span class="blank" data-ans="37/45" data-w="4" data-strict></span><br>$1-\left(\dfrac12+\dfrac16\right)=$ <span class="blank" data-ans="1/3" data-w="3" data-strict></span></p>
+        <details><summary>提示 1</summary>第一题一次通分，公分母是 45。</details>
+        <details><summary>完整解答</summary>$\frac{25}{45}+\frac{30}{45}-\frac{18}{45}=\frac{37}{45}$；$1-\frac46=1-\frac23=\frac13$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 截至 2011 年底，我国约有 $\dfrac8{15}$ 的人口在乡村，其余的在城镇。城镇人口大约占全国人口的几分之几？</p>
+        <p class="q small-q">约占 <span class="blank" data-ans="7/15" data-w="4" data-strict></span></p>
+        <details><summary>提示 1</summary>把全国人口看作单位“1”。</details>
+        <details><summary>完整解答</summary>$1-\frac8{15}=\frac7{15}$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 小芳做语文作业用 $\dfrac3{10}$ 小时，数学作业用 $\dfrac15$ 小时，英语作业用 $\dfrac16$ 小时。一共用了多少小时？</p>
+        <p class="q small-q">一共 <span class="blank" data-ans="2/3" data-w="3" data-strict></span> 小时</p>
+        <details><summary>提示 1</summary>10、5、6 的最小公倍数是 30。</details>
+        <details><summary>完整解答</summary>$\frac9{30}+\frac6{30}+\frac5{30}=\frac{20}{30}=\frac23$（小时）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p81 练一练第 1–3 题。第 3 题结果要约分：20/30 = 2/3 小时（也就是 40 分钟，可追问）。</p>
+</section>
+
+<!-- 9 ================= 解决问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十二</span><h2>生活中的分数加减</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>7.</b> 妈妈喝了 $\dfrac15$ 升牛奶，爸爸喝了 $\dfrac14$ 升，小明也喝了 $\dfrac14$ 升。</p>
+        <p class="q small-q">(1) 一共喝了 <span class="blank" data-ans="7/10" data-w="4" data-strict></span> 升<br>(2) 1 升还剩 <span class="blank" data-ans="3/10" data-w="4" data-strict></span> 升</p>
+        <details><summary>提示 1</summary>$\frac14+\frac14$ 先算更简便。</details>
+        <details><summary>完整解答</summary>$\frac15+\frac14+\frac14=\frac15+\frac12=\frac7{10}$（升）；$1-\frac7{10}=\frac3{10}$（升）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>18.</b> 一节课 $\dfrac23$ 小时。做实验用了全部时间的 $\dfrac13$，老师讲解用了全部时间的 $\dfrac15$，其余时间做作业。做作业的时间约是整节课的几分之几？</p>
+        <p class="q small-q">约是 <span class="blank" data-ans="7/15" data-w="4" data-strict></span></p>
+        <details><summary>提示 1</summary>$\frac13$、$\frac15$ 都是把<b>整节课</b>看作“1”，$\frac23$ 小时用不上。</details>
+        <details><summary>完整解答</summary>$1-\frac13-\frac15=\frac{15}{15}-\frac5{15}-\frac3{15}=\frac7{15}$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>思考题</b> 一根蜡烛第一次烧掉全长的 $\dfrac15$，第二次烧掉剩下的一半。还剩全长的几分之几？</p>
+        <p class="q small-q">还剩 <span class="blank" data-ans="2/5" data-w="3" data-strict></span></p>
+        <details><summary>提示 1</summary>第一次后剩 $\frac45$；“剩下的一半”是 $\frac45$ 的一半。</details>
+        <details><summary>完整解答</summary>剩下 $\frac45$，再烧掉一半，还剩 $\frac25$。</details>
+      </div>
+    </div>
+    <svg id="candle" class="fig candle-fig" viewBox="0 0 900 90" aria-label="蜡烛平均分成 5 份" data-step="1"></svg>
+  </div>
+  <p class="note">课本 p83 第 7 题、p84 第 18 题和思考题。第 18 题的陷阱：2/3 小时是多余条件，问的是“几分之几”，单位“1”是整节课。思考题下方的条形图按 5 等份精确画出：烧掉 1 份，剩 4 份的一半是 2 份。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>分数加减混合运算，和整数有什么一样？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>运算顺序</b><small>从左往右；先算括号里的</small></div>
+      <i>和整数一样</i>
+      <div class="fbox"><b>每一步</b><small>异分母先通分</small></div>
+      <i>也可以</i>
+      <div class="fbox"><b>一次通分</b><small>找几个分母的公倍数</small></div>
+      <i>最后</i>
+      <div class="fbox hot"><b>约成最简分数</b></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-label="简便计算" data-step="2">加法交换律、结合律对分数同样适用；$a-b-c=a-(b+c)$。先找<b>能凑成整数</b>的两个数。</p>
+      <p class="warn" data-label="注意" data-step="3">减号后面不能随便加括号；看清单位“1”，多余条件不要用。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一单元：</b>认识圆——一种由曲线围成的新图形。</p>
+  </div>
+  <p class="note">请学生用一句话总结：分数加减混合运算的顺序和运算律都“和整数一样”，只是每一步都要注意通分、约分。课后作业建议：练习十二第 5、13、17 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

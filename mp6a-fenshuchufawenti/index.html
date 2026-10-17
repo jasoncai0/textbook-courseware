@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分数除法解决实际问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/pingzhi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第三单元 分数除法 · 分数除法解决实际问题</p>
+    <h1 class="cover-title">分数除法解决实际问题</h1>
+    <p class="cover-q" data-step="1">小瓶果汁 <b>600 毫升</b>，是大瓶的 <b>$\dfrac23$</b>。</p>
+    <p class="cover-q" data-step="2">一大瓶果汁有多少毫升？比小瓶多还是少？</p>
+    <div class="chips" data-step="3"><span class="chip">找“单位 1”</span><span class="chip">线段图倒推</span><span class="chip">列方程 / 用除法</span><span class="chip">连除、乘除混合</span></div>
+  </div>
+  <p class="note">课本 p49 例 5 的情境。先估一估：小瓶是大瓶的 2/3，大瓶一定比 600 毫升多。估计的结果可以用来检验后面的答案。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>解决今天的问题，要用到这三样</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="六上第二单元 · 例 3" data-step="1">
+        <p>求一个数的几分之几是多少，用<b>乘法</b>：</p>
+        <p class="big center">大瓶 × $\dfrac23$ = 小瓶</p>
+        <span class="use">先写出数量关系式。</span>
+      </div>
+      <div class="recall" data-label="五下 · 列方程解决问题" data-step="2">
+        <p>设未知数为 $x$，根据等量关系列方程；等式两边同时乘（或除以）同一个不是 0 的数，等式仍然成立。</p>
+        <span class="use">解 $\dfrac23x=600$。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 分数除法" data-step="3">
+        <p class="big center">甲 ÷ 乙 = 甲 × 乙的倒数</p>
+        <p>$\dfrac23$ 的倒数是 $\dfrac32$。</p>
+        <span class="use">$600\div\dfrac23=600\times\dfrac32$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>知道了一个数的几分之几是多少，怎样求这个数？</p>
+  </div>
+  <p class="note">第 1 张卡最关键：上一单元学的是“已知单位 1，求它的几分之几”；今天反过来，“已知它的几分之几是多少，求单位 1”。数量关系式不变，未知数换了位置。</p>
+</section>
+
+<!-- 3 ================= 例 5 线段图倒推（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>画线段图，一步一步倒推出“单位 1”</h2></div>
+  <div class="bd full top">
+    <div class="ctrlrow" data-noswipe id="presets3"></div>
+    <p class="tip center" id="q3"></p>
+    <div class="wide" data-noswipe><svg id="bar3" viewBox="0 0 1000 285" aria-label="线段图"></svg></div>
+    <div class="ctrlrow" data-noswipe>
+      <button type="button" class="btn" id="back3">‹ 上一步</button>
+      <button type="button" class="btn solid" id="go3">下一步 ›</button>
+      <span class="muted" id="stepn3"></span>
+    </div>
+    <p class="tip feedback readout-big" id="msg3"></p>
+  </div>
+  <p class="note">课本 p49 例 5 和小精灵“大瓶和小瓶的果汁量有什么关系？”。按“下一步”：① 谁是单位 1（大瓶，未知）；② 把大瓶平均分成 3 份；③ 小瓶占其中 2 份，是 600 毫升；④ 每份 600÷2=300；⑤ 3 份是 900。线段长度按分数精确画出。上方按钮可以换成试一试、练一练的题，同样的五步。</p>
+</section>
+
+<!-- 4 ================= 列方程 / 用除法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>根据数量关系式，列方程解答</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="def">大瓶的果汁量 $\times\dfrac23=$ 小瓶的果汁量</p>
+      <div class="calc">
+        <p>解：设一大瓶果汁有 $x$ 毫升。</p>
+        <div class="derive">
+          <div class="dl"><span>$\dfrac23x$</span><span>$=600$</span><i class="why">根据数量关系式</i></div>
+          <div class="dl" data-step="1"><span>$\dfrac23x\times\dfrac32$</span><span>$=600\times\dfrac32$</span><i class="why">等式两边同时乘 $\dfrac23$ 的倒数</i></div>
+          <div class="dl key" data-step="2"><span>$x$</span><span>$=$ <span class="blank" data-ans="900"></span></span><i class="why">$\dfrac23\times\dfrac32=1$</i></div>
+        </div>
+        <p data-step="3">答：一大瓶果汁有 <span class="blank" data-ans="900"></span> 毫升。</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4">还可以直接用除法吗？　<span class="think" data-step="5" data-ask="想一想">已知大瓶的 $\dfrac23$ 是 600，求大瓶：$600\div\dfrac23=600\times\dfrac32=900$（毫升）。</span></p>
+      <p class="tip" data-step="6">检验：$900\times\dfrac23=$ <span class="blank" data-ans="600"></span>，和小瓶一样，对了；900 也比 600 多，和估计一致。</p>
+      <p class="method" data-step="7" data-label="方法">已知一个数的几分之几是多少，求这个数：<b>列方程</b>（设单位 1 为 $x$），或<b>用除法</b>（已知量 ÷ 对应分率）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p49 例 5 的解答。课本用方程，因为方程是顺着数量关系式写的，思路最自然；除法是从方程里“看”出来的：两边同乘 3/2，其实就是 600 ÷ 2/3。两种都可以，提倡先写数量关系式。</p>
+</section>
+
+<!-- 5 ================= 试一试 + 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 练一练</span><h2>先把数量关系式补充完整，再解答</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>试一试</b>　李刚早上喝了一盒牛奶的 $\dfrac12$，正好是 $\dfrac25$ 升。这盒牛奶有多少升？</p>
+        <p class="q small-q">（这盒牛奶的升数）$\times\dfrac12=\dfrac25$<br>这盒牛奶有 <span class="blank" data-exact data-ans="4/5" data-w="3"></span> 升。</p>
+        <details><summary>提示 1</summary>设这盒牛奶有 $x$ 升：$\dfrac12x=\dfrac25$。</details>
+        <details><summary>完整解答</summary>$x=\dfrac25\div\dfrac12=\dfrac25\times2=\dfrac45$（升）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一种裤子的单价是 45 元/条，是上衣单价的 $\dfrac58$。求上衣的单价。</p>
+        <p class="q small-q">上衣的单价是 <span class="blank" data-ans="72"></span> 元。</p>
+        <details><summary>提示 1</summary>谁是单位 1？“是上衣单价的 $\dfrac58$”——上衣。</details>
+        <details><summary>提示 2</summary>上衣单价 $\times\dfrac58=45$。</details>
+        <details><summary>完整解答</summary>$45\div\dfrac58=45\times\dfrac85=72$（元）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 西林果园有桃树 360 棵，占果树总棵数的 $\dfrac35$。西林果园有果树多少棵？</p>
+        <p class="q small-q">一共有果树 <span class="blank" data-ans="600"></span> 棵。</p>
+        <details><summary>提示 1</summary>果树总棵数 $\times\dfrac35=360$。</details>
+        <details><summary>完整解答</summary>$360\div\dfrac35=360\times\dfrac53=600$（棵）</details>
+      </div>
+    </div>
+    <p class="tip gold" data-step="1">做完后回到上一页的线段图，选这几道题，看看你的答案和图对不对得上。</p>
+  </div>
+  <p class="note">课本 p49 试一试和练一练第 1、2 题。三题都先找单位 1，再说数量关系式。可以请学生上台用第 3 页的线段图讲解。</p>
+</section>
+
+<!-- 6 ================= 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6</span><h2>每盒果汁 $\dfrac45$ 升，每杯盛 $\dfrac3{10}$ 升。3 盒能倒满几杯？</h2></div>
+  <div class="bd full top">
+    <div class="wide" data-noswipe><svg id="box6" viewBox="0 0 1000 200" aria-label="3 盒果汁，每格 1/10 升"></svg></div>
+    <div class="ctrlrow" data-noswipe>
+      <button type="button" class="btn" data-w6="total">想法一：先算 3 盒一共多少升</button>
+      <button type="button" class="btn" data-w6="one">想法二：先算 1 盒倒几杯</button>
+    </div>
+    <div class="cols2">
+      <div class="calc">
+        <h4>先算 3 盒果汁一共有多少升</h4>
+        <p>$\dfrac45\times3=$ <span class="blank" data-exact data-ans="12/5" data-w="3"></span>（升）</p>
+        <p>$\dfrac{12}5\div\dfrac3{10}=$ <span class="blank" data-ans="8"></span>（杯）</p>
+      </div>
+      <div class="calc">
+        <h4>先算 1 盒果汁可以倒几杯</h4>
+        <p>$\dfrac45\div\dfrac3{10}=$ <span class="blank" data-exact data-ans="8/3" data-w="3"></span>（杯）</p>
+        <p>$\dfrac83\times3=$ <span class="blank" data-ans="8"></span>（杯）</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p50 例 6。图里每一小格是 1/10 升，每盒 8 格（4/5 升），3 盒共 24 格；一杯 3 格。想法一：24 格每 3 格一杯，8 杯。想法二：1 盒 8 格只能倒满 2 杯，还剩 2 格，是一杯的 2/3，所以 1 盒倒 8/3 杯，3 盒 8 杯。两种想法结果相同。</p>
+</section>
+
+<!-- 7 ================= 综合算式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6</span><h2>也可以列综合算式计算</h2></div>
+  <div class="bd">
+    <div class="calc">
+      <h4>$\dfrac45\times3\div\dfrac3{10}$</h4>
+      <div class="derive">
+        <div class="dl"><span></span><span>$=\dfrac45\times3\times\dfrac{10}3$</span><i class="why">除以 $\dfrac3{10}$ 变成乘 $\dfrac{10}3$</i></div>
+        <div class="dl" data-step="1"><span></span><span>$=\dfrac{4\times\cancel{3}\times\cancel{10}^{\,2}}{\cancel{5}_{\,1}\times\cancel{3}}$</span><i class="why">连乘一起约分</i></div>
+        <div class="dl key" data-step="2"><span></span><span>$=$ <span class="blank" data-ans="8"></span></span><i class="why"></i></div>
+      </div>
+    </div>
+    <div class="calc">
+      <h4>$\dfrac45\div\dfrac3{10}\times3$</h4>
+      <div class="derive">
+        <div class="dl" data-step="3"><span></span><span>$=\dfrac45\times\dfrac{10}3\times3$</span><i class="why">从左往右，先把除法变乘法</i></div>
+        <div class="dl key" data-step="4"><span></span><span>$=$ <span class="blank" data-ans="8"></span></span><i class="why">约分后计算</i></div>
+      </div>
+      <p data-step="5">答：3 盒果汁可以倒满 <span class="blank" data-ans="8"></span> 杯。</p>
+    </div>
+    <div class="col" data-step="6">
+      <p class="tip"><b>试一试</b>　$\dfrac58\div\dfrac34\div\dfrac57=\dfrac58\times$ <span class="fr"><span><span class="blank" data-ans="4"></span></span><span><span class="blank" data-ans="3"></span></span></span> $\times$ <span class="fr"><span><span class="blank" data-ans="7"></span></span><span><span class="blank" data-ans="5"></span></span></span> $=$ <span class="blank" data-exact data-ans="7/6" data-w="3"></span></p>
+      <p class="method" data-label="分数连除、乘除混合">先把除法<b>都变成乘它的倒数</b>，变成连乘，再一起约分计算。</p>
+    </div>
+  </div>
+  <p class="note">课本 p50 例 6 综合算式与试一试。$\cancel{}$ 表示约分划去的数。强调：先把所有“÷ 分数”都改成“× 倒数”，再约分；不能先约分后改倒数（容易约错）。</p>
+</section>
+
+<!-- 8 ================= 练一练 + 解方程 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 练习八</span><h2>连除、乘除混合，解方程</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc">
+        <h4>p50 练一练</h4>
+        <p>$\dfrac12\div\dfrac54\times\dfrac23=$ <span class="blank" data-exact data-ans="4/15" data-w="3"></span></p>
+        <p>$\dfrac23\div5\div\dfrac4{15}=$ <span class="blank" data-exact data-ans="1/2" data-w="3"></span></p>
+        <h4>练习八第 10 题</h4>
+        <p>$\dfrac9{10}\div\dfrac38\div\dfrac15=$ <span class="blank" data-ans="12"></span>　$\dfrac47\div\dfrac15\times7=$ <span class="blank" data-ans="20"></span></p>
+      </div>
+      <div class="calc">
+        <h4>练习八第 1 题　解方程</h4>
+        <div class="q4">
+          <p>$8x=\dfrac23$　$x=$ <span class="blank" data-exact data-ans="1/12" data-w="3"></span></p>
+          <p>$\dfrac45x=\dfrac7{10}$　$x=$ <span class="blank" data-exact data-ans="7/8" data-w="3"></span></p>
+          <p>$\dfrac23x=\dfrac{14}{15}$　$x=$ <span class="blank" data-exact data-ans="7/5" data-w="3"></span></p>
+          <p>$\dfrac59x=10$　$x=$ <span class="blank" data-ans="18"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q">怎样解 $\dfrac45x=\dfrac7{10}$？</p>
+      <details><summary>提示 1</summary>两边同时乘 $\dfrac45$ 的倒数 $\dfrac54$（或者同时除以 $\dfrac45$）。</details>
+      <details><summary>完整解答</summary>$x=\dfrac7{10}\times\dfrac54=\dfrac78$</details>
+    </div>
+  </div>
+  <p class="note">课本 p50 练一练、p51 练习八第 1 题、p52 第 10 题（选 2 道）。解方程的依据是等式的性质。</p>
+</section>
+
+<!-- 9 ================= 比一比：乘还是除 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比一比</span><h2>用乘法，还是用除法？先找单位 1</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>8 (1)</b> 冬冬家买来一袋 15 千克的面粉，吃了 $\dfrac35$，吃了多少千克？</p>
+        <div class="pick" data-ans="m"><button type="button" data-k="m">$15\times\dfrac35$</button><button type="button" data-k="d">$15\div\dfrac35$</button>
+          <p class="pick-why">单位 1（一袋面粉）<b>已知</b>，求它的 $\dfrac35$，用乘法：9 千克。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>8 (2)</b> 冬冬家买来一袋面粉，吃了 $\dfrac35$，正好是 9 千克。原来这袋面粉重多少千克？</p>
+        <div class="pick" data-ans="d"><button type="button" data-k="m">$9\times\dfrac35$</button><button type="button" data-k="d">$9\div\dfrac35$</button>
+          <p class="pick-why">单位 1（一袋面粉）<b>未知</b>，已知它的 $\dfrac35$ 是 9 千克，用除法（或方程）：15 千克。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>9</b> 玉米的种植面积相当于水稻的 $\dfrac58$。水稻 24 公顷，玉米有 <span class="blank" data-ans="15"></span> 公顷。</p>
+      </div>
+      <div class="jcard">
+        <p><b>9</b> 玉米的种植面积是 15 公顷，水稻有 <span class="blank" data-ans="24"></span> 公顷。</p>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="记住">单位 1 <b>已知</b>，求它的几分之几 → 用乘法；单位 1 <b>未知</b>，已知它的几分之几是多少 → 列方程或用除法。</p>
+  </div>
+  <p class="note">课本 p52 练习八第 8、9 题。这两组题条件和问题互换，正好对比。请学生先画线段图再选算式。</p>
+</section>
+
+<!-- 10 ================= 练习八 应用 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习八</span><h2>解决问题</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 小华看一本课外书，已经看了全书的 $\dfrac34$，正好是 75 页。这本书有多少页？</p>
+        <p class="q small-q"><span class="blank" data-ans="100"></span> 页</p>
+        <details><summary>提示 1</summary>全书页数 $\times\dfrac34=75$。</details>
+        <details><summary>完整解答</summary>$75\div\dfrac34=100$（页）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 杂交水稻每公顷产量大约 12 吨，相当于原来水稻产量的 $\dfrac43$。原来大约每公顷多少吨？</p>
+        <p class="q small-q"><span class="blank" data-ans="9"></span> 吨</p>
+        <details><summary>提示 1</summary>原来的产量 $\times\dfrac43=12$。分率大于 1，答案比 12 小。</details>
+        <details><summary>完整解答</summary>$12\div\dfrac43=12\times\dfrac34=9$（吨）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>11.</b> 一块地有 $\dfrac9{10}$ 公顷，用 2 台拖拉机耕，$\dfrac34$ 小时可以耕完。平均每台拖拉机每小时耕地多少公顷？</p>
+        <p class="q small-q"><span class="blank" data-exact data-ans="3/5" data-w="3"></span> 公顷</p>
+        <details><summary>提示 1</summary>先算 2 台每小时耕多少，再算 1 台。</details>
+        <details><summary>完整解答</summary>$\dfrac9{10}\div\dfrac34\div2=\dfrac9{10}\times\dfrac43\times\dfrac12=\dfrac35$（公顷）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p51 练习八第 3、6 题，p52 第 11 题。第 6 题分率 4/3 大于 1：单位 1（原来产量）反而比 12 吨小，提醒学生用估计检验。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>已知几分之几是多少，求单位 1</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>找单位 1</b><small>“是谁的几分之几”</small></div>
+      <i>写</i>
+      <div class="fbox"><b>数量关系式</b><small>单位 1 × 分率 = 对应量</small></div>
+      <i>单位 1 未知</i>
+      <div class="fbox hot"><b>列方程 / 用除法</b><small>对应量 ÷ 分率 = 单位 1</small></div>
+      <i>最后</i>
+      <div class="fbox"><b>检验</b><small>代回去乘一乘</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="线段图" data-step="2">把单位 1 平均分成“分母”份，对应量占“分子”份；先求 1 份，再求全部。</p>
+      <p class="method" data-label="连除、乘除混合" data-step="3">把除法都变成乘倒数，变成连乘，再一起约分。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>课本 p55 例 9——$4:5$、$16:20$、$40:50$ 的比值相等，比会有什么性质？</p>
+  </div>
+  <p class="note">作业建议：练习八第 2、4、5、7、12、13 题。思考题（金鱼）留给学有余力的学生。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

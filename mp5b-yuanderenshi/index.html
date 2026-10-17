@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆的认识 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/bowen.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级下册 · 第六单元 圆 · 圆的认识</p>
+    <h1 class="cover-title">圆的认识</h1>
+    <p class="cover-q" data-step="1">石子落进水里，水面上荡开<b>一圈一圈</b>的波纹；荷叶也是圆圆的。</p>
+    <p class="cover-q" data-step="2">钟面、车轮、放大镜……生活中到处都有<b>圆</b>。圆和我们学过的图形有什么不同？怎样才能画出一个圆？</p>
+    <div class="chips" data-step="3"><span class="chip">圆规画圆</span><span class="chip">圆心 O</span><span class="chip">半径 r</span><span class="chip">直径 d</span></div>
+  </div>
+  <p class="note">课本 p85 例 1 的情境（钟面、自行车、放大镜、橙子、奥运五环）和 p87“你知道吗”（荷叶、水面波纹）。先让学生说一说身边哪里有圆。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们已经认识了哪些平面图形？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三、四年级 · 多边形" data-step="1">
+        <svg viewBox="0 0 240 100" class="mini-fig" aria-label="三角形、长方形">
+          <path d="M20 85L70 15L120 85Z" class="poly"/><rect x="140" y="25" width="85" height="60" class="poly"/>
+          <circle cx="20" cy="85" r="5" class="vx"/><circle cx="70" cy="15" r="5" class="vx"/><circle cx="120" cy="85" r="5" class="vx"/>
+          <circle cx="140" cy="25" r="5" class="vx"/><circle cx="225" cy="25" r="5" class="vx"/><circle cx="140" cy="85" r="5" class="vx"/><circle cx="225" cy="85" r="5" class="vx"/>
+        </svg>
+        <p>三角形、长方形等多边形都由<b>线段</b>围成，有<b>顶点</b>。</p>
+        <span class="use">和圆比一比：相同在哪？不同在哪？</span>
+      </div>
+      <div class="recall" data-label="三下 · 轴对称图形" data-step="2">
+        <svg viewBox="0 0 240 100" class="mini-fig" aria-label="长方形的两条对称轴">
+          <rect x="60" y="15" width="120" height="70" class="poly"/>
+          <path d="M120 5V95M50 50H190" class="axis"/>
+        </svg>
+        <p>沿一条直线对折，两边<b>完全重合</b>，这条直线是对称轴。长方形有 2 条。</p>
+        <span class="use">圆有几条对称轴？</span>
+      </div>
+      <div class="recall" data-label="二年级 · 量线段" data-step="3">
+        <svg viewBox="0 0 240 100" class="mini-fig" aria-label="用尺子量线段">
+          <path d="M30 40H190" class="seg"/><circle cx="30" cy="40" r="5" class="vx"/><circle cx="190" cy="40" r="5" class="vx"/>
+          <rect x="20" y="55" width="200" height="30" class="ruler"/>
+          <path id="rcTicks" d="" class="tick"/>
+        </svg>
+        <p>线段有两个端点，可以<b>量出长度</b>。</p>
+        <span class="use">量一量半径、直径有多长。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>圆有什么特征？怎样画圆？</p>
+  </div>
+  <p class="note">三张卡分别对应本课三处：例 1 比较圆和多边形；例 2 后面的“圆是轴对称图形吗”；量半径、直径的长度。</p>
+</section>
+
+<!-- 3 ================= 例 1 圆和多边形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 比一比</span><h2>圆和三角形、长方形等多边形相比，有什么相同，有什么不同？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">先找一找：下面哪些是<b>圆</b>？点一点。</p>
+      <svg id="findC" class="fig find-fig" viewBox="0 0 520 220" aria-label="几种图形，点出圆" data-noswipe></svg>
+      <p class="tip center small-t" id="findSay">找到 0 个圆</p>
+    </div>
+    <div class="col">
+      <div class="cmp">
+        <p data-step="1"><b class="g">相同：</b><span class="think" data-step="2" data-ask="说一说">圆和多边形都是<b>平面图形</b>。</span></p>
+        <p data-step="3"><b class="o">不同：</b><span class="think" data-step="4" data-ask="说一说">多边形由<b>线段</b>围成，有顶点；圆由<b>曲线</b>围成，<b>没有顶点</b>。</span></p>
+      </div>
+      <p class="warn" data-step="5">椭圆、圆角的长方形也是“弯弯的”，可它们<b>不是圆</b>——圆到底“圆”在哪里？画一画就知道。</p>
+    </div>
+  </div>
+  <p class="note">课本 p85。左边的图形都是代码精确画的：两个真正的圆、一个椭圆、一个圆角正方形、一个正六边形。学生容易把椭圆也当成圆，先不解释，留到画圆后再回头看——圆上每一点到圆心的距离都相等。</p>
+</section>
+
+<!-- 4 ================= 核心：圆规画圆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">画一画</span><h2>用圆规画一个圆：拖动笔尖转一圈</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="compass" class="fig compass-fig" viewBox="0 0 460 400" aria-label="圆规画圆：拖动笔尖旋转" data-noswipe></svg>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>两脚距离 <input type="range" id="cpR" min="60" max="160" step="10" value="110"><b id="cpRv" class="v"></b></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="cpAuto">自动转一圈</button><button type="button" class="btn" id="cpClear">擦掉重画</button></div>
+      <p class="tip" id="cpSay">拖动橙色的笔尖，绕着针尖转一圈。</p>
+      <p class="tip" data-step="1">画到一半时，把两脚距离改一改，再接着画——还是圆吗？</p>
+      <ol class="rules" data-step="2">
+        <li>把圆规两脚分开，<b>定好两脚间的距离</b>；</li>
+        <li>把有针尖的脚<b>固定在一点上</b>；</li>
+        <li>旋转时，<b>两脚间的距离不能变</b>。</li>
+      </ol>
+    </div>
+  </div>
+  <p class="note">课本 p86 上方：“你也能用圆规画一个圆吗？先试着画一画，再和同学说说用圆规画圆时要注意什么。”笔尖始终到针尖的距离 = 滑块上的两脚距离（代码精确计算）。演示“画到一半改距离”：画出的曲线接不上，不是圆——说明“两脚间的距离不能变”。</p>
+</section>
+
+<!-- 5 ================= 圆心、半径、直径 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">认一认</span><h2>圆心、半径、直径</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="parts" class="fig parts-fig" viewBox="0 0 400 320" aria-label="圆心 O、半径 OA、直径 BC"></svg>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>圆心</h4>画圆时，针尖固定的一点是<em>圆心</em>，通常用字母 $O$ 表示。</div>
+      <div class="def" data-step="2"><h4>半径</h4>连接圆心和圆上任意一点的线段（如 $OA$）是<em>半径</em>，通常用字母 $r$ 表示。</div>
+      <div class="def" data-step="3"><h4>直径</h4>通过圆心并且两端都在圆上的线段（如 $BC$）是<em>直径</em>，通常用字母 $d$ 表示。</div>
+      <p class="tip" data-step="4">圆规两脚间的距离就是圆的什么？　<span class="think" data-step="5" data-ask="想一想">就是<b>半径</b>。圆心决定圆的<b>位置</b>，半径决定圆的<b>大小</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p86 中间的定义和图（字母位置照课本：O 为圆心，OA 为半径，BC 为直径）。请学生在自己画的圆里标出圆心，画一条半径和一条直径，分别用字母表示。左图随步骤依次高亮。</p>
+</section>
+
+<!-- 6 ================= 例 2 有多少条 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 画一画、量一量</span><h2>在同一个圆内，有多少条半径？多少条直径？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="many" class="fig many-fig" viewBox="0 0 400 360" aria-label="同一个圆里画很多条半径和直径" data-noswipe></svg>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe><button type="button" class="btn" id="addR">＋ 画一条半径</button><button type="button" class="btn" id="addD">＋ 画一条直径</button><button type="button" class="btn" id="add10">再画 10 条半径</button><button type="button" class="btn" id="manyClear">↺</button></div>
+      <table class="mtab"><tr><th></th><th>已画条数</th><th>量得的长度</th></tr>
+        <tr><td class="o">半径</td><td id="nR">0</td><td id="lR">—</td></tr>
+        <tr><td class="b">直径</td><td id="nD">0</td><td id="lD">—</td></tr></table>
+      <p class="tip" data-step="1">你发现了什么？　<span class="think" data-step="2" data-ask="和同桌说一说">半径和直径都可以画<b>无数条</b>；在同一个圆里，<b>所有的半径都相等，所有的直径也都相等</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p86 例 2：“任意画一个圆，折一折，画一画，比一比，说说你的发现。”每次点击在随机方向画一条半径或直径，表格里的长度是按图上真实长度换算的（这个圆半径 3 厘米）。可以让学生预测：画 100 条，长度会不会变？</p>
+</section>
+
+<!-- 7 ================= d=2r ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 半径和直径</span><h2>直径的长度和半径的长度有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="dr" class="fig dr-fig" viewBox="0 0 440 270" aria-label="一条直径由两条半径组成"></svg>
+      <p class="tip" data-step="1">一条直径是由几条半径连成的？　<span class="think" data-step="2" data-ask="看图说一说">直径 = 2 条半径（在同一个圆里）。</span></p>
+      <div class="def" data-step="3"><h4>在同一个圆里</h4><p class="formula">$d=2r$　或　$r=\dfrac{d}{2}$</p></div>
+    </div>
+    <div class="col">
+      <p class="tip">练习十三第 1 题：填表。</p>
+      <table class="mtab big-tab">
+        <tr><th>半径 $r$</th><td>20 厘米</td><td><span class="blank" data-ans="3"></span> 米</td><td>7 厘米</td><td><span class="blank" data-ans="0.12" data-w="4"></span> 米</td><td>3.9 米</td></tr>
+        <tr><th>直径 $d$</th><td><span class="blank" data-ans="40"></span> 厘米</td><td>6 米</td><td><span class="blank" data-ans="14"></span> 厘米</td><td>0.24 米</td><td><span class="blank" data-ans="7.8" data-w="3"></span> 米</td></tr>
+      </table>
+      <p class="warn" data-step="4">“$d=2r$”一定要在<b>同一个圆</b>里才成立：大圆的半径和小圆的直径就不能这样比。</p>
+    </div>
+  </div>
+  <p class="note">课本 p86 下方 d = 2r 或 r = d/2，以及练习十三第 1 题。左图：拖不动，只用于说明一条直径正好由两条半径组成（橙色、蓝色各一条，长度相等）。强调前提“同一个圆里”。</p>
+</section>
+
+<!-- 8 ================= 对称轴 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>圆是轴对称图形吗？它有多少条对称轴？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="sym" class="fig sym-fig" viewBox="0 0 400 340" aria-label="转动折痕，看圆的两半是否重合" data-noswipe></svg>
+      <div class="slider-row" data-noswipe>折痕方向 <input type="range" id="symA" min="0" max="180" step="1" value="30"><b id="symAv" class="v"></b></div>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" id="symFold">沿折痕对折</button><button type="button" class="btn" id="symOff">折痕不过圆心</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">转动折痕，再对折，两边能完全重合吗？</p>
+      <p class="tip" data-step="1">圆是轴对称图形吗？　<span class="think" data-step="2" data-ask="折一折">是。沿着<b>任意一条直径所在的直线</b>对折，两边都完全重合。</span></p>
+      <p class="tip" data-step="3">它有多少条对称轴？　<span class="think" data-step="4" data-ask="想一想">直径有无数条，所以圆有<b>无数条对称轴</b>。</span></p>
+      <p class="warn" data-step="5">对称轴是<b>直线</b>，要说“直径<b>所在的直线</b>”是对称轴，不能说“直径是对称轴”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p86 小精灵：“圆是轴对称图形吗？它有多少条对称轴？”拖滑块改变折痕方向，点“对折”：右半圆按折痕精确翻折过去，始终和左半圆重合。点“折痕不过圆心”对比：不重合。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>认一认、填一填</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>13.</b> 看图填空。</p>
+        <svg id="ex13" class="fig ex13-fig" viewBox="0 0 360 120" aria-label="正方形里的圆、长方形里的半圆、扇形"></svg>
+        <p class="small-q">圆的直径 <span class="blank" data-ans="6"></span> cm；半圆形的直径 <span class="blank" data-ans="8"></span> cm；扇形的半径 <span class="blank" data-ans="10"></span> cm</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 正方形的边长是 40 毫米，以对角线的交点 O 为圆心，在正方形内画一个最大的圆，半径应是多少毫米？</p>
+        <p class="q small-q">半径 <span class="blank" data-ans="20"></span> 毫米</p>
+        <details><summary>提示 1</summary>最大的圆正好碰到正方形的四条边，直径等于什么？</details>
+        <details><summary>完整解答</summary>直径 = 边长 = 40 毫米，半径 = 40 ÷ 2 = 20（毫米）。</details>
+      </div>
+      <div class="jcard">
+        <p><b>6.</b> 比较每组两个圆的大小。</p>
+        <p class="small-q">半径 1 厘米 和 直径 1 厘米：</p>
+        <div class="pick" data-ans="a"><button type="button" data-k="a">前一个大</button><button type="button" data-k="b">一样大</button><button type="button" data-k="c">后一个大</button><p class="pick-why">直径 1 厘米的圆半径只有 0.5 厘米。</p></div>
+        <p class="small-q">半径 5 厘米 和 直径 1 分米：</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">前一个大</button><button type="button" data-k="b">一样大</button><button type="button" data-k="c">后一个大</button><p class="pick-why">1 分米 = 10 厘米，半径也是 5 厘米。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="圆的大小与什么有关？">圆的大小由<b>半径</b>（或直径）决定，比大小先化成同一种（都比半径）、同一个单位。</p>
+  </div>
+  <p class="note">练习十三第 13、5、6 题（课本 p89、p91）。第 13 题的三幅图按课本数据精确画：正方形边长 6 cm、长方形高 4 cm（半圆半径 4 cm，直径 8 cm）、扇形半径 10 cm。第 5 题小精灵问“圆的大小与什么有关？”。</p>
+</section>
+
+<!-- 10 ================= 生活中的圆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十三 · 9</span><h2>车轮为什么要做成圆的？车轴应装在什么位置？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="wheel" class="fig wheel-fig" viewBox="0 0 520 240" aria-label="圆形车轮和方形车轮滚动时车轴的高度" data-noswipe></svg>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="wGo">▶ 滚动</button><button type="button" class="btn" id="wOff">车轴不装在圆心</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">看一看车轴（红点）走过的路线。</p>
+      <p class="tip" data-step="1">车轴装在<b>圆心</b>，为什么车走得平稳？　<span class="think" data-step="2" data-ask="说一说">车轮滚动时，车轴到地面的距离总是<b>半径</b>，而同一个圆的半径都相等，所以车轴高度不变。</span></p>
+      <p class="tip" data-step="3">如果车轴不装在圆心呢？　<span class="think" data-step="4" data-ask="看一看">车轴一会儿高、一会儿低，坐车的人会上下颠簸。</span></p>
+    </div>
+  </div>
+  <p class="note">练习十三第 9 题（课本 p90）。点“滚动”，轮子在地面上滚动（每转一周前进的距离等于周长，代码精确计算），红点画出车轴的轨迹：装在圆心时是一条水平线；偏离圆心时是一条起伏的曲线。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>今天我们认识了圆的哪些特征？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>曲线围成</b><small>没有顶点的平面图形</small></div>
+      <i>圆规画圆</i>
+      <div class="fbox"><b>圆心 O</b><small>定位置</small></div>
+      <div class="fbox"><b>半径 r</b><small>定大小；无数条，都相等</small></div>
+      <div class="fbox hot"><b>$d=2r$</b><small>直径：无数条，都相等</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="轴对称" data-step="2">圆是轴对称图形，<b>直径所在的直线</b>都是它的对称轴，有无数条。</p>
+      <p class="method" data-label="怎样发现的" data-step="3">画一画、折一折、量一量、比一比——动手操作中发现规律。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>例 3 扇形——圆里的一部分，又是什么图形？</p>
+  </div>
+  <p class="note">课后可以做 p91“动手做”：画 4 条直径把圆平均分成 8 份，再以 8 条半径为直径画 8 个小圆，涂色成图案。作业建议：练习十三第 2、3 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

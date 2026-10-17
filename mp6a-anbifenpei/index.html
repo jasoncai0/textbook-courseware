@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>按比分配 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/fracfig.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zhishu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 第三单元 分数除法 · 按比分配</p>
+    <h1 class="cover-title">按比分配</h1>
+    <p class="cover-q" data-step="1">三个小组去植树：一组 <b>8 人</b>，二组 <b>7 人</b>，三组 <b>9 人</b>，一共要种 <b>72 棵</b>。</p>
+    <p class="cover-q" data-step="2">平均分给三个组公平吗？怎样分才合理？</p>
+    <div class="chips" data-step="3"><span class="chip">涂一涂</span><span class="chip">分段线段图</span><span class="chip">先求一份 / 求几分之几</span><span class="chip">检验</span></div>
+  </div>
+  <p class="note">课本 p60 试一试的情境，先作引入：人多的组多种，人少的组少种——按人数的比来分。先研究课本 p59 例 11 这个简单的问题，再回来解决植树问题。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>按比分配要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 比的意义" data-step="1">
+        <p class="big center">红 : 黄 = 3 : 2</p>
+        <p>比表示两个数<b>相除</b>的关系，不是红色就 3 格。</p>
+        <span class="use">理解“比是 3∶2”的意思。</span>
+      </div>
+      <div class="recall" data-label="三年级 · 平均分" data-step="2">
+        <p class="big center">$30\div5=6$</p>
+        <p>把 30 平均分成 5 份，每份是 6。</p>
+        <span class="use">方法一：先求每份有多少格。</span>
+      </div>
+      <div class="recall" data-label="六上第二单元 · 分数乘法" data-step="3">
+        <p class="big center">$30\times\dfrac35=18$</p>
+        <p>求一个数的几分之几是多少，用乘法。</p>
+        <span class="use">方法二：求总格数的 $\dfrac35$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>把一个总数按照一定的比来分，每部分是多少？</p>
+  </div>
+  <p class="note">第 1 张卡要追问：红∶黄 = 3∶2，红色一定是 3 格吗？（不一定，6 格和 4 格也是 3∶2。）——比只说明了关系，要结合总数才知道实际数量。</p>
+</section>
+
+<!-- 3 ================= 例 11 涂一涂 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 11</span><h2>30 个方格涂红色和黄色，使红色与黄色方格数的比是 3 : 2</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="grid3" class="clickable" viewBox="0 0 420 340" aria-label="30 个方格，点一点涂色" data-noswipe></svg>
+      <div class="ctrlrow" data-noswipe>
+        <span>画笔：</span>
+        <button type="button" class="btn solid" data-pen="r">红色</button>
+        <button type="button" class="btn" data-pen="y">黄色</button>
+        <button type="button" class="btn" data-pen="w">橡皮</button>
+        <button type="button" class="btn" id="clear3">清空</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">两种颜色各涂多少格？可以先猜一猜，再涂一涂。</p>
+      <p class="readout-big" id="cnt3"></p>
+      <p class="tip feedback" id="msg3">点方格涂色（每格都要涂）。</p>
+      <p class="tip gold" data-step="1">怎样理解“红色与黄色方格数的比是 3∶2”？　<span class="think" data-step="2" data-ask="说一说">把 30 格平均分成 $3+2=5$ 份，红色占 3 份，黄色占 2 份；也就是红色占总格数的 $\dfrac35$，黄色占 $\dfrac25$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p59 例 11。让学生先猜：红 3 格黄 2 格？不对，一共有 30 格。上台涂色，右侧实时显示红∶黄的比（自动化简）和是否涂满。涂对后再说两种理解（课本上两个对话框）。</p>
+</section>
+
+<!-- 4 ================= 核心：分段线段图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">画一画</span><h2>分段线段图：按比把总数分成几份</h2></div>
+  <div class="bd full top">
+    <div class="ctrlrow" data-noswipe id="presets4"></div>
+    <div class="wide" data-noswipe><svg id="seg4" viewBox="0 0 1000 230" aria-label="分段线段图"></svg></div>
+    <div class="ctrlrow" data-noswipe id="steppers4"></div>
+    <div class="cols2">
+      <p class="tip feedback" id="m1"></p>
+      <p class="tip feedback" id="m2"></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。总长代表总数，按比的前、中、后项之和平均分成几段（每段等长，按真实比例画），每个颜色占其中几段。左下是“先求一份”的算法，右下是“求总数的几分之几”的算法，两种结果总是相同。可以用 + − 改比的各项（第三项为 0 表示只有两项），或点上方按钮换成课本里的题。</p>
+</section>
+
+<!-- 5 ================= 两种方法解答 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 11</span><h2>选一种你喜欢的方法解答，再检验</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="calc">
+        <h4>方法一：先算每份有多少格</h4>
+        <p>一共有 $3+2=$ <span class="blank" data-ans="5"></span> 份</p>
+        <p>每份 $30\div5=$ <span class="blank" data-ans="6"></span>（格）</p>
+        <p>红色 $6\times3=$ <span class="blank" data-ans="18"></span>（格），黄色 $6\times2=$ <span class="blank" data-ans="12"></span>（格）</p>
+      </div>
+      <div class="calc">
+        <h4>方法二：分别求总格数的 $\dfrac3{3+2}$ 和 $\dfrac2{3+2}$</h4>
+        <p>红色 $30\times\dfrac35=$ <span class="blank" data-ans="18"></span>（格）</p>
+        <p>黄色 $30\times\dfrac25=$ <span class="blank" data-ans="12"></span>（格）</p>
+      </div>
+    </div>
+    <div class="calc" data-step="1">
+      <h4>检验</h4>
+      <p>$18+12=$ <span class="blank" data-ans="30"></span>，和总格数相同；$18:12=$ <span class="blank" data-ans="3:2" data-w="3"></span>，和要求的比相同。</p>
+      <p>答：红色应涂 18 格，黄色应涂 12 格。</p>
+    </div>
+    <p class="method" data-step="2" data-label="检验两条">按比分配的结果，<b>合起来等于总数</b>，<b>化简后等于原来的比</b>。</p>
+  </div>
+  <p class="note">课本 p59 中间两个对话框和“选择一种你喜欢的方法解答，并进行检验”。两种方法本质相同：方法二的 3/5 就是“3 份占 5 份”。检验要两条都满足。</p>
+</section>
+
+<!-- 6 ================= 想一想 + 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 试一试</span><h2>三种颜色、三个小组，也能按比分配吗？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>想一想</b>　把 30 个方格按 $1:2:3$ 涂成红、黄、绿三种颜色，各涂多少格？</p>
+        <p class="q small-q">红 <span class="blank" data-ans="5"></span> 格，黄 <span class="blank" data-ans="10"></span> 格，绿 <span class="blank" data-ans="15"></span> 格</p>
+        <details><summary>提示 1</summary>一共 $1+2+3=6$ 份。</details>
+        <details><summary>完整解答</summary>每份 $30\div6=5$；红 $5\times1=5$，黄 $5\times2=10$，绿 $5\times3=15$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>试一试</b>　72 棵树按一组 8 人、二组 7 人、三组 9 人的人数比分配，每组各植树多少棵？</p>
+        <p class="q small-q">一组 <span class="blank" data-ans="24"></span> 棵，二组 <span class="blank" data-ans="21"></span> 棵，三组 <span class="blank" data-ans="27"></span> 棵</p>
+        <details><summary>提示 1</summary>“植树棵数按各小组人数的比分配”：比是 $8:7:9$，一共 24 份（24 人）。</details>
+        <details><summary>提示 2</summary>每人种 $72\div24=3$（棵）。</details>
+        <details><summary>完整解答</summary>一组 $72\times\dfrac8{24}=24$，二组 $72\times\dfrac7{24}=21$，三组 $72\times\dfrac9{24}=27$（棵）。检验：$24+21+27=72$。</details>
+      </div>
+    </div>
+    <p class="tip gold" data-step="1">回到第 4 页，选“想一想”“试一试”，看看线段图和你的答案一样吗？</p>
+  </div>
+  <p class="note">课本 p59 想一想、p60 试一试（课本图中的牌子：一组 8 人、二组 7 人、三组 9 人，72 棵）。试一试中“份”就是人，每份 3 棵正好是每人种 3 棵，意思很好理解。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>先说按什么比分，再算</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 合唱队有 48 人，男生和女生人数的比是 $1:3$。</p>
+        <p class="q small-q">男生 <span class="blank" data-ans="12"></span> 人，女生 <span class="blank" data-ans="36"></span> 人</p>
+        <details><summary>提示 1</summary>一共 4 份，每份 $48\div4$。</details>
+        <details><summary>完整解答</summary>男生 $48\times\dfrac14=12$，女生 $48\times\dfrac34=36$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 大班 35 人、中班 31 人、小班 24 人，180 块巧克力按班级人数的比分给 3 个班。</p>
+        <p class="q small-q">大班 <span class="blank" data-ans="70"></span>，中班 <span class="blank" data-ans="62"></span>，小班 <span class="blank" data-ans="48"></span> 块</p>
+        <details><summary>提示 1</summary>一共 $35+31+24=90$ 人，每人 $180\div90=2$ 块。</details>
+        <details><summary>完整解答</summary>$2\times35=70$，$2\times31=62$，$2\times24=48$（块）。</details>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 每杯 300 毫升饮料中橙汁与水的体积比：</p>
+        <table class="mtab small-tab">
+          <tr><th>比</th><th>橙汁/毫升</th><th>水/毫升</th></tr>
+          <tr><td>$1:5$</td><td><span class="blank" data-ans="50"></span></td><td><span class="blank" data-ans="250"></span></td></tr>
+          <tr><td>$1:4$</td><td><span class="blank" data-ans="60"></span></td><td><span class="blank" data-ans="240"></span></td></tr>
+          <tr><td>$1:1$</td><td><span class="blank" data-ans="150"></span></td><td><span class="blank" data-ans="150"></span></td></tr>
+          <tr><td>$2:1$</td><td><span class="blank" data-ans="200"></span></td><td><span class="blank" data-ans="100"></span></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p60 练一练第 1–3 题。第 3 题追问课本小精灵的问题：“你能很快算出每杯中橙汁和水各是多少毫升吗？”——先求每份：300÷6=50，300÷5=60……</p>
+</section>
+
+<!-- 8 ================= 练习十 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十</span><h2>生活中的按比分配</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 足球表面由 32 块黑色五边形和白色六边形皮围成，黑色和白色块数的比是 $3:5$。</p>
+        <p class="q small-q">黑色 <span class="blank" data-ans="12"></span> 块，白色 <span class="blank" data-ans="20"></span> 块</p>
+        <details><summary>提示 1</summary>一共 8 份，每份 $32\div8=4$ 块。</details>
+        <details><summary>完整解答</summary>黑 $4\times3=12$，白 $4\times5=20$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 三人投资 30 万元、40 万元、50 万元，利润 24 万元按投资额分配。</p>
+        <p class="q small-q">张斌 <span class="blank" data-ans="6"></span>，李洪 <span class="blank" data-ans="8"></span>，马力 <span class="blank" data-ans="10"></span> 万元</p>
+        <details><summary>提示 1</summary>$30:40:50=3:4:5$，一共 12 份。</details>
+        <details><summary>完整解答</summary>每份 $24\div12=2$ 万元：$6$、$8$、$10$ 万元。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 一个直角三角形两个锐角度数的比是 $3:2$。这两个锐角分别是多少度？</p>
+        <p class="q small-q"><span class="blank" data-ans="54"></span>°和 <span class="blank" data-ans="36"></span>°</p>
+        <details><summary>提示 1</summary>总数藏起来了：直角三角形两个锐角的和是多少度？</details>
+        <details><summary>完整解答</summary>两个锐角和是 90°：$90\times\dfrac35=54°$，$90\times\dfrac25=36°$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p61 练习十第 1、2、5 题。第 2 题先把比化简再分更简便。第 5 题的总数（90°）没有直接给出，要用三角形内角和推出来。</p>
+</section>
+
+<!-- 9 ================= 比一比 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比一比</span><h2>都是 3 : 5，为什么算法不一样？</h2></div>
+  <div class="bd full top">
+    <p class="tip">练习十第 7 题：校园里玫瑰花和月季花棵数的比是 $3:5$。</p>
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>(1)</b> 如果玫瑰和月季<b>一共</b>有 120 棵，这两种花各有多少棵？</p>
+        <p>玫瑰 <span class="blank" data-ans="45"></span> 棵，月季 <span class="blank" data-ans="75"></span> 棵</p>
+        <div class="pick" data-ans="a"><button type="button" data-k="a">$120\times\dfrac38$</button><button type="button" data-k="b">$120\times\dfrac35$</button>
+          <p class="pick-why">120 是<b>总数</b>，一共 8 份，玫瑰占 $\dfrac38$。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>(2)</b> 如果<b>月季</b>有 120 棵，玫瑰有多少棵？</p>
+        <p>玫瑰 <span class="blank" data-ans="72"></span> 棵</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">$120\times\dfrac38$</button><button type="button" data-k="b">$120\div5\times3$</button>
+          <p class="pick-why">120 是月季的 5 份，每份 24 棵，玫瑰 3 份 72 棵。这不是“按比分配”：已知的是一部分，不是总数。</p></div>
+      </div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q"><b>6.</b> 药粉和水的质量比是 $1:40$。(1) 400 克药粉需加水 <span class="blank" data-ans="16000"></span> 克；(2) 400 克水中应加药粉 <span class="blank" data-ans="10"></span> 克。</p>
+      <details><summary>提示 1</summary>(1) 水是药粉的 40 倍；(2) 药粉是水的 $\dfrac1{40}$。</details>
+      <details><summary>完整解答</summary>(1) $400\times40=16000$（克）；(2) $400\div40=10$（克）。</details>
+    </div>
+    <p class="warn" data-step="1" data-label="先看清">已知的是<b>总数</b>，才用“总份数”去分；已知的是<b>其中一部分</b>，就先用这部分求一份。</p>
+  </div>
+  <p class="note">课本 p61 第 6 题、p62 第 7 题。两题对比，是本课最容易错的地方：看到比就“加起来再分”。请学生先画线段图，标出 120 在哪里。</p>
+</section>
+
+<!-- 10 ================= 混凝土 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十 8</span><h2>配制混凝土：三种材料按什么比？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="mix10" viewBox="0 0 520 170" aria-label="水泥 2 份、黄沙 3 份、石子 5 份"></svg>
+      <p class="tip small-t center">每一小段表示 1 份（按课本图）</p>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <p>(1) 水泥 : 黄沙 : 石子 $=$ <span class="blank" data-ans="2:3:5" data-w="4"></span></p>
+        <p>(2) 配制 120 吨：水泥 <span class="blank" data-ans="24"></span> 吨，黄沙 <span class="blank" data-ans="36"></span> 吨，石子 <span class="blank" data-ans="60"></span> 吨</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(3) 三种材料各有 18 吨，黄沙全部用完时，水泥还剩 <span class="blank" data-ans="6"></span> 吨；石子已经增加了 <span class="blank" data-ans="12"></span> 吨。</p>
+        <details><summary>提示 1</summary>黄沙 18 吨是 3 份，每份 6 吨。</details>
+        <details><summary>提示 2</summary>水泥要用 2 份，石子要用 5 份。</details>
+        <details><summary>完整解答</summary>每份 $18\div3=6$ 吨：水泥用 12 吨，剩 $18-12=6$ 吨；石子要 30 吨，已增加 $30-18=12$ 吨。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p62 练习十第 8 题。图按课本画：每小段一样长，水泥 2 段、黄沙 3 段、石子 5 段。第 (3) 问不是按总数分，是“已知一部分求另一部分”，和上一页 7(2) 一样。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>按比分配：先看份数，再求每部分</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>总数 + 比</b><small>如 30 格，3 : 2</small></div>
+      <i>求总份数</i>
+      <div class="fbox"><b>3 + 2 = 5 份</b><small>线段图分 5 段</small></div>
+      <i>两种方法</i>
+      <div class="fbox hot"><b>30 ÷ 5 × 3<br>或 30 × $\dfrac35$</b><small>每部分</small></div>
+      <i>检验</i>
+      <div class="fbox"><b>和 = 总数<br>比 = 原比</b></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="方法" data-step="2">按比分配：把总数按比的各项之和平均分；每部分 = 总数 × 这部分占的几分之几。</p>
+      <p class="method" data-label="提醒" data-step="3">先看清已知的是总数还是其中一部分；总数也可能藏在题里（如三角形两个锐角的和是 90°）。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>接下来：</b>综合与实践“树叶中的比”——量一量树叶的长与宽，算出比值，看看同一种树叶有什么规律。</p>
+  </div>
+  <p class="note">作业建议：练习十第 3、4 题；思考题（把三角形分成面积比 1∶1、1∶2 的两部分）可以动手画。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
