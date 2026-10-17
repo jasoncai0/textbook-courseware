@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/lvdi-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第10章 分式 · 10.1</p>
+    <h1 class="cover-title">分　式</h1>
+    <p class="cover-q" data-step="1">某市人口总数为 $a$ 人，绿地面积为 $b$ m²，那么该市人均拥有绿地多少平方米？</p>
+    <p class="cover-q" data-step="2">答案是 $\dfrac{b}{a}$——<b>分母里出现了字母</b>。这样的式子还是我们学过的整式吗？字母 $a$ 能随便取值吗？</p>
+    <div class="chips" data-step="3"><span class="chip">分式的概念</span><span class="chip">分式的值</span><span class="chip">分母不能为零</span><span class="chip">值为零的条件</span></div>
+  </div>
+  <p class="note">课本 p98 第一个情境。封面只提两个问题：b/a 是不是整式？a 能不能取 0？请学生先表态，后面逐页回答。本章章首（p97）的京沪铁路问题会在 10.5 分式方程里解决。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="小学 · 分数与除法" data-step="1">
+        <p>$a\div b=\dfrac{a}{b}\ (b\ne0)$：被除数作分子，除数作分母。</p>
+        <p>除数不能为 0，所以<b>分母不能为 0</b>。</p>
+        <span class="use">把“÷ 一个含字母的式子”写成分式；判断分式何时无意义。</span>
+      </div>
+      <div class="recall" data-label="七年级上册 · 第3章 代数式" data-step="2">
+        <p>单项式和多项式统称<b>整式</b>，如 $3x$、$a+b$、$\dfrac{x+y}{2}$。</p>
+        <p>代数式的值：用数代替字母，按运算关系计算。</p>
+        <span class="use">对比整式，找出分式的特征；求分式的值。</span>
+      </div>
+      <div class="recall" data-label="七年级上册 · 第4章 一元一次方程" data-step="3">
+        <p>解 $2x-3=0$：移项得 $2x=3$，所以 $x=\dfrac32$。</p>
+        <p>有理数的除法：$-\dfrac{17}{5}\div\dfrac85=-\dfrac{17}{5}\times\dfrac58$。</p>
+        <span class="use">求“分母为 0”“分子为 0”时字母的值；计算分式的值。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章开篇：</b>代数式家族里要来一位新成员——分母里含有字母的式子。它和分数很像，又有一个分数没有的“麻烦”：分母会随字母变化，可能变成 0。</p>
+  </div>
+  <p class="note">第一张卡是本课的“根”：分式就是用分数线表示的除法，所以“分母≠0”来自“除数≠0”。第二张卡请学生说说 (x+y)/2 为什么是整式（分母 2 不含字母，它就是 ½x + ½y），为下一页做铺垫。</p>
+</section>
+
+<!-- 3 ================= 情境：列式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>用式子表示下面的量</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="jcard" data-step="1">
+        <p><b>①</b> 某市人口总数为 $a$ 人，绿地面积为 $b$ m²，该市人均拥有绿地 <span class="think" data-step="2" data-ask="列式">$\dfrac{b}{a}$</span> m²．</p>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>②</b> 长方形玻璃板的面积为 2 m²，宽是 $a$ m，那么它的长是 <span class="think" data-step="4" data-ask="列式">$\dfrac{2}{a}$</span> m．</p>
+        <svg viewBox="0 0 300 110" class="glass-fig" aria-label="长方形玻璃板，宽 a m，面积 2 平方米">
+          <rect x="60" y="22" width="220" height="80" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2"/>
+          <text x="170" y="68" class="fl s" text-anchor="middle">2 m²</text>
+          <line x1="40" y1="22" x2="40" y2="102" stroke="#556575" stroke-width="1.5"/><text x="20" y="68" class="fl">a</text>
+          <line x1="60" y1="10" x2="280" y2="10" stroke="#556575" stroke-width="1.5"/><text x="170" y="8" class="fl s c2" text-anchor="middle">？</text>
+        </svg>
+      </div>
+      <div class="jcard" data-step="5">
+        <p><b>③</b> 面积为 $a$ 公顷、$b$ 公顷的两块棉田分别产棉花 $m$ 千克、$n$ 千克，这两块棉田平均每公顷产棉花 <span class="think" data-step="6" data-ask="列式">$\dfrac{m+n}{a+b}$</span> 千克．</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="7">像 $\dfrac{b}{a}$、$\dfrac{2}{a}$、$\dfrac{m+n}{a+b}$ 这样的式子，<b>有什么共同特征？</b>它们与整式有什么区别？</p>
+      <p class="tip" data-step="8">特征：<span class="think" data-step="9" data-ask="说一说">都写成 $\dfrac{A}{B}$ 的形式，而且<b>分母中含有字母</b>。</span></p>
+      <p class="tip" data-step="8">区别：<span class="think" data-step="10" data-ask="说一说">它们不是整式，与分数类似；整式的分母（如果有）只能是数。</span></p>
+      <p class="warn" data-step="11" data-label="平均产量别算错">③ 不能写成 $\dfrac ma+\dfrac nb$ 再除以 2：平均每公顷产量 = <b>总产量 ÷ 总面积</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p98 三个情境与“讨论”。每一个先让学生自己列式（可以先写成 b ÷ a，再改写成分数线的形式）。第 ③ 题常见错误是“两块的平均数再平均”，请学生说出“总量 ÷ 总面积”。两个小人的话是课本原意：分母中含有字母；它们不是整式，与分数类似。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>分式</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>分式（课本 p98）</h4>一般地，如果 $A$、$B$ 表示两个<em>整式</em>，并且 $B$ 中<em>含有字母</em>，那么代数式 $\dfrac{A}{B}$ 叫做<b>分式</b>（fraction），其中 $A$ 是分式的分子，$B$ 是分式的分母．</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">判断的关键看哪里？<br><span class="think" data-step="3" data-ask="想一想">看<b>分母</b>：分母里有没有字母。分子有没有字母都可以。</span></p>
+      <p class="tip" data-step="4">$\dfrac{x+y}{2}$ 是分式吗？<br><span class="think" data-step="5" data-ask="想一想">不是：分母 2 不含字母，它是多项式 $\dfrac12x+\dfrac12y$，是整式。</span></p>
+      <p class="tip" data-step="6">$A\div B$ 与 $\dfrac AB$：<br><span class="think" data-step="7" data-ask="什么关系？">分数线就是除号，分式也是“两个整式相除”的一种写法。</span></p>
+    </div>
+    <div class="method" data-step="8" data-label="代数式家族">整式（单项式、多项式）$\ +\ $ 分式 $\ \longrightarrow\ $ 有理式。分式与分数类似：分数 $\dfrac23$ 的分子、分母是数，分式 $\dfrac{2}{a}$ 的分母是含字母的整式。</div>
+  </div>
+  <p class="note">课本 p98 定义。请学生圈出两个条件：A、B 都是整式；B 中含有字母。“有理式”课本没有出现，只作补充提一句，不要求记忆。下一页用点选练习检验是否会用定义判断。</p>
+</section>
+
+<!-- 5 ================= 辨一辨：整式还是分式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>整式还是分式？先点，再看理由</h2></div>
+  <div class="bd full">
+    <div class="sort4">
+      <div class="scard"><p class="ex">$\dfrac{b}{a}$</p><div class="pick" data-ans="f"><button type="button" data-k="z">整式</button><button type="button" data-k="f">分式</button><p class="pick-why">分母 $a$ 含字母。</p></div></div>
+      <div class="scard"><p class="ex">$\dfrac{x+y}{2}$</p><div class="pick" data-ans="z"><button type="button" data-k="z">整式</button><button type="button" data-k="f">分式</button><p class="pick-why">分母是数 2，等于 $\dfrac12x+\dfrac12y$。</p></div></div>
+      <div class="scard"><p class="ex">$\dfrac{m+n}{a+b}$</p><div class="pick" data-ans="f"><button type="button" data-k="z">整式</button><button type="button" data-k="f">分式</button><p class="pick-why">分母 $a+b$ 含字母。</p></div></div>
+      <div class="scard"><p class="ex">$3x-\dfrac12$</p><div class="pick" data-ans="z"><button type="button" data-k="z">整式</button><button type="button" data-k="f">分式</button><p class="pick-why">多项式；分母 2 是数。</p></div></div>
+      <div class="scard"><p class="ex">$\dfrac{x^2}{x}$</p><div class="pick" data-ans="f"><button type="button" data-k="z">整式</button><button type="button" data-k="f">分式</button><p class="pick-why">按<b>原来的样子</b>判断：分母含 $x$，而且 $x$ 不能取 0——不能先约成 $x$ 再判断。</p></div></div>
+      <div class="scard"><p class="ex">$\dfrac{a}{\pi}$</p><div class="pick" data-ans="z"><button type="button" data-k="z">整式</button><button type="button" data-k="f">分式</button><p class="pick-why">$\pi$ 是一个确定的数（常数），不是字母变量：$\dfrac{a}{\pi}=\dfrac1\pi a$ 是单项式。</p></div></div>
+      <div class="scard"><p class="ex">$\dfrac{2}{a-1}$</p><div class="pick" data-ans="f"><button type="button" data-k="z">整式</button><button type="button" data-k="f">分式</button><p class="pick-why">分母 $a-1$ 含字母。</p></div></div>
+      <div class="scard"><p class="ex">$\dfrac{1\,800}{30x}$</p><div class="pick" data-ans="f"><button type="button" data-k="z">整式</button><button type="button" data-k="f">分式</button><p class="pick-why">分母 $30x$ 含字母（练习 1 第(2)题列出的式子）。</p></div></div>
+    </div>
+    <p class="warn" data-step="1" data-label="两个易错点">① 判断分式看<b>原式</b>，不先约分（$\dfrac{x^2}{x}$ 是分式）；② $\pi$ 是常数，$\dfrac a\pi$ 是整式。</p>
+  </div>
+  <p class="note">学生点选后立即判对错，点对了才出现理由，点错可以再选。第 5、6 张是两个易错点，请判断错的同学说说自己的想法再看理由。√2 一类的无理数还没学，这里只用 π。</p>
+</section>
+
+<!-- 6 ================= 分式的值 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流 · 求值</span><h2>分式的意义与分式的值</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">水果每千克 $b$ 元，$\dfrac ab$ 表示用 $a$ 元可以买这种水果的千克数；每千克降价 1 元，$\dfrac{a}{b-1}$ 表示什么？<span class="think" data-step="1" data-ask="说一说">用 $a$ 元可以买降价后这种水果的千克数。</span></p>
+      <p class="tip" data-step="2">分式 $\dfrac ab$、$\dfrac{a}{b-1}$ 还能表示别的意义吗？<span class="think" data-step="3" data-ask="举个例子">如：$a$ km 路，速度 $b$ km/h，用时 $\dfrac ab$ h；速度慢 1 km/h，用时 $\dfrac{a}{b-1}$ h。</span></p>
+      <p class="recall" data-label="分式的值" data-step="4">分式的值随分式中字母取值的变化而变化．用具体的数值代替分式中的字母，按照式子中的运算关系计算，就能得到相应的分式的值．</p>
+    </div>
+    <div class="col">
+      <p class="tip">求分式 $\dfrac{a-3}{a+2}$ 的值：</p>
+      <div class="derive">
+        <div class="dl" data-step="5"><span>$a=3$ 时</span><span class="think" data-step="6" data-ask="算一算">$\dfrac{3-3}{3+2}=\dfrac05=0$</span><i class="why">分子为 0，分母不为 0</i></div>
+        <div class="dl" data-step="7"><span>$a=-\dfrac25$ 时</span><span>$\dfrac{-\frac25-3}{-\frac25+2}=\dfrac{-\frac{17}{5}}{\frac85}$</span><i class="why">分子、分母分别计算</i></div>
+        <div class="dl end" data-step="8"><span></span><span class="think" data-step="9" data-ask="再算一步">$=-\dfrac{17}{5}\times\dfrac58=-\dfrac{17}{8}$</span><i class="why">除以一个数等于乘它的倒数</i></div>
+      </div>
+      <p class="tip gold" data-step="10"><b>思考：</b>$a$ 的值可以是 $-2$ 吗？为什么？<span class="think" data-step="11" data-ask="想一想">不可以：$a=-2$ 时分母 $a+2=0$，“除以 0”没有意义。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p99“交流”、分式的值、两个计算示例与“思考”。第二个计算请学生先说“分子是多少、分母是多少”，再做除法——繁分数要分开算。最后的“思考”自然引出下一页的探测器：哪些值能取、哪些不能取。</p>
+</section>
+
+<!-- 7 ================= 分母为零探测器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>拖动 $x$：分母什么时候是 0？分式的值什么时候是 0？</h2></div>
+  <div class="bd wide-l">
+    <div class="col">
+      <div class="btns" data-noswipe id="detTabs"></div>
+      <div id="detLine" class="det-line"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="detL">◀ 左移 $\tfrac16$</button><button type="button" class="btn" id="detR">右移 $\tfrac16$ ▶</button></div>
+      <div class="det-read" id="detRead"></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="detMsg"></p>
+      <p class="tip" data-step="1">找一找：<b>红点</b>处分式为什么“无意义”？<span class="think" data-step="2" data-ask="看分母">红点处分母的值为 0，除以 0 没有意义。</span></p>
+      <p class="tip" data-step="3"><b>绿点</b>处分式的值为 0，此时分子、分母各是多少？<span class="think" data-step="4" data-ask="看分子、分母">分子为 0，分母<b>不为 0</b>。</span></p>
+      <div class="def" data-step="5"><h4>课本 p99</h4>分式的分母不能为 0．如果分式中字母所取的值使分母的值为 0，那么分式<em>无意义</em>．</div>
+      <p class="method" data-step="6" data-label="三种情况">分母 $=0$ → 无意义；分母 $\ne0$ → 有意义；分子 $=0$ <b>且</b> 分母 $\ne0$ → 值为零。</p>
+    </div>
+  </div>
+  <p class="note">本课核心。拖动橙色点（或按左右移 1/6），右边读数用精确分数计算，不是近似值。四个分式依次试：每遇到分母为 0 的点，数轴上留下红色标记；遇到值为 0 的点，留下绿色标记。请学生先预测红点、绿点的位置（解方程“分母 = 0”“分子 = 0”），再拖过去验证。第 1 个就是下一页的例题。</p>
+</section>
+
+<!-- 8 ================= 例题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>何时有意义？何时值为零？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">当 $x$ 取什么值时，(1) 分式 $\dfrac{x-2}{2x-3}$ 无意义、有意义？(2) 分式 $\dfrac{x-2}{2x-3}$ 的值为零？</p>
+      <p class="tip gold" data-step="1"><b>思路：</b>“无意义”只看<span class="think" data-step="2" data-ask="看哪里？">分母</span>；“值为零”要看<span class="think" data-step="3" data-ask="看哪里？">分子和分母两处</span>。</p>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>(1) 由</span><span>$2x-3=0$，得 $x=\dfrac32$</span><i class="why">令分母为 0</i></div>
+        <div class="dl" data-step="5"><span>当 $x=\dfrac32$ 时</span><span>分式无意义</span><i class="why">分母为 0</i></div>
+        <div class="dl end" data-step="6"><span>当 $x\ne\dfrac32$ 时</span><span>分式有意义</span><i class="why">分母不为 0</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="7"><span>(2) 由</span><span>$x-2=0$，得 $x=2$</span><i class="why">令分子为 0</i></div>
+        <div class="dl key" data-step="8"><span>且 $x=2$ 时</span><span class="think" data-step="9" data-ask="还要检查什么？">分母 $2\times2-3=1\ne0$</span><i class="why">必须检查分母不为 0</i></div>
+        <div class="dl end" data-step="10"><span>∴</span><span>当 $x=2$ 时，分式的值为零</span><i class="why"></i></div>
+      </div>
+      <p class="warn" data-step="11" data-label="只看分子会出错">分式 $\dfrac{x-3}{2x-6}$ 的值能为零吗？<span class="think" data-step="12" data-ask="试试看">令 $x-3=0$ 得 $x=3$，但此时分母 $2\times3-6=0$，分式无意义——这个分式的值<b>不可能</b>为零。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p99–100 例题。第(2)问的关键是第 8 行：课本特意写出“2×2−3=1，不为零”。警示卡是补充的反例，请学生回到上一页的探测器，想一想：如果红点和绿点重合会怎样？</p>
+</section>
+
+<!-- 9 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>填表、判断：输入后按回车</h2></div>
+  <div class="bd full top">
+    <p class="tip">练习 2（课本 p100）：填表．分式无意义的地方填“无意义”．</p>
+    <table class="mtab fill-tab">
+      <tr><th>$x$</th><td>…</td><td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td><td>…</td></tr>
+      <tr><th>$\dfrac{x}{1-x}$</th><td>…</td><td><span class="blank" data-ans="-3/4" data-w="4"></span></td><td><span class="blank" data-ans="-2/3" data-w="4"></span></td><td><span class="blank" data-ans="-1/2" data-w="4"></span></td><td><span class="blank" data-ans="0" data-w="3"></span></td><td><span class="blank" data-ans="无意义" data-w="4"></span></td><td><span class="blank" data-ans="-2" data-w="3"></span></td><td><span class="blank" data-ans="-3/2" data-w="4"></span></td><td>…</td></tr>
+    </table>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> (1) $m$ 个学生排成 20 排，平均每排有____个学生；排成 $a$ 排，平均每排有____个学生．(2) 30 名工人 $x$ h 加工了 1 800 个零件，平均每人每小时加工零件____个．</p>
+        <details><summary>提示 1</summary>平均数 = 总数 ÷ 份数；(2) 先算“人·小时”一共有多少。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{m}{20}$（整式）、$\dfrac{m}{a}$（分式）；(2) $\dfrac{1\,800}{30x}=\dfrac{60}{x}$（分式）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 当 $x$ 取什么值时，下列分式有意义？下列分式的值为零？<br>(1) $\dfrac{2+x}{x}$；　(2) $\dfrac{x}{4-3x}$．</p>
+        <details><summary>提示 1</summary>有意义：令分母 $\ne0$；值为零：令分子 $=0$，再检查分母。</details>
+        <details><summary>提示 2</summary>(2) $4-3x=0$ 时 $x=\dfrac43$。</details>
+        <details><summary>完整解答</summary>(1) $x\ne0$ 时有意义；$x=-2$ 时分母 $-2\ne0$，值为零．(2) $x\ne\dfrac43$ 时有意义；$x=0$ 时分母 $4\ne0$，值为零．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p100 练习 1–3。填表可以输入分数（如 -3/4），系统按数值判断；x = 1 时请学生输入“无意义”。填完后回到第 7 页，把探测器切到“练习 2”逐个核对：红点在 x = 1，绿点在 x = 0。</p>
+</section>
+
+<!-- 10 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 当 $x$ 取什么值时，下列分式有意义？值为零？<br>(1) $\dfrac{2x+1}{6x-5}$；(2) $\dfrac{2x-1}{x^2+1}$．</p>
+        <details><summary>提示 1</summary>(2) 的分母 $x^2+1$ 可能等于 0 吗？</details>
+        <details><summary>提示 2</summary>$x^2\ge0$，所以 $x^2+1\ge1$。</details>
+        <details><summary>完整解答</summary>(1) $x\ne\dfrac56$ 时有意义；$x=-\dfrac12$ 时值为零．(2) $x$ 取任何数都有意义；$x=\dfrac12$ 时值为零．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 某玩具厂要生产 $a$ 只吉祥物“欢欢”，原计划每天生产 $b$ 只，实际每天生产了 $(b+c)$ 只．(1) 原计划多少天完成？(2) 实际多少天完成？</p>
+        <details><summary>提示 1</summary>天数 = 总量 ÷ 每天的产量。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac ab$ 天；(2) $\dfrac{a}{b+c}$ 天．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 当 $a$ 分别为 0.01、0.1、1、10、100 时，求 $\dfrac1a$ 的值．随 $a$ 的值变化，$\dfrac1a$ 的值如何变化？</p>
+        <details><summary>提示 1</summary>依次算：$\dfrac{1}{0.01}=100$，……</details>
+        <details><summary>完整解答</summary>100、10、1、0.1、0.01；$a$ 越来越大时，$\dfrac1a$ 越来越小（$a$ 扩大为原来的 10 倍，$\dfrac1a$ 缩小为原来的 $\dfrac1{10}$）．</details>
+      </div>
+    </div>
+    <div class="hint-ladder" data-step="1">
+      <p class="q"><b>3.</b> $x$ 千克橘子糖、$y$ 千克椰子糖、$z$ 千克奶糖混合成“什锦糖”，3 种糖的单价分别为 28 元/千克、32 元/千克、48 元/千克．求这种“什锦糖”的单价．</p>
+      <details><summary>提示 1</summary>单价 = 总价 ÷ 总质量（不是三个单价的平均数）。</details>
+      <details><summary>完整解答</summary>$\dfrac{28x+32y+48z}{x+y+z}$ 元/千克．</details>
+    </div>
+  </div>
+  <p class="note">习题 10.1 第 1–4 题。第 1(2) 题的分母 x² + 1 永远不为 0，是“有意义”的一个新情况。第 4 题 1/a 的变化规律是第 11 章“反比例函数”的伏笔。第 3 题与第 3 页“平均产量”同一类型。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$A$、$B$ 是整式，$B$ 中<em>含有字母</em> → $\dfrac AB$ 是分式。</p>
+        <p class="warn" data-label="分母不能为 0">分母为 0 时分式无意义。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="判断分式">看原式的分母里有没有字母（$\pi$ 不是字母）。</p>
+        <p class="method" data-label="三种情况">无意义：分母 $=0$；有意义：分母 $\ne0$；值为零：分子 $=0$ 且分母 $\ne0$。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="类比">分式 ↔ 分数：形式相同，分式的分母是含字母的整式。</p>
+        <p class="recall" data-label="转化">“有没有意义”“值是不是 0”→ 解一元一次方程。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>10.2 分式的基本性质——分数 $\dfrac23=\dfrac46$，分子、分母同乘 2 值不变；分式 $\dfrac st=\dfrac{2s}{2t}$ 吗？“同乘一个式子”时要注意什么？</p>
+  </div>
+  <p class="note">请学生先用一句话说出“分式与分数最大的不同”（分母里有字母，可能为 0），再逐栏揭示。课后作业建议：习题 10.1 第 1–4 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mfrac.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

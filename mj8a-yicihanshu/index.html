@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一次函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jiayou.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第6章 一次函数 · 6.2</p>
+    <h1 class="cover-title">一次函数</h1>
+    <p class="cover-q" data-step="1">给汽车加油，加油枪的流量为 25 L/min。如果加油前油箱里<b>没有油</b>，油箱里的油量与加油时间之间有怎样的函数关系？</p>
+    <p class="cover-q" data-step="2">如果加油前油箱里<b>已经有 6 L 油</b>呢？这两个函数，和上节课见过的那些函数，长得像不像？</p>
+    <div class="chips" data-step="3"><span class="chip">函数表达式的共同特征</span><span class="chip">一次函数 · 正比例函数</span><span class="chip">待定系数法</span></div>
+  </div>
+  <p class="note">课本 p144 情境。封面只抛问题，请学生口头说出“油量 = ？”，第 3 页再用加油机动手验证。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上节课讲到哪里了？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="八上 6.1 函数" data-step="1">
+        <p>在一个变化过程中，对于 $x$ 的<b>每一个</b>值，$y$ 都有<b>唯一</b>的值与它对应，$y$ 是 $x$ 的函数。表示两个变量函数关系的式子叫<b>函数表达式</b>。</p>
+        <p class="small-p"><a href="../mj8a-hanshu/index.html">回看 6.1《函数》课件 ›</a></p>
+        <span class="use">先写出函数表达式，再观察这些表达式的共同特征。</span>
+      </div>
+      <div class="recall" data-label="八上 6.1 · 例 1" data-step="2">
+        <p>油箱有油 40 L，每行驶 100 km 耗油 10 L：$Q=40-\dfrac{s}{10}$；声音传播：$l=340t$。</p>
+        <span class="use">这些“上节课写过的式子”就是本课要归类的对象。</span>
+      </div>
+      <div class="recall" data-label="七下 第10章 二元一次方程组" data-step="3">
+        <p>$\begin{cases}x+y=5,\\ 3x+y=9\end{cases}$　两式相减：$2x=4$，$x=2$，$y=3$（加减消元）。</p>
+        <span class="use">例 2 用两组数据列方程组，求出式子里的两个未知系数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课主线：</b>上节课认识了“函数”这个大家族；今天找出其中最简单、最常见的一类——它们的表达式长什么样？</p>
+  </div>
+  <p class="note">第一张卡请学生复述函数定义里的两个关键词“每一个”“唯一”。第三张卡请学生口算，为例 2 的待定系数法做准备（七下 10.3 解二元一次方程组）。</p>
+</section>
+
+<!-- 3 ================= 加油机（核心互动） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手</span><h2>加油机：油量怎样随时间变化？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="pump">
+        <svg id="tankSvg" viewBox="0 0 120 200" aria-label="油箱示意"></svg>
+        <div class="col">
+          <p class="tank-read" id="tankRead"></p>
+          <div class="slider-row" data-noswipe>加油时间 $x=$<input type="range" id="pumpX" min="0" max="2" step="0.1" value="1"><b class="v" id="pumpXV"></b>min</div>
+          <div class="btns" data-noswipe id="pumpB">
+            <button type="button" class="btn solid" data-b="0">原来没有油</button>
+            <button type="button" class="btn" data-b="6">原来有 6 L</button>
+          </div>
+        </div>
+      </div>
+      <table class="mtab" id="pumpTab"></table>
+      <p class="muted center small-t">流量 25 L/min；油箱容量按 60 L 画，油面高度按油量精确计算</p>
+    </div>
+    <div class="col">
+      <p class="tip">用 $y$（L）表示油箱中的油量，$x$（min）表示加油的时间．</p>
+      <p class="tip" data-step="1">加油前没有油：$y=$ <span class="think" data-step="2" data-ask="写一写">$25x$</span></p>
+      <p class="tip" data-step="3">加油前有 6 L 油：$y=$ <span class="think" data-step="4" data-ask="写一写">$25x+6$</span></p>
+      <p class="tip gold" data-step="5">看表格最下面一行：$x$ 每增加 0.5 min，$y$ 怎样变化？<span class="think" data-step="6" data-ask="观察">总是增加 $12.5$ L——<b>匀速</b>地增加，与原来有没有油无关。</span></p>
+      <p class="tip" data-step="7">两个式子有什么不同？<span class="think" data-step="8" data-ask="比一比">都是“$25x$”，第二个多加了一个常数 $6$（原有的油）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p144。先请学生拖动时间滑块，读出几组对应值，再写表达式；切换“原来有 6 L”，表格每一格都多了 6，但“每 0.5 min 增加 12.5 L”不变。这一行为下一课“图像是直线”埋下伏笔，这里只观察不讲。</p>
+</section>
+
+<!-- 4 ================= 讨论：共同特征 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>这些表达式有什么共同特征？</h2></div>
+  <div class="bd full">
+    <p class="tip">课本 p144 讨论：把每个式子都写成“$\text{因变量}=\color{#d9711c}{(\ \ )}\times\text{自变量}+\color{#2f7d6b}{(\ \ )}$”的样子试试．</p>
+    <div class="anat">
+      <div class="card" data-step="1"><p>$y=25x$</p><span class="src">加油（原来没油）</span><span class="think" data-step="2" data-ask="改写">$y=\color{#d9711c}{25}\,x+\color{#2f7d6b}{0}$</span></div>
+      <div class="card" data-step="1"><p>$y=25x+6$</p><span class="src">加油（原来 6 L）</span><span class="think" data-step="2" data-ask="改写">$y=\color{#d9711c}{25}\,x+\color{#2f7d6b}{6}$</span></div>
+      <div class="card" data-step="3"><p>$Q=40-\dfrac{s}{10}$</p><span class="src">6.1 例 1 油箱</span><span class="think" data-step="4" data-ask="改写">$Q=\color{#d9711c}{\left(-\tfrac{1}{10}\right)}s+\color{#2f7d6b}{40}$</span></div>
+      <div class="card" data-step="3"><p>$y=100t$</p><span class="src">6.1 匀速行驶</span><span class="think" data-step="4" data-ask="改写">$y=\color{#d9711c}{100}\,t+\color{#2f7d6b}{0}$</span></div>
+      <div class="card" data-step="3"><p>$g=h-105$</p><span class="src">课本讨论</span><span class="think" data-step="4" data-ask="改写">$g=\color{#d9711c}{1}\cdot h+\color{#2f7d6b}{(-105)}$</span></div>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="5">共同特征①：<span class="think" data-step="6" data-ask="说一说">自变量的<b>次数是 1</b>（没有平方，也不在分母里）；</span></p>
+      <p class="tip" data-step="5">共同特征②：<span class="think" data-step="7" data-ask="说一说">都是“<span class="kb-k">常数</span> × 自变量 + <span class="kb-b">常数</span>”的形式，前一个常数<b>不是 0</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p144 讨论。按步骤先给出原式，请学生上黑板改写，再点开对照。难点是 $Q=40-\frac{s}{10}$：减号要“并到”系数里，系数是 $-\frac{1}{10}$；$g=h-105$ 的系数 1 平时省略不写。橙色、绿色两个位置在后面的定义里就是 $k$ 和 $b$。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>一次函数与正比例函数</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>一次函数（课本 p144）</h4>一般地，形如 $y=\color{#d9711c}{k}x+\color{#2f7d6b}{b}$（$k$、$b$ 为常数，且 $k\ne0$）的函数叫做<em>一次函数</em>（linear function），其中 $x$ 是自变量，$y$ 是 $x$ 的函数．</div>
+    <div class="def big-def" data-step="2"><h4>正比例函数（课本 p144）</h4>特别地，当 $b=0$ 时，$y=kx$（$k$ 为常数，$k\ne0$），$y$ 叫做 $x$ 的<em>正比例函数</em>（direct proportion function）．</div>
+    <div class="cols3">
+      <p class="tip" data-step="3">为什么要求 $k\ne0$？<span class="think" data-step="4" data-ask="想一想">$k=0$ 时 $y=b$，$x$ 怎么变 $y$ 都不变，式子里“没有 $x$ 了”，不再是“一次”。</span></p>
+      <p class="tip" data-step="5">$b$ 可以是 0 吗？<span class="think" data-step="6" data-ask="想一想">可以。$b=0$ 时就是正比例函数，所以<b>正比例函数是特殊的一次函数</b>。</span></p>
+      <p class="tip" data-step="7">“一次”指什么？<span class="think" data-step="8" data-ask="想一想">自变量 $x$ 的次数是 1，与七年级的“一元<b>一次</b>方程”的“一次”同义。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p144 定义。请学生对照上一页：五个式子里，哪些是正比例函数？（$y=25x$、$y=100t$）。可以画一个“包含”关系：一次函数的圈里套着正比例函数的圈。“linear”的意思是“线性的”，下一课就会明白为什么叫它“线”。</p>
+</section>
+
+<!-- 6 ================= 交流：判断 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>写出表达式，再判断是哪一类</h2></div>
+  <div class="bd full top">
+    <div class="cols2"><p class="tip">用函数表达式表示下列变化过程中两个变量之间的关系，并指出其中的一次函数、正比例函数（课本 p145）．先写式子，再点选．</p>
+<svg class="fig66" viewBox="0 0 640 60" aria-label="图 6-6"><line x1="20" y1="30" x2="620" y2="30" stroke="#1f2d3a" stroke-width="2"/><circle cx="60" cy="30" r="4" fill="#1f2d3a"/><circle cx="220" cy="30" r="4" fill="#1f2d3a"/><circle cx="580" cy="30" r="4" fill="#1f2d3a"/><text x="54" y="18" class="fl">A</text><text x="214" y="18" class="fl">B</text><text x="574" y="18" class="fl">C</text><line x1="60" y1="44" x2="220" y2="44" stroke="#9fb0bf" stroke-width="1.5"/><text x="118" y="56" font-size="13" fill="#556575">200 km</text><rect x="470" y="22" width="30" height="10" rx="3" fill="#1d6fa5"/><line x1="60" y1="50" x2="485" y2="50" stroke="#d9711c" stroke-width="1.5" stroke-dasharray="5 4"/><text x="300" y="47" font-size="13" fill="#d9711c">y km</text></svg></div>
+    <div class="cls">
+      <div class="row"><span>(1) 正方形面积 $S$ 随边长 $x$ 变化：<span class="think" data-ask="式子">$S=x^2$</span></span>
+        <div class="pick" data-ans="n"><button data-k="n">不是一次函数</button><button data-k="y">一次函数（非正比例）</button><button data-k="p">正比例函数</button><p class="pick-why">$x$ 的次数是 2，不是一次函数。</p></div></div>
+      <div class="row"><span>(2) 正方形周长 $l$ 随边长 $x$ 变化：<span class="think" data-ask="式子">$l=4x$</span></span>
+        <div class="pick" data-ans="p"><button data-k="n">不是一次函数</button><button data-k="y">一次函数（非正比例）</button><button data-k="p">正比例函数</button><p class="pick-why">$k=4$，$b=0$：正比例函数，当然也是一次函数。</p></div></div>
+      <div class="row"><span>(3) 长方形的长为常量 $a$，面积 $S$ 随宽 $x$ 变化：<span class="think" data-ask="式子">$S=ax$</span></span>
+        <div class="pick" data-ans="p"><button data-k="n">不是一次函数</button><button data-k="y">一次函数（非正比例）</button><button data-k="p">正比例函数</button><p class="pick-why">$a$ 是常量且 $a\gt0$，相当于 $k=a$，$b=0$。</p></div></div>
+      <div class="row"><span>(4) 列车以 300 km/h 驶离 $A$ 站，路程 $y$（km）随时间 $t$（h）：<span class="think" data-ask="式子">$y=300t$</span></span>
+        <div class="pick" data-ans="p"><button data-k="n">不是一次函数</button><button data-k="y">一次函数（非正比例）</button><button data-k="p">正比例函数</button><p class="pick-why">$k=300$，$b=0$。</p></div></div>
+      <div class="row"><span>(5) 图 6-6：$A$、$B$ 相距 200 km，火车从 $B$ 站以 120 km/h 驶向 $C$ 站，离 $A$ 站的路程 $y$（km）随时间 $t$（h）：<span class="think" data-ask="式子">$y=120t+200$</span></span>
+        <div class="pick" data-ans="y"><button data-k="n">不是一次函数</button><button data-k="y">一次函数（非正比例）</button><button data-k="p">正比例函数</button><p class="pick-why">$k=120$，$b=200\ne0$：是一次函数，但不是正比例函数。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p145 交流与图 6-6。每题先点开式子（或请学生先说），再点选类别；点错可以再选。第 (5) 题是难点：路程要从 A 站算起，所以先有 200 km，再加上 120t。第 (3) 题提醒：字母 a 在这里是常量，所以 S = ax 是正比例函数。</p>
+</section>
+
+<!-- 7 ================= 易错 + 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>它们是一次函数吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="jcard" data-step="1"><p>$y=\dfrac{2}{x}$</p><div class="think" data-step="2" data-ask="是不是？"><p><span class="verdict x">不是</span>$x$ 在分母里，不是“$kx+b$”的形式。</p></div></div>
+      <div class="jcard" data-step="3"><p>$y=\dfrac{x}{2}$</p><div class="think" data-step="4" data-ask="是不是？"><p><span class="verdict ok">是</span>$y=\dfrac12x$，$k=\dfrac12$，$b=0$——还是正比例函数。</p></div></div>
+      <div class="jcard" data-step="5"><p>$y=2(x-1)+3-2x$</p><div class="think" data-step="6" data-ask="是不是？化简试试"><p><span class="verdict x">不是</span>化简得 $y=1$，$k=0$。要先<b>化简</b>再判断。</p></div></div>
+      <p class="method" data-step="7" data-label="判断一次函数">先化简成 $y=kx+b$ 的形式 → 看 $x$ 的次数是不是 1 → 看 $k\ne0$。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习（课本 p145）</b></p>
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 水池中有水 465 m³，每小时排水 15 m³，排水 $t$ h 后，水池中还有水 $y$ m³．试写出 $y$ 与 $t$ 之间的函数表达式．</p>
+        <details><summary>提示</summary>剩余的 = 原有的 − 排出的；$t$ h 排出多少？</details>
+        <details><summary>完整解答</summary>$y=465-15t$（一次函数，$k=-15$，$b=465$）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一个长方形的长为 15 cm，宽为 10 cm．如果将长方形的长减少 $x$ cm，宽不变，那么长方形的面积 $y$（cm²）与 $x$（cm）之间有怎样的函数表达式？</p>
+        <details><summary>提示</summary>新的长是多少？面积 = 长 × 宽．</details>
+        <details><summary>完整解答</summary>$y=10(15-x)$，即 $y=150-10x$（一次函数）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">左栏是补充的辨析，三张卡对应定义的三个要点：形式、次数、k ≠ 0。第三张卡学生常直接说“是”，要追问“化简以后呢？”。右栏是课本 p145 练习 1、2。</p>
+</section>
+
+<!-- 8 ================= 例 1 蚊香 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>一盘蚊香能烧多久？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <p class="tip">一盘蚊香长 105 cm，点燃后，每小时缩短 10 cm．（课本 p145）</p>
+      <div class="coil"><svg id="coilSvg" viewBox="0 0 560 120" aria-label="蚊香长度条"></svg></div>
+      <div class="slider-row" data-noswipe>燃烧时间 $t=$<input type="range" id="coilT" min="0" max="12" step="0.5" value="3"><b class="v" id="coilTV"></b>h</div>
+      <p class="tip feedback" id="coilMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">(1) 写出蚊香点燃后的长度 $y$（cm）与燃烧时间 $t$（h）之间的函数表达式；(2) 该盘蚊香可燃烧多长时间？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$t$ h 缩短</span><span class="think" data-step="2" data-ask="多少？">$10t$ cm</span><i class="why">每小时缩短 10 cm</i></div>
+        <div class="dl key" data-step="3"><span>(1)</span><span>$y=105-10t$</span><i class="why">原长 − 缩短的长度</i></div>
+        <div class="dl" data-step="4"><span>(2) 燃尽</span><span class="think" data-step="5" data-ask="燃尽意味着？">$y=0$</span><i class="why">把“烧完”翻译成函数值</i></div>
+        <div class="dl" data-step="6"><span>由</span><span>$105-10t=0$</span><i class="why">解一元一次方程</i></div>
+        <div class="dl end" data-step="7"><span>得</span><span>$t=\dfrac{105}{10}=10.5$</span><i class="why">该盘蚊香可燃烧 10.5 h</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="已知函数值求自变量">把已知的 $y$ 代入表达式，得到关于 $x$ 的<b>一元一次方程</b>，解方程就行了。</p>
+    </div>
+  </div>
+  <p class="note">课本 p145 例 1。先请学生拖滑块看长度怎么变，再写式子；把 t 拖到 11、12 时 y 会是负数——请学生说出“不合实际”，所以自变量 t 的取值范围是 0 ≤ t ≤ 10.5（与 6.1 例 1 呼应）。第 (2) 问的关键是“燃尽”就是 y = 0。</p>
+</section>
+
+<!-- 9 ================= 例 2 弹簧 + 待定系数法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>只知道两组数据，怎样求出表达式？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="spring">
+        <svg id="springSvg" viewBox="0 0 120 245" aria-label="弹簧示意"></svg>
+        <div class="col">
+          <div class="slider-row" data-noswipe>所挂质量 $x=$<input type="range" id="sprX" min="0" max="50" step="5" value="10"><b class="v" id="sprXV"></b>g</div>
+          <p class="tip feedback" id="sprMsg"></p>
+          <table class="mtab" id="sprTab"></table>
+        </div>
+      </div>
+      <p class="muted small-t">弹簧长度按 $y=0.2x+9$ 精确绘制（1 cm = 10 单位）；只有在 $x=10$、$30$ 时课本给了数据</p>
+    </div>
+    <div class="col">
+      <p class="tip">在弹性限度内，弹簧长度 $y$（cm）是所挂物体质量 $x$（g）的一次函数．挂 10 g 物体时长 11 cm，挂 30 g 时长 15 cm，试求 $y$ 与 $x$ 的函数表达式．（课本 p146）</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设</span><span>$y=kx+b$</span><span class="think" data-step="2" data-ask="为什么能这样设？">题目说了“是一次函数”，只是 $k$、$b$ 不知道</span></div>
+        <div class="dl" data-step="3"><span>$x=10,\ y=11$</span><span>$11=10k+b$</span><i class="why">代入第一组数据</i></div>
+        <div class="dl" data-step="3"><span>$x=30,\ y=15$</span><span>$15=30k+b$</span><i class="why">代入第二组数据</i></div>
+        <div class="dl key" data-step="4"><span>解方程组</span><span class="think" data-step="5" data-ask="解一解">$\begin{cases}k=0.2,\\ b=9\end{cases}$</span><i class="why">两式相减：$20k=4$（加减消元）</i></div>
+        <div class="dl end" data-step="6"><span>所以</span><span>$y=0.2x+9$</span><i class="why">把 $k$、$b$ 的值代回去</i></div>
+      </div>
+      <p class="tip gold" data-step="7">$b=9$ 在实际中表示什么？<span class="think" data-step="8" data-ask="想一想">不挂物体（$x=0$）时弹簧的长度 9 cm；$k=0.2$ 表示每多挂 1 g，弹簧伸长 0.2 cm。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p146 例 2。拖动质量滑块：在 10 g、30 g 处会亮出课本的两组数据。追问：“为什么要两组数据？一组行不行？”——两个未知数 k、b 需要两个方程。最后一问让 k、b 回到实际意义，下一课会看到它们在图像上的意义。</p>
+</section>
+
+<!-- 10 ================= 待定系数法 + 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法</span><h2>待定系数法</h2></div>
+  <div class="bd full top">
+    <div class="def" data-step="1"><h4>待定系数法（课本 p146）</h4>像例 2，先写出含有未知系数的函数表达式，再根据条件求出这些未知系数的值，从而确定函数表达式，这样的方法叫做<em>待定系数法</em>．</div>
+    <p class="method" data-step="2" data-label="三步">① <b>设</b>：$y=kx+b$　② <b>代</b>：把两组对应值代入，得到关于 $k$、$b$ 的方程组　③ <b>解</b>：解方程组，写出表达式</p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>练习 1（课本 p146）</b> 填空，回车判对错：</p>
+        <p class="tip">(1) 已知 $y=4x+5$．当 $x=-3$ 时，$y=$ <span class="blank" data-ans="-7"></span>；当 $y=5$ 时，$x=$ <span class="blank" data-ans="0"></span>．</p>
+        <p class="tip">(2) 已知 $y=-3x+1$．当 $x=2$ 时，$y=$ <span class="blank" data-ans="-5"></span>；当 $y=0$ 时，$x=$ <span class="blank" data-ans="1/3" data-w="3"></span>．</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2（课本 p146）</b> 甲、乙两地相距 520 km，一辆汽车以 80 km/h 的速度从甲地开往乙地，行驶了 $t$ h．求剩余路程 $s$（km）与 $t$ 之间的函数表达式，并根据实际意义确定 $t$ 的取值范围．</p>
+        <details><summary>提示 1</summary>剩余路程 = 全程 − 已行驶的路程．</details>
+        <details><summary>提示 2</summary>剩余路程不能是负数：$s\ge0$；$t$ 也不能是负数．</details>
+        <details><summary>完整解答</summary>$s=520-80t$；由 $520-80t\ge0$ 得 $t\le6.5$，所以 $0\le t\le6.5$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p146 待定系数法与练习。“已知 x 求 y”是代入计算，“已知 y 求 x”是解一元一次方程——两个方向都要会。填空支持分数输入，如 1/3。</p>
+</section>
+
+<!-- 11 ================= 习题精选 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.2 精选：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 等腰三角形的周长为 80．(1) 写出底边长 $y$ 与腰长 $x$ 的函数表达式；(2) 当腰长为 30 时，底边长为多少？(3) 当底边长为 8 时，腰长为多少？</p>
+        <details><summary>提示</summary>周长 = 两条腰 + 底边；(3) 是已知 $y$ 求 $x$．</details>
+        <details><summary>完整解答</summary>(1) $y=80-2x$；(2) $y=80-60=20$；(3) $80-2x=8$，$x=36$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 已知一次函数 $y=ax-3$．当 $x=1$ 时，$y=7$．求 $a$ 的值．</p>
+        <details><summary>提示</summary>只有一个未知系数，代入一组数据就够了．</details>
+        <details><summary>完整解答</summary>$7=a\cdot1-3$，$a=10$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 已知一次函数 $y=kx+b$．当 $x=-3$ 时，$y=0$；当 $x=0$ 时，$y=-4$．求 $k$ 与 $b$ 的值．</p>
+        <details><summary>提示 1</summary>设、代：$0=-3k+b$，$-4=0\cdot k+b$．</details>
+        <details><summary>提示 2</summary>第二个方程直接给出 $b$ 的值．</details>
+        <details><summary>完整解答</summary>$b=-4$；$0=-3k-4$，$k=-\dfrac43$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 6.2 第 3、5、6 题。第 5 题与第 6 题对比：几个未知系数，就需要几组数据（几个方程）。第 3 题可以追问腰长 x 的取值范围（20 &lt; x &lt; 40，三角形三边关系），学有余力的学生思考。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$y=kx+b$（$k$、$b$ 为常数，$k\ne0$）→ <em>一次函数</em>；$b=0$ 时 $y=kx$ → <em>正比例函数</em>。</p>
+        <p class="warn" data-label="别忘了">$k\ne0$；先化简再判断；正比例函数是特殊的一次函数。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="已知 x 求 y / 已知 y 求 x">代入计算 / 解一元一次方程。</p>
+        <p class="method" data-label="待定系数法">设 $y=kx+b$ → 代入两组值 → 解方程组。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="从特殊到一般">从加油、蚊香、行车等具体问题中，抽象出共同的形式 $y=kx+b$。</p>
+        <p class="recall" data-label="方程思想">求未知系数，就是解方程（组）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.3 一次函数的图像——加油时“每 0.5 min 总是多 12.5 L”，把这些点描在坐标系里，会排成什么形状？$k$、$b$ 又会怎样影响图像？</p>
+  </div>
+  <p class="note">请学生先说出“一次函数的样子”再逐栏揭示。课后作业建议：习题 6.2 第 1、2、4 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

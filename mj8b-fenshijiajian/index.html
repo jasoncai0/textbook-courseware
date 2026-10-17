@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分式的加减 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mfrac.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/youlun-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第10章 分式 · 10.3</p>
+    <h1 class="cover-title">分式的加减</h1>
+    <p class="cover-q" data-step="1">甲、乙两港相距 $s$ km，游轮在静水中的速度为 $a$ km/h，水流速度为 $b$ km/h（$b&lt;a$）．</p>
+    <p class="cover-q" data-step="2">顺流用时 $\dfrac{s}{a+b}$ h，逆流用时 $\dfrac{s}{a-b}$ h——<b>往返用时相差多少？</b>两个分式怎样相减？</p>
+    <div class="chips" data-step="3"><span class="chip">同分母相加减</span><span class="chip">异分母先通分</span><span class="chip">代值找错步</span><span class="chip">结果化为最简</span></div>
+  </div>
+  <p class="note">课本 p108 习题 10.3 第 3 题的情境，作为本课的引入；本课末尾回来解决它。请学生先列出两个时间，再问“怎样相减”——自然想到分数的减法。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 g4">
+      <div class="recall" data-label="五年级下册 · 分数加法和减法" data-step="1">
+        <p>同分母：$\dfrac15+\dfrac35=\dfrac45$；异分母：先通分，$\dfrac12-\dfrac13=\dfrac36-\dfrac26=\dfrac16$。</p>
+        <span class="use">类比得到分式加减的两条法则。</span>
+      </div>
+      <div class="recall" data-label="10.2 分式的基本性质" data-step="2">
+        <p>上一课学了<b>通分</b>（最简公分母、缺什么乘什么）和<b>约分</b>（化成最简分式）。</p>
+        <span class="use">异分母相加减的第一步就是通分；最后结果要约分。</span>
+      </div>
+      <div class="recall" data-label="七年级上册 · 3.5 去括号" data-step="3">
+        <p>$(2a-3)-(a-2)=2a-3-a+2=a-1$：括号前是“−”号，去括号后各项都变号。</p>
+        <span class="use">分子相减时，把被减的分子看成一个整体，先加括号。</span>
+      </div>
+      <div class="recall" data-label="七年级下册 · 9.4 乘法公式" data-step="4">
+        <p>$(a+1)^2=a^2+2a+1$，$(a-1)^2=a^2-2a+1$；$x^2-4=(x+2)(x-2)$。</p>
+        <span class="use">展开分子；把分母分解因式，找最简公分母。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">上一课（10.2）讲到分式的约分与通分，本课正是它们的应用。第三张卡是本课最容易出错的地方，请学生口算 (2a − 3) − (a − 2)，有人会算成 a − 5，先不纠正，第 5 页再“诊断”。</p>
+</section>
+
+<!-- 3 ================= 同分母 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>同分母的分式怎样加减？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">怎样计算 $\dfrac ba+\dfrac ca$、$\dfrac ba-\dfrac ca$？</p>
+      <p class="tip" data-step="1">先想分数：$\dfrac15+\dfrac35=\ ?$<span class="think" data-step="2" data-ask="分母变不变？">$\dfrac{1+3}{5}=\dfrac45$：分母不变，分子相加。</span></p>
+      <p class="tip" data-step="3">用 $a=4$，$b=3$，$c=5$ 验证 $\dfrac ba+\dfrac ca=\dfrac{b+c}{a}$：<span class="think" data-step="4" data-ask="算一算">左边 $=\dfrac34+\dfrac54=2$，右边 $=\dfrac{3+5}{4}=2$。</span></p>
+      <div class="def" data-step="5"><h4>同分母分式加减法则（课本 p106）</h4>同分母的分式相加减，<em>分母不变</em>，把<em>分子相加减</em>．$$\frac ba\pm\frac ca=\frac{b\pm c}{a}.$$</div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 1</b> 计算：(1) $\dfrac1a+\dfrac3a$；(2) $\dfrac{2a-3}{a+1}-\dfrac{a-2}{a+1}$．</p>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>(1)</span><span>$\dfrac1a+\dfrac3a=\dfrac4a$</span><i class="why">分母不变，分子相加</i></div>
+        <div class="dl" data-step="7"><span>(2)</span><span>$\dfrac{2a-3}{a+1}-\dfrac{a-2}{a+1}$</span><i class="why"></i></div>
+        <div class="dl key" data-step="8"><span></span><span>$=\dfrac{(2a-3)-(a-2)}{a+1}$</span><i class="why">分子相减：<b>两个分子都加括号</b></i></div>
+        <div class="dl" data-step="9"><span></span><span>$=\dfrac{2a-3-a+2}{a+1}$</span><i class="why">去括号，括号前是“−”号要变号</i></div>
+        <div class="dl end" data-step="10"><span></span><span>$=\dfrac{a-1}{a+1}$</span><i class="why">合并同类项</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p106“讨论”、同分母法则、例 1。课本解答的书写格式是“连等式”，每一行开头写“=”。第 8 行是关键：分子是多项式时，相减要把它看成一个整体加括号。</p>
+</section>
+
+<!-- 4 ================= 找错步（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">代值诊断</span><h2>每一步都“值不变”：代一个数，找出错的那一步</h2></div>
+  <div class="bd wide-l">
+    <div class="col">
+      <div class="btns" data-noswipe id="dxTabs"></div>
+      <div class="btns" data-noswipe id="dxVals"></div>
+      <div id="dxTab"></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="dxMsg"></p>
+      <p class="tip" data-step="1">为什么代一个数就能查错？<span class="think" data-step="2" data-ask="想一想">分式加减的每一步都是恒等变形，字母取同一个值，<b>每一行的值都应该相等</b>；哪一行的值变了，错误就出在那一步。</span></p>
+      <p class="tip" data-step="3">值相等就一定对吗？<span class="think" data-step="4" data-ask="想一想">不一定：错的式子在个别值上也可能“碰巧”相等。所以代值只能用来<b>发现</b>错误，正确性还要靠每一步的依据。</span></p>
+      <p class="method" data-step="5" data-label="自查习惯">算完后任取一个使分母不为 0 的简单数，代入第一行和最后一行，看看值是否相同。</p>
+    </div>
+  </div>
+  <p class="note">本课核心。四个“病例”都是学生作业中最常见的错误，加一个正确示范对照。请学生先读解答、猜哪一步有错，再点不同的取值：表格逐行精确计算，值第一次变化的那一行标红，并给出诊断。病例 2 是“把分式加减当成解方程去分母”，下一课 10.5 学分式方程时还会再提。</p>
+</section>
+
+<!-- 5 ================= 异分母 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>异分母的分式怎样加减？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">怎样计算 $\dfrac ba+\dfrac cd$、$\dfrac ba-\dfrac cd$？</p>
+      <p class="tip" data-step="1">分母不同，能直接把分子相加吗？<span class="think" data-step="2" data-ask="想一想">不能。分式 $\dfrac ba$、$\dfrac cd$ 可以变形成同分母分式 $\dfrac{bd}{ad}$、$\dfrac{ac}{ad}$——先通分。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span></span><span>$\dfrac ba+\dfrac cd=\dfrac{bd}{ad}+\dfrac{ac}{ad}$</span><i class="why">通分（分式的基本性质）</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$=\dfrac{bd+ac}{ad}$</span><i class="why">同分母相加</i></div>
+      </div>
+      <div class="def" data-step="5"><h4>异分母分式加减法则（课本 p106）</h4>异分母的分式相加减，<em>先通分</em>，再加减．$$\frac ba\pm\frac cd=\frac{bd\pm ac}{ad}.$$</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6">把 $\dfrac ba+\dfrac cd$ 用 $a=2$、$b=1$、$d=3$、$c=1$ 验证：<span class="think" data-step="7" data-ask="算一算">左边 $=\dfrac12+\dfrac13=\dfrac56$；右边 $=\dfrac{1\times3+2\times1}{2\times3}=\dfrac56$。</span></p>
+      <div class="method" data-step="8" data-label="转化">异分母 $\xrightarrow{\text{通分}}$ 同分母 $\xrightarrow{\text{分子相加减}}$ 结果 $\xrightarrow{\text{约分}}$ 最简分式或整式．</div>
+      <p class="warn" data-step="9" data-label="公分母取哪个">$ad$ 是一个公分母，但不一定是<b>最简</b>公分母：如 $\dfrac2x-\dfrac5{x^2}$，用 $x^2$ 就够了，用 $x\cdot x^2$ 会让计算变繁、最后还要约分。</p>
+    </div>
+  </div>
+  <p class="note">课本 p106“交流”与异分母法则。小人提示“分式 b/a、c/d 可以变形成同分母分式 bd/ad、ac/ad”就是上一课的通分。警示卡引出例 2(1)：通分时尽量取最简公分母。</p>
+</section>
+
+<!-- 6 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>异分母：先找最简公分母</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">(1) $\dfrac2x-\dfrac5{x^2}$</p>
+      <p class="tip gold" data-step="1">最简公分母是？<span class="think" data-step="2" data-ask="找一找">$x^2$（字母取最高次幂）</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span></span><span>$=\dfrac{2x}{x^2}-\dfrac5{x^2}$</span><i class="why">$\dfrac2x$ 的分子、分母同乘 $x$</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$=\dfrac{2x-5}{x^2}$</span><i class="why">同分母相减</i></div>
+      </div>
+      <p class="warn" data-step="5" data-label="别“去分母”">结果不能写成 $2x-5$：这里是<b>计算</b>，不是解方程，分母不能丢。</p>
+    </div>
+    <div class="col">
+      <p class="tip">(2) $\dfrac{a+1}{a-1}-\dfrac{a-1}{a+1}$</p>
+      <p class="tip gold" data-step="6">最简公分母是？<span class="think" data-step="7" data-ask="找一找">$(a+1)(a-1)$（两个分母没有公因式）</span></p>
+      <div class="derive">
+        <div class="dl" data-step="8"><span></span><span>$=\dfrac{(a+1)^2}{(a+1)(a-1)}-\dfrac{(a-1)^2}{(a+1)(a-1)}$</span><i class="why">通分</i></div>
+        <div class="dl" data-step="9"><span></span><span>$=\dfrac{(a+1)^2-(a-1)^2}{(a+1)(a-1)}$</span><i class="why">同分母相减</i></div>
+        <div class="dl key" data-step="10"><span></span><span>$=\dfrac{(a^2+2a+1)-(a^2-2a+1)}{(a+1)(a-1)}$</span><i class="why">完全平方公式，<b>保留括号</b></i></div>
+        <div class="dl end" data-step="11"><span></span><span>$=\dfrac{4a}{(a+1)(a-1)}$</span><i class="why">去括号、合并同类项</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p107 例 2。(2) 第 10 行课本特意保留了括号：(a − 1)² 展开后整体被减，这正是上一页病例 4 的错因。也可以提醒学生：分子可以用平方差公式 [(a + 1) + (a − 1)][(a + 1) − (a − 1)] = 2a·2 = 4a 来算，更简便。</p>
+</section>
+
+<!-- 7 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>分母是多项式：先分解，算完再约分</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">计算：$\dfrac{x}{x^2-4}-\dfrac{1}{2x-4}$．</p>
+      <p class="tip gold" data-step="1"><b>思路：</b><span class="think" data-step="2" data-ask="第一步做什么？">分母分解因式：$x^2-4=(x+2)(x-2)$，$2x-4=2(x-2)$；最简公分母 $2(x+2)(x-2)$。</span></p>
+      <p class="method" data-step="10" data-label="课本 p107">通常，分式相加减所得的结果应化为<b>最简分式或整式</b>．</p>
+      <div class="qcheck" data-step="11" data-ref="x/(x^2-4)-1/(2x-4)" data-vars="x" data-ph="试试把你的结果输入检验，如 1/(2(x+2))"></div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span></span><span>$=\dfrac{x}{(x+2)(x-2)}-\dfrac{1}{2(x-2)}$</span><i class="why">分母分解因式</i></div>
+        <div class="dl" data-step="4"><span></span><span>$=\dfrac{2x}{2(x+2)(x-2)}-\dfrac{x+2}{2(x+2)(x-2)}$</span><i class="why">通分：分别乘 2、$x+2$</i></div>
+        <div class="dl" data-step="5"><span></span><span>$=\dfrac{2x-(x+2)}{2(x+2)(x-2)}$</span><i class="why">同分母相减，分子加括号</i></div>
+        <div class="dl" data-step="6"><span></span><span>$=\dfrac{x-2}{2(x+2)(x-2)}$</span><i class="why">去括号、合并</i></div>
+        <div class="dl end" data-step="7"><span></span><span class="think" data-step="8" data-ask="还能化简吗？">$=\dfrac{1}{2(x+2)}$</span><i class="why">约去公因式 $x-2$</i></div>
+      </div>
+      <p class="warn" data-step="9" data-label="别停在倒数第二行">分子 $x-2$ 与分母有公因式，没有约分就不是最终结果。</p>
+    </div>
+  </div>
+  <p class="note">课本 p107 例 3。一共 6 步：分解 → 通分 → 相减 → 合并 → 约分。请学生说出每一步的依据。最后用代值检验器：输入 1/(2(x+2)) 检验“值相等”；也可以输入倒数第二行，同样“值相等”——提醒学生检验器查不出“没约分”。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>先算，再代值检验</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算：<br>(1) $\dfrac{c}{ab^2}+\dfrac{bc}{ab^2}$；　(2) $\dfrac3a+\dfrac{a-15}{5a}$；<br>(3) $\dfrac1{R_1}+\dfrac1{R_2}$；　(4) $\dfrac{b}{a+b}+\dfrac{ab}{b^2-a^2}$．</p>
+        <details><summary>提示 1</summary>(2) 最简公分母 $5a$；(4) $b^2-a^2=(b+a)(b-a)$。</details>
+        <details><summary>提示 2</summary>(2) 分子 $15+a-15=a$，还要约分；(4) 分子 $b(b-a)+ab=b^2$。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{c+bc}{ab^2}$；(2) $\dfrac{a}{5a}=\dfrac15$；(3) $\dfrac{R_1+R_2}{R_1R_2}$；(4) $\dfrac{b^2}{b^2-a^2}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 货车的速度为 $a$ km/h，客车的速度为 $b$ km/h（$b&gt;a$）．行驶 300 km 客车比货车少用多少时间？</p>
+        <details><summary>提示 1</summary>货车用时 $\dfrac{300}{a}$ h，客车用时 $\dfrac{300}{b}$ h。</details>
+        <details><summary>完整解答</summary>$\dfrac{300}{a}-\dfrac{300}{b}=\dfrac{300b-300a}{ab}=\dfrac{300(b-a)}{ab}$（h）．</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">检验 1(2)：</p>
+      <div class="qcheck" data-ref="3/a+(a-15)/(5a)" data-vars="a" data-ph="输入 1(2) 的结果"></div>
+      <p class="tip">检验 1(4)：</p>
+      <div class="qcheck" data-ref="b/(a+b)+ab/(b^2-a^2)" data-vars="a,b" data-ph="输入 1(4) 的结果"></div>
+      <p class="tip">检验 1(3)（下标照写：R1、R2）：</p>
+      <div class="qcheck" data-ref="1/R1+1/R2" data-vars="R1,R2" data-ph="如 (R1+R2)/(R1R2)"></div>
+    </div>
+  </div>
+  <p class="note">课本 p108 练习 1、2。1(2) 的结果是整式 1/5 一类的常数，学生容易停在 a/(5a)。1(3) 是并联电阻的公式，物理课会用到。第 2 题与本章开篇的京沪铁路情境同类：路程 ÷ 速度 = 时间。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算：<br>(1) $\dfrac{a}{a-b}-\dfrac{b}{a-b}$；<br>(2) $\dfrac{a^2}{(a-b)^2}-\dfrac{b^2}{(b-a)^2}$；<br>(3) $\dfrac{b^2}{4a^2}-\dfrac ca$；<br>(4) $a-b+\dfrac{2b^2}{a+b}$．</p>
+        <details><summary>提示 1</summary>(2) $(b-a)^2=(a-b)^2$，是同分母；(4) 把 $a-b$ 看成 $\dfrac{a-b}{1}$。</details>
+        <details><summary>完整解答</summary>(1) $1$；(2) $\dfrac{a+b}{a-b}$；(3) $\dfrac{b^2-4ac}{4a^2}$；(4) $\dfrac{a^2+b^2}{a+b}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用漫灌方式给绿地浇水，$a$ 天用水 10 t；改用喷灌方式后，10 t 水可以比原来多用 5 天．喷灌比漫灌平均每天节约用水多少？</p>
+        <details><summary>提示 1</summary>漫灌每天 $\dfrac{10}{a}$ t，喷灌每天 $\dfrac{10}{a+5}$ t。</details>
+        <details><summary>完整解答</summary>$\dfrac{10}{a}-\dfrac{10}{a+5}=\dfrac{10(a+5)-10a}{a(a+5)}=\dfrac{50}{a(a+5)}$（t）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 甲、乙两港口分别位于长江的上、下游，相距 $s$ km，游轮在静水中的速度为 $a$ km/h，水流速度为 $b$ km/h（$b&lt;a$），往返两港口所需的时间相差多少？</p>
+        <details><summary>提示 1</summary>顺流速度 $a+b$，逆流速度 $a-b$；逆流用时更长。</details>
+        <details><summary>完整解答</summary>$\dfrac{s}{a-b}-\dfrac{s}{a+b}=\dfrac{s(a+b)-s(a-b)}{(a+b)(a-b)}=\dfrac{2bs}{a^2-b^2}$（h）．</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="qcheck" data-ref="a^2/(a-b)^2-b^2/(b-a)^2" data-vars="a,b" data-ph="检验第 1(2) 题的结果"></div>
+      <div class="qcheck" data-ref="s/(a-b)-s/(a+b)" data-vars="s,a,b" data-ph="检验第 3 题的结果"></div>
+    </div>
+  </div>
+  <p class="note">习题 10.3 第 1–3 题。第 3 题就是封面的问题：b 越大（水流越急），相差越多；b = 0 时相差为 0，与常识一致——可以请学生用这一点检查答案。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">同分母：$\dfrac ba\pm\dfrac ca=\dfrac{b\pm c}{a}$。</p>
+        <p class="def">异分母：先通分，$\dfrac ba\pm\dfrac cd=\dfrac{bd\pm ac}{ad}$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="步骤">分解因式 → 最简公分母 → 通分 → 分子相加减（加括号）→ 约分。</p>
+        <p class="warn" data-label="三个易错点">分子相减不加括号；通分漏乘分子；把计算当成方程“去分母”。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">异分母 → 同分母，与分数加减一样。</p>
+        <p class="recall" data-label="检验">恒等变形每一步值不变：代一个数，可以查出错在哪一步。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>10.4 分式的乘除——$\dfrac{4ac}{3b}\cdot\dfrac{9b^3}{2ac^2}=\ ?$　能像分数那样“分子乘分子、分母乘分母”吗？加减乘除混在一起又先算什么？</p>
+  </div>
+  <p class="note">请学生先说说“本课最容易错的地方是什么”，再逐栏揭示。课后作业建议：习题 10.3 第 1–3 题，每题算完用代值的方法自查一遍。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mfrac.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

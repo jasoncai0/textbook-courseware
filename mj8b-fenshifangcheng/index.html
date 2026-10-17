@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分式方程 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zhishu-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第10章 分式 · 10.5</p>
+    <h1 class="cover-title">分式方程</h1>
+    <p class="cover-q" data-step="1">学生到离学校 15 km 处植树，部分学生骑自行车出发 40 min 后，其余学生乘汽车出发，汽车速度是自行车的 3 倍，全体学生同时到达．</p>
+    <p class="cover-q" data-step="2">设自行车速度为 $x$ km/h，可得 $\dfrac{15}{x}=\dfrac{15}{3x}+\dfrac{40}{60}$——<b>未知数跑到了分母里</b>。这样的方程怎么解？解出来的数一定能用吗？</p>
+    <div class="chips" data-step="3"><span class="chip">分式方程</span><span class="chip">去分母</span><span class="chip">增根</span><span class="chip">检验</span><span class="chip">列方程解应用题</span></div>
+  </div>
+  <p class="note">课本 p113 问题 3。封面先抛出方程的“新样子”，第 3、4 页再完整分析三个问题。本课解决本章开篇（p97）京沪铁路的问题 (3)。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 g4">
+      <div class="recall" data-label="七年级上册 · 4.2 解一元一次方程" data-step="1">
+        <p>解 $\dfrac{x+1}{3}=\dfrac x2$：两边同乘 6 <b>去分母</b>，得 $2(x+1)=3x$，$x=2$。</p>
+        <span class="use">分式方程也先“去分母”，化成整式方程。</span>
+      </div>
+      <div class="recall" data-label="七年级上册 · 4.3 用方程解决问题" data-step="2">
+        <p>审题、设未知数 → 找相等关系 → 列方程 → 解方程 → 检验 → 作答。</p>
+        <span class="use">列分式方程解应用题，步骤相同，检验更重要。</span>
+      </div>
+      <div class="recall" data-label="10.1 分式 · 10.2 最简公分母" data-step="3">
+        <p>分母为 0 时分式无意义；$x$、$x+1$ 的最简公分母是 $x(x+1)$。</p>
+        <span class="use">去分母时两边乘最简公分母；它可能等于 0——这就是“增根”的来源。</span>
+      </div>
+      <div class="recall" data-label="10.3 / 10.4 分式的运算" data-step="4">
+        <p>上一课学完了分式的四则运算：通分、约分、乘除、混合运算。</p>
+        <span class="use">注意区分：分式<b>运算</b>不能去分母，分式<b>方程</b>才能两边同乘去分母。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">上一课（10.4）结束了分式运算，本课是本章最后一节。第 4 张卡针对 10.3 的“病例 2”：计算题去分母是错的，方程才可以两边同乘——因为方程两边相等，同乘一个数仍相等（等式的性质）。</p>
+</section>
+
+<!-- 3 ================= 问题 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>怎样用方程描述其中的相等关系？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>问题 1</b> 甲、乙两人加工同一种服装，乙每天比甲多加工 1 件，乙加工服装 24 件所用时间与甲加工服装 20 件所用时间相同．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>甲每天 $x$ 件</span><span class="think" data-step="2" data-ask="20 件用几天？">$\dfrac{20}{x}$ 天</span><i class="why">时间 = 总量 ÷ 每天的量</i></div>
+        <div class="dl" data-step="3"><span>乙每天 $(x+1)$ 件</span><span class="think" data-step="4" data-ask="24 件用几天？">$\dfrac{24}{x+1}$ 天</span><i class="why"></i></div>
+        <div class="dl end" data-step="5"><span>方程</span><span>$\dfrac{20}{x}=\dfrac{24}{x+1}$</span><i class="why">所用时间相同</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>问题 2</b> 一个两位数的个位数字是 4，如果把个位数字与十位数字互换，那么所得的两位数与原两位数的比值是 $\dfrac74$．</p>
+      <div class="derive">
+        <div class="dl" data-step="6"><span>十位数字 $x$</span><span class="think" data-step="7" data-ask="原两位数？">$10x+4$</span><i class="why">十位上的 $x$ 表示 $10x$</i></div>
+        <div class="dl" data-step="8"><span>互换后</span><span class="think" data-step="9" data-ask="新两位数？">$4\times10+x$</span><i class="why">十位变成 4</i></div>
+        <div class="dl end" data-step="10"><span>方程</span><span>$\dfrac{4\times10+x}{10x+4}=\dfrac74$</span><i class="why">比值是 $\dfrac74$</i></div>
+      </div>
+      <p class="warn" data-step="11" data-label="易错">十位数字是 $x$ 时，两位数不是“$x4$”，而是 $10x+4$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p113 问题 1、2 与小人提示。每个问题先让学生说出“谁和谁相等”，再列式。问题 2 是七年级学过的“数字问题”，复习“数位上的数字 × 位值”。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>分母里含有未知数的方程</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>问题 3</b>（封面）：自行车 $x$ km/h，行 15 km 用 $\dfrac{15}{x}$ h；汽车 $3x$ km/h，用 $\dfrac{15}{3x}$ h；自行车多用 40 min：</p>
+      <p class="big center">$\dfrac{15}{x}=\dfrac{15}{3x}+\dfrac{40}{60}$</p>
+      <p class="tip" data-step="1">三个方程与一元一次方程有什么区别？<span class="think" data-step="2" data-ask="比一比">$\dfrac{20}{x}=\dfrac{24}{x+1}$、$\dfrac{40+x}{10x+4}=\dfrac74$、$\dfrac{15}x=\dfrac{15}{3x}+\dfrac{40}{60}$ 的<b>分母中都含有未知数</b>。</span></p>
+      <div class="def" data-step="3"><h4>分式方程（课本 p114）</h4>分母中含有<em>未知数</em>的方程叫做分式方程（fractional equation）．</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4">是不是分式方程？点一点：</p>
+      <div class="pk" data-step="4">
+        <div class="scard"><p class="ex">$\dfrac{x+1}{3}=\dfrac x2$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">分母是数，是一元一次方程。</p></div></div>
+        <div class="scard"><p class="ex">$\dfrac{2}{x}=3$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">分母含未知数 $x$。</p></div></div>
+        <div class="scard"><p class="ex">$\dfrac{x}{\pi}=1$</p><div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$\pi$ 是常数，不是未知数。</p></div></div>
+        <div class="scard"><p class="ex">$\dfrac{1462}{a}-\dfrac{1462}{2a}=6$</p><div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">本章开篇的京沪铁路问题，分母含未知数 $a$。</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p113–114 问题 3、讨论与分式方程的定义。判断时只看“分母里有没有未知数”，与 10.1 判断分式的方法一致。第 4 张卡：货车速度 a km/h，客车 2a km/h，京沪 1 462 km，客车少用 6 h——这就是本章开篇问题 (3) 的方程，本课最后会解出来。</p>
+</section>
+
+<!-- 5 ================= 探索：怎样解 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>如何解分式方程 $\dfrac{20}{x}=\dfrac{24}{x+1}$？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip" data-step="1">解一元一次方程 $\dfrac{x+1}{3}=\dfrac x2$ 时，先去分母。这个分式方程也可以先去分母吗？<span class="think" data-step="2" data-ask="怎样去？">两边同乘各分式的<b>最简公分母</b> $x(x+1)$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>两边同乘 $x(x+1)$</span><span>$20(x+1)=24x$</span><i class="why">等式的性质；约去分母</i></div>
+        <div class="dl" data-step="4"><span></span><span>$20x+20=24x$</span><i class="why">去括号</i></div>
+        <div class="dl end" data-step="5"><span></span><span>$x=5$</span><i class="why">解一元一次方程</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip gold" data-step="6">$x=5$ 是不是原分式方程的解？<span class="think" data-step="7" data-ask="代入检验">左边 $=\dfrac{20}{5}=4$，右边 $=\dfrac{24}{5+1}=4$，左边 = 右边，$x=5$ 是原方程的解。</span></p>
+      <p class="recall" data-label="回到问题 1" data-step="8">甲每天加工 5 件，乙每天加工 6 件：甲 20 件用 4 天，乙 24 件也用 4 天 ✓。</p>
+      <div class="method" data-step="9" data-label="课本 p114">解分式方程时，在方程的两边同乘各分式的最简公分母，有时可以转化为解一元一次方程．</div>
+    </div>
+  </div>
+  <p class="note">课本 p114 探索。注意课本措辞“有时可以转化为一元一次方程”：转化以后得到的是整式方程。为什么要检验？先不说破，下一页例 1 再检验一次，第 8 页会遇到“检验不通过”的情形。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>解方程：$\dfrac3x-\dfrac2{x-2}=0$</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip gold" data-step="1">最简公分母是？<span class="think" data-step="2" data-ask="找一找">$x(x-2)$</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>两边同乘 $x(x-2)$</span><span>$3(x-2)-2x=0$</span><i class="why">去分母，0 乘任何数得 0</i></div>
+        <div class="dl" data-step="4"><span></span><span>$3x-6-2x=0$</span><i class="why">去括号</i></div>
+        <div class="dl end" data-step="5"><span></span><span>$x=6$</span><i class="why">解一元一次方程</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6">检验：把 $x=6$ 代入原方程：<span class="think" data-step="7" data-ask="算一算">左边 $=\dfrac36-\dfrac2{6-2}=\dfrac12-\dfrac12=0$，右边 $=0$，左边 = 右边．</span></p>
+      <p class="tip" data-step="8">结论：<span class="think" data-step="9" data-ask="写结论">$x=6$ 是原方程的解．</span></p>
+      <p class="warn" data-step="10" data-label="去分母别漏乘">右边的 0 乘 $x(x-2)$ 仍是 0；如果右边是 1，就要变成 $x(x-2)$，不能还写 1。</p>
+    </div>
+  </div>
+  <p class="note">课本 p114–115 例 1。书写格式照课本：方程两边同乘…，得…；解这个一元一次方程，得…；把 x = 6 代入原方程检验；结论。“漏乘不含分母的项”是去分母最常见的错误，练习 (4) 会遇到。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>解下列方程（课本 p115）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q">(1) $\dfrac{40+x}{10x+4}=\dfrac74$；　(2) $\dfrac9x=\dfrac8{x-1}$．</p>
+        <details><summary>提示 1</summary>(1) 两边同乘 $4(10x+4)$；(2) 两边同乘 $x(x-1)$。</details>
+        <details><summary>完整解答</summary>(1) $4(40+x)=7(10x+4)$，$x=2$；经检验 $x=2$ 是原方程的解（问题 2 的两位数是 24）．(2) $9(x-1)=8x$，$x=9$；经检验是原方程的解．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(3) $\dfrac{15}x-\dfrac{15}{3x}=\dfrac23$；　(4) $\dfrac{x}{2x-5}+\dfrac5{5-2x}=1$．</p>
+        <details><summary>提示 1</summary>(3) 最简公分母 $3x$；(4) $5-2x=-(2x-5)$，最简公分母 $2x-5$，右边的 1 也要乘。</details>
+        <details><summary>完整解答</summary>(3) $45-15=2x$，$x=15$（问题 3：自行车速度 15 km/h）；(4) $x-5=2x-5$，$x=0$；经检验都是原方程的解．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p115 练习。(1)(3) 正好解出了问题 2、问题 3：原两位数是 24（互换后 42，42 : 24 = 7 : 4）；自行车 15 km/h。(4) 解出 x = 0，学生会犹豫“0 能不能作解”——检验分母 2·0 − 5 = −5 ≠ 0，可以。</p>
+</section>
+
+<!-- 8 ================= 增根的发现 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>解出来的 $x=2$，是不是方程的解？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">解分式方程 $\dfrac{5x-4}{x-2}=\dfrac{4x+10}{3x-6}-1$．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>两边同乘 $3(x-2)$</span><span>$3(5x-4)=4x+10-3(x-2)$</span><i class="why">$3x-6=3(x-2)$，最简公分母 $3(x-2)$</i></div>
+        <div class="dl" data-step="2"><span></span><span>$15x-12=x+16$</span><i class="why">去括号、合并</i></div>
+        <div class="dl end" data-step="3"><span></span><span>$x=2$</span><i class="why">解一元一次方程</i></div>
+      </div>
+      <p class="tip gold" data-step="4">把 $x=2$ 代入原方程：<span class="think" data-step="5" data-ask="代入看看">$\dfrac{5x-4}{x-2}$、$\dfrac{4x+10}{3x-6}$ 的分母都为 0，没有意义！</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6">问题出在哪一步？<span class="think" data-step="7" data-ask="想一想">两边同乘的 $3(x-2)$，当 $x=2$ 时<b>等于 0</b>。两边都乘 0，“$0=0$”永远成立，整式方程多出了一个原方程没有的根。</span></p>
+      <div class="def" data-step="8"><h4>增根（课本 p115）</h4>在分式方程两边同乘 $3(x-2)$ 后，解得的 $x=2$ 使所乘整式 $3(x-2)$ 的值为 0，$x=2$ 不是原分式方程的根，原方程无解．像这样的根叫做原分式方程的<em>增根</em>．</div>
+      <p class="warn" data-step="9" data-label="课本 p115">由于解分式方程可能产生增根，因此解分式方程<b>必须对解得的根进行检验</b>．</p>
+    </div>
+  </div>
+  <p class="note">课本 p115 两个小人与增根的定义（注：只含有一个未知数的方程的解也称为方程的根）。第 7 步是理解增根的关键：等式两边乘同一个数仍相等，但乘 0 会“丢掉信息”——下一页用图和数值把它看清楚。</p>
+</section>
+
+<!-- 9 ================= 增根放大镜（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>增根放大镜：拖动 $x$，看两边的值</h2></div>
+  <div class="bd wide-l">
+    <div class="col">
+      <div class="btns" data-noswipe id="zgTabs"></div>
+      <p class="center zg-eq" id="zgEq"></p>
+      <div id="zgBoard" class="zg-board"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="zgL">◀ $x-\tfrac12$</button><button type="button" class="btn" id="zgR">$x+\tfrac12$ ▶</button><button type="button" class="btn solid" id="zgGo">跳到整式方程的根</button></div>
+    </div>
+    <div class="col">
+      <div id="zgRead"></div>
+      <p class="tip feedback" id="zgMsg"></p>
+      <p class="tip" data-step="1">图上画的是“左边 − 右边”的值。方程的解在哪里？<span class="think" data-step="2" data-ask="想一想">“左边 − 右边 = 0”的地方，即图象与 $x$ 轴的交点。</span></p>
+      <p class="tip" data-step="3">“探索”方程的图为什么是一条水平线、中间有个空心点？<span class="think" data-step="4" data-ask="想一想">左边 − 右边 $=\dfrac{14}{3}$ 永远不为 0，原方程无解；$x=2$ 处两边都无意义，所以是空心点——整式方程的根 $x=2$ 恰好落在这个“洞”里。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。三个方程：例 1（有解 x = 6）、上一页的“探索”方程（增根 x = 2）、例 2(2)（增根 x = −2）。拖动橙色点或按按钮，右表用精确分数计算：原方程左右两边的值、所乘的最简公分母的值、去分母后整式方程两边的值。点“跳到整式方程的根”：例 1 中最简公分母不为 0，是解；后两个中最简公分母为 0，原方程两边无意义，是增根。图象由精确公式绘制（不要求学生会画，只用来“看”）。</p>
+</section>
+
+<!-- 10 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>检验：代入最简公分母，看是不是 0</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">(1) $\dfrac{30}{x}=\dfrac{20}{x+1}$</p>
+      <div class="derive vd">
+        <div class="dl" data-step="1"><span>两边同乘 $x(x+1)$</span><span>$30(x+1)=20x$</span><i class="why">去分母</i></div>
+        <div class="dl" data-step="2"><span></span><span>$x=-3$</span><i class="why">解一元一次方程</i></div>
+        <div class="dl end" data-step="3"><span>检验</span><span class="think" data-step="4" data-ask="代入什么？">$x=-3$ 时，$x(x+1)=6\ne0$，$x=-3$ 是原方程的解</span><i class="why">最简公分母不为 0</i></div>
+      </div>
+      <p class="method" data-step="10" data-label="检验的简便方法">把整式方程的根代入<b>最简公分母</b>：不为 0 → 是原方程的解；为 0 → 是增根，原方程无解。</p>
+    </div>
+    <div class="col">
+      <p class="tip">(2) $\dfrac{x-2}{x+2}-\dfrac{x+2}{x-2}=\dfrac{16}{x^2-4}$</p>
+      <div class="derive vd">
+        <div class="dl" data-step="5"><span>两边同乘 $(x+2)(x-2)$</span><span>$(x-2)^2-(x+2)^2=16$</span><i class="why">$x^2-4=(x+2)(x-2)$</i></div>
+        <div class="dl" data-step="6"><span></span><span>$-8x=16$，$x=-2$</span><i class="why">展开后 $x^2$ 项抵消</i></div>
+        <div class="dl end" data-step="7"><span>检验</span><span class="think" data-step="8" data-ask="代入最简公分母">$x=-2$ 时，$(x+2)(x-2)=0$，$x=-2$ 是增根，<b>原方程无解</b></span><i class="why">最简公分母为 0</i></div>
+      </div>
+      <p class="tip" data-step="9">为什么用最简公分母检验就够了？<span class="think" data-step="11" data-ask="想一想">去分母这一步只有在“所乘的式子为 0”时才可能产生增根；不为 0 时，两个方程同解。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p116 例 2。课本的检验写法就是代入最简公分母（x(x + 1) = 6 ≠ 0）。和代入原方程比，这样检验更简便。(2) 去分母后的方程课本称为“一元一次方程”，因为 x² 项抵消了。</p>
+</section>
+
+<!-- 11 ================= 练习 + 步骤 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · 方法</span><h2>解分式方程的步骤</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="method" data-step="1" data-label="四步">① <b>去分母</b>：两边同乘最简公分母，化为整式方程；<br>② <b>解</b>整式方程；<br>③ <b>检验</b>：代入最简公分母；<br>④ 写出<b>结论</b>（是解，或原方程无解）．</div>
+      <p class="warn" data-step="2" data-label="三个易错点">漏乘不含分母的项；分子是多项式时忘加括号；忘记检验。</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q">解下列方程（课本 p116）：<br>(1) $\dfrac{4+x}{x-1}-5=\dfrac{2x}{x-1}$；<br>(2) $\dfrac1{x-2}=\dfrac{1-x}{2-x}-3$；<br>(3) $\dfrac3{x+1}=\dfrac6{x^2-1}$．</p>
+        <details><summary>提示 1</summary>(1) 两边同乘 $x-1$，“−5”也要乘；(2) $2-x=-(x-2)$，最简公分母 $x-2$。</details>
+        <details><summary>提示 2</summary>(2) 去分母得 $1=-(1-x)-3(x-2)$；(3) 最简公分母 $(x+1)(x-1)$。</details>
+        <details><summary>完整解答</summary>(1) $4+x-5(x-1)=2x$，$x=\dfrac32$，经检验是原方程的解；(2) $x=2$，经检验是增根，<b>原方程无解</b>；(3) $3(x-1)=6$，$x=3$，经检验是原方程的解．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p116 练习。(2) 是增根：解出 x = 2 后代入最简公分母 x − 2 = 0。请学生先独立完成，再回到第 9 页的放大镜想一想：(2) 的图会是什么样子？</p>
+</section>
+
+<!-- 12 ================= 例 3、例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 例 4</span><h2>列分式方程解决问题</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 3</b> 计划由八年级(1)班的 3 个小组制作 240 面彩旗，后因 1 个小组另有任务，其余 2 个小组的每名学生要比原计划多做 4 面彩旗才能完成任务．如果这 3 个小组的人数相等，那么每个小组有学生多少名？</p>
+      <div class="derive vd">
+        <div class="dl" data-step="1"><span>设</span><span>每个小组有学生 $x$ 名</span><i class="why">原计划 $3x$ 人，实际 $2x$ 人</i></div>
+        <div class="dl" data-step="2"><span>相等关系</span><span class="think" data-step="3" data-ask="谁比谁多 4？">$\dfrac{240}{2x}-\dfrac{240}{3x}=4$</span><i class="why">实际每人做的 − 原计划每人做的 = 4</i></div>
+        <div class="dl end" data-step="4"><span>解得</span><span>$x=10$，经检验是所列方程的解</span><i class="why">答：每个小组有学生 10 名</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 4</b> 甲、乙两公司各捐款 30 000 元．已知甲公司的人数比乙公司的人数多 20%，乙公司比甲公司人均多捐 20 元．甲、乙两公司各有多少人？</p>
+      <div class="derive vd">
+        <div class="dl" data-step="5"><span>设</span><span>乙公司有 $x$ 人，甲公司有 $(1+20\%)x$ 人</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span>方程</span><span class="think" data-step="7" data-ask="人均之差">$\dfrac{30\,000}{x}-\dfrac{30\,000}{(1+20\%)x}=20$</span><i class="why">乙人均 − 甲人均 = 20</i></div>
+        <div class="dl end" data-step="8"><span>解得</span><span>$x=250$，经检验是所列方程的解；$(1+20\%)x=300$</span><i class="why">答：甲 300 人，乙 250 人</i></div>
+      </div>
+      <p class="method" data-step="9" data-label="找相等关系">工作量、人均量问题：总量 ÷ 人数 = 人均量；“多 4 面”“多捐 20 元”就是相等关系的来源。</p>
+    </div>
+  </div>
+  <p class="note">课本 p116–117 例 3、例 4。课本只写“解这个方程，得 x = 10”，请学生在练习本上补全去分母的过程：例 3 两边同乘 6x 得 720 − 480 = 24x。应用题的检验要检验两点：是不是所列方程的解；是否符合实际意义（下一页）。</p>
+</section>
+
+<!-- 13 ================= 例 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>方程有解，问题却无解？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 5</b> 小明用 12 元买软面笔记本，小丽用 21 元买硬面笔记本．已知每本硬面笔记本比软面笔记本贵 1.2 元，小明和小丽能买到相同数量的笔记本吗？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>设</span><span>软面每本 $x$ 元，硬面每本 $(x+1.2)$ 元</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span>若数量相同</span><span>$\dfrac{12}{x}=\dfrac{21}{x+1.2}$</span><i class="why">数量 = 总价 ÷ 单价</i></div>
+        <div class="dl" data-step="3"><span>解得</span><span>$x=1.6$，经检验是所列方程的解</span><i class="why"></i></div>
+        <div class="dl key" data-step="4"><span>但</span><span class="think" data-step="5" data-ask="买了几本？">$\dfrac{12}{1.6}=7.5$（本）</span><i class="why">笔记本的本数必须是整数</i></div>
+      </div>
+      <p class="tip" data-step="6"><b>答：</b>小明和小丽不能买到相同数量的笔记本．</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="7"><h4>课本 p118</h4>有时，根据实际问题列出的分式方程虽然有解，但方程的解不符合实际意义，这个实际问题仍无解．</div>
+      <div class="method" data-step="8" data-label="两重检验">① 数学检验：是不是所列方程的解（最简公分母 ≠ 0）；<br>② 实际检验：是否符合实际意义（人数、本数为正整数，速度为正……）．</div>
+      <p class="tip gold" data-step="9"><b>回到本章开篇：</b>货车 $a$ km/h，客车 $2a$ km/h，京沪铁路 1 462 km，客车少用 6 h．<span class="think" data-step="10" data-ask="列方程并解">$\dfrac{1462}{a}-\dfrac{1462}{2a}=6$，两边同乘 $2a$：$2924-1462=12a$，$a=\dfrac{731}{6}\approx121.8$；经检验符合题意：货车约 121.8 km/h，客车约 243.7 km/h．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p117–118 例 5。“方程有解 ≠ 问题有解”，与“增根”是两回事：增根是数学检验不通过，例 5 是实际检验不通过。最后回到章首（p97）的京沪铁路问题 (3)，本章的问题全部解决。</p>
+</section>
+
+<!-- 14 ================= 练习 · 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · 习题</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1</b> 一个分数的分母比它的分子大 5，如果将这个分数的分子加上 14，分母减去 1，那么所得分数是原分数的倒数．求原分数．</p>
+        <details><summary>提示 1</summary>设分子为 $x$，原分数 $\dfrac{x}{x+5}$，新分数 $\dfrac{x+14}{x+4}$。</details>
+        <details><summary>完整解答</summary>$\dfrac{x+14}{x+4}=\dfrac{x+5}{x}$，$x=4$，经检验符合题意；原分数是 $\dfrac49$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2</b> 甲比乙每小时多检测 10 个零件，甲检测 300 个与乙检测 200 个所用的时间相等．甲、乙每小时各检测多少个？</p>
+        <details><summary>提示 1</summary>设乙每小时 $x$ 个：$\dfrac{300}{x+10}=\dfrac{200}{x}$。</details>
+        <details><summary>完整解答</summary>$x=20$，经检验符合题意：甲每小时 30 个，乙每小时 20 个．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2</b> 解方程：<br>(1) $\dfrac{3x+2}{x-1}=\dfrac5{x-1}$；<br>(4) $\dfrac{x+1}{x-1}-\dfrac4{x^2-1}=1$．</p>
+        <details><summary>提示 1</summary>两题解出的都是 $x=1$，代入最简公分母看看。</details>
+        <details><summary>完整解答</summary>(1) $3x+2=5$，$x=1$；(4) $(x+1)^2-4=x^2-1$，$x=1$．经检验 $x=1$ 都是增根，两个方程都<b>无解</b>．</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4</b> 某村计划在荒坡上种树 960 棵．实际每天种树的棵数是原计划的 $\dfrac43$ 倍，结果提前 4 天完成任务．原计划每天种树多少棵？</p>
+        <details><summary>提示 1</summary>设原计划每天 $x$ 棵：$\dfrac{960}{x}-\dfrac{960}{\frac43x}=4$。</details>
+        <details><summary>完整解答</summary>$\dfrac{960}{x}-\dfrac{720}{x}=4$，$x=60$，经检验符合题意：原计划每天种 60 棵．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 5</b> 修建轻轨铁路，为使工程提前半年完成，需将工作效率提高 25%．原计划完成这项工程需要多少个月？</p>
+        <details><summary>提示 1</summary>设原计划 $x$ 个月，原效率 $\dfrac1x$，新效率 $\dfrac{1.25}{x}$，实际用 $(x-6)$ 个月。</details>
+        <details><summary>完整解答</summary>$\dfrac{1}{x-6}=\dfrac{1.25}{x}$，$x=30$，经检验符合题意：原计划 30 个月．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p118 练习 1、2 与习题 10.5 第 2、4、5 题选题。习题 2(1)(4) 都是增根、原方程无解；其余题目（第 1、3 题，第 2(2)(3) 题）留作课后作业。</p>
+</section>
+
+<!-- 15 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">分母中含有<em>未知数</em>的方程叫做分式方程。</p>
+        <p class="warn" data-label="增根">使所乘最简公分母为 0 的根是增根，原方程无解。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="解法">去分母 → 解整式方程 → 检验（代入最简公分母）→ 结论。</p>
+        <p class="method" data-label="应用">设 → 列 → 解 → 两重检验（方程、实际）→ 答。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="转化">分式方程 → 整式方程（一元一次方程）。</p>
+        <p class="recall" data-label="检验">转化不一定“等价”：两边乘了可能为 0 的式子，所以必须检验。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本章回顾与下一章：</b>第 10 章从分式的概念、性质、运算一直学到分式方程。第 11 章“反比例函数”里，$y=\dfrac kx$ 正是一个分式——10.1 习题里 $\dfrac1a$ 随 $a$ 变化的规律会在那里画成图象。</p>
+  </div>
+  <p class="note">请学生用一句话说出“为什么解分式方程必须检验”。课后作业建议：习题 10.5 第 1、3 题与第 2(2)(3) 题。本章小结可以让学生画一张“分数 ↔ 分式”的类比表。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mfrac.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

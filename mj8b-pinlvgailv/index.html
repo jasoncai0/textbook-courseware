@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>频率与概率 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/paoyingbi-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第8章 认识概率 · 8.3</p>
+    <h1 class="cover-title">频率与概率</h1>
+    <p class="cover-q" data-step="1">一家保险公司要为购买机票的旅客进行保险，应该向旅客收取多少保险费呢？为此，保险公司必须计算飞机失事的可能性<b>有多大</b>。</p>
+    <p class="cover-q" data-step="2">明天下雨的可能性有多大？抛掷 1 枚硬币，正面朝上的可能性有多大？——“有多大”，能不能用一个<b>数</b>来回答？</p>
+    <div class="chips" data-step="3"><span class="chip">概率 P(A)</span><span class="chip">全班抛硬币</span><span class="chip">万次试验模拟器</span><span class="chip">用频率估计概率</span></div>
+  </div>
+  <p class="note">课本 p44 引言。上一课只比较了“谁大谁小”，本课要给可能性一个具体的数值——概率，并找到估计它的方法：大量重复试验中的频率。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="8.1 · 8.2（前两课）" data-step="1">
+        <p>必然事件一定发生，不可能事件一定不发生；随机事件发生的可能性<b>有大有小</b>。</p>
+        <span class="use">给可能性的大小定一个数：必然记 1，不可能记 0。</span>
+      </div>
+      <div class="recall" data-label="7.3 频数和频率" data-step="2">
+        <p>频率 $=\dfrac{\text{频数}}{\text{总次数}}$，常写成 $\dfrac{m}{n}$；$0\le\dfrac{m}{n}\le1$。</p>
+        <span class="use">算出“正面朝上”在 $n$ 次试验中的频率。</span>
+      </div>
+      <div class="recall" data-label="7.2 统计图的选用" data-step="3">
+        <p>折线统计图描述数据的<b>变化过程和趋势</b>。</p>
+        <span class="use">画“频率随试验次数变化”的折线图，看它往哪里“靠”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课要回答：</b>可能性的大小怎样用数表示？这个数看不见、摸不着，怎样把它<b>估计</b>出来？</p>
+  </div>
+  <p class="note">第二张卡请学生说出 m、n 各表示什么（频数、试验总次数）。</p>
+</section>
+
+<!-- 3 ================= 概率 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>概率：可能性大小的数值</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>概率（课本 p44）</h4>一个事件发生的可能性大小的数值，称为这个事件发生的<em>概率</em>（probability）．如果用字母 $A$ 表示一个事件，那么 $P(A)$ 表示事件 $A$ 发生的概率．</div>
+      <div class="derive" data-step="2">
+        <div class="dl"><span>必然事件</span><span>$P(A)=1$</span><i class="why">通常规定</i></div>
+        <div class="dl"><span>不可能事件</span><span>$P(A)=0$</span><i class="why">通常规定</i></div>
+        <div class="dl key"><span>随机事件</span><span>$0<P(A)<1$</span><i class="why">0 和 1 之间的一个数</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 520 150" class="pline" aria-label="概率数轴" data-step="3"><line x1="30" y1="70" x2="490" y2="70" stroke="#556575" stroke-width="3"/>
+        <g class="tk"><line x1="30" y1="62" x2="30" y2="78"/><line x1="260" y1="62" x2="260" y2="78"/><line x1="490" y1="62" x2="490" y2="78"/></g>
+        <text x="30" y="100" class="pt">0</text><text x="260" y="100" class="pt">0.5</text><text x="490" y="100" class="pt">1</text>
+        <text x="30" y="128" class="pt s">不可能事件</text><text x="260" y="128" class="pt s">随机事件</text><text x="490" y="128" class="pt s">必然事件</text>
+        <rect x="34" y="64" width="452" height="12" fill="rgba(217,113,28,.25)"/>
+        <circle cx="260" cy="70" r="7" fill="#1d6fa5"/><text x="260" y="44" class="pt s">抛硬币正面朝上？</text>
+      </svg>
+      <div class="def" data-step="4"><h4>概率是随机事件自身的属性</h4>一个随机事件发生的概率是由这个随机事件<em>自身决定</em>的，并且是<em>客观存在</em>的．它反映这个随机事件发生的可能性大小．</div>
+      <p class="tip" data-step="5">那么，“抛掷 1 枚质地均匀的硬币，正面朝上”的概率是多少？<span class="think" data-step="6" data-ask="猜一猜">大家会猜 0.5——能不能用试验来检验？</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p44 概率的定义与规定。数轴上橙色段表示随机事件概率所在的范围（不含端点）。硬币问题先让学生猜，下一页做试验。</p>
+</section>
+
+<!-- 4 ================= 尝试：全班抛硬币 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>全班抛硬币：每人 10 次，5 人一汇总</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="coinAdd">再汇总 5 人（+50 次）</button><button class="btn" type="button" id="coinAll">一直汇总到 500 次</button><button class="btn" type="button" id="coinClr">清空</button></div>
+      <div class="tab-wrap"><table class="mtab tight" id="coinTab"></table></div>
+      <p class="tip feedback" id="coinMsg"></p>
+    </div>
+    <div class="col">
+      <h3 class="h3 center">“正面朝上”的频率折线统计图</h3>
+      <div id="coinLine" class="c-line"></div>
+      <p class="tip" data-step="1">(3) 观察折线统计图，你发现了什么？<span class="think" data-step="2" data-ask="说一说">次数少时，频率跳得厉害；次数越来越多，频率在 0.5 附近摆动，摆动的幅度越来越小。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p44–45“尝试”。可以先让全班真抛：每人 10 次，按 5 人、10 人、15 人……汇总填表。本页用真随机数模拟同样的过程，每点一次加 50 次（5 人 × 10 次），表和折线同步更新；“清空”后再做一遍，每次的折线都不一样，但最后都靠近 0.5。</p>
+</section>
+
+<!-- 5 ================= 小明的数据 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>小明和同学的抛硬币数据</h2></div>
+  <div class="bd full">
+    <table class="mtab tight">
+      <tr><th>抛掷次数 $n$</th><td>50</td><td>100</td><td>150</td><td>200</td><td>250</td><td>300</td><td>350</td><td>400</td><td>450</td><td>500</td></tr>
+      <tr><th>正面朝上的频数 $m$</th><td>20</td><td>53</td><td>70</td><td>98</td><td>115</td><td>156</td><td>169</td><td>202</td><td>219</td><td>244</td></tr>
+      <tr><th>正面朝上的频率 $\frac{m}{n}$</th><td>0.40</td><td>0.53</td><td>0.47</td><td>0.49</td><td>0.46</td><td>0.52</td><td>0.48</td><td>0.51</td><td>0.49</td><td>0.49</td></tr>
+    </table>
+    <div class="cols2">
+      <div id="xmLine" class="x-line"></div>
+      <div class="col">
+        <p class="tip" data-step="1">第 1 次汇总（50 次）频率只有 0.40，后来呢？<span class="think" data-step="2" data-ask="看折线">从 300 次起，频率都在 0.48～0.52 之间，围绕 0.5 小幅摆动。</span></p>
+        <p class="warn" data-step="3" data-label="注意">频率是<b>试验</b>得出的，每次试验都可能不同；50 次时 0.40 并不说明硬币“不均匀”。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p45 小明的数据与折线统计图（按表中数据精确绘制，纵轴 0～0.6）。频率由频数计算可核对：如 169 ÷ 350 = 0.482…≈ 0.48。</p>
+</section>
+
+<!-- 6 ================= 统计学家 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">史料</span><h2>统计学家抛了几万次硬币</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <table class="mtab">
+        <caption>表 1　统计学家历次做“抛掷质地均匀的硬币试验”的结果</caption>
+        <tr><th>试验者</th><th>试验次数 $n$</th><th>正面朝上的频数 $m$</th><th>频率 $\frac{m}{n}$</th></tr>
+        <tr><td>布丰</td><td>4 040</td><td>2 048</td><td>0.506 9</td></tr>
+        <tr><td>德·摩根</td><td>4 092</td><td>2 048</td><td>0.500 5</td></tr>
+        <tr><td>费勒</td><td>10 000</td><td>4 979</td><td>0.497 9</td></tr>
+        <tr><td>皮尔逊</td><td>12 000</td><td>6 019</td><td>0.501 6</td></tr>
+        <tr><td>皮尔逊</td><td>24 000</td><td>12 012</td><td>0.500 5</td></tr>
+        <tr><td>罗曼诺夫斯基</td><td>80 640</td><td>39 699</td><td>0.492 3</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 460 250" class="dev" id="devFig" aria-label="各次试验频率与 0.5 的偏差"></svg>
+      <p class="tip" data-step="1">从表 1 可以看出什么？<span class="think" data-step="2" data-ask="说一说">当试验次数很大时，“正面朝上”的频率在 0.5 附近摆动。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p46 表 1。右图把 6 次试验的频率画在放大的纵轴（0.48～0.52）上，虚线是 0.5：都离 0.5 很近。注意：罗曼诺夫斯基做了 8 万多次，偏差（0.0077）反而比德·摩根的 4 千多次还大——频率只是在概率附近“摆动”，并不是次数越多就一定越接近，这正是随机性。</p>
+</section>
+
+<!-- 7 ================= 核心：万次试验模拟器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验</span><h2>大量重复试验模拟器：频率“稳”在哪里？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="btns" data-noswipe id="simKind"></div>
+      <p class="tip small-p" id="simDesc"></p>
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" id="simGo">做 2 000 次（动画）</button>
+        <button class="btn" type="button" id="simMore">再做一组</button>
+        <button class="btn" type="button" id="simP">揭晓概率</button>
+        <button class="btn" type="button" id="simClr">清空</button>
+      </div>
+      <p class="tip feedback" id="simMsg"></p>
+    </div>
+    <div class="col">
+      <svg viewBox="0 0 600 360" class="sim" id="sim" aria-label="频率随试验次数变化"></svg>
+      <p class="tip" data-step="1">几组折线有什么共同点？<span class="think" data-step="2" data-ask="说一说">开头各不相同、忽高忽低；试验次数越多，几条线越挤在一起，都在同一个数附近摆动——这个数就是概率。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。三个试验都用真随机数：抛硬币“正面朝上”、摸球（袋中 3 个白球、1 个红球，摸后放回，即本章数学活动）“摸到红球”、抛骰子“6 点朝上”。每组试验 2 000 次，折线画出前 n 次的频率 m/n。建议：先不揭晓概率，做 3～4 组，让学生说出折线在哪个数附近稳定，再点“揭晓概率”（0.5、0.25、1/6≈0.167）对照。</p>
+</section>
+
+<!-- 8 ================= 探索：足球 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>某批足球质量检验：优等品的频率</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <table class="mtab tight" data-noswipe>
+        <caption>表 2　某批足球质量检验结果</caption>
+        <tr><th>抽取的足球数 $n$</th><td>50</td><td>100</td><td>200</td><td>500</td><td>1 000</td><td>2 000</td></tr>
+        <tr><th>优等品的频数 $m$</th><td>46</td><td>93</td><td>192</td><td>472</td><td>953</td><td>1 902</td></tr>
+        <tr><th>优等品的频率 $\frac{m}{n}$</th><td><span class="blank" data-ans="0.92" data-w="4"></span></td><td><span class="blank" data-ans="0.93" data-w="4"></span></td><td><span class="blank" data-ans="0.96" data-w="4"></span></td><td><span class="blank" data-ans="0.944" data-w="4"></span></td><td><span class="blank" data-ans="0.953" data-w="4"></span></td><td><span class="blank" data-ans="0.951" data-w="4"></span></td></tr>
+      </table>
+      <p class="muted small-t">(1) 填写表中的空格（按回车判对错）；(2) 画出折线统计图；(3) 当抽取的足球数很大时，优等品的频率会在哪个常数附近摆动？</p>
+      <div class="def" data-step="3"><h4>频率的稳定性（课本 p46）</h4>通常，在多次重复试验中，一个随机事件发生的频率会在某一个常数附近摆动，并且趋于稳定．这个性质称为<em>频率的稳定性</em>．</div>
+    </div>
+    <div class="col">
+      <div id="ballLine" class="b-line" data-step="1"></div>
+      <p class="tip" data-step="1">(3) <span class="think" data-step="2" data-ask="在哪个数附近？">在 0.95 附近摆动。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p46 探索、表 2。频率：46/50 = 0.92，93/100 = 0.93，192/200 = 0.96，472/500 = 0.944，953/1 000 = 0.953，1 902/2 000 = 0.951。折线横轴按抽取数的实际大小（不是等距）画，可以看出后段平稳。</p>
+</section>
+
+<!-- 9 ================= 用频率估计概率；图钉 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>用频率估计概率</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip small-p">抛掷 1 枚图钉，有“钉尖着地”“钉尖不着地”两种情况。小明和同学的试验数据：</p>
+      <table class="mtab tight">
+        <tr><th>抛掷次数 $n$</th><td>100</td><td>200</td><td>300</td><td>400</td><td>500</td><td>600</td><td>700</td><td>800</td><td>900</td><td>1 000</td></tr>
+        <tr><th>钉尖不着地的频数 $m$</th><td>64</td><td>118</td><td>189</td><td>252</td><td>310</td><td>360</td><td>434</td><td>488</td><td>549</td><td>610</td></tr>
+        <tr><th>频率 $\frac{m}{n}$</th><td>0.64</td><td>0.59</td><td>0.63</td><td>0.63</td><td>0.62</td><td>0.60</td><td>0.62</td><td>0.61</td><td>0.61</td><td>0.61</td></tr>
+      </table>
+      <div id="pinLine" class="p-line"></div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>用频率估计概率（课本 p48）</h4>一般地，在一定条件下大量重复进行同一试验时，随机事件发生的频率会在某一个常数附近摆动．在实际生活中，人们常把这个常数作为该随机事件发生的<em>概率的估计值</em>．</div>
+      <div class="derive small-d" data-step="2">
+        <div class="dl"><span>抛硬币“正面朝上”</span><span>$\approx0.5$</span><i class="why">统计学家的试验</i></div>
+        <div class="dl"><span>任取一只足球是优等品</span><span>$\approx0.95$</span><i class="why">质量检验</i></div>
+        <div class="dl"><span>图钉“钉尖不着地”</span><span>$\approx0.61$</span><i class="why">抛掷图钉试验</i></div>
+      </div>
+      <p class="tip small-p" data-step="3">硬币和图钉有什么不同？<span class="think" data-step="4" data-ask="想一想">硬币质地均匀，“正面朝上”与“反面朝上”机会均等，结果具有<b>等可能性</b>；图钉钉帽质量较大，“钉尖着地”与“钉尖不着地”机会不均等，<b>不具有等可能性</b>——这种概率只能靠大量试验来估计。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p47–48 图钉试验与“一般地……”一段。折线按表中数据精确绘制。强调“估计值”：0.61 是根据这次 1 000 次试验得到的估计，换一批试验可能估计为 0.60 或 0.62。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：先算频率，再估计概率</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习（p46）</b> 某地区几十年内的新生婴儿数 $n$ 及男婴数 $m$：10 年内 55 440、28 830；20 年内 96 070、49 700；30 年内 135 200、69 940；40 年内 171 900、88 920；50 年内 211 030、109 160．求男婴出生的频率（精确到 0.001）；它稳定吗？在哪个常数附近摆动？</p>
+        <details><summary>提示 1</summary>频率 = 男婴数 ÷ 新生婴儿数，例如 $28\,830\div55\,440\approx0.520$。</details>
+        <details><summary>完整解答</summary>0.520，0.517，0.517，0.517，0.517；稳定，在 0.517 附近摆动．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>探索（p48）</b> 某种绿豆在相同条件下发芽试验：每批粒数 2，5，10，50，100，500，1 000，1 500，2 000，3 000；发芽的频数 2，4，9，44，92，463，928，1 396，1 866，2 794．发芽的概率的估计值是多少？</p>
+        <details><summary>提示 1</summary>前几批粒数太少，频率（1，0.8，0.9……）不可靠，要看粒数多的批次。</details>
+        <details><summary>完整解答</summary>频率依次为 1，0.800，0.900，0.880，0.920，0.926，0.928，0.931，0.933，0.931；发芽概率的估计值约为 0.93．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 8.3 第 2 题</b> 某批篮球的质量检验：抽取 100，200，400，600，800，1 000，1 200 只，优等品 93，192，380，561，752，941，1 128 只．任意抽取一只篮球是优等品的概率的估计值是多少？</p>
+        <details><summary>提示 1</summary>先算各次的频率，再看它们在哪个数附近摆动。</details>
+        <details><summary>完整解答</summary>频率依次为 0.93，0.96，0.95，0.935，0.94，0.941，0.94；概率的估计值约为 0.94．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p46 练习、p48 探索、p49 习题 8.3 第 2 题（频率均由课本数据计算）。p49 练习（油菜籽：0.960，0.943，0.950，0.952，0.948，0.947，0.949，估计约 0.95）和习题第 1 题（射击：0.9，0.95，0.9，0.88，0.91，0.895，0.908，0.905，估计约 0.9）留作作业。</p>
+</section>
+
+<!-- 11 ================= 辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨析</span><h2>频率和概率，是一回事吗？</h2></div>
+  <div class="bd full">
+    <table class="mtab cmp" data-step="1">
+      <tr><th></th><th>频率 $\frac{m}{n}$</th><th>概率 $P(A)$</th></tr>
+      <tr><th>从哪里来</th><td>试验中数出来、算出来的</td><td>随机事件自身的属性，客观存在</td></tr>
+      <tr><th>会不会变</th><td>试验不同、次数不同，频率可能不同</td><td>是一个确定的数，不随试验改变</td></tr>
+      <tr><th>二者关系</th><td colspan="2">大量重复试验时，频率在概率附近摆动并趋于稳定——可以用频率<b>估计</b>概率</td></tr>
+    </table>
+    <div class="cols2">
+      <div class="jcard" data-step="2"><p><b>判断：</b>小亮抛了 10 次硬币，正面朝上 7 次，所以“正面朝上”的概率是 0.7．</p><p class="think" data-step="3" data-ask="对吗？"><span class="verdict x">错</span>0.7 只是这 10 次试验的频率；次数太少，不能代表概率。正面朝上的概率仍是 0.5。</p></div>
+      <div class="jcard" data-step="4"><p><b>判断：</b>已经连续抛出 5 次正面，下一次抛出反面的可能性更大．</p><p class="think" data-step="5" data-ask="对吗？"><span class="verdict x">错</span>硬币没有“记忆”，每次抛掷正面朝上的概率都是 0.5，与前面的结果无关。</p></div>
+    </div>
+  </div>
+  <p class="note">表格整理自课本 p44“概率是随机事件自身的属性”与 p48“用频率估计概率”。两道判断是补充的辨析题（非课本原题）。可以穿插课本 p50 阅读“概率小故事”（梅雷与帕斯卡的“分赌注”问题），说明概率论是怎样从研究不确定现象发展起来的。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 本章回顾</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">事件发生的可能性大小的数值叫<em>概率</em>：必然事件 $P=1$，不可能事件 $P=0$，随机事件 $0<P(A)<1$．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="用频率估计概率">大量重复试验 → 算频率 → 画折线 → 找频率稳定在哪个常数附近。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>本章回顾</h3>
+        <p class="recall" data-label="第 8 章">确定事件 / 随机事件 → 可能性有大有小 → 用概率量化，用频率估计。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>数学活动（p50）摸球试验：</b>袋中有 3 个白球、1 个红球，每人摸 30 次（摸后放回），汇总全班结果，估计“摸到白球”“摸到红球”的概率，与你的猜想一致吗？——可以回到第 7 页的模拟器选“摸球”对照。</p>
+  </div>
+  <p class="note">作业：习题 8.3 第 1、2 题；课本 p50 数学活动“摸球试验”。前后联系：九年级还会学习用列举法求等可能情形下的概率（如摸到红球的概率 = 1/4），与本课的频率估计相互印证。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

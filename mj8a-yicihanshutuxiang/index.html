@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一次函数的图像 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shanji.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第6章 一次函数 · 6.3</p>
+    <h1 class="cover-title">一次函数的图像</h1>
+    <p class="cover-q" data-step="1">上节课认识了一次函数 $y=kx+b$。把它的一对对 $x$、$y$ 描成点，这些点会排成<b>什么形状</b>？</p>
+    <p class="cover-q" data-step="2">像上山越走越高，像下山越走越低——图像什么时候“上山”，什么时候“下山”？$k$ 和 $b$ 各管着图像的什么？</p>
+    <div class="chips" data-step="3"><span class="chip">描点 · 连线</span><span class="chip">图像是一条直线</span><span class="chip">两点法</span><span class="chip">拖 k、b 看图像</span><span class="chip">平移</span></div>
+  </div>
+  <p class="note">课本 p148–152。封面只提问题：请学生先猜“点会排成什么形状”，可以举手表决“直线 / 曲线 / 说不准”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八上 6.2 一次函数（上一课）" data-step="1">
+        <p>形如 $y=kx+b$（$k$、$b$ 为常数，$k\ne0$）的函数叫一次函数；$b=0$ 时 $y=kx$ 叫正比例函数。上一课讲到：会判断、会写表达式、会用待定系数法求 $k$、$b$。</p>
+        <p class="small-p"><a href="../mj8a-yicihanshu/index.html">回看 6.2《一次函数》课件 ›</a></p>
+        <span class="use">本课研究的对象；最后会看到 $k$、$b$ 在图像上的意义。</span>
+      </div>
+      <div class="recall" data-label="八上 6.1 函数的图像" data-step="2">
+        <p>以自变量的值为横坐标、对应的函数值为纵坐标的点组成的图形，叫函数的图像。</p>
+        <p class="small-p"><a href="../mj8a-hanshu/index.html">回看 6.1《函数》课件 ›</a></p>
+        <span class="use">画一次函数图像的第一步：列表、描点、连线。</span>
+      </div>
+      <div class="recall" data-label="七上 6.1 线段、射线、直线" data-step="3">
+        <p>经过两点有一条直线，并且只有一条直线（两点确定一条直线）。</p>
+        <span class="use">既然图像是直线，画图时只要找两个点。</span>
+      </div>
+      <div class="recall" data-label="八上 第5章 平面直角坐标系" data-step="4">
+        <p>点 $(x,y)$ 向上平移 3 个单位长度，得到 $(x,y+3)$：横坐标不变，纵坐标加 3。</p>
+        <span class="use">解释 $y=2x+3$ 的图像为什么是 $y=2x$ 的图像向上平移 3 个单位。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第一张卡说清上一课讲到哪里：只研究了式子，还没画过图像。第四张卡请学生口答：(1, 2) 向上平移 3 个单位后是哪个点？——(1, 5)，为第 10 页埋伏笔。</p>
+</section>
+
+<!-- 3 ================= 尝试：燃香 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>香越烧越短：把香的顶端描在坐标系里</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="inc-row">
+        <div class="incense"><svg id="incSvg" viewBox="0 0 100 200" aria-label="燃烧的香"></svg></div>
+        <div id="incBoard" class="b-inc"></div>
+      </div>
+      <div class="slider-row" data-noswipe>燃烧时间 $x=$<input type="range" id="incX" min="0" max="20" step="1" value="0"><b class="v" id="incXV"></b>min　<button type="button" class="btn" id="incLine">依次连接顶端</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">观察课本 p148 的图片（香长 16 cm，每 5 min 拍一次），填表：</p>
+      <table class="mtab" id="incTab"></table>
+      <p class="tip" data-step="1">香的长度 $y$（cm）与燃烧时间 $x$（min）的函数表达式：<span class="think" data-step="2" data-ask="写一写">每分钟缩短 $0.8$ cm，$y=-0.8x+16$。</span></p>
+      <p class="tip gold" data-step="3">描出的 5 个点 $(0,16)$、$(5,12)$、$(10,8)$、$(15,4)$、$(20,0)$ 在一条直线上吗？<span class="think" data-step="4" data-ask="用直尺比一比">在！用直尺一靠，5 个点都贴着同一条直线。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p148–149 尝试、图 6-7 与交流。拖动时间滑块：左边的香按 y = −0.8x + 16 精确变短，每到 5 的倍数分钟就在右边描一个点、填一格表。描完 5 个点后点“依次连接顶端”，再问：“5 个点在一条直线上，那么第 2.5 分钟、第 7 分钟的点呢？”——引出下一页“更多的点”。</p>
+</section>
+
+<!-- 4 ================= 描点法 y = 2x + 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">画图</span><h2>列表 · 描点 · 连线：画 $y=2x+1$</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="drawBoard" class="b-draw"></div>
+      <div class="btns" data-noswipe id="drawBtns">
+        <button type="button" class="btn solid" data-a="5">描 5 个点</button>
+        <button type="button" class="btn" data-a="0.5">每隔 0.5 描一个</button>
+        <button type="button" class="btn" data-a="0.1">每隔 0.1 描一个</button>
+        <button type="button" class="btn" data-a="line">连线</button>
+        <button type="button" class="btn" data-a="swap">换成 $y=-x+2$</button>
+      </div>
+    </div>
+    <div class="col">
+      <table class="mtab" id="drawTab"></table>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 列表</span><span>恰当地选取 $x$ 的几个值，算出 $y$</span></div>
+        <div class="dl" data-step="2"><span>(2) 描点</span><span>以各对 $x$、$y$ 的值为坐标描点（图 6-8）</span></div>
+        <div class="dl" data-step="3"><span>(3) 连线</span><span>顺次连接描出的各点（图 6-9）</span></div>
+      </div>
+      <p class="tip gold" data-step="4">点越描越密，它们排成了什么？<span class="think" data-step="5" data-ask="说一说">一条<b>直线</b>——$y=-x+2$ 也是这样。</span></p>
+      <div class="def" data-step="6"><h4>结论（课本 p149）</h4>一次函数 $y=kx+b$（$k$、$b$ 为常数，且 $k\ne0$）的图像是<em>一条直线</em>．</div>
+    </div>
+  </div>
+  <p class="note">课本 p149。先描 5 个点（图 6-8），再“加密”：每隔 0.5、0.1 描点，所有点都落在同一条直线上，连线就得到图 6-9。课本对“图像是直线”不作证明，这里用“越描越密”给直观支撑；严格证明要到高中。点“换成 y = −x + 2”完成课本的“你能用上面的方法画吗？”。</p>
+</section>
+
+<!-- 5 ================= 两点法 · 例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>两点确定一条直线：画 $y=-3x+3$</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="exBoard" class="b-ex"></div>
+      <p class="tip feedback" id="exMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">图像是直线，最少要描几个点？<span class="think" data-step="2" data-ask="想一想">两个——<b>两点确定一条直线</b>（课本 p150）。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$x=0$ 代入</span><span class="think" data-step="4" data-ask="算一算">$y=3$</span><i class="why">得点 $(0,3)$（图像与 $y$ 轴的交点）</i></div>
+        <div class="dl" data-step="5"><span>$y=0$ 代入</span><span class="think" data-step="6" data-ask="算一算">$-3x+3=0,\ x=1$</span><i class="why">得点 $(1,0)$（图像与 $x$ 轴的交点）</i></div>
+        <div class="dl end" data-step="7"><span>过两点</span><span>画一条直线</span><i class="why">就是 $y=-3x+3$ 的图像（图 6-10）</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="两点法">一般取 $x=0$ 和 $y=0$ 两个点，计算最简单；也可以取别的两个点。</p>
+    </div>
+  </div>
+  <p class="note">课本 p150 例与图 6-10。按步骤揭示：先出现点 (0, 3)，再出现点 (1, 0)，最后画直线。之后请学生拖动直线上的橙色点：不论拖到哪里，坐标都满足 y = −3x + 3——用两点画出的直线，确实就是全部的点。</p>
+</section>
+
+<!-- 6 ================= 练习 p150 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>画一画、判一判（课本 p150）</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="p150Board" class="b-p150"></div>
+      <div class="btns" data-noswipe id="p150Btns">
+        <button type="button" class="btn solid" data-q="1">第 1 题</button>
+        <button type="button" class="btn" data-q="2">第 2 题</button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在同一平面直角坐标系中，画函数 $y=\dfrac12x+3$ 与 $y=-4x-5$ 的图像．点 $A(2,4)$、$B\left(-\dfrac12,-3\right)$ 分别在哪个图像上？</p>
+        <details><summary>提示 1</summary>两点法：$y=\frac12x+3$ 过 $(0,3)$、$(-6,0)$；$y=-4x-5$ 过 $(0,-5)$、$(-1,-1)$．</details>
+        <details><summary>提示 2</summary>把点的横坐标代入表达式，算出的 $y$ 是否等于点的纵坐标？</details>
+        <details><summary>完整解答</summary>$\frac12\times2+3=4$，$A$ 在 $y=\frac12x+3$ 上；$-4\times\left(-\frac12\right)-5=-3$，$B$ 在 $y=-4x-5$ 上．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在同一平面直角坐标系中，画函数 $y=2x+1$ 和 $y=2x-1$ 的图像．这两条直线的位置关系怎样？</p>
+        <details><summary>提示</summary>同一个 $x$，两个函数值相差多少？</details>
+        <details><summary>完整解答</summary>两条直线<b>平行</b>：同一个 $x$，$y=2x+1$ 总比 $y=2x-1$ 大 2．（第 10 页会解释原因）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p150 练习。左边的图在点开“完整解答”后核对用：先让学生在方格纸上画，再切换题号对照。“点在图像上”⇔“坐标满足表达式”，这条下下节课（6.5）还会用到。</p>
+</section>
+
+<!-- 7 ================= 上升 · 下降（探索） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>“上山”还是“下山”？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <div id="upBoard" class="b-two"></div>
+        <p class="tip feedback" id="upMsg"></p>
+      </div>
+      <div class="col">
+        <div id="downBoard" class="b-two"></div>
+        <p class="tip feedback" id="downMsg"></p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="1">把两个橙色点都从左往右拖，比较图 6-11 和图 6-12，你有什么发现？<span class="think" data-step="2" data-ask="说一说">$y=2x+4$：从左向右<b>上升</b>，$x$ 越大 $y$ 越大；$y=-\frac32x-3$：从左向右<b>下降</b>，$x$ 越大 $y$ 越小。</span></p>
+  </div>
+  <p class="note">课本 p151 照片、探索与图 6-11、6-12。两张图都经过 (−2, 0)，这是故意的：差别只在 k 的符号。请学生说出“上升/下降”时，一定要加上“从左向右看”。</p>
+</section>
+
+<!-- 8 ================= k、b 实验室（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>拖 $k$、$b$：图像怎样变化？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="kbBoard" class="b-kb"></div>
+    </div>
+    <div class="col">
+      <p class="big center" id="kbF"></p>
+      <div class="slider-row" data-noswipe><span class="sl"><span class="kb-k">$k=$</span><input type="range" id="kbK" min="-3" max="3" step="0.5" value="2"><b class="v kb-k" id="kbKV"></b></span><span class="sl"><span class="kb-b">$b=$</span><input type="range" id="kbB" min="-4" max="4" step="0.5" value="1"><b class="v kb-b" id="kbBV"></b></span></div>
+      <div class="btns" data-noswipe id="kbPre">
+        <button type="button" class="btn" data-k="2" data-b="4">$y=2x+4$</button>
+        <button type="button" class="btn" data-k="-1.5" data-b="-3">$y=-\frac32x-3$</button>
+        <button type="button" class="btn" data-k="2" data-b="0">$y=2x$</button>
+      </div>
+      <p class="tip feedback" id="kbMsg"></p>
+      <p class="tip" data-step="1">只拖 $k$：<span class="think" data-step="2" data-ask="观察">$k\gt0$ 直线上升，$k\lt0$ 下降；$|k|$ 越大越“陡”。橙色台阶：$x$ 增加 1，$y$ 就变化 $k$。</span></p>
+      <p class="tip" data-step="3">只拖 $b$：<span class="think" data-step="4" data-ask="观察">倾斜程度不变，直线上下平移；它与 $y$ 轴交于 $(0,b)$。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。直线按 y = kx + b 精确绘制；虚线是同一个 k 的正比例函数 y = kx，绿色点是与 y 轴的交点 (0, b)，橙色台阶表示“x 增加 1，y 变化 k”。先只拖 k（b 固定），再只拖 b（k 固定），请学生各说一句结论。把 k 拖到 0，会提示“k = 0 时不是一次函数”。</p>
+</section>
+
+<!-- 9 ================= 性质 + 练习 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>$k$ 的符号决定增减</h2></div>
+  <div class="bd full top">
+    <div class="def big-def" data-step="1"><h4>一次函数的性质（课本 p151）</h4>在一次函数 $y=kx+b$ 中：如果 $k\gt0$，那么函数值 $y$ 随自变量 $x$ 增大而<em>增大</em>；如果 $k\lt0$，那么函数值 $y$ 随自变量 $x$ 增大而<em>减小</em>．</div>
+    <p class="tip" data-step="2">为什么？<span class="think" data-step="3" data-ask="用式子说理">$x$ 增加 1 时，$y$ 从 $kx+b$ 变成 $k(x+1)+b=kx+b+k$，正好变化 $k$：$k\gt0$ 就变大，$k\lt0$ 就变小——与 $b$ 无关。</span></p>
+    <p class="tip" data-step="4"><b>练习 1（课本 p152）</b> 下列函数中，哪些函数值随自变量增大而增大？哪些增大而减小？点选判断：</p>
+    <div class="cls" data-step="4">
+      <div class="row"><span>(1) $y=-1.6x+4$</span><div class="pick" data-ans="d"><button data-k="u">增大而增大</button><button data-k="d">增大而减小</button><p class="pick-why">$k=-1.6\lt0$．</p></div></div>
+      <div class="row"><span>(2) $y=0.5x-5$</span><div class="pick" data-ans="u"><button data-k="u">增大而增大</button><button data-k="d">增大而减小</button><p class="pick-why">$k=0.5\gt0$，与 $b=-5$ 无关．</p></div></div>
+      <div class="row"><span>(3) $y=4x$</span><div class="pick" data-ans="u"><button data-k="u">增大而增大</button><button data-k="d">增大而减小</button><p class="pick-why">$k=4\gt0$．</p></div></div>
+      <div class="row"><span>(4) $y=-\dfrac32x-3$</span><div class="pick" data-ans="d"><button data-k="u">增大而增大</button><button data-k="d">增大而减小</button><p class="pick-why">$k=-\frac32\lt0$．</p></div></div>
+      <div class="row"><span>(5) $y=5x-7$</span><div class="pick" data-ans="u"><button data-k="u">增大而增大</button><button data-k="d">增大而减小</button><p class="pick-why">$k=5\gt0$．</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p151 性质框与 p152–153 练习 1。“为什么”一栏不是课本原文，是用上一课的代入计算给性质一个说理：它也解释了实验室里的橙色台阶。判断时只看 k，b 是“干扰项”。</p>
+</section>
+
+<!-- 10 ================= 平移 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>$y=2x$、$y=2x+3$、$y=2x-3$ 的图像有什么关系？</h2></div>
+  <button class="media-btn" hidden data-img="assets/pingyi.jpg" data-video="assets/pingyi.mp4" data-cap="y = kx + b：k 改变倾斜程度，b 使直线上下平移">▶ 看动画</button>
+  <div class="bd wide">
+    <div class="col">
+      <div id="shiftBoard" class="b-shift"></div>
+      <div class="slider-row" data-noswipe>同一个 $x=$<input type="range" id="shX" min="-1.5" max="1.5" step="0.5" value="1"><b class="v" id="shXV"></b>　<button type="button" class="btn" id="shPlay">播放平移</button></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">对于同一个 $x$ 的值，$y_2$ 与 $y_1$、$y_3$ 与 $y_1$ 有什么关系？<span class="think" data-step="2" data-ask="拖一拖 x 看看">$y_2$ 比 $y_1$ 大 3，$y_3$ 比 $y_1$ 小 3——每一个点都上（下）移了 3 个单位。</span></p>
+      <p class="tip" data-step="3">所以：<span class="think" data-step="4" data-ask="说结论">把 $y_1=2x$ 的图像分别<b>向上、向下平移 3 个单位长度</b>，就得到 $y_2=2x+3$、$y_3=2x-3$ 的图像（图 6-13）。</span></p>
+      <div class="def" data-step="5"><h4>结论（课本 p152）</h4>一般地，正比例函数 $y=kx$ 的图像是经过<em>原点</em>的一条直线；一次函数 $y=kx+b$ 的图像可以由正比例函数 $y=kx$ 的图像向上（$b\gt0$）或向下（$b\lt0$）平移 $|b|$ 个单位长度得到．</div>
+    </div>
+  </div>
+  <p class="note">课本 p152 交流与图 6-13。拖动 x 滑块：三个点永远在同一条竖直线上，绿色箭头长度始终是 3。“播放平移”演示 y = 2x 整体向上移到 y = 2x + 3、再向下移到 y = 2x − 3。正比例函数过原点，是因为 x = 0 时 y = 0；画正比例函数只需再找一个点。右上角“看动画”是无声动画，总结 k 与 b 的作用。</p>
+</section>
+
+<!-- 11 ================= 练习 2、3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>根据图像回答问题（课本 p153）</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="p153Board" class="b-p153"></div>
+      <p class="tip feedback" id="p153Msg"></p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 画一次函数 $y=2x-4$ 的图像，并根据图像回答：(1) 当 $x=3.5$ 时，$y$ 的值是多少？(2) 当 $y=-2$ 时，$x$ 的值是多少？(3) 当 $x$ 为何值时，$y\gt0$、$y=0$、$y\lt0$？</p>
+        <details><summary>提示 1</summary>两点法：取 $(0,-4)$、$(2,0)$．拖动左图的橙色点读数．</details>
+        <details><summary>提示 2</summary>$y\gt0$ 就是图像在 $x$ 轴<b>上方</b>的部分．</details>
+        <details><summary>完整解答</summary>(1) $y=3$；(2) $x=1$；(3) 当 $x\gt2$ 时 $y\gt0$，当 $x=2$ 时 $y=0$，当 $x\lt2$ 时 $y\lt0$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 怎样由正比例函数 $y=-\dfrac32x$ 的图像得到一次函数 $y=-\dfrac32x+1$、$y=-\dfrac32x-2$ 的图像？</p>
+        <details><summary>提示</summary>$k$ 相同，看 $b$ 的符号和绝对值．</details>
+        <details><summary>完整解答</summary>把 $y=-\frac32x$ 的图像向上平移 1 个单位长度得 $y=-\frac32x+1$；向下平移 2 个单位长度得 $y=-\frac32x-2$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p153 练习 2、3。左图的直线上，x 轴上方的部分画成绿色、下方画成红色，拖点时读数同步——第 (3) 问是 6.6 用图像解不等式的预演，这里只用“看图”回答。</p>
+</section>
+
+<!-- 12 ================= 习题：看图定 k、b 的符号 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>看图像，定 $k$、$b$ 的符号（习题 6.3 第 4 题）</h2></div>
+  <div class="bd full top">
+    <div class="mini4" id="signs"></div>
+    <div class="rule">
+      <p class="method" data-step="1" data-label="看 k">从左向右看：上升 $k\gt0$，下降 $k\lt0$。</p>
+      <p class="method" data-step="2" data-label="看 b">看直线与 $y$ 轴的交点 $(0,b)$：在原点上方 $b\gt0$，下方 $b\lt0$，过原点 $b=0$。</p>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 3</b> $y=5-2x$、$y=-x+3$、$y=x$、$y=\frac32x-2$、$y=5x-6$、$y=-0.75x$ 中，哪些 $y$ 随 $x$ 增大而增大？哪些减小？哪些图像经过原点？</p>
+        <details><summary>完整解答</summary>增大：$y=x$、$y=\frac32x-2$、$y=5x-6$；减小：$y=5-2x$、$y=-x+3$、$y=-0.75x$；过原点：$y=x$、$y=-0.75x$（$b=0$）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 1</b> 在同一平面直角坐标系中，画一次函数 $y=4x-4$ 和 $y=-4x+4$ 的图像，并写出它们的交点坐标．</p>
+        <details><summary>提示</summary>两条直线与 $x$ 轴交于同一点吗？</details>
+        <details><summary>完整解答</summary>两条直线都过 $(1,0)$（$x=1$ 时两个函数值都是 0），交点坐标为 $(1,0)$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 6.3 第 4 题：四个图按课本的样子画（① 上升、交 y 轴正半轴；② 下降、交正半轴；③ 上升、交负半轴；④ 下降、交负半轴）。每个图先点选 k 的符号，再点选 b 的符号，点错可以再选。</p>
+</section>
+
+<!-- 13 ================= 习题：由图像写表达式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>由图像写表达式（习题 6.3 第 2、5 题）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="mini2" id="fromGraph"></div>
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 根据所给函数图像，写出函数表达式．</p>
+          <details><summary>提示 1</summary>① 过原点：设 $y=kx$，一个点 $(3.5,2)$ 就够了．</details>
+          <details><summary>提示 2</summary>② 过 $(0,1)$、$(1,0)$：设 $y=kx+b$，用待定系数法．</details>
+          <details><summary>完整解答</summary>① $2=3.5k$，$k=\frac47$，$y=\frac47x$；② $b=1$，$0=k+1$，$k=-1$，$y=-x+1$．</details>
+        </div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> (2) 将 $y=-\dfrac32x$ 的图像分别向上平移 2 个单位长度、向下平移 3 个单位长度，画出平移后的图像，并写出相应的函数表达式．</p>
+        <details><summary>提示</summary>平移不改变 $k$，向上平移 $b$ 加，向下平移 $b$ 减．</details>
+        <details><summary>完整解答</summary>$y=-\frac32x+2$，$y=-\frac32x-3$．（可回到第 8 页的实验室：$k=-1.5$，把 $b$ 拖到 2 和 −3 验证）</details>
+        <p class="method" data-label="由图像求表达式">在直线上找两个坐标已知的点（过原点的只需一个点）→ 待定系数法。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 6.3 第 2 题（两个图按课本数据绘制：① 过原点和 (3.5, 2)；② 过 (0, 1)、(1, 0)）与第 5(2) 题。由图像写表达式，就是把上一课的待定系数法用到图像上：图像给出了“对应值”。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>图像</h3>
+        <p class="def">$y=kx+b$ 的图像是一条<em>直线</em>；$y=kx$ 是过<em>原点</em>的直线。</p>
+        <p class="method" data-label="画法">两点法：常取 $(0,b)$ 与 $\left(-\frac bk,0\right)$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>$k$ 与 $b$</h3>
+        <p class="def"><span class="kb-k">$k\gt0$</span>：上升，$y$ 随 $x$ 增大而增大；<span class="kb-k">$k\lt0$</span>：下降，$y$ 随 $x$ 增大而减小。</p>
+        <p class="def"><span class="kb-b">$b$</span>：与 $y$ 轴交于 $(0,b)$；由 $y=kx$ 上下平移 $|b|$ 个单位。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">式子里的 $k$、$b$ ↔ 图像的倾斜、位置；“坐标满足表达式” ↔ “点在图像上”。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>6.4 用一次函数解决问题——雪线每年上升 10 m、两家公司收费方案怎么选……图像和表达式怎样帮我们做决定？</p>
+  </div>
+  <p class="note">请学生用“一句话 + 一个手势”说出 k、b 的作用（手臂倾斜表示 k，手臂上下移动表示 b）。课后作业建议：习题 6.3 第 1、3、5(1) 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

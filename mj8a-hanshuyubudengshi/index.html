@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一次函数、一元一次方程和一元一次不等式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/gaosu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第6章 一次函数 · 6.6</p>
+    <h1 class="cover-title">一次函数、一元一次方程和一元一次不等式</h1>
+    <p class="cover-q" data-step="1">一根长 25 cm 的弹簧，每挂 1 kg 物体伸长 0.5 cm，伸长后的长度不能超过 35 cm。最多能挂多重的物体？</p>
+    <p class="cover-q" data-step="2">这个问题，可以用<b>方程</b>解，也可以用<b>不等式</b>解，还可以<b>看图像</b>——三种方法之间有什么联系？</p>
+    <div class="chips" data-step="3"><span class="chip">函数值确定 → 方程</span><span class="chip">函数值范围 → 不等式</span><span class="chip">拖动交点看解集</span></div>
+  </div>
+  <p class="note">课本 p163 情境。这是第 6 章的最后一节，把一次函数与七年级的一元一次方程、一元一次不等式连成一张网。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>三位“老朋友”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八上 6.5 一次函数与二元一次方程（上一课）" data-step="1">
+        <p>上一课讲到：直线上的点 ↔ 二元一次方程的解；两条直线的交点 ↔ 方程组的解。</p>
+        <p class="small-p"><a href="../mj8a-hanshuyufangcheng/index.html">回看 6.5《一次函数与二元一次方程》课件 ›</a></p>
+        <span class="use">今天换成“直线与一条水平线（或 $x$ 轴）的交点”。</span>
+      </div>
+      <div class="recall" data-label="七上 4.2 解一元一次方程" data-step="2">
+        <p>$0.5x+25=35$ → $0.5x=10$ → $x=20$。</p>
+        <p class="small-p"><a href="../mj7a-jieyiyuanyici/index.html">回看 4.2《解一元一次方程》课件 ›</a></p>
+        <span class="use">函数值确定时，求自变量的值。</span>
+      </div>
+      <div class="recall" data-label="七下 11.4 解一元一次不等式" data-step="3">
+        <p>$-2x+2\gt0$ → $-2x\gt-2$ → $x\lt1$（两边同除以负数，不等号<b>改变方向</b>）；解集可以在数轴上表示。</p>
+        <p class="small-p"><a href="../mj7b-jiebudengshi/index.html">回看 11.4《解一元一次不等式》课件 ›</a></p>
+        <span class="use">函数值在某个范围时，求自变量的范围。</span>
+      </div>
+      <div class="recall" data-label="八上 6.3 一次函数的图像" data-step="4">
+        <p>$k\gt0$ 时，$y$ 随 $x$ 增大而增大；$k\lt0$ 时，$y$ 随 $x$ 增大而减小。</p>
+        <p class="small-p"><a href="../mj8a-yicihanshutuxiang/index.html">回看 6.3《一次函数的图像》课件 ›</a></p>
+        <span class="use">看图判断解集是在交点的左边还是右边。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第三张卡请学生说出“除以负数要变号”——第 7 页练习 1 会用到；第四张卡是今天看图的依据。</p>
+</section>
+
+<!-- 3 ================= 弹簧 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>弹簧最多能挂多重的物体？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="spr-row">
+        <svg id="sprSvg" class="spr-svg" viewBox="0 0 110 300" aria-label="弹簧示意"></svg>
+        <div id="sprBoard" class="b-spr"></div>
+      </div>
+      <div class="slider-row" data-noswipe>所挂质量 $x=$<input type="range" id="sprX" min="0" max="24" step="1" value="8"><b class="v" id="sprXV"></b>kg</div>
+      <p class="tip feedback" id="sprMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive sm">
+        <div class="dl" data-step="1"><span>伸长</span><span>$0.5x$ cm</span><i class="why">每挂 1 kg 伸长 0.5 cm</i></div>
+        <div class="dl" data-step="2"><span>表达式</span><span class="think" data-step="3" data-ask="写一写">$y=0.5x+25$</span><i class="why">原长 + 伸长（图 6-18）</i></div>
+        <div class="dl" data-step="4"><span>质量最大时</span><span class="think" data-step="5" data-ask="y 等于多少？">$y=35$</span><i class="why">质量越大越长，长度不能超过 35 cm</i></div>
+        <div class="dl end" data-step="6"><span>解方程</span><span>$0.5x+25=35,\ x=20$</span><i class="why">最大质量是 20 kg</i></div>
+      </div>
+      <p class="tip gold" data-step="7"><b>讨论</b>　能否用一元一次不等式求最大质量？<span class="think" data-step="8" data-ask="列不等式">长度不超过 35 cm：$0.5x+25\le35$，解得 $x\le20$，所以最大质量是 20 kg．</span></p>
+      <p class="method" data-step="9" data-label="同一个问题，三种眼光">方程：$y=35$ 时 $x$ 是多少；不等式：$y\le35$ 时 $x$ 的范围；图像：直线在水平线 $y=35$ <b>下方</b>的部分。</p>
+    </div>
+  </div>
+  <p class="note">课本 p163 情境、图 6-18 与 p164 讨论。拖动质量：弹簧按 y = 0.5x + 25 精确伸长，图像上的点同步移动；超过 20 kg 时提示“超出限度”（图像在 x = 20 处截止）。不等式的解 x ≤ 20 结合实际还要 x ≥ 0，即 0 ≤ x ≤ 20。</p>
+</section>
+
+<!-- 4 ================= 探索：拖交点看解集（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>拖动交点：方程的解、不等式的解集一起变</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="ineqBoard" class="b-ineq"></div>
+      <div id="nlBoard" class="b-nl"></div>
+      <div class="btns" data-noswipe id="ineqBtns">
+        <button type="button" class="btn solid" data-c="0">课本：与 $x$ 轴比（$c=0$）</button>
+        <button type="button" class="btn" data-c="6">习题 1：与 6 比（$c=6$）</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">试根据一次函数 $y=2x+4$ 的图像（图 6-19）说出 $2x+4=0$、$2x+4\gt0$、$2x+4\lt0$ 的解．拖动交点 $P$，水平线 $y=c$ 跟着上下移动：</p>
+      <table class="ctab" id="ineqTab"></table>
+      <p class="tip" data-step="1">$c=0$ 时：<span class="think" data-step="2" data-ask="看图说解">$2x+4=0$ 的解是 $x=-2$（直线与 $x$ 轴交点的横坐标）；$2x+4\gt0$ 的解集是 $x\gt-2$（直线在 $x$ 轴<b>上方</b>）；$2x+4\lt0$ 的解集是 $x\lt-2$（直线在 $x$ 轴<b>下方</b>）．</span></p>
+      <p class="tip gold" data-step="3">为什么“$\gt$”对应交点<b>右边</b>？<span class="think" data-step="4" data-ask="想一想">$k=2\gt0$，$y$ 随 $x$ 增大而增大，交点右边的 $y$ 都比 $c$ 大．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p164 探索与图 6-19。本课核心互动：拖动直线上的交点 P（或 y 轴上的绿色点），水平线 y = c 随之移动；下方数轴同步画出 2x + 4 &gt; c 的解集（绿色射线）、2x + 4 &lt; c 的解集（红色射线），右边表格同步给出方程、不等式的解。先停在 c = 0（课本），再自由拖动；“习题 1”按钮把 c 设为 6。</p>
+</section>
+
+<!-- 5 ================= 结论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">结论</span><h2>函数 · 方程 · 不等式：紧密的联系</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>课本 p164</h4>一次函数、一元一次方程、一元一次不等式有着紧密的联系．已知一次函数的表达式，当其中一个变量的值<em>确定</em>时，可以由相应的<b>一元一次方程</b>确定另一个变量的值；当其中一个变量的<em>取值范围</em>确定时，可以由相应的<b>一元一次不等式</b>确定另一个变量的取值范围．</div>
+    <table class="ctab" data-step="2">
+      <tr><th>对于 $y=kx+b$</th><th>数（解方程 / 不等式）</th><th>形（看图像）</th></tr>
+      <tr><td>$y=0$ 时 $x$ 的值</td><td>解方程 $kx+b=0$</td><td>直线与 $x$ 轴<b>交点</b>的横坐标</td></tr>
+      <tr><td>$y\gt0$ 时 $x$ 的范围</td><td class="g">解不等式 $kx+b\gt0$</td><td class="g">直线在 $x$ 轴<b>上方</b>的部分</td></tr>
+      <tr><td>$y\lt0$ 时 $x$ 的范围</td><td class="r">解不等式 $kx+b\lt0$</td><td class="r">直线在 $x$ 轴<b>下方</b>的部分</td></tr>
+      <tr><td>$y=c$、$y\gt c$、$y\lt c$</td><td>$kx+b=c$、$kx+b\gt c$、$kx+b\lt c$</td><td>与水平线 $y=c$ 比较：交点、上方、下方</td></tr>
+    </table>
+    <p class="warn" data-step="3" data-label="别只背“右边”">交点右边是“$\gt$”只对 $k\gt0$ 成立；$k\lt0$ 时直线下降，交点<b>左边</b>的部分才在上方——一定要看图像，或者解不等式时注意变号。</p>
+  </div>
+  <p class="note">课本 p164 结论。表格最后一行是本课的推广（对应习题 1、2）。警示卡对应练习 1：y = −2(x + 1) + 4 的 k = −2 &lt; 0。</p>
+</section>
+
+<!-- 6 ================= 尝试：汽车 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>自己提问题，自己选工具</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <p class="tip">一辆汽车行驶 35 km 后，驶入高速公路，并以 105 km/h 的速度匀速行驶了 $x$ h．试根据上述情境，提出一些问题，并用一次函数、一元一次方程或一元一次不等式求解．（课本 p164）</p>
+      <svg id="carSvg" class="road" viewBox="0 0 640 80" aria-label="行驶路程"></svg>
+      <div class="slider-row" data-noswipe>高速上行驶 $x=$<input type="range" id="carX" min="0" max="6" step="0.5" value="2"><b class="v" id="carXV"></b>h</div>
+      <p class="tip feedback" id="carMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">一次函数：共行驶的路程 $s$（km）与 $x$（h）：<span class="think" data-step="2" data-ask="写一写">$s=105x+35$</span></p>
+      <div class="derive sm">
+        <div class="dl" data-step="3"><span>问 ① 行驶 2 h 后共行驶多远？</span><span class="think" data-step="4" data-ask="用什么？">函数求值：$s=245$ km</span></div>
+        <div class="dl" data-step="5"><span>问 ② 多长时间后共行驶 350 km？</span><span class="think" data-step="6" data-ask="用什么？">方程：$105x+35=350$，$x=3$</span></div>
+        <div class="dl" data-step="7"><span>问 ③ 何时共行驶超过 560 km？</span><span class="think" data-step="8" data-ask="用什么？">不等式：$105x+35\gt560$，$x\gt5$</span></div>
+      </div>
+      <p class="method" data-step="9" data-label="选工具">求一个值 → 代入或解方程；求一个范围 → 解不等式；想看全局 → 画图像。</p>
+    </div>
+  </div>
+  <p class="note">课本 p164 尝试。三个问题是示例，不是课本原文；请学生先自己提问（如“多久后共行驶 455 km？”），再归类：哪些用方程、哪些用不等式。拖动滑块验证答案。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>练习（课本 p164）</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="p1Board" class="b-mini"></div>
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> $x$ 取什么值时，函数 $y=-2(x+1)+4$ 的值是正数？负数？非负数？</p>
+        <details><summary>提示 1</summary>先化简：$y=-2x+2$．它的 $k$ 是正还是负？</details>
+        <details><summary>提示 2</summary>解 $-2x+2\gt0$：两边同除以 $-2$ 要变号．</details>
+        <details><summary>完整解答</summary>$-2x+2\gt0$ 得 $x\lt1$，此时 $y$ 是正数；$x\gt1$ 时是负数；$x\le1$ 时是非负数．（看左图：直线在 $x$ 轴上方的部分在交点 $(1,0)$ 的<b>左边</b>．）</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 声音在空气中的传播速度（简称音速）$y$（m/s）与气温 $x$（℃）之间的函数表达式为 $y=\dfrac35x+331$．求：(1) 音速为 340 m/s 时的气温；(2) 音速超过 340 m/s 时的气温范围．</p>
+        <details><summary>提示</summary>(1) 是“值确定”→方程；(2) 是“范围”→不等式．</details>
+        <details><summary>完整解答</summary>(1) $\frac35x+331=340$，$x=15$，气温为 15 ℃；(2) $\frac35x+331\gt340$，$x\gt15$，气温高于 15 ℃．</details>
+      </div>
+      <p class="warn" data-label="非负数">“非负数”包括 0：$y\ge0$，对应 $x\le1$（含交点）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p164 练习。第 1 题是 k &lt; 0 的情形，正好检验第 5 页的警示：解集在交点左边。左图按 y = −2x + 2 绘制，x 轴上方的部分是绿色。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.6 精选：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 画出函数 $y=2x+4$ 的图像，并根据图像写出下列方程或不等式的解：(1) $2x+4=6$；(2) $2x+4\gt6$；(3) $2x+4\lt6$．</p>
+        <details><summary>提示</summary>回到第 4 页，点“习题 1”：与水平线 $y=6$ 比较．</details>
+        <details><summary>完整解答</summary>(1) $x=1$；(2) $x\gt1$；(3) $x\lt1$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> $x$ 取什么值时，函数 $y=-3x+1$ 的值大于 $-2$？小于 $-2$？等于 $-2$？</p>
+        <details><summary>提示</summary>$k=-3\lt0$，先解 $-3x+1=-2$ 找“分界点”．</details>
+        <details><summary>完整解答</summary>$-3x+1=-2$ 得 $x=1$．$x\lt1$ 时大于 $-2$；$x\gt1$ 时小于 $-2$；$x=1$ 时等于 $-2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 已知二元一次方程 $x+2y=-5$，当 $x$ 取什么值时，$y$ 的值是正数？负数？非负数？</p>
+        <details><summary>提示</summary>先写成一次函数：$y=-\frac12x-\frac52$（上一课的方法）．</details>
+        <details><summary>完整解答</summary>$-\frac12x-\frac52\gt0$ 得 $x\lt-5$：$y$ 为正数；$x\gt-5$ 时为负数；$x\le-5$ 时为非负数．</details>
+      </div>
+    </div>
+    <p class="method" data-label="解题模板">① 化成 $y=kx+b$　② 求“分界点”：解方程 $kx+b=c$　③ 看 $k$ 的符号（或解不等式）定左右</p>
+  </div>
+  <p class="note">习题 6.6 第 1、2、3 题。第 3 题把 6.5（方程化函数）和 6.6 串起来。三题都可以先让学生画草图，再解不等式核对。</p>
+</section>
+
+<!-- 9 ================= 习题 4 行李费 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>行李费：从图像到表达式，再到范围（习题 6.6 第 4 题）</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="lugBoard" class="b-lug"></div>
+      <p class="tip feedback" id="lugMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">旅客可免费携带一定质量的行李，超过规定时，行李费 $y$（元）与行李质量 $x$（kg）的函数表达式为 $y=kx+b$，图像如左．求：(1) $k$ 和 $b$；(2) 最多可免费携带行李的质量；(3) 行李费为 4～15 元时，行李的质量为多少？</p>
+      <div class="derive sm">
+        <div class="dl" data-step="1"><span>(1) 代入 $(40,6)$、$(60,10)$</span><span class="think" data-step="2" data-ask="解方程组">$\begin{cases}40k+b=6\\60k+b=10\end{cases}$，$k=0.2$，$b=-2$</span></div>
+        <div class="dl" data-step="3"><span>(2) 行李费为 0</span><span class="think" data-step="4" data-ask="解方程">$0.2x-2=0$，$x=10$：最多免费携带 10 kg</span></div>
+        <div class="dl end" data-step="5"><span>(3) $4\le y\le15$</span><span class="think" data-step="6" data-ask="解不等式组">$4\le0.2x-2\le15$，$30\le x\le85$</span></div>
+      </div>
+      <p class="tip gold" data-step="7">图上看 (3)：<span class="think" data-step="8" data-ask="看哪一段？">直线夹在 $y=4$ 与 $y=15$ 两条水平线之间的那一段，横坐标从 30 到 85．</span></p>
+    </div>
+  </div>
+  <p class="note">习题 6.6 第 4 题：图像按 (40, 6)、(60, 10) 精确绘制，与 x 轴交于 (10, 0)。这一题把整章串起来：待定系数法（6.2）、图像（6.3）、方程与不等式（6.6）。拖动直线上的点，看费用落在 4～15 元的绿色区间时，质量是多少。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>第 6 章收尾：一张网</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>一次函数 $y=kx+b$</h3>
+        <p class="def">图像是直线；$k$ 定增减，$b$ 定与 $y$ 轴的交点。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方程</h3>
+        <p class="def">一元一次方程 $kx+b=c$ ↔ 与水平线的交点；二元一次方程组 ↔ 两直线的交点（6.5）。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>不等式</h3>
+        <p class="def">$kx+b\gt c$ ↔ 直线在水平线 $y=c$ 上方的部分；$\lt$ ↔ 下方。</p>
+      </div>
+    </div>
+    <p class="recall" data-step="4" data-label="思想方法">数形结合：“值确定”用方程、“范围”用不等式、“全局”看图像；函数是把方程、不等式统一起来的工具。</p>
+    <p class="tip gold" data-step="5"><b>展望：</b>到了九年级还会学二次函数 $y=ax^2+bx+c$，那时会用同样的眼光看一元二次方程、一元二次不等式。</p>
+  </div>
+  <p class="note">请学生合上课件，口头画出“函数—方程—不等式”的关系图。课后作业建议：习题 6.6 第 1～4 题；章末进行第 6 章复习。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

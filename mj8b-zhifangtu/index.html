@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>频数分布表和频数分布直方图 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shengao-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第7章 数据的收集、整理、描述 · 7.4</p>
+    <h1 class="cover-title">频数分布表和<br>频数分布直方图</h1>
+    <p class="cover-q" data-step="1">某校为了解八年级学生身高的范围和整体分布情况，抽样调查了八年级 50 名学生的身高。</p>
+    <p class="cover-q" data-step="2">50 个数几乎各不相同，没法像“社团代号”那样一类一类地数。怎样看出身高的<b>整体分布</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">分组 · 组距</span><span class="chip">频数分布表</span><span class="chip">频数分布直方图</span><span class="chip">组距实验室</span></div>
+  </div>
+  <p class="note">课本 p25 情境。和 7.1 的社团问卷对比：那里数据只有 A～G 七类，直接数；这里 50 个身高几乎都不一样，直接数每个值出现几次意义不大——要“分组”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="7.3 频数和频率（上一课）" data-step="1">
+        <p>频数：出现的次数；用“正”字划记。脉搏、身高数据先<b>分组</b>再数，分界点带“.5”时每个整数都不会落在分界点上。</p>
+        <span class="use">把 50 个身高分组、划记，列频数分布表。</span>
+      </div>
+      <div class="recall" data-label="7.2 统计图的选用" data-step="2">
+        <p>条形统计图用宽度相同的条形的<b>高度</b>表示数据。</p>
+        <span class="use">按频数画“条形”，就得到频数分布直方图。</span>
+      </div>
+      <div class="recall" data-label="小学 · 除法与带分数" data-step="3">
+        <p>$25\div3=8\dfrac13$：8 组装不下，要 <b>9</b> 组（进一）。</p>
+        <span class="use">由“最大值 − 最小值”和组距，确定分几组。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课要回答：</b>怎样分组？分好以后列什么表、画什么图？从图里能看出什么？</p>
+  </div>
+  <p class="note">第三张卡的“进一”很关键：8 组只能覆盖 24 cm，不够 25 cm 的范围。</p>
+</section>
+
+<!-- 3 ================= 讨论：50 个身高 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>怎样描述这 50 名学生身高的分布情况？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip small-p">抽样调查八年级 50 名学生的身高（单位：cm）：</p>
+      <div class="hgrid" id="hgrid"></div>
+      <div class="btns" data-noswipe>
+        <button class="btn" type="button" id="hMax">找最大值、最小值</button>
+        <button class="btn" type="button" id="hSort">从小到大排一排</button>
+        <button class="btn" type="button" id="hBack">还原</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="hMsg"></p>
+      <p class="tip" data-step="1">一位同学说：<span class="think" data-step="2" data-ask="他会说什么？">“最高的是 172 cm，最矮的是 147 cm，他们相差 25 cm。”</span></p>
+      <p class="tip" data-step="3">另一位同学说：<span class="think" data-step="4" data-ask="排好序再看">“身高在 150 cm 以下、170 cm 以上的人数较少。”</span></p>
+      <p class="tip gold" data-step="5">这 50 个数据分布在 147～172 的范围内．为了更精确地描述这些数据的<b>整体分布</b>情况，我们<b>分组</b>来数．</p>
+    </div>
+  </div>
+  <p class="note">课本 p25“讨论”和两个小人的话。点“从小到大排一排”：排好序后，150 以下只有 147、148 两个数，170 以上只有 172 一个数，中间 160 上下最密集。排序是帮学生看清分布的直观支撑，课本的方法是下一页的分组。</p>
+</section>
+
+<!-- 4 ================= 分组 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法</span><h2>第一步：分组——组距、组数、起点</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>范围</span><span>$172-147=25$</span><i class="why">最大值 − 最小值</i></div>
+        <div class="dl" data-step="2"><span>组距</span><span>$3$</span><i class="why">把相差不超过 3 的数据分为一组</i></div>
+        <div class="dl key" data-step="3"><span>组数</span><span class="think" data-step="4" data-ask="分几组？">$\dfrac{25}{3}=8\dfrac13$，分 9 组</span><i class="why">8 组只有 $8\times3=24$，盖不住 25，所以进一</i></div>
+        <div class="dl key" data-step="5"><span>起点</span><span class="think" data-step="6" data-ask="从几开始？">$146.5$</span><i class="why">比最小值 147 小其末位半个单位</i></div>
+      </div>
+      <p class="tip" data-step="7">为什么要用 146.5，而不用 147 作起点？<span class="think" data-step="8" data-ask="想一想">身高都是整数，分界点都是“□□□.5”，<b>任何一个数据都不会落在分界点上</b>，每个数据都能分到唯一的一组；从 146.5 起，9 组一直到 173.5，盖住了 147～172。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip small-p" data-step="9">这样分成的 9 组为：</p>
+      <svg viewBox="0 0 560 120" class="groups-fig" id="groupsFig" data-step="9" aria-label="9 个分组在数轴上的位置"></svg>
+      <div class="glist" data-step="9">
+        <span>146.5～149.5</span><span>149.5～152.5</span><span>152.5～155.5</span>
+        <span>155.5～158.5</span><span>158.5～161.5</span><span>161.5～164.5</span>
+        <span>164.5～167.5</span><span>167.5～170.5</span><span>170.5～173.5</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p25 的分组方法：先算最大值与最小值的差，再定组距和组数，取比最小值小其末位半个单位的数作分组的最小值。数轴图按比例画出 9 组（每组 3 cm），黑点是 147 和 172 两个端点，可以看到它们都落在组内。</p>
+</section>
+
+<!-- 5 ================= 频数分布表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">第二步</span><h2>划记、数频数：频数分布表</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <table class="mtab ft" id="ftab"></table>
+    </div>
+    <div class="col">
+      <div class="def" data-step="10"><h4>频数分布表（课本 p26）</h4>把 50 个数据分别“划记”到相应的组中，统计每组中相应数据出现的频数，像这样的表格称为<em>频数分布表</em>．</div>
+      <p class="tip" data-step="11">检查：频数合计是多少？<span class="think" data-step="12" data-ask="加一加">$2+3+5+8+9+13+7+2+1=50$，正好是数据个数，没有漏，也没有重。</span></p>
+      <p class="tip gold" data-step="13">表中哪一组人最多？<span class="think" data-step="14" data-ask="找一找">161.5～164.5 cm 这一组，有 13 人。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p26 频数分布表。表格逐行出现（按 → 一行一行揭示），频数都由 50 个原始数据逐个统计得出，与课本一致：2，3，5，8，9，13，7，2，1。</p>
+</section>
+
+<!-- 6 ================= 直方图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">第三步</span><h2>画成“条形”：频数分布直方图</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div id="h76" class="h76"></div>
+      <p class="center small-t muted">图 7-6（按频数分布表精确绘制）</p>
+    </div>
+    <div class="col">
+      <p class="tip small-p">根据频数分布表，用横轴表示各分组数据，用纵轴表示各组数据的频数，绘制条形统计图（如图 7-6）．</p>
+      <div class="def" data-step="1"><h4>频数分布直方图（课本 p26）</h4>像图 7-6 这样的条形统计图，直观地呈现了频数的<em>分布特征和变化规律</em>，称为<b>频数分布直方图</b>．</div>
+      <p class="tip" data-step="2">思考：你能对该校八年级学生身高的整体分布情况做出怎样的估计？<span class="think" data-step="3" data-ask="说一说">中间高、两头低：大多数学生身高在 155.5～167.5 cm 之间（$8+9+13+7=37$ 人，占 74%），161.5～164.5 cm 的最多；特别矮、特别高的都很少。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p26 图 7-6 与“思考”。横轴上的折断号表示省略了 0～146.5 这一段。估计全校时要说“估计”：样本有代表性，才能用样本的分布去估计总体的分布（回扣 7.1）。</p>
+</section>
+
+<!-- 7 ================= 核心：组距实验室 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验</span><h2>组距实验室：组距取多少最合适？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="slider-row" data-noswipe><span>组距</span><input type="range" id="gw" min="1" max="8" step="1" value="3"><b id="gwv">3</b><span>cm</span></div>
+      <p class="tip feedback" id="gwMsg"></p>
+      <p class="small-t muted">各组频数（分组：频数）</p><div class="gchips" id="gtab"></div>
+    </div>
+    <div class="col">
+      <div id="gHist" class="g-hist"></div>
+      <p class="tip" data-step="1">组距太小、太大会怎样？<span class="think" data-step="2" data-ask="拖一拖再说">组距 1：26 组，每组只有 0～5 个，图形忽高忽低，看不出规律；组距 7、8：只有 4 组，太粗，细节都被“抹平”了。组距 3～5 比较合适。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。起点固定为 146.5，拖动组距滑块：组数 = 25 ÷ 组距（有余数进一），表和直方图都用 50 个原始数据实时重算。依次拖到 1、3、8 对比。课本取组距 3、分 9 组；组距不同，频数分布表和直方图都会不同，但“中间多、两头少”的整体特征是一样的。一般数据在 100 个以内时，常分成 5～12 组。</p>
+</section>
+
+<!-- 8 ================= 交流：条形图 vs 直方图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>条形统计图和频数分布直方图，有什么不同？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col"><h3 class="h3 center">条形统计图（7.1 喜爱各社团的学生人数）</h3><div id="cmpBar" class="cmp-chart"></div></div>
+      <div class="col"><h3 class="h3 center">频数分布直方图（图 7-6）</h3><div id="cmpHist" class="cmp-chart"></div></div>
+    </div>
+    <div class="cols2">
+      <p class="tip small-p" data-step="1">横轴表示什么？<span class="think" data-step="2" data-ask="比一比">条形统计图：横轴表示考察对象的<b>类别</b>（A～G，彼此独立，可以调换顺序）；直方图：横轴表示考察对象数据的<b>变化范围</b>（按大小连续排列，不能调换）。</span></p>
+      <p class="tip small-p" data-step="3">纵轴表示什么？长条之间呢？<span class="think" data-step="4" data-ask="比一比">条形图纵轴是各类对象的数量；直方图纵轴是相应范围内数据的频数。直方图的长条<b>紧挨着</b>，因为相邻两组首尾相接。</span></p>
+    </div>
+    <p class="method" data-step="5" data-label="课本里的小人说">频数分布直方图是特殊的条形统计图．</p>
+  </div>
+  <p class="note">课本 p27“交流”与其后的说明：在条形统计图中，横轴表示考察对象的类别，纵轴表示各类对象的数量．在频数分布直方图中，横轴表示考察对象数据的变化范围，纵轴表示相应范围内数据的频数．</p>
+</section>
+
+<!-- 9 ================= 练习 1：读直方图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>从直方图中读信息</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip small-p"><b>1.</b> 根据某班 40 名学生体重的频数分布直方图，回答：(1) 体重在哪个范围内的人数最多？(2) 体重超过 59.5 kg 的学生占全班学生的百分之几？</p>
+      <div id="wHist" class="w-hist"></div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 最高的长条</span><span class="think" data-step="2" data-ask="找一找">49.5～54.5 kg，13 人</span><i class="why">长条越高，频数越大</i></div>
+        <div class="dl" data-step="3"><span>(2) 超过 59.5 kg</span><span class="think" data-step="4" data-ask="哪几组？">$5+2=7$（人）</span><i class="why">59.5～64.5 和 64.5～69.5 两组</i></div>
+        <div class="dl end" data-step="5"><span>占全班</span><span class="think" data-step="6" data-ask="算一算">$\dfrac{7}{40}\times100\%=17.5\%$</span><i class="why">频率 × 100%</i></div>
+      </div>
+      <p class="tip" data-step="7">验算：各组频数之和 $3+8+13+9+5+2=$<span class="think" data-step="8" data-ask="?">$40$ ✓</span></p>
+      <p class="warn" data-step="9" data-label="读图">“超过 59.5”包括 59.5 以上的<b>所有</b>组，不要只数一组。</p>
+    </div>
+  </div>
+  <p class="note">课本 p27 练习 1（直方图按课本标注的频数精确绘制）。点直方图上的长条可以看这一组的范围和频数。</p>
+</section>
+
+<!-- 10 ================= 练习 2：动手画直方图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>动手画：拖动长条，画出频数分布直方图</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip small-p"><b>2.</b> 100 个数据的分组及各组的频数如下，画出这组数据的频数分布直方图．</p>
+      <table class="mtab small">
+        <tr><th>分组</th><td>59.5～61.5</td><td>61.5～63.5</td><td>63.5～65.5</td><td>65.5～67.5</td><td>67.5～69.5</td></tr>
+        <tr><th>频数</th><td>2</td><td>5</td><td>9</td><td>15</td><td>21</td></tr>
+        <tr><th>分组</th><td>69.5～71.5</td><td>71.5～73.5</td><td>73.5～75.5</td><td>75.5～77.5</td><td>77.5～79.5</td></tr>
+        <tr><th>频数</th><td>19</td><td>13</td><td>9</td><td>5</td><td>2</td></tr>
+      </table>
+      <p class="tip feedback" id="buildMsg"></p>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="buildShow">显示答案</button><button class="btn" type="button" id="buildClr">清零重画</button></div>
+    </div>
+    <div class="col">
+      <div id="buildHist" class="build-hist"></div>
+      <p class="muted center small-t">拖每个长条顶上的橙色点，把长条拉到对应的频数（只能取整数）</p>
+    </div>
+  </div>
+  <p class="note">课本 p27 练习 2。请学生上台拖动：每拖对一条，顶点变绿；10 条都对了，下方出现提示。画好后追问：这组数据的分布有什么特点？（中间高两边低，67.5～69.5 这一组最多，21 个；左右大致对称。）</p>
+</section>
+
+<!-- 11 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.4</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 为了调查某市噪声污染情况，该市环保局抽样调查了 40 个噪声测量点的噪声声级（每组含起点值，不含终点值）．(1) 在噪声最高的测量点，其噪声声级在哪个范围？(2) 噪声声级低于 65 dB 的测量点有多少个？</p>
+        <div id="nHist" class="n-hist"></div>
+        <details><summary>提示 1</summary>“噪声最高”看最右边的一组，不是最高的长条。</details>
+        <details><summary>提示 2</summary>低于 65 dB：55～60、60～65 两组。</details>
+        <details><summary>完整解答</summary>(1) 75～80 dB；(2) $4+10=14$（个）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 测量了全班 45 名学生 400 m 赛跑后 1 min 的脉搏次数（数据见课本 p28）．(1) 按组距为 5 将上述数据分组，并列出频数分布表，绘制频数分布直方图；(2) 你能获得哪些信息？</p>
+        <details><summary>提示 1</summary>最小值 132，最大值 168，相差 36；$36\div5=7\dfrac15$，分 8 组。</details>
+        <details><summary>提示 2</summary>起点取 131.5：131.5～136.5，136.5～141.5，……，166.5～171.5。</details>
+        <details><summary>完整解答</summary><table class="mtab"><tr><th>分组</th><td>131.5～136.5</td><td>136.5～141.5</td><td>141.5～146.5</td><td>146.5～151.5</td></tr><tr><th>频数</th><td>2</td><td>2</td><td>5</td><td>6</td></tr><tr><th>分组</th><td>151.5～156.5</td><td>156.5～161.5</td><td>161.5～166.5</td><td>166.5～171.5</td></tr><tr><th>频数</th><td>8</td><td>12</td><td>9</td><td>1</td></tr></table>(2) 例如：156.5～161.5 次/分这一组人数最多；脉搏次数大多在 146.5～166.5 之间；只有 1 人超过 166.5．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 7.4 第 1、2 题。第 1 题直方图按课本标注的频数（4，10，12，8，6）绘制；“每组含起点值，不含终点值”就是 [55,60) 这样的分组。第 2 题答案由课本 45 个原始数据逐个统计得出（起点不同，分组结果会不同，言之有理即可）。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>本课与第 7 章回顾</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1"><span>提出问题</span><i>→</i><span>收集数据<br><small>普查 · 抽样</small></span><i>→</i><span class="on">整理、描述数据<br><small>统计表 · 统计图 · 频数分布</small></span></div>
+    <div class="cols3 sum">
+      <div class="col" data-step="2">
+        <h3>本课步骤</h3>
+        <p class="method" data-label="四步">① 求最大值与最小值的差；② 定组距、组数；③ 定起点、分组，划记，列频数分布表；④ 画频数分布直方图。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>易错</h3>
+        <p class="warn" data-label="分组">组数“进一”；分界点比数据多一位小数（如 .5），使数据不落在分界点上。</p>
+        <p class="warn" data-label="直方图">横轴是数据的范围，长条紧挨着，不能调换顺序。</p>
+      </div>
+      <div class="col" data-step="4">
+        <h3>思想</h3>
+        <p class="recall" data-label="整体分布">直方图让我们看清数据的整体分布：哪里多、哪里少，是否“中间多、两头少”。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一章：</b>第 8 章 认识概率——抛一枚硬币，正面朝上的可能性有多大？“频率”还会帮我们大忙。</p>
+  </div>
+  <p class="note">流程图取自本章“小结与思考”第 1 条。课后阅读：课本 p29–30“学会读统计图”（7.2 已讲过纵轴起点的问题）；数学活动“丢弃了多少塑料袋”可作为章末实践作业。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用一次函数解决问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xueshan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级上册 · 第6章 一次函数 · 6.4</p>
+    <h1 class="cover-title">用一次函数解决问题</h1>
+    <p class="cover-q" data-step="1">玉龙雪山主峰海拔 5 596 m，在海拔 4 500 m 处有一条黑白分明的分界线——<b>雪线</b>。</p>
+    <p class="cover-q" data-step="2">2002～2007 年间，雪线平均每年上升约 10 m。假设按此速度不断变化，<b>几年后</b>雪线将退至山顶而消失？</p>
+    <div class="chips" data-step="3"><span class="chip">找变量 · 列表达式</span><span class="chip">方程 · 不等式</span><span class="chip">方案比较</span><span class="chip">图像讲故事</span></div>
+  </div>
+  <p class="note">课本 p155 情境。先请学生估一估“几年”，第 3 页再算。数据是课本给的“假设”，教师可提醒：真实的雪线变化不一定匀速，这里是数学模型。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>解决问题要带上的“工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八上 6.3 一次函数的图像（上一课）" data-step="1">
+        <p>$y=kx+b$ 的图像是一条直线；$k\gt0$ 时 $y$ 随 $x$ 增大而增大。上一课讲到：会画图像、会由图像读值、会看 $k$、$b$。</p>
+        <p class="small-p"><a href="../mj8a-yicihanshutuxiang/index.html">回看 6.3《一次函数的图像》课件 ›</a></p>
+        <span class="use">问题 2 比较两条直线的高低；问题 3 由图像说出实际意义。</span>
+      </div>
+      <div class="recall" data-label="八上 6.2 一次函数" data-step="2">
+        <p>已知 $y$ 求 $x$：解一元一次方程；待定系数法：设 $y=kx+b$，代入两组值求 $k$、$b$。</p>
+        <p class="small-p"><a href="../mj8a-yicihanshu/index.html">回看 6.2《一次函数》课件 ›</a></p>
+        <span class="use">雪线问题列方程；问题 2 从图像上求表达式。</span>
+      </div>
+      <div class="recall" data-label="七下 第11章 一元一次不等式" data-step="3">
+        <p>$5x\gt3x+8$ → $2x\gt8$ → $x\gt4$（移项、合并、系数化为 1）。</p>
+        <span class="use">问题 1“什么时候有赢利”要解不等式。</span>
+      </div>
+      <div class="recall" data-label="八上 6.1 · 例 2 读图像" data-step="4">
+        <p>折线中平行于横轴的线段表示“这段时间里函数值不变”。</p>
+        <p class="small-p"><a href="../mj8a-hanshu/index.html">回看 6.1《函数》课件 ›</a></p>
+        <span class="use">问题 3 把一条折线“翻译”成一个故事。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">本课是第 6 章的应用课，前三课的工具都要用上：表达式（6.2）、图像（6.3）、读图（6.1），再加上七年级的方程与不等式。</p>
+</section>
+
+<!-- 3 ================= 雪线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>雪线几年后会消失？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="mtSvg" class="mt-svg" viewBox="0 0 420 260" aria-label="雪线高度示意"></svg>
+      <div class="slider-row" data-noswipe>经过 $x=$<input type="range" id="mtX" min="0" max="120" step="1" value="0"><b class="v" id="mtXV"></b>年</div>
+      <p class="tip feedback" id="mtMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">雪线海拔 $y$（m）与时间 $x$（年）的关系：<span class="think" data-step="2" data-ask="写一写">$y=4\,500+10x$（一次函数）</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>雪线到山顶</span><span class="think" data-step="4" data-ask="列方程">$4\,500+10x=5\,596$</span><i class="why">已知函数值求自变量</i></div>
+        <div class="dl" data-step="5"><span></span><span>$10x=1\,096$</span><i class="why">移项</i></div>
+        <div class="dl end" data-step="6"><span>∴</span><span>$x=109.6\approx110$</span><i class="why">约 110 年后雪线消失（练习 1）</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="课本 p155">分析实际问题中变量与变量之间的关系，如果这种关系可以用一次函数表达式表示，那么就可用一次函数的相关知识来解决实际问题．</p>
+    </div>
+  </div>
+  <p class="note">课本 p155 情境与 p156 练习 1。拖动年数，雪线（虚线）按 4 500 + 10x 精确上升；拖到 110 年左右雪线越过主峰。图中山的轮廓只是示意，纵轴的海拔刻度是准确的。</p>
+</section>
+
+<!-- 4 ================= 问题 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1</span><h2>每天生产多少件，工厂才有赢利？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <p class="tip">某工厂固定成本为每天 12 000 元，产品的原料及加工成本合计为每件 900 元．(1) 写出每天的生产成本与产量之间的函数表达式；(2) 如果出厂价为每件 1 200 元，每天生产多少件产品，该工厂才有赢利？</p>
+      <div class="slider-row" data-noswipe>每天产量 $x=$<input type="range" id="bzX" min="0" max="80" step="1" value="20"><b class="v" id="bzXV"></b>件</div>
+      <div class="bars" id="bzBars"></div>
+      <p class="tip feedback" id="bzMsg"></p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 成本</span><span class="think" data-step="2" data-ask="写一写">$y_1=900x+12\,000$</span><i class="why">加工成本 + 固定成本</i></div>
+        <div class="dl" data-step="3"><span>(2) 收入</span><span class="think" data-step="4" data-ask="写一写">$y_2=1\,200x$</span><i class="why">出厂价 × 件数</i></div>
+        <div class="dl key" data-step="5"><span>有赢利</span><span class="think" data-step="6" data-ask="怎样翻译？">$1\,200x\gt900x+12\,000$</span><i class="why">收入 $y_2$ 大于成本 $y_1$</i></div>
+        <div class="dl end" data-step="7"><span>解得</span><span>$x\gt40$</span><i class="why">每天生产的产品超过 40 件时，工厂才有赢利</i></div>
+      </div>
+      <p class="method" data-step="8" data-label="翻译">“相等” → 方程；“超过、有赢利、更省” → 不等式。</p>
+    </div>
+  </div>
+  <p class="note">课本 p155–156 问题 1。先让学生拖产量，找出“收支相抵”的产量（40 件），再列不等式说明。追问：为什么固定成本是“b”、每件成本是“k”？请学生用 6.3 的话描述：每多生产 1 件，成本增加 900 元。</p>
+</section>
+
+<!-- 5 ================= 交流 + 出租车 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流 · 练习</span><h2>工资与车费</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="taxiBoard" class="b-taxi"></div>
+      <p class="tip feedback" id="taxiMsg"></p>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2</b> 出租车收费标准：不超过 3 千米计费为 7.0 元，3 千米后按 2.4 元/千米计费．(1) 写出车费 $y$（元）与路程 $x$（千米）之间的函数表达式；(2) 小亮付费 19 元，计算小亮乘车的路程．</p>
+        <details><summary>提示</summary>分两段：$0\lt x\le3$ 和 $x\gt3$；19 元比 7 元多，说明 $x\gt3$．</details>
+        <details><summary>完整解答</summary>(1) 当 $0\lt x\le3$ 时，$y=7$；当 $x\gt3$ 时，$y=7+2.4(x-3)=2.4x-0.2$．(2) $2.4x-0.2=19$，$x=8$，路程为 8 千米．</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">招聘会上，某公司承诺：第 1 年的月工资为 2 000 元，以后每年的月工资比上一年增加 300 元．某人连续工作 $n$ 年．（课本 p156 交流）</p>
+      <div class="derive sm">
+        <div class="dl" data-step="1"><span>第 $n$ 年月工资</span><span class="think" data-step="2" data-ask="写一写">$y=2\,000+300(n-1)$</span><i class="why">第 1 年不加，第 $n$ 年加了 $n-1$ 次</i></div>
+        <div class="dl" data-step="3"><span>即</span><span>$y=300n+1\,700$</span><i class="why">化简</i></div>
+        <div class="dl" data-step="4"><span>第 5 年月工资</span><span class="think" data-step="5" data-ask="算一算">$300\times5+1\,700=3\,200$</span><i class="why">代入 $n=5$</i></div>
+        <div class="dl end" data-step="6"><span>第 5 年年收入</span><span class="think" data-step="7" data-ask="超过 40 000 元吗？">$3\,200\times12=38\,400\lt40\,000$</span><i class="why">不能超过 40 000 元</i></div>
+      </div>
+      <p class="warn" data-step="8" data-label="易错">“第 $n$ 年”加了 $n-1$ 次，不是 $n$ 次；“年收入”是月工资的 12 倍。</p>
+    </div>
+  </div>
+  <p class="note">右栏是课本 p156 交流，左栏是练习 2。出租车的图像分两段：前 3 千米是水平线段（车费不变），之后是一次函数的一部分——这就是生活中的“分段计费”。19 元在图上对应的横坐标就是答案，可以拖点找一找。</p>
+</section>
+
+<!-- 6 ================= 问题 2：方案比较器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2</span><h2>租哪家公司的车更省钱？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="cmpBoard" class="b-cmp"></div>
+      <p class="muted center small-t">拖动横轴上的橙色点改变用车里程 $x$（千米）</p>
+    </div>
+    <div class="col">
+      <p class="tip">甲、乙两家公司的租车费 $y_1$（元）、$y_2$（元）都是用车里程 $x$（千米）的函数，图像如图 6-14．</p>
+      <div class="bars" id="cmpBars"></div>
+      <p class="tip feedback" id="cmpMsg"></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 何时相等？</span><span class="think" data-step="2" data-ask="看图">$x=2\,000$ 时</span><i class="why">两图像相交于一点，$y_1=y_2$</i></div>
+        <div class="dl" data-step="3"><span>(2) 甲比乙少？</span><span class="think" data-step="4" data-ask="看图">$x\lt2\,000$ 时</span><i class="why">交点左边，$y_1$ 的图像在下方</i></div>
+        <div class="dl" data-step="5"><span>(3) 乙比甲少？</span><span class="think" data-step="6" data-ask="看图">$x\gt2\,000$ 时</span><i class="why">交点右边，$y_2$ 的图像在下方</i></div>
+      </div>
+      <p class="tip gold" data-step="7">能求出 $k_1$、$k_2$ 吗？<span class="think" data-step="8" data-ask="用交点 (2000, 2000)">$2\,000=2\,000k_1$，$k_1=1$；$2\,000=2\,000k_2+1\,000$，$k_2=0.5$．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p157 问题 2 与图 6-14。本课核心互动：拖动里程，两条直线上对应的点、两根费用条同步变化，便宜的一家变绿。请学生先口答三问，再拖动验证。最后一问是补充：图像上的交点 (2000, 2000) 给出了“一组对应值”，用待定系数法就能求出 k₁、k₂——图像和表达式可以互相转化。</p>
+</section>
+
+<!-- 7 ================= 交流：蔬菜运输 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>运蔬菜：汽车还是火车？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>运输方式</th><th>速度/(千米/时)</th><th>途中综合费用/(元/时)</th><th>装卸费用/元</th></tr>
+        <tr><td>汽车</td><td>60</td><td>270</td><td>200</td></tr>
+        <tr><td>火车</td><td>100</td><td>240</td><td>410</td></tr>
+      </table>
+      <div id="vegBoard" class="b-veg"></div>
+    </div>
+    <div class="col">
+      <p class="tip">(1) 写出汽车、火车运输的总费用 $y_1$（元）、$y_2$（元）与运输路程 $x$（千米）之间的函数表达式；(2) 你认为用哪种运输方式较好？（课本 p157–158）</p>
+      <div class="derive sm">
+        <div class="dl" data-step="1"><span>汽车用时</span><span>$\dfrac{x}{60}$ h</span><i class="why">时间 = 路程 ÷ 速度</i></div>
+        <div class="dl" data-step="2"><span>$y_1=$</span><span class="think" data-step="3" data-ask="写一写">$270\cdot\dfrac{x}{60}+200=4.5x+200$</span><i class="why">途中费用 + 装卸费用</i></div>
+        <div class="dl" data-step="4"><span>$y_2=$</span><span class="think" data-step="5" data-ask="写一写">$240\cdot\dfrac{x}{100}+410=2.4x+410$</span><i class="why">同理</i></div>
+        <div class="dl key" data-step="6"><span>$y_1=y_2$</span><span class="think" data-step="7" data-ask="解一解">$4.5x+200=2.4x+410$，$x=100$</span><i class="why">两条直线的交点</i></div>
+      </div>
+      <p class="tip gold" data-step="8">结论：<span class="think" data-step="9" data-ask="分情况说">路程小于 100 千米用汽车，大于 100 千米用火车，等于 100 千米时两种一样（各 650 元）．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p157–158 交流。表格数据要先变成“每千米费用”：汽车每千米 270 ÷ 60 = 4.5 元。“哪种较好”没有唯一答案，要<b>分情况讨论</b>——这和问题 2 的思路完全一样：先找相等的点，再看两边。也可以讨论：除了费用，还要考虑时间（火车更快）。</p>
+</section>
+
+<!-- 8 ================= 问题 3：图像讲故事 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3</span><h2>这条折线，讲了一个什么故事？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="storyBoard" class="b-story"></div>
+      <svg id="roadSvg" class="road-svg" viewBox="0 0 520 70" aria-label="骑车路线"></svg>
+      <div class="slider-row" data-noswipe><button type="button" class="btn solid" id="storyPlay">▶ 播放</button>　时间 $x=$<input type="range" id="storyX" min="0" max="24" step="0.5" value="0"><b class="v" id="storyXV"></b>min</div>
+    </div>
+    <div class="col">
+      <p class="tip">根据图 6-15 中的函数图像，说出 $x$、$y$ 变化过程的实际意义．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$0\to8$</span><span>$y$ 从 0 增大到 2</span><i class="why">上升</i></div>
+        <div class="dl" data-step="1"><span>$8\to14$</span><span>$y$ 的值不变</span><i class="why">水平</i></div>
+        <div class="dl" data-step="1"><span>$14\to24$</span><span>$y$ 从 2 减小到 0</span><i class="why">下降</i></div>
+      </div>
+      <p class="tip" data-step="2">设 $x$ 表示时间（min），$y$ 表示离出发地的路程（km）：<span class="think" data-step="3" data-ask="编一个故事">小明以 250 m/min 的速度匀速骑自行车 8 min 到达某地；在该地休息了 6 min；然后以 200 m/min 的速度匀速骑自行车 10 min 返回出发地．</span></p>
+      <p class="tip gold" data-step="4"><b>思考</b>　换一种实际意义？<span class="think" data-step="5" data-ask="想一想">例如 $y$ 表示水池水深（m）：匀速注水 8 min 水深达到 2 m，停 6 min，再匀速放水 10 min 放完．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p158 问题 3、图 6-15 与“思考”。点“播放”：上面图像上的点和下面路上的小明同步移动。速度是算出来的：2 km = 2 000 m，2 000 ÷ 8 = 250 m/min，2 000 ÷ 10 = 200 m/min。“如果给 x、y 这两个变量以某种实际意义，那么这个图像就可以表示某种实际的变化过程”——同一个图像可以讲不同的故事。</p>
+</section>
+
+<!-- 9 ================= 练习 p158 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>怎样选才划算？（课本 p158）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 甲汽车出租公司按每 100 km 150 元收取租车费；乙汽车出租公司按每 100 km 50 元收取租车费，另加管理费 800 元．你认为应如何选择合适的汽车出租公司？</p>
+        <details><summary>提示 1</summary>设里程为 $x$ km：$y_{\text{甲}}=1.5x$，$y_{\text{乙}}=0.5x+800$．</details>
+        <details><summary>提示 2</summary>先求两者相等时的 $x$，再分情况．</details>
+        <details><summary>完整解答</summary>$1.5x=0.5x+800$，$x=800$．里程小于 800 km 选甲，大于 800 km 选乙，等于 800 km 时两家一样．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> $A$、$B$ 两家旅行社的票价均为 90 元/人．$A$ 旅行社：全家有一人购全票，其余的人半价优惠；$B$ 旅行社：每人均按 $\dfrac23$ 票价优惠．你将选择哪家旅行社？</p>
+        <details><summary>提示 1</summary>设全家 $x$ 人：$y_A=90+45(x-1)=45x+45$，$y_B=60x$．</details>
+        <details><summary>提示 2</summary>注意 $x$ 是正整数．</details>
+        <details><summary>完整解答</summary>$45x+45=60x$，$x=3$．3 人时两家一样；少于 3 人选 $B$；多于 3 人选 $A$．</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="方案选择三步">① 分别写出两个方案的函数表达式　② 求出两者相等时自变量的值（图像的交点）　③ 分情况比较，回到实际问题作答</p>
+  </div>
+  <p class="note">课本 p158 练习 1、2，结构与问题 2 完全一样。可以请学生画草图：两条直线、一个交点、左右两边哪条在下方。第 2 题提醒：人数只能是正整数。</p>
+</section>
+
+<!-- 10 ================= 习题：汽车能否准时 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>汽车能否在 12:00 前到达 $C$ 站？（习题 6.4 第 2 题）</h2></div>
+  <div class="bd full top">
+    <svg class="road-svg" id="abcSvg" viewBox="0 0 900 80" aria-label="A、P、B、C 位置"></svg>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">公路上有 $A$、$B$、$C$ 三个汽车站，一辆汽车 8:00 从离 $A$ 站 10 km 的 $P$ 地出发，向 $C$ 站匀速行驶，15 min 后离 $A$ 站 30 km．(1) 设出发 $x$ h 后，汽车离 $A$ 站 $y$ km，写出 $y$ 与 $x$ 之间的函数表达式；(2) 当汽车行驶到离 $A$ 站 250 km 的 $B$ 站时，接到通知要在 12:00 前赶到离 $B$ 站 60 km 的 $C$ 站．汽车按原速行驶，能否准时到达？如果能，那么汽车何时到达 $C$ 站？</p>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>速度</span><span class="think" data-step="2" data-ask="15 min 走了多少？">$(30-10)\div\dfrac14=80$ km/h</span><i class="why">15 min $=\frac14$ h</i></div>
+        <div class="dl" data-step="3"><span>(1)</span><span>$y=80x+10$</span><i class="why">出发时已离 $A$ 站 10 km</i></div>
+        <div class="dl" data-step="4"><span>到 $C$ 站</span><span class="think" data-step="5" data-ask="离 A 站多远？">$y=250+60=310$</span><i class="why">$C$ 站离 $A$ 站 310 km</i></div>
+        <div class="dl" data-step="6"><span></span><span>$80x+10=310,\ x=3.75$</span><i class="why">3.75 h = 3 h 45 min</i></div>
+        <div class="dl end" data-step="7"><span>∴</span><span>11:45 到达，能准时</span><i class="why">8:00 + 3 h 45 min</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 6.4 第 2 题。图中 A、P、B、C 按距离比例画（AP = 10 km，AB = 250 km，BC = 60 km）。关键是把“离 B 站 60 km”换算成“离 A 站 310 km”，因为表达式里的 y 是离 A 站的距离。</p>
+</section>
+
+<!-- 11 ================= 习题精选 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题</span><h2>习题 6.4 精选：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 拖拉机开始工作时，油箱中有油 40 L，已知每小时耗油 6 L．写出剩余油量 $Q$（L）与工作时间 $t$（h）之间的函数表达式，并计算工作 2.5 h 后油箱中的剩余油量．</p>
+        <details><summary>完整解答</summary>$Q=40-6t$；$t=2.5$ 时 $Q=40-15=25$（L）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 甲种方式：每月收月租费 8 元，每分钟通话费 0.2 元；乙种方式：不收月租费，每分钟通话费 0.3 元．试根据通话时间的多少选择合适的付费方式．</p>
+        <details><summary>提示</summary>设通话 $x$ min：$y_{\text{甲}}=0.2x+8$，$y_{\text{乙}}=0.3x$．</details>
+        <details><summary>完整解答</summary>$0.2x+8=0.3x$，$x=80$．通话少于 80 min 选乙，多于 80 min 选甲，80 min 时一样．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 钳工 20 名、车工 30 名派往 $A$、$B$ 两地．月工资：$A$ 地钳工 1 800、车工 1 600；$B$ 地钳工 1 600、车工 1 200（元/月）．(1) 若派往 $A$ 地 $x$ 名钳工，余下的技工全部派往 $B$ 地，写出月工资总额 $y$ 与 $x$ 的表达式及 $x$ 的取值范围．</p>
+        <details><summary>提示</summary>$A$ 地：$x$ 名钳工；$B$ 地：$(20-x)$ 名钳工和 30 名车工．</details>
+        <details><summary>完整解答</summary>$y=1\,800x+1\,600(20-x)+1\,200\times30=200x+68\,000$，$0\le x\le20$ 且 $x$ 为整数．（第 (2) 问同理：$y=400x+68\,000$，$0\le x\le30$．）</details>
+      </div>
+    </div>
+    <div class="hint-ladder">
+      <p class="q"><b>4.</b> 某厂计划生产 $A$、$B$ 两种产品共 50 件．$A$ 产品每件可获利润 700 元，$B$ 产品每件可获利润 1 200 元．设生产两种产品的获利总额为 $y$（元），写出 $y$ 与生产 $A$ 产品的件数 $x$ 之间的函数表达式．</p>
+      <details><summary>完整解答</summary>$y=700x+1\,200(50-x)=-500x+60\,000$（$0\le x\le50$，$x$ 为整数）．</details>
+    </div>
+  </div>
+  <p class="note">习题 6.4 第 1、3、4、5 题。第 3 题与练习 1、问题 2 同一类型；第 4、5 题的自变量是“人数、件数”，取值范围要写清楚且是整数。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>用一次函数解决问题的一般过程</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div><b>实际问题</b><br>雪线、成本、租车……</div><i>→</i>
+      <div><b>找变量</b><br>谁随谁变？单位？</div><i>→</i>
+      <div><b>建立一次函数</b><br>列表达式 / 读图像</div><i>→</i>
+      <div><b>用数学求解</b><br>方程 · 不等式 · 图像</div><i>→</i>
+      <div><b>回到实际</b><br>取值范围？分情况作答</div>
+    </div>
+    <div class="cols3 sum">
+      <p class="method" data-step="2" data-label="相等 → 方程">雪线到山顶、付费 19 元、准时到达。</p>
+      <p class="method" data-step="3" data-label="大小 → 不等式 / 交点两侧">有赢利、更省钱：先求“相等”，再看交点左右。</p>
+      <p class="method" data-step="4" data-label="图像 → 故事">平的线段表示“不变”，升、降表示“增加、减少”。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一节：</b>6.5 一次函数与二元一次方程——今天问题 2 里两条直线的<b>交点</b>，和七年级学过的二元一次方程组有什么关系？</p>
+  </div>
+  <p class="note">请学生用本课任意一个问题，把流程图的五步说一遍。课后作业建议：习题 6.4 第 3、4、5 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

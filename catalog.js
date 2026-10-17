@@ -4569,31 +4569,51 @@ window.CATALOG = [
                 "no": "6.2",
                 "title": "一次函数",
                 "genre": "概念",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj8a-yicihanshu",
+                "pages": 12,
+                "desc": "加油机看油量匀速增加，拼出y=kx+b",
+                "cover": "mj8a-yicihanshu/assets/jiayou.jpg"
               },
               {
                 "no": "6.3",
                 "title": "一次函数的图像",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj8a-yicihanshutuxiang",
+                "pages": 14,
+                "desc": "拖k、b滑块看直线倾斜与平移",
+                "cover": "mj8a-yicihanshutuxiang/assets/shanji.jpg"
               },
               {
                 "no": "6.4",
                 "title": "用一次函数解决问题",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj8a-yicihanshuwenti",
+                "pages": 12,
+                "desc": "拖里程比两家租车费，折线配骑车动画",
+                "cover": "mj8a-yicihanshuwenti/assets/xueshan.jpg"
               },
               {
                 "no": "6.5",
                 "title": "一次函数与二元一次方程",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj8a-hanshuyufangcheng",
+                "pages": 10,
+                "desc": "拖交点，两直线随之转动，验证方程组的解",
+                "cover": "mj8a-hanshuyufangcheng/assets/jiaocha.jpg"
               },
               {
                 "no": "6.6",
                 "title": "一次函数、一元一次方程和一元一次不等式",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj8a-hanshuyubudengshi",
+                "pages": 10,
+                "desc": "拖交点，数轴同步画不等式解集",
+                "cover": "mj8a-hanshuyubudengshi/assets/gaosu.jpg"
               }
             ]
           },
@@ -4626,25 +4646,41 @@ window.CATALOG = [
                 "no": "7.1",
                 "title": "普查与抽样调查",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mj8b-puchachouyang",
+                "pages": 11,
+                "desc": "抽样模拟器：随机抽与只抽一班对比",
+                "cover": "mj8b-puchachouyang/assets/xiaoyuan-cover.jpg"
               },
               {
                 "no": "7.2",
                 "title": "统计图的选用",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mj8b-tongjitu",
+                "pages": 12,
+                "desc": "选图实验室：三组数据×三种图",
+                "cover": "mj8b-tongjitu/assets/pucha-cover.jpg"
               },
               {
                 "no": "7.3",
                 "title": "频数和频率",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mj8b-pinshupinlv",
+                "pages": 10,
+                "desc": "47城市逐个唱入分级，正字划记",
+                "cover": "mj8b-pinshupinlv/assets/changpiao-cover.jpg"
               },
               {
                 "no": "7.4",
                 "title": "频数分布表和频数分布直方图",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mj8b-zhifangtu",
+                "pages": 12,
+                "desc": "组距滑块实时重算直方图，拖长条作图",
+                "cover": "mj8b-zhifangtu/assets/shengao-cover.jpg"
               }
             ]
           },
@@ -4657,19 +4693,31 @@ window.CATALOG = [
                 "no": "8.1",
                 "title": "确定事件与随机事件",
                 "genre": "概念",
-                "kind": "概率"
+                "kind": "概率",
+                "dir": "mj8b-suijishijian",
+                "pages": 9,
+                "desc": "四袋真随机摸球，调袋子自动判事件",
+                "cover": "mj8b-suijishijian/assets/pingpang-cover.jpg"
               },
               {
                 "no": "8.2",
                 "title": "可能性的大小",
                 "genre": "概念",
-                "kind": "概率"
+                "kind": "概率",
+                "dir": "mj8b-kenengxing",
+                "pages": 9,
+                "desc": "转盘真随机旋转，五袋排序",
+                "cover": "mj8b-kenengxing/assets/zhuanpan-cover.jpg"
               },
               {
                 "no": "8.3",
                 "title": "频率与概率",
                 "genre": "概念",
-                "kind": "概率"
+                "kind": "概率",
+                "dir": "mj8b-pinlvgailv",
+                "pages": 12,
+                "desc": "2000次多组叠加，看频率稳于概率",
+                "cover": "mj8b-pinlvgailv/assets/paoyingbi-cover.jpg"
               }
             ]
           },
@@ -4719,31 +4767,51 @@ window.CATALOG = [
                 "no": "10.1",
                 "title": "分式",
                 "genre": "概念",
-                "kind": "分式"
+                "kind": "分式",
+                "dir": "mj8b-fenshi",
+                "pages": 11,
+                "desc": "数轴拖 x 找分母为零与值为零的点",
+                "cover": "mj8b-fenshi/assets/lvdi-cover.jpg"
               },
               {
                 "no": "10.2",
                 "title": "分式的基本性质",
                 "genre": "推导",
-                "kind": "分式"
+                "kind": "分式",
+                "dir": "mj8b-fenshixingzhi",
+                "pages": 17,
+                "desc": "因式卡片配对划去，约分到最简",
+                "cover": "mj8b-fenshixingzhi/assets/huoche-cover.jpg"
               },
               {
                 "no": "10.3",
                 "title": "分式的加减",
                 "genre": "推导",
-                "kind": "分式"
+                "kind": "分式",
+                "dir": "mj8b-fenshijiajian",
+                "pages": 10,
+                "desc": "逐行代值，找出错的那一步",
+                "cover": "mj8b-fenshijiajian/assets/youlun-cover.jpg"
               },
               {
                 "no": "10.4",
                 "title": "分式的乘除",
                 "genre": "推导",
-                "kind": "分式"
+                "kind": "分式",
+                "dir": "mj8b-fenshichengchu",
+                "pages": 13,
+                "desc": "直接代入与先化简两条路对比",
+                "cover": "mj8b-fenshichengchu/assets/heiban-cover.jpg"
               },
               {
                 "no": "10.5",
                 "title": "分式方程",
                 "genre": "推导",
-                "kind": "分式"
+                "kind": "分式",
+                "dir": "mj8b-fenshifangcheng",
+                "pages": 15,
+                "desc": "拖 x 对照两边与公分母，看清增根",
+                "cover": "mj8b-fenshifangcheng/assets/zhishu-cover.jpg"
               }
             ]
           },

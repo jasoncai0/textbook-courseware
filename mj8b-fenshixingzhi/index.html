@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分式的基本性质 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mfrac.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huoche-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第10章 分式 · 10.2</p>
+    <h1 class="cover-title">分式的基本性质</h1>
+    <p class="cover-q" data-step="1">一列匀速行驶的火车，$t$ h 行驶 $s$ km，$2t$ h 行驶 $2s$ km，…，$nt$ h 行驶 $ns$ km．</p>
+    <p class="cover-q" data-step="2">$\dfrac st$、$\dfrac{2s}{2t}$、$\dfrac{3s}{3t}$、…、$\dfrac{ns}{nt}$ 都表示这列火车的速度——<b>由此你发现了什么？</b></p>
+    <div class="chips" data-step="3"><span class="chip">基本性质</span><span class="chip">符号变化</span><span class="chip">约分 · 最简分式</span><span class="chip">通分 · 最简公分母</span></div>
+  </div>
+  <p class="note">课本 p101“讨论”。请学生说出：同一个速度，写成了不同的分式——分子、分母同乘 n，值不变。这就是本课要研究的“分式的基本性质”，它是后面约分、通分以及分式加减乘除的依据。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2 g4">
+      <div class="recall" data-label="五年级下册 · 分数的基本性质" data-step="1">
+        <p>分数的分子和分母都乘（或除以）同一个<b>不等于 0</b> 的数，分数的值不变：$\dfrac23=\dfrac46$，$\dfrac{12}{18}=\dfrac23$。</p>
+        <span class="use">类比得到分式的基本性质。</span>
+      </div>
+      <div class="recall" data-label="五年级下册 · 约分与通分" data-step="2">
+        <p>约分：同除以最大公因数；通分：化成以<b>最小公倍数</b>为分母的分数，如 $\dfrac16,\dfrac14\to\dfrac2{12},\dfrac3{12}$。</p>
+        <span class="use">分式的约分、通分照着做，只是“数”换成了“式”。</span>
+      </div>
+      <div class="recall" data-label="七年级下册 · 第9章 因式分解" data-step="3">
+        <p>提公因式：$ma+mb-mc=m(a+b-c)$；公式法：$a^2-b^2=(a+b)(a-b)$，$a^2-2a+1=(a-1)^2$。</p>
+        <span class="use">分子、分母是多项式时，先分解因式，才看得出公因式。</span>
+      </div>
+      <div class="recall" data-label="10.1 分式" data-step="4">
+        <p>分式 $\dfrac AB$ 中，$B$ 是含字母的整式，<b>$B\ne0$</b>；分式的值随字母的取值而变化。</p>
+        <span class="use">说明“同乘的整式 $C$ 为什么不能为 0”；用代值的方法检验变形对不对。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">上一课（10.1）讲到分式的概念、分式的值和“分母不能为 0”。本课先类比分数的基本性质得到分式的基本性质，再用它做约分、通分——五年级的“约分、通分”和七年级下的“因式分解”都要用上，请学生各举一个例子口头复习。</p>
+</section>
+
+<!-- 3 ================= 猜想 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论 · 猜想</span><h2>分式也有类似分数的性质吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">火车 $t$ h 行驶 $s$ km．下面每个分式都表示它的速度（km/h）：</p>
+      <p class="big center">$\dfrac st=\dfrac{2s}{2t}=\dfrac{3s}{3t}=\cdots=\dfrac{ns}{nt}$</p>
+      <p class="tip" data-step="1">从 $\dfrac st$ 到 $\dfrac{ns}{nt}$，分子、分母发生了什么变化？<span class="think" data-step="2" data-ask="说一说">分子、分母都乘了同一个 $n$。</span></p>
+      <p class="tip" data-step="3">分数里“同乘的数不能是 0”。分式里同乘的 $n$ 有什么要求？<span class="think" data-step="4" data-ask="想一想">$n\ne0$：若乘 0，分母变成 0，分式无意义。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5">用 $s=120$、$t=2$ 验证一下：</p>
+      <table class="mtab" data-step="5">
+        <tr><th>分式</th><th>$\dfrac st$</th><th>$\dfrac{2s}{2t}$</th><th>$\dfrac{3s}{3t}$</th><th>$\dfrac{5s}{5t}$</th></tr>
+        <tr><th>值</th><td>$\dfrac{120}{2}=60$</td><td><span class="think" data-step="6" data-ask="?">$\dfrac{240}{4}=60$</span></td><td><span class="think" data-step="6" data-ask="?">$\dfrac{360}{6}=60$</span></td><td><span class="think" data-step="6" data-ask="?">$\dfrac{600}{10}=60$</span></td></tr>
+      </table>
+      <div class="def" data-step="7"><h4>猜想</h4><span class="think" data-step="8" data-ask="用自己的话说出猜想">分式的分子和分母都乘（或除以）同一个不等于 0 的整式，分式的值不变。</span></div>
+      <p class="tip gold" data-step="9">只试了几组数，能说明“任何时候都成立”吗？下一页换不同的“乘数”多试几组，看看哪里要小心。</p>
+    </div>
+  </div>
+  <p class="note">课本 p101 开头与“讨论”。先类比分数的基本性质让学生自己说出猜想，再追问“乘的可以是含字母的式子吗？”“乘 0 行不行？”。分式的基本性质课本直接给出，这里用代值实验帮助理解，不作严格证明（它的依据是分数的基本性质：字母取任何使分母不为 0 的值，分式都变成分数）。</p>
+</section>
+
+<!-- 4 ================= 同乘 C 实验台 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验</span><h2>分子、分母同乘 $C$：值变不变？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">把 $\dfrac ba$ 的分子、分母同乘一个整式 $C$，代入几组 $a$、$b$ 的值比较（精确计算）。</p>
+      <div class="btns" data-noswipe id="mulBtns"></div>
+      <p class="big center" id="mulF"></p>
+      <div id="mulTab"></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="mulMsg"></p>
+      <p class="tip" data-step="1">$C=0$ 时怎么样？<span class="think" data-step="2" data-ask="试一试">$\dfrac{b\cdot0}{a\cdot0}=\dfrac00$，每一组都<b>无意义</b>——所以 $C$ 不能是 0。</span></p>
+      <p class="tip" data-step="3">$C=a-1$ 时，哪一组出了问题？<span class="think" data-step="4" data-ask="试一试">$a=1$ 时 $C=0$，$\dfrac{b(a-1)}{a(a-1)}$ 无意义，而原式 $\dfrac ba=4$——变形后，字母能取的值变少了。</span></p>
+      <p class="method" data-step="5" data-label="结论">乘的整式 $C$ 可以含字母，但必须 <b>$C\ne0$</b>；在使 $C\ne0$ 的范围内，两个分式的值处处相等。</p>
+    </div>
+  </div>
+  <p class="note">本页是代值实验：点不同的 C，左表用精确分数计算原式与变形后的式子。先试 2、a、b+1（值都不变），再试 0（全部无意义），最后试 a − 1（a = 1 那一列出问题）。由此理解课本“C 是不等于 0 的整式”这句话：不是可有可无的条件。</p>
+</section>
+
+<!-- 5 ================= 基本性质 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>分式的基本性质</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>分式的基本性质（课本 p101）</h4>分式的分子和分母都乘（或除以）同一个<em>不等于 0 的整式</em>，分式的值不变．$$\frac AB=\frac{A\times C}{B\times C},\qquad \frac AB=\frac{A\div C}{B\div C},$$其中 $C$ 是不等于 0 的整式．</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">与分数的基本性质比，哪里变了？<span class="think" data-step="3" data-ask="比一比">“同一个数”变成了“同一个<b>整式</b>”。</span></p>
+      <p class="tip" data-step="4">“同一个”是说？<span class="think" data-step="5" data-ask="想一想">分子、分母要乘（除以）<b>相同</b>的式子，只乘一处值就变了。</span></p>
+      <p class="tip" data-step="6">“不等于 0”是说？<span class="think" data-step="7" data-ask="想一想">乘 0 会使分母为 0；除以 0 没有意义。</span></p>
+    </div>
+    <p class="method" data-step="8" data-label="有什么用">它是分式变形的依据：本课的约分、通分，下两课的加减乘除，每一步变形都要靠它。</p>
+  </div>
+  <p class="note">课本 p101 框内的性质。请学生齐读并圈出三个关键词：都、同一个、不等于 0 的整式。与上一页实验对应：0 不行；a − 1 在 a = 1 时等于 0，用它时要附带 a ≠ 1。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>右边是怎样从左边得到的？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">(1) $\dfrac ba=\dfrac{ab}{a^2}$；</p>
+      <p class="tip" data-step="1">分子 $b\to ab$，分母 $a\to a^2$：<span class="think" data-step="2" data-ask="乘了什么？">都乘了 $a$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>∵</span><span>$a\ne0$</span><i class="why">$\dfrac ba$ 有意义，分母 $a\ne0$</i></div>
+        <div class="dl end" data-step="4"><span>∴</span><span>$\dfrac ba=\dfrac{b\cdot a}{a\cdot a}=\dfrac{ab}{a^2}$</span><i class="why">分式的基本性质（同乘 $a$）</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">(2) $\dfrac{a^3}{ab}=\dfrac{a^2}{b}$．</p>
+      <p class="tip" data-step="5">分子 $a^3\to a^2$，分母 $ab\to b$：<span class="think" data-step="6" data-ask="除以了什么？">都除以了 $a$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>∵</span><span>$a\ne0$</span><i class="why">$\dfrac{a^3}{ab}$ 有意义，分母 $ab\ne0$</i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span>$\dfrac{a^3}{ab}=\dfrac{a^3\div a}{ab\div a}=\dfrac{a^2}{b}$</span><i class="why">分式的基本性质（同除以 $a$）</i></div>
+      </div>
+      <p class="warn" data-step="9" data-label="为什么先写 ∵ a ≠ 0">性质要求 $C\ne0$，所以用 $a$ 去乘、除之前，先说明 $a\ne0$——这正是课本解答的第一句。</p>
+    </div>
+  </div>
+  <p class="note">课本 p101 例 1。重点讲“∵ a ≠ 0”从哪里来：两个题的左边都是有意义的分式，分母不为 0，所以 a ≠ 0。书写格式照课本：先写条件，再写变形。</p>
+</section>
+
+<!-- 7 ================= 例 2、例 3：符号 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 例 3</span><h2>分子、分母和分式本身的符号</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例 2</b> 不改变分式的值，使分子与分母都不含“−”号：(1) $\dfrac{-2a}{-3b}$；(2) $\dfrac{-n}{m}$．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1)</span><span class="think" data-step="2" data-ask="同号得？">$\dfrac{-2a}{-3b}=\dfrac{2a}{3b}$</span><i class="why">两数相除，同号得正</i></div>
+        <div class="dl" data-step="3"><span>(2)</span><span class="think" data-step="4" data-ask="异号得？">$\dfrac{-n}{m}=-\dfrac nm$</span><i class="why">异号得负，“−”号提到分式前面</i></div>
+      </div>
+      <p class="tip"><b>例 3</b> 使分子与分母的最高次项的系数是正数：</p>
+      <div class="derive">
+        <div class="dl" data-step="5"><span>(1)</span><span>$\dfrac{x}{1-x^2}=\dfrac{x}{-(x^2-1)}=-\dfrac{x}{x^2-1}$</span><i class="why">分母提出“−”号</i></div>
+        <div class="dl" data-step="6"><span>(2)</span><span>$\dfrac{y-y^2}{y+y^2}=\dfrac{-(y^2-y)}{y^2+y}=-\dfrac{y^2-y}{y^2+y}$</span><i class="why">分子提出“−”号</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">动手：分式前、分子、分母各有一个符号。点按钮改符号，看值变不变（$a=2$，$b=5$）。</p>
+      <div class="btns" data-noswipe id="sgnBtns"></div>
+      <p class="big center" id="sgnF"></p>
+      <p class="tip feedback" id="sgnMsg"></p>
+      <p class="method" data-step="7" data-label="发现">分式本身、分子、分母三处的符号，<b>同时改变其中两处</b>，分式的值不变；只改一处，值变成相反数。</p>
+    </div>
+  </div>
+  <p class="note">课本 p101–102 例 2、例 3。课本小人提示：把分式看成分子与分母相除，根据“两数相除，同号得正，异号得负”变形。右边的符号开关是补充探究：请学生先预测“改哪两处值不变”，再点按钮验证（值用精确分数计算）。例 3 中“最高次项”是 x² 项，提出“−”号后要变号的是整个多项式的每一项。</p>
+</section>
+
+<!-- 8 ================= 练习 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>填空：括号里填什么？（输入后按回车）</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">练习 1（课本 p102）</p>
+      <div class="fills">
+        <p>(1) $\dfrac{a}{2ab}=\dfrac{1}{\ (\quad)\ }$　括号里：<span class="blank" data-ans="2b" data-w="4"></span></p>
+        <p>(2) $\dfrac{3a}{4b}=\dfrac{(\quad)}{4bc}\ (c\ne0)$　括号里：<span class="blank" data-ans="3ac|3ca" data-w="4"></span></p>
+        <p>(3) $\dfrac{(a-b)^2}{a^2-b^2}=\dfrac{(\quad)}{a+b}$　括号里：<span class="blank" data-ans="a-b" data-w="4"></span></p>
+        <p>(4) $\dfrac{a^2-b^2}{a+b}=\dfrac{a-b}{(\quad)}$　括号里：<span class="blank" data-ans="1" data-w="3"></span></p>
+      </div>
+      <p class="warn" data-step="1" data-label="(2) 为什么写 c ≠ 0">分母 $4b\to4bc$ 是乘了 $c$，性质要求 $c\ne0$。</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 不改变分式的值，使 $\dfrac{\frac12a^2+b^2}{a+b}$ 的分子中不含分数．</p>
+        <details><summary>提示 1</summary>分子里的 $\dfrac12$ 怎样变成整数？乘 2。</details>
+        <details><summary>提示 2</summary>分子乘 2，分母也要乘 2。</details>
+        <details><summary>完整解答</summary>$\dfrac{\frac12a^2+b^2}{a+b}=\dfrac{\left(\frac12a^2+b^2\right)\times2}{(a+b)\times2}=\dfrac{a^2+2b^2}{2a+2b}$．</details>
+      </div>
+      <p class="tip">把你的结果输入代值检验器（分数线用 /，分母加括号）：</p>
+      <div class="qcheck" data-ref="(a^2/2+b^2)/(a+b)" data-vars="a,b" data-ph="如 (a^2+2b^2)/(2a+2b)"></div>
+    </div>
+  </div>
+  <p class="note">课本 p102 练习 1、2。第 1 题提示学生“先看已知的那一半是怎样变的”：(1) 分子 a → 1 是除以 a，分母也除以 a；(3) 分母 a² − b² → a + b 是除以 a − b。第 2 题的检验器只检查“值相等”，不检查是否化到要求的样子，最后要看分子里有没有分数。</p>
+</section>
+
+<!-- 9 ================= 约分 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">约分</span><h2>像分数一样约分</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>尝试</b> 填空，并说明理由：</p>
+      <div class="fills">
+        <p>(1) $\dfrac{2b}{2a}=\dfrac{(\quad)}{a}$：<span class="blank" data-ans="b" data-w="3"></span></p>
+        <p>(2) $\dfrac{ac}{a^2}=\dfrac{c}{(\quad)}$：<span class="blank" data-ans="a" data-w="3"></span></p>
+        <p>(3) $\dfrac{x}{6x^2y^2}=\dfrac{1}{(\quad)}$：<span class="blank" data-ans="6xy^2|6xy²|6xyy" data-w="5"></span></p>
+      </div>
+      <div class="def" data-step="1"><h4>分式的约分（课本 p102）</h4>根据分式的基本性质，把一个分式的分子和分母分别除以它们的<em>公因式</em>，叫做分式的约分．</div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 4</b> 约分：</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>(1)</span><span>$\dfrac{36ab^3c}{6abc^2}=\dfrac{6abc\cdot6b^2}{6abc\cdot c}$</span><i class="why">找出公因式 $6abc$</i></div>
+        <div class="dl end" data-step="3"><span></span><span>$=\dfrac{6b^2}{c}$</span><i class="why">分子、分母同除以 $6abc$</i></div>
+        <div class="dl" data-step="4"><span>(2)</span><span>$\dfrac{(a+b)^3}{(a+b)(a-b)}=\dfrac{(a+b)(a+b)^2}{(a+b)(a-b)}$</span><i class="why">公因式 $a+b$</i></div>
+        <div class="dl end" data-step="5"><span></span><span>$=\dfrac{(a+b)^2}{a-b}$</span><i class="why">同除以 $a+b$</i></div>
+      </div>
+      <p class="method" data-step="6" data-label="单项式的公因式">系数取最大公因数，相同字母取<b>最低次幂</b>：$36ab^3c$ 与 $6abc^2$ 的公因式是 $6abc$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p102 尝试、约分定义、例 4。约分和分数约分一模一样，只是公因式里有字母。“系数取最大公因数、字母取最低次幂”是找公因式的方法（七年级下 9.5 学过），请学生对照例 4(1) 说出 6、a、b、c 各是怎样来的。</p>
+</section>
+
+<!-- 10 ================= 因式消消乐（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手约分</span><h2>先分解，再成对划去公因式</h2></div>
+  <div class="bd wide-l">
+    <div class="col">
+      <div class="btns" data-noswipe id="cxTabs"></div>
+      <p class="center cx-orig" id="cxOrig"></p>
+      <div class="cx-board" id="cxBoard" data-noswipe></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="cxReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="cxMsg"></p>
+      <p class="tip">玩法：先点分子里的一个因式，再点分母里<b>相同</b>的因式，两个一起划去（同除以这个因式）。</p>
+      <p class="tip" data-step="1">为什么只能划去<b>因式</b>，不能划去“项”？<span class="think" data-step="2" data-ask="想一想">性质说的是分子、分母<b>都除以</b>同一个整式；$\dfrac{a+b}{a}$ 里的 $a$ 只是分子的一项，分子并不能被 $a$ 整除——不能划。</span></p>
+      <p class="tip" data-step="3">什么时候算约完了？<span class="think" data-step="4" data-ask="说一说">分子、分母再也找不出相同的因式（只剩公因式 1）。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。每个分式都已分解成因式“卡片”（例 5(2) 的分母 1 − a² 先提出 −1）。请学生点卡片配对约分；点错（两个因式不同）会提示。约完后系统用代值检验结果与原式是否相等。建议顺序：例 4(1) → 例 4(2) → 例 5 两题 → 练习。</p>
+</section>
+
+<!-- 11 ================= 例 5、最简分式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5</span><h2>分子、分母是多项式：先分解因式</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">约分：(1) $\dfrac{ma+mb-mc}{a+b-c}$；(2) $\dfrac{a^2-2a+1}{1-a^2}$．</p>
+      <p class="tip gold" data-step="1"><b>分析：</b>当分式的分子、分母为多项式时，先将分式的分子、分母分解因式，然后找出它们的公因式，再约分．</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>(1)</span><span>$\dfrac{ma+mb-mc}{a+b-c}=\dfrac{m(a+b-c)}{a+b-c}=m$</span><i class="why">提公因式，再约去 $a+b-c$</i></div>
+        <div class="dl" data-step="3"><span>(2)</span><span>$\dfrac{a^2-2a+1}{1-a^2}=-\dfrac{a^2-2a+1}{a^2-1}$</span><i class="why">分母提出“−”号</i></div>
+        <div class="dl" data-step="4"><span></span><span>$=-\dfrac{(a-1)^2}{(a-1)(a+1)}$</span><i class="why">完全平方公式、平方差公式</i></div>
+        <div class="dl end" data-step="5"><span></span><span>$=-\dfrac{a-1}{a+1}$</span><i class="why">约去 $a-1$</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def" data-step="6"><h4>最简分式（课本 p103）</h4>如果一个分式的分子与分母只有公因式 1，那么这样的分式叫做<em>最简分式</em>．约分通常要把分式化成最简分式或整式．</div>
+      <p class="tip" data-step="7">例 5(1) 的结果 $m$ 是什么？<span class="think" data-step="8" data-ask="分式还是整式？">整式——约分的结果可以是整式。</span></p>
+      <p class="warn" data-step="9" data-label="典型错误：约“项”">$\dfrac{a+2}{2}=a$？$\dfrac{x+3}{x+6}=\dfrac12$？<span class="think" data-step="10" data-ask="代个值试试">取 $a=4$：$\dfrac{4+2}{2}=3\ne4$；取 $x=1$：$\dfrac{4}{7}\ne\dfrac12$。分子、分母都是“和”，没有公因式，不能约。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p103 例 5、分析、最简分式的定义。例 5(2) 有两种写法：也可以先分解再处理符号（1 − a² = −(a − 1)(a + 1)）。典型错误卡请学生先判断，再用代值反驳——“举一个反例”就能说明变形错了。</p>
+</section>
+
+<!-- 12 ================= 约分练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>约分：写出结果，再代值检验</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 约分：<br>(1) $\dfrac{3a^2b}{6ab}$；<br>(2) $\dfrac{2a(a-1)}{8ab^2(1-a)}$；<br>(3) $\dfrac{18(b-a)^2}{24(a-b)}$．</p>
+        <details><summary>提示 1</summary>(2) $1-a=-(a-1)$；(3) $(b-a)^2=(a-b)^2$。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac a2$；(2) $-\dfrac{1}{4b^2}$；(3) $\dfrac{3(a-b)}{4}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 约分：<br>(1) $\dfrac{a^2-4ab+4b^2}{a^2-4b^2}$；<br>(2) $\dfrac{a^4-1}{a^2+2a+1}$；<br>(3) $\dfrac{(x+y)^2-10(x+y)+25}{(x+y)^2-25}$．</p>
+        <details><summary>提示 1</summary>(2) $a^4-1=(a^2+1)(a+1)(a-1)$；(3) 把 $x+y$ 看成一个整体。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{a-2b}{a+2b}$；(2) $\dfrac{(a^2+1)(a-1)}{a+1}$；(3) $\dfrac{x+y-5}{x+y+5}$．</details>
+      </div>
+      <div class="col">
+        <p class="tip">检验 2(1)：</p>
+        <div class="qcheck" data-ref="(a^2-4ab+4b^2)/(a^2-4b^2)" data-vars="a,b" data-ph="如 (a-2b)/(a+2b)"></div>
+        <p class="tip">检验 2(3)：</p>
+        <div class="qcheck" data-ref="((x+y)^2-10(x+y)+25)/((x+y)^2-25)" data-vars="x,y" data-ph="输入 2(3) 的结果"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p103 练习 1、2。检验器代入 4 组有理数精确计算，结果与原式都相等说明变形“很可能对”；但它查不出“约没约完”——是不是最简分式，还要看分子、分母有没有公因式。可以故意输入未约完的式子，让学生看到“值相等也不一定是最简”。</p>
+</section>
+
+<!-- 13 ================= 通分与最简公分母 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">通分</span><h2>把异分母的分式化成同分母</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>尝试</b>（课本 p103）填空：</p>
+      <div class="fills">
+        <p>$\dfrac{m}{4x^2}=\dfrac{3my}{(\quad)}$：<span class="blank" data-ans="12x^2y|12x²y" data-w="5"></span>　$\dfrac{5}{6xy}=\dfrac{10x}{(\quad)}$：<span class="blank" data-ans="12x^2y|12x²y" data-w="5"></span></p>
+        <p>$\dfrac{1}{2a^2}=\dfrac{6b^2}{(\quad)}$：<span class="blank" data-ans="12a^2b^2|12a²b²" data-w="6"></span>　$\dfrac{x}{4b^2}=\dfrac{3a^2x}{(\quad)}$：<span class="blank" data-ans="12a^2b^2|12a²b²" data-w="6"></span></p>
+      </div>
+      <div class="def" data-step="1"><h4>分式的通分（课本 p103）</h4>根据分式的基本性质，把几个异分母的分式变形成同分母的分式，叫做分式的通分，变形后的分母叫做这几个分式的<em>公分母</em>．</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="2"><b>交流</b> 找出 $\dfrac{1}{2x^2y}$ 与 $\dfrac{1}{6xy^2}$ 的公分母：一位同学说 $12x^3y^3$，另一位说 $6x^2y^2$．<span class="think" data-step="3" data-ask="哪个更好？">都是公分母，$6x^2y^2$ 更简单。</span></p>
+      <table class="mtab lcd" data-step="4">
+        <tr><th></th><th>系数</th><th>$x$</th><th>$y$</th></tr>
+        <tr><th>$2x^2y$</th><td>2</td><td>$x^2$</td><td>$y$</td></tr>
+        <tr><th>$6xy^2$</th><td>6</td><td>$x$</td><td>$y^2$</td></tr>
+        <tr class="hl-row"><th>取</th><td><span class="think" data-step="5" data-ask="?">最小公倍数 6</span></td><td><span class="think" data-step="5" data-ask="?">最高次 $x^2$</span></td><td><span class="think" data-step="5" data-ask="?">最高次 $y^2$</span></td></tr>
+      </table>
+      <div class="def" data-step="6"><h4>最简公分母（课本 p104）</h4>如果几个分式的分母都是单项式，那么各分母系数（都是整数）的<em>最小公倍数</em>与所有字母的<em>最高次幂</em>的积叫做这几个分式的最简公分母．</div>
+      <p class="method" data-step="7" data-label="约分 vs 通分">约分找公因式：系数最大公因数、字母<b>最低</b>次幂；通分找最简公分母：系数最小公倍数、字母<b>最高</b>次幂。</p>
+    </div>
+  </div>
+  <p class="note">课本 p103–104 尝试、通分定义、交流与最简公分母。“通分的关键是确定几个分式的公分母，通常取最简公分母”。用表格一栏一栏取，学生不容易漏字母。最后一张方法卡把约分、通分对照起来，学生最容易把“最低”“最高”弄反。</p>
+</section>
+
+<!-- 14 ================= 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6</span><h2>通分：先定最简公分母，再“缺什么乘什么”</h2></div>
+  <div class="bd full top">
+    <div class="col">
+      <p class="tip"><b>例 6</b> 通分：(1) $\dfrac{b}{3a}$，$-\dfrac{ab}{\frac23c}$；(2) $\dfrac{2a}{a-b}$，$\dfrac{3b}{a+b}$．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1)</span><span>$-\dfrac{ab}{\frac23c}=-\dfrac{3ab}{2c}$</span><i class="why">分子、分母同乘 3，分母化成整系数</i></div>
+        <div class="dl" data-step="2"><span></span><span>$3a$、$2c$ 的最简公分母是 $6ac$</span><i class="why">系数 3、2 的最小公倍数 6</i></div>
+        <div class="dl" data-step="3"><span></span><span>$\dfrac{b}{3a}=\dfrac{b\cdot2c}{3a\cdot2c}=\dfrac{2bc}{6ac}$</span><i class="why">缺 $2c$，同乘 $2c$</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$-\dfrac{3ab}{2c}=-\dfrac{3ab\cdot3a}{2c\cdot3a}=-\dfrac{9a^2b}{6ac}$</span><i class="why">缺 $3a$，同乘 $3a$</i></div>
+        <div class="dl" data-step="5"><span>(2)</span><span>最简公分母 $(a+b)(a-b)$</span><i class="why">两个分母没有公因式，相乘</i></div>
+        <div class="dl end" data-step="6"><span></span><span>$\dfrac{2a(a+b)}{(a+b)(a-b)}$，$\dfrac{3b(a-b)}{(a+b)(a-b)}$</span><i class="why">各自乘上缺的因式</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p104 例 6。(1) 第二个分式分母里有分数 ⅔c，先用基本性质（分子、分母同乘 3）化成 −3ab/(2c)。通分口诀“缺什么乘什么”：最简公分母 ÷ 原分母 = 要乘的式子，分子也要乘同一个式子。(2) 两个分母没有公因式，最简公分母就是它们的积。</p>
+</section>
+
+<!-- 15 ================= 例 7 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7</span><h2>分母是多项式：先分解因式，再定最简公分母</h2></div>
+  <div class="bd full top">
+    <div class="col">
+      <p class="tip"><b>例 7</b> 通分：(1) $\dfrac{1}{m^2-9}$，$\dfrac{1}{2m+6}$；(2) $\dfrac{x}{xy-y}$，$\dfrac{y}{xy+x}$．</p>
+      <p class="tip gold" data-step="7"><b>分析：</b>当分式的分母是多项式时，先将它们<span class="think" data-step="8" data-ask="先做什么？">分解因式</span>，再确定最简公分母．</p>
+      <div class="derive">
+        <div class="dl" data-step="9"><span>(1)</span><span>$m^2-9=(m+3)(m-3)$，$2m+6=2(m+3)$</span><i class="why">平方差公式；提公因式</i></div>
+        <div class="dl" data-step="10"><span></span><span>最简公分母 $2(m+3)(m-3)$</span><i class="why">每个因式取最高次</i></div>
+        <div class="dl end" data-step="11"><span></span><span>$\dfrac{2}{2(m+3)(m-3)}$，$\dfrac{m-3}{2(m+3)(m-3)}$</span><i class="why">分别乘 2、$m-3$</i></div>
+        <div class="dl" data-step="12"><span>(2)</span><span>$xy-y=y(x-1)$，$xy+x=x(y+1)$</span><i class="why">提公因式</i></div>
+        <div class="dl end" data-step="13"><span></span><span>$\dfrac{x^2(y+1)}{xy(x-1)(y+1)}$，$\dfrac{y^2(x-1)}{xy(x-1)(y+1)}$</span><i class="why">最简公分母 $xy(x-1)(y+1)$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p104 例 7 与分析。分母是多项式时先分解因式，再把每个因式当作“字母”：取所有因式的最高次幂，系数取最小公倍数。(2) 的 x、y、x − 1、y + 1 四个因式都要取到。</p>
+</section>
+
+<!-- 15 ================= 通分练习 + 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · 习题</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1</b> 通分：<br>(1) $\dfrac2{ac}$，$\dfrac1{ab}$；<br>(2) $\dfrac{2b}{3a^2}$，$\dfrac{a}{bc}$．</p>
+        <details><summary>提示 1</summary>(1) 最简公分母 $abc$；(2) 最简公分母 $3a^2bc$。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{2b}{abc}$，$\dfrac{c}{abc}$；(2) $\dfrac{2b^2c}{3a^2bc}$，$\dfrac{3a^3}{3a^2bc}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2</b> 通分：<br>(1) $\dfrac{a}{a-b}$，$\dfrac{3b}{2a-2b}$；<br>(2) $\dfrac{5}{2(x-1)}$，$\dfrac{2x}{3(1-x)^2}$．</p>
+        <details><summary>提示 1</summary>(1) $2a-2b=2(a-b)$；(2) $(1-x)^2=(x-1)^2$。</details>
+        <details><summary>完整解答</summary>(1) $\dfrac{2a}{2(a-b)}$，$\dfrac{3b}{2(a-b)}$；(2) $\dfrac{15(x-1)}{6(x-1)^2}$，$\dfrac{4x}{6(x-1)^2}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 4(1)</b> 求值：<br>$\dfrac{a+3b}{a^2-9b^2}$，其中 $a=\dfrac53$，$b=\dfrac29$．</p>
+        <details><summary>提示 1</summary>先约分：$a^2-9b^2=(a+3b)(a-3b)$。</details>
+        <details><summary>提示 2</summary>化成 $\dfrac{1}{a-3b}$ 再代入，$a-3b=\dfrac53-\dfrac23=1$。</details>
+        <details><summary>完整解答</summary>原式 $=\dfrac{1}{a-3b}=\dfrac{1}{\frac53-\frac23}=1$．</details>
+      </div>
+    </div>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>习题 2(2)</b> 不改变分式的值，使分子、分母最高次项的系数是正整数：$\dfrac{a^2-0.2a}{a^2-0.3a^3}$．</p>
+        <details><summary>提示 1</summary>分母的最高次项是 $-0.3a^3$；先把分子、分母同乘 10。</details>
+        <details><summary>完整解答</summary>$\dfrac{a^2-0.2a}{a^2-0.3a^3}=\dfrac{10a^2-2a}{10a^2-3a^3}=-\dfrac{10a^2-2a}{3a^3-10a^2}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 5(6)</b> 通分：$\dfrac{a-1}{(a+1)^2-4}$，$\dfrac{1-a}{2-4a+2a^2}$．</p>
+        <details><summary>提示 1</summary>$(a+1)^2-4=(a+3)(a-1)$；$2-4a+2a^2=2(a-1)^2$。</details>
+        <details><summary>完整解答</summary>最简公分母 $2(a+3)(a-1)^2$：$\dfrac{2(a-1)^2}{2(a+3)(a-1)^2}$，$\dfrac{-(a-1)(a+3)}{2(a+3)(a-1)^2}$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p105 练习 1、2 与习题 10.2 第 2、4、5 题选题。习题 4(1) 体现“先约分再代入”的好处，直接代入要算复杂的分数。习题 5(6) 两个分式都可以先约分（化成 1/(a+3) 与 −1/(2(a−1))）再通分，可作为拓展讨论：通分前先化成最简分式，公分母更简单。</p>
+</section>
+
+<!-- 16 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$\dfrac AB=\dfrac{A\times C}{B\times C}=\ldots$，$C$ 是<em>不等于 0</em> 的整式。</p>
+        <p class="recall" data-label="三个概念">约分 → 最简分式；通分 → 最简公分母。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="约分">分解因式 → 找公因式（系数最大公因数、字母最低次幂）→ 同除。</p>
+        <p class="method" data-label="通分">分解因式 → 最简公分母（系数最小公倍数、字母最高次幂）→ 缺什么乘什么。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="类比">分数的基本性质、约分、通分 → 分式的基本性质、约分、通分。</p>
+        <p class="recall" data-label="检验">代入几个数精确计算，能发现错误的变形（举反例）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>10.3 分式的加减——$\dfrac ba+\dfrac ca=\ ?$　$\dfrac ba+\dfrac cd=\ ?$ 今天的通分就是异分母相加的第一步。</p>
+  </div>
+  <p class="note">请学生对照五年级的分数，说出本课每一个概念的“分数版本”。课后作业建议：习题 10.2 第 1、3、5 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mfrac.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

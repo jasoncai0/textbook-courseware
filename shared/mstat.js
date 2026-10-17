@@ -90,7 +90,7 @@ const MStat = (() => {
     const ymax = o.ymax;
     host.classList.add('schart');
     const b = MathKit.board(host, {
-      x: [-0.75, n + (o.labels && o.labels[0] ? 1.7 : 0.5)], y: [-ymax * (o.below ?? 0.14), ymax * 1.14], w: o.w || 560, h: o.h || 300,
+      x: [-0.75, n + (o.labels && o.labels[0] ? 1.7 : 0.5)], y: [-Math.min(ymax * (o.below ?? 0.14), o.ty * 0.95), ymax * 1.14], w: o.w || 560, h: o.h || 300,
       ticks: [0, o.ty], labels: o.labels || ['', ''], grid: o.grid ?? true,
     });
     const gw = o.gw || 0.62; // 一组条形占的宽度

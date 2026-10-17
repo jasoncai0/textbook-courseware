@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>可能性的大小 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zhuanpan-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第8章 认识概率 · 8.2</p>
+    <h1 class="cover-title">可能性的大小</h1>
+    <p class="cover-q" data-step="1">一只不透明的袋子中装有 3 个红球、2 个白球和 1 个黄球，这些球除颜色外都相同。</p>
+    <p class="cover-q" data-step="2">任意摸出 1 个球，摸到哪种颜色的球的<b>可能性最大</b>？给球编上号 1～6，摸到每个号的可能性一样吗？</p>
+    <div class="chips" data-step="3"><span class="chip">抛小立方体</span><span class="chip">转盘实验</span><span class="chip">5 只袋子排排队</span><span class="chip">有大有小</span></div>
+  </div>
+  <p class="note">课本 p37 第 8 章章首问题。先让学生凭感觉回答，不急着讲理由——本课通过实验和道理两方面来回答。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="8.1 确定事件与随机事件（上一课）" data-step="1">
+        <p>在一定条件下，事先无法确定会不会发生的事件叫<b>随机事件</b>。</p>
+        <span class="use">今天比较：同样是随机事件，谁发生的可能性大？</span>
+      </div>
+      <div class="recall" data-label="7.3 频数和频率" data-step="2">
+        <p>频数：出现的次数；频率 = 频数 ÷ 总次数；用“正”字划记。</p>
+        <span class="use">记录全班抛掷、转盘的结果，算频率来比较。</span>
+      </div>
+      <div class="recall" data-label="小学 · 可能性的大小" data-step="3">
+        <p>盒子里红球多、黄球少，摸到红球的可能性大。</p>
+        <span class="use">本课把“数量多少”推广到“面数多少”“面积大小”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课要回答：</b>随机事件发生的可能性有大有小吗？大小由什么决定？</p>
+  </div>
+  <p class="note">第二张卡是本课实验的记录工具。</p>
+</section>
+
+<!-- 3 ================= 实验 1：小立方体 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室 1</span><h2>抛掷小立方体：2 个面标“1”，4 个面标“2”</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <svg viewBox="0 0 400 210" class="net" id="cubeNet" aria-label="小立方体的展开图"></svg>
+      <p class="tip small-p">(1) 抛掷 1 次，猜想“向上一面的数字为 1”与“向上一面的数字为 2”哪个可能性大？</p>
+      <div class="pick" data-ans="2"><button type="button" data-k="1">数字为 1</button><button type="button" data-k="2">数字为 2</button><button type="button" data-k="s">一样大</button><p class="pick-why">先猜，再做实验验证。</p></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="cube1">抛 1 次</button><button class="btn" type="button" id="cube40">全班每人抛 1 次（40 次）</button><button class="btn" type="button" id="cubeClr">清空</button></div>
+      <div class="die" id="die"></div>
+    </div>
+    <div class="col">
+      <table class="mtab" id="cubeTab"></table>
+      <p class="tip feedback" id="cubeMsg"></p>
+      <p class="tip" data-step="1">(3) 猜想与试验结果一致吗？<span class="think" data-step="2" data-ask="为什么？">一般“数字为 2”的频数更多。因为标 2 的面有 4 个，标 1 的面只有 2 个——面数不等，可能性就不一样。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p41 数学实验室 1、图 8-1。左上是小立方体的展开图（2 个面标 1，4 个面标 2）。可以让学生真的做，再用“全班 40 次”模拟（真随机数，每次结果不同）。提醒：试验次数少时，偶尔会出现“1”比“2”多的情况——这正说明是随机事件；多做几轮，“2”多的情况占多数。</p>
+</section>
+
+<!-- 4 ================= 核心：转盘 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室 2</span><h2>转动转盘：指针落在哪种颜色的可能性最大？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <div class="spin-wrap" data-noswipe><svg viewBox="0 0 300 300" class="spinner" id="spinner" aria-label="图 8-2 转盘"></svg></div>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="spin1">转 1 次</button><button class="btn" type="button" id="spin40">全班各转 1 次（40 次）</button><button class="btn" type="button" id="spinClr">清空</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small-p">图 8-2 转盘中各个扇形的面积都相等．(1) 猜一猜：指针落在哪种颜色区域的可能性最大？最小？</p>
+      <div class="pick" data-ans="y"><button type="button" data-k="r">红色最大</button><button type="button" data-k="y">黄色最大</button><button type="button" data-k="g">绿色最大</button><p class="pick-why">8 个面积相等的扇形中，黄色 4 个、红色 3 个、绿色 1 个：黄色可能性最大，绿色最小。</p></div>
+      <table class="mtab" id="spinTab"></table>
+      <p class="tip feedback" id="spinMsg"></p>
+      <div id="spinBar" class="spin-bar"></div>
+    </div>
+  </div>
+  <p class="note">本课核心。转盘按课本图 8-2 精确绘制：8 个圆心角都是 45° 的扇形，从 12 点方向顺时针依次为绿、黄、红、黄、红、黄、红、黄。每转一次，指针的停止角度是 0°～360° 的真随机数，按落点所在扇形记录颜色（指针转动动画约 1.5 秒）。“全班 40 次”直接给出结果。条形图看频数：一般黄 > 红 > 绿。</p>
+</section>
+
+<!-- 5 ================= 结论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>随机事件发生的可能性有大有小</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <h3 class="h3">抛掷小立方体</h3>
+        <p>“向上一面的数字为 1”与“向上一面的数字为 2”都是随机事件．由于小立方体上标有数字 1 或 2 的<b>面数不等</b>，所以发生的可能性是不一样的．</p>
+      </div>
+      <div class="jcard" data-step="2">
+        <h3 class="h3">转动转盘</h3>
+        <p>指针落在不同颜色区域是随机的．由于不同颜色区域的<b>面积不等</b>，所以指针落在不同颜色区域的可能性也不一样．</p>
+      </div>
+    </div>
+    <div class="def" data-step="3"><h4>结论（课本 p42）</h4>一般地，随机事件发生的可能性<em>有大有小</em>．</div>
+    <p class="tip" data-step="4">回到章首的袋子（3 红 2 白 1 黄）：<span class="think" data-step="5" data-ask="哪种颜色可能性最大？">摸到<b>红球</b>的可能性最大（3 个），黄球最小（1 个）。</span><span class="think" data-step="6" data-ask="摸到 1～6 号球的可能性一样吗？">一样：6 个球除颜色外都相同，每个球被摸到的机会相等。</span></p>
+  </div>
+  <p class="note">课本 p41–42 的结论原文。章首问题(3)是下一课“等可能”的伏笔：每个球被摸到的机会均等，红球多占了 3 个“机会”，所以可能性大。</p>
+</section>
+
+<!-- 6 ================= 尝试：5 只袋子 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>5 只袋子：按“摸到白球”的可能性从小到大排队</h2></div>
+  <div class="bd full">
+    <p class="tip small-p">如图 8-3，5 只不透明的袋子中各装有 10 个球，这些球除颜色外都相同．将球搅匀，分别从每只袋子中任意摸出 1 个球．</p>
+    <div class="bag5" id="bag5" data-noswipe></div>
+    <div class="order-row" data-noswipe><span>你排的顺序：</span><b id="orderShow">（依次点袋子）</b><button class="btn" type="button" id="orderClr">重排</button></div>
+    <p class="tip feedback" id="orderMsg"></p>
+    <p class="tip" data-step="1">(1) 摸到白球的可能性一样大吗？为什么？<span class="think" data-step="2" data-ask="说理由">不一样：每只袋子都是 10 个球，白球个数不同（5、2、9、0、10 个），白球越多可能性越大。第(4)只袋子摸到白球是不可能事件，第(5)只是必然事件。</span></p>
+  </div>
+  <p class="note">课本 p42“尝试”、图 8-3。袋中红、白球个数按课本图逐个数出：(1) 5 白 5 红，(2) 2 白 8 红，(3) 9 白 1 红，(4) 10 红，(5) 10 白（课本图中球有遮挡，请对照原图核对）。请学生按顺序点袋子，点满 5 个自动判断。答案：(4)(2)(1)(3)(5)。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>估计可能性的大小，并排序</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip small-p"><b>1.</b> 将下列事件的序号按发生的可能性从小到大排列：<br>(1) 袋子中装有 1 个红球和 2 个黄球，从中任意摸出的 1 个球是白球；<br>(2) 抛掷 1 枚质地均匀的骰子，向上一面的点数是偶数；<br>(3) 随意调查商场中的 1 位顾客，他是闰年出生的；<br>(4) 随意调查 1 位青年，他接受过九年制义务教育；<br>(5) 在地面上抛掷 1 个小石块，石块会下落．</p>
+      <svg viewBox="0 0 500 90" class="scale" id="scale1" data-step="2" aria-label="可能性从小到大的位置"></svg>
+      <p class="tip small-p" data-step="1"><span class="think" data-step="2" data-ask="排一排">(1)(3)(2)(4)(5)：(1) 不可能；(3) 大约四年一个闰年，可能性较小；(2) 偶数 3 个、奇数 3 个，一半对一半；(4) 绝大多数青年都接受过，可能性很大；(5) 必然。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip small-p"><b>2.</b> (1) 转动图①的转盘（各扇形面积都相等），指针落在标有字母的区域有哪几种不同的结果？哪种结果出现的可能性最大？<br>(2) 图②质地均匀的小立方体 3 个面标 3，2 个面标 2，1 个面标 1．向上一面的数字有哪几种结果？哪种可能性最大？</p>
+      <svg viewBox="0 0 220 220" class="spin-s" id="xem" aria-label="图①转盘"></svg>
+      <p class="tip small-p" data-step="3"><span class="think" data-step="4" data-ask="答一答">(1) X、E、M 三种结果；8 格中 X 占 4 格，可能性最大。(2) 1、2、3 三种结果；数字 3 有 3 个面，可能性最大。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p42–43 练习 1、2。第 1 题下方的“可能性刻度”是示意位置，只表示先后顺序（0 表示不可能，1 表示必然），下一课学了概率才有精确数值。转盘①按课本图：从 12 点顺时针依次为 E、X、M、X、M、X、M、X。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 8.2</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 从一副扑克牌中任意抽取 1 张．(1) 这张牌是“A”；(2) 这张牌是“红心”；(3) 这张牌是“大王”；(4) 这张牌是“红色的”．估计这些事件发生的可能性的大小，按从小到大的顺序排列．</p>
+        <details><summary>提示 1</summary>一副扑克牌共 54 张：4 种花色各 13 张，另有大王、小王。</details>
+        <details><summary>提示 2</summary>A 有 4 张，红心 13 张，大王 1 张，红色牌（红心、方块）26 张。</details>
+        <details><summary>完整解答</summary>(3)(1)(2)(4)．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 转动下面各个转盘（各扇形面积都相等），估计“指针落在红色区域”的可能性的大小，将转盘的序号按可能性从小到大排列．</p>
+        <svg viewBox="0 0 560 130" class="spin5" id="spin5" aria-label="5 个转盘"></svg>
+        <details><summary>提示</summary>数一数：每个转盘 4 个扇形中，红色各占几个？</details>
+        <details><summary>完整解答</summary>红色扇形个数：① 1，② 4，③ 3，④ 2，⑤ 0．顺序：⑤①④③②（⑤ 是不可能事件，② 是必然事件）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 8.2 第 1、2 题。5 个转盘按课本图绘制（左上、右上、右下、左下）：① 黄白红白，② 红红红红，③ 红红黄红，④ 白红黄红，⑤ 黄白黄白。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">一般地，随机事件发生的可能性<em>有大有小</em>．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="比较可能性">比“机会”的多少：球的个数、面的个数、扇形的面积（份数）……</p>
+        <p class="method" data-label="做试验">大量重复试验，比频数、频率。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思考</h3>
+        <svg viewBox="0 0 300 70" class="scale" aria-label="可能性刻度"><line x1="20" y1="35" x2="280" y2="35" stroke="#556575" stroke-width="3"/><circle cx="20" cy="35" r="6" fill="#c0392b"/><circle cx="280" cy="35" r="6" fill="#2f7d6b"/><text x="20" y="62" text-anchor="middle" class="sc">不可能</text><text x="150" y="62" text-anchor="middle" class="sc">随机事件</text><text x="280" y="62" text-anchor="middle" class="sc">必然</text><text x="20" y="20" text-anchor="middle" class="sc">0</text><text x="280" y="20" text-anchor="middle" class="sc">1</text></svg>
+        <p class="recall" data-label="追问">可能性的大小，能不能用一个<b>数</b>来表示？</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>8.3 频率与概率——抛硬币“正面朝上”的可能性是多大？大量重复试验的频率会告诉我们答案。</p>
+  </div>
+  <p class="note">最后的刻度图是下一课“概率”的直观铺垫：不可能事件记作 0，必然事件记作 1，随机事件在 0 和 1 之间。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

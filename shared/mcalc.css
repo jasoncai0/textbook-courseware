@@ -1,0 +1,27 @@
+/* 课本插件 · 仿真科学计算器（配合 mcalc.js） */
+.mcalc { background: linear-gradient(#3b4450, #2a313a); border-radius: .9em; padding: .55em .55em .6em; width: 100%; max-width: 15em; box-shadow: 0 .3em .8em rgba(0, 0, 0, .25); font-family: "Helvetica Neue", Arial, sans-serif; user-select: none; }
+.mc-lcd { background: #c9d8b9; border-radius: .35em; padding: .2em .5em .25em; color: #1d2a17; box-shadow: inset 0 .12em .3em rgba(0, 0, 0, .35); margin-bottom: .45em; font-variant-numeric: tabular-nums; }
+.mcalc.off .mc-lcd { background: #9fae93; }
+.mc-ind { font-size: .42em; height: 1.3em; letter-spacing: .1em; font-weight: bold; }
+.mc-l1 { font-size: .6em; height: 1.35em; font-family: "Courier New", monospace; }
+.mc-l2 { font-size: 1.05em; height: 1.3em; text-align: right; font-family: "Courier New", monospace; font-weight: bold; white-space: nowrap; overflow: hidden; }
+.mc-keys { display: grid; grid-template-columns: repeat(5, 1fr); gap: .28em .3em; }
+.mc-k { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; border: 0; border-radius: .35em; padding: 0 0 .12em; background: none; cursor: pointer; font: inherit; color: #fff; min-width: 0; }
+.mc-k small { font-size: .36em; color: #f0a35a; line-height: 1.3; white-space: nowrap; }
+.mc-k[data-k="4"] small, .mc-k[data-k="×"] small, .mc-k.mplus small { color: #7fc3f2; }
+.mc-k span { display: block; width: 100%; background: linear-gradient(#e9edf1, #c3cbd3); color: #1f2d3a; border-radius: .3em; font-size: .58em; line-height: 1.75; font-weight: bold; box-shadow: 0 .12em 0 #1a1f25; }
+.mc-k.fn span { background: linear-gradient(#8994a0, #66717d); color: #fff; }
+.mc-k.alpha span { color: #9bd4ff; }
+.mc-k.mplus span { background: #fff; color: #1f2d3a; border-radius: 1em; }
+.mc-k.ac span { background: linear-gradient(#f2a24f, #d9711c); }
+.mc-k.eq { grid-column: span 5; }
+.mc-k.down span, .mc-k:active span { transform: translateY(.1em); box-shadow: 0 0 0 .14em #f6c344; }
+.mc-strip { display: flex; flex-wrap: wrap; gap: .18em; font-size: .62em; line-height: 1.3; }
+.mc-chip { border: 1px solid var(--line, #cdd8e2); border-radius: .3em; padding: .05em .35em; background: #fff; color: #8a97a3; font-family: "Helvetica Neue", Arial, sans-serif; }
+.mc-chip.num { background: #f4f6f8; }
+.mc-chip.done { color: var(--ink, #1f2d3a); border-color: #9fb6ca; }
+.mc-chip.now { background: #f6c344; color: #1f2d3a; border-color: #d9a21c; font-weight: bold; }
+.mc-rows { border-collapse: collapse; font-size: .72em; background: #fff; }
+.mc-rows th, .mc-rows td { border: 1px solid var(--line, #cdd8e2); padding: .05em .45em; text-align: center; font-variant-numeric: tabular-nums; }
+.mc-rows th { background: #e8f1f8; font-weight: normal; }
+.mc-rows tr.on td { background: #fde7cf; }

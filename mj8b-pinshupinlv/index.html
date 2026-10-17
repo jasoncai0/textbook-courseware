@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>频数和频率 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/changpiao-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第7章 数据的收集、整理、描述 · 7.3</p>
+    <h1 class="cover-title">频数和频率</h1>
+    <p class="cover-q" data-step="1">学校规定每个班级选举 1 名学生当“环保卫士”。八年级(1)班有 4 名学生参加竞选，全班投票，唱票、监票、记录，得票最多的当选。</p>
+    <p class="cover-q" data-step="2">“李小丽得了 12 票”和“李小丽的票占全部选票的几分之几”——这是两个<b>不同</b>的数，它们各叫什么？</p>
+    <div class="chips" data-step="3"><span class="chip">课堂唱票器</span><span class="chip">频数 · 频率</span><span class="chip">47 城市空气质量分级</span><span class="chip">分组统计</span></div>
+  </div>
+  <p class="note">课本 p22“数学实验室”情境。可以真的在班里做一次：先请学生在纸条上写下候选人姓名，第 3 页用“课堂唱票器”现场唱票。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="7.1 普查与抽样调查" data-step="1">
+        <p>50 份问卷：用“正”字<b>划记</b>数出喜爱各社团的人数，再算百分比，列成统计表。</p>
+        <span class="use">唱票时划记；“人数”和“百分比”今天有了新名字。</span>
+      </div>
+      <div class="recall" data-label="7.2 统计图的选用" data-step="2">
+        <p>条形图看<b>多少</b>，扇形图看<b>占总体的百分比</b>，折线图看<b>变化</b>。</p>
+        <span class="use">把城市空气质量分级的结果画成合适的统计图。</span>
+      </div>
+      <div class="recall" data-label="小学 · 分数与小数" data-step="3">
+        <p>$\dfrac{12}{50}=0.24$；$\dfrac{34}{47}=0.72340\cdots\approx0.723$（精确到 0.001，看万分位四舍五入）。</p>
+        <span class="use">计算频率，并按要求取近似值。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课要回答：</b>“出现了几次”和“占了多大比例”，在统计里分别叫什么？怎样把一大堆数据<b>分组</b>统计？</p>
+  </div>
+  <p class="note">第三张卡请学生口算 12/50。精确到 0.001 的近似值后面要反复用到，提醒“看第四位小数”。</p>
+</section>
+
+<!-- 3 ================= 数学实验室：课堂唱票器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>课堂唱票器：唱一张，划一笔</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip small-p">办法：(1) 每人在选票上写 1 名候选人姓名；(2) 推选 3 位同学唱票、监票、记录；(3) 填写表格，得票最多的当选。</p>
+      <p class="tip small-p">先改候选人名字，然后每唱一张票，点一下这个人的按钮：</p>
+      <div class="btns vote-btns" data-noswipe id="voteBtns"></div>
+      <div class="btns" data-noswipe><button class="btn" type="button" id="voteUndo">撤回一票</button><button class="btn" type="button" id="voteClr">清空重来</button></div>
+    </div>
+    <div class="col">
+      <table class="mtab" id="voteTab"></table>
+      <p class="tip feedback" id="voteMsg"></p>
+      <p class="tip" data-step="1">“得票数”和“得票率”有什么不同？<span class="think" data-step="2" data-ask="说一说">得票数是这个人被<b>写了几次</b>；得票率是得票数<b>占总票数的比</b>。四人的得票率加起来是 1。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p22 数学实验室。本页是现场工具，没有预置数据：学生写好选票后，由“唱票员”每读一张，教师（或记录员）点一下对应按钮，表中自动划“正”字、统计得票数，得票率按“得票数 ÷ 已唱票数”实时计算（保留三位小数）。名字可以直接在输入框里改。点错了用“撤回一票”。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>频数与频率</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>频数 · 频率（课本 p22）</h4>在统计数据时，各个对象出现的次数有多有少，或者说出现的频繁程度不同，某个对象出现的次数称为该对象的<em>频数</em>，频数与总次数的比值称为<em>频率</em>．</div>
+      <div class="derive" data-step="2">
+        <div class="dl key"><span>频率</span><span>$=\dfrac{\text{频数}}{\text{总次数}}$</span><i class="why">一个比值，可以写成分数、小数或百分数</i></div>
+      </div>
+      <p class="tip small-p" data-step="3">例：在选举“环保卫士”活动中，每名候选人的得票数是该候选人得票的<b>频数</b>；每名候选人的得票率是该候选人得票的<b>频率</b>．</p>
+    </div>
+    <div class="col">
+      <p class="tip">回到 7.1 的 50 份社团问卷：</p>
+      <table class="mtab">
+        <tr><th>社团代号</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><th>合计</th></tr>
+        <tr><th>频数</th><td>8</td><td>8</td><td>12</td><td>12</td><td>4</td><td>4</td><td>2</td><td><span class="think" data-step="5" data-ask="?">50</span></td></tr>
+        <tr><th>频率</th><td>0.16</td><td>0.16</td><td><span class="think" data-step="4" data-ask="?">0.24</span></td><td>0.24</td><td>0.08</td><td>0.08</td><td>0.04</td><td><span class="think" data-step="5" data-ask="?">1</span></td></tr>
+      </table>
+      <div class="cols2">
+        <p class="method" data-step="6" data-label="两个合计">各组频数之和 = 数据总数；各组频率之和 = 1．</p>
+        <p class="method" data-step="7" data-label="频率的范围">$0\le$ 频率 $\le1$：没出现过是 0，每次都是它是 1．</p>
+      </div>
+      <p class="warn" data-step="8" data-label="频数大，频率不一定大">甲班 40 人中 10 人近视，乙班 50 人中 11 人近视：乙班频数大，但频率 $0.22<0.25$。比较不同总数的情况，要看<b>频率</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p22 定义原文与“例如”。右表是 7.1 统计表换成新名字：人数 → 频数，百分比 → 频率（24% 就是 0.24）。最后一张“易错”卡的两个班级是为了辨析而设的简单数例（不是课本数据），说明频率便于在总数不同时作比较。</p>
+</section>
+
+<!-- 5 ================= 核心：47 城市分级 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>47 个城市的空气质量：按级别“唱”一遍</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip small-p">国家环保总局公布的 47 个重点城市某日的空气污染指数。规定：1～50 为Ⅰ级，51～100 为Ⅱ级，101～200 为Ⅲ级，201～300 为Ⅳ级．</p>
+      <div class="cities" id="cities" data-noswipe></div>
+      <div class="btns" data-noswipe>
+        <button class="btn solid" type="button" id="cityOne">唱下一个</button>
+        <button class="btn" type="button" id="cityTen">唱 10 个</button>
+        <button class="btn" type="button" id="cityAll">全部唱完</button>
+        <button class="btn" type="button" id="cityClr">重来</button>
+      </div>
+    </div>
+    <div class="col">
+      <table class="mtab lv" id="cityTab"></table>
+      <p class="tip feedback" id="cityMsg"></p>
+      <div id="cityBar" class="city-bar"></div>
+    </div>
+  </div>
+  <p class="note">本课核心。课本 p22–23“尝试”：按城市空气质量级别填表，并用合适的统计图表示。点“唱下一个”：当前城市变橙色，读出它的指数，落到哪一级就在那一级划一笔，条形图同步长高。唱完 47 个，频率（精确到 0.001）自动算出。也可以先请学生自己数 Ⅰ、Ⅳ 级（各只有 1 个：海口 49，乌鲁木齐 205），再点按钮核对。注意 51、101 这样的“边界值”：湛江 51 属于Ⅱ级，南昌 101 属于Ⅲ级。</p>
+</section>
+
+<!-- 6 ================= 讨论：频率之和、选图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">讨论</span><h2>频率加起来为什么不是 1？用哪种统计图？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <table class="mtab lv">
+        <tr><th>空气污染指数</th><th>Ⅰ级</th><th>Ⅱ级</th><th>Ⅲ级</th><th>Ⅳ级</th><th>合计</th></tr>
+        <tr><th>频数</th><td>1</td><td>34</td><td>11</td><td>1</td><td>47</td></tr>
+        <tr><th>频率（精确到 0.001）</th><td>0.021</td><td>0.723</td><td>0.234</td><td>0.021</td><td><span class="think" data-step="1" data-ask="加起来是？">0.999</span></td></tr>
+      </table>
+      <p class="tip" data-step="2">不是说“各组频率之和等于 1”吗？<span class="think" data-step="3" data-ask="为什么？">每个频率都是<b>近似值</b>：$\frac{1}{47}=0.02127\cdots$，$\frac{34}{47}=0.72340\cdots$，$\frac{11}{47}=0.23404\cdots$，四舍五入后各少了一点点，合计 0.999。用分数算：$\frac{1+34+11+1}{47}=1$。</span></p>
+      <p class="method" data-step="4" data-label="检查">频数合计要等于总数（47）；频率合计等于 1 或因四舍五入接近 1。</p>
+    </div>
+    <div class="col">
+      <div class="cols2">
+        <div><h3 class="h3 center">各级城市数条形统计图</h3><div id="lvBar" class="lv-chart"></div></div>
+        <div><h3 class="h3 center">各级城市数扇形统计图</h3><div id="lvPie" class="lv-chart"></div></div>
+      </div>
+      <p class="tip" data-step="5">两幅图都“合适”吗？<span class="think" data-step="6" data-ask="说一说">条形图看清各级城市数；扇形图看清各级占 47 个城市的百分比（频率）——都可以。这一天大多数城市是Ⅱ级。</span></p>
+    </div>
+  </div>
+  <p class="note">“频率合计为 0.999”是精确到 0.001 带来的舍入误差，不是算错——这是学生最常问的地方，一定要讲清。扇形图中的百分比就是频率 × 100%。</p>
+</section>
+
+<!-- 7 ================= 练习 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>北京申办 2008 年奥运会：得票的频数和频率</h2></div>
+  <div class="bd full">
+    <p class="tip">国际奥委会确定奥运会举办城市的投票规则：参与投票的委员每轮只能选择候选城市中的一个；只要某个申办城市获得<b>超过 50%</b> 的选票，即被确定为举办城市；否则进行下一轮投票，每一轮淘汰一个得票最少的城市．</p>
+    <p class="tip">2001 年 7 月 13 日在莫斯科，第 2 轮投票中，北京获得总计 105 张选票中的 56 票，取得了 2008 年奥运会举办权．在第 2 轮投票中，北京得票的频数是多少？频率是多少（精确到 0.001）？</p>
+    <div class="cols2">
+      <p class="tip big-q" data-step="1">频数：<span class="blank" data-ans="56" data-w="3"></span>　　频率：$\dfrac{56}{105}\approx$ <span class="blank" data-ans="0.533" data-w="5"></span></p>
+      <p class="tip big-q" data-step="2">北京的得票率超过 50% 了吗？<span class="think" data-step="3" data-ask="比一比">$0.533>0.5$，超过了一半，所以北京当选。</span></p>
+    </div>
+    <p class="method" data-step="4" data-label="规则里的“超过 50%”">说的是<b>频率</b>（得票数 ÷ 总票数）超过 0.5，而不是得票数超过 50 票。</p>
+  </div>
+  <p class="note">课本 p23 练习 1。填空按回车判对错。56 ÷ 105 = 0.53333…，精确到 0.001 为 0.533。</p>
+</section>
+
+<!-- 8 ================= 练习 2：脉搏分组 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>数据很多时：先分组，再统计频数和频率</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip small-p">从全班学生中抽取 20 名学生，测量了他们 800 m 赛跑后 1 min 的脉搏次数（单位：次）。点一个分组，看哪些数落在里面：</p>
+      <div class="pulse" id="pulse"></div>
+      <div class="btns" data-noswipe id="pulseBtns"></div>
+    </div>
+    <div class="col">
+      <table class="mtab lv" data-noswipe>
+        <tr><th>脉搏次数 $x$（次/分）</th><th>$130\le x<140$</th><th>$140\le x<150$</th><th>$150\le x<160$</th><th>$160\le x<170$</th></tr>
+        <tr><th>频数</th><td><span class="blank" data-ans="1" data-w="2"></span></td><td><span class="blank" data-ans="5" data-w="2"></span></td><td><span class="blank" data-ans="8" data-w="2"></span></td><td><span class="blank" data-ans="6" data-w="2"></span></td></tr>
+        <tr><th>频率</th><td><span class="blank" data-ans="0.05" data-w="3"></span></td><td><span class="blank" data-ans="0.25" data-w="3"></span></td><td><span class="blank" data-ans="0.4" data-w="3"></span></td><td><span class="blank" data-ans="0.3" data-w="3"></span></td></tr>
+      </table>
+      <p class="tip feedback" id="pulseMsg"></p>
+      <p class="warn" data-step="1" data-label="边界值">$150\le x<160$：150 算在这一组，160 不算（归下一组）。所以 150 只能数一次！</p>
+      <p class="tip gold" data-step="2">数据很多、各不相同时，先<b>分组</b>，再数每组的频数——下一节 7.4 会专门研究“怎样分组”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p23–24 练习 2。先让学生自己划记填表（频率可写小数，如 0.4），再点分组按钮核对：对应的数亮起来。合计：频数 20，频率 1。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.3</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某射手在一次射击训练中，共射了 40 发子弹，结果如下（单位：环）：<br><span class="nums">8 7 7 8 9 8 7 7 7 8　8 9 7 8 8 8 9 8 9 8<br>10 9 9 8 9 8 10 10 9 8　8 9 9 10 9 9 10 10 9 9</span><br>填写表格：环数 7、8、9、10 的频数、频率．</p>
+        <details><summary>提示 1</summary>用“正”字逐个划记；划完先检查频数合计是不是 40。</details>
+        <details><summary>提示 2</summary>频率 = 频数 ÷ 40。</details>
+        <details><summary>完整解答</summary><table class="mtab"><tr><th>环数</th><td>7</td><td>8</td><td>9</td><td>10</td></tr><tr><th>频数</th><td>6</td><td>14</td><td>14</td><td>6</td></tr><tr><th>频率</th><td>0.15</td><td>0.35</td><td>0.35</td><td>0.15</td></tr></table></details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 小丽调查了全班 50 名同学的身高（单位：cm），结果见课本 p24．按“145.5 以下，145.5～150.5，150.5～155.5，155.5～160.5，160.5～165.5，165.5～170.5，170.5 以上”填写频数、频率．</p>
+        <details><summary>提示 1</summary>身高都是整数，分界点带 .5，所以每个数都不会落在分界点上。</details>
+        <details><summary>提示 2</summary>“145.5 以下”就是 141、144、145 这些数：141、144、144、145、145、145、145 共 7 个。</details>
+        <details><summary>完整解答</summary><table class="mtab"><tr><th>身高/cm</th><td>145.5 以下</td><td>145.5～150.5</td><td>150.5～155.5</td><td>155.5～160.5</td><td>160.5～165.5</td><td>165.5～170.5</td><td>170.5 以上</td></tr><tr><th>频数</th><td>7</td><td>6</td><td>11</td><td>14</td><td>6</td><td>4</td><td>2</td></tr><tr><th>频率</th><td>0.14</td><td>0.12</td><td>0.22</td><td>0.28</td><td>0.12</td><td>0.08</td><td>0.04</td></tr></table></details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 7.3 第 1、2 题（答案由课本原始数据逐个统计得到）。第 2 题的“.5”分界点为下一节 7.4 的分组方法做铺垫：上课时先问“为什么分界点要带 .5？”。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">频数：某个对象出现的<em>次数</em>；频率：频数与总次数的<em>比值</em>．</p>
+        <p class="recall" data-label="两个合计">频数之和 = 总数；频率之和 = 1（取近似值时可能是 0.999 之类）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="统计频数">逐个读数据，用“正”字划记，最后数笔画；检查合计。</p>
+        <p class="method" data-label="分组">数据多而分散时，按范围分组再数；注意边界值归哪一组。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="warn" data-label="比较">总数不同的两组数据，比频数不公平，要比<b>频率</b>。</p>
+        <p class="recall" data-label="前后联系">第 8 章会用“大量重复试验中的频率”去估计<b>概率</b>。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>7.4 频数分布表和频数分布直方图——50 名学生的身高，分几组？组距取多少？分好组后怎样画图？</p>
+  </div>
+  <p class="note">请学生说出频数、频率的区别，并举一个“比频率更合理”的例子。作业：习题 7.3 第 1、2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
