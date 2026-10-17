@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>平行四边形的面积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgrid.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shougong.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第二单元 多边形的面积 · 平行四边形的面积</p>
+    <h1 class="cover-title">平行四边形的面积</h1>
+    <p class="cover-q" data-step="1">长方形的面积，我们早就会算了：<b>长 × 宽</b>。</p>
+    <p class="cover-q" data-step="2">可平行四边形“歪着身子”，它的面积怎样算？能不能<b>剪一剪、移一移</b>，把它变成长方形？</p>
+    <div class="chips" data-step="3"><span class="chip">平移比面积</span><span class="chip">剪—移—拼</span><span class="chip">找到公式</span><span class="chip">用公式解决问题</span></div>
+  </div>
+  <p class="note">本单元第一课。先让学生说说“长方形面积怎样算、为什么是长 × 宽”（数面积单位），再抛出问题：平行四边形能不能也这样数？数起来有半格，不方便——引出“转化”。准备好课本 p115 的平行四边形学具和剪刀。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这节课要用到哪些老朋友？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="三年级下册 · 长方形和正方形的面积" data-step="1">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="长方形里铺满 1 平方厘米的小方格">
+          <rect x="30" y="10" width="180" height="100" fill="#fde3ee" stroke="#d6247a" stroke-width="3"/>
+          <path d="M66 10V110M102 10V110M138 10V110M174 10V110M30 43.3H210M30 76.6H210" stroke="#d6247a" stroke-width="1.3"/>
+        </svg>
+        <p class="big center">长方形的面积 = 长 × 宽</p>
+        <span class="use">平行四边形变成长方形以后，就用它来算。</span>
+      </div>
+      <div class="recall" data-label="四年级下册 · 平行四边形的底和高" data-step="2">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="平行四边形的底和高">
+          <path d="M20 105H170L220 15H70Z" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/>
+          <path d="M100 15V105" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6 5"/>
+          <path d="M100 93h12v12" fill="none" stroke="#c0392b" stroke-width="2"/>
+          <text x="108" y="64" class="fl s r">高</text><text x="88" y="120" class="fl s">底</text>
+        </svg>
+        <p>从一条边上的一点向对边画<b>垂直线段</b>，这条线段是<b>高</b>，对边是<b>底</b>。</p>
+        <span class="use">沿着高剪开，剪口才是直的、直角才拼得上。</span>
+      </div>
+      <div class="recall" data-label="四年级下册 · 平移" data-step="3">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="三角形向右平移">
+          <path d="M30 100L60 30L60 100Z" fill="none" stroke="#9aa8b5" stroke-width="2" stroke-dasharray="6 4"/>
+          <path d="M30 100L60 30L60 100Z" class="slide-tri" fill="#fbe08a" stroke="#c98a00" stroke-width="2.5"/>
+          <path d="M75 65H150" stroke="#c0392b" stroke-width="2.5" marker-end="url(#ar)"/>
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#c0392b"/></marker></defs>
+        </svg>
+        <p>图形沿直线移动，<b>形状、大小都不变</b>，只是位置变了。</p>
+        <span class="use">剪下来的部分平移过去，面积一点也不会少。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>平行四边形的面积怎样计算？能不能把它<b>转化</b>成已经会算的长方形？</p>
+  </div>
+  <p class="note">每张卡先请学生口答，再点出。第 2 张卡要追问：平行四边形有几条高？（无数条）为什么一定要沿着高剪？——留个悬念，第 4 页操作时回答。第 3 张卡出现时三角形会向右平移，强调“平移不改变大小”。</p>
+</section>
+
+<!-- 3 ================= 例 1 平移比较 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 比一比</span><h2>每组的两个图形，面积相等吗？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="figbox">
+        <svg id="ex1a" aria-label="图形①和长方形②"></svg>
+        <button type="button" class="btn solid" id="ex1aGo" data-noswipe>把①上面的小长方形向下平移 ▶</button>
+      </div>
+      <div class="figbox">
+        <svg id="ex1b" aria-label="图形③和正方形④"></svg>
+        <button type="button" class="btn solid" id="ex1bGo" data-noswipe>把③左边的三角形向右平移 ▶</button>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="1">不移的话，你准备怎样比较？　<span class="think" data-step="2" data-ask="和同桌说一说">可以<b>数方格</b>：①和②都是 <b>12</b> 个方格；③和④都是 <b>16</b> 个方格（③左右两个三角形合起来正好 4 格）。</span></p>
+      <p class="tip gold" data-step="3">平移以后呢？　<span class="think" data-step="4" data-ask="点上面的按钮，再说">①变成了和②一样的长方形，③变成了和④一样的正方形——<b>每组两个图形的面积相等</b>。图形平移后，面积不变。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p7 例 1。先让学生自己想办法比（数方格、移一移都可以），再点按钮演示课本两位小朋友的方法。小结一句话：把一部分平移，图形的形状变了，面积没变——这就是今天要用的“转化”办法。</p>
+</section>
+
+<!-- 4 ================= 例 2 剪移拼（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 剪一剪、移一移</span><h2>你能把平行四边形转化成长方形吗？</h2></div>
+  <div class="bd full top">
+    <p class="tip">先<b>拖动红色剪刀线</b>选一个位置（剪刀线始终和底垂直，就是一条<b>高</b>），再点“剪开、平移”。</p>
+    <svg id="cutFig" class="cut-fig" aria-label="沿高剪开平行四边形，把左边部分平移到右边" data-noswipe></svg>
+    <div class="cut-ctrl" data-noswipe>
+      <button type="button" class="btn solid" id="cutGo">✂ 剪开、平移 ▶</button>
+      <span id="cutSay" class="cut-say">从这里剪，剪下来的是一个<b>三角形</b>。</span>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="1">剪下一个三角形可以，剪下一个梯形也可以。两种方法有什么<b>相同</b>的地方？　<span class="think" data-step="2" data-ask="比较一下，再点开">都是<b>沿着高</b>剪开，再把剪下的部分<b>平移</b>到另一边，拼成长方形。</span></p>
+      <p class="tip gold" data-step="3">为什么一定要沿着高剪？　<span class="think" data-step="4" data-ask="想一想">高和底<b>垂直</b>，剪开的地方是直角，拼出来四个角才都是直角，正好是长方形。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p7 例 2。方格图和课本一样：底 7 格，高 4 格。请两位学生上来：一位把剪刀线拖到最左边（剪下三角形），一位拖到中间（剪下梯形），分别点“剪开、平移”。追问：剪的位置不同，拼成的长方形一样吗？（长都是 7 格，宽都是 4 格，都是 28 格。）</p>
+</section>
+
+<!-- 5 ================= 例 3 找关系 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 量一量、填一填</span><h2>长方形和原来的平行四边形，有什么关系？</h2></div>
+  <div class="bd full top">
+    <div class="ex3-row">
+      <svg id="ex3Fig" class="ex3-fig" aria-label="两个平行四边形转化成长方形（每格 1 厘米）"></svg>
+      <button type="button" class="btn solid" id="ex3Go" data-noswipe>转化成长方形 ▶</button>
+    </div>
+    <table class="mtab">
+      <tr><th colspan="3">转化成的长方形</th><th colspan="3">平行四边形</th></tr>
+      <tr><th>长/cm</th><th>宽/cm</th><th>面积/cm²</th><th>底/cm</th><th>高/cm</th><th>面积/cm²</th></tr>
+      <tr><td><span class="blank" data-ans="5"></span></td><td><span class="blank" data-ans="3"></span></td><td><span class="blank" data-ans="15"></span></td><td><span class="blank" data-ans="5"></span></td><td><span class="blank" data-ans="3"></span></td><td><span class="blank" data-ans="15"></span></td></tr>
+      <tr><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="16"></span></td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="16"></span></td></tr>
+    </table>
+    <div class="cols3 qs">
+      <p data-step="1">(1) 面积相等吗？<span class="think" data-step="2" data-ask="说一说"><b>相等</b>，只是换了个样子。</span></p>
+      <p data-step="3">(2) 长和宽与底和高？<span class="think" data-step="4" data-ask="说一说">长方形的<b>长 = 底</b>，<b>宽 = 高</b>。</span></p>
+      <p data-step="5">(3) 怎样求平行四边形的面积？<span class="think" data-step="6" data-ask="说一说">用<b>底 × 高</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p8 例 3。课本让学生在 p115 自选平行四边形剪拼；这里给出两个画在 1 厘米方格上的平行四边形做示范（数据由方格数出来）。先填表再讨论三个问题，第 (2) 题请学生到图上指：长方形的长原来是哪条边？宽原来是哪条线段？</p>
+</section>
+
+<!-- 6 ================= 公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>平行四边形的面积公式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 300 170" class="fml-fig" aria-label="平行四边形，底 a，高 h">
+        <path d="M20 145H210L280 25H90Z" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/>
+        <path d="M150 25V145" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6 5"/>
+        <path d="M150 133h12v12" fill="none" stroke="#c0392b" stroke-width="2"/>
+        <text x="158" y="92" class="fl c1">h</text><text x="115" y="166" class="fl">a</text>
+      </svg>
+      <p class="tip center small-t">$a$ 表示底，$h$ 表示高，$S$ 表示面积</p>
+    </div>
+    <div class="col">
+      <div class="derive word-derive">
+        <div class="dl" data-step="1"><span>长方形的面积</span><span>= 长 × 宽</span><i class="why">学过的公式</i></div>
+        <div class="dl key" data-step="2"><span>平行四边形的面积</span><span>= 底 × 高</span><i class="why">面积不变；长换成底，宽换成高</i></div>
+      </div>
+      <div class="def" data-step="3"><h4>用字母表示</h4>如果用 $S$ 表示平行四边形的面积，用 $a$ 和 $h$ 分别表示平行四边形的底和高，上面的公式可以写成：<p class="formula">$S=a\times h$</p></div>
+      <p class="tip" data-step="4">$a\times h$ 也可以写成 $a\cdot h$ 或者 $ah$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p8 中间。先让学生用文字说出公式，再一格一格替换成字母。强调：公式是“转化”推出来的——平行四边形的面积等于转化成的长方形的面积。</p>
+</section>
+
+<!-- 7 ================= 试一试 + 底高对应 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>用公式算一算</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">一块平行四边形玻璃，底 <b>50 厘米</b>，高 <b>70 厘米</b>，面积是多少平方厘米？</p>
+        <div class="calc">
+          <p>$50\times70=$ <span class="blank" data-ans="3500" data-w="4"></span>（平方厘米）</p>
+          <p class="muted" data-step="1">答：面积是 3500 平方厘米。</p>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip">计算下面平行四边形的面积。（练习二第 2 题）</p>
+        <svg id="pairFig" class="pair-fig" aria-label="三个平行四边形，标出底和对应的高"></svg>
+        <p class="calc small-q">① <span class="blank" data-ans="96"></span> m²　② <span class="blank" data-ans="1300" data-w="4"></span> dm²　③ <span class="blank" data-ans="336"></span> cm²</p>
+      </div>
+    </div>
+    <p class="warn" data-step="2">算面积时，<b>底和高要对应</b>：②的 26 dm 是 50 dm 这条底上的高，所以是 $50\times26$；③的 14 cm 是 24 cm 这条边上的高。</p>
+  </div>
+  <p class="note">课本 p8 试一试和 p11 练习二第 2 题。②③两题故意把底“竖”着画，先让学生指一指：这条高是哪条底上的？再列式。图按题目数据等比例画出。</p>
+</section>
+
+<!-- 8 ================= 辨一辨：拉木框 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 练习二第 5 题</span><h2>把长方形木框拉成平行四边形，什么变了？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="frameFig" class="frame-fig" viewBox="0 0 520 240" aria-label="长方形木框拉成平行四边形" data-noswipe></svg>
+      <div class="slider-row" data-noswipe><span>拉一拉</span><input type="range" id="frameAng" min="30" max="90" step="1" value="90" aria-label="木框的角度"><span id="frameDeg">90°</span></div>
+    </div>
+    <div class="col">
+      <p class="tip">用细木条钉成一个长方形框，长 <b>12 厘米</b>，宽 <b>7 厘米</b>。</p>
+      <div class="readout fr-read">
+        <span>周长</span><span class="bar"><i id="barC" style="background:#1d6fa5"></i></span><span class="v" id="vC">38 cm</span>
+        <span>高</span><span class="bar"><i id="barH" style="background:#c0392b"></i></span><span class="v" id="vH">7 cm</span>
+        <span>面积</span><span class="bar"><i id="barS" style="background:#d9711c"></i></span><span class="v" id="vS">84 cm²</span>
+      </div>
+      <p class="tip" data-step="1">周长变了没有？面积呢？　<span class="think" data-step="2" data-ask="拉一拉，再说"><b>周长不变</b>（四根木条没变）；<b>面积变小了</b>，越拉越小。</span></p>
+      <p class="tip gold" data-step="3">为什么？　<span class="think" data-step="4" data-ask="看看哪条线变了">底还是 12 厘米，可<b>高变短了</b>，$12\times$高 就变小了。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p11 练习二第 5 题。拉动滑块，读数是按真实尺寸算的：高 = 斜边上的木条在竖直方向的长度。原来的长方形：周长 (12+7)×2 = 38 厘米，面积 12×7 = 84 平方厘米。易错：有的学生以为“木条长度不变，面积也不变”，用这个实验纠正。</p>
+</section>
+
+<!-- 9 ================= 练一练：等底等高 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>两条平行线之间的长方形和平行四边形</h2></div>
+  <div class="bd full top">
+    <p class="tip">两条平行线之间画了一个长方形和一个平行四边形，长方形长 <b>15 厘米</b>，宽 <b>6 厘米</b>。求平行四边形的面积。</p>
+    <svg id="parFig" class="par-fig" viewBox="0 0 1000 230" aria-label="两条平行线之间的长方形和平行四边形" data-noswipe></svg>
+    <div class="cols2">
+      <div class="calc">
+        <p>平行四边形的底 = <span class="blank" data-ans="15"></span> 厘米，高 = <span class="blank" data-ans="6"></span> 厘米</p>
+        <p>面积：$15\times6=$ <span class="blank" data-ans="90"></span>（平方厘米）</p>
+      </div>
+      <p class="tip gold" data-step="1">拖动平行四边形上面的<b>红点</b>，让它更斜一些——面积变了吗？　<span class="think" data-step="2" data-ask="拖一拖，再说">不变！底和高都没变（夹在同样的两条平行线之间），面积都是 90 平方厘米。<b>等底等高的平行四边形面积相等。</b></span></p>
+    </div>
+  </div>
+  <p class="note">课本 p8 练一练。关键是看出平行四边形的底就是长方形的长、高就是两条平行线之间的距离（长方形的宽）。拖红点时读数实时显示，帮学生建立“等底等高面积相等”的感觉；与上一页“拉木框”对比：那里高变了，这里高没变。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习二</span><h2>解决问题：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 一个平行四边形广告牌，底 6 米，高 2 米。按每平方米 50 元计算，制作这个广告牌需要多少元？</p>
+        <p class="q small-q">面积：<span class="blank" data-ans="12"></span> 平方米　　需要：<span class="blank" data-ans="600"></span> 元</p>
+        <details><summary>提示 1</summary>先求广告牌的面积，再求钱数。</details>
+        <details><summary>提示 2</summary>面积 = 底 × 高 = $6\times2$</details>
+        <details><summary>完整解答</summary>$6\times2=12$（平方米），$50\times12=600$（元）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 一个平行四边形停车场，底 63 米，高 25 米。如果平均每个车位占地 15 平方米，这个停车场一共可以停多少辆车？</p>
+        <p class="q small-q">面积：<span class="blank" data-ans="1575" data-w="4"></span> 平方米　　可以停：<span class="blank" data-ans="105"></span> 辆</p>
+        <details><summary>提示 1</summary>停车场面积 ÷ 每个车位的面积 = 车位数。</details>
+        <details><summary>提示 2</summary>$63\times25=1575$（平方米）</details>
+        <details><summary>完整解答</summary>$1575\div15=105$（辆）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p11 练习二第 3、4 题。先独立做，空格里填答案、回车自查；错了再按需点提示。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>我们是怎样找到平行四边形面积公式的？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><svg viewBox="0 0 120 70" aria-label="平行四边形"><path d="M5 62H85L115 8H35Z" fill="#fde3ee" stroke="#d6247a" stroke-width="2.5"/><path d="M35 8V62" stroke="#c0392b" stroke-width="2" stroke-dasharray="4 3"/></svg><b>平行四边形</b><small>没学过</small></div>
+      <i>沿高剪开<br>平移、拼</i>
+      <div class="fbox"><svg viewBox="0 0 120 70" aria-label="长方形"><path d="M35 8H115V62H35Z" fill="#fde3ee" stroke="#d6247a" stroke-width="2.5"/></svg><b>长方形</b><small>学过的</small></div>
+      <i>长 = 底<br>宽 = 高</i>
+      <div class="fbox hot"><b class="formula">$S=a\times h$</b><small>平行四边形的面积</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="转化：化新为旧" data-step="2">把没学过的图形<b>剪一剪、移一移、拼一拼</b>，变成学过的图形；形状变了，<b>面积不变</b>。</p>
+      <div class="method" data-label="用公式要注意" data-step="3"><ul class="use-list"><li>底和高要<b>对应</b></li><li>等底等高的平行四边形，面积相等</li><li>长方形框拉成平行四边形：周长不变，面积变小</li></ul></div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>三角形的面积——能不能也把三角形转化成学过的图形？</p>
+  </div>
+  <p class="note">请学生用自己的话把推导过程说一遍：剪（沿高）→ 移（平移）→ 拼（长方形）→ 找关系（长 = 底，宽 = 高）→ 得公式。课后作业建议：练习二第 1、2、3、4 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgrid.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

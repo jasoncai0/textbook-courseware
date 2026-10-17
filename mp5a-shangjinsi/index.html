@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>商的近似值 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mvert.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/youyong.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第五单元 小数乘法和除法 · 商的近似值</p>
+    <h1 class="cover-title">商的近似值</h1>
+    <p class="cover-q" data-step="1">海狮在水中的最高游速是每小时 <b>40 千米</b>。它每分钟大约游多少千米？</p>
+    <p class="cover-q" data-step="2">$40\div60$ 怎么也<b>除不完</b>——那该除到哪儿停下来？</p>
+    <div class="chips" data-step="3"><span class="chip">多除一位</span><span class="chip">四舍五入</span><span class="chip">按实际取舍</span><span class="chip">循环小数</span></div>
+  </div>
+  <p class="note">课本 p71 例 12 的情境。先让学生说出“1 小时 = 60 分”，列式 40 ÷ 60。可以请学生在本子上试除，发现除不完，带着问题进入新课。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到这三件“法宝”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="第三单元 · 求近似数" data-step="1">
+        <p class="big center">$0.666\approx0.67$</p>
+        <p>保留两位小数，看<b>第三位</b>：满 5 进 1，不满 5 舍去。</p>
+        <span class="use">商除不尽时，用它取近似值。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 小数除以整数" data-step="2">
+        <p class="big center">$40\div60$</p>
+        <p>整数部分不够商 1，商 0、点上小数点；有余数就<b>添 0 继续除</b>。</p>
+        <span class="use">除到哪一位停，今天来决定。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 除数是小数" data-step="3">
+        <p class="big center">$2.7\div0.46=270\div46$</p>
+        <p>先把除数变成整数，被除数跟着移动小数点。</p>
+        <span class="use">练习里的除数是小数的题目，先这样转化。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>商除不尽，或者不需要那么多位小数时，怎样求商的近似值？</p>
+  </div>
+  <p class="note">第 1 张卡：第三单元“改写和求近似数”；第 2 张卡：本单元例 4–6 小数除以整数（另一组课件）；第 3 张卡：上一课例 10–11。</p>
+</section>
+
+<!-- 3 ================= 例 12 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 12 · 想一想</span><h2>得数保留两位小数，应该除到商的哪一位？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>动物名称</th><th>海　狮</th><th>海　豚</th><th>飞　鱼</th></tr>
+        <tr><th>速度/（千米/时）</th><td>40</td><td>50</td><td>64</td></tr>
+      </table>
+      <p class="tip">海狮的最高游速大约是多少千米/分？（<span class="pk">得数保留两位小数</span>）</p>
+      <p class="tip" data-step="1">保留两位小数，要除到哪一位？为什么？　<span class="think" data-step="2" data-ask="想一想">除到<b>第三位</b>（千分位）——要看第三位是几，才知道第二位要不要进 1。</span></p>
+      <p class="tip center big" data-step="3">$40\div60\approx$ <span class="blank" data-ans="0.67"></span>（千米/分）</p>
+      <div class="def" data-step="4">求商的近似值，一般先算出比需要保留的小数位数<b>多一位</b>的商，再按照“<b>四舍五入</b>”法写出结果。</div>
+    </div>
+    <div class="col">
+      <div class="vbox"><div id="v12" class="mvert"></div></div>
+      <div class="stepbar" data-noswipe><button type="button" class="btn" id="v12p">‹ 上一步</button><button type="button" class="btn solid" id="v12n">下一步 ›</button></div>
+      <p class="say" id="v12say"></p>
+    </div>
+  </div>
+  <p class="note">课本 p71 例 12。竖式按“下一步”一位一位地除：0.6 → 0.66 → 0.666。课本竖式只写到 0.6，然后问“应该除到商的哪一位”；这里演示到第三位后停下：第三位是 6，满 5，进 1，得 0.67。黑体结论是课本原文，请学生读一读。</p>
+</section>
+
+<!-- 4 ================= 例 12 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 12 · 练一练</span><h2>海豚和飞鱼的最高游速大约各是多少千米/分？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="calc">
+        <h4>得数保留两位小数</h4>
+        <p>海豚：$50\div60=$ <span class="blank" data-ans="0.833" data-w="4"></span>… $\approx$ <span class="blank" data-ans="0.83"></span></p>
+        <p>飞鱼：$64\div60=$ <span class="blank" data-ans="1.066" data-w="4"></span>… $\approx$ <span class="blank" data-ans="1.07"></span></p>
+      </div>
+      <p class="warn" data-step="1">只除到第二位就停，会出错：飞鱼 $64\div60$ 除到 1.06 就停，第三位的 6 没看到，结果应该是 <b>1.07</b>。</p>
+    </div>
+    <div class="col">
+      <div class="btns center-btns" id="cmpPick" data-noswipe><button type="button" class="btn solid" data-k="0">海豚 50 ÷ 60</button><button type="button" class="btn" data-k="1">飞鱼 64 ÷ 60</button></div>
+      <div class="vbox"><div id="vcmp" class="mvert"></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p71 练一练。先写出多一位的商（三位小数），再四舍五入。右边的竖式由代码除到第三位，可切换海豚 / 飞鱼核对。</p>
+</section>
+
+<!-- 5 ================= 例 13 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 13 · 联系实际</span><h2>300 元最多可以买多少个足球？</h2></div>
+  <div class="bd full top">
+    <p class="tip">足球 <b>45 元/个</b>。$300\div45=6.66\cdots$，可以买多少个？下面三种说法，你同意谁？</p>
+    <div class="pick op3" data-ans="c">
+      <button type="button" data-k="a">用“四舍五入”法取近似值，是 7 个。</button>
+      <button type="button" data-k="b">6.66… 约等于 6.7 个。</button>
+      <button type="button" data-k="c">买 6 个要 270 元，剩下 30 元不够买 1 个，最多只能买 6 个。</button>
+      <p class="pick-why">买 7 个要 $45\times7=315$ 元，300 元<b>不够</b>；足球也不能买“0.7 个”。剩下的 30 元不够再买 1 个，所以<b>最多买 6 个</b>。</p>
+    </div>
+    <svg id="ballFig" class="ball-fig" viewBox="0 0 1000 150" aria-label="300 元里有 6 个 45 元，还剩 30 元" data-step="1"></svg>
+    <p class="method" data-step="2" data-label="取近似值要联系实际">这里不能用“四舍五入”法，要把小数部分<b>全部舍去</b>：$300\div45\approx6$（个）。有时又要<b>进一</b>（如装油、运货），要看题目问的是什么。</p>
+  </div>
+  <p class="note">课本 p71–72 例 13 和三个小精灵的说法。先让学生举手选，再点。线段图按比例画：一格 45 元，300 元正好装下 6 格，剩下的 30 元比一格短（30 &lt; 45）。课本问“取哪个近似值合理”，引出“去尾”。</p>
+</section>
+
+<!-- 6 ================= 例 13 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 13 · 练一练</span><h2>先计算，再想一想怎样取近似值比较合理</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>（1）</b>每个油壶可以装 3 千克油，装 40 千克油需要多少个油壶？</p>
+        <p>$40\div3=13.3\cdots$</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">13 个</button><button type="button" data-k="b">14 个</button>
+          <p class="pick-why">13 个油壶只能装 39 千克，还剩 1 千克油也要一个壶装——要<b>进一</b>：14 个。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>（2）</b>每套衣服用布 2.2 米，30 米布可以做多少套这样的衣服？</p>
+        <p>$30\div2.2=13.6\cdots$</p>
+        <div class="pick" data-ans="a"><button type="button" data-k="a">13 套</button><button type="button" data-k="b">14 套</button>
+          <p class="pick-why">做 14 套要 30.8 米布，不够；剩下的布不够做一套——要<b>去尾</b>：13 套。</p></div>
+      </div>
+    </div>
+    <div class="cols2" data-step="1">
+      <p class="recall" data-label="进一法">剩下的也要算一个（装、运、坐）：$13.3\cdots\to14$</p>
+      <p class="recall" data-label="去尾法">剩下的不够做一个（买、做、装满）：$13.6\cdots\to13$</p>
+    </div>
+  </div>
+  <p class="note">课本 p72 练一练。两道题的商都不是整数，但取法相反。请学生先口头说理由再点。注意：课本没有出现“进一法”“去尾法”的名称，这里是帮助记忆的说法。</p>
+</section>
+
+<!-- 7 ================= 你知道吗：余数追踪器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">你知道吗</span><h2>一直除下去，会发生什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns center-btns" id="cyPick" data-noswipe>
+        <button type="button" class="btn solid" data-k="0">14 ÷ 16</button>
+        <button type="button" class="btn" data-k="1">5 ÷ 3</button>
+        <button type="button" class="btn" data-k="2">14 ÷ 37</button>
+        <button type="button" class="btn" data-k="3">25 ÷ 22</button>
+      </div>
+      <div class="cy-q" id="cyQ"></div>
+      <div class="stepbar" data-noswipe><button type="button" class="btn" id="cyReset">重来</button><button type="button" class="btn solid" id="cyGo">再除一位 ▶</button></div>
+      <p class="say" id="cySay"></p>
+    </div>
+    <div class="col">
+      <p class="tip small-t">每除一位，记下<b>余数</b>：</p>
+      <div class="cy-rem" id="cyRem"></div>
+      <p class="tip" data-step="1">余数为什么会重复？　<span class="think" data-step="2" data-ask="想一想">余数一定<b>比除数小</b>，可能的余数只有有限几个，除着除着就会遇到出现过的余数，后面的商也就跟着重复了。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p72“你知道吗”里的四个例子。一直按“再除一位”：14 ÷ 16 除到第三位余数是 0——有限小数；另外三题，余数（橙色）重复出现时，商的数字也开始重复，标出循环节。让学生预测下一位商是几，再按。</p>
+</section>
+
+<!-- 8 ================= 循环小数 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">你知道吗</span><h2>有限小数、无限小数、循环小数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def">小数部分的位数是有限的小数，叫作<em>有限小数</em>；小数部分的位数是无限的小数，叫作<em>无限小数</em>。</div>
+      <div class="def" data-step="1">一个小数从小数部分的某一位起，一个数字或者几个数字依次不断重复出现，这样的小数叫作<em>循环小数</em>。依次不断重复出现的数字，叫作这个循环小数的<em>循环节</em>。</div>
+      <table class="mtab" data-step="2">
+        <tr><th>循环小数</th><th>循环节</th><th>简便写法</th></tr>
+        <tr><td>$1.66\cdots$</td><td>6</td><td>$1.\dot6$</td></tr>
+        <tr><td>$0.378378\cdots$</td><td>378</td><td>$0.\dot37\dot8$</td></tr>
+        <tr><td>$1.13636\cdots$</td><td>36</td><td>$1.1\dot3\dot6$</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <div class="calc" data-step="3">
+        <h4>练习十三第 17 题：先算，找规律</h4>
+        <p>$1\div11=0.0909\cdots$　$2\div11=0.1818\cdots$</p>
+        <p>$3\div11=$ <span class="blank" data-ans="0.2727" data-w="5"></span>…　$4\div11=$ <span class="blank" data-ans="0.3636" data-w="5"></span>…</p>
+        <p>$5\div11\approx$ <span class="blank" data-ans="0.45"></span>　$6\div11\approx$ <span class="blank" data-ans="0.55"></span></p>
+        <p>$7\div11\approx$ <span class="blank" data-ans="0.64"></span>　$8\div11\approx$ <span class="blank" data-ans="0.73"></span>　$9\div11\approx$ <span class="blank" data-ans="0.82"></span></p>
+      </div>
+      <p class="tip gold" data-step="4">规律：$n\div11$ 的循环节是 $9\times n$ 写成两位数（如 $3\div11$：$9\times3=27$）。</p>
+    </div>
+  </div>
+  <p class="note">定义是课本 p72“你知道吗”的原文。简便写法：只写一个循环节，在第一位和最后一位上面各点一个圆点（一位循环节只点一个）。第 17 题后几问要求保留两位小数：5 ÷ 11 = 0.4545… ≈ 0.45，6 ÷ 11 = 0.5454… ≈ 0.55，以此类推。</p>
+</section>
+
+<!-- 9 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十三</span><h2>用“四舍五入”法求出商的近似值</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab q9">
+        <tr><th></th><th>保留一位小数</th><th>保留两位小数</th><th>保留三位小数</th></tr>
+        <tr><th>$2.7\div1.1$</th><td><span class="blank" data-ans="2.5"></span></td><td><span class="blank" data-ans="2.45"></span></td><td><span class="blank" data-ans="2.455" data-w="5"></span></td></tr>
+        <tr><th>$16\div23$</th><td><span class="blank" data-ans="0.7"></span></td><td><span class="blank" data-ans="0.70" data-strict></span></td><td><span class="blank" data-ans="0.696" data-w="5"></span></td></tr>
+        <tr><th>$2.7\div0.46$</th><td><span class="blank" data-ans="5.9"></span></td><td><span class="blank" data-ans="5.87"></span></td><td><span class="blank" data-ans="5.870" data-w="5" data-strict></span></td></tr>
+      </table>
+      <div class="hint-ladder">
+        <p class="q">要先除到第几位？</p>
+        <details><summary>提示</summary>要保留三位小数，就除到第<b>四</b>位：$2.7\div1.1=2.4545\cdots$，$16\div23=0.6956\cdots$，$2.7\div0.46=5.8695\cdots$。</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>14.</b>（1）张大伯家收获 13.6 吨橘子，用一辆载重 4 吨的卡车运，至少几次才能运完？</p>
+        <p class="q small-q"><span class="blank" data-ans="4"></span> 次</p>
+        <details><summary>提示</summary>$13.6\div4=3.4$，运 3 次还剩 1.6 吨……</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>14.</b>（2）一副羽毛球拍 45 元，李老师带了 400 元，最多可以买多少副？</p>
+        <p class="q small-q"><span class="blank" data-ans="8"></span> 副</p>
+        <details><summary>提示</summary>$400\div45=8.88\cdots$，买 9 副要 405 元。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p74 练习十三第 9 题、第 14 题。第 9 题第二行保留两位小数是 0.70，末尾的 0 不能去掉。第 14 题（1）进一、（2）去尾，先让学生说用哪种方法。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>怎样求商的近似值？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>除不尽 / 不需要那么多位</b><small>$40\div60$</small></div>
+      <i>多除一位</i>
+      <div class="fbox"><b>$0.666$</b><small>保留两位就除到第三位</small></div>
+      <i>四舍五入</i>
+      <div class="fbox hot"><b>$\approx0.67$</b><small>商的近似值</small></div>
+    </div>
+    <div class="cols3">
+      <p class="method" data-label="一般方法" data-step="2">多除一位，再“四舍五入”。</p>
+      <p class="method" data-label="联系实际" data-step="3">买东西、做衣服：<b>去尾</b>；装油、运货、坐车：<b>进一</b>。</p>
+      <p class="method" data-label="循环小数" data-step="4">余数重复，商就重复；写一个循环节，首尾点圆点。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一课：</b>课本 p76 例 14——赵大伯的菜地里种了茄子和辣椒，菜地面积怎样算？小数的四则混合运算。</p>
+  </div>
+  <p class="note">请学生举生活中的例子说一说什么时候要“去尾”，什么时候要“进一”。课后作业建议：练习十三第 10、11、15 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mvert.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

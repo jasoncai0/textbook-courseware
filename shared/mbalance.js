@@ -43,7 +43,7 @@ const MBalance = (() => {
     } else if (it.k === 'box') {
       const h = it.h || 64;
       mk('rect', { x: x - w / 2, y: y - h, width: w, height: h, rx: 3, class: 'mb-box' }, g);
-      const t = mk('text', { x, y: y - h / 2 + 8, class: 'mb-t mb-x', 'font-size': 22 }, g);
+      const t = mk('text', { x, y: y - h / 2 + 8, class: 'mb-t mb-x', 'font-size': it.fs || 22 }, g);
       t.textContent = it.t || 'x 克';
     } else if (it.k === 'egg') {
       mk('ellipse', { cx: x, cy: y - 31, rx: 25, ry: 31, class: 'mb-egg' }, g);
@@ -57,7 +57,7 @@ const MBalance = (() => {
   }
 
   function create(svg) {
-    svg.setAttribute('viewBox', '-14 14 628 282');
+    svg.setAttribute('viewBox', '-14 40 628 256');
     svg.classList.add('mbal');
     svg.innerHTML = '';
     // 底座和立柱（不动）

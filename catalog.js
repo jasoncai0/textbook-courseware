@@ -2755,13 +2755,21 @@ window.CATALOG = [
                 "no": "例1–2",
                 "title": "认识正数和负数",
                 "genre": "概念",
-                "kind": "负数"
+                "kind": "负数",
+                "dir": "mp5a-zhengfushu",
+                "pages": 10,
+                "desc": "拖温度计液柱，按任务调零上零下",
+                "cover": "mp5a-zhengfushu/assets/wendu.jpg"
               },
               {
                 "no": "例3–4",
                 "title": "用正负数表示相反意义的量",
                 "genre": "概念",
-                "kind": "负数"
+                "kind": "负数",
+                "dir": "mp5a-xiangfanyiyi",
+                "pages": 11,
+                "desc": "东西走一走，再把小路变成数轴",
+                "cover": "mp5a-xiangfanyiyi/assets/dongxi.jpg"
               }
             ]
           },
@@ -2774,31 +2782,51 @@ window.CATALOG = [
                 "no": "例1–3",
                 "title": "平行四边形的面积",
                 "genre": "推导",
-                "kind": "图形面积"
+                "kind": "图形面积",
+                "dir": "mp5a-pingxingmianji",
+                "pages": 11,
+                "desc": "拖剪刀线沿高剪开，平移拼成长方形",
+                "cover": "mp5a-pingxingmianji/assets/shougong.jpg"
               },
               {
                 "no": "例4–5",
                 "title": "三角形的面积",
                 "genre": "推导",
-                "kind": "图形面积"
+                "kind": "图形面积",
+                "dir": "mp5a-sanjiaoxingmianji",
+                "pages": 11,
+                "desc": "复制三角形绕中点转 180° 拼成平行四边形",
+                "cover": "mp5a-sanjiaoxingmianji/assets/lukou.jpg"
               },
               {
                 "no": "例6–7",
                 "title": "梯形的面积",
                 "genre": "推导",
-                "kind": "图形面积"
+                "kind": "图形面积",
+                "dir": "mp5a-tixingmianji",
+                "pages": 11,
+                "desc": "拖上底滑块，梯形在三角形和平行四边形之间变化",
+                "cover": "mp5a-tixingmianji/assets/maitian.jpg"
               },
               {
                 "no": "例8–9",
                 "title": "公顷和平方千米",
                 "genre": "概念",
-                "kind": "面积单位"
+                "kind": "面积单位",
+                "dir": "mp5a-gongqing",
+                "pages": 11,
+                "desc": "正方形逐层放大：1 米到 1000 米",
+                "cover": "mp5a-gongqing/assets/hupan.jpg"
               },
               {
                 "no": "例10–11",
                 "title": "组合图形与不规则图形的面积",
                 "genre": "推导",
-                "kind": "图形面积"
+                "kind": "图形面积",
+                "dir": "mp5a-zuhetuxing",
+                "pages": 10,
+                "desc": "三种割补；湖泊数方格，格子越小越准",
+                "cover": "mp5a-zuhetuxing/assets/caoping.jpg"
               },
               {
                 "no": "综合与实践",
@@ -2874,55 +2902,91 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "小数乘整数",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-xiaoshuchengzhengshu",
+                "pages": 11,
+                "desc": "钱币板摆硬币满十换一，竖式逐步点小数点",
+                "cover": "mp5a-xiaoshuchengzhengshu/assets/xigua.jpg"
               },
               {
                 "no": "例2–3",
                 "title": "小数点向右移动引起的变化",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-xiaoshudianyouyi",
+                "pages": 11,
+                "desc": "小数点滑轨：×10/100/1000 逐格右滑补0",
+                "cover": "mp5a-xiaoshudianyouyi/assets/danbaizhi.jpg"
               },
               {
                 "no": "例4",
                 "title": "小数除以整数",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-xiaoshuchuyizhengshu",
+                "pages": 11,
+                "desc": "分钱板：不够分换小一级，配除法竖式演示",
+                "cover": "mp5a-xiaoshuchuyizhengshu/assets/shuiguo.jpg"
               },
               {
                 "no": "例5–6",
                 "title": "小数点向左移动引起的变化",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-xiaoshudianzuoyi",
+                "pages": 11,
+                "desc": "拖小数点先猜后查，左补0，与右移对照",
+                "cover": "mp5a-xiaoshudianzuoyi/assets/dongwu.jpg"
               },
               {
                 "no": "例7",
                 "title": "小数乘小数",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-xiaoshuchengxiaoshu",
+                "pages": 11,
+                "desc": "面积图数0.01小方格、分块看，点小数点",
+                "cover": "mp5a-xiaoshuchengxiaoshu/assets/fangjian.jpg"
               },
               {
                 "no": "例8–9",
                 "title": "积的位数与积的近似值",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-jiweishu",
+                "pages": 10,
+                "desc": "小数点跳跳：从右数位数、不够补0",
+                "cover": "mp5a-jiweishu/assets/huajia.jpg"
               },
               {
                 "no": "例10–11",
                 "title": "除数是小数的除法",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-chushuxiaoshu",
+                "pages": 11,
+                "desc": "商不变滑轨：两个小数点同时右移",
+                "cover": "mp5a-chushuxiaoshu/assets/jidan.jpg"
               },
               {
                 "no": "例12–13",
                 "title": "商的近似值",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-shangjinsi",
+                "pages": 10,
+                "desc": "再除一位：余数重复→找循环节",
+                "cover": "mp5a-shangjinsi/assets/youyong.jpg"
               },
               {
                 "no": "例14",
                 "title": "小数四则混合运算和简便计算",
                 "genre": "推导",
-                "kind": "小数运算"
+                "kind": "小数运算",
+                "dir": "mp5a-sizehunhe",
+                "pages": 10,
+                "desc": "比例菜地分合＋运算顺序逐步算",
+                "cover": "mp5a-sizehunhe/assets/caidi.jpg"
               },
               {
                 "no": "综合与实践",
@@ -2942,13 +3006,21 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "复式统计表",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mp5a-fushitongjibiao",
+                "pages": 10,
+                "desc": "四张小表搬进复式表＋点格读行列",
+                "cover": "mp5a-fushitongjibiao/assets/yueqi.jpg"
               },
               {
                 "no": "例2",
                 "title": "复式条形统计图",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mp5a-fushitiaoxingtu",
+                "pages": 11,
+                "desc": "两图合一动画＋拖直条画图自动检查",
+                "cover": "mp5a-fushitiaoxingtu/assets/tiaosheng.jpg"
               }
             ]
           },

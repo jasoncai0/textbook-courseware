@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小数乘小数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mdec.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fangjian.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第五单元 小数乘法和除法 · 小数乘小数</p>
+    <h1 class="cover-title">小数乘小数</h1>
+    <p class="cover-q" data-step="1">小明的房间长 <b>3.8 米</b>、宽 <b>3.2 米</b>，外面的阳台长 3.2 米、宽 1.15 米。</p>
+    <p class="cover-q" data-step="2">房间的面积是多少平方米？两个因数<b>都是小数</b>，积的小数点怎么点？</p>
+    <div class="chips" data-step="3"><span class="chip">先估一估</span><span class="chip">面积图数格子</span><span class="chip">竖式算一算</span><span class="chip">找到规律</span></div>
+  </div>
+  <p class="note">课本 p64 例 7。列式：长方形面积 = 长 × 宽，3.8 × 3.2。上一节课学的是小数乘整数，这节课两个因数都是小数。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这些旧知识，今天要用</h2></div>
+  <div class="bd full">
+    <div class="cols2 recall-grid">
+      <div class="recall" data-label="本单元例 1 · 小数乘整数" data-step="1">
+        <p>$2.35\times3$：先看作 $235\times3=705$，因数有 2 位小数，积就有 2 位小数：7.05。</p>
+        <span class="use">小数乘小数，也先“看作整数”来算。</span>
+      </div>
+      <div class="recall" data-label="四年级下册 · 积的变化规律" data-step="2">
+        <p>一个因数乘 10，另一个因数不变，积也乘 10：$4\times3=12$，$40\times3=120$。</p>
+        <span class="use">两个因数都乘 10，积就乘 100，所以最后要除以 100。</span>
+      </div>
+      <div class="recall" data-label="本单元例 2、例 5 · 小数点移动" data-step="3">
+        <p>除以 10、100、1000……小数点<b>向左</b>移动一位、两位、三位……</p>
+        <span class="use">$1216\div100$：小数点向左移动两位，得 12.16。</span>
+      </div>
+      <div class="recall" data-label="三年级下册 · 长方形的面积" data-step="4">
+        <p>长方形的面积 = 长 × 宽；边长 1 米的正方形面积是 <b>1 平方米</b>。</p>
+        <span class="use">用面积图看清 3.8 × 3.2 到底是多少个小方格。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 2 张卡是四年级下册“积的变化规律”，请学生举例说一说。本课课本竖式右边的“×10、×10、÷100”就是用这条规律。</p>
+</section>
+
+<!-- 3 ================= 估一估 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · 估一估</span><h2>先估计一下：房间的面积大约是多少？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="estFig" class="est-fig" viewBox="0 0 470 400" aria-label="3.8 米 × 3.2 米的长方形和 4 米、3 米的估计框"></svg>
+    </div>
+    <div class="col">
+      <p class="tip">$3.8\times3.2=$ ？　先估计，再计算。</p>
+      <p class="bubble b1" data-step="1">把 3.8 看成 4：$4\times3.2=$ <span class="blank" data-ans="12.8"></span>，面积比 12.8 平方米<b>小</b>。</p>
+      <p class="bubble b2" data-step="2">把 3.2 看成 3：$3.8\times3=$ <span class="blank" data-ans="11.4"></span>，面积比 11.4 平方米<b>大</b>。</p>
+      <p class="bubble b3" data-step="3">所以房间的面积在 <b>11.4</b> 和 <b>12.8</b> 平方米之间。</p>
+      <p class="tip gold" data-step="4">估一估，能帮我们检查后面算出的积对不对。</p>
+    </div>
+  </div>
+  <p class="note">课本 p64 三个小精灵的估算。图中蓝色是真实的房间（3.8 米 × 3.2 米），橙色虚线框是“把 3.8 看成 4”，绿色虚线框是“把 3.2 看成 3”。两个估计都用上一课的小数乘整数算。图按真实比例绘制（1 米 = 100 个单位）。</p>
+</section>
+
+<!-- 4 ================= 面积图（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · 数一数</span><h2>面积图：3.8 × 3.2 里有多少个小方格？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="ag-wrap" data-noswipe>
+        <svg id="agFig" class="ag-fig" viewBox="0 0 470 470" aria-label="按 0.1 米分格的长方形面积图"></svg>
+      </div>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe><span>长 <b id="agLv">3.8</b> 米</span><input type="range" id="agL" min="1" max="40" value="38" aria-label="长"></div>
+      <div class="slider-row" data-noswipe><span>宽 <b id="agWv">3.2</b> 米</span><input type="range" id="agW" min="1" max="40" value="32" aria-label="宽"></div>
+      <div class="btns" data-noswipe id="agMode"><button type="button" class="btn solid" data-m="grid">数小方格</button><button type="button" class="btn" data-m="part">分块看</button></div>
+      <div class="ag-read" id="agRead"></div>
+      <p class="tip gold" data-step="1">每个小方格边长 0.1 米，面积是 <span class="blank" data-ans="0.01" data-w="4"></span> 平方米。3.8 × 3.2 = 38 × 32 个小方格 = <span class="blank" data-ans="1216" data-w="4"></span> 个 0.01 = 12.16 平方米。</p>
+    </div>
+  </div>
+  <p class="note">本课核心操作。把 1 米平均分成 10 份，每个小方格是 0.1 米 × 0.1 米 = 0.01 平方米（100 个小方格拼成 1 平方米）。长有 38 个 0.1 米，宽有 32 个 0.1 米，小方格一共 38 × 32 = 1216 个——这就是竖式里“看作整数”算的 1216，每个是 0.01，所以是 12.16。“分块看”：9 个整平方米 + 0.1 平方米的长条 + 0.01 平方米的小方格，和竖式的部分积对应。可以拖动滑块换别的长、宽。</p>
+</section>
+
+<!-- 5 ================= 竖式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · 竖式</span><h2>先看作整数相乘，再想积的变化规律</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="mdec-host" id="v1"></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本：先把两个小数都<b>看作整数</b>，按整数乘法计算，再联系积的变化规律想一想。</p>
+      <div class="chain" data-step="1">
+        <span class="node">3.8 × 3.2</span><i>两个因数都 ×10</i><span class="node">38 × 32 = 1216</span>
+      </div>
+      <p class="tip" data-step="2">两个因数都乘 10，积就乘了 <span class="blank" data-ans="100"></span>；要得到原来的积，就把 1216 <b>除以 100</b>。</p>
+      <p class="tip" data-step="3">$1216\div100=$ <span class="think" data-step="4" data-ask="多少？"><b>12.16</b>（小数点向左移动两位）</span></p>
+      <p class="tip gold" data-step="5"><b>答：</b>小明房间的面积是 <span class="blank" data-ans="12.16" data-w="4"></span> 平方米。在 11.4 和 12.8 之间，和估计相符 ✓</p>
+    </div>
+  </div>
+  <p class="note">课本 p64 下方虚线框里的“×10、×10、÷100”。演示左边竖式时，右侧红字就是这条思路。最后和估算对照，养成用估算检查的习惯。</p>
+</section>
+
+<!-- 6 ================= 试一试：阳台 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>阳台的面积是多少平方米？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="mdec-host" id="v2"></div>
+    </div>
+    <div class="col">
+      <p class="tip">$3.2\times1.15=$ ？先在括号里填合适的数，再把竖式写完整。</p>
+      <div class="calc" data-step="1">
+        <p>1.15 → 115：$\times($ <span class="blank" data-ans="100" data-w="4"></span> $)$</p>
+        <p>3.2 → 32：$\times($ <span class="blank" data-ans="10" data-w="4"></span> $)$</p>
+        <p>3680 → 积：$\div($ <span class="blank" data-ans="1000" data-w="4"></span> $)$</p>
+      </div>
+      <p class="tip" data-step="2">$3680\div1000=3.680=$ <span class="blank" data-ans="3.68" data-w="4"></span>（末尾的 0 去掉）</p>
+      <p class="tip gold" data-step="3"><b>答：</b>阳台的面积是 3.68 平方米。</p>
+    </div>
+  </div>
+  <p class="note">课本 p65 试一试，竖式按课本写成 1.15 × 3.2。一个因数乘 100，另一个乘 10，积就乘了 1000，所以要除以 1000。3.680 末尾的 0 要先点小数点再去掉——如果先去掉 0 再数位数，就会出错（368 → 0.368）。</p>
+</section>
+
+<!-- 7 ================= 找规律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想</span><h2>乘数的小数位数和积的小数位数有什么联系？</h2></div>
+  <div class="bd full top">
+    <table class="mtab big-tab">
+      <tr><th>算式</th><th>第一个因数的小数位数</th><th>第二个因数的小数位数</th><th>积（去 0 以前）</th><th>积的小数位数</th></tr>
+      <tr><td>$3.8\times3.2$</td><td>1</td><td>1</td><td>12.16</td><td><span class="blank" data-ans="2"></span></td></tr>
+      <tr><td>$1.15\times3.2$</td><td>2</td><td>1</td><td>3.680</td><td><span class="blank" data-ans="3"></span></td></tr>
+      <tr><td>$2.35\times3$</td><td>2</td><td>0</td><td>7.05</td><td><span class="blank" data-ans="2"></span></td></tr>
+    </table>
+    <div class="cols3 talk" data-step="1">
+      <p class="bubble b1">乘数中一共有几位小数，积就有几位小数。</p>
+      <p class="bubble b2">先把乘数看成整数，按整数乘法算，再确定积的小数点位置。</p>
+      <p class="bubble b3">乘数中一共有几位小数，就从积的右边起数出几位，点上小数点。</p>
+    </div>
+    <div class="def" data-step="2"><h4>小数乘法这样计算</h4>先按<em>整数乘法</em>算出积，再看<em>因数中一共有几位小数</em>，就从积的<em>右边起数出几位</em>，点上小数点；积的小数末尾有 0，要<em>先点小数点、再去掉</em>。</div>
+  </div>
+  <p class="note">课本 p65 中间的问题和三个小精灵的话。注意“积（去 0 以前）”：3.680 有 3 位小数，去掉末尾的 0 以后才变成 3.68。第三行是上一课的例子，说明小数乘整数也符合这条规律（整数可以看作 0 位小数）。</p>
+</section>
+
+<!-- 8 ================= 练一练 1：点小数点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 1</span><h2>你能给下面各题的积点上小数点吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3 dots">
+      <div class="dotq" data-a="8.7" data-b="0.9"></div>
+      <div class="dotq" data-a="72.9" data-b="0.04"></div>
+      <div class="dotq" data-a="16.5" data-b="0.6"></div>
+    </div>
+    <p class="tip center" data-step="1">先数两个因数一共有几位小数，再点积里的一个数字——小数点就点在它的右下角；点错了可以再点。</p>
+    <p class="warn" data-step="2">$16.5\times0.6$：积是 <b>9.90</b>，先数出 2 位点小数点，再去掉末尾的 0，得 <b>9.9</b>。</p>
+  </div>
+  <p class="note">课本 p65 练一练第 1 题，竖式已经算好，只要点小数点。让学生先数两个因数一共有几位小数，再从积的右边数出几位。第三题积的末尾是 0，先点再去 0。</p>
+</section>
+
+<!-- 9 ================= 练一练 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 2</span><h2>用竖式计算，再用演示核对</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用竖式计算。</p>
+        <p class="q small-q">$4.6\times2.8=$ <span class="blank" data-ans="12.88" data-w="5"></span><br>$0.64\times7.5=$ <span class="blank" data-ans="4.8|4.800" data-w="5"></span><br>$2.05\times3.6=$ <span class="blank" data-ans="7.38|7.380" data-w="5"></span></p>
+        <details><summary>提示 1</summary>先估一估：4.6 × 2.8 大约是 5 × 3 = 15，积应该比 15 小一点。</details>
+        <details><summary>提示 2</summary>$64\times75=4800$，一共 3 位小数 → 4.800 → 4.8。</details>
+        <details><summary>完整解答</summary>12.88；4.8；7.38。</details>
+      </div>
+      <div class="warn">点小数点前，先数一数：两个因数<b>一共</b>有几位小数。</div>
+    </div>
+    <div class="col">
+      <div class="btns center-btns" id="vPick" data-noswipe>
+        <button type="button" class="btn solid" data-a="4.6" data-b="2.8">4.6 × 2.8</button>
+        <button type="button" class="btn" data-a="0.64" data-b="7.5">0.64 × 7.5</button>
+        <button type="button" class="btn" data-a="2.05" data-b="3.6">2.05 × 3.6</button>
+      </div>
+      <div class="mdec-host" id="v3"></div>
+    </div>
+  </div>
+  <p class="note">课本 p65 练一练第 2 题。先独立计算，再选右边的题目逐步核对。0.64 × 7.5 和 2.05 × 3.6 的积末尾都有 0。</p>
+</section>
+
+<!-- 10 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>先估一估，再判断对不对</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p>$4.6\times2.8=128.8$</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>只数了一个因数的小数位数。</b>估一估：5 × 3 = 15，积不可能是 128.8。一共 2 位小数：12.88。</p></div>
+      </div>
+      <div class="jcard">
+        <p>$0.64\times7.5=0.48$</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>先去 0 再点小数点，错了。</b>4800 要先数出 3 位：4.800，再去 0 得 4.8。估一估：0.64 × 7.5 比 0.5 × 7 = 3.5 大。</p></div>
+      </div>
+      <div class="jcard">
+        <p>$3.2\times1.15=3.68$</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>对。</b>3680 数出 3 位是 3.680，去掉末尾的 0 是 3.68。估一估：3 × 1 = 3，差不多。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="检查积的两个办法">① 数一数：两个因数<b>一共</b>几位小数，积就有几位（先点小数点再去 0）；② 估一估：把因数看成接近的整数，看积的大小合不合理。</p>
+  </div>
+  <p class="note">三道题都是本课出现过的算式，错法是学生最常见的两种：只数一个因数的位数；先去掉末尾的 0 再数位数。用估算检查是很实用的习惯。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>小数乘小数，我们是怎样想、怎样算的？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>3.8 × 3.2</b><small>估一估：11.4～12.8</small></div>
+      <i>都 × 10<br><small>看作整数</small></i>
+      <div class="fbox"><b>38 × 32 = 1216</b><small>1216 个 0.01 平方米</small></div>
+      <i>÷ 100<br><small>数出 2 位</small></i>
+      <div class="fbox hot"><b>12.16</b><small>平方米</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="转化" data-step="2">把小数乘法<b>转化</b>成整数乘法：面积图上是数 0.01 的小方格，竖式上是用积的变化规律。</p>
+      <div class="method" data-label="计算方法" data-step="3"><ul class="use-list"><li>按整数乘法算出积</li><li>因数一共有几位小数，就从积的右边数出几位点小数点</li><li>积的末尾有 0：先点小数点，再去 0</li><li>用估算检查</li></ul></div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>例 8——$0.28\times0.28$，积 784 只有 3 位，却要数出 4 位小数，位数不够怎么办？</p>
+  </div>
+  <p class="note">请学生说一说：小数乘小数和小数乘整数的方法有什么相同？（都是先按整数乘，再数小数位数。）课后作业建议：练一练第 2 题和练习十二的相关题目。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mdec.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

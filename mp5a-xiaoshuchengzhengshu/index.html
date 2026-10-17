@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小数乘整数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mdec.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面：买西瓜 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xigua.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第五单元 小数乘法和除法 · 小数乘整数</p>
+    <h1 class="cover-title">小数乘整数</h1>
+    <p class="cover-q" data-step="1">夏天，西瓜 <b>0.8 元</b>/千克；冬天，西瓜 <b>2.35 元</b>/千克。</p>
+    <p class="cover-q" data-step="2">各买 3 千克，要多少元？单价是<b>小数</b>，乘法还会算吗？</p>
+    <div class="chips" data-step="3"><span class="chip">换成角、分想一想</span><span class="chip">列竖式算一算</span><span class="chip">找到计算方法</span></div>
+  </div>
+  <p class="note">课本 p55 例 1 的两个情境。先让学生说一说怎样列式：求 3 千克多少元，就是求 3 个 0.8 是多少，用乘法 0.8 × 3。“以前乘的都是整数，现在有一个因数是小数”——这就是本课要解决的新问题。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这几样“老本领”，今天都用得上</h2></div>
+  <div class="bd full">
+    <div class="cols2 recall-grid">
+      <div class="recall" data-label="一年级 · 认识人民币" data-step="1">
+        <p class="big">1 元 = 10 角　　1 角 = 10 分</p>
+        <p>0.8 元就是 <b>8 角</b>；2.35 元就是 <b>2 元 3 角 5 分</b>。</p>
+        <span class="use">把“元”换成“角”，小数就变成了整数。</span>
+      </div>
+      <div class="recall" data-label="五上第三单元 · 小数的意义" data-step="2">
+        <p>0.8 是 <b>8 个 0.1</b>（8 个十分之一）；<br>2.35 是 <b>235 个 0.01</b>（235 个百分之一）。</p>
+        <span class="use">说清楚竖式里的“8”“24”表示几个什么。</span>
+      </div>
+      <div class="recall" data-label="五上第四单元 · 小数加法" data-step="3">
+        <div class="mini-v" data-rows="0.8|0.8|+0.8|2.4" data-ul="2"></div>
+        <p>小数加法：<b>小数点对齐</b>（相同数位对齐），再按整数加法计算。</p>
+        <span class="use">3 个 0.8 相加，就是 0.8 × 3。</span>
+      </div>
+      <div class="recall" data-label="三、四年级 · 整数乘法" data-step="4">
+        <div class="mini-v" data-rows="235|×3|705" data-ul="1"></div>
+        <p>整数乘法竖式：<b>末位对齐</b>，从个位乘起。</p>
+        <span class="use">小数乘整数，最后要“借”整数乘法来算。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">逐张出示。第 3 张卡可以请学生口算 0.8 + 0.8 + 0.8；第 4 张卡请学生说一说 235 × 3 是怎样算的。这两张卡分别是课本例 1 里“连加”和“竖式”两种想法的基础。</p>
+</section>
+
+<!-- 3 ================= 例 1（1）换成角：钱币板 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1（1）· 摆一摆</span><h2>买 3 千克 0.8 元/千克的西瓜，要多少元？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">列式：$0.8\times3=$ ？<br>0.8 元是 8 角。每买 1 千克，就放 <b>8 枚 1 角</b>硬币。</p>
+      <p class="tip" data-step="1">一共有 <span class="blank" data-ans="24"></span> 角，<br>也就是 <span class="blank" data-ans="2.4"></span> 元。</p>
+      <div class="method" data-label="想法一：换成角" data-step="2">
+        <p>$8\times3=24$（角）<br>24 角 $=2.4$ 元</p>
+      </div>
+      <div class="method" data-label="想法二：连加" data-step="3">
+        <p>$0.8\times3$ 是 3 个 0.8 相加：<br>$0.8+0.8+0.8=2.4$</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="coin-board" id="cb1" data-price="0.8" data-max="3" data-unit="千克"></div>
+    </div>
+  </div>
+  <p class="note">核心操作：点“买 1 千克”三次，每次放 8 枚 1 角硬币（三种颜色的圈表示三次）。角满 10 枚就能“换”成 1 元，让学生自己点“10 角换 1 元”。问：24 角能换几元？剩几角？引出 24 角 = 2 元 4 角 = 2.4 元。两种想法都对，但数大了（如 2.35 × 3、4.76 × 12）连加就太麻烦了——引出竖式。</p>
+</section>
+
+<!-- 4 ================= 例 1（1）竖式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1（1）· 竖式</span><h2>可以用乘法竖式计算吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="mdec-host" id="v1"></div>
+    </div>
+    <div class="col">
+      <p class="tip">竖式里的数都表示几个什么？</p>
+      <p class="tip" data-step="1">0.8 是 <b>8 个十分之一</b>，乘 3，<br>就是 <span class="think" data-step="2" data-ask="几个十分之一？">$8\times3=$ <b>24 个十分之一</b></span>。</p>
+      <p class="tip" data-step="3">24 个十分之一是 <span class="think" data-step="4" data-ask="是多少？"><b>2.4</b>，所以积的小数点在 2 和 4 中间</span>。</p>
+      <p class="tip gold" data-step="5"><b>答：</b>夏天买 3 千克西瓜要 <span class="blank" data-ans="2.4"></span> 元。</p>
+      <p class="warn" data-step="6">乘法竖式要<b>末位对齐</b>：3 和 8 对齐，不是和小数点对齐。</p>
+    </div>
+  </div>
+  <p class="note">左边是逐步演示（点“下一步”）。重点在算理：先当作 8 × 3 = 24 算，这个 24 表示 24 个十分之一（课本竖式旁边的红字），所以是 2.4。和换成角的想法对照：“8 角 × 3 = 24 角”，角也是十分之一元。</p>
+</section>
+
+<!-- 5 ================= 例 1（2）钱币板：2.35 × 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1（2）· 摆一摆</span><h2>冬天买 3 千克西瓜要多少元？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">列式：$2.35\times3=$ ？<br>2.35 元是 <b>2 元 3 角 5 分</b>。</p>
+      <p class="tip" data-step="1">买 3 千克：<br>6 元 9 角 <span class="blank" data-ans="15"></span> 分。</p>
+      <p class="tip" data-step="2">分满 10 换 1 角，角满 10 换 1 元：<br>最后是 <span class="blank" data-ans="7"></span> 元 <span class="blank" data-ans="0"></span> 角 <span class="blank" data-ans="5"></span> 分 $=7.05$ 元。</p>
+      <p class="tip gold" data-step="3">“满十换一”——这和竖式里的<b>进位</b>是一回事！</p>
+    </div>
+    <div class="col">
+      <div class="coin-board" id="cb2" data-price="2.35" data-max="3" data-unit="千克"></div>
+    </div>
+  </div>
+  <p class="note">先买 3 次，数一数：6 元 9 角 15 分。分满 10 了，换成 1 角，角变成 10 角，又能换 1 元：7 元 0 角 5 分。让学生体会“换”就是竖式里的进位：5 × 3 = 15 写 5 进 1，3 × 3 + 1 = 10 写 0 进 1。</p>
+</section>
+
+<!-- 6 ================= 例 1（2）竖式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1（2）· 竖式</span><h2>先算整数乘法，再在积上点小数点</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="mdec-host" id="v2"></div>
+    </div>
+    <div class="col">
+      <p class="tip">课本小精灵：先用加法竖式计算，再在乘法竖式上算出得数。</p>
+      <div class="add-check" data-step="1">
+        <div class="mini-v" data-rows="2.35|2.35|+2.35|7.05" data-ul="2"></div>
+      </div>
+      <p class="tip" data-step="2">2.35 是 <span class="blank" data-ans="235"></span> 个百分之一，乘 3 得 <span class="blank" data-ans="705"></span> 个百分之一，就是 7.05。</p>
+      <p class="tip gold" data-step="3"><b>答：</b>冬天买 3 千克西瓜要 <span class="blank" data-ans="7.05"></span> 元。</p>
+    </div>
+  </div>
+  <p class="note">加法和乘法得数相同，说明“看作整数 235 × 3 = 705，再点小数点”的方法是对的。课本竖式旁的两个括号就是“235 个百分之一”“705 个百分之一”。追问：为什么积是两位小数？——因为 705 个“百分之一”。</p>
+</section>
+
+<!-- 7 ================= 试一试：找规律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 找规律</span><h2>积的小数位数和因数的小数位数有什么关系？</h2></div>
+  <div class="bd full top">
+    <p class="tip">用计算器算一算，填在表里（课本 p56）。</p>
+    <table class="mtab">
+      <tr><th>算式</th><th>积</th><th>小数因数有几位小数</th><th>积有几位小数</th></tr>
+      <tr><td>$0.8\times3$</td><td>2.4</td><td>1</td><td>1</td></tr>
+      <tr><td>$2.35\times3$</td><td>7.05</td><td>2</td><td>2</td></tr>
+      <tr><td>$4.76\times12$</td><td><span class="blank" data-ans="57.12" data-w="5"></span></td><td><span class="blank" data-ans="2"></span></td><td><span class="blank" data-ans="2"></span></td></tr>
+      <tr><td>$2.8\times53$</td><td><span class="blank" data-ans="148.4" data-w="5"></span></td><td><span class="blank" data-ans="1"></span></td><td><span class="blank" data-ans="1"></span></td></tr>
+      <tr><td>$103\times0.25$</td><td><span class="blank" data-ans="25.75" data-w="5"></span></td><td><span class="blank" data-ans="2"></span></td><td><span class="blank" data-ans="2"></span></td></tr>
+    </table>
+    <p class="tip" data-step="1">你发现了什么？和同桌说一说。　<span class="think" data-step="2" data-ask="说完再点开">因数里有几位小数，积就有几位小数。</span></p>
+    <div class="def" data-step="3"><h4>小数和整数相乘，可以这样计算</h4>先按<em>整数乘法</em>算出积，再看<em>因数中有几位小数</em>，就从积的<em>右边起数出几位</em>，点上小数点。</div>
+  </div>
+  <p class="note">课本 p56 试一试。最后一题是整数乘小数（103 × 0.25），提醒学生：小数在前、在后都一样。规律出来后，回看例 1 的两道题验证。这里先说“小数乘整数”，下一课以后还会遇到“积的末尾有 0”的情况。</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这样算对吗？先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p>$1.2\times4$</p>
+        <div class="mini-v" data-rows="1.2|×4|0.48" data-ul="1"></div>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>小数点点错了。</b>因数只有 1 位小数，积也只有 1 位小数：$12\times4=48$，$1.2\times4=4.8$。</p></div>
+      </div>
+      <div class="jcard">
+        <p>$0.5\times8$</p>
+        <div class="mini-v" data-rows="0.5|×8|4.0" data-ul="1"></div>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>算对了，但还要化简。</b>小数末尾的 0 可以去掉：$4.0=4$，所以 $0.5\times8=4$。</p></div>
+      </div>
+      <div class="jcard">
+        <p>$3.24\times6$</p>
+        <div class="mini-v" data-rows="3.24|×6_|19.44" data-ul="1"></div>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">竖式对</button><button type="button" data-k="x">竖式错</button>
+          <p class="pick-why"><b>6 没有和末位 4 对齐。</b>乘法竖式要末位对齐（不用管小数点）；得数 19.44 是对的，但竖式写法要改。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="小数乘整数">① 末位对齐，按整数乘法算；② 数一数因数有几位小数，从积的右边数出几位点上小数点；③ 积的小数末尾有 0，去掉。</p>
+  </div>
+  <p class="note">三张卡：小数点位置错、积末尾有 0、竖式没有末位对齐。第 2 题来自练习十第 1 题（0.5 × 8）。第 3 张卡的 6 故意写在了 2 的下面（模仿加法“小数点对齐”的习惯），是常见错误。先举手表决，再请学生点。</p>
+</section>
+
+<!-- 9 ================= 练一练 1、2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>先想一想，再算一算</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 根据 $148\times23=3404$，直接写出下面各题的积。</p>
+        <p class="q small-q">$14.8\times23=$ <span class="blank" data-ans="340.4" data-w="5"></span><br>$148\times0.23=$ <span class="blank" data-ans="34.04" data-w="5"></span><br>$1.48\times23=$ <span class="blank" data-ans="34.04" data-w="5"></span></p>
+        <details><summary>提示 1</summary>整数部分都是 $148\times23=3404$，只要看因数有几位小数。</details>
+        <details><summary>完整解答</summary>14.8 有 1 位小数 → 340.4；0.23、1.48 都有 2 位小数 → 34.04。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用竖式计算（算完在右边核对）。</p>
+        <p class="q small-q">$3.7\times5=$ <span class="blank" data-ans="18.5" data-w="4"></span>　$0.18\times5=$ <span class="blank" data-ans="0.9|0.90" data-w="4"></span><br>$46\times1.3=$ <span class="blank" data-ans="59.8" data-w="4"></span>　$35\times0.24=$ <span class="blank" data-ans="8.4|8.40" data-w="4"></span></p>
+        <details><summary>提示 1</summary>$0.18\times5$：$18\times5=90$，有 2 位小数 → 0.90，末尾的 0 去掉。</details>
+        <details><summary>完整解答</summary>18.5；0.9；59.8；8.4。</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="btns center-btns" id="v3pick" data-noswipe>
+        <button type="button" class="btn solid" data-a="3.7" data-b="5">3.7 × 5</button>
+        <button type="button" class="btn" data-a="0.18" data-b="5">0.18 × 5</button>
+        <button type="button" class="btn" data-a="46" data-b="1.3">46 × 1.3</button>
+        <button type="button" class="btn" data-a="35" data-b="0.24">35 × 0.24</button>
+      </div>
+      <div class="mdec-host" id="v3"></div>
+    </div>
+  </div>
+  <p class="note">课本 p56 练一练。第 1 题不用重新计算，体会“先算整数积，再点小数点”。第 2 题先在本子上列竖式，再用右边的演示核对；46 × 1.3、35 × 0.24 是整数乘小数，方法一样。0.18 × 5 和 35 × 0.24 的积末尾有 0，记得去掉。</p>
+</section>
+
+<!-- 10 ================= 练习十 解决问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十 · 用一用</span><h2>生活中的小数乘法</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 小华看见远处有闪电，3 秒后听到雷声。已知雷声在空气中传播的速度是 0.33 千米/秒，闪电的地方离小华有多远？（从打闪起到看见闪光的时间略去不算）</p>
+        <p class="q small-q">离小华 <span class="blank" data-ans="0.99" data-w="4"></span> 千米</p>
+        <details><summary>提示 1</summary>雷声每秒走 0.33 千米，走了 3 秒：路程 = 速度 × 时间。</details>
+        <details><summary>完整解答</summary>$0.33\times3=0.99$（千米）。$33\times3=99$，有 2 位小数。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 汽车的油箱里有 25 升汽油，每升汽油可供汽车行驶 8.8 千米。行驶 200 千米，中途要加油吗？</p>
+        <p class="q small-q">25 升能行驶 <span class="blank" data-ans="220" data-w="4"></span> 千米；</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">要加油</button><button type="button" data-k="n">不要加油</button>
+          <p class="pick-why">$8.8\times25=220$（千米），$220&gt;200$，中途<b>不需要</b>加油。</p></div>
+        <details><summary>提示 1</summary>先算 25 升汽油一共能让汽车行驶多少千米，再和 200 千米比。</details>
+        <details><summary>完整解答</summary>$88\times25=2200$，有 1 位小数 → 220.0 = 220（千米）；220 千米比 200 千米多，不用加油。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本练习十第 3、4 题。第 4 题积末尾有 0：220.0 = 220，顺便复习“去掉末尾的 0”。可请学生说说第 4 题还有别的比法（如 200 千米需要多少升油，下一单元学习后再算）。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>小数乘整数，我们是怎样想、怎样算的？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>$2.35\times3$</b><small>新问题</small></div>
+      <i>看作整数<br><small>235 个百分之一</small></i>
+      <div class="fbox"><b>$235\times3=705$</b><small>旧知识：整数乘法</small></div>
+      <i>点小数点<br><small>705 个百分之一</small></i>
+      <div class="fbox hot"><b>$7.05$</b><small>积有 2 位小数</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="转化：化新为旧" data-step="2">把小数乘整数<b>转化成整数乘法</b>：可以换成角、分来想，也可以想“几个十分之一、几个百分之一”。</p>
+      <div class="method" data-label="计算方法" data-step="3"><ul class="use-list"><li>末位对齐，按整数乘法算</li><li>因数有几位小数，就从积的右边数出几位，点上小数点</li><li>积的小数末尾有 0，可以去掉</li></ul></div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>课本 p56 例 2——5.04 乘 10、100、1000 各是多少？小数点的位置会怎样变化？</p>
+  </div>
+  <p class="note">请学生用自己的话说一说：为什么可以先按整数乘，再点小数点？（因为算的是“几个十分之一 / 百分之一”。）课后作业建议：练习十第 1、2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mdec.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

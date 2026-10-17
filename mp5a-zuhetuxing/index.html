@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>组合图形与不规则图形的面积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgrid.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/caoping.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第二单元 多边形的面积 · 组合图形与不规则图形的面积</p>
+    <h1 class="cover-title">组合图形与<br>不规则图形的面积</h1>
+    <p class="cover-q" data-step="1">校园里的草坪不是长方形，也不是梯形；保护区里的湖泊，边是弯弯曲曲的。</p>
+    <p class="cover-q" data-step="2">这样的图形，面积怎样求？<b>分一分、补一补</b>，或者<b>数一数、估一估</b>。</p>
+    <div class="chips" data-step="3"><span class="chip">分割</span><span class="chip">添补</span><span class="chip">数方格估计</span><span class="chip">格子越小越准</span></div>
+  </div>
+  <p class="note">课本 p21 例 10、p22 例 11 的情境。本课是单元的最后一课，要把前面学过的所有面积公式用起来。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们会算哪些图形的面积？</h2></div>
+  <div class="bd full">
+    <div class="cols4 fcards" data-step="1">
+      <div class="recall" data-label="三下 · 长方形"><svg viewBox="0 0 120 70" aria-label="长方形"><rect x="15" y="10" width="90" height="52" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="2.5"/></svg><p class="center">长 × 宽</p></div>
+      <div class="recall" data-label="本单元 · 平行四边形"><svg viewBox="0 0 120 70" aria-label="平行四边形"><path d="M8 62H85L112 10H35Z" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="2.5"/></svg><p class="center">$a\times h$</p></div>
+      <div class="recall" data-label="本单元 · 三角形"><svg viewBox="0 0 120 70" aria-label="三角形"><path d="M10 62H110L45 8Z" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="2.5"/></svg><p class="center">$a\times h\div2$</p></div>
+      <div class="recall" data-label="本单元 · 梯形"><svg viewBox="0 0 120 70" aria-label="梯形"><path d="M8 62H112L82 10H35Z" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="2.5"/></svg><p class="center">$(a+b)\times h\div2$</p></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="三年级下册 · 数方格" data-step="2">面积就是图形里有<b>几个面积单位</b>。弯弯曲曲的图形，没有公式，可以<b>数方格</b>来估计。<span class="use">例 11 估计湖泊的面积。</span></p>
+      <p class="recall" data-label="本单元 · 转化" data-step="3">平行四边形“剪一剪、移一移”，梯形“分一分、补一补”。<span class="use">例 10 把组合图形分割成、或补成基本图形。</span></p>
+    </div>
+  </div>
+  <p class="note">先请学生说出四个公式，再说说每个是怎样推出来的。例 6 梯形的“分成长方形和三角形”“补一个梯形”，就是今天“分割”“添补”的方法。</p>
+</section>
+
+<!-- 3 ================= 例 10（核心 1） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 10 · 分一分、补一补</span><h2>这块草坪的面积是多少平方米？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">华丰小学校园里有一块草坪（如图），它的面积是多少平方米？</p>
+      <div class="btns col-btns" id="caoWay" data-noswipe>
+        <button type="button" class="btn" data-w="h">分割 ①：横着分成长方形和梯形</button>
+        <button type="button" class="btn" data-w="v">分割 ②：竖着分成长方形和三角形</button>
+        <button type="button" class="btn" data-w="b">添补：补成一个大长方形，再去掉一部分</button>
+      </div>
+      <p class="calc cao-calc" id="caoCalc">你准备怎样算？先和同学说一说，再点一种方法。</p>
+      <p class="tip">答：这块草坪的面积是 <span class="blank" data-ans="129"></span> 平方米。</p>
+    </div>
+    <div class="col">
+      <svg id="caoFig" class="cao-fig" aria-label="草坪：上边 12 米，右边 10 米，下边 15 米，左上竖边 4 米"></svg>
+    </div>
+  </div>
+  <p class="note">课本 p21 例 10。图按真实数据等比例画（上 12 米、下 15 米、右 10 米、左上 4 米）。三种方法依次点：分割时两块图形会分开一点，添补时会补上一块黄色梯形。三种方法结果都是 129 平方米——方法不同，面积一样。</p>
+</section>
+
+<!-- 4 ================= 割补要注意 + 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 练一练</span><h2>进行图形的割补时，要注意什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip" data-step="1">① <span class="think" data-step="2" data-ask="想一想">要根据<b>原来图形的特点</b>进行思考。</span></p>
+      <p class="tip" data-step="3">② <span class="think" data-step="4" data-ask="想一想">要便于<b>利用已知条件</b>计算简单图形的面积。</span></p>
+      <p class="tip" data-step="5">③ <span class="think" data-step="6" data-ask="想一想">可以用<b>不同的方法</b>进行割补。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练一练</b> 校园里有一个花圃（如图），你能算出它的面积是多少平方米吗？</p>
+      <div class="lshape">
+        <svg id="lFig" class="l-fig" aria-label="L 形花圃：下边 6 米，左边 5 米，右下角高 2 米，缺口宽 2 米" data-noswipe></svg>
+        <div class="btns col-btns" id="lWay" data-noswipe>
+          <button type="button" class="btn" data-w="v">竖着分</button>
+          <button type="button" class="btn" data-w="h">横着分</button>
+          <button type="button" class="btn" data-w="b">补成长方形</button>
+        </div>
+      </div>
+      <p class="calc l-how" id="lHow">选一种方法试试。</p>
+      <p class="tip">花圃的面积：<span class="blank" data-ans="24"></span> 平方米</p>
+    </div>
+  </div>
+  <p class="note">课本 p21 下半页三位小朋友的话和练一练。L 形花圃：竖着分 4 × 5 + 2 × 2 = 24；横着分 6 × 2 + 4 × 3 = 24；补成长方形 6 × 5 − 2 × 3 = 24。先让学生自己选方法算，再点按钮核对。</p>
+</section>
+
+<!-- 5 ================= 例 11 数方格估计（核心 2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 11 · 数一数、估一估</span><h2>你能估计这个湖泊的面积大约是多少公顷吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="lakeFig" class="lake-fig" aria-label="方格纸上的湖泊平面图（每个小方格表示 1 公顷）"></svg>
+      <p class="tip center small-t">每个小方格表示 1 公顷</p>
+    </div>
+    <div class="col">
+      <div class="btns col-btns" id="lakeWay" data-noswipe>
+        <button type="button" class="btn" data-w="a">只数整格的</button>
+        <button type="button" class="btn" data-w="b">把不满整格的也当作整格数</button>
+        <button type="button" class="btn" data-w="c">先数整格，不满整格的按半格算</button>
+      </div>
+      <div class="readout lake-read" id="lakeRead"></div>
+      <p class="tip" data-step="1">三种数法，哪种比实际面积小？哪种比实际面积大？　<span class="think" data-step="2" data-ask="比一比">只数整格的，<b>实际面积比数出的结果大一些</b>；不满整格的也当整格，<b>实际面积比数出的小一些</b>；按半格算，最接近。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p22 例 11。湖泊轮廓由代码画出，每一格是“整格”还是“不满整格”是按真实覆盖面积算出来的。三种数法依次点，绿色是整格，橙色是不满整格，右边读数对比三种结果和真实面积（用细小方格精确算出）。课本三位小朋友的说法正好对应这三种数法。</p>
+</section>
+
+<!-- 6 ================= 格子越小越准 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 练习四第 9 题</span><h2>方格越小，估计得越准吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="fineFig" class="lake-fig" aria-label="同一个湖泊，用更小的方格去数"></svg>
+      <div class="btns" id="fineN" data-noswipe>
+        <button type="button" class="btn solid" data-n="1">每格 1 公顷</button>
+        <button type="button" class="btn" data-n="2">每格 $\frac14$ 公顷</button>
+        <button type="button" class="btn" data-n="4">每格 $\frac1{16}$ 公顷</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">同一个湖泊，把每个方格再平均分成更小的方格，都用“整格 + 不满整格按半格”的方法数。</p>
+      <table class="mtab" id="fineTab">
+        <tr><th>方格大小</th><th>整格</th><th>不满整格</th><th>估计面积</th></tr>
+      </table>
+      <p class="tip gold" data-step="1">你发现了什么？　<span class="think" data-step="2" data-ask="比一比三行">方格越小，不满整格的部分越少，估计的结果<b>越接近实际面积</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p24 练习四第 9 题（荷叶：边长 32 厘米的正方形里画了不同大小的方格，“在哪个图中估计的荷叶面积更接近实际面积？为什么？”）。这里用例 11 的湖泊来做：分别用 1、1/4、1/16 公顷的方格数，估计值都由代码精确数出。</p>
+</section>
+
+<!-- 7 ================= 练习四第 1 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四第 1 题</span><h2>求下面图形的面积（单位：cm）</h2></div>
+  <div class="bd full top">
+    <svg id="comboFig" class="combo-fig" aria-label="三个组合图形"></svg>
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q">① <span class="blank" data-ans="700"></span> cm²</p>
+        <details><summary>提示</summary>上面是梯形（上底 40、下底 20、高 10），下面是正方形（边长 20）。</details>
+        <details><summary>完整解答</summary>$(40+20)\times10\div2+20\times20=300+400=700$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">② <span class="blank" data-ans="282"></span> cm²</p>
+        <details><summary>提示</summary>左边是平行四边形（底 12、高 16），右边是三角形：它的底是平行四边形的右边，和左边一样长 20，高 9。</details>
+        <details><summary>完整解答</summary>$12\times16+20\times9\div2=192+90=282$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">③ <span class="blank" data-ans="64"></span> cm²</p>
+        <details><summary>提示</summary>补成长方形 10 × 8，再去掉上面的梯形（上底 10、下底 6、高 2）。</details>
+        <details><summary>完整解答</summary>$10\times8-(10+6)\times2\div2=80-16=64$</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p23 练习四第 1 题，图按题目数据等比例画。①②用分割，③用添补（补成长方形再去掉缺口）。②的三角形，底是平行四边形的右边——平行四边形的对边相等，所以也是 20 厘米。</p>
+</section>
+
+<!-- 8 ================= 练习四第 2、4 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四</span><h2>想清楚“分”还是“去”</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 绿波小区有一块梯形草坪，草坪的中间有一个长方形的花坛（如图），草坪的面积是多少平方米？</p>
+        <svg id="lawnFig" class="small-fig" aria-label="梯形草坪：上底 20 米，下底 36 米，高 20 米，中间长方形花坛 12 米 × 4 米"></svg>
+        <p class="q small-q">草坪：<span class="blank" data-ans="512"></span> 平方米</p>
+        <details><summary>提示 1</summary>草坪 = 梯形 − 花坛。</details>
+        <details><summary>完整解答</summary>$(20+36)\times20\div2-12\times4=560-48=512$（平方米）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 一张边长 8 厘米的正方形纸，从一边的中点到邻边的中点连一条线段，沿这条线段剪去一个角（如图），剩下的面积是多少？</p>
+        <svg id="cornerFig" class="small-fig" aria-label="边长 8 厘米的正方形剪去一个角"></svg>
+        <p class="q small-q">剩下：<span class="blank" data-ans="56"></span> 平方厘米</p>
+        <details><summary>提示 1</summary>剪去的是一个直角三角形，两条直角边都是 8 的一半。</details>
+        <details><summary>完整解答</summary>$8\times8-4\times4\div2=64-8=56$（平方厘米）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p23 练习四第 2、4 题，图按题目数据等比例画。两题都是“大图形减去小图形”。</p>
+</section>
+
+<!-- 9 ================= 练习四第 7 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四第 7 题</span><h2>刷油漆：先算面积，再算钱</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="doorFig" class="door-fig" viewBox="0 0 220 290" aria-label="门：宽 100 厘米，高 200 厘米，中间玻璃宽 60 厘米、高 50 厘米">
+        <rect x="40" y="30" width="125" height="250" fill="#f9c6dc" stroke="#d6247a" stroke-width="2.5"/>
+        <rect x="65" y="55" width="75" height="62.5" fill="#fff" stroke="#d6247a" stroke-width="2"/>
+        <text x="102" y="22" class="dt">100 cm</text><text x="102" y="134" class="dt">60 cm</text>
+        <text x="102" y="92" class="dt">50 cm</text><text x="172" y="160" class="dt start">200 cm</text>
+      </svg>
+    </div>
+    <div class="col">
+      <p class="tip">张村小学每扇门的中间有一块玻璃，整扇门的形状如左图。</p>
+      <div class="hint-ladder">
+        <p class="q">(1) 要给 10 扇门的正面刷上油漆，刷油漆的面积一共是多少平方厘米？合多少平方米？</p>
+        <p class="q small-q"><span class="blank" data-ans="170000" data-w="6"></span> 平方厘米 = <span class="blank" data-ans="17"></span> 平方米</p>
+        <details><summary>提示 1</summary>一扇门要刷的面积 = 整扇门 − 玻璃：$100\times200-60\times50$。</details>
+        <details><summary>完整解答</summary>$20000-3000=17000$（平方厘米），$17000\times10=170000$（平方厘米）$=17$ 平方米。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(2) 刷油漆每平方米的材料费和人工费按 56 元算，给这些门的正面刷油漆一共需要多少元？</p>
+        <p class="q small-q"><span class="blank" data-ans="952"></span> 元</p>
+        <details><summary>完整解答</summary>$56\times17=952$（元）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p24 练习四第 7 题，门的图按题目数据等比例画（玻璃的位置示意）。注意 1 平方米 = 10000 平方厘米。</p>
+</section>
+
+<!-- 10 ================= 单元小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">单元小结</span><h2>多边形的面积：一张图串起来</h2></div>
+  <div class="bd full">
+    <div class="tree" data-step="1">
+      <div class="node root">长方形<br>长 × 宽</div>
+      <i>剪、移、拼</i>
+      <div class="node">平行四边形<br>$a\times h$</div>
+      <i>两个拼成平行四边形</i>
+      <div class="pair"><div class="node">三角形<br>$a\times h\div2$</div><div class="node">梯形<br>$(a+b)\times h\div2$</div></div>
+      <i>分割、添补</i>
+      <div class="node hot">组合图形</div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-label="组合图形" data-step="2"><b>分割</b>成几个基本图形再相加，或<b>添补</b>成一个基本图形再相减；先看清每一部分的底和高。</p>
+      <p class="method" data-label="不规则图形" data-step="3">用<b>数方格</b>估计：整格 + 不满整格按半格算最接近；<b>方格越小，估计越准</b>。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一单元：</b>小数的意义和性质。</p>
+  </div>
+  <p class="note">单元复习：请学生按图说一说每个公式的来历，再说说“转化”在每一课里是怎样用的。课后作业建议：练习四第 1、2、4、7 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgrid.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

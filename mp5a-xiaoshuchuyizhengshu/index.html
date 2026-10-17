@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小数除以整数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mdec.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shuiguo.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第五单元 小数乘法和除法 · 小数除以整数</p>
+    <h1 class="cover-title">小数除以整数</h1>
+    <p class="cover-q" data-step="1">妈妈买了 3 千克苹果，一共 <b>9.6 元</b>。每千克苹果多少元？</p>
+    <p class="cover-q" data-step="2">被除数是<b>小数</b>，商的小数点该点在哪里？除不完又该怎么办？</p>
+    <div class="chips" data-step="3"><span class="chip">分钱想一想</span><span class="chip">竖式除一除</span><span class="chip">乘法验一验</span></div>
+  </div>
+  <p class="note">课本 p59 例 4。先让学生列式：单价 = 总价 ÷ 数量，9.6 ÷ 3。和整数除法比，新问题是“被除数是小数”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“老本领”</h2></div>
+  <div class="bd full">
+    <div class="cols2 recall-grid">
+      <div class="recall" data-label="三、四年级 · 整数除法" data-step="1">
+        <div class="mini-d" id="recallDiv"></div>
+        <p>从被除数的<b>最高位</b>除起，除到哪一位，<b>商就写在那一位上面</b>；每次除后余数要比除数小。</p>
+        <span class="use">小数除法也这样一位一位地除。</span>
+      </div>
+      <div class="recall" data-label="一年级 · 认识人民币" data-step="2">
+        <p class="big">1 元 = 10 角　　1 角 = 10 分</p>
+        <p>9.6 元 = 9 元 6 角 = <b>96 角</b>。</p>
+        <span class="use">元分不完，就换成角再分。</span>
+      </div>
+      <div class="recall" data-label="五上第三单元 · 小数的性质" data-step="3">
+        <p>小数的末尾添上 0，大小不变：$12=12.0=12.00$。</p>
+        <span class="use">除到最后还有余数时，在余数后面添 0 继续除。</span>
+      </div>
+      <div class="recall" data-label="本单元例 1 · 小数乘整数" data-step="4">
+        <p>单价 × 数量 = 总价，$3.2\times3=9.6$。</p>
+        <span class="use">用乘法验算除法的商对不对。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 张卡是 96 ÷ 3 的整数竖式（课本例 4 小精灵“9.6 元是 96 角”的算法），请学生说一说每一步。这张竖式下一页还会用到：32 角 = 3.2 元。</p>
+</section>
+
+<!-- 3 ================= 分钱（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 分一分</span><h2>把钱平均分成几份，每份是多少？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>品种</th><th>单价/(元/千克)</th><th>数量/千克</th><th>总价/元</th></tr>
+        <tr><td>苹果</td><td>?</td><td>3</td><td>9.6</td></tr>
+        <tr><td>香蕉</td><td>?</td><td>5</td><td>12</td></tr>
+        <tr><td>橘子</td><td>?</td><td>6</td><td>5.7</td></tr>
+      </table>
+      <p class="tip">把总价平均分成几份（几千克），每份就是单价。先分<b>元</b>；元不够分了，就<b>换成角</b>再分。</p>
+      <p class="tip" data-step="1">苹果：9 元 6 角平均分成 3 份，每份 <span class="blank" data-ans="3"></span> 元 <span class="blank" data-ans="2"></span> 角 = 3.2 元。</p>
+      <p class="tip gold" data-step="2">香蕉：12 元分成 5 份，每份 2 元，还<b>剩 2 元</b>，怎么办？　<span class="think" data-step="3" data-ask="想一想">把 2 元换成 20 角，每份再分 4 角：2.4 元。</span></p>
+    </div>
+    <div class="col">
+      <div class="btns center-btns" id="shPick" data-noswipe>
+        <button type="button" class="btn solid" data-a="9.6" data-d="3">苹果 9.6 ÷ 3</button>
+        <button type="button" class="btn" data-a="12" data-d="5">香蕉 12 ÷ 5</button>
+        <button type="button" class="btn" data-a="5.7" data-d="6">橘子 5.7 ÷ 6</button>
+      </div>
+      <div class="share" id="share"></div>
+    </div>
+  </div>
+  <p class="note">本课核心操作，三道题都可以分。顺序：先点“平均分”分元；剩下不够分的，点“换小一级”换成角，再平均分……右下角的记录就是竖式的每一步。橘子 5.7 ÷ 6：5 元不够分给 6 份，每份 0 元，要先全部换成 50 角，和 7 角合起来是 57 角。</p>
+</section>
+
+<!-- 4 ================= 9.6 ÷ 3 竖式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4（1）· 竖式</span><h2>9.6 ÷ 3：商的小数点点在哪里？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="mdec-host" id="d1"></div>
+    </div>
+    <div class="col">
+      <p class="tip">对照分钱：先分 9 元，每份 3 元——商 3 写在<b>个位</b>上。</p>
+      <p class="tip" data-step="1">再分 6 角：6 表示 6 个<b>十分之一</b>，每份 2 个十分之一——商 2 写在<b>十分位</b>上。</p>
+      <p class="tip" data-step="2">所以商的小数点要和被除数的小数点 <span class="think" data-step="3" data-ask="怎样？"><b>对齐</b>：3 在个位，2 在十分位，3.2。</span></p>
+      <p class="tip gold" data-step="4"><b>答：</b>每千克苹果 <span class="blank" data-ans="3.2"></span> 元。</p>
+    </div>
+  </div>
+  <p class="note">课本 p59“可以这样列竖式算”。演示到“商的小数点对齐”那一步停下来，问小精灵的问题：商的小数点为什么要和被除数的小数点对齐？——被除数的十分位上是 6 个十分之一，分得的 2 也是十分之一，所以 2 写在十分位，小数点自然对齐。</p>
+</section>
+
+<!-- 5 ================= 12 ÷ 5 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4（2）· 竖式</span><h2>12 ÷ 5：除到个位还余 2，怎么办？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="mdec-host" id="d2"></div>
+    </div>
+    <div class="col">
+      <p class="tip">12 ÷ 5 = 2……2。可是单价能不能“余 2”？</p>
+      <p class="tip" data-step="1">余下的 2 是 2 个<b>一</b>，2 个一 = <span class="blank" data-ans="20"></span> 个十分之一（2 元 = 20 角）。</p>
+      <p class="tip" data-step="2">所以在余数 2 的后面<b>添 0</b>，继续除：20 个十分之一 ÷ 5 = <span class="think" data-step="3" data-ask="多少？">4 个十分之一，商 4 写在十分位上。</span></p>
+      <p class="warn" data-step="4">12 是整数，小数点省略了（12 = 12.0）。商到十分位以前，先在商的个位后面<b>点上小数点</b>。</p>
+      <p class="tip gold" data-step="5"><b>答：</b>每千克香蕉 <span class="blank" data-ans="2.4"></span> 元。</p>
+    </div>
+  </div>
+  <p class="note">课本 p59 小精灵：余下的 2 添 0 后，表示 20 个几分之一？你能继续往下算吗？——添的 0 用红色标出。强调：添 0 的依据是小数的性质，12 = 12.0，大小没变。</p>
+</section>
+
+<!-- 6 ================= 5.7 ÷ 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4（3）· 竖式</span><h2>5.7 ÷ 6：个位上不够商 1，怎么办？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="mdec-host" id="d3"></div>
+    </div>
+    <div class="col">
+      <p class="tip">5 个一 ÷ 6，不够商 1。</p>
+      <p class="tip" data-step="1">个位上商 <span class="think" data-step="2" data-ask="商几？"><b>0</b>（每份 0 元）</span>，再点上小数点。</p>
+      <p class="tip" data-step="3">57 个十分之一 ÷ 6 = 9 个十分之一……余 3 个十分之一；<br>添 0：30 个百分之一 ÷ 6 = <span class="blank" data-ans="5"></span> 个百分之一。</p>
+      <p class="tip gold" data-step="4"><b>答：</b>每千克橘子 <span class="blank" data-ans="0.95" data-w="4"></span> 元。</p>
+      <p class="warn" data-step="5">个位不够商 1，要<b>商 0</b> 占位；不能写成 .95 或 9.5。</p>
+    </div>
+  </div>
+  <p class="note">课本 p60 第（3）题和小精灵的问题“个位不够商 1，怎么办？”。对照分钱：5 元分给 6 份，每份 0 元，全部换成 50 角，和 7 角一起是 57 角。</p>
+</section>
+
+<!-- 7 ================= 验算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">验一验</span><h2>用“单价 × 数量 = 总价”验算</h2></div>
+  <div class="bd full top">
+    <table class="mtab big-tab">
+      <tr><th>品种</th><th>单价/(元/千克)</th><th>数量/千克</th><th>总价/元</th><th>验算：单价 × 数量</th></tr>
+      <tr><td>苹果</td><td><span class="blank" data-ans="3.2"></span></td><td>3</td><td>9.6</td><td>$3.2\times3=$ <span class="blank" data-ans="9.6"></span></td></tr>
+      <tr><td>香蕉</td><td><span class="blank" data-ans="2.4"></span></td><td>5</td><td>12</td><td>$2.4\times5=$ <span class="blank" data-ans="12"></span></td></tr>
+      <tr><td>橘子</td><td><span class="blank" data-ans="0.95" data-w="4"></span></td><td>6</td><td>5.7</td><td>$0.95\times6=$ <span class="blank" data-ans="5.7"></span></td></tr>
+    </table>
+    <p class="tip" data-step="1">乘积和总价相等，说明商算对了。$2.4\times5=12.0=12$，末尾的 0 去掉。</p>
+    <div class="def" data-step="2"><h4>除数是整数的小数除法</h4>按<em>整数除法</em>的方法去除，<em>商的小数点要和被除数的小数点对齐</em>；如果有余数，就在余数后面<em>添 0</em> 继续除；整数部分不够商 1，要<em>商 0</em>。</div>
+  </div>
+  <p class="note">课本 p60“你能根据单价 × 数量 = 总价验算上面各题吗？”。方法由学生先说，教师整理。课本没有把这段话写成黑体结论，这里是对例 4 三道题的梳理，提醒学生用自己的话说。</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这样除对吗？先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard">
+        <p>$4.2\div4=1.5$</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>漏商了 0。</b>2 个十分之一不够 4 个，十分位上要商 0，再添 0：20 个百分之一 ÷ 4 = 5。$4.2\div4=1.05$，验算 $1.05\times4=4.2$。</p></div>
+      </div>
+      <div class="jcard">
+        <p>$15\div6=2$……3</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">除完了</button><button type="button" data-k="x">还能除</button>
+          <p class="pick-why"><b>余数后面添 0 还能继续除：</b>30 个十分之一 ÷ 6 = 5，$15\div6=2.5$。</p></div>
+      </div>
+      <div class="jcard">
+        <p>$0.2\div5=0.4$</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why"><b>商的数位不对。</b>2 个十分之一 ÷ 5 不够商 1，十分位上商 0；添 0：20 个百分之一 ÷ 5 = 4 个百分之一。$0.2\div5=0.04$。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="检查三件事">① 商的小数点对齐了吗？② 哪一位不够商 1，有没有商 0？③ 有余数，添 0 继续除了吗？最后用乘法验算。</p>
+  </div>
+  <p class="note">三道题的数取自课本 p60 练一练（4)4.2、6)15、5)0.2）。先举手表决，再请学生说理由，下一页在竖式演示里核对。</p>
+</section>
+
+<!-- 9 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>用竖式计算，再用演示核对</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>课本 p60 练一练</b></p>
+        <p class="q small-q">$4.2\div4=$ <span class="blank" data-ans="1.05" data-w="4"></span>　$15\div6=$ <span class="blank" data-ans="2.5" data-w="4"></span><br>$0.2\div5=$ <span class="blank" data-ans="0.04" data-w="4"></span>　$3\div15=$ <span class="blank" data-ans="0.2" data-w="4"></span></p>
+        <details><summary>提示 1</summary>3 ÷ 15：个位上 3 不够商 1，商 0，点上小数点；3 个一 = 30 个十分之一。</details>
+        <details><summary>完整解答</summary>1.05；2.5；0.04；0.2。用乘法验算：1.05 × 4 = 4.2，2.5 × 6 = 15，0.04 × 5 = 0.2，0.2 × 15 = 3。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习十一第 2 题</b></p>
+        <p class="q small-q">$4.26\div3=$ <span class="blank" data-ans="1.42" data-w="4"></span>　$0.735\div7=$ <span class="blank" data-ans="0.105" data-w="4"></span><br>$25.2\div12=$ <span class="blank" data-ans="2.1" data-w="4"></span>　$51\div34=$ <span class="blank" data-ans="1.5" data-w="4"></span></p>
+        <details><summary>提示 1</summary>25.2 ÷ 12：十位上 2 不够商 1，看前两位 25。</details>
+        <details><summary>完整解答</summary>1.42；0.105；2.1；1.5。</details>
+      </div>
+    </div>
+    <div class="col">
+      <div class="btns center-btns" id="dPick" data-noswipe>
+        <button type="button" class="btn solid" data-a="4.2" data-d="4">4.2 ÷ 4</button>
+        <button type="button" class="btn" data-a="15" data-d="6">15 ÷ 6</button>
+        <button type="button" class="btn" data-a="0.2" data-d="5">0.2 ÷ 5</button>
+        <button type="button" class="btn" data-a="3" data-d="15">3 ÷ 15</button>
+        <button type="button" class="btn" data-a="0.735" data-d="7">0.735 ÷ 7</button>
+        <button type="button" class="btn" data-a="25.2" data-d="12">25.2 ÷ 12</button>
+      </div>
+      <div class="mdec-host" id="d4"></div>
+    </div>
+  </div>
+  <p class="note">先独立在本子上算，再选右边的题目一步一步核对。重点看 0.2 ÷ 5、3 ÷ 15、0.735 ÷ 7 这几道“商 0 占位”的题。</p>
+</section>
+
+<!-- 10 ================= 解决问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十一 · 用一用</span><h2>平均分的问题</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 徐宁买了 40 个鸡蛋，一共重 2.48 千克。平均每个鸡蛋重多少千克？</p>
+        <p class="q small-q">每个约重 <span class="blank" data-ans="0.062" data-w="4"></span> 千克</p>
+        <details><summary>提示 1</summary>求平均每个重多少，用总重量 ÷ 个数：$2.48\div40$。</details>
+        <details><summary>提示 2</summary>个位、十分位都不够商 1，都要商 0：0.0……</details>
+        <details><summary>完整解答</summary>$2.48\div40=0.062$（千克）。验算：$0.062\times40=2.48$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>14.</b> 一瓶 1.5 升的果汁，正好可以倒满 6 杯。每杯果汁有多少升？是多少毫升？</p>
+        <p class="q small-q"><span class="blank" data-ans="0.25" data-w="4"></span> 升 = <span class="blank" data-ans="250" data-w="4"></span> 毫升</p>
+        <details><summary>提示 1</summary>$1.5\div6$，个位上商 0。</details>
+        <details><summary>完整解答</summary>$1.5\div6=0.25$（升），1 升 = 1000 毫升，小数点向右移动三位：0.25 升 = 250 毫升。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>15.</b> 一个车队有 12 辆汽车。由于采用了先进技术，这个车队一个月（30 天）共节约汽油 864 升。平均每辆汽车每天节约汽油多少升？</p>
+        <p class="q small-q">每辆每天 <span class="blank" data-ans="2.4" data-w="4"></span> 升</p>
+        <details><summary>提示 1</summary>先求每辆车一个月节约多少升：$864\div12$。</details>
+        <details><summary>完整解答</summary>$864\div12=72$（升），$72\div30=2.4$（升）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本练习十一第 3、14、15 题。第 3 题商的个位、十分位都是 0，是本课最难的；第 14 题联系上一课“小数点向右移动”做单位换算；第 15 题是两步计算，72 ÷ 30 除到个位余 12，要添 0 继续除。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>小数除以整数，关键在哪里？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>9.6 元 ÷ 3</b><small>新问题</small></div>
+      <i>换成角<br><small>96 角</small></i>
+      <div class="fbox"><b>96 ÷ 3 = 32</b><small>整数除法</small></div>
+      <i>32 角<br><small>32 个十分之一</small></i>
+      <div class="fbox hot"><b>3.2 元</b><small>商的小数点对齐</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="道理" data-step="2">被除数哪一位上是几个“十分之一、百分之一”，分得的也是几个“十分之一、百分之一”——所以商的数位和被除数对齐，小数点也对齐。</p>
+      <div class="method" data-label="三个要点" data-step="3"><ul class="use-list"><li>商的小数点和被除数的小数点对齐</li><li>哪一位不够商 1，就在那一位商 0</li><li>有余数，在余数后面添 0 继续除</li></ul></div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>例 5——21.5 除以 10、100、1000，小数点会怎样移动？</p>
+  </div>
+  <p class="note">请学生说：今天的除法和整数除法有什么相同、有什么不同？课后作业建议：练习十一第 1、2、3 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mdec.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

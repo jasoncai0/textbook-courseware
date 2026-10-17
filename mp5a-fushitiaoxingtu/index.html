@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>复式条形统计图 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tiaosheng.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第六单元 统计表和条形统计图（二） · 复式条形统计图</p>
+    <h1 class="cover-title">复式条形统计图</h1>
+    <p class="cover-q" data-step="1">龙园小学五年级一班参加体质健康测试，<b>1 分钟跳绳</b>全部合格。</p>
+    <p class="cover-q" data-step="2">男生、女生各有几人优秀、良好、及格？谁的成绩更好一些？能不能画在<b>同一张图</b>上比一比？</p>
+    <div class="chips" data-step="3"><span class="chip">两种颜色</span><span class="chip">图例</span><span class="chip">对比</span><span class="chip">复式条形统计图</span></div>
+  </div>
+  <p class="note">课本 p89 例 2 的情境。可以先问：你 1 分钟能跳多少下？引出跳绳测试的等级（优秀、良好、及格）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们已经会读、会画的统计图和统计表</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="四年级上册 · 条形统计图（一）" data-step="1">
+        <div id="miniBar" class="mini-chart"></div>
+        <p>用直条的<b>长短</b>表示数量的多少；纵轴上一格表示几要先看清。</p>
+        <span class="use">今天的图，每个直条还是这样读。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 复式统计表" data-step="2">
+        <p>把几张单式统计表合成一张，同时表示<b>几组</b>数据；有斜线表头。</p>
+        <span class="use">表能合，图能不能也合？</span>
+      </div>
+      <div class="recall" data-label="读图的步骤" data-step="3">
+        <p>先看<b>标题、日期</b>，再看横轴、纵轴各表示什么、单位是什么，最后看数据。</p>
+        <span class="use">复式条形统计图多了一样东西要先看——图例。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>怎样在一张条形统计图上同时表示男生、女生两组数据？</p>
+  </div>
+  <p class="note">第 1 张卡的小图是男生跳绳等级（2、10、11 人），也就是例 2 的一半数据，下一页会用到。</p>
+</section>
+
+<!-- 3 ================= 核心：两张图合成一张 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 合一合</span><h2>男生一张图、女生一张图，能合成一张吗？</h2></div>
+  <div class="bd full top">
+    <svg id="mergeFig" class="merge-fig" viewBox="0 0 1000 400" aria-label="男生、女生跳绳等级两张单式条形统计图合成一张复式条形统计图" data-noswipe></svg>
+    <div class="stepbar" data-noswipe><button type="button" class="btn" id="mgApart">分开：两张图</button><button type="button" class="btn solid" id="mgJoin">合起来 ▶</button></div>
+    <p class="tip" data-step="1">合起来以后，怎样分清哪个直条是男生、哪个是女生？　<span class="think" data-step="2" data-ask="想一想">用两种<b>颜色</b>区分，并在右上角画<b>图例</b>：蓝色表示男生，粉色表示女生。</span></p>
+  </div>
+  <p class="note">核心演示。两张单式条形统计图（同一刻度：一格表示 2 人）先分开放；按“合起来”，女生的直条移到男生直条旁边，同一等级的两个直条并排——就成了课本 p89 的复式条形统计图。直条高度全部按数据精确画出。可以反复切换，问：合起来以后，哪些比较变方便了？</p>
+</section>
+
+<!-- 4 ================= 例 2 读图填表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 读图</span><h2>你能看懂复式条形统计图表示的信息吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="chart-cap">五年级一班同学 1 分钟跳绳测试等级情况统计图<small>2012 年 11 月</small></p>
+      <div class="legend"><span><i style="background:#8ecbee"></i>男生</span><span><i style="background:#f2a2c6"></i>女生</span></div>
+      <div id="chart2" class="chart"></div>
+    </div>
+    <div class="col">
+      <p class="tip small-t">先互相说一说，再填写下表。</p>
+      <table class="mtab big-tab">
+        <caption>五年级一班同学 1 分钟跳绳测试等级情况统计表</caption>
+        <tr><th class="diag"><span class="d1">等级</span><span class="d2">数量/人</span><span class="d3">性别</span></th><th>合计</th><th>优秀</th><th>良好</th><th>及格</th></tr>
+        <tr class="tot"><th>总　计</th><td><span class="blank" data-ans="45"></span></td><td><span class="blank" data-ans="10"></span></td><td><span class="blank" data-ans="19"></span></td><td><span class="blank" data-ans="16"></span></td></tr>
+        <tr><th>男</th><td><span class="blank" data-ans="23"></span></td><td><span class="blank" data-ans="2"></span></td><td><span class="blank" data-ans="10"></span></td><td><span class="blank" data-ans="11"></span></td></tr>
+        <tr><th>女</th><td><span class="blank" data-ans="22"></span></td><td><span class="blank" data-ans="8"></span></td><td><span class="blank" data-ans="9"></span></td><td><span class="blank" data-ans="5"></span></td></tr>
+      </table>
+      <p class="tip" data-step="1">纵轴上一格表示几人？　<span class="think" data-step="2" data-ask="看一看">一格表示 <b>2 人</b>；11 人、9 人、5 人的直条顶端在两条线的正中间。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p89 例 2 和下面的统计表。三个小精灵：蓝色直条表示男生人数，粉色表示女生人数；优秀等级的男生有 2 人，女生有 8 人……。纵轴一格表示 2 人，所以单数的直条顶端落在格线中间，读数时要特别注意。</p>
+</section>
+
+<!-- 5 ================= 小组讨论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小组讨论</span><h2>从图中你能看出什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="legend"><span><i style="background:#8ecbee"></i>男生</span><span><i style="background:#f2a2c6"></i>女生</span></div>
+      <div id="chart2b" class="chart"></div>
+      <div class="btns center-btns" id="viewPick" data-noswipe><button type="button" class="btn" data-k="0">只看男生</button><button type="button" class="btn" data-k="1">只看女生</button><button type="button" class="btn solid" data-k="2">一起看</button></div>
+    </div>
+    <div class="col">
+      <div class="jcard">
+        <p>（1）男生中，跳绳成绩哪个等级的人数最多？</p>
+        <div class="pick" data-ans="c"><button type="button" data-k="a">优秀</button><button type="button" data-k="b">良好</button><button type="button" data-k="c">及格</button>
+          <p class="pick-why">男生及格 11 人最多；良好 10 人和及格 11 人较为接近。女生良好 9 人最多，优秀 8 人和良好 9 人较为接近。</p></div>
+      </div>
+      <div class="jcard">
+        <p>（2）哪个等级男、女生人数差别不大？</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">优秀</button><button type="button" data-k="b">良好</button><button type="button" data-k="c">及格</button>
+          <p class="pick-why">良好：10 人和 9 人，差别不大。优秀（2 人和 8 人）、及格（11 人和 5 人）差别较大。</p></div>
+      </div>
+      <div class="jcard">
+        <p>（3）从整体看，谁的成绩好一些？</p>
+        <div class="pick" data-ans="g"><button type="button" data-k="b">男生</button><button type="button" data-k="g">女生</button>
+          <p class="pick-why">女生优秀的多（8 人比 2 人），及格的少（5 人比 11 人），女生的成绩好一些。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p90 小组讨论的三个问题。“只看男生 / 只看女生”时，图就退回成单式条形统计图，比较男女生就不方便了。追问课本的问题：回答这些问题，看统计图方便，还是看统计表方便？（比较大小、看差别，看图更直观；要准确的数，看表或看直条上的数。）</p>
+</section>
+
+<!-- 6 ================= 认识复式条形统计图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">说一说</span><h2>复式条形统计图有什么特点？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="两组数据" data-step="1"><p>一张图里同时表示<b>两组（或几组）</b>数据，同一类的直条<b>并排</b>画在一起。</p></div>
+      <div class="recall" data-label="图例" data-step="2"><p>用不同颜色（或花纹）区分不同的组，在图的右上角画<b>图例</b>说明。</p></div>
+      <div class="recall" data-label="便于比较" data-step="3"><p>既能看出每组数据的多少，又便于<b>比较</b>两组数据。</p></div>
+    </div>
+    <p class="warn" data-step="4">画复式条形统计图时：直条宽窄要一样，间隔要相等；不能忘了<b>图例</b>、标题和日期。</p>
+    <p class="tip gold" data-step="5">什么时候用复式统计表，什么时候用复式条形统计图？　<span class="think" data-step="6" data-ask="说一说">要知道准确的数、算总数，用表；要一眼比较多少和差别，用图。</span></p>
+  </div>
+  <p class="note">课本没有专门给“复式条形统计图”下定义，这里是从例 2 归纳出的特点，让学生自己说。</p>
+</section>
+
+<!-- 7 ================= 练习十六第 1 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十六</span><h2>力新小学和春风小学上学期篮球比赛得分情况</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="chart-cap">力新小学和春风小学上学期篮球比赛得分情况统计图<small>2012 年 10 月</small></p>
+      <div class="legend"><span><i style="background:#8ecbee"></i>力新小学</span><span><i style="background:#f2a2c6"></i>春风小学</span></div>
+      <div id="chart16a" class="chart"></div>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <p>（1）力新小学单场最高 <span class="blank" data-ans="52"></span> 分，最低 <span class="blank" data-ans="45"></span> 分；</p>
+        <p>　　春风小学单场最高 <span class="blank" data-ans="56"></span> 分，最低 <span class="blank" data-ans="45"></span> 分。</p>
+      </div>
+      <p class="tip" data-step="1">（2）你怎样评价这两支篮球队？　<span class="think" data-step="2" data-ask="说一说">前两场力新小学领先，第三场春风小学多 1 分，后两场春风小学得分越来越高，进步很大。合计力新 244 分，春风 252 分。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p91 练习十六第 1 题，图中数据照课本：力新 50、52、47、45、50；春风 45、48、48、55、56。（2）是开放题，说法合理即可；用数据说话（如合计分、后两场的变化）。</p>
+</section>
+
+<!-- 8 ================= 练习十六第 3 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十六</span><h2>北京等四个城市空气质量达到及好于二级的天数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="chart-cap">北京等四个城市空气质量达到及好于二级情况统计图<small>（2003 年和 2011 年）　2012 年 3 月</small></p>
+      <div class="legend"><span><i style="background:#8ecbee"></i>2003 年</span><span><i style="background:#f2a2c6"></i>2011 年</span></div>
+      <div id="chart16b" class="chart"></div>
+    </div>
+    <div class="col">
+      <div class="jcard">
+        <p>（1）2003 年空气质量最好的是哪个城市？2011 年呢？</p>
+        <div class="pick" data-ans="d"><button type="button" data-k="a">北京</button><button type="button" data-k="b">太原</button><button type="button" data-k="c">南京</button><button type="button" data-k="d">南宁</button>
+          <p class="pick-why">两年都是<b>南宁</b>最好：2003 年 348 天，2011 年 351 天。</p></div>
+      </div>
+      <p class="tip">（2）比较每个城市这两年的空气质量，你有什么发现？</p>
+      <div class="calc" data-step="1">
+        <p>北京多了 <span class="blank" data-ans="62"></span> 天，太原多了 <span class="blank" data-ans="127" data-w="3"></span> 天，</p>
+        <p>南京多了 <span class="blank" data-ans="20"></span> 天，南宁多了 <span class="blank" data-ans="3"></span> 天。</p>
+      </div>
+      <p class="tip gold" data-step="2">四个城市 2011 年都比 2003 年多，太原进步最大。</p>
+    </div>
+  </div>
+  <p class="note">课本 p91 练习十六第 3 题，图中数据照课本：2003 年 224、181、297、348；2011 年 286、308、317、351（单位：天），纵轴一格表示 50 天。</p>
+</section>
+
+<!-- 9 ================= 动手画 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手画</span><h2>根据数据，拖动直条完成统计图</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab">
+        <tr><th></th><th>营养不良</th><th>体重较轻</th><th>体重正常</th><th>超重</th><th>肥胖</th></tr>
+        <tr><th>男生/人</th><td>1</td><td>6</td><td>11</td><td>4</td><td>2</td></tr>
+        <tr><th>女生/人</th><td>3</td><td>9</td><td>9</td><td>2</td><td>1</td></tr>
+      </table>
+      <p class="tip">练习十六第 4 题：李强调查了五年级二班 48 名同学的体重情况。拖动每个直条顶上的圆点，把直条画到正确的高度。</p>
+      <p class="say" id="drawSay"></p>
+      <div class="stepbar" data-noswipe><button type="button" class="btn" id="drawReset">清空</button><button type="button" class="btn solid" id="drawCheck">检查</button></div>
+    </div>
+    <div class="col">
+      <p class="chart-cap">五年级二班男、女生体重情况统计图</p>
+      <div class="legend"><span><i style="background:#8ecbee"></i>男生</span><span><i style="background:#f2a2c6"></i>女生</span></div>
+      <div id="chartDraw" class="chart draw"></div>
+    </div>
+  </div>
+  <p class="note">课本 p92 练习十六第 4 题。直条高度拖动时自动对齐到整数人数；按“检查”，画对的直条变绿，画错的标红。重点：纵轴一格表示 2 人，单数要画到两条格线的中间。画好后讨论课本的问题：你打算怎样比较这个班男、女生的体重情况？对他们有什么建议？</p>
+</section>
+
+<!-- 10 ================= 练习十六第 5 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十六</span><h2>同样的数据，两种画法</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">五年级一班：书法 8 人，绘画 10 人，剪纸 7 人；<br>五年级二班：书法 6 人，绘画 12 人，剪纸 8 人。</p>
+      <div class="btns center-btns" id="grpPick" data-noswipe><button type="button" class="btn solid" data-k="0">按兴趣小组分（图例：一班、二班）</button><button type="button" class="btn" data-k="1">按班级分（图例：书法、绘画、剪纸）</button></div>
+      <p class="tip" data-step="1">说说这两幅统计图有什么地方相同，有什么地方不同。　<span class="think" data-step="2" data-ask="说一说">数据相同；横轴和图例<b>交换</b>了。左图便于比较两个班<b>同一个小组</b>的人数，右图便于比较<b>同一个班</b>各小组的人数。</span></p>
+    </div>
+    <div class="col">
+      <p class="chart-cap">五年级一班、二班同学参加书法、绘画、剪纸小组人数统计图</p>
+      <div class="legend" id="grpLegend"></div>
+      <div id="chartGrp" class="chart"></div>
+    </div>
+  </div>
+  <p class="note">课本 p92 练习十六第 5 题，课本给了两张空白图（左图横轴是书法、绘画、剪纸，右图横轴是一班、二班）。点按钮切换两种画法，直条高度按数据精确画出，纵轴一格表示 2 人。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>复式条形统计图，我们学会了什么？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>两张单式条形统计图</b><small>各表示一组数据</small></div>
+      <i>并排、换颜色</i>
+      <div class="fbox hot"><b>复式条形统计图</b><small>图例 · 两种颜色</small></div>
+      <i>一眼对比</i>
+      <div class="fbox"><b>比较、分析、建议</b><small>用数据说话</small></div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-label="读图" data-step="2">先看标题、日期、<b>图例</b>，再看纵轴一格表示多少，最后横着比、组内比。</p>
+      <p class="method" data-label="画图" data-step="3">直条宽窄一样、间隔相等；同一类的直条并排；别忘了图例、标题和日期。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一单元：</b>课本 p94 第七单元“解决问题的策略”——用列举的策略解决问题。</p>
+  </div>
+  <p class="note">请学生说一说：复式条形统计图和单式条形统计图有什么相同和不同。课后作业建议：练习十六第 2 题（计算）和 p90 练一练（调查本班体质健康测试，完成统计图）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

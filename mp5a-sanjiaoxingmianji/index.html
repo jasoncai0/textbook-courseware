@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角形的面积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgrid.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/lukou.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第二单元 多边形的面积 · 三角形的面积</p>
+    <h1 class="cover-title">三角形的面积</h1>
+    <p class="cover-q" data-step="1">路口有一块三角形交通标识，底 <b>8 分米</b>，高大约 <b>7 分米</b>。</p>
+    <p class="cover-q" data-step="2">做这块标识大约要用多少平方分米的铁皮？三角形的面积，能不能也<b>转化</b>成学过的图形来算？</p>
+    <div class="chips" data-step="3"><span class="chip">数一数</span><span class="chip">两个三角形拼一拼</span><span class="chip">找到公式</span><span class="chip">以盈补虚</span></div>
+  </div>
+  <p class="note">课本 p10 试一试的情境，先抛出来不解答，第 7 页回来算。提问：上节课平行四边形是怎样求面积的？（转化成长方形）三角形可以转化成什么？准备课本 p115 的三角形学具。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>上节课的方法，今天还能用吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 平行四边形的面积" data-step="1">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="平行四边形沿高剪开拼成长方形">
+          <path d="M20 105H160L210 15H70Z" fill="#fde3ee" stroke="#d6247a" stroke-width="3"/>
+          <path d="M70 15V105" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6 5"/>
+        </svg>
+        <p class="big center">$S=a\times h$</p>
+        <p>沿高剪开、平移，拼成长方形：长 = 底，宽 = 高。</p>
+        <span class="use">三角形可以转化成平行四边形，再用这个公式。</span>
+      </div>
+      <div class="recall" data-label="四年级下册 · 三角形的底和高" data-step="2">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="三角形的底和高">
+          <path d="M20 105H210L90 15Z" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/>
+          <path d="M90 15V105" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6 5"/>
+          <path d="M90 93h12v12" fill="none" stroke="#c0392b" stroke-width="2"/>
+          <text x="96" y="66" class="fl s r">高</text><text x="140" y="120" class="fl s">底</text>
+        </svg>
+        <p>从一个顶点到对边的<b>垂直线段</b>是高，这条对边是底。</p>
+        <span class="use">拼成的平行四边形，底和高就是三角形的底和高。</span>
+      </div>
+      <div class="recall" data-label="四年级下册 · 旋转" data-step="3">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="三角形绕一点旋转 180 度">
+          <path d="M40 100H120L60 30Z" fill="#fbe08a" stroke="#c98a00" stroke-width="2.5"/>
+          <path d="M140 30H220L200 100Z" fill="none" stroke="#c98a00" stroke-width="2.5" stroke-dasharray="6 4"/>
+          <circle cx="130" cy="65" r="5" fill="#c0392b"/>
+          <path d="M112 40A30 30 0 0 1 152 44" fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#ar2)"/>
+          <defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#c0392b"/></marker></defs>
+        </svg>
+        <p>图形绕一个点<b>旋转 180°</b>，形状、大小都不变。</p>
+        <span class="use">把复制的三角形转半圈，就能和原来的拼上。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>三角形的面积怎样计算？它能转化成什么学过的图形？</p>
+  </div>
+  <p class="note">第 3 张卡：虚线三角形是左边三角形绕红点旋转 180° 得到的，请学生用手里的三角尺比画一下。三张卡分别对应本课的三个关键：转化的目标、底和高的对应、怎样拼（旋转）。</p>
+</section>
+
+<!-- 3 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 想办法</span><h2>你能算出涂色三角形的面积吗？</h2></div>
+  <div class="bd full top">
+    <svg id="ex4Fig" class="ex4-fig" aria-label="方格纸上的三个涂色三角形（每个小方格表示 1 平方厘米）"></svg>
+    <div class="ex4-ctrl" data-noswipe>
+      <button type="button" class="btn" id="ex4Par">看成平行四边形的一半</button>
+      <span class="muted">每个小方格表示 1 平方厘米</span>
+    </div>
+    <p class="tip center big-blanks">三个三角形的面积：<span class="blank" data-ans="8"></span> cm²　<span class="blank" data-ans="10"></span> cm²　<span class="blank" data-ans="12"></span> cm²</p>
+    <div class="cols3 says">
+      <p class="tip" data-step="1">可以用<b>数方格</b>的方法求出三角形的面积。<span class="think" data-step="2" data-ask="好数吗？">半格太多，数起来很麻烦。</span></p>
+      <p class="tip" data-step="3">三角形面积是<b>平行四边形的一半</b>。<span class="think" data-step="4" data-ask="点上面的按钮看看">每个三角形和旁边的三角形合起来，正好是一个平行四边形。</span></p>
+      <p class="tip gold" data-step="5">有没有<b>直接计算</b>三角形面积的方法呢？<span class="think" data-step="6" data-ask="想一想">把两个一样的三角形拼起来试试！</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p9 例 4，方格图与课本一致：第一个三角形底 4 格、高 4 格；第二个底 4 格、高 5 格；第三个底 8 格、高 3 格（底在上面）。先让学生独立想办法，再点“看成平行四边形的一半”：平行四边形面积是 16、20、24 平方厘米，三角形就是 8、10、12 平方厘米。</p>
+</section>
+
+<!-- 4 ================= 例 5 拼一拼（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 拼一拼</span><h2>两个完全一样的三角形，能拼成平行四边形吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">选一个三角形，<b>复制</b>一个完全一样的，再把它绕一条边的<b>中点</b>旋转 180°。</p>
+      <div class="btns" id="triKind" data-noswipe>
+        <button type="button" class="btn solid" data-k="acute">锐角三角形</button>
+        <button type="button" class="btn" data-k="right">直角三角形</button>
+        <button type="button" class="btn" data-k="obtuse">钝角三角形</button>
+      </div>
+      <div class="btns" id="triSide" data-noswipe>
+        <button type="button" class="btn solid" data-s="r">绕右边的中点</button>
+        <button type="button" class="btn" data-s="l">绕左边的中点</button>
+      </div>
+      <div class="btns" data-noswipe>
+        <button type="button" class="btn solid go" id="triCopy">① 复制一个</button>
+        <button type="button" class="btn solid go" id="triTurn" disabled>② 旋转、拼 ▶</button>
+      </div>
+      <p class="tip gold" id="triSay">先点“复制一个”。</p>
+    </div>
+    <div class="col">
+      <svg id="pinFig" class="pin-fig" aria-label="两个完全一样的三角形拼成平行四边形"></svg>
+      <p class="tip" data-step="1">三种三角形都能拼成平行四边形吗？　<span class="think" data-step="2" data-ask="每种都拼一拼">都能！只要是<b>两个完全一样</b>的三角形。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p9 例 5。课本让学生把 p115 的三角形剪下来，“看看哪两个能拼成平行四边形”——先动手，再用这一页演示。追问：两个三角形不一样大，能拼成吗？（不能）绕不同边的中点转，拼出的平行四边形形状不同，但面积都是三角形的 2 倍。图中三角形：锐角三角形底 6、高 4；直角三角形底 5、高 4；钝角三角形底 4、高 4（高在三角形外面）。</p>
+</section>
+
+<!-- 5 ================= 例 5 讨论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 小组讨论</span><h2>拼成的平行四边形和每个三角形有什么关系？</h2></div>
+  <div class="bd full top">
+    <table class="mtab">
+      <tr><th colspan="3">拼成的平行四边形</th><th colspan="3">三角形</th></tr>
+      <tr><th>底/cm</th><th>高/cm</th><th>面积/cm²</th><th>底/cm</th><th>高/cm</th><th>面积/cm²</th></tr>
+      <tr><td>6</td><td>4</td><td><span class="blank" data-ans="24"></span></td><td>6</td><td>4</td><td><span class="blank" data-ans="12"></span></td></tr>
+      <tr><td>5</td><td>4</td><td><span class="blank" data-ans="20"></span></td><td>5</td><td>4</td><td><span class="blank" data-ans="10"></span></td></tr>
+      <tr><td>4</td><td>4</td><td><span class="blank" data-ans="16"></span></td><td>4</td><td>4</td><td><span class="blank" data-ans="8"></span></td></tr>
+    </table>
+    <div class="cols3 qs">
+      <p class="tip" data-step="1">(1) 拼成平行四边形的两个三角形有什么关系？<span class="think" data-step="2" data-ask="说一说"><b>完全一样</b>（形状、大小都相同）。</span></p>
+      <p class="tip" data-step="3">(2) 平行四边形的底和高与三角形的底和高？每个三角形的面积呢？<span class="think" data-step="4" data-ask="说一说">底<b>相等</b>，高<b>相等</b>；每个三角形的面积是平行四边形的<b>一半</b>。</span></p>
+      <p class="tip" data-step="5">(3) 根据平行四边形的面积公式，怎样求三角形的面积？<span class="think" data-step="6" data-ask="说一说">用<b>底 × 高 ÷ 2</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p9 下半页的表格和三个讨论题。表中数据就是上一页三个三角形（方格纸每格 1 厘米）。先填面积，再讨论；第 (2) 题请学生回到上一页图上指一指：平行四边形的底是三角形的哪条边？</p>
+</section>
+
+<!-- 6 ================= 公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>三角形的面积公式</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 300 170" class="fml-fig" aria-label="三角形，底 a，高 h">
+        <path d="M20 145H280L120 25Z" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/>
+        <path d="M120 25V145" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6 5"/>
+        <path d="M120 133h12v12" fill="none" stroke="#c0392b" stroke-width="2"/>
+        <text x="128" y="92" class="fl c1">h</text><text x="150" y="166" class="fl">a</text>
+      </svg>
+    </div>
+    <div class="col">
+      <div class="derive word-derive">
+        <div class="dl" data-step="1"><span>平行四边形的面积</span><span>= 底 × 高</span><i class="why">上一课的公式</i></div>
+        <div class="dl key" data-step="2"><span>三角形的面积</span><span>= 底 × 高 ÷ 2</span><i class="why">两个完全一样的三角形拼成平行四边形，一个是它的一半</i></div>
+      </div>
+      <div class="def" data-step="3"><h4>用字母表示</h4>如果用 $S$ 表示三角形的面积，用 $a$ 和 $h$ 分别表示三角形的底和高，上面的公式可以写成：<p class="formula">$S=a\times h\div2$</p></div>
+      <p class="warn" data-step="4">“÷ 2”不能丢：$a\times h$ 算出的是<b>拼成的平行四边形</b>的面积。</p>
+    </div>
+  </div>
+  <p class="note">课本 p9–10。追问“为什么要除以 2”，请学生回答“因为一个三角形是拼成的平行四边形的一半”。强调底和高要对应。</p>
+</section>
+
+<!-- 7 ================= 试一试 + 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 练一练</span><h2>用公式算一算</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">一个三角形交通标识，底 <b>8 分米</b>，高大约 <b>7 分米</b>。它的面积大约是多少平方分米？</p>
+        <div class="calc">
+          <p>$8\times7\div2=$ <span class="blank" data-ans="28"></span>（平方分米）</p>
+          <p class="muted" data-step="1">答：面积大约是 28 平方分米。</p>
+        </div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 1.</b> 用两个完全一样的三角形能拼成一个底 10 厘米、高 8 厘米的平行四边形，每个三角形的面积是多少平方厘米？</p>
+        <p class="q small-q">每个三角形：<span class="blank" data-ans="40"></span> 平方厘米</p>
+        <details><summary>提示 1</summary>先算拼成的平行四边形的面积：$10\times8$。</details>
+        <details><summary>完整解答</summary>$10\times8\div2=40$（平方厘米）。</details>
+      </div>
+    </div>
+    <div class="cols2" data-step="2">
+      <div class="jcard">
+        <p>小明这样算交通标识的面积：</p>
+        <p class="muted">$8\times7=56$（平方分米）</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">忘了 <b>÷ 2</b>！56 平方分米是两个这样的三角形拼成的平行四边形的面积。</p></div>
+      </div>
+      <div class="jcard">
+        <p>底 10 厘米、高 8 厘米的平行四边形，和底 10 厘米、高 8 厘米的三角形，谁的面积大？</p>
+        <div class="pick" data-ans="p"><button type="button" data-k="p">平行四边形</button><button type="button" data-k="t">三角形</button><button type="button" data-k="e">一样大</button>
+          <p class="pick-why">等底等高时，<b>三角形的面积是平行四边形的一半</b>：40 cm² 和 80 cm²。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p10 试一试和练一练第 1 题。练一练第 1 题是“倒过来”用拼法：已知拼成的平行四边形，求一个三角形。下面两张判断卡专门针对“忘记除以 2”。</p>
+</section>
+
+<!-- 8 ================= 练一练 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 2</span><h2>计算下面三角形的面积</h2></div>
+  <div class="bd full top">
+    <svg id="tri3Fig" class="tri3-fig" aria-label="三个三角形，标出底和对应的高"></svg>
+    <div class="cols3">
+      <p class="calc">① $8\times5\div2=$ <span class="blank" data-ans="20"></span> cm²</p>
+      <p class="calc">② <span class="blank" data-ans="6"></span> dm²</p>
+      <p class="calc">③ <span class="blank" data-ans="360"></span> m²</p>
+    </div>
+    <p class="warn" data-step="1">②是直角三角形：两条直角边互相垂直，一条当底，另一条就是高——$3\times4\div2=6$。③的 16 m 是 45 m 这条边上的高，所以是 $45\times16\div2=360$。</p>
+  </div>
+  <p class="note">课本 p10 练一练第 2 题，图按题目数据等比例画出。先请学生在图上指出“这条高对着哪条底”，再列式计算。</p>
+</section>
+
+<!-- 9 ================= 练习二第 7 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 练习二第 7 题</span><h2>哪几个三角形的面积是平行四边形面积的一半？</h2></div>
+  <div class="bd full top">
+    <svg id="halfFig" class="half-fig" aria-label="方格纸上一个平行四边形和四个三角形"></svg>
+    <div class="cols4">
+      <div class="pick mini" data-ans="y"><span>A</span><button type="button" data-k="y">是一半</button><button type="button" data-k="n">不是</button><p class="pick-why">底 3、高 4，和平行四边形<b>等底等高</b>：$3\times4\div2=6$。</p></div>
+      <div class="pick mini" data-ans="n"><span>B</span><button type="button" data-k="y">是一半</button><button type="button" data-k="n">不是</button><p class="pick-why">底 4、高 4：$4\times4\div2=8$，不是 6。</p></div>
+      <div class="pick mini" data-ans="n"><span>C</span><button type="button" data-k="y">是一半</button><button type="button" data-k="n">不是</button><p class="pick-why">底 2、高 4：$2\times4\div2=4$，不是 6。</p></div>
+      <div class="pick mini" data-ans="y"><span>D</span><button type="button" data-k="y">是一半</button><button type="button" data-k="n">不是</button><p class="pick-why">底 4、高 3：$4\times3\div2=6$。底和高都不同，乘积一样也行！</p></div>
+    </div>
+    <p class="method" data-step="1" data-label="想一想">平行四边形的面积是 $3\times4=12$。三角形的面积是 6，只要“底 × 高”等于 12 就行——<b>等底等高</b>的三角形一定是平行四边形的一半，但不是只有这一种。</p>
+  </div>
+  <p class="note">课本 p12 练习二第 7 题，方格图与课本一致。很多学生只挑 A（等底等高），D 容易漏掉：底 4 高 3，乘积也是 12。</p>
+</section>
+
+<!-- 10 ================= 你知道吗：以盈补虚 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">你知道吗</span><h2>古人怎样算三角形的面积？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="yingFig" class="ying-fig" viewBox="0 0 400 300" aria-label="以盈补虚：三角形补成长方形" data-noswipe></svg>
+      <button type="button" class="btn solid" id="yingGo" data-noswipe>以盈补虚 ▶</button>
+    </div>
+    <div class="col">
+      <p class="tip">我国古代数学名著《九章算术》中记载了三角形面积的算法：“<b>半广以乘正从</b>”。“广”指三角形的底，“从”指三角形的高，也就是用三角形<b>底的一半乘高</b>。</p>
+      <p class="tip" data-step="1">数学家刘徽用“<b>以盈补虚</b>”的方法加以说明：<span class="think" data-step="2" data-ask="点左边的按钮看看">把三角形下面多出来的两块（盈）转上去，正好补上长方形上面空着的两块（虚）。三角形变成了一个长方形：长是<b>从</b>（高），宽是<b>半广</b>（底的一半）。</span></p>
+      <p class="tip gold" data-step="3">所以：三角形的面积 = 底 ÷ 2 × 高，和我们的公式 <b>底 × 高 ÷ 2</b> 结果一样！</p>
+    </div>
+  </div>
+  <p class="note">课本 p10 你知道吗。两块“盈”都是绕三角形腰的中点旋转 180°，正好补到“虚”的位置（代码按坐标精确计算）。这是另一种转化：不用两个三角形拼，而是把一个三角形割下来补一补。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>我们是怎样找到三角形面积公式的？</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><svg viewBox="0 0 120 70" aria-label="三角形"><path d="M5 62H75L35 8Z" fill="#fde3ee" stroke="#d6247a" stroke-width="2.5"/></svg><b>两个完全一样的三角形</b><small>没学过</small></div>
+      <i>复制、旋转<br>拼一拼</i>
+      <div class="fbox"><svg viewBox="0 0 120 70" aria-label="平行四边形"><path d="M5 62H75L35 8Z" fill="#fde3ee" stroke="#d6247a" stroke-width="2.5"/><path d="M75 62L105 8H35Z" fill="#fbe08a" stroke="#c98a00" stroke-width="2.5"/></svg><b>平行四边形</b><small>学过的</small></div>
+      <i>底、高相等<br>面积是一半</i>
+      <div class="fbox hot"><b class="formula">$S=a\times h\div2$</b><small>三角形的面积</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="转化" data-step="2">长方形 → <b>平行四边形</b>（剪、移、拼）→ <b>三角形</b>（两个拼成一个平行四边形）。新知识都是从旧知识长出来的。</p>
+      <div class="method" data-label="用公式要注意" data-step="3"><ul class="use-list"><li>别忘了 <b>÷ 2</b></li><li>底和高要<b>对应</b>；直角三角形的两条直角边互为底和高</li><li>等底等高的三角形面积相等，是平行四边形的一半</li></ul></div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>梯形的面积——两个完全一样的梯形，能拼成什么？</p>
+  </div>
+  <p class="note">请学生说一说：推导三角形面积公式和推导平行四边形面积公式，有什么相同和不同？（都是转化；平行四边形是“一个图形剪拼”，三角形是“两个图形拼”。）课后作业建议：练习二第 8、9、12、13 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgrid.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

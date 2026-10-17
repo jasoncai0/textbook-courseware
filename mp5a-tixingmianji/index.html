@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>梯形的面积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgrid.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/maitian.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 第二单元 多边形的面积 · 梯形的面积</p>
+    <h1 class="cover-title">梯形的面积</h1>
+    <p class="cover-q" data-step="1">一块梯形麦田，上底 <b>36 米</b>，下底 <b>54 米</b>，高 <b>40 米</b>。</p>
+    <p class="cover-q" data-step="2">这块麦田的面积是多少平方米？梯形有<b>两条底</b>，面积该怎样算？</p>
+    <div class="chips" data-step="3"><span class="chip">分一分、补一补</span><span class="chip">两个梯形拼一拼</span><span class="chip">找到公式</span><span class="chip">三个公式是一家</span></div>
+  </div>
+  <p class="note">课本 p15 试一试的情境，先抛出来，第 7 页回来算。提问：平行四边形、三角形的面积公式是怎样得到的？（都是转化）梯形能转化成什么？准备课本 p117 的梯形学具。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>前两课的方法，都请出来</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 平行四边形的面积" data-step="1">
+        <svg viewBox="0 0 240 110" class="mini-fig" aria-label="平行四边形"><path d="M20 100H160L210 15H70Z" fill="#fde3ee" stroke="#d6247a" stroke-width="3"/><path d="M70 15V100" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6 5"/></svg>
+        <p class="big center">$S=a\times h$</p>
+        <span class="use">两个梯形拼成平行四边形后，用它来算。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 三角形的面积" data-step="2">
+        <svg viewBox="0 0 240 110" class="mini-fig" aria-label="两个三角形拼成平行四边形"><path d="M20 100H130L80 15Z" fill="#fde3ee" stroke="#d6247a" stroke-width="3"/><path d="M130 100L190 15H80Z" fill="#fbe08a" stroke="#c98a00" stroke-width="3"/></svg>
+        <p class="big center">$S=a\times h\div2$</p>
+        <span class="use">两个完全一样的图形拼起来，再取一半——梯形也能这样做。</span>
+      </div>
+      <div class="recall" data-label="四年级下册 · 认识梯形" data-step="3">
+        <svg viewBox="0 0 240 110" class="mini-fig" aria-label="梯形的上底、下底、高、腰">
+          <path d="M20 95H220L160 20H70Z" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/>
+          <path d="M110 20V95" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6 5"/>
+          <text x="115" y="14" class="fl s">上底</text><text x="110" y="109" class="fl s">下底</text><text x="116" y="64" class="fl s r">高</text><text x="22" y="56" class="fl s">腰</text><text x="196" y="56" class="fl s">腰</text>
+        </svg>
+        <p>只有<b>一组对边平行</b>的四边形是梯形；两底之间的距离是高。</p>
+        <span class="use">公式里要同时用到上底、下底和高。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>今天的问题：</b>梯形的面积怎样计算？能不能把它转化成学过的图形？</p>
+  </div>
+  <p class="note">第 3 张卡请学生到屏幕上指出上底、下底、高、腰。提醒：上底不一定短、下底不一定长，平行的两条边都是底。</p>
+</section>
+
+<!-- 3 ================= 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6 · 想办法</span><h2>你能想办法求出这个梯形的面积吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="ex6Fig" class="ex6-fig" aria-label="方格纸上的梯形：上底 3 格，下底 7 格，高 4 格"></svg>
+      <p class="tip center small-t">每个小方格表示 1 平方厘米</p>
+    </div>
+    <div class="col">
+      <div class="btns col-btns" id="ex6Way" data-noswipe>
+        <button type="button" class="btn" data-w="1">① 分成 1 个长方形和 2 个三角形</button>
+        <button type="button" class="btn" data-w="2">② 分成 1 个平行四边形和 1 个三角形</button>
+        <button type="button" class="btn" data-w="3">③ 补 1 个完全一样的梯形，拼成平行四边形</button>
+      </div>
+      <p class="calc ex6-calc" id="ex6Calc">先自己想一想，再点一种方法看看。</p>
+      <p class="tip">梯形的面积是 <span class="blank" data-ans="20"></span> 平方厘米。</p>
+      <p class="tip gold" data-step="1">三种方法有什么相同的地方？　<span class="think" data-step="2" data-ask="比一比">都是把梯形<b>转化</b>成学过的图形；第 ③ 种最简单，只算一次。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p14 例 6，方格图与课本一致：上底 3 格、下底 7 格、高 4 格。先让学生在课本上画一画，再依次点三种方法核对。第 ③ 种方法引出例 7：每个梯形都能这样拼吗？</p>
+</section>
+
+<!-- 4 ================= 例 7 拼一拼 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · 拼一拼</span><h2>两个完全一样的梯形，都能拼成平行四边形吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" id="tzKind" data-noswipe>
+        <button type="button" class="btn solid" data-k="gen">一般梯形</button>
+        <button type="button" class="btn" data-k="right">直角梯形</button>
+        <button type="button" class="btn" data-k="iso">等腰梯形</button>
+      </div>
+      <div class="btns" data-noswipe>
+        <button type="button" class="btn solid go" id="tzCopy">① 复制一个</button>
+        <button type="button" class="btn solid go" id="tzTurn" disabled>② 绕右腰中点旋转 180° ▶</button>
+      </div>
+      <p class="tip gold" id="tzSay">先点“复制一个”。</p>
+      <p class="tip" data-step="1">拼成的平行四边形，底是梯形的什么？　<span class="think" data-step="2" data-ask="看图说一说">底 = 梯形的<b>上底 + 下底</b>（一个梯形的下底接着另一个梯形的上底）。</span></p>
+    </div>
+    <div class="col">
+      <svg id="tzFig" class="tz-fig" aria-label="两个完全一样的梯形拼成平行四边形（每格 1 厘米）"></svg>
+    </div>
+  </div>
+  <p class="note">课本 p14 例 7。课本让学生从 p117 选两个梯形剪下来拼；这里三种梯形都演示一遍：复制一个，再绕右边那条腰的中点旋转 180°。看图追问：拼成的平行四边形的底由哪两段组成？高变了吗？</p>
+</section>
+
+<!-- 5 ================= 例 7 讨论 + 推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · 小组讨论</span><h2>拼成的平行四边形和梯形有什么关系？</h2></div>
+  <div class="bd full top">
+    <table class="mtab">
+      <tr><th colspan="3">拼成的平行四边形</th><th colspan="4">梯形</th></tr>
+      <tr><th>底/cm</th><th>高/cm</th><th>面积/cm²</th><th>上底/cm</th><th>下底/cm</th><th>高/cm</th><th>面积/cm²</th></tr>
+      <tr><td><span class="blank" data-ans="9"></span></td><td>4</td><td><span class="blank" data-ans="36"></span></td><td>3</td><td>6</td><td>4</td><td><span class="blank" data-ans="18"></span></td></tr>
+      <tr><td><span class="blank" data-ans="7"></span></td><td>4</td><td><span class="blank" data-ans="28"></span></td><td>2</td><td>5</td><td>4</td><td><span class="blank" data-ans="14"></span></td></tr>
+      <tr><td><span class="blank" data-ans="8"></span></td><td>4</td><td><span class="blank" data-ans="32"></span></td><td>2</td><td>6</td><td>4</td><td><span class="blank" data-ans="16"></span></td></tr>
+    </table>
+    <div class="cols2">
+      <div class="col qs">
+        <p data-step="1">(1) 两个梯形有什么关系？<span class="think" data-step="2" data-ask="说一说"><b>完全一样</b>。</span></p>
+        <p data-step="3">(2) 平行四边形的底、高与梯形？<span class="think" data-step="4" data-ask="说一说">底 = <b>上底 + 下底</b>，高 = 梯形的<b>高</b>；每个梯形的面积是平行四边形的<b>一半</b>。</span></p>
+      </div>
+      <div class="derive word-derive">
+        <div class="dl" data-step="5"><span>平行四边形的面积</span><span>= 底 × 高</span><i class="why">学过的公式</i></div>
+        <div class="dl" data-step="6"><span></span><span>= (上底 + 下底) × 高</span><i class="why">底 = 上底 + 下底</i></div>
+        <div class="dl key" data-step="7"><span>梯形的面积</span><span>= (上底 + 下底) × 高 ÷ 2</span><i class="why">梯形是它的一半</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p14 下半页。表中数据就是上一页三个梯形（每格 1 厘米）。第 (2) 题是难点：请学生回到上一页图上，用手比出平行四边形的底由哪两段组成。推导链逐行出示，每行先让学生说再出现。</p>
+</section>
+
+<!-- 6 ================= 公式 + 上底滑块（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括 · 变一变</span><h2>梯形的面积公式，和前面的公式有关系吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def"><h4>梯形的面积公式</h4>如果用 $S$ 表示梯形的面积，用 $a$、$b$ 和 $h$ 分别表示梯形的上底、下底和高，那么<p class="formula">$S=(a+b)\times h\div2$</p></div>
+      <p class="warn" data-step="1">先算括号里的<b>上底 + 下底</b>，再乘高，最后 <b>÷ 2</b>。</p>
+    </div>
+    <div class="col">
+      <svg id="morphFig" class="morph-fig" aria-label="上底变化的梯形" data-noswipe></svg>
+      <div class="slider-row" data-noswipe><span>上底 $a$</span><input type="range" id="morphA" min="0" max="8" step="1" value="3" aria-label="上底"><span id="morphAv">3</span></div>
+      <p class="calc center" id="morphCalc"></p>
+      <p class="tip gold" data-step="2">把上底缩成 0，再拉到和下底一样长，你发现了什么？　<span class="think" data-step="3" data-ask="拖一拖，再说">上底是 0，梯形变成<b>三角形</b>：$(0+b)\times h\div2=b\times h\div2$；上底等于下底，变成<b>平行四边形</b>：$(b+b)\times h\div2=b\times h$。三个公式是一家！</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p15 公式。右边是本课的“变一变”：下底 8 格、高 4 格不动，拖动滑块改变上底，面积按公式实时计算。上底拖到 0、拖到 8 时停下来让学生说图形变成了什么、公式变成了什么。这一页帮学生把三个公式串起来。</p>
+</section>
+
+<!-- 7 ================= 试一试 + 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 练一练</span><h2>用公式算一算</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">一块梯形麦田，上底 <b>36 米</b>，下底 <b>54 米</b>，高 <b>40 米</b>。这块麦田的面积是多少平方米？</p>
+        <div class="calc">
+          <p>$(36+54)\times40\div2$</p>
+          <p>$=$ <span class="blank" data-ans="90" data-label="36+54"></span> $\times40\div2$</p>
+          <p>$=$ <span class="blank" data-ans="1800" data-w="4"></span>（平方米）</p>
+        </div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练</b> 用两个完全一样的梯形拼成一个平行四边形（底 40 cm，高 16 cm），每个梯形的面积是多少平方厘米？</p>
+        <svg viewBox="0 0 330 132" class="lx-fig" aria-label="两个梯形拼成的平行四边形（底 40 cm，高 16 cm，按比例画）">
+          <path d="M20 110H270L310 10H60Z" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="2.5"/>
+          <path d="M115 10L215 110" stroke="#1d6fa5" stroke-width="2.5"/>
+          <path d="M60 10V110" stroke="#c0392b" stroke-width="2" stroke-dasharray="5 4"/>
+          <text x="66" y="66" class="fl s r">16 cm</text><text x="128" y="130" class="fl s">40 cm</text>
+        </svg>
+        <p class="q small-q">每个梯形：<span class="blank" data-ans="320"></span> 平方厘米</p>
+        <details><summary>提示 1</summary>40 cm 是平行四边形的底，也就是梯形的<b>上底 + 下底</b>。</details>
+        <details><summary>完整解答</summary>$40\times16\div2=320$（平方厘米）。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p15 试一试和练一练。练一练里不知道上底、下底各是多少，但知道它们的和是 40 厘米——正好用上“平行四边形的底 = 上底 + 下底”。练一练的图按 40 : 16 的比例画。</p>
+</section>
+
+<!-- 8 ================= 练习三第 2 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习三第 2 题</span><h2>计算下面梯形的面积</h2></div>
+  <div class="bd full top">
+    <svg id="tz3Fig" class="tz3-fig" aria-label="三个梯形，标出上底、下底和高"></svg>
+    <div class="cols3">
+      <p class="calc">① <span class="blank" data-ans="15"></span> m²</p>
+      <p class="calc">② <span class="blank" data-ans="44"></span> dm²</p>
+      <p class="calc">③ <span class="blank" data-ans="1817" data-w="4"></span> cm²</p>
+    </div>
+    <p class="warn" data-step="1">③的梯形是“躺着”的：竖着的 52 cm 和 27 cm 是<b>上底和下底</b>（它们平行），横着的 46 cm 才是<b>高</b>：$(52+27)\times46\div2=1817$。</p>
+  </div>
+  <p class="note">课本 p18 练习三第 2 题，图按题目数据等比例画。①是等腰梯形，②是直角梯形（直角腰就是高），③要先找到哪两条边平行。</p>
+</section>
+
+<!-- 9 ================= 练习三第 1 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 练习三第 1 题</span><h2>图中哪几个梯形的面积相等？为什么？</h2></div>
+  <div class="bd full top">
+    <svg id="eqFig" class="eq-fig" aria-label="方格纸上的四个梯形"></svg>
+    <div class="cols4">
+      <p class="calc">A：<span class="blank" data-ans="16"></span> 格</p>
+      <p class="calc">B：<span class="blank" data-ans="16"></span> 格</p>
+      <p class="calc">C：<span class="blank" data-ans="14"></span> 格</p>
+      <p class="calc">D：<span class="blank" data-ans="16"></span> 格</p>
+    </div>
+    <p class="method" data-step="1" data-label="为什么">四个梯形的高都是 4 格。A、B、D 的<b>上底 + 下底</b>都是 8 格（2 + 6、5 + 3、1 + 7），面积都是 $8\times4\div2=16$；C 是 4 + 3 = 7，面积 14。<b>高相等时，上下底的和相等，面积就相等。</b></p>
+  </div>
+  <p class="note">课本 p18 练习三第 1 题，方格图与课本一致。先让学生数出上底、下底、高，再算面积；结论引导学生用公式说理，而不是只靠数格子。</p>
+</section>
+
+<!-- 10 ================= 动手做 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手做</span><h2>过平行四边形的中心画一条直线，分成的两部分一样吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="cenFig" class="cen-fig" viewBox="0 0 440 300" aria-label="过平行四边形中心 O 的直线" data-noswipe></svg>
+      <div class="slider-row" data-noswipe><span>转动直线</span><input type="range" id="cenAng" min="0" max="179" step="1" value="70" aria-label="直线方向"></div>
+      <button type="button" class="btn solid" id="cenTurn" data-noswipe>把一部分绕 O 转 180° ▶</button>
+    </div>
+    <div class="col">
+      <p class="tip">在方格纸上画平行四边形 $ABCD$，连接对角线 $AC$、$BD$，它们的交点 $O$ 称为平行四边形的<b>中心</b>。</p>
+      <p class="tip" data-step="1">过中心 $O$ 任意画一条直线，把平行四边形分成了两个什么图形？　<span class="think" data-step="2" data-ask="转一转直线，再说">一般是两个<b>梯形</b>（也可能是两个三角形或两个平行四边形）。</span></p>
+      <p class="tip gold" data-step="3">这两个图形完全一样吗？　<span class="think" data-step="4" data-ask="点左边的按钮">完全一样！把一部分绕 $O$ 转 180°，正好和另一部分<b>重合</b>。</span></p>
+      <p class="tip" data-step="5">用同样的方法，还能把<b>正方形、长方形、正六边形</b>分成完全一样的两部分。</p>
+    </div>
+  </div>
+  <p class="note">课本 p15 动手做。转动滑块改变直线方向，再点按钮：橙色部分绕中心 O 旋转 180°，与蓝色部分重合（代码按坐标精确计算）。这也解释了为什么两个完全一样的梯形能拼成平行四边形。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>三个面积公式，是怎样一个一个长出来的？</h2></div>
+  <div class="bd full">
+    <div class="tree" data-step="1">
+      <div class="node root">长方形<br>$S=$ 长 × 宽</div>
+      <i>剪、移、拼</i>
+      <div class="node">平行四边形<br>$S=a\times h$</div>
+      <i>两个拼成平行四边形</i>
+      <div class="pair"><div class="node">三角形<br>$S=a\times h\div2$</div><div class="node hot">梯形<br>$S=(a+b)\times h\div2$</div></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="转化" data-step="2">都是把新图形<b>转化</b>成学过的图形：找到新旧图形之间的关系（底、高、面积），就得到了公式。</p>
+      <div class="method" data-label="三个公式是一家" data-step="3"><ul class="use-list"><li>上底 = 0：梯形 → 三角形</li><li>上底 = 下底：梯形 → 平行四边形</li><li>别忘了先算 (上底 + 下底)，再 ÷ 2</li></ul></div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>公顷和平方千米——测量大片土地的面积，用什么单位？</p>
+  </div>
+  <p class="note">请学生按“长方形 → 平行四边形 → 三角形、梯形”的顺序，说说每个公式是怎样推出来的。课后作业建议：练习三第 1、2、3、6 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgrid.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

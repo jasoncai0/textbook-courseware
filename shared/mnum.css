@@ -3,10 +3,10 @@
 .ntab { display: grid; grid-template-columns: repeat(var(--cols, 10), 1fr); border: 2px solid #8fb3cf; background: #fff; width: 100%; }
 .nc {
   position: relative; font: inherit; font-size: .78em; line-height: 1; padding: .42em 0; border: none; border-right: 1px solid #c6d7e5; border-bottom: 1px solid #c6d7e5;
-  background: transparent; color: var(--ink); cursor: pointer; font-variant-numeric: tabular-nums; transition: background .25s, color .25s;
+  background: transparent; color: var(--ink); cursor: pointer; isolation: isolate; font-variant-numeric: tabular-nums; transition: background .25s, color .25s;
 }
 .nc:hover { background: #f1f7fc; }
-.nc::before, .nc::after { content: ""; position: absolute; pointer-events: none; opacity: 0; transition: opacity .2s; }
+.nc::before, .nc::after { content: ""; position: absolute; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .2s; }
 /* ○：圆圈；△：三角形（SVG 背景，线条精确） */
 .nc::before { inset: 8% 16%; border: 2.5px solid #d6337a; border-radius: 50%; }
 .nc::after { inset: 2% 6% 4%; background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 36'%3E%3Cpolygon points='20,2 38,34 2,34' fill='none' stroke='%232f9e6b' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E"); }
