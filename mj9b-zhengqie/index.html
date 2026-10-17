@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正切 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/taijie.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第7章 锐角三角函数 · 7.1</p>
+    <h1 class="cover-title">正切</h1>
+    <p class="cover-q" data-step="1">某体育馆为了方便观众，设计了不同坡度的台阶。有的台阶走起来轻松，有的却很“陡”。</p>
+    <p class="cover-q" data-step="2">“陡”能不能用<b>一个数</b>来刻画？两段台阶一大一小，怎样比较谁更陡？</p>
+    <div class="chips" data-step="3"><span class="chip">比台阶 · 找“陡”的数</span><span class="chip">角定了，比就定了</span><span class="chip">正切 tan A</span><span class="chip">用计算器求正切</span></div>
+  </div>
+  <p class="note">课本 p96 情境。先让学生凭感觉说“怎样算陡”：看高度？看水平长度？还是看两者的关系？本章主线一句话——直角三角形里“角定了，边的比就定了”，这一课先研究对边与邻边的比。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="九下 6.4 探索三角形相似的条件" data-step="1">
+        <p><b>两角</b>分别相等的两个三角形相似。</p>
+        <p>两个直角三角形，只要再有一个<b>锐角相等</b>，就相似。</p>
+        <span class="use">锐角 $A$ 相同的直角三角形，大小不同，却都相似（第 4 页）。</span>
+      </div>
+      <div class="recall" data-label="九下 6.5 相似三角形的性质" data-step="2">
+        <p>相似三角形的对应边<b>成比例</b>：$\dfrac{B_1C_1}{B_2C_2}=\dfrac{AC_1}{AC_2}$，</p>
+        <p>交换内项，就是 $\dfrac{B_1C_1}{AC_1}=\dfrac{B_2C_2}{AC_2}$——<b>同一个三角形里</b>两边的比也相等。</p>
+        <span class="use">说明“对边 : 邻边”只由锐角 $A$ 决定（第 4 页）。</span>
+      </div>
+      <div class="recall" data-label="八上 3.1 勾股定理" data-step="3">
+        <p>直角三角形中 $a^2+b^2=c^2$；已知两边可求第三边。</p>
+        <span class="use">例 1 先求出对边，再求正切。</span>
+        <p class="link"><a href="../mj8a-gougudingli/index.html">回看 3.1 →</a></p>
+      </div>
+      <div class="recall" data-label="八上 2.5 等腰三角形的轴对称性" data-step="4">
+        <p>等腰三角形“三线合一”：底边上的高也是底边上的中线。</p>
+        <span class="use">例 2 等边三角形的高把底边平分，$AD=\frac12 AB$。</span>
+        <p class="link"><a href="../mj8a-dengyao/index.html">回看 2.5 →</a></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">四张卡依次出现，每张先请学生复述，再看“本课用在”。第二张卡的“交换内项”是本课的关键一步：相似给出的是“两个三角形之间”的比，我们要的是“一个三角形内部”的比，学生常卡在这里，可在黑板上写出比例式变形。</p>
+</section>
+
+<!-- 3 ================= 观察与思考：哪个台阶更陡 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察与思考</span><h2>哪个台阶更陡？你是怎样判断的？</h2></div>
+  <div class="bd w55">
+    <div class="col">
+      <div id="stairs" class="stairs"></div>
+      <div class="btns" data-noswipe id="stBtns">
+        <button class="btn solid" type="button" data-m="72">图 7-2：三个台阶</button>
+        <button class="btn" type="button" data-m="73">图 7-3：一小一大</button>
+        <button class="btn" type="button" data-m="lap">叠在一起比</button>
+      </div>
+      <p class="tip feedback" id="stMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">图 7-2 中三个台阶的“高度”和“水平长度”（单位相同）：</p>
+      <table class="mtab">
+        <tr><th>台阶</th><th>①</th><th>②</th><th>③</th></tr>
+        <tr><td>高度</td><td>4</td><td>6</td><td>6</td></tr>
+        <tr><td>水平长度</td><td>8</td><td>8</td><td>10</td></tr>
+        <tr><td>高度 ÷ 水平长度</td><td><span class="think" data-step="2" data-ask="?">$0.5$</span></td><td><span class="think" data-step="2" data-ask="?">$0.75$</span></td><td><span class="think" data-step="2" data-ask="?">$0.6$</span></td></tr>
+      </table>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>① 和 ②</span><span>水平一样长，② 更高</span><i class="why">② 比 ① 陡</i></div>
+        <div class="dl" data-step="1"><span>② 和 ③</span><span>一样高，② 水平更短</span><i class="why">② 比 ③ 陡</i></div>
+        <div class="dl" data-step="2"><span>① 和 ③</span><span>高、长都不同，怎么比？</span><i class="why">比一比“高度 ÷ 水平长度”</i></div>
+        <div class="dl key" data-step="3"><span>结论</span><span class="think" data-step="4" data-ask="哪个最陡？">② 最陡（$0.75$ 最大）</span><i class="why">比值越大，台阶越陡</i></div>
+        <div class="dl end" data-step="5"><span>图 7-3</span><span class="think" data-step="6" data-ask="你有什么发现？">$\dfrac48=\dfrac{6}{12}=0.5$，一样陡</span><i class="why">大小不同，倾斜程度相同——叠在一起，斜边重合</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p96“观察与思考”1–3。台阶都按课本数据用同一比例尺精确画出。先比 ①② 和 ②③（控制一个量不变），再问“① 和 ③ 怎么比”，逼出“比值”的想法。点“叠在一起比”：把台阶的左下角重合，最陡的斜边“站”得最高；图 7-3 的两个台阶叠起来斜边在一条直线上——倾斜程度只与“高 : 水平长”有关，与大小无关。</p>
+</section>
+
+<!-- 4 ================= 角定了，比就定了（图 7-4） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索 · 核心</span><h2>锐角 $A$ 确定了，对边与邻边的比也确定吗？</h2></div>
+  <button class="media-btn" hidden data-img="assets/zhengqie.jpg" data-video="assets/zhengqie.mp4" data-cap="锐角 A 固定时，三个大小不同的直角三角形对边 : 邻边相等；∠A 变大，这个比值一起变大">▶ 看动画</button>
+  <div class="bd w50">
+    <div class="col">
+      <div id="sim" class="sim"></div>
+      <p class="muted center small-t">拖射线上的橙点改变 $\angle A$；拖 $C_1$、$C_2$、$C_3$ 改变三角形的大小</p>
+    </div>
+    <div class="col">
+      <table class="mtab" id="simTab"></table>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>∵</span><span>三个直角三角形有公共锐角 $A$</span><i class="why">又都有一个直角</i></div>
+        <div class="dl" data-step="2"><span>∴</span><span class="think" data-step="3" data-ask="它们有什么关系？">$\triangle AB_1C_1\backsim\triangle AB_2C_2\backsim\triangle AB_3C_3$</span><i class="why">两角分别相等的两个三角形相似</i></div>
+        <div class="dl key" data-step="4"><span>∴</span><span class="think" data-step="5" data-ask="哪些比相等？">$\dfrac{B_1C_1}{AC_1}=\dfrac{B_2C_2}{AC_2}=\dfrac{B_3C_3}{AC_3}=\cdots$</span><i class="why">相似三角形对应边成比例（交换内项）</i></div>
+      </div>
+      <p class="def" data-step="6">如果直角三角形的一个锐角的大小确定，那么这个锐角的<em>对边与邻边的比值</em>也确定。</p>
+    </div>
+  </div>
+  <p class="note">课本 p96–97 图 7-4。先拖 C₁、C₂、C₃（角不变，三角形变大变小），学生会看到三行比值始终一样；再拖橙点改变 ∠A，三行比值“一起变”。比值是由坐标精确算出的（表中保留 3 位小数）。追问：为什么比值只跟角有关？——相似。推理链第 3 行是从“两个三角形之间的比”换成“一个三角形内的比”，回扣前情回顾第二张卡。右上角“看动画”约 16 秒，可用于复述。</p>
+</section>
+
+<!-- 5 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>正切</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="defFig" class="deffig"></div>
+      <div class="btns" data-noswipe id="defBtns">
+        <button class="btn solid" type="button" data-v="A">站在 $\angle A$ 看</button>
+        <button class="btn" type="button" data-v="B">站在 $\angle B$ 看</button>
+      </div>
+      <p class="tip feedback" id="defMsg"></p>
+    </div>
+    <div class="col">
+      <div class="def big-def" data-step="1"><h4>正切（课本 p97）</h4>如图 7-5，在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$．我们把 $\angle A$ 的对边 $a$ 与邻边 $b$ 的比叫做 $\angle A$ 的<em>正切</em>（tangent），记作 $\tan A$，即
+        $$\tan A=\frac{\angle A\text{ 的对边}}{\angle A\text{ 的邻边}}=\frac ab.$$</div>
+      <p class="warn" data-step="2" data-label="读懂记号">$\tan A$ 是一个<b>整体</b>，表示一个比值（一个数），没有单位；不能看成 $\tan\times A$。</p>
+      <p class="warn" data-step="3" data-label="对边、邻边是相对的">换一个角，对边、邻边就换了。<span class="think" data-step="4" data-ask="tan B = ？">$\angle B$ 的对边是 $b$、邻边是 $a$，所以 $\tan B=\dfrac ba$。</span></p>
+      <p class="method" data-step="5" data-label="直观意义">$\tan A$ 越大，$\angle A$ 的对边相对邻边越长，斜边越“陡”——台阶的“高度 ÷ 水平长度”就是倾斜角的正切。</p>
+    </div>
+  </div>
+  <p class="note">课本 p97 定义与图 7-5。点左侧两个按钮，红色是对边、绿色是邻边：同一个三角形，站在不同的角看，对边和邻边互换。“邻边”专指夹这个锐角的那条直角边，不是斜边。最后一张卡把定义和第 3 页的台阶连起来。</p>
+</section>
+
+<!-- 6 ================= 例 1、例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>求正切：先找对边、邻边</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 1</b>　如图 7-6，在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$AC=4$，$AB=5$．求 $\tan A$．</p>
+        <div id="ex1Fig" class="gfig"></div>
+        <p class="tip" data-step="1"><b>思路：</b>$\tan A=\dfrac{BC}{AC}$，<span class="think" data-step="2" data-ask="缺什么？">缺对边 $BC$——用勾股定理先求。</span></p>
+        <div class="derive small-d">
+          <div class="dl" data-step="3"><span></span><span>$BC=\sqrt{AB^2-AC^2}=\sqrt{5^2-4^2}=3$</span><i class="why">勾股定理</i></div>
+          <div class="dl end" data-step="4"><span></span><span>$\tan A=\dfrac{BC}{AC}=\dfrac34$</span><i class="why">正切的定义</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="5"><b>例 2</b>　如图 7-7，在等边三角形 $ABC$ 中，$CD\perp AB$，垂足为 $D$．求 $\tan A$．</p>
+        <div id="ex2Fig" class="gfig" data-step="5"></div>
+        <div class="derive small-d">
+          <div class="dl" data-step="6"><span></span><span class="think" data-step="7" data-ask="AD 与 AB 什么关系？">$AD=\dfrac12AB=\dfrac12AC$</span><i class="why">三线合一；等边三角形三边相等</i></div>
+          <div class="dl" data-step="8"><span></span><span>$CD=\sqrt{AC^2-AD^2}=\sqrt{2^2-1^2}\cdot AD=\sqrt3AD$</span><i class="why">在 $\text{Rt}\triangle ADC$ 中，勾股定理（把 $AC$ 看作 $2AD$）</i></div>
+          <div class="dl end" data-step="9"><span></span><span>$\tan A=\dfrac{CD}{AD}=\sqrt3$</span><i class="why">正切的定义</i></div>
+        </div>
+        <p class="method" data-step="10" data-label="发现">等边三角形的 $\angle A=60^\circ$，所以 $\tan60^\circ=\sqrt3$——不论这个等边三角形多大。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p97 例 1、例 2，图按题中数据精确绘制（例 2 取边长 2）。例 2 题目没给边长，课本的写法是“把 AC 看作 2 个 AD”，让学生体会：正切只与角有关，边长取多少都一样，这正是第 4 页的结论。</p>
+</section>
+
+<!-- 7 ================= 思考与探索 + 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 练习</span><h2>$\tan30^\circ$ 是多少？再算几个正切</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>思考与探索</b>　由例 2 知道，$\tan60^\circ=\sqrt3$．求 $\tan30^\circ$ 的值．</p>
+        <details><summary>提示 1</summary>还看图 7-7：$\text{Rt}\triangle ADC$ 中哪个角是 $30^\circ$？</details>
+        <details><summary>提示 2</summary>$\angle ACD=90^\circ-60^\circ=30^\circ$，它的对边是 $AD$，邻边是 $CD$。</details>
+        <details><summary>完整解答</summary>$\tan30^\circ=\dfrac{AD}{CD}=\dfrac{AD}{\sqrt3AD}=\dfrac1{\sqrt3}=\dfrac{\sqrt3}3$．</details>
+      </div>
+      <div class="col">
+        <p class="q"><b>练习 1</b>　求图中各直角三角形锐角的正切值．</p>
+        <div id="pr1a" class="gfig s"></div>
+        <p class="fillrow">① $\tan A=$ <span class="blank" data-ans="5/12" data-w="4"></span>　$\tan B=$ <span class="blank" data-ans="12/5|2.4" data-w="4"></span></p>
+        <div id="pr1b" class="gfig s"></div>
+        <div class="hint-ladder">
+          <p class="q">② 已知斜边 $A_1B_1=7$，$A_1C_1=5$．</p>
+          <details><summary>提示</summary>先求 $B_1C_1=\sqrt{7^2-5^2}=\sqrt{24}=2\sqrt6$。</details>
+          <details><summary>完整解答</summary>$\tan A_1=\dfrac{2\sqrt6}5$，$\tan B_1=\dfrac5{2\sqrt6}=\dfrac{5\sqrt6}{12}$．</details>
+        </div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2</b>　求 $45^\circ$ 角的正切值．</p>
+        <details><summary>提示 1</summary>画一个含 $45^\circ$ 角的直角三角形——它是什么三角形？</details>
+        <details><summary>提示 2</summary>等腰直角三角形：两条直角边相等。</details>
+        <details><summary>完整解答</summary>在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$\angle A=45^\circ$，则 $\angle B=45^\circ$，$BC=AC$，所以 $\tan45^\circ=\dfrac{BC}{AC}=1$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p97 思考与探索、p98 练习。练习 1 ① 可直接填（输入 5/12 回车判对错）；② 需要先用勾股定理，用提示阶梯。30°、45°、60° 的三角函数值将在 7.3 集中整理，这里先让学生“自己算出来”。</p>
+</section>
+
+<!-- 8 ================= 观察与思考：图 7-8 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察与思考</span><h2>沿着 $\theta$ 线走：水平前进 1，竖直上升多少？</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="grid78" class="grid78"></div>
+      <p class="muted center small-t">拖动橙点改变 $\theta$（取整数度）；$P$ 在直线 $x=1$ 上</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 7-8，一个点从原点 $O$ 出发，沿着 $\theta$ 线移动到点 $P$ 时，水平方向前进了 1 个单位长度，竖直方向上升的高度就是 <span class="think" data-step="1" data-ask="为什么？">$\tan\theta=\dfrac{\text{上升高度}}{1}$</span>．</p>
+      <div class="readout r2"><span>$\theta$</span><b class="v" id="gTh"></b><span>$\tan\theta\approx$</span><b class="v" id="gTan"></b></div>
+      <table class="mtab" id="gTab"></table>
+      <p class="tip gold" data-step="2">随着锐角 $\theta$ 的值增大，$\tan\theta$ 的值怎样变化？<span class="think" data-step="3" data-ask="说说你的发现">$\theta$ 越大，$\tan\theta$ 越大；$\theta=45^\circ$ 时 $\tan\theta=1$，超过 $45^\circ$ 后 $\tan\theta\gt1$，而且增长得越来越快。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p98 图 7-8 与表格。拖到 10°、20°、30°、45°、55°、65° 时，表格自动记下读数（取两位小数，与课本 tan 65° ≈ 2.14 一致）。可以追问：θ 接近 90° 时 P 会跑到哪里？（越来越高，没有上限）。这一页的数值读法，就是计算器“查”正切的直观来源。</p>
+</section>
+
+<!-- 9 ================= 例 3：计算器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>用计算器求正切值</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 3</b>　用计算器求下列各值（精确到 $0.01$）：(1) $\tan65^\circ$；(2) $\tan22^\circ18'$．</p>
+        <div class="keyline" data-step="1"><span class="lbl">(1) 依次按键</span><span class="key">tan</span><span class="key">6</span><span class="key">5</span><span class="key">)</span><span class="key">=</span></div>
+        <p class="tip" data-step="2">显示结果为 $2.144\,506\,921$，即 $\tan65^\circ\approx2.14$．</p>
+        <div class="keyline" data-step="3"><span class="lbl">(2) 依次按键</span><span class="key">tan</span><span class="key">2</span><span class="key">2</span><span class="key">° ′ ″</span><span class="key">1</span><span class="key">8</span><span class="key">° ′ ″</span><span class="key">)</span><span class="key">=</span></div>
+        <p class="tip" data-step="4">显示结果为 $0.410\,129\,889\,5$，即 $\tan22^\circ18'\approx0.41$．</p>
+        <p class="warn" data-step="5" data-label="度、分换算">$1^\circ=60'$，所以 $22^\circ18'=22^\circ+\dfrac{18}{60}{}^\circ=22.3^\circ$．不同型号计算器按键顺序可能不同，以说明书为准；计算器要设在“度”（D / DEG）状态。</p>
+      </div>
+      <div class="col">
+        <div class="calc" data-noswipe data-step="6">
+          <p class="calc-h">验一验：输入角度，看正切值</p>
+          <div class="calc-row"><input type="number" id="cDeg" min="0" max="89" value="65" aria-label="度">°<input type="number" id="cMin" min="0" max="59" value="0" aria-label="分">′</div>
+          <p class="calc-out">$\tan$ <b id="cAng"></b> $=$ <b id="cVal"></b></p>
+          <p class="calc-out small-t" id="cRound"></p>
+        </div>
+        <p class="method" data-step="7" data-label="精确到 0.01">看第三位小数四舍五入：$2.144\ldots\approx2.14$，$0.410\ldots\approx0.41$。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p99 例 3（按键图以课本计算器为准）。右侧“验一验”用程序算正切值，供学生核对自己的计算器读数——也可以输入第 8 页表中的角，核对读出的近似值。提醒：计算器若在“弧度”状态，tan 65 会得到完全不同的数。</p>
+</section>
+
+<!-- 10 ================= 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>已知一个锐角和一条直角边，求另一条直角边</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex4Fig" class="gfig l"></div>
+      <p class="tip" data-step="1"><b>思路：</b>已知 $\angle A$ 和它的<b>邻边</b> $AC$，要求它的<b>对边</b> $BC$——<span class="think" data-step="2" data-ask="用哪个关系？">$\tan A$ 正好把对边、邻边连在一起。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 4</b>　在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$\angle A=40^\circ$，$AC=10$．求 $BC$ 的长（精确到 $0.01$）．</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解：</span><span>由题意知，$\tan A=\dfrac{BC}{AC}$，</span><i class="why">正切的定义</i></div>
+        <div class="dl" data-step="4"><span>则</span><span class="think" data-step="5" data-ask="BC = ？">$BC=AC\cdot\tan A=10\times\tan40^\circ$，</span><i class="why">等式两边同乘 $AC$</i></div>
+        <div class="dl end" data-step="6"><span></span><span>用计算器计算，得 $BC\approx8.39$．</span><i class="why">$\tan40^\circ=0.8391\ldots$</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="求边的口诀">对边 $=$ 邻边 $\times\tan A$；邻边 $=$ 对边 $\div\tan A$。先找<b>已知的角</b>，再认它的对边、邻边。</p>
+      <p class="tip gold" data-step="8">变式：若已知 $\angle B=25^\circ$，$AC=4$，求 $BC$．<span class="think" data-step="9" data-ask="AC 是 ∠B 的什么边？">$AC$ 是 $\angle B$ 的对边，$BC$ 是邻边：$BC=\dfrac{AC}{\tan B}=\dfrac4{\tan25^\circ}\approx8.58$．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p99 例 4；变式是 p99 练习 2。图按 ∠A = 40°、AC = 10 精确绘制，BC 的长度可以用直尺在图上量一量（约为 AC 的 0.84 倍），检验计算结果是否合理。变式最容易错在把 AC 当成 ∠B 的邻边。</p>
+</section>
+
+<!-- 11 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 用计算器求下列各值（精确到 0.01）：(1) $\tan38^\circ$；(2) $\tan51.34^\circ$；(3) $\tan12^\circ6'$．</p>
+        <p class="fillrow">(1) <span class="blank" data-ans="0.78" data-w="4"></span>　(2) <span class="blank" data-ans="1.25" data-w="4"></span>　(3) <span class="blank" data-ans="0.21" data-w="4"></span></p>
+        <details><summary>提示</summary>$12^\circ6'=12.1^\circ$；看第三位小数四舍五入。</details>
+        <details><summary>完整解答</summary>$\tan38^\circ\approx0.78$，$\tan51.34^\circ\approx1.25$，$\tan12^\circ6'\approx0.21$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（习题 7.1 第 1 题）求图中各直角三角形锐角的正切值．</p>
+        <div class="cols2 figs2"><div id="hw1a" class="gfig s"></div><div id="hw1b" class="gfig s"></div></div>
+        <details><summary>提示</summary>② 中直角在 $C_1$，先求 $A_1C_1=\sqrt{5^2-3^2}=4$。</details>
+        <details><summary>完整解答</summary>① $\tan A=\dfrac1{\sqrt3}=\dfrac{\sqrt3}3$，$\tan B=\sqrt3$；② $\tan A_1=\dfrac34$，$\tan B_1=\dfrac43$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（习题 7.1 第 2、4 题）在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$．<br>(1) $BC=4$，$\tan A=\dfrac23$，求 $AC$；<br>(2) $\angle A=30^\circ$，$AC=34$，求 $BC$（精确到 0.01）．</p>
+        <details><summary>提示 1</summary>(1) $\tan A=\dfrac{BC}{AC}$，$AC$ 是邻边，用除法。</details>
+        <details><summary>提示 2</summary>(2) $BC$ 是 $\angle A$ 的对边：$BC=AC\cdot\tan30^\circ$。</details>
+        <details><summary>完整解答</summary>(1) $AC=\dfrac{BC}{\tan A}=4\div\dfrac23=6$；<br>(2) $BC=34\times\tan30^\circ=\dfrac{34\sqrt3}3\approx19.63$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p99 练习 1、习题 7.1 第 1、2、4 题（习题 3 与练习 1 同类）。第 1 题可以直接输入答案回车判对错。第 2 题 ② 的直角不在下方，要先认清直角顶点。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$：$\tan A=\dfrac{\angle A\text{ 的对边}}{\angle A\text{ 的邻边}}=\dfrac ab$。</p>
+        <p class="def">$\tan45^\circ=1$，$\tan60^\circ=\sqrt3$，$\tan30^\circ=\dfrac{\sqrt3}3$；锐角越大，正切越大。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="求正切">找直角 → 认清对边、邻边 → 缺边用勾股定理补。</p>
+        <p class="method" data-label="求边">对边 $=$ 邻边 $\times\tan A$；邻边 $=$ 对边 $\div\tan A$。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="相似是根">角定了 → 直角三角形都相似 → 边的比定了。</p>
+        <p class="recall" data-label="数形结合">“陡不陡”（形）用一个比值（数）来刻画。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>7.2 正弦、余弦——角定了，对边与<b>斜边</b>的比、邻边与<b>斜边</b>的比也定了吗？</p>
+  </div>
+  <p class="note">请学生先说：“为什么可以用一个角的正切来刻画倾斜程度？”（相似 → 比值不变）。课后作业建议：习题 7.1 第 3 题；用第 8 页的方法读出 tan 70°、tan 80°，体会正切增长越来越快。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>由三角函数值求锐角 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huati.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第7章 锐角三角函数 · 7.4</p>
+    <h1 class="cover-title">由三角函数值求锐角</h1>
+    <p class="cover-q" data-step="1">长 <b>13 m</b> 的笔直滑梯 $AB$，高 $BC$ 为 <b>5 m</b>。</p>
+    <p class="cover-q" data-step="2">你能知道这个滑梯与地面所成角 $A$ 的大小吗？——$\sin A=\dfrac5{13}$，可 $\dfrac5{13}$ 不在特殊角的表里……</p>
+    <div class="chips" data-step="3"><span class="chip">由值造角</span><span class="chip">夹逼找角</span><span class="chip">计算器 2ndF</span><span class="chip">秋千摆角</span></div>
+  </div>
+  <p class="note">课本 p107 情境（图 7-14）。前三节都是“已知角 → 求值”，这一节反过来“已知值 → 求角”。7.3 例 2 已经对特殊值做过，这节解决一般值。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="九下 7.2 正弦、余弦" data-step="1">
+        <p>$\sin A=\dfrac{\text{对边}}{\text{斜边}}$，$\cos A=\dfrac{\text{邻边}}{\text{斜边}}$，$\tan A=\dfrac{\text{对边}}{\text{邻边}}$。</p>
+        <span class="use">由两条已知边写出一个三角函数值。</span>
+        <p class="link"><a href="../mj9b-zhengxianyuxian/index.html">回看 7.2 →</a></p>
+      </div>
+      <div class="recall" data-label="九下 7.3 特殊角的三角函数" data-step="2">
+        <p>$\sin\alpha=\dfrac{\sqrt2}2\Rightarrow\alpha=45^\circ$：特殊值可以“倒查表”。</p>
+        <span class="use">先看是不是特殊值，是就直接写角。</span>
+        <p class="link"><a href="../mj9b-teshujiao/index.html">回看 7.3 →</a></p>
+      </div>
+      <div class="recall" data-label="7.1、7.2 的发现" data-step="3">
+        <p>锐角增大时，$\sin$、$\tan$ 增大，$\cos$ 减小。</p>
+        <span class="use">保证一个值只对应<b>一个</b>锐角；也能用来“夹逼”（第 3 页）。</span>
+      </div>
+      <div class="recall" data-label="7.1、7.2 计算器" data-step="4">
+        <p>按 <span class="key">sin</span> <span class="key">cos</span> <span class="key">tan</span> 由角求值；角度用“度”状态。</p>
+        <span class="use">今天学它的反向键 <span class="key">2ndF</span>。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第三张卡是本课的理论依据：正因为三角函数随角“单调”变化，已知值求出的锐角才是唯一的。</p>
+</section>
+
+<!-- 3 ================= 核心：由值造角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索 · 核心</span><h2>给一个值，就能“造”出唯一的锐角</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="mk" class="mk"></div>
+      <div class="btns" data-noswipe id="mkBtns">
+        <button class="btn solid" type="button" data-f="sin">已知 sin</button>
+        <button class="btn" type="button" data-f="cos">已知 cos</button>
+        <button class="btn" type="button" data-f="tan">已知 tan</button>
+      </div>
+      <div class="slider-row" data-noswipe>值 $=$<input type="range" id="mkS" min="0.05" max="0.95" step="0.005" value="0.385"><b class="v" id="mkV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="mkMsg"></p>
+      <p class="tip">图 7-14：$\sin A=\dfrac{BC}{AB}=\dfrac5{13}\approx0.3846$．用“夹逼”试一试：</p>
+      <table class="mtab">
+        <tr><th>试 $\angle A$</th><th>$20^\circ$</th><th>$25^\circ$</th><th>$22^\circ$</th><th>$23^\circ$</th><th>$22.6^\circ$</th><th>$22.7^\circ$</th></tr>
+        <tr><th>$\sin A$</th><td>0.342</td><td>0.423</td><td><span class="think" data-step="1" data-ask="?">0.375</span></td><td><span class="think" data-step="1" data-ask="?">0.391</span></td><td><span class="think" data-step="2" data-ask="?">0.3843</span></td><td><span class="think" data-step="2" data-ask="?">0.3859</span></td></tr>
+      </table>
+      <p class="tip gold" data-step="3">$0.3843\lt0.3846\lt0.3859$，所以 <span class="think" data-step="4" data-ask="∠A 在哪两个数之间？">$22.6^\circ\lt\angle A\lt22.7^\circ$——越夹越准。计算器能一步得到：$\angle A\approx22.62^\circ$。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心操作：选“已知 sin / cos / tan”，拖动数值，左图按这个比值精确画出直角三角形（sin、cos 取斜边为 1，tan 取邻边为 1），角的大小随之确定——说明“值定，角就定”。把 sin 拖到 0.385 附近，就是滑梯的角。右边“夹逼”表格（数值由程序计算）让学生体会计算器背后的道理：sin 随角增大而增大，所以可以逐步缩小范围。</p>
+</section>
+
+<!-- 4 ================= 计算器：2ndF ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法</span><h2>用计算器由三角函数值求锐角</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$AB=13$，$BC=5$，则 $\sin A=\dfrac5{13}$．</p>
+        <div class="keyline" data-step="1"><span class="lbl">依次按键</span><span class="key">2ndF</span><span class="key">sin</span><span class="key">5</span><span class="key">÷</span><span class="key">1</span><span class="key">3</span><span class="key">)</span><span class="key">=</span></div>
+        <p class="tip" data-step="2">显示结果为 $22.619\,864\,95$，即 $\angle A\approx22.62^\circ$．</p>
+        <p class="method" data-step="3" data-label="按键的意思"><span class="key">2ndF</span> 再按 <span class="key">sin</span>，就是 $\sin^{-1}$：“正弦值是这个数的那个锐角”。cos、tan 同理。</p>
+        <p class="warn" data-step="4" data-label="别丢括号">$\dfrac5{13}$ 要整体输入：<span class="key">5</span><span class="key">÷</span><span class="key">1</span><span class="key">3</span>后再按<span class="key">)</span>；不同型号计算器按法可能不同。</p>
+      </div>
+      <div class="col">
+        <div class="calc" data-noswipe data-step="5">
+          <p class="calc-h">验一验：已知函数值，求锐角</p>
+          <div class="calc-row"><select id="cFn" aria-label="函数"><option value="asin">sin A =</option><option value="acos">cos A =</option><option value="atan">tan A =</option></select><input type="text" id="cVal" value="5/13" aria-label="函数值" class="wide"></div>
+          <p class="calc-out">$\angle A=$ <b id="cAng"></b></p>
+          <p class="calc-out small-t" id="cDms"></p>
+        </div>
+        <p class="tip" data-step="6">可以输入分数（如 5/13）或小数。$\sin A$、$\cos A$ 的值必须在 0 和 1 之间——<span class="think" data-step="7" data-ask="为什么？">直角边比斜边短；输入 1.2 试试，计算器会报错。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p107 按键图（以课本计算器为准：2ndF 是第二功能键）。“验一验”由程序计算，并把结果换算成度分秒（22.62° ≈ 22°37′12″），供核对。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>根据三角函数值，求锐角（精确到 0.01°）</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="cols2"><div><div id="ex1a" class="gfig l"></div><p class="muted center small-t">$\cos A=\frac14$：邻边 1，斜边 4</p></div><div><div id="ex1b" class="gfig l"></div><p class="muted center small-t">$\tan A=2$：对边 2，邻边 1</p></div></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 1</b>　根据下列三角函数值，求锐角 $A$（精确到 $0.01^\circ$）：(1) $\cos A=\dfrac14$；(2) $\tan A=2$．</p>
+      <div class="keyline" data-step="1"><span class="lbl">(1)</span><span class="key">2ndF</span><span class="key">cos</span><span class="key">1</span><span class="key">÷</span><span class="key">4</span><span class="key">)</span><span class="key">=</span></div>
+      <p class="tip" data-step="2">显示结果为 $75.522\,487\,81$，即 $\angle A\approx75.52^\circ$；</p>
+      <div class="keyline" data-step="3"><span class="lbl">(2)</span><span class="key">2ndF</span><span class="key">tan</span><span class="key">2</span><span class="key">)</span><span class="key">=</span></div>
+      <p class="tip" data-step="4">显示结果为 $63.434\,948\,82$，即 $\angle A\approx63.43^\circ$．</p>
+      <p class="method" data-step="5" data-label="估一估再算">$\cos A=\dfrac14$ 很小 → 角接近 $90^\circ$；$\tan A=2\gt1$ → 角大于 $45^\circ$。答案和估计一致，才放心。</p>
+    </div>
+  </div>
+  <p class="note">课本 p107 例 1。左边两个直角三角形按 cos A = 1/4（邻边 1、斜边 4）、tan A = 2（对边 2、邻边 1）精确绘制，角 A 的大小可以用量角器在屏幕上量一量，和计算结果对照。</p>
+</section>
+
+<!-- 6 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>等腰三角形：作高，化成直角三角形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex2Fig" class="gfig l"></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 2</b>　在等腰三角形 $ABC$ 中，$AB=AC=4$，$BC=6$．求 $\angle B$（精确到 $0.1^\circ$）．</p>
+      <p class="tip" data-step="1"><b>思路：</b>$\triangle ABC$ 不是直角三角形，<span class="think" data-step="2" data-ask="怎么办？">过点 $A$ 作 $AD\perp BC$，在 $\text{Rt}\triangle ABD$ 中求 $\angle B$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解：</span><span>如图 7-15，过点 $A$ 作 $AD\perp BC$，垂足为 $D$．</span><i class="why">构造直角三角形</i></div>
+        <div class="dl" data-step="4"><span></span><span>在 $\text{Rt}\triangle ABD$ 中，$AB=4$，$BD=\dfrac12BC=3$，</span><i class="why">三线合一</i></div>
+        <div class="dl" data-step="5"><span>则</span><span class="think" data-step="6" data-ask="用哪个函数？">$\cos B=\dfrac{BD}{AB}=\dfrac34$．</span><i class="why">已知邻边、斜边 → 余弦</i></div>
+        <div class="dl end" data-step="7"><span></span><span>用计算器计算，得 $\angle B\approx41.4^\circ$．</span><i class="why">$41.409\ldots$ 精确到 $0.1^\circ$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p107–108 例 2 与图 7-15，图按 AB = AC = 4、BC = 6 精确绘制。可追问：顶角 ∠BAC 是多少？（180° − 2 × 41.4° ≈ 97.2°）——这个三角形其实是钝角三角形。</p>
+</section>
+
+<!-- 7 ================= 练习：秋千 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>秋千荡起来，摆了多大的角？</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="swing" class="swing"></div>
+      <div class="slider-row" data-noswipe>摆角 $\angle AOA'=$<input type="range" id="swS" min="0" max="70" step="0.1" value="30"><b class="v" id="swV"></b></div>
+      <p class="tip feedback" id="swMsg"></p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，秋千的长 $OA$ 为 3.5 m，当秋千摆动到 $OA'$ 位置时，点 $A'$ 相对于最低点 $A$ 升高了 1 m．求 $\angle AOA'$（精确到 $0.1^\circ$）．</p>
+        <details><summary>提示 1</summary>作 $A'B\perp OA$，升高的 1 m 就是 $AB$；$OB=OA-AB=2.5$ m。</details>
+        <details><summary>提示 2</summary>在 $\text{Rt}\triangle OA'B$ 中，斜边 $OA'=3.5$，邻边 $OB=2.5$：$\cos\angle AOA'=\dfrac{2.5}{3.5}=\dfrac57$。</details>
+        <details><summary>完整解答</summary>$\cos\angle AOA'=\dfrac57$，用计算器计算，得 $\angle AOA'\approx44.4^\circ$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 根据三角函数值，求锐角 $A$（精确到 0.01°）：</p>
+        <p class="fillrow">$\sin A=\dfrac14$ <span class="blank" data-ans="14.48" data-w="5"></span>°　<br>$\cos A=0.23$ <span class="blank" data-ans="76.70|76.7" data-w="5"></span>°　<br>$\tan A=10$ <span class="blank" data-ans="84.29" data-w="5"></span>°</p>
+        <details><summary>完整解答</summary>$\angle A\approx14.48^\circ$；$\angle A\approx76.70^\circ$；$\angle A\approx84.29^\circ$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p108 练习 1、2。秋千图按 OA = 3.5 m 精确绘制：拖动摆角滑块，读数显示 A′ 升高了多少——先让学生“拖”到升高 1 m（约 44.4°），再用余弦算准确值，两者互相印证。第 1 题可直接输入答案判对错。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.4</span><h2>挑战</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 根据下列三角函数值，求锐角 $A$（精确到 $0.01^\circ$）：(1) $\sin A=0.82$；(2) $\cos A=\dfrac37$；(3) $\tan A=\dfrac{20}3$．</p>
+        <p class="fillrow">(1) <span class="blank" data-ans="55.08" data-w="5"></span>°　(2) <span class="blank" data-ans="64.62" data-w="5"></span>°　(3) <span class="blank" data-ans="81.47" data-w="5"></span>°</p>
+        <details><summary>提示</summary>按 <span class="key">2ndF</span> 再按对应的函数键；分数整体输入。</details>
+        <details><summary>完整解答</summary>(1) $\angle A\approx55.08^\circ$；(2) $\angle A\approx64.62^\circ$；(3) $\angle A\approx81.47^\circ$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，$AD$ 是 $\triangle ABC$ 的高，$CD=16$，$BD=12$，$\angle C=35^\circ$．求 $\angle B$（精确到 $1^\circ$）．</p>
+        <div id="hw2Fig" class="gfig"></div>
+        <details><summary>提示 1</summary>$\angle B$ 在 $\text{Rt}\triangle ABD$ 中，已知 $BD$，还缺 $AD$；$AD$ 是两个直角三角形的<b>公共边</b>。</details>
+        <details><summary>提示 2</summary>在 $\text{Rt}\triangle ADC$ 中，$AD=CD\cdot\tan C=16\tan35^\circ$。</details>
+        <details><summary>完整解答</summary>$AD=16\tan35^\circ\approx11.20$；在 $\text{Rt}\triangle ABD$ 中，$\tan B=\dfrac{AD}{BD}\approx\dfrac{11.20}{12}\approx0.934$，所以 $\angle B\approx43^\circ$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 7.4。第 2 题图按 CD = 16、BD = 12、∠C = 35° 精确绘制。先“由角求边”再“由边求角”，是下一节解直角三角形的雏形。计算 tan B 时最好用 AD 的未取近似值继续算，减少误差。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">锐角的三角函数值确定，这个锐角就唯一确定（三角函数随角单调变化）。</p>
+        <p class="def">$0\lt\sin A\lt1$，$0\lt\cos A\lt1$，$\tan A\gt0$。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="求角三步">找直角三角形 → 用两条已知边写出一个三角函数值 → 特殊值查表，一般值用 <span class="key">2ndF</span>。</p>
+        <p class="method" data-label="估算检验">值和 $\frac12$、$\frac{\sqrt2}2$、$1$ 等比较，先估出角的范围。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="逆向思维">角 → 值，值 → 角，是同一种对应的两个方向。</p>
+        <p class="recall" data-label="逼近">夹逼：用越来越小的区间逼近一个数。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>7.5 解直角三角形——直角三角形的 3 条边、2 个锐角，知道几个就能求出全部？</p>
+  </div>
+  <p class="note">学到这里，直角三角形中“边与边”（勾股定理）、“角与角”（互余）、“边与角”（三角函数，两个方向）的关系都有了，下一节把它们组织起来。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

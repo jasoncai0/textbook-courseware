@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/tuzi-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第5章 二次函数 · 5.1</p>
+    <h1 class="cover-title">二次函数</h1>
+    <p class="cover-q" data-step="1">用长 16 m 的篱笆围成长方形的生物园饲养小兔。长取得不同，围出的面积也不同——</p>
+    <p class="cover-q" data-step="2">面积 $y$ 随长 $x$ 变化，<b>这是一次函数吗？是反比例函数吗？</b>如果都不是，它是一种什么样的新函数？</p>
+    <div class="chips" data-step="3"><span class="chip">小球滚落</span><span class="chip">围篱笆</span><span class="chip">$y=ax^2+bx+c$</span><span class="chip">自变量的取值范围</span></div>
+  </div>
+  <p class="note">课本 p6 情境（“用长 16 m 的篱笆围成长方形的生物园饲养小兔”，八年级曾讨论过）。封面只抛问题：请学生凭直觉说说“长越长，面积越大吗？”，第 5 页再动手验证。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八上 6.1 函数" data-step="1">
+        <p>在一个变化过程中，对于 $x$ 的<b>每一个</b>值，$y$ 都有<b>唯一</b>的值与它对应，$y$ 就是 $x$ 的函数；实际问题中自变量常有取值范围。</p>
+        <span class="use">第 4、6 页：判断三个实例里谁是谁的函数，写出自变量的取值范围．（<a href="../mj8a-hanshu/index.html">回看 6.1</a>）</span>
+      </div>
+      <div class="recall" data-label="八上 6.2 一次函数 · 八下 11.1 反比例函数" data-step="2">
+        <p>$y=kx+b$（$k\ne0$）；$y=\dfrac kx$（$k\ne0$）。都是先看“形如”，再加上系数的限制条件。</p>
+        <span class="use">第 3、5 页：判断“是不是一次函数”；第 6 页照同样的格式给二次函数下定义．（<a href="../mj8a-yicihanshu/index.html">回看 6.2</a>　<a href="../mj8b-fanbilihanshu/index.html">回看 11.1</a>）</span>
+      </div>
+      <div class="recall" data-label="九上 1.1 一元二次方程" data-step="3">
+        <p>$ax^2+bx+c=0$（$a\ne0$）：二次项系数 $a$、一次项系数 $b$、常数项 $c$。</p>
+        <span class="use">第 6、7 页：二次函数 $y=ax^2+bx+c$ 的“系数”说法与它一致，$a\ne0$ 的理由也一样．（<a href="../mj9a-yiyuanerci/index.html">回看 1.1</a>）</span>
+      </div>
+      <div class="recall" data-label="七下 · 整式乘法" data-step="4">
+        <p>$x(8-x)=8x-x^2$；$(x+1)^2=x^2+2x+1$。</p>
+        <span class="use">第 4、7 页：先把表达式展开、整理，才看得出它是不是二次函数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本章主线：</b>二次函数的概念（5.1）→ 图像和性质（5.2）→ 确定表达式（5.3）→ 与一元二次方程（5.4）→ 解决问题（5.5）。和学一次函数、反比例函数的路子一样。</p>
+  </div>
+  <p class="note">请学生先回忆一次函数、反比例函数是怎样定义的：都是“形如……的函数”加上“k≠0”。今天的定义也照这个格式来，让学生自己说出 a≠0 的必要性。</p>
+</section>
+
+<!-- 3 ================= 章首：小球滚落 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">章首探究</span><h2>小球滚落：距离 $s$ 是时刻 $t$ 的一次函数吗？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg class="ramp" id="rampSvg" aria-label="小球沿斜放的刻度尺滚落"></svg>
+      <div class="slider-row" data-noswipe>时刻 $t=$<input type="range" id="ballT" min="0" max="0.5" step="0.1" value="0"><b class="v" id="ballTV"></b>s　<button type="button" class="btn" id="ballPlay">放手</button></div>
+      <table class="mtab" id="ballTab"></table>
+      <p class="tip" data-step="3">每隔 0.1 s，距离增加了多少？<span class="think" data-step="4" data-ask="算一算">0.6，1.0，1.4，1.8 cm——<b>不相等</b>，越滚越快。</span></p>
+    </div>
+    <div class="col">
+      <div id="ballBoard" class="ball-board"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="ballLine">用一条直线连首尾两点</button><button type="button" class="btn" id="ballCurve">用平滑曲线顺次连接</button></div>
+      <p class="tip" data-step="1">各点在同一条直线上吗？<span class="think" data-step="2" data-ask="看一看">不在：中间的点都在首尾连线的<b>下方</b>。</span></p>
+      <p class="tip gold" data-step="5">$s$ 是 $t$ 的一次函数吗？<span class="think" data-step="6" data-ask="下结论">不是。一次函数的图像是直线，而且相同时间里增加的量相等。仔细看表：$s=20t^2$——自变量出现了<b>平方</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本第 5 章章首（p5）的问题。距离按课本插图读出：0.1 s、0.2 s、0.3 s、0.4 s、0.5 s 时分别约 0.2、0.8、1.8、3.2、5 cm，恰好都满足 s = 20t²。先拖滑块或点“放手”，让表格一格格填满，再描点；请学生先猜“能不能连成直线”，再点按钮比较。最后一问点出本章的新对象：含有自变量平方的函数。</p>
+</section>
+
+<!-- 4 ================= 三个实例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>三个实例：写出函数表达式</h2></div>
+  <div class="bd full">
+    <div class="cols3 sit">
+      <div class="col" data-step="1">
+        <h3>① 水波：半径 $r$ 与面积 $S$</h3>
+        <svg viewBox="0 0 220 100" class="ripple" aria-label="水波纹扩展的圆"><circle cx="110" cy="50" r="14" fill="none" stroke="#4f9bd0" stroke-width="2"/><circle cx="110" cy="50" r="28" fill="none" stroke="#4f9bd0" stroke-width="2" opacity=".7"/><circle cx="110" cy="50" r="44" fill="none" stroke="#4f9bd0" stroke-width="2" opacity=".4"/><line x1="110" y1="50" x2="154" y2="50" stroke="#d9711c" stroke-width="2.5"/><text x="128" y="44" class="fl">r</text></svg>
+        <p class="big center">$S=\pi r^2$</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>② 篱笆：长 $x$ m 与面积 $y$ m²</h3>
+        <svg viewBox="0 0 220 100" class="ripple" aria-label="周长 16 m 的长方形"><rect x="30" y="20" width="120" height="60" fill="#eaf4e4" stroke="#8a6a3c" stroke-width="3" stroke-dasharray="3 3"/><text x="90" y="16" class="fl" text-anchor="middle">x</text><text x="158" y="56" class="fl s">8 − x</text></svg>
+        <p class="small-p">周长 16 m，长为 $x$ m，宽为 <span class="think" data-step="3" data-ask="宽是多少？">$(8-x)$ m</span></p>
+        <p class="big center" data-step="4">$y=x(8-x)=-x^2+8x$</p>
+      </div>
+      <div class="col" data-step="5">
+        <h3>③ 镜子：宽 $x$ m 与总费用 $y$ 元</h3>
+        <p class="small-p">长∶宽 = 2∶1；镜面 120 元/m²，边框 30 元/m，加工费 45 元。</p>
+        <div class="derive small-d">
+          <div class="dl"><span>镜面面积</span><span>$2x\cdot x=2x^2$</span></div>
+          <div class="dl" data-step="6"><span>镜面费</span><span class="think" data-step="6" data-ask="?">$120\times2x^2=240x^2$</span></div>
+          <div class="dl" data-step="7"><span>边框费</span><span class="think" data-step="7" data-ask="?">$30(2x+x+2x+x)=180x$</span></div>
+          <div class="dl key" data-step="8"><span>总费用</span><span>$y=240x^2+180x+45$</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="tip gold" data-step="9">$S=\pi r^2$、$y=-x^2+8x$、$y=240x^2+180x+45$ 有什么共同特征？<span class="think" data-step="10" data-ask="说一说">都是自变量的<b>整式</b>，自变量的最高次数都是 <b>2</b>；右边都能写成“二次项 + 一次项 + 常数项”（有的项系数为 0）。</span></p>
+  </div>
+  <p class="note">课本 p6–7 三个实例与“思考”。② 的宽请学生口答（半周长 8 m 减去长）；③ 的边框是四条边：2x + x + 2x + x。最后一问让学生对照一次函数 y = kx + b 说：“多了一个 x² 项”。</p>
+</section>
+
+<!-- 5 ================= 核心：围篱笆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>拖一拖：16 m 篱笆，长取多少时面积最大？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="penBoard" class="pen-board"></div>
+      <div class="readout pen-read" id="penRead"></div>
+      <p class="tip feedback" id="penMsg"></p>
+    </div>
+    <div class="col">
+      <div id="penGraph" class="pen-graph"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="penAll">画出全部的点</button><button type="button" class="btn" id="penClear">清空足迹</button></div>
+      <p class="tip" data-step="1">长 $x$ 越长，面积 $y$ 越大吗？<span class="think" data-step="2" data-ask="拖一拖">不是：$x$ 从 0 增大到 4，$y$ 增大；过了 4 反而减小。</span></p>
+      <p class="tip" data-step="3">$y$ 是 $x$ 的一次函数吗？<span class="think" data-step="4" data-ask="看足迹">不是：足迹不在一条直线上，是一条先升后降的曲线。</span></p>
+      <p class="tip gold" data-step="5">$x$ 能取 0、8 或 9 吗？<span class="think" data-step="6" data-ask="想一想">不能：长、宽都要大于 0，所以 $0&lt;x&lt;8$——自变量受实际意义的限制。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。拖动长方形右下角（或右图的橙色点）改变长 x，长方形按比例实时重画，右图留下 (x, y) 的足迹。请学生找出面积最大的位置（x = 4，正方形，16 m²），但“为什么是 4”先不讲——5.2 学了图像的顶点、5.5 用二次函数解决问题时再严格说明。“画出全部的点”展示整条曲线，为 5.2 研究图像埋下伏笔。</p>
+</section>
+
+<!-- 6 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>二次函数</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>二次函数（课本 p7）</h4>一般地，形如 $y=ax^2+bx+c$（$a$、$b$、$c$ 是常数，且 $a\ne0$）的函数叫做<em>二次函数</em>（quadratic function），其中 $x$ 是自变量，$y$ 是 $x$ 的函数．</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">为什么要求 $a\ne0$？<br><span class="think" data-step="3" data-ask="想一想">$a=0$ 时变成 $y=bx+c$，没有二次项，就不是二次函数了（$b\ne0$ 时是一次函数）。</span></p>
+      <p class="tip" data-step="4">$b$、$c$ 可以是 0 吗？<br><span class="think" data-step="5" data-ask="想一想">可以。$S=\pi r^2$ 中 $a=\pi$，$b=0$，$c=0$；$y=-x^2+8x$ 中 $c=0$。</span></p>
+      <p class="tip" data-step="6">“形如”是指？<br><span class="think" data-step="7" data-ask="想一想">整理（展开、合并）以后能写成 $ax^2+bx+c$ 的样子：右边是关于 $x$ 的整式，最高次数是 2。</span></p>
+    </div>
+    <div class="cols2">
+      <p class="def" data-step="8"><b>自变量的取值范围：</b>通常，二次函数 $y=ax^2+bx+c$ 的自变量 $x$ 可以是任意实数．</p>
+      <p class="warn" data-step="9" data-label="实际问题">自变量表示实际问题中的数量时，取值受实际意义限制：$S=\pi r^2$ 中 $r&gt;0$；$y=-x^2+8x$ 中 $0&lt;x&lt;8$；$y=240x^2+180x+45$ 中 $x&gt;0$．</p>
+    </div>
+  </div>
+  <p class="note">课本 p7 定义与取值范围的说明。对照一元二次方程 ax² + bx + c = 0（a≠0）：二次项系数、一次项系数、常数项的叫法完全相同。课本还问“生活中有许多类似的实例，你还能举出一些例子吗？”——请学生举例（如正方形面积与边长、自由落体的距离与时间）。</p>
+</section>
+
+<!-- 7 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>是不是二次函数？先整理，再判断</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <div class="jcard"><p><b>(1)</b> $y=3x^2-1$</p>
+          <div class="pick" data-ans="y"><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">是：$a=3$，$b=0$，$c=-1$。</p></div></div>
+        <div class="jcard"><p><b>(2)</b> $y=x(1-x)$</p>
+          <div class="pick" data-ans="y"><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">展开得 $y=-x^2+x$：$a=-1$，$b=1$，$c=0$。</p></div></div>
+        <div class="jcard"><p><b>(3)</b> $y=(x+1)^2-x^2$</p>
+          <div class="pick" data-ans="n"><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">看起来有平方，整理后 $y=2x+1$——二次项抵消了，是<b>一次函数</b>。</p></div></div>
+      </div>
+      <div class="col">
+        <div class="jcard"><p><b>(4)</b> $y=x^2+\dfrac1x$</p>
+          <div class="pick" data-ans="n"><button data-k="y">是</button><button data-k="n">不是</button><p class="pick-why">$\dfrac1x$ 不是整式，写不成 $ax^2+bx+c$ 的形式。</p></div></div>
+        <div class="jcard"><p><b>(5)</b> $y=(m-2)x^2+3x$（$m$ 是常数）一定是二次函数吗？</p>
+          <div class="pick" data-ans="n"><button data-k="y">一定是</button><button data-k="n">不一定</button><p class="pick-why">当 $m=2$ 时变成 $y=3x$。只有 $m\ne2$ 时才是二次函数。</p></div></div>
+        <div class="jcard abc"><p><b>(6)</b> 填出 $y=240x^2+180x+45$ 的系数：</p>
+          <p>$a=$<span class="blank" data-ans="240" data-w="3"></span>　$b=$<span class="blank" data-ans="180" data-w="3"></span>　$c=$<span class="blank" data-ans="45" data-w="3"></span>；$y=-x^2+8x$：$a=$<span class="blank" data-ans="-1" data-w="2"></span>　$c=$<span class="blank" data-ans="0" data-w="2"></span></p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="判断二次函数">先展开、合并 → 看右边是不是整式 → 最高次数是不是 2 → 二次项系数是不是不为 0。</p>
+  </div>
+  <p class="note">补充辨析题（不是课本原题），点选即时判对错。第 (3) 题最容易错：要先整理再判断；第 (5) 题对应定义里的 a≠0。第 (6) 题直接在格子里填数，回车判断。</p>
+</section>
+
+<!-- 8 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>写出函数表达式（课本 p7）</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 写出正方体的表面积 $S$（cm²）与正方体的棱长 $a$（cm）之间的函数表达式．</p>
+        <details><summary>提示</summary>正方体有几个面？每个面是边长为 $a$ 的正方形。</details>
+        <details><summary>完整解答</summary>$S=6a^2$（$a&gt;0$），是二次函数。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 写出高为 14 cm 的圆柱的体积 $V$（cm³）与底面半径 $r$（cm）之间的函数表达式．</p>
+        <details><summary>提示</summary>圆柱体积 = 底面积 × 高。</details>
+        <details><summary>完整解答</summary>$V=\pi r^2\times14=14\pi r^2$（$r&gt;0$）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 矩形纸片长为 30 cm、宽为 20 cm，剪去一个边长为 $x$ cm 的正方形，写出剩余部分的面积 $S$（cm²）与 $x$（cm）之间的函数表达式．</p>
+        <div id="cutBoard" class="cut-board"></div>
+        <div class="slider-row" data-noswipe>$x=$<input type="range" id="cutX" min="1" max="19" step="1" value="5"><b class="v" id="cutXV"></b>cm　<span id="cutS"></span></div>
+        <details><summary>提示</summary>剩余面积 = 矩形面积 − 剪去的正方形面积。</details>
+        <details><summary>完整解答</summary>$S=30\times20-x^2=-x^2+600$（$0&lt;x&lt;20$），$a=-1$，$b=0$，$c=600$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p7 练习 1–3。先让学生独立写，再逐级点提示。第 3 题拖滑块看剪去的正方形，按比例绘制；取值范围：正方形的边长要小于矩形的宽 20 cm。</p>
+</section>
+
+<!-- 9 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 5.1</span><h2>写表达式，也写自变量的取值范围</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 某矩形的长是宽的 1.6 倍，写出这个矩形的面积 $S$ 与宽 $x$ 之间的函数表达式．</p>
+        <details><summary>完整解答</summary>长为 $1.6x$，$S=1.6x\cdot x=1.6x^2$（$x&gt;0$）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一个圆柱的高与底面直径相等，写出它的表面积 $S$ 与底面半径 $r$ 之间的函数表达式．</p>
+        <details><summary>提示</summary>高 $=2r$；表面积 = 两个底面 + 侧面（底面周长 × 高）。</details>
+        <details><summary>完整解答</summary>$S=2\pi r^2+2\pi r\cdot2r=6\pi r^2$（$r&gt;0$）。</details>
+      </div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3(1)</b> 长 200 m、宽 140 m 的矩形绿地中修建等宽的十字形道路，路宽 $x$ m，绿地面积 $y$ m²．</p>
+        <svg viewBox="0 -8 240 158" class="road-fig" aria-label="十字形道路示意"><rect x="20" y="10" width="200" height="130" fill="#e3f0dc" stroke="#1d6fa5" stroke-width="2"/><rect x="88" y="10" width="20" height="130" fill="#f2ede4"/><rect x="20" y="52" width="200" height="20" fill="#f2ede4"/><text x="120" y="8" class="fl s" text-anchor="middle">200</text><text x="12" y="80" class="fl s" text-anchor="middle" transform="rotate(-90 12 80)">140</text><text x="98" y="66" class="fl" text-anchor="middle">x</text></svg>
+        <details><summary>提示</summary>把两条路“平移”到边上：剩下的绿地拼成一个长 $(200-x)$、宽 $(140-x)$ 的矩形。</details>
+        <details><summary>完整解答</summary>$y=(200-x)(140-x)=x^2-340x+28\,000$（$0&lt;x&lt;140$）。</details>
+      </div>
+      <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>3(2)</b> 化肥厂 10 月份生产化肥 200 t，11、12 月的月平均增长率为 $x$，12 月份产量为 $y$ t．</p>
+        <details><summary>完整解答</summary>$y=200(1+x)^2=200x^2+400x+200$（$x&gt;0$）。（对比九上 1.4 的增长率问题。）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3(3)</b> 用长 50 m 的护栏围成一块靠墙的矩形花园，矩形花园的长为 $x$ m（靠墙一边），面积为 $y$ m²．</p>
+        <details><summary>提示</summary>靠墙的一边不用护栏：另两边（宽）共 $(50-x)$ m。</details>
+        <details><summary>完整解答</summary>宽 $\dfrac{50-x}{2}$ m，$y=x\cdot\dfrac{50-x}{2}=-\dfrac12x^2+25x$（$0&lt;x&lt;50$）。</details>
+      </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 5.1 第 1、2、3 题。第 3(1) 题的“平移道路”是关键想法（道路示意按 200∶140 的比例画）；第 3(2) 题与九上一元二次方程的增长率问题呼应；第 3(3) 题的取值范围还应考虑墙长，课本未给墙长，这里只写 0 &lt; x &lt; 50。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">形如 $y=ax^2+bx+c$（$a$、$b$、$c$ 是常数，$a\ne0$）的函数叫做<em>二次函数</em>。</p>
+        <p class="recall" data-label="取值范围">一般是全体实数；实际问题中要符合实际意义。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="建立函数">找两个变量 → 用等量关系列式 → 展开整理 → 写取值范围。</p>
+        <p class="method" data-label="判断">先整理，再看“整式、最高 2 次、$a\ne0$”。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>函数家族</h3>
+        <table class="mtab fam">
+          <tr><th>函数</th><th>形如</th><th>条件</th></tr>
+          <tr><td>一次函数</td><td>$y=kx+b$</td><td>$k\ne0$</td></tr>
+          <tr><td>反比例函数</td><td>$y=\dfrac kx$</td><td>$k\ne0$</td></tr>
+          <tr><td>二次函数</td><td>$y=ax^2+bx+c$</td><td>$a\ne0$</td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b><a href="../mj9b-ercihanshutuxiang/index.html">5.2 二次函数的图像和性质</a>——第 3、5 页那两条“弯”的曲线到底是什么形状？面积最大的点藏在图像的什么位置？</p>
+  </div>
+  <p class="note">请学生先说出“二次函数”定义里的三个要点（形如、常数、a≠0），再逐栏揭示。课后作业建议：习题 5.1 第 1、2、3 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

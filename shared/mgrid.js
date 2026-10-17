@@ -6,6 +6,7 @@
  * MGrid.pose(el, g, { dx, dy, deg, c }) 把图块移到：先绕 c 点（格）旋转 deg 度，再平移 (dx, dy) 格。
  *   配合 CSS 的 transition，就是“剪—移—拼”的动画；终点位置由坐标精确算出。MGrid.pose(el, g) 回到原位。
  * MGrid.area(pts) 多边形面积（格²，鞋带公式）；MGrid.rot(P, c, deg) 点绕 c 旋转后的坐标（核对拼合用）。
+ * MGrid.drag(svg, el, ([x, y]) => …) 在 el 上拖动，回调收到 svg 坐标（viewBox 单位）。
  */
 const MGrid = (() => {
   const NS = 'http://www.w3.org/2000/svg';

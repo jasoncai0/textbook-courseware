@@ -4844,19 +4844,31 @@ window.CATALOG = [
                 "no": "11.1",
                 "title": "反比例函数",
                 "genre": "概念",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj8b-fanbilihanshu",
+                "pages": 11,
+                "desc": "正比例与反比例对照台：商一定还是积一定",
+                "cover": "mj8b-fanbilihanshu/assets/zhishu.jpg"
               },
               {
                 "no": "11.2",
                 "title": "反比例函数的图像与性质",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj8b-fanbilituxiang",
+                "pages": 17,
+                "desc": "拖 k 看双曲线，拖 P 看矩形面积 |k|",
+                "cover": "mj8b-fanbilituxiang/assets/jifang.jpg"
               },
               {
                 "no": "11.3",
                 "title": "用反比例函数解决问题",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj8b-fanbiliwenti",
+                "pages": 12,
+                "desc": "拖门槛线读“至少”范围；按比例画的杠杆",
+                "cover": "mj8b-fanbiliwenti/assets/qiaoshi.jpg"
               }
             ]
           },
@@ -4869,19 +4881,31 @@ window.CATALOG = [
                 "no": "12.1",
                 "title": "二次根式",
                 "genre": "概念",
-                "kind": "二次根式"
+                "kind": "二次根式",
+                "dir": "mj8b-ercigenshi",
+                "pages": 12,
+                "desc": "先平方再开方机器，看出 √(a²)=|a|",
+                "cover": "mj8b-ercigenshi/assets/xialuo.jpg"
               },
               {
                 "no": "12.2",
                 "title": "二次根式的乘除",
                 "genre": "推导",
-                "kind": "二次根式"
+                "kind": "二次根式",
+                "dir": "mj8b-genshichengchu",
+                "pages": 18,
+                "desc": "方格纸画矩形；化简结果精确检验器",
+                "cover": "mj8b-genshichengchu/assets/mugong.jpg"
               },
               {
                 "no": "12.3",
                 "title": "二次根式的加减",
                 "genre": "推导",
-                "kind": "二次根式"
+                "kind": "二次根式",
+                "dir": "mj8b-genshijiajian",
+                "pages": 14,
+                "desc": "线段拼接尺，翻牌归类再合并同类根式",
+                "cover": "mj8b-genshijiajian/assets/dizhuan.jpg"
               }
             ]
           },
@@ -5159,31 +5183,51 @@ window.CATALOG = [
                 "no": "5.1",
                 "title": "二次函数",
                 "genre": "概念",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj9b-ercihanshu",
+                "pages": 10,
+                "desc": "小球滚落描点；拖篱笆看面积足迹",
+                "cover": "mj9b-ercihanshu/assets/tuzi-cover.jpg"
               },
               {
                 "no": "5.2",
                 "title": "二次函数的图像和性质",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj9b-ercihanshutuxiang",
+                "pages": 18,
+                "desc": "拖 a、h、k 和顶点，看开口与平移",
+                "cover": "mj9b-ercihanshutuxiang/assets/penquan-cover.jpg"
               },
               {
                 "no": "5.3",
                 "title": "用待定系数法确定二次函数表达式",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj9b-daidingxishu",
+                "pages": 9,
+                "desc": "拖已知点，实时解方程组画抛物线",
+                "cover": "mj9b-daidingxishu/assets/toulan-cover.jpg"
               },
               {
                 "no": "5.4",
                 "title": "二次函数与一元二次方程",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj9b-ercihanshufangcheng",
+                "pages": 11,
+                "desc": "a、b、c 滑块和 Δ、交点联动；逐级放大估根",
+                "cover": "mj9b-ercihanshufangcheng/assets/shixinqiu-cover.jpg"
               },
               {
                 "no": "5.5",
                 "title": "用二次函数解决问题",
                 "genre": "推导",
-                "kind": "函数"
+                "kind": "函数",
+                "dir": "mj9b-ercihanshuwenti",
+                "pages": 14,
+                "desc": "拱桥换原点和水位；判断小船能否通过",
+                "cover": "mj9b-ercihanshuwenti/assets/gongqiao-cover.jpg"
               }
             ]
           },
@@ -5245,37 +5289,61 @@ window.CATALOG = [
                 "no": "7.1",
                 "title": "正切",
                 "genre": "概念",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mj9b-zhengqie",
+                "pages": 12,
+                "desc": "拖角 A：三个相似三角形比值同步变化",
+                "cover": "mj9b-zhengqie/assets/taijie.jpg"
               },
               {
                 "no": "7.2",
                 "title": "正弦、余弦",
                 "genre": "概念",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mj9b-zhengxianyuxian",
+                "pages": 13,
+                "desc": "斜边取 1 读数盘：拖 P 读 sin、cos",
+                "cover": "mj9b-zhengxianyuxian/assets/podao.jpg"
               },
               {
                 "no": "7.3",
                 "title": "特殊角的三角函数",
                 "genre": "推导",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mj9b-teshujiao",
+                "pages": 9,
+                "desc": "三角板取值器：选角选函数高亮边",
+                "cover": "mj9b-teshujiao/assets/sanjiaoban.jpg"
               },
               {
                 "no": "7.4",
                 "title": "由三角函数值求锐角",
                 "genre": "推导",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mj9b-qiuruijiao",
+                "pages": 9,
+                "desc": "由值造角+夹逼；秋千摆角滑块",
+                "cover": "mj9b-qiuruijiao/assets/huati.jpg"
               },
               {
                 "no": "7.5",
                 "title": "解直角三角形",
                 "genre": "推导",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mj9b-jiezhijiao",
+                "pages": 12,
+                "desc": "任选两元素判能否解、给求解顺序",
+                "cover": "mj9b-jiezhijiao/assets/muchi.jpg"
               },
               {
                 "no": "7.6",
                 "title": "用锐角三角函数解决问题",
                 "genre": "推导",
-                "kind": "三角函数"
+                "kind": "三角函数",
+                "dir": "mj9b-sanjiaowenti",
+                "pages": 16,
+                "desc": "坡度器、摩天轮时间轴、测角仪测气球",
+                "cover": "mj9b-sanjiaowenti/assets/motianlun.jpg"
               }
             ]
           },

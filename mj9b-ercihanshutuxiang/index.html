@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次函数的图像和性质 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/penquan-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第5章 二次函数 · 5.2</p>
+    <h1 class="cover-title">二次函数的图像和性质</h1>
+    <p class="cover-q" data-step="1">一次函数的图像是一条<b>直线</b>，反比例函数的图像是<b>双曲线</b>。</p>
+    <p class="cover-q" data-step="2">二次函数的图像是什么形状？它有哪些性质？系数 $a$、$b$、$c$ 又怎样决定图像的样子？</p>
+    <div class="chips" data-step="3"><span class="chip">描点画 $y=x^2$</span><span class="chip">抛物线</span><span class="chip">$y=ax^2$</span><span class="chip">平移</span><span class="chip">$y=a(x+h)^2+k$</span><span class="chip">配方求顶点</span></div>
+  </div>
+  <p class="note">课本 p9 开篇：“我们已经学习了一次函数和反比例函数的图像的画法，并借助图像研究这些函数的性质。”本课沿着同一条路：先画图像，再从图像读性质。喷泉的水柱只是生活中的“抛物线形”，准确的图像全部在后面用坐标画出来。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八上 6.3 一次函数的图像" data-step="1">
+        <p>列表 → 描点 → 连线；$k&gt;0$ 时 $y$ 随 $x$ 增大而增大，$k&lt;0$ 时 $y$ 随 $x$ 增大而减小；$y=kx+b$ 由 $y=kx$ 上下平移 $|b|$ 个单位得到。</p>
+        <span class="use">第 4 页照样描点；第 7 页用“$y$ 随 $x$ 增大而……”描述增减；第 9 页上下平移．（<a href="../mj8a-yicihanshutuxiang/index.html">回看 6.3</a>）</span>
+      </div>
+      <div class="recall" data-label="八下 11.2 反比例函数的图像与性质" data-step="2">
+        <p>$y=\dfrac kx$ 的图像是双曲线；$k$ 的符号决定图像所在象限和增减性，而且要分“每一个象限内”来说。</p>
+        <span class="use">第 7 页：二次函数的增减性也要以对称轴为界<b>分两段</b>说．（<a href="../mj8b-fanbilituxiang/index.html">回看 11.2</a>）</span>
+      </div>
+      <div class="recall" data-label="七下 7.3 图形的平移" data-step="3">
+        <p>平移不改变图形的形状和大小；对应点所连的线段平行且相等。</p>
+        <span class="use">第 9–12 页：$y=a(x+h)^2+k$ 的图像由 $y=ax^2$ 平移得到，形状不变．（<a href="../mj7b-pingyi/index.html">回看 7.3</a>）</span>
+      </div>
+      <div class="recall" data-label="九上 1.2 配方法 · 九下 5.1（上一课）" data-step="4">
+        <p>$x^2+bx=\left(x+\dfrac b2\right)^2-\left(\dfrac b2\right)^2$；二次函数 $y=ax^2+bx+c$（$a\ne0$）。</p>
+        <span class="use">第 14、15 页：把 $y=ax^2+bx+c$ 配方成 $y=a(x+h)^2+k$，读出顶点．（<a href="../mj9a-ercijiefa/index.html">回看 1.2</a>　<a href="../mj9b-ercihanshu/index.html">回看 5.1</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课路线：</b>$y=x^2$ → $y=ax^2$ → $y=ax^2+k$、$y=a(x+h)^2$ → $y=a(x+h)^2+k$ → $y=ax^2+bx+c$。从最简单的开始，一步步加上新的系数。</p>
+  </div>
+  <p class="note">第 2 张卡特别重要：反比例函数的增减性要说“在每一个象限内”，二次函数要说“在对称轴的左侧／右侧”——都不能笼统地说“y 随 x 增大而减小”。</p>
+</section>
+
+<!-- 3 ================= 先猜 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>不画图，先从表达式 $y=x^2$ 猜图像的特征</h2></div>
+  <div class="bd full">
+    <div class="cols2 guess">
+      <p class="tip" data-step="1">$x=0$ 时，$y=$？<span class="think" data-step="2" data-ask="说一说">$y=0$，图像过<b>原点</b>。</span></p>
+      <p class="tip" data-step="1">$x$ 能取哪些值？<span class="think" data-step="3" data-ask="说一说">$x$ 可取一切实数，图像向左、右无限延伸。</span></p>
+      <p class="tip" data-step="1">$y$ 可能是负数吗？<span class="think" data-step="4" data-ask="说一说">$y=x^2\ge0$：图像向上无限延伸，且在 $x$ 轴下方没有图像。</span></p>
+      <p class="tip" data-step="1">$x=2$ 与 $x=-2$ 时呢？<span class="think" data-step="5" data-ask="说一说">$y$ 都等于 4：点 $A(-2,4)$ 与 $B(2,4)$ 关于 $y$ 轴对称——图像可能关于 $y$ 轴对称。</span></p>
+    </div>
+    <div class="cols2">
+      <div id="guessBoard" class="guess-board" data-step="5"></div>
+      <p class="method" data-step="6" data-label="由式到形">先从表达式“读”出图像的特征（过哪些点、在哪里、有没有对称性），再画图验证——这是研究新函数的好习惯。</p>
+    </div>
+  </div>
+  <p class="note">课本 p9 “思考·探索”的四个小人的说法。先让学生自己说，再逐条点开。最后一张小图只画出 A(−2, 4)、B(2, 4) 和原点，是课本插图；整个图像下一页再描。</p>
+</section>
+
+<!-- 4 ================= 描点画图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 思考</span><h2>列表 · 描点 · 连线：画 $y=x^2$ 和 $y=-x^2$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab" id="plotTab"></table>
+      <div class="btns" data-noswipe>
+        <button type="button" class="btn" id="plotNext">描下一个点</button>
+        <button type="button" class="btn" id="plotAll">全部描出</button>
+        <button type="button" class="btn" id="plotPoly">用线段连接</button>
+        <button type="button" class="btn" id="plotSmooth">用平滑曲线连接</button>
+        <button type="button" class="btn" id="plotDense">再取 $x=\pm0.5,\pm1.5,\pm2.5$</button>
+        <button type="button" class="btn" id="plotNeg">再画 $y=-x^2$</button>
+      </div>
+      <p class="tip feedback" id="plotMsg"></p>
+      <p class="tip" data-step="1">两点之间能用线段连吗？<span class="think" data-step="2" data-ask="加密取点看看">不能：在 $x=1$ 和 $x=2$ 之间再取 $x=1.5$，$y=2.25$，点在线段<b>下方</b>——图像是弯的，要用<b>平滑曲线</b>连接。</span></p>
+      <p class="tip gold" data-step="3">$y=x^2$ 与 $y=-x^2$ 的图像有什么共同特征？<span class="think" data-step="4" data-ask="说一说">都关于 $y$ 轴对称，都经过原点；两条曲线又关于 $x$ 轴对称。</span></p>
+        </div>
+    <div class="col">
+      <div id="plotBoard" class="plot-board"></div>
+</div>
+  </div>
+  <p class="note">课本 p9–10 “操作·思考” 1–3（图 5-1、5-2）。表格按课本取 x = −3, −2, −1, 0, 1, 2, 3。先一个点一个点地描，再请学生说用什么线连：多数学生会说“折线”或“V 形”，这时点“再取 x = ±0.5…”，新点不在线段上，说明必须用平滑曲线。描完再画 y = −x²，比较共同特征。</p>
+</section>
+
+<!-- 5 ================= 抛物线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>抛物线：对称轴与顶点</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def" data-step="1"><h4>课本 p10</h4>二次函数 $y=x^2$、$y=-x^2$ 的图像都是<em>抛物线</em>（parabola），且关于 $y$ 轴对称．抛物线与对称轴的交点叫做抛物线的<em>顶点</em>．</div>
+      <p class="tip" data-step="2">拖动右图的点 $P$：它的对称点 $P'$ 在哪里？<span class="think" data-step="3" data-ask="试一试">$P(x,x^2)$ 的对称点是 $P'(-x,x^2)$，它也在图像上，因为 $(-x)^2=x^2$。</span></p>
+      <p class="tip" data-step="4">$y=x^2$ 的顶点是？是最高点还是最低点？<span class="think" data-step="5" data-ask="说一说">顶点是原点 $(0,0)$；对 $y=x^2$ 来说它是<b>最低点</b>，对 $y=-x^2$ 来说它是<b>最高点</b>。</span></p>
+    </div>
+    <div class="col">
+      <div id="symBoard" class="sym-board"></div>
+      <p class="tip feedback" id="symMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p10 图 5-3 与抛物线、顶点的定义。拖动 P，右边的 P′ 跟着动，PP′ 被 y 轴垂直平分——这就是“关于 y 轴对称”的含义。可以问：把图沿 y 轴对折，两边能重合吗？</p>
+</section>
+
+<!-- 6 ================= y=ax^2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>拖动 $a$：$y=ax^2$ 的图像怎样变化？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row" data-noswipe><span class="sl">$a=$<input type="range" id="aSlide" min="-3" max="3" step="0.1" value="1"><b class="v" id="aV"></b></span></div>
+      <div class="btns" data-noswipe id="aPresets"></div>
+      <p class="tip feedback" id="aMsg"></p>
+      <p class="tip" data-step="1">$a$ 由正变负时，开口方向怎样变？<span class="think" data-step="2" data-ask="拖一拖">$a&gt;0$ 开口<b>向上</b>，$a&lt;0$ 开口<b>向下</b>。</span></p>
+      <p class="tip" data-step="3">$|a|$ 由小变大时，橙色水平线上两个交点的距离怎样变？<span class="think" data-step="4" data-ask="拖一拖">越来越小——$|a|$ 越大，开口越<b>小</b>（越“瘦”）。</span></p>
+    </div>
+    <div class="col">
+      <div id="aBoard" class="a-board"></div>
+      <div class="def concl" data-step="5">二次函数 $y=ax^2$ 的图像是一条抛物线，抛物线的顶点在原点、对称轴是 $y$ 轴．当 $a&gt;0$ 时，抛物线的开口向上，顶点是抛物线的<em>最低点</em>；当 $a&lt;0$ 时，抛物线的开口向下，顶点是抛物线的<em>最高点</em>．</div>
+    </div>
+  </div>
+  <p class="note">课本 p11 练习 1、2 的四个函数 y = ½x²、2x²、−½x²、−2x² 与“思考”，以及 p18–19“数学实验室”的观察（1）（2）：拖动 a，观察开口方向；拖动橙色点改变水平线的高度，读出两交点间的距离。课本框内结论在最后一步出示。</p>
+</section>
+
+<!-- 7 ================= 增减性 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">性质</span><h2>沿抛物线走一走：$y$ 随 $x$ 怎样变化？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="incBtns"></div>
+      <div id="incBoard" class="inc-board"></div>
+      <p class="tip feedback" id="incMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">图像的“上升”“下降”怎样用 $x$、$y$ 的变化来说？<span class="think" data-step="2" data-ask="说一说">“上升”：$x$ 增大时，$y$ 也增大；“下降”：$x$ 增大时，$y$ 减小。</span></p>
+      <div class="def prop" data-step="3"><h4>二次函数 $y=ax^2$ 的性质（课本 p13）</h4>
+        <div class="cols2 tight">
+          <p>(1) $a&gt;0$，<br>当 $x&lt;0$ 时，$y$ 随 $x$ 增大而减小；<br>当 $x&gt;0$ 时，$y$ 随 $x$ 增大而增大；<br>当 $x=0$ 时，$y$ 的值最小，最小值是 0．</p>
+          <p>(2) $a&lt;0$，<br>当 $x&lt;0$ 时，$y$ 随 $x$ 增大而增大；<br>当 $x&gt;0$ 时，$y$ 随 $x$ 增大而减小；<br>当 $x=0$ 时，$y$ 的值最大，最大值是 0．</p>
+        </div>
+      </div>
+      <p class="warn" data-step="4" data-label="说全">不能只说“$y$ 随 $x$ 增大而增大”：以对称轴（$x=0$）为界，<b>两侧的增减性相反</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p12–13 “思考·探索”与性质框。拖动点 P 沿抛物线从左往右走，箭头显示“上坡”还是“下坡”，读数显示 x 每增加 0.5 时 y 的变化量。请学生用自己的话描述，再出示课本的说法。数学实验室观察（3）（拖动 P 看横坐标变化时的位置）也在这里完成。</p>
+</section>
+
+<!-- 8 ================= 练习 p13 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>开口、顶点、对称轴与增减性（课本 p13）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1.</b> 说出开口方向、顶点坐标与对称轴：</p>
+        <div class="qrow"><span>$y=-3x^2$</span><div class="pick" data-ans="d"><button data-k="u">开口向上</button><button data-k="d">开口向下</button><p class="pick-why">$a=-3&lt;0$；顶点 $(0,0)$，对称轴是 $y$ 轴。</p></div></div>
+        <div class="qrow"><span>$y=\dfrac13x^2$</span><div class="pick" data-ans="u"><button data-k="u">开口向上</button><button data-k="d">开口向下</button><p class="pick-why">$a=\dfrac13&gt;0$；顶点 $(0,0)$，对称轴是 $y$ 轴。</p></div></div>
+        <div class="qrow"><span>$y=5x^2$</span><div class="pick" data-ans="u"><button data-k="u">开口向上</button><button data-k="d">开口向下</button><p class="pick-why">$a=5&gt;0$；顶点 $(0,0)$，对称轴是 $y$ 轴。</p></div></div>
+        <div class="qrow"><span>$y=-\dfrac34x^2$</span><div class="pick" data-ans="d"><button data-k="u">开口向上</button><button data-k="d">开口向下</button><p class="pick-why">$a=-\dfrac34&lt;0$；顶点 $(0,0)$，对称轴是 $y$ 轴。</p></div></div>
+        <p class="tip"><b>3.</b> 已知二次函数 $y=ax^2$ 的图像经过点 $P(2,3)$，确定图像的开口方向．</p>
+        <div class="pick" data-ans="u"><button data-k="u">向上</button><button data-k="d">向下</button><p class="pick-why">把 $(2,3)$ 代入：$3=4a$，$a=\dfrac34&gt;0$，开口向上。（也可以看：点 $P$ 在 $x$ 轴上方。）</p></div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>2.</b> 填空（填完按回车判断）：</p>
+        <div class="fill">
+          <p>(1) 对于 $y=-7x^2$，当 $x&lt;0$ 时，$y$ 随 $x$ 增大而<span class="blank" data-ans="增大" data-w="3"></span>；当 $x&gt;0$ 时，$y$ 随 $x$ 增大而<span class="blank" data-ans="减小" data-w="3"></span>；当 $x=$<span class="blank" data-ans="0" data-w="2"></span>时，$y$ 的值最<span class="blank" data-ans="大" data-w="2"></span>，最<span class="blank" data-ans="大" data-w="2"></span>值是<span class="blank" data-ans="0" data-w="2"></span>．</p>
+          <p>(2) 对于 $y=\dfrac23x^2$，当 $x&lt;0$ 时，$y$ 随 $x$ 增大而<span class="blank" data-ans="减小" data-w="3"></span>；当 $x&gt;0$ 时，$y$ 随 $x$ 增大而<span class="blank" data-ans="增大" data-w="3"></span>；当 $x=$<span class="blank" data-ans="0" data-w="2"></span>时，$y$ 的值最<span class="blank" data-ans="小" data-w="2"></span>，最<span class="blank" data-ans="小" data-w="2"></span>值是<span class="blank" data-ans="0" data-w="2"></span>．</p>
+        </div>
+        <p class="method" data-label="一看 a 的符号">$a$ 的符号定开口 → 开口定顶点是最低点还是最高点 → 再分对称轴两侧说增减。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p13 练习 1–3。点选、填空都即时判断。第 3 题可以追问：不代入能判断吗？——图像经过 x 轴上方的点，开口只能向上。</p>
+</section>
+
+<!-- 9 ================= 上下平移 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>$y=x^2+1$ 与 $y=x^2$ 的图像有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab" id="vTab"></table>
+      <div class="slider-row" data-noswipe><span class="sl">$y=x^2+k$，$k=$<input type="range" id="vK" min="-3" max="3" step="0.5" value="1"><b class="v" id="vKV"></b></span></div>
+      <p class="tip" data-step="1">对于同一个自变量的值，两个函数的值有什么关系？<span class="think" data-step="2" data-ask="看表">相差 1：$y=x^2+1$ 的每个值都比 $y=x^2$ 的大 1。</span></p>
+      <p class="tip" data-step="3">点 $A(1,1)$ 变成了哪个点？<span class="think" data-step="4" data-ask="看图">向上平移 1 个单位长度得到点 $A'(1,2)$——每个点都向上平移 1 个单位。</span></p>
+    </div>
+    <div class="col">
+      <div id="vBoard" class="v-board"></div>
+      <div class="def concl" data-step="5">函数 $y=x^2+1$ 的图像可以由函数 $y=x^2$ 的图像<em>向上平移 1 个单位长度</em>得到，它是一条开口向上的抛物线，顶点坐标是 $(0,1)$，对称轴是 $y$ 轴；当 $x=0$ 时，$y$ 的值最小，最小值是 1．</div>
+      <p class="tip gold" data-step="6">$y=-x^2+1$ 与 $y=-x^2$ 呢？<span class="think" data-step="7" data-ask="说一说">由 $y=-x^2$ 向上平移 1 个单位得到，开口向下，顶点 $(0,1)$，最大值是 1。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p14 “思考·探索”与图 5-5。先固定 k = 1 讨论课本问题；再拖 k 到 −1、2，学生会说出：k &gt; 0 向上平移，k &lt; 0 向下平移 |k| 个单位。蓝色竖直箭头表示“同一个 x，函数值相差 k”。</p>
+</section>
+
+<!-- 10 ================= 左右平移 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>$y=(x+3)^2$ 与 $y=x^2$ 的图像有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>由 $x^2=4$</span><span>$x=-2$ 或 $x=2$</span><i class="why">$y=x^2$ 上的点 $A(-2,4)$、$B(2,4)$</i></div>
+        <div class="dl" data-step="2"><span>由 $(x+3)^2=4$</span><span class="think" data-step="3" data-ask="解一解">$x=-5$ 或 $x=-1$</span><i class="why">$y=(x+3)^2$ 上的点 $A'(-5,4)$、$B'(-1,4)$</i></div>
+        <div class="dl key" data-step="4"><span>对比</span><span>$A\to A'$，$B\to B'$</span><i class="why">都向<b>左</b>平移 3 个单位长度</i></div>
+      </div>
+      <div class="slider-row" data-noswipe><span class="sl">$y=(x+h)^2$，$h=$<input type="range" id="hH" min="-4" max="4" step="0.5" value="3"><b class="v" id="hHV"></b></span></div>
+      <p class="warn" data-step="5" data-label="易错">$(x+3)^2$ 是“$+3$”，图像却向<b>左</b>移：要让函数值仍是 4，$x$ 必须比原来<b>小</b> 3。</p>
+    </div>
+    <div class="col">
+      <div id="hBoard" class="h-board"></div>
+      <div class="def concl" data-step="6">函数 $y=(x+3)^2$ 的图像可以由 $y=x^2$ 的图像<em>向左平移 3 个单位长度</em>得到，它是一条开口向上的抛物线，顶点坐标是 $(-3,0)$，对称轴是过点 $(-3,0)$ 且平行于 $y$ 轴的直线．当 $x&lt;-3$ 时，$y$ 随 $x$ 增大而减小；当 $x&gt;-3$ 时，$y$ 随 $x$ 增大而增大；当 $x=-3$ 时，$y$ 的值最小，最小值是 0．</div>
+    </div>
+  </div>
+  <p class="note">课本 p14–15 “思考·探索”与图 5-6。关键是“函数值相同的点”比较：同样 y = 4，新图像上的 x 比原来小 3。拖 h 到 −2（即 y = (x − 2)²），请学生说出向哪边平移。课本留的问题“y = −(x + 3)² 与 y = −x²”可让学生口答：向左平移 3 个单位。</p>
+</section>
+
+<!-- 11 ================= 练习 p15 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>说出位置关系（课本 p15）</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1.</b> 函数 $y=x^2-1$ 的图像与 $y=x^2$ 的图像之间的位置关系？</p>
+        <div class="pick" data-ans="d"><button data-k="u">向上平移 1</button><button data-k="d">向下平移 1</button><button data-k="l">向左平移 1</button><button data-k="r">向右平移 1</button><p class="pick-why">$y=x^2+(-1)$：同一个 $x$，函数值都小 1，所以向下平移 1 个单位；顶点 $(0,-1)$。</p></div>
+        <div id="p11a" class="p11-board"></div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>2.</b> 函数 $y=-(x-2)^2$ 的图像与 $y=-x^2$ 的图像之间的位置关系？</p>
+        <div class="pick" data-ans="r"><button data-k="u">向上平移 2</button><button data-k="d">向下平移 2</button><button data-k="l">向左平移 2</button><button data-k="r">向右平移 2</button><p class="pick-why">$-(x-2)^2=-4$ 得 $x=0$ 或 $4$，而 $-x^2=-4$ 得 $x=-2$ 或 $2$：函数值相同的点都向右移了 2；顶点 $(2,0)$。</p></div>
+        <div id="p11b" class="p11-board"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p15 练习 1、2，要求“说出位置关系，并画出它的图像”。点对了以后，图上的新抛物线才画出来（橙色），学生可在课本方格图上对照描点。</p>
+</section>
+
+<!-- 12 ================= 核心：a h k ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">核心探究</span><h2>拖 $a$、$h$、$k$，拖顶点：$y=a(x+h)^2+k$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row stack" data-noswipe>
+        <span class="sl">$a=$<input type="range" id="gA" min="-2" max="2" step="0.25" value="1"><b class="v" id="gAV"></b></span>
+        <span class="sl">$h=$<input type="range" id="gH" min="-4" max="4" step="0.5" value="1"><b class="v" id="gHV"></b></span>
+        <span class="sl">$k=$<input type="range" id="gK" min="-4" max="4" step="0.5" value="2"><b class="v" id="gKV"></b></span>
+      </div>
+      <p class="tip big-f" id="gF"></p>
+      <div class="readout g-read" id="gRead"></div>
+      <p class="tip feedback" id="gMsg"></p>
+    </div>
+    <div class="col">
+      <div id="gBoard" class="g-board"></div>
+      <p class="tip" data-step="1">只拖 $a$，什么变了、什么没变？<span class="think" data-step="2" data-ask="试一试">开口方向和大小变了；顶点和对称轴<b>不变</b>。</span></p>
+      <p class="tip" data-step="3">只拖 $h$、$k$（或拖顶点），什么变了、什么没变？<span class="think" data-step="4" data-ask="试一试">位置变了，形状不变——灰色虚线 $y=ax^2$ 平移后与橙色曲线完全重合。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。课本 p16 先研究 y = (x + 1)² + 2，再给出一般形式 y = a(x + h)² + k；这里把它做成可以连续变化的“实验”。注意课本的写法是 (x + h)：顶点是 (−h, k)。请学生先预测再拖：① 只改 a；② 只改 h；③ 只改 k；④ 直接拖橙色顶点，看 h、k 怎样跟着变。读数面板实时给出开口、顶点、对称轴、最值。</p>
+</section>
+
+<!-- 13 ================= y=(x+1)^2+2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>$y=(x+1)^2+2$：两次平移，读出性质（图 5-7）</h2></div>
+  <button class="media-btn" hidden data-img="assets/pingyi.jpg" data-video="assets/pingyi.mp4" data-cap="y = x² 先向左平移 1 个单位，再向上平移 2 个单位，得到 y = (x + 1)² + 2；点 P(1, 1) 跟着移到 (0, 3)">▶ 看动画</button>
+  <div class="bd">
+    <div class="col">
+      <div id="f57Board" class="f57-board"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="f57Play">播放：先左移 1，再上移 2</button></div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">怎样由 $y=x^2$ 的图像得到它？<span class="think" data-step="2" data-ask="说一说">向左平移 1 个单位得 $y=(x+1)^2$ 的图像，再向上平移 2 个单位得 $y=(x+1)^2+2$ 的图像。</span></p>
+      <p class="tip" data-step="3">图像特征？<span class="think" data-step="4" data-ask="说一说">开口向上的抛物线，顶点 $(-1,2)$，对称轴是过点 $(-1,2)$ 且平行于 $y$ 轴的直线。</span></p>
+      <p class="tip" data-step="5">性质？<span class="think" data-step="6" data-ask="说一说">当 $x&lt;-1$ 时，$y$ 随 $x$ 增大而减小；当 $x&gt;-1$ 时，$y$ 随 $x$ 增大而增大；当 $x=-1$ 时，$y$ 的值最小，最小值是 2。</span></p>
+      <p class="tip gold" data-step="7">$y=-(x+1)^2+2$ 呢？<span class="think" data-step="8" data-ask="说一说">由 $y=-x^2$ 同样平移得到：开口向下，顶点 $(-1,2)$；$x&lt;-1$ 时增大，$x&gt;-1$ 时减小；$x=-1$ 时最大值是 2。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p16 “思考·探索”与图 5-7、两个小人的说法。点“播放”看两次平移的过程（蓝色是 y = x²，灰色虚线是中间状态 y = (x + 1)²，橙色是结果）；右上角“看动画”是同一过程的 16 秒视频（Remotion 按坐标绘制），并跟踪了点 P(1, 1) → (0, 3)。也可以先上移再左移，结果相同——可让学生在上一页验证。</p>
+</section>
+
+<!-- 14 ================= 配方 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>$y=ax^2+bx+c$ 怎样变成 $y=a(x+h)^2+k$？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$y$</span><span>$=ax^2+bx+c$</span><i class="why"></i></div>
+        <div class="dl" data-step="2"><span></span><span>$=a\left(x^2+\dfrac bax\right)+c$</span><span class="think" data-step="3" data-ask="凭什么？">提出二次项系数 $a$（$a\ne0$）</span></div>
+        <div class="dl" data-step="4"><span></span><span>$=a\left[x^2+2\cdot\dfrac b{2a}x+\left(\dfrac b{2a}\right)^2-\left(\dfrac b{2a}\right)^2\right]+c$</span><span class="think" data-step="5" data-ask="凭什么？">配方：加上一次项系数一半的平方，再减去它</span></div>
+        <div class="dl" data-step="6"><span></span><span>$=a\left(x+\dfrac b{2a}\right)^2-\dfrac{b^2}{4a}+c$</span><span class="think" data-step="7" data-ask="凭什么？">完全平方公式；把 $-\left(\dfrac b{2a}\right)^2$ 乘 $a$ 移出括号</span></div>
+        <div class="dl key end" data-step="8"><span></span><span>$=a\left(x+\dfrac b{2a}\right)^2+\dfrac{4ac-b^2}{4a}$</span><i class="why">通分：$h=\dfrac b{2a}$，$k=\dfrac{4ac-b^2}{4a}$</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="def concl" data-step="9"><h4>课本 p17</h4>二次函数 $y=ax^2+bx+c$ 的图像是一条抛物线，它的顶点坐标是 $\left(-\dfrac b{2a},\dfrac{4ac-b^2}{4a}\right)$，对称轴是过顶点且平行于 $y$ 轴的直线．<br>$a&gt;0$，抛物线开口向上，当 $x=-\dfrac b{2a}$ 时，函数的值最小，$y_{\text{最小值}}=\dfrac{4ac-b^2}{4a}$；<br>$a&lt;0$，抛物线开口向下，当 $x=-\dfrac b{2a}$ 时，函数的值最大，$y_{\text{最大值}}=\dfrac{4ac-b^2}{4a}$．</div>
+      <p class="tip" data-step="10">验算：$y=x^2+2x+3$ 的顶点？<span class="think" data-step="11" data-ask="用公式">$-\dfrac b{2a}=-1$，$\dfrac{4ac-b^2}{4a}=\dfrac{12-4}{4}=2$：顶点 $(-1,2)$——正是上一页的 $y=(x+1)^2+2$！</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p16–17 的配方过程，每一步右边的依据先遮住，请学生说“凭什么”。和九上 1.2 用配方法解方程的差别：解方程时可以两边同除以 a；这里是函数，只能把 a “提出来”，不能除掉。最后用 y = x² + 2x + 3 把公式和上一页联系起来。</p>
+</section>
+
+<!-- 15 ================= 例题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>画 $y=-x^2-4x-5$ 的图像，指出它的特征和最值</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip" data-step="1"><b>分析：</b>要画出它的图像，<span class="think" data-step="2" data-ask="先做什么？">可先将函数表达式变形为 $y=a(x+h)^2+k$ 的形式。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$y$</span><span>$=-x^2-4x-5$</span><i class="why"></i></div>
+        <div class="dl" data-step="4"><span></span><span>$=-(x^2+4x+4-4)-5$</span><span class="think" data-step="5" data-ask="凭什么？">提出 $-1$，配方：加 4 再减 4</span></div>
+        <div class="dl key" data-step="6"><span></span><span>$=-(x+2)^2-1$</span><i class="why">$-(-4)-5=-1$</i></div>
+      </div>
+      <p class="tip" data-step="7">二次项系数 $-1&lt;0$，所以<span class="think" data-step="8" data-ask="开口？顶点？对称轴？">开口向下，顶点坐标是 $(-2,-1)$，对称轴是过点 $(-2,-1)$ 且平行于 $y$ 轴的直线。</span></p>
+      <p class="tip gold" data-step="10">最值：<span class="think" data-step="11" data-ask="最大还是最小？">当 $x=-2$ 时，$y$ 的值最大，最大值是 $-1$。</span></p>
+    </div>
+    <div class="col">
+      <div id="exBoard" class="ex-board" data-step="9"></div>
+      <p class="method" data-step="12" data-label="画二次函数图像">配方定顶点和对称轴 → 在对称轴两侧对称地取点（如 $x=-4,-3,-1,0$）→ 平滑连线。</p>
+    </div>
+  </div>
+  <p class="note">课本 p17 例与图 5-8。图像在第 9 步出现：对称轴（红色虚线）x = −2，顶点 (−2, −1)；描出的点 (−3, −2)、(−1, −2)、(−4, −5)、(0, −5) 两两关于对称轴对称——画图时只要算一侧，另一侧对称描出。也可以用顶点公式验算：−b/(2a) = −(−4)/(2×(−1)) = −2。</p>
+</section>
+
+<!-- 16 ================= 练习 p18 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>配方与读表（课本 p18）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>1.</b> 填空（分数写成 a/b，回车判断）：</p>
+        <div class="fill">
+          <p>(1) $x^2+4x+$<span class="blank" data-ans="4" data-w="3"></span>$=(x+$<span class="blank" data-ans="2" data-w="3"></span>$)^2$</p>
+          <p>(2) $x^2-\dfrac72x+$<span class="blank" data-ans="49/16" data-w="4"></span>$=(x-$<span class="blank" data-ans="7/4" data-w="3"></span>$)^2$</p>
+          <p>(3) $x^2+6x+12=(x+3)^2+$<span class="blank" data-ans="3" data-w="3"></span></p>
+          <p>(4) $x^2-7x+13=\left(x-\dfrac72\right)^2+$<span class="blank" data-ans="3/4|0.75" data-w="3"></span></p>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 画出函数 $y=\dfrac12x^2-3x-\dfrac52$ 的图像．</p>
+          <details><summary>提示</summary>先提出 $\dfrac12$：$y=\dfrac12(x^2-6x)-\dfrac52$，再配方。</details>
+          <details><summary>完整解答</summary>$y=\dfrac12(x-3)^2-7$，开口向上，顶点 $(3,-7)$，对称轴 $x=3$（图像见右下）。</details>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>3.</b> 填表：</p>
+        <table class="mtab ftab">
+          <tr><th>函数</th><th>开口</th><th>顶点</th><th>最值</th></tr>
+          <tr><td>$y=2\left(x-\frac12\right)^2-2$</td><td><span class="blank" data-ans="上|向上" data-w="2"></span></td><td>$\left(\frac12,-2\right)$</td><td>$x=\frac12$ 时最小 $-2$</td></tr>
+          <tr><td>$y=2\left(x-\frac32\right)^2+5$</td><td><span class="blank" data-ans="上|向上" data-w="2"></span></td><td>$(\frac32,$<span class="blank" data-ans="5" data-w="2"></span>$)$</td><td>$x=\frac32$ 时最<span class="blank" data-ans="小" data-w="2"></span> $5$</td></tr>
+          <tr><td>$y=2\left(x+\frac32\right)^2-\frac12$</td><td><span class="blank" data-ans="上|向上" data-w="2"></span></td><td>$($<span class="blank" data-ans="-3/2|-1.5" data-w="3"></span>$,-\frac12)$</td><td>$x=-\frac32$ 时最<span class="blank" data-ans="小" data-w="2"></span> $-\frac12$</td></tr>
+          <tr><td>$y=-2\left(x-\frac32\right)^2+\frac12$</td><td><span class="blank" data-ans="下|向下" data-w="2"></span></td><td>$(\frac32,$<span class="blank" data-ans="1/2|0.5" data-w="3"></span>$)$</td><td>$x=\frac32$ 时最<span class="blank" data-ans="大" data-w="2"></span> $\frac12$</td></tr>
+        </table>
+        <p class="warn" data-label="看符号">$y=a(x+h)^2+k$ 的顶点是 $(-h,k)$：$\left(x+\frac32\right)^2$ 对应顶点横坐标 $-\frac32$。</p>
+        <div id="p16Board" class="p16-board"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p18 练习 1–3（第 3 题的对称轴一栏课本已给出第一行示范，这里省略，可口答“过顶点且平行于 y 轴的直线”）。第 2 题打开完整解答后出现按坐标画出的图像。</p>
+</section>
+
+<!-- 17 ================= 习题精选 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 5.2</span><h2>精选：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 二次函数 $y=ax^2$ 的图像经过点 $A(-2,5)$．(1) 写出点 $A$ 关于 $y$ 轴对称的点 $B$ 的坐标，点 $B$ 在这个函数的图像上吗？(2) $y$ 有最大值还是最小值？</p>
+        <details><summary>提示</summary>先求 $a$；图像关于 $y$ 轴对称。</details>
+        <details><summary>完整解答</summary>$5=4a$，$a=\dfrac54$。(1) $B(2,5)$，在图像上（$\dfrac54\times2^2=5$）。(2) $a&gt;0$，有最小值：当 $x=0$ 时，$y$ 最小值是 0。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>8.</b> 求最大值或最小值：(1) $y=x^2-2x-3$；(2) $y=-2x^2-5x+7$．</p>
+        <details><summary>提示</summary>配方，或用顶点公式 $x=-\dfrac b{2a}$，$y=\dfrac{4ac-b^2}{4a}$。</details>
+        <details><summary>完整解答</summary>(1) $y=(x-1)^2-4$，当 $x=1$ 时，最小值是 $-4$。<br>(2) $-\dfrac b{2a}=-\dfrac54$，$\dfrac{4ac-b^2}{4a}=\dfrac{-56-25}{-8}=\dfrac{81}8$：当 $x=-\dfrac54$ 时，最大值是 $\dfrac{81}8$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>9.</b> 怎样平移函数 $y=-x^2$ 的图像，可以得到函数 $y=-x^2-8x-7$ 的图像？</p>
+        <details><summary>提示</summary>先把 $y=-x^2-8x-7$ 配方成 $y=-(x+h)^2+k$。</details>
+        <details><summary>完整解答</summary>$y=-(x^2+8x+16-16)-7=-(x+4)^2+9$，顶点 $(-4,9)$：把 $y=-x^2$ 的图像向左平移 4 个单位，再向上平移 9 个单位。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 5.2 第 3、8(1)(2)、9 题。第 9 题的顶点 (−4, 9) 超出第 12 页画板的范围，请学生口头说明平移过程即可。其余题（第 1、2、4–7 题）作课后作业。</p>
+</section>
+
+<!-- 18 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <table class="mtab sumtab" data-step="1">
+      <tr><th>表达式</th><th>由 $y=ax^2$ 怎样平移</th><th>顶点</th><th>对称轴</th></tr>
+      <tr><td>$y=ax^2$</td><td>—</td><td>$(0,0)$</td><td>$y$ 轴</td></tr>
+      <tr><td>$y=ax^2+k$</td><td>上（$k&gt;0$）或下（$k&lt;0$）移 $|k|$</td><td>$(0,k)$</td><td>$y$ 轴</td></tr>
+      <tr><td>$y=a(x+h)^2$</td><td>左（$h&gt;0$）或右（$h&lt;0$）移 $|h|$</td><td>$(-h,0)$</td><td>直线 $x=-h$</td></tr>
+      <tr><td>$y=a(x+h)^2+k$</td><td>左右移 $|h|$，再上下移 $|k|$</td><td>$(-h,k)$</td><td>直线 $x=-h$</td></tr>
+      <tr><td>$y=ax^2+bx+c$</td><td>配方成上一行</td><td>$\left(-\frac b{2a},\frac{4ac-b^2}{4a}\right)$</td><td>直线 $x=-\frac b{2a}$</td></tr>
+    </table>
+    <div class="cols3 sum">
+      <p class="method" data-step="2" data-label="a 管形状">$a$ 的符号定开口方向，$|a|$ 定开口大小；平移不改变 $a$。</p>
+      <p class="method" data-step="3" data-label="顶点管位置">顶点是最高点或最低点；对称轴两侧增减性相反。</p>
+      <p class="recall" data-step="4" data-label="思想">数形结合；从特殊到一般（$y=x^2\to y=ax^2+bx+c$）；化归（配方）。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>下一节：</b><a href="../mj9b-daidingxishu/index.html">5.3 用待定系数法确定二次函数表达式</a>——反过来，知道图像经过哪几个点，能求出表达式吗？</p>
+  </div>
+  <p class="note">请学生先口述“a 管什么、h 管什么、k 管什么”，再逐步出示。课后作业建议：习题 5.2 第 1、2、5、6、7 题（画图题请在方格纸上画）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

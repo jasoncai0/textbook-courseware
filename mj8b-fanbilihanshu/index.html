@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>反比例函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zhishu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第11章 反比例函数 · 11.1</p>
+    <h1 class="cover-title">反比例函数</h1>
+    <p class="cover-q" data-step="1">校绿色行动小组组织 60 人植树，计划植树 480 棵，2 h 可以完成任务．</p>
+    <p class="cover-q" data-step="2">如果人数增加到 80 人、100 人、120 人，各需要多少时间？人数<b>越多</b>，时间<b>越少</b>——它们之间藏着怎样的函数？</p>
+    <div class="chips" data-step="3"><span class="chip">积一定</span><span class="chip">$y=\dfrac{k}{x}$</span><span class="chip">和正比例函数对照</span><span class="chip">写出函数表达式</span></div>
+  </div>
+  <p class="note">课本第 11 章章首情境（p123）。封面只提问，请学生凭感觉说“人数加倍，时间怎样”，第 3 页再列表验证。本章主线：概念（11.1）→ 图像与性质（11.2）→ 应用（11.3）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="六年级下册 · 反比例" data-step="1">
+        <p>两种相关联的量，一种量变化，另一种量也随着变化；如果这两种量的<b>乘积一定</b>，它们就成反比例．</p>
+        <span class="use">本课第 3、4 页：先认出“积一定”，再把它写成函数表达式．</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 6.1 函数" data-step="2">
+        <p>在一个变化过程中，对于 $x$ 的<b>每一个</b>值，$y$ 都有<b>唯一</b>的值与它对应，$y$ 是 $x$ 的函数．</p>
+        <span class="use">判断“时间 $t$ 是速度 $v$ 的函数吗”．</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 6.2 一次函数" data-step="3">
+        <p>$y=kx+b$（$k\ne0$）；$b=0$ 时 $y=kx$ 叫正比例函数，此时 $\dfrac{y}{x}=k$——<b>商</b>一定．</p>
+        <span class="use">第 7 页把正比例函数和反比例函数放在一起对照．</span>
+      </div>
+      <div class="recall" data-label="八年级下册 · 10.1 分式" data-step="4">
+        <p>分式 $\dfrac{A}{B}$ 有意义的条件：分母 $B\ne0$．</p>
+        <span class="use">说明反比例函数中自变量 $x$ 的取值范围．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>小学的“成反比例”，怎样用<b>函数</b>的眼光重新认识？</p>
+  </div>
+  <p class="note">每张卡先请学生口述再看“本课用在”。第三张卡强调“正比例 ↔ 商一定”，为“反比例 ↔ 积一定”埋对照的伏笔。</p>
+</section>
+
+<!-- 3 ================= 植树：填表、描点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">情境</span><h2>人数越多，时间越少：多少才算“少”？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">480 棵树，60 人 2 h 完成．每人每小时植树多少棵？<span class="think" data-step="1" data-ask="算一算">$480\div(60\times2)=4$（棵）</span></p>
+      <p class="tip" data-step="2">所以 人数 × 时间 $=480\div4=$ <span class="think" data-step="3" data-ask="?">$120$</span>，始终不变．</p>
+      <div id="treeBoard" class="tree-board"></div>
+      <p class="muted center small-t">每填对一格，图上出现一个点（横轴：人数，纵轴：时间/h）</p>
+    </div>
+    <div class="col">
+      <p class="tip">填表（填对变绿，填错可以再改）：</p>
+      <div class="tabwrap">
+        <table class="mtab" id="treeTab">
+          <tr><th>人数</th><td>20</td><td>40</td><td>60</td><td>80</td><td>100</td><td>120</td></tr>
+          <tr><th>时间/h</th><td><span class="blank" data-ans="6" data-w="2"></span></td><td><span class="blank" data-ans="3" data-w="2"></span></td><td>2</td><td><span class="blank" data-ans="1.5" data-w="3"></span></td><td><span class="blank" data-ans="1.2|6/5" data-w="3"></span></td><td><span class="blank" data-ans="1" data-w="2"></span></td></tr>
+        </table>
+      </div>
+      <p class="tip" data-step="4">为了能在 1.5 h 内完成任务，至少需要多少人？<span class="think" data-step="5" data-ask="想一想">$120\div1.5=80$（人）；人越多时间越少，所以<b>至少 80 人</b>．</span></p>
+      <p class="tip gold" data-step="6">时间 $t$ 与人数 $n$ 是什么关系？$t$ 是 $n$ 的函数吗？<span class="think" data-step="7" data-ask="说一说">$nt=120$，即 $t=\dfrac{120}{n}$．每个 $n$ 只对应一个 $t$，所以 $t$ 是 $n$ 的函数．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p123 章首情境：填表、描点、提问。请学生先估再算。描出的点由 t = 120/n 精确计算，学生会看到这些点“排成一条弯弯的线”——留给 11.2 去研究图像。“至少 80 人”要说清理由：人数越多时间越少。</p>
+</section>
+
+<!-- 4 ================= 操作：南京到上海 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作</span><h2>南京到上海：速度变了，时间怎样变？</h2></div>
+  <div class="bd l55">
+    <div class="col">
+      <p class="tip">南京与上海相距约 300 km．一辆汽车从南京出发，以速度 $v$（km/h）开往上海，全程所用时间为 $t$（h）．</p>
+      <svg id="road" class="road" viewBox="0 0 640 120" aria-label="南京到上海的公路"></svg>
+      <div class="slider-row" data-noswipe>$v=$<input type="range" id="vIn" min="40" max="150" step="5" value="60"><b class="v" id="vV"></b>km/h</div>
+      <p class="tip feedback fb-ok" id="vMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">写出 $t$、$v$ 的函数表达式：<span class="think" data-step="2" data-ask="写一写">$vt=300$，即 $t=\dfrac{300}{v}$</span></p>
+      <div class="tabwrap" data-step="3">
+        <table class="mtab" id="vTab">
+          <tr><th>$v$</th><td>60</td><td>70</td><td>80</td><td>90</td><td>100</td></tr>
+          <tr><th>$t$</th><td><span class="blank" data-ans="5" data-w="3"></span></td><td><span class="blank" data-ans="30/7|4.29|4.3" data-w="4"></span></td><td><span class="blank" data-ans="15/4|3.75" data-w="4"></span></td><td><span class="blank" data-ans="10/3|3.33|3.3" data-w="4"></span></td><td><span class="blank" data-ans="3" data-w="3"></span></td></tr>
+        </table>
+      </div>
+      <p class="muted small-t" data-step="3">除不尽的可以写分数（如 30/7）或保留两位小数．</p>
+      <p class="tip" data-step="4">随着速度的变化，全程所用时间怎样变化？<span class="think" data-step="5" data-ask="说一说">速度越大，时间越少；速度变为原来的 2 倍，时间变为原来的 $\dfrac12$．</span></p>
+      <p class="tip gold" data-step="6">时间 $t$ 是速度 $v$ 的函数吗？<span class="think" data-step="7" data-ask="判断">是．每给定一个速度 $v$，$t=\dfrac{300}{v}$ 只算出一个值．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p124“操作”。先请学生拖动滑块看汽车走完全程，再填表。表中 70、90 除不尽，接受分数或两位小数。追问：v 能取 0 吗？——不能，300/0 没有意义（也不合实际）。这为“自变量 x ≠ 0”埋伏笔。</p>
+</section>
+
+<!-- 5 ================= 思考 · 交流 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 交流</span><h2>写出函数表达式，找共同特征</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>(1) 500 km 高速公路，完成天数 $y$（天）随日完成量 $x$（km）变化</span><span class="think" data-step="2" data-ask="表达式？">$y=\dfrac{500}{x}$</span><i class="why">$xy=500$：总长不变</i></div>
+      <div class="dl" data-step="3"><span>(2) 20 万元无息贷款，平均年还款额 $y$（万元）随还款年限 $x$（年）变化</span><span class="think" data-step="4" data-ask="表达式？">$y=\dfrac{20}{x}$</span><i class="why">$xy=20$：贷款总额不变</i></div>
+      <div class="dl" data-step="5"><span>(3) 容积 5 000 m³ 的游泳池，注满所需时间 $t$（h）随注水速度 $v$（m³/h）变化</span><span class="think" data-step="6" data-ask="表达式？">$t=\dfrac{5\,000}{v}$</span><i class="why">$vt=5\,000$：容积不变</i></div>
+      <div class="dl" data-step="7"><span>(4) 实数 $m$ 与 $n$ 的积为 $-200$，$m$ 随 $n$ 变化</span><span class="think" data-step="8" data-ask="表达式？">$m=-\dfrac{200}{n}$</span><i class="why">$mn=-200$：积不变，但是负数</i></div>
+    </div>
+    <p class="tip gold" data-step="9">$y=\dfrac{500}{x}$、$y=\dfrac{20}{x}$、$t=\dfrac{5\,000}{v}$、$m=-\dfrac{200}{n}$ 有什么共同特征？<span class="think" data-step="10" data-ask="说一说">都是“<b>常数 ÷ 自变量</b>”的形式：两个变量的<b>积是一个不为 0 的常数</b>．</span></p>
+  </div>
+  <p class="note">课本 p124“思考”“交流”。第 (4) 题很重要：积是 −200，是负数——小学的“成反比例”只研究正的量，函数里的常数 k 可以是负数。请学生再举一个类似的实例（课本“交流”）。</p>
+</section>
+
+<!-- 6 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>反比例函数</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>反比例函数（课本 p124–125）</h4>一般地，形如 $y=\dfrac{k}{x}$（$k$ 为常数，$k\ne0$）的函数叫做<em>反比例函数</em>（inverse proportional function），其中 $x$ 是自变量，$y$ 是 $x$ 的函数．反比例函数的自变量 $x$ 的取值范围是<em>不等于 0 的一切实数</em>．</div>
+    <div class="cols3">
+      <p class="tip" data-step="2">为什么 $x\ne0$？<br><span class="think" data-step="3" data-ask="想一想">$x$ 在分母上，分母为 0 时分式 $\dfrac{k}{x}$ 没有意义．</span></p>
+      <p class="tip" data-step="4">为什么要求 $k\ne0$？<br><span class="think" data-step="5" data-ask="想一想">$k=0$ 时 $y=\dfrac{0}{x}=0$，$y$ 不随 $x$ 变化，没有研究的必要．</span></p>
+      <p class="tip" data-step="6">$y$ 能取 0 吗？<br><span class="think" data-step="7" data-ask="想一想">不能．$k\ne0$，分子不为 0，分式的值就不为 0．</span></p>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="8" data-label="三种等价写法">$y=\dfrac{k}{x}$　⇔　$xy=k$　⇔　$x=\dfrac{k}{y}$（$k\ne0$）——认准“<b>积是非零常数</b>”．</p>
+      <p class="warn" data-step="9" data-label="和小学“成反比例”的区别">小学只研究正的量；反比例函数里 $k$ 可以是负数（如 $m=-\dfrac{200}{n}$），$x$、$y$ 也可以取负数．</p>
+    </div>
+  </div>
+  <p class="note">课本 p124–125 定义。请学生圈出关键词：k 为常数、k ≠ 0、x ≠ 0。“y 能取 0 吗”是补充追问，下节课会用它说明图像与 x 轴没有交点。</p>
+</section>
+
+<!-- 7 ================= 对照台（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手对照</span><h2>正比例函数 vs 反比例函数：商一定，还是积一定？</h2></div>
+  <div class="bd full">
+    <div class="slider-row" data-noswipe>常数 $k=$
+      <span class="btns" id="kBtns"></span>
+      　$x=$<input type="range" id="xIn" min="-6" max="6" step="0.5" value="2"><b class="v" id="xV"></b>
+      <span class="btns" id="mulBtns"></span>
+    </div>
+    <div class="cols2">
+      <div class="col pane">
+        <h3 class="h3">正比例函数 $y=kx$</h3>
+        <div class="pair"><span>$x$</span><b id="pX1"></b><span>$y$</span><b id="pY1"></b></div>
+        <p class="calc" id="pR1"></p>
+        <div class="tabwrap"><table class="mtab small" id="tab1"></table></div>
+      </div>
+      <div class="col pane">
+        <h3 class="h3">反比例函数 $y=\dfrac{k}{x}$</h3>
+        <div class="pair"><span>$x$</span><b id="pX2"></b><span>$y$</span><b id="pY2"></b></div>
+        <p class="calc" id="pR2"></p>
+        <div class="tabwrap"><table class="mtab small" id="tab2"></table></div>
+      </div>
+    </div>
+    <p class="tip feedback" id="cmpMsg"></p>
+    <div class="cols2">
+      <p class="tip" data-step="1">$x$ 扩大到原来的 2 倍，两边的 $y$ 各怎样变？<span class="think" data-step="2" data-ask="点“× 2”试试">正比例：$y$ 也扩大到 2 倍；反比例：$y$ 缩小到原来的 $\dfrac12$．</span></p>
+      <p class="tip" data-step="3">什么始终不变？<span class="think" data-step="4" data-ask="看计算行">正比例：<b>商</b> $\dfrac{y}{x}=k$；反比例：<b>积</b> $xy=k$．</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。先选 k（含负数），拖 x 或点“× 2”“× 3”“÷ 2”，两边同步变化。请学生说出：“正比例看商，反比例看积”。拖到 x = 0：左边 y = 0，右边“没有意义”——自变量取值范围的直观体会。k 取负数时，“x 变大 y 变小”的说法不再成立，反比例函数不能简单说成“一个变大另一个变小”，要看积。</p>
+</section>
+
+<!-- 8 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>是不是反比例函数？是的话，$k=$？</h2></div>
+  <div class="bd full">
+    <div class="cols3 judge">
+      <div class="jcard" data-step="1"><p><b>(1)</b> $y=\dfrac23x$</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">是正比例函数：$\dfrac{y}{x}=\dfrac23$，商一定．（练习 2(1)）</p></div></div>
+      <div class="jcard" data-step="1"><p><b>(2)</b> $xy+2=0$</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$xy=-2$，即 $y=-\dfrac{2}{x}$，$k=-2$．（练习 2(2)）</p></div></div>
+      <div class="jcard" data-step="1"><p><b>(3)</b> $xy=4$</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$y=\dfrac{4}{x}$，$k=4$．（习题 11.1 第 2(1) 题）</p></div></div>
+      <div class="jcard" data-step="2"><p><b>(4)</b> $x=-\dfrac{5}{y}$</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">两边同乘 $y$：$xy=-5$，$y=-\dfrac{5}{x}$，$k=-5$．（习题 11.1 第 2(2) 题）</p></div></div>
+      <div class="jcard" data-step="2"><p><b>(5)</b> $y=\dfrac{1}{x}+1$</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">取 $x=1$ 得 $y=2$，取 $x=2$ 得 $y=\dfrac32$：$xy$ 分别是 2 和 3，积不是常数．</p></div></div>
+      <div class="jcard" data-step="2"><p><b>(6)</b> $y=\dfrac{3}{x^2}$</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">是</button><button type="button" data-k="n">不是</button><p class="pick-why">$x=1$ 时 $xy=3$，$x=3$ 时 $xy=1$：积不是常数．分母是 $x^2$，不是 $x$．</p></div></div>
+    </div>
+    <p class="method" data-step="3" data-label="判断方法">化成 $y=\dfrac{k}{x}$ 的形式，或检验 $xy$ 是不是<b>非零常数</b>；求 $k$：$k=xy$．</p>
+  </div>
+  <p class="note">(1)(2) 是课本 p126 练习 2，(3)(4) 是习题 11.1 第 2 题，(5)(6) 是补充的反例，用“代两个值算 xy”的办法说明积不是常数。点错的按钮会变红，可以再选。</p>
+</section>
+
+<!-- 9 ================= 例题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例题</span><h2>写出函数表达式，并判断是否为反比例函数</h2></div>
+  <div class="bd l45">
+    <div class="col">
+      <p class="tip">(1) 面积是 50 cm² 的矩形，一边长 $y$（cm）随另一边长 $x$（cm）的变化而变化；</p>
+      <div id="rectBoard" class="rect-board"></div>
+      <div class="slider-row" data-noswipe>$x=$<input type="range" id="rxIn" min="2" max="25" step="0.5" value="5"><b class="v" id="rxV"></b></div>
+      <p class="tip feedback fb-ok" id="rectMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例</b>　写出下列问题中两个变量之间关系的函数表达式，并判断它们是否为反比例函数．</p>
+      <p class="tip" data-step="1"><b>思路：</b>先找“什么量不变”，再用公式把两个变量连起来．<span class="think" data-step="2" data-ask="(1) 什么不变？">面积不变：长 × 宽 $=50$．</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解：(1)</span><span>$xy=50$，即 $y=\dfrac{50}{x}$</span><i class="why">矩形面积 = 长 × 宽</i></div>
+        <div class="dl end" data-step="4"><span></span><span>$y$ 是 $x$ 的反比例函数</span><i class="why">形如 $y=\dfrac{k}{x}$，$k=50$</i></div>
+      </div>
+      <p class="tip" data-step="5">(2) 体积是 100 cm³ 的圆锥，高 $h$（cm）随底面面积 $S$（cm²）的变化而变化．<span class="think" data-step="6" data-ask="(2) 用哪个公式？">圆锥体积 $V=\dfrac13Sh$（六年级下册）．</span></p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>(2)</span><span>$\dfrac13Sh=100$，即 $h=\dfrac{300}{S}$</span><i class="why">两边同乘 3，再除以 $S$</i></div>
+        <div class="dl end" data-step="8"><span></span><span>$h$ 是 $S$ 的反比例函数</span><i class="why">$k=300$，不是 100！</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p125 例。左边的矩形按比例精确绘制（1 cm 画成同样长的格），拖动 x，矩形形状变化而面积始终 50。第 (2) 题常见错误：写成 h = 100/S，忘了 1/3——这时让学生代一组数检验：S = 30 时 h = 10，V = ⅓ × 30 × 10 = 100 ✓。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1(1)</b> 一边长 5 cm 的三角形，面积 $y$（cm²）随这边上的高 $x$（cm）的变化而变化．</p>
+        <details><summary>提示 1</summary>三角形面积 $=\dfrac12\times$ 底 $\times$ 高．</details>
+        <details><summary>完整解答</summary>$y=\dfrac12\times5x=\dfrac52x$，是正比例函数，<b>不是</b>反比例函数（商一定）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1(2)</b> 某村有耕地 200 公顷，人均占有耕地面积 $y$（公顷）随人口数量 $x$（人）的变化而变化．</p>
+        <details><summary>提示 1</summary>人均面积 × 人数 = ？</details>
+        <details><summary>完整解答</summary>$xy=200$，$y=\dfrac{200}{x}$，<b>是</b>反比例函数，$k=200$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1(3)</b> 一个物体重 120 N，该物体对地面的压强 $p$（N/m²）随它与地面的接触面积 $S$（m²）的变化而变化．</p>
+        <details><summary>提示 1</summary>压强 = 压力 ÷ 受力面积（1 Pa = 1 N/m²）．</details>
+        <details><summary>完整解答</summary>$p=\dfrac{120}{S}$，<b>是</b>反比例函数，$k=120$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 1(1)</b> 长方体的体积为 10 m³，高 $h$（m）随底面积 $S$（m²）的变化而变化．</p>
+        <details><summary>提示 1</summary>长方体体积 = 底面积 × 高．</details>
+        <details><summary>完整解答</summary>$Sh=10$，$h=\dfrac{10}{S}$，是反比例函数．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 1(2)</b> 汽车行驶了 1 000 m，车轮旋转的周数 $n$ 随车轮直径 $D$（m）的变化而变化．</p>
+        <details><summary>提示 1</summary>车轮转 1 周，汽车前进的距离是车轮的周长 $\pi D$．</details>
+        <details><summary>完整解答</summary>$\pi D\cdot n=1\,000$，$n=\dfrac{1\,000}{\pi D}$，是反比例函数，$k=\dfrac{1\,000}{\pi}$（$\pi$ 是常数）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 1(3)</b> 甲、乙两地相距 300 km，所需时间 $t$（h）随速度 $v$（km/h）的变化而变化．</p>
+        <details><summary>提示 1</summary>就是第 4 页的汽车．</details>
+        <details><summary>完整解答</summary>$t=\dfrac{300}{v}$，是反比例函数．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p125 练习 1 与 p126 习题 11.1 第 1 题。练习 1(1) 是“陷阱”：面积随高变化，但积不是常数（商才是常数），是正比例函数。习题 1(2) 的 k = 1000/π，提醒学生 π 是常数。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">形如 $y=\dfrac{k}{x}$（$k$ 为常数，$k\ne0$）的函数叫做反比例函数；$x\ne0$，$y\ne0$．</p>
+        <p class="recall" data-label="等价形式">$xy=k$；$x=\dfrac{k}{y}$．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="写表达式">找不变的量 → 用公式写出“积 = 常数” → 化成 $y=\dfrac{k}{x}$．</p>
+        <p class="method" data-label="判断">看能否化成 $y=\dfrac{k}{x}$；或检验 $xy$ 是否为非零常数．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>对照</h3>
+        <p class="recall" data-label="正比例 vs 反比例">$y=kx$：商一定，$x$ 可取一切实数；<br>$y=\dfrac{k}{x}$：积一定，$x\ne0$．</p>
+        <p class="warn" data-label="别忘了">$k$ 可以是负数；$h=\dfrac{300}{S}$ 里的 300 要算对．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>11.2 反比例函数的图像与性质——第 3 页描出的那些点，连起来是什么样子？它和一次函数的直线有什么不同？</p>
+  </div>
+  <p class="note">请学生用一句话说出“反比例函数”的特征（积是非零常数）。课后作业建议：习题 11.1 第 1、2 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

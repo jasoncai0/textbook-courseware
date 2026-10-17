@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用二次函数解决问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/gongqiao-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第5章 二次函数 · 5.5</p>
+    <h1 class="cover-title">用二次函数解决问题</h1>
+    <p class="cover-q" data-step="1">多承租多少亩稻田，总收益最大？再投放多少鱼苗，总产量最大？</p>
+    <p class="cover-q" data-step="2">河上的抛物线形拱桥，暴雨后水位上升 1 m，水面还有多宽？<b>装满货物的小船还能从桥下通过吗？</b></p>
+    <div class="chips" data-step="3"><span class="chip">设变量 · 列函数</span><span class="chip">配方求最值</span><span class="chip">建立坐标系</span><span class="chip">检验是否合实际</span></div>
+  </div>
+  <p class="note">课本 p29 开篇：“生产、生活中的一些实际问题，有时可以用二次函数来揭示其中数量之间的关系。”本课三个问题：前两个求最大值（用顶点），第三个由函数值求自变量（解方程）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="九下 5.2 二次函数的图像和性质" data-step="1">
+        <p>$y=a(x+h)^2+k$：$a&lt;0$ 时，当 $x=-h$，$y$ 有最大值 $k$；$a&gt;0$ 时有最小值 $k$。</p>
+        <span class="use">第 4、5 页：把收益、产量配方，读出最大值．（<a href="../mj9b-ercihanshutuxiang/index.html">回看 5.2</a>）</span>
+      </div>
+      <div class="recall" data-label="九上 1.4 用一元二次方程解决问题" data-step="2">
+        <p>“每多……，就少……”：单价、数量同时变化，总量 = 单价 × 数量。</p>
+        <span class="use">第 3–6 页：列出的式子相同，只是问题从“等于多少”变成了“最大是多少”．（<a href="../mj9a-erciwenti/index.html">回看 1.4</a>）</span>
+      </div>
+      <div class="recall" data-label="九下 5.3 待定系数法" data-step="3">
+        <p>已知图像经过的点，代入求系数。</p>
+        <span class="use">第 7–10 页：桥拱经过点 $A(3,-3)$，求 $y=ax^2$ 中的 $a$．（<a href="../mj9b-daidingxishu/index.html">回看 5.3</a>）</span>
+      </div>
+      <div class="recall" data-label="九下 5.4 二次函数与一元二次方程（上一课）" data-step="4">
+        <p>已知函数值 $y$，求对应的 $x$：解一元二次方程。</p>
+        <span class="use">第 8 页：水位 $y=-2$ 时，求水面两端的横坐标．（<a href="../mj9b-ercihanshufangcheng/index.html">回看 5.4</a>）</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5">还记得 5.1 的问题吗？“用长 16 m 的篱笆围成长方形，怎样围面积最大？”当时只是<b>拖出来</b>的（<a href="../mj9b-ercihanshu/index.html">回看 5.1</a>）。今天用二次函数<b>证明</b>它——见第 12 页习题 3。</p>
+  </div>
+  <p class="note">第 2 张卡：九上 1.4 解决的是“利润等于某个数时，单价是多少”，今天问“单价是多少时，利润最大”——同一个数量关系，换一个问法就从方程走到了函数。</p>
+</section>
+
+<!-- 3 ================= 问题1：先试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1</span><h2>多承租多少亩稻田，总收益最大？先试一试</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">某种粮大户去年种植水稻 360 亩，平均每亩收益 440 元．他计划今年多承租若干亩稻田，预计原 360 亩稻田平均每亩收益不变，新承租的稻田每增加 1 亩，其每亩平均收益比去年每亩平均收益少 2 元．该种粮大户今年应多承租多少亩稻田才能使总收益最大？</p>
+      <div class="slider-row" data-noswipe><span class="sl">多承租 $x=$<input type="range" id="riceX" min="0" max="220" step="10" value="50"><b class="v" id="riceXV"></b>亩</span></div>
+      <div class="readout rice-read" id="riceRead"></div>
+    </div>
+    <div class="col">
+      <div id="riceBoard" class="rice-board"></div>
+      <p class="tip" data-step="1">多承租得越多，总收益越大吗？<span class="think" data-step="2" data-ask="拖一拖">不是：新稻田每亩收益 $440-2x$ 在减少；$x$ 太大时，多租反而少收。</span></p>
+      <p class="tip gold" data-step="3">新承租的稻田共收益多少？<span class="think" data-step="4" data-ask="列式">$(440-2x)x$ 元——“每亩收益 × 亩数”，这是课本的分析。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p29 问题 1。先不列式，拖滑块“试”：左边算出原 360 亩收益（158 400 元，不变）、新承租稻田每亩收益与总收益；右图是总收益 y（万元）随 x 变化的图像，纵轴从 15 万元开始画。学生会找到 110 附近最大，下一页再严格求出。</p>
+</section>
+
+<!-- 4 ================= 问题1：解答 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1 · 解</span><h2>列出函数表达式，配方求最大值</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>设</span><span>今年多承租 $x$ 亩稻田，总收益为 $y$ 元</span><i class="why">设变量</i></div>
+      <div class="dl" data-step="2"><span>则 $y$</span><span>$=440\times360+(440-2x)x$</span><span class="think" data-step="3" data-ask="凭什么？">原稻田收益 + 新稻田收益</span></div>
+      <div class="dl" data-step="4"><span></span><span>$=-2x^2+440x+158\,400$</span><i class="why">整理</i></div>
+      <div class="dl" data-step="5"><span></span><span>$=-2(x^2-220x+110^2-110^2)+158\,400$</span><span class="think" data-step="6" data-ask="凭什么？">提出 $-2$，配方</span></div>
+      <div class="dl key" data-step="7"><span></span><span>$=-2(x-110)^2+182\,600$</span><i class="why">$2\times110^2+158\,400=182\,600$</i></div>
+      <div class="dl end" data-step="8"><span>因为 $-2&lt;0$</span><span>当 $x=110$ 时，$y$ 的值最大，最大值是 $182\,600$</span><i class="why">开口向下，顶点是最高点</i></div>
+    </div>
+    <div class="cols2">
+      <p class="tip" data-step="9"><b>答：</b>该种粮大户今年应多承租 110 亩稻田才能使总收益最大，最大收益为 182 600 元．</p>
+      <p class="warn" data-step="10" data-label="检验">$x=110$ 合实际吗？新稻田每亩收益 $440-2\times110=220&gt;0$ ✓。自变量范围：$0\le x&lt;220$，顶点在范围内。</p>
+    </div>
+  </div>
+  <p class="note">课本 p29 解答（课本直接写出配方结果，这里补出配方过程）。“检验”一栏是本课要养成的习惯：求出的最值点必须在自变量的取值范围内，否则最值不在顶点处取得。</p>
+</section>
+
+<!-- 5 ================= 问题2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2</span><h2>鱼塘里再投放多少鱼苗，总产量最大？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">某鱼塘里饲养了鱼苗 10 千尾，预计平均每千尾鱼的产量为 1 000 kg．若再向该鱼塘内投放鱼苗，每多投放鱼苗 1 千尾，每千尾鱼的产量将减少 50 kg．应再投放鱼苗多少千尾才能使总产量最大？最大总产量是多少？</p>
+      <p class="tip" data-step="1"><b>分析：</b>若再投放鱼苗 $x$ 千尾，则鱼塘里共有鱼苗<span class="think" data-step="2" data-ask="?">$(10+x)$ 千尾</span>，每千尾鱼的产量为<span class="think" data-step="3" data-ask="?">$(1\,000-50x)$ kg</span>．</p>
+      <table class="mtab" data-step="9"><tr><th>$x$/千尾</th><td>3</td><td>4</td><td class="on">5</td><td>6</td><td>7</td></tr><tr><th>$y$/kg</th><td>11 050</td><td>11 200</td><td class="on">11 250</td><td>11 200</td><td>11 050</td></tr></table>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="4"><span>设总产量为 $y$ kg</span><span>$y=(1\,000-50x)(10+x)$</span><i class="why">每千尾产量 × 千尾数</i></div>
+        <div class="dl" data-step="5"><span></span><span class="think" data-step="6" data-ask="展开、配方">$=-50x^2+500x+10\,000$</span><i class="why">展开</i></div>
+        <div class="dl key" data-step="7"><span></span><span>$=-50(x-5)^2+11\,250$</span><i class="why">配方</i></div>
+        <div class="dl end" data-step="8"><span>$-50&lt;0$</span><span>$x=5$ 时，$y_{\text{最大}}=11\,250$</span><i class="why">开口向下，顶点最高</i></div>
+      </div>
+      <p class="tip" data-step="10"><b>答：</b>应再投放鱼苗 5 千尾才能使总产量最大，最大总产量为 11 250 kg．</p>
+      <p class="method" data-step="11" data-label="对称性验算">表中 $x=4$ 与 $x=6$、$x=3$ 与 $x=7$ 的产量相等——它们关于直线 $x=5$ 对称，最大值在中间。</p>
+    </div>
+  </div>
+  <p class="note">课本 p30 问题 2。请学生仿照问题 1 自己完成，再逐步对照。第 9 步的表格是验算（按 y = (1 000 − 50x)(10 + x) 逐个计算），用 5.2 学的对称性说明顶点为什么在 x = 5。</p>
+</section>
+
+<!-- 6 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>每件售价多少元，毛利润最大？（课本 p30）</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">某商场以每件 42 元的价格购进一种服装，由试销知，每天的销量 $t$（件）与每件的销售价 $x$（元）之间的函数关系为 $t=204-3x$．</p>
+      <div class="hint-ladder">
+        <p class="q">(1) 写出每天销售这种服装的毛利润 $y$（元）与每件销售价 $x$（元）之间的函数表达式（毛利润 = 销售价 − 进货价）；</p>
+        <details><summary>提示</summary>每件的毛利润是 $(x-42)$ 元，每天卖 $(204-3x)$ 件。</details>
+        <details><summary>完整解答</summary>$y=(x-42)(204-3x)=-3x^2+330x-8\,568$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">(2) 每件销售价多少元才能使每天的毛利润最大？最大毛利润是多少？</p>
+        <p class="fill">每件售价 <span class="blank" data-ans="55" data-w="3"></span> 元时，最大毛利润 <span class="blank" data-ans="507" data-w="4"></span> 元．</p>
+        <details><summary>提示</summary>配方：$-3(x^2-110x)-8\,568$，或用 $x=-\dfrac b{2a}$。</details>
+        <details><summary>完整解答</summary>$y=-3(x-55)^2+507$。当 $x=55$ 时，$y$ 最大值为 507：每件售价 55 元时，每天毛利润最大，为 507 元（此时每天卖 $204-165=39$ 件，每件赚 13 元，$13\times39=507$ ✓）。</details>
+      </div>
+    </div>
+    <div class="col">
+      <div id="shopBoard" class="shop-board"></div>
+      <div class="slider-row" data-noswipe><span class="sl">售价 $x=$<input type="range" id="shopX" min="42" max="68" step="1" value="50"><b class="v" id="shopXV"></b>元</span></div>
+      <p class="tip feedback" id="shopMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p30 练习。售价 x 的范围：要有利润 x &gt; 42，要卖得出 204 − 3x &gt; 0 即 x &lt; 68。右图用滑块验算：x = 55 时最高，而且 x = 50 与 x = 60 的利润相等（对称）。</p>
+</section>
+
+<!-- 7 ================= 问题3：建系 + 水位（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3</span><h2>拱桥：怎样建立坐标系？水位上升后水面多宽？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">河上有一座抛物线形的拱桥，水面宽 6 m 时，水面离桥拱顶部 3 m．因降暴雨水位上升 1 m，此时水面宽为多少（精确到 0.1 m）？</p>
+      <div class="btns" data-noswipe id="archO"></div>
+      <p class="tip big-f" id="archF"></p>
+      <div class="slider-row" data-noswipe><span class="sl">水位上升 $h=$<input type="range" id="archH" min="0" max="2.8" step="0.1" value="1"><b class="v" id="archHV"></b>m</span></div>
+      <p class="tip feedback" id="archMsg"></p>
+    </div>
+    <div class="col">
+      <div id="archBoard" class="arch-board"></div>
+      <p class="tip" data-step="1">三种建系方法，哪种表达式最简单？<span class="think" data-step="2" data-ask="比一比">以拱顶为原点：$y=-\dfrac13x^2$，只有一个待定系数——课本就是这样建系的。</span></p>
+      <p class="tip gold" data-step="3">换一种建系，水面宽会变吗？<span class="think" data-step="4" data-ask="试一试">不会。坐标系只是“尺子”，水面的实际宽度与怎样建系无关。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。课本分析：“先把它数学化——恰当地建立平面直角坐标系，把抛物线形的桥拱看作一个二次函数的图像”。点上方按钮切换原点（拱顶 / 水面中点 / 水面左端 B），坐标轴随之移动，表达式随之改变；拖水位滑块，水面线 CD 按比例升高，读出水面宽。h = 1 时 CD = 2√6 ≈ 4.9 m。图中桥拱按 6 m 宽、3 m 高精确绘制。</p>
+</section>
+
+<!-- 8 ================= 问题3：解答 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3 · 解</span><h2>求表达式，再由函数值求自变量</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>建系</span><span>以桥拱的最高点为原点</span><i class="why">见图 5-12</i></div>
+        <div class="dl" data-step="2"><span>设</span><span>桥拱为 $y=ax^2$ 的图像</span><i class="why">顶点在原点，对称轴是 $y$ 轴</i></div>
+        <div class="dl" data-step="3"><span>点 $A$</span><span class="think" data-step="4" data-ask="坐标？">$(3,-3)$</span><i class="why">$AB=6$，水面离拱顶 3 m</i></div>
+        <div class="dl" data-step="5"><span>代入</span><span>$-3=a\times3^2$，$a=-\dfrac13$</span><i class="why">待定系数法（5.3）</i></div>
+        <div class="dl" data-step="6"><span>水位上升 1 m</span><span class="think" data-step="7" data-ask="此时 y = ？">$y=-2$</span><i class="why">$-3+1=-2$</i></div>
+        <div class="dl" data-step="8"><span>代入</span><span>$-2=-\dfrac13x^2$，$x=\pm\sqrt6$</span><i class="why">由函数值求自变量（5.4）</i></div>
+        <div class="dl key end" data-step="9"><span>所以</span><span>$CD=2\sqrt6\approx4.9$</span><i class="why">$C(\sqrt6,-2)$、$D(-\sqrt6,-2)$</i></div>
+      </div>
+      <p class="tip" data-step="10"><b>答：</b>水位上升 1 m 时，水面宽约为 4.9 m．</p>
+    </div>
+    <div class="col">
+      <div id="f512Board" class="f512-board"></div>
+      <p class="warn" data-step="11" data-label="易错">点 $A$ 的纵坐标是 $-3$（在原点<b>下方</b>），不是 3；$x=\pm\sqrt6$ 两个值都要，宽度是两者之差。</p>
+    </div>
+  </div>
+  <p class="note">课本 p30–31 问题 3 的解答与图 5-12。右图按坐标精确绘制：A(3, −3)、B(−3, −3)，水位上升后 C(√6, −2)、D(−√6, −2)。</p>
+</section>
+
+<!-- 9 ================= 拓展延伸：小船 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">拓展延伸</span><h2>装满物资的小船能从拱桥下通过吗？</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip">一艘装满物资的小船，露出水面部分的高为 0.5 m、宽为 4 m（横断面如图 5-13）．暴雨后这艘船能从这座拱桥下通过吗？</p>
+      <div class="slider-row" data-noswipe><span class="sl">水位上升 $h=$<input type="range" id="boatH" min="0" max="2" step="0.1" value="1"><b class="v" id="boatHV"></b>m</span></div>
+      <p class="tip feedback" id="boatMsg"></p>
+    </div>
+    <div class="col">
+      <div id="boatBoard" class="boat-board"></div>
+      <p class="tip" data-step="1">该看船的哪个位置？<span class="think" data-step="2" data-ask="想一想">船宽 4 m，两侧船舷在 $x=\pm2$ 处，那里桥拱最低——比较 $x=\pm2$ 处桥拱的高度与船顶的高度。</span></p>
+      <p class="tip gold" data-step="3">暴雨后（$h=1$）的结论？<span class="think" data-step="4" data-ask="算一算">$x=2$ 时 $y=-\dfrac43$，桥拱离水面 $-\dfrac43-(-2)=\dfrac23\approx0.67$ m $&gt;0.5$ m，<b>能通过</b>。水位上升不超过 $3-\dfrac43-0.5=\dfrac76\approx1.17$ m 都能通过。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p31 “拓展延伸”（课本只提问，未给答案）。图中船按 4 m 宽、0.5 m 高、居中通过绘制；船顶两角在 x = ±2 处，若高于桥拱就变红。请学生先算再拖：h = 1 时能过；h 超过 7/6 m（约 1.17 m）就过不去了。</p>
+</section>
+
+<!-- 10 ================= 练习：赵州桥 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>赵州桥：建立坐标系，写出表达式（课本 p31）</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">我国隋朝建造的赵州石拱桥闻名中外．假设石拱桥的桥拱是抛物线形，已知石拱跨径 $AB$ 为 37.02 m，拱高 $CD$ 为 7.23 m．把桥拱看作一个二次函数的图像，建立恰当的平面直角坐标系，写出这个函数的表达式．</p>
+      <div class="hint-ladder">
+        <details><summary>提示 1</summary>仿照问题 3，以拱顶 $C$ 为原点建系，设 $y=ax^2$。</details>
+        <details><summary>提示 2</summary>$AD=\dfrac{37.02}2=18.51$，所以点 $B$ 的坐标是 $(18.51,-7.23)$。</details>
+        <details><summary>完整解答</summary>$-7.23=a\times18.51^2$，$a=-\dfrac{7.23}{342.620\,1}\approx-0.021\,1$，所以 $y\approx-0.021\,1x^2$（$-18.51\le x\le18.51$）。</details>
+      </div>
+    </div>
+    <div class="col">
+      <div id="zzBoard" class="zz-board"></div>
+      <p class="muted center small-t">桥拱按 37.02 m 跨径、7.23 m 拱高等比例绘制，原点在拱顶 $C$</p>
+    </div>
+  </div>
+  <p class="note">课本 p31 练习。课本插图中 O 是圆心（赵州桥实际是圆弧拱），本题“假设”为抛物线。答案的自变量范围是桥拱的水平范围。建系方式不唯一，若以 D 为原点，则 y = −0.021 1x² + 7.23，系数 a 相同。</p>
+</section>
+
+<!-- 11 ================= 方法 · 阅读 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法 · 阅读</span><h2>把实际问题数学化</h2></div>
+  <div class="bd full">
+    <div class="steps5">
+      <div class="stp" data-step="1"><b>审</b><span>找变量和数量关系（“每多……少……”）</span></div>
+      <div class="stp" data-step="2"><b>设</b><span>设自变量、函数；必要时建立坐标系</span></div>
+      <div class="stp" data-step="3"><b>列</b><span>列出二次函数表达式，写出自变量范围</span></div>
+      <div class="stp" data-step="4"><b>解</b><span>配方求最值，或代入函数值解方程</span></div>
+      <div class="stp" data-step="5"><b>验 · 答</b><span>检验是否在范围内、是否合实际，再作答</span></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-step="6" data-label="阅读（课本 p33）">如果一个实际问题涉及的因素较多，那么应根据实际需要选择其中的一些主要因素，舍弃次要因素，然后通过抽象建立数学模型，再运用有关的数学知识解决实际问题。</p>
+      <p class="warn" data-step="7" data-label="课本提醒">数学问题的解，需要检验它是否符合实际．如果符合，那么要对解的意义做出解释；如果不符合，那么要建立新的数学模型，重新尝试解决实际问题．</p>
+    </div>
+  </div>
+  <p class="note">课本 p33 阅读“把实际问题数学化”（选择行道树的例子可让学生课后读）。五步法是对本课三个问题的归纳：问题 1、2 走“配方求最值”，问题 3 走“代入函数值解方程”。</p>
+</section>
+
+<!-- 12 ================= 习题（一） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 5.5</span><h2>精选（一）：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 比萨斜塔自由落体：下落距离 $h=4.9t^2$（m）．塔高 55 m，试计算试验物大约经过多少时间落到地面（精确到 0.1 s）．</p>
+        <details><summary>提示</summary>令 $h=55$，解 $4.9t^2=55$，注意 $t&gt;0$。</details>
+        <details><summary>完整解答</summary>$t^2=\dfrac{55}{4.9}\approx11.22$，$t\approx3.4$（负值舍去）：约经过 3.4 s 落地。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 用第 1 题的公式估计枯井深度：石子脱手 1.3 s 时听到落到井底的声音（不计声音传播的时间），井大约有多深（精确到 0.1 m）？</p>
+        <details><summary>完整解答</summary>$h=4.9\times1.3^2=4.9\times1.69=8.281\approx8.3$：井深约 8.3 m。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 用长 16 m 的篱笆围成长方形的生物园饲养小兔，怎样围可使小兔的活动范围最大？</p>
+        <details><summary>提示</summary>5.1 已写出：$y=x(8-x)=-x^2+8x$（$0&lt;x&lt;8$）。</details>
+        <details><summary>完整解答</summary>$y=-(x-4)^2+16$，当 $x=4$ 时 $y$ 最大，为 16：围成边长 4 m 的正方形，面积最大为 16 m²——5.1 拖出来的结论得到了证明。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 5.5 第 1–3 题。第 1、2 题是“由函数值求自变量 / 由自变量求函数值”；第 3 题回到 5.1 的开篇问题，首尾呼应。</p>
+</section>
+
+<!-- 13 ================= 习题（二） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 5.5</span><h2>精选（二）：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 出租公司以每辆汽车月租费 3 000 元，100 辆可全部租出；月租费每增加 50 元，将少租出 1 辆．每辆租出的汽车月维护费 200 元．每辆车月租费多少元时，月收益最大？最大是多少？</p>
+        <details><summary>提示</summary>设月租费增加 $50x$ 元，则租出 $(100-x)$ 辆，每辆净收入 $(3\,000+50x-200)$ 元。</details>
+        <details><summary>完整解答</summary>$y=(2\,800+50x)(100-x)=-50(x-22)^2+304\,200$。$x=22$ 时最大：月租费 $3\,000+50\times22=4\,100$ 元时，月收益最大，为 304 200 元。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 50 段形状相同的抛物线形护栏，每段跨度 2 m、拱高 0.5 m，按 0.4 m 的间距加装立柱（如图），共需不锈钢管多少米（精确到 1 m）？</p>
+        <svg viewBox="-1.2 -0.15 2.4 0.75" class="rail-fig" id="railFig" aria-label="一段护栏的立柱示意"></svg>
+        <details><summary>提示</summary>以拱顶为原点：$y=-\dfrac12x^2$；立柱在 $x=\pm0.2$、$\pm0.6$ 处，柱高 $=0.5+y$。</details>
+        <details><summary>完整解答</summary>柱高 $0.5-0.02=0.48$，$0.5-0.18=0.32$。每段 $2\times(0.48+0.32)=1.6$ m，共 $50\times1.6=80$ m。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>6.</b> 正常水位时抛物线形拱桥下水面宽 20 m，水面上升 3 m 达到警戒水位时，水面宽 10 m．(1) 建系写出表达式；(2) 水位以 0.2 m/h 的速度持续上涨，达到警戒水位后，再过多长时间桥孔将被淹没？</p>
+        <details><summary>提示</summary>以拱顶为原点设 $y=ax^2$，正常水位 $y=100a$，警戒水位 $y=25a$，两者相差 3。</details>
+        <details><summary>完整解答</summary>(1) $25a-100a=3$，$a=-\dfrac1{25}$，$y=-\dfrac1{25}x^2$。(2) 警戒水位 $y=-1$，离拱顶 1 m，$1\div0.2=5$（h）：再过 5 h 桥孔被淹没。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 5.5 第 4–6 题。第 5 题课本图中立柱间距 0.4 m，跨度 2 m，四根立柱；示意图按 y = −½x² 精确画出。第 6 题与问题 3 同一模型，但要用“两个水位的差”列方程。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 第 5 章回顾</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>求最值</h3>
+        <p class="method" data-label="顶点">列出 $y=ax^2+bx+c$ → 配方 → 顶点；先检验顶点横坐标在不在自变量范围内。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>求自变量</h3>
+        <p class="method" data-label="解方程">已知函数值（如水位），代入解一元二次方程，按实际意义取舍。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>建系</h3>
+        <p class="method" data-label="恰当">让顶点或对称轴落在坐标轴上，表达式最简单。</p>
+      </div>
+    </div>
+    <table class="mtab chap" data-step="4">
+      <tr><th>5.1</th><th>5.2</th><th>5.3</th><th>5.4</th><th>5.5</th></tr>
+      <tr><td>概念 $y=ax^2+bx+c$</td><td>图像（抛物线）与性质</td><td>待定系数法</td><td>与一元二次方程</td><td>解决实际问题</td></tr>
+    </table>
+    <p class="tip gold" data-step="5"><b>第 5 章收尾：</b>函数（变化）、方程（相等）、图像（形）三者贯通——<b>数形结合</b>、<b>建模</b>是本章最重要的两种思想。</p>
+  </div>
+  <p class="note">课后作业建议：习题 5.5 第 3–6 题。可布置一个小课题：测量校园里喷泉（或篮球投篮）的几个位置，用待定系数法求出近似的抛物线表达式。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

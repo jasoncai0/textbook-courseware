@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次根式的乘除 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/mugong.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第12章 二次根式 · 12.2</p>
+    <h1 class="cover-title">二次根式的乘除</h1>
+    <p class="cover-q" data-step="1">一块矩形木板，长 $\sqrt8$ dm，宽 $\sqrt2$ dm．它的面积是多少？</p>
+    <p class="cover-q" data-step="2">$\sqrt2\times\sqrt8$ 能算出一个整数吗？面积为 8 的正方形，边长 $\sqrt8$ 为什么又可以写成 $2\sqrt2$？</p>
+    <div class="chips" data-step="3"><span class="chip">方格纸上画矩形</span><span class="chip">$\sqrt a\cdot\sqrt b=\sqrt{ab}$</span><span class="chip">$\dfrac{\sqrt a}{\sqrt b}=\sqrt{\dfrac ab}$</span><span class="chip">化简精确检验器</span><span class="chip">最简二次根式</span></div>
+  </div>
+  <p class="note">封面问题对应课本 p152 数学实验室（矩形 ABCD 的面积 = √2 × √8）与章首（√8 = 2√2）。本课内容多，可分两课时：第 1 课时乘法（第 3–11 页），第 2 课时除法与最简二次根式（第 12–18 页）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八年级下册 · 12.1 二次根式" data-step="1">
+        <p>$(\sqrt a)^2=a$（$a\ge0$）；$\sqrt{a^2}=|a|$；$\sqrt a\ge0$．</p>
+        <span class="use">推导乘法、除法法则；把 $\sqrt{4}$、$\sqrt{a^2}$ 开出来．</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 4.1 算术平方根" data-step="2">
+        <p>如果一个<b>非负数</b> $x$ 的平方等于 $m$，那么 $x$ 就是 $m$ 的算术平方根 $\sqrt m$．</p>
+        <span class="use">说明 $\sqrt a\cdot\sqrt b$ 就是 $\sqrt{ab}$．</span>
+      </div>
+      <div class="recall" data-label="七年级下册 · 幂的运算" data-step="3">
+        <p>积的乘方：$(ab)^2=a^2b^2$；商的乘方：$\left(\dfrac ab\right)^2=\dfrac{a^2}{b^2}$．</p>
+        <span class="use">计算 $(\sqrt a\cdot\sqrt b)^2$ 和 $\left(\dfrac{\sqrt a}{\sqrt b}\right)^2$．</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 3.1 勾股定理" data-step="4">
+        <p>方格纸上，横 1 竖 1 的斜线段长 $\sqrt{1^2+1^2}=\sqrt2$；横 2 竖 2 的长 $\sqrt8$．</p>
+        <span class="use">第 3 页在方格纸上画出边长为 $\sqrt2$、$\sqrt8$ 的矩形．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>先用面积“看见” $\sqrt2\times\sqrt8=4$，再猜想、证明一般法则，最后用它化简二次根式．</p>
+  </div>
+  <p class="note">第二张卡是推导乘法法则的关键依据：要说明一个数是 m 的算术平方根，只要说明它非负、且平方等于 m。</p>
+</section>
+
+<!-- 3 ================= 数学实验室 方格纸（核心 1） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">数学实验室</span><h2>在方格纸上画矩形，面积是多少？</h2></div>
+  <div class="bd l45">
+    <div class="col">
+      <div id="gridBoard" class="grid-board"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="gABCD">图 12-1 矩形 ABCD</button><button type="button" class="btn" id="gFree">图 12-2 自己画 EFGH</button></div>
+    </div>
+    <div class="col">
+      <p class="tip" id="gTask"></p>
+      <p class="tip feedback" id="gMsg"></p>
+      <p class="tip" data-step="1">(1) 矩形 $ABCD$ 的面积：<span class="think" data-step="2" data-ask="两种算法">一方面 $=\sqrt2\times\sqrt8$；另一方面用“补”法数格子 $=4$．所以 $\sqrt2\times\sqrt8=4$．</span></p>
+      <p class="tip" data-step="3">(2) 拖动 $E$、$F$、$G$ 画出 $EF=\sqrt2$、$FG=\sqrt{18}$ 的矩形 $EFGH$，面积是多少？<span class="think" data-step="4" data-ask="画好再说">$\sqrt2\times\sqrt{18}=6$．</span></p>
+      <p class="tip gold" data-step="5">$4=\sqrt{16}=\sqrt{2\times8}$，$6=\sqrt{36}=\sqrt{2\times18}$．你猜 $\sqrt a\times\sqrt b=$？<span class="think" data-step="6" data-ask="猜一猜">$\sqrt{ab}$</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p152 数学实验室与图 12-1、12-2。顶点都在格点上；边长由勾股定理精确算出（√(横² + 竖²)），面积按顶点坐标精确计算（与“补”法数格子一致）。第 (2) 问让学生上台拖：F 先放好，E 在 F 的斜对角 1 格（√2），G 沿垂直方向斜走 3 格（√18）。</p>
+</section>
+
+<!-- 4 ================= 尝试 · 猜想 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>填空，你有什么发现？</h2></div>
+  <div class="bd full">
+    <div class="qgrid">
+      <p>(1) $\sqrt4\times\sqrt{25}=$ <span class="blank" data-ans="10" data-w="3"></span>，$\sqrt{4\times25}=$ <span class="blank" data-ans="10" data-w="3"></span>；</p>
+      <p>(2) $\sqrt9\times\sqrt{16}=$ <span class="blank" data-ans="12" data-w="3"></span>，$\sqrt{9\times16}=$ <span class="blank" data-ans="12" data-w="3"></span>；</p>
+      <p>(3) $\sqrt{\left(\dfrac23\right)^2}\times\sqrt{\left(\dfrac35\right)^2}=$ <span class="blank" data-ans="2/5" data-w="3"></span>，</p>
+      <p>　　$\sqrt{\left(\dfrac23\right)^2\times\left(\dfrac35\right)^2}=$ <span class="blank" data-ans="2/5" data-w="3"></span>．</p>
+    </div>
+    <p class="tip gold" data-step="1">你有什么发现？<span class="think" data-step="2" data-ask="说一说">两个算术平方根的积，等于它们被开方数的积的算术平方根．</span></p>
+    <p class="warn" data-step="3" data-label="只试了几个数">这几组数都开得尽方．$\sqrt2\times\sqrt3$ 也等于 $\sqrt6$ 吗？——试几个例子不能代替证明，下一页给出道理．</p>
+  </div>
+  <p class="note">课本 p152“尝试”。(3) 的答案写成 2/5（或 0.4）。请学生说出“发现”，再追问对所有非负数 a、b 都成立吗。</p>
+</section>
+
+<!-- 5 ================= 推导乘法法则 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推导</span><h2>为什么 $\sqrt a\cdot\sqrt b=\sqrt{ab}$？</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>当 $a\ge0$，$b\ge0$ 时，</span><span class="think" data-step="2" data-ask="平方是多少？">$(\sqrt a\cdot\sqrt b)^2=(\sqrt a)^2\cdot(\sqrt b)^2=ab$</span><i class="why">积的乘方；$(\sqrt a)^2=a$</i></div>
+      <div class="dl" data-step="3"><span>又</span><span class="think" data-step="4" data-ask="平方是多少？">$(\sqrt{ab})^2=ab$</span><i class="why">$ab\ge0$，$(\sqrt a)^2=a$</i></div>
+      <div class="dl key" data-step="5"><span>而且</span><span>$\sqrt a\cdot\sqrt b\ge0$，$\sqrt{ab}\ge0$</span><i class="why">算术平方根非负</i></div>
+      <div class="dl end" data-step="6"><span>∴</span><span>$\sqrt a\cdot\sqrt b$ 与 $\sqrt{ab}$ 都是 $ab$ 的算术平方根</span><i class="why">非负，且平方都等于 $ab$；而 $ab$ 的算术平方根只有一个</i></div>
+    </div>
+    <div class="def big-def" data-step="7"><h4>二次根式的乘法（课本 p153）</h4>$$\sqrt a\cdot\sqrt b=\sqrt{ab}\quad(a\ge0,\ b\ge0)$$</div>
+    <p class="warn" data-step="8" data-label="条件不能丢">$a$、$b$ 都要非负．如 $\sqrt{-2}\times\sqrt{-8}$ 没有意义，不能写成 $\sqrt{16}=4$．</p>
+  </div>
+  <p class="note">课本 p153。第 3 行“而且非负”是学生最容易忽略的一步：平方等于 ab 的数有两个（±），只有非负的那个才是算术平方根。</p>
+</section>
+
+<!-- 6 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>利用 $\sqrt a\cdot\sqrt b=\sqrt{ab}$ 计算</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>(1) $\sqrt{\dfrac12}\times\sqrt8$</span><span class="think" data-step="2" data-ask="=">$=\sqrt{\dfrac12\times8}=\sqrt4=2$</span><i class="why">被开方数相乘</i></div>
+      <div class="dl" data-step="3"><span>(2) $\sqrt{56}\times\sqrt{14}$</span><span class="think" data-step="4" data-ask="怎样算简便？">$=\sqrt{56\times14}=\sqrt{4\times14\times14}$</span><i class="why">不急着乘出 784，先分解：$56=4\times14$</i></div>
+      <div class="dl" data-step="5"><span></span><span>$=\sqrt{(2\times14)^2}=2\times14=28$</span><i class="why">$\sqrt{a^2}=a$（$a\ge0$）</i></div>
+      <div class="dl end" data-step="6"><span>(3) $\sqrt{2a}\cdot\sqrt{8a}$（$a\ge0$）</span><span class="think" data-step="7" data-ask="=">$=\sqrt{16a^2}=4a$</span><i class="why">$16a^2=(4a)^2$，$4a\ge0$</i></div>
+    </div>
+    <p class="method" data-step="8" data-label="方法">相乘之后，把被开方数写成“某数的平方”的形式，就能开出来；能分解就别急着乘．</p>
+  </div>
+  <p class="note">课本 p153 例 1。第 (2) 题请学生比较：直接算 56 × 14 = 784 再开方，和先分解，哪个更简便。</p>
+</section>
+
+<!-- 7 ================= 反过来 · 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>反过来用：$\sqrt{ab}=\sqrt a\cdot\sqrt b$，化简二次根式</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1">把乘法法则反过来，得 $\sqrt{ab}=\sqrt a\cdot\sqrt b$（$a\ge0$，$b\ge0$）．利用这个式子可以化简一些二次根式．</div>
+    <div class="derive">
+      <div class="dl" data-step="2"><span>(1) $\sqrt{12}$</span><span class="think" data-step="3" data-ask="怎样拆？">$=\sqrt{3\times4}=\sqrt3\times\sqrt4=2\sqrt3$</span><i class="why">找出 12 里的平方因数 4</i></div>
+      <div class="dl" data-step="4"><span>(2) $\sqrt{a^3}$（$a\ge0$）</span><span class="think" data-step="5" data-ask="=">$=\sqrt{a^2\cdot a}=\sqrt{a^2}\cdot\sqrt a=a\sqrt a$</span><i class="why">$a^3=a^2\cdot a$</i></div>
+      <div class="dl end" data-step="6"><span>(3) $\sqrt{4a^2b^3}$（$a,b\ge0$）</span><span class="think" data-step="7" data-ask="=">$=\sqrt{(2ab)^2\cdot b}=2ab\sqrt b$</span><i class="why">$4a^2b^3=4a^2b^2\cdot b$</i></div>
+    </div>
+    <p class="method" data-step="8" data-label="课本 p153">二次根式运算的结果中，被开方数应<b>不含能开得尽方的因数或因式</b>．</p>
+    <p class="tip gold" data-step="9">回到章首：$\sqrt8=\sqrt{4\times2}=$ <span class="think" data-step="10" data-ask="?">$2\sqrt2$——面积为 8 的正方形，边长是面积为 2 的小正方形边长的 2 倍．</span></p>
+  </div>
+  <p class="note">课本 p153 例 2。“开得尽方的因数”找最大的平方因数：12 = 4 × 3；如果把 72 拆成 4 × 18，还要继续拆 18 = 9 × 2——下一页的检验器会提示“还能再化简”。</p>
+</section>
+
+<!-- 8 ================= 化简精确检验器（核心 2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手化简</span><h2>化简精确检验器：$\sqrt n=a\sqrt b$，对不对？最简了吗？</h2></div>
+  <div class="bd l55">
+    <div class="col">
+      <div class="btns" data-noswipe id="simpBtns"></div>
+      <div class="rc" id="simpChk"></div>
+      <div class="factor" id="simpTree"></div>
+    </div>
+    <div class="col">
+      <p class="tip">选一个 $\sqrt n$，在左边填 $a$ 和 $b$，点“检验”．检验器用<b>整数精确比较</b> $a^2b$ 与 $n$，不用近似小数．</p>
+      <p class="tip" data-step="1">为什么不能用计算器的小数来判断“相等”？<span class="think" data-step="2" data-ask="想一想">$\sqrt{72}\approx8.485$，$8.49$ 也“差不多”——近似值不能说明相等．$a\sqrt b=\sqrt{a^2b}$，所以只要比 $a^2b$ 与 $n$．</span></p>
+      <p class="method" data-step="3" data-label="化简的窍门">把 $n$ 分解质因数，<b>成对</b>的因数各提一个到根号外：$72=2\times2\times2\times3\times3$，$\sqrt{72}=2\times3\sqrt2=6\sqrt2$．</p>
+      <p class="warn" data-step="4" data-label="常见半成品">$\sqrt{72}=2\sqrt{18}$ 是对的，但 $18=9\times2$ 还能开出 3——不是最终结果．</p>
+    </div>
+  </div>
+  <p class="note">本课核心互动之二。检验器判断三种情况：① a²b ≠ n（不相等）；② 相等但 b 还含平方因数（还能化简）；③ 相等且最简。点“看分解”显示质因数分解，成对的因数高亮。可用自定义输入任意 n（2～999）。</p>
+</section>
+
+<!-- 9 ================= 练习 p154 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>计算与化简</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算：(1) $\sqrt{20}\times\sqrt5$；(2) $\sqrt8\times\sqrt{18}$；(3) $\sqrt{48}\times\sqrt{12}$；(4) $\sqrt{6a^3}\cdot\sqrt{\dfrac{3a}{2}}$（$a\ge0$）．</p>
+        <details><summary>提示 1</summary>先合成一个根号，再找平方数：$20\times5=100$．</details>
+        <details><summary>提示 2</summary>$8\times18=144$；$48\times12=576=24^2$；$6a^3\cdot\dfrac{3a}{2}=9a^4$．</details>
+        <details><summary>完整解答</summary>(1) $10$；(2) $12$；(3) $24$；(4) $\sqrt{9a^4}=3a^2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 化简：(1) $\sqrt{16\times25}$；(2) $\sqrt{150}$；(3) $\sqrt{45a}$（$a\ge0$）；(4) $\sqrt{9a^2b^3}$（$a,b\ge0$）；(5) $\sqrt{26^2-10^2}$．</p>
+        <details><summary>提示 1</summary>$150=25\times6$；$45a=9\times5a$；$9a^2b^3=(3ab)^2\cdot b$．</details>
+        <details><summary>提示 2</summary>(5) 不要写成 $26-10$！先算 $26^2-10^2=(26+10)(26-10)$．</details>
+        <details><summary>完整解答</summary>(1) $4\times5=20$；(2) $5\sqrt6$；(3) $3\sqrt{5a}$；(4) $3ab\sqrt b$；(5) $\sqrt{36\times16}=6\times4=24$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p154 练习 1、2。第 2(5) 题用平方差公式，常见错误是写成 √26² − √10² = 16；可以用第 8 页检验器验证 √150、√576。</p>
+</section>
+
+<!-- 10 ================= 例 3 · 例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 例 4</span><h2>被开方数是多项式；系数和根号分开乘</h2></div>
+  <div class="bd full">
+    <div class="derive">
+        <div class="dl" data-step="1"><span>例 3 (1) $\sqrt{a^2(b+c)^2}$</span><span class="think" data-step="2" data-ask="=">$=\sqrt{a^2}\cdot\sqrt{(b+c)^2}=a(b+c)$</span><i class="why">$a\ge0$，$b+c\ge0$</i></div>
+        <div class="dl" data-step="3"><span>(2) $\sqrt{x^3+x^2y}$</span><span class="think" data-step="4" data-ask="先做什么？">$=\sqrt{x^2(x+y)}$</span><i class="why">先因式分解（提公因式）</i></div>
+        <div class="dl end" data-step="5"><span></span><span>$=\sqrt{x^2}\cdot\sqrt{x+y}=x\sqrt{x+y}$</span><i class="why">$x\ge0$，$x+y\ge0$</i></div>
+      </div>
+    <div class="derive">
+        <div class="dl" data-step="6"><span>例 4 (1) $\sqrt6\times\sqrt{15}$</span><span class="think" data-step="7" data-ask="=">$=\sqrt{9\times10}=3\sqrt{10}$</span><i class="why">$6\times15=90=9\times10$</i></div>
+        <div class="dl" data-step="8"><span>(2) $\sqrt{\dfrac12}\times\sqrt{24}$</span><span class="think" data-step="9" data-ask="=">$=\sqrt{12}=\sqrt{4\times3}=2\sqrt3$</span><i class="why"></i></div>
+        <div class="dl" data-step="10"><span>(3) $3\sqrt2\times2\sqrt{10}$</span><span class="think" data-step="11" data-ask="=">$=6\sqrt{20}=6\times2\sqrt5=12\sqrt5$</span><i class="why">系数乘系数，根号乘根号</i></div>
+        <div class="dl end" data-step="12"><span>(4) $\sqrt{a^3}\cdot\sqrt{ab}$</span><span class="think" data-step="13" data-ask="=">$=\sqrt{a^4b}=a^2\sqrt b$</span><i class="why">$a,b\ge0$；$a^4=(a^2)^2$</i></div>
+      </div>
+    <p class="warn" data-step="14" data-label="例 3 (2) 易错">$\sqrt{x^3+x^2y}\ne\sqrt{x^3}+\sqrt{x^2y}$——根号下是“和”，不能拆开；要先因式分解成“积”．</p>
+  </div>
+  <p class="note">课本 p154 例 3、例 4。例 3 的条件（a ≥ 0、b + c ≥ 0 等）保证开出来的结果非负。</p>
+</section>
+
+<!-- 11 ================= 练习 p155 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 化简：(1) $\sqrt{x^4+x^2}$（$x\ge0$）；(2) $\sqrt{x^3+2x^2y+xy^2}$（$x\ge0$，$x+y\ge0$）．</p>
+        <details><summary>提示</summary>(1) 提公因式 $x^2$；(2) 提公因式 $x$ 后是完全平方式．</details>
+        <details><summary>完整解答</summary>(1) $\sqrt{x^2(x^2+1)}=x\sqrt{x^2+1}$；(2) $\sqrt{x(x+y)^2}=(x+y)\sqrt x$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 计算：(1) $\sqrt3\times\sqrt{18}$；(2) $\sqrt{\dfrac23}\times\sqrt{12}$；(3) $6\sqrt2\times5\sqrt6$；(4) $\sqrt{a^5}\cdot\sqrt{ab}$（$a,b\ge0$）．</p>
+        <details><summary>提示</summary>$3\times18=54=9\times6$；$\dfrac23\times12=8$；$\sqrt{12}=2\sqrt3$；$a^6=(a^3)^2$．</details>
+        <details><summary>完整解答</summary>(1) $3\sqrt6$；(2) $2\sqrt2$；(3) $30\sqrt{12}=60\sqrt3$；(4) $a^3\sqrt b$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 已知矩形的长和宽分别为 40 cm、20 cm，求这个矩形的对角线的长．</p>
+        <details><summary>提示</summary>勾股定理：$\sqrt{40^2+20^2}=\sqrt{2\,000}$．</details>
+        <details><summary>完整解答</summary>$\sqrt{2\,000}=\sqrt{400\times5}=20\sqrt5$（cm）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 求根式的值：(1) $\sqrt{a^2+b^2}$，其中 $a=2\sqrt3$，$b=3\sqrt2$；(2) $\sqrt{a^2-b^2}$，其中 $a=3\sqrt{20}$，$b=-\sqrt{18}$．</p>
+        <details><summary>提示</summary>$(2\sqrt3)^2=4\times3=12$；$(3\sqrt{20})^2=9\times20=180$；$(-\sqrt{18})^2=18$．</details>
+        <details><summary>完整解答</summary>(1) $\sqrt{12+18}=\sqrt{30}$；(2) $\sqrt{180-18}=\sqrt{162}=9\sqrt2$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p155 练习 1–4。第 4(2) 题 b 是负数，平方后为正，不影响结果。第 3 题联系勾股定理，是本章“求长度”的典型应用。</p>
+</section>
+
+<!-- 12 ================= 除法法则 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">除法</span><h2>平行四边形的面积为 $\sqrt{10}$，一边长 $\sqrt5$，高是多少？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">高 $=\dfrac{\sqrt{10}}{\sqrt5}=\ ?$ 先填空：</p>
+        <div class="qlist">
+          <p>(1) $\dfrac{\sqrt4}{\sqrt{25}}=$ <span class="blank" data-ans="2/5" data-w="3"></span>，$\sqrt{\dfrac{4}{25}}=\sqrt{\left(\dfrac25\right)^2}=$ <span class="blank" data-ans="2/5" data-w="3"></span>；</p>
+          <p>(2) $\dfrac{\sqrt9}{\sqrt{16}}=$ <span class="blank" data-ans="3/4" data-w="3"></span>，$\sqrt{\dfrac{9}{16}}=$ <span class="blank" data-ans="3/4" data-w="3"></span>；</p>
+          <p>(3) $\dfrac{\sqrt{49}}{\sqrt{100}}=$ <span class="blank" data-ans="7/10|0.7" data-w="3"></span>，$\sqrt{\dfrac{49}{100}}=$ <span class="blank" data-ans="7/10|0.7" data-w="3"></span>；</p>
+          <p>(4) $\dfrac{\sqrt{81}}{\sqrt{64}}=$ <span class="blank" data-ans="9/8" data-w="3"></span>，$\sqrt{\dfrac{81}{64}}=$ <span class="blank" data-ans="9/8" data-w="3"></span>．</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="derive">
+          <div class="dl" data-step="1"><span>$a\ge0$，$b&gt;0$ 时</span><span class="think" data-step="2" data-ask="平方">$\left(\dfrac{\sqrt a}{\sqrt b}\right)^2=\dfrac{(\sqrt a)^2}{(\sqrt b)^2}=\dfrac ab$</span><i class="why">商的乘方</i></div>
+          <div class="dl" data-step="3"><span></span><span>$\left(\sqrt{\dfrac ab}\right)^2=\dfrac ab$</span><i class="why">$(\sqrt a)^2=a$</i></div>
+          <div class="dl end" data-step="4"><span>∴</span><span>$\dfrac{\sqrt a}{\sqrt b}=\sqrt{\dfrac ab}$</span><i class="why">两者都非负，都是 $\dfrac ab$ 的算术平方根</i></div>
+        </div>
+        <div class="def" data-step="5"><h4>二次根式的除法（课本 p156）</h4>$\dfrac{\sqrt a}{\sqrt b}=\sqrt{\dfrac ab}$（$a\ge0$，$b&gt;0$）</div>
+        <p class="tip gold" data-step="6">所以高 $=\dfrac{\sqrt{10}}{\sqrt5}=$ <span class="think" data-step="7" data-ask="?">$\sqrt{\dfrac{10}{5}}=\sqrt2$</span>；为什么要求 $b&gt;0$？<span class="think" data-step="8" data-ask="想一想">$\sqrt b$ 在分母上，不能为 0．</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p155–156：平行四边形问题、“尝试”与除法法则。与乘法法则的推导完全平行，可以让学生自己仿照第 5 页说理。</p>
+</section>
+
+<!-- 13 ================= 例 5 · 例 6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 例 6</span><h2>正着用：计算；反着用：化简</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>例 5 (1) $\dfrac{\sqrt{12}}{\sqrt3}$</span><span class="think" data-step="2" data-ask="=">$=\sqrt{\dfrac{12}3}=\sqrt4=2$</span><i class="why"></i></div>
+        <div class="dl" data-step="3"><span>(2) $\dfrac{\sqrt{56}}{\sqrt7}$</span><span class="think" data-step="4" data-ask="=">$=\sqrt8=2\sqrt2$</span><i class="why">结果要化简</i></div>
+        <div class="dl" data-step="5"><span>(3) $\sqrt{27}\div\sqrt3$</span><span class="think" data-step="6" data-ask="=">$=\sqrt9=3$</span><i class="why"></i></div>
+        <div class="dl end" data-step="7"><span>(4) $\sqrt{1\frac23}\div\sqrt{\dfrac13}$</span><span class="think" data-step="8" data-ask="=">$=\sqrt{\dfrac53\times3}=\sqrt5$</span><i class="why">带分数先化成假分数</i></div>
+      </div>
+      <div class="col">
+        <p class="def" data-step="9">反过来：$\sqrt{\dfrac ab}=\dfrac{\sqrt a}{\sqrt b}$（$a\ge0$，$b&gt;0$）．</p>
+        <div class="derive">
+          <div class="dl" data-step="10"><span>例 6 (1) $\sqrt{\dfrac{16}{25}}$</span><span class="think" data-step="11" data-ask="=">$=\dfrac{\sqrt{16}}{\sqrt{25}}=\dfrac45$</span><i class="why"></i></div>
+          <div class="dl" data-step="10"><span>(2) $\sqrt{\dfrac{3}{16}}$</span><span class="think" data-step="11" data-ask="=">$=\dfrac{\sqrt3}{4}$</span><i class="why"></i></div>
+          <div class="dl" data-step="10"><span>(3) $\sqrt{\dfrac89}$</span><span class="think" data-step="11" data-ask="=">$=\dfrac{\sqrt8}{3}=\dfrac{2\sqrt2}{3}$</span><i class="why"></i></div>
+          <div class="dl end" data-step="10"><span>(4) $\sqrt{\dfrac{4b^2}{9a^2}}$（$a&gt;0$，$b\ge0$）</span><span class="think" data-step="11" data-ask="=">$=\dfrac{2b}{3a}$</span><i class="why"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p156–157 例 5、例 6。例 5(4) 中 1⅔ ÷ ⅓ = 5/3 × 3 = 5。例 6 的分母都是完全平方数，所以能直接开出来；分母开不尽怎么办？——第 15 页。</p>
+</section>
+
+<!-- 14 ================= 练习 p157 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算：(1) $\dfrac{\sqrt{60}}{\sqrt{15}}$；(2) $\dfrac{\sqrt{10}}{\sqrt5}$；(3) $\sqrt{18}\div\sqrt6$；(4) $\sqrt8\div\sqrt{1\frac13}$．</p>
+        <details><summary>提示</summary>先合成一个根号：$\dfrac{60}{15}=4$；$8\div\dfrac43=6$．</details>
+        <details><summary>完整解答</summary>(1) $2$；(2) $\sqrt2$；(3) $\sqrt3$；(4) $\sqrt6$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 化简：(1) $\sqrt{\dfrac49}$；(2) $\sqrt{3\frac59}$；(3) $\sqrt{\dfrac{3}{49}}$；(4) $\sqrt{\dfrac{9a^2b^2}{16c^2}}$（$a\ge0$，$b\ge0$，$c&gt;0$）．</p>
+        <details><summary>提示</summary>$3\frac59=\dfrac{32}{9}$，$\sqrt{32}=4\sqrt2$．</details>
+        <details><summary>完整解答</summary>(1) $\dfrac23$；(2) $\dfrac{\sqrt{32}}{3}=\dfrac{4\sqrt2}{3}$；(3) $\dfrac{\sqrt3}{7}$；(4) $\dfrac{3ab}{4c}$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p157 练习 1、2。2(2) 是易错题：√(3 5/9) ≠ 3·√(5/9)，带分数必须先化成假分数。</p>
+</section>
+
+<!-- 15 ================= 被开方数不含分母 · 分母不含根号 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索 · 例 7 · 例 8</span><h2>分母开不尽方，怎么办？——乘一个“合适的数”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>探索：</b>$\sqrt{\dfrac13}=\sqrt{\dfrac{1\times3}{3\times3}}=\dfrac{\sqrt3}{\sqrt9}=$ <span class="think" data-step="1" data-ask="?">$\dfrac{\sqrt3}{3}$</span></p>
+        <p class="method" data-step="2" data-label="被开方数中不含分母">分子、分母都乘适当的数或式，使分母成为开得尽方的因数或因式：$\sqrt{\dfrac ab}=\sqrt{\dfrac{ab}{b^2}}=\dfrac{\sqrt{ab}}{b}$．</p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>例 7 (1) $\sqrt{\dfrac23}$</span><span class="think" data-step="4" data-ask="=">$=\sqrt{\dfrac{2\times3}{3\times3}}=\dfrac{\sqrt6}{3}$</span><i class="why"></i></div>
+          <div class="dl" data-step="3"><span>(2) $\sqrt{2\frac13}$</span><span class="think" data-step="4" data-ask="=">$=\sqrt{\dfrac73}=\dfrac{\sqrt{21}}{3}$</span><i class="why"></i></div>
+          <div class="dl end" data-step="3"><span>(3) $\sqrt{\dfrac{2y}{3x}}$</span><span class="think" data-step="4" data-ask="=">$=\sqrt{\dfrac{2y\cdot3x}{3x\cdot3x}}=\dfrac{\sqrt{6xy}}{3x}$</span><i class="why">$x&gt;0$，$y\ge0$</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>探索：</b>$\dfrac{1}{\sqrt2}=\dfrac{1\times\sqrt2}{\sqrt2\times\sqrt2}=$ <span class="think" data-step="5" data-ask="?">$\dfrac{\sqrt2}{2}$</span></p>
+        <p class="method" data-step="6" data-label="分母中不含根号">分子、分母都乘适当的数或式：$\dfrac{\sqrt a}{\sqrt b}=\dfrac{\sqrt a\cdot\sqrt b}{\sqrt b\cdot\sqrt b}=\dfrac{\sqrt{ab}}{b}$．</p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>例 8 (1) $\dfrac{\sqrt2}{\sqrt3}$</span><span class="think" data-step="8" data-ask="=">$=\dfrac{\sqrt2\times\sqrt3}{\sqrt3\times\sqrt3}=\dfrac{\sqrt6}{3}$</span><i class="why"></i></div>
+          <div class="dl" data-step="7"><span>(2) $\dfrac1{\sqrt5}$</span><span class="think" data-step="8" data-ask="=">$=\dfrac{\sqrt5}{\sqrt5\times\sqrt5}=\dfrac{\sqrt5}{5}$</span><i class="why"></i></div>
+          <div class="dl end" data-step="7"><span>(3) $\dfrac{\sqrt{5y}}{\sqrt{18x^3}}$</span><span class="think" data-step="8" data-ask="=">$=\dfrac{\sqrt{5y}\cdot\sqrt{2x}}{\sqrt{18x^3}\cdot\sqrt{2x}}=\dfrac{\sqrt{10xy}}{6x^2}$</span><i class="why">乘 $\sqrt{2x}$ 就够：$36x^4=(6x^2)^2$</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p157–159 两个“探索”、例 7、例 8。例 8(3) 是难点：分母 √(18x³) 只要乘 √(2x) 就成了完全平方 √(36x⁴)；乘 √(18x³) 也行，但数会变大。</p>
+</section>
+
+<!-- 16 ================= 检验器：有理化 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手化简</span><h2>写成 $\dfrac{a\sqrt b}{c}$：检验器帮你核对</h2></div>
+  <div class="bd l55">
+    <div class="col">
+      <div class="btns" data-noswipe id="fracBtns"></div>
+      <div class="rc" id="fracChk"></div>
+    </div>
+    <div class="col">
+      <p class="tip">练习 p159 的题目都在左边．化简后把结果写成 $\dfrac{a\sqrt b}{c}$（整数 $a$、$b$、$c$），点“检验”．</p>
+      <p class="tip" data-step="1">检验器怎样<b>精确</b>判断相等？<span class="think" data-step="2" data-ask="想一想">两边都是正数，比较平方：$\left(\dfrac{a\sqrt b}{c}\right)^2=\dfrac{a^2b}{c^2}$，与原式的平方（一个分数）交叉相乘比较．</span></p>
+      <p class="tip" data-step="3">“最简”还要满足什么？<span class="think" data-step="4" data-ask="想一想">$b$ 不含平方因数；$a$ 与 $c$ 不能再约分．</span></p>
+    </div>
+  </div>
+  <p class="note">与第 8 页同一个检验器，这里多了分母 c。题目为课本 p159 练习 1(1)(2)、2(1)(2) 与例 7、例 8 中的数字题。答案：√10/5、4√5/5、√15/5、√2/4、√6/3、√21/3、√5/5。</p>
+</section>
+
+<!-- 17 ================= 最简二次根式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>最简二次根式</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>课本 p159</h4>一般地，化简二次根式就是使二次根式：(1) 被开方数中不含能开得尽方的因数或因式；(2) 被开方数中不含分母；(3) 分母中不含有根号．这样化简后得到的二次根式叫做<em>最简二次根式</em>（simplest quadratic radical）．</div>
+    <div class="judge6">
+      <div class="jcard" data-step="2"><p>$\sqrt{12}$</p><div class="pick" data-ans="n"><button type="button" data-k="y">最简</button><button type="button" data-k="n">不是</button><p class="pick-why">含开得尽方的因数 4：$=2\sqrt3$．</p></div></div>
+      <div class="jcard" data-step="2"><p>$\sqrt{\dfrac12}$</p><div class="pick" data-ans="n"><button type="button" data-k="y">最简</button><button type="button" data-k="n">不是</button><p class="pick-why">被开方数含分母：$=\dfrac{\sqrt2}{2}$．</p></div></div>
+      <div class="jcard" data-step="2"><p>$\dfrac{1}{\sqrt3}$</p><div class="pick" data-ans="n"><button type="button" data-k="y">最简</button><button type="button" data-k="n">不是</button><p class="pick-why">分母含根号：$=\dfrac{\sqrt3}{3}$．</p></div></div>
+      <div class="jcard" data-step="2"><p>$\dfrac{2\sqrt3}{3}$</p><div class="pick" data-ans="y"><button type="button" data-k="y">最简</button><button type="button" data-k="n">不是</button><p class="pick-why">三条都满足．</p></div></div>
+      <div class="jcard" data-step="2"><p>$\sqrt{15}$</p><div class="pick" data-ans="y"><button type="button" data-k="y">最简</button><button type="button" data-k="n">不是</button><p class="pick-why">$15=3\times5$，没有平方因数．</p></div></div>
+      <div class="jcard" data-step="2"><p>$\sqrt{x^2+1}$</p><div class="pick" data-ans="y"><button type="button" data-k="y">最简</button><button type="button" data-k="n">不是</button><p class="pick-why">$x^2+1$ 不能写成“平方 × 其他”的形式，开不出来．</p></div></div>
+    </div>
+    <div class="hint-ladder" data-step="3">
+      <p class="q"><b>习题 12.2 第 10 题</b>　三角形三边长为 $a$、$b$、$c$，设 $p=\dfrac12(a+b+c)$，则面积 $S=\sqrt{p(p-a)(p-b)(p-c)}$（海伦-秦九韶公式）．当 $a=4$、$b=5$、$c=6$ 时，求 $S$．</p>
+      <details><summary>提示</summary>$p=7.5=\dfrac{15}2$，$p-a=\dfrac72$，$p-b=\dfrac52$，$p-c=\dfrac32$．</details>
+      <details><summary>完整解答</summary>$S=\sqrt{\dfrac{15\times7\times5\times3}{16}}=\dfrac{\sqrt{1\,575}}{4}=\dfrac{\sqrt{225\times7}}{4}=\dfrac{15\sqrt7}{4}$．</details>
+    </div>
+  </div>
+  <p class="note">课本 p159 最简二次根式。六张卡是补充的辨析，前三张各违反一条。海伦-秦九韶公式是习题 12.2 第 10 题（p161），把乘法、化简综合起来，可作选做。</p>
+</section>
+
+<!-- 18 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>两条法则</h3>
+        <p class="def">$\sqrt a\cdot\sqrt b=\sqrt{ab}$（$a\ge0$，$b\ge0$）<br>$\dfrac{\sqrt a}{\sqrt b}=\sqrt{\dfrac ab}$（$a\ge0$，$b&gt;0$）</p>
+        <p class="recall" data-label="反过来">用于化简：$\sqrt{ab}=\sqrt a\cdot\sqrt b$，$\sqrt{\dfrac ab}=\dfrac{\sqrt a}{\sqrt b}$．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="化简三查">① 有没有开得尽方的因数？② 根号里有没有分母？③ 分母里有没有根号？</p>
+        <p class="method" data-label="推导">说明“非负 + 平方相等” ⇒ 是同一个算术平方根．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>易错</h3>
+        <p class="warn" data-label="别忘了">条件 $a\ge0$、$b&gt;0$；带分数先化假分数；根号下的“和”不能拆．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>12.3 二次根式的加减——$\sqrt2+\sqrt8$ 能合并吗？$\sqrt2+\sqrt3$ 呢？</p>
+  </div>
+  <p class="note">课后作业建议：习题 12.2 第 1–9 题（第 10 题选做）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

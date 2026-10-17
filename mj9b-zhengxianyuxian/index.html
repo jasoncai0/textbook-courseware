@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正弦、余弦 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/podao.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第7章 锐角三角函数 · 7.2</p>
+    <h1 class="cover-title">正弦、余弦</h1>
+    <p class="cover-q" data-step="1">小明沿着某坡道向上行走了 <b>13 m</b>，他的位置沿竖直方向上升了 <b>5 m</b>。</p>
+    <p class="cover-q" data-step="2">如果他走了 20 m，会上升多少？走了 $a$ m 呢？水平方向又前进了多少？</p>
+    <div class="chips" data-step="3"><span class="chip">沿坡道走一走</span><span class="chip">正弦 sin A · 余弦 cos A</span><span class="chip">斜边为 1 的读数盘</span><span class="chip">sin A = cos B</span></div>
+  </div>
+  <p class="note">课本 p100“实践与探索”。上一课用“对边 : 邻边”刻画了陡峭程度；这节课的问题里，已知的是沿坡道走的路程——斜边，于是自然要研究对边、邻边与<b>斜边</b>的比。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="九下 7.1 正切" data-step="1">
+        <p>锐角 $A$ 确定 → 含 $\angle A$ 的直角三角形都相似 → $\tan A=\dfrac{\angle A\text{ 的对边}}{\angle A\text{ 的邻边}}$ 确定。</p>
+        <span class="use">同样的道理，对边、邻边与斜边的比也由 $\angle A$ 确定（第 3 页）。</span>
+        <p class="link"><a href="../mj9b-zhengqie/index.html">回看 7.1 →</a></p>
+      </div>
+      <div class="recall" data-label="九下 6.5 相似三角形的性质" data-step="2">
+        <p>相似三角形对应边成比例；交换内项，同一三角形内两边的比相等。</p>
+        <span class="use">说明“走的路越长，上升得越多，但上升 : 路程不变”。</span>
+      </div>
+      <div class="recall" data-label="八上 3.1 勾股定理" data-step="3">
+        <p>$a^2+b^2=c^2$；已知两边求第三边。</p>
+        <span class="use">例 3、练习先补出缺的边，再写正弦、余弦。</span>
+        <p class="link"><a href="../mj8a-gougudingli/index.html">回看 3.1 →</a></p>
+      </div>
+      <div class="recall" data-label="八上 2.5 等腰三角形的轴对称性" data-step="4">
+        <p>等腰三角形底边上的高平分底边（三线合一）。</p>
+        <span class="use">例 1 在等边三角形里作高，$BD=\frac12BC$。</span>
+        <p class="link"><a href="../mj8a-dengyao/index.html">回看 2.5 →</a></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">第一张卡是上一课的结论，请学生用一句话说出“角定了，比就定了”的理由（相似）。本课只是把“哪两条边相比”换一换。</p>
+</section>
+
+<!-- 3 ================= 实践与探索：图 7-9 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实践与探索</span><h2>沿坡道走：上升的高度与走的路程有什么关系？</h2></div>
+  <div class="bd w55">
+    <div class="col">
+      <div id="slope" class="slope"></div>
+      <div class="slider-row" data-noswipe>沿坡道走了 $s=$<input type="range" id="sS" min="1" max="20" step="1" value="13"><b class="v" id="sSV"></b> m</div>
+    </div>
+    <div class="col">
+      <div class="readout r3"><span>上升</span><b class="v" id="sUp"></b><span>上升 ÷ 路程</span><b class="v" id="sR1"></b><span>水平前进</span><b class="v" id="sRun"></b><span>水平 ÷ 路程</span><b class="v" id="sR2"></b></div>
+      <table class="mtab">
+        <tr><th>行走路程</th><th>13 m</th><th>20 m</th><th>$a$ m</th></tr>
+        <tr><td>竖直上升</td><td>5 m</td><td><span class="think" data-step="1" data-ask="?">$\dfrac{100}{13}\approx7.69$ m</span></td><td><span class="think" data-step="2" data-ask="?">$\dfrac{5a}{13}$ m</span></td></tr>
+        <tr><td>水平前进</td><td><span class="think" data-step="3" data-ask="?">12 m</span></td><td><span class="think" data-step="4" data-ask="?">$\dfrac{240}{13}\approx18.46$ m</span></td><td><span class="think" data-step="4" data-ask="?">$\dfrac{12a}{13}$ m</span></td></tr>
+      </table>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>依据</span><span>大、小两个直角三角形相似</span><i class="why">有公共锐角（坡角）和直角</i></div>
+        <div class="dl" data-step="3"><span>水平 13 m 时</span><span>$\sqrt{13^2-5^2}=12$</span><i class="why">勾股定理</i></div>
+      </div>
+      <p class="def" data-step="5">当直角三角形的一个锐角的大小确定时，它的<em>对边与斜边</em>的比值、<em>邻边与斜边</em>的比值也就确定。</p>
+    </div>
+  </div>
+  <p class="note">课本 p100 图 7-9 的问题，坡道按“走 13 m 升 5 m”精确画出（坡角约 22.6°）。拖滑块让学生先猜表中的空格再点开；“上升 ÷ 路程”永远是 5/13 ≈ 0.385，“水平 ÷ 路程”永远是 12/13 ≈ 0.923——小人走多远都一样，这就是要定义的两个新比值。</p>
+</section>
+
+<!-- 4 ================= 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定义</span><h2>正弦、余弦与三角函数</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="defFig" class="deffig"></div>
+      <div class="btns" data-noswipe id="defBtns">
+        <button class="btn solid" type="button" data-v="sin">$\sin A$</button>
+        <button class="btn" type="button" data-v="cos">$\cos A$</button>
+        <button class="btn" type="button" data-v="tan">$\tan A$</button>
+      </div>
+      <p class="tip feedback" id="defMsg"></p>
+    </div>
+    <div class="col defs">
+      <div class="def" data-step="1"><h4>正弦（课本 p100）</h4>如图 7-10，在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$．我们把 $\angle A$ 的对边 $a$ 与斜边 $c$ 的比叫做 $\angle A$ 的<em>正弦</em>（sine），记作 $\sin A$，即 $\sin A=\dfrac{\angle A\text{ 的对边}}{\text{斜边}}=\dfrac ac$．</div>
+      <div class="def" data-step="2"><h4>余弦</h4>我们把 $\angle A$ 的邻边 $b$ 与斜边 $c$ 的比叫做 $\angle A$ 的<em>余弦</em>（cosine），记作 $\cos A$，即 $\cos A=\dfrac{\angle A\text{ 的邻边}}{\text{斜边}}=\dfrac bc$．</div>
+      <div class="def" data-step="3"><h4>三角函数</h4>在 $\text{Rt}\triangle ABC$ 中，$\frac ac$、$\frac bc$ 和 $\frac ab$ 的值都随 $\angle A$ 的大小变化而变化，都随 $\angle A$ 的大小确定而唯一确定．$\angle A$ 的正弦、余弦和正切都是 $\angle A$ 的<em>三角函数</em>．</div>
+      <p class="method" data-step="4" data-label="为什么叫“函数”">$\angle A$ 是自变量：$\angle A$ 每取一个值，$\sin A$ 都有<b>唯一</b>的值与它对应（八上 6.1 函数）。</p>
+    </div>
+  </div>
+  <p class="note">课本 p100 定义。点左侧按钮看每个比值用到哪两条边（分子红、分母绿）。三个名字容易混：正弦、余弦的分母都是斜边；正切是两条直角边相比。第 4 张卡把“三角函数”和八上 6.1 函数的定义（对每一个值，都有唯一的值对应）联系起来。</p>
+</section>
+
+<!-- 5 ================= 核心：斜边为 1 的读数盘（图 7-12） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作与思考</span><h2>斜边取 1：$P$ 的纵坐标、横坐标就是 $\sin\theta$、$\cos\theta$</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="dial" class="dial"></div>
+      <p class="muted center small-t">沿圆弧拖动点 $P$（取整数度）</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 7-12，点从原点 $O$ 出发，沿 $\theta$ 线移动 <b>1 个单位长度</b>到点 $P$：竖直方向上升了 $\sin\theta$，水平方向前进了 $\cos\theta$．<span class="think" data-step="1" data-ask="为什么？">在直角三角形中，斜边 $OP=1$，$\sin\theta=\frac{\text{对边}}{1}$，$\cos\theta=\frac{\text{邻边}}{1}$．</span></p>
+      <div class="readout r6"><span>$\theta$</span><b class="v" id="dTh"></b><span>$\sin\theta\approx$</span><b class="v" id="dSin"></b><span>$\cos\theta\approx$</span><b class="v" id="dCos"></b></div>
+      <p class="tip" data-step="2">课本：$\sin15^\circ\approx0.26$，$\cos15^\circ\approx0.97$．你能写出 $\sin75^\circ$、$\cos75^\circ$ 的近似值吗？<span class="think" data-step="3" data-ask="拖到 75° 看看">$\sin75^\circ\approx0.97$，$\cos75^\circ\approx0.26$——正好对调！</span></p>
+      <p class="tip gold" data-step="4">随着锐角 $\theta$ 的增大，$\sin\theta$ 与 $\cos\theta$ 的值怎样变化？<span class="think" data-step="5" data-ask="说说你的发现">$\sin\theta$ 随 $\theta$ 增大而<b>增大</b>，$\cos\theta$ 随 $\theta$ 增大而<b>减小</b>；它们都在 $0$ 和 $1$ 之间。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p101 图 7-12。这是本课的核心操作：斜边固定为 1，比值就“变成”了长度，可以直接读。让学生拖到 15° 和 75°，发现两组数正好对调（为第 10 页 sin A = cos B 埋伏笔）。读数都由程序精确计算，保留两位小数。追问：sin θ 能等于 1.2 吗？（对边总比斜边短，不能）。</p>
+</section>
+
+<!-- 6 ================= 例 1 + 思考与探索 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>等边三角形里的余弦</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex1Fig" class="gfig l"></div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 1</b>　如图 7-11，在等边三角形 $ABC$ 中，求 $\cos B$．</p>
+      <p class="tip" data-step="1"><b>思路：</b>$\cos B$ 要放在<b>直角三角形</b>里求，<span class="think" data-step="2" data-ask="直角三角形在哪？">过点 $A$ 作 $AD\perp BC$，构造 $\text{Rt}\triangle ABD$。</span></p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>解：</span><span>过点 $A$ 作 $AD\perp BC$，垂足为 $D$．</span><i class="why">构造直角三角形</i></div>
+        <div class="dl" data-step="4"><span></span><span>由题意知，$BD=\dfrac12BC=\dfrac12AB$．</span><i class="why">三线合一；等边三角形三边相等</i></div>
+        <div class="dl end" data-step="5"><span></span><span>在 $\text{Rt}\triangle ABD$ 中，$\cos B=\dfrac{BD}{AB}=\dfrac12$．</span><i class="why">余弦的定义</i></div>
+      </div>
+      <div class="hint-ladder" data-step="6">
+        <p class="q"><b>思考与探索</b>　由例 1 可知，$\cos60^\circ=\dfrac12$，求 $\sin60^\circ$、$\sin30^\circ$、$\cos30^\circ$ 的值．</p>
+        <details><summary>提示</summary>设 $AB=2$，则 $BD=1$，$AD=\sqrt{2^2-1^2}=\sqrt3$；$\angle BAD=30^\circ$。</details>
+        <details><summary>完整解答</summary>$\sin60^\circ=\dfrac{AD}{AB}=\dfrac{\sqrt3}2$；$\sin30^\circ=\dfrac{BD}{AB}=\dfrac12$；$\cos30^\circ=\dfrac{AD}{AB}=\dfrac{\sqrt3}2$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p101 例 1 与“思考与探索”。图按等边三角形精确绘制。对照上一课例 2（tan 60° = √3），同一个图形可以求出 60° 和 30° 的全部三个三角函数值，下一课 7.3 会把它们整理成表。</p>
+</section>
+
+<!-- 7 ================= 例 2：计算器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>用计算器求正弦值、余弦值</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 2</b>　用计算器求下列正弦值或余弦值（精确到 $0.01$）：(1) $\sin75^\circ$；(2) $\cos75^\circ$；(3) $\sin23^\circ13'20''$．</p>
+        <div class="keyline" data-step="1"><span class="lbl">(1)</span><span class="key">sin</span><span class="key">7</span><span class="key">5</span><span class="key">)</span><span class="key">=</span><span class="key">S⇔D</span><span class="res">$0.965\,925\,826\,3$，$\sin75^\circ\approx0.97$</span></div>
+        <div class="keyline" data-step="2"><span class="lbl">(2)</span><span class="key">cos</span><span class="key">7</span><span class="key">5</span><span class="key">)</span><span class="key">=</span><span class="key">S⇔D</span><span class="res">$0.258\,819\,045\,1$，$\cos75^\circ\approx0.26$</span></div>
+        <div class="keyline" data-step="3"><span class="lbl">(3)</span><span class="key">sin</span><span class="key">2</span><span class="key">3</span><span class="key">° ′ ″</span><span class="key">1</span><span class="key">3</span><span class="key">° ′ ″</span><span class="key">2</span><span class="key">0</span><span class="key">° ′ ″</span><span class="key">)</span><span class="key">=</span></div>
+        <p class="tip" data-step="4">显示结果为 $0.394\,298\,367\,5$，即 $\sin23^\circ13'20''\approx0.39$．</p>
+        <p class="warn" data-step="5" data-label="度、分、秒">$1^\circ=60'$，$1'=60''$．$23^\circ13'20''=23^\circ+\dfrac{13}{60}{}^\circ+\dfrac{20}{3600}{}^\circ\approx23.22^\circ$．</p>
+      </div>
+      <div class="col">
+        <div class="calc" data-noswipe data-step="6">
+          <p class="calc-h">验一验：选函数，输入角度</p>
+          <div class="calc-row"><select id="cFn" aria-label="函数"><option>sin</option><option>cos</option><option>tan</option></select><input type="number" id="cDeg" min="0" max="89" value="75" aria-label="度">°<input type="number" id="cMin" min="0" max="59" value="0" aria-label="分">′<input type="number" id="cSec" min="0" max="59" value="0" aria-label="秒">″</div>
+          <p class="calc-out"><b id="cAng"></b> $=$ <b id="cVal"></b></p>
+          <p class="calc-out small-t" id="cRound"></p>
+        </div>
+        <p class="method" data-step="7" data-label="对照第 5 页">读数盘上读出的 $\sin75^\circ\approx0.97$、$\cos75^\circ\approx0.26$ 与计算器结果一致；计算器给出的位数更多。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p101–102 例 2（按键以课本所用计算器为准；最后的 S⇔D 键把结果转为小数）。右侧“验一验”由程序计算，供核对。提醒学生计算器设在“度”状态。</p>
+</section>
+
+<!-- 8 ================= 练习（p102） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>同一个角，可以在不同的直角三角形里表示</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="pr1Fig" class="gfig l"></div>
+      <p class="tip">如图，$\angle ACB=90^\circ$，$CD\perp AB$，垂足为 $D$．图中有 <span class="think" data-step="1" data-ask="几个？">3 个</span>直角三角形．</p>
+      <p class="method" data-step="2" data-label="先找直角三角形">一个锐角，放进哪个直角三角形，就用那个三角形的斜边。</p>
+    </div>
+    <div class="col fillcol">
+      <p class="q"><b>1.</b> 填空（填线段名，如 AB，回车判对错）：</p>
+      <p>(1) $\sin A=\dfrac{(\ )}{AC}$ <span class="blank" data-ans="CD|DC" data-w="3"></span>　$=\dfrac{BC}{(\ )}$ <span class="blank" data-ans="AB|BA" data-w="3"></span></p>
+      <p>(2) $\sin B=\dfrac{CD}{(\ )}$ <span class="blank" data-ans="BC|CB" data-w="3"></span>　$=\dfrac{(\ )}{AB}$ <span class="blank" data-ans="AC|CA" data-w="3"></span></p>
+      <p>(3) $\cos\angle ACD=\dfrac{CD}{(\ )}$ <span class="blank" data-ans="AC|CA" data-w="3"></span>　$\cos\angle BCD=\dfrac{(\ )}{BC}$ <span class="blank" data-ans="CD|DC" data-w="3"></span></p>
+      <p>(4) $\tan A=\dfrac{CD}{(\ )}$ <span class="blank" data-ans="AD|DA" data-w="3"></span>　$=\dfrac{(\ )}{AC}$ <span class="blank" data-ans="BC|CB" data-w="3"></span></p>
+      <p>　　$\tan B=\dfrac{(\ )}{BD}$ <span class="blank" data-ans="CD|DC" data-w="3"></span>　$=\dfrac{AC}{(\ )}$ <span class="blank" data-ans="BC|CB" data-w="3"></span></p>
+      <p class="q"><b>3.</b> 用计算器求（精确到 0.01）：$\sin36^\circ$ <span class="blank" data-ans="0.59" data-w="4"></span>　$\cos36^\circ$ <span class="blank" data-ans="0.81" data-w="4"></span>　$\sin12.5^\circ$ <span class="blank" data-ans="0.22" data-w="4"></span>　$\cos12.5^\circ$ <span class="blank" data-ans="0.98" data-w="4"></span></p>
+    </div>
+  </div>
+  <p class="note">课本 p102 练习第 1、3 题（第 2 题放在第 11 页）。第 1 题是本课辨析的重点：∠A 既在 Rt△ACD 中，又在 Rt△ABC 中，所以 sin A 有两种写法；∠ACD = ∠B（同为 ∠A 的余角），所以 cos∠ACD 也等于 cos B。图按 AC : BC = 3 : 4 精确绘制。</p>
+</section>
+
+<!-- 9 ================= 例 3、例 4 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 例 4</span><h2>已知两边求三角函数；已知角和边求边</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 3</b>　如图 7-13，在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$AC=12$，$BC=5$．求 $\sin A$、$\cos A$、$\sin B$、$\cos B$ 的值．</p>
+        <div id="ex3Fig" class="gfig s"></div>
+        <div class="derive small-d">
+          <div class="dl" data-step="1"><span></span><span>$AB=\sqrt{AC^2+BC^2}=\sqrt{12^2+5^2}=\sqrt{169}=13$</span><i class="why">勾股定理</i></div>
+          <div class="dl" data-step="2"><span></span><span class="think" data-step="3" data-ask="写出来">$\sin A=\dfrac{BC}{AB}=\dfrac5{13}$，$\cos A=\dfrac{AC}{AB}=\dfrac{12}{13}$</span><i class="why">正弦、余弦的定义</i></div>
+          <div class="dl end" data-step="4"><span></span><span class="think" data-step="5" data-ask="写出来">$\sin B=\dfrac{AC}{AB}=\dfrac{12}{13}$，$\cos B=\dfrac{BC}{AB}=\dfrac5{13}$</span><i class="why">换成 $\angle B$，对边、邻边互换</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="6"><b>例 4</b>　在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$\angle A=15^\circ$，$BC=6$．求 $AB$ 的长（精确到 $0.01$）．</p>
+        <div id="ex4Fig" class="gfig s" data-step="6"></div>
+        <div class="derive small-d">
+          <div class="dl" data-step="7"><span>思路</span><span class="think" data-step="8" data-ask="BC、AB 是 ∠A 的什么边？">$BC$ 是对边，$AB$ 是斜边 → 用 $\sin A$</span><i class="why">选同时含两边的比</i></div>
+          <div class="dl" data-step="9"><span>解：</span><span>$\sin A=\dfrac{BC}{AB}$，则 $AB=\dfrac{BC}{\sin A}=\dfrac6{\sin15^\circ}$．</span><i class="why">正弦的定义</i></div>
+          <div class="dl end" data-step="10"><span></span><span>用计算器计算，得 $AB\approx23.18$．</span><i class="why">计算器</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p102–103 例 3、例 4，图按题中数据精确绘制（例 4 的 15° 很小，三角形“扁”，AB 约为 BC 的 3.86 倍，可以让学生在图上估一估）。例 4 的关键是选函数：已知边、所求边和已知角，三者同时出现在哪个比里。</p>
+</section>
+
+<!-- 10 ================= 思考与探索 + 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>$\sin A$ 与 $\cos B$、$\cos A$ 与 $\sin B$ 有什么关系？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1">在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$：$a$ 是 $\angle A$ 的对边，也是 $\angle B$ 的邻边，所以
+          $$\sin A=\frac ac,\qquad \cos B=\frac ac.$$</p>
+        <p class="def" data-step="2">结论：<span class="think" data-step="3" data-ask="sin A 与 cos B？">$\sin A=\cos B$，同理 $\cos A=\sin B$．这里 $\angle A+\angle B=90^\circ$（直角三角形两锐角互余）．</span></p>
+        <p class="method" data-step="4" data-label="换个说法">一个锐角的正弦，等于它的余角的余弦：$\sin75^\circ=\cos15^\circ$，$\cos75^\circ=\sin15^\circ$——第 5 页读数盘上 15° 与 75° 的读数正好对调。</p>
+      </div>
+      <div class="col judge">
+        <div class="jcard" data-step="5"><p>① 在 $\text{Rt}\triangle ABC$ 中，$\sin A=\dfrac{BC}{AC}$．</p><div class="think" data-step="6" data-ask="对还是错？"><p><span class="verdict x">✗</span>没说直角在哪。只有 $\angle C=90^\circ$ 时斜边才是 $AB$，$\sin A=\dfrac{BC}{AB}$；分母要是<b>斜边</b>。</p></div></div>
+        <div class="jcard" data-step="7"><p>② 某锐角 $A$ 的 $\sin A=1.2$．</p><div class="think" data-step="8" data-ask="可能吗？"><p><span class="verdict x">✗</span>斜边最长，对边 $\lt$ 斜边，所以 $0\lt\sin A\lt1$，$\cos A$ 同理。</p></div></div>
+        <div class="jcard" data-step="9"><p>③ 把直角三角形各边都扩大为原来的 2 倍，$\sin A$ 也扩大为原来的 2 倍．</p><div class="think" data-step="10" data-ask="对还是错？"><p><span class="verdict x">✗</span>$\angle A$ 没变，比值不变：$\dfrac{2a}{2c}=\dfrac ac$。</p></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p103“思考与探索”。左边先让学生自己在例 3 的结果里找规律（sin A = cos B = 5/13），再说明理由。右边三张辨析卡对应三个常见错误：斜边认错、比值超过 1、以为比值随边长变化。</p>
+</section>
+
+<!-- 11 ================= 练习（p102 第 2 题、p103） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b>（p102 练习 2）求图中各直角三角形锐角的正弦、余弦值．</p>
+        <div class="cols2 figs2"><div id="p2a" class="gfig s"></div><div id="p2b" class="gfig s"></div></div>
+        <details><summary>提示</summary>① 斜边 $AB=5$，$AC=\sqrt{5^2-2^2}=\sqrt{21}$；② 直角在 $C_1$，$A_1B_1=\sqrt{6^2+4^2}=2\sqrt{13}$。</details>
+        <details><summary>完整解答</summary>① $\sin A=\cos B=\dfrac25$，$\cos A=\sin B=\dfrac{\sqrt{21}}5$；<br>② $\sin A_1=\cos B_1=\dfrac4{2\sqrt{13}}=\dfrac{2\sqrt{13}}{13}$，$\cos A_1=\sin B_1=\dfrac{3\sqrt{13}}{13}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b>（p103 练习 1）在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$AC=8$，$BC=6$．求 $\sin A$、$\cos A$、$\sin B$、$\cos B$ 的值．</p>
+        <details><summary>提示</summary>先求斜边 $AB=\sqrt{8^2+6^2}=10$。</details>
+        <details><summary>完整解答</summary>$\sin A=\cos B=\dfrac6{10}=\dfrac35$，$\cos A=\sin B=\dfrac8{10}=\dfrac45$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b>（p103 练习 2）在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$\angle A=68^\circ$，$AB=4$．求 $BC$、$AC$ 的长（精确到 0.01）．</p>
+        <p class="fillrow">$BC\approx$ <span class="blank" data-ans="3.71" data-w="4"></span>　$AC\approx$ <span class="blank" data-ans="1.50|1.5" data-w="4"></span></p>
+        <details><summary>提示 1</summary>$AB$ 是斜边；$BC$ 是 $\angle A$ 的对边，$AC$ 是邻边。</details>
+        <details><summary>提示 2</summary>$BC=AB\cdot\sin A$，$AC=AB\cdot\cos A$。</details>
+        <details><summary>完整解答</summary>$BC=4\sin68^\circ\approx3.71$，$AC=4\cos68^\circ\approx1.50$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p102 练习 2、p103 练习 1、2。第 3 题可以直接输入答案回车判对错。做完让学生检查：sin A = cos B 是否成立？可以当作验算。</p>
+</section>
+
+<!-- 12 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.2</span><h2>挑战：灵活选用三角函数</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求图中各直角三角形锐角的正弦、余弦值．</p>
+        <div class="cols2 figs2"><div id="h1a" class="gfig s"></div><div id="h1b" class="gfig s"></div></div>
+        <details><summary>提示</summary>① $AB=\sqrt{1^2+3^2}=\sqrt{10}$；② 直角在 $E$，斜边 $DF=4$，$DE=\sqrt{4^2-3^2}=\sqrt7$。</details>
+        <details><summary>完整解答</summary>① $\sin A=\cos B=\dfrac{3\sqrt{10}}{10}$，$\cos A=\sin B=\dfrac{\sqrt{10}}{10}$；<br>② $\sin D=\cos F=\dfrac34$，$\cos D=\sin F=\dfrac{\sqrt7}4$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$AC=BC$．求：(1) $\cos A$；(2) 当 $AB=4$ 时，求 $BC$ 的长．</p>
+        <details><summary>提示</summary>设 $AC=BC=k$，则 $AB=\sqrt2k$。</details>
+        <details><summary>完整解答</summary>(1) $\cos A=\dfrac{AC}{AB}=\dfrac k{\sqrt2k}=\dfrac{\sqrt2}2$；(2) $BC=AB\cdot\sin A=4\times\dfrac{\sqrt2}2=2\sqrt2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> $\angle C=90^\circ$，$\angle A=50^\circ$，$AB=5$，求 $BC$、$AC$（精确到 0.01）．<br><b>5.</b> $\angle C=90^\circ$，$\cos A=\dfrac35$，求 $\sin A$．</p>
+        <details><summary>提示</summary>5. 设 $AC=3k$，$AB=5k$，用勾股定理求 $BC$。</details>
+        <details><summary>完整解答</summary>4. $BC=5\sin50^\circ\approx3.83$，$AC=5\cos50^\circ\approx3.21$；<br>5. $BC=\sqrt{(5k)^2-(3k)^2}=4k$，$\sin A=\dfrac{4k}{5k}=\dfrac45$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 7.2 第 1、3、4、5 题（第 2 题是计算器求值，可作课后作业：sin 15° ≈ 0.26，cos 15° ≈ 0.97，sin 72° ≈ 0.95，cos 72° ≈ 0.31，sin 55°12′ ≈ 0.82，cos 55°12′ ≈ 0.57，sin 22.5° ≈ 0.38，cos 22.5° ≈ 0.92）。第 5 题“设 k”的方法是已知一个比值求另一个比值的通法。</p>
+</section>
+
+<!-- 13 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">$\sin A=\dfrac{\text{对边}}{\text{斜边}}$，$\cos A=\dfrac{\text{邻边}}{\text{斜边}}$，$\tan A=\dfrac{\text{对边}}{\text{邻边}}$——都是 $\angle A$ 的三角函数。</p>
+        <p class="def">$0\lt\sin A\lt1$，$0\lt\cos A\lt1$；$\sin A=\cos B$（$\angle A+\angle B=90^\circ$）。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="选函数">看已知边、所求边相对于已知角是什么边，选两者都出现的那个比。</p>
+        <p class="method" data-label="设 k 法">已知一个比值（如 $\cos A=\frac35$），设两边为 $3k$、$5k$，补出第三边。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="函数思想">角是自变量，比值是因变量：角定，比定；角变，比变。</p>
+        <p class="recall" data-label="化归">非直角三角形里的角，作高“放进”直角三角形（例 1）。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>7.3 特殊角的三角函数——把 $30^\circ$、$45^\circ$、$60^\circ$ 的九个值整理成一张表，并说明理由。</p>
+  </div>
+  <p class="note">请学生画一个直角三角形，一边指一边说出三个比值的定义。课后作业：习题 7.2 第 2 题；用第 5 页的读数盘读出 sin 30°、cos 60°，猜一猜它们为什么相等。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

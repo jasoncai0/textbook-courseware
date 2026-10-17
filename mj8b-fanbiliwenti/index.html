@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用反比例函数解决问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/qiaoshi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第11章 反比例函数 · 11.3</p>
+    <h1 class="cover-title">用反比例函数解决问题</h1>
+    <p class="cover-q" data-step="1">阿基米德曾豪言：“给我一个支点，我能撬动地球．”</p>
+    <p class="cover-q" data-step="2">一块石头重 1 600 N，你只有 500 N 的力气，撬棍的动力臂<b>至少</b>要多长？“至少”“不超过”这类问题，反比例函数怎样帮我们回答？</p>
+    <div class="chips" data-step="3"><span class="chip">找“积一定”</span><span class="chip">求 $k$、代入求值</span><span class="chip">拖动门槛线读范围</span><span class="chip">杠杆原理</span></div>
+  </div>
+  <p class="note">课本 p136 引言“反比例函数是刻画现实世界数量关系的一种数学模型”。封面问题来自 p140 练习 2（杠杆），第 10 页回答。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八年级下册 · 11.1 反比例函数" data-step="1">
+        <p>$y=\dfrac{k}{x}$（$k\ne0$）；已知一组对应值 $(a,b)$，则 $k=ab$．</p>
+        <span class="use">由“积一定”写出表达式；由一组数据求 $k$（问题 4）．</span>
+      </div>
+      <div class="recall" data-label="八年级下册 · 11.2 图像与性质" data-step="2">
+        <p>$k&gt;0$ 时，在第一象限内 $y$ 随 $x$ 的增大而减小．</p>
+        <span class="use">把“$y$ 不超过某个值”翻译成“$x$ 至少为多少”．</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 6.4 用一次函数解决问题" data-step="3">
+        <p>建模四步：审题找量 → 写函数表达式 → 代入求值 → 回到实际问题作答．</p>
+        <span class="use">本课沿用这四步，只是模型换成反比例函数．</span>
+      </div>
+      <div class="recall" data-label="八年级下册 · 物理（压强）" data-step="4">
+        <p>压强 $p=\dfrac{F}{S}$（$F$ 压力/N，$S$ 受力面积/m²，1 Pa = 1 N/m²）．</p>
+        <span class="use">问题 3、4 与练习中的压强、气压问题．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课关键：</b>实际问题里的量都是正数，图像只取第一象限的一支——“越大越小”就成了解题的钥匙．</p>
+  </div>
+  <p class="note">压强公式若物理课尚未学到，以课本问题 3 的“分析”为准直接给出。</p>
+</section>
+
+<!-- 3 ================= 问题 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1</span><h2>录入 24 000 字：每分钟至少录入多少字？</h2></div>
+  <div class="bd full">
+    <p class="tip">小明要把一篇 24 000 字的社会调查报告录入电脑．(1) 完成录入的时间 $t$（分）与录入文字的速度 $v$（字/分）有怎样的函数关系？(2) 要在 3 h 内完成录入任务，小明每分钟至少应录入多少个字？</p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 什么量不变？</span><span class="think" data-step="2" data-ask="想一想">总字数：$v\cdot t=24\,000$</span><i class="why">速度 × 时间 = 总字数</i></div>
+        <div class="dl" data-step="3"><span>∴</span><span>$t=\dfrac{24\,000}{v}$</span><i class="why">$t$ 是 $v$ 的反比例函数</i></div>
+        <div class="dl" data-step="4"><span>(2) 3 h $=$</span><span class="think" data-step="5" data-ask="单位？">$180$ 分</span><i class="why">$t$ 的单位是分</i></div>
+        <div class="dl" data-step="6"><span>把 $t=180$ 代入</span><span>$v=\dfrac{24\,000}{180}=\dfrac{400}{3}\approx133.3$</span><i class="why">恰好 180 分完成时的速度</i></div>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="7">“3 h 内完成”，即 $t\le180$．$v$ 要比 133.3 大还是小？<span class="think" data-step="8" data-ask="用性质">$t$ 随 $v$ 的增大而减小：$v$ 越大，用时越少．所以 $v\ge\dfrac{400}{3}$．</span></p>
+        <p class="def" data-step="9">答：小明每分钟至少应录入 <em>134</em> 字，才能在 3 h 内完成录入任务．</p>
+        <p class="warn" data-step="10" data-label="为什么是 134，不是 133？">字数是整数．每分钟 133 字：$133\times180=23\,940&lt;24\,000$，完不成；要<b>向上</b>取整，不能四舍五入．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p136 问题 1。第 (2) 问两个易错点：单位（3 h = 180 分）和取整方向。验算：134 × 180 = 24 120 ≥ 24 000 ✓。</p>
+</section>
+
+<!-- 4 ================= 问题 2 蓄水池 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2</span><h2>容积 4×10⁴ m³ 的蓄水池：挖深一些，占地就小一些</h2></div>
+  <div class="bd l45">
+    <div class="col">
+      <svg id="pool" class="pool" viewBox="0 0 420 230" aria-label="蓄水池俯视图与深度"></svg>
+      <div class="slider-row" data-noswipe>深度 $h=$<input type="range" id="hIn" min="2" max="20" step="0.5" value="5"><b class="v" id="hV"></b>m</div>
+      <p class="tip feedback fb-ok" id="poolMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">某厂计划建造一个容积为 $4\times10^4$ m³ 的长方体蓄水池．(1) 底面积 $S$（m²）与深度 $h$（m）有怎样的函数关系？(2) 深度设计为 5 m，底面积应为多少？(3) 长和宽最多只能分别设计为 100 m 和 60 m，深度至少应为多少米（精确到 0.01）？</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) $Sh=4\times10^4$</span><span class="think" data-step="2" data-ask="表达式？">$S=\dfrac{40\,000}{h}$</span><i class="why">长方体体积 = 底面积 × 高</i></div>
+        <div class="dl" data-step="3"><span>(2) $h=5$ 时</span><span class="think" data-step="4" data-ask="算一算">$S=8\,000$ m²</span><i class="why">$\dfrac{40\,000}{5}=8\,000$</i></div>
+        <div class="dl" data-step="5"><span>(3) 底面积最大</span><span>$S=100\times60=6\,000$</span><i class="why">长、宽都取最大</i></div>
+        <div class="dl" data-step="6"><span>此时</span><span class="think" data-step="7" data-ask="算一算">$h=\dfrac{40\,000}{6\,000}\approx6.667$</span><i class="why">把 $S=6\,000$ 代入</i></div>
+        <div class="dl end" data-step="8"><span>答</span><span>深度至少应为 6.67 m</span><i class="why">$S$ 随 $h$ 的增大而减小；$S\le6\,000$ ⇒ $h\ge6.667$</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p136–137 问题 2。左图是俯视图（底面画成与 S 等面积的正方形，按同一比例尺）与侧面深度，拖动 h 两者同步变化。第 (3) 问“精确到 0.01”：6.667 按四舍五入是 6.67，而 6.67 ≥ 6.667，正好也满足“至少”的要求——可以追问学生：如果算出来是 6.661，答 6.66 还是 6.67？</p>
+</section>
+
+<!-- 5 ================= 练习 p137 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> $A$、$B$ 两地相距 300 km，汽车以 $x$ km/h 的速度从 $A$ 地到达 $B$ 地需 $y$ h，写出 $y$ 与 $x$ 的函数表达式．如果汽车的速度不超过 100 km/h，那么汽车从 $A$ 地到 $B$ 地至少需要多少时间？</p>
+        <details><summary>提示 1</summary>$xy=300$；先算 $x=100$ 时的 $y$．</details>
+        <details><summary>提示 2</summary>速度越小，时间越长还是越短？</details>
+        <details><summary>完整解答</summary>$y=\dfrac{300}{x}$；$x=100$ 时 $y=3$．$y$ 随 $x$ 的增大而减小，$x\le100$ ⇒ $y\ge3$，至少需要 3 h．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 问题 2 中，建造蓄水池需要运送的土石方总量为 $4\times10^4$ 立方米．(1) 平均每天运送的土石方 $V$（立方米/天）与完成任务所需时间 $t$（天）有怎样的函数关系？(2) 共派出 20 辆卡车，每辆每天运 100 立方米，需要多少天？工程进行 8 天后，如果要提前 4 天完成，至少需要增派多少辆同样的卡车？</p>
+        <details><summary>提示 1</summary>$Vt=40\,000$；20 辆车每天运 $20\times100=2\,000$ 立方米．</details>
+        <details><summary>提示 2</summary>8 天后还剩多少？还剩几天？每天至少要运多少？</details>
+        <details><summary>完整解答</summary>(1) $V=\dfrac{40\,000}{t}$．(2) $t=\dfrac{40\,000}{2\,000}=20$（天）．8 天运了 $16\,000$，还剩 $24\,000$；要在 $20-4-8=8$ 天内运完，每天至少运 $3\,000$，即至少 30 辆车，需增派 10 辆．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p137 练习 1、2。第 2 题第 (2) 问是两步问题：剩余量也满足“积一定”（剩余量 = 每天运量 × 天数），提醒学生画一条时间线：0 天—8 天—16 天（原计划 20 天提前 4 天）。</p>
+</section>
+
+<!-- 6 ================= 问题 3 门板 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3</span><h2>以门板作船：门板面积至少要多大？</h2></div>
+  <div class="bd full">
+    <p class="tip">某报报道：一村民在清理鱼塘时被困淤泥中，消防队员以门板作船，泥沼中救人．如果人和门板对淤泥地面的压力合计 900 N，而淤泥承受的压强不能超过 600 Pa，那么门板面积至少要多大？</p>
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1"><b>分析：</b>哪个量是确定的？<span class="think" data-step="2" data-ask="想一想">压力 $F=900$ N 确定，压强 $p$（Pa）与门板面积 $S$（m²）成反比例函数关系：$p=\dfrac{F}{S}$．</span></p>
+        <p class="tip" data-step="3">门板越大，压强越大还是越小？<span class="think" data-step="4" data-ask="生活经验">越小——所以门板要“够大”，才不会陷下去．</span></p>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="5"><span>解：设</span><span>$p=\dfrac{900}{S}$</span><i class="why">压力合计 900 N</i></div>
+        <div class="dl" data-step="6"><span>把 $p=600$ 代入</span><span>$\dfrac{900}{S}=600$</span><i class="why">先找“刚好”的边界</i></div>
+        <div class="dl" data-step="7"><span>解得</span><span class="think" data-step="8" data-ask="S = ?">$S=1.5$</span><i class="why">$S=900\div600$</i></div>
+        <div class="dl end" data-step="9"><span>答</span><span>门板面积至少要 1.5 m²</span><i class="why">$p$ 随 $S$ 的增大而减小；$p\le600$ ⇒ $S\ge1.5$</i></div>
+      </div>
+    </div>
+    <p class="method" data-step="10" data-label="“至少 / 不超过”问题的套路">① 写出反比例函数；② 把“不超过”的那个值代入，求出边界；③ 用“在第一象限内 $y$ 随 $x$ 增大而减小”判断取边界的哪一侧．下一页用图像看清楚这一步．</p>
+  </div>
+  <p class="note">课本 p138 问题 3。“分析”中的物理关系课本直接给出。不要让学生停在“S = 1.5”就结束——要说出为什么是“至少”。</p>
+</section>
+
+<!-- 7 ================= 门槛读图器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">看图说理</span><h2>拖动“门槛线”：$y$ 不超过它时，$x$ 在哪里？</h2></div>
+  <div class="bd l55">
+    <div class="col">
+      <div class="btns" data-noswipe id="thTabs"></div>
+      <div id="thBoard" class="th-board"></div>
+    </div>
+    <div class="col">
+      <p class="tip" id="thQ"></p>
+      <p class="tip feedback fb-ok" id="thMsg"></p>
+      <p class="tip" data-step="1">门槛线往下拖（要求更严），$x$ 的范围怎样变？<span class="think" data-step="2" data-ask="拖一拖">边界点向右移，$x$ 要更大．</span></p>
+      <p class="tip" data-step="3">为什么只要算一个边界点，就能得到整个范围？<span class="think" data-step="4" data-ask="想一想">在第一象限内图像一直往下走（$y$ 随 $x$ 增大而减小）：边界点右边的部分全在门槛线下方，左边的全在上方．</span></p>
+      <p class="method" data-step="5" data-label="一句话">$y\le c$ ⇔ $x\ge\dfrac{k}{c}$（$k&gt;0$，$x&gt;0$）．</p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。三个标签对应问题 1、3、4，曲线按各自的表达式精确绘制。拖动橙色门槛线（也可在图上任意位置拖），曲线上满足条件的部分变成绿色，横轴上的绿色带就是 x 的范围；门槛停在课本给的数值时，读数与课本答案一致（133.3、1.5、0.6）。</p>
+</section>
+
+<!-- 8 ================= 问题 4 气球 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 4</span><h2>气球不爆炸：体积应不小于多少？</h2></div>
+  <div class="bd full">
+    <p class="tip">某气球内充满了一定质量的气体，在温度不变的条件下，气球内气体的压强 $p$（Pa）是气球体积 $V$（m³）的反比例函数，且当 $V=1.5$ m³ 时，$p=16\,000$ Pa．(1) 当 $V=1.2$ m³ 时，求 $p$；(2) 当气球内的气压大于 40 000 Pa 时，气球将爆炸，为确保气球不爆炸，气球的体积应不小于多少？</p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 设</span><span>$p=\dfrac{k}{V}$</span><i class="why">$k$ 为常数，$k\ne0$；题目没给 $k$</i></div>
+        <div class="dl" data-step="2"><span>代入</span><span class="think" data-step="3" data-ask="列方程">$16\,000=\dfrac{k}{1.5}$</span><i class="why">$V=1.5$ 时 $p=16\,000$（待定系数）</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span>$k=24\,000$，$p=\dfrac{24\,000}{V}$</span><i class="why">解方程</i></div>
+        <div class="dl end" data-step="5"><span>$V=1.2$ 时</span><span class="think" data-step="6" data-ask="算一算">$p=20\,000$ Pa</span><i class="why">$24\,000\div1.2$</i></div>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>(2) $p=40\,000$ 时</span><span>$40\,000=\dfrac{24\,000}{V}$</span><i class="why">刚好爆炸的临界值</i></div>
+        <div class="dl" data-step="8"><span>解得</span><span class="think" data-step="9" data-ask="V = ?">$V=0.6$</span><i class="why">$24\,000\div40\,000$</i></div>
+        <div class="dl end" data-step="10"><span>答</span><span>$V\ge0.6$ m³</span><i class="why">$p$ 随 $V$ 增大而减小：$p\le40\,000$ ⇒ $V\ge0.6$，体积应不小于 0.6 m³</i></div>
+      </div>
+    </div>
+    <p class="recall" data-step="11" data-label="阅读 · 生活中的反比例函数（课本 p141）">为什么使劲踩气球，气球会爆炸？——体积变小，压强增大，大到一定程度就爆炸．</p>
+  </div>
+  <p class="note">课本 p138–139 问题 4。与问题 1–3 的区别：k 不是直接给的，要先用一组数据求出（待定系数法，11.2 例 1 用过）。</p>
+</section>
+
+<!-- 9 ================= 练习 p139 第 1 题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>从图像上读出一组数据，就能求出 $k$</h2></div>
+  <div class="bd l45">
+    <div class="col">
+      <div id="pBoard" class="p-board"></div>
+      <p class="muted center small-t">（第 1 题）图像按 $p=\dfrac{100}{S}$ 精确绘制</p>
+    </div>
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在压力不变的情况下，某物体所受到的压强 $p$（Pa）与它的受力面积 $S$（m²）之间成反比例函数关系，其图像如图所示．(1) 求 $p$ 与 $S$ 之间的函数表达式；(2) 当 $S=0.4$ m² 时，求该物体所受到的压强 $p$．</p>
+        <details><summary>提示 1</summary>图上哪个点的坐标读得最准？——虚线标出的点 $(0.1,\ 1\,000)$．</details>
+        <details><summary>提示 2</summary>设 $p=\dfrac{k}{S}$，$k=0.1\times1\,000$．</details>
+        <details><summary>完整解答</summary>(1) $k=0.1\times1\,000=100$，$p=\dfrac{100}{S}$；(2) $S=0.4$ 时，$p=\dfrac{100}{0.4}=250$（Pa）．</details>
+      </div>
+      <p class="method" data-step="1" data-label="读图求 k">在图像上找一个坐标“读得准”的点（一般是虚线标出的点），$k=$ 横坐标 × 纵坐标．</p>
+    </div>
+  </div>
+  <p class="note">课本 p139 练习 1。图中 S = 0.4 处的点由表达式算出（p = 250），学生求出答案后可以对照图像核对。</p>
+</section>
+
+<!-- 10 ================= 杠杆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · 杠杆原理</span><h2>动力臂越长，越省力：撬动 1 600 N 的石头</h2></div>
+  <div class="bd l55">
+    <div class="col">
+      <svg id="lever" class="lever" viewBox="0 0 640 260" aria-label="杠杆示意图"></svg>
+      <div class="slider-row" data-noswipe>动力臂 $l=$<input type="range" id="lIn" min="0.5" max="4.5" step="0.1" value="1"><b class="v" id="lV"></b>m</div>
+      <p class="tip feedback" id="lMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip">阻力 × 阻力臂 = 动力 × 动力臂．已知阻力（石头重量）和阻力臂分别为 1 600 N 和 0.5 m，设动力臂为 $l$，动力为 $F$．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) $F\cdot l=1\,600\times0.5$</span><span class="think" data-step="2" data-ask="表达式？">$F=\dfrac{800}{l}$</span><i class="why">杠杆原理</i></div>
+        <div class="dl" data-step="3"><span>$F=500$ 时</span><span class="think" data-step="4" data-ask="l = ?">$l=\dfrac{800}{500}=1.6$</span><i class="why">小明只有 500 N 的力</i></div>
+        <div class="dl end" data-step="5"><span>答</span><span>动力臂至少 1.6 m</span><i class="why">$F$ 随 $l$ 的增大而减小：$F\le500$ ⇒ $l\ge1.6$</i></div>
+      </div>
+      <p class="tip gold" data-step="6">(2) “给我一个支点，我能撬动地球”——你能解释其中的道理吗？<span class="think" data-step="7" data-ask="说一说">$F=\dfrac{\text{阻力}\times\text{阻力臂}}{l}$：阻力再大，只要动力臂 $l$ 足够长，所需的动力 $F$ 就可以足够小．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p140 练习 2。杠杆按比例尺精确画出（1 m = 100 px），动力箭头长度与 F 成正比，阻力箭头按 1 600 N 画；拖动滑块，l ≥ 1.6 时提示“撬得动”。</p>
+</section>
+
+<!-- 11 ================= 习题 11.3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 11.3</span><h2>课后练一练</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 以 12 m³/h 的速度向水池注水，8 h 可以注满水池．(1) 设注水速度为 $Q$（m³/h），注满水池所需时间为 $t$（h），写出 $t$ 与 $Q$ 之间的函数表达式；(2) 要在 5 h 内注满水池，注水速度至少应为多少？</p>
+        <details><summary>提示</summary>水池容积 $=12\times8=96$ m³．</details>
+        <details><summary>完整解答</summary>(1) $t=\dfrac{96}{Q}$；(2) $t=5$ 时 $Q=19.2$；$t$ 随 $Q$ 增大而减小，所以注水速度至少为 19.2 m³/h．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一列货车从北京开往乌鲁木齐，以 58 km/h 的平均速度行驶需要 65 h．(1) 提速后平均速度为 $v$ km/h，全程运行时间为 $t$ h，写出 $t$ 与 $v$ 的函数表达式；(2) 提速后平均速度为 78 km/h，全程运行时间为多少？(3) 全程运行时间控制在 40 h 内，平均速度至少应为多少？</p>
+        <details><summary>提示</summary>全程 $=58\times65=3\,770$ km．</details>
+        <details><summary>完整解答</summary>(1) $t=\dfrac{3\,770}{v}$；(2) $t=\dfrac{3\,770}{78}\approx48.3$（h）；(3) $t=40$ 时 $v=94.25$，平均速度至少应为 94.25 km/h．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 某沼泽地能承受的压强为 $2\times10^4$ Pa，一名学生的体重为 600 N，他与沼泽地的接触面积多大时，才不至于陷入沼泽地？</p>
+        <details><summary>提示</summary>$p=\dfrac{600}{S}$，令 $p=2\times10^4$．</details>
+        <details><summary>完整解答</summary>$S=\dfrac{600}{20\,000}=0.03$；$p$ 随 $S$ 增大而减小，所以接触面积不小于 0.03 m² 时才不至于陷入．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p140 习题 11.3 第 1–3 题。第 2 题第 (2) 问 3770 ÷ 78 = 48.33…，保留一位小数即可（课本未规定精度）。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>模型</h3>
+        <p class="def">“积一定”的两个量：路程一定（速度·时间）、工作量一定、体积一定（底面积·高）、压力一定（压强·面积）、杠杆（力·力臂）……</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="四步">① 找不变量，写 $y=\dfrac{k}{x}$（或用一组数据求 $k$）；② 代入边界值；③ 用增减性判断“至少 / 至多”；④ 回到实际作答（注意单位、取整）．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数学建模">现实问题 → 反比例函数 → 求解 → 解释现实．</p>
+        <p class="warn" data-label="别忘了">实际问题中 $x&gt;0$，只看第一象限的一支．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>数学活动（课本 p141）：</b>$y=\dfrac{1\,200}{x}$ 还可以表示哪些实际问题？（上学的速度与时间、捐款人数与人均捐款、圆柱的底面积与高……）调查生活中的反比例函数实例．</p>
+  </div>
+  <p class="note">第 11 章结束。课后作业：习题 11.3 第 1–3 题；完成数学活动“反比例函数实例调查”。下一章第 12 章二次根式。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

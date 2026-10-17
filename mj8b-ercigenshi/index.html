@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次根式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/xialuo.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第12章 二次根式 · 12.1</p>
+    <h1 class="cover-title">二次根式</h1>
+    <p class="cover-q" data-step="1">一个小球从静止状态自由下落，下落的高度 $h$（m）与时间 $t$（s）满足 $h=\dfrac12gt^2$（$g$ 取 10 m/s²）．</p>
+    <p class="cover-q" data-step="2">反过来，已知高度 $h$，下落时间 $t$ 怎样用 $h$ 表示？——开方开不尽，就要用到带<b>根号</b>的式子．</p>
+    <div class="chips" data-step="3"><span class="chip">$\sqrt{a}$ 有意义的条件</span><span class="chip">$(\sqrt a)^2=a$</span><span class="chip">$\sqrt{a^2}=|a|$</span><span class="chip">拖动 $a$ 看“先平方再开方”</span></div>
+  </div>
+  <p class="note">课本 p148“尝试”第 (4) 题。封面只提问，答案在第 3 页：t = √(h/5)。章首语：本章将探索二次根式的基本性质与运算法则。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八年级上册 · 4.1 平方根" data-step="1">
+        <p>正数 $a$ 的正的平方根叫做 $a$ 的<b>算术平方根</b>，记作 $\sqrt a$；0 的算术平方根是 0；<b>负数没有平方根</b>．</p>
+        <span class="use">说明 $\sqrt a$ 什么时候有意义、为什么 $\sqrt a\ge0$、$(\sqrt a)^2=a$．</span>
+      </div>
+      <div class="recall" data-label="七年级上册 · 绝对值" data-step="2">
+        <p>$a\ge0$ 时 $|a|=a$；$a&lt;0$ 时 $|a|=-a$．</p>
+        <span class="use">第 8 页：$\sqrt{a^2}$ 恰好就是 $|a|$．</span>
+      </div>
+      <div class="recall" data-label="八年级上册 · 3.1 勾股定理" data-step="3">
+        <p>直角三角形中 $a^2+b^2=c^2$．</p>
+        <span class="use">写出正方形对角线、直角三角形斜边的长．</span>
+      </div>
+      <div class="recall" data-label="七年级下册 · 一元一次不等式" data-step="4">
+        <p>解 $x-5\ge0$ 得 $x\ge5$；两边同除以负数，不等号方向改变．</p>
+        <span class="use">求“$x$ 取什么值时二次根式有意义”．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>把“算术平方根”从具体的数推广到<b>式子</b>：$\sqrt a$ 中的 $a$ 可以是数，也可以是含字母的式子．</p>
+  </div>
+  <p class="note">第一张卡请学生说出 √9、√0、√(−9) 各是多少；√(−9) 没有意义，这是本课“被开方数非负”的来源。</p>
+</section>
+
+<!-- 3 ================= 尝试 · 定义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 定义</span><h2>用带有根号的式子表示下列数量</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>(1) 边长为 1 的正方形的对角线的长</span><span class="think" data-step="2" data-ask="写一写">$\sqrt2$</span><i class="why">勾股定理：$1^2+1^2=2$</i></div>
+      <div class="dl" data-step="3"><span>(2) 面积为 $S$ 的圆的半径</span><span class="think" data-step="4" data-ask="写一写">$\sqrt{\dfrac{S}{\pi}}$</span><i class="why">$\pi r^2=S$，$r&gt;0$</i></div>
+      <div class="dl" data-step="5"><span>(3) 直角边分别为 $a$、$b$ 的直角三角形斜边的长</span><span class="think" data-step="6" data-ask="写一写">$\sqrt{a^2+b^2}$</span><i class="why">勾股定理</i></div>
+      <div class="dl" data-step="7"><span>(4) $h=\dfrac12gt^2$（$g=10$），用 $h$ 表示 $t$</span><span class="think" data-step="8" data-ask="写一写">$t=\sqrt{\dfrac{h}{5}}$</span><i class="why">$h=5t^2$，$t^2=\dfrac h5$，$t\ge0$</i></div>
+    </div>
+    <div class="def big-def" data-step="9"><h4>二次根式（课本 p148）</h4>一般地，式子 $\sqrt a$（$a\ge0$）叫做<em>二次根式</em>（quadratic radical），$a$ 叫做<em>被开方数</em>．</div>
+    <p class="tip" data-step="10">这四个式子的被开方数分别是什么？<span class="think" data-step="11" data-ask="说一说">$2$、$\dfrac{S}{\pi}$、$a^2+b^2$、$\dfrac h5$——可以是数，也可以是式子，但都<b>不是负数</b>．</span></p>
+  </div>
+  <p class="note">课本 p148“尝试”与定义。每个量都要说清楚为什么取正的那个平方根（长度、时间都是非负数）。</p>
+</section>
+
+<!-- 4 ================= 思考 · 有意义的条件（探测器） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>$\sqrt a$ 什么时候有意义？它可能是负数吗？</h2></div>
+  <div class="bd l55">
+    <div class="col">
+      <div class="btns" data-noswipe id="domBtns"></div>
+      <div class="slider-row" data-noswipe>$x=$<input type="range" id="domX" min="-6" max="8" step="0.5" value="2"><b class="v" id="domXV"></b></div>
+      <svg id="domLine" class="dom-line" viewBox="0 0 640 110" aria-label="数轴上有意义的范围"></svg>
+      <p class="tip feedback" id="domMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">当 $a&lt;0$ 时，$\sqrt a$ 有意义吗？为什么？<span class="think" data-step="2" data-ask="想一想">没有意义：负数没有平方根．</span></p>
+      <p class="tip" data-step="3">当 $a\ge0$ 时，$\sqrt a$ 可能为负数吗？为什么？<span class="think" data-step="4" data-ask="想一想">不可能：$\sqrt a$ 表示 $a$ 的<b>算术</b>平方根，是非负数．</span></p>
+      <p class="method" data-step="5" data-label="双重非负性">$\sqrt a$ 中：被开方数 $a\ge0$；结果 $\sqrt a\ge0$．</p>
+      <p class="tip gold" data-step="6">左边拖动 $x$：被开方数什么时候 $\ge0$？绿色部分就是使式子有意义的 $x$．</p>
+    </div>
+  </div>
+  <p class="note">课本 p148“思考”。左边是“有意义探测器”：选一个二次根式，拖动 x，实时算出被开方数的值；数轴上绿色部分是使被开方数 ≥ 0 的范围（由不等式解出，逐点验证）。√(x²+1) 永远有意义，√(−x²) 只在 x = 0 时有意义——两个特例留给第 5 页。</p>
+</section>
+
+<!-- 5 ================= 例 1 + 练习 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 练习</span><h2>要使式子有意义，$x$ 应是怎样的实数？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>例 1</b>　(1) $\sqrt{x-5}$；(2) $\sqrt{x^2+1}$．</p>
+      <p class="tip" data-step="1">(1) 要使 $\sqrt{x-5}$ 有意义，必须 <span class="think" data-step="2" data-ask="列不等式">$x-5\ge0$，即 $x\ge5$．</span></p>
+      <p class="tip" data-step="3">(2) 不论 $x$ 取何实数，<span class="think" data-step="4" data-ask="为什么？">总有 $x^2\ge0$，$x^2+1\ge1$，</span><span class="think" data-step="5" data-ask="结论">$\sqrt{x^2+1}$ 在实数范围内总有意义．</span></p>
+      <p class="method" data-step="6" data-label="方法">令被开方数 $\ge0$，解不等式．</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习 1</b>　填写 $x$ 的取值范围（如 x≥-5；分数写成 4/3）：</p>
+      <div class="qgrid">
+        <p>(1) $\sqrt{x+5}$：<span class="blank ineq" data-ans="x≥-5" data-w="6"></span></p>
+        <p>(2) $\sqrt{3x-4}$：<span class="blank ineq" data-ans="x≥4/3" data-w="6"></span></p>
+        <p>(3) $\sqrt{5x+1}$：<span class="blank ineq" data-ans="x≥-1/5" data-w="6"></span></p>
+        <p>(4) $\sqrt{1-10x}$：<span class="blank ineq" data-ans="x≤1/10|x≤0.1" data-w="6"></span></p>
+        <p>(5) $\sqrt{x^2}$：<span class="blank" data-ans="任意实数|全体实数|一切实数|所有实数|x为任意实数|x为全体实数" data-w="6"></span></p>
+        <p>(6) $\sqrt{-x^2}$：<span class="blank" data-ans="x=0" data-w="6"></span></p>
+      </div>
+      <div class="hint-ladder">
+        <details><summary>提示：第 (4)(6) 题</summary>(4) $1-10x\ge0$ ⇒ $-10x\ge-1$ ⇒ $x\le\dfrac1{10}$（除以负数，不等号变向）．(6) $-x^2\ge0$ ⇒ $x^2\le0$，而 $x^2\ge0$，只能 $x^2=0$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p148 例 1 与 p149 练习 1。填空可写 “x≥-5”“x>=-5” 等形式；第 (5) 题填“任意实数”，第 (6) 题填“x=0”。第 (4) 题是易错点：除以 −10 要改变不等号方向。</p>
+</section>
+
+<!-- 6 ================= 交流 (√a)²=a ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>$\sqrt2$ 的意义是什么？$(\sqrt2)^2$ 等于几？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip" data-step="1">$\sqrt2$ 是 2 的算术平方根——它是“平方后等于 2 的那个非负数”．所以 $(\sqrt2)^2=$ <span class="think" data-step="2" data-ask="?">$2$</span></p>
+        <p class="tip" data-step="3">类似地，$(\sqrt4)^2=4$，$(\sqrt5)^2=5$，$(\sqrt7)^2=7$……</p>
+        <div class="def big-def" data-step="4"><h4>课本 p149</h4>$\sqrt a$（$a\ge0$）是 $a$ 的算术平方根，根据算术平方根的意义，可知：<br><b>当 $a\ge0$ 时，$(\sqrt a)^2=a$．</b></div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 2</b>　计算：</p>
+        <div class="derive">
+          <div class="dl" data-step="5"><span>(1) $(\sqrt3)^2$</span><span class="think" data-step="6" data-ask="=">$=3$</span><i class="why">$(\sqrt a)^2=a$</i></div>
+          <div class="dl" data-step="5"><span>(2) $\left(\sqrt{\dfrac23}\right)^2$</span><span class="think" data-step="6" data-ask="=">$=\dfrac23$</span><i class="why">$a=\dfrac23\ge0$</i></div>
+          <div class="dl" data-step="5"><span>(3) $(\sqrt{a+b})^2$（$a+b\ge0$）</span><span class="think" data-step="6" data-ask="=">$=a+b$</span><i class="why">被开方数是式子也成立</i></div>
+        </div>
+        <p class="tip"><b>练习 2</b>　计算：</p>
+        <div class="qgrid">
+          <p>(1) $(\sqrt{13})^2=$ <span class="blank" data-ans="13" data-w="3"></span></p>
+          <p>(2) $\left(\sqrt{\dfrac37}\right)^2=$ <span class="blank" data-ans="3/7" data-w="3"></span></p>
+          <p>(3) $(\sqrt8)^2+(\sqrt2)^2=$ <span class="blank" data-ans="10" data-w="3"></span></p>
+          <p>(4) $(\sqrt{a^2+b^2})^2=$ <span class="blank" data-ans="a²+b²|a^2+b^2|b²+a²|b^2+a^2" data-w="5"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p148–149“交流”、例 2、练习 2。(4) 的被开方数 a² + b² 一定非负，所以不需要附加条件；填写时 a² 可以写成 a^2。</p>
+</section>
+
+<!-- 7 ================= 尝试 √(a²) ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试</span><h2>反过来：先平方，再开方，结果是什么？</h2></div>
+  <div class="bd full">
+    <p class="tip">填空：</p>
+    <div class="qgrid4">
+      <p>$\sqrt{2^2}=$ <span class="blank" data-ans="2" data-w="2"></span></p>
+      <p>$\sqrt{5^2}=$ <span class="blank" data-ans="5" data-w="2"></span></p>
+      <p>$\sqrt{10^2}=$ <span class="blank" data-ans="10" data-w="2"></span></p>
+      <p>$\sqrt{0^2}=$ <span class="blank" data-ans="0" data-w="2"></span></p>
+      <p>$\sqrt{(-2)^2}=$ <span class="blank" data-ans="2" data-w="2"></span></p>
+      <p>$\sqrt{(-5)^2}=$ <span class="blank" data-ans="5" data-w="2"></span></p>
+      <p>$\sqrt{(-10)^2}=$ <span class="blank" data-ans="10" data-w="2"></span></p>
+    </div>
+    <p class="warn" data-step="1" data-label="常见错误">$\sqrt{(-2)^2}=-2$？　<span class="think" data-step="2" data-ask="错在哪？">$(-2)^2=4$，$\sqrt4=2$．算术平方根不可能是负数！</span></p>
+    <p class="tip gold" data-step="3">你有什么发现？<span class="think" data-step="4" data-ask="说一说">底数是正数或 0，结果就是它本身；底数是负数，结果是它的<b>相反数</b>．</span></p>
+  </div>
+  <p class="note">课本 p149“尝试”。先让学生独立填空，再请填 √((−2)²) = −2 的同学说理由——这是本课最重要的易错点。下一页用“机器”把发现一般化。</p>
+</section>
+
+<!-- 8 ================= √(a²)=|a| 机器（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>“先平方、再开方”机器：$\sqrt{a^2}$ 等于什么？</h2></div>
+  <div class="bd l45">
+    <div class="col">
+      <div class="machine" id="machine"></div>
+      <div class="slider-row" data-noswipe>$a=$<input type="range" id="aIn" min="-5" max="5" step="0.5" value="-3"><b class="v" id="aV"></b></div>
+      <div id="absBoard" class="abs-board"></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback fb-ok" id="aMsg"></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>当 $a\ge0$ 时</span><span class="think" data-step="2" data-ask="=">$\sqrt{a^2}=a$</span><i class="why">$a$ 本身就是 $a^2$ 的算术平方根</i></div>
+        <div class="dl" data-step="3"><span>当 $a&lt;0$ 时</span><span class="think" data-step="4" data-ask="=">$\sqrt{a^2}=-a$</span><i class="why">$-a&gt;0$，且 $(-a)^2=a^2$</i></div>
+              </div>
+      <div class="def big-def" data-step="5"><h4>课本 p150</h4>根据绝对值的意义，$a\ge0$ 时 $|a|=a$，$a&lt;0$ 时 $|a|=-a$．由此可知，$\sqrt{a^2}=|a|$．</div>
+      <p class="tip" data-step="7">右下图：蓝线是 $y=\sqrt{x^2}$ 的图像，它和哪条直线在 $x&lt;0$ 时重合？<span class="think" data-step="8" data-ask="看图">和 $y=-x$ 重合（虚线）；$x\ge0$ 时和 $y=x$ 重合——就是 $y=|x|$ 的“V”形．</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心互动。拖动 a，机器依次显示 a → a² → √(a²)，与 |a| 对比；下方图像中橙色点 (a, √(a²)) 始终在 V 形折线上。a 为负数时请学生预测输出再松手。图像为补充直观，不要求掌握 y = |x| 的函数性质。</p>
+</section>
+
+<!-- 9 ================= 例 3 · 思考 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 思考</span><h2>用 $\sqrt{a^2}=|a|$ 计算；$(\sqrt a)^2$ 与 $\sqrt{a^2}$ 一样吗？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 3</b>　计算：</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>(1) $\sqrt{(-1.5)^2}$</span><span class="think" data-step="2" data-ask="=">$=|-1.5|=1.5$</span><i class="why">先写成绝对值</i></div>
+          <div class="dl" data-step="3"><span>(2) $\sqrt{(\pi-1)^2}$</span><span class="think" data-step="4" data-ask="=">$=|\pi-1|=\pi-1$</span><i class="why">$\pi&gt;1$，$\pi-1&gt;0$</i></div>
+          <div class="dl" data-step="5"><span>(3) $\sqrt{(x-1)^2}$（$x\le1$）</span><span class="think" data-step="6" data-ask="=">$=|x-1|=-(x-1)=1-x$</span><i class="why">$x\le1$ 时 $x-1\le0$</i></div>
+        </div>
+        <p class="method" data-step="7" data-label="两步走">$\sqrt{(\ \ )^2}$ → 先写成 $|\ \ |$ → 再判断括号里的正负去绝对值．</p>
+      </div>
+      <div class="col" data-step="8">
+        <p class="tip"><b>思考</b>　(1) $\sqrt a$ 与 $\sqrt{a^2}$ 中，$a$ 应是怎样的实数？(2) $(\sqrt a)^2$ 与 $\sqrt{a^2}$ 是否相等？</p>
+        <table class="mtab cmp" data-step="9">
+          <tr><th></th><th>$(\sqrt a)^2$</th><th>$\sqrt{a^2}$</th></tr>
+          <tr><th>运算顺序</th><td>先开方，再平方</td><td>先平方，再开方</td></tr>
+          <tr><th>$a$ 的取值</th><td>$a\ge0$</td><td>任意实数</td></tr>
+          <tr><th>结果</th><td>$a$</td><td>$|a|$</td></tr>
+        </table>
+        <p class="tip gold" data-step="10">什么时候相等？<span class="think" data-step="11" data-ask="想一想">只有 $a\ge0$ 时，两者都等于 $a$．如 $a=-3$：$\sqrt{(-3)^2}=3$，而 $(\sqrt{-3})^2$ 没有意义．</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p150 例 3 与“思考”。表格是对思考题的整理（不是课本原文）。第 (3) 题强调“由条件定符号”。</p>
+</section>
+
+<!-- 10 ================= 练习 p150 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>判一判，算一算</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="q"><b>1.</b> 下列各式是否成立？</p>
+        <div class="jgrid"><div class="jcard"><p>(1) $\sqrt{\left(\dfrac12\right)^2}=\dfrac12$</p><div class="pick" data-ans="y"><button type="button" data-k="y">成立</button><button type="button" data-k="n">不成立</button><p class="pick-why">$\dfrac12&gt;0$，$\sqrt{a^2}=a$．</p></div></div>
+        <div class="jcard"><p>(2) $\sqrt{\left(-\dfrac12\right)^2}=-\dfrac12$</p><div class="pick" data-ans="n"><button type="button" data-k="y">成立</button><button type="button" data-k="n">不成立</button><p class="pick-why">应等于 $\left|-\dfrac12\right|=\dfrac12$，算术平方根不能是负数．</p></div></div>
+        <div class="jcard"><p>(3) $\sqrt{(3+4)^2}=3+4$</p><div class="pick" data-ans="y"><button type="button" data-k="y">成立</button><button type="button" data-k="n">不成立</button><p class="pick-why">$\sqrt{7^2}=7=3+4$．</p></div></div>
+        <div class="jcard"><p>(4) $\sqrt{3^2+4^2}=3+4$</p><div class="pick" data-ans="n"><button type="button" data-k="y">成立</button><button type="button" data-k="n">不成立</button><p class="pick-why">$\sqrt{9+16}=\sqrt{25}=5\ne7$．“和的平方根”不等于“平方根的和”！</p></div></div></div>
+      </div>
+      <div class="col">
+        <p class="q"><b>2.</b> 计算：</p>
+        <div class="qgrid">
+          <p>(1) $\sqrt{6^2}=$ <span class="blank" data-ans="6" data-w="3"></span></p>
+          <p>(2) $\sqrt{(-5)^2}=$ <span class="blank" data-ans="5" data-w="3"></span></p>
+          <p>(3) $\sqrt{(a+1)^2}$（$a\ge-1$）$=$ <span class="blank" data-ans="a+1|1+a" data-w="4"></span></p>
+          <p>(4) $\sqrt{(x-2)^2}$（$x\le2$）$=$ <span class="blank" data-ans="2-x|-x+2" data-w="4"></span></p>
+        </div>
+        <div class="hint-ladder">
+          <details><summary>提示：第 (3)(4) 题</summary>(3) $a\ge-1$ ⇒ $a+1\ge0$，$|a+1|=a+1$；(4) $x\le2$ ⇒ $x-2\le0$，$|x-2|=-(x-2)=2-x$．</details>
+        </div>
+        <p class="warn" data-step="1" data-label="第 1(4) 题的教训">$\sqrt{3^2+4^2}=5$，正好是勾股数：直角边 3、4 的斜边是 5，不是 7．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p150 练习 1、2。第 1(4) 题联系勾股定理：两直角边之和 ≠ 斜边。点错的按钮变红，可以再选。</p>
+</section>
+
+<!-- 11 ================= 习题 5 找错 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">找错</span><h2>$\frac12=-\frac12$？哪一步错了？</h2></div>
+  <div class="bd l55">
+    <div class="col">
+    <p class="tip">指出下列运算过程中的错误（习题 12.1 第 5 题）．点击你认为错的那一步：</p>
+    <div class="steps" id="bugSteps" data-noswipe>
+      <button type="button" data-k="1">① $\left(\dfrac12\right)^2=\left(-\dfrac12\right)^2$，可以写成 $\left(\dfrac52-2\right)^2=\left(2-\dfrac52\right)^2$</button>
+      <button type="button" data-k="2">② 两边开平方，得 $\sqrt{\left(\dfrac52-2\right)^2}=\sqrt{\left(2-\dfrac52\right)^2}$</button>
+      <button type="button" data-k="3">③ 所以 $\dfrac52-2=2-\dfrac52$，即 $\dfrac12=-\dfrac12$</button>
+    </div>
+    <p class="tip feedback" id="bugMsg"></p>
+    </div>
+    <div class="col">
+    <p class="method" data-step="1" data-label="正确的写法"><span class="think" data-step="2" data-ask="怎样改？">$\sqrt{\left(\dfrac52-2\right)^2}=\left|\dfrac52-2\right|=\dfrac12$，$\sqrt{\left(2-\dfrac52\right)^2}=\left|2-\dfrac52\right|=\dfrac12$，两边都是 $\dfrac12$，没有矛盾．</span></p>
+    <div class="hint-ladder">
+      <p class="q"><b>习题 4</b>　要使下列各式成立，$a$ 应取什么值？(1) $\sqrt{a^2}=(\sqrt a)^2$；(2) $\sqrt{a^2}=-a$．</p>
+      <details><summary>提示</summary>左边都是 $|a|$；右边 $(\sqrt a)^2$ 要求 $a\ge0$．</details>
+      <details><summary>完整解答</summary>(1) $a\ge0$；(2) $|a|=-a$，$a\le0$．</details>
+    </div>
+  </div>
+  </div>
+  <p class="note">课本 p151 习题 12.1 第 5、4 题。先让学生投票哪一步错了：① 对（两个数的平方确实相等），② 也对（相等的非负数的算术平方根相等），③ 错——√((2 − 5/2)²) = |2 − 5/2|，不等于 2 − 5/2。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一步</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">式子 $\sqrt a$（$a\ge0$）叫做二次根式；$\sqrt a\ge0$．</p>
+        <p class="recall" data-label="两个性质">$(\sqrt a)^2=a$（$a\ge0$）；<br>$\sqrt{a^2}=|a|$（$a$ 为任意实数）．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="有意义">令被开方数 $\ge0$，解不等式．</p>
+        <p class="method" data-label="化简 √(a²)">先写成 $|a|$，再由条件判断 $a$ 的正负．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>易错</h3>
+        <p class="warn" data-label="别忘了">$\sqrt{(-5)^2}=5$，不是 $-5$；$\sqrt{3^2+4^2}\ne3+4$．</p>
+        <p class="recall" data-label="思想">分类讨论（$a\ge0$、$a&lt;0$）．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>12.2 二次根式的乘除——章首的问题：面积为 8 cm² 的正方形分成 4 个面积为 2 cm² 的小正方形，可以得到 $\sqrt8=2\sqrt2$．为什么？</p>
+  </div>
+  <p class="note">课后作业建议：习题 12.1 第 1–5 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

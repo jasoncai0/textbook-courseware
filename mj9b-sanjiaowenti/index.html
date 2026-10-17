@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用锐角三角函数解决问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/motianlun.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第7章 锐角三角函数 · 7.6</p>
+    <h1 class="cover-title">用锐角三角函数解决问题</h1>
+    <p class="cover-q" data-step="1">堤坝的坡有多陡？摩天轮转了 2 分钟，人离地多高？气球飘在多高的空中？海轮会不会触礁？</p>
+    <p class="cover-q" data-step="2">在实际问题中找出（或<b>构造</b>出）一个直角三角形，就能用锐角三角函数来解决。</p>
+    <div class="chips" data-step="3"><span class="chip">坡度 · 坡角</span><span class="chip">摩天轮</span><span class="chip">仰角 · 俯角</span><span class="chip">方向角 · 暗礁</span></div>
+  </div>
+  <p class="note">课本 p113 引言。本课内容多（三个问题 + 一个思考与探索 + 多组练习），建议分两课时：第 1 课时第 2–10 页（坡度、摩天轮），第 2 课时第 11–16 页（仰角俯角、方向角、习题）。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="九下 7.5 解直角三角形" data-step="1">
+        <p>已知 2 个元素（至少 1 条边）就能解直角三角形；斜三角形作高，“化斜为直”。</p>
+        <span class="use">每个实际问题最后都化成解直角三角形。</span>
+        <p class="link"><a href="../mj9b-jiezhijiao/index.html">回看 7.5 →</a></p>
+      </div>
+      <div class="recall" data-label="九下 7.4 由三角函数值求锐角" data-step="2">
+        <p>$\tan\beta=\dfrac56\Rightarrow\beta\approx39.8^\circ$（<span class="key">2ndF</span>）。</p>
+        <span class="use">由坡度求坡角；摩天轮“何时到达某高度”。</span>
+        <p class="link"><a href="../mj9b-qiuruijiao/index.html">回看 7.4 →</a></p>
+      </div>
+      <div class="recall" data-label="九下 6.7 用相似三角形解决问题" data-step="3">
+        <p>本章章首：同一时刻量影长，用相似三角形测旗杆高度。</p>
+        <span class="use">今天换一种工具：用测角仪量角，再用三角函数计算。</span>
+      </div>
+      <div class="recall" data-label="七年级 · 方向角" data-step="4">
+        <p>“南偏西 $55^\circ$”：从正南方向起，向西转 $55^\circ$。</p>
+        <span class="use">第 13 页海轮与暗礁。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第三张卡呼应本章章首（课本 p95）的“测量旗杆高度”：相似三角形要量影长，三角函数只要量一个角和一段距离——这就是三角函数在测量中的优势。</p>
+</section>
+
+<!-- 3 ================= 坡度与坡角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>坡度与坡角：怎样描述一个坡有多陡？</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="slope" class="slopeb"></div>
+      <div class="slider-row" data-noswipe>坡度 $i=1:m$，$m=$<input type="range" id="mS" min="0.4" max="4" step="0.1" value="1.2"><b class="v" id="mV"></b></div>
+      <p class="tip feedback" id="slopeMsg"></p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="1"><h4>坡角</h4>坡面与水平面的夹角叫做<em>坡角</em>，如 $\alpha$、$\beta$．</div>
+      <div class="def" data-step="2"><h4>坡度</h4>坡面的铅直高度 $h$ 与水平宽度 $l$ 的比叫做<em>坡度</em>（坡比），记作 $i$：$i=\dfrac hl=\tan\alpha$．坡度通常写成 $1:m$ 的形式，如 $i=1:1.2$．</div>
+      <p class="method" data-step="3" data-label="坡度越大，坡越陡"><span class="think" data-step="4" data-ask="为什么？">$i=\tan\alpha$，锐角越大，正切越大（7.1）。拖滑块：$m$ 越小，坡度越大，坡角越大。</span></p>
+      <p class="warn" data-step="5" data-label="别混淆">坡度是<b>比值</b>（铅直 : 水平），坡角是<b>角</b>；坡度不是“坡面长 : 高”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p113 问题 1 用到“坡角 α”“坡度 i（即 tan β）”。左图按坡度精确绘制：拖动 m，读数给出坡角（由 tan α = 1/m 求得）。可让学生拖到 m = 1.2（背水坡）看坡角约 39.8°，拖到 1 看坡角恰为 45°。</p>
+</section>
+
+<!-- 4 ================= 问题 1：分析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1</span><h2>水坝的横截面：作两条高，化成两个直角三角形</h2></div>
+  <div class="bd full">
+    <p class="tip">如图 7-19，水坝的横截面是梯形 $ABCD$，迎水坡 $BC$ 的坡角 $\alpha$ 为 $30^\circ$，背水坡 $AD$ 的坡度 $i$（即 $\tan\beta$）为 $1:1.2$，坝顶 $DC=2.5$ m，坝高 4.5 m．求：(1) 背水坡 $AD$ 的坡角 $\beta$（精确到 $0.1^\circ$）；(2) 坝底 $AB$ 的长（精确到 0.1 m）．</p>
+    <div id="dam" class="dam"></div>
+    <div class="btns" data-noswipe id="damBtns">
+      <button class="btn solid" type="button" data-m="0">原图</button>
+      <button class="btn" type="button" data-m="1">作高 $CE$、$DF$</button>
+      <button class="btn" type="button" data-m="2">标出各段长度</button>
+    </div>
+    <p class="tip" data-step="1"><b>分析：</b>作梯形 $ABCD$ 的高 $CE$、$DF$．根据题意，在 $\text{Rt}\triangle AFD$ 和 $\text{Rt}\triangle BEC$ 中，可以分别求出 <span class="think" data-step="2" data-ask="求什么？">$AF$ 与 $BE$ 的长，又 $FE=DC$，从而可求得坝底 $AB=AF+FE+EB$。</span></p>
+  </div>
+  <p class="note">课本 p113 问题 1 与图 7-19。水坝按题中数据精确绘制（坝高 4.5、坝顶 2.5、α = 30°、i = 1 : 1.2），点按钮逐步作高、标长度。让学生先说：梯形为什么要作两条高？（得到两个直角三角形和一个矩形，DCEF 是矩形所以 FE = DC）。</p>
+</section>
+
+<!-- 5 ================= 问题 1：解 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1 · 解</span><h2>先求坡角，再求坝底</h2></div>
+  <div class="bd full">
+    <div class="cols2 eq">
+      <div class="col"><div class="derive wrap small-d">
+        <div class="dl" data-step="1"><span>解：</span><span>作 $CE\perp AB$，$DF\perp AB$，垂足分别为 $E$、$F$．</span><i class="why">构造直角三角形</i></div>
+        <div class="dl" data-step="2"><span>(1)</span><span>背水坡 $AD$ 的坡度 $i=\tan\beta=1:1.2=\dfrac56$．</span><i class="why">坡度的意义</i></div>
+        <div class="dl key" data-step="3"><span></span><span class="think" data-step="4" data-ask="β ≈ ？">用计算器计算，得 $\beta\approx39.8^\circ$．</span><i class="why">由正切值求锐角</i></div>
+        <div class="dl" data-step="5"><span>(2)</span><span>在 $\text{Rt}\triangle BEC$ 中，$\alpha=30^\circ$，$\angle BCE=90^\circ-30^\circ=60^\circ$，</span><i class="why">两锐角互余</i></div>
+        <div class="dl" data-step="6"><span></span><span>$EB=CE\cdot\tan\angle BCE=4.5\times\tan60^\circ$．</span><i class="why">$EB$ 是 $\angle BCE$ 的对边</i></div>
+      </div></div>
+      <div class="col"><div class="derive wrap small-d">
+        <div class="dl" data-step="7"><span></span><span>在 $\text{Rt}\triangle AFD$ 中，∵ $\dfrac{DF}{AF}=1:1.2$，</span><i class="why">坡度</i></div>
+        <div class="dl" data-step="8"><span>∴</span><span>$AF=1.2DF=1.2\times4.5=5.4$．</span><i class="why"></i></div>
+        <div class="dl" data-step="9"><span>又</span><span>$FE=DC=2.5$，</span><i class="why">矩形对边相等</i></div>
+        <div class="dl end" data-step="10"><span>∴</span><span class="think" data-step="11" data-ask="AB ≈ ？">$AB=AF+FE+EB=5.4+2.5+4.5\times\tan60^\circ\approx15.7$．</span><i class="why"></i></div>
+        </div>
+        <p class="tip" data-step="12"><b>答：</b>背水坡 $AD$ 的坡角 $\beta$ 约为 $39.8^\circ$，坝底 $AB$ 的长约为 15.7 m．</p>
+      </div>
+    </div>
+    <p class="method" data-step="13" data-label="解实际问题的步骤">① 画出示意图，把实际问题转化为数学问题；② 找（或作高构造）直角三角形；③ 选关系式计算；④ 按要求取近似值，写出答。</p>
+  </div>
+  <p class="note">课本 p113 解答。EB 也可以用 tan α = CE / EB 求：EB = 4.5 / tan 30°，结果相同；课本用 tan 60° 是为了“用乘法”。第 (2) 问最后才取近似值，中间不要四舍五入。</p>
+</section>
+
+<!-- 6 ================= 拓展与延伸：土方 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">拓展与延伸</span><h2>加固堤坝，要多少土方？</h2></div>
+  <div class="bd w55">
+    <div class="col">
+      <div id="dam2" class="dam2"></div>
+      <div class="btns" data-noswipe id="d2Btns">
+        <button class="btn solid" type="button" data-m="0">加固前</button>
+        <button class="btn" type="button" data-m="1">加固后（叠在一起）</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">在问题 1 中，为了提高堤坝的防洪抗洪能力，防汛指挥部决定加固堤坝，要求坝顶 $DC$ 加宽 0.5 m，背水坡 $AD$ 的坡度改为 $1:1.4$．已知堤坝的总长度为 5 km，求该项工程所需的土方（精确到 $0.1\ \text{m}^3$）．</p>
+      <div class="hint-ladder">
+        <details><summary>提示 1</summary>土方 $=$ 增加的横截面积 $\times$ 堤坝长度。增加的部分（橙色）是一个梯形 $AA'D'D$。</details>
+        <details><summary>提示 2</summary>新坡脚：$A'F'=1.4\times4.5=6.3$；增加部分的上底 $DD'=0.5$，下底 $A'A=0.5+6.3-5.4=1.4$，高 4.5。</details>
+        <details><summary>完整解答</summary>增加的横截面积 $=\dfrac12\times(0.5+1.4)\times4.5=4.275\ (\text{m}^2)$，<br>所需土方 $=4.275\times5000=21375.0\ (\text{m}^3)$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p114“拓展与延伸”。左图按数据精确绘制：加固后 D 向左平移 0.5 m 到 D′，新背水坡坡度 1 : 1.4，坡脚 A′ 在 A 左侧 1.4 m 处；橙色区域就是要填的土。注意单位换算 5 km = 5000 m。</p>
+</section>
+
+<!-- 7 ================= 练习：坡度 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>坡度的应用</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 已知一段公路的坡度为 $1:26$，求沿着这条公路每前进 100 m 所上升的高度（精确到 0.1 m）．</p>
+        <div id="road" class="gfig"></div>
+        <p class="fillrow">上升高度 $\approx$ <span class="blank" data-ans="3.8" data-w="4"></span> m</p>
+        <details><summary>提示 1</summary>“沿着公路前进 100 m”是<b>坡面</b>长（斜边），不是水平宽度。</details>
+        <details><summary>提示 2</summary>$\tan\alpha=\dfrac1{26}$，先求出 $\alpha$，再用 $h=100\sin\alpha$；或设 $h=k$，水平 $26k$，用勾股定理。</details>
+        <details><summary>完整解答</summary>设上升 $k$ m，则水平 $26k$ m，$k^2+(26k)^2=100^2$，$k=\dfrac{100}{\sqrt{677}}\approx3.8$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在坡道两旁种树，要求株距（相邻两树间的水平距离）为 6 m，测得坡道的坡度为 $1:3.5$．求相邻两树间的坡道距离（精确到 0.1 m）．</p>
+        <div id="trees" class="gfig"></div>
+        <p class="fillrow">坡道距离 $\approx$ <span class="blank" data-ans="6.2" data-w="4"></span> m</p>
+        <details><summary>提示</summary>这次 6 m 是<b>水平</b>距离：铅直高度 $=\dfrac6{3.5}$。</details>
+        <details><summary>完整解答</summary>铅直高度 $=\dfrac6{3.5}=\dfrac{12}7$，坡道距离 $=\sqrt{6^2+\left(\dfrac{12}7\right)^2}\approx6.2$（m）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p114 练习。两题的对比是重点：第 1 题已知的是坡面长，第 2 题已知的是水平距离——先在示意图上标清楚，再选关系式。图按坡度精确绘制（第 1 题坡很缓，1 : 26 看起来几乎是平的）。</p>
+</section>
+
+<!-- 8 ================= 问题 2：摩天轮（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2 · 核心</span><h2>摩天轮转动时，小明离地面多高？</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="wheel" class="wheel"></div>
+      <div class="slider-row" data-noswipe>时间 $t=$<input type="range" id="tS" min="0" max="12" step="0.05" value="2"><b class="v" id="tV"></b> min</div>
+    </div>
+    <div class="col">
+      <p class="tip">游乐场的大型摩天轮的半径为 20 m，旋转 1 周需要 12 min．小明从摩天轮的底部（与地面相距 0.3 m）出发开始观光，2 min 后小明离地面多高？</p>
+      <div class="readout r4"><span>转过 $\angle BOA$</span><b class="v" id="wAng"></b><span>离地高度</span><b class="v" id="wH"></b></div>
+      <p class="tip" data-step="1"><b>分析：</b>如图 7-20，用 $\odot O$ 表示摩天轮，小明从底部点 $A$ 出发，经过 2 min 后到达点 $B$，<span class="think" data-step="2" data-ask="∠BOA = ？">由题意可求 $\angle BOA=360^\circ\div6=60^\circ$（2 min 是 1 周的 $\frac16$）。</span>如果作 $BC\perp OA$，垂足为 $C$，在 $\text{Rt}\triangle OCB$ 中，可以根据 $OB$ 及 $\angle BOA$ 求得 $OC$，那么就可知道此时小明离地面的高度。</p>
+    </div>
+  </div>
+  <p class="note">课本 p114 问题 2 与图 7-20。拖动时间滑块，B 在圆上精确转动（每分钟 30°），右侧读数给出离地高度 = 0.3 + 20 − 20·cos∠BOA（转过 90° 以后 C 跑到 O 的上方，作为拓展让学生观察：此时高度 = 0.3 + 20 + 20·cos(180° − ∠BOA)）。先拖到 t = 2 看答案 10.3 m，再看下一页的计算。</p>
+</section>
+
+<!-- 9 ================= 问题 2：解 + 拓展 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2 · 解</span><h2>算出来，再反过来问</h2></div>
+  <div class="bd full">
+    <div class="cols2 eq">
+      <div class="col">
+        <div class="derive wrap small-d">
+          <div class="dl" data-step="1"><span>解：</span><span>由题意知，$OB=20$，$\angle BOA=360^\circ\div6=60^\circ$．</span><i class="why">2 min 转 $\frac16$ 周</i></div>
+          <div class="dl" data-step="2"><span></span><span>作 $BC\perp OA$，垂足为 $C$．在 $\text{Rt}\triangle OCB$ 中，</span><i class="why">构造直角三角形</i></div>
+          <div class="dl" data-step="3"><span></span><span class="think" data-step="4" data-ask="OC = ？">$OC=OB\cdot\cos\angle BOC=20\times\cos60^\circ=10$，</span><i class="why">$OC$ 是邻边</i></div>
+          <div class="dl" data-step="5"><span></span><span>$AC=AO-CO=20-10=10$．</span><i class="why"></i></div>
+          <div class="dl end" data-step="6"><span></span><span>小明离地面的高度为 $10+0.3=10.3$（m）．</span><i class="why">加上底部离地 0.3 m</i></div>
+        </div>
+        <p class="tip" data-step="7"><b>答：</b>2 min 后小明离地面 10.3 m．</p>
+      </div>
+      <div class="col">
+        <div class="hint-ladder" data-step="8">
+          <p class="q"><b>拓展 1</b>　摩天轮转动多长时间后，小明离地面的高度将首次达到 15.3 m？</p>
+          <details><summary>提示</summary>$AC=15.3-0.3=15$，$OC=20-15=5$，$\cos\angle BOA=\dfrac5{20}=\dfrac14$。</details>
+          <details><summary>完整解答</summary>$\angle BOA\approx75.52^\circ$，时间 $\approx\dfrac{75.52}{30}\approx2.5$（min）．</details>
+        </div>
+        <div class="hint-ladder" data-step="8">
+          <p class="q"><b>拓展 2</b>　摩天轮转动 1 周，小明在离地面 30.3 m 以上的空中有多长时间？</p>
+          <details><summary>提示</summary>30.3 m 比圆心高 $30.3-20.3=10$ m；在 $\text{Rt}\triangle$ 中 $\cos\angle=\dfrac{10}{20}=\dfrac12$，所以离开最高点左右各 $60^\circ$ 都在 30.3 m 以上。</details>
+          <details><summary>完整解答</summary>共 $120^\circ$，即 $\dfrac{120}{360}\times12=4$（min）．</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p115 解答与“拓展与延伸”。拓展 1 正好用到 7.4 例 1 的 cos A = 1/4 ≈ 75.52°。两道拓展都可以回到上一页拖时间验证：t ≈ 2.5 min 时高度约 15.3 m；t 在 4–8 min 之间高度超过 30.3 m。</p>
+</section>
+
+<!-- 10 ================= 练习：钟摆、跷跷板 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>摆动与倾斜</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 如图，钟摆的摆长 $AB$ 为 90 cm，当它摆动到 $AB'$ 的位置时，$\angle BAB'=11^\circ$，这时摆球 $B'$ 相对于最低点 $B$ 升高了多少（精确到 1 cm）？</p>
+        <div id="pend" class="gfig"></div>
+        <p class="fillrow">升高约 <span class="blank" data-ans="2" data-w="2"></span> cm</p>
+        <details><summary>提示</summary>过 $B'$ 作 $AB$ 的垂线，垂足为 $C$：$AC=90\cos11^\circ$，升高 $=90-AC$。</details>
+        <details><summary>完整解答</summary>$90-90\cos11^\circ\approx90-88.35=1.65\approx2$（cm）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 已知跷跷板长为 4 m，当跷跷板的一端碰到地面时，另一端离地面 1.5 m．求此时跷跷板与地面的夹角（精确到 $0.1^\circ$）．</p>
+        <div id="seesaw" class="gfig"></div>
+        <p class="fillrow">夹角 $\approx$ <span class="blank" data-ans="22.0|22" data-w="4"></span>°</p>
+        <details><summary>提示</summary>跷跷板是斜边 4 m，离地 1.5 m 是对边：$\sin\theta=\dfrac{1.5}4$。</details>
+        <details><summary>完整解答</summary>$\sin\theta=0.375$，$\theta\approx22.0^\circ$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p115 练习。钟摆图按 11° 精确绘制——升高只有 1.65 cm，图上几乎看不出来，正说明需要计算。</p>
+</section>
+
+<!-- 11 ================= 仰角俯角 + 问题 3（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3 · 核心</span><h2>仰角、俯角：用测角仪测气球的高度</h2></div>
+  <div class="bd w55">
+    <div class="col">
+      <div id="balloon" class="balloon"></div>
+      <div class="slider-row" data-noswipe>小明的位置（距 $A$）$=$<input type="range" id="pS" min="0" max="70" step="0.5" value="0"><b class="v" id="pV"></b> m</div>
+      <p class="tip feedback" id="bMsg"></p>
+    </div>
+    <div class="col">
+      <p class="def" data-step="1"><b>仰角：</b>从低处观测高处的目标时，视线与水平线所成的锐角．<br><b>俯角：</b>从高处观测低处的目标时，视线与水平线所成的锐角．</p>
+      <p class="tip" data-step="2">小明在某处利用测角仪观测气球的仰角为 $27^\circ$，然后他沿正对气球方向前进了 50 m，此时观测气球的仰角为 $40^\circ$．如果测角仪高度为 1 m，那么气球的高度是多少？（精确到 0.1 m）</p>
+      <p class="method" data-step="3" data-label="想一想">走近气球，仰角变<span class="think" data-step="4" data-ask="大还是小？"><b>大</b>——拖滑块看看。只知道一个仰角、却不知道离气球多远，求不出高度；两次观测 + 走过的 50 m，就够了。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p115 问题 3 与仰角、俯角的定义。左图按题中数据精确绘制（气球高约 65.9 m，仪器高 1 m）：拖动小明，测角仪上的仰角实时变化，在距 A 0 m 处为 27°、50 m 处为 40°（两个位置有标记）。强调：仰角、俯角都是视线与<b>水平线</b>的夹角，不是与铅垂线的夹角。</p>
+</section>
+
+<!-- 12 ================= 问题 3：解 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3 · 解</span><h2>设未知数，列方程：两个直角三角形共用 $CD$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fig721" class="gfig l"></div>
+      <p class="tip" data-step="1"><b>分析：</b>$CD$ 表示气球与观测时水平视线的距离．要计算 $CD$，可分别在 $\text{Rt}\triangle ACD$ 及 $\text{Rt}\triangle BCD$ 中，<span class="think" data-step="2" data-ask="怎么办？">寻求 $CD$ 与已知量的关系式，再计算 $CD$。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="3"><span>解：</span><span>由题意知，$\angle CAD=27^\circ$，$\angle CBD=40^\circ$，<br>$CD\perp AD$，$AB=50$ m，设 $CD=x$ m．</span><i class="why">设元</i></div>
+        <div class="dl" data-step="4"><span></span><span>在 $\text{Rt}\triangle BDC$ 中，由 $\tan40^\circ=\dfrac{CD}{BD}$，得 $BD=\dfrac x{\tan40^\circ}$．</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span></span><span>在 $\text{Rt}\triangle ADC$ 中，由 $\tan27^\circ=\dfrac{CD}{AD}$，得 $AD=\dfrac x{\tan27^\circ}$．</span><i class="why"></i></div>
+        <div class="dl key" data-step="6"><span>∵</span><span>$AD-BD=50$，<br>∴ <span class="think" data-step="7" data-ask="列方程">$\dfrac x{\tan27^\circ}-\dfrac x{\tan40^\circ}=50$．</span></span><i class="why">方程思想</i></div>
+        <div class="dl" data-step="8"><span>∴</span><span>$x=\dfrac{50\cdot\tan27^\circ\cdot\tan40^\circ}{\tan40^\circ-\tan27^\circ}$．</span><i class="why">解方程</i></div>
+        <div class="dl end" data-step="9"><span></span><span>用计算器计算，得 $x\approx64.9$．气球的高度约为 $64.9+1=65.9$（m）．</span><i class="why">加上测角仪高</i></div>
+      </div>
+      <p class="tip" data-step="10"><b>答：</b>气球的高度约为 65.9 m．</p>
+    </div>
+  </div>
+  <p class="note">课本 p115–116 解答与图 7-21（图按数据精确绘制）。这是本章第一次“设未知数列方程”：两个直角三角形都不能单独解，但它们共用 CD，且 AD − BD = AB——用方程把它们连起来。最后别忘了加上测角仪高度 1 m。</p>
+</section>
+
+<!-- 13 ================= 思考与探索：暗礁 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>海轮继续向东行驶，会有触礁的危险吗？</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="reef" class="reef"></div>
+      <div class="btns" data-noswipe id="reefBtns">
+        <button class="btn" type="button" id="reefCirc">显示 10 km 暗礁区</button>
+        <button class="btn" type="button" id="reefPerp">作 $OH\perp$ 航线</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">大海中某小岛周围的 10 km 范围内有暗礁．一海轮在该岛的南偏西 $55^\circ$ 方向的某处，由西向东行驶了 20 km 后到达该岛的南偏西 $25^\circ$ 方向的另一处．如果该海轮继续向东行驶，会有触礁的危险吗？</p>
+      <div class="hint-ladder">
+        <details><summary>提示 1</summary>关键是小岛 $O$ 到航线的距离 $OH$：大于 10 km 就安全。</details>
+        <details><summary>提示 2</summary>设 $OH=x$，则 $PH=x\tan55^\circ$，$QH=x\tan25^\circ$，$PH-QH=20$。</details>
+        <details><summary>完整解答</summary>$x(\tan55^\circ-\tan25^\circ)=20$，$x=\dfrac{20}{\tan55^\circ-\tan25^\circ}\approx20.8\gt10$，所以继续向东行驶<b>没有</b>触礁的危险．</details>
+      </div>
+      <p class="method" data-step="1" data-label="与问题 3 同一模型">两个直角三角形共用一条直角边（$OH$），另一条直角边相差一段已知长度——“设元列方程”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p116“思考与探索”。左图按数据精确绘制：P 在小岛南偏西 55°，Q 在南偏西 25°，PQ = 20 km 向东。先让学生自己画示意图、标方向角，再点按钮对照。注意方向角是从<b>正南</b>量起的，所以 ∠POH = 55°、∠QOH = 25°。</p>
+</section>
+
+<!-- 14 ================= 练习：俯角、倾斜角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>俯角与倾斜角</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 飞机沿水平直线飞行时，观测正前方停泊在海面上某船只的俯角为 $15^\circ$，面向船只方向继续飞行 10 km 后观测该船只的俯角为 $52^\circ$．求飞机飞行的高度（精确到 1 m）．</p>
+        <div id="plane" class="gfig"></div>
+        <details><summary>提示 1</summary>俯角是视线与<b>水平飞行线</b>的夹角；设高度为 $x$ km，两次观测时到船的水平距离分别为 $\dfrac x{\tan15^\circ}$、$\dfrac x{\tan52^\circ}$。</details>
+        <details><summary>提示 2</summary>$\dfrac x{\tan15^\circ}-\dfrac x{\tan52^\circ}=10$。</details>
+        <details><summary>完整解答</summary>$x=\dfrac{10}{\frac1{\tan15^\circ}-\frac1{\tan52^\circ}}\approx3.389$（km），即飞机飞行高度约为 3389 m．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，长 4 m 的楼梯 $AB$ 的倾斜角 $\angle ABD$ 为 $65^\circ$，为了改善楼梯的安全性能，准备重新建造楼梯，使其倾斜角 $\angle ACD$ 为 $40^\circ$．求调整后的楼梯 $AC$ 的长（精确到 0.1 m）．</p>
+        <div id="stair" class="gfig"></div>
+        <p class="fillrow">$AC\approx$ <span class="blank" data-ans="5.6" data-w="4"></span> m</p>
+        <details><summary>提示</summary>先在 $\text{Rt}\triangle ABD$ 中求公共边 $AD=4\sin65^\circ$。</details>
+        <details><summary>完整解答</summary>$AD=4\sin65^\circ$，$AC=\dfrac{AD}{\sin40^\circ}=\dfrac{4\sin65^\circ}{\sin40^\circ}\approx5.6$（m）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p116 练习。第 1 题与问题 3 同一模型，只是“仰角”换成“俯角”（由平行线内错角相等，俯角等于船处的仰角）；图按 15°、52°、10 km 精确绘制。第 2 题先求公共边 AD 再求 AC，是“由角求边”两次。</p>
+</section>
+
+<!-- 15 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.6</span><h2>挑战：先画示意图，再找直角三角形</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>1.</b> 屋子横截面由等腰三角形 $ABE$ 与矩形 $BCDE$ 组成，$CD=8$ m，$DE=5$ m，$\angle AEB=24^\circ$．求屋顶相对于地面的高度（精确到 0.1 m）．</p>
+          <details><summary>提示</summary>作 $AH\perp BE$：$EH=4$，$AH=4\tan24^\circ$。</details>
+          <details><summary>完整解答</summary>$5+4\tan24^\circ\approx6.8$（m）．</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>2.</b> 沿坡角 $10^\circ$ 的坡道走 120 m 到 $B$，再沿坡角 $15^\circ$ 的坡道走 160 m 到 $C$．沿垂直方向升高了多少（精确到 0.1 m）？</p>
+          <details><summary>完整解答</summary>$120\sin10^\circ+160\sin15^\circ\approx62.2$（m）．</details>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>3.</b> 护林员在离树 20 m 的 $A$ 处观测树顶的仰角为 $35^\circ$，眼睛离地面 1.6 m．求树的高度（精确到 0.1 m）．</p>
+          <details><summary>完整解答</summary>$20\tan35^\circ+1.6\approx15.6$（m）．</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>4.</b> 飞机的飞行高度为 1 500 m，此时从飞机上看地面控制点的俯角为 $18^\circ24'$．求飞机到控制点的距离（精确到 1 m）．</p>
+          <details><summary>提示</summary>所求是斜边；俯角等于控制点处的仰角：$\sin18^\circ24'=\dfrac{1500}{\text{距离}}$。</details>
+          <details><summary>完整解答</summary>$\dfrac{1500}{\sin18^\circ24'}\approx4752$（m）．</details>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>5.</b> 轮船在 $A$ 处观测灯塔 $S$ 在船的北偏东 $38^\circ$，轮船向正北航行 15 km 后到达 $B$ 处，这时灯塔 $S$ 恰好在船的正东方向．求灯塔 $S$ 到 $B$ 处的距离（精确到 0.1 km）．</p>
+          <details><summary>完整解答</summary>$\angle ABS=90^\circ$，$BS=15\tan38^\circ\approx11.7$（km）．</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>6.</b> 塔 $TC$ 高 120 m，在塔的东、西两侧的点 $A$、$B$ 分别观测塔顶的仰角为 $15^\circ$、$28^\circ$．求 $A$、$B$ 两点的距离（精确到 0.1 m）．</p>
+          <details><summary>完整解答</summary>$AB=\dfrac{120}{\tan15^\circ}+\dfrac{120}{\tan28^\circ}\approx673.5$（m）．</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 7.6 第 1–6 题。建议每题先让学生画示意图，标出已知量，再看提示。第 6 题与问题 3 不同：两个观测点在塔的<b>两侧</b>，所以是两段相加。</p>
+</section>
+
+<!-- 16 ================= 小结 + 数学活动 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想 · 活动</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">坡度 $i=\dfrac hl=\tan\alpha$；仰角、俯角是视线与<b>水平线</b>的夹角；方向角从正南（北）量起。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="四步">画示意图 → 找/作直角三角形 → 选关系式（必要时设元列方程）→ 取近似值作答。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数学建模">把堤坝、摩天轮、气球、海轮抽象成直角三角形。</p>
+        <p class="recall" data-label="方程思想">两个直角三角形共用一边时，设元列方程。</p>
+      </div>
+    </div>
+    <div class="cols2">
+      <p class="method" data-step="4" data-label="数学活动 · 测量建筑物的高度（课本 p118）">活动 1：测量底部<b>可以到达</b>的建筑物高度（测角仪 + 卷尺，一次测仰角）；活动 2：测量底部<b>不能到达</b>的建筑物高度——用问题 3 的方法，两次测仰角。</p>
+      <p class="recall" data-step="5" data-label="阅读 · 三角学和它的应用">三角学起源于天文测量；《周髀算经》已有测量术记载；欧拉把三角函数看作线段之比的新观点，推动了三角学的发展。</p>
+    </div>
+    <p class="tip gold" data-step="6"><b>后续学习：</b>高中将把角推广到任意角，用单位圆上点的坐标重新定义三角函数——还记得 7.2 斜边取 1 的读数盘吗？<a href="../mg10a-sanjiaogainian/index.html">高一 7.2 三角函数概念 →</a></p>
+  </div>
+  <p class="note">课本 p118 阅读与数学活动。数学活动建议分组课外完成，填写活动记录（测量方法示意图、数据、计算、误差分析）。最后一行指向高中：7.2 中“斜边取 1，P 的纵、横坐标就是 sin θ、cos θ”正是高中单位圆定义的雏形。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

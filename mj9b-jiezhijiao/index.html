@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>解直角三角形 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/muchi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第7章 锐角三角函数 · 7.5</p>
+    <h1 class="cover-title">解直角三角形</h1>
+    <p class="cover-q" data-step="1">直角三角形除了直角，还有 $\angle A$、$\angle B$、$a$、$b$、$c$ 这 <b>5 个元素</b>。</p>
+    <p class="cover-q" data-step="2">至少要知道其中哪几个，才能把其余的全部求出来？</p>
+    <div class="chips" data-step="3"><span class="chip">五个元素三组关系</span><span class="chip">选两个已知 · 能不能解</span><span class="chip">作高解斜三角形</span><span class="chip">正多边形的边长</span></div>
+  </div>
+  <p class="note">课本 p109。前面几节零散地“由角求边”“由边求角”，本节把它们组织成一套完整的方法——解直角三角形。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八上 3.1 勾股定理" data-step="1">
+        <p>$a^2+b^2=c^2$——三条边之间的关系。</p>
+        <span class="use">已知两边求第三边。</span>
+        <p class="link"><a href="../mj8a-gougudingli/index.html">回看 3.1 →</a></p>
+      </div>
+      <div class="recall" data-label="七下 · 三角形内角和" data-step="2">
+        <p>直角三角形的两个锐角互余：$\angle A+\angle B=90^\circ$。</p>
+        <span class="use">已知一个锐角求另一个锐角。</span>
+      </div>
+      <div class="recall" data-label="九下 7.1、7.2 三角函数" data-step="3">
+        <p>$\sin A=\dfrac ac$，$\cos A=\dfrac bc$，$\tan A=\dfrac ab$——边与角之间的关系。</p>
+        <span class="use">已知角和边求边（乘或除）。</span>
+        <p class="link"><a href="../mj9b-zhengqie/index.html">7.1 →</a>　<a href="../mj9b-zhengxianyuxian/index.html">7.2 →</a></p>
+      </div>
+      <div class="recall" data-label="九下 7.3、7.4" data-step="4">
+        <p>特殊角的准确值；由三角函数值求锐角（<span class="key">2ndF</span>）。</p>
+        <span class="use">已知两边求角。</span>
+        <p class="link"><a href="../mj9b-teshujiao/index.html">7.3 →</a>　<a href="../mj9b-qiuruijiao/index.html">7.4 →</a></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">四张卡正好是本课第 3 页的“三组关系”：边与边、角与角、边与角。请学生先说出每张卡能解决哪类问题。</p>
+</section>
+
+<!-- 3 ================= 五个元素的关系 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>5 个元素之间有怎样的数量关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="fig716" class="gfig l"></div>
+      <p class="tip">如图 7-16，在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$．</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1) 三边之间</span><span class="think" data-step="2" data-ask="什么关系？">$a^2+b^2=c^2$</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="3"><span>(2) 锐角之间</span><span class="think" data-step="4" data-ask="什么关系？">$\angle A+\angle B=90^\circ$</span><i class="why">直角三角形的两个锐角互余</i></div>
+        <div class="dl" data-step="5"><span>(3) 边角之间</span><span class="think" data-step="6" data-ask="什么关系？">$\sin A=\dfrac ac$，$\cos A=\dfrac bc$，$\tan A=\dfrac ab$</span><i class="why">锐角三角函数的定义</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="每个关系式">含有 3 个元素：知道其中 2 个，就能求出第 3 个。</p>
+    </div>
+  </div>
+  <p class="note">课本 p109 图 7-16 与三组关系。最后一张卡是下一页的钥匙：每个关系式里有 3 个量，“知二求一”。</p>
+</section>
+
+<!-- 4 ================= 核心：选两个已知元素 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索 · 核心</span><h2>知道哪两个元素，就能求出其余的元素？</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="solve" class="solve"></div>
+      <div class="btns chips5" data-noswipe id="elBtns">
+        <button class="btn" type="button" data-e="A">$\angle A$</button><button class="btn" type="button" data-e="B">$\angle B$</button><button class="btn" type="button" data-e="a">$a$</button><button class="btn" type="button" data-e="b">$b$</button><button class="btn" type="button" data-e="c">$c$</button>
+      </div>
+      <p class="muted small-t">点两个元素作为“已知”（再点一次取消）。例子取 $a=3$，$b=4$，$c=5$。</p>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="slvMsg"></p>
+      <ol class="steps" id="slvSteps"></ol>
+      <p class="def" data-step="1">由直角三角形的边、角中的已知元素，求出所有边、角中的未知元素的过程，叫做<em>解直角三角形</em>．</p>
+      <p class="method" data-step="2" data-label="结论">除直角外，已知 <b>2 个</b>元素、且其中<b>至少有 1 条边</b>，就可以解直角三角形；只知道两个锐角不行。</p>
+    </div>
+  </div>
+  <p class="note">课本 p109“思考与探索”与定义。本课核心操作：学生任选两个元素当“已知”，右侧给出求其余元素的顺序和所用关系（橙色为已知，绿色为求出）。重点试一试“∠A 和 ∠B”：图中出现一大一小两个三角形，角都一样，边却不确定——回扣第 6 章“两角对应相等的三角形相似”。三角形按 3、4、5 精确绘制。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>已知一个锐角和一条直角边</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex1Fig" class="gfig l"></div>
+      <p class="tip" data-step="1"><b>思路：</b>先求 $\angle B$（最简单）；求 $c$ 选含 $a$、$c$、$\angle A$ 的关系：<span class="think" data-step="2" data-ask="哪个？">$\sin A=\dfrac ac$</span>。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 1</b>　在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$\angle A=30^\circ$，$a=5$．解这个直角三角形．</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>∴</span><span>$\angle B=90^\circ-\angle A=90^\circ-30^\circ=60^\circ$．</span><i class="why">两锐角互余</i></div>
+        <div class="dl" data-step="4"><span>∵</span><span>$\sin A=\dfrac ac$，</span><i class="why">正弦的定义</i></div>
+        <div class="dl" data-step="5"><span>∴</span><span class="think" data-step="6" data-ask="c = ？">$c=\dfrac a{\sin A}=\dfrac5{\sin30^\circ}=10$．</span><i class="why">$\sin30^\circ=\frac12$</i></div>
+        <div class="dl" data-step="7"><span>∵</span><span>$\tan B=\dfrac ba$，</span><i class="why">正切的定义</i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span class="think" data-step="9" data-ask="b = ？">$b=a\cdot\tan B=5\cdot\tan60^\circ=5\sqrt3$．</span><i class="why">$\tan60^\circ=\sqrt3$</i></div>
+      </div>
+      <p class="method" data-step="10" data-label="选关系式">尽量用<b>已知</b>的量去求，少用刚求出的量；能用乘法就不用除法。</p>
+    </div>
+  </div>
+  <p class="note">课本 p110 例 1，图按 ∠A = 30°、a = 5 精确绘制。b 也可以用勾股定理 b = √(10² − 5²) 求，但用了刚求出的 c；若 c 算错，b 会跟着错——这是“尽量用已知量”的理由。</p>
+</section>
+
+<!-- 6 ================= 例 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>已知两条直角边</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex2Fig" class="gfig l"></div>
+      <p class="tip" data-step="1"><b>思路：</b>两边 → 第三边用<b>勾股定理</b>；两边 → 角用<b>三角函数值求角</b>（7.4）。</p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 2</b>　在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，$a=104$，$b=20.49$．(1) 求 $c$ 的值（精确到 0.01）；(2) 求 $\angle A$、$\angle B$ 的大小（精确到 $0.01^\circ$）．</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>(1)</span><span>$c=\sqrt{a^2+b^2}=\sqrt{104^2+20.49^2}$，</span><i class="why">勾股定理</i></div>
+        <div class="dl" data-step="3"><span></span><span>用计算器计算，得 <span class="think" data-step="4" data-ask="c ≈ ？">$c\approx106.00$</span>．</span><i class="why"></i></div>
+        <div class="dl" data-step="5"><span>(2)</span><span>由题意知，$\tan A=\dfrac ab=\dfrac{104}{20.49}$，</span><i class="why">两条直角边 → 正切</i></div>
+        <div class="dl" data-step="6"><span></span><span>用计算器计算，得 <span class="think" data-step="7" data-ask="∠A ≈ ？">$\angle A\approx78.85^\circ$</span>．</span><i class="why"><span class="key">2ndF</span> <span class="key">tan</span></i></div>
+        <div class="dl end" data-step="8"><span>∴</span><span>$\angle B=90^\circ-78.85^\circ=11.15^\circ$．</span><i class="why">两锐角互余</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p110 例 2，图按 a = 104、b = 20.49 的比例精确绘制（一个很“高”的三角形，∠A 接近 80°，与结果吻合）。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>解直角三角形（边长精确到 0.1，角度精确到 0.1°）</h2></div>
+  <div class="bd full top">
+    <p class="tip">在 $\text{Rt}\triangle ABC$ 中，$\angle C=90^\circ$，根据下列条件解直角三角形：</p>
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>(1)</b> $a=9$，$b=6$．</p>
+        <p class="fillrow">$c\approx$ <span class="blank" data-ans="10.8" data-w="4"></span>　$\angle A\approx$ <span class="blank" data-ans="56.3" data-w="4"></span>°　$\angle B\approx$ <span class="blank" data-ans="33.7" data-w="4"></span>°</p>
+        <details><summary>提示</summary>$c=\sqrt{9^2+6^2}=\sqrt{117}$；$\tan A=\dfrac96=1.5$。</details>
+        <details><summary>完整解答</summary>$c=\sqrt{117}\approx10.8$；$\tan A=1.5$，$\angle A\approx56.3^\circ$；$\angle B=90^\circ-56.3^\circ=33.7^\circ$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>(2)</b> $\angle A=18^\circ$，$c=13$．</p>
+        <p class="fillrow">$\angle B=$ <span class="blank" data-ans="72" data-w="3"></span>°　$a\approx$ <span class="blank" data-ans="4.0|4" data-w="4"></span>　$b\approx$ <span class="blank" data-ans="12.4" data-w="4"></span></p>
+        <details><summary>提示</summary>$c$ 是斜边：$a=c\sin A$，$b=c\cos A$。</details>
+        <details><summary>完整解答</summary>$\angle B=90^\circ-18^\circ=72^\circ$；$a=13\sin18^\circ\approx4.0$；$b=13\cos18^\circ\approx12.4$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p110 练习。填入答案回车判对错。做完后让学生用另一个关系验算，如 (2) 中 a² + b² 是否约等于 13²。</p>
+</section>
+
+<!-- 8 ================= 例 3：斜三角形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>不是直角三角形？作高，构造直角三角形</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="ex3Fig" class="gfig l"></div>
+      <p class="tip"><b>例 3</b>　如图 7-17，在 $\triangle ABC$ 中，$AC=8$，$\angle B=45^\circ$，$\angle A=30^\circ$．求 $AB$．</p>
+      <p class="tip" data-step="1"><b>分析：</b>$\triangle ABC$ 不是直角三角形，<span class="think" data-step="2" data-ask="怎样构造？">过点 $C$ 作 $CD\perp AB$——高把它分成两个直角三角形，而且没有“破坏”已知的角。</span></p>
+    </div>
+    <div class="col">
+      <div class="derive wrap">
+        <div class="dl" data-step="3"><span>解：</span><span>过点 $C$ 作 $CD\perp AB$，垂足为 $D$．</span><i class="why">构造直角三角形</i></div>
+        <div class="dl" data-step="4"><span></span><span>在 $\text{Rt}\triangle ADC$ 中，$AD=AC\cdot\cos30^\circ=8\times\dfrac{\sqrt3}2=4\sqrt3$，</span><i class="why">已知斜边和锐角</i></div>
+        <div class="dl" data-step="5"><span></span><span>$CD=AC\cdot\sin30^\circ=8\times\dfrac12=4$．</span><i class="why"></i></div>
+        <div class="dl" data-step="6"><span></span><span>在 $\text{Rt}\triangle BCD$ 中，∵ $\angle B=45^\circ$，</span><i class="why"></i></div>
+        <div class="dl" data-step="7"><span>∴</span><span class="think" data-step="8" data-ask="BD = ？">$BD=CD=4$．</span><i class="why">等腰直角三角形</i></div>
+        <div class="dl end" data-step="9"><span>∴</span><span>$AB=AD+DB=4\sqrt3+4$．</span><i class="why">$\approx10.93$</i></div>
+      </div>
+      <p class="method" data-step="10" data-label="作高的原则">高要作在“已知的角”不被分开的地方；公共边（这里是 $CD$）连接两个直角三角形。</p>
+    </div>
+  </div>
+  <p class="note">课本 p110–111 例 3 与图 7-17，图按 AC = 8、∠A = 30°、∠B = 45° 精确绘制。可追问：能否过 A 作 BC 的垂线？（可以，但 30°、45° 都不在新直角三角形里，计算更麻烦）。</p>
+</section>
+
+<!-- 9 ================= 例 4：正多边形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>圆内接正多边形的边长</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="poly" class="polyb"></div>
+      <div class="slider-row" data-noswipe>正 $n$ 边形 $n=$<input type="range" id="nS" min="3" max="12" step="1" value="5"><b class="v" id="nV"></b>　半径 $r=$<input type="range" id="rS" min="5" max="20" step="1" value="10"><b class="v" id="rV"></b></div>
+      <p class="tip feedback" id="polyMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 4</b>　如图 7-18，$\odot O$ 的半径为 10，求 $\odot O$ 的内接正五边形 $ABCDE$ 的边长（精确到 0.1）．</p>
+      <div class="derive wrap small-d">
+        <div class="dl" data-step="1"><span>解：</span><span>∵ 五边形 $ABCDE$ 是正五边形，∴ $\angle AOB=\dfrac{360^\circ}5=72^\circ$．</span><i class="why">中心角</i></div>
+        <div class="dl" data-step="2"><span></span><span>过点 $O$ 作 $OH\perp AB$，垂足为 $H$．</span><i class="why">构造直角三角形</i></div>
+        <div class="dl" data-step="3"><span></span><span>在 $\text{Rt}\triangle AHO$ 中，$\angle AOH=\dfrac12\angle AOB=36^\circ$，$OA=10$，</span><i class="why">等腰三角形三线合一</i></div>
+        <div class="dl" data-step="4"><span>∴</span><span class="think" data-step="5" data-ask="AH = ？">$AH=OA\cdot\sin36^\circ$．</span><i class="why">$AH$ 是 $\angle AOH$ 的对边</i></div>
+        <div class="dl end" data-step="6"><span>∴</span><span>$AB=2AH=2\times10\times\sin36^\circ\approx11.8$．</span><i class="why"></i></div>
+      </div>
+      <p class="method" data-step="7" data-label="一般地">半径为 $r$ 的圆内接正 $n$ 边形，边长 $=2r\sin\dfrac{180^\circ}n$——左边拖 $n$、$r$ 验证。</p>
+    </div>
+  </div>
+  <p class="note">课本 p111 例 4 与图 7-18。左图由程序精确绘制正 n 边形，并高亮 Rt△AHO；读数给出边长 2r·sin(180°/n)。可以让学生拖到 n = 8、r = 12（练习 2）和 n = 3、r = 20（习题 3），先猜再看。n 很大时边长 × n 接近圆周长 2πr——为高中埋个伏笔，不展开。</p>
+</section>
+
+<!-- 10 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 在 $\square ABCD$ 中，$\angle A=60^\circ$，$AB=8$，$AD=6$．求 $\square ABCD$ 的面积．</p>
+        <div id="pr1Fig" class="gfig"></div>
+        <details><summary>提示 1</summary>面积 $=$ 底 $\times$ 高；过点 $D$ 作 $DE\perp AB$，垂足为 $E$。</details>
+        <details><summary>提示 2</summary>在 $\text{Rt}\triangle ADE$ 中，$DE=AD\cdot\sin60^\circ=3\sqrt3$。</details>
+        <details><summary>完整解答</summary>$S=AB\cdot DE=8\times3\sqrt3=24\sqrt3$（$\approx41.6$）．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 求半径为 12 的圆的内接正八边形的边长（精确到 0.1）．</p>
+        <p class="fillrow">边长 $\approx$ <span class="blank" data-ans="9.2" data-w="4"></span></p>
+        <details><summary>提示</summary>中心角 $\dfrac{360^\circ}8=45^\circ$，一半是 $22.5^\circ$。</details>
+        <details><summary>完整解答</summary>边长 $=2\times12\times\sin22.5^\circ\approx9.2$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p111 练习。第 1 题图按 ∠A = 60°、AB = 8、AD = 6 精确绘制；第 2 题可回到第 9 页拖到 n = 8、r = 12 验证。</p>
+</section>
+
+<!-- 11 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.5</span><h2>挑战</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> $\angle C=90^\circ$，$b=2\sqrt3$，$c=4$．解这个直角三角形．</p>
+        <details><summary>提示</summary>$\cos A=\dfrac bc=\dfrac{\sqrt3}2$，是特殊值。</details>
+        <details><summary>完整解答</summary>$\angle A=30^\circ$，$\angle B=60^\circ$，$a=\sqrt{4^2-(2\sqrt3)^2}=2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> $\angle C=90^\circ$．(1) $AB=4$，$\angle B=25^\circ$，求 $BC$、$AC$（精确到 0.1）；(2) $AB=5$，$BC=4.2$，求 $\angle A$（精确到 $0.1^\circ$）．</p>
+        <details><summary>完整解答</summary>(1) $BC=4\cos25^\circ\approx3.6$，$AC=4\sin25^\circ\approx1.7$；(2) $\sin A=\dfrac{4.2}5=0.84$，$\angle A\approx57.1^\circ$．</details>
+      </div>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 求半径为 20 的圆的内接正三角形的边长和面积（精确到 0.1）．</p>
+        <details><summary>提示</summary>中心角 $120^\circ$，一半 $60^\circ$；边长 $=2\times20\sin60^\circ$；面积可看成 3 个 $\triangle AOB$。</details>
+        <details><summary>完整解答</summary>边长 $=20\sqrt3\approx34.6$；边心距 $OH=20\cos60^\circ=10$，面积 $=3\times\dfrac12\times20\sqrt3\times10=300\sqrt3\approx519.6$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 如图，在菱形钢架 $ABCD$ 中，$AB=2$ m，$\angle BAD=72^\circ$，焊接这个钢架约需多长的钢材（精确到 0.1 m）？</p>
+        <div id="hw4Fig" class="gfig"></div>
+        <details><summary>提示 1</summary>钢材 = 四条边 + 两条对角线。菱形对角线互相垂直平分，$\angle BAO=36^\circ$。</details>
+        <details><summary>提示 2</summary>在 $\text{Rt}\triangle AOB$ 中，$AO=2\cos36^\circ$，$BO=2\sin36^\circ$。</details>
+        <details><summary>完整解答</summary>$AC=4\cos36^\circ\approx3.24$，$BD=4\sin36^\circ\approx2.35$，共需 $4\times2+3.24+2.35\approx13.6$（m）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 7.5。第 4 题图按 AB = 2、∠BAD = 72° 精确绘制。菱形的对角线性质（八下第 9 章）在这里是“构造直角三角形”的关键。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">三组关系：$a^2+b^2=c^2$；$\angle A+\angle B=90^\circ$；$\sin A$、$\cos A$、$\tan A$ 的定义。</p>
+        <p class="def">已知 2 个元素（至少 1 条边）就能解直角三角形。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="选关系">找含“两个已知、一个未知”的关系式；尽量用原始数据。</p>
+        <p class="method" data-label="化斜为直">斜三角形、正多边形、菱形……作高（垂线）构造直角三角形。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="方程思想">每个关系式都是一个方程，“知二求一”。</p>
+        <p class="recall" data-label="化归">把未知的图形转化为已会解的直角三角形。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>7.6 用锐角三角函数解决问题——水坝、摩天轮、气球、海轮……从实际问题中找出（或构造出）直角三角形。</p>
+  </div>
+  <p class="note">请学生用第 4 页的选元素器复述“什么情况下能解”。课后作业：习题 7.5 全部。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

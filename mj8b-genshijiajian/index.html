@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次根式的加减 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/dizhuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 第12章 二次根式 · 12.3</p>
+    <h1 class="cover-title">二次根式的加减</h1>
+    <p class="cover-q" data-step="1">两块正方形地砖，面积分别为 2 dm² 和 8 dm²，把它们并排放，两条边长加起来是多少？</p>
+    <p class="cover-q" data-step="2">$\sqrt2+\sqrt8$ 能合成一个式子吗？$\sqrt2+\sqrt3$ 等于 $\sqrt5$ 吗？</p>
+    <div class="chips" data-step="3"><span class="chip">线段拼接尺</span><span class="chip">同类二次根式</span><span class="chip">翻牌归类、合并</span><span class="chip">混合运算</span><span class="chip">有理化因式</span></div>
+  </div>
+  <p class="note">封面问题来自课本 p164 练习 2(1)：两个正方形的面积分别为 2 cm²、8 cm²，求边长的和。先让学生猜：√2 + √8 = √10？第 3 页用精确的线段拼接检验。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="七年级上册 · 合并同类项" data-step="1">
+        <p>所含字母相同、相同字母的指数也相同的项是同类项；合并时系数相加，字母部分不变：$3x-2x+5x=6x$．</p>
+        <span class="use">二次根式的加减就像合并同类项．</span>
+      </div>
+      <div class="recall" data-label="八年级下册 · 12.2 二次根式的乘除" data-step="2">
+        <p>$\sqrt{ab}=\sqrt a\cdot\sqrt b$；$\sqrt{20}=2\sqrt5$；$\sqrt{\dfrac15}=\dfrac{\sqrt5}{5}$；最简二次根式．</p>
+        <span class="use">先把每个二次根式化成最简，才看得出谁和谁“同类”．</span>
+      </div>
+      <div class="recall" data-label="七年级下册 · 乘法公式" data-step="3">
+        <p>$(a+b)(a-b)=a^2-b^2$；$(a+b)^2=a^2+2ab+b^2$．</p>
+        <span class="use">例 4：二次根式的混合运算，公式照样用．</span>
+      </div>
+      <div class="recall" data-label="七年级上册 · 整式的运算律" data-step="4">
+        <p>乘法分配律：$a(b+c)=ab+ac$；多项式乘多项式．</p>
+        <span class="use">例 3：$(\sqrt{\ }+\sqrt{\ })\times\sqrt{\ }$ 逐项相乘．</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="5"><b>本课主线：</b>先化简，再“找同类”，最后合并——和整式加减是一回事．</p>
+  </div>
+  <p class="note">第一张卡请学生举例：3a² 和 5a² 能合并，3a² 和 3a 不能。类比：3√2 和 5√2 能合并，√2 和 √3 不能。</p>
+</section>
+
+<!-- 3 ================= 线段拼接尺 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察</span><h2>线段拼接尺：两条线段接起来，有多长？</h2></div>
+  <div class="bd full">
+    <div class="btns" data-noswipe id="rulerBtns"></div>
+    <svg id="ruler" class="ruler" viewBox="0 0 900 230" aria-label="线段拼接"></svg>
+    <p class="tip feedback" id="rulerMsg"></p>
+    <div class="cols2">
+      <p class="tip" data-step="1">$\sqrt2+\sqrt8$ 为什么正好是 $\sqrt2$ 的 3 倍？<span class="think" data-step="2" data-ask="想一想">$\sqrt8=2\sqrt2$，所以 $\sqrt2+\sqrt8=\sqrt2+2\sqrt2=3\sqrt2$——就像 $x+2x=3x$．</span></p>
+      <p class="warn" data-step="3" data-label="不能这样加"><span class="think" data-step="4" data-ask="√2 + √3 = √5？">不对！$\sqrt2+\sqrt3\approx3.146$，$\sqrt5\approx2.236$，尺上差得很远．根号下的数不能直接相加．</span></p>
+    </div>
+  </div>
+  <p class="note">线段长度按精确值画（每组内用同一比例尺，刻度为 √2、√3 或 1 的整数倍）。切换三组：√2 + √8 正好是 3 个 √2；√12 + √27 是 5 个 √3；√2 + √3 与 √5 对比，学生一眼看出不相等。</p>
+</section>
+
+<!-- 4 ================= 同类二次根式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>下列 3 组二次根式各有什么共同特征？</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>(1)</span><span>$\sqrt2$，$3\sqrt2$，$-2\sqrt2$，$15\sqrt2$，$\dfrac23\sqrt2$</span><span class="think" data-step="2" data-ask="特征？">被开方数都是 2</span></div>
+      <div class="dl" data-step="3"><span>(2)</span><span>$\sqrt3$，$-5\sqrt3$，$6\sqrt3$，$17\sqrt3$，$\dfrac2{13}\sqrt3$</span><span class="think" data-step="4" data-ask="特征？">被开方数相同，像同类项</span></div>
+      <div class="dl" data-step="5"><span>(3)</span><span>$\sqrt5$，$-3\sqrt{20}$，$\sqrt{125}$，$\sqrt{\dfrac15}$</span><span class="think" data-step="6" data-ask="看不出来？先化简">$-3\sqrt{20}=-6\sqrt5$，$\sqrt{125}=5\sqrt5$，$\sqrt{\dfrac15}=\dfrac15\sqrt5$</span></div>
+    </div>
+    <div class="def big-def" data-step="7"><h4>同类二次根式（课本 p162）</h4>经过化简后，<em>被开方数相同</em>的二次根式，叫做<em>同类二次根式</em>．例如，上面的 3 组二次根式都是同类二次根式．</div>
+    <p class="warn" data-step="8" data-label="关键词“化简后”">$\sqrt{20}$ 和 $\sqrt5$ 表面上被开方数不同，化简后是同类；$\sqrt2$ 和 $\sqrt3$ 怎么化简都不是同类．</p>
+  </div>
+  <p class="note">课本 p162“思考”与三个小人的提示。第 (3) 组是重点：要先化简才能判断。</p>
+</section>
+
+<!-- 5 ================= 翻牌归类台（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手合并</span><h2>翻牌归类台：先化简，再找同类，最后合并</h2></div>
+  <div class="bd full">
+    <div class="btns" data-noswipe id="sortBtns"></div>
+    <p class="tip" id="sortQ"></p>
+    <div class="cards" id="sortCards" data-noswipe></div>
+    <div class="bins" id="sortBins"></div>
+    <div class="btns" data-noswipe><button type="button" class="btn solid" id="sortMerge">合并同类二次根式</button><button type="button" class="btn" id="sortReset">重来</button></div>
+    <p class="tip feedback" id="sortMsg"></p>
+  </div>
+  <p class="note">本课核心互动。点一张牌把它化成最简二次根式（a√b 的形式，系数可以是分数），化简后自动落进对应的“同类”格子；全部翻完才能合并。系数用分数精确计算，不用小数。题目是课本 p162“尝试”、例 1(2)(3)、练习 1(2) 和习题 12.3 第 1(2) 题。</p>
+</section>
+
+<!-- 6 ================= 尝试 · 法则 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 法则</span><h2>试计算 $\sqrt5-3\sqrt{20}+\sqrt{125}+\sqrt{\frac15}$</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>原式</span><span class="think" data-step="2" data-ask="先做什么？">$=\sqrt5-6\sqrt5+5\sqrt5+\dfrac15\sqrt5$</span><i class="why">化简后可知，4 个根式是同类二次根式</i></div>
+      <div class="dl end" data-step="3"><span></span><span class="think" data-step="4" data-ask="合并">$=\left(1-6+5+\dfrac15\right)\sqrt5=\dfrac15\sqrt5$</span><i class="why">像合并同类项一样，系数相加</i></div>
+    </div>
+    <div class="def big-def" data-step="5"><h4>课本 p162</h4>二次根式相加减，先<em>化简</em>每个二次根式，然后<em>合并同类二次根式</em>．</div>
+    <div class="cols2">
+      <p class="warn" data-step="6" data-label="不是同类，不能合并">$\sqrt2+\sqrt3$ 就是最后结果，不能写成 $\sqrt5$；$2\sqrt3+3\sqrt2$ 也不能合并．</p>
+      <p class="warn" data-step="7" data-label="系数是分数时">$\dfrac15\sqrt5$ 也可以写成 $\dfrac{\sqrt5}{5}$；不要写成 $\sqrt{\dfrac15}$ 当作结果（被开方数含分母）．</p>
+    </div>
+  </div>
+  <p class="note">课本 p162“尝试”与法则框。第 5 页“尝试”这组牌就是这道题，可以回去翻牌验证。</p>
+</section>
+
+<!-- 7 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>计算：先化简，再合并</h2></div>
+  <div class="bd full">
+    <div class="derive">
+      <div class="dl" data-step="1"><span>(1) $3\sqrt2+4\sqrt3-2\sqrt2+\sqrt3$</span><span class="think" data-step="2" data-ask="怎样排？">$=3\sqrt2-2\sqrt2+4\sqrt3+\sqrt3$</span><i class="why">交换律：同类的放在一起</i></div>
+      <div class="dl" data-step="3"><span></span><span>$=\sqrt2+5\sqrt3$</span><i class="why">合并同类二次根式</i></div>
+      <div class="dl" data-step="4"><span>(2) $\sqrt{12}+\sqrt{18}-\sqrt8-\sqrt{32}$</span><span class="think" data-step="5" data-ask="先化简">$=2\sqrt3+3\sqrt2-2\sqrt2-4\sqrt2$</span><i class="why">逐个化成最简二次根式</i></div>
+      <div class="dl" data-step="6"><span></span><span>$=2\sqrt3-3\sqrt2$</span><i class="why">$3-2-4=-3$</i></div>
+      <div class="dl" data-step="7"><span>(3) $\sqrt{40}-5\sqrt{\dfrac1{10}}+\sqrt{10}$</span><span class="think" data-step="8" data-ask="先化简">$=2\sqrt{10}-5\times\dfrac{\sqrt{10}}{10}+\sqrt{10}$</span><i class="why">$\sqrt{\dfrac1{10}}=\dfrac{\sqrt{10}}{10}$</i></div>
+      <div class="dl end" data-step="9"><span></span><span>$=\dfrac52\sqrt{10}$</span><i class="why">$2-\dfrac12+1=\dfrac52$</i></div>
+    </div>
+  </div>
+  <p class="note">课本 p162–163 例 1。(2) 的结果 2√3 − 3√2 不能再合并，常有学生写成 −√6 或 −√3，要强调“不是同类不能合并”。</p>
+</section>
+
+<!-- 8 ================= 例 2 圆环 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>同心圆环：两圆半径之差是多少？</h2></div>
+  <div class="bd l45">
+    <div class="col">
+      <svg id="ring" class="ring" viewBox="0 0 320 320" aria-label="圆环（按面积 18 与 8 精确绘制）"></svg>
+      <p class="muted center small-t">图 12-3：按面积 18 cm²、8 cm² 精确绘制（$R:r=3:2$）</p>
+    </div>
+    <div class="col">
+      <p class="tip">如图 12-3，两个圆的圆心相同，半径分别为 $R$、$r$，面积分别为 18 cm²、8 cm²．求圆环的宽度（两圆半径之差）．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>由 $\pi R^2=18$</span><span class="think" data-step="2" data-ask="R = ?">$R=\sqrt{\dfrac{18}{\pi}}$，$r=\sqrt{\dfrac8\pi}$</span><i class="why">半径为正</i></div>
+        <div class="dl" data-step="3"><span>$R-r$</span><span>$=\sqrt{\dfrac{18}{\pi}}-\sqrt{\dfrac8\pi}=\dfrac{\sqrt{18\pi}}{\pi}-\dfrac{\sqrt{8\pi}}{\pi}$</span><i class="why">被开方数不含分母</i></div>
+        <div class="dl" data-step="4"><span></span><span class="think" data-step="5" data-ask="化简、合并">$=\dfrac{3\sqrt{2\pi}}{\pi}-\dfrac{2\sqrt{2\pi}}{\pi}=\dfrac1\pi\sqrt{2\pi}$</span><i class="why">$18\pi=9\times2\pi$，$8\pi=4\times2\pi$</i></div>
+      </div>
+      <p class="def" data-step="6">答：圆环的宽度为 $\dfrac1\pi\sqrt{2\pi}$ cm．</p>
+      <p class="tip feedback fb-ok" id="ringMsg" data-step="7"></p>
+    </div>
+  </div>
+  <p class="note">课本 p163 例 2 与图 12-3。左图的两个圆按 R = √(18/π)、r = √(8/π) 同一比例尺画出，R : r = √18 : √8 = 3 : 2，圆环宽度正好是 r 的一半。最后一行用近似值验算答案。</p>
+</section>
+
+<!-- 9 ================= 练习 p163–164 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 计算：(1) $3\sqrt6-\sqrt5-\dfrac12\sqrt6+2\sqrt5+\sqrt2$；(2) $\sqrt{27}-\sqrt{45}-\sqrt{20}+\sqrt{75}$；(3) $4\sqrt{ab}+5\sqrt{ab}-\dfrac32\sqrt{ab}-\sqrt{4ab}$（$a,b\ge0$）；(4) $\left(2\sqrt{\dfrac1{27}}-\dfrac23\sqrt{18}\right)-\left(\sqrt{\dfrac43}-4\sqrt{\dfrac12}\right)$．</p>
+        <details><summary>提示 1</summary>(2) $\sqrt{27}=3\sqrt3$，$\sqrt{45}=3\sqrt5$，$\sqrt{20}=2\sqrt5$，$\sqrt{75}=5\sqrt3$；(3) $\sqrt{4ab}=2\sqrt{ab}$．</details>
+        <details><summary>提示 2</summary>(4) $2\sqrt{\dfrac1{27}}=\dfrac{2\sqrt3}{9}$，$\dfrac23\sqrt{18}=2\sqrt2$，$\sqrt{\dfrac43}=\dfrac{2\sqrt3}{3}$，$4\sqrt{\dfrac12}=2\sqrt2$．</details>
+        <details><summary>完整解答</summary>(1) $\dfrac52\sqrt6+\sqrt5+\sqrt2$；(2) $8\sqrt3-5\sqrt5$；(3) $\dfrac{11}{2}\sqrt{ab}$；(4) $\dfrac{2\sqrt3}{9}-2\sqrt2-\dfrac{2\sqrt3}{3}+2\sqrt2=-\dfrac{4\sqrt3}{9}$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> (1) 两个正方形的面积分别为 2 cm²、8 cm²，求这两个正方形边长的和；(2) 两个正方形的面积分别为 $s$ cm²、$4s$ cm²（$s&gt;0$），求这两个正方形边长的和．</p>
+        <details><summary>提示</summary>边长分别是 $\sqrt2$、$\sqrt8$；$\sqrt s$、$\sqrt{4s}$．</details>
+        <details><summary>完整解答</summary>(1) $\sqrt2+\sqrt8=\sqrt2+2\sqrt2=3\sqrt2$（cm）；(2) $\sqrt s+\sqrt{4s}=\sqrt s+2\sqrt s=3\sqrt s$（cm）．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p163 练习 1 与 p164 练习 2。第 2 题 (1) 就是封面和第 3 页的问题；(2) 把它一般化，呼应章首“面积为 S、4S 的两个正方形边长的关系”。</p>
+</section>
+
+<!-- 10 ================= 混合运算：例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>混合运算：整式的法则、公式和运算律仍然适用</h2></div>
+  <div class="bd full">
+    <p class="def">进行二次根式的混合运算时，整式运算的法则、公式和运算律仍然适用．（课本 p164）</p>
+    <div class="cols2">
+      <div class="col">
+      <p class="tip" data-step="1">(1) $\left(\sqrt{\dfrac5{12}}+2\sqrt3\right)\times\sqrt{15}$</p>
+      <div class="derive">
+        <div class="dl" data-step="2"><span>$=$</span><span class="think" data-step="3" data-ask="用什么律？">$\sqrt{\dfrac5{12}}\times\sqrt{15}+2\sqrt3\times\sqrt{15}$</span><i class="why">乘法分配律</i></div>
+        <div class="dl" data-step="4"><span>$=$</span><span>$\sqrt{\dfrac54\times5}+2\sqrt{9\times5}$</span><i class="why">$\dfrac{5}{12}\times15=\dfrac{25}{4}$</i></div>
+        <div class="dl end" data-step="5"><span>$=$</span><span>$\dfrac52+6\sqrt5$</span><i class="why"></i></div>
+      </div>
+      </div>
+      <div class="col">
+      <p class="tip" data-step="6">(2) $(3+\sqrt{10})(\sqrt2-\sqrt5)$</p>
+      <div class="derive">
+        <div class="dl" data-step="7"><span>$=$</span><span class="think" data-step="8" data-ask="展开">$3\sqrt2-3\sqrt5+\sqrt{20}-\sqrt{50}$</span><i class="why">多项式乘多项式</i></div>
+        <div class="dl" data-step="9"><span>$=$</span><span>$3\sqrt2-3\sqrt5+2\sqrt5-5\sqrt2$</span><i class="why">化简</i></div>
+        <div class="dl end" data-step="10"><span>$=$</span><span>$-2\sqrt2-\sqrt5$</span><i class="why">合并同类二次根式</i></div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p164 例 3。(1) 课本把 √(5/12) × √15 写成 √(5/4 × 5)，即 √(25/4) = 5/2。下一页可用“代值验算”核对这两题。</p>
+</section>
+
+<!-- 11 ================= 例 4 · 代值验算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4</span><h2>乘法公式照样用；再用计算器“验一验”</h2></div>
+  <div class="bd l55">
+    <div class="col">
+      <p class="tip" data-step="1">(1) $(\sqrt3+\sqrt2)(\sqrt3-\sqrt2)$　<span class="think" data-step="2" data-ask="哪个公式？">$=(\sqrt3)^2-(\sqrt2)^2=3-2=1$（平方差公式）</span></p>
+      <p class="tip" data-step="3">(2) $(3+2\sqrt5)^2$</p>
+      <div class="derive">
+        <div class="dl" data-step="3"><span>$=$</span><span class="think" data-step="4" data-ask="哪个公式？">$3^2+2\times3\times2\sqrt5+(2\sqrt5)^2$</span><i class="why">完全平方公式</i></div>
+        <div class="dl end" data-step="5"><span>$=$</span><span>$9+12\sqrt5+20=29+12\sqrt5$</span><i class="why">$(2\sqrt5)^2=20$</i></div>
+      </div>
+      <p class="warn" data-step="6" data-label="易错">$(2\sqrt5)^2\ne2\times5$，是 $2^2\times5=20$；$(3+2\sqrt5)^2\ne9+20$，中间项不能丢．</p>
+    </div>
+    <div class="col">
+      <p class="tip">代值验算：点一行，用 12 位小数比较左右两边．</p>
+      <table class="mtab small verify" id="verTab"></table>
+      <p class="tip feedback" id="verMsg"></p>
+      <p class="muted small-t">小数相同只能说明“没算错”的可能性大；真正的依据是上面的推导．</p>
+    </div>
+  </div>
+  <p class="note">课本 p164–165 例 4。右侧验算表：左边按原式、右边按化简结果分别用浮点计算（误差约 10⁻¹⁵）。最后一行故意放了一个常见错误 (3 + 2√5)² = 29，验算立刻露馅。</p>
+</section>
+
+<!-- 12 ================= 练习 p165 + 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练习 1</b> 计算：(1) $(\sqrt3+2\sqrt2)\times\sqrt6$；(2) $\sqrt5\times(\sqrt{10}-\sqrt5)$；(3) $(\sqrt6-\sqrt3+1)\times2\sqrt3$；(4) $(5-\sqrt6)(\sqrt3+\sqrt2)$．</p>
+        <details><summary>提示</summary>分配律逐项乘，再化简、合并：$\sqrt{18}=3\sqrt2$，$\sqrt{12}=2\sqrt3$，$\sqrt{50}=5\sqrt2$．</details>
+        <details><summary>完整解答</summary>(1) $3\sqrt2+4\sqrt3$；(2) $5\sqrt2-5$；(3) $6\sqrt2-6+2\sqrt3$；(4) $5\sqrt3+5\sqrt2-3\sqrt2-2\sqrt3=3\sqrt3+2\sqrt2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习 2</b> 计算：(1) $(\sqrt5+1)(\sqrt5-1)$；(2) $(\sqrt a+\sqrt b)(\sqrt a-\sqrt b)$（$a,b\ge0$）；(3) $(\sqrt3-\sqrt2)^2$；(4) $(\sqrt a+\sqrt b)^2$（$a,b\ge0$）．</p>
+        <details><summary>提示</summary>(1)(2) 平方差公式；(3)(4) 完全平方公式．</details>
+        <details><summary>完整解答</summary>(1) $4$；(2) $a-b$；(3) $5-2\sqrt6$；(4) $a+2\sqrt{ab}+b$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>习题 1</b> 计算：(1) $2\sqrt3-3\sqrt5-\sqrt5+5\sqrt5+7\sqrt3$；(2) $\sqrt{12}-\sqrt{27}-\sqrt{20}+\sqrt{50}$．</p>
+        <details><summary>提示</summary>(2) $2\sqrt3-3\sqrt3-2\sqrt5+5\sqrt2$．</details>
+        <details><summary>完整解答</summary>(1) $9\sqrt3+\sqrt5$；(2) $-\sqrt3-2\sqrt5+5\sqrt2$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p165 练习 1、2 与习题 12.3 第 1 题。习题 1(2) 也在第 5 页归类台里，可以翻牌核对。</p>
+</section>
+
+<!-- 13 ================= 阅读：有理化因式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">阅读</span><h2>互为有理化因式：乘一下，根号就没了</h2></div>
+  <div class="bd full">
+    <p class="def">两个含有二次根式的代数式相乘，积不含有二次根式，我们称这两个代数式互为<em>有理化因式</em>．如 $(\sqrt5+\sqrt2)(\sqrt5-\sqrt2)=3$，$\sqrt a\cdot\sqrt a=a$（$a\ge0$）．（课本 p166 阅读）</p>
+    <div class="cols3 judge">
+      <div class="jcard" data-step="1"><p>$\sqrt2+1$ 的有理化因式是</p><div class="pick" data-ans="b"><button type="button" data-k="a">$\sqrt2+1$</button><button type="button" data-k="b">$\sqrt2-1$</button><p class="pick-why">$(\sqrt2+1)(\sqrt2-1)=2-1=1$；而 $(\sqrt2+1)^2=3+2\sqrt2$ 仍有根号．</p></div></div>
+      <div class="jcard" data-step="1"><p>$2\sqrt3+3\sqrt5$ 的有理化因式是</p><div class="pick" data-ans="a"><button type="button" data-k="a">$2\sqrt3-3\sqrt5$</button><button type="button" data-k="b">$\sqrt3-\sqrt5$</button><p class="pick-why">$(2\sqrt3)^2-(3\sqrt5)^2=12-45=-33$．</p></div></div>
+      <div class="jcard" data-step="1"><p>$\sqrt3$ 的有理化因式可以是</p><div class="pick" data-ans="a"><button type="button" data-k="a">$\sqrt3$</button><button type="button" data-k="b">$3$</button><p class="pick-why">$\sqrt3\times\sqrt3=3$．</p></div></div>
+    </div>
+    <div class="derive">
+      <div class="dl" data-step="2"><span>$\dfrac{1}{2\sqrt3}$</span><span class="think" data-step="3" data-ask="=">$=\dfrac{\sqrt3}{2\sqrt3\times\sqrt3}=\dfrac{\sqrt3}{6}$</span><i class="why">乘 $\sqrt3$</i></div>
+      <div class="dl end" data-step="4"><span>$\dfrac{\sqrt2+1}{\sqrt2-1}$</span><span class="think" data-step="5" data-ask="=">$=\dfrac{(\sqrt2+1)^2}{(\sqrt2-1)(\sqrt2+1)}=\dfrac{2+2\sqrt2+1}{2-1}=3+2\sqrt2$</span><i class="why">分子、分母都乘 $\sqrt2+1$</i></div>
+    </div>
+  </div>
+  <p class="note">课本 p166 阅读“互为有理化因式”。选择题是补充练习。阅读中第三个例子 1/(2+√3) + 1/(√2−1) = 3 − √3 + √2 可作课后思考。习题 12.3 第 5 题（写一个式子，使它与 2 + √3 的积不含二次根式）与此相关：2 − √3。</p>
+</section>
+
+<!-- 14 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 第 12 章回顾</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">化简后被开方数相同的二次根式叫做同类二次根式．</p>
+        <p class="recall" data-label="加减法则">先化简每个二次根式，再合并同类二次根式．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="类比">二次根式加减 ↔ 合并同类项；混合运算 ↔ 整式运算（法则、公式、运算律都适用）．</p>
+        <p class="warn" data-label="别忘了">$\sqrt2+\sqrt3\ne\sqrt5$；$(2\sqrt5)^2=20$．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>第 12 章</h3>
+        <p class="recall" data-label="一条线">12.1 $\sqrt a$ 的意义与性质 → 12.2 乘除与化简 → 12.3 加减与混合运算．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>回到章首：</b>面积为 $S$ 与 $4S$ 的两个正方形，边长 $\sqrt{4S}=2\sqrt S$，边长之和 $3\sqrt S$——这一章的工具都用上了．</p>
+  </div>
+  <p class="note">课后作业建议：习题 12.3 第 1–5 题。第 12 章结束，可安排“小结与思考”和复习题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

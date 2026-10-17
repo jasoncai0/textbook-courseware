@@ -81,7 +81,7 @@ const MVert = (() => {
         });
         el.innerHTML = '';
         el.appendChild(svg);
-        el.style.setProperty('--mv-w', `${((c1 - c0) * 1.2 + 0.8).toFixed(2)}em`);
+        el.style.setProperty('--mv-w', `${((c1 - c0) * 1.55 + 0.8).toFixed(2)}em`);
         return svg;
       },
     };

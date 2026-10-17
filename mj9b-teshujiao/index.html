@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>特殊角的三角函数 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mgeo.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/sanjiaoban.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第7章 锐角三角函数 · 7.3</p>
+    <h1 class="cover-title">特殊角的三角函数</h1>
+    <p class="cover-q" data-step="1">一副三角板上有 $30^\circ$、$45^\circ$、$60^\circ$ 三种锐角。</p>
+    <p class="cover-q" data-step="2">不用计算器，能<b>准确</b>说出它们的正弦、余弦、正切吗？理由是什么？</p>
+    <div class="chips" data-step="3"><span class="chip">三角板取值器</span><span class="chip">九个值一张表</span><span class="chip">由值求角</span></div>
+  </div>
+  <p class="note">课本 p105“思考与探索”。计算器给的是近似值，而三角板里的三个角可以用几何方法求出<b>准确值</b>（带根号）。本课是推导课：每个值都要说出“理由”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的“旧工具”</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="九下 7.1、7.2 三角函数的定义" data-step="1">
+        <p>$\sin A=\dfrac{\text{对边}}{\text{斜边}}$，$\cos A=\dfrac{\text{邻边}}{\text{斜边}}$，$\tan A=\dfrac{\text{对边}}{\text{邻边}}$；比值只由角决定。</p>
+        <span class="use">任取一个含特殊角的直角三角形，算比值即可。</span>
+        <p class="link"><a href="../mj9b-zhengqie/index.html">回看 7.1 →</a>　<a href="../mj9b-zhengxianyuxian/index.html">回看 7.2 →</a></p>
+      </div>
+      <div class="recall" data-label="八上 2.5 等腰三角形的轴对称性" data-step="2">
+        <p>在直角三角形中，如果一个锐角等于 $30^\circ$，那么它所对的直角边等于斜边的一半。</p>
+        <span class="use">含 $30^\circ$ 的三角板：三边之比 $1:\sqrt3:2$（第 3 页）。</span>
+        <p class="link"><a href="../mj8a-dengyao/index.html">回看 2.5 →</a></p>
+      </div>
+      <div class="recall" data-label="八上 3.1 勾股定理" data-step="3">
+        <p>$a^2+b^2=c^2$。等腰直角三角形直角边为 1 时，斜边为 $\sqrt2$。</p>
+        <span class="use">求出三角板的第三边。</span>
+        <p class="link"><a href="../mj8a-gougudingli/index.html">回看 3.1 →</a></p>
+      </div>
+      <div class="recall" data-label="7.1 例 2、7.2 例 1 已经算过" data-step="4">
+        <p>$\tan60^\circ=\sqrt3$，$\tan30^\circ=\dfrac{\sqrt3}3$，$\tan45^\circ=1$；$\cos60^\circ=\dfrac12$。</p>
+        <span class="use">今天把它们补全、整理成表。</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第四张卡提醒学生：前两节课已经零散地求出了几个特殊值，这节课的任务是“补全九个值，并能说清理由”。</p>
+</section>
+
+<!-- 3 ================= 核心：三角板取值器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考与探索</span><h2>拿起三角板：每个值都“量”得出理由</h2></div>
+  <div class="bd w50">
+    <div class="col">
+      <div id="tri" class="tri"></div>
+      <div class="btns" data-noswipe id="angBtns">
+        <button class="btn solid" type="button" data-a="30">$30^\circ$</button>
+        <button class="btn" type="button" data-a="45">$45^\circ$</button>
+        <button class="btn" type="button" data-a="60">$60^\circ$</button>
+        <span class="sep"></span>
+        <button class="btn solid" type="button" data-f="sin">sin</button>
+        <button class="btn" type="button" data-f="cos">cos</button>
+        <button class="btn" type="button" data-f="tan">tan</button>
+      </div>
+      <div class="slider-row" data-noswipe>三角板放大：短直角边 $k=$<input type="range" id="kS" min="1" max="2" step="0.25" value="1"><b class="v" id="kV"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip feedback big-fb" id="triMsg"></p>
+      <div class="derive small-d">
+        <div class="dl" data-step="1"><span>$45^\circ$</span><span>两直角边相等，设为 $k$，斜边 $\sqrt2k$</span><i class="why">等腰直角三角形；勾股定理</i></div>
+        <div class="dl" data-step="2"><span>$30^\circ$、$60^\circ$</span><span>$30^\circ$ 角的对边为 $k$，斜边为 $2k$</span><i class="why">$30^\circ$ 角所对直角边等于斜边的一半</i></div>
+        <div class="dl" data-step="3"><span></span><span class="think" data-step="4" data-ask="另一条直角边？">另一条直角边 $\sqrt{(2k)^2-k^2}=\sqrt3k$</span><i class="why">勾股定理</i></div>
+        <div class="dl key" data-step="5"><span>注意</span><span>$k$ 约掉了——拖滑块，比值不变</span><i class="why">三角函数值只与角有关</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p105 右侧的两个三角板（边 1、1、√2 和 1、√3、2）。先点 30°、45°、60°，再点 sin / cos / tan：图中分子边变红、分母边变绿，右上方给出比值和化简过程。注意同一块 30°–60° 三角板：看 30° 角和看 60° 角，对边、邻边互换。三角形按准确边长比绘制。</p>
+</section>
+
+<!-- 4 ================= 九个值一张表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">归纳</span><h2>$30^\circ$、$45^\circ$、$60^\circ$ 角的三角函数值</h2></div>
+  <div class="bd full">
+    <div class="cols2 w64">
+      <div class="col">
+        <table class="mtab big-tab">
+          <tr><th>三角函数 \ $\theta$</th><th>$30^\circ$</th><th>$45^\circ$</th><th>$60^\circ$</th></tr>
+          <tr><th>$\sin\theta$</th><td><span class="think" data-step="1" data-ask="?">$\dfrac12$</span></td><td><span class="think" data-step="1" data-ask="?">$\dfrac{\sqrt2}2$</span></td><td><span class="think" data-step="1" data-ask="?">$\dfrac{\sqrt3}2$</span></td></tr>
+          <tr><th>$\cos\theta$</th><td><span class="think" data-step="2" data-ask="?">$\dfrac{\sqrt3}2$</span></td><td><span class="think" data-step="2" data-ask="?">$\dfrac{\sqrt2}2$</span></td><td><span class="think" data-step="2" data-ask="?">$\dfrac12$</span></td></tr>
+          <tr><th>$\tan\theta$</th><td><span class="think" data-step="3" data-ask="?">$\dfrac{\sqrt3}3$</span></td><td><span class="think" data-step="3" data-ask="?">$1$</span></td><td><span class="think" data-step="3" data-ask="?">$\sqrt3$</span></td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <p class="method" data-step="4" data-label="正弦一行">$\dfrac{\sqrt1}2,\ \dfrac{\sqrt2}2,\ \dfrac{\sqrt3}2$——分子依次是 $\sqrt1$、$\sqrt2$、$\sqrt3$。</p>
+        <p class="method" data-step="5" data-label="余弦一行">正好倒过来：$\cos30^\circ=\sin60^\circ$，$\cos60^\circ=\sin30^\circ$（互余，7.2）。</p>
+        <p class="method" data-step="6" data-label="正切一行">$\dfrac{\sqrt3}3,\ 1,\ \sqrt3$；$\tan\theta=\dfrac{\sin\theta}{\cos\theta}$ 也能验算。</p>
+        <p class="warn" data-step="7" data-label="与 7.1、7.2 的发现一致">角从 $30^\circ$ 增到 $60^\circ$：正弦、正切变大，余弦变小。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p105 表格。逐行点开前，先请学生用第 3 页的取值器说出理由；记表格不要死背，记住两块三角板（1, 1, √2 与 1, √3, 2）就能随时推出来。tan θ = sin θ ÷ cos θ 课本没有作为结论，这里只用来验算，不要求记。</p>
+</section>
+
+<!-- 5 ================= 例 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>求含特殊角三角函数的式子的值</h2></div>
+  <div class="bd full">
+    <p class="tip"><b>例 1</b>　求下列各式的值：(1) $2\sin30^\circ-\cos45^\circ$；(2) $\sin60^\circ\cos60^\circ$；(3) $\tan30^\circ+\cos30^\circ$．</p>
+    <div class="derive">
+      <div class="dl" data-step="1"><span>(1)</span><span class="think" data-step="2" data-ask="代入、计算">$2\sin30^\circ-\cos45^\circ=2\times\dfrac12-\dfrac{\sqrt2}2=\dfrac{2-\sqrt2}2$</span><i class="why">$\sin30^\circ=\frac12$，$\cos45^\circ=\frac{\sqrt2}2$</i></div>
+      <div class="dl" data-step="3"><span>(2)</span><span class="think" data-step="4" data-ask="代入、计算">$\sin60^\circ\cos60^\circ=\dfrac{\sqrt3}2\times\dfrac12=\dfrac{\sqrt3}4$</span><i class="why">“$\sin60^\circ\cos60^\circ$”表示两个值相乘</i></div>
+      <div class="dl" data-step="5"><span>(3)</span><span class="think" data-step="6" data-ask="代入、计算">$\tan30^\circ+\cos30^\circ=\dfrac{\sqrt3}3+\dfrac{\sqrt3}2=\dfrac{5\sqrt3}6$</span><i class="why">通分：$\frac{2\sqrt3}6+\frac{3\sqrt3}6$</i></div>
+    </div>
+    <p class="method" data-step="7" data-label="步骤">先把每个三角函数换成准确值（带根号的不要化成小数）→ 再按实数运算法则计算 → 结果化简。</p>
+    <p class="warn" data-step="8" data-label="记号">$\sin^2 30^\circ$ 表示 $(\sin30^\circ)^2=\dfrac14$，不是 $\sin(30^\circ)^2$。</p>
+  </div>
+  <p class="note">课本 p105 例 1。每小题先让学生说出要代入的值，再点开计算。最后一张警示卡为习题中的 tan²30° 做准备。</p>
+</section>
+
+<!-- 6 ================= 例 2：由值求角 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>反过来：知道值，求锐角</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">把表格<b>倒过来查</b>：先把式子化成“$\sin\alpha=$ 某个数”的样子，再在表里找。</p>
+      <div class="pick" data-ans="b">
+        <p class="pick-q">$\cos\theta=\dfrac{\sqrt3}2$，锐角 $\theta=$</p>
+        <button type="button" data-k="a">$60^\circ$</button><button type="button" data-k="b">$30^\circ$</button><button type="button" data-k="c">$45^\circ$</button>
+        <p class="pick-why">余弦一行里 $\dfrac{\sqrt3}2$ 在 $30^\circ$ 下面；$60^\circ$ 是 $\sin\theta=\dfrac{\sqrt3}2$ 的答案。</p>
+      </div>
+      <div class="pick" data-ans="c">
+        <p class="pick-q">$\tan\theta=1$，锐角 $\theta=$</p>
+        <button type="button" data-k="a">$30^\circ$</button><button type="button" data-k="b">$60^\circ$</button><button type="button" data-k="c">$45^\circ$</button>
+        <p class="pick-why">等腰直角三角形，两直角边相等。</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>例 2</b>　求下列等式中的锐角 $\alpha$：(1) $2\sin\alpha-\sqrt2=0$；(2) $\sqrt3\tan\alpha-1=0$．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>(1)</span><span class="think" data-step="2" data-ask="sin α = ？">由已知，得 $\sin\alpha=\dfrac{\sqrt2}2$，</span><i class="why">移项，两边除以 2</i></div>
+        <div class="dl" data-step="3"><span></span><span>所以 $\alpha=45^\circ$；</span><i class="why">查表（正弦一行）</i></div>
+        <div class="dl" data-step="4"><span>(2)</span><span class="think" data-step="5" data-ask="tan α = ？">由已知，得 $\tan\alpha=\dfrac1{\sqrt3}=\dfrac{\sqrt3}3$，</span><i class="why">分母有理化</i></div>
+        <div class="dl end" data-step="6"><span></span><span>所以 $\alpha=30^\circ$．</span><i class="why">查表（正切一行）</i></div>
+      </div>
+      <p class="method" data-step="7" data-label="为什么答案唯一">锐角增大时，正弦、正切一直增大（7.1、7.2 的发现），所以一个值只对应<b>一个</b>锐角。不是特殊值的情形，下一节用计算器求。</p>
+    </div>
+  </div>
+  <p class="note">课本 p106 例 2。左侧两道点选题先热身“倒查表”，点错会提示。右侧例 2 的关键是先整理成“某函数 = 某值”。最后一张卡为 7.4 做铺垫：sin A = 5/13 这样的值不在表里，就要借助计算器。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求下列各式的值：(1) $\tan45^\circ-\sin30^\circ\cos60^\circ$；(2) $\dfrac{\cos45^\circ}{\tan^230^\circ}$．</p>
+        <details><summary>提示</summary>$\tan^230^\circ=\left(\dfrac{\sqrt3}3\right)^2=\dfrac13$。</details>
+        <details><summary>完整解答</summary>(1) $1-\dfrac12\times\dfrac12=\dfrac34$；(2) $\dfrac{\sqrt2}2\div\dfrac13=\dfrac{3\sqrt2}2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 如图，在 $\text{Rt}\triangle ABC$ 中，$\angle ACB=90^\circ$，$CD\perp AB$，垂足为 $D$，$BC=2$，$BD=\sqrt3$．分别求 $\text{Rt}\triangle ABC$、$\text{Rt}\triangle ACD$、$\text{Rt}\triangle BCD$ 中的各锐角．</p>
+        <div id="pr2Fig" class="gfig"></div>
+        <details><summary>提示 1</summary>在 $\text{Rt}\triangle BCD$ 中，已知斜边 $BC$ 和邻边 $BD$，用 $\cos B$。</details>
+        <details><summary>提示 2</summary>$\cos B=\dfrac{BD}{BC}=\dfrac{\sqrt3}2$，所以 $\angle B=30^\circ$；其余的角用“两锐角互余”。</details>
+        <details><summary>完整解答</summary>$\text{Rt}\triangle BCD$：$\angle B=30^\circ$，$\angle BCD=60^\circ$；<br>$\text{Rt}\triangle ABC$：$\angle B=30^\circ$，$\angle A=60^\circ$；<br>$\text{Rt}\triangle ACD$：$\angle A=60^\circ$，$\angle ACD=30^\circ$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p106 练习。第 2 题图按 BC = 2、BD = √3 精确绘制。三个三角形共用角，体会“求出一个角，其他角都能用互余推出”。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 7.3</span><h2>挑战</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 求值：(1) $2\sin30^\circ+3\cos60^\circ-4\tan45^\circ$；(2) $\cos30^\circ\sin45^\circ+\sin30^\circ\cos45^\circ$；(3) $\dfrac{\cos60^\circ-1}{\sin30^\circ-2\tan45^\circ}$．</p>
+        <p class="fillrow">(1) <span class="blank" data-ans="-3/2|-1.5" data-w="4"></span>　(3) <span class="blank" data-ans="1/3" data-w="3"></span></p>
+        <details><summary>提示</summary>先把每个值写出来，再计算。</details>
+        <details><summary>完整解答</summary>(1) $1+\dfrac32-4=-\dfrac32$；(2) $\dfrac{\sqrt3}2\cdot\dfrac{\sqrt2}2+\dfrac12\cdot\dfrac{\sqrt2}2=\dfrac{\sqrt6+\sqrt2}4$；(3) $\dfrac{-\frac12}{-\frac32}=\dfrac13$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 求下列等式中的锐角 $\theta$：(1) $2\cos\theta=1$；(2) $2\sin\theta-\sqrt2=0$．</p>
+        <p class="fillrow">(1) $\theta=$ <span class="blank" data-ans="60|60°" data-w="3"></span>°　(2) $\theta=$ <span class="blank" data-ans="45|45°" data-w="3"></span>°</p>
+        <details><summary>完整解答</summary>(1) $\cos\theta=\dfrac12$，$\theta=60^\circ$；(2) $\sin\theta=\dfrac{\sqrt2}2$，$\theta=45^\circ$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 如图，$AC$ 是 $\triangle ABD$ 的高，$BC=15$，$\angle BAC=30^\circ$，$\angle DAC=45^\circ$．求 $AD$．</p>
+        <div id="hw3Fig" class="gfig"></div>
+        <details><summary>提示 1</summary>先在 $\text{Rt}\triangle ABC$ 中求公共边 $AC$：$\tan30^\circ=\dfrac{BC}{AC}$。</details>
+        <details><summary>提示 2</summary>$AC=15\sqrt3$；再在 $\text{Rt}\triangle ADC$ 中，$\cos45^\circ=\dfrac{AC}{AD}$。</details>
+        <details><summary>完整解答</summary>$AC=\dfrac{15}{\tan30^\circ}=15\sqrt3$，$AD=\dfrac{AC}{\cos45^\circ}=15\sqrt3\times\sqrt2=15\sqrt6$．</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">习题 7.3。第 1、2 题部分可直接填答案判对错（负数写 -3/2）。第 3 题图按 BC = 15、两角 30°、45° 精确绘制：先求“公共边”AC，是后面 7.5、7.6 解斜三角形的基本思路。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">两块三角板：边长比 $1:1:\sqrt2$（$45^\circ$）和 $1:\sqrt3:2$（$30^\circ$、$60^\circ$）。九个值都能由它们推出。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="求值">代入准确值 → 实数运算 → 化简。</p>
+        <p class="method" data-label="求角">整理成“函数 = 值” → 倒查表。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="数形结合">记“形”（三角板）比记“数”（表格）更可靠。</p>
+        <p class="recall" data-label="特殊与一般">特殊角有准确值；一般角用计算器求近似值。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>7.4 由三角函数值求锐角——$\sin A=\dfrac5{13}$，$\angle A$ 是多少度？表里查不到了，怎么办？</p>
+  </div>
+  <p class="note">请学生闭眼画出两块三角板，标出三边，再口述九个值。课后：用计算器验算表中九个值的近似值（如 √3/2 ≈ 0.866 = sin 60°）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mgeo.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

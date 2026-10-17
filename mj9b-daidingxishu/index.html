@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用待定系数法确定二次函数表达式 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/toulan-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第5章 二次函数 · 5.3</p>
+    <h1 class="cover-title">用待定系数法确定<br>二次函数表达式</h1>
+    <p class="cover-q" data-step="1">一次函数的图像，知道<b>两个点</b>就能确定；反比例函数，知道<b>一个点</b>就够了。</p>
+    <p class="cover-q" data-step="2">二次函数的图像是抛物线——要知道<b>几个点</b>，才能把它的表达式确定下来？</p>
+    <div class="chips" data-step="3"><span class="chip">几个系数 ↔ 几个条件</span><span class="chip">代入列方程（组）</span><span class="chip">$y=ax^2+bx+c$</span></div>
+  </div>
+  <p class="note">课本 p21 开篇：“根据已知条件用待定系数法可以确定一次函数、反比例函数的表达式．类似地……也可以确定二次函数的表达式．”封面只问“几个点”，请学生先猜：2 个？3 个？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八上 6.2 一次函数 · 待定系数法" data-step="1">
+        <p>设 $y=kx+b$，把两个点的坐标代入，得关于 $k$、$b$ 的二元一次方程组，解出 $k$、$b$。</p>
+        <span class="use">第 4–6 页：方法完全一样，只是待定的系数变多了．（<a href="../mj8a-yicihanshu/index.html">回看 6.2</a>）</span>
+      </div>
+      <div class="recall" data-label="八下 11.2 反比例函数" data-step="2">
+        <p>$y=\dfrac kx$ 的图像经过 $A(2,-4)$，则 $-4=\dfrac k2$，$k=-8$：一个系数，一个点。</p>
+        <span class="use">第 3 页：数一数“几个待定系数需要几个条件”．（<a href="../mj8b-fanbilituxiang/index.html">回看 11.2</a>）</span>
+      </div>
+      <div class="recall" data-label="七下 10.3 解二元一次方程组" data-step="3">
+        <p>代入消元、加减消元：把“二元”化为“一元”。</p>
+        <span class="use">第 5、6 页：解关于 $a$、$c$ 或 $a$、$b$ 的方程组；三元的也先消元．（<a href="../mj7b-jiefangchengzu/index.html">回看 10.3</a>）</span>
+      </div>
+      <div class="recall" data-label="九下 5.2 二次函数的图像和性质" data-step="4">
+        <p>点在图像上 ⇔ 点的坐标满足函数表达式；对称轴是直线 $x=-\dfrac b{2a}$。</p>
+        <span class="use">第 3 页拖点画抛物线；第 8 页由对称轴求被墨迹盖住的系数．（<a href="../mj9b-ercihanshutuxiang/index.html">回看 5.2</a>）</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">请学生口述一次函数的待定系数法四步：设、代、解、写。今天只是“系数多了一个或两个”。</p>
+</section>
+
+<!-- 3 ================= 核心：几个点定一条抛物线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>拖动已知点：几个点能“钉住”一条抛物线？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="fitForms"></div>
+      <div class="eqs" id="fitEqs"></div>
+      <p class="tip feedback" id="fitMsg"></p>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="fitLess">少给一个点会怎样？</button></div>
+    </div>
+    <div class="col">
+      <div id="fitBoard" class="fit-board"></div>
+      <p class="tip" data-step="1">$y=ax^2$ 要几个点？$y=ax^2+c$ 呢？$y=ax^2+bx+c$ 呢？<span class="think" data-step="2" data-ask="数一数">1 个、2 个、3 个：<b>几个待定系数，就要几个点</b>。</span></p>
+      <p class="tip gold" data-step="3">$y=ax^2+bx+c$ 只给 2 个点行不行？<span class="think" data-step="4" data-ask="点“少给一个点”">不行：过两点的抛物线有无数条，确定不下来。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。先选表达式的形式，再拖动橙色的已知点：左边实时列出“把点的坐标代入”得到的方程（组）和解，右边画出确定的抛物线。选 y = ax² + bx + c 后点“少给一个点会怎样？”，会画出经过两个已知点的五条不同抛物线。也可以让三个点共线，看看会发生什么（a = 0，不是二次函数）。默认的点取自课本例 1–3。</p>
+</section>
+
+<!-- 4 ================= 例1 例2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 例 2</span><h2>一个待定系数、两个待定系数</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip"><b>例 1</b>　已知二次函数 $y=ax^2$ 的图像经过点 $(-2,8)$，求 $a$ 的值．</p>
+        <p class="tip" data-step="1"><b>分析：</b>如果一个点在函数的图像上，那么<span class="think" data-step="2" data-ask="会怎样？">这个点的坐标适合函数的表达式。根据“图像经过点 $(-2,8)$”列出关于 $a$ 的一元一次方程。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="3"><span>代入 $x=-2$，$y=8$</span><span>$8=(-2)^2a$</span><i class="why">点在图像上</i></div>
+          <div class="dl key" data-step="4"><span>解得</span><span>$a=2$</span><i class="why">解一元一次方程</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="tip"><b>例 2</b>　已知二次函数 $y=ax^2+c$ 的图像经过点 $(-2,8)$ 和 $(-1,5)$，求 $a$、$c$ 的值．</p>
+        <p class="tip" data-step="5"><b>分析：</b>要确定“$a$”“$c$”的值，<span class="think" data-step="6" data-ask="列什么？">根据“图像经过点 $(-2,8)$ 和 $(-1,5)$”列出关于 $a$、$c$ 的二元一次方程组。</span></p>
+        <div class="derive">
+          <div class="dl" data-step="7"><span>得</span><span>$\begin{cases}8=(-2)^2a+c,\\5=(-1)^2a+c.\end{cases}$</span><i class="why">两点分别代入</i></div>
+          <div class="dl" data-step="8"><span>上式 − 下式</span><span class="think" data-step="9" data-ask="消去谁？">$3=3a$</span><i class="why">加减消元，消去 $c$</i></div>
+          <div class="dl key" data-step="10"><span>解得</span><span>$a=1$，$c=4$</span><i class="why">把 $a=1$ 代回下式：$5=1+c$</i></div>
+        </div>
+      </div>
+    </div>
+    <p class="method" data-step="11" data-label="检验">把求出的系数代回去：$y=2x^2$ 过 $(-2,8)$ ✓；$y=x^2+4$ 过 $(-2,8)$、$(-1,5)$ ✓。</p>
+  </div>
+  <p class="note">课本 p21 例 1、例 2 的分析和解答。每个方程先让学生说出来再点开。例 2 的消元过程课本只写“解得”，这里补出加减消元，回顾七下 10.3。</p>
+</section>
+
+<!-- 5 ================= 例3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>三个待定系数：三个点，三个方程</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip"><b>*例 3</b>　已知二次函数 $y=ax^2+bx+c$ 的图像经过点 $(-3,6)$、$(-2,-1)$ 和 $(0,-3)$，求这个二次函数的表达式．</p>
+      <div id="ex3Board" class="ex3-board"></div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>得</span><span>$\begin{cases}6=(-3)^2a-3b+c,&amp;(1)\\-1=(-2)^2a-2b+c,&amp;(2)\\-3=c.&amp;(3)\end{cases}$</span><i class="why">三个点分别代入</i></div>
+        <div class="dl" data-step="2"><span>由 (3)</span><span class="think" data-step="3" data-ask="先看哪个？">$c=-3$</span><i class="why">点 $(0,-3)$ 在 $y$ 轴上，直接给出 $c$</i></div>
+        <div class="dl" data-step="4"><span>代入 (1)(2)</span><span class="think" data-step="5" data-ask="化简">$\begin{cases}3a-b=3,\\2a-b=1.\end{cases}$</span><i class="why">三元化为二元</i></div>
+        <div class="dl" data-step="6"><span>相减</span><span class="think" data-step="7" data-ask="解一解">$a=2$，$b=3$</span><i class="why">加减消元</i></div>
+        <div class="dl key end" data-step="8"><span>所求表达式</span><span>$y=2x^2+3x-3$</span><i class="why">写出表达式</i></div>
+      </div>
+      <p class="tip gold" data-step="9">为什么课本先用 $(0,-3)$？<span class="think" data-step="10" data-ask="想一想">$x=0$ 时 $y=c$：图像与 $y$ 轴交点的纵坐标就是 $c$，一下子少了一个未知数。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p22 *例 3（带星号，选学）。课本直接写“解得 a = 2，b = 3，c = −3”，这里把消元过程补出来：先由 ③ 得 c，代入 ①② 化成二元一次方程组。左图是按求出的表达式画的抛物线，三个已知点都在上面。</p>
+</section>
+
+<!-- 6 ================= 方法 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法提炼</span><h2>待定系数法：设 · 代 · 解 · 写</h2></div>
+  <div class="bd full">
+    <div class="def" data-step="1"><h4>课本 p22</h4>通常，要确定函数表达式中几个待定的系数，相应地需要几个已知条件，根据这些已知条件列出方程（组）求解．</div>
+    <div class="steps4">
+      <div class="stp" data-step="2"><b>设</b><span>设出含待定系数的表达式（看题目给的形式）</span></div>
+      <div class="stp" data-step="3"><b>代</b><span>把已知点的坐标代入，得方程（组）</span></div>
+      <div class="stp" data-step="4"><b>解</b><span>解方程（组），求出待定系数</span></div>
+      <div class="stp" data-step="5"><b>写</b><span>写出函数表达式（可代回检验）</span></div>
+    </div>
+    <table class="mtab cnt" data-step="6">
+      <tr><th>函数</th><th>$y=kx$</th><th>$y=\dfrac kx$</th><th>$y=kx+b$</th><th>$y=ax^2$</th><th>$y=ax^2+c$</th><th>$y=ax^2+bx+c$</th></tr>
+      <tr><th>待定系数</th><td>1</td><td>1</td><td>2</td><td>1</td><td>2</td><td>3</td></tr>
+      <tr><th>需要的条件</th><td>1 个点</td><td>1 个点</td><td>2 个点</td><td>1 个点</td><td>2 个点</td><td>3 个点</td></tr>
+    </table>
+    <p class="warn" data-step="7" data-label="条件不一定是点">“已知条件”也可以是对称轴、顶点、最大（小）值等——每个条件提供一个方程。第 8 页第 3 题就用对称轴求系数。</p>
+  </div>
+  <p class="note">课本 p22 小结性的那句话。表格请学生自己填，再揭示。最后一张卡为习题 5.3 第 3 题做准备：知道对称轴（或最值时的 x），也能列出一个方程。</p>
+</section>
+
+<!-- 7 ================= 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习</span><h2>自己求表达式（课本 p22）</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>1.</b> 已知二次函数 $y=ax^2+bx$ 的图像经过点 $(-2,8)$ 和 $(-1,5)$，求这个二次函数的表达式．</p>
+          <p class="fill">$a=$<span class="blank" data-ans="-1" data-w="2"></span>　$b=$<span class="blank" data-ans="-6" data-w="2"></span></p>
+          <details><summary>提示 1</summary>两个待定系数，两个点：$\begin{cases}8=4a-2b,\\5=a-b.\end{cases}$</details>
+          <details><summary>提示 2</summary>由第二个方程得 $a=5+b$，代入第一个。</details>
+          <details><summary>完整解答</summary>$4(5+b)-2b=8$，$b=-6$，$a=-1$．所求表达式为 $y=-x^2-6x$。检验：$x=-1$ 时 $y=-1+6=5$ ✓。</details>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>*2.</b> 已知二次函数 $y=ax^2+bx+c$ 的图像经过点 $(0,3)$、$(3,0)$ 和 $(1,4)$，求这个二次函数的表达式．</p>
+          <p class="fill">$a=$<span class="blank" data-ans="-1" data-w="2"></span>　$b=$<span class="blank" data-ans="2" data-w="2"></span>　$c=$<span class="blank" data-ans="3" data-w="2"></span></p>
+          <details><summary>提示 1</summary>哪个点最好用？$(0,3)$ 直接给出 $c=3$。</details>
+          <details><summary>提示 2</summary>$\begin{cases}0=9a+3b+3,\\4=a+b+3,\end{cases}$ 即 $\begin{cases}3a+b=-1,\\a+b=1.\end{cases}$</details>
+          <details><summary>完整解答</summary>$a=-1$，$b=2$，$c=3$．所求表达式为 $y=-x^2+2x+3$。<div id="pr2Board" class="pr2-board"></div></details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p22 练习 1、*2。先在空格里填出系数（回车判断），卡住了再逐级点提示。第 2 题的完整解答里画出了所求抛物线，三个已知点都在上面。</p>
+</section>
+
+<!-- 8 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 5.3</span><h2>点的条件、对称轴的条件</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 已知二次函数 $y=ax^2+bx+1$ 的图像经过点 $(1,3)$ 和 $(3,-5)$，求 $a$、$b$ 的值．</p>
+        <details><summary>提示</summary>常数项已经是 1，只剩两个待定系数：$\begin{cases}3=a+b+1,\\-5=9a+3b+1.\end{cases}$</details>
+        <details><summary>完整解答</summary>化简得 $a+b=2$，$3a+b=-2$，解得 $a=-2$，$b=4$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>*2.</b> 已知二次函数 $y=ax^2+bx+c$ 的图像经过点 $(-1,-6)$、$(1,4)$ 和 $(3,6)$，求这个二次函数的表达式．</p>
+        <details><summary>提示</summary>前两个方程相减可直接求出 $b$。</details>
+        <details><summary>完整解答</summary>$\begin{cases}a-b+c=-6,\\a+b+c=4,\\9a+3b+c=6.\end{cases}$ 相减得 $b=5$，$a+c=-1$，$9a+c=-9$，所以 $a=-1$，$c=0$：$y=-x^2+5x$。</details>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip"><b>3.</b> 小明在课外读物上看到：“由图像可知，当 $x=-1$ 时，二次函数 $y=\blacksquare x^2+6x-5$ 的值最小．”你能写出被墨迹污染的二次项系数吗？</p>
+      <div class="slider-row" data-noswipe><span class="sl">猜一猜 $a=$<input type="range" id="inkA" min="0.5" max="6" step="0.5" value="1"><b class="v" id="inkAV"></b></span></div>
+      <div id="inkBoard" class="ink-board"></div>
+      <p class="tip feedback" id="inkMsg"></p>
+      <p class="tip" data-step="1">不用试，怎样直接求？<span class="think" data-step="2" data-ask="用对称轴">$x=-1$ 时最小 ⇒ 对称轴是直线 $x=-1$：$-\dfrac{6}{2a}=-1$，$a=3$。</span></p>
+    </div>
+  </div>
+  <p class="note">习题 5.3 第 1、*2、3 题。第 3 题课本配有图像（最低点约在 (−1, −8)），先拖滑块“试”：对称轴（红色虚线）随 a 移动，a = 3 时恰好过 x = −1；再用对称轴公式一步求出——这是“已知条件不是点”的例子。</p>
+</section>
+
+<!-- 9 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 下一课</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">点在图像上 ⇔ 坐标满足表达式。确定 $y=ax^2+bx+c$ 一般需要<em>三个</em>独立的条件。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="待定系数法">设 → 代 → 解 → 写；先用简单的条件（如 $x=0$ 的点）减少未知数。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="方程思想">把“求函数”转化为“解方程（组）”；未知数的个数 = 方程的个数。</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b><a href="../mj9b-ercihanshufangcheng/index.html">5.4 二次函数与一元二次方程</a>——令 $y=0$，二次函数就变成了一元二次方程。图像与 $x$ 轴的交点，和方程的根有什么关系？</p>
+  </div>
+  <p class="note">课后作业建议：习题 5.3 第 1、2、3 题。可留一个思考：已知抛物线的顶点是 (1, −4)，且过点 (3, 0)，怎样设表达式最简便？（设 y = a(x − 1)² − 4，只剩一个待定系数。）</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

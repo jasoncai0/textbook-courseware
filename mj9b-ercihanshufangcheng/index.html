@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次函数与一元二次方程 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shixinqiu-cover.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 第5章 二次函数 · 5.4</p>
+    <h1 class="cover-title">二次函数与一元二次方程</h1>
+    <p class="cover-q" data-step="1">掷出的实心球，高度 $y$ 是水平距离 $x$ 的二次函数。球<b>落地</b>时，$y$ 等于多少？</p>
+    <p class="cover-q" data-step="2">令 $y=0$，二次函数就变成了一元二次方程。抛物线与 $x$ 轴的<b>交点</b>和方程的<b>根</b>有什么关系？</p>
+    <div class="chips" data-step="3"><span class="chip">交点 ↔ 根</span><span class="chip">$b^2-4ac$ 与公共点个数</span><span class="chip">看图解不等式</span><span class="chip">逐步逼近求近似根</span></div>
+  </div>
+  <p class="note">封面情境只是引子（不给具体数据）。请学生说出“落地”在数学上的意思：高度 y = 0。这正是本课的主线：二次函数 y = ax² + bx + c 中令 y = 0。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的旧知识</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="recall" data-label="八上 6.6 一次函数、一元一次方程和一元一次不等式" data-step="1">
+        <p>方程 $kx+b=0$ 的解 = 直线 $y=kx+b$ 与 $x$ 轴交点的横坐标；不等式 $kx+b&gt;0$ 的解集 = 直线在 $x$ 轴上方部分对应的 $x$。</p>
+        <span class="use">第 3、8 页：把同样的想法用到抛物线上．（<a href="../mj8a-hanshuyubudengshi/index.html">回看 6.6</a>）</span>
+      </div>
+      <div class="recall" data-label="九上 1.2 根的判别式" data-step="2">
+        <p>$ax^2+bx+c=0$（$a\ne0$）：$b^2-4ac&gt;0$ 有两个不相等的实数根；$=0$ 有两个相等的实数根；$&lt;0$ 没有实数根。</p>
+        <span class="use">第 5–7 页：不画图，用 $b^2-4ac$ 判断抛物线与 $x$ 轴的公共点个数．（<a href="../mj9a-ercijiefa/index.html">回看 1.2</a>）</span>
+      </div>
+      <div class="recall" data-label="九下 5.2 图像和性质" data-step="3">
+        <p>开口方向由 $a$ 决定；顶点 $\left(-\dfrac b{2a},\dfrac{4ac-b^2}{4a}\right)$；对称轴两侧增减性相反。</p>
+        <span class="use">第 5 页：顶点在 $x$ 轴上方还是下方，决定和 $x$ 轴交不交．（<a href="../mj9b-ercihanshutuxiang/index.html">回看 5.2</a>）</span>
+      </div>
+      <div class="recall" data-label="九下 5.3 待定系数法（上一课）" data-step="4">
+        <p>点在图像上 ⇔ 点的坐标满足表达式。</p>
+        <span class="use">第 10 页习题 2：先用两个点求 $a$、$b$，再解方程．（<a href="../mj9b-daidingxishu/index.html">回看 5.3</a>）</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 1 张卡是本课最直接的“模板”：八上学一次函数时已经见过“函数—方程—不等式”的联系，今天换成二次函数，联系的方式一模一样，只是公共点可能有 2 个、1 个或 0 个。</p>
+</section>
+
+<!-- 3 ================= 思考·探索 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考 · 探索</span><h2>$y=x^2-2x-3$ 与方程 $x^2-2x-3=0$</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip" data-step="1">$y$ 的值确定后，由 $y=ax^2+bx+c$ 可以得到什么？<span class="think" data-step="2" data-ask="说一说">一个一元二次方程。如 $y=0$ 时，得到方程 $ax^2+bx+c=0$。</span></p>
+      <p class="tip" data-step="3">从图像上看，交点的纵坐标是多少？横坐标呢？<span class="think" data-step="4" data-ask="说一说">交点在 $x$ 轴上，纵坐标为 0；交点的横坐标就是方程 $ax^2+bx+c=0$ 的根。</span></p>
+      <div class="derive small-d" data-step="5">
+        <div class="dl"><span>交点 $M(3,0)$</span><span>$3^2-2\times3-3=0$</span><i class="why">$x=3$ 是方程的一个根</i></div>
+        <div class="dl"><span>交点 $N(-1,0)$</span><span>$(-1)^2-2\times(-1)-3=0$</span><i class="why">$x=-1$ 是另一个根</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <div id="mnBoard" class="mn-board"></div>
+      <p class="tip feedback" id="mnMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p24 “思考·探索”的两个小人与图 5-9。请学生拖动抛物线上的橙色点：纵坐标 y 一直在变；只有走到 x 轴上（y = 0）时，这个点的横坐标才是方程的根。代入检验写在第 5 步。</p>
+</section>
+
+<!-- 4 ================= 观察三条抛物线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">观察 · 思考</span><h2>三条抛物线，三种情况（图 5-10）</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="col">
+        <div id="t1Board" class="t-board"></div>
+        <p class="tip small-p">$-\dfrac12x^2-4x-6=0$ 的根？<span class="think" data-step="1" data-ask="看图">与 $x$ 轴有<b>两个</b>公共点 $(-6,0)$、$(-2,0)$：$x_1=-6$，$x_2=-2$。</span></p>
+      </div>
+      <div class="col">
+        <div id="t2Board" class="t-board"></div>
+        <p class="tip small-p">$x^2-6x+9=0$ 的根？<span class="think" data-step="2" data-ask="看图">与 $x$ 轴<b>只有一个</b>公共点 $(3,0)$（顶点）：$x_1=x_2=3$。</span></p>
+      </div>
+      <div class="col">
+        <div id="t3Board" class="t-board"></div>
+        <p class="tip small-p">$x^2-2x+3=0$ 的根？<span class="think" data-step="3" data-ask="看图">与 $x$ 轴<b>没有</b>公共点（整条抛物线在 $x$ 轴上方）：方程没有实数根。</span></p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">再用判别式算一算：<span class="think" data-step="5" data-ask="b²−4ac = ？">$16-4\times\left(-\dfrac12\right)\times(-6)=4&gt;0$；$36-36=0$；$4-12=-8&lt;0$——与图像完全吻合。</span></p>
+  </div>
+  <p class="note">课本 p24–25 “观察·思考”与图 5-10，三条抛物线按表达式逐点绘制。先看图说根，再用九上学的判别式验证。第二条抛物线的顶点恰好落在 x 轴上——“两个相等的实数根”在图上就是“相切”的一个点。</p>
+</section>
+
+<!-- 5 ================= 核心：Δ 与交点联动 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手探究</span><h2>拖动 $a$、$b$、$c$：$b^2-4ac$ 与公共点个数一起变</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="slider-row stack" data-noswipe>
+        <span class="sl">$a=$<input type="range" id="qA" min="-3" max="3" step="0.5" value="1"><b class="v" id="qAV"></b></span>
+        <span class="sl">$b=$<input type="range" id="qB" min="-6" max="6" step="0.5" value="-2"><b class="v" id="qBV"></b></span>
+        <span class="sl">$c=$<input type="range" id="qC" min="-6" max="6" step="0.5" value="-3"><b class="v" id="qCV"></b></span>
+      </div>
+      <div class="btns" data-noswipe id="qPre"></div>
+      <div class="dline" id="qDelta"></div>
+      <p class="tip feedback" id="qMsg"></p>
+    </div>
+    <div class="col">
+      <div id="qBoard" class="q-board"></div>
+      <p class="tip" data-step="1">只拖 $c$：抛物线怎样动？$b^2-4ac$ 怎样变？<span class="think" data-step="2" data-ask="试一试">抛物线上下平移；从两个交点 → 相切（$b^2-4ac=0$）→ 离开 $x$ 轴（$b^2-4ac&lt;0$）。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心。三个滑块改变 a、b、c，右图实时画出抛物线与它和 x 轴的公共点，左边同步显示方程、b² − 4ac 的值（数轴上的指针）和求根公式算出的根。预设按钮是课本图 5-9、图 5-10 的四个函数。重点操作：固定 a = 1、b = −2，拖 c 从 −3 到 3，看两个交点靠拢、重合、消失，b² − 4ac 同时由正变 0 再变负。</p>
+</section>
+
+<!-- 6 ================= 结论 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">结论</span><h2>公共点个数 ↔ 根的情况 ↔ $b^2-4ac$</h2></div>
+  <div class="bd full">
+    <table class="mtab rel" data-step="1">
+      <tr><th>$b^2-4ac$</th><th>$y=ax^2+bx+c$ 的图像与 $x$ 轴</th><th>$ax^2+bx+c=0$ 的根</th><th>示意</th></tr>
+      <tr><td>$&gt;0$</td><td>有<b>两个</b>公共点</td><td>两个不相等的实数根</td><td><svg viewBox="0 0 120 50" class="mini"><line x1="5" y1="30" x2="115" y2="30" class="axl"/><path d="M20 5 Q60 75 100 5" class="cv"/><circle cx="38.6" cy="30" r="3.5" class="dt"/><circle cx="81.4" cy="30" r="3.5" class="dt"/></svg></td></tr>
+      <tr><td>$=0$</td><td>有且只有<b>一个</b>公共点</td><td>两个相等的实数根</td><td><svg viewBox="0 0 120 50" class="mini"><line x1="5" y1="30" x2="115" y2="30" class="axl"/><path d="M20 -10 Q60 70 100 -10" class="cv"/><circle cx="60" cy="30" r="3.5" class="dt"/></svg></td></tr>
+      <tr><td>$&lt;0$</td><td><b>没有</b>公共点</td><td>没有实数根</td><td><svg viewBox="0 0 120 50" class="mini"><line x1="5" y1="45" x2="115" y2="45" class="axl"/><path d="M20 -10 Q60 70 100 -10" class="cv"/></svg></td></tr>
+    </table>
+    <div class="def" data-step="2"><h4>课本 p25</h4>根据二次函数 $y=ax^2+bx+c$ 的图像，可以确定一元二次方程 $ax^2+bx+c=0$ 的根的情况；<em>反过来</em>，根据一元二次方程 $ax^2+bx+c=0$ 的根的情况，可以判断二次函数 $y=ax^2+bx+c$ 的图像与 $x$ 轴的公共点的个数．</div>
+    <p class="method" data-step="3" data-label="数形结合">“数”（$b^2-4ac$ 的符号、方程的根）与“形”（抛物线与 $x$ 轴的位置关系）互相翻译。</p>
+  </div>
+  <p class="note">课本 p25 三段结论与“反过来……”。表中示意图为开口向上的情形；开口向下时上下翻转，结论不变——可回到上一页把 a 拖成负数验证。</p>
+</section>
+
+<!-- 7 ================= 例 + 练习 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 · 练习</span><h2>不画图，判断与 $x$ 轴的公共点</h2></div>
+  <div class="bd half">
+    <div class="col">
+      <p class="tip"><b>例</b>　不画图像，判断二次函数 $y=-x^2+5x-8$ 的图像与 $x$ 轴是否有公共点．</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>判别式</span><span>$b^2-4ac=5^2-4\times(-1)\times(-8)$</span><i class="why">看方程 $-x^2+5x-8=0$</i></div>
+        <div class="dl" data-step="2"><span></span><span class="think" data-step="3" data-ask="算一算">$=25-32=-7&lt;0$</span><i class="why">注意 $a=-1$，$c=-8$ 的符号</i></div>
+        <div class="dl" data-step="4"><span>所以</span><span>方程没有实数根</span><i class="why">九上 1.2</i></div>
+        <div class="dl key end" data-step="5"><span>因此</span><span>图像与 $x$ 轴没有公共点</span><i class="why">本课结论</i></div>
+      </div>
+      <p class="tip" data-step="6">从图像上看呢？<span class="think" data-step="7" data-ask="想一想">开口向下，顶点 $\left(\dfrac52,-\dfrac74\right)$ 在 $x$ 轴<b>下方</b>，所以整条抛物线都在 $x$ 轴下方。</span></p>
+    </div>
+    <div class="col">
+      <p class="tip"><b>练习（课本 p25）</b>　判断图像与 $x$ 轴的公共点的个数：</p>
+      <div class="qrow"><span>(1) $y=x^2-x$</span><div class="pick" data-ans="2"><button data-k="2">2 个</button><button data-k="1">1 个</button><button data-k="0">0 个</button><p class="pick-why">$b^2-4ac=1-0=1&gt;0$，两个公共点：$(0,0)$、$(1,0)$。</p></div></div>
+      <div class="qrow"><span>(2) $y=-x^2+6x-9$</span><div class="pick" data-ans="1"><button data-k="2">2 个</button><button data-k="1">1 个</button><button data-k="0">0 个</button><p class="pick-why">$b^2-4ac=36-4\times(-1)\times(-9)=0$，只有一个公共点 $(3,0)$。</p></div></div>
+      <div class="qrow"><span>(3) $y=3x^2+6x+11$</span><div class="pick" data-ans="0"><button data-k="2">2 个</button><button data-k="1">1 个</button><button data-k="0">0 个</button><p class="pick-why">$b^2-4ac=36-132=-96&lt;0$，没有公共点。</p></div></div>
+      <p class="warn" data-label="易错">$a$、$c$ 为负数时代入要带括号：$-4\times(-1)\times(-8)=-32$，不是 $+32$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p25 例与练习。例题课本只写判别式，第 6–7 步补一个“从图像看”的解释，与上一页的数形结合呼应。练习点选即时判对错，答对后显示理由。</p>
+</section>
+
+<!-- 8 ================= 读一读：看图解不等式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">读一读</span><h2>学会“读”二次函数的图像：$y=x^2-4x+3$</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="rdBoard" class="rd-board"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="rdPos">标出 $y&gt;0$ 的部分</button><button type="button" class="btn" id="rdNeg">标出 $y&lt;0$ 的部分</button></div>
+      <p class="tip feedback" id="rdMsg"></p>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="1">开口、顶点、对称轴、与 $x$ 轴的交点？<span class="think" data-step="2" data-ask="读一读">开口向上，顶点 $(2,-1)$，对称轴是过点 $(2,-1)$ 且平行于 $y$ 轴的直线；交 $x$ 轴于 $M(1,0)$、$N(3,0)$，$MN$ 的中点 $P(2,0)$ 在对称轴上。</span></p>
+      <p class="tip" data-step="3">(1) 增减性与最值？<span class="think" data-step="4" data-ask="读一读">当 $x&lt;2$ 时，$y$ 随 $x$ 增大而减小；当 $x=2$ 时，$y$ 的值最小，最小值是 $-1$；当 $x&gt;2$ 时，$y$ 随 $x$ 增大而增大。</span></p>
+      <p class="tip" data-step="5">(2) 方程 $x^2-4x+3=0$ 的根？<span class="think" data-step="6" data-ask="读一读">$x=1$ 或 $x=3$。</span></p>
+      <p class="tip gold" data-step="7">(3) 不等式 $x^2-4x+3&gt;0$、$x^2-4x+3&lt;0$ 的解集？<span class="think" data-step="8" data-ask="读一读">图像在 $x$ 轴上方 ⇔ $y&gt;0$：解集是 $x&lt;1$ 或 $x&gt;3$；图像在 $x$ 轴下方 ⇔ $y&lt;0$：解集是 $1&lt;x&lt;3$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p26 “读一读”。拖动 x 轴上的橙色点，竖直虚线指向抛物线上对应的点，读出 y 的正负；再点按钮把 y &gt; 0（绿色）和 y &lt; 0（橙色）对应的 x 范围标在 x 轴上。一元二次不等式课本只作阅读，不要求掌握解法，重在“读图”。</p>
+</section>
+
+<!-- 9 ================= 估根：逐步逼近 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>方程 $x^2+2x-5=0$ 的根在哪里？一步步放大（图 5-11）</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="zmRoot"></div>
+      <div id="zmAll" class="zm-all"></div>
+      <div id="zmBoard" class="zm-board"></div>
+    </div>
+    <div class="col">
+      <table class="mtab zm-tab" id="zmTab"></table>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="zmIn">放大到变号的区间</button><button type="button" class="btn" id="zmOut">重新开始</button></div>
+      <p class="tip feedback" id="zmMsg"></p>
+      <p class="tip" data-step="1">从图 5-11 看，根大约在哪里？<span class="think" data-step="2" data-ask="读图">两个公共点分别在 1 与 2、$-4$ 与 $-3$ 之间——方程有两个根，分别介于它们之间。</span></p>
+      <p class="tip gold" data-step="3">怎样知道根在哪一小段里？<span class="think" data-step="4" data-ask="看表">看 $y$ 的<b>符号</b>：相邻两个 $x$ 对应的 $y$ 一负一正，图像就在这两点之间穿过 $x$ 轴。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p26–27 “思考”与表 1–3。先选“1 与 2 之间的根”，表格按 0.1 的间隔计算（与课本表 1 相同）：1.4 处为负、1.5 处为正，所以 1.4 &lt; x &lt; 1.5；点“放大”后间隔变为 0.01（表 2），再变为 0.001（表 3）。左下的小图同步放大显示这一段。精确到 0.1 取 1.4，精确到 0.01 取 1.45，精确到 0.001 取 1.449。练习（另一个根）可直接切换“−4 与 −3 之间的根”来做。</p>
+</section>
+
+<!-- 10 ================= 练习 + 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习 · 习题 5.4</span><h2>自己试试：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>练习（p27）</b>　利用 $y=x^2+2x-5$ 的图像，借助计算器探索方程 $x^2+2x-5=0$ 的另一个介于 $-4$ 与 $-3$ 之间的根的近似值（精确到 0.01）．</p>
+          <details><summary>提示 1</summary>间隔 0.1：$x=-3.5$ 时 $y=0.25$，$x=-3.4$ 时 $y=-0.24$。</details>
+          <details><summary>提示 2</summary>在 $-3.5$ 与 $-3.4$ 之间取间隔 0.01：$x=-3.45$ 时 $y=0.002\,5$，$x=-3.44$ 时 $y=-0.046\,4$。</details>
+          <details><summary>完整解答</summary>$-3.45&lt;x&lt;-3.44$，且 $x=-3.45$ 时 $|y|$ 更接近 0，所以 $x\approx-3.45$。（上一页的工具选“$-4$ 与 $-3$ 之间”可验证。）</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>习题 1.</b> 不画图像，判断图像与 $x$ 轴是否有公共点；如果有，写出公共点的坐标：(1) $y=2x^2+x+1$；(2) $y=x^2+x-6$．</p>
+          <details><summary>完整解答</summary>(1) $b^2-4ac=1-8=-7&lt;0$，没有公共点。(2) $b^2-4ac=1+24=25&gt;0$，解 $x^2+x-6=0$ 得 $x_1=-3$，$x_2=2$，公共点 $(-3,0)$、$(2,0)$。</details>
+        </div>
+      </div>
+      <div class="col">
+        <div class="hint-ladder">
+          <p class="q"><b>习题 2.</b> 已知二次函数 $y=ax^2+bx+16$ 的图像经过点 $(-2,40)$ 和点 $(6,-8)$，求一元二次方程 $ax^2+bx+16=0$ 的根．</p>
+          <details><summary>提示</summary>先用待定系数法（5.3）：$\begin{cases}4a-2b+16=40,\\36a+6b+16=-8.\end{cases}$</details>
+          <details><summary>完整解答</summary>化简得 $2a-b=12$，$6a+b=-4$，解得 $a=1$，$b=-10$。方程 $x^2-10x+16=0$，$(x-2)(x-8)=0$，$x_1=2$，$x_2=8$。</details>
+        </div>
+        <div class="hint-ladder">
+          <p class="q"><b>习题 3.</b> 利用二次函数的图像，借助计算器求下列方程的根的近似值（精确到 0.1）：(1) $x^2+x-3=0$；(2) $\dfrac12x^2-x-1=0$．</p>
+          <details><summary>提示</summary>先画图（或列表）找出 $y$ 变号的两个相邻整数，再取间隔 0.1 列表。</details>
+          <details><summary>完整解答</summary>(1) 两根在 1 与 2、$-3$ 与 $-2$ 之间：$x_1\approx1.3$，$x_2\approx-2.3$。(2) 两根在 2 与 3、$-1$ 与 0 之间：$x_1\approx2.7$，$x_2\approx-0.7$。（用求根公式可验证：$\dfrac{-1\pm\sqrt{13}}2$，$1\pm\sqrt3$。）</details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p27 练习，p28 习题 5.4 第 1–3 题。习题 3 精确到 0.1 时，看间隔 0.1 的表中哪一端的 |y| 更小；也可以用 0.05 处的符号判断（如 (1) 中 x = 1.35 时 y ≈ 0.17 &gt; 0，根小于 1.35，取 1.3）。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>函数 · 方程 · 不等式：同一张图</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>函数 ↔ 方程</h3>
+        <p class="def">抛物线 $y=ax^2+bx+c$ 与 $x$ 轴公共点的<em>横坐标</em>，就是方程 $ax^2+bx+c=0$ 的<em>根</em>；公共点个数由 $b^2-4ac$ 的符号决定。</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>函数 ↔ 不等式</h3>
+        <p class="recall" data-label="读图">图像在 $x$ 轴上方的部分 ⇔ $y&gt;0$；下方 ⇔ $y&lt;0$。</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>方法</h3>
+        <p class="method" data-label="估根">看图找变号区间 → 列表缩小间隔（0.1 → 0.01 → …）→ 按精确度取近似值。</p>
+      </div>
+    </div>
+    <p class="recall" data-step="4" data-label="对比八上 6.6">一次函数：交点 1 个（或平行无交点）；二次函数：交点 2 个、1 个或 0 个。思路完全一样——<b>数形结合</b>。</p>
+    <p class="tip gold" data-step="5"><b>下一节：</b><a href="../mj9b-ercihanshuwenti/index.html">5.5 用二次函数解决问题</a>——最大收益、最大产量、拱桥的水面宽……二次函数的顶点和方程的根都要派上用场。</p>
+  </div>
+  <p class="note">课后作业建议：习题 5.4 第 1–3 题。可以追问：如果把 x 轴换成直线 y = k，抛物线与它的交点又对应什么方程？（ax² + bx + c = k）——为 5.5 拱桥问题（水位上升）作铺垫。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
