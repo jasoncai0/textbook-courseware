@@ -4106,7 +4106,11 @@ window.CATALOG = [
                 "title": "大树有多高",
                 "genre": "推导",
                 "kind": "比例",
-                "optional": true
+                "optional": true,
+                "dir": "mp6b-dashuduogao",
+                "pages": 10,
+                "desc": "调太阳高度看影长，同一时刻物高与影长成正比",
+                "cover": "mp6b-dashuduogao/assets/dashu.jpg"
               }
             ]
           }

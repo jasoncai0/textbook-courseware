@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大树有多高 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/dashu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 综合与实践 · 大树有多高</p>
+    <h1 class="cover-title">大树有多高</h1>
+    <p class="cover-q" data-step="1">校园里这棵大树有多高呢？</p>
+    <p class="cover-q" data-step="2">爬不上去，也没有那么长的尺子——能不能借<b>影子</b>帮忙？</p>
+    <div class="chips" data-step="3"><span class="chip">量影长</span><span class="chip">算比值</span><span class="chip">正比例</span><span class="chip">解比例</span></div>
+  </div>
+  <p class="note">课本 p66–67“大树有多高”（综合与实践）。本课的阳光、竹竿、影子都由程序按示例数据精确计算绘制：影长 = 物高 ÷ tan（太阳高度角）。课堂上最好在晴天到操场上实测。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这三件事，今天都要用到</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="六下第六单元 · 正比例的意义" data-step="1">
+        <p>两种相关联的量，一种量变化，另一种量也随着变化，如果它们的<b>比值一定</b>，这两种量就叫作成正比例的量。</p>
+        <span class="use">竹竿长与影长是不是成正比例。</span>
+      </div>
+      <div class="recall" data-label="六下第四单元 · 解比例" data-step="2">
+        <p class="big center">$x:1040=200:160$</p>
+        <p>比例的两个外项之积等于两个内项之积：$160x=1040\times200$。</p>
+        <span class="use">求大树的高度。</span>
+      </div>
+      <div class="recall" data-label="五上第五单元 · 商的近似值" data-step="3">
+        <p>保留两位小数：除到千分位，再四舍五入。</p>
+        <p class="center">$150\div121=1.239\cdots\approx1.24$</p>
+        <span class="use">竹竿长与影长的比值“得数保留两位小数”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">正比例和解比例，今天要用来解决一个<b>真问题</b>。</p>
+  </div>
+  <p class="note">本课在第六单元“正比例和反比例”之后。第 1 张卡请学生齐读定义，圈出“比值一定”。</p>
+</section>
+
+<!-- 3 ================= 提出问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>要想知道一棵大树的高度，可以怎样做？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="introFig" class="scene" viewBox="0 0 800 360" aria-label="阳光下的大树和影子"></svg>
+    </div>
+    <div class="col">
+      <p class="tip think" data-step="1" data-ask="办法一">先了解附近<b>建筑物</b>的高度，再通过比较，估计大树有多高。</p>
+      <p class="tip think" data-step="2" data-ask="办法二">在阳光下，不同高度的物体，影长是不一样的。物体高度和影长之间<b>有什么关系</b>呢？</p>
+      <p class="tip gold" data-step="3">大树太高量不了，但它的<b>影子</b>就躺在地上，可以量！先用竹竿做实验，找一找物高和影长的关系。</p>
+    </div>
+  </div>
+  <p class="note">课本 p66“提出问题”的两个小精灵。先让学生自由想办法，再引到“影子”。图中光线平行，影长按示例的太阳高度精确计算。</p>
+</section>
+
+<!-- 4 ================= 实验一 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验一</span><h2>把几根同样长的竹竿直立在地上，同时量影长</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="exp1" class="scene" viewBox="0 0 800 300" aria-label="同样长的竹竿和影子"></svg>
+      <div class="slider-row" data-noswipe>太阳高度 <input type="range" id="a1" min="30" max="70" step="1" value="45"><b id="a1v"></b></div>
+    </div>
+    <div class="col">
+      <p class="tip">三根竹竿都长 <b>100 cm</b>，直立在平坦的地面上。</p>
+      <p class="tip feedback" id="e1Msg"></p>
+      <p class="tip" data-step="1">比较每根竹竿的影长，你发现了什么？　<span class="think" data-step="2" data-ask="拖动滑块看一看">同一时刻，<b>同样长</b>的竹竿，影长<b>相同</b>；太阳越高，影子越短。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p66“实验操作”第一步（结果取整厘米数）。拖动“太阳高度”模拟一天中不同时刻：三根竹竿的影子总是一样长，但会随太阳高度一起变长变短。</p>
+</section>
+
+<!-- 5 ================= 核心：实验二 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实验二</span><h2>不同长度的竹竿，同时量影长，算比值</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="exp2" class="scene" viewBox="0 0 800 300" aria-label="不同长度的竹竿和影子"></svg>
+      <div class="slider-row" data-noswipe>太阳高度 <input type="range" id="a2" min="35" max="70" step="0.5" value="45"><b id="a2v"></b><button type="button" class="btn" id="a2fix">示例时刻</button></div>
+    </div>
+    <div class="col">
+      <table class="mtab live" id="liveTab"></table>
+      <svg id="plot" class="plot" viewBox="0 0 330 200" aria-label="竹竿长与影长的关系图"></svg>
+    </div>
+  </div>
+  <p class="note">本课核心操作。四根竹竿 50、100、150、200 cm，影长由程序按太阳高度精确算出，再取整厘米；比值 = 竹竿长 ÷ 影长，保留两位小数。拖动滑块：每换一个时刻，四个比值<b>几乎相同</b>（取整造成的差别只在第二位小数），右下图中的点总在一条过原点的直线上。点“示例时刻”回到下一页表格用的数据。</p>
+</section>
+
+<!-- 6 ================= 记录表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">填一填</span><h2>记录在表里，并计算比值（得数保留两位小数）</h2></div>
+  <div class="bd full top">
+    <table class="mtab rec">
+      <tr><th></th><th>①</th><th>②</th><th>③</th><th>④</th></tr>
+      <tr><th>竹竿长/cm</th><td>50</td><td>100</td><td>150</td><td>200</td></tr>
+      <tr><th>影长/cm</th><td>40</td><td>80</td><td>120</td><td>160</td></tr>
+      <tr><th>竹竿长与影长的比值</th><td><span class="blank" data-ans="1.25" data-w="4"></span></td><td><span class="blank" data-ans="1.25" data-w="4"></span></td><td><span class="blank" data-ans="1.25" data-w="4"></span></td><td><span class="blank" data-ans="1.25" data-w="4"></span></td></tr>
+    </table>
+    <p class="muted small-t">示例数据：在“示例时刻”测得。</p>
+    <div class="cols2">
+      <p class="tip" data-step="1">比较每次求得的比值，你有什么发现？　<span class="think" data-step="2" data-ask="说一说">比值都相同。竹竿越长，影子越长。</span></p>
+      <div class="def" data-step="3"><h4>发现</h4>在<b>同一时间、同一地点</b>，竹竿长与影长的比值一定，所以竹竿长和影长成<em>正比例</em>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p67 第一张表。实际测量时，因为“取整厘米数”，比值可能只是非常接近（例如 1.24、1.25、1.26），可以引导学生说“比值基本相同”。</p>
+</section>
+
+<!-- 7 ================= 解决问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">解决问题</span><h2>你能通过测量和计算求出大树的高度吗？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="solveFig" class="scene" viewBox="0 0 800 380" aria-label="竹竿和大树的影子"></svg>
+      <table class="mtab small">
+        <tr><th></th><th>影长/cm</th><th>实际高度/cm</th></tr>
+        <tr><th>竹竿</th><td>160</td><td>200</td></tr>
+        <tr><th>大树</th><td>1040</td><td><span class="think" data-step="7" data-ask="？">1300</span></td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <p class="tip">同一时刻，竹竿长 200 cm、影长 160 cm；大树影长 1040 cm。设大树高 $x$ cm。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$x:1040=200:160$</span><span class="why">同时同地，物高与影长成正比例</span></div>
+        <div class="dl" data-step="2"><span>$160x=1040\times200$</span><span class="why">外项之积 = 内项之积</span></div>
+        <div class="dl" data-step="3"><span>$x=1040\times200\div160$</span><span class="why">解方程</span></div>
+        <div class="dl key" data-step="4"><span>$x=$ <span class="blank" data-ans="1300" data-w="4"></span></span><span class="why">1300 cm = 13 m</span></div>
+      </div>
+      <p class="method" data-step="5" data-label="另一种想法">竹竿长是影长的 $200\div160=1.25$ 倍，大树高也是它影长的 1.25 倍：$1040\times1.25=$ <span class="blank" data-ans="1300" data-w="4"></span>（cm）。</p>
+      <p class="tip gold" data-step="6">答：这棵大树高 <b>13 米</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p67“解决问题”（示例数据）。先让学生交流“可以怎样推算”，再用比例解。左图中竹竿、大树和两条影子按同一比例画出，两条光线平行。</p>
+</section>
+
+<!-- 8 ================= 延伸思考 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">延伸思考</span><h2>同一棵大树，在不同时间测量它的影长，结果相同吗？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="dayFig" class="scene" viewBox="0 0 800 470" aria-label="一个上午大树和竹竿的影子"></svg>
+      <div class="slider-row" data-noswipe>时间 <input type="range" id="tIn" min="9" max="12" step="0.25" value="9"><b id="tV"></b></div>
+    </div>
+    <div class="col">
+      <table class="mtab live" id="dayTab"></table>
+      <p class="tip" data-step="1">影长变了吗？比值呢？　<span class="think" data-step="2" data-ask="拖动时间看一看">影长随时间变化，比值也变化；但<b>同一时刻</b>，大树和竹竿的比值总是相同的。</span></p>
+      <p class="warn" data-step="3" data-label="注意">比较物体的高度和影长时，要在<b>同一时间、同一地点</b>进行。</p>
+    </div>
+  </div>
+  <p class="note">课本 p67“延伸思考”。示例：一个上午 9:00—12:00，太阳高度角按简化模型计算（只用于演示变化趋势）。大树高 1300 cm、竹竿 200 cm。上午量竹竿、下午量大树，就不能这样算。</p>
+</section>
+
+<!-- 9 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>借影子量高度</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 同一时刻，身高 1.5 m 的小明影长 1.2 m，旗杆影长 6 m。旗杆高 <span class="blank" data-ans="7.5" data-w="3"></span> m。</p>
+        <details><summary>提示 1</summary>设旗杆高 $x$ m，$x:6=1.5:1.2$。</details>
+        <details><summary>完整解答</summary>$1.2x=6\times1.5$，$x=7.5$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 同一时刻，2 m 长的竹竿影长 2.5 m，一幢楼的影长 20 m。楼高 <span class="blank" data-ans="16"></span> m。</p>
+        <details><summary>提示 1</summary>竹竿长与影长的比值是 $2\div2.5=0.8$。</details>
+        <details><summary>完整解答</summary>$20\times0.8=16$（m）。</details>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 小刚上午 9 时量了竹竿的影长，下午 3 时量了大树的影长，用这两个数据能算出大树的高度吗？</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">能</button><button type="button" data-k="n">不能</button>
+          <p class="pick-why">不同时间太阳高度不同，物高与影长的比值不同，必须<b>同一时间</b>测量。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本这一页没有配套习题，三题是课堂延伸（示例数据）。第 3 题对应“延伸思考”。</p>
+</section>
+
+<!-- 10 ================= 回顾反思 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾反思</span><h2>通过上面的活动，你还能想到什么？</h2></div>
+  <div class="bd full">
+    <div class="steps4" data-step="1">
+      <span>实验<br><small>同时量竹竿和影长</small></span><i>→</i><span>发现<br><small>比值一定</small></span><i>→</i><span>结论<br><small>物高与影长成正比例</small></span><i>→</i><span>应用<br><small>解比例求树高</small></span>
+    </div>
+    <div class="cols3">
+      <p class="recall" data-label="会变化" data-step="2">同样高度的物体在不同时间、不同地点测出的影长是会变化的。</p>
+      <p class="method" data-label="要同时" data-step="3">比较物体的高度和影长时，要在同一时间、同一地点进行。</p>
+      <p class="warn" data-label="成正比例" data-step="4">在同一时间、同一地点，物体的高度和影长成<b>正比例</b>。</p>
+    </div>
+    <p class="tip gold" data-step="5">相传两千多年前，古希腊的泰勒斯就用影子测出了金字塔的高度——用的正是今天的方法。</p>
+  </div>
+  <p class="note">课本 p67 三个小精灵的话。泰勒斯测金字塔是数学史上的著名故事，可以简单介绍。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
