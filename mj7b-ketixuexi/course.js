@@ -107,7 +107,7 @@ function initCubeN() {
 
 /* 第 4 页：位置示意图（3×3×3，斜二测：x 向右、y 斜向右上 45° 缩半、z 向上） */
 function drawPosFig() {
-  const u = 52; const ox = 70; const oy = 250;
+  const u = 52; const ox = 70; const oy = 226;
   const P = ([x, y, z]) => [ox + x * u + y * u * 0.5 * Math.cos(45 * DEG), oy - z * u - y * u * 0.5 * Math.sin(45 * DEG)];
   const poly = (pts, fill, extra = '') => `<polygon points="${pts.map(P).map((q) => q.map((v) => v.toFixed(1)).join(',')).join(' ')}" fill="${fill}" stroke="#1f2d3a" stroke-width="1.2" ${extra}/>`;
   const COL = { 3: '#d9711c', 2: '#4f9bd0', 1: '#9bc46a', 0: '#ffffff' };
@@ -121,8 +121,9 @@ function drawPosFig() {
   const inner = [[1, 1, 1], [2, 1, 1], [2, 1, 2], [1, 1, 2]];
   s += `<polygon points="${inner.map(P).map((q) => q.join(',')).join(' ')}" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="5 4"/>`;
   const lg = [[3, '顶点 · 三面'], [2, '棱 · 两面'], [1, '面中间 · 一面']];
-  lg.forEach(([k, t], i) => { s += `<rect x="${200}" y="${18 + i * 26}" width="18" height="18" fill="${COL[k]}" stroke="#1f2d3a"/><text x="224" y="${32 + i * 26}" class="fl s">${t}</text>`; });
-  s += `<rect x="200" y="96" width="18" height="18" fill="none" stroke="#c0392b" stroke-dasharray="4 3" stroke-width="2"/><text x="224" y="110" class="fl s">内部 · 零面</text>`;
+  const at = (i) => [10 + (i % 2) * 160, 248 + Math.floor(i / 2) * 26];
+  lg.forEach(([k, t], i) => { const [x, y] = at(i); s += `<rect x="${x}" y="${y}" width="18" height="18" fill="${COL[k]}" stroke="#1f2d3a"/><text x="${x + 24}" y="${y + 14}" class="fl s">${t}</text>`; });
+  s += `<rect x="170" y="274" width="18" height="18" fill="none" stroke="#c0392b" stroke-dasharray="4 3" stroke-width="2"/><text x="194" y="288" class="fl s">内部 · 零面</text>`;
   $('posFig').innerHTML = s;
 }
 

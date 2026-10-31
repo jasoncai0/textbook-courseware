@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>制作“动画片” · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fanye.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">九年级下册 · 课题学习 · 制作“动画片”</p>
+    <h1 class="cover-title">制作“动画片”</h1>
+    <p class="cover-q" data-step="1">一个静态物体的两幅画面，按一定时间依次呈现，使人觉得是一个动态的物体，即同一个物体从一个位置移动到另一个位置．</p>
+    <p class="cover-q" data-step="2">动画片中的人与物“动”起来的效果，是利用画面上<b>图形的位置变化</b>产生的．——平移、旋转、放缩，都能让图形“动”起来．</p>
+    <div class="chips" data-step="3"><span class="chip">平移</span><span class="chip">旋转</span><span class="chip">位似（放缩）</span><span class="chip">点动成线</span><span class="chip">翻页动画工作台</span></div>
+  </div>
+  <p class="note">课本 p152 引言（照课本）。本课题把初中学过的图形变换用到动画制作上。分小组，每组准备 20 × 20 方格纸至少 24 张、订书机。课件里的“工作台”可先在屏幕上设计、预览，再画到纸上。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>让图形“动”起来的几种变换</h2></div>
+  <div class="bd full">
+    <div class="cols2 four">
+      <div class="recall" data-label="七下 7.3 · 图形的平移" data-step="1">
+        <p>图形沿某个方向移动一定的距离，形状、大小不变．</p>
+        <span class="use">小车向左开、气球向上升．</span>
+        <a class="lk" href="../mj7b-pingyi/index.html">回看 7.3</a>
+      </div>
+      <div class="recall" data-label="八下 9.1 · 图形的旋转" data-step="2">
+        <p>图形绕一个定点转动一个角度，形状、大小不变．</p>
+        <span class="use">风车转动．</span>
+        <a class="lk" href="../mj8b-xuanzhuan/index.html">回看 9.1</a>
+      </div>
+      <div class="recall" data-label="九下 6.6 · 图形的位似" data-step="3">
+        <p>位似图形对应点连线都经过位似中心，对应点到位似中心的距离之比等于相似比．</p>
+        <span class="use">依次按比例缩小，小船“渐渐远去”．</span>
+        <a class="lk" href="../mj9b-weisi/index.html">回看 6.6</a>
+      </div>
+      <div class="recall" data-label="八下 11.2 · 反比例函数的图像" data-step="4">
+        <p>$y=\dfrac1x$ 的图像是双曲线，在第一象限内 $y$ 随 $x$ 的增大而减小．</p>
+        <span class="use">“点动成线”：逐个画出图像上的点．</span>
+        <a class="lk" href="../mj8b-fanbilituxiang/index.html">回看 11.2</a>
+      </div>
+    </div>
+  </div>
+  <p class="note">四张卡对应今天的四类动画：平移（课本小车、气球）、旋转（自选主题）、位似（课本“依次按比例缩小或放大”“渐渐远去的小船”）、函数图像（课本“点动成线”）。</p>
+</section>
+
+<!-- 3 ================= 原理：小车 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">原理</span><h2>小车依次向左平移一格</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="film3" id="car3"></div>
+      <p class="muted center small-t">课本的三幅画：在 $20\times20$ 的方格纸中，小车依次向左平移一格</p>
+    </div>
+    <div class="col">
+      <div class="paper-wrap"><svg class="paper big" id="carPlay" viewBox="-0.5 -0.5 21 21"></svg></div>
+      <div class="slider-row" data-noswipe>第 <b class="v" id="carNV"></b> 幅 <input type="range" id="carN" min="1" max="12" step="1" value="1">　<button class="btn solid" type="button" id="carGo">▶ 快速翻动</button></div>
+      <p class="tip" data-step="1">把连续的若干幅画装订在一起，快速翻动，你会发现小车在“向左开动”．<span class="think" data-step="2" data-ask="为什么会动？">相邻两幅画中的小车是<b>平移</b>关系；翻得快，眼睛来不及分辨，就把它们连成了连续的运动．</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p152 小车的三幅图。右边的“翻页机”把 12 幅画依次显示（每秒 8 幅），模拟快速翻动的效果。可以追问：如果每幅平移 3 格，看起来会怎样？（车“跳”着走、变快）——每幅之间的变化量决定了动画的速度和流畅程度。</p>
+</section>
+
+<!-- 4 ================= 翻页动画工作台（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">操作 · 思考</span><h2>翻页动画工作台</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="paper-wrap"><svg class="paper big" id="wbPaper" viewBox="-0.5 -0.5 21 21"></svg></div>
+      <div class="slider-row" data-noswipe>第 <b class="v" id="wbNV"></b> 幅 <input type="range" id="wbN" min="1" max="24" step="1" value="1">　<button class="btn solid" type="button" id="wbGo">▶ 播放</button></div>
+    </div>
+    <div class="col">
+      <div class="btns" data-noswipe id="wbTheme">
+        <button class="btn solid" type="button" data-k="car">小车 · 平移</button>
+        <button class="btn" type="button" data-k="balloon">气球 · 平移</button>
+        <button class="btn" type="button" data-k="mill">风车 · 旋转</button>
+        <button class="btn" type="button" data-k="ship">小船 · 位似</button>
+      </div>
+      <div class="wb-set" data-noswipe>
+        <div class="slider-row"><span id="wbPName"></span> <input type="range" id="wbP"><b class="v" id="wbPV"></b></div>
+        <div class="slider-row">幅数 <input type="range" id="wbF" min="8" max="36" step="1" value="24"><b class="v" id="wbFV"></b>　每秒 <input type="range" id="wbS" min="4" max="24" step="1" value="12"><b class="v" id="wbSV"></b> 幅</div>
+      </div>
+      <p class="tip feedback" id="wbMsg"></p>
+      <div class="strip" id="wbStrip"></div>
+    </div>
+  </div>
+  <p class="note">本页是本课的核心工具，对应课本“操作·思考”：在大小相同的 20 × 20 方格纸上相应地制作一些图画（至少 24 幅）。选一个主题，调“每幅的变化量”、幅数、播放速度，下面的胶片条显示其中 8 幅（等距抽取）。图形的每个顶点都按变换公式计算，所以平移后大小不变、旋转后形状不变、位似后各边按同一比例缩小。若图形跑出了画纸，提示框会指出从第几幅开始出界——这正是分镜设计要提前计算的。</p>
+</section>
+
+<!-- 5 ================= 主题 1：气球 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推荐主题 1</span><h2>一个慢慢升起的气球</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <p class="tip">在 $20\times20$ 的方格纸上画 24 幅，气球从下往上升，又不能飞出画纸．每幅应该上移多少？</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>移动次数</span><span class="think" data-step="2" data-ask="24 幅移动几次？">$24-1=23$ 次</span><i class="why">第 1 幅是起点，后面每幅比前一幅移动一次</i></div>
+          <div class="dl" data-step="3"><span>可用高度</span><span class="think" data-step="4" data-ask="能上升几格？">约 $11.5$ 格</span><i class="why">气球连线高约 6.5 格，从底边附近升到顶边附近</i></div>
+          <div class="dl end" data-step="5"><span>每幅上移</span><span class="think" data-step="6" data-ask="多少格？">$11.5\div23=0.5$ 格</span><i class="why">每次平移相同的距离，速度才均匀</i></div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="method" data-step="7" data-label="“慢慢”怎样体现">每幅移动得少（0.5 格），幅数多；如果每幅上移 2 格，气球会“窜”上去，而且 6 幅后就飞出画纸了．</p>
+        <p class="method" data-step="8" data-label="更自然的气球">可以让气球边升边左右轻轻摆动：竖直方向每幅 $+0.5$ 格，水平方向交替 $+0.25$、$-0.25$ 格——平移向量每幅不同．</p>
+        <p class="tip gold" data-step="9">到工作台选“气球 · 平移”，把变化量调成 0.5，看看 24 幅的效果．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本推荐主题 1。课本只给了主题，没有给数据；这里的“0.5 格”是按 24 幅和画纸高度算出的一种设计（工作台中气球连线约 6.5 格高，第 1 幅底端在第 19 格附近）。重点是让学生体会：动画设计前要先“算”——总位移 = 每幅位移 × (幅数 − 1)。</p>
+</section>
+
+<!-- 6 ================= 主题 2：点动成线 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">推荐主题 2</span><h2>点动成线：画 $y=\dfrac1x$ 在第一象限内的一支</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="paper-wrap"><svg class="paper big" id="hyp" viewBox="-1.2 -0.5 22 22"></svg></div>
+      <div class="slider-row" data-noswipe>第 <b class="v" id="hypNV"></b> 幅 <input type="range" id="hypN" min="1" max="24" step="1" value="24">　<button class="btn solid" type="button" id="hypGo">▶ 播放</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">在这支图像上从左到右依次取 24 个点，第一幅画第一个点，后面的每幅画都比前一幅画多画一个点．<span class="muted">（课本）</span></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>单位长度</span><span>4 格 $=1$</span><i class="why">20 格表示 0～5</i></div>
+        <div class="dl" data-step="2"><span>取点</span><span class="think" data-step="3" data-ask="横坐标怎样取？">$x_k=0.2k\ (k=1,2,\dots,24)$</span><i class="why">从 0.2 到 4.8，等距</i></div>
+        <div class="dl" data-step="4"><span>纵坐标</span><span class="think" data-step="5" data-ask="y = ?">$y_k=\dfrac1{0.2k}=\dfrac5k$</span><i class="why">$k=1$ 时 $y=5$，正好到画纸顶端</i></div>
+      </div>
+      <table class="mtab pts" data-step="6">
+        <tr><th>$k$</th><td>1</td><td>2</td><td>4</td><td>5</td><td>10</td><td>20</td><td>24</td></tr>
+        <tr><th>$x$</th><td>0.2</td><td>0.4</td><td>0.8</td><td>1</td><td>2</td><td>4</td><td>4.8</td></tr>
+        <tr><th>$y$</th><td>5</td><td>2.5</td><td>1.25</td><td>1</td><td>0.5</td><td>0.25</td><td>$\approx0.21$</td></tr>
+      </table>
+      <p class="warn" data-step="7" data-label="想一想">横坐标等距，为什么点在左边“稀”、右边“密”？<span class="think" data-step="8" data-ask="看 y 的变化">左边 $y$ 变化快（从 5 降到 2.5），相邻两点距离大；右边 $y$ 几乎不变．</span></p>
+    </div>
+  </div>
+  <p class="note">课本推荐主题 2（照课本）。课本没有规定 24 个点怎样取，这里给出一种设计：x 取 0.2 的倍数，点由 y = 1/x 精确计算后画在方格纸上。翻动时曲线像被“画”出来——这就是“点动成线”。可以让学生讨论其他取点方式，比如让相邻点之间的距离大致相等。</p>
+</section>
+
+<!-- 7 ================= 交流：按比例缩小 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">尝试 · 交流</span><h2>依次按比例缩小：渐渐远去的小船</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="paper-wrap"><svg class="paper big" id="shipP" viewBox="-0.5 -0.5 21 21"></svg></div>
+      <div class="slider-row" data-noswipe>每幅缩小为 $k=$ <input type="range" id="shipK" min="0.8" max="0.98" step="0.01" value="0.9"><b class="v" id="shipKV"></b>　第 <b class="v" id="shipNV"></b> 幅 <input type="range" id="shipN" min="1" max="24" step="1" value="1"></div>
+    </div>
+    <div class="col">
+      <p class="tip">如果连续的若干幅画的图形依次按比例缩小或放大，这样制作的动画片会有怎样的效果？<span class="muted">（课本）</span></p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>效果</span><span class="think" data-step="2" data-ask="看起来像什么？">缩小：渐渐远去；放大：渐渐靠近</span><i class="why">近大远小</i></div>
+        <div class="dl" data-step="3"><span>第 $n$ 幅</span><span class="think" data-step="4" data-ask="是第 1 幅的几倍？">$k^{\,n-1}$ 倍</span><i class="why">每幅都是前一幅的 $k$ 倍，连乘 $n-1$ 次</i></div>
+        <div class="dl" data-step="5"><span>位似中心</span><span class="think" data-step="6" data-ask="选在哪？">远处的“消失点”（水平线上）</span><i class="why">对应点连线都过位似中心，小船沿直线驶向它</i></div>
+      </div>
+      <p class="tip feedback" id="shipMsg"></p>
+    </div>
+  </div>
+  <p class="note">课本“尝试·交流”第 2、3 题。以水平线上一点为位似中心，每幅相对前一幅作位似比为 k 的位似变换：小船同时变小、靠近消失点，正好是“渐渐远去”的效果（九下 6.6 位似）。图中虚线是船头、船尾与位似中心的连线，各幅的对应点都在这些线上。</p>
+</section>
+
+<!-- 8 ================= 分组制作：分镜表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分组制作</span><h2>先设计分镜表，再动笔</h2></div>
+  <div class="bd full top">
+    <p class="tip">分小组制作动画片：确定一个主题，在大小相同的 $20\times20$ 的方格纸上相应地制作一些图画（至少 24 幅），把这些图画装订成一本小画册．快速翻动这本小画册，达到你设计的效果了吗？<span class="muted">（课本）</span></p>
+    <div class="report" data-step="1">
+      <h4>分镜表</h4>
+      <table class="sb">
+        <tr><th>主题</th><td class="fill" colspan="4">例：风车转动</td></tr>
+        <tr><th>幅号</th><th>图形</th><th>变换</th><th>参数（相对上一幅）</th><th>检查</th></tr>
+        <tr><td>1</td><td class="fill">风车，中心 (10, 10)</td><td>—</td><td>—</td><td class="fill">不出界</td></tr>
+        <tr><td>2～24</td><td class="fill">同上</td><td>旋转</td><td class="fill">绕 (10, 10) 顺时针 15°</td><td class="fill">共转 345°</td></tr>
+        <tr><td>…</td><td class="fill"></td><td class="fill">平移 / 旋转 / 位似</td><td class="fill">向量 / 角度 / 位似比</td><td class="fill"></td></tr>
+      </table>
+    </div>
+    <div class="cols3">
+      <p class="method" data-step="2" data-label="描图技巧">把上一幅垫在下面描，关键点按参数移动后再连线．</p>
+      <p class="method" data-step="3" data-label="分工">设计分镜 / 计算坐标 / 画图 / 装订试翻，轮流检查．</p>
+      <p class="warn" data-step="4" data-label="常见问题">变化量忽大忽小 → 画面“抖”；忘了预算总位移 → 图形出界．</p>
+    </div>
+  </div>
+  <p class="note">课本“操作·思考”的要求（原文）。分镜表让学生先用数学语言（变换 + 参数）描述每一幅，再动手画。风车的例子：每幅转 15°，24 幅共转 23 × 15° = 345°，第 25 幅就回到起点附近，可以循环播放。</p>
+</section>
+
+<!-- 9 ================= 交流与评价 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">交流</span><h2>交流各组的作品</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="task" data-step="1">
+        <h4>展示时说清楚</h4>
+        <ol>
+          <li>主题是什么？想达到什么效果？</li>
+          <li>用了哪种变换？参数是多少？怎样算出来的？</li>
+          <li>快速翻动的效果达到设计要求了吗？哪里还可以改进？</li>
+        </ol>
+      </div>
+      <p class="tip" data-step="2">试制作动画片：一艘渐渐远去的小船．<span class="muted">（课本“尝试·交流”第 3 题）</span></p>
+    </div>
+    <div class="report" data-step="3">
+      <h4>数学活动评价表</h4>
+      <table>
+        <tr><th>活动名称</th><td>制作“动画片”</td></tr>
+        <tr><th>参加者</th><td class="fill">________</td></tr>
+        <tr><th>自我评价</th><td>1. 你们的动画用到了哪些图形变换？<br>2. 制作中遇到了哪些困难？是怎样解决的？<br>3. 从其他小组的作品中，你得到了哪些启发？<br>4. 通过本次活动，你对“图形的变化”有哪些新的体会？</td></tr>
+        <tr><th>同学或小组评价</th><td class="fill"><span class="stars">☆☆☆☆☆</span></td></tr>
+        <tr><th>老师评语</th><td class="fill">________</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="note">课本“尝试·交流”第 1 题“交流各组的作品”。评价表的结构仿照课本附录“数学活动评价表”。可以评选“最流畅”“最有创意”“数学味最浓”的作品。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>动画里的数学</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1"><h3>变换</h3><p class="def">平移（向量）、旋转（中心 + 角度）、位似（中心 + 位似比），都能让图形“动”起来．</p></div>
+      <div class="col" data-step="2"><h3>计算</h3><p class="method" data-label="设计前先算">总变化 = 每幅变化 × (幅数 − 1)；位似 $n$ 次后为原来的 $k^{\,n}$ 倍．</p></div>
+      <div class="col" data-step="3"><h3>思想</h3><p class="recall" data-label="动与静">每一幅都是静止的，连续呈现就成了运动；“点动成线”体现了函数图像由点组成．</p></div>
+    </div>
+  </div>
+  <p class="note">请学生说出自己小组的动画用了哪一种变换、参数是多少。计算机动画的原理与翻页动画相同：每秒播放二十几幅画面，每幅画面里图形的坐标都按变换公式计算。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

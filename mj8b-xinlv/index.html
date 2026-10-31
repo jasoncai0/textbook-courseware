@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>心率的调查 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/mstat.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/maibo.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">八年级下册 · 课题学习 · 心率的调查</p>
+    <h1 class="cover-title">心率的调查</h1>
+    <p class="cover-q" data-step="1">心率是指单位时间内心脏搏动的次数，一般指每分钟的心跳次数．正常的成年人安静时的心率为 <b>60～100 次/分</b>（平均心率在 75 次/分左右）．</p>
+    <p class="cover-q" data-step="2">新生儿的心率为 130～150 次/分，2～4 岁儿童为 110～120 次/分，随着年龄增长逐年减少，14 岁以后逐渐接近成年人．<b>我们班同学的心率是怎样分布的？</b></p>
+    <div class="chips" data-step="3"><span class="chip">测量</span><span class="chip">收集整理</span><span class="chip">频数分布表 · 直方图</span><span class="chip">分析 · 汇报</span></div>
+  </div>
+  <p class="note">课本 p170 课题学习的引言（数据照课本）。八年级学生正好 13～14 岁，“接近成年人”这一句可以作为调查要检验的猜想：全班心率大多在 60～100 次/分之间吗？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>第 7 章的统计“工具箱”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="7.1 · 普查与抽样调查" data-step="1">
+        <p>考察全体对象的调查叫普查；只抽取一部分对象调查叫抽样调查．</p>
+        <span class="use">调查全班——是普查；用全班估计全年级——是抽样．</span>
+        <a class="lk" href="../mj8b-puchachouyang/index.html">回看 7.1</a>
+      </div>
+      <div class="recall" data-label="7.3 · 频数和频率" data-step="2">
+        <p>频数：落在某一组的数据个数；频率 $=\dfrac{\text{频数}}{\text{数据总数}}$．</p>
+        <span class="use">统计每个心率段有几人、占几成．</span>
+        <a class="lk" href="../mj8b-pinshupinlv/index.html">回看 7.3</a>
+      </div>
+      <div class="recall" data-label="7.4 · 频数分布表和直方图" data-step="3">
+        <p>求极差 → 定组距、组数 → 列频数分布表 → 画频数分布直方图．</p>
+        <span class="use">整理全班的心率数据，看它的分布．</span>
+        <a class="lk" href="../mj8b-zhifangtu/index.html">回看 7.4</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课路线：</b>测量自己的心率 → 收集全班数据 → 列频数分布表、画直方图 → 分析总体分布 → 写调查报告．</p>
+  </div>
+  <p class="note">课题学习是对第 7 章的一次完整应用。第三张卡的四个步骤是今天的主线，请学生先口述，再对照 7.4 课件回看。</p>
+</section>
+
+<!-- 3 ================= 实践 1：测量 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实践 1</span><h2>测量并记录自己的心率</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="pmeter" data-noswipe>
+        <div class="slider-row">计时
+          <select id="pmT"><option value="15">15 秒</option><option value="30" selected>30 秒</option><option value="60">60 秒</option></select>
+          <button class="btn solid" type="button" id="pmStart">开始计时</button>
+        </div>
+        <div class="pm-face"><span id="pmClock">0.0</span><small>秒</small></div>
+        <button class="pm-beat" type="button" id="pmBeat">♥ 跳一下点一下</button>
+        <p class="tip feedback" id="pmMsg">安静坐好，手指按住手腕内侧（或颈部一侧）找到脉搏．点“开始计时”后，每感觉到一次跳动就点一下 ♥．</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>测 15 秒</span><span class="think" data-step="2" data-ask="怎样换算？">心率 $=$ 次数 $\times4$</span><i class="why">1 分 $=60$ 秒 $=4\times15$ 秒</i></div>
+        <div class="dl" data-step="3"><span>测 30 秒</span><span class="think" data-step="4" data-ask="怎样换算？">心率 $=$ 次数 $\times2$</span><i class="why">$60\div30=2$</i></div>
+        <div class="dl" data-step="5"><span>测 60 秒</span><span class="think" data-step="6" data-ask="怎样换算？">心率 $=$ 次数</span><i class="why">直接就是每分钟的次数</i></div>
+      </div>
+      <p class="warn" data-step="7" data-label="哪种更准？">测 15 秒时，少数 1 次，心率就少算 <b>4</b> 次/分；测 60 秒，少数 1 次只差 1 次/分．时间越长，误差越小．</p>
+      <p class="method" data-step="8" data-label="测量要求">安静坐 5 分钟后再测；连测 3 次取平均数；统一测量方法，全班数据才能放在一起比较．</p>
+    </div>
+  </div>
+  <p class="note">课本“实践”第 1 项。左边是测量器：老师选“30 秒”，全班同时开始，学生自己数，用测量器的读数核对换算。注意测量器只是帮助计时和换算，次数要靠自己数准。运动后心率会明显升高，所以统一要求“静坐 5 分钟后测”，这也是“控制条件”的统计意识。</p>
+</section>
+
+<!-- 4 ================= 个人记录 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">记录</span><h2>测三次，取平均数</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <table class="mtab rec3" data-noswipe>
+          <tr><th>第几次</th><th>测量时长</th><th>数到的次数</th><th>心率（次/分）</th></tr>
+          <tr><td>1</td><td>30 秒</td><td><input type="number" class="pc" value="39"></td><td class="pr"></td></tr>
+          <tr><td>2</td><td>30 秒</td><td><input type="number" class="pc" value="41"></td><td class="pr"></td></tr>
+          <tr><td>3</td><td>30 秒</td><td><input type="number" class="pc" value="40"></td><td class="pr"></td></tr>
+          <tr class="on"><td colspan="3">三次的平均心率</td><td id="pAvg"></td></tr>
+        </table>
+        <p class="muted small-t">表中数据为示例，改成自己数到的次数即可自动计算．</p>
+      </div>
+      <div class="col">
+        <p class="tip">示例：三次数到 39、41、40 次（各 30 秒）．</p>
+        <div class="derive">
+          <div class="dl" data-step="1"><span>换算</span><span class="think" data-step="2" data-ask="每次心率？">78、82、80 次/分</span><i class="why">30 秒的次数 × 2</i></div>
+          <div class="dl end" data-step="3"><span>平均</span><span class="think" data-step="4" data-ask="平均心率？">$\dfrac{78+82+80}{3}=80$ 次/分</span><i class="why">平均数 = 总数 ÷ 个数（小学学过）</i></div>
+        </div>
+        <p class="method" data-step="5" data-label="为什么测三次">一次测量可能数错、可能刚好紧张；取三次的平均数，偶然的误差会相互抵消一部分．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">个人记录表。平均数在九年级上册第 3 章还会系统学习，这里用小学学过的“总数 ÷ 个数”即可。每位同学把自己的平均心率（取整数）交给小组，作为下一页全班数据。</p>
+</section>
+
+<!-- 5 ================= 实践 2：全班数据 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">实践 2</span><h2>收集全班同学的心率数据</h2></div>
+  <div class="bd wide-l">
+    <div class="col">
+      <p class="tip">把全班的数据粘贴或输入下面（用空格、逗号或换行隔开）．<span class="muted">现在是 40 个<b>示例数据</b>．</span></p>
+      <textarea id="dataIn" class="data-in" rows="5" data-noswipe spellcheck="false"></textarea>
+      <div class="btns" data-noswipe><button class="btn solid" type="button" id="dataUse">用这些数据</button><button class="btn" type="button" id="dataReset">恢复示例数据</button><button class="btn" type="button" id="dataSort">从小到大排一排</button></div>
+      <div class="dgrid" id="dgrid"></div>
+    </div>
+    <div class="col">
+      <div class="readout stat-read">
+        <span>数据个数</span><b class="v" id="stN"></b>
+        <span>最大值</span><b class="v" id="stMax"></b>
+        <span>最小值</span><b class="v" id="stMin"></b>
+        <span>极差</span><b class="v" id="stR"></b>
+        <span>平均数</span><b class="v" id="stAvg"></b>
+      </div>
+      <p class="tip feedback" id="dataMsg"></p>
+      <p class="method" data-step="1" data-label="下一步">极差 = 最大值 − 最小值，它决定“分几组、组距多大”．</p>
+    </div>
+  </div>
+  <p class="note">课本“实践”第 2 项。示例数据是为演示编写的 40 个数（不是真实调查结果），课堂上请换成本班实测数据：可以由课代表收齐后输入。输入后自动检查：非数字、明显不合理的数（低于 40 或高于 200）会提示核对——这是“数据清洗”的意识。</p>
+</section>
+
+<!-- 6 ================= 分组：频数分布表与直方图（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">整理</span><h2>列频数分布表，画频数分布直方图</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="slider-row" data-noswipe>组距 <select id="gW"><option value="4">4</option><option value="5" selected>5</option><option value="8">8</option><option value="10">10</option></select>　第一组起点 <b class="v" id="gStart"></b>
+        <button class="btn" type="button" id="gDown">− 1</button><button class="btn" type="button" id="gUp">+ 1</button></div>
+      <div class="tab-wrap"><table class="mtab ftab" id="ftab"></table></div>
+    </div>
+    <div class="col">
+      <div id="hist" class="hist"></div>
+      <p class="tip feedback" id="gMsg"></p>
+    </div>
+  </div>
+  <p class="note">本页是本课的核心工具：换组距、移动起点，频数分布表（含划记、频率）和直方图同步重算。分界点取“.5”（如 64.5），因为心率是整数，任何一个数据都不会恰好落在分界点上——与 7.4 课本的做法一致。请学生比较：组距太小，直方图“参差不齐”；组距太大，看不出分布特点。组距 5 左右比较合适。</p>
+</section>
+
+<!-- 7 ================= 探索：分析分布 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">探索</span><h2>全班同学心率的总体分布情况</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="hist2" class="hist"></div>
+      <p class="muted center small-t">组距 5，起点 64.5（按当前数据绘制）；虚线框是成年人正常范围 60～100 次/分</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>集中在</span><span class="think" data-step="2" data-ask="哪一组最多？" id="anTop"></span><i class="why">看最高的长条</i></div>
+        <div class="dl" data-step="3"><span>正常范围</span><span class="think" data-step="4" data-ask="占多少？" id="anNorm"></span><i class="why">60～100 的人数 ÷ 总人数</i></div>
+        <div class="dl" data-step="5"><span>形状</span><span class="think" data-step="6" data-ask="是什么样？" id="anShape"></span><i class="why">左右大致对称吗？</i></div>
+        <div class="dl" data-step="7"><span>与成人比</span><span class="think" data-step="8" data-ask="怎么样？" id="anAvg"></span><i class="why">课本：成人平均心率约 75 次/分</i></div>
+      </div>
+      <p class="warn" data-step="9" data-label="结论要有分寸">一个班的数据只能说明这个班；要了解全校八年级，还要考虑样本是否有代表性（7.1 抽样调查）．</p>
+    </div>
+  </div>
+  <p class="note">课本“探索”：根据频数分布表和直方图分析总体分布情况。右侧四个结论都是由当前数据自动算出的（换成本班数据后会随之改变），请学生先自己说，再揭示。分析时用“大多数”“集中在”“约占”等统计语言，不要把个别同学的数据当作结论。</p>
+</section>
+
+<!-- 8 ================= 误差与异常 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">反思</span><h2>数据可信吗？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard" data-step="1">
+        <p>小明的数据是 <b>124</b> 次/分，比其他同学都高很多．直接删掉吗？</p>
+        <div class="think" data-step="2" data-ask="怎么办？"><p>先<b>核对</b>：是不是刚跑完步？是不是 30 秒的次数忘了乘 2，或 15 秒乘了 8？确认测量无误，就保留并注明；确属测错，重测后再用．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p>有的同学测 15 秒，有的测 60 秒，数据能放在一起吗？</p>
+        <div class="think" data-step="4" data-ask="想一想"><p>都换算成“次/分”才能比较．但测量时长不同，<b>精确程度</b>不同，最好全班统一方法．</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        <p>体育课后马上测，全班心率普遍在 110 以上．能说“我们班心率偏高”吗？</p>
+        <div class="think" data-step="6" data-ask="能吗？"><p>不能．课本说的是<b>安静时</b>的心率；测量条件不同，数据就不能和正常范围比较．</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="7" data-label="数据质量">统一条件（静坐）→ 统一方法（时长、换算）→ 核对异常值 → 再分析．</p>
+  </div>
+  <p class="note">这三个情境都是课堂上真实可能出现的问题。处理异常值的原则：先查原因，不随意删除。若确属测量错误，应在报告中写明处理方法。</p>
+</section>
+
+<!-- 9 ================= 汇报 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">汇报</span><h2>写一份调查报告</h2></div>
+  <div class="bd wide">
+    <div class="report" data-step="1">
+      <h4>“心率的调查”报告</h4>
+      <table>
+        <tr><th>调查目的</th><td>了解全班同学安静时心率的分布情况</td></tr>
+        <tr><th>调查对象</th><td class="fill">八年级____班全体同学，共____人（普查）</td></tr>
+        <tr><th>测量方法</th><td class="fill">静坐 5 分钟后，测____秒，换算为次/分，测 3 次取平均</td></tr>
+        <tr><th>数据整理</th><td class="fill">极差____；组距____，分____组；频数分布表、直方图（附后）</td></tr>
+        <tr><th>分析结论</th><td class="fill">心率集中在____；在 60～100 次/分的约占____%</td></tr>
+        <tr><th>问题与建议</th><td class="fill">误差来源、异常数据的处理；对同学健康的小建议</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <div class="task" data-step="2">
+        <h4>自我评价（参考课本“数学活动评价表”）</h4>
+        <ol>
+          <li>在测量、整理数据、画直方图的过程中，你和小组同学遇到了哪些困难？是如何克服的？</li>
+          <li>通过对数据的收集、整理、描述，你对自己和同学的心率有哪些新的认识？</li>
+          <li>你认为本组的报告哪里做得最好？还有哪些可以改进？</li>
+        </ol>
+      </div>
+      <p class="tip" data-step="3">同学或小组评价：<span class="stars">☆☆☆☆☆</span>　老师评语：________</p>
+    </div>
+  </div>
+  <p class="note">调查报告的格式：目的、对象、方法、数据、结论、建议。评价部分仿照课本附录“数学活动评价表”的结构（自我评价、同学或小组评价、老师评语）。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>一次完整的统计调查</h2></div>
+  <div class="bd full">
+    <div class="cycle">
+      <span data-step="1">提出问题</span><i data-step="2">→</i><span data-step="2">收集数据<br><small>测量、记录</small></span><i data-step="3">→</i><span data-step="3">整理数据<br><small>频数分布表</small></span><i data-step="4">→</i><span data-step="4">描述数据<br><small>直方图</small></span><i data-step="5">→</i><span data-step="5">分析 · 结论<br><small>写报告</small></span>
+    </div>
+    <div class="cols2 sum">
+      <p class="method" data-step="6" data-label="方法">组距决定直方图的样子：选得合适，分布特点才清楚．</p>
+      <p class="recall" data-step="7" data-label="以后会学">九年级上册第 3 章将学习平均数、中位数、众数和方差，可以更精确地描述“集中在哪里”“波动有多大”．</p>
+    </div>
+  </div>
+  <p class="note">统计调查的一般过程是本课最重要的收获。可以布置延伸：测量运动后 1 分钟、3 分钟、5 分钟的心率，画折线图看心率怎样恢复（7.2 统计图的选用）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/mstat.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -5093,7 +5093,11 @@ window.CATALOG = [
                 "title": "关于勾股定理的研究",
                 "genre": "推导",
                 "kind": "课题学习",
-                "optional": true
+                "optional": true,
+                "dir": "mj8a-ketixuexi",
+                "pages": 9,
+                "desc": "四个直角三角形平移拼图证勾股，附历史时间轴",
+                "cover": "mj8a-ketixuexi/assets/tushuguan.jpg"
               }
             ]
           }
@@ -5385,7 +5389,11 @@ window.CATALOG = [
                 "title": "心率的调查",
                 "genre": "推导",
                 "kind": "课题学习",
-                "optional": true
+                "optional": true,
+                "dir": "mj8b-xinlv",
+                "pages": 10,
+                "desc": "脉搏计时器，组距可调的频数表和直方图",
+                "cover": "mj8b-xinlv/assets/maibo.jpg"
               }
             ]
           }
@@ -5425,7 +5433,11 @@ window.CATALOG = [
                 "title": "一元二次方程的根与系数的关系",
                 "genre": "推导",
                 "kind": "方程",
-                "optional": true
+                "optional": true,
+                "dir": "mj9a-genxishu",
+                "pages": 12,
+                "desc": "拖动两根，实时对照与系数的关系",
+                "cover": "mj9a-genxishu/assets/dushu.jpg"
               },
               {
                 "no": "1.4",
@@ -5630,7 +5642,11 @@ window.CATALOG = [
                 "title": "收集数据 分析数据 探索规律",
                 "genre": "推导",
                 "kind": "课题学习",
-                "optional": true
+                "optional": true,
+                "dir": "mj9a-ketixuexi",
+                "pages": 10,
+                "desc": "树叶长宽散点图分类，加入极端值做实验",
+                "cover": "mj9a-ketixuexi/assets/shuye.jpg"
               }
             ]
           }
@@ -5918,7 +5934,11 @@ window.CATALOG = [
                 "title": "制作“动画片”",
                 "genre": "推导",
                 "kind": "课题学习",
-                "optional": true
+                "optional": true,
+                "dir": "mj9b-donghuapian",
+                "pages": 10,
+                "desc": "翻页动画工作台：平移、旋转、位似",
+                "cover": "mj9b-donghuapian/assets/fanye.jpg"
               }
             ]
           }
