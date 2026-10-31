@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>表面涂色的正方体 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="../shared/mcube.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/muzhuo.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 综合与实践 · 表面涂色的正方体</p>
+    <h1 class="cover-title">表面涂色的正方体</h1>
+    <p class="cover-q" data-step="1">把一个正方体的<b>表面全部涂上颜色</b>，再切成同样大的小正方体。</p>
+    <p class="cover-q" data-step="2">有的小正方体 3 个面有颜色，有的 2 个面、1 个面，还有的<b>一个面也没有</b>。它们各有多少个？藏在哪里？</p>
+    <div class="chips" data-step="3"><span class="chip">切一切</span><span class="chip">找一找</span><span class="chip">数一数</span><span class="chip">发现规律</span></div>
+  </div>
+  <p class="note">课本 p26–27“表面涂色的正方体”（探索规律）。先让学生想象：涂色只涂在大正方体的外表面，切开后，里面露出来的新面都没有颜色。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>正方体，我们已经认识了什么？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="六上第一单元 · 认识正方体" data-step="1">
+        <svg id="rcCube" class="fig2d rc-fig" viewBox="0 0 220 150" aria-label="正方体的顶点、棱和面"></svg>
+        <p>正方体有 <b>8</b> 个顶点、<b>12</b> 条棱、<b>6</b> 个面，6 个面都是相同的正方形。</p>
+        <span class="use">找 3 面、2 面、1 面涂色的小正方体在哪里。</span>
+      </div>
+      <div class="recall" data-label="六上第一单元 · 正方体的体积" data-step="2">
+        <p>把正方体每条棱平均分成 3 份，可以切成</p>
+        <p class="big center">$3\times3\times3=27$（个）</p>
+        <p>小正方体——就是“棱长 × 棱长 × 棱长”。</p>
+        <span class="use">算切成小正方体的总个数。</span>
+      </div>
+      <div class="recall" data-label="五上第八单元 · 用字母表示数" data-step="3">
+        <p>用字母可以把规律简明地写出来，如正方形周长 $C=4a$。</p>
+        <p>$n$ 表示一个数，$n-2$ 表示比它少 2 的数。</p>
+        <span class="use">用含 $n$ 的式子表示 2 面、1 面涂色的个数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">今天我们要把“顶点、棱、面”和“切开后的小正方体”联系起来，找一找藏在里面的规律。</p>
+  </div>
+  <p class="note">左图用代码画出正方体，8 个顶点（红点）、12 条棱、6 个面。请学生先口答“正方体有几个顶点、几条棱、几个面”，再点开。</p>
+</section>
+
+<!-- 3 ================= 每条棱平均分成 2 份 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">从简单的开始</span><h2>每条棱平均分成 2 份，切开后会怎样？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="v2" class="view3"></div>
+      <div class="slider-row" data-noswipe>拆开 <input type="range" id="gap2" min="0" max="1" step="0.01" value="0"></div>
+    </div>
+    <div class="col">
+      <p class="tip">一个表面涂色的正方体，每条棱都平均分成 2 份，照左图切开。</p>
+      <div class="calc">
+        <p>能切成 <span class="blank" data-ans="8"></span> 个同样大的小正方体。</p>
+        <p>每个小正方体有 <span class="blank" data-ans="3"></span> 个面涂色。</p>
+      </div>
+      <p class="tip" data-step="1">为什么<b>每个</b>都是 3 个面？　<span class="think" data-step="2" data-ask="拖动“拆开”看一看">每个小正方体都在大正方体的一个<b>顶点</b>上，顶点处有 3 个面相交，所以都是 3 面涂色。</span></p>
+      <p class="tip gold" data-step="3">$2\times2\times2=8$（个），正好是正方体的 8 个顶点。</p>
+    </div>
+  </div>
+  <p class="note">课本 p26 第一个问题。先填空，再拖动滑块把 8 个小正方体拆开：橙色是原来涂过色的面，木色是切开后新露出来的面。数一数每个小正方体的橙色面。</p>
+</section>
+
+<!-- 4 ================= 核心：切一切、找一找 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手切一切</span><h2>分成 3 份、4 份、5 份……各种小正方体藏在哪里？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="vN" class="view3 tall"></div>
+    </div>
+    <div class="col">
+      <div class="slider-row" data-noswipe>每条棱平均分成 <b id="nVal">3</b> 份 <input type="range" id="nIn" min="2" max="6" step="1" value="3"></div>
+      <div class="slider-row" data-noswipe>拆开 <input type="range" id="gapN" min="0" max="1" step="0.01" value="0.5"></div>
+      <div class="btns flt" id="flt" data-noswipe>
+        <button type="button" class="btn solid" data-k="all">全部</button>
+        <button type="button" class="btn" data-k="3">3 面涂色</button>
+        <button type="button" class="btn" data-k="2">2 面涂色</button>
+        <button type="button" class="btn" data-k="1">1 面涂色</button>
+        <button type="button" class="btn" data-k="0">没有涂色</button>
+      </div>
+      <p class="tip feedback" id="fltMsg"></p>
+      <table class="mtab cnt">
+        <tr><th>总个数</th><th>3 面</th><th>2 面</th><th>1 面</th><th>0 面</th></tr>
+        <tr id="cntRow"><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <button type="button" class="btn" id="cntShow" data-noswipe>数好了，显示个数</button>
+    </div>
+  </div>
+  <p class="note">本课核心操作。每个小正方体的涂色面数由程序逐个判断（看它的哪几个面露在大正方体表面上），个数是真实数出来的。建议顺序：先选 3 份，按“3 面涂色”“2 面涂色”“1 面涂色”逐个只看一类，让学生说出它们在顶点、棱、面的什么位置；再换 4 份、5 份。“没有涂色”的藏在最里面，拆开后才看得见。个数先让学生数，再点“显示个数”核对。</p>
+</section>
+
+<!-- 5 ================= 记录表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">填一填</span><h2>先在图中找一找，再把结果填入表中</h2></div>
+  <div class="bd full top">
+    <table class="mtab rec">
+      <tr><th>大正方体的棱平均分的份数</th><th>2</th><th>3</th><th>4</th><th>5</th><th>…</th></tr>
+      <tr><th>切成小正方体的总个数</th><td>8</td><td><span class="blank" data-ans="27"></span></td><td><span class="blank" data-ans="64"></span></td><td><span class="blank" data-ans="125"></span></td><td>…</td></tr>
+      <tr><th>3 面涂色的小正方体个数</th><td>8</td><td><span class="blank" data-ans="8"></span></td><td><span class="blank" data-ans="8"></span></td><td><span class="blank" data-ans="8"></span></td><td>…</td></tr>
+      <tr><th>2 面涂色的小正方体个数</th><td>0</td><td><span class="blank" data-ans="12"></span></td><td><span class="blank" data-ans="24"></span></td><td><span class="blank" data-ans="36"></span></td><td>…</td></tr>
+      <tr><th>1 面涂色的小正方体个数</th><td>0</td><td><span class="blank" data-ans="6"></span></td><td><span class="blank" data-ans="24"></span></td><td><span class="blank" data-ans="54"></span></td><td>…</td></tr>
+    </table>
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q">数不清楚怎么办？</p>
+        <details><summary>提示 1</summary>回到上一页，只看一类小正方体，一个一个地数。</details>
+        <details><summary>提示 2</summary>先想它们在什么位置：顶点、棱的中间、面的中间、最里面。</details>
+      </div>
+      <p class="tip" data-step="1">分成 5 份时，2 面涂色的有 36 个，你是怎么数的？　<span class="think" data-step="2" data-ask="说一说">每条棱上去掉两头的顶点，剩 $5-2=3$ 个；12 条棱：$3\times12=36$（个）。</span></p>
+      <p class="tip" data-step="3">1 面涂色的 54 个呢？　<span class="think" data-step="4" data-ask="说一说">每个面中间剩 $3\times3=9$ 个；6 个面：$9\times6=54$（个）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p27 的表格（分成 2 份的一列课本已在前面讨论过，这里直接给出）。先独立填，回车自查；填错的回到上一页再找。后两个问题让学生说“怎么数的”，不要只报得数——这是下一页发现规律的关键。</p>
+</section>
+
+<!-- 6 ================= 发现规律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">发现规律</span><h2>观察填出的表格，你能发现什么规律？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="vPos" class="view3"></div>
+      <div class="btns" id="posBtns" data-noswipe>
+        <button type="button" class="btn solid" data-k="3">顶点</button>
+        <button type="button" class="btn" data-k="2">一条棱</button>
+        <button type="button" class="btn" data-k="1">一个面</button>
+      </div>
+      <p class="muted small-t center">（每条棱平均分成 5 份）</p>
+    </div>
+    <div class="col">
+      <div class="law" data-step="1"><b>3 面涂色</b>的小正方体都在大正方体<b>顶点</b>的位置，都是 <b>8</b> 个。</div>
+      <div class="law" data-step="2"><b>2 面涂色</b>的小正方体个数都是 <b>12 的倍数</b>。<span class="think" data-step="3" data-ask="为什么是 12 的倍数？">它们在<b>棱</b>上（去掉两头），正方体有 12 条棱，每条棱上一样多。</span></div>
+      <div class="law" data-step="4"><b>1 面涂色</b>的小正方体个数都是 <b>6 的倍数</b>。<span class="think" data-step="5" data-ask="为什么是 6 的倍数？">它们在<b>面</b>的中间，正方体有 6 个面，每个面上一样多。</span></div>
+      <p class="method" data-step="6" data-label="想一想">各种小正方体的个数，与正方体<b>顶点、面和棱</b>的个（条）数有关。</p>
+    </div>
+  </div>
+  <p class="note">课本 p27 三个小精灵的发现。点左边按钮，图中只亮出一个顶点 / 一条棱 / 一个面上的小正方体（分成 5 份）：一条棱上 3 个，一个面上 9 个。让学生说出“为什么是 12 的倍数、6 的倍数”。</p>
+</section>
+
+<!-- 7 ================= 用字母表示 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">用式子表示</span><h2>如果每条棱平均分成 $n$ 份呢？</h2></div>
+  <div class="bd full top">
+    <p class="tip">用 $n$ 表示把大正方体的棱平均分的份数，用 $a$、$b$ 分别表示 2 面涂色和 1 面涂色的小正方体个数。</p>
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>一条棱上有 $n$ 个小正方体</span><span class="why">每条棱平均分成 $n$ 份</span></div>
+        <div class="dl" data-step="2"><span>去掉两头的顶点：$n-2$ 个</span><span class="why">两头的是 3 面涂色</span></div>
+        <div class="dl key" data-step="3"><span>$a=$ <span class="blank" data-ans="12(n-2)|12×(n-2)|(n-2)×12|12*(n-2)|12n-24" data-w="6"></span></span><span class="why">12 条棱</span></div>
+      </div>
+      <div class="derive">
+        <div class="dl" data-step="4"><span>一个面上有 $n\times n$ 个</span><span class="why">每行、每列 $n$ 个</span></div>
+        <div class="dl" data-step="5"><span>去掉四周一圈：$(n-2)\times(n-2)$ 个</span><span class="why">四周的在棱上</span></div>
+        <div class="dl key" data-step="6"><span>$b=$ <span class="blank" data-ans="6(n-2)^2|6(n-2)(n-2)|6×(n-2)×(n-2)|(n-2)×(n-2)×6|6(n-2)²|6*(n-2)*(n-2)" data-w="8"></span></span><span class="why">6 个面</span></div>
+      </div>
+    </div>
+    <div class="cols2" data-step="7">
+      <div class="def"><h4>规律</h4>$a=12(n-2)$，$b=6(n-2)^2$（$n\ge2$）</div>
+      <p class="tip">验一验：$n=4$ 时，$a=12\times2=$ <span class="blank" data-ans="24"></span>，$b=6\times2\times2=$ <span class="blank" data-ans="24"></span>，和表中一样吗？</p>
+    </div>
+  </div>
+  <p class="note">课本 p27“$a=$____，$b=$____”。填式子时可输入 12(n-2) 或 12×(n-2)；$(n-2)^2$ 可写成 (n-2)×(n-2)。式子写出来后，一定要代回表中的数验证。六年级学生还没学“合并同类项”，不要求化成 12n−24。</p>
+</section>
+
+<!-- 8 ================= 没有涂色的 + 总数验证 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">再想一步</span><h2>一个面也没有涂色的小正方体有多少个？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="v0" class="view3"></div>
+      <div class="slider-row" data-noswipe>分成 <b id="n0Val">5</b> 份 <input type="range" id="n0In" min="2" max="6" step="1" value="5"></div>
+    </div>
+    <div class="col">
+      <p class="tip">把外面一层全部剥掉，剩下的就是一个面也没有涂色的。</p>
+      <p class="tip" data-step="1">剩下的还是一个正方体，每条棱上有几个？　<span class="think" data-step="2" data-ask="看一看图">$n-2$ 个，所以有 $(n-2)\times(n-2)\times(n-2)$ 个。</span></p>
+      <div class="calc" data-step="3">
+        <h4>分成 5 份时，合起来对不对？</h4>
+        <p>$8+36+54+$ <span class="blank" data-ans="27"></span> $=$ <span class="blank" data-ans="125"></span></p>
+        <p>正好是 $5\times5\times5$ 吗？ <span class="think" data-step="4" data-ask="算一算">是的，一个也没有漏，一个也没有多。</span></p>
+      </div>
+      <p class="tip" id="sumMsg" data-step="5"></p>
+    </div>
+  </div>
+  <p class="note">课本没有要求，作为拓展。左图只显示没有涂色的小正方体（其余变成半透明线框）。拖动份数，右下自动用分类个数相加，验证总数等于 n×n×n——这是检查规律对不对的好方法。</p>
+</section>
+
+<!-- 9 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>用规律算一算</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 每条棱平均分成 10 份：<br>3 面涂色的有 <span class="blank" data-ans="8"></span> 个，<br>2 面涂色的有 <span class="blank" data-ans="96"></span> 个，<br>1 面涂色的有 <span class="blank" data-ans="384"></span> 个。</p>
+        <details><summary>提示 1</summary>$n=10$，$n-2=8$。</details>
+        <details><summary>完整解答</summary>$a=12\times8=96$，$b=6\times8\times8=384$；3 面涂色的永远是 8 个。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 切开后，2 面涂色的小正方体有 60 个。大正方体每条棱平均分成了 <span class="blank" data-ans="7"></span> 份。</p>
+        <details><summary>提示 1</summary>2 面涂色的在 12 条棱上，一条棱上有几个？</details>
+        <details><summary>提示 2</summary>$60\div12=5$，一条棱上还要加上两头的顶点。</details>
+        <details><summary>完整解答</summary>$60\div12=5$，$5+2=7$，平均分成了 7 份。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 小明说：“1 面涂色的小正方体有 30 个。”可能吗？</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">可能</button><button type="button" data-k="n">不可能</button>
+          <p class="pick-why">$30\div6=5$，一个面上要有 5 个，但每个面中间是 $(n-2)\times(n-2)$ 个，只能是 1、4、9、16……，不会是 5。</p></div>
+        <details><summary>提示 1</summary>一个面上的 1 面涂色小正方体排成正方形。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本这一页没有配套习题，这三题是课堂延伸（“试一试”）。第 2、3 题是“倒着用规律”，可以请学生在第 4 页的工具里验证：分成 7 份时 2 面涂色的确实是 60 个。</p>
+</section>
+
+<!-- 10 ================= 回顾反思 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾反思</span><h2>回顾探索和发现规律的过程，说说你的体会</h2></div>
+  <div class="bd full">
+    <div class="sumgrid" data-step="1">
+      <div class="sbox c3"><h4>3 面涂色</h4><p>在<b>顶点</b></p><p class="big">8 个</p></div>
+      <div class="sbox c2"><h4>2 面涂色</h4><p>在<b>棱</b>上</p><p class="big">$12(n-2)$ 个</p></div>
+      <div class="sbox c1"><h4>1 面涂色</h4><p>在<b>面</b>上</p><p class="big">$6(n-2)^2$ 个</p></div>
+      <div class="sbox c0"><h4>没有涂色</h4><p>在<b>里面</b></p><p class="big">$(n-2)^3$ 个</p></div>
+    </div>
+    <div class="cols3">
+      <p class="recall" data-label="找" data-step="2">找各种小正方体时，要注意它们在大正方体上的<b>位置</b>。</p>
+      <p class="method" data-label="想" data-step="3">各种小正方体的个数与正方体<b>顶点、面和棱</b>的个（条）数有关。</p>
+      <p class="warn" data-label="验" data-step="4">要把找、数、算等方法结合起来；写出式子后<b>代数验证</b>，几类加起来应等于 $n^3$。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>还想研究：</b>如果是一个长方体（比如 $4\times3\times2$ 切开），各种小正方体又有多少个？</p>
+  </div>
+  <p class="note">课本 p27 回顾反思的三句话分别对应“找、想、验”。$(n-2)^3$ 是拓展结果，不要求记。最后的长方体问题留作课后探究，可以在纸上画图数一数。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="../shared/mcube.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆柱的表面积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/guantou.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第二单元 圆柱和圆锥 · 圆柱的表面积</p>
+    <h1 class="cover-title">圆柱的表面积</h1>
+    <p class="cover-q" data-step="1">一种圆柱形罐头，底面直径 <b>11 厘米</b>，高 <b>15 厘米</b>，侧面贴着一张商标纸。</p>
+    <p class="cover-q" data-step="2">这张商标纸有多大？侧面是弯的，怎么算？</p>
+    <div class="chips" data-step="3"><span class="chip">剪开、展开</span><span class="chip">侧面积</span><span class="chip">表面积</span><span class="chip">需要哪几个面</span></div>
+  </div>
+  <p class="note">课本 p11 例 2 的情境（接头处忽略不计）。先让学生猜：商标纸揭下来、展开，是什么形状？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>算圆柱的表面积，要用到这些</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="五年级下册 · 圆的周长" data-step="1">
+        <p class="big center">$C=\pi d=2\pi r$</p>
+        <p>圆的周长 = 圆周率 × 直径。$\pi$ 一般取 $3.14$。<a href="../mp5b-yuanzhouchang/index.html">回看</a></p>
+        <span class="use">商标纸展开后的“长”就是底面周长。</span>
+      </div>
+      <div class="recall" data-label="五年级下册 · 圆的面积" data-step="2">
+        <p class="big center">$S=\pi r^2$</p>
+        <p>先找到半径，再算 $r^2$，不要算成 $r\times2$。<a href="../mp5b-yuanmianji/index.html">回看</a></p>
+        <span class="use">圆柱的两个底面是圆。</span>
+      </div>
+      <div class="recall" data-label="六年级上册 · 长方体的表面积" data-step="3">
+        <svg viewBox="0 0 240 110" class="mini-fig" aria-label="长方体展开图"><path d="M60 40h40v30h-40zM100 40h60v30h-60zM160 40h40v30h-40zM20 40h40v30h-40zM100 10h60v30h-60zM100 70h60v30h-60z" fill="#fbe7c9" stroke="#d9711c" stroke-width="2.5"/></svg>
+        <p>长方体 6 个面的总面积叫作它的<b>表面积</b>；展开后一个面一个面地算。<a href="../mp6a-biaomianji/index.html">回看</a></p>
+        <span class="use">圆柱也展开来，看看由哪几个面组成。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">上一课：圆柱有 2 个完全相同的圆形底面和 1 个曲面侧面（<a href="../mp6b-yuanzhuyuanzhui/index.html">圆柱和圆锥的认识</a>）。曲面怎么算面积？——<b>展开</b>！</p>
+  </div>
+  <p class="note">三张卡请学生先口答公式。第 3 张卡复习“表面积就是各个面的面积之和，展开来算”，这是本课的思路。</p>
+</section>
+
+<!-- 3 ================= 例 2 展开（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 剪开、展开</span><h2>沿着接缝把商标纸剪开，展开后是什么形状？</h2></div>
+  <div class="bd full top">
+    <div id="unroll" class="v3 wide"></div>
+    <div class="slider-row" data-noswipe>
+      <span class="btns" id="urK"><button type="button" class="btn solid" data-k="e2">例 2 罐头</button><button type="button" class="btn" data-k="e3">例 3 圆柱</button></span>
+      展开 <input type="range" id="urS" min="0" max="100" step="1" value="0"> <b id="urT"></b>
+      <button type="button" class="btn solid" id="urGo">▶ 展开 / 卷回</button>
+    </div>
+    <div class="cols3">
+      <p class="tip" data-step="1">展开后是什么形状？　<span class="think" data-step="2" data-ask="说一说">一个<b>长方形</b>（红线是剪开的接缝）。</span></p>
+      <p class="tip" data-step="3">长方形的长是圆柱的什么？　<span class="think" data-step="4" data-ask="想一想">长 = 圆柱的<b>底面周长</b>（它原来绕底面一圈）。</span></p>
+      <p class="tip" data-step="5">长方形的宽呢？　<span class="think" data-step="6" data-ask="想一想">宽 = 圆柱的<b>高</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心操作。商标纸由代码按真实尺寸绘制：展开时每一点到接缝的弧长不变，所以展开后的长方形长度精确等于底面周长 π × 11 ≈ 34.54 cm，宽等于高 15 cm。先慢慢拖动滑块，让学生看清“弯的纸怎么变平”，再点按钮整体播放。有条件的话，让学生真的剪开一张商标纸。</p>
+</section>
+
+<!-- 4 ================= 侧面积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 算一算</span><h2>怎样计算圆柱的侧面积？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 460 240" class="rel-fig" aria-label="圆柱侧面展开成长方形">
+        <ellipse cx="80" cy="40" rx="55" ry="16" fill="#f7f9fb" stroke="#1f2d3a" stroke-width="2.5"/>
+        <path d="M25 40V190A55 16 0 0 0 135 190V40" fill="#f7d774" stroke="#1f2d3a" stroke-width="2.5"/>
+        <path d="M25 40A55 16 0 0 0 135 40" fill="none" stroke="#1f2d3a" stroke-width="2.5"/>
+        <path d="M150 115h40" stroke="#e0569a" stroke-width="5" marker-end="url(#ar)"/>
+        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#e0569a"/></marker></defs>
+        <rect x="205" y="40" width="190" height="150" fill="#f7d774" stroke="#1f2d3a" stroke-width="2.5"/>
+        <text x="300" y="222" class="rt">长 = 底面周长</text>
+        <text x="300" y="122" class="rt b">长 × 宽</text>
+        <text x="402" y="122" class="rt s">宽 = 高</text>
+      </svg>
+      <div class="derive word-derive">
+        <div class="dl" data-step="1"><span>长方形的面积</span><span>= 长 × 宽</span><i class="why">学过的公式</i></div>
+        <div class="dl key" data-step="2"><span>圆柱的侧面积</span><span>= 底面周长 × 高</span><i class="why">长换成底面周长，宽换成高</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">列式计算例 2 商标纸的面积（直径 11 cm，高 15 cm）。</p>
+      <div class="calc">
+        <p>底面周长：$3.14\times11=$ <span class="blank" data-ans="34.54" data-w="4"></span>（厘米）</p>
+        <p>商标纸面积：$34.54\times15=$ <span class="blank" data-ans="518.1" data-w="4"></span>（平方厘米）</p>
+      </div>
+      <p class="tip" data-step="3">也可以这样计算：$11\pi\times15=165\pi$（平方厘米）。</p>
+      <p class="tip gold" data-step="4"><b>答：</b>商标纸的面积大约是 518.1 平方厘米。</p>
+      <p class="warn" data-step="5">已知半径时，底面周长 $=2\pi r$，别忘了乘 2。</p>
+    </div>
+  </div>
+  <p class="note">课本 p11 下半页。三个小伙伴的话：长方形的长等于圆柱的底面周长；宽等于圆柱的高；圆柱的侧面积等于底面周长乘高。先用文字公式，再填数。课本说涉及圆柱圆锥的计算可以使用计算器。</p>
+</section>
+
+<!-- 5 ================= 例 3 展开图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 画一画</span><h2>在方格纸上画出这个圆柱的展开图</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="netFig" class="net-fig" viewBox="0 0 440 270" aria-label="底面直径 2 厘米、高 2 厘米的圆柱的展开图"></svg>
+    </div>
+    <div class="col">
+      <p class="tip">把一个底面直径 <b>2 cm</b>、高 <b>2 cm</b> 的圆柱的侧面沿高展开，得到的长方形的长和宽各是多少厘米？圆柱的底面半径是多少厘米？</p>
+      <div class="calc">
+        <p>长方形的长：$3.14\times2=$ <span class="blank" data-ans="6.28" data-w="3"></span> cm</p>
+        <p>长方形的宽：<span class="blank" data-ans="2"></span> cm</p>
+        <p>底面半径：$2\div2=$ <span class="blank" data-ans="1"></span> cm</p>
+      </div>
+      <p class="tip" data-step="3">完整的展开图由哪几部分组成？　<span class="think" data-step="4" data-ask="数一数">1 个长方形（侧面）+ 2 个完全相同的圆（底面）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p12 例 3。展开图按 1 格 = 1 cm 精确绘制：长方形长 2π ≈ 6.28 格、宽 2 格，两个半径 1 格的圆贴在长方形的上下两边。按 → 先出侧面，再出两个底面。可以让学生在课本方格纸上自己画。</p>
+</section>
+
+<!-- 6 ================= 表面积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3 · 表面积</span><h2>怎样计算这个圆柱的表面积？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="def"><h4>圆柱的表面积</h4>圆柱的<em>侧面积</em>与<em>两个底面积</em>的和，叫作圆柱的表面积。</div>
+      <div class="derive word-derive" data-step="1">
+        <div class="dl key"><span>圆柱的表面积</span><span>= 侧面积 + 底面积 × 2</span><i class="why">两个底面一样大</i></div>
+      </div>
+      <p class="tip" data-step="2">先想一想，再计算。</p>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <p>侧面积：$3.14\times2\times2=$ <span class="blank" data-ans="12.56" data-w="4"></span>（cm²）</p>
+        <p>底面积：$3.14\times1^2=$ <span class="blank" data-ans="3.14" data-w="4"></span>（cm²）</p>
+        <p>表面积：$12.56+3.14\times2=$ <span class="blank" data-ans="18.84" data-w="4"></span>（cm²）</p>
+      </div>
+      <p class="tip gold" data-step="3"><b>答：</b>这个圆柱的表面积是 18.84 平方厘米。</p>
+      <p class="warn" data-step="4">底面积要乘 <b>2</b>；底面积用的是<b>半径</b> $1$ cm，不是直径 $2$ cm。</p>
+    </div>
+  </div>
+  <p class="note">课本 p12 中间。“怎样计算这个圆柱的表面积？先想一想，再计算。”让学生先说步骤：侧面积 → 底面积 → 合起来。填空回车判对错。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>自己算一算：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一个圆柱，底面周长是 31.4 厘米，高是 6 厘米。它的侧面积是多少平方厘米？</p>
+        <p class="q small-q">侧面积：<span class="blank" data-ans="188.4" data-w="4"></span> cm²</p>
+        <details><summary>提示 1</summary>底面周长已经给出了，直接乘高。</details>
+        <details><summary>完整解答</summary>$31.4\times6=188.4$（平方厘米）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2(1).</b> 计算圆柱的表面积：底面直径 2 cm，高 0.8 cm。</p>
+        <p class="q small-q">表面积：<span class="blank" data-ans="11.304" data-w="5"></span> cm²</p>
+        <details><summary>提示 1</summary>侧面积 $3.14\times2\times0.8$；半径是 $1$ cm。</details>
+        <details><summary>完整解答</summary>$5.024+3.14\times1^2\times2=5.024+6.28=11.304$（cm²）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2(2).</b> 计算圆柱的表面积：底面半径 0.5 cm，长 3.5 cm（圆柱横放）。</p>
+        <p class="q small-q">表面积：<span class="blank" data-ans="12.56" data-w="5"></span> cm²</p>
+        <details><summary>提示 1</summary>圆柱横放时，“长”就是高。底面周长 $=2\times3.14\times0.5$。</details>
+        <details><summary>完整解答</summary>侧面积 $3.14\times1\times3.5=10.99$；底面积 $3.14\times0.5^2\times2=1.57$；表面积 $12.56$（cm²）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p12 练一练。第 2 题课本图中第一个圆柱标的是底面直径 2、高 0.8；第二个是横放的圆柱，标的是底面半径 0.5、长 3.5（单位：cm）。提醒学生看清标的是直径还是半径。</p>
+</section>
+
+<!-- 8 ================= 需要哪几个面（核心 2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习二 · 想一想</span><h2>生活中的问题：需要计算哪几个面？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns center-btns" id="jobK" data-noswipe></div>
+      <div id="jobFig" class="v3"></div>
+      <div class="btns center-btns" id="jobP" data-noswipe><button type="button" class="btn" data-p="side">侧面</button><button type="button" class="btn" data-p="top">上底面</button><button type="button" class="btn" data-p="bot">下底面</button><button type="button" class="btn solid go" id="jobChk">检查</button></div>
+    </div>
+    <div class="col">
+      <p class="tip" id="jobT"></p>
+      <p class="tip feedback" id="jobMsg"></p>
+      <p class="method" data-step="1" data-label="先想清楚">先看实际情况<b>需要哪几个面</b>，再计算：有的只要侧面，有的要侧面 + 一个底面，有的才是完整的表面积。</p>
+    </div>
+  </div>
+  <p class="note">课本 p13–14 练习二第 4、5、7、8、9 题。每题先让学生说“需要哪几个面”，在圆柱上点亮对应的面后再检查，检查通过才显示算式和得数。做材料的问题，实际取近似值时常用“进一法”（如油桶 2.4492 → 2.45 平方米），水桶题“大约”可保留一位小数。</p>
+</section>
+
+<!-- 9 ================= 思考 截成几段 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">思考</span><h2>把圆柱形木料截成几段，表面积增加了多少？</h2></div>
+  <div class="bd full top">
+    <p class="tip">一根圆柱形木料，底面直径是 20 厘米，长是 1.8 米。把它截成 3 段，使每一段的形状都是圆柱。截开后，表面积增加多少平方厘米？像这样截成 4 段、5 段呢？</p>
+    <div class="btns center-btns" id="cutK" data-noswipe><button type="button" class="btn solid" data-k="3">截成 3 段</button><button type="button" class="btn" data-k="4">截成 4 段</button><button type="button" class="btn" data-k="5">截成 5 段</button></div>
+    <svg id="cutFig" class="cut-fig" viewBox="0 0 560 150" aria-label="把圆柱形木料截成几段"></svg>
+    <p class="tip feedback ok" id="cutMsg"></p>
+    <p class="tip" data-step="1">增加的面积和木料的长（1.8 米）有关系吗？　<span class="think" data-step="2" data-ask="想一想">没有关系。截开只增加<b>底面</b>，侧面积不变。</span></p>
+  </div>
+  <p class="note">课本 p14 思考题。底面半径 10 厘米，每个底面 314 平方厘米。截 3 段增加 4 个底面 1256 平方厘米，4 段增加 6 个 1884 平方厘米，5 段增加 8 个 2512 平方厘米。规律：截成 n 段，增加 2(n−1) 个底面。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>化曲为直：把侧面展开成长方形</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>圆柱的侧面</b><small>曲面</small></div>
+      <i>沿高剪开、展开</i>
+      <div class="fbox"><b>长方形</b><small>长 = 底面周长，宽 = 高</small></div>
+      <i>长 × 宽</i>
+      <div class="fbox hot"><b>侧面积 = 底面周长 × 高</b><small>$S_{\text{侧}}=Ch=\pi dh=2\pi rh$</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="表面积" data-step="2">圆柱的表面积 = 侧面积 + 底面积 × 2。</p>
+      <p class="method" data-label="解决实际问题" data-step="3">先想需要哪几个面；看清直径还是半径；单位统一；材料问题常用进一法。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>圆可以剪拼成近似的长方形来求面积，圆柱能不能也“切一切、拼一拼”，变成近似的长方体来求体积？——<a href="../mp6b-yuanzhutiji/index.html">圆柱的体积</a></p>
+  </div>
+  <p class="note">请学生说一说侧面积公式是怎样得到的（转化：曲面 → 长方形）。课后作业建议：练习二第 6、10、11、12 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

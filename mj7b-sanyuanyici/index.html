@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三元一次方程组 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/zuqiu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 第10章 二元一次方程组 · 10.4</p>
+    <h1 class="cover-title">三元一次方程组</h1>
+    <p class="cover-q" data-step="1">足球比赛规则：胜一场得 <b>3</b> 分，平一场得 <b>1</b> 分，负一场得 <b>0</b> 分．某足球队赛了 <b>22</b> 场，共得 <b>47</b> 分，且胜的场数比负的场数的 4 倍还多 2．</p>
+    <p class="cover-q" data-step="2">该球队胜、平、负各多少场？——这次有<b>三个</b>未知量，会解二元一次方程组的我们，能对付吗？</p>
+    <div class="chips" data-step="3"><span class="chip">三个未知数</span><span class="chip">消元：三元 → 二元 → 一元</span><span class="chip">消元实验室</span></div>
+  </div>
+  <p class="note">课本 p103 情境（本节为选学内容，标 *，不作考试要求）。先让学生试着只设一个或两个未知数——会发现关系不好表示；设三个未知数，三个条件各列一个方程，思路最直接。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>解二元一次方程组，我们靠的是什么？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="10.2 · 二元一次方程组" data-step="1">
+        <p>含有两个未知数、未知数的项的次数都是 1 的两个方程合在一起，组成二元一次方程组；同时满足两个方程的一组值是它的解．</p>
+        <span class="use">类比得出“三元一次方程组”和它的解．</span>
+        <a class="lk" href="../mj7b-fangchengzu/index.html">回看 10.2</a>
+      </div>
+      <div class="recall" data-label="10.3 · 消元：代入与加减" data-step="2">
+        <p>代入消元法：用一个未知数表示另一个，代入另一个方程．</p>
+        <p>加减消元法：两个方程相加或相减，消去一个未知数．</p>
+        <span class="use">三元方程组照样消元——只是要消<b>两次</b>．</span>
+        <a class="lk" href="../mj7b-jiefangchengzu/index.html">回看 10.3</a>
+      </div>
+      <div class="recall" data-label="七上 4.2 · 一元一次方程" data-step="3">
+        <p>去括号、移项、合并同类项、系数化为 1．</p>
+        <span class="use">消元到最后只剩一个未知数，就解一元一次方程．</span>
+        <a class="lk" href="../mj7a-jieyiyuanyici/index.html">回看 4.2</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>核心思想：消元</b>——二元 → 一元．今天的问题：三元 → <span class="think" data-step="5" data-ask="→ ？">二元 → 一元</span>．</p>
+  </div>
+  <p class="note">10.3 的“消元”是本课唯一的关键工具。请学生说出“二元一次方程组为什么要消元”：一个方程两个未知数解不出来，消去一个变成一元一次方程才能解。由此类比：三个未知数，先消去一个。</p>
+</section>
+
+<!-- 3 ================= 建模 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">建立方程组</span><h2>三个条件，三个方程</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab cond">
+        <tr><th></th><th>胜</th><th>平</th><th>负</th></tr>
+        <tr><th>场数</th><td>$x$</td><td>$y$</td><td>$z$</td></tr>
+        <tr><th>每场得分</th><td>3</td><td>1</td><td>0</td></tr>
+        <tr><th>得分</th><td>$3x$</td><td>$y$</td><td>$0$</td></tr>
+      </table>
+      <p class="tip">设该球队胜 $x$ 场、平 $y$ 场、负 $z$ 场．</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>赛了 22 场</span><span class="think" data-step="2" data-ask="列方程">$x+y+z=22$</span><i class="why">胜、平、负的场数合起来是总场数</i></div>
+        <div class="dl" data-step="3"><span>得了 47 分</span><span class="think" data-step="4" data-ask="列方程">$3x+y=47$</span><i class="why">负一场得 0 分，所以 $z$ 不出现</i></div>
+        <div class="dl" data-step="5"><span>胜比负的 4 倍多 2</span><span class="think" data-step="6" data-ask="列方程">$x=4z+2$</span><i class="why">“负的 4 倍”是 $4z$，再“多 2”</i></div>
+      </div>
+      <div class="sys-box" data-step="7">
+        <p>问题的解必须<b>同时满足</b>这三个方程，把它们联立在一起：</p>
+        $$\begin{cases}x+y+z=22, & \textcircled{1}\\ 3x+y=47, & \textcircled{2}\\ x=4z+2. & \textcircled{3}\end{cases}$$
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p103。第 2 个方程最容易出错：有学生会写成 3x + y + 0 = 47 或 3x + y + z = 47，借表格里“负一场得 0 分”说清 z 为什么不出现。方程②只含 x、y 两个未知数，但它仍是这个方程组的一员——下一页定义时会用到这一点。</p>
+</section>
+
+<!-- 4 ================= 定义 · 辨析 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概念</span><h2>三元一次方程组</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1"><h4>三元一次方程组（课本 p103）</h4>像这样，把含有<em>三个未知数</em>的三个<em>一次方程</em>联立在一起，就组成了一个<b>三元一次方程组</b>．</div>
+    <p class="tip" data-step="2">类比 10.2：同时满足三个方程的一组未知数的值，叫做三元一次方程组的<b>解</b>，写成 $\begin{cases}x=\_\_,\\y=\_\_,\\z=\_\_.\end{cases}$ 的形式．</p>
+    <div class="cols3">
+      <div class="jcard" data-step="3">
+        $$\begin{cases}x+y=3,\\y+z=5,\\x+z=4.\end{cases}$$
+        <div class="think" data-step="4" data-ask="是不是？"><p><span class="verdict ok">✓</span>是．每个方程只含两个未知数，但<b>合起来</b>共有 $x$、$y$、$z$ 三个，且都是一次方程．</p></div>
+      </div>
+      <div class="jcard" data-step="5">
+        $$\begin{cases}x+y+z=6,\\xy=2,\\x-z=1.\end{cases}$$
+        <div class="think" data-step="6" data-ask="是不是？"><p><span class="verdict x">✗</span>不是．$xy$ 这一项的次数是 2，第二个方程不是一次方程．</p></div>
+      </div>
+      <div class="jcard" data-step="7">
+        $$\begin{cases}x+y=1,\\y+w=2,\\z+x=3.\end{cases}$$
+        <div class="think" data-step="8" data-ask="是不是？"><p><span class="verdict x">✗</span>不是．合起来有 $x$、$y$、$z$、$w$ <b>四个</b>未知数．</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">定义照课本原文。判断时抓两点：方程组里一共有几个未知数（看整体，不看单个方程）；每个方程是不是一次方程。第 1 题恰好说明“每个方程不必都含三个未知数”，与足球问题的方程②呼应。</p>
+</section>
+
+<!-- 5 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>解足球问题的方程组</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">$\begin{cases}x+y+z=22, & \textcircled{1}\\ 3x+y=47, & \textcircled{2}\\ x=4z+2. & \textcircled{3}\end{cases}$</p>
+      <p class="bubble" data-step="1">只要设法<b>消去一个未知数</b>，把解三元一次方程组转化为解二元一次方程组就可以了．</p>
+      <p class="bubble b2" data-step="2">① − ②，消去 $y$，可以转化为解关于 $x$、$z$ 的二元一次方程组．</p>
+      <p class="bubble b3" data-step="3">把③代入①、②，消去 $x$，可以转化为解关于 $y$、$z$ 的二元一次方程组．</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="4"><span>① − ②</span><span class="think" data-step="5" data-ask="得到什么？">$-2x+z=-25$　④</span><i class="why">$y$ 的系数都是 1，相减消去 $y$</i></div>
+        <div class="dl" data-step="6"><span>③代入④</span><span class="think" data-step="7" data-ask="得到什么？">$-2(4z+2)+z=-25$</span><i class="why">④与③组成关于 $x$、$z$ 的二元一次方程组，再用代入法</i></div>
+        <div class="dl" data-step="8"><span>解得</span><span class="think" data-step="9" data-ask="z = ?">$-7z=-21$，$z=3$</span><i class="why">去括号、移项、合并、系数化为 1</i></div>
+        <div class="dl" data-step="10"><span>回代</span><span class="think" data-step="11" data-ask="x、y = ?">$x=4\times3+2=14$，$y=47-3\times14=5$</span><i class="why">$z$ 代入③求 $x$；$x$ 代入②求 $y$</i></div>
+        <div class="dl end" data-step="12"><span>∴</span><span>$\begin{cases}x=14,\\y=5,\\z=3.\end{cases}$</span><i class="why">检验：$14+5+3=22$，$42+5=47$，$14=4\times3+2$ ✓</i></div>
+      </div>
+      <p class="tip gold" data-step="13">答：该球队胜 14 场、平 5 场、负 3 场．</p>
+    </div>
+  </div>
+  <p class="note">课本 p103“试一试”和三个小人的提示。按第 2 个小人的思路板演；第 3 个小人的思路请学生课后完成：③代入①、②得 y + 5z = 20、y + 12z = 41，相减得 7z = 21，结果相同。强调回代时三个未知数都要求出来，最后写成方程组的解的形式，再检验。</p>
+</section>
+
+<!-- 6 ================= 例题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例</span><h2>先看哪个未知数最好消</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="tip">解方程组 $\begin{cases}x-y+z=7, & \textcircled{1}\\ x+y=-1, & \textcircled{2}\\ 2x-y-z=0. & \textcircled{3}\end{cases}$</p>
+      <div class="def" data-step="1"><h4>分析</h4>方程②中只含 $x$、$y$．因此，只要由方程①、③消去 $z$，得到一个只含 $x$、$y$ 的方程，将所得方程与方程②联立，就能组成一个二元一次方程组．</div>
+      <p class="method" data-step="2" data-label="选谁来消？">哪个方程<b>缺</b>哪个未知数，就先消它——②已经“替我们消好了” $z$，只需再消一次．</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="3"><span>① + ③</span><span class="think" data-step="4" data-ask="得到？">$3x-2y=7$　④</span><i class="why">$z$ 的系数 $+1$ 与 $-1$ 互为相反数，相加消去 $z$</i></div>
+        <div class="dl" data-step="5"><span>②④联立</span><span>$\begin{cases}x+y=-1,\\3x-2y=7.\end{cases}$</span><i class="why">关于 $x$、$y$ 的二元一次方程组</i></div>
+        <div class="dl" data-step="6"><span>解得</span><span class="think" data-step="7" data-ask="x、y = ?">$\begin{cases}x=1,\\y=-2.\end{cases}$</span><i class="why">② × 2 + ④：$5x=5$</i></div>
+        <div class="dl" data-step="8"><span>代入①</span><span class="think" data-step="9" data-ask="z = ?">$1+2+z=7$，$z=4$</span><i class="why">把 $x=1$、$y=-2$ 代入①</i></div>
+        <div class="dl end" data-step="10"><span>∴</span><span>原方程组的解是 $\begin{cases}x=1,\\y=-2,\\z=4.\end{cases}$</span><i class="why">检验③：$2+2-4=0$ ✓</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p104 例题，分析与解答照课本。解二元一次方程组那一步课本只写“解这个方程组，得”，这里在依据栏补出 ② × 2 + ④ 的过程，可让学生口述。注意 ①、②、③ 三个方程都用到了——这是检查有没有漏用条件的好办法。</p>
+</section>
+
+<!-- 7 ================= 消元实验室（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">想一想 · 实验室</span><h2>还有其他方法吗？自己选、自己消</h2></div>
+  <div class="bd lab-bd">
+    <div class="col">
+      <div class="btns" data-noswipe id="labSets">
+        <button class="btn solid" type="button" data-k="0">例题</button>
+        <button class="btn" type="button" data-k="1">足球</button>
+        <button class="btn" type="button" data-k="2">练一练 (2)</button>
+        <button class="btn" type="button" data-k="3">习题 1(1)</button>
+      </div>
+      <div class="eqs" id="labEqs"></div>
+      <div class="ladder" id="labLadder"><span data-n="3">三元</span><i>→</i><span data-n="2">二元</span><i>→</i><span data-n="1">一元</span><i>→</i><span data-n="0">解</span></div>
+    </div>
+    <div class="col">
+      <div class="mixer" data-noswipe>
+        <span>方程</span><select id="mxA"></select><span>×</span><input type="number" id="mxM" value="1" min="-9" max="9">
+        <select id="mxOp"><option value="1">＋</option><option value="-1">−</option></select>
+        <span>方程</span><select id="mxB"></select><span>×</span><input type="number" id="mxN" value="1" min="-9" max="9">
+        <button class="btn solid" type="button" id="mxGo">得到新方程</button>
+        <button class="btn" type="button" id="mxReset">重来</button>
+      </div>
+      <div class="preview" id="mxPrev"></div>
+      <p class="tip feedback" id="labMsg"></p>
+      <p class="method" data-step="1" data-label="例题的另一种消法">① + ② 消去 $y$：$2x+z=6$；② + ③ 消去 $y$：$3x-z=-1$．两式相加得 $5x=5$．——同样是“先消一个，再消一个”．</p>
+    </div>
+  </div>
+  <p class="note">课本 p104“想一想：还有其他方法解这个方程组吗？”本页是本课的核心工具：选两个方程、各乘一个数、相加或相减，系统算出新方程，并在左下角显示“降元”进度。请学生先说打算消哪个未知数、怎样配系数，再操作。故意演示一次“第一次消 y、第二次却消 z”——两个新方程含的未知数不同，组不成二元方程组，借此强调“两次要消同一个未知数”。</p>
+</section>
+
+<!-- 8 ================= 方法提炼 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">方法提炼</span><h2>解三元一次方程组的一般步骤</h2></div>
+  <div class="bd full">
+    <div class="flow">
+      <div class="fstep" data-step="1"><b>三元</b><span>三元一次方程组</span></div>
+      <i class="farr" data-step="2">消去一个未知数<br>（代入或加减）</i>
+      <div class="fstep" data-step="2"><b>二元</b><span>二元一次方程组</span></div>
+      <i class="farr" data-step="3">再消去一个<br>未知数</i>
+      <div class="fstep" data-step="3"><b>一元</b><span>一元一次方程</span></div>
+      <i class="farr" data-step="4">求出一个，<br>逐个回代</i>
+      <div class="fstep end" data-step="4"><b>解</b><span>写成方程组的解</span></div>
+    </div>
+    <p class="def" data-step="5">用代入消元法或加减消元法消去一个未知数，就可以把解三元一次方程组转化为解二元一次方程组．<span class="muted">（课本 p104）</span></p>
+    <div class="cols3">
+      <p class="method" data-step="6" data-label="先消谁">某个方程<b>缺</b>的未知数；或系数<b>相同、相反、成倍数</b>的未知数．</p>
+      <p class="warn" data-step="7" data-label="两次消同一个">第一次消 $y$，第二次也要消 $y$，得到的两个方程才能组成二元一次方程组．</p>
+      <p class="warn" data-step="8" data-label="三个方程都要用">每次消元选的两个方程不能总是同一对，否则会漏掉一个条件．</p>
+    </div>
+  </div>
+  <p class="note">请学生对照前两题说出每一步对应流程图的哪一格。“消元”是贯穿第 10 章的化归思想：未知数多 → 未知数少，把新问题转化为已经会解的问题。</p>
+</section>
+
+<!-- 9 ================= 找错 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这样消元，问题出在哪？</h2></div>
+  <div class="bd full">
+    <p class="tip">解方程组 $\begin{cases}x+y+z=22, & \textcircled{1}\\ 3x+y=47, & \textcircled{2}\\ x=4z+2. & \textcircled{3}\end{cases}$　（足球问题）</p>
+    <div class="cols2">
+      <div class="jcard" data-step="1">
+        <p><b>小强：</b>② − ① 得 $2x-z=25$ ④；把③代入①得 $y+5z=20$ ⑤；④⑤联立……</p>
+        <div class="think" data-step="2" data-ask="能解下去吗？"><p><span class="verdict x">✗</span>④含 $x$、$z$，⑤含 $y$、$z$——两次消去的<b>不是同一个</b>未知数，④⑤合起来仍有三个未知数，组不成二元一次方程组．应该④与③联立（都只含 $x$、$z$）．</p></div>
+      </div>
+      <div class="jcard" data-step="3">
+        <p><b>小红：</b>① − ② 得 $x+y+z-3x+y=22-47$，即 $-2x+2y+z=-25$……</p>
+        <div class="think" data-step="4" data-ask="错在哪？"><p><span class="verdict x">✗</span>减去②时，②的<b>每一项</b>都要变号：$x+y+z-(3x+y)=x+y+z-3x-y$，$y$ 正好消去，得 $-2x+z=-25$．</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="5" data-label="检验">求出解后代回<b>原方程组的每一个方程</b>：三个都成立才是正确的解．</p>
+  </div>
+  <p class="note">两个错误都来自课堂常见情况。小强的问题正是上一页第一条警示；小红是去括号变号的老问题，可以回顾七上 3.5 去括号。</p>
+</section>
+
+<!-- 10 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>自己解：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>(1)</b> $\begin{cases}x+y+z=22,\\3x+y=47,\\x=4z+2;\end{cases}$</p>
+        <details><summary>提示 1</summary>这就是足球问题的方程组，试试第 3 个小人的方法：把③代入①、②．</details>
+        <details><summary>提示 2</summary>得 $\begin{cases}y+5z=20,\\y+12z=41,\end{cases}$ 两式相减消去 $y$．</details>
+        <details><summary>完整解答</summary>$7z=21$，$z=3$；$y=20-15=5$；$x=4\times3+2=14$．所以 $\begin{cases}x=14,\\y=5,\\z=3.\end{cases}$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>(2)</b> $\begin{cases}2x-y-z=0,\\x+z=5,\\3x+y-2z=1.\end{cases}$</p>
+        <details><summary>提示 1</summary>②中没有 $y$，所以先消 $y$：哪两个方程的 $y$ 系数互为相反数？</details>
+        <details><summary>提示 2</summary>① + ③ 得 $5x-3z=1$，与②组成关于 $x$、$z$ 的方程组．</details>
+        <details><summary>完整解答</summary>由②得 $x=5-z$，代入 $5x-3z=1$：$25-5z-3z=1$，$z=3$，$x=2$；代入①：$4-y-3=0$，$y=1$．所以 $\begin{cases}x=2,\\y=1,\\z=3.\end{cases}$</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p104“练一练”。(1) 与“试一试”是同一个方程组，要求换一种消元方法；(2) 抓住“②缺 y”。做完都可以到第 7 页的实验室里验证一遍。</p>
+</section>
+
+<!-- 11 ================= 习题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">习题 10.4</span><h2>再练两题，看一个新用途</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.(1)</b> $\begin{cases}3x-y+z=10,\\x+2y-z=6,\\x+y+z=12;\end{cases}$</p>
+        <details><summary>提示</summary>$z$ 的系数是 $+1、-1、+1$：① + ②、② + ③ 都能消去 $z$．</details>
+        <details><summary>完整解答</summary>① + ②：$4x+y=16$；② + ③：$2x+3y=18$．解得 $x=3$，$y=4$；代入③：$z=5$．所以 $\begin{cases}x=3,\\y=4,\\z=5.\end{cases}$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1.(2)</b> $\begin{cases}2x+4y+3z=9,\\3x-2y+5z=11,\\5x-6y+7z=13.\end{cases}$</p>
+        <details><summary>提示</summary>$y$ 的系数 4、$-2$、$-6$ 成倍数：① + ② × 2，② × 3 − ③．</details>
+        <details><summary>完整解答</summary>① + ② × 2：$8x+13z=31$；② × 3 − ③：$4x+8z=20$，即 $x+2z=5$．解得 $z=3$，$x=-1$；代入①：$-2+4y+9=9$，$y=\dfrac12$．所以 $\begin{cases}x=-1,\\y=\frac12,\\z=3.\end{cases}$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 在等式 $y=ax^2+bx+c$ 中，当 $x=-1$ 时，$y=5$；当 $x=1$ 时，$y=1$；当 $x=2$ 时，$y=2$．求 $a$、$b$、$c$ 的值．</p>
+        <details><summary>提示</summary>把三组值分别代入，得到关于 $a$、$b$、$c$ 的三元一次方程组．</details>
+        <details><summary>完整解答</summary>$\begin{cases}a-b+c=5,\\a+b+c=1,\\4a+2b+c=2.\end{cases}$ ② − ①：$2b=-4$，$b=-2$；③ − ②：$3a+b=1$，$a=1$；$c=1-a-b=2$．所以 $a=1$，$b=-2$，$c=2$．</details>
+        <div id="parab" class="parab"></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p105 习题 10.4。第 2 题里 a、b、c 才是未知数，x、y 是已知的数——这是学生第一次“由几个点求式子中的字母”，九年级学二次函数时会大量用到。打开完整解答后，下方会画出 y = x² − 2x + 2 的图象，它恰好经过三个已知点 (−1, 5)、(1, 1)、(2, 2)。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>知识 · 方法 · 思想</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>知识</h3>
+        <p class="def">含有三个未知数的三个一次方程联立，组成三元一次方程组；同时满足三个方程的一组值是它的解．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>方法</h3>
+        <p class="method" data-label="两次消元">三元 → 二元 → 一元；先消“缺的”或系数简单的未知数；两次消同一个；求完逐个回代并检验．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>思想</h3>
+        <p class="recall" data-label="消元 · 化归">把未知数多的问题转化为未知数少的、已经会解的问题．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一节：</b>10.5 用二元一次方程组解决问题——从实际问题中找等量关系、列方程组．三个未知量的问题，也可以用今天的方法列三元一次方程组．</p>
+  </div>
+  <p class="note">本节为选学内容。可以追问：“四元一次方程组怎么解？”——学生能类比说出“消三次”，说明他们真正掌握了消元的思想。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

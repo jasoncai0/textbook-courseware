@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分类 想象 找规律 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/jimu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">七年级下册 · 课题学习 · 分类 想象 找规律</p>
+    <h1 class="cover-title">分类 想象 找规律</h1>
+    <p class="cover-q" data-step="1">把一个棱长为 <b>3</b> 的正方体的表面涂上颜色，再分割成棱长为 1 的小正方体．</p>
+    <p class="cover-q" data-step="2">有的小正方体三面涂色，有的两面、一面，还有的<b>一面也没涂到</b>．各有几个？棱长变成 4、5、6 呢？</p>
+    <div class="chips" data-step="3"><span class="chip">想象：看不见的内部</span><span class="chip">分类：按位置数</span><span class="chip">找规律：用 n 表示</span></div>
+  </div>
+  <p class="note">课本 p167 课题学习。课题名里的三个词就是本课的三种本领：想象（空间想象被切开的立方体）、分类（按小正方体所在的位置分）、找规律（从 3、4、5、6 归纳出一般的 n）。如有条件，可准备魔方或 27 块小积木。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>要用到的三样“工具”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="七上 5.1 · 丰富的图形世界" data-step="1">
+        <p>正方体有 <b>8</b> 个顶点、<b>12</b> 条棱、<b>6</b> 个面．</p>
+        <span class="use">涂色小正方体按“在顶点、在棱上、在面上、在内部”分类计数．</span>
+        <a class="lk" href="../mj7a-fengfutuxing/index.html">回看 5.1</a>
+      </div>
+      <div class="recall" data-label="七上 3.1 · 字母表示数" data-step="2">
+        <p>从几个具体的数中找出规律，用含字母的式子表示一般情况．</p>
+        <span class="use">把棱长 3、4、5、6 的结果推广到棱长 $n$．</span>
+        <a class="lk" href="../mj7a-zimubiaoshishu/index.html">回看 3.1</a>
+      </div>
+      <div class="recall" data-label="七上 2.7 · 有理数的乘方" data-step="3">
+        <p>$n^2$ 读作 $n$ 的平方，$n^3$ 读作 $n$ 的立方．</p>
+        <span class="use">棱长为 $n$ 的正方体能分成 $n^3$ 个小正方体；一个面上有 $n^2$ 个．</span>
+        <a class="lk" href="../mj7a-chengfang/index.html">回看 2.7</a>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>本课的问题：</b>表面涂色的大正方体切开后，小正方体按“涂了几面”可以分成几类？每类有几个？</p>
+  </div>
+  <p class="note">第一张卡最关键：8、12、6 这三个数今天会反复出现。可以让学生拿着魔方指出顶点、棱、面。</p>
+</section>
+
+<!-- 3 ================= 问题 1：想象 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 1 · 先想象</span><h2>棱长为 3：各有几个？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="cube3" class="cube3d"></div>
+      <div class="btns" data-noswipe id="c3Btns">
+        <button class="btn solid" type="button" data-c="all">整体</button>
+        <button class="btn" type="button" data-c="3">三面</button>
+        <button class="btn" type="button" data-c="2">两面</button>
+        <button class="btn" type="button" data-c="1">一面</button>
+        <button class="btn" type="button" data-c="0">零面</button>
+      </div>
+      <div class="slider-row" data-noswipe>切开 <input type="range" id="c3Gap" min="0" max="1" step="0.02" value="0"> 拉开　<span class="muted small-t">可拖动画面旋转</span></div>
+    </div>
+    <div class="col">
+      <p class="tip">不看答案，先在脑子里“切一切”，填出你的猜想：</p>
+      <table class="mtab pred">
+        <tr><th>涂色面数</th><th>三面</th><th>两面</th><th>一面</th><th>零面</th></tr>
+        <tr><th>个数</th><td><span class="blank" data-ans="8" data-w="2"></span></td><td><span class="blank" data-ans="12" data-w="2"></span></td><td><span class="blank" data-ans="6" data-w="2"></span></td><td><span class="blank" data-ans="1" data-w="2"></span></td></tr>
+      </table>
+      <p class="tip feedback" id="c3Msg">点左边的按钮，只显示这一类小正方体（橙色面是涂了颜色的面）．</p>
+      <p class="warn" data-step="1" data-label="最容易漏的">中心那一块<b>一面也没涂到</b>——从外面看不见它，必须靠想象．$8+12+6+1=27=3^3$，一个不多、一个不少．</p>
+    </div>
+  </div>
+  <p class="note">课本问题 1。先让学生独立填猜想（填对变绿），再用左边的模型逐类检验。把“切开”滑块拉大，小正方体之间拉开空隙，就能看到藏在中间的那一块。最后用总数 27 检验——这是“分类不重不漏”的检验方法。</p>
+</section>
+
+<!-- 4 ================= 分类：按位置 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分类</span><h2>涂几面，由它在什么<b>位置</b>决定</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>三面涂色</span><span class="think" data-step="2" data-ask="在哪？几个？">在<b>顶点</b>处：8 个</span><i class="why">每个顶点处有一块，它同时露在 3 个面上；正方体有 8 个顶点</i></div>
+        <div class="dl" data-step="3"><span>两面涂色</span><span class="think" data-step="4" data-ask="在哪？几个？">在<b>棱</b>上（不含两端）：$12\times1=12$ 个</span><i class="why">每条棱上 3 块，去掉两端的顶点块剩 1 块；12 条棱</i></div>
+        <div class="dl" data-step="5"><span>一面涂色</span><span class="think" data-step="6" data-ask="在哪？几个？">在<b>面</b>的中间：$6\times1=6$ 个</span><i class="why">每个面 $3\times3=9$ 块，去掉边上一圈剩中间 1 块；6 个面</i></div>
+        <div class="dl" data-step="7"><span>零面涂色</span><span class="think" data-step="8" data-ask="在哪？几个？">在<b>内部</b>：1 个</span><i class="why">剥掉外面一层，剩下棱长 $3-2=1$ 的小正方体</i></div>
+        <div class="dl end" data-step="9"><span>检验</span><span>$8+12+6+1=27=3^3$</span><i class="why">各类加起来等于总数，不重不漏</i></div>
+      </div>
+      <div class="col">
+        <svg viewBox="0 0 320 300" class="pos-fig" id="posFig" aria-label="正方体的顶点、棱、面、内部示意"></svg>
+        <p class="method" data-step="10" data-label="分类的标准">按小正方体在大正方体上的<b>位置</b>分：顶点 → 棱 → 面 → 内部．每一块属于且只属于其中一类．</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">这一页把“想象”变成“说理”：每一类都要说清楚“在哪个位置、为什么涂了这么多面、怎样算个数”。右图是按坐标画的 3×3×3 正方体，四种颜色标出四类位置（内部那一块看不见，用虚线框表示）。</p>
+</section>
+
+<!-- 5 ================= 问题 2：变大（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 2 · 探究</span><h2>棱长为 4、5、6 时呢？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="cubeN" class="cube3d"></div>
+      <div class="slider-row" data-noswipe>棱长 $n=$ <input type="range" id="cnN" min="2" max="6" step="1" value="4"><b class="v" id="cnNV"></b>　切开 <input type="range" id="cnGap" min="0" max="1" step="0.02" value="0.35"></div>
+      <div class="btns" data-noswipe id="cnBtns">
+        <button class="btn solid" type="button" data-c="all">全部</button>
+        <button class="btn" type="button" data-c="3">三面</button>
+        <button class="btn" type="button" data-c="2">两面</button>
+        <button class="btn" type="button" data-c="1">一面</button>
+        <button class="btn" type="button" data-c="0">零面</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="cnMsg"></p>
+      <table class="mtab rec">
+        <tr><th>棱长 $n$</th><th>三面</th><th>两面</th><th>一面</th><th>零面</th><th>总数</th></tr>
+        <tr><td>3</td><td>8</td><td>12</td><td>6</td><td>1</td><td>27</td></tr>
+        <tr><td>4</td><td>8</td><td><span class="blank" data-ans="24" data-w="2"></span></td><td><span class="blank" data-ans="24" data-w="2"></span></td><td><span class="blank" data-ans="8" data-w="2"></span></td><td>64</td></tr>
+        <tr><td>5</td><td>8</td><td><span class="blank" data-ans="36" data-w="2"></span></td><td><span class="blank" data-ans="54" data-w="2"></span></td><td><span class="blank" data-ans="27" data-w="2"></span></td><td>125</td></tr>
+        <tr><td>6</td><td>8</td><td><span class="blank" data-ans="48" data-w="2"></span></td><td><span class="blank" data-ans="96" data-w="3"></span></td><td><span class="blank" data-ans="64" data-w="2"></span></td><td>216</td></tr>
+      </table>
+      <p class="method" data-step="1" data-label="先算再验">用上一页的分类方法先<b>算</b>，再用模型<b>数</b>：如 $n=4$，每条棱上去掉两端剩 $4-2=2$ 块，两面涂色 $12\times2=24$ 个．</p>
+    </div>
+  </div>
+  <p class="note">课本问题 2。本页是本课的核心工具：拖动 n 从 2 到 6，用按钮只显示某一类，模型会同时给出这一类的个数（由坐标逐块判断，不是套公式）。建议每组负责一个棱长，算好后上台用模型验证，再把表格补全。n = 2 时会发现只有三面涂色的 8 块——为下一页“公式什么时候适用”埋伏笔。</p>
+</section>
+
+<!-- 6 ================= 找规律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 3 · 找规律</span><h2>棱长为 $n$ 时，用式子表示</h2></div>
+  <div class="bd">
+    <div class="col">
+      <table class="mtab rule">
+        <tr><th>$n$</th><th>三面</th><th>两面</th><th>一面</th><th>零面</th></tr>
+        <tr><td>3</td><td>8</td><td>$12\times1$</td><td>$6\times1^2$</td><td>$1^3$</td></tr>
+        <tr><td>4</td><td>8</td><td>$12\times2$</td><td>$6\times2^2$</td><td>$2^3$</td></tr>
+        <tr><td>5</td><td>8</td><td>$12\times3$</td><td>$6\times3^2$</td><td>$3^3$</td></tr>
+        <tr><td>6</td><td>8</td><td>$12\times4$</td><td>$6\times4^2$</td><td>$4^3$</td></tr>
+      </table>
+      <p class="tip">把表里的数写成“乘积”的样子，规律就藏在里面．变化的那个数和 $n$ 有什么关系？</p>
+    </div>
+    <div class="col">
+      <div class="derive">
+        <div class="dl" data-step="1"><span>三面</span><span class="think" data-step="2" data-ask="式子？">$8$</span><i class="why">只在 8 个顶点处，与 $n$ 无关</i></div>
+        <div class="dl" data-step="3"><span>两面</span><span class="think" data-step="4" data-ask="式子？">$12(n-2)$</span><i class="why">每条棱 $n$ 块，去掉两端剩 $n-2$ 块；12 条棱</i></div>
+        <div class="dl" data-step="5"><span>一面</span><span class="think" data-step="6" data-ask="式子？">$6(n-2)^2$</span><i class="why">每个面去掉外圈剩 $(n-2)\times(n-2)$ 块；6 个面</i></div>
+        <div class="dl" data-step="7"><span>零面</span><span class="think" data-step="8" data-ask="式子？">$(n-2)^3$</span><i class="why">剥掉外面一层，剩下棱长 $n-2$ 的正方体</i></div>
+      </div>
+      <p class="method" data-step="9" data-label="规律里的“n − 2”">“去掉两端”“去掉外圈”“剥掉一层”——每个方向都少 2 块，所以处处出现 $n-2$；它的次数 0、1、2、3 正好对应顶点、棱、面、体．</p>
+    </div>
+  </div>
+  <p class="note">课本问题 3。先让学生只看左表说规律，再逐个揭示式子和道理。追问：“为什么两面涂色是 (n − 2) 的一次方、一面涂色是平方、零面是立方？”——棱是“一维”的、面是“二维”的、内部是“三维”的。</p>
+</section>
+
+<!-- 7 ================= 验证 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">验证 · 反思</span><h2>规律对不对？什么时候能用？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="col">
+        <div class="calc-box" data-noswipe>
+          <div class="slider-row">棱长 $n=$ <input type="range" id="vfN" min="2" max="20" step="1" value="10"><b class="v" id="vfNV"></b></div>
+          <p id="vfOut" class="vf-out"></p>
+        </div>
+        <p class="method" data-step="1" data-label="用总数检验">不论 $n$ 是几，四类加起来都应等于 $n^3$．拖动滑块试试，等式每次都成立．</p>
+      </div>
+      <div class="col">
+        <div class="jcard" data-step="2">
+          <p>$n=2$ 时，用公式算：两面 $12\times0=0$，一面 $0$，零面 $0$．对吗？</p>
+          <div class="think" data-step="3" data-ask="想一想"><p><span class="verdict ok">✓</span>对．棱长 2 的正方体切成 8 块，每块都在顶点处，都是三面涂色．</p></div>
+        </div>
+        <div class="jcard" data-step="4">
+          <p>$n=1$ 时，用公式算：两面 $12\times(-1)=-12$ 个？</p>
+          <div class="think" data-step="5" data-ask="哪里出问题？"><p><span class="verdict x">✗</span>不行．$n=1$ 时整个正方体就是一块，<b>六面</b>都涂色，根本不能按“顶点、棱、面、内部”分类．公式只在 $n\ge2$ 时适用．</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">“找规律”得到的式子要检验：用新数据检验（n = 10 时 8 + 96 + 384 + 512 = 1000），也要想清楚适用范围。七年级不要求代数证明恒等式，用滑块多验证几组即可；学有余力的学生到七下第 9 章学了多项式乘法后，可以把 (n − 2)³ 等展开验证。</p>
+</section>
+
+<!-- 8 ================= 问题 4：提出其他问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题 4 · 提问</span><h2>你还能提出其他问题吗？</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>反过来问</b>　一面涂色的小正方体有 54 个，原来大正方体的棱长是多少？</p>
+        <details><summary>提示</summary>$6(n-2)^2=54$，那么 $(n-2)^2=$？</details>
+        <details><summary>完整解答</summary>$(n-2)^2=9$，$n-2=3$（$n-2$ 是正数），$n=5$．检验：$6\times3^2=54$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>换成长方体</b>　长、宽、高分别为 4、3、2 的长方体表面涂色，切成棱长为 1 的小正方体，各类各有几个？</p>
+        <details><summary>提示</summary>仍按位置分；12 条棱分成三组，每组 4 条：长 4、宽 3、高 2 的棱上去掉两端各剩几块？</details>
+        <details><summary>完整解答</summary>三面：8；两面：$4\times2+4\times1+4\times0=12$；一面：$2(2\times1+1\times0+2\times0)=4$；零面：$2\times1\times0=0$．检验：$8+12+4+0=24=4\times3\times2$．</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>换个涂法</b>　棱长为 4 的正方体只涂<b>上、下</b>两个面，切开后有几个小正方体一面也没涂到？</p>
+        <details><summary>提示</summary>涂色的只有最上面一层和最下面一层．</details>
+        <details><summary>完整解答</summary>中间两层没有涂色：$4\times4\times2=32$ 个．（棱长 $n$ 时为 $n^2(n-2)$ 个．）</details>
+      </div>
+    </div>
+    <p class="tip gold" data-step="1"><b>小组任务：</b>每组提出一个新问题，写在汇报单上，与其他组交换解答．</p>
+  </div>
+  <p class="note">课本问题 4 是开放题。三个示例分别是“逆向”“改变形状”“改变条件”三种提问思路，提问也是一种数学能力。也可以引导学生用长方体模型验证第 2 题。</p>
+</section>
+
+<!-- 9 ================= 汇报 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">汇报交流</span><h2>小组汇报单</h2></div>
+  <div class="bd wide">
+    <div class="report" data-step="1">
+      <h4>“分类 想象 找规律”汇报单</h4>
+      <table>
+        <tr><th>小组成员</th><td class="fill">______________________</td></tr>
+        <tr><th>分类标准</th><td>按小正方体所在位置：顶点 / 棱 / 面 / 内部</td></tr>
+        <tr><th>数据表</th><td class="fill">棱长 3～6 的四类个数（附表）</td></tr>
+        <tr><th>发现的规律</th><td class="fill">棱长为 $n$（$n\ge2$）时：三面____，两面____，一面____，零面____</td></tr>
+        <tr><th>怎样检验</th><td class="fill">总数 $=n^3$；用新的 $n$ 试算；动手数模型</td></tr>
+        <tr><th>我们提出的问题</th><td class="fill">问题：______　解答：______</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <div class="task" data-step="2">
+        <h4>自我评价（参考课本“数学活动评价表”）</h4>
+        <ol>
+          <li>课题中的 4 个问题，你是如何解决的？</li>
+          <li>想象“看不见”的小正方体时，你用了什么办法？</li>
+          <li>从同学那里，你得到了哪些启发？</li>
+          <li>参加本次活动，你有哪些收获和体会？</li>
+        </ol>
+      </div>
+      <p class="tip" data-step="3">同学或小组评价：<span class="stars">☆☆☆☆☆</span>　老师评语：________</p>
+    </div>
+  </div>
+  <p class="note">课本附录的“数学活动评价表”由“活动名称、参加者、自我评价（4 个问题）、同学或小组评价、老师评语”组成，这里按同样结构设计。汇报时重点说“怎样想到的”，而不只是报答案。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>分类 · 想象 · 找规律</h2></div>
+  <div class="bd full">
+    <div class="cols3 sum">
+      <div class="col" data-step="1">
+        <h3>分类</h3>
+        <p class="method" data-label="标准统一">按位置分：顶点、棱、面、内部；不重不漏，用总数检验．</p>
+      </div>
+      <div class="col" data-step="2">
+        <h3>想象</h3>
+        <p class="recall" data-label="空间观念">“剥掉一层”还剩棱长 $n-2$ 的正方体——看不见的内部，也能想清楚．</p>
+      </div>
+      <div class="col" data-step="3">
+        <h3>找规律</h3>
+        <p class="def">$8$，$12(n-2)$，$6(n-2)^2$，$(n-2)^3$（$n\ge2$）：从特殊到一般，再用新例子检验．</p>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4"><b>回顾：</b>这三种本领在哪里用过？七上 5.4 由视图想象几何体（想象）；七上 1.2 活动·思考里找规律（找规律）；分类讨论今后会越来越常用．</p>
+  </div>
+  <p class="note">请学生用一句话说出“课题名三个词各指今天的哪一步”。可布置拓展：棱长为 n 的正方体，切成棱长为 1 的小正方体后，所有小正方体的涂色面一共有多少个？（等于大正方体表面上的小正方形数 6n²，可用四类分别计数验证：3·8 + 2·12(n − 2) + 6(n − 2)²。）</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

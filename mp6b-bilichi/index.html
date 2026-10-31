@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>比例尺 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 封面 -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/caoping.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第四单元 比例 · 比例尺</p>
+    <h1 class="cover-title">比例尺</h1>
+    <p class="cover-q" data-step="1">红光小学的长方形草坪长 <b>50 米</b>、宽 <b>30 米</b>，按比例缩小画出的平面图长 <b>5 厘米</b>、宽 <b>3 厘米</b>。</p>
+    <p class="cover-q" data-step="2">你能分别写出草坪长、宽的<b>图上距离和实际距离的比</b>吗？</p>
+    <div class="chips" data-step="3"><span class="chip">统一单位</span><span class="chip">数值比例尺</span><span class="chip">线段比例尺</span><span class="chip">求实际距离</span></div>
+  </div>
+  <p class="note">课本 p43 例 6。先问：画一幅地图，能把真实的操场原样画在纸上吗？——必须缩小，而且要按同一个比缩小，这个比就是今天学的比例尺。</p>
+</section>
+
+<!-- 2 前情回顾 -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>学比例尺之前，先准备好这三样</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="六上 · 比的基本性质" data-step="1">
+        <p>化简比：$5:5000=1:1000$（前项、后项同时除以 5）。</p>
+        <span class="use">本课把比例尺化成前项是 1 的比。</span>
+      </div>
+      <div class="recall" data-label="三、四年级 · 长度单位" data-step="2">
+        <p>1 米 = 100 厘米；1 千米 = 1000 米 = <b>100000 厘米</b>。</p>
+        <span class="use">图上距离和实际距离先统一单位。</span>
+      </div>
+      <div class="recall" data-label="六下 · 上一课 解比例" data-step="3">
+        <p>$\dfrac5x=\dfrac1{8000}$ → $x=5\times8000$。</p>
+        <span class="use">例 7 用比例求实际距离。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">“图形的放大与缩小”里我们按比缩小过图形——地图、平面图，就是把真实的地方<b>按比缩小</b>画在纸上。</p>
+  </div>
+  <p class="note">第 2 张卡请学生口答：50 米 = ? 厘米，15 千米 = ? 厘米。</p>
+</section>
+
+<!-- 3 例 6 -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 6</span><h2>图上距离和实际距离的比是多少？</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <svg id="lawn" class="fig lawn-fig" viewBox="0 0 520 260" aria-label="长 5 厘米、宽 3 厘米的草坪平面图"></svg>
+      <p class="warn" data-step="1">图上距离和实际距离的<b>单位不同</b>，要先统一成相同的单位，写出比后再化简。</p>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <h4>长：5 厘米和 50 米</h4>
+        <p>把 50 米改写成 <span class="blank" data-ans="5000"></span> 厘米：$5:5000=$ <span class="blank" data-ans="1:1000" data-w="5"></span></p>
+        <h4>宽：3 厘米和 30 米</h4>
+        <p>把 3 厘米改写成 0.03 米：$\dfrac{0.03}{30}=\dfrac{3}{3000}=$ <span class="blank" data-ans="1/1000|1:1000" data-w="5" data-exact></span></p>
+      </div>
+      <p class="tip" data-step="2">两个比有什么关系？　<span class="think" data-step="3" data-ask="比一比">都是 $1:1000$——整幅图是<b>按同一个比</b>缩小的。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p43 两种改写单位的方法（50 米改写成 5000 厘米；3 厘米改写成 0.03 米）。左图按 1 cm = 60 单位画出 5×3 的长方形。第二空要求写成 1/1000 的形式。</p>
+</section>
+
+<!-- 4 定义 -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>什么是比例尺？</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <div class="def"><h4>比例尺</h4>一幅图的图上距离和实际距离的比，叫作这幅图的<em>比例尺</em>。
+        <p class="formula">图上距离 ∶ 实际距离 = 比例尺</p>
+        <p class="formula">或　$\dfrac{\text{图上距离}}{\text{实际距离}}=$ 比例尺</p></div>
+      <p class="tip" data-step="4">比例尺 $1:1000$ 还可以这样表示（<b>线段比例尺</b>）：</p>
+      <svg id="lineScale" class="fig ls-fig" viewBox="0 0 420 70" aria-label="线段比例尺：0、10、20、30 米" data-step="4"></svg>
+    </div>
+    <div class="col">
+      <p class="tip">这幅平面图的比例尺 $1:1000$ 是什么意思？</p>
+      <p class="tip" data-step="1">① 图上距离是实际距离的 $\dfrac1{1000}$。</p>
+      <p class="tip" data-step="2">② 实际距离是图上距离的 <span class="blank" data-ans="1000"></span> 倍。</p>
+      <p class="tip" data-step="3">③ 图上 1 厘米表示实际距离 <span class="blank" data-ans="10"></span> 米。</p>
+      <p class="warn" data-step="5">比例尺是一个<b>比</b>，没有单位；写成“1 ∶ 1000 米”是错的。</p>
+    </div>
+  </div>
+  <p class="note">课本 p43。三种说法分别从“几分之几”“几倍”“1 厘米表示多少”来理解。线段比例尺每一小段长 1 cm（图中按 1 cm = 100 单位画），标出它代表的实际距离 10 米。</p>
+</section>
+
+<!-- 5 核心：比例尺换算器 -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手换算</span><h2>比例尺换算器：图上距离 ⇄ 实际距离</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <div class="btns sc-list" id="scList" data-noswipe></div>
+      <svg id="conv" class="fig conv-fig" viewBox="0 0 640 200" aria-label="图上距离与线段比例尺"></svg>
+      <div class="slider-row" data-noswipe><span>图上距离</span><input type="range" id="cvD" min="0.5" max="12" step="0.5" value="5"><b id="cvDv"></b></div>
+    </div>
+    <div class="col">
+      <div class="derive word-derive" id="cvCalc"></div>
+      <p class="tip" data-step="1">比例尺的后项越大，地图上的 1 厘米表示的实际距离就越<span class="think" data-step="2" data-ask="大还是小？"><b>大</b>——画出的图缩小得越厉害。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心活动。选一个数值比例尺（来自课本：例 6、例 7、练一练、练习八），拖动“图上距离”，右边算出实际距离（先算出厘米，再换算成米或千米）；左边的线段比例尺随数值比例尺自动生成，每段 1 厘米。图上距离在图中按 1 cm = 48 单位精确画出。</p>
+</section>
+
+<!-- 6 练一练 -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>说出比例尺的实际意义，算出比例尺</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <p class="q">1. 说出下面比例尺的实际意义。</p>
+      <div class="calc">
+        <p>$1:2200000$　线段比例尺：0　22　44　66 千米</p>
+        <p>图上 1 厘米表示实际距离 <span class="blank" data-ans="22"></span> 千米。</p>
+        <p>$1:1500$　线段比例尺：0　15　30　45 米</p>
+        <p>图上 1 厘米表示实际距离 <span class="blank" data-ans="15"></span> 米。</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="q">2. 荷花村到杏树村的实际距离是 15 千米。量出这两个村的图上距离，并算出这幅图的比例尺。</p>
+      <svg id="village" class="fig vil-fig" viewBox="0 0 520 300" aria-label="荷花村到杏树村，图上距离 3 厘米"></svg>
+      <p class="q">图上距离 <span class="blank" data-ans="3"></span> 厘米，比例尺是 <span class="blank" data-ans="1:500000" data-w="7"></span></p>
+    </div>
+  </div>
+  <p class="note">课本 p44 练一练。第 2 题课本图中两村相距 3 厘米；页面上点“量一量”的尺子按 1 cm = 40 单位画出，读数 3 厘米。15 千米 = 1500000 厘米，3∶1500000 = 1∶500000。</p>
+</section>
+
+<!-- 7 例 7 地图 -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7</span><h2>明华小学到少年宫的实际距离是多少米？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="map7" class="fig map-fig" viewBox="0 0 520 300" aria-label="比例尺 1∶8000 的平面图：明华小学、少年宫、体育馆" data-noswipe></svg>
+      <p class="tip small-q center">点地图上的地点，用尺子量一量它到明华小学的图上距离。</p>
+    </div>
+    <div class="col">
+      <p class="tip">明华小学到少年宫的图上距离是 5 厘米，比例尺 $1:8000$。</p>
+      <div class="cols2">
+        <div class="calc" data-step="1"><h4>想法一：实际距离是图上距离的 8000 倍</h4><p>$5\times8000=40000$（厘米）</p><p>40000 厘米 = <span class="blank" data-ans="400"></span> 米</p></div>
+        <div class="calc" data-step="2"><h4>想法二：图上 1 厘米表示 80 米</h4><p>$5\times80=$ <span class="blank" data-ans="400"></span>（米）</p></div>
+      </div>
+      <div class="derive" data-step="3">
+        <div class="dl"><span>解：设实际距离是 $x$ 厘米。</span><i class="why">想法三：列比例</i></div>
+        <div class="dl"><span>$\dfrac5x=\dfrac1{8000}$</span><i class="why">图上距离 ∶ 实际距离 = 比例尺</i></div>
+        <div class="dl key"><span>$x=40000$</span><i class="why">比例的基本性质；40000 厘米 = 400 米</i></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p44–45 例 7。地图按 1 cm = 40 单位绘制：少年宫在明华小学正西 5 cm，体育馆距明华小学 3 cm（课本图中实测约 3 cm）。三种方法都请学生说一说，比较哪种最方便。</p>
+</section>
+
+<!-- 8 体育馆、医院 -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 7 · 试一试</span><h2>量一量，算一算；再在图中画出医院</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q">明华小学到体育馆的实际距离是多少？（比例尺 $1:8000$，回到上一页量一量）</p>
+        <p class="q">图上 <span class="blank" data-ans="3"></span> 厘米，实际 <span class="blank" data-ans="240"></span> 米</p>
+        <details><summary>提示 1</summary>图上 1 厘米表示实际 80 米。</details>
+        <details><summary>完整解答</summary>$3\times80=240$（米）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">试一试：医院在明华小学的<b>正北</b>方向，实际距离是 240 米。先算出图上距离，再在图中表示出医院的位置。</p>
+        <p class="q">图上距离 <span class="blank" data-ans="3"></span> 厘米</p>
+        <details><summary>提示 1</summary>240 米 = 24000 厘米，$24000\times\dfrac1{8000}$。</details>
+        <details><summary>完整解答</summary>$24000\div8000=3$（厘米）。从明华小学向正北（上方）量 3 厘米，就是医院（上一页地图中点“医院”可以看到）。</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="两种问题">已知图上距离求实际距离：图上距离 ÷ 比例尺（或 × 比例尺的后项）；已知实际距离求图上距离：实际距离 × 比例尺。都要注意<b>单位换算</b>。</p>
+  </div>
+  <p class="note">课本 p45 例 7 后的追问和试一试。医院与体育馆的图上距离恰好都是 3 cm，但方向不同——画位置要同时看方向和距离。</p>
+</section>
+
+<!-- 9 梅镇 -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>梅镇汽车站附近的平面图（比例尺 1∶20000）</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="map9" class="fig map-fig" viewBox="0 0 520 300" aria-label="比例尺 1∶20000 的平面图：汽车站、镇政府、敬老院、幼儿园" data-noswipe></svg>
+      <p class="tip small-q center">点地点量一量；(2) 算好以后点“幼儿园”核对。</p>
+    </div>
+    <div class="col">
+      <p class="q">(1) 汽车站到镇政府：图上 <span class="blank" data-ans="3"></span> 厘米，实际 <span class="blank" data-ans="600"></span> 米</p>
+      <p class="q">　　汽车站到敬老院：图上 <span class="blank" data-ans="3.5"></span> 厘米，实际 <span class="blank" data-ans="700"></span> 米</p>
+      <p class="q">(2) 幼儿园在汽车站正西方向 400 米处，图上距离是 <span class="blank" data-ans="2"></span> 厘米。</p>
+      <p class="tip" data-step="1">比例尺 $1:20000$，图上 1 厘米表示实际 <span class="think" data-step="2" data-ask="多少米？">$20000$ 厘米 = <b>200 米</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p45 练一练。课本图中汽车站到镇政府约 3 cm（正北），到敬老院约 3.5 cm（东北方向），页面地图按这些数据以 1 cm = 40 单位绘制。</p>
+</section>
+
+<!-- 10 练习八 -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习八</span><h2>求比例尺、实际距离和图上距离</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <p class="q">1. 上海到杭州的实际距离大约是 180 千米，在一幅地图上量得两地间的距离是 5 厘米。这幅地图的比例尺是 <span class="blank" data-ans="1:3600000" data-w="8"></span></p>
+        <p class="q">4. 在比例尺是 $1:15000000$ 的地图上，量得四子王旗与北京的距离是 3 厘米。两地间的实际距离大约是 <span class="blank" data-ans="450"></span> 千米。</p>
+      </div>
+      <div class="col">
+        <p class="q">6. 填表。</p>
+        <table class="mtab">
+          <tr><th>图上距离</th><th>实际距离</th><th>比例尺</th></tr>
+          <tr><td>5 cm</td><td>800 m</td><td><span class="blank" data-ans="1:16000" data-w="6"></span></td></tr>
+          <tr><td>3.5 cm</td><td><span class="blank" data-ans="1.4"></span> km</td><td>$1:40000$</td></tr>
+          <tr><td><span class="blank" data-ans="15"></span> cm</td><td>450 km</td><td>$1:3000000$</td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="warn" data-step="1">求比例尺时，图上距离和实际距离先化成<b>相同单位</b>（一般都化成厘米）；结果写成前项是 1 的比。</p>
+  </div>
+  <p class="note">课本 p46–47 练习八第 1、4、6 题。第 1 题 180 千米 = 18000000 厘米，5∶18000000 = 1∶3600000。第 6 题第 2 行 3.5 × 40000 = 140000 厘米 = 1.4 千米。</p>
+</section>
+
+<!-- 11 小结 -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>比例尺：把大世界装进一张纸</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <p class="recall" data-label="意义" data-step="1">图上距离 ∶ 实际距离 = 比例尺；比例尺有数值比例尺和线段比例尺两种。</p>
+      <p class="method" data-label="三类计算" data-step="2">求比例尺（统一单位再化简）、求实际距离、求图上距离——都可以列比例来解。</p>
+      <p class="recall" data-label="你知道吗" data-step="3">我国的国家基本比例尺地图有 11 种比例尺：从 $1:500$ 到 $1:1000000$。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>综合与实践：</b>把图形按比例放大后，面积怎样变化？——面积的变化。</p>
+  </div>
+  <p class="note">课本 p47 “你知道吗”。课后：练习八第 7、8、9 题（第 9 题自己确定比例尺，画出家到学校的位置）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/fracfig.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

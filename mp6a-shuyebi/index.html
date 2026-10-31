@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>树叶中的比 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/shuye.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级上册 · 综合与实践 · 树叶中的比</p>
+    <h1 class="cover-title">树叶中的比</h1>
+    <p class="cover-q" data-step="1">柳树叶<b>细细长长</b>，桑树叶<b>又宽又圆</b>。</p>
+    <p class="cover-q" data-step="2">树叶的形状，能不能用一个<b>数</b>来描述？</p>
+    <div class="chips" data-step="3"><span class="chip">采一采</span><span class="chip">量一量</span><span class="chip">算比值</span><span class="chip">比一比</span></div>
+  </div>
+  <p class="note">课本 p66–67“树叶中的比”（综合与实践）。课前请每人采集一种树叶 10 片。本课件中的树叶由程序按“示例数据”的长、宽精确画出，课堂上请用学生自己测量的数据。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>研究树叶之前，先想想这三件事</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="六上第三单元 · 比的意义" data-step="1">
+        <p>两个数相除又叫作两个数的比；前项 ÷ 后项 = <b>比值</b>。</p>
+        <p class="big center">$98:15=98\div15$</p>
+        <span class="use">算树叶长与宽的比值。</span>
+      </div>
+      <div class="recall" data-label="五上第五单元 · 商的近似值" data-step="2">
+        <p>保留一位小数：除到百分位，再四舍五入。</p>
+        <p class="big center">$98\div15=6.53\cdots\approx6.5$</p>
+        <span class="use">比值“得数保留一位小数”。</span>
+      </div>
+      <div class="recall" data-label="四上 · 平均数" data-step="3">
+        <p>平均数 = 总数 ÷ 个数</p>
+        <p>能代表一组数据的<b>一般水平</b>。</p>
+        <span class="use">10 片树叶比值的平均数。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">今天我们用“比”来研究大自然里的树叶。</p>
+  </div>
+  <p class="note">第 2 张卡复习“求商的近似值”：保留一位小数要算到百分位。本课的比值都按这个要求取。</p>
+</section>
+
+<!-- 3 ================= 提出问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>观察下面的树叶，你有什么想法？</h2></div>
+  <div class="bd full top">
+    <svg id="gallery" class="gallery" viewBox="0 0 1000 200" aria-label="五种树叶"></svg>
+    <div class="cols3">
+      <p class="tip think" data-step="1" data-ask="说一说">树叶有大有小，有长长的，有圆圆的……</p>
+      <p class="tip think" data-step="2" data-ask="说一说">不同的树，树叶的形状一般是不同的。</p>
+      <p class="tip think" data-step="3" data-ask="说一说">相同的树，树叶虽然大小不同，但形状相似。</p>
+    </div>
+    <p class="tip gold" data-step="4">还可以怎样比较这些树叶的形状？　<span class="think" data-step="5" data-ask="和同学说说你的想法">测量每片树叶的<b>长和宽</b>，算出长与宽的<b>比值</b>，再比较——同一种树叶比一比，不同树叶也比一比。</span></p>
+  </div>
+  <p class="note">课本 p66“提出问题”。课本展示了 8 种树叶；银杏、槐树、枫树叶的形状特殊（扇形、复叶、掌状），不方便量“长和宽”，本课件选用柳、桃、枇杷、香樟、桑五种。图中树叶的长、宽按示例数据精确画出（叶柄不计）。</p>
+</section>
+
+<!-- 4 ================= 怎样量 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">怎样量</span><h2>像这样量出树叶的长和宽，算出比值</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="howFig" class="howfig" viewBox="0 0 560 220" aria-label="量树叶的长和宽"></svg>
+    </div>
+    <div class="col">
+      <div class="def"><h4>约定</h4><b>长</b>：叶片从叶尖到叶片底部的长度（不含叶柄）。<br><b>宽</b>：叶片最宽处的长度。<br>单位用毫米（mm）。</div>
+      <div class="calc">
+        <p>这片柳树叶长 98 mm、宽 15 mm。</p>
+        <p>长与宽的比是 <span class="blank" data-ans="98:15" data-w="5"></span>，</p>
+        <p>比值 $98\div15\approx$ <span class="blank" data-ans="6.5" data-w="3"></span>（保留一位小数）</p>
+      </div>
+      <p class="warn" data-step="1" data-label="注意">“长与宽的比”：长是前项，宽是后项，不能颠倒。</p>
+    </div>
+  </div>
+  <p class="note">课本 p66 下方的示意图：长量的是叶片的全长，宽量的是最宽处。课本没有说明叶柄算不算，本课件约定不含叶柄；全班要统一量法，数据才能比较。</p>
+</section>
+
+<!-- 5 ================= 核心：量一量 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">量一量</span><h2>在毫米方格纸上量一量，算一算比值</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="mmFig" class="mmfig" viewBox="0 0 560 300" aria-label="毫米方格纸上的树叶" data-noswipe></svg>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="mL">量长</button><button type="button" class="btn" id="mW">量宽</button><span class="muted small-t">小格 1 mm，大格 10 mm</span></div>
+    </div>
+    <div class="col">
+      <div class="btns sp" id="spBtns" data-noswipe></div>
+      <p class="tip feedback" id="mmMsg"></p>
+      <div class="calc" id="mmCalc"></div>
+    </div>
+  </div>
+  <p class="note">本课核心操作。每种树叶按示例数据的长、宽精确画在毫米方格纸上：先让学生数格子读出长和宽，再点“量长”“量宽”核对；然后算比值（保留一位小数）填空，回车自查。五种树叶都量一量，感受比值大小和形状的关系。</p>
+</section>
+
+<!-- 6 ================= 记录表：同一种树叶 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">填一填</span><h2>10 片柳树叶的长与宽及比值</h2></div>
+  <div class="bd full top">
+    <table class="mtab rec" id="recTab"></table>
+    <div class="cols2">
+      <div class="col">
+        <svg id="tenFig" class="tenfig" viewBox="0 0 560 140" aria-label="10 片柳树叶"></svg>
+        <p class="muted small-t center">10 片柳树叶，按实际大小比例画出</p>
+      </div>
+      <div class="col">
+        <p class="calc">比值的平均数：$66.2\div10\approx$ <span class="blank" data-ans="6.6" data-w="3"></span>（保留一位小数）</p>
+        <p class="tip" data-step="1">同一种树叶，比值有什么特点？　<span class="think" data-step="2" data-ask="看一看表">大小不同，但长与宽的比值<b>都比较接近</b>（都在 6.5 左右）。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p67“______树叶的长与宽及比值”记录表（示例数据：某同学测量的 10 片柳树叶）。比值保留一位小数，10 个比值的和是 66.2。下方 10 片叶子按同一比例画出：大小不一，形状却很像。</p>
+</section>
+
+<!-- 7 ================= 小组汇总 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小组交流</span><h2>不同树叶长与宽比值的平均数</h2></div>
+  <div class="bd full top">
+    <table class="mtab avg">
+      <tr><th>树叶名称</th><td>柳树叶</td><td>桃树叶</td><td>枇杷树叶</td><td>香樟树叶</td><td>桑树叶</td></tr>
+      <tr><th>比值的平均数</th><td>6.6</td><td>4.2</td><td>3.3</td><td>2.3</td><td>1.3</td></tr>
+    </table>
+    <div class="cols2">
+      <div class="col">
+        <svg id="cmpFig" class="cmpfig" viewBox="0 0 560 250" aria-label="把五种树叶画成一样长"></svg>
+        <p class="muted small-t center">把五种树叶都画成<b>一样长</b>，宽 = 长 ÷ 比值</p>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="1">将结果与树叶的形状对照，你还有什么发现？</p>
+        <p class="tip think" data-step="2" data-ask="发现 1">同一种树叶，长与宽的比值都比较接近。</p>
+        <p class="tip think" data-step="3" data-ask="发现 2">比值接近的不同树叶，形状也相似。</p>
+        <p class="tip think" data-step="4" data-ask="发现 3">树叶长与宽的比值越大，树叶就越<b>狭长</b>；比值越小，越接近圆。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p67 小组汇总表和三个小精灵的发现（示例数据）。左图把五种树叶画成一样长，宽度 = 长 ÷ 比值，这样只剩“形状”可比：比值从 6.6 到 1.3，叶子从细长变到圆。</p>
+</section>
+
+<!-- 8 ================= 猜一猜 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">猜一猜</span><h2>先算比值，再猜是哪种树叶</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="jcard">
+        <p><b>1.</b> 一片树叶长 84 mm，宽 13 mm。比值 ≈ <span class="blank" data-ans="6.5" data-w="3"></span></p>
+        <div class="pick" data-ans="a"><button type="button" data-k="a">柳树叶</button><button type="button" data-k="b">香樟树叶</button><button type="button" data-k="c">桑树叶</button>
+          <p class="pick-why">$84\div13\approx6.5$，和柳树叶的 6.6 最接近，叶子很狭长。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 一片树叶长 92 mm，宽 70 mm。比值 ≈ <span class="blank" data-ans="1.3" data-w="3"></span></p>
+        <div class="pick" data-ans="c"><button type="button" data-k="a">柳树叶</button><button type="button" data-k="b">桃树叶</button><button type="button" data-k="c">桑树叶</button>
+          <p class="pick-why">$92\div70\approx1.3$，比值小，叶子宽而圆，像桑树叶。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 一片树叶长 70 mm，宽 30 mm。比值 ≈ <span class="blank" data-ans="2.3" data-w="3"></span></p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">桃树叶</button><button type="button" data-k="b">香樟树叶</button><button type="button" data-k="c">桑树叶</button>
+          <p class="pick-why">$70\div30\approx2.3$，和香樟树叶的比值接近。</p></div>
+      </div>
+    </div>
+    <p class="warn" data-step="1" data-label="想一想">只看长（或只看宽）能判断吗？——不能。大树叶、小树叶都有，<b>比值</b>才反映形状。</p>
+  </div>
+  <p class="note">课本没有配套习题，这是课堂延伸。用上一页的比值平均数作“标准”，判断只是“可能”，不是绝对的。</p>
+</section>
+
+<!-- 9 ================= 回顾反思 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾反思</span><h2>通过这次活动，你有什么收获？</h2></div>
+  <div class="bd full">
+    <div class="steps4" data-step="1">
+      <span>采集<br><small>每人一种 10 片</small></span><i>→</i><span>测量<br><small>长、宽（mm）</small></span><i>→</i><span>计算<br><small>比值、平均数</small></span><i>→</i><span>比较<br><small>比值与形状</small></span>
+    </div>
+    <div class="cols3">
+      <p class="recall" data-label="规律" data-step="2">自然界中隐藏着很多有趣的<b>规律</b>。</p>
+      <p class="method" data-label="方法" data-step="3">通过测量、计算和比较，可以帮助我们分析问题、解决问题。</p>
+      <p class="warn" data-label="习惯" data-step="4">善于观察和思考，才能发现和提出生活中的数学问题。</p>
+    </div>
+    <p class="tip gold" data-step="5"><b>还想研究：</b>同一棵树上、向阳和背阴处的叶子，比值一样吗？</p>
+  </div>
+  <p class="note">课本 p67 回顾反思的三句话。最后的问题可作为课后小课题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

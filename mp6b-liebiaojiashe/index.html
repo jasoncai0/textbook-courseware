@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>选择列表、假设等策略解决问题 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 封面 -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huachuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第三单元 解决问题的策略 · 选择列表、假设等策略解决问题</p>
+    <h1 class="cover-title">列表与假设</h1>
+    <p class="cover-q" data-step="1">全班 <b>42 人</b>去公园划船，租 <b>10 只船</b>正好坐满。</p>
+    <p class="cover-q" data-step="2">每只大船坐 <b>5 人</b>，每只小船坐 <b>3 人</b>。租的大船、小船各有多少只？</p>
+    <div class="chips" data-step="3"><span class="chip">画图</span><span class="chip">有序列举</span><span class="chip">假设再调整</span><span class="chip">鸡兔同笼</span></div>
+  </div>
+  <p class="note">课本 p28 例 2。先让学生凭感觉猜一猜：大船多还是小船多？把猜测写在黑板角上，最后对照。</p>
+</section>
+
+<!-- 2 前情回顾 -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们手里已经有哪些“策略工具”？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="五上 · 用列举的策略解决问题" data-step="1">
+        <p>按一定的<b>顺序</b>一一列举，做到不重复、不遗漏；列成表格更清楚。</p>
+        <span class="use">本课第 4 页：大船从 9 只开始有序列表。</span>
+      </div>
+      <div class="recall" data-label="六上 · 用假设的策略解决问题" data-step="2">
+        <p>先<b>假设</b>成同一种情况，算出结果和实际比较，再根据相差多少<b>调整</b>。</p>
+        <span class="use">本课第 5 页：假设大船、小船同样多。</span>
+      </div>
+      <div class="recall" data-label="六下 · 上一课 画图的策略" data-step="3">
+        <p>画图能让数量关系更直观：先画单位“1”，再找出 1 份。</p>
+        <span class="use">本课第 3 页：先画 10 只大船，再去掉多的人。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">上一课我们用画图解决了分数问题。今天的问题有<b>两个未知数</b>（大船、小船），看看哪种策略最合适。</p>
+  </div>
+  <p class="note">第 2 张卡是六上第四单元的假设策略。可以请学生举一个他们记得的假设题。</p>
+</section>
+
+<!-- 3 核心：点船换船 -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 画一画、换一换</span><h2>先让 10 只船都坐 5 人，再一只一只换成小船</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="boats" class="fig boats-fig" viewBox="0 0 600 265" aria-label="10 只船，点一只换成大船或小船" data-noswipe></svg>
+      <div class="boat-sum" id="boatSum"></div>
+      <div class="center-btns btns" data-noswipe><button type="button" class="btn" id="boatAllBig">全换成大船</button><button type="button" class="btn" id="boatAllSmall">全换成小船</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">点一只船，就在大船（5 人）和小船（3 人）之间换一换。</p>
+      <p class="tip feedback" id="boatMsg"></p>
+      <p class="tip" data-step="1">把 1 只大船换成小船，总人数怎样变？　<span class="think" data-step="2" data-ask="试一试">少了 $5-3=2$ 人。</span></p>
+      <p class="tip" data-step="3">10 只大船坐 50 人，多了 8 人。要换几只？　<span class="think" data-step="4" data-ask="算一算">$8\div2=4$（只），换 4 只小船，大船剩 6 只。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p28 第一种思路：“先画 10 只大船坐 50 人，再去掉多的 8 人”。每只大船画 5 个座位、小船画 3 个，人数由代码按座位数累加。先让学生自由点，体会“每换 1 只少 2 人”，再用算式说明。</p>
+</section>
+
+<!-- 4 列表 -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 列表</span><h2>从大船 9 只、小船 1 只开始，有序列举</h2></div>
+  <div class="bd full top">
+    <table class="mtab boat-tab">
+      <tr><th>大船只数</th><th>小船只数</th><th>乘坐的总人数</th><th>和 42 人比较</th></tr>
+      <tr><td>9</td><td>1</td><td>$9\times5+3=48$</td><td>多了 6 人</td></tr>
+      <tr><td>8</td><td>2</td><td>$8\times5+2\times3=$ <span class="blank" data-ans="46"></span></td><td>多了 <span class="blank" data-ans="4"></span> 人</td></tr>
+      <tr><td><span class="blank" data-ans="7"></span></td><td><span class="blank" data-ans="3"></span></td><td><span class="blank" data-ans="44"></span></td><td>多了 <span class="blank" data-ans="2"></span> 人</td></tr>
+      <tr><td><span class="blank" data-ans="6"></span></td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="42"></span></td><td>正好 ✓</td></tr>
+    </table>
+    <div class="cols2">
+      <p class="tip" data-step="1">“多了”的人数每次怎样变化？　<span class="think" data-step="2" data-ask="看一看">每次少 2 人：6 → 4 → 2 → 0。</span></p>
+      <p class="tip" data-step="3">为什么每次少 2 人？　<span class="think" data-step="4" data-ask="想一想">大船少 1 只、小船多 1 只，总人数少 $5-3=2$ 人。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p28 第二种思路。表格照课本前两行，后面让学生填（回车判对错）。追问：如果一开始从“大船 1 只、小船 9 只”列，要列几行？——从接近答案的一端列更快。</p>
+</section>
+
+<!-- 5 假设 -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2 · 假设</span><h2>假设大船和小船同样多，再根据总人数调整</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <table class="mtab">
+        <tr><th>大船只数</th><th>小船只数</th><th>乘坐的总人数</th><th>和 42 人比较</th></tr>
+        <tr><td>5</td><td>5</td><td>$5\times5+5\times3=40$</td><td>少了 2 人</td></tr>
+        <tr><td><span class="blank" data-ans="6"></span></td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="42"></span></td><td>正好 ✓</td></tr>
+      </table>
+      <div class="derive word-derive" data-step="1">
+        <div class="dl"><span>少了 2 人</span><span>→ 要增加 2 人</span><i class="why">和 42 人比较</i></div>
+        <div class="dl" data-step="2"><span>小船换大船</span><span>每换 1 只多 2 人</span><i class="why">$5-3=2$</i></div>
+        <div class="dl key" data-step="3"><span>$2\div2=1$</span><span>换 1 只</span><i class="why">大船 6 只，小船 4 只</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="4"><b>检验：</b>$6+4=$ <span class="blank" data-ans="10"></span>（只），$6\times5+4\times3=$ <span class="blank" data-ans="42"></span>（人）✓</p>
+      <p class="tip gold" data-step="5">答：租的大船有 <b>6</b> 只，小船有 <b>4</b> 只。</p>
+      <div class="method" data-label="回顾" data-step="6">画图、列举、先假设再调整都是解决问题的有效策略；分析和解决同一个问题，可以用不同的策略；要学会根据具体问题<b>灵活选择</b>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p28–29 第三种思路及“回顾解决问题的过程”。检验要检两个条件：一共 10 只、一共 42 人。比较三种方法：假设从“中间”开始，调整的次数最少。</p>
+</section>
+
+<!-- 6 练一练 鸡兔 画图 -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>鸡和兔一共 8 只，腿有 22 条，各有多少只？</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <svg id="cr" class="fig cr-fig" viewBox="0 0 640 210" aria-label="8 个圆表示 8 只动物，按步骤画腿"></svg>
+      <div class="center-btns btns" data-noswipe><button type="button" class="btn solid" id="crNext">按步骤画 ▶</button><button type="button" class="btn" id="crReset">重来</button></div>
+      <p class="tip feedback" id="crMsg"></p>
+    </div>
+    <div class="col">
+      <p class="q">(1) 按步骤画图：鸡有 <span class="blank" data-ans="5"></span> 只，兔有 <span class="blank" data-ans="3"></span> 只。</p>
+      <p class="q">(2) 先假设鸡和兔同样多，再调整：</p>
+      <table class="mtab">
+        <tr><th>鸡</th><th>兔</th><th>腿的总条数</th><th>和 22 条比较</th></tr>
+        <tr><td>4</td><td>4</td><td>$4\times2+4\times4=24$</td><td>多了 <span class="blank" data-ans="2"></span> 条</td></tr>
+        <tr><td><span class="blank" data-ans="5"></span></td><td><span class="blank" data-ans="3"></span></td><td><span class="blank" data-ans="22"></span></td><td>正好 ✓</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="note">课本 p29 练一练。按“按步骤画”一次走一步：① 画 8 个圆；② 每只先画 2 条腿（16 条，少 6 条）；③ 一只兔比一只鸡多 2 条腿，给 3 只添上 2 条腿；④ 得出答案。腿数由代码按画出的线条计数。</p>
+</section>
+
+<!-- 7 练习五 4、5 -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习五 · 4、5</span><h2>假设，再调整</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q">4. 六年级同学制作了 78 件蝴蝶标本，贴在 9 块展板上展出。每块小展板贴 6 件，每块大展板贴 10 件。两种展板各有多少块？</p>
+        <table class="mtab small-tab"><tr><th>大</th><th>小</th><th>总件数</th><th>和 78 比较</th></tr><tr><td>5</td><td>4</td><td>$5\times10+4\times6=74$</td><td>少了 4 件</td></tr></table>
+        <p class="q">大展板 <span class="blank" data-ans="6"></span> 块，小展板 <span class="blank" data-ans="3"></span> 块。</p>
+        <details><summary>提示 1</summary>把 1 块小展板换成大展板，多贴 $10-6=4$ 件。</details>
+        <details><summary>完整解答</summary>少 4 件，换 1 块：大展板 6 块，小展板 3 块。检验 $60+18=78$ ✓。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">5. 1 元和 5 角的硬币一共 13 枚，共有 10 元。1 元和 5 角的硬币各有多少枚？</p>
+        <table class="mtab small-tab"><tr><th>1 元</th><th>5 角</th><th>总元数</th><th>和 10 元比较</th></tr><tr><td>1</td><td>12</td><td>$1+12\times0.5=7$</td><td>少了 3 元</td></tr></table>
+        <p class="q">1 元 <span class="blank" data-ans="7"></span> 枚，5 角 <span class="blank" data-ans="6"></span> 枚。</p>
+        <details><summary>提示 1</summary>每把 1 枚 5 角换成 1 元，多 0.5 元。少 3 元要换几枚？</details>
+        <details><summary>完整解答</summary>$3\div0.5=6$（枚），1 元 $1+6=7$ 枚，5 角 $12-6=6$ 枚。检验 $7+3=10$ ✓。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p31 练习五第 4、5 题，表格第一行照课本。第 5 题从“1 元 1 枚”开始，调整幅度是 0.5 元。</p>
+</section>
+
+<!-- 8 练习五 9 & 乒乓 -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习五 · 9 与思考</span><h2>你会选择什么策略？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q">9. 一名篮球运动员在一场比赛中一共投中 9 个球，有 2 分球，也有 3 分球。一共得了 21 分，他投中 2 分球和 3 分球各多少个？</p>
+        <p class="q">2 分球 <span class="blank" data-ans="6"></span> 个，3 分球 <span class="blank" data-ans="3"></span> 个。</p>
+        <details><summary>提示 1</summary>假设 9 个都是 2 分球，得 18 分，少了几分？</details>
+        <details><summary>完整解答</summary>少 3 分，每换 1 个 3 分球多 1 分，换 3 个：2 分球 6 个、3 分球 3 个。$12+9=21$ ✓</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">在 12 张球桌上同时进行乒乓球比赛，双打的比单打的多 6 人。进行单打和双打比赛的乒乓球桌各有几张？</p>
+        <p class="q">单打 <span class="blank" data-ans="7"></span> 张，双打 <span class="blank" data-ans="5"></span> 张。</p>
+        <details><summary>提示 1</summary>单打每桌 2 人，双打每桌 4 人。</details>
+        <details><summary>提示 2</summary>假设各 6 张：双打 24 人，单打 12 人，多 12 人，比 6 人多了 6。</details>
+        <details><summary>完整解答</summary>每把 1 张双打桌换成单打桌，相差减少 $4+2=6$ 人，换 1 张：单打 7 张、双打 5 张。$20-14=6$ ✓</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p32 练习五第 9 题和思考题。乒乓球题的调整幅度是 6 人（双打少 4 人，单打多 2 人），是本课难点，可让学生列表试几行再找规律。</p>
+</section>
+
+<!-- 9 你知道吗 -->
+<section class="slide">
+  <div class="hd"><span class="tag">你知道吗</span><h2>《孙子算经》里的“鸡兔同笼”</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <p class="tip">“今有鸡兔同笼，上有三十五头，下有九十四足，问鸡兔各几何？”</p>
+      <p class="tip" data-step="1">意思是：鸡和兔一共 35 只，一共 94 条腿。鸡和兔各有多少只？</p>
+      <div class="derive word-derive" data-step="2">
+        <div class="dl"><span>假设都是鸡</span><span>$35\times2=70$（条）</span><i class="why">比 94 少 24 条</i></div>
+        <div class="dl" data-step="3"><span>1 只鸡换成兔</span><span>多 2 条</span><i class="why">$4-2=2$</i></div>
+        <div class="dl key" data-step="4"><span>兔</span><span>$24\div2=$ <span class="blank" data-ans="12"></span>（只）</span><i class="why">换了几次就有几只兔</i></div>
+        <div class="dl" data-step="5"><span>鸡</span><span>$35-12=$ <span class="blank" data-ans="23"></span>（只）</span><i class="why">检验：$46+48=94$ ✓</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="6">数字大了，列表要列很多行；<b>假设</b>一步就能算出调整几次。</p>
+      <div class="jcard" data-step="7">
+        <p>这道题最适合用哪种策略？</p>
+        <div class="pick" data-ans="c"><button type="button" data-k="a">画 35 个圆</button><button type="button" data-k="b">从 1 只兔开始列表</button><button type="button" data-k="c">先假设，再计算调整</button>
+          <p class="pick-why">数量大时，画图、逐行列表太费时间；假设后用“相差数 ÷ 每次调整数”直接算出来。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p32 “你知道吗”。古文可以请学生试着翻译。点选题没有唯一“对错”的绝对性，但要让学生说出“数大时假设更快”。</p>
+</section>
+
+<!-- 10 小结 -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>根据问题，灵活选择策略</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <p class="recall" data-label="画图" data-step="1">数量小、关系直观时，画出来一眼就能看清。</p>
+      <p class="recall" data-label="列表" data-step="2">有序列举，看出“每次变化多少”的规律，不重复、不遗漏。</p>
+      <p class="recall" data-label="假设" data-step="3">假设成同一种（或同样多），比较相差，用“相差 ÷ 每次调整量”算出调整几次。</p>
+    </div>
+    <p class="method" data-label="一定要" data-step="4">得出答案后，回到题目的<b>两个条件</b>检验（例如：只数对不对？人数对不对？）。</p>
+    <p class="tip gold" data-step="5"><b>下一单元：</b>第四单元《比例》——先从“把照片放大”开始认识图形的放大与缩小。</p>
+  </div>
+  <p class="note">请学生回到封面时的猜测，看看谁猜对了。课后：练习五第 3、8 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

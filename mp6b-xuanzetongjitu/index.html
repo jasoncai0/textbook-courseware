@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>选择合适的统计图 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/yuedu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第一单元 扇形统计图 · 选择合适的统计图</p>
+    <h1 class="cover-title">选择合适的统计图</h1>
+    <p class="cover-q" data-step="1">小宇收集了六年级一班同学课外阅读的数据，制成了<b>三幅</b>统计图。</p>
+    <p class="cover-q" data-step="2">为什么不只画一幅？想知道不同的问题，该看<b>哪一幅</b>？</p>
+    <div class="chips" data-step="3"><span class="chip">条形统计图</span><span class="chip">折线统计图</span><span class="chip">扇形统计图</span><span class="chip">按需要选</span></div>
+  </div>
+  <p class="note">课本 p2 例 2 的情境：了解六年级一班同学课外阅读的兴趣和习惯。先问学生：你平时喜欢读哪一类课外书？每星期大约读多长时间？引出调查和统计。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>我们已经认识了三种统计图</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="五年级上册 · 复式条形统计图" data-step="1">
+        <svg viewBox="0 0 220 110" class="mini-fig" aria-label="条形统计图示意"><path d="M20 95H210M20 10V95" stroke="#1f2d3a" stroke-width="2"/><rect x="40" y="55" width="26" height="40" fill="#f4a6c4"/><rect x="90" y="30" width="26" height="65" fill="#f4a6c4"/><rect x="140" y="65" width="26" height="30" fill="#f4a6c4"/></svg>
+        <p>用直条的长短表示<b>数量的多少</b>。<a href="../mp5a-fushitiaoxingtu/index.html">回看</a></p>
+        <span class="use">例 2 第三幅图：每段阅读时间各有多少人。</span>
+      </div>
+      <div class="recall" data-label="五年级下册 · 折线统计图" data-step="2">
+        <svg viewBox="0 0 220 110" class="mini-fig" aria-label="折线统计图示意"><path d="M20 95H210M20 10V95" stroke="#1f2d3a" stroke-width="2"/><path d="M40 30L80 45L120 75L160 60L195 80" fill="none" stroke="#c0392b" stroke-width="3"/></svg>
+        <p>用折线的升降表示<b>数量的增减变化</b>。<a href="../mp5b-danshizhexian/index.html">回看</a></p>
+        <span class="use">例 2 第二幅图：各月读书本数的变化。</span>
+      </div>
+      <div class="recall" data-label="上一课 · 扇形统计图" data-step="3">
+        <svg viewBox="0 0 220 110" class="mini-fig" aria-label="扇形统计图示意"><circle cx="110" cy="55" r="48" fill="#d8d2f1"/><path d="M110 55L110 7A48 48 0 0 1 152 78Z" fill="#f7c6df"/></svg>
+        <p>表示<b>各部分数量与总数量</b>之间的关系。<a href="../mp6b-shanxingtongjitu/index.html">回看</a></p>
+        <span class="use">例 2 第一幅图：各类书占的百分比。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">三种统计图各有各的本领。今天学习：<b>根据需要，选择合适的统计图</b>。</p>
+  </div>
+  <p class="note">每张卡请学生先说“这种统计图能看出什么”，再揭示。三张卡的“本课哪一步用它”正好对应例 2 的三幅图。</p>
+</section>
+
+<!-- 3 ================= 例 2 三幅图 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>上面三幅统计图分别表示什么？</h2></div>
+  <div class="bd full top">
+    <div class="cols3 charts3">
+      <div class="chart"><p class="chart-t">六年级一班同学阅读课外书情况统计图<small>2012 年 3 月</small></p><svg id="rPie" aria-label="各类课外书所占百分比的扇形统计图"></svg></div>
+      <div class="chart"><p class="chart-t">六年级一班同学阅读课外书情况统计图<small>2012 年 3 月</small></p><svg id="rLine" aria-label="7 到 12 月阅读本数的折线统计图"></svg></div>
+      <div class="chart"><p class="chart-t">六年级一班同学平均每星期课外阅读时间统计图<small>2012 年 3 月</small></p><svg id="rBar" aria-label="每星期阅读时间人数的条形统计图"></svg></div>
+    </div>
+    <div class="cols3">
+      <p class="tip" data-step="1"><span class="think" data-step="1" data-ask="扇形图表示什么？">阅读的各类课外书占<b>阅读总量的百分比</b>。</span></p>
+      <p class="tip" data-step="2"><span class="think" data-step="2" data-ask="折线图表示什么？">下半年<b>各月</b>阅读课外书的<b>本数</b>。</span></p>
+      <p class="tip" data-step="3"><span class="think" data-step="3" data-ask="条形图表示什么？">平均每星期阅读时间在各段的<b>人数</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p2–3 例 2 的三幅统计图，数据照课本由代码绘制：扇形图科普 27%、漫画 19%、童话 20%、小说 24%、其他 10%；折线图 7–12 月 136、121、85、94、72、92 本；条形图 3、7、8、18、9 人。先让学生读标题、看横轴纵轴，再回答问题（1）。</p>
+</section>
+
+<!-- 4 ================= 问题找图（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">问题找图</span><h2>回答这个问题，应该看哪幅统计图？</h2></div>
+  <div class="bd full top">
+    <div class="qbar" data-noswipe><span class="btns" id="fQ"></span><b id="fText" class="qtext"></b></div>
+    <div class="cols3 charts3" data-noswipe>
+      <button type="button" class="fcard chart" data-k="pie"><svg id="fPie" aria-label="扇形统计图"></svg><span>扇形统计图</span></button>
+      <button type="button" class="fcard chart" data-k="line"><svg id="fLine" aria-label="折线统计图"></svg><span>折线统计图</span></button>
+      <button type="button" class="fcard chart" data-k="bar"><svg id="fBar" aria-label="条形统计图"></svg><span>条形统计图</span></button>
+    </div>
+    <p class="tip feedback" id="fMsg"></p>
+  </div>
+  <p class="note">课本 p3 问题（2）的三个小问题。先选“问题 1”，请学生说出答案和理由，再点图验证；点对了，图上会突出显示答案（扇形突出、折线变红、条形只留最多和最少）。点错了，问：这幅图能回答这个问题吗？</p>
+</section>
+
+<!-- 5 ================= 概括 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">说一说</span><h2>怎样根据需要选择统计图？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="kcard" data-step="1"><svg id="sumPie" aria-label="扇形统计图"></svg><p>要想清楚地看出<b>各部分数量与总数量之间的关系</b>，可以选择<em>扇形统计图</em>。</p></div>
+      <div class="kcard" data-step="2"><svg id="sumLine" aria-label="折线统计图"></svg><p>要反映<b>数量的增减变化情况</b>，可以选择<em>折线统计图</em>。</p></div>
+      <div class="kcard" data-step="3"><svg id="sumBar" aria-label="条形统计图"></svg><p>要想直观地看出<b>数量的多少</b>，可以选择<em>条形统计图</em>。</p></div>
+    </div>
+    <p class="method" data-step="4" data-label="选图口诀">比多少 → 条形；看变化 → 折线；看部分和整体 → 扇形。</p>
+    <p class="tip" data-step="5">你还能从这三幅统计图中获得哪些信息？　<span class="think" data-step="6" data-ask="说一说">例如：7 月读书最多（136 本）；读小说的占 24%，比童话多 4 个百分点；每星期读 4 小时以上的有 $8+18+9=35$ 人……</span></p>
+  </div>
+  <p class="note">课本 p3 三个小伙伴的话，是本课的结论。先让学生用自己的话说，再逐张揭示。问题（3）开放，鼓励学生多说。</p>
+</section>
+
+<!-- 6 ================= 同一组数据换一换（核心 2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 换一换</span><h2>李大伯家 2012 年的收入，用哪种统计图？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="swapFig" class="swap-fig" aria-label="李大伯家 2012 年收入统计图" data-noswipe></svg>
+      <div class="btns center-btns" id="swapK" data-noswipe><button type="button" class="btn" data-k="bar">条形统计图</button><button type="button" class="btn" data-k="pie">扇形统计图</button><button type="button" class="btn" data-k="line">折线统计图</button></div>
+    </div>
+    <div class="col">
+      <table class="mtab"><tr><th>项目</th><th>粮食</th><th>养殖</th><th>水果</th><th>其他</th><th>合计</th></tr><tr><th>收入/万元</th><td>3.1</td><td>2.5</td><td>1.8</td><td>1.6</td><td><span class="blank" data-ans="9"></span></td></tr><tr><th>占年收入</th><td><span class="blank" data-ans="34.4|34.44" data-w="3"></span>%</td><td>27.8%</td><td>20.0%</td><td>17.8%</td><td>100%</td></tr></table>
+      <p class="tip feedback" id="swapMsg"></p>
+      <p class="tip" data-step="1">条形图和扇形图表示的是<b>同一组数据</b>，有什么不同？　<span class="think" data-step="2" data-ask="比一比">条形图看出每项<b>是多少万元</b>；扇形图看出每项<b>占年收入的百分之几</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p4 练一练的条形图和扇形图。切换按钮时，扇形图的百分比由条形图的数据当场算出（每项 ÷ 9 万元，圆心角 = 百分比 × 360°），与课本扇形图一致：34.4%、27.8%、20.0%、17.8%。再试“折线统计图”，讨论为什么不合适。表中合计和粮食的百分比请学生先算。</p>
+</section>
+
+<!-- 7 ================= 练一练问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>回答问题，你分别观察了哪幅统计图？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="chart-t">2002～2012 年李大伯家收入情况统计图<small>2013 年 1 月</small></p>
+      <svg id="liLine" class="swap-fig" aria-label="2002 到 2012 年李大伯家收入折线统计图"></svg>
+    </div>
+    <div class="col">
+      <div class="calc">
+        <p>(1) 2012 年哪项收入最多？占年收入的 <span class="blank" data-ans="34.4" data-w="3"></span>%；最少的“其他”占 <span class="blank" data-ans="17.8" data-w="3"></span>%。<span class="muted">（看扇形图）</span></p>
+        <p>(2) 各项收入分别是多少万元？<span class="muted">（看条形图，第 6 页）</span></p>
+        <p>(3) 哪两年间收入增长最多？</p>
+        <div class="pick" data-ans="a"><button type="button" data-k="a">2002～2004</button><button type="button" data-k="b">2006～2008</button><button type="button" data-k="c">2010～2012</button>
+          <p class="pick-why">看折线最陡的一段：$5.7-4.2=1.5$（万元），比 $7.6-6.4=1.2$、$9-8.2=0.8$ 都多。</p></div>
+        <p>(4) 2012 年比 2002 年增长了约 <span class="blank" data-ans="114.3|114.29|114" data-w="4"></span>%。<span class="muted">（得数保留一位小数）</span></p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">第 (4) 题卡住了？</p>
+        <details><summary>提示 1</summary>增长了多少万元？$9-4.2=4.8$</details>
+        <details><summary>完整解答</summary>$(9-4.2)\div4.2\approx114.3\%$</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p4 练一练（1）–（4）。第（3）题让学生先看折线：哪一段最陡？再用数据验证。第（4）题是六上“求一个数比另一个数多百分之几”，用增长的量除以 2002 年的收入。最后问：每个问题分别看了哪幅图？</p>
+</section>
+
+<!-- 8 ================= 练习一 算一算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习一</span><h2>从扇形统计图算出数量</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 我国四大海域的总面积大约有 473 万平方千米。渤海占 1.6%，黄海占 8.0%，东海占 16.3%，南海占 74.1%。算出各海域的面积（万平方千米，保留一位小数）。</p>
+        <p class="q small-q">渤海 <span class="blank" data-ans="7.6|7.568|7.57" data-w="4"></span>　黄海 <span class="blank" data-ans="37.8|37.84" data-w="4"></span><br>东海 <span class="blank" data-ans="77.1|77.099|77.10" data-w="4"></span>　南海 <span class="blank" data-ans="350.5|350.493|350.49" data-w="5"></span></p>
+        <details><summary>提示 1</summary>求 473 的百分之几是多少，用乘法：$473\times1.6\%$。</details>
+        <details><summary>完整解答</summary>渤海 $473\times1.6\%\approx7.6$，黄海 $\approx37.8$，东海 $\approx77.1$，南海 $\approx350.5$（万平方千米）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 王阿姨种了 4 种蔬菜：番茄 35%，黄瓜 20%，韭菜 21%，萝卜占其余部分。黄瓜的种植面积是 80 平方米。</p>
+        <p class="q small-q">合计 <span class="blank" data-ans="400" data-w="3"></span>　韭菜 <span class="blank" data-ans="84" data-w="3"></span><br>萝卜 <span class="blank" data-ans="96" data-w="3"></span>　番茄 <span class="blank" data-ans="140" data-w="3"></span>（平方米）</p>
+        <details><summary>提示 1</summary>黄瓜 80 平方米占总面积的 20%，总面积是多少？$80\div20\%$</details>
+        <details><summary>提示 2</summary>萝卜占 $1-35\%-20\%-21\%=24\%$。</details>
+        <details><summary>完整解答</summary>合计 $80\div20\%=400$；韭菜 $400\times21\%=84$；萝卜 $400\times24\%=96$；番茄 $400\times35\%=140$（平方米）。</details>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="方法">知道总数 → 部分 = 总数 × 百分比；知道某部分和它的百分比 → 总数 = 部分 ÷ 百分比。</p>
+  </div>
+  <p class="note">课本 p5 练习一第 3 题、p7 第 5 题。第 3 题可用计算器，海域面积保留一位小数（填准确值也算对）。第 5 题要先求总面积，是六上“已知一个数的百分之几是多少，求这个数”。</p>
+</section>
+
+<!-- 9 ================= 我来选图（核心 3） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习一 · 选一选，画一画</span><h2>这些数据，用什么统计图表示？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="btns center-btns" id="chS" data-noswipe></div>
+      <p class="tip"><b id="chT"></b></p>
+      <div class="btns center-btns" id="chK" data-noswipe><button type="button" class="btn" data-k="bar">条形统计图</button><button type="button" class="btn" data-k="line">折线统计图</button><button type="button" class="btn" data-k="pie">扇形统计图</button></div>
+      <p class="tip feedback" id="chMsg"></p>
+    </div>
+    <div class="col">
+      <svg id="chFig" class="swap-fig" viewBox="0 0 460 300" aria-label="按选择画出的统计图" data-noswipe></svg>
+    </div>
+  </div>
+  <p class="note">课本 p6 练习一第 4 题两组数据、p7 第 6 题两幅统计图（换一种统计图表示）。每组数据先请学生说选什么图、为什么，再点按钮画出来。第 4 (1) 题的 6 个百分比不是同一个整体的部分，不能画扇形图——这是易错点。第 6 题扇形图换成条形图要先算人数（20 人）。</p>
+</section>
+
+<!-- 10 ================= 说一说：两天的食物 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习一 · 说一说</span><h2>小华家两天的食物，哪一天搭配更合理些？</h2></div>
+  <div class="bd full top">
+    <div class="two-pie">
+      <div><p>第一天</p><svg id="day1" viewBox="0 0 460 300" aria-label="第一天各类食物所占百分比"></svg></div>
+      <div><p>第二天</p><svg id="day2" viewBox="0 0 460 300" aria-label="第二天各类食物所占百分比"></svg></div>
+    </div>
+    <div class="cols3">
+      <p class="tip" data-step="1">两天各有什么特点？　<span class="think" data-step="2" data-ask="比一比">第一天蔬菜水果类最多（46.8%）；第二天鱼肉蛋类最多（37.5%），蔬菜水果类只占 20.0%。</span></p>
+      <p class="tip" data-step="3">哪一天更合理？　<span class="think" data-step="4" data-ask="说说理由">第一天更合理些：蔬菜水果和谷类多，鱼肉蛋适量，油脂少；第二天肉类偏多、蔬果偏少。</span></p>
+      <p class="tip gold" data-step="5">用扇形统计图比较“搭配”，看的是每类食物<b>占的份额</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p5 练习一第 1 题。两幅扇形图按课本数据绘制（从 12 点方向起顺时针，同课本）：第一天豆奶 12.3%、油脂 1.5%、蔬菜水果 46.8%、谷类 24.6%、鱼肉蛋 14.8%；第二天豆奶 7.5%、油脂 2.5%、蔬菜水果 20.0%、谷类 32.5%、鱼肉蛋 37.5%。答案不唯一，说出道理即可，可联系“中国居民平衡膳食宝塔”。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>先想清楚要知道什么，再选统计图</h2></div>
+  <div class="bd full">
+    <table class="mtab sum-tab" data-step="1">
+      <tr><th>统计图</th><th>能清楚地看出</th><th>例子</th></tr>
+      <tr><td>条形统计图</td><td>各种数量的多少</td><td>每段阅读时间有多少人</td></tr>
+      <tr><td>折线统计图</td><td>数量的增减变化</td><td>各月读书的本数怎样变化</td></tr>
+      <tr><td>扇形统计图</td><td>各部分数量与总数量的关系</td><td>各类书占阅读总量的百分比</td></tr>
+    </table>
+    <p class="warn" data-step="2">几个数合起来不是同一个整体（加起来不是 100%），就<b>不能</b>画扇形统计图。</p>
+    <p class="tip gold" data-step="3"><b>下一单元：</b>圆柱和圆锥——由长方形、直角三角形“转”出来的立体图形。<a href="../mp6b-yuanzhuyuanzhui/index.html">圆柱和圆锥的认识</a></p>
+  </div>
+  <p class="note">请学生说一说：今天遇到的哪组数据最容易选错图？课后作业建议：练习一第 2、7 题和“动手做”（测反应速度，自己选统计图）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

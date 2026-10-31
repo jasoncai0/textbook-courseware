@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆柱和圆锥的认识 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/solid3d.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/huazhu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第二单元 圆柱和圆锥 · 圆柱和圆锥的认识</p>
+    <h1 class="cover-title">圆柱和圆锥的认识</h1>
+    <p class="cover-q" data-step="1">广场上的花柱、工地上的沙堆、手里的饮料罐……</p>
+    <p class="cover-q" data-step="2">它们的形状和长方体、正方体不一样：有的面是<b>弯曲</b>的。它们叫什么？有什么特征？</p>
+    <div class="chips" data-step="3"><span class="chip">分一分</span><span class="chip">转一转、看一看</span><span class="chip">切一切</span><span class="chip">转出立体图形</span></div>
+  </div>
+  <p class="note">课本 p9 例 1 的情境。先请学生说说图中物体的形状，和学过的长方体、正方体比一比：它们的面有什么不同？</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>认识新图形，要用到这些老朋友</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="五年级下册 · 圆的认识" data-step="1">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="圆心、半径和直径"><circle cx="120" cy="60" r="52" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/><path d="M68 60H172" stroke="#2f7d6b" stroke-width="3"/><path d="M120 60L157 23" stroke="#d9711c" stroke-width="3.5"/><circle cx="120" cy="60" r="4" fill="#1f2d3a"/><text x="112" y="82" class="fl">O</text><text x="142" y="36" class="fl c2">r</text><text x="78" y="80" class="fl c3">d</text></svg>
+        <p>圆心 $O$、半径 $r$、直径 $d$，$d=2r$。<a href="../mp5b-yuanderenshi/index.html">回看</a></p>
+        <span class="use">圆柱、圆锥的底面都是圆。</span>
+      </div>
+      <div class="recall" data-label="六年级上册 · 长方体和正方体的认识" data-step="2">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="长方体"><path d="M50 40H160V105H50Z M50 40L85 15H195L160 40 M195 15V80L160 105" fill="#fbe7c9" stroke="#d9711c" stroke-width="3" stroke-linejoin="round"/></svg>
+        <p>从<b>面、棱、顶点</b>去认识一个立体图形；长方体的 6 个面都是平面。<a href="../mp6a-changfangtirenshi/index.html">回看</a></p>
+        <span class="use">用同样的办法认识圆柱和圆锥的特征。</span>
+      </div>
+      <div class="recall" data-label="长方形、直角三角形" data-step="3">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="长方形和直角三角形"><rect x="25" y="25" width="80" height="70" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/><path d="M140 95V25L210 95Z" fill="#fbe08a" stroke="#d9711c" stroke-width="3"/><path d="M140 85h10v10" fill="none" stroke="#d9711c" stroke-width="2"/></svg>
+        <p>长方形四个角都是直角；直角三角形有两条直角边。</p>
+        <span class="use">第 7 页：让它们绕一条边转一周，会转出什么？</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">今天认识两种<b>有曲面</b>的立体图形——<b>圆柱</b>和<b>圆锥</b>。</p>
+  </div>
+  <p class="note">第 2 张卡复习“认识立体图形看什么”：面、棱、顶点。圆柱、圆锥没有棱，但有曲面、有顶点（圆锥），要换一种眼光去观察。</p>
+</section>
+
+<!-- 3 ================= 例 1 分一分 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 分一分</span><h2>哪些物体的形状是圆柱？哪些是圆锥？</h2></div>
+  <div class="bd full top">
+    <div class="objs" id="objs" data-noswipe></div>
+    <div class="btns center-btns" data-noswipe><button type="button" class="btn solid" id="objChk">检查</button><button type="button" class="btn" id="objReset">↺ 重来</button></div>
+    <p class="tip feedback" id="objMsg">每个物体点一下是“圆柱”，点两下是“圆锥”，点三下是“都不是”。</p>
+    <p class="tip" data-step="1">生活中还有哪些物体的形状是圆柱或圆锥？　<span class="think" data-step="2" data-ask="说一说">圆柱：水杯、柱子、硬币、电池……　圆锥：冰淇淋的蛋筒、漏斗的上半部分、斗笠……</span></p>
+  </div>
+  <p class="note">课本 p9 例 1 和 p10 练一练的物体。圆柱体简称圆柱，圆锥体简称圆锥；本书所指的圆柱都是直圆柱、圆锥都是直圆锥。“削好的铅笔”是圆柱和圆锥拼起来的组合体，铅锤的下半部分是圆锥。点完后按“检查”。</p>
+</section>
+
+<!-- 4 ================= 圆柱的特征（核心 1） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">认识圆柱</span><h2>转一转、看一看：圆柱有什么特征？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cyl" class="v3"></div>
+      <p class="s3d-hint">拖动圆柱转着看；虚线表示被挡住的部分</p>
+    </div>
+    <div class="col">
+      <div class="btns" id="cylK" data-noswipe><button type="button" class="btn solid" data-k="none">原图</button><button type="button" class="btn" data-k="base">底面</button><button type="button" class="btn" data-k="side">侧面</button><button type="button" class="btn" data-k="high">高</button></div>
+      <p class="tip feedback ok" id="cylMsg"></p>
+      <div class="bubbles">
+        <p class="bub" data-step="1">圆柱从上到下一样粗。</p>
+        <p class="bub" data-step="2">圆柱上、下两个面是完全相同的圆。</p>
+        <p class="bub" data-step="3">圆柱有一个面是弯曲的。</p>
+      </div>
+      <div class="def" data-step="4">圆柱的上、下两个面叫作<em>底面</em>，围成圆柱的曲面叫作<em>侧面</em>，两个底面之间的距离叫作<em>高</em>。</div>
+    </div>
+  </div>
+  <p class="note">课本 p9。先让学生拿出一个圆柱形物体摸一摸、转一转，说说发现（三个气泡是课本小伙伴的话），再点按钮对照。点“高”时显示多条高：圆柱的高有无数条，都相等。最后读定义，请学生在自己的圆柱上指出底面和侧面。</p>
+</section>
+
+<!-- 5 ================= 切一切 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">切一切</span><h2>“从上到下一样粗”，怎样看出来？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="cut-pair"><div><div id="cutA" class="v3 short"></div><p>圆柱</p></div><div><div id="cutB" class="v3 short"></div><p>圆锥</p></div></div>
+      <div class="slider-row" data-noswipe>切口高度 <input type="range" id="cutZ" min="0" max="95" step="1" value="50"></div>
+    </div>
+    <div class="col">
+      <p class="tip">想象用刀<b>平行于底面</b>横着切一刀，切口（橙色）是什么形状？有多大？拖动滑块试一试。</p>
+      <p class="tip feedback ok" id="cutMsg"></p>
+      <p class="tip" data-step="1">圆柱的切口有什么特点？　<span class="think" data-step="2" data-ask="说一说">不管在哪里切，切口都是和底面<b>完全相同的圆</b>——所以圆柱从上到下一样粗。</span></p>
+      <p class="tip" data-step="3">圆锥呢？　<span class="think" data-step="4" data-ask="说一说">切口也是圆，但越往上越小，到顶点就缩成了一个点。</span></p>
+    </div>
+  </div>
+  <p class="note">本页把课本“圆柱从上到下一样粗”变成可以看见的操作：切口圆按高度精确计算（圆柱半径不变；圆锥半径 = 底面半径 ×（1 − 切口高度 ÷ 高））。顺势引出圆锥。</p>
+</section>
+
+<!-- 6 ================= 圆锥的特征 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">认识圆锥</span><h2>仔细观察圆锥，说说圆锥有什么特征</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="cone" class="v3"></div>
+      <p class="s3d-hint">拖动圆锥转着看</p>
+    </div>
+    <div class="col">
+      <div class="btns" id="coneK" data-noswipe><button type="button" class="btn solid" data-k="none">原图</button><button type="button" class="btn" data-k="top">顶点</button><button type="button" class="btn" data-k="base">底面</button><button type="button" class="btn" data-k="side">侧面</button><button type="button" class="btn" data-k="high">高</button></div>
+      <p class="tip feedback ok" id="coneMsg"></p>
+      <div class="def" data-step="1">圆锥的底面是一个<em>圆</em>，侧面是一个<em>曲面</em>。从圆锥的<em>顶点到底面圆心</em>的距离是圆锥的<em>高</em>。</div>
+      <p class="warn" data-step="2">圆柱的高有无数条；圆锥的高<b>只有一条</b>。从顶点到底面圆周上一点的线段，<b>不是</b>圆锥的高。</p>
+    </div>
+  </div>
+  <p class="note">课本 p10。课本三个小伙伴：圆锥有一个顶点；底面是一个圆；侧面是曲面。点“高”时同时画出一条从顶点到底面圆周的斜线（蓝色），让学生辨认它不是高。可以追问：圆锥的高怎样测量？（练习四第 12 题用三角尺和直尺量。）</p>
+</section>
+
+<!-- 7 ================= 转一转（核心 2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">转一转</span><h2>平面图形绕一条边旋转一周，会得到什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div id="spin" class="v3 tall"></div>
+      <div class="slider-row" data-noswipe>转过 <input type="range" id="spinA" min="0" max="360" step="1" value="0"> <b id="spinAv"></b><button type="button" class="btn solid" id="spinGo">▶ 转一周</button></div>
+    </div>
+    <div class="col">
+      <div class="btns" id="spinK" data-noswipe><button type="button" class="btn solid" data-k="rl">长方形 · 绕长</button><button type="button" class="btn" data-k="rw">长方形 · 绕宽</button><button type="button" class="btn" data-k="t4">直角三角形 · 绕 4 cm 边</button><button type="button" class="btn" data-k="t3">直角三角形 · 绕 3 cm 边</button></div>
+      <p class="tip"><b id="spinT"></b></p>
+      <p class="tip feedback ok" id="spinR"></p>
+      <p class="method" data-step="1" data-label="发现">长方形绕一条边转一周 → <b>圆柱</b>：绕着的边是高，另一条边是底面半径。<br>直角三角形绕一条直角边转一周 → <b>圆锥</b>：绕着的边是高，另一条直角边是底面半径。</p>
+    </div>
+  </div>
+  <p class="note">数据取自练习三第 7 题（长 5 cm、宽 4 cm 的长方形）和练习四第 9 题（直角边 3 cm、4 cm 的三角形），图形按真实比例绘制，红色弧线是顶点走过的路线。先让学生猜，再转。同一个长方形绕长、绕宽转出的圆柱不一样，后面学了体积可以算一算谁大。</p>
+</section>
+
+<!-- 8 ================= 看一看（练习二 2） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习二 · 看一看</span><h2>从前面、上面和右面观察，看到的是什么形状？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="cut-pair"><div><div id="vZhu" class="v3 short"></div><p>圆柱</p></div><div><div id="vZhui" class="v3 short"></div><p>圆锥</p></div></div>
+      <div class="btns center-btns" id="viewK" data-noswipe><button type="button" class="btn solid" data-k="free">斜着看</button><button type="button" class="btn" data-k="front">从前面看</button><button type="button" class="btn" data-k="top">从上面看</button><button type="button" class="btn" data-k="right">从右面看</button></div>
+    </div>
+    <div class="col">
+      <div class="jcard"><p>从<b>前面</b>和<b>右面</b>看圆柱，看到的是</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">圆</button><button type="button" data-k="b">长方形</button><button type="button" data-k="c">三角形</button><p class="pick-why">长方形：长是底面直径，宽是圆柱的高。</p></div></div>
+      <div class="jcard"><p>从<b>上面</b>看圆锥，看到的是</p>
+        <div class="pick" data-ans="a"><button type="button" data-k="a">圆（中间有一个点）</button><button type="button" data-k="b">三角形</button><p class="pick-why">看到底面那么大的圆，中间的点是顶点。</p></div></div>
+      <div class="jcard"><p>从<b>前面</b>看圆锥，看到的是</p>
+        <div class="pick" data-ans="c"><button type="button" data-k="a">圆</button><button type="button" data-k="b">长方形</button><button type="button" data-k="c">三角形</button><p class="pick-why">等腰三角形：底是底面直径，高是圆锥的高。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p13 练习二第 2 题。先让学生想象、说出答案，再点按钮让两个立体转到正前方、正上方、正右方——转到整数角度时得到的就是精确的视图。从上面看圆柱是圆，可以口答。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法对吗？先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard"><p><b>1.</b> 圆柱的上、下两个底面是完全相同的圆。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">圆柱从上到下一样粗，两个底面大小、形状完全相同。</p></div></div>
+      <div class="jcard"><p><b>2.</b> 圆柱有无数条高，圆锥也有无数条高。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">圆锥的高是顶点到底面<b>圆心</b>的距离，只有<b>一条</b>。</p></div></div>
+      <div class="jcard"><p><b>3.</b> 从圆锥的顶点到底面圆周上任意一点的线段，是圆锥的高。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">这条线段在侧面上，是斜的；高要垂直于底面，落在圆心上。</p></div></div>
+      <div class="jcard"><p><b>4.</b> 一个长方形绕它的一条边旋转一周，一定得到一个圆柱。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">绕着的边成为圆柱的高，另一条边成为底面半径。</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="比一比">圆柱：2 个相同的圆形底面 + 1 个曲面侧面，高有无数条。圆锥：1 个圆形底面 + 1 个曲面侧面 + 1 个顶点，高只有 1 条。</p>
+  </div>
+  <p class="note">第 2、3 题是本课最容易错的地方。可以回到第 6 页点“高”再看一次。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>圆柱和圆锥，比一比</h2></div>
+  <div class="bd full">
+    <table class="mtab sum-tab" data-step="1">
+      <tr><th></th><th>底面</th><th>侧面</th><th>高</th><th>顶点</th><th>怎样转出来</th></tr>
+      <tr><th>圆柱</th><td>2 个完全相同的圆</td><td>1 个曲面</td><td>无数条，都相等</td><td>没有</td><td>长方形绕一条边</td></tr>
+      <tr><th>圆锥</th><td>1 个圆</td><td>1 个曲面</td><td>只有 1 条</td><td>1 个</td><td>直角三角形绕一条直角边</td></tr>
+    </table>
+    <p class="recall" data-label="观察方法" data-step="2">认识立体图形：看面（几个？什么形状？平的还是弯的？）、看高、看顶点；还可以转一转、切一切、从不同方向看一看。</p>
+    <p class="tip gold" data-step="3"><b>下一课：</b>罐头的侧面贴着一张商标纸，沿接缝剪开，展开后是什么形状？——<a href="../mp6b-yuanzhubiaomianji/index.html">圆柱的表面积</a></p>
+  </div>
+  <p class="note">请学生对照表格说一说圆柱和圆锥的相同点、不同点。课后作业建议：练习二第 1、3 题（剪下课本 p113、115 的图形做一个圆柱和一个圆锥，量出底面直径和高）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/solid3d.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

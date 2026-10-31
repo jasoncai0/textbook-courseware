@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>面积的变化 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/fangda.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 综合与实践 · 面积的变化</p>
+    <h1 class="cover-title">面积的变化</h1>
+    <p class="cover-q" data-step="1">一张照片按比例放大，长和宽都变成原来的 <b>3 倍</b>。</p>
+    <p class="cover-q" data-step="2">它的面积也变成原来的 3 倍吗？</p>
+    <div class="chips" data-step="3"><span class="chip">量一量</span><span class="chip">算一算</span><span class="chip">铺一铺</span><span class="chip">找规律</span></div>
+  </div>
+  <p class="note">课本 p48–49“面积的变化”（探索规律）。先让学生凭直觉回答，把“3 倍”“6 倍”“9 倍”等不同猜法写在黑板上，本课结束时再回头看。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>这些知识，今天都要用到</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="六下第四单元 · 图形的放大和缩小" data-step="1">
+        <p>把图形按 $3:1$ 放大，就是把图形的<b>各条边</b>都放大到原来的 3 倍；放大后的图形与原来的图形形状相同。</p>
+        <span class="use">长度比都是 $3:1$。</span>
+      </div>
+      <div class="recall" data-label="五上、五下 · 面积公式" data-step="2">
+        <p>长方形 $S=ab$　正方形 $S=a^2$</p>
+        <p>三角形 $S=ah\div2$　圆 $S=\pi r^2$</p>
+        <span class="use">算放大前、放大后的面积。</span>
+      </div>
+      <div class="recall" data-label="六上 · 比 / 六下 · 比例" data-step="3">
+        <p>化简比：$27:3=9:1$；$12.56:0.785=16:1$。</p>
+        <span class="use">写出面积比，并化成后项是 1 的比。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">“边长放大到 3 倍”我们已经会了。今天要研究：<b>面积</b>会怎样变化？</p>
+  </div>
+  <p class="note">第 1 张卡复习本单元“图形的放大和缩小”。强调“各条边都放大”，所以三角形的底和高、圆的半径都放大相同的倍数。</p>
+</section>
+
+<!-- 3 ================= 长方形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">量一量</span><h2>大长方形是小长方形按比例放大后得到的</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="rectBoard" class="gridfig"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="tileGo">▶ 用小长方形铺一铺</button><button type="button" class="btn" id="tileClr">清除</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">量出它们的长和宽（方格纸每格 1 cm），写出对应边长的比。</p>
+      <div class="calc">
+        <p>长的比是 <span class="blank" data-ans="9"></span> $:$ <span class="blank" data-ans="3"></span>，化简得 $3:1$；</p>
+        <p>宽的比是 <span class="blank" data-ans="3"></span> $:$ <span class="blank" data-ans="1"></span>。</p>
+      </div>
+      <p class="tip" data-step="1">先估计：大长方形与小长方形面积的比是几比几？　<span class="think" data-step="2" data-ask="先猜，再点左边铺一铺">铺满正好用 <b>9</b> 个小长方形，面积比是 $9:1$，不是 $3:1$！</span></p>
+      <div class="calc" data-step="3">
+        <p>再算一算：大 $9\times3=$ <span class="blank" data-ans="27"></span> cm²，小 $3\times1=$ <span class="blank" data-ans="3"></span> cm²</p>
+        <p>面积比 $27:3=$ <span class="blank" data-ans="9:1" data-w="3"></span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p48 第一个问题（课本上量得小长方形长 3 cm、宽 1 cm，大长方形长 9 cm、宽 3 cm）。先估计再算：很多学生会猜 3∶1。点“铺一铺”，小长方形一个一个铺进大长方形（程序按真实尺寸摆放），一行 3 个，共 3 行——长变 3 倍、宽也变 3 倍，所以是 3×3=9 个。</p>
+</section>
+
+<!-- 4 ================= 核心：方格纸放大器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手放一放</span><h2>其他平面图形按比例放大后，面积又会怎样变化？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="zoomBoard" class="gridfig tall"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="zTile">铺一铺</button><span class="muted small-t">每格 1 cm</span></div>
+    </div>
+    <div class="col">
+      <div class="btns shp" id="shpBtns" data-noswipe>
+        <button type="button" class="btn solid" data-k="sq">正方形</button>
+        <button type="button" class="btn" data-k="tri">三角形</button>
+        <button type="button" class="btn" data-k="cir">圆</button>
+        <button type="button" class="btn" data-k="rect">长方形</button>
+      </div>
+      <div class="btns" id="ratBtns" data-noswipe>
+        <span>按</span>
+        <button type="button" class="btn" data-k="2">2∶1</button>
+        <button type="button" class="btn solid" data-k="3">3∶1</button>
+        <button type="button" class="btn" data-k="4">4∶1</button>
+        <span>放大</span>
+      </div>
+      <table class="mtab zt" id="zTab"></table>
+      <p class="tip feedback" id="zMsg"></p>
+    </div>
+  </div>
+  <p class="note">本课核心操作。课本 p48 的三个图形：正方形、三角形和圆（课本图上分别按 3∶1、2∶1、4∶1 放大，先选这三个比看课本的情况，再换别的比）。所有图形都按真实厘米数画在方格纸上；“铺一铺”把放大后的多边形精确分成和原图形完全一样的小块（三角形分成正、倒两种摆法），数一数正好是 $n\times n$ 块。圆铺不满，只能用公式算。</p>
+</section>
+
+<!-- 5 ================= 记录表 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">填一填</span><h2>先量一量、算一算，再把表填写完整</h2></div>
+  <div class="bd full top">
+    <table class="mtab rec">
+      <tr><th colspan="2"></th><th>放大前</th><th>放大后</th><th>放大后与放大前的比</th></tr>
+      <tr><th rowspan="2">正方形</th><th>边长/cm</th><td>1</td><td>3</td><td><span class="blank" data-ans="3:1" data-w="3"></span></td></tr>
+      <tr><th>面积/cm²</th><td><span class="blank" data-ans="1"></span></td><td><span class="blank" data-ans="9"></span></td><td><span class="blank" data-ans="9:1" data-w="3"></span></td></tr>
+      <tr><th rowspan="3">三角形</th><th>底/cm</th><td>2</td><td>4</td><td><span class="blank" data-ans="2:1" data-w="3"></span></td></tr>
+      <tr><th>高/cm</th><td>1</td><td>2</td><td><span class="blank" data-ans="2:1" data-w="3"></span></td></tr>
+      <tr><th>面积/cm²</th><td><span class="blank" data-ans="1"></span></td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="4:1" data-w="3"></span></td></tr>
+      <tr><th rowspan="2">圆</th><th>半径/cm</th><td>0.5</td><td>2</td><td><span class="blank" data-ans="4:1" data-w="3"></span></td></tr>
+      <tr><th>面积/cm²</th><td><span class="blank" data-ans="0.785" data-w="5"></span></td><td><span class="blank" data-ans="12.56" data-w="5"></span></td><td><span class="blank" data-ans="16:1" data-w="4"></span></td></tr>
+    </table>
+    <p class="muted small-t">示例数据：按课本图上量得的长度（圆周率取 3.14）。比号可以输入英文冒号“:”。</p>
+  </div>
+  <p class="note">课本 p49 的表格。数据是在课本图上量得的：正方形边长 1 cm → 3 cm，三角形底 2 cm、高 1 cm → 底 4 cm、高 2 cm，圆半径 0.5 cm → 2 cm。如果学生用尺子量自己的课本得数略有出入，以比为准。圆的面积比 12.56∶0.785 化简要用小数除法，可以先请学生算 12.56÷0.785=16。</p>
+</section>
+
+<!-- 6 ================= 发现规律 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">发现规律</span><h2>比较长度比和面积比，你能发现什么规律？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <table class="mtab law" data-step="1">
+          <tr><th>长度比</th><td>$2:1$</td><td>$3:1$</td><td>$4:1$</td></tr>
+          <tr><th>面积比</th><td>$4:1$</td><td>$9:1$</td><td>$16:1$</td></tr>
+        </table>
+        <p class="tip" data-step="2">两个比的后项都是 1，面积比的前项是长度比前项的　<span class="think" data-step="3" data-ask="什么？">平方：$4=2\times2$，$9=3\times3$，$16=4\times4$。</span></p>
+        <div class="def" data-step="4"><h4>规律</h4>如果把一个图形按 $n:1$ 的比放大，放大后与放大前图形的面积比是 <span class="blank" data-ans="n²|n^2|n×n|nn|n*n" data-w="3"></span> $:$ <span class="blank" data-ans="1"></span>。</div>
+      </div>
+      <div class="col">
+        <p class="tip" data-step="5"><b>为什么？</b>以长方形为例（长 $a$、宽 $b$，按 $n:1$ 放大）：</p>
+        <div class="derive" data-step="6">
+          <div class="dl"><span>放大前面积 $=a\times b$</span><span class="why">长方形面积</span></div>
+          <div class="dl"><span>放大后长 $=n\times a$，宽 $=n\times b$</span><span class="why">各条边都放大到 $n$ 倍</span></div>
+          <div class="dl"><span>放大后面积 $=(n\times a)\times(n\times b)$</span><span class="why">长 × 宽</span></div>
+          <div class="dl key"><span>$=(n\times n)\times(a\times b)$</span><span class="why">交换律、结合律</span></div>
+        </div>
+        <p class="method" data-step="7" data-label="想一想">长放大 $n$ 倍，面积放大 $n$ 倍；宽<b>也</b>放大 $n$ 倍，面积再放大 $n$ 倍——一共是 $n\times n$ 倍。三角形（底和高）、圆（$\pi r^2$ 中两个 $r$）也是这样。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p49 两个小精灵的发现。式子推导用乘法交换律和结合律，是六年级学生能理解的；圆可以补一句：$\pi\times(nr)\times(nr)=n\times n\times\pi r^2$。“$n^2$”可以输入 n² 或 n×n。</p>
+</section>
+
+<!-- 7 ================= 平行四边形验证 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">验一验</span><h2>在方格纸上画一个平行四边形，按比例放大</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="parBoard" class="gridfig tall"></div>
+    </div>
+    <div class="col">
+      <div class="steppers" id="parSteps" data-noswipe>
+        <div><span>底 <b id="pA">3</b> cm</span><button type="button" class="btn" data-d="a-">−</button><button type="button" class="btn" data-d="a+">＋</button></div>
+        <div><span>高 <b id="pH">2</b> cm</span><button type="button" class="btn" data-d="h-">−</button><button type="button" class="btn" data-d="h+">＋</button></div>
+        <div><span>斜 <b id="pS">1</b> 格</span><button type="button" class="btn" data-d="s-">−</button><button type="button" class="btn" data-d="s+">＋</button></div>
+        <div><span>按 <b id="pN">2</b>∶1 放大</span><button type="button" class="btn" data-d="n-">−</button><button type="button" class="btn" data-d="n+">＋</button></div>
+      </div>
+      <p class="tip" id="parMsg"></p>
+      <div class="calc" data-step="1">
+        <h4>底 3 cm、高 2 cm 的平行四边形按 2∶1 放大：</h4>
+        <p>放大前面积 <span class="blank" data-ans="6"></span> cm²，放大后面积 <span class="blank" data-ans="24"></span> cm²</p>
+        <p>面积比 <span class="blank" data-ans="4:1" data-w="3"></span>，符合规律吗？<span class="think" data-step="2" data-ask="想一想">符合：$2\times2=4$。</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p49“在第 112 页的方格纸上画一个平行四边形，按比例放大”。课堂上可以让学生先在方格纸上画，再用本页检验：调底、高、倾斜程度和放大的比，面积比始终是 $n\times n:1$，和平行四边形的形状无关。</p>
+</section>
+
+<!-- 8 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>用发现的规律想一想</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 一个长方形按 $4:1$ 放大，放大后与放大前的面积比是 <span class="blank" data-ans="16:1" data-w="4"></span>。</p>
+        <details><summary>提示 1</summary>长和宽都放大到 4 倍。</details>
+        <details><summary>完整解答</summary>$4\times4=16$，面积比是 $16:1$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一个正方形放大后，面积是原来的 25 倍，它是按 <span class="blank" data-ans="5"></span> $:$ <span class="blank" data-ans="1"></span> 放大的。</p>
+        <details><summary>提示 1</summary>哪个数乘它自己等于 25？</details>
+        <details><summary>完整解答</summary>$5\times5=25$，按 $5:1$ 放大。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 把一个三角形按 $1:3$ <b>缩小</b>，缩小后的面积是原来的 <span class="blank" data-ans="1/9" data-w="3"></span>。</p>
+        <details><summary>提示 1</summary>底和高都缩小到原来的 $\dfrac13$。</details>
+        <details><summary>完整解答</summary>$\dfrac13\times\dfrac13=\dfrac19$，面积比是 $1:9$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>4.</b> 比例尺是 $1:100$ 的平面图上，一个房间长 6 cm、宽 4 cm。实际面积是 <span class="blank" data-ans="24"></span> m²。</p>
+        <details><summary>提示 1</summary>先求实际的长和宽：$6\times100=600$（cm）$=6$ m。</details>
+        <details><summary>提示 2</summary>实际宽 4 m。也可以用规律：图上面积 24 cm²，实际是它的 $100\times100$ 倍。</details>
+        <details><summary>完整解答</summary>$6\times4=24$（m²）。（$24\times10000=240000$ cm² $=24$ m²）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本这一页没有配套习题，这四题是课堂延伸。第 3 题是“缩小”，和放大道理一样；第 4 题把规律和本单元的比例尺联系起来，提醒学生：实际面积不是图上面积的 100 倍。</p>
+</section>
+
+<!-- 9 ================= 延伸：体积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">还想到了什么</span><h2>正方体按比例放大后，体积比和长度比有什么关系？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="volView" class="view3"></div>
+      <div class="btns" id="volBtns" data-noswipe>
+        <span>按</span>
+        <button type="button" class="btn solid" data-k="2">2∶1</button>
+        <button type="button" class="btn" data-k="3">3∶1</button>
+        <span>放大</span>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">把棱长 1 cm 的正方体按 $2:1$ 放大，长、宽、高都变成 2 cm。</p>
+      <p class="tip" data-step="1">放大后的正方体里能装几个原来的正方体？　<span class="think" data-step="2" data-ask="数一数">$2\times2\times2=8$（个），体积比是 $8:1$。</span></p>
+      <p class="tip" data-step="3">按 $3:1$ 放大呢？　<span class="think" data-step="4" data-ask="算一算">$3\times3\times3=27$，体积比是 $27:1$。</span></p>
+      <p class="method" data-step="5" data-label="猜想">按 $n:1$ 放大，长度比 $n:1$，面积比 $n^2:1$，体积比 $n^3:1$。</p>
+    </div>
+  </div>
+  <p class="note">课本 p49 小精灵的问题：“长方体、正方体等按比例放大后，体积比和长度比会有什么关系？”作为课后探究的引子，点到为止。立体图由代码按真实棱长画出，可以拖动转一转。</p>
+</section>
+
+<!-- 10 ================= 回顾反思 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾反思</span><h2>回顾探索规律的过程，你有什么收获？</h2></div>
+  <div class="bd full">
+    <div class="chain" data-step="1">
+      <div class="cbox"><h4>长度比</h4><p class="big">$n:1$</p></div><i>→</i>
+      <div class="cbox"><h4>面积比</h4><p class="big">$n^2:1$</p></div><i>→</i>
+      <div class="cbox dash"><h4>体积比（猜想）</h4><p class="big">$n^3:1$</p></div>
+    </div>
+    <div class="cols3">
+      <p class="recall" data-label="比较" data-step="2">寻找面积的变化规律，要对放大前后的图形进行<b>比较</b>。</p>
+      <p class="method" data-label="观察" data-step="3">要认真观察、比较数据，才能发现规律；再用新的图形（平行四边形）<b>验证</b>。</p>
+      <p class="warn" data-label="别弄错" data-step="4">边长放大到 3 倍，面积不是 3 倍，而是 <b>9 倍</b>。</p>
+    </div>
+    <p class="tip gold" data-step="5">回头看看上课时的猜测：照片的长和宽都变成 3 倍，面积变成原来的几倍？</p>
+  </div>
+  <p class="note">课本 p49 回顾反思。回到封面的问题收尾：答案是 9 倍。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

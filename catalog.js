@@ -2833,7 +2833,11 @@ window.CATALOG = [
                 "title": "校园绿地面积",
                 "genre": "推导",
                 "kind": "图形面积",
-                "optional": true
+                "optional": true,
+                "dir": "mp5a-lvdimianji",
+                "pages": 9,
+                "desc": "点平面图量数据，不规则绿地分割求面积",
+                "cover": "mp5a-lvdimianji/assets/xiaoyuan.jpg"
               }
             ]
           },
@@ -3021,7 +3025,11 @@ window.CATALOG = [
                 "title": "班级联欢会",
                 "genre": "推导",
                 "kind": "小数运算",
-                "optional": true
+                "optional": true,
+                "dir": "mp5a-lianhuanhui",
+                "pages": 9,
+                "desc": "调查喜好、估算总价，算人均与结余",
+                "cover": "mp5a-lianhuanhui/assets/lianhuan.jpg"
               }
             ]
           },
@@ -3599,7 +3607,11 @@ window.CATALOG = [
                 "title": "表面涂色的正方体",
                 "genre": "推导",
                 "kind": "立体图形",
-                "optional": true
+                "optional": true,
+                "dir": "mp6a-tusezhengfangti",
+                "pages": 10,
+                "desc": "拖动切分大正方体，数各类涂色小块找规律",
+                "cover": "mp6a-tusezhengfangti/assets/muzhuo.jpg"
               }
             ]
           },
@@ -3720,7 +3732,11 @@ window.CATALOG = [
                 "title": "树叶中的比",
                 "genre": "推导",
                 "kind": "比",
-                "optional": true
+                "optional": true,
+                "dir": "mp6a-shuyebi",
+                "pages": 9,
+                "desc": "量树叶长宽算比值，按比值猜树种",
+                "cover": "mp6a-shuyebi/assets/shuye.jpg"
               }
             ]
           },
@@ -3871,13 +3887,21 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "扇形统计图",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mp6b-shanxingtongjitu",
+                "pages": 10,
+                "desc": "五种地形拼成圆，看清部分与整体",
+                "cover": "mp6b-shanxingtongjitu/assets/dixing.jpg"
               },
               {
                 "no": "例2",
                 "title": "选择合适的统计图",
                 "genre": "概念",
-                "kind": "统计"
+                "kind": "统计",
+                "dir": "mp6b-xuanzetongjitu",
+                "pages": 11,
+                "desc": "按问题选条形、折线还是扇形统计图",
+                "cover": "mp6b-xuanzetongjitu/assets/yuedu.jpg"
               }
             ]
           },
@@ -3890,25 +3914,41 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "圆柱和圆锥的认识",
                 "genre": "概念",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6b-yuanzhuyuanzhui",
+                "pages": 10,
+                "desc": "旋转长方形三角形，看出圆柱圆锥特征",
+                "cover": "mp6b-yuanzhuyuanzhui/assets/huazhu.jpg"
               },
               {
                 "no": "例2–3",
                 "title": "圆柱的表面积",
                 "genre": "推导",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6b-yuanzhubiaomianji",
+                "pages": 10,
+                "desc": "侧面展开成长方形，化曲为直求表面积",
+                "cover": "mp6b-yuanzhubiaomianji/assets/guantou.jpg"
               },
               {
                 "no": "例4",
                 "title": "圆柱的体积",
                 "genre": "推导",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6b-yuanzhutiji",
+                "pages": 11,
+                "desc": "圆柱切 16 份拼近似长方体，推出 V=Sh",
+                "cover": "mp6b-yuanzhutiji/assets/chatong.jpg"
               },
               {
                 "no": "例5",
                 "title": "圆锥的体积",
                 "genre": "推导",
-                "kind": "立体图形"
+                "kind": "立体图形",
+                "dir": "mp6b-yuanzhuitiji",
+                "pages": 11,
+                "desc": "倒沙实验：等底等高倒 3 次满，推出 V=⅓Sh",
+                "cover": "mp6b-yuanzhuitiji/assets/maidui.jpg"
               }
             ]
           },
@@ -3921,13 +3961,21 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "选择画图的策略解决问题",
                 "genre": "推导",
-                "kind": "策略"
+                "kind": "策略",
+                "dir": "mp6b-huatucelue",
+                "pages": 11,
+                "desc": "画线段图分份数，同一问题多种列式",
+                "cover": "mp6b-huatucelue/assets/meishuzu.jpg"
               },
               {
                 "no": "例2",
                 "title": "选择列表、假设等策略解决问题",
                 "genre": "推导",
-                "kind": "策略"
+                "kind": "策略",
+                "dir": "mp6b-liebiaojiashe",
+                "pages": 10,
+                "desc": "有序列表与假设调整，解鸡兔同笼",
+                "cover": "mp6b-liebiaojiashe/assets/huachuan.jpg"
               }
             ]
           },
@@ -3940,38 +3988,62 @@ window.CATALOG = [
                 "no": "例1–2",
                 "title": "图形的放大与缩小",
                 "genre": "概念",
-                "kind": "比例"
+                "kind": "比例",
+                "dir": "mp6b-fangdasuoxiao",
+                "pages": 11,
+                "desc": "方格纸上按比放大缩小，对比边长变化",
+                "cover": "mp6b-fangdasuoxiao/assets/diannao.jpg"
               },
               {
                 "no": "例3",
                 "title": "比例的意义",
                 "genre": "概念",
-                "kind": "比例"
+                "kind": "比例",
+                "dir": "mp6b-bilideyiyi",
+                "pages": 11,
+                "desc": "照片改尺寸不变形，认识比例",
+                "cover": "mp6b-bilideyiyi/assets/caoyuan.jpg"
               },
               {
                 "no": "例4",
                 "title": "比例的基本性质",
                 "genre": "推导",
-                "kind": "比例"
+                "kind": "比例",
+                "dir": "mp6b-bilixingzhi",
+                "pages": 11,
+                "desc": "两块长方形面积相等，看出外项积=内项积",
+                "cover": "mp6b-bilixingzhi/assets/hangmo.jpg"
               },
               {
                 "no": "例5",
                 "title": "解比例",
                 "genre": "推导",
-                "kind": "比例"
+                "kind": "比例",
+                "dir": "mp6b-jiebili",
+                "pages": 10,
+                "desc": "比例化方程，一步步解出 x",
+                "cover": "mp6b-jiebili/assets/senlin.jpg"
               },
               {
                 "no": "例6–7",
                 "title": "比例尺",
                 "genre": "概念",
-                "kind": "比例"
+                "kind": "比例",
+                "dir": "mp6b-bilichi",
+                "pages": 11,
+                "desc": "比例尺换算器，在地图上点选量距离",
+                "cover": "mp6b-bilichi/assets/caoping.jpg"
               },
               {
                 "no": "综合与实践",
                 "title": "面积的变化",
                 "genre": "推导",
                 "kind": "比例",
-                "optional": true
+                "optional": true,
+                "dir": "mp6b-mianjibianhua",
+                "pages": 10,
+                "desc": "放大后长度比与面积比、体积比的关系",
+                "cover": "mp6b-mianjibianhua/assets/fangda.jpg"
               }
             ]
           },
@@ -3984,13 +4056,21 @@ window.CATALOG = [
                 "no": "例1–2",
                 "title": "用方向和距离确定位置",
                 "genre": "概念",
-                "kind": "位置"
+                "kind": "位置",
+                "dir": "mp6b-fangxiangjuli",
+                "pages": 11,
+                "desc": "拖动小船读方向和距离，定位置",
+                "cover": "mp6b-fangxiangjuli/assets/haishang.jpg"
               },
               {
                 "no": "例3",
                 "title": "描述简单的路线图",
                 "genre": "概念",
-                "kind": "位置"
+                "kind": "位置",
+                "dir": "mp6b-luxiantu",
+                "pages": 11,
+                "desc": "点地图走路线，按观测点描述行程",
+                "cover": "mp6b-luxiantu/assets/shangxue.jpg"
               }
             ]
           },
@@ -4003,7 +4083,11 @@ window.CATALOG = [
                 "no": "例1",
                 "title": "正比例的意义",
                 "genre": "概念",
-                "kind": "比例"
+                "kind": "比例",
+                "dir": "mp6b-zhengbiliyiyi",
+                "pages": 11,
+                "desc": "路程时间比值一定，认识正比例",
+                "cover": "mp6b-zhengbiliyiyi/assets/gonglu.jpg"
               },
               {
                 "no": "例2",
@@ -4364,7 +4448,11 @@ window.CATALOG = [
                 "title": "制作无盖的长方体纸盒",
                 "genre": "推导",
                 "kind": "课题学习",
-                "optional": true
+                "optional": true,
+                "dir": "mj7a-wugaizhihe",
+                "pages": 10,
+                "desc": "剪角折盒，列表找容积最大时的剪法",
+                "cover": "mj7a-wugaizhihe/assets/zhihe.jpg"
               }
             ]
           }
@@ -4565,7 +4653,11 @@ window.CATALOG = [
                 "title": "三元一次方程组",
                 "genre": "推导",
                 "kind": "方程",
-                "optional": true
+                "optional": true,
+                "dir": "mj7b-sanyuanyici",
+                "pages": 12,
+                "desc": "选未知数逐步消元，三元化二元再化一元",
+                "cover": "mj7b-sanyuanyici/assets/zuqiu.jpg"
               },
               {
                 "no": "10.5",
@@ -4693,7 +4785,11 @@ window.CATALOG = [
                 "title": "分类 想象 找规律",
                 "genre": "推导",
                 "kind": "课题学习",
-                "optional": true
+                "optional": true,
+                "dir": "mj7b-ketixuexi",
+                "pages": 10,
+                "desc": "积木涂色分类，用式子表示棱长 n 的规律",
+                "cover": "mj7b-ketixuexi/assets/jimu.jpg"
               }
             ]
           }

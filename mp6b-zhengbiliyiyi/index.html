@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正比例的意义 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/gonglu.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第六单元 正比例和反比例 · 正比例的意义</p>
+    <h1 class="cover-title">正比例的意义</h1>
+    <p class="cover-q" data-step="1">一辆汽车在公路上行驶，开得越久，走的路就越多。</p>
+    <p class="cover-q" data-step="2">时间和路程是怎样<b>一起变化</b>的？变化中，有没有<b>不变</b>的东西？</p>
+    <div class="chips" data-step="3"><span class="chip">相关联的量</span><span class="chip">比值一定</span><span class="chip">成正比例</span><span class="chip">$\dfrac{y}{x}=k$</span></div>
+  </div>
+  <p class="note">课本 p56 例 1 的情境。本单元的主题是“变化中的不变”：两个量都在变，但它们的比值（或乘积）不变。先让学生说说生活中“一个量变，另一个也跟着变”的例子。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到这三件“老本领”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="四年级 · 常见的数量关系" data-step="1">
+        <p class="big center">路程 ÷ 时间 = 速度</p>
+        <p class="big center">总价 ÷ 数量 = 单价</p>
+        <span class="use">例 1 和“试一试”里的比值，表示的就是速度、单价。</span>
+      </div>
+      <div class="recall" data-label="六年级上册 · 比的意义" data-step="2">
+        <p>两个数相除又叫两个数的<b>比</b>；前项 ÷ 后项 = <b>比值</b>。</p>
+        <p class="big center">$900:15=60$</p>
+        <p class="small"><a href="../mp6a-bideyiyi/index.html">回看《比的意义》 ›</a></p>
+        <span class="use">写出“路程和时间的比”，求比值。</span>
+      </div>
+      <div class="recall" data-label="六年级下册 · 第四单元 比例的意义" data-step="3">
+        <p>表示两个比<b>相等</b>的式子叫作比例。</p>
+        <p class="big center">$\dfrac{80}{1}=\dfrac{160}{2}$</p>
+        <span class="use">比值都相等，任取两组都能组成比例。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">今天研究的是：两个量<b>一起变化</b>，但它们的<b>比值始终不变</b>。</p>
+  </div>
+  <p class="note">第 2 张卡可以点链接回看六上《比的意义》。三张卡分别对应本课的三个关键词：数量关系、比值、比值相等。</p>
+</section>
+
+<!-- 3 ================= 例 1 开车 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1</span><h2>汽车行驶的时间和路程</h2></div>
+  <div class="bd full top">
+    <svg id="road" class="road-fig" viewBox="0 0 960 150" aria-label="汽车在公路上行驶" data-noswipe></svg>
+    <div class="slider-row" data-noswipe>
+      行驶时间 <input type="range" id="carT" min="0" max="7" step="1" value="0"><b class="v" id="carTV">0</b> 时
+      <button type="button" class="btn solid" id="carPlay">▶ 开车</button>
+      <span id="carRead" class="car-read"></span>
+    </div>
+    <table class="mtab" id="carTab"></table>
+    <div class="cols3 say3">
+      <p class="tip small" data-step="1"><span class="think" data-step="1" data-ask="你有什么发现？">行驶的路程随着时间的变化而变化。</span></p>
+      <p class="tip small" data-step="2"><span class="think" data-step="2" data-ask="怎样变？">行驶的时间越长，行驶的路程越多；时间越短……</span></p>
+      <p class="tip small" data-step="3"><span class="think" data-step="3" data-ask="有什么不变？">$80\div1=80$，$160\div2=80$……行驶的速度不变。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p56 例 1。拖动滑块或点“开车”：汽车按 80 千米/时匀速前进，公路上的刻度按千米精确画，表格同步亮出这一列。三个发现按课本小精灵的顺序，让学生先说再点开。</p>
+</section>
+
+<!-- 4 ================= 写比求比值 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">算一算</span><h2>写出几组相对应的路程和时间的比，求出比值</h2></div>
+  <div class="bd full">
+    <div class="calc big-calc">
+      <p>$\dfrac{80}{1}=80$，　$\dfrac{160}{2}=$ <span class="blank" data-ans="80"></span>，　$\dfrac{240}{3}=$ <span class="blank" data-ans="80"></span>，　$\dfrac{400}{5}=$ <span class="blank" data-ans="80"></span>，　$\dfrac{560}{7}=$ <span class="blank" data-ans="80"></span>……</p>
+    </div>
+    <p class="tip" data-step="1">比值 80，表示什么？　<span class="think" data-step="2" data-ask="想一想">表示汽车每小时行驶 80 千米，也就是汽车的<b>速度</b>。</span></p>
+    <p class="tip center formula" data-step="3">我们可以用下面的式子表示这几个量之间的关系：　$\dfrac{\text{路程}}{\text{时间}}=\text{速度}$<b class="fix">（一定）</b></p>
+    <p class="tip small" data-step="4">再想一想：任意两个比，比如 $\dfrac{160}{2}$ 和 $\dfrac{400}{5}$，能组成比例吗？　<span class="think" data-step="5" data-ask="能吗？">能，比值都是 80：$160:2=400:5$。</span></p>
+  </div>
+  <p class="note">课本 p56。分数线读作“比”。填完后强调：时间、路程都在变，<b>比值始终是 80</b>，这个“不变”是本课的关键。</p>
+</section>
+
+<!-- 5 ================= 正比例的意义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>什么叫成正比例？</h2></div>
+  <div class="bd full">
+    <div class="def big-def" data-step="1">路程和时间是两种<em>相关联的量</em>，时间变化，路程也随着变化。当路程和相对应时间的比的<em>比值总是一定</em>（也就是速度一定）时，行驶的路程和时间成<em>正比例关系</em>，行驶的路程和时间是成<em>正比例的量</em>。</div>
+    <div class="cols2">
+      <div class="method" data-step="2" data-label="判断成正比例，看两点">
+        <p>① 是不是两种<b>相关联</b>的量？（一个变，另一个也跟着变）</p>
+        <p>② 相对应的两个数的<b>比值</b>是不是<b>一定</b>？</p>
+      </div>
+      <div class="recall" data-step="3" data-label="用字母表示">
+        <p>用 $x$ 和 $y$ 表示两种相关联的量，用 $k$ 表示它们的比值：</p>
+        <p class="big center">$\dfrac{y}{x}=k$<b class="fix">（一定）</b></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p56 的结论和 p57 的字母式。定义请学生齐读，圈出“相关联”“比值一定”。字母式 y/x = k 课本放在试一试之后，这里先出现，下一页用铅笔的例子验证。</p>
+</section>
+
+<!-- 6 ================= 试一试 铅笔 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>购买一种铅笔的数量和总价</h2></div>
+  <div class="bd full top">
+    <div id="pencils" class="pencils" aria-label="铅笔"></div>
+    <table class="mtab">
+      <tr><th>数量/支</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>…</td></tr>
+      <tr><th>总价/元</th><td>0.4</td><td>0.8</td><td>1.2</td><td><span class="blank" data-ans="1.6"></span></td><td><span class="blank" data-ans="2|2.0"></span></td><td><span class="blank" data-ans="2.4"></span></td><td>…</td></tr>
+    </table>
+    <div class="cols2">
+      <div class="calc small-q">
+        <p>(1) 总价随着 <span class="blank" data-ans="数量" data-w="3"></span> 的变化而变化。</p>
+        <p>(2) $\dfrac{0.4}{1}=$ <span class="blank" data-ans="0.4"></span>，$\dfrac{0.8}{2}=$ <span class="blank" data-ans="0.4"></span>，$\dfrac{1.2}{3}=$ <span class="blank" data-ans="0.4"></span>，比值<b>相等</b>。</p>
+        <p>(3) 比值表示铅笔的 <span class="blank" data-ans="单价" data-w="3"></span>：$\dfrac{\text{总价}}{\text{数量}}=\text{单价}$（一定）</p>
+      </div>
+      <div class="jcard">
+        <p>(4) 铅笔的总价和数量成正比例吗？</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">成正比例</button><button type="button" data-k="n">不成正比例</button>
+          <p class="pick-why">总价和数量是两种相关联的量，总价和数量的比值（单价 0.4 元）一定，所以成正比例。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p57 试一试四个问题。上面的铅笔按数量画出，点一支就增加一支（最多 6 支），总价同步显示。</p>
+</section>
+
+<!-- 7 ================= 核心：比值检测仪 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比值检测仪</span><h2>先猜，再“测”：比值是不是一定？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="btns" data-noswipe id="detTabs"></div>
+      <table class="mtab" id="detTab"></table>
+      <svg id="detBars" class="det-bars" viewBox="0 0 560 230" aria-label="每一组的比值"></svg>
+    </div>
+    <div class="col">
+      <p class="tip small" id="detQ"></p>
+      <div class="pick-row" data-noswipe id="detGuess">
+        <button type="button" class="btn" data-g="y">我猜：成正比例</button>
+        <button type="button" class="btn" data-g="n">我猜：不成正比例</button>
+      </div>
+      <button type="button" class="btn solid" id="detRun" data-noswipe>开始检测：算出每一组的比值</button>
+      <p class="tip feedback" id="detMsg"></p>
+    </div>
+  </div>
+  <p class="note">本课核心活动。五组数据都来自课本（练一练 1、2，练习十第 1、2 题，练习十一第 4 题）。点“检测”后，每一列的比值 $y\div x$ 按真实数值画成柱子：柱子一样高 → 比值一定 → 成正比例。最后两组（正方形面积、身高）柱子高低不同，是反例。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>写出比，比较比值的大小</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 张师傅生产零件：</p>
+        <table class="mtab"><tr><th>时间/时</th><td>1</td><td>2</td><td>4</td><td>6</td><td>8</td></tr><tr><th>零件数量/个</th><td>25</td><td>50</td><td>100</td><td>150</td><td>200</td></tr></table>
+        <p class="q small-q">$\dfrac{25}{1}=$ <span class="blank" data-ans="25"></span>，$\dfrac{100}{4}=$ <span class="blank" data-ans="25"></span>，$\dfrac{200}{8}=$ <span class="blank" data-ans="25"></span>。生产零件的数量和时间 <span class="blank" data-ans="成正比例|成" data-w="4"></span>。</p>
+        <details><summary>提示</summary>比值表示什么？（每小时生产的个数，即工作效率）</details>
+        <details><summary>完整解答</summary>比值都是 25（工作效率一定），所以生产零件的数量和时间成正比例。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 做同一种服装：</p>
+        <table class="mtab"><tr><th>服装数量/套</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th>用布数量/米</th><td>2.2</td><td>4.4</td><td>6.6</td><td>8.8</td><td>11</td></tr></table>
+        <p class="q small-q">用布米数和套数的比值都是 <span class="blank" data-ans="2.2"></span>，表示 <span class="think" data-ask="想一想">每套服装用布 2.2 米</span>。做的套数和用布的米数 <span class="blank" data-ans="成正比例|成" data-w="4"></span>。</p>
+        <details><summary>提示</summary>$11\div5=?$</details>
+        <details><summary>完整解答</summary>$\dfrac{用布米数}{套数}=2.2$（一定），所以成正比例。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p57 练一练 1、2。说理由时要说完整：“因为……是两种相关联的量，而且……的比值一定（……一定），所以成正比例。”</p>
+</section>
+
+<!-- 9 ================= 辨一辨 正方形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十 2</span><h2>正方形的周长、面积与边长成正比例吗？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="sqFig" class="sq-fig" viewBox="0 0 440 220" aria-label="边长 1、2、3、4 厘米的正方形"></svg>
+      <table class="mtab">
+        <tr><th>边长/cm</th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+        <tr><th>周长/cm</th><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="8"></span></td><td><span class="blank" data-ans="12"></span></td><td><span class="blank" data-ans="16"></span></td></tr>
+        <tr><th>面积/cm²</th><td><span class="blank" data-ans="1"></span></td><td><span class="blank" data-ans="4"></span></td><td><span class="blank" data-ans="9"></span></td><td><span class="blank" data-ans="16"></span></td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <div class="jcard">
+        <p>正方形的<b>周长</b>与边长成正比例吗？</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">成</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">周长 ÷ 边长 = 4（一定），成正比例。</p></div>
+      </div>
+      <div class="jcard">
+        <p>正方形的<b>面积</b>与边长呢？</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">成</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">面积 ÷ 边长 = 1、2、3、4……比值<b>不一定</b>，所以不成正比例。</p></div>
+      </div>
+      <p class="warn" data-step="1" data-label="小心">“一个量增加，另一个也增加”还不够！面积也随边长增加，但比值在变，<b>不成正比例</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p59 练习十第 2 题：按 2∶1、3∶1、4∶1 把边长 1 cm 的正方形放大，左图按 1 cm 一格精确画出。这是本课最重要的辨析：只看“同增同减”不能判断，一定要算比值。</p>
+</section>
+
+<!-- 10 ================= 生活中的正比例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">说一说</span><h2>生活中还有哪些成正比例的量？</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>1.</b> 订阅同一种杂志，总价和订阅数量（每份 30 元）。</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">成正比例</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">$\dfrac{总价}{数量}=单价$（一定）。课本练习十第 1 题：180÷6 = 240÷8 = … = 30。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 小军每分钟浇树的棵数一定，浇树的时间和浇树总棵数。</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">成正比例</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">$\dfrac{总棵数}{时间}=每分钟浇的棵数$（一定），成正比例。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 圆的周长和直径。</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">成正比例</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">$\dfrac{C}{d}=\pi$（一定），成正比例。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>4.</b> 小明的年龄和身高（10 岁 140 cm，11 岁 143 cm，12 岁 150 cm）。</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">成正比例</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">身高随年龄增长，但 $140\div10=14$，$143\div11=13$，比值不一定，不成正比例。</p></div>
+      </div>
+    </div>
+    <p class="tip small" data-step="1">你还能举出例子吗？说的时候用上“……一定”。</p>
+  </div>
+  <p class="note">课本 p57 小精灵的问题。题 1 来自 p59 练习十第 1 题，题 2 来自 p65 练习十一第 7 题，题 3、4 来自 p63 练习十一第 4 题。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>变化中的不变：比值一定</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><h4>两种相关联的量</h4><p>一个变，另一个也变</p></div>
+      <i>＋</i>
+      <div class="fbox"><h4>比值一定</h4><p>$\dfrac{y}{x}=k$</p></div>
+      <i>⇒</i>
+      <div class="fbox"><h4>成正比例</h4><p>正比例关系</p></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="例子" data-step="2">$\dfrac{路程}{时间}=速度$（一定）；$\dfrac{总价}{数量}=单价$（一定）；$\dfrac{周长}{边长}=4$。</p>
+      <p class="warn" data-label="易错" data-step="3">同增同减不一定成正比例，要看<b>比值</b>是否一定（正方形面积和边长就不成）。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>把例 1 的数据画到方格图上，会是什么样子？　<b>到了初中</b>，你会学到<a href="../mj8a-yicihanshu/index.html">一次函数</a>，正比例关系 $y=kx$ 就是其中的“正比例函数”。</p>
+  </div>
+  <p class="note">课后作业建议：练习十第 1 题说理由；回家找 2 个生活中成正比例的量，写出它们的关系式。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆锥的体积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/maidui.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第二单元 圆柱和圆锥 · 圆锥的体积</p>
+    <h1 class="cover-title">圆锥的体积</h1>
+    <p class="cover-q" data-step="1">打谷场上有一堆圆锥形的小麦，底面直径 8 米，高 1.8 米。</p>
+    <p class="cover-q" data-step="2">这堆小麦的体积是多少？圆锥的体积和圆柱有什么关系？</p>
+    <div class="chips" data-step="3"><span class="chip">估一估</span><span class="chip">倒沙实验</span><span class="chip">V = ⅓Sh</span><span class="chip">用一用</span></div>
+  </div>
+  <p class="note">情境取自练习四第 8 题（p23），先不解答，第 10 页回来算。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到这些</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 圆柱的体积" data-step="1">
+        <p class="big center">$V=Sh=\pi r^2h$</p>
+        <p>圆柱的体积 = 底面积 × 高。<a href="../mp6b-yuanzhutiji/index.html">回看</a></p>
+        <span class="use">圆锥的体积要和等底等高的圆柱比。</span>
+      </div>
+      <div class="recall" data-label="本单元 · 圆柱和圆锥的认识" data-step="2">
+        <svg viewBox="0 0 240 120" class="mini-fig" aria-label="圆锥的高"><path d="M60 100L120 12L180 100" fill="none" stroke="#1f2d3a" stroke-width="3"/><ellipse cx="120" cy="100" rx="60" ry="15" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="3"/><path d="M120 12V100" stroke="#d9711c" stroke-width="3" stroke-dasharray="6 4"/><text x="128" y="64" class="fl c2">h</text></svg>
+        <p>圆锥的高：顶点到底面圆心的距离。<a href="../mp6b-yuanzhuyuanzhui/index.html">回看</a></p>
+        <span class="use">“等高”比的就是这条高。</span>
+      </div>
+      <div class="recall" data-label="六年级上册 · 分数乘法" data-step="3">
+        <p class="big center">$27\times\dfrac13=9$</p>
+        <p>求一个数的几分之几是多少，用乘法。<a href="../mp6a-qiujifenzhiji/index.html">回看</a></p>
+        <span class="use">圆锥的体积是圆柱的 $\dfrac13$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">圆锥“上尖下大”，不能像圆柱那样切拼成长方体。怎么办？——<b>和圆柱比一比</b>。</p>
+  </div>
+  <p class="note">第 1 张卡是本课的“起点”，课本小伙伴说：“从已经学过的圆柱体积公式想起。”</p>
+</section>
+
+<!-- 3 ================= 例 5 估一估 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 估一估</span><h2>圆锥的体积是等底等高圆柱的几分之几？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="pair" class="pair-fig" viewBox="0 0 580 310" aria-label="底面积相等、高也相等的圆柱和圆锥"></svg>
+      <p class="tip center small-t">下面的圆柱和圆锥底面积相等，高也相等（虚线对齐）</p>
+    </div>
+    <div class="col">
+      <p class="tip">你能估计出这个圆锥的体积是圆柱的几分之几吗？</p>
+      <div class="pick" data-ans="b"><button type="button" data-k="a">$\dfrac12$</button><button type="button" data-k="b">$\dfrac13$</button><button type="button" data-k="c">$\dfrac14$</button>
+        <p class="pick-why">估得好！到底对不对？用实验来<b>检验</b>。</p></div>
+      <p class="tip" data-step="1">可以用什么办法来检验你的估计？　<span class="think" data-step="2" data-ask="想一想">准备等底等高的圆柱形和圆锥形容器，在圆锥形容器里装满沙子，倒进空的圆柱形容器，看几次正好倒满。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p20 例 5。圆柱和圆锥按同一比例绘制，底面半径、高都相等。学生估的答案常见 1/2（看起来“一半”）。不急着揭示，进入实验。</p>
+</section>
+
+<!-- 4 ================= 倒沙实验（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 做实验</span><h2>在圆锥形容器里装满沙子，倒入圆柱形容器</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="pour" class="pour-fig" viewBox="90 30 600 360" aria-label="把圆锥形容器里的沙子倒进圆柱形容器"></svg>
+    </div>
+    <div class="col">
+      <div class="btns" id="pourK" data-noswipe><button type="button" class="btn solid" data-k="same">等底等高</button><button type="button" class="btn" data-k="half">等底不等高</button><button type="button" class="btn" data-k="thin">等高不等底</button></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="pourOne">倒一次</button><button type="button" class="btn" id="pourAll">一直倒到满</button><button type="button" class="btn" id="pourReset">↺ 重来</button></div>
+      <p class="tip">已经倒了 <b id="pourN" class="cnt">0</b> 次</p>
+      <p class="tip feedback" id="pourMsg"></p>
+      <p class="method" data-step="1" data-label="实验结论">圆锥的体积是与它<b>等底等高</b>的圆柱体积的 $\dfrac13$。</p>
+    </div>
+  </div>
+  <p class="note">本课核心操作。沙面高度由代码按体积精确计算：圆柱里每倒一次升高圆柱高的 1/3（等底等高时）；圆锥容器尖朝下，剩下的沙占 f 时沙面高 = 圆锥高 × ∛f。先做“等底等高”，一次一次地倒，停下来问“还要几次”；再换“等底不等高”（圆锥高是圆柱的一半，要 6 次）、“等高不等底”（圆锥底面半径是圆柱的一半，要 12 次），说明“等底等高”这个条件不能少。</p>
+</section>
+
+<!-- 5 ================= 公式 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 想一想</span><h2>可以怎样求圆锥的体积？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="derive word-derive">
+        <div class="dl" data-step="1"><span>等底等高的圆柱体积</span><span>= 底面积 × 高</span><i class="why">上一课的公式</i></div>
+        <div class="dl key" data-step="2"><span>圆锥的体积</span><span>= 底面积 × 高 × $\dfrac13$</span><i class="why">实验：是圆柱的 $\dfrac13$</i></div>
+      </div>
+      <div class="def" data-step="3"><h4>圆锥的体积</h4>如果用 $V$ 表示圆锥的体积，$S$ 表示圆锥的底面积，$h$ 表示圆锥的高，那么<p class="formula">$V=\dfrac13Sh$</p></div>
+    </div>
+    <div class="col">
+      <div class="bubbles">
+        <p class="bub" data-step="4">从已经学过的圆柱体积公式想起。</p>
+        <p class="bub" data-step="5">比较等底等高的圆柱和圆锥，先观察猜想，再验证。</p>
+        <p class="bub" data-step="6">实验也是解决问题的重要方法。</p>
+      </div>
+      <p class="warn" data-step="7">用公式时千万别忘了乘 $\dfrac13$；“圆锥的体积是圆柱的 $\dfrac13$”一定要有<b>等底等高</b>这个前提。</p>
+    </div>
+  </div>
+  <p class="note">课本 p20–21。先用文字公式，再写成 V = ⅓Sh。三个气泡是课本“回顾圆锥体积公式的探索过程”中小伙伴的话。</p>
+</section>
+
+<!-- 6 ================= 试一试 + 练一练 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试 · 练一练</span><h2>用公式算一算</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="hint-ladder">
+        <p class="q"><b>试一试</b>　一个圆锥形零件，底面积是 170 平方厘米，高是 12 厘米。这个零件的体积是多少立方厘米？</p>
+        <p class="q small-q">$\dfrac13\times170\times12=$ <span class="blank" data-ans="680" data-w="4"></span>（立方厘米）</p>
+        <details><summary>提示 1</summary>底面积已经给出，直接用 $V=\dfrac13Sh$。</details>
+        <details><summary>完整解答</summary>$\dfrac13\times170\times12=170\times4=680$（立方厘米）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 1.</b> 一个圆柱和一个圆锥底面积相等，高也相等。圆柱的体积是 9.42 立方厘米，圆锥的体积是多少立方厘米？</p>
+        <p class="q small-q">圆锥：<span class="blank" data-ans="3.14" data-w="4"></span> 立方厘米<br>反过来，如果<b>圆锥</b>的体积是 9.42 立方厘米，圆柱的体积是 <span class="blank" data-ans="28.26" data-w="4"></span> 立方厘米。</p>
+        <details><summary>提示 1</summary>等底等高：圆锥是圆柱的 $\dfrac13$，圆柱是圆锥的 3 倍。</details>
+        <details><summary>完整解答</summary>$9.42\times\dfrac13=3.14$；$9.42\times3=28.26$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p21 试一试和练一练第 1 题（含小精灵的反问）。先约分再算：170 × 12 × ⅓ = 170 × 4。</p>
+</section>
+
+<!-- 7 ================= 练一练 2 + 练习四 1 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 练习四</span><h2>先找底面积，再乘高、乘 ⅓</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 2(1).</b> 圆锥底面半径 2 cm，高 6 cm。</p>
+        <p class="q small-q">体积：<span class="blank" data-ans="25.12" data-w="4"></span> cm³</p>
+        <details><summary>完整解答</summary>$\dfrac13\times3.14\times2^2\times6=25.12$（cm³）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练一练 2(2).</b> 圆锥底面直径 3 cm，高 3 cm。</p>
+        <p class="q small-q">体积：<span class="blank" data-ans="7.065" data-w="4"></span> cm³</p>
+        <details><summary>提示 1</summary>给的是直径，半径 $1.5$ cm。</details>
+        <details><summary>完整解答</summary>$\dfrac13\times3.14\times1.5^2\times3=7.065$（cm³）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习四 1.</b> 计算圆锥的体积。</p>
+        <p class="q small-q">(1) 底面积 15 cm²，高 8 cm：<span class="blank" data-ans="40" data-w="3"></span> cm³<br>(2) 底面半径 3 dm，高 5 dm：<span class="blank" data-ans="47.1" data-w="3"></span> dm³<br>(3) 底面直径 0.4 m，高 0.6 m：<span class="blank" data-ans="0.02512" data-w="5"></span> m³</p>
+        <details><summary>完整解答</summary>(1) $\dfrac13\times15\times8=40$；(2) $\dfrac13\times3.14\times9\times5=47.1$；(3) $\dfrac13\times3.14\times0.2^2\times0.6=0.02512$</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p21 练一练第 2 题（图中第一个圆锥标的是底面半径 2、高 6；第二个标的是底面直径 3、高 3，单位 cm）和 p22 练习四第 1 题。</p>
+</section>
+
+<!-- 8 ================= 练习四 2、6 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四 · 想一想</span><h2>等底等高，还能这样用</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="water" class="water-fig" viewBox="0 0 440 270" aria-label="圆锥形容器里的水倒入圆柱形容器"></svg>
+      <p class="tip small-q"><b>2.</b> 在圆锥形容器里注满水，倒入空的圆柱形容器，圆柱形容器里水深多少厘米？　水深 <span class="blank" data-ans="4"></span> cm</p>
+      <p class="tip" data-step="2">两个容器等底等高，水的体积是圆柱的 $\dfrac13$，水深就是 $12\times\dfrac13=4$（cm）。</p>
+    </div>
+    <div class="col">
+      <svg id="match" class="match-fig" viewBox="0 0 580 220" aria-label="一个圆锥和四个圆柱"></svg>
+      <p class="tip small-q"><b>6.</b> 左边的圆锥与哪个圆柱的体积相等？（单位：cm）</p>
+      <div class="pick" data-ans="c"><button type="button" data-k="a">A</button><button type="button" data-k="b">B</button><button type="button" data-k="c">C</button><button type="button" data-k="d">D</button>
+        <p class="pick-why">圆锥：$\dfrac13\times\pi\times4.5^2\times12=81\pi$；C：$\pi\times4.5^2\times4=81\pi$。底面相同，圆柱的高是圆锥的 $\dfrac13$，体积就相等。</p></div>
+    </div>
+  </div>
+  <p class="note">课本 p22 练习四第 2、6 题，图按真实尺寸同比例绘制。第 2 题可以回到第 4 页的实验说理：倒一次正好是圆柱高的 1/3。第 6 题的规律：底面积相等时，圆柱的高是圆锥的 1/3，两者体积相等。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard"><p><b>1.</b> 圆锥的体积是圆柱体积的 $\dfrac13$。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">少了前提：必须是<b>等底等高</b>的圆柱和圆锥。</p></div></div>
+      <div class="jcard"><p><b>2.</b> 一个圆柱的体积是 1.8 立方分米，和它等底等高的圆锥的体积是 <span class="blank" data-ans="0.6" data-w="3"></span> 立方分米；一个圆锥的体积是 1.8 立方分米，和它等底等高的圆柱的体积是 <span class="blank" data-ans="5.4" data-w="3"></span> 立方分米。</p></div>
+      <div class="jcard"><p><b>3.</b> 等底等高的圆柱和圆锥，圆柱的体积是圆锥的 3 倍。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">实验中倒 3 次正好倒满。</p></div></div>
+      <div class="hint-ladder">
+        <p class="q"><b>思考</b>　一个圆锥和一个圆柱底面积相等，体积的比是 $1:6$。如果圆锥的高是 4.2 厘米，圆柱的高是 <span class="blank" data-ans="8.4" data-w="3"></span> 厘米。</p>
+        <details><summary>提示 1</summary>如果高也相等，体积比是 $1:3$；现在是 $1:6$，圆柱还要再“高”几倍？</details>
+        <details><summary>完整解答</summary>$\dfrac13\times S\times4.2=1.4S$，圆柱 $=6\times1.4S=8.4S$，高 8.4 厘米。（反过来，圆柱高 4.2 厘米时，圆锥高 2.1 厘米。）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">第 2 题是练习四第 5 题；思考题在 p23。第 1 题是本课最常见的错误说法。</p>
+</section>
+
+<!-- 10 ================= 用一用 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习四 · 用一用</span><h2>生活中的圆锥</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>8.</b> 封面上的圆锥形小麦堆，底面直径 8 米，高 1.8 米。它的体积是多少立方米？</p>
+        <p class="q small-q">体积：<span class="blank" data-ans="30.144" data-w="5"></span> m³</p>
+        <details><summary>提示 1</summary>半径 $8\div2=4$（米）。</details>
+        <details><summary>完整解答</summary>$\dfrac13\times3.14\times4^2\times1.8=30.144$（立方米）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 近似圆锥形的帐篷，底面半径 3 米，高 2.4 米。(1) 占地面积是多少？(2) 帐篷里的空间有多大？</p>
+        <p class="q small-q">(1) <span class="blank" data-ans="28.26" data-w="4"></span> m²　(2) <span class="blank" data-ans="22.608" data-w="5"></span> m³</p>
+        <details><summary>提示 1</summary>占地面积就是<b>底面积</b>；空间就是<b>体积</b>。</details>
+        <details><summary>完整解答</summary>(1) $3.14\times3^2=28.26$；(2) $\dfrac13\times28.26\times2.4=22.608$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>11.</b> 蒙古包由近似的圆柱（高 2 m）和圆锥（高 1 m）组成，底面直径 6 m。里面的空间大约多少立方米？</p>
+        <p class="q small-q">约 <span class="blank" data-ans="65.94" data-w="4"></span> m³</p>
+        <details><summary>提示 1</summary>圆柱 + 圆锥，底面积都是 $3.14\times3^2=28.26$。</details>
+        <details><summary>完整解答</summary>$28.26\times2+\dfrac13\times28.26\times1=56.52+9.42=65.94$（立方米）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p22–23 练习四第 3、8、11 题。第 8 题回应封面问题。蒙古包是组合图形：分开算再相加。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>观察猜想 → 实验验证 → 得出公式</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>等底等高的圆柱</b><small>$V=Sh$</small></div>
+      <i>倒沙 3 次正好倒满</i>
+      <div class="fbox"><b>圆锥 = 圆柱的 ⅓</b><small>等底等高</small></div>
+      <i>写成公式</i>
+      <div class="fbox hot"><b class="formula">$V=\dfrac13Sh$</b><small>圆锥的体积</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="对比" data-step="2">圆柱 $V=Sh$；圆锥 $V=\dfrac13Sh$。同样的底面积和高，圆柱是圆锥的 3 倍。</p>
+      <p class="method" data-label="用公式" data-step="3">先找半径求底面积，再乘高，最后乘 $\dfrac13$（能约分先约分）。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>本单元回顾：</b><a href="../mp6b-yuanzhuyuanzhui/index.html">认识</a> → <a href="../mp6b-yuanzhubiaomianji/index.html">圆柱的表面积</a> → <a href="../mp6b-yuanzhutiji/index.html">圆柱的体积</a> → 圆锥的体积。</p>
+  </div>
+  <p class="note">课后作业建议：练习四第 4、7、9、10、12 题（第 9 题直角三角形绕两条直角边旋转，可以回看《认识》一课的“转一转”）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

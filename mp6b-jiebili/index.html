@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>解比例 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 封面 -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/senlin.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第四单元 比例 · 解比例</p>
+    <h1 class="cover-title">解比例</h1>
+    <p class="cover-q" data-step="1">李明在电脑上把一张长 <b>6 cm</b>、宽 <b>4 cm</b> 的照片<b>按比例放大</b>，放大后照片的长是 <b>13.5 cm</b>。</p>
+    <p class="cover-q" data-step="2">宽是多少厘米？比例里有一项不知道，怎样把它求出来？</p>
+    <div class="chips" data-step="3"><span class="chip">设未知数</span><span class="chip">列比例</span><span class="chip">基本性质 → 方程</span><span class="chip">检验</span></div>
+  </div>
+  <p class="note">课本 p40 例 5。先请学生估一估：放大后的宽比 4 cm 大多少？约 9 cm？</p>
+</section>
+
+<!-- 2 前情回顾 -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>解比例要用到的三件“工具”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="六下 · 图形的放大与缩小 / 比例的意义" data-step="1">
+        <p>按比例放大，放大前后长和宽的比相等，可以组成比例。</p>
+        <span class="use">本课第 3 页列出比例。</span>
+      </div>
+      <div class="recall" data-label="六下 · 上一课 比例的基本性质" data-step="2">
+        <p>在比例里，两个外项的积等于两个内项的积：$a:b=c:d\Rightarrow ad=bc$。</p>
+        <span class="use">把比例改写成方程（第一步的依据）。</span>
+      </div>
+      <div class="recall" data-label="五下 · 解方程" data-step="3">
+        <p>等式两边同时除以同一个不为 0 的数，等式仍然成立：$6x=54\Rightarrow x=54\div6$。</p>
+        <span class="use">解出 $x$。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">比例 → 方程 → 解方程：今天把这三件工具连起来用。</p>
+  </div>
+  <p class="note">第 3 张卡请学生口答：6x = 54，x 等于多少？依据是什么？</p>
+</section>
+
+<!-- 3 例 5 列比例 -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 想一想</span><h2>“按比例放大”是什么意思？怎样列比例？</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <svg id="ph5" class="fig ph-fig" viewBox="0 0 580 300" aria-label="6×4 cm 的照片放大成长 13.5 cm、宽 x cm"></svg>
+    </div>
+    <div class="col">
+      <p class="tip">两张照片长与宽的比能组成比例吗？为什么？　<span class="think" data-step="1" data-ask="说一说">能。按比例放大，形状不变，放大前后<b>长和宽的比相等</b>。</span></p>
+      <p class="tip" data-step="2">解：设放大后照片的宽是 $x$ 厘米。</p>
+      <div class="calc" data-step="3">
+        <p>放大前 长∶宽 = 放大后 长∶宽</p>
+        <p class="big">$6:4=13.5:x$</p>
+      </div>
+      <p class="tip" data-step="4">还可以怎样列？　<span class="think" data-step="5" data-ask="想一想">放大后与放大前长的比 = 宽的比：$13.5:6=x:4$，也对。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p40 小精灵：“你是怎样理解‘按比例放大’的？两张照片长与宽的比能组成比例吗？”。左图按 1 cm = 18 单位精确画出两张照片（放大后宽 9 cm 用“x”标注，答案先不揭晓）。关键是对应关系：前项、后项要“对得上”。</p>
+</section>
+
+<!-- 4 例 5 解比例 -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 5 · 解一解</span><h2>把比例变成方程，再解方程</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <div class="derive">
+        <div class="dl"><span>$6:4=13.5:x$</span><i class="why">列比例</i></div>
+        <div class="dl" data-step="1"><span>$6x=4\times13.5$</span><span class="think" data-step="2" data-ask="第一步的依据是什么？">比例的基本性质：外项积 = 内项积</span></div>
+        <div class="dl" data-step="3"><span>$6x=54$</span><i class="why">计算 $4\times13.5$</i></div>
+        <div class="dl key" data-step="4"><span>$x=$ <span class="blank" data-ans="9"></span></span><i class="why">等式两边同时除以 6</i></div>
+      </div>
+      <p class="tip" data-step="5">答：放大后照片的宽是 <b>9</b> 厘米。</p>
+    </div>
+    <div class="col">
+      <div class="def" data-step="6"><h4>解比例</h4>像上面这样求比例中的未知项，叫作<em>解比例</em>。</div>
+      <p class="tip" data-step="7"><b>检验：</b>$6\times9=$ <span class="blank" data-ans="54"></span>，$4\times13.5=54$，外项积 = 内项积 ✓</p>
+      <p class="method" data-step="8" data-label="解比例三步">① 根据比例的基本性质，把比例写成方程；② 计算；③ 解方程。最后可以代回去检验。</p>
+    </div>
+  </div>
+  <p class="note">课本 p40。“解方程第一步的依据是什么？”请学生先说再点开。写方程时含 x 的项通常写在等号左边，便于解。</p>
+</section>
+
+<!-- 5 核心：逐步解比例 -->
+<section class="slide">
+  <div class="hd"><span class="tag">一步一步来</span><h2>选一个比例，一步一步解出 $x$</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="btns sv-list" id="svList" data-noswipe></div>
+      <div class="sv-steps" id="svSteps"></div>
+      <div class="center-btns" data-noswipe><button type="button" class="btn solid" id="svNext">下一步 ▶</button><button type="button" class="btn" id="svReset">重来</button></div>
+    </div>
+    <div class="col">
+      <p class="tip">先自己算出 $x$，再点“下一步”，一步一步对照。</p>
+      <p class="tip sv-try" data-noswipe>我算出 $x=$ <span class="fi blank" data-ready="1"><input id="svIn" aria-label="你算出的 x"></span> <button type="button" class="btn" id="svCheck">对一对</button></p>
+      <p class="tip feedback" id="svMsg"></p>
+      <p class="tip" data-step="1">每一题的第一步都在做什么？　<span class="think" data-step="2" data-ask="比一比">都是用<b>比例的基本性质</b>：找到和 $x$ 在一起相乘的那一项（$x$ 是外项就找另一个外项，是内项就找另一个内项）。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心活动。题目来自课本：例 5、试一试、练一练三题、练习七第 6 题三题。每一步右边写依据；分数用精确的分数运算，结果不做近似。“对一对”可以输入分数（如 1/5）或小数。</p>
+</section>
+
+<!-- 6 试一试 -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>分数形式的比例怎样解？</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <p class="tip">解比例 $\dfrac{1.2}{75}=\dfrac{0.4}{x}$。</p>
+      <div class="derive">
+        <div class="dl" data-step="1"><span>$1.2x=75\times0.4$</span><i class="why">交叉相乘（比例的基本性质）</i></div>
+        <div class="dl" data-step="2"><span>$1.2x=$ <span class="blank" data-ans="30"></span></span><i class="why">计算</i></div>
+        <div class="dl key" data-step="3"><span>$x=$ <span class="blank" data-ans="25"></span></span><i class="why">两边同时除以 1.2</i></div>
+      </div>
+    </div>
+    <div class="col">
+      <svg id="crossT" class="fig cross-fig" viewBox="0 0 300 140" aria-label="1.2/75=0.4/x 交叉相乘" data-step="1"></svg>
+      <p class="warn" data-step="4">交叉相乘：左边的<b>分子</b>乘右边的<b>分母</b>，等于左边的<b>分母</b>乘右边的<b>分子</b>。不要写成 $1.2\times0.4$！</p>
+    </div>
+  </div>
+  <p class="note">课本 p40 试一试，课本给出了“解：1.2x =”的开头。分数形式的比例 1.2/75 = 0.4/x 就是 1.2∶75 = 0.4∶x，外项是 1.2 和 x。</p>
+</section>
+
+<!-- 7 练一练 -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>解比例</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q big">$9:x=3:4$</p>
+        <p class="q">$x=$ <span class="blank" data-ans="12"></span></p>
+        <details><summary>提示 1</summary>$x$ 是内项，和它相乘的是另一个内项 3：$3x=9\times4$。</details>
+        <details><summary>完整解答</summary>$3x=36$，$x=12$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q big">$\dfrac14:\dfrac18=x:\dfrac1{10}$</p>
+        <p class="q">$x=$ <span class="blank" data-ans="1/5|0.2" data-w="3"></span></p>
+        <details><summary>提示 1</summary>$\dfrac18x=\dfrac14\times\dfrac1{10}=\dfrac1{40}$</details>
+        <details><summary>完整解答</summary>$x=\dfrac1{40}\div\dfrac18=\dfrac1{40}\times8=\dfrac15$</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q big">$\dfrac{0.1}{0.01}=\dfrac{100}{x}$</p>
+        <p class="q">$x=$ <span class="blank" data-ans="10"></span></p>
+        <details><summary>提示 1</summary>交叉相乘：$0.1x=0.01\times100$。</details>
+        <details><summary>完整解答</summary>$0.1x=1$，$x=10$。</details>
+      </div>
+    </div>
+    <p class="tip gold" data-step="1">做完后可以回到第 5 页，用“一步一步来”对照每一步。</p>
+  </div>
+  <p class="note">课本 p40 练一练三题。第 2 题含分数，解出 x = 1/5，也可以写 0.2。</p>
+</section>
+
+<!-- 8 练习七 5、7 -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七 · 5、7</span><h2>填一填，求未知数</h2></div>
+  <div class="bd even">
+    <div class="col">
+      <p class="q">5. 根据比例的基本性质，在括号里填合适的数。</p>
+      <div class="calc">
+        <p>$8:2=24:$ <span class="blank" data-ans="6"></span>　　$\dfrac{\square}{15}=\dfrac45$，$\square=$ <span class="blank" data-ans="12"></span></p>
+        <p>$1.5:3=$ <span class="blank" data-ans="1.7"></span> $:3.4$　　$48:$ <span class="blank" data-ans="120"></span> $=3.6:9$</p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="q">7. 把左边的图形按比例放大或缩小后得到右边的图形，求未知数 $x$。（单位：cm）</p>
+      <svg id="ex7" class="fig ex7-fig" viewBox="0 0 560 300" aria-label="长方形 20×12 放大成 50×x；直角三角形 4.8、6.4 缩小成 3、x"></svg>
+      <p class="q">(1) $x=$ <span class="blank" data-ans="30"></span>　　(2) $x=$ <span class="blank" data-ans="4"></span></p>
+    </div>
+  </div>
+  <p class="note">课本 p42 练习七第 5、7 题。第 7 题按课本数据等比例画出（左右两图各自按真实比例缩放，图中 x 的长度就是答案的长度）。(1) 20∶12 = 50∶x；(2) 4.8∶6.4 = 3∶x。</p>
+</section>
+
+<!-- 9 练习七 8、9、思考 -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习七 · 8、9</span><h2>用比例解决问题</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q">8. 第一杯蜂蜜水用了 25 mL 蜂蜜和 200 mL 水，第二杯用了 30 mL 蜂蜜和 250 mL 水。(1) 两杯中蜂蜜与水的比能组成比例吗？(2) 按第一杯的比，300 mL 水中应加入蜂蜜多少毫升？</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">(1) 能</button><button type="button" data-k="n">(1) 不能</button><p class="pick-why">$25\times250=6250$，$200\times30=6000$，不相等。</p></div>
+        <p class="q">(2) <span class="blank" data-ans="37.5"></span> mL</p>
+        <details><summary>完整解答</summary>设加蜂蜜 $x$ mL：$25:200=x:300$，$200x=7500$，$x=37.5$。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">9. 合唱组男生与女生人数的比是 $3:4$，男生有 24 人，女生有多少人？（你会用不同的方法解答吗？）</p>
+        <p class="q">女生 <span class="blank" data-ans="32"></span> 人</p>
+        <details><summary>方法一：解比例</summary>设女生 $x$ 人：$3:4=24:x$，$3x=96$，$x=32$。</details>
+        <details><summary>方法二：求 1 份</summary>$24\div3\times4=32$（人）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">想一想：如果 $\dfrac34m=\dfrac25n$（$m$、$n$ 都不等于 0），那么</p>
+        <p class="q">$m:n=$ <span class="blank" data-ans="8:15|2/5:3/4" data-w="4"></span>，$\dfrac nm=$ <span class="blank" data-ans="15/8" data-w="3"></span></p>
+        <details><summary>提示 1</summary>把 $\dfrac34m=\dfrac25n$ 看作“外项积 = 内项积”：$m$ 和 $\dfrac34$ 是外项，$n$ 和 $\dfrac25$ 是内项。</details>
+        <details><summary>完整解答</summary>$m:n=\dfrac25:\dfrac34=8:15$，$\dfrac nm=\dfrac{15}8$。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p42 练习七第 8、9 题和思考题。思考题是基本性质的“反过来用”：由乘积相等写出比例。</p>
+</section>
+
+<!-- 10 小结 -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>解比例：比例 → 方程 → 解</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <p class="recall" data-label="什么是解比例" data-step="1">求比例中的未知项，叫作解比例。</p>
+      <p class="method" data-label="怎样解" data-step="2">① 外项积 = 内项积，写成方程；② 计算；③ 等式两边同时除以 $x$ 的系数；④ 代回检验。</p>
+      <p class="method" data-label="解决问题" data-step="3">设未知数 $x$ → 找出相等的两个比，列比例（对应关系要对齐）→ 解比例 → 答。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>平面图上 5 厘米表示实际 50 米——图上距离和实际距离的比叫什么？——比例尺。</p>
+  </div>
+  <p class="note">课后：练习七第 6 题（可回第 5 页对照步骤）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>扇形统计图 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/dixing.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第一单元 扇形统计图 · 扇形统计图</p>
+    <h1 class="cover-title">扇形统计图</h1>
+    <p class="cover-q" data-step="1">我国陆地总面积大约是 <b>960 万平方千米</b>，有山地、高原、盆地、平原、丘陵。</p>
+    <p class="cover-q" data-step="2">每种地形各占总面积的<b>百分之几</b>？用一个什么样的图，能一眼看清楚？</p>
+    <div class="chips" data-step="3"><span class="chip">看一看</span><span class="chip">分一分圆</span><span class="chip">算一算</span><span class="chip">说一说</span></div>
+  </div>
+  <p class="note">课本 p1 例 1 的情境。先请学生说说学过哪些统计图（条形、折线），再问：如果想看出“每种地形占总面积的百分之几”，条形图、折线图方便吗？引出今天的新统计图。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>今天要用到的三件“老本领”</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="五年级下册 · 圆 · 扇形" data-step="1">
+        <svg viewBox="0 0 240 130" class="mini-fig" aria-label="圆里的一个扇形和它的圆心角">
+          <circle cx="120" cy="66" r="56" fill="#e3f1fb" stroke="#1d6fa5" stroke-width="3"/>
+          <path d="M120 66L120 10A56 56 0 0 1 168.5 94Z" fill="#f6c6e0" stroke="#c0577a" stroke-width="3"/>
+          <path d="M120 48A18 18 0 0 1 135.6 75" fill="none" stroke="#d9711c" stroke-width="2.5"/>
+          <text x="140" y="56" class="fl s c2">圆心角</text>
+        </svg>
+        <p>两条半径和一段弧围成<b>扇形</b>。圆心角越大，扇形越大。<a href="../mp5b-shanxing/index.html">回看</a></p>
+        <span class="use">扇形统计图里的每一块，都是一个扇形。</span>
+      </div>
+      <div class="recall" data-label="六年级上册 · 百分数的意义" data-step="2">
+        <p class="big center">$33.3\%$</p>
+        <p>表示一个数是另一个数的<b>百分之几</b>。整体看成 $100\%$。<a href="../mp6a-baifenshuyiyi/index.html">回看</a></p>
+        <span class="use">每个扇形表示部分占总数的百分之几。</span>
+      </div>
+      <div class="recall" data-label="六年级上册 · 求一个数的几分之几是多少" data-step="3">
+        <p class="big center">$960\times33.3\%$</p>
+        <p>求一个数的几分之几（百分之几）是多少，用<b>乘法</b>。<a href="../mp6a-qiujifenzhiji/index.html">回看</a></p>
+        <span class="use">由百分比算出每种地形的面积。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">条形统计图看“多少”，折线统计图看“变化”。今天认识一种看“<b>部分和整体</b>”的统计图。</p>
+  </div>
+  <p class="note">每张卡请学生先口答。第 1 张卡的扇形、圆心角是五下第六单元的内容；第 3 张卡复习“求一个数的百分之几是多少用乘法”，第 6 页算面积要用。</p>
+</section>
+
+<!-- 3 ================= 例 1 看一看 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 看一看</span><h2>从这幅统计图中，你了解到什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <p class="chart-t">我国陆地各种地形分布情况统计图<small>2012 年 12 月</small></p>
+      <svg id="pie1" class="pie-fig" viewBox="0 0 400 330" aria-label="我国陆地各种地形分布情况扇形统计图" data-noswipe></svg>
+      <p class="tip center small-t">点一点每个扇形</p>
+    </div>
+    <div class="col">
+      <p class="tip feedback" id="pie1Msg">点左边的任意一块，看看它表示什么。</p>
+      <p class="tip" data-step="1">整个圆表示什么？　<span class="think" data-step="2" data-ask="说一说">整个圆表示我国<b>陆地的总面积</b>（看成 $100\%$）。</span></p>
+      <p class="tip" data-step="3">每个扇形表示什么？　<span class="think" data-step="4" data-ask="说一说">每个扇形分别表示各种地形的面积占<b>总面积的百分之几</b>。</span></p>
+      <p class="tip" data-step="5">哪种地形面积最大？哪种最小？　<span class="think" data-step="6" data-ask="比一比">山地最大，占 $33.3\%$；丘陵最小，占 $9.9\%$。</span></p>
+      <p class="tip" data-step="7">五个百分数加起来是多少？　<span class="think" data-step="8" data-ask="算一算">$33.3+26.0+18.8+12.0+9.9=100$，正好是 $100\%$。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p1 例 1。扇形按课本数据由代码精确绘制，从 12 点方向起顺时针：山地 33.3%、高原 26.0%、盆地 18.8%、平原 12.0%、丘陵 9.9%。先让学生自由说，再按课本三个小伙伴的话逐条揭示。最后一问让学生体会：所有扇形合起来就是整个圆。</p>
+</section>
+
+<!-- 4 ================= 圆心角（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分一分圆</span><h2>扇形的大小，是怎样定下来的？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="angFig" class="ang-fig" viewBox="0 0 360 320" aria-label="按百分比画出的扇形" data-noswipe></svg>
+      <div class="slider-row" data-noswipe>占 <input type="range" id="angP" min="0" max="100" step="0.1" value="25"> <b id="angPv"></b></div>
+      <div class="btns center-btns" id="angPre" data-noswipe>
+        <button type="button" class="btn" data-p="25">25%</button><button type="button" class="btn" data-p="50">50%</button><button type="button" class="btn" data-p="10">10%</button><button type="button" class="btn" data-p="33.3">山地 33.3%</button><button type="button" class="btn" data-p="9.9">丘陵 9.9%</button>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">整个圆是 $100\%$，圆心角一圈是 <b>$360^\circ$</b>。拖一拖滑块，看看扇形和圆心角怎样变。</p>
+      <p class="tip feedback ok" id="angMsg"></p>
+      <div class="calc">
+        <p>占 $25\%$ 的扇形，圆心角是 <span class="blank" data-ans="90"></span>°</p>
+        <p>占 $50\%$ 的扇形，圆心角是 <span class="blank" data-ans="180" data-w="3"></span>°</p>
+        <p>占 $10\%$ 的扇形，圆心角是 <span class="blank" data-ans="36"></span>°</p>
+      </div>
+      <p class="method" data-step="1" data-label="发现">扇形的圆心角 $=360^\circ\times$ 它占的百分比。百分比越大，圆心角越大，扇形就越大。</p>
+    </div>
+  </div>
+  <p class="note">本课核心操作。扇形的圆心角按“百分比 × 360°”精确计算并实时画出。先用 25%、50% 这些好想的数（四分之一圆、半圆），再看山地 33.3%（约 120°，差不多三分之一个圆）。这一页是为了让学生明白扇形统计图为什么能“按比例”表示部分与整体，不要求学生自己画扇形统计图。</p>
+</section>
+
+<!-- 5 ================= 拼一拼 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">拼一拼</span><h2>把五种地形，一块一块拼成整个圆</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="build" class="pie-fig" viewBox="0 0 400 330" aria-label="一块一块拼出扇形统计图" data-noswipe></svg>
+    </div>
+    <div class="col">
+      <table class="mtab" id="buildTab">
+        <tr><th>地形</th><th>占总面积</th><th>圆心角</th><th></th></tr>
+      </table>
+      <div class="btns center-btns" data-noswipe><button type="button" class="btn" id="buildReset">↺ 重新拼</button></div>
+      <p class="tip feedback" id="buildMsg">按“放进圆里”，一块一块地拼。</p>
+      <p class="tip gold" data-step="1">拼满了吗？　<span class="think" data-step="2" data-ask="想一想">五块正好拼成一个整圆：百分比合起来 $100\%$，圆心角合起来 $360^\circ$。</span></p>
+    </div>
+  </div>
+  <p class="note">每按一次“放进圆里”，对应的扇形从上一块的边接着顺时针“长”出来，圆心角精确等于百分比 × 360°（119.88°、93.6°、67.68°、43.2°、35.64°）。问学生：如果其中一个百分数写错了，会出现什么情况？（拼不满或者拼多了。）</p>
+</section>
+
+<!-- 6 ================= 算一算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 1 · 算一算</span><h2>用计算器算出每种地形的面积</h2></div>
+  <div class="bd full top">
+    <p class="tip">我国陆地总面积大约是 <b>960 万平方千米</b>。山地占 $33.3\%$，山地面积是多少？　<span class="think" data-step="1" data-ask="怎样列式？">求 960 的 $33.3\%$ 是多少，用乘法：$960\times33.3\%$。</span></p>
+    <table class="mtab big-tab">
+      <tr><th>地形</th><th>山地</th><th>丘陵</th><th>平原</th><th>盆地</th><th>高原</th></tr>
+      <tr><th>占总面积</th><td>33.3%</td><td>9.9%</td><td>12.0%</td><td>18.8%</td><td>26.0%</td></tr>
+      <tr><th>面积/万平方千米</th><td><span class="blank" data-ans="319.68" data-w="5"></span></td><td><span class="blank" data-ans="95.04" data-w="5"></span></td><td><span class="blank" data-ans="115.2" data-w="5"></span></td><td><span class="blank" data-ans="180.48" data-w="5"></span></td><td><span class="blank" data-ans="249.6" data-w="5"></span></td></tr>
+    </table>
+    <div class="cols2">
+      <div class="hint-ladder" data-step="2">
+        <p class="q">卡住了？</p>
+        <details><summary>提示 1</summary>每一格都是“$960\times$ 百分数”。</details>
+        <details><summary>提示 2</summary>$960\times33.3\%=960\times0.333$</details>
+        <details><summary>完整解答</summary>山地 $319.68$，丘陵 $95.04$，平原 $115.2$，盆地 $180.48$，高原 $249.6$（万平方千米）。</details>
+      </div>
+      <p class="tip gold" data-step="3">检查一下：五个面积加起来是多少？　<span class="think" data-step="4" data-ask="加一加">$319.68+95.04+115.2+180.48+249.6=960$，正好是总面积。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p1 下面的表格（表格顺序照课本：山地、丘陵、平原、盆地、高原）。课本说可以用计算器。回车判对错。最后的验算让学生再次体会：各部分合起来就是整体。</p>
+</section>
+
+<!-- 7 ================= 概括 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">说一说</span><h2>扇形统计图有什么用？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="bubbles">
+        <p class="bub" data-step="1">整个圆表示我国陆地的总面积。</p>
+        <p class="bub" data-step="2">每个扇形分别表示各种地形的面积占总面积的百分之几。</p>
+        <p class="bub" data-step="3">山地面积最大，占总面积的 33.3%，丘陵面积最小……</p>
+      </div>
+      <div class="def" data-step="4"><h4>扇形统计图</h4>扇形统计图可以清楚地表示出<em>各部分数量与总数量之间的关系</em>。</div>
+    </div>
+    <div class="col">
+      <p class="tip" data-step="5">同一组数据，画成条形统计图，能一眼看出“山地占总面积的三分之一”吗？</p>
+      <svg id="cmpBar" class="cmp-bar" viewBox="0 0 420 220" aria-label="同一组数据的条形统计图" data-step="5"></svg>
+      <p class="tip" data-step="6"><span class="think" data-step="6" data-ask="比一比">条形图容易看出<b>各有多少</b>、谁多谁少；扇形图一眼看出<b>每部分占整体的多少</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p1 三个小伙伴的话和结论。右边把同一组数据（万平方千米）画成条形图做对比，为下节课“选择合适的统计图”铺路，这里点到为止。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>观察下图，你能知道什么，想到什么？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="two-pie">
+        <div><svg id="pPop" viewBox="0 0 240 240" aria-label="中国人口占世界人口的 19.6%"></svg><p>中国人口占世界人口的 <b>19.6%</b></p></div>
+        <div><svg id="pLand" viewBox="0 0 240 240" aria-label="中国耕地面积占世界耕地面积的 9.9%"></svg><p>中国耕地面积占世界耕地面积的 <b>9.9%</b></p></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip">左图：世界其他国家的人口占 <span class="blank" data-ans="80.4" data-w="4"></span>%。<br>右图：世界其他国家的耕地占 <span class="blank" data-ans="90.1" data-w="4"></span>%。</p>
+      <p class="tip" data-step="1">把两幅图放在一起，你想到了什么？　<span class="think" data-step="2" data-ask="和同桌说一说">我国用不到世界 $10\%$ 的耕地，养活了将近世界 $20\%$ 的人口——粮食来之不易，要珍惜每一粒米，也要保护耕地。</span></p>
+      <p class="warn" data-step="3">两幅图的“整个圆”不一样：一个是世界人口，一个是世界耕地面积。</p>
+    </div>
+  </div>
+  <p class="note">课本 p2 练一练。两个扇形按 19.6%、9.9% 精确绘制（从 3 点方向起逆时针，同课本）。第一步填空用“整体 100% 减去部分”。第二步联系实际，进行珍惜粮食、保护耕地的教育。</p>
+</section>
+
+<!-- 9 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法对吗？先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard">
+        <p><b>1.</b> 看例 1 的统计图：山地的面积是丘陵的 3 倍多。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">同一个整体里比：$33.3\%\div9.9\%\approx3.4$，是 3 倍多。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>2.</b> 一幅扇形统计图中，各扇形表示的百分数加起来是 $100\%$。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">所有扇形合起来是整个圆，就是总数量，所以是 $100\%$。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>3.</b> 练一练中，左图的黄色扇形比右图的紫色扇形大，所以中国人口数比中国耕地面积的数大。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">人口和耕地面积不是同一种量，没法比大小；两幅图的整体也不同。扇形图比较的是<b>同一个整体</b>里的部分。</p></div>
+      </div>
+      <div class="jcard">
+        <p><b>4.</b> 一个扇形的圆心角是 $90^\circ$，它表示的部分占总数的 $25\%$。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button>
+          <p class="pick-why">$90^\circ\div360^\circ=\dfrac14=25\%$，正好是四分之一个圆。</p></div>
+      </div>
+    </div>
+    <p class="method" data-step="1" data-label="记住">扇形统计图表示<b>部分与整体</b>的关系；比较扇形大小，要在<b>同一幅图</b>里比。</p>
+  </div>
+  <p class="note">第 3 题是最常见的误解：不同的扇形统计图，整体不同，扇形大小不能直接比较实际数量。第 4 题回扣第 4 页的圆心角。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>扇形统计图：一个圆，看清部分和整体</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><svg id="sumPie" viewBox="0 0 100 100" aria-label="扇形统计图"></svg><b>整个圆</b><small>总数量 = 100%</small></div>
+      <i>分成几个扇形</i>
+      <div class="fbox"><b>每个扇形</b><small>部分占总数的百分之几<br>圆心角 = 360° × 百分比</small></div>
+      <i>× 总数</i>
+      <div class="fbox hot"><b>各部分数量</b><small>总数 × 百分比</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="学到了" data-step="2">扇形统计图可以清楚地表示出各部分数量与总数量之间的关系。</p>
+      <p class="method" data-label="会看图" data-step="3">先看标题和日期，再看整个圆表示什么，然后比较各扇形，最后可以由百分比算出数量。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>条形、折线、扇形三种统计图，遇到问题该选哪一种？——<a href="../mp6b-xuanzetongjitu/index.html">选择合适的统计图</a></p>
+  </div>
+  <p class="note">请学生用自己的话说出扇形统计图的特点。课后可以调查家里一个月的支出分类，说说可以怎样用扇形统计图表示。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

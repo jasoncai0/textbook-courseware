@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆柱的体积 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="../shared/poly3d.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/chatong.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第二单元 圆柱和圆锥 · 圆柱的体积</p>
+    <h1 class="cover-title">圆柱的体积</h1>
+    <p class="cover-q" data-step="1">运动会上的圆柱形保温茶桶，底面半径 3 分米，高 5 分米。</p>
+    <p class="cover-q" data-step="2">它能盛 150 千克水吗？要知道它<b>能装多少</b>，就要求圆柱的<b>体积</b>。</p>
+    <div class="chips" data-step="3"><span class="chip">猜一猜</span><span class="chip">切一切、拼一拼</span><span class="chip">V = Sh</span><span class="chip">比一比</span></div>
+  </div>
+  <p class="note">情境取自练习三第 5 题（p17），先不解答，第 10 页回来算。和上节课对比：表面积说的是“包住它要多少材料”，体积说的是“它占多大空间”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>求圆柱的体积，可以借谁的力？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="六年级上册 · 长方体和正方体的体积" data-step="1">
+        <p class="big center">$V=Sh$</p>
+        <p>长方体（正方体）的体积 = 底面积 × 高。<a href="../mp6a-changfangtitiji/index.html">回看</a></p>
+        <span class="use">把圆柱变成近似的长方体后，就用它。</span>
+      </div>
+      <div class="recall" data-label="五年级下册 · 圆的面积" data-step="2">
+        <svg viewBox="0 0 240 100" class="mini-fig" aria-label="圆剪拼成近似长方形"><circle cx="50" cy="50" r="40" fill="#f4a6c4" stroke="#1f2d3a" stroke-width="2"/><path d="M50 50L90 50M50 50L78 78M50 50L50 90M50 50L22 78M50 50L10 50M50 50L22 22M50 50L50 10M50 50L78 22" stroke="#1f2d3a" stroke-width="1.5"/><path d="M105 50h22" stroke="#e0569a" stroke-width="4"/><path d="M140 30h90v40h-90z" fill="#fbe08a" stroke="#1f2d3a" stroke-width="2"/></svg>
+        <p>圆平均分成很多份，拼成近似长方形：长 $=\pi r$，宽 $=r$。<a href="../mp5b-yuanmianji/index.html">回看</a></p>
+        <span class="use">圆柱的底面也这样分、这样拼。</span>
+      </div>
+      <div class="recall" data-label="六年级上册 · 体积单位" data-step="3">
+        <p class="big center">$1\ \text{L}=1\ \text{dm}^3$</p>
+        <p>$1$ 升 $=1$ 立方分米，$1$ 毫升 $=1$ 立方厘米。<a href="../mp6a-tijidanwei/index.html">回看</a></p>
+        <span class="use">算容积时换算单位。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">上一课算的是圆柱的<b>表面积</b>（面积单位）；今天算<b>体积</b>（体积单位）。<a href="../mp6b-yuanzhubiaomianji/index.html">回看表面积</a></p>
+  </div>
+  <p class="note">第 2 张卡是本课推导的关键：圆面积公式的推导方法（转化），本课要“照着做”。请学生先说说圆面积公式是怎么推导出来的。</p>
+</section>
+
+<!-- 3 ================= 例 4 猜一猜 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 猜一猜</span><h2>底面积相等、高也相等，体积相等吗？</h2></div>
+  <div class="bd full top">
+    <div id="same" class="v3 wide3"></div>
+    <div class="cols2">
+      <p class="tip" data-step="1">(1) 长方体和正方体的体积相等吗？为什么？　<span class="think" data-step="2" data-ask="说理由">相等。它们的体积都等于<b>底面积 × 高</b>，底面积相等、高也相等，体积就相等（都是 $9\times3=27$）。</span></p>
+      <p class="tip" data-step="3">(2) 猜一猜：圆柱的体积与它们相等吗？用什么办法验证？　<span class="think" data-step="4" data-ask="猜一猜">猜：也相等。验证：像推导圆面积那样，把圆柱<b>转化</b>成近似的长方体。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p15 例 4。三个立体按同一比例绘制：长方体底面 4.5×2、正方体底面 3×3、圆柱底面半径 √(9/π)≈1.69，底面积都约是 9，高都是 3；可以拖动转着看。小精灵的话：“圆可以转化成近似的长方形计算面积，圆柱可以转化成近似的长方体计算体积吗？”</p>
+</section>
+
+<!-- 4 ================= 切拼（核心） ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 切一切、拼一拼</span><h2>把圆柱的底面平均分成 16 份，切开后拼一拼</h2></div>
+  <div class="bd full top">
+    <div class="qp-ctrl" data-noswipe>
+      <span>平均分成</span>
+      <span class="btns" id="qpN"><button type="button" class="btn" data-k="8">8 份</button><button type="button" class="btn solid" data-k="16">16 份</button><button type="button" class="btn" data-k="32">32 份</button><button type="button" class="btn" data-k="64">64 份</button></span>
+      <button type="button" class="btn solid go" id="qpGo">拼一拼 ▶</button>
+    </div>
+    <div id="qp" class="v3 qp3"></div>
+    <p class="tip feedback ok" id="qpRead"></p>
+    <div class="cols2">
+      <p class="tip" data-step="1">拼成了一个什么立体？　<span class="think" data-step="2" data-ask="说一说">一个<b>近似的长方体</b>。</span></p>
+      <p class="tip" data-step="3">分成 32 份、64 份……有什么变化？　<span class="think" data-step="4" data-ask="说一说">平均分的份数越多，拼成的立体就<b>越接近长方体</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">本课核心操作，课本 p15 下半页。每一块都由代码按真实尺寸绘制，拼法与五下圆的面积相同（相邻两块共用一条半径边），可以拖动转着看。读数是按真实拼法算出来的：16 份时长约 3.12r、32 份约 3.137r、64 份约 3.140r，越来越接近 πr；宽越来越接近 r。先选 16 份拼一拼，停下来问；再选 32、64 份。</p>
+</section>
+
+<!-- 5 ================= 推导 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 4 · 想一想</span><h2>拼成的长方体与原来的圆柱有什么关系？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <div class="rel-list">
+        <p data-step="1">① 体积：<span class="think" data-step="2" data-ask="变了吗？">长方体的体积与圆柱的体积<b>相等</b>。</span></p>
+        <p data-step="3">② 底面积：<span class="think" data-step="4" data-ask="想一想">长方体的底面积等于圆柱的<b>底面积</b>（底面就是拼成的近似长方形）。</span></p>
+        <p data-step="5">③ 高：<span class="think" data-step="6" data-ask="想一想">长方体的高等于圆柱的<b>高</b>。</span></p>
+      </div>
+      <div class="def" data-step="10"><h4>圆柱的体积</h4>如果用 $V$ 表示圆柱的体积，$S$ 表示圆柱的底面积，$h$ 表示圆柱的高，那么<p class="formula">$V=Sh$</p></div>
+    </div>
+    <div class="col">
+      <div class="derive word-derive">
+        <div class="dl" data-step="7"><span>长方体的体积</span><span>= 底面积 × 高</span><i class="why">学过的公式</i></div>
+        <div class="dl key" data-step="8"><span>圆柱的体积</span><span>= 底面积 × 高</span><i class="why">体积、底面积、高都相等</i></div>
+        <div class="dl" data-step="9"><span></span><span>$=\pi r^2h$</span><i class="why">底面积 $S=\pi r^2$</i></div>
+      </div>
+      <p class="method" data-step="11" data-label="体会">可以用长方体体积公式推导出圆柱体积公式；把圆柱转化成长方体，与探索圆面积的方法类似；长方体、正方体、圆柱的体积都可以用<b>底面积 × 高</b>来计算。</p>
+    </div>
+  </div>
+  <p class="note">课本 p15–16。三个关系逐一让学生说，再写文字公式，最后换成字母 V = Sh。三个小伙伴的“体会”是课本原话，请学生读一读。例 4 的猜想得到验证：等底等高的长方体、正方体、圆柱体积相等。</p>
+</section>
+
+<!-- 6 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>一个圆柱形零件，体积是多少立方厘米？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg viewBox="0 0 300 260" class="part-fig" aria-label="底面半径 5 厘米、高 8 厘米的圆柱">
+        <ellipse cx="140" cy="45" rx="100" ry="24" fill="#f7f9fb" stroke="#1f2d3a" stroke-width="2.5"/>
+        <path d="M40 45V205A100 24 0 0 0 240 205V45" fill="#e3f1fb" stroke="#1f2d3a" stroke-width="2.5"/>
+        <path d="M40 45A100 24 0 0 0 240 45" fill="none" stroke="#1f2d3a" stroke-width="2.5"/>
+        <path d="M40 205A100 24 0 0 1 240 205" fill="none" stroke="#8c9cab" stroke-width="2" stroke-dasharray="7 6"/>
+        <path d="M140 205H240" stroke="#d9711c" stroke-width="3"/><circle cx="140" cy="205" r="4" fill="#1f2d3a"/>
+        <text x="190" y="198" class="pt-t">5 cm</text>
+        <path d="M262 45V205" stroke="#c0392b" stroke-width="2"/><text x="268" y="132" class="pt-t s">8 cm</text>
+      </svg>
+    </div>
+    <div class="col">
+      <p class="tip">一个圆柱形零件，底面半径是 <b>5 厘米</b>，高是 <b>8 厘米</b>。这个零件的体积是多少立方厘米？</p>
+      <div class="calc">
+        <p>底面积：$3.14\times5^2=$ <span class="blank" data-ans="78.5" data-w="4"></span>（平方厘米）</p>
+        <p>体积：$78.5\times8=$ <span class="blank" data-ans="628" data-w="4"></span>（立方厘米）</p>
+      </div>
+      <p class="tip" data-step="1">也可以写成一个算式：$3.14\times5^2\times8=628$（立方厘米）。</p>
+      <p class="warn" data-step="2">先算 $5^2=25$，不是 $5\times2$；体积单位是“立方……”。</p>
+    </div>
+  </div>
+  <p class="note">课本 p16 试一试。先让学生说“要求体积，先求什么”（底面积），再分步填空，回车判对错。</p>
+</section>
+
+<!-- 7 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>自己算一算：卡住了再点提示</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1(1).</b> 计算圆柱的体积：底面直径 8 cm，高 4 cm。</p>
+        <p class="q small-q">体积：<span class="blank" data-ans="200.96" data-w="5"></span> cm³</p>
+        <details><summary>提示 1</summary>给的是直径，半径是 $8\div2=4$（cm）。</details>
+        <details><summary>完整解答</summary>$3.14\times4^2\times4=200.96$（cm³）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>1(2).</b> 计算圆柱的体积：底面半径 3 cm，长 6 cm（圆柱横放）。</p>
+        <p class="q small-q">体积：<span class="blank" data-ans="169.56" data-w="5"></span> cm³</p>
+        <details><summary>提示 1</summary>横放时，“长”就是圆柱的高。</details>
+        <details><summary>完整解答</summary>$3.14\times3^2\times6=169.56$（cm³）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一根圆柱形木料，底面周长是 62.8 厘米，高是 50 厘米。这根木料的体积是多少？</p>
+        <p class="q small-q">体积：<span class="blank" data-ans="15700" data-w="5"></span> cm³</p>
+        <details><summary>提示 1</summary>先由周长求半径：$62.8\div3.14\div2$。</details>
+        <details><summary>提示 2</summary>半径是 10 厘米，底面积 $3.14\times10^2=314$（平方厘米）。</details>
+        <details><summary>完整解答</summary>$314\times50=15700$（立方厘米）</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p16 练一练。第 1 题课本图中第一个圆柱标的是底面直径 8、高 4；第二个是横放的圆柱，标的是底面半径 3、长 6（单位：cm）。第 2 题与五下例 10“已知周长求面积”同一思路：先求半径。</p>
+</section>
+
+<!-- 8 ================= 哪杯多 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习三 · 比一比</span><h2>哪个杯里的饮料最多？</h2></div>
+  <div class="bd">
+    <div class="col">
+      <svg id="cups" class="cups-fig" viewBox="0 0 700 380" aria-label="三个圆柱形杯子里的饮料，按真实尺寸作图"></svg>
+    </div>
+    <div class="col">
+      <p class="tip">先看一看、猜一猜：第几杯饮料最多？</p>
+      <div class="pick" data-ans="a"><button type="button" data-k="a">第 1 杯</button><button type="button" data-k="b">第 2 杯</button><button type="button" data-k="c">第 3 杯</button>
+        <p class="pick-why">算一算才知道！看起来最高的第 3 杯反而最少。</p></div>
+      <div class="calc">
+        <p>第 1 杯：$3.14\times4^2\times4=$ <span class="blank" data-ans="200.96" data-w="5"></span> cm³</p>
+        <p>第 2 杯：$3.14\times3^2\times7=$ <span class="blank" data-ans="197.82" data-w="5"></span> cm³</p>
+        <p>第 3 杯：$3.14\times2.5^2\times10=$ <span class="blank" data-ans="196.25" data-w="5"></span> cm³</p>
+      </div>
+      <p class="warn" data-step="1">饮料的多少由<b>底面积和高</b>共同决定，不能只看高度。</p>
+    </div>
+  </div>
+  <p class="note">课本 p17 练习三第 4 题，三个杯子按真实尺寸（直径 8、6、5 cm，饮料高 4、7、10 cm）同比例绘制。学生往往凭直觉选第 3 杯（最高）或第 1 杯（最粗），算出来三杯非常接近，第 1 杯最多。</p>
+</section>
+
+<!-- 9 ================= 容积 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习三 · 用一用</span><h2>能盛多少？——圆柱的容积</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 一个圆柱形电饭煲，从里面量，底面直径是 3 分米，高是 2.4 分米。这个电饭煲的容积大约是多少升？（得数保留一位小数）</p>
+        <p class="q small-q">约 <span class="blank" data-ans="17.0|17" data-w="3"></span> 升</p>
+        <details><summary>提示 1</summary>“从里面量”的尺寸算出的是容积；1 立方分米 = 1 升。</details>
+        <details><summary>完整解答</summary>$3.14\times1.5^2\times2.4=16.956\approx17.0$（立方分米）$=17.0$ 升</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>5.</b> 封面上的保温茶桶，从里面量，底面半径 3 分米，高 5 分米。每立方分米水重 1 千克，能盛 150 千克水吗？</p>
+        <p class="q small-q">能盛 <span class="blank" data-ans="141.3" data-w="4"></span> 千克水</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="y">能</button><button type="button" data-k="n">不能</button><p class="pick-why">$141.3&lt;150$，不能盛 150 千克水。</p></div>
+        <details><summary>完整解答</summary>$3.14\times3^2\times5=141.3$（立方分米），$141.3\times1=141.3$（千克）</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>7.</b> 把长 5 厘米、宽 4 厘米的长方形分别绕长和宽旋转一周，形成两个圆柱。哪个体积大？</p>
+        <p class="q small-q">绕长：<span class="blank" data-ans="251.2" data-w="4"></span> cm³<br>绕宽：<span class="blank" data-ans="314" data-w="4"></span> cm³</p>
+        <details><summary>提示 1</summary>绕长旋转：高是 5 cm，底面半径是 4 cm（还记得“转一转”吗？）。</details>
+        <details><summary>完整解答</summary>绕长：$3.14\times4^2\times5=251.2$；绕宽：$3.14\times5^2\times4=314$。绕宽旋转得到的圆柱体积大。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p17–18 练习三第 2、5、7 题。第 5 题回应封面的问题。第 7 题联系《圆柱和圆锥的认识》里“转一转”的活动：绕哪条边转，哪条边就是高。</p>
+</section>
+
+<!-- 10 ================= 辨一辨 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">辨一辨</span><h2>这些说法对吗？先判断，再说理由</h2></div>
+  <div class="bd full">
+    <div class="cols2">
+      <div class="jcard"><p><b>1.</b> 两个圆柱的底面积相等，它们的体积一定相等。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">体积 = 底面积 × 高，还要看<b>高</b>是否相等。</p></div></div>
+      <div class="jcard"><p><b>2.</b> 圆柱的底面积不变，高扩大到原来的 2 倍，体积也扩大到原来的 2 倍。</p>
+        <div class="pick" data-ans="v"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">$S\times(2h)=2\times(Sh)$。</p></div></div>
+      <div class="jcard"><p><b>3.</b> 圆柱的高不变，底面半径扩大到原来的 2 倍，体积也扩大到原来的 2 倍。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">底面积 $\pi(2r)^2=4\pi r^2$，扩大到 <b>4 倍</b>，体积也扩大到 4 倍。</p></div></div>
+      <div class="jcard"><p><b>4.</b> 一个圆柱的体积是 60 立方厘米，表面积也可能是 60 平方厘米，所以体积和表面积一样大。</p>
+        <div class="pick" data-ans="x"><button type="button" data-k="v">对</button><button type="button" data-k="x">错</button><p class="pick-why">体积和表面积是<b>不同的量</b>，单位不同，不能比较大小。</p></div></div>
+    </div>
+    <p class="method" data-step="1" data-label="记住">$V=Sh=\pi r^2h$：底面积和高<b>共同</b>决定圆柱的体积。</p>
+  </div>
+  <p class="note">第 3 题是难点，可以借第 4 页切拼的立体想象：半径扩大到 2 倍，拼成的长方体长、宽都扩大到 2 倍。</p>
+</section>
+
+<!-- 11 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>化圆为方：圆柱 → 近似长方体</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><b>圆柱</b><small>新问题</small></div>
+      <i>切开、拼一拼<br><small>转化</small></i>
+      <div class="fbox"><b>近似长方体</b><small>底面积、高、体积都不变</small></div>
+      <i>底面积 × 高</i>
+      <div class="fbox hot"><b class="formula">$V=Sh=\pi r^2h$</b><small>圆柱的体积</small></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="转化" data-step="2">平行四边形 → 长方形；圆 → 长方形；<b>圆柱 → 长方体</b>。份数越多，拼得越像。</p>
+      <p class="method" data-label="用公式" data-step="3">已知半径、直径或底面周长，都要先求出底面积；“从里面量”算的是容积；注意单位换算。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>圆锥的体积和与它等底等高的圆柱有什么关系？——<a href="../mp6b-yuanzhuitiji/index.html">圆锥的体积</a></p>
+  </div>
+  <p class="note">课后作业建议：练习三第 1、8、10、11 题和“动手做”（用圆柱形容器和水测量土豆的体积）。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="../shared/poly3d.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

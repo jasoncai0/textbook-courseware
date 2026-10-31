@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>班级联欢会 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/lianhuan.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">五年级上册 · 综合与实践 · 班级联欢会</p>
+    <h1 class="cover-title">班级联欢会</h1>
+    <p class="cover-q" data-step="1">如果要组织一次<b>班级联欢会</b>，你知道要做哪些准备吗？</p>
+    <p class="cover-q" data-step="2">买什么？买多少？一共要花多少钱？平均每人要付多少元？</p>
+    <div class="chips" data-step="3"><span class="chip">组织调查</span><span class="chip">制订方案</span><span class="chip">估一估 · 算一算</span><span class="chip">分组购物</span></div>
+  </div>
+  <p class="note">课本 p82–83“班级联欢会”（综合与实践）。本课件用一个 40 人班级的“示例数据”演示全过程；课堂上请用本班真实的调查结果和商店价格替换。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>办联欢会要用到的计算本领</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="四年级 · 常见的数量关系" data-step="1">
+        <p class="big center">单价 × 数量 = 总价</p>
+        <p>如：每瓶 3 元，买 5 瓶，$3\times5=15$（元）。</p>
+        <span class="use">算每种物品的总价。</span>
+      </div>
+      <div class="recall" data-label="五上第四、五单元 · 小数加减乘除" data-step="2">
+        <p>$6.8\times6.5=44.2$　$196\div40=4.9$</p>
+        <p>$20+16.8=36.8$　$200-187.5=12.5$</p>
+        <span class="use">算合计、平均每人、结余。</span>
+      </div>
+      <div class="recall" data-label="五上第五单元 · 估算" data-step="3">
+        <p>把小数看成接近的整数，先估一估：</p>
+        <p>$4.7\times4\approx5\times4=20$</p>
+        <span class="use">大约一共需要多少元。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">这些算法我们都会了。今天用它们来<b>办成一件真事</b>。</p>
+  </div>
+  <p class="note">联欢会的购物计划会用到小数加、减、乘、除和估算，正好是本册第四、五单元的内容。</p>
+</section>
+
+<!-- 3 ================= 提出问题 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">提出问题</span><h2>组织一次班级联欢会，要做哪些准备？</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="jcard"><h4>先做什么？</h4><p class="think" data-step="1" data-ask="说一说">先<b>制订一个方案</b>：确定怎样布置教室，准备哪些节目……</p></div>
+      <div class="jcard"><h4>要买什么？</h4><p class="think" data-step="2" data-ask="说一说">要购买布置教室的<b>拉花、气球</b>，还要购买一些<b>食品、奖品</b>。</p></div>
+      <div class="jcard"><h4>怎样定买什么？</h4><p class="think" data-step="3" data-ask="说一说">先在全班<b>调查</b>，看同学们喜欢哪些食品和奖品。</p></div>
+    </div>
+    <div class="steps4" data-step="4">
+      <span>组织调查</span><i>→</i><span>商店调查单价</span><i>→</i><span>定购物方案、估算</span><i>→</i><span>分组购物、算结余</span>
+    </div>
+  </div>
+  <p class="note">课本 p82 三个小精灵的话。最后一行是本课的活动顺序，也是课件后面几页的顺序。</p>
+</section>
+
+<!-- 4 ================= 组织调查 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">组织调查</span><h2>同学们最喜欢什么？先调查，再确定买什么</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="voteBars" class="vbars" viewBox="0 0 560 300" aria-label="调查结果"></svg>
+      <p class="muted small-t">示例数据：全班 40 人，每人每题选一项。</p>
+    </div>
+    <div class="col">
+      <div class="jcard">
+        <p>水果买哪两种？</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">苹果、梨</button><button type="button" data-k="b">苹果、香蕉</button><button type="button" data-k="c">梨、香蕉</button>
+          <p class="pick-why">喜欢苹果的 15 人、香蕉 13 人，最多。</p></div>
+      </div>
+      <div class="jcard">
+        <p>饮料买哪一种？</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">矿泉水</button><button type="button" data-k="b">果汁</button><button type="button" data-k="c">奶茶</button>
+          <p class="pick-why">喜欢果汁的有 18 人，最多。</p></div>
+      </div>
+      <div class="jcard">
+        <p>奖品买什么？</p>
+        <div class="pick" data-ans="b"><button type="button" data-k="a">书籍</button><button type="button" data-k="b">文具</button><button type="button" data-k="c">玩具</button>
+          <p class="pick-why">喜欢文具的有 16 人，最多。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p82 调查表的三个问题（水果、饮料、奖品）。左图的条形长度按人数精确画出。课堂上可以当场举手统计本班数据。</p>
+</section>
+
+<!-- 5 ================= 商店调查单价 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">调查单价</span><h2>到商店调查并记录物品的单价（同一类物品记录两种）</h2></div>
+  <div class="bd full top">
+    <table class="mtab price" id="priceTab"></table>
+    <p class="muted small-t">示例数据（单价单位：元）。</p>
+    <div class="cols2">
+      <p class="tip" data-step="1">两种气球，哪种便宜？　<span class="think" data-step="2" data-ask="比一比">② 号每个 0.35 元，比 ① 号便宜 $0.40-0.35=0.05$（元）。</span></p>
+      <p class="tip" data-step="3">一定要买便宜的吗？　<span class="think" data-step="4" data-ask="想一想">不一定，还要看质量、大小、同学们喜不喜欢。买什么、买多少要<b>比较合理</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p82 下方的记录表。同一类物品记录两种，是为了比较、选择。小数大小比较是本册第三单元的内容。</p>
+</section>
+
+<!-- 6 ================= 核心：购物方案计算器 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">定方案</span><h2>确定种类和数量，估一估、算一算，大约一共需要多少元？</h2></div>
+  <div class="bd full top">
+    <table class="mtab plan" id="planTab" data-noswipe></table>
+    <div class="cols3 planfoot">
+      <div class="calc">
+        <p>先估一估：大约 <span class="est" data-noswipe><input type="text" id="estIn" inputmode="decimal" aria-label="估计的总价"></span> 元</p>
+        <button type="button" class="btn solid" id="calcGo" data-noswipe>算一算</button>
+      </div>
+      <p class="tip feedback" id="planMsg">选好每种物品买哪一种、买多少，先估一估，再点“算一算”。</p>
+      <p class="tip" id="perMsg"></p>
+    </div>
+  </div>
+  <p class="note">本课核心操作。每行可以选 ①/② 两种商品，用 − ＋ 调数量（气球每次 10 个，水果每次 0.5 千克）。“总价”一列在点“算一算”后才显示，先让学生口头估算。程序内部以“分”为单位做整数运算，结果精确。示例预算：班费 200 元，全班 40 人。</p>
+</section>
+
+<!-- 7 ================= 算一算 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">算一算</span><h2>根据这个方案算一算，平均每人要付多少元？</h2></div>
+  <div class="bd full top">
+    <table class="mtab fixed">
+      <tr><th>物品名称</th><td>拉花</td><td>气球</td><td>苹果</td><td>香蕉</td><td>果汁</td><td>文具</td></tr>
+      <tr><th>单价/元</th><td>2.50</td><td>0.40</td><td>6.80</td><td>4.60</td><td>3.50</td><td>4.70</td></tr>
+      <tr><th>数量</th><td>8 条</td><td>50 个</td><td>6.5 千克</td><td>5 千克</td><td>20 瓶</td><td>4 个</td></tr>
+      <tr><th>总价/元</th><td><span class="blank" data-ans="20"></span></td><td><span class="blank" data-ans="20"></span></td><td><span class="blank" data-ans="44.2" data-w="4"></span></td><td><span class="blank" data-ans="23"></span></td><td><span class="blank" data-ans="70"></span></td><td><span class="blank" data-ans="18.8" data-w="4"></span></td></tr>
+    </table>
+    <div class="cols2">
+      <div class="calc">
+        <p>合计 <span class="blank" data-ans="196" data-w="4"></span> 元</p>
+        <p>全班 40 人，平均每人要付 <span class="blank" data-ans="4.9" data-w="4"></span> 元</p>
+      </div>
+      <div class="hint-ladder">
+        <p class="q">有困难？</p>
+        <details><summary>提示 1</summary>每种物品：单价 × 数量 = 总价，如 $6.8\times6.5=44.2$。</details>
+        <details><summary>提示 2</summary>合计把 6 个总价加起来；平均每人：合计 ÷ 40。</details>
+        <details><summary>完整解答</summary>$20+20+44.2+23+70+18.8=196$（元），$196\div40=4.9$（元）。</details>
+      </div>
+    </div>
+    <p class="tip gold" data-step="1">你能想到哪些<b>节约费用</b>的方法？　<span class="think" data-step="2" data-ask="说一说">比较两种商品的价格；买大包装；拉花可以自己动手做；问问商店有没有优惠……</span></p>
+  </div>
+  <p class="note">课本 p83 上方的表格（示例数据）。算苹果总价是小数乘小数，算平均每人是整数除以整数商是小数，都是第五单元的内容。先估一估：20+20+44+23+70+19≈196。</p>
+</section>
+
+<!-- 8 ================= 分组购物 · 优惠 · 结余 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">分组购物</span><h2>购买哪些物品时可以优惠？是结余还是超支？</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 果汁小瓶 500 毫升 3.50 元；大瓶 2 升（正好 4 小瓶）12.80 元。大瓶每 500 毫升合 <span class="blank" data-ans="3.2" data-w="3"></span> 元。</p>
+        <details><summary>提示 1</summary>2 升 = 2000 毫升，是 4 个 500 毫升。</details>
+        <details><summary>完整解答</summary>$12.8\div4=3.2$（元），比小瓶便宜 0.3 元。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 原来要买 20 小瓶，改买 5 大瓶，能少花 <span class="blank" data-ans="6"></span> 元。</p>
+        <details><summary>提示 1</summary>5 大瓶 $=12.8\times5$ 元。</details>
+        <details><summary>完整解答</summary>$12.8\times5=64$（元），$70-64=6$（元）。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>3.</b> 各组实际一共花了 187.50 元。与方案的 196 元比，是 <span class="pick inl" data-ans="a"><button type="button" data-k="a">结余</button><button type="button" data-k="b">超支</button></span> <span class="blank" data-ans="8.5" data-w="3"></span> 元。</p>
+        <details><summary>提示 1</summary>实际花的比计划少，就是结余。</details>
+        <details><summary>完整解答</summary>$196-187.5=8.5$（元），结余 8.5 元。</details>
+      </div>
+    </div>
+    <p class="warn" data-step="1" data-label="购物记录">每组要记录所购物品的<b>单价、数量和总价</b>，回来后才能算出这次联欢会花费的总金额。</p>
+  </div>
+  <p class="note">课本 p83“分组购物”。示例数据：果汁改买大瓶省 6 元，气球买 ② 号省 2.5 元，实际花费 196−6−2.5=187.5 元。第 3 题先点“结余/超支”，再填多少元。</p>
+</section>
+
+<!-- 9 ================= 回顾反思 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">回顾反思</span><h2>通过活动，你有哪些收获和体会？</h2></div>
+  <div class="bd full">
+    <div class="steps4 big4" data-step="1">
+      <span>调查<br><small>喜欢什么</small></span><i>→</i><span>方案<br><small>单价×数量</small></span><i>→</i><span>估算<br><small>大约多少元</small></span><i>→</i><span>购物<br><small>结余还是超支</small></span>
+    </div>
+    <div class="cols3">
+      <p class="recall" data-label="计划" data-step="2">组织活动前，要认真<b>制订活动计划</b>。</p>
+      <p class="method" data-label="调查" data-step="3">通过调查确定买什么、买多少比较<b>合理</b>。</p>
+      <p class="warn" data-label="计算" data-step="4">制订方案、实际购物的过程中，都要用到学过的<b>小数计算</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p83 回顾反思的三句话。可以布置：用本班真实数据完成一份联欢会购物方案。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
