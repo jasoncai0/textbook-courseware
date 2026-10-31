@@ -4093,13 +4093,21 @@ window.CATALOG = [
                 "no": "例2",
                 "title": "正比例的图像",
                 "genre": "概念",
-                "kind": "比例"
+                "kind": "比例",
+                "dir": "mp6b-zhengbilituxiang",
+                "pages": 10,
+                "desc": "方格图描点连线，沿直线拖点读值",
+                "cover": "mp6b-zhengbilituxiang/assets/dazi.jpg"
               },
               {
                 "no": "例3",
                 "title": "反比例的意义",
                 "genre": "概念",
-                "kind": "比例"
+                "kind": "比例",
+                "dir": "mp6b-fanbiliyiyi",
+                "pages": 12,
+                "desc": "面积为 12 的长方形拖角成曲线，支架平衡",
+                "cover": "mp6b-fanbiliyiyi/assets/wenju.jpg"
               },
               {
                 "no": "综合与实践",

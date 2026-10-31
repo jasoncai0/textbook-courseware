@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>反比例的意义 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/wenju.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第六单元 正比例和反比例 · 反比例的意义</p>
+    <h1 class="cover-title">反比例的意义</h1>
+    <p class="cover-q" data-step="1">用 <b>60 元</b>买笔记本，挑贵的，能买几本？挑便宜的呢？</p>
+    <p class="cover-q" data-step="2">单价和数量一个变大、一个变小，这里面藏着什么<b>不变</b>的东西？</p>
+    <div class="chips" data-step="3"><span class="chip">积一定</span><span class="chip">成反比例</span><span class="chip">$x\times y=k$</span><span class="chip">和正比例比一比</span></div>
+  </div>
+  <p class="note">课本 p61 例 3 的情境。上节课研究“比值一定”，这节课的不变量换成“乘积”。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>反比例和这些知识有关</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="本单元 · 正比例的意义" data-step="1">
+        <p class="big center">$\dfrac{y}{x}=k$（一定）</p>
+        <p>两种相关联的量，<b>比值</b>一定 → 成正比例。</p>
+        <p class="small"><a href="../mp6b-zhengbiliyiyi/index.html">回看《正比例的意义》 ›</a></p>
+        <span class="use">今天对照着学：这次一定的是什么？</span>
+      </div>
+      <div class="recall" data-label="四年级 · 常见的数量关系" data-step="2">
+        <p class="big center">单价 × 数量 = 总价</p>
+        <p class="big center">工作效率 × 工作时间 = 工作总量</p>
+        <span class="use">例 3 和“试一试”的乘积就是总价、工作总量。</span>
+      </div>
+      <div class="recall" data-label="三年级下册 · 长方形的面积" data-step="3">
+        <svg viewBox="0 0 200 110" class="mini-fig" id="rectMini" aria-label="长 4 宽 3 的长方形"></svg>
+        <p class="center">长方形的面积 = 长 × 宽</p>
+        <span class="use">面积不变的长方形，看“积一定”。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">上节课：两个量<b>相除</b>，商（比值）不变。今天：两个量<b>相乘</b>，积不变。</p>
+  </div>
+  <p class="note">第 3 张卡为本课核心活动（面积不变的长方形）做准备：数一数 4×3 的长方形里有 12 个方格。</p>
+</section>
+
+<!-- 3 ================= 例 3 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 3</span><h2>用 60 元购买笔记本</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div class="btns" data-noswipe id="nbBtns"></div>
+      <svg id="books" class="books" viewBox="0 0 600 230" aria-label="买到的笔记本"></svg>
+      <p class="tip center small" id="nbRead"></p>
+    </div>
+    <div class="col">
+      <table class="mtab" id="nbTab"></table>
+      <p class="tip small">表中的两个量是怎样变化的？这种变化有什么规律？</p>
+      <p class="tip small" data-step="1"><span class="think" data-step="1" data-ask="说一说">购买笔记本的数量随着单价的变化而变化。</span></p>
+      <p class="tip small" data-step="2"><span class="think" data-step="2" data-ask="怎样变化？">笔记本的单价越低，购买的本数越多；单价越高……</span></p>
+      <p class="tip small" data-step="3"><span class="think" data-step="3" data-ask="什么不变？">$1\times60=60$，$2\times30=60$……笔记本的<b>总价不变</b>。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p61 例 3。点上面的单价按钮，左图按“数量”画出相应本数的笔记本（每本上标单价），总价始终是 60 元。三个发现按课本三个小精灵的顺序。</p>
+</section>
+
+<!-- 4 ================= 核心：面积不变的长方形 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">积一定</span><h2>拉一拉：面积总是 12 的长方形</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="rectB" class="b-rect"></div>
+    </div>
+    <div class="col">
+      <p class="tip small">拖动长方形右上角的橙色点改变<b>长</b>，<b>宽</b>会自动变化，使面积始终是 12 平方厘米（每个小方格 1 平方厘米）。</p>
+      <p class="readbox" id="rectRead"></p>
+      <div class="found"><h4>记录（拖到整厘米时自动记下）</h4><p id="rectLog" class="muted">还没有记录。</p></div>
+      <button type="button" class="btn" id="rectCurve" data-noswipe>把右上角的点连起来</button>
+      <p class="tip small" data-step="1">长变大，宽就<span class="think" data-step="2" data-ask="？">变小</span>；长 × 宽总是 <span class="think" data-step="2" data-ask="？">12</span>。右上角的点连成的是一条<span class="think" data-step="3" data-ask="？">曲线</span>，不是直线。</p>
+    </div>
+  </div>
+  <p class="note">本课核心活动，对应课本 p63 练习十一第 2 题和 p62“你知道吗”。长方形的长按 0.25 cm 吸附，宽 = 12 ÷ 长，按方格精确画出；面积不变，长和宽此消彼长。连起来的点就是反比例的图像（一条曲线），可与上一课“过原点的直线”对比。</p>
+</section>
+
+<!-- 5 ================= 反比例的意义 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">概括</span><h2>什么叫成反比例？</h2></div>
+  <div class="bd full">
+    <p class="tip center formula" data-step="1">我们可以用下面的式子表示这几个量之间的关系：　单价 × 数量 = 总价<b class="fix">（一定）</b></p>
+    <div class="def big-def" data-step="2">单价和数量是两种<em>相关联的量</em>，单价变化，数量也随着变化。当单价和数量的<em>积总是一定</em>（也就是总价一定）时，笔记本的单价和购买的数量成<em>反比例关系</em>，笔记本的单价和购买的数量是成<em>反比例的量</em>。</div>
+    <div class="cols2">
+      <div class="method" data-step="3" data-label="判断成反比例，看两点">
+        <p>① 是不是两种<b>相关联</b>的量？</p>
+        <p>② 相对应的两个数的<b>积</b>是不是<b>一定</b>？</p>
+      </div>
+      <div class="recall" data-step="4" data-label="用字母表示">
+        <p>用 $x$ 和 $y$ 表示两种相关联的量，用 $k$ 表示它们的积：</p>
+        <p class="big center">$x\times y=k$<b class="fix">（一定）</b></p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p61 的结论和 p62 的字母式。和正比例的定义对照着读：只把“比值”换成了“积”。</p>
+</section>
+
+<!-- 6 ================= 试一试 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">试一试</span><h2>生产 240 个零件</h2></div>
+  <div class="bd full top">
+    <table class="mtab">
+      <tr><th>工作效率/(个/时)</th><td>120</td><td>80</td><td>60</td><td>48</td><td>40</td><td>…</td></tr>
+      <tr><th>工作时间/时</th><td>2</td><td>3</td><td>4</td><td><span class="blank" data-ans="5"></span></td><td><span class="blank" data-ans="6"></span></td><td>…</td></tr>
+    </table>
+    <p class="tip small center">工作效率是指单位时间内完成的工作量。</p>
+    <div class="cols2">
+      <div class="calc small-q">
+        <p>(1) 工作时间随着 <span class="blank" data-ans="工作效率|效率" data-w="4"></span> 的变化而变化。</p>
+        <p>(2) $120\times2=$ <span class="blank" data-ans="240"></span>，$80\times3=$ <span class="blank" data-ans="240"></span>，$60\times4=$ <span class="blank" data-ans="240"></span>，乘积<b>相等</b>。</p>
+        <p>(3) 乘积表示 <span class="blank" data-ans="工作总量|零件总数|零件个数" data-w="4"></span>：工作效率 × 工作时间 = 工作总量（一定）</p>
+      </div>
+      <div class="jcard">
+        <p>(4) 工作效率和工作时间成反比例吗？</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">成反比例</button><button type="button" data-k="n">不成反比例</button>
+          <p class="pick-why">工作效率和工作时间是两种相关联的量，它们的积（工作总量 240 个）一定，所以成反比例。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p61 试一试四个问题。第 (3) 问说出“工作总量”或“零件总数”都对。</p>
+</section>
+
+<!-- 7 ================= 正比例与反比例 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比一比</span><h2>正比例和反比例，有什么相同、有什么不同？</h2></div>
+  <div class="bd full top">
+    <table class="mtab cmp">
+      <tr><th></th><th>正比例</th><th>反比例</th></tr>
+      <tr><th>相同点</th><td colspan="2" data-step="1">都是两种<b>相关联</b>的量，一种量变化，另一种量也随着变化</td></tr>
+      <tr><th>什么一定</th><td data-step="2"><b>比值</b>一定：$\dfrac{y}{x}=k$</td><td data-step="2"><b>积</b>一定：$x\times y=k$</td></tr>
+      <tr><th>例子</th><td data-step="3">路程 ÷ 时间 = 速度（一定）</td><td data-step="3">单价 × 数量 = 总价（一定）</td></tr>
+      <tr><th>变化方向</th><td data-step="4">一个扩大，另一个也扩大</td><td data-step="4">一个扩大，另一个反而缩小</td></tr>
+      <tr><th>图像</th><td data-step="5"><svg viewBox="0 0 120 70" class="tiny-g" id="gZ" aria-label="过 0 点的直线"></svg></td><td data-step="5"><svg viewBox="0 0 120 70" class="tiny-g" id="gF" aria-label="曲线"></svg></td></tr>
+    </table>
+    <p class="warn" data-step="6" data-label="小心">“一个增加，另一个减少”不一定成反比例！四个同学看同一本 180 页的书：已看的页数增加，剩下的页数减少，但它们的<b>和</b>一定，<b>积</b>不一定，所以<b>不成</b>反比例。</p>
+  </div>
+  <p class="note">表格逐行出现，让学生先说再揭示。最后的反例来自课本 p64 练习十一第 6 题（2）：已看页数 + 剩下页数 = 180，是“和一定”。两个小图按 $y=x$ 和 $y=\dfrac{12}{x}$ 精确画出，只表示形状。</p>
+</section>
+
+<!-- 8 ================= 练一练 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练 · 练习十一</span><h2>写出积，判断是否成反比例</h2></div>
+  <div class="bd full top">
+    <div class="cols3">
+      <div class="hint-ladder">
+        <p class="q"><b>1.</b> 糖果厂把水果糖平均分装：</p>
+        <table class="mtab"><tr><th>每袋粒数</th><td>12</td><td>15</td><td>20</td><td>24</td><td>30</td></tr><tr><th>袋数</th><td>500</td><td>400</td><td>300</td><td>250</td><td>200</td></tr></table>
+        <p class="q small-q">$12\times500=$ <span class="blank" data-ans="6000"></span>，$24\times250=$ <span class="blank" data-ans="6000"></span>。每袋粒数和袋数 <span class="blank" data-ans="成反比例|成" data-w="4"></span>。</p>
+        <details><summary>完整解答</summary>积都是 6000（水果糖总粒数一定），所以成反比例。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>2.</b> 工地运一批水泥：</p>
+        <table class="mtab"><tr><th>每天吨数</th><td>72</td><td>36</td><td>24</td><td>18</td><td>12</td></tr><tr><th>天数</th><td>1</td><td>2</td><td>3</td><td>4</td><td>6</td></tr></table>
+        <p class="q small-q">积都是 <span class="blank" data-ans="72"></span>，表示 <span class="think" data-ask="想一想">水泥的总吨数</span>。每天运的吨数和天数 <span class="blank" data-ans="成反比例|成" data-w="4"></span>。</p>
+        <details><summary>完整解答</summary>每天运的吨数 × 天数 = 水泥总吨数 72（一定），成反比例。</details>
+      </div>
+      <div class="hint-ladder">
+        <p class="q"><b>练习十一 1.</b> 装配一批计算机：</p>
+        <table class="mtab"><tr><th>效率/(台/天)</th><td>40</td><td>80</td><td>100</td><td>200</td><td>400</td></tr><tr><th>时间/天</th><td>40</td><td>20</td><td>16</td><td>8</td><td>4</td></tr></table>
+        <p class="q small-q">积都是 <span class="blank" data-ans="1600"></span>。工作效率和工作时间 <span class="blank" data-ans="成反比例|成" data-w="4"></span>。</p>
+        <details><summary>完整解答</summary>工作效率 × 工作时间 = 1600（工作总量一定），成反比例。</details>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p62 练一练 1、2 和 p63 练习十一第 1 题。说理由要完整：“因为……和……是两种相关联的量，而且它们的积一定，所以成反比例。”</p>
+</section>
+
+<!-- 9 ================= 练习十一 2 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十一 2</span><h2>面积一定、周长一定，长与宽成反比例吗？</h2></div>
+  <div class="bd full top">
+    <div class="cols2">
+      <div class="col">
+        <svg id="rectA" class="rgrid" viewBox="0 0 440 175" aria-label="面积 12 平方厘米的三个长方形"></svg>
+        <table class="mtab"><tr><th></th><th>①</th><th>②</th><th>③</th></tr>
+          <tr><th>面积/cm²</th><td>12</td><td>12</td><td>12</td></tr>
+          <tr><th>长/cm</th><td>12</td><td><span class="blank" data-ans="6"></span></td><td><span class="blank" data-ans="4"></span></td></tr>
+          <tr><th>宽/cm</th><td>1</td><td><span class="blank" data-ans="2"></span></td><td><span class="blank" data-ans="3"></span></td></tr></table>
+        <div class="pick" data-ans="y"><span class="pq">(1) 面积一定，长与宽成反比例吗？</span><button type="button" data-k="y">成</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">长 × 宽 = 面积（一定），成反比例。</p></div>
+      </div>
+      <div class="col">
+        <svg id="rectP" class="rgrid" viewBox="0 0 440 175" aria-label="周长 14 厘米的三个长方形"></svg>
+        <table class="mtab"><tr><th></th><th>④</th><th>⑤</th><th>⑥</th></tr>
+          <tr><th>周长/cm</th><td>14</td><td>14</td><td>14</td></tr>
+          <tr><th>长/cm</th><td>6</td><td><span class="blank" data-ans="5"></span></td><td><span class="blank" data-ans="4"></span></td></tr>
+          <tr><th>宽/cm</th><td>1</td><td><span class="blank" data-ans="2"></span></td><td><span class="blank" data-ans="3"></span></td></tr></table>
+        <div class="pick" data-ans="n"><span class="pq">(2) 周长一定，长与宽成反比例吗？</span><button type="button" data-k="y">成</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">$6\times1=6$，$5\times2=10$，积不一定；一定的是长 + 宽 = 7，不成反比例。</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p63 练习十一第 2 题。图中每个小方格边长 1 厘米，六个长方形按课本的长、宽精确画出。第 (2) 问是重要反例：长变大宽变小，但积不一定。</p>
+</section>
+
+<!-- 10 ================= 判一判 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十一 4、7</span><h2>成正比例、成反比例，还是都不成？</h2></div>
+  <div class="bd full top">
+    <div class="cols3 judge3">
+      <div class="jcard"><p>圆柱底面积 3、5、6 cm²，高 15、9、7.5 cm。</p>
+        <div class="pick" data-ans="f"><button type="button" data-k="z">正比例</button><button type="button" data-k="f">反比例</button><button type="button" data-k="n">都不成</button>
+          <p class="pick-why">$3\times15=5\times9=6\times7.5=45$，积（体积）一定。</p></div></div>
+      <div class="jcard"><p>钢材体积 1、5、8 dm³，质量 7.8、39、62.4 kg。</p>
+        <div class="pick" data-ans="z"><button type="button" data-k="z">正比例</button><button type="button" data-k="f">反比例</button><button type="button" data-k="n">都不成</button>
+          <p class="pick-why">$7.8\div1=39\div5=62.4\div8=7.8$，比值一定。</p></div></div>
+      <div class="jcard"><p>120 名同学参加团体操表演，每排的人数和排数。</p>
+        <div class="pick" data-ans="f"><button type="button" data-k="z">正比例</button><button type="button" data-k="f">反比例</button><button type="button" data-k="n">都不成</button>
+          <p class="pick-why">每排人数 × 排数 = 120（一定）。</p></div></div>
+      <div class="jcard"><p>用同样大的正方形地砖铺地，地砖的块数和铺地的面积。</p>
+        <div class="pick" data-ans="z"><button type="button" data-k="z">正比例</button><button type="button" data-k="f">反比例</button><button type="button" data-k="n">都不成</button>
+          <p class="pick-why">铺地面积 ÷ 块数 = 每块地砖的面积（一定）。</p></div></div>
+      <div class="jcard"><p>购买商品的总价一定，商品的单价和数量。</p>
+        <div class="pick" data-ans="f"><button type="button" data-k="z">正比例</button><button type="button" data-k="f">反比例</button><button type="button" data-k="n">都不成</button>
+          <p class="pick-why">单价 × 数量 = 总价（一定）。</p></div></div>
+      <div class="jcard"><p>一个商场每天的营业时间一定，每天接待顾客的数量与营业额。</p>
+        <div class="pick" data-ans="n"><button type="button" data-k="z">正比例</button><button type="button" data-k="f">反比例</button><button type="button" data-k="n">都不成</button>
+          <p class="pick-why">顾客多，营业额一般也多，但每位顾客花的钱不一样，比值、积都不一定。</p></div></div>
+    </div>
+  </div>
+  <p class="note">课本 p63 练习十一第 4 题（前两题）和 p65 第 7 题（1）（3）（4）（5）。判断步骤：先看是否相关联，再算比值或积是否一定。</p>
+</section>
+
+<!-- 11 ================= 动手做 杠杆 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">动手做</span><h2>小支架怎样才能保持平衡？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <svg id="lever" class="lever" viewBox="0 0 600 270" aria-label="纸条支架"></svg>
+      <div class="lv-ctrl" data-noswipe>
+        <div><span>左边第</span><button type="button" class="btn" data-d="lh-">−</button><b id="lvLH"></b><button type="button" class="btn" data-d="lh+">＋</button><span>孔挂</span><button type="button" class="btn" data-d="lb-">−</button><b id="lvLB"></b><button type="button" class="btn" data-d="lb+">＋</button><span>个</span></div>
+        <div><span>右边第</span><button type="button" class="btn" data-d="rh-">−</button><b id="lvRH"></b><button type="button" class="btn" data-d="rh+">＋</button><span>孔挂</span><button type="button" class="btn" data-d="rb-">−</button><b id="lvRB"></b><button type="button" class="btn" data-d="rb+">＋</button><span>个</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="tip small">18 厘米的硬纸条，中心点固定在支架上，两侧每隔 2 厘米打一个小孔。在左侧第 4 个孔挂 2 个同样大的珠，右侧第 2 个孔应挂多少个珠才能保持平衡？先想一想，再试一试。</p>
+      <p class="tip feedback" id="lvMsg"></p>
+      <p class="calc small-q">左 4 孔 2 珠，右 2 孔挂 <span class="blank" data-ans="4"></span> 个；<br>左 4 孔 3 珠，右 3 孔挂 <span class="blank" data-ans="4"></span> 个。</p>
+      <p class="tip small" data-step="1">平衡时，孔的序号 × 珠数，两边<span class="think" data-step="2" data-ask="？">相等</span>；所以一边挂的珠数一定时，另一边的<b>孔号和珠数成反比例</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p65 动手做。纸条按孔距 2 厘米精确画出；平衡条件“孔号 × 珠数”两边相等（杠杆原理，课本只要求发现规律）。不平衡时纸条向较重的一侧倾斜。</p>
+</section>
+
+<!-- 12 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>变化中的不变：积一定</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><h4>两种相关联的量</h4><p>一个变，另一个也变</p></div>
+      <i>＋</i>
+      <div class="fbox"><h4>积一定</h4><p>$x\times y=k$</p></div>
+      <i>⇒</i>
+      <div class="fbox"><h4>成反比例</h4><p>图像是一条曲线</p></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="判断三步" data-step="2">① 相关联吗？② 比值一定 → 正比例；积一定 → 反比例；③ 都不一定（如和一定）→ 不成比例。</p>
+      <p class="warn" data-label="易错" data-step="3">“一增一减”不等于反比例，“同增同减”不等于正比例，一定要算一算。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>综合与实践《大树有多高》——用正比例解决真问题。　<b>到了初中</b>，你会学到<a href="../mj8b-fanbilihanshu/index.html">反比例函数</a> $y=\dfrac{k}{x}$，它的图像就是今天连出的那种曲线。</p>
+  </div>
+  <p class="note">课后作业建议：练习十一第 5 题（看图写出图上距离和实际距离，比例尺 1∶4000，12 厘米表示 480 米）、第 6 题、第 8 题。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>

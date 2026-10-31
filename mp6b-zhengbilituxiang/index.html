@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="subject" content="数学">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正比例的图像 · 课本插件</title>
+<link rel="stylesheet" href="../shared/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../shared/deck.css">
+<link rel="stylesheet" href="../shared/math.css">
+<link rel="stylesheet" href="../shared/mcheck.css">
+<link rel="stylesheet" href="course.css">
+</head>
+<body>
+<div class="deck"><div class="frame" id="frame">
+
+<div class="help">→ / 空格 下一步　← 上一步　N 教师提示　F 全屏　H 目录</div>
+
+<!-- 1 ================= 封面 ================= -->
+<section class="slide m-cover">
+  <div class="cover-bg" data-bg="assets/dazi.jpg"></div>
+  <div class="cover-box">
+    <p class="cover-unit">六年级下册 · 第六单元 正比例和反比例 · 正比例的图像</p>
+    <h1 class="cover-title">正比例的图像</h1>
+    <p class="cover-q" data-step="1">上节课，汽车行驶的路程和时间<b>成正比例</b>。</p>
+    <p class="cover-q" data-step="2">把表里的每一组数据画成方格图上的一个点，这些点会排成什么样子？画出来的图又有什么用？</p>
+    <div class="chips" data-step="3"><span class="chip">描点</span><span class="chip">连线</span><span class="chip">过原点的直线</span><span class="chip">看图估计</span></div>
+  </div>
+  <p class="note">课本 p58 例 2。先让学生猜：点会连成折线、曲线还是直线？把猜想写在黑板上，第 4 页验证。</p>
+</section>
+
+<!-- 2 ================= 前情回顾 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">前情回顾</span><h2>画图之前，先想想这三件事</h2></div>
+  <div class="bd full">
+    <div class="cols3">
+      <div class="recall" data-label="上一课 · 正比例的意义" data-step="1">
+        <p class="big center">$\dfrac{路程}{时间}=速度$（一定）</p>
+        <p>两种相关联的量，比值一定，就成正比例。</p>
+        <p class="small"><a href="../mp6b-zhengbiliyiyi/index.html">回看《正比例的意义》 ›</a></p>
+        <span class="use">例 2 用的就是例 1 汽车的数据。</span>
+      </div>
+      <div class="recall" data-label="四年级下册 · 用数对确定位置" data-step="2">
+        <svg viewBox="0 0 200 120" class="mini-fig" id="pairFig" aria-label="数对确定点"></svg>
+        <p>第 3 列、第 2 行 → 数对 $(3,2)$。</p>
+        <span class="use">“1 小时、80 千米”就对应图上的一个点。</span>
+      </div>
+      <div class="recall" data-label="五年级下册 · 折线统计图" data-step="3">
+        <svg viewBox="0 0 200 120" class="mini-fig" id="lineFig" aria-label="折线统计图"></svg>
+        <p>先<b>描点</b>，再按顺序<b>连线</b>。</p>
+        <span class="use">描出各点并连起来，看看是什么形状。</span>
+      </div>
+    </div>
+    <p class="tip gold" data-step="4">横轴表示<b>时间</b>，纵轴表示<b>路程</b>，表里的每一组数据就是图上的<b>一个点</b>。</p>
+  </div>
+  <p class="note">数对和折线统计图都是“两个数确定一个点”“描点连线”，本课把它们用到正比例的量上。</p>
+</section>
+
+<!-- 3 ================= 例 2 描点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">例 2</span><h2>把例 1 表中的各组数据描在图上</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="b2" class="b-graph"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn" id="b2Auto">全部描出</button><button type="button" class="btn solid" id="b2Line">连接各点</button></div>
+    </div>
+    <div class="col">
+      <table class="mtab" id="b2Tab"></table>
+      <p class="tip small feedback" id="b2Msg"></p>
+      <p class="tip small" data-step="1">(1) 点 A 表示 1 小时行 80 千米，点 B 表示 5 小时行 400 千米。其他各点呢？　<span class="think" data-step="2" data-ask="说一说">如点 $(3,240)$ 表示 3 小时行 240 千米……</span></p>
+      <p class="tip small" data-step="3">(2) 连接图中各点，你有什么发现？　<span class="think" data-step="4" data-ask="你发现了什么？">各点在<b>一条直线</b>上；把直线向左下延长，正好经过 <b>0 点</b>（0 小时行 0 千米）。</span></p>
+    </div>
+  </div>
+  <p class="note">课本 p58 例 2 (1)(2)。让学生到屏幕上依次点出表中各组数据对应的点（横轴每格 1 小时，纵轴每格 80 千米，与课本图一致），点对了才出现。再点“连接各点”：直线按 $y=80x$ 精确画出，延长后经过原点。</p>
+</section>
+
+<!-- 4 ================= 核心：拖点读值 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">看图估计</span><h2>沿着直线拖一拖：2.5 小时行多少千米？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="b3" class="b-graph"></div>
+    </div>
+    <div class="col">
+      <p class="tip small">拖动直线上的橙色点，虚线会告诉你它对应的时间和路程。</p>
+      <p class="readbox" id="b3Read"></p>
+      <div class="calc">
+        <p>(3) 这辆汽车 2.5 小时行驶 <span class="blank" data-ans="200"></span> 千米；</p>
+        <p>行驶 440 千米需要 <span class="blank" data-ans="5.5"></span> 小时。</p>
+      </div>
+      <p class="tip small" data-step="1">表里没有 2.5 小时，为什么图上能找到？　<span class="think" data-step="2" data-ask="想一想">直线上<b>每一个点</b>都表示一组相对应的时间和路程，表格里没有列出的，也能从图上读出来。</span></p>
+      <p class="tip small" data-step="3">用算式验证：$80\times2.5=$ <span class="blank" data-ans="200"></span>，$440\div80=$ <span class="blank" data-ans="5.5"></span>。</p>
+    </div>
+  </div>
+  <p class="note">课本 p58 例 2 第 (3) 问。点在直线上按 0.1 小时吸附移动，读数由 $y=80x$ 精确算出。先看图估计，再用比值 80 计算验证：图像能“读”，算式能“算”，结果一致。</p>
+</section>
+
+<!-- 5 ================= 概括：图像的特点 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">比一比</span><h2>速度不同，直线有什么不同？</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="b4" class="b-graph"></div>
+      <div class="slider-row" data-noswipe>速度 <input type="range" id="kSl" min="40" max="140" step="20" value="120"><b class="v" id="kV"></b> 千米/时
+        <button type="button" class="btn" id="kOff">出发前已行 100 千米？</button></div>
+    </div>
+    <div class="col">
+      <p class="tip small" id="b4Msg"></p>
+      <p class="tip small" data-step="1">速度越快，直线越<span class="think" data-step="2" data-ask="？">陡</span>；但不管速度是多少，直线都经过<span class="think" data-step="2" data-ask="？"> 0 点</span>。</p>
+      <div class="def" data-step="3">两种量<em>成正比例</em>时，它们的图像是一条经过 <em>0 点</em>的<em>直线</em>。</div>
+      <p class="warn" data-step="4" data-label="对照">如果出发前已经行了 100 千米，总路程和时间的比值不再一定，直线就<b>不经过 0 点</b>，它们<b>不成正比例</b>。</p>
+    </div>
+  </div>
+  <p class="note">课本没有专门的比较页，这一页帮学生概括图像特点：灰色虚线是例 2 的 80 千米/时。按钮演示一个反例（$y=80x+100$），直线不过原点，比值 180、130……不一定，所以不成正比例。</p>
+</section>
+
+<!-- 6 ================= 练一练 小玲打字 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练一练</span><h2>小玲用计算机打字</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="b5" class="b-graph"></div>
+      <div class="btns" data-noswipe><button type="button" class="btn solid" id="b5Line">按顺序连接起来</button></div>
+    </div>
+    <div class="col">
+      <table class="mtab"><tr><th>时间/分</th><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td><td>12</td><td>14</td></tr><tr><th>数量/个</th><td>100</td><td>200</td><td>300</td><td>400</td><td>500</td><td>600</td><td>700</td></tr></table>
+      <div class="calc small-q">
+        <p>(1) 数量 ÷ 时间 = <span class="blank" data-ans="50"></span>（一定），打字数量和时间 <span class="blank" data-ans="成正比例|成" data-w="4"></span>。</p>
+        <p>(2) 在图中描出各点（点方格图），再连线。</p>
+        <p>(3) 5 分钟可以打 <span class="blank" data-ans="250"></span> 个字；打 750 个字需要 <span class="blank" data-ans="15"></span> 分钟。</p>
+      </div>
+      <p class="tip small feedback" id="b5Msg"></p>
+    </div>
+  </div>
+  <p class="note">课本 p58 练一练。方格图与课本一致：横轴每格 1 分钟（到 16），纵轴每格 100 个。描完 7 个点、连线后出现可拖动的点，用来读第 (3) 问。</p>
+</section>
+
+<!-- 7 ================= 练习十 3 骑车 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十 3</span><h2>小军一家骑车去森林动物园</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="b6" class="b-graph"></div>
+    </div>
+    <div class="col">
+      <p class="readbox" id="b6Read"></p>
+      <div class="jcard">
+        <p>(1) 骑车行的路程和时间成正比例吗？</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">成正比例</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">图像是一条经过 0 点的直线；$8\div30=16\div60=24\div90$，比值一定。</p></div>
+      </div>
+      <div class="calc small-q">
+        <p>(2) 20 分钟大约行 <span class="blank" data-ans="5.3|5.33|16/3|5" data-w="3"></span> 千米；</p>
+        <p>行 10 千米大约要用 <span class="blank" data-ans="37.5|38|37" data-w="3"></span> 分钟。</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">课本 p59 练习十第 3 题。图上的直线经过 (30, 8)、(60, 16)、(90, 24)，即每分钟行 $\dfrac{8}{30}=\dfrac{4}{15}$ 千米。20 分钟 ≈ 5.3 千米，10 千米 ≈ 37.5 分钟。题目说“大约”，看图得出 5 千米多、38 分钟左右都可以。</p>
+</section>
+
+<!-- 8 ================= 练习十 4 彩带 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十 4</span><h2>彩带每米售价 5 元</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="b7" class="b-graph"></div>
+    </div>
+    <div class="col">
+      <table class="mtab"><tr><th>长度/米</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><th>总价/元</th><td>5</td><td><span class="blank" data-ans="10"></span></td><td><span class="blank" data-ans="15"></span></td><td><span class="blank" data-ans="20"></span></td><td><span class="blank" data-ans="25"></span></td></tr></table>
+      <p class="tip small">(2) 表填对一格，图上就描出一个点；填完自动连线。</p>
+      <div class="jcard">
+        <p>(3) 总价和长度成正比例吗？根据什么判断？</p>
+        <div class="pick" data-ans="y"><button type="button" data-k="y">成正比例</button><button type="button" data-k="n">不成</button>
+          <p class="pick-why">$\dfrac{总价}{长度}=5$（单价一定）；图像也是一条过 0 点的直线。</p></div>
+      </div>
+      <p class="calc small-q">(4) 购买 3.5 米彩带需要 <span class="blank" data-ans="17.5"></span> 元。</p>
+    </div>
+  </div>
+  <p class="note">课本 p60 练习十第 4 题。方格图与课本一致：横轴每格 1 米，纵轴每格 5 元。表中每填对一格，对应的点自动描出；全部填对后连线，并出现可拖动的点，拖到 3.5 米处读出 17.5 元。</p>
+</section>
+
+<!-- 9 ================= 练习十 5 弹簧 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">练习十 5</span><h2>弹簧挂上物体后会伸长</h2></div>
+  <div class="bd wide">
+    <div class="col">
+      <div id="b8" class="b-graph"></div>
+    </div>
+    <div class="col">
+      <table class="mtab"><tr><th>物体质量/kg</th><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td><td>…</td><td>20</td></tr><tr><th>伸长长度/cm</th><td>0.5</td><td>1</td><td>1.5</td><td>2</td><td>2.5</td><td>…</td><td>5</td></tr></table>
+      <p class="readbox" id="b8Read"></p>
+      <div class="calc small-q">
+        <p>(2) 长度 ÷ 质量 = <span class="blank" data-ans="0.25|1/4"></span>（一定），成正比例。</p>
+        <p>(3) 挂 5 千克的物体，弹簧伸长 <span class="blank" data-ans="1.25"></span> 厘米；</p>
+        <p>要使弹簧伸长 4 厘米，应挂 <span class="blank" data-ans="16"></span> 千克的物体。</p>
+      </div>
+      <p class="warn small" data-step="1" data-label="注意">题目说质量<b>不超过 20 千克</b>：超过了弹簧可能被拉坏，图像只画到 20 千克。</p>
+    </div>
+  </div>
+  <p class="note">课本 p60 练习十第 5 题。课本方格图横轴只到 12 千克，伸长 4 厘米要挂 16 千克，超出了课本的图，这里把图画到 20 千克（题目的上限），也可以让学生用比值 0.25 计算：$4\div0.25=16$。</p>
+</section>
+
+<!-- 10 ================= 小结 ================= -->
+<section class="slide">
+  <div class="hd"><span class="tag">小结</span><h2>正比例的图像：过 0 点的直线</h2></div>
+  <div class="bd full">
+    <div class="flow" data-step="1">
+      <div class="fbox"><h4>列表</h4><p>一组组对应的数</p></div>
+      <i>→</i>
+      <div class="fbox"><h4>描点</h4><p>每组数是一个点</p></div>
+      <i>→</i>
+      <div class="fbox"><h4>连线</h4><p>过 0 点的直线</p></div>
+      <i>→</i>
+      <div class="fbox"><h4>用图</h4><p>已知一个量，看图估另一个</p></div>
+    </div>
+    <div class="cols2">
+      <p class="recall" data-label="图像特点" data-step="2">成正比例的两种量，图像是一条经过 0 点的直线；比值越大，直线越陡。</p>
+      <p class="method" data-label="看图与计算" data-step="3">看图可以很快地<b>估计</b>，用比值计算可以得到<b>准确</b>结果，两者互相验证。</p>
+    </div>
+    <p class="tip gold" data-step="4"><b>下一课：</b>用 60 元买笔记本，单价和数量又是什么关系？　<b>到了初中</b>，你会学到<a href="../mj8a-yicihanshu/index.html">一次函数</a>，正比例的图像就是正比例函数 $y=kx$ 的图像。</p>
+  </div>
+  <p class="note">课后作业建议：练习十第 4、5 题在课本方格图上自己描点连线。</p>
+</section>
+
+<div class="lightbox" id="lightbox"><div id="lbMedia"></div><p id="lbCap"></p><button class="btn solid" id="lbClose">关闭（Esc）</button></div>
+
+<div class="ctrl">
+  <button class="nav" id="prev" aria-label="上一步">‹</button>
+  <div class="progress" id="progress"></div>
+  <span class="pageno" id="pageno"></span>
+  <button class="nav" id="next" aria-label="下一步">›</button>
+</div>
+
+</div></div>
+<script src="../shared/vendor/katex/katex.min.js"></script>
+<script src="../shared/vendor/katex/auto-render.min.js"></script>
+<script src="../shared/math.js"></script>
+<script src="../shared/mcheck.js"></script>
+<script src="course.js"></script>
+<script src="../shared/deck.js"></script>
+</body>
+</html>
